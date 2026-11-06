@@ -42,6 +42,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
    },
    {
+    "text": "ControlPolicyConflict",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+   },
+   {
     "text": "MDMWinsOverGP",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
    },
@@ -56,6 +60,22 @@
   "title": "The hybrid-join trap, and where each device fact lives",
   "links": [
    {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
+    "text": "Autopilot registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-autopilot-registration-overview"
+   },
+   {
+    "text": "stale devices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-manage-stale-devices-in-microsoft"
+   },
+   {
     "text": "Book 05, Ch 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
    },
@@ -69,6 +89,10 @@
   "slide": 6,
   "title": "Intune-first: five pillars and a five-phase process",
   "links": [
+   {
+    "text": "Autopilot registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-autopilot-registration-overview"
+   },
    {
     "text": "Book 05, Ch 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
@@ -100,6 +124,10 @@
   "title": "Carrying the purchase order to the device's configuration",
   "links": [
    {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
     "text": "Book 05, Ch 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
    }
@@ -109,6 +137,10 @@
   "slide": 10,
   "title": "The day-zero baseline, and the four exception paths",
   "links": [
+   {
+    "text": "Defender security settings management",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-how-to-use-intune-endpoint-security"
+   },
    {
     "text": "Book 05, Ch 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
@@ -128,6 +160,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
    },
    {
+    "text": "Intune Multi Admin Approval",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-access-policies-to-require-multi-admin"
+   },
+   {
     "text": "Book 05, Ch 05",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
    }
@@ -140,6 +176,14 @@
    {
     "text": "NTLM deprecation",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+   },
+   {
+    "text": "SQL Server SPNs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#register-a-service-principal-name-for"
+   },
+   {
+    "text": "ControlPolicyConflict",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
    },
    {
     "text": "policy conflicts",
@@ -155,6 +199,10 @@
   "slide": 14,
   "title": "The sunset pipeline and Group Policy analytics",
   "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
    {
     "text": "Book 05, Ch 01",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
@@ -192,6 +240,14 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-endpoint-security-in-microsoft-intune"
    },
    {
+    "text": "ControlPolicyConflict",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+   },
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
+   {
     "text": "Book 05, Ch 07",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
    }
@@ -202,6 +258,18 @@
   "title": "Seven phases at working level: durations, gates and waves",
   "links": [
    {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
+   {
     "text": "Book 05, Ch 08",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
    }
@@ -211,6 +279,14 @@
   "slide": 18,
   "title": "The policy library: attribute targeting and the compliance set",
   "links": [
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Windows 11 release information",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-11-release-information"
+   },
    {
     "text": "Book 05, Ch 08",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
@@ -250,6 +326,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
    },
    {
+    "text": "multicloud connector",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-multicloud-connector-enabled-by"
+   },
+   {
     "text": "Ch 03",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
    }
@@ -260,6 +340,10 @@
   "title": "Before you onboard: roles, network, tags and images",
   "links": [
    {
+    "text": "Arc onboarding security",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#arc-servers-planning-and-deployment"
+   },
+   {
     "text": "Book 05, Ch 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
    }
@@ -269,6 +353,14 @@
   "slide": 24,
   "title": "Onboarding a wave with a least-privileged principal",
   "links": [
+   {
+    "text": "Arc onboarding security",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#arc-servers-planning-and-deployment"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   },
    {
     "text": "Book 05, Ch 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
@@ -289,6 +381,10 @@
   "slide": 26,
   "title": "Extended Security Updates, Entra ID sign-in and rollback",
   "links": [
+   {
+    "text": "azcmagent disconnect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-disconnect"
+   },
    {
     "text": "Book 05, Ch 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
@@ -314,6 +410,10 @@
   "title": "Windows updates: rings, Autopatch and version currency",
   "links": [
    {
+    "text": "Windows 11 release information",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-11-release-information"
+   },
+   {
     "text": "Book 05, Ch 10",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
    }
@@ -323,6 +423,10 @@
   "slide": 30,
   "title": "Reconciling three inventories, and retiring a device in order",
   "links": [
+   {
+    "text": "stale devices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-manage-stale-devices-in-microsoft"
+   },
    {
     "text": "Book 05, Ch 10",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
@@ -348,8 +452,24 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
    },
    {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
     "text": "Key Security Indicators",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Intune government service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Graph national clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
     "text": "Book 05, Ch 10",

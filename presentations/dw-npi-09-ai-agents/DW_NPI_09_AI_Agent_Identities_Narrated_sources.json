@@ -1,0 +1,304 @@
+[
+ {
+  "slide": 2,
+  "title": "What Agent ID is, and why its blueprint matters",
+  "links": [
+   {
+    "text": "Entra releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-releases-and-announcements"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Release stage by cloud, and D-N6 as data",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "Agent 365 service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-agent-365"
+   },
+   {
+    "text": "sponsor tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#agent-identity-sponsor-tasks-in-lifecycle"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The program's rules, N6.1 to N6.7",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "inheritable permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-inheritable-permissions-for-agent"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Learn's Agent ID samples, pinned and sent to a fake",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "inheritable permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-inheritable-permissions-for-agent"
+   },
+   {
+    "text": "Disable agent identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-agent-identities-in-your-tenant"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the samples leave out: reads and sponsors",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What they leave out: secrets, inheritance, CA",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "Configure inheritable permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-inheritable-permissions-for-agent"
+   },
+   {
+    "text": "Manage agent identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-agent-identities-in-your-organization"
+   },
+   {
+    "text": "Disable agent identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-agent-identities-in-your-tenant"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The code, its inputs and what it reads",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The checks, part 1: creation, handshake, sponsors",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The checks, part 2: privilege, sponsors, CA, drift",
+  "links": [
+   {
+    "text": "inheritable permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-inheritable-permissions-for-agent"
+   },
+   {
+    "text": "Privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Authorization in Agent ID",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#authorization-in-microsoft-entra-agent-id"
+   },
+   {
+    "text": "sponsor tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#agent-identity-sponsor-tasks-in-lifecycle"
+   },
+   {
+    "text": "Secure autonomous agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-autonomous-agents-with-conditional"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The agent CA plan and the separate write path",
+  "links": [
+   {
+    "text": "Create conditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-conditionalaccesspolicy"
+   },
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who keeps the records, and what each task may hold",
+  "links": [
+   {
+    "text": "Create conditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-conditionalaccesspolicy"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: Learn's samples, D-N6, then the check",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: reading the findings and the sponsor fields",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the GCC High fallback, a dry run, a refusal",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, one governed agent",
+  "links": [
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "Secure autonomous agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-autonomous-agents-with-conditional"
+   },
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "Manage agent identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-agent-identities-in-your-organization"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   },
+   {
+    "text": "Create a blueprint",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-an-agent-identity-blueprint"
+   },
+   {
+    "text": "Configure inheritable permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-inheritable-permissions-for-agent"
+   },
+   {
+    "text": "Conditional Access for agents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-agents"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ }
+]

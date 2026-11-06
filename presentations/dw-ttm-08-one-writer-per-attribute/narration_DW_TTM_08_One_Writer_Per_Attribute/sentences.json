@@ -2,41 +2,36 @@
  "1": [
   [
    0.05,
-   3.2,
-   "Welcome to the last chapter of Building Ticket-to-Machine."
+   4.825,
+   "Welcome to Building Ticket-to-Machine, Chapter 8: one writer per attribute."
   ],
   [
-   3.25,
-   2.612,
-   "Chapter 8: one writer per attribute."
-  ],
-  [
-   5.862,
+   4.875,
    3.575,
    "Two writers on one attribute isn't drift you can fix."
   ],
   [
-   9.438,
+   8.45,
    1.462,
    "It's drift you've scheduled."
   ],
   [
-   10.9,
+   9.912,
    9.725,
    "The Federal Modernization Workbook's design makes Entra inbound provisioning the one writer into the directory, but SailPoint can also provision Entra I D."
   ],
   [
-   20.625,
+   19.637,
    5.562,
    "If both write department, the reconciliation reports drift that the next sync recreates."
   ],
   [
-   26.188,
+   25.2,
    7.2,
    "This chapter compares the two provisioning configurations, offline, and names every attribute with two writers."
   ],
   [
-   33.388,
+   32.4,
    2.35,
    "Then two labs and the dangers."
   ]

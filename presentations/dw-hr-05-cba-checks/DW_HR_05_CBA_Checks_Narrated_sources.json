@@ -1,0 +1,256 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this gate needs code",
+  "links": [
+   {
+    "text": "Entra CBA Certificate Revocation List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: the limit depends on it",
+  "links": [
+   {
+    "text": "Entra CBA Certificate Revocation List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Microsoft gives you",
+  "links": [
+   {
+    "text": "CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Set up CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "certificateAuthorityDetail",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certificateauthoritydetail-resource-type"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Entra CBA Certificate Revocation List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "cba_check.py: measure, then check",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The check: CB-01 to CB-13",
+  "links": [
+   {
+    "text": "CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "required configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Three read permissions, and the root CA",
+  "links": [
+   {
+    "text": "certificateAuthorityDetail",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certificateauthoritydetail-resource-type"
+   },
+   {
+    "text": "Set up CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The verified facts",
+  "links": [
+   {
+    "text": "CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "certificateAuthorityDetail",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certificateauthoritydetail-resource-type"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Where Learn says nothing, or differs",
+  "links": [
+   {
+    "text": "CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What the check proves, and for whom",
+  "links": [
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "required configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who builds, who runs the CAs, who keeps it",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: the read, and the measurement",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the fictional tenant, checked for GCC",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the same tenant for GCC High, and the tests",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, and a revoked card",
+  "links": [
+   {
+    "text": "Entra CBA Certificate Revocation List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Entra CBA Certificate Revocation List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the CBA checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,162 @@
+[
+ {
+  "slide": 2,
+  "title": "Access is decided per request, by policy",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 04, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Standing privilege is an open door",
+  "links": [
+   {
+    "text": "NSA/CISA AA23-278A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-278a"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Book 04, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Conditional Access evaluates",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "report-only mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#analyze-conditional-access-policy-impact"
+   },
+   {
+    "text": "Book 04, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Privilege and applications, structured",
+  "links": [
+   {
+    "text": "privileged roles and permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "enterprise access model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enterprise-access-model"
+   },
+   {
+    "text": "Book 04, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who decides access, and who executes it",
+  "links": [
+   {
+    "text": "Book 04, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The policy library, rolled out in waves",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "SCuBA Entra ID baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Book 04, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "PIM: eligible, requested, approved, logged",
+  "links": [
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 04, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Govern access, manage it as code, prove it",
+  "links": [
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 04, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   }
+  ]
+ }
+]

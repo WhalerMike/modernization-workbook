@@ -1,0 +1,322 @@
+[
+ {
+  "slide": 1,
+  "title": "Building Day-Two Automation In-House",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "The problem: procedures that leave no evidence",
+  "links": [
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "one front door",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html#one-front-door"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   },
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "ticket to machine",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#ticket-to-machine-not-ticket-to-human"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Why the funded options are off the table",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "What the native route costs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#what-the-native-route-costs-and-why-it-may-be-closed"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   },
+   {
+    "text": "What ServiceNow already provides",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html#what-servicenow-already-provides"
+   },
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "Licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html#licensing-what-needs-entra-id-governance"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The no-cost path on the instance we already own",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "What staff can build",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#what-staff-can-build-on-the-instance-the-agency-already-owns"
+   },
+   {
+    "text": "What it doesn't replace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#what-it-doesnt-replace"
+   },
+   {
+    "text": "A sister team as the model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#a-sister-team-as-the-model"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   },
+   {
+    "text": "The compliance application",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html#the-compliance-application-if-you-build-one"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "AI-assisted development, with guardrails",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "AI-assisted development with guardrails",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#ai-assisted-development-with-guardrails"
+   },
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "NIST SP 800-218",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-218"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Sandbox to production, with two gates",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Three environments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#three-environments"
+   },
+   {
+    "text": "Source control",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#source-control-update-sets-and-tests"
+   },
+   {
+    "text": "update sets and tests",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#source-control-update-sets-and-tests"
+   },
+   {
+    "text": "The gates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#the-gates"
+   },
+   {
+    "text": "source control",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#source-control-update-sets-and-tests"
+   },
+   {
+    "text": "update sets",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#source-control-update-sets-and-tests"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the standards ask, and how the path meets it",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "The controls behind the path",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#the-controls-behind-the-path"
+   },
+   {
+    "text": "The SSDF and its generative-AI profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#the-ssdf-and-its-generative-ai-profile"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Who writes, reviews, approves and operates",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Who writes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#who-writes-reviews-approves-and-operates"
+   },
+   {
+    "text": "reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#who-writes-reviews-approves-and-operates"
+   },
+   {
+    "text": "approves and operates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#who-writes-reviews-approves-and-operates"
+   },
+   {
+    "text": "Training existing staff",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#training-existing-staff-rather-than-hiring"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The evidence it produces",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Evidence: the development path is itself audit evidence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#evidence-the-development-path-is-itself-audit-evidence"
+   },
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Honest limits",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Honest limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#honest-limits"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The decision: approve a small pilot",
+  "links": [
+   {
+    "text": "Book 15, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Three environments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#three-environments"
+   },
+   {
+    "text": "Training existing staff",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html#training-existing-staff-rather-than-hiring"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Where to read next",
+  "links": [
+   {
+    "text": "whalermike.github.io/modernization-workbook",
+    "url": "https://whalermike.github.io/modernization-workbook/"
+   },
+   {
+    "text": "Book 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/index.html"
+   },
+   {
+    "text": "Presentations page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/presentations/index.html"
+   },
+   {
+    "text": "Book 15, Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Book 15, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html"
+   },
+   {
+    "text": "Book 15, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html"
+   },
+   {
+    "text": "Book 13, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   }
+  ]
+ }
+]

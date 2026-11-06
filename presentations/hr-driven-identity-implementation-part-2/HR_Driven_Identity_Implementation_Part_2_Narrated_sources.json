@@ -1,0 +1,182 @@
+[
+ {
+  "slide": 2,
+  "title": "G4–G7 on one page: done when, proved by, rollback",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "G4: department packages by automatic assignment",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "G4: approvals, the mover's residual, and privilege",
+  "links": [
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "mover",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html#mover"
+   },
+   {
+    "text": "guardrails",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html#guardrails-at-agency-scale"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "where dynamic membership stops",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html#where-dynamic-membership-stops"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "G4: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "G5: trust the issuing CAs, each with a CRL",
+  "links": [
+   {
+    "text": "CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "Book 04, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "G5: issuance and revocation follow HR events",
+  "links": [
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "contractor PIV path",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#the-contractor-piv-path"
+   },
+   {
+    "text": "assurance as data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#assurance-as-data"
+   },
+   {
+    "text": "mover",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#mover-usually-nothing-sometimes-a-reissue"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   },
+   {
+    "text": "contractor leavers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html#contractor-leavers"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "G5: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "G6: block first, revoke in parallel, dispose last",
+  "links": [
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "the canonical leaver sequence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#the-canonical-leaver-sequence"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html"
+   },
+   {
+    "text": "Book 19, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "G6: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "G7: lifecycle drift, six metrics, the sole source",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,434 @@
+[
+ {
+  "slide": 2,
+  "title": "Who owes which proof",
+  "links": [
+   {
+    "text": "FedRAMP Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Collaborative Continuous Monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-collaborative-conmon"
+   },
+   {
+    "text": "OMB M-24-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-15"
+   },
+   {
+    "text": "FISMA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "44 U.S.C. § 3554",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 14, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/01-proof-not-a-promise.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The federal clock: the dates still ahead",
+  "links": [
+   {
+    "text": "OMB M-26-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-15"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "M-26-05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-05"
+   },
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
+   },
+   {
+    "text": "FedRAMP 2026 timeline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#important-dates-for-the-consolidated-rules"
+   },
+   {
+    "text": "Notice NTC-0014",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0014"
+   },
+   {
+    "text": "Book 14, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/02-the-federal-clock.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Moderate: two facts, not one",
+  "links": [
+   {
+    "text": "FIPS 199",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-199"
+   },
+   {
+    "text": "FIPS 200",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-200"
+   },
+   {
+    "text": "NIST SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP Notice NTC-0004",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0004"
+   },
+   {
+    "text": "FedRAMP 2026 Rev5 control reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026-rev5-controls"
+   },
+   {
+    "text": "Book 14, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/01-proof-not-a-promise.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "A control closes only with its proof",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "FedRAMP 2026 Rev5 control reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026-rev5-controls"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 14, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/04-closure-with-proof.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Program management: the agency's, never the provider's",
+  "links": [
+   {
+    "text": "NIST SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 2026 Rev5 control reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026-rev5-controls"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "FISMA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 14, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/05-program-management-controls.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/10-who-owns-compliance.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Contingency and supply chain close through governance",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "NIST SP 800-34 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-34"
+   },
+   {
+    "text": "SP 800-161 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-161"
+   },
+   {
+    "text": "OMB M-26-05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-05"
+   },
+   {
+    "text": "FedRAMP NTC-0014",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0014"
+   },
+   {
+    "text": "Book 14, Chapters 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/06-contingency-and-continuity.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/07-supply-chain-risk-management.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Privacy and training close by records, not settings",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Privacy Act of 1974",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-5-552a"
+   },
+   {
+    "text": "A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "A-108",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-108"
+   },
+   {
+    "text": "5 CFR 930.301",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-5-930-301"
+   },
+   {
+    "text": "NIST SP 800-50 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-50"
+   },
+   {
+    "text": "Book 14, Chapters 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/08-privacy-pii-processing.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/09-training-and-awareness-controls.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "One owner for every step",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "FISMA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 14, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/10-who-owns-compliance.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The package: four linked, machine-readable records",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "FedRAMP 2026 agency rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 14, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/11-the-authorization-package.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Continuous monitoring keeps the package current",
+  "links": [
+   {
+    "text": "FISMA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "44 U.S.C. § 3554",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-44-3554"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "CCM-AGM-ROR",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-collaborative-conmon"
+   },
+   {
+    "text": "Book 14, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/11-the-authorization-package.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The series as a map, and what stays open",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "CCM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-collaborative-conmon"
+   },
+   {
+    "text": "Book 14, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/12-the-series-as-a-map.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/appendix-a-control-crosswalk.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-26-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-15"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "FedRAMP Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 14, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/01-proof-not-a-promise.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/02-the-federal-clock.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/10-who-owns-compliance.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/11-the-authorization-package.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html"
+   }
+  ]
+ }
+]

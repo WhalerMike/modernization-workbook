@@ -1,0 +1,180 @@
+[
+ {
+  "slide": 1,
+  "title": "Ticket-to-Machine on ServiceNow and SailPoint",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "An example, not a recommendation",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "The coordination loop",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-coordination-loop"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The products and their FedRAMP status",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The picture: the loop on ServiceNow and SailPoint",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "The coordination loop",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-coordination-loop"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "How the two products hand work to each other",
+  "links": [
+   {
+    "text": "SDIM intro",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-intro"
+   },
+   {
+    "text": "Book 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The loop, step by step, on these products",
+  "links": [
+   {
+    "text": "Lifecycle States",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-lifecycle-states"
+   },
+   {
+    "text": "Identity Attributes Changed",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-attributes-changed"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The lanes on these products",
+  "links": [
+   {
+    "text": "SDIM intro",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-intro"
+   },
+   {
+    "text": "Book 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Gaps 1 and 2: ticket status, and who approves",
+  "links": [
+   {
+    "text": "SDIM: Best Practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-best-practices"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Gaps 3 and 4: change records, and one writer",
+  "links": [
+   {
+    "text": "SDIM intro",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-intro"
+   },
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Identity fixes: HR facts, leavers and stray writes",
+  "links": [
+   {
+    "text": "Identity Attributes Changed",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-attributes-changed"
+   },
+   {
+    "text": "Lifecycle States",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-lifecycle-states"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Identity fixes: matching, contractors and rules",
+  "links": [
+   {
+    "text": "Identity Attributes Changed",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-attributes-changed"
+   },
+   {
+    "text": "Lifecycle States",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-lifecycle-states"
+   },
+   {
+    "text": "Book 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Federal availability and cautions",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "What to verify, decide, and read next",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ }
+]

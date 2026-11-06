@@ -1,0 +1,114 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the scope matters as much as the policy",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Step 4 asks for: 4d attributes, 4e the policies",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Two policies, two decisions, one policy per ring",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The pre-merge check: NPI-WCA-01 to NPI-WCA-09",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   },
+   {
+    "text": "CA for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "conditionalAccessConditionSet",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditionalaccessconditionset-resource-type"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The plan: six actions, and no delete",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Enforcement, ring by ring, and the sign-in reader",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   },
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: check the tenant and plan, sending nothing",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: read and summarize the sign-ins",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Try it: enforce Ring 1, then edit one byte",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Check yourself: two questions on workload policies",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   }
+  ]
+ }
+]

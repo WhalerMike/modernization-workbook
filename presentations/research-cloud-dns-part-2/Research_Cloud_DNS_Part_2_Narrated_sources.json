@@ -1,0 +1,250 @@
+[
+ {
+  "slide": 2,
+  "title": "BIND in AWS: aligned, or a new silo?",
+  "links": [
+   {
+    "text": "Book 08, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "Decision 3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html#decision-3-per-cloud-conditional-forwarding"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "When to run your own DNS servers in a cloud",
+  "links": [
+   {
+    "text": "AWS Resolving queries between VPCs and your network",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-route-53-resolver"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Three roles, kept apart",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Placement and high availability in each cloud",
+  "links": [
+   {
+    "text": "AWS Resolving queries between VPCs and your network",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-route-53-resolver"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Forwarding to and from the native resolver",
+  "links": [
+   {
+    "text": "BIND 9.20 ARM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bind-9-arm"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "An illustrative forwarder configuration",
+  "links": [
+   {
+    "text": "BIND 9.20 ARM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bind-9-arm"
+   },
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "DNSSEC validation and signing in the cloud",
+  "links": [
+   {
+    "text": "BIND 9.20 ARM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bind-9-arm"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "M-08-23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-08-23"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Response policy zones and CISA Protective DNS",
+  "links": [
+   {
+    "text": "BIND 9.20 ARM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bind-9-arm"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "CISA Protective DNS Resolver",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-protective-dns"
+   },
+   {
+    "text": "CISA Encrypted DNS Implementation Guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-encrypted-dns"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Query and response logging into the SOC",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "BIND 9.20 ARM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bind-9-arm"
+   },
+   {
+    "text": "Book 12, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Patching, settings and hardening baselines",
+  "links": [
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "BIND 9.20 ARM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bind-9-arm"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "CIS Benchmarks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cis-benchmarks"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The alignment checklist: seven questions",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Federal mapping: configuration and inventory",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "Book 08, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/03-federal-requirements.html"
+   },
+   {
+    "text": "control mapping",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/03-federal-requirements.html#control-mapping-for-nist-sp-800-53-fedramp-and-cisa-zero-trust"
+   },
+   {
+    "text": "Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   },
+   {
+    "text": "compliance evidence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html#compliance-evidence"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Federal mapping: resolution, logging and Protective DNS",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA Protective DNS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-protective-dns"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Where Infoblox fits, and what to confirm",
+  "links": [
+   {
+    "text": "Book 08, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ }
+]

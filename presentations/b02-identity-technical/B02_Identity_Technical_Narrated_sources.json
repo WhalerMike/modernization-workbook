@@ -1,0 +1,458 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: identity now decides access",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "AD FS migration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-from-federation-to-cloud"
+   },
+   {
+    "text": "NTLM deprecation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+   },
+   {
+    "text": "Book 02, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the migration actually has to move",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "onPremisesExtensionAttributes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#onpremisesextensionattributes-resource-type"
+   },
+   {
+    "text": "Book 02, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/04-the-hidden-migration-surface.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What a standard account can read in a default forest",
+  "links": [
+   {
+    "text": "Book 02, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Where the default read boundary sits",
+  "links": [
+   {
+    "text": "Book 02, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "From gap list to a narrow, time-bound delegation request",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 02, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Eight collection areas, each on the narrowest right",
+  "links": [
+   {
+    "text": "Book 02, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-b-forest-assessment-module.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Topology, OUs and Group Policy: what the inventory must get right",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "Book 02, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "AD CS: the escalation patterns the assessment checks",
+  "links": [
+   {
+    "text": "Defender for Identity certificate assessments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-assessment-certificates"
+   },
+   {
+    "text": "certutil",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certutil"
+   },
+   {
+    "text": "Book 02, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-b-forest-assessment-module.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Delegation, privileged groups and service accounts",
+  "links": [
+   {
+    "text": "lastLogonTimestamp",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#last-logon-timestamp-attribute"
+   },
+   {
+    "text": "Book 02, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Trusts: decode the bits, state the direction plainly",
+  "links": [
+   {
+    "text": "Book 02, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-b-forest-assessment-module.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Every run is evidence: manifest, Git and drift",
+  "links": [
+   {
+    "text": "Book 02, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-b-forest-assessment-module.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Decompose first: where each AD construct lands, and its license",
+  "links": [
+   {
+    "text": "Entra licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-licensing"
+   },
+   {
+    "text": "ID Governance licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-id-governance-licensing"
+   },
+   {
+    "text": "protected actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-protected-actions-in-microsoft"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "The attributes you know, side by side",
+  "links": [
+   {
+    "text": "user resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#user-resource-type"
+   },
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "certificateUserIds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mapping-to-the-certificateuserids-attribute"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Choosing the sync engine: Cloud Sync unless a Connect-only need applies",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Sign-in method and object matching",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Groups and service accounts: one recorded decision per object",
+  "links": [
+   {
+    "text": "workload identity federation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Privileged access: no standing admin, two break-glass accounts",
+  "links": [
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "protected actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-protected-actions-in-microsoft"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 04, App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Conditional Access: personas, a baseline, and a staged rollout",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "App. C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-c-identity-assessment-module.html"
+   },
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Governance runs as a loop: joiner, mover, leaver, review",
+  "links": [
+   {
+    "text": "execution conditions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-execution-conditions-and"
+   },
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "ID Governance licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-id-governance-licensing"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Phishing-resistant authentication, then the legacy cutoff",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "The eleven-phase playbook: each phase gated on validation",
+  "links": [
+   {
+    "text": "staged rollout",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-connect-cloud-authentication"
+   },
+   {
+    "text": "federation to cloud authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-from-federation-to-cloud"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Proving it: logs, FedRAMP 20x indicators and drift",
+  "links": [
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "FedRAMP 20x KSI pages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "App. C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-c-identity-assessment-module.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Reference deployment: one estate, five gated phases",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "SQL Server SPNs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#register-a-service-principal-name-for"
+   },
+   {
+    "text": "Cloud Sync decision guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-from-microsoft-entra-connect-to"
+   },
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 02, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "What the assessor receives, and what the agency keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 02, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ }
+]

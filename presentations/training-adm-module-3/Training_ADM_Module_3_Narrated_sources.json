@@ -1,0 +1,94 @@
+[
+ {
+  "slide": 4,
+  "title": "The guards every rule needs, and the engine's limits",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "dynamic group processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn's incident samples leave to you",
+  "links": [
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One file per group, evaluated offline",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The linter, the shadow diff and the pause manifest",
+  "links": [
+   {
+    "text": "Book 19, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: run Learn's samples against a fake tenant",
+  "links": [
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: lint the patterns, evaluate a rule, run the check",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: create the groups paused, then drill a pause",
+  "links": [
+   {
+    "text": "Book 19, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 3",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

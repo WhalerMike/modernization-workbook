@@ -1,0 +1,312 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the PRV groups need to be code",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph hosts and availability",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Two independent features meet in a PRV group",
+  "links": [
+   {
+    "text": "Use Microsoft Entra groups to manage role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Where a group's PIM state lives in Graph",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Microsoft's samples, pinned and sent to a fake",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "microsoft-graph-docs-contrib at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the samples leave to you",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The code, the reviewed file and the tier policy",
+  "links": [
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Book 04, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   },
+   {
+    "text": "Book 04, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   },
+   {
+    "text": "Book 04, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   },
+   {
+    "text": "Book 04, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Activation limits and the authentication context",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "PIM for Groups settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-pim-for-groups-settings"
+   },
+   {
+    "text": "Entra releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-releases-and-announcements"
+   },
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The findings: PA-PG-01 to PA-PG-09",
+  "links": [
+   {
+    "text": "Use groups for role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Plan a PIM deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The plan, the dry run, -Apply and seven guards",
+  "links": [
+   {
+    "text": "group resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-resource-type"
+   },
+   {
+    "text": "Create group",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-group"
+   },
+   {
+    "text": "Use groups for role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Where Learn's pages differ, recorded on purpose",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, and the least privilege per call",
+  "links": [
+   {
+    "text": "Create group",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-group"
+   },
+   {
+    "text": "group resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-resource-type"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Microsoft's samples, then a dry run",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: findings, the diff, a guard and -Apply",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, lab groups, two apps",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Use groups for role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   },
+   {
+    "text": "Use Microsoft Entra groups to manage role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+   },
+   {
+    "text": "PIM for Groups settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-pim-for-groups-settings"
+   }
+  ]
+ }
+]

@@ -7,26 +7,26 @@
   ],
   [
    5.688,
-   5.225,
-   "This is Chapter 8, the last one: evidence and drift for the I S S O."
+   4.2,
+   "This is Chapter 8: evidence and drift for the I S S O."
   ],
   [
-   10.912,
+   9.887,
    3.75,
    "An inventory taken once only proves the day it was taken."
   ],
   [
-   14.662,
+   13.637,
    8.062,
    "The I S S O needs every day of the period, every elevation in it, and a record nobody could have edited afterwards."
   ],
   [
-   22.725,
+   21.7,
    9.925,
    "We'll start from Learn's audit queries for pim, see what they leave out, then walk the run, the comparison, the package, the period, two labs and the dangers."
   ],
   [
-   32.65,
+   31.625,
    5.15,
    "One note before we begin: the code is illustrative, tested against fixtures."
   ]
@@ -561,11 +561,11 @@
   ],
   [
    26.637,
-   4.838,
-   "That's the last chapter; the workbook index lists all eight if you want to go back."
+   3.475,
+   "Next is Chapter 9, deploying to test and production."
   ],
   [
-   31.475,
+   30.113,
    1.1,
    "Thanks for watching."
   ]

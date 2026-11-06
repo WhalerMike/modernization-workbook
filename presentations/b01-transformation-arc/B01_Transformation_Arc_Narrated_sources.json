@@ -14,8 +14,24 @@
   "title": "Sessions carried trust; tokens are checked each time",
   "links": [
    {
+    "text": "Max-Ticket-Age",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#max-ticket-age-attribute"
+   },
+   {
     "text": "continuous access evaluation",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
+    "text": "RFC 4120",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-4120"
+   },
+   {
+    "text": "ITU-T G.114",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#itu-t-g-114"
    },
    {
     "text": "Book 01, Chapter 01",
@@ -28,6 +44,22 @@
   "title": "The OU tree was the governance tree",
   "links": [
    {
+    "text": "Group Policy overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-overview-for-windows-server"
+   },
+   {
+    "text": "dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "cloud-first identity guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-cloud-first-identity"
+   },
+   {
     "text": "Book 01, Chapter 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
    }
@@ -37,6 +69,10 @@
   "slide": 5,
   "title": "Eleven categories, and the failures are silent",
   "links": [
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
    {
     "text": "Book 01, Chapter 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
@@ -50,6 +86,10 @@
    {
     "text": "Windows Server release information",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-server-release-information"
+   },
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
    },
    {
     "text": "OMB M-26-14",
@@ -76,6 +116,10 @@
    {
     "text": "dynamic membership rules and processing",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
    },
    {
     "text": "Book 01, Chapter 04",
@@ -126,6 +170,10 @@
   "title": "Policy: regenerate Group Policy, don't copy it",
   "links": [
    {
+    "text": "Group Policy overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-overview-for-windows-server"
+   },
+   {
     "text": "Intune conflicts",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
    },
@@ -165,6 +213,10 @@
   "slide": 11,
   "title": "Compute: the domain join is the last thing to go",
   "links": [
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
    {
     "text": "NTLM deprecation",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
@@ -230,6 +282,14 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
    },
    {
+    "text": "NARA GRS 3.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nara-grs-3-2"
+   },
+   {
+    "text": "cloud-first identity guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-cloud-first-identity"
+   },
+   {
     "text": "Book 01, Chapter 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
    }
@@ -242,6 +302,10 @@
    {
     "text": "NIST SP 800-53",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Arc Extended Security Updates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#prepare-to-deliver-extended-security-updates"
    },
    {
     "text": "Book 01, Chapter 10",

@@ -1,0 +1,368 @@
+[
+ {
+  "slide": 2,
+  "title": "Three things to keep apart: proposal, decision, gate",
+  "links": [
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph hosts, licenses and the trial",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Learn gives: a preference order and two tables",
+  "links": [
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "entra-docs at 7f78b50",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-7f78b50"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn's tables miss: dMSA, retire, the facts",
+  "links": [
+   {
+    "text": "dMSA overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What they miss: federation, coverage, a record",
+  "links": [
+   {
+    "text": "workload identity federation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The code and the inputs it reads",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The proposal: scope first, then the matrix rows",
+  "links": [
+   {
+    "text": "dMSA overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The decision check: nine rules, NPI-MAT-01 to -09",
+  "links": [
+   {
+    "text": "dMSA overview and FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Waves and their rollback (N2.2)",
+  "links": [
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "Setting up dMSAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setting-up-delegated-managed-service"
+   },
+   {
+    "text": "dMSA FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-faq"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The Workload ID Premium scope (D-N4) and Gate 2",
+  "links": [
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "ID Protection for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#securing-workload-identities"
+   },
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who proposes, decides, approves, and what it reads",
+  "links": [
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: Learn's tables, then the matrix run",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: reading the proposals and the findings",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the waves, the D-N4 scope, the tests",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, read only",
+  "links": [
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "dMSA overview and FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "dMSA overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   }
+  ]
+ }
+]

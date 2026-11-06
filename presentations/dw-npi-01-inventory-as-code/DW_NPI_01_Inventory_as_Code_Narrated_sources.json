@@ -1,0 +1,340 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the inventory comes first",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud and which directory, for this read",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the register has to hold",
+  "links": [
+   {
+    "text": "user-based service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-user-based-service-accounts-in-active"
+   },
+   {
+    "text": "dMSA overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   },
+   {
+    "text": "Update servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-serviceprincipal"
+   },
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Two directory reads, nine Graph, one Resource Manager",
+  "links": [
+   {
+    "text": "Get-ADUser",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-aduser"
+   },
+   {
+    "text": "Get-ADServiceAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-adserviceaccount"
+   },
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Risk, candidate target and stale lead: the program's",
+  "links": [
+   {
+    "text": "Last-Logon-Timestamp attribute",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#last-logon-timestamp-attribute"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What Learn gives you, and the pinned copies",
+  "links": [
+   {
+    "text": "user-based service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-user-based-service-accounts-in-active"
+   },
+   {
+    "text": "Securing service principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#securing-service-principals-in-microsoft"
+   },
+   {
+    "text": "Govern on-prem accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#govern-on-premises-service-accounts"
+   },
+   {
+    "text": "Export secrets and certificates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-sample-export-secrets-and"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the samples miss in Active Directory",
+  "links": [
+   {
+    "text": "user-based service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-user-based-service-accounts-in-active"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What the samples miss in Entra, and the verdict",
+  "links": [
+   {
+    "text": "Securing service principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#securing-service-principals-in-microsoft"
+   },
+   {
+    "text": "Export secrets and certificates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-sample-export-secrets-and"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The reader: five rules every call obeys",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The register: one row, the same columns, every type",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 06, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The findings, the manifest and the tests",
+  "links": [
+   {
+    "text": "List oauth2PermissionGrants",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-oauth2permissiongrants-delegated"
+   },
+   {
+    "text": "user-based service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-user-based-service-accounts-in-active"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "lastLogonTimestamp",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#last-logon-timestamp-attribute"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who runs it, what it may read",
+  "links": [
+   {
+    "text": "Get-ADUser",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-aduser"
+   },
+   {
+    "text": "Get-ADServiceAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-adserviceaccount"
+   },
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Learn's samples, the permissions, the run",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the eight HIGH rows, the guards, the hand-off",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant and a test domain",
+  "links": [
+   {
+    "text": "Setting up dMSAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setting-up-delegated-managed-service"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ }
+]

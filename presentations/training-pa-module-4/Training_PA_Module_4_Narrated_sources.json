@@ -1,0 +1,88 @@
+[
+ {
+  "slide": 2,
+  "title": "Why role settings as code, and the lockout they can cause",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Settings per role, which Graph calls rules",
+  "links": [
+   {
+    "text": "Rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rules-in-pim-mapping-guide"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The role files, the bounds and the waves",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The checks: PA-PIM-01 to PA-PIM-09",
+  "links": [
+   {
+    "text": "Configure Microsoft Entra role settings in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Converting a standing assignment, in order",
+  "links": [
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: Learn's samples, and each task's permissions",
+  "links": [
+   {
+    "text": "Update rules in PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rules-in-pim-by-using-microsoft-graph"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and the evidence for Module 4",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "MS.AAD.7.4v1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

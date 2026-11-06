@@ -1,0 +1,264 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the build needs checks between Learn's steps",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Learn's model: package, definition, guest assignment",
+  "links": [
+   {
+    "text": "Develop a custom package",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-develop-custom-package"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Which cloud: endpoints, package access and cost",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn gives you: the procedure, step by step",
+  "links": [
+   {
+    "text": "Develop a custom package",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-develop-custom-package"
+   },
+   {
+    "text": "Create package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-create-package-artifacts"
+   },
+   {
+    "text": "Create policy definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-create-custom-machine-configuration"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Learn's three don'ts, and the pinned sample",
+  "links": [
+   {
+    "text": "Create policy definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-create-custom-machine-configuration"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the cmdlets leave to you: the package",
+  "links": [
+   {
+    "text": "Develop a custom package",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-develop-custom-package"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the cmdlets leave to you: the definition",
+  "links": [
+   {
+    "text": "Publish package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-publish-custom-machine-configuration"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Where 4.12.0 differs from Learn's text",
+  "links": [
+   {
+    "text": "Create policy definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-create-custom-machine-configuration"
+   },
+   {
+    "text": "Create package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-create-package-artifacts"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The code and the release registry",
+  "links": [
+   {
+    "text": "Create policy definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-create-custom-machine-configuration"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Clean the MOF, then check the package",
+  "links": [
+   {
+    "text": "Create custom machine configuration package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-create-package-artifacts"
+   },
+   {
+    "text": "Develop a custom package",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-develop-custom-package"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Check the definition, and record what shipped",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   },
+   {
+    "text": "Book 13, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/04-change-control-and-provenance.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who writes baselines, who reviews, which roles",
+  "links": [
+   {
+    "text": "Create policy definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-create-custom-machine-configuration"
+   },
+   {
+    "text": "Test package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-test-machine-configuration-package"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: follow Learn by hand, and see the gaps",
+  "links": [
+   {
+    "text": "Create custom machine configuration package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-create-package-artifacts"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the checked build, and breaking it",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test subscription and a disposable server",
+  "links": [
+   {
+    "text": "Test package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-test-machine-configuration-package"
+   },
+   {
+    "text": "Create policy definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-create-custom-machine-configuration"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   },
+   {
+    "text": "Sign packages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-sign-machine-configuration-packages"
+   },
+   {
+    "text": "Publish package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-publish-custom-machine-configuration"
+   },
+   {
+    "text": "Develop a custom package",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#machine-configuration-develop-custom-package"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   },
+   {
+    "text": "Test package artifacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-test-machine-configuration-package"
+   },
+   {
+    "text": "Sign packages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-sign-machine-configuration-packages"
+   }
+  ]
+ }
+]

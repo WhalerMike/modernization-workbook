@@ -1,0 +1,72 @@
+[
+ {
+  "slide": 2,
+  "title": "Why owners are a control, not a contact list",
+  "links": [
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Owners and sponsors in the guide: Step 1f and Step 6",
+  "links": [
+   {
+    "text": "Deactivate an app registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deactivate-an-app-registration"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The rule the code holds: stricter than Learn's",
+  "links": [
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   },
+   {
+    "text": "Get-MgServicePrincipalOwner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgserviceprincipalowner"
+   },
+   {
+    "text": "Deactivate an app registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deactivate-an-app-registration"
+   },
+   {
+    "text": "Disable user sign-in",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-user-sign-in-for-an-application"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The check: NPI-OWN-01 to NPI-OWN-09",
+  "links": [
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The orphan plan, and the separate write path",
+  "links": [
+   {
+    "text": "Microsoft Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Update servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-serviceprincipal"
+   }
+  ]
+ }
+]

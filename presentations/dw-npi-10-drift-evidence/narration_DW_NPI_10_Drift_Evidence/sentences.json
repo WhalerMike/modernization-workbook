@@ -7,26 +7,26 @@
   ],
   [
    5.912,
-   5.263,
-   "This is Chapter 10, the last one: drift and evidence for the security officer."
+   4.275,
+   "This is Chapter 10: drift and evidence for the security officer."
   ],
   [
-   11.175,
+   10.188,
    3.763,
    "A register approved once proves only the day it was approved."
   ],
   [
-   14.938,
+   13.95,
    6.562,
    "The security officer needs to know what changed since, who changed it, and that nobody edited the record afterwards."
   ],
   [
-   21.5,
+   20.512,
    14.262,
    "We'll start from the Sentinel rule Learn links for added credentials, see what it misses, then walk the drift run, the approved baseline, the rules, the review cycle, the vintage comparison and the hash chain, two labs and the dangers."
   ],
   [
-   35.763,
+   34.775,
    5.15,
    "One note before we begin: the code is illustrative, tested against fixtures."
   ]

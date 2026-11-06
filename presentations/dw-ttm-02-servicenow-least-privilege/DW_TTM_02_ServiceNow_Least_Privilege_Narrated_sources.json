@@ -1,0 +1,236 @@
+[
+ {
+  "slide": 2,
+  "title": "Why write the calls down",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What exists: tokens, paging and retries",
+  "links": [
+   {
+    "text": "Client credentials grant workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-client-credentials"
+   },
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "config/calls.json: the ServiceNow rows",
+  "links": [
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Three custom roles, split by task",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "kit_calls.py and the test that holds the code",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The tests: nine new, the originals unchanged",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts: token, Table and Attachment",
+  "links": [
+   {
+    "text": "Client credentials grant workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-client-credentials"
+   },
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What couldn't be verified on ServiceNow",
+  "links": [
+   {
+    "text": "Client credentials grant workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-client-credentials"
+   },
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the call list proves, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   },
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who builds, who grants, who approves",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: every call declared, and what reread needs",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: catching a grant that's too wide",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: three users, three roles, one instance",
+  "links": [
+   {
+    "text": "Client credentials grant workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-client-credentials"
+   },
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Done when: the ServiceNow checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ }
+]

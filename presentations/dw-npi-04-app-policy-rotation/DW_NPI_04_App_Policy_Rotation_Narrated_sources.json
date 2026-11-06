@@ -1,0 +1,304 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a reviewed policy and a planned rotation",
+  "links": [
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud: Graph and Key Vault hosts",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Update tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-tenantappmanagementpolicy"
+   },
+   {
+    "text": "Assign appliesTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-appliesto"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What an app management policy is",
+  "links": [
+   {
+    "text": "tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tenantappmanagementpolicy-resource-type"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The program's rules: policy, lock, license, rotation",
+  "links": [
+   {
+    "text": "Configure restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   },
+   {
+    "text": "servicePrincipalLockConfiguration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#serviceprincipallockconfiguration-resource"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Key Vault autorotation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-configure-certificate-autorotation"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Microsoft's samples, pinned and sent to fakes",
+  "links": [
+   {
+    "text": "Configure restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   },
+   {
+    "text": "Add a certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-a-certificate-to-an-app-by-using"
+   },
+   {
+    "text": "Key Vault autorotation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-configure-certificate-autorotation"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the policy samples leave to you",
+  "links": [
+   {
+    "text": "Update tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-tenantappmanagementpolicy"
+   },
+   {
+    "text": "Assign appliesTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-appliesto"
+   },
+   {
+    "text": "Configure restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the certificate and Key Vault samples leave",
+  "links": [
+   {
+    "text": "Add a certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-a-certificate-to-an-app-by-using"
+   },
+   {
+    "text": "Key Vault autorotation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-configure-certificate-autorotation"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The code and the inputs it reads",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The policy: compare, merge, plan",
+  "links": [
+   {
+    "text": "Update tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-tenantappmanagementpolicy"
+   },
+   {
+    "text": "Assign appliesTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assign-appliesto"
+   },
+   {
+    "text": "servicePrincipalLockConfiguration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#serviceprincipallockconfiguration-resource"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Rotation: one step per certificate",
+  "links": [
+   {
+    "text": "keyCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#keycredential-resource-type"
+   },
+   {
+    "text": "Certificate creation methods",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certificate-creation-methods"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The separate write path, and what it refuses",
+  "links": [
+   {
+    "text": "Update application",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-application"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds, runs, approves and reviews",
+  "links": [
+   {
+    "text": "Update application",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-application"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the samples, then the policy plan",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the rotation plan, applied to the fake",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant and a test key vault",
+  "links": [
+   {
+    "text": "Configure restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   },
+   {
+    "text": "Add a certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-a-certificate-to-an-app-by-using"
+   },
+   {
+    "text": "tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tenantappmanagementpolicy-resource-type"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Update application",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-application"
+   },
+   {
+    "text": "Add a certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-a-certificate-to-an-app-by-using"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   },
+   {
+    "text": "Configure restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   }
+  ]
+ }
+]

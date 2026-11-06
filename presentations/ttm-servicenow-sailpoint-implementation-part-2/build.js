@@ -529,7 +529,7 @@ MFA attribute management taken for a reset procedure: a connector changes authen
     "Still open: ISC feature parity in the FedRAMP environment, its API domain, the apps in the government Store, the spoke in GCC High",
   ], 12);
   const p2 = panel(s, "Next", 0.6 + w + 0.25, 1.45, w, null, HEX.teal, HEX.tealTint, "WHERE TO GO NEXT", null, [
-    "Build it: the developer workbook Building Ticket-to-Machine, eight chapters, each with its labs",
+    "Build it: the developer workbook Building Ticket-to-Machine, nine chapters, eight with labs",
     "Learn it in order: the learning path for Ticket-to-Machine on ServiceNow and SailPoint",
     "The kit's Pass 1: the integration kit page and its README",
     "The why: Book 13, Chapter 10 and Appendix B; Book 15, Chapter 03",
@@ -542,7 +542,7 @@ MFA attribute management taken for a reset procedure: a connector changes authen
 
 The guide is a Draft. It was rewritten on November 1, 2026 from a short example into a gated implementation guide, and the rewrite hasn't been reviewed. To move it to Proved: build Gates 3 to 6 in a ServiceNow developer instance and a SailPoint sandbox, run the kit's lab items, and record the evidence on the guide. Some things couldn't be verified from public documentation: whether Workflows, Native Change Detection and the HTTP Request step are in ISC's FedRAMP environment; the ISC API domain for a FedRAMP tenant; whether SailPoint's ServiceNow apps and the Entra spoke are in ServiceNow's government Store; and the spoke in GCC High.
 
-Where to go next. To build the code, the developer workbook Building Ticket-to-Machine: eight chapters, each starting from the kit, adding code with tests, and running a lab against fixtures with no tenant. To learn it in order, with exercises and knowledge checks, the learning path for Ticket-to-Machine on ServiceNow and SailPoint. For the kit's Pass 1, the integration kit page and the kit's README. And for the why: Book 13's Chapter 10 and Appendix B for the tempo, the lanes and the evidence record, and Book 15's Chapter 03 for triage and the authority split.
+Where to go next. To build the code, the developer workbook Building Ticket-to-Machine: nine chapters, eight of them starting from the kit, adding code with tests, and running a lab against fixtures with no tenant. To learn it in order, with exercises and knowledge checks, the learning path for Ticket-to-Machine on ServiceNow and SailPoint. For the kit's Pass 1, the integration kit page and the kit's README. And for the why: Book 13's Chapter 10 and Appendix B for the tempo, the lanes and the evidence record, and Book 15's Chapter 03 for triage and the authority split.
 
 The loop, closed: the ticket authorizes a machine, the machine acts under a service identity, and only a re-read closes the ticket. The guide names products to illustrate the vendor-neutral design; it isn't an endorsement by the program or any agency.`,
   `${IG}, "Status and review," "What couldn't be verified," "How to read this guide," "Back to the books"; ${WB}, index.`);

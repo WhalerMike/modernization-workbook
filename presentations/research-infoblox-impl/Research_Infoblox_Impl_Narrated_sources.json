@@ -1,0 +1,276 @@
+[
+ {
+  "slide": 1,
+  "title": "Implementing Book 08 on Infoblox NIOS",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "CISA KEV",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "What this guide implements: Book 08 on a Grid",
+  "links": [
+   {
+    "text": "Book 08, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/06-dns-identity-and-dnssec.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Phase 0: decide these before you build anything",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Part 1: Build the Grid",
+  "links": [
+   {
+    "text": "Book 08 Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Part 2: Migrate from Microsoft",
+  "links": [
+   {
+    "text": "Book 08 Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Method A: manage the Windows servers, then take over",
+  "links": [
+   {
+    "text": "Book 08, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Method B: import zones by transfer; bulk data by CSV",
+  "links": [
+   {
+    "text": "Book 08 Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "AD zones and Kerberos-signed updates: use AES",
+  "links": [
+   {
+    "text": "Windows message center",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-message-center"
+   },
+   {
+    "text": "Book 08 Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "DHCP takeover: change assignments, never remove first",
+  "links": [
+   {
+    "text": "Book 08 Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Rollback: what reverses, and how",
+  "links": [
+   {
+    "text": "Book 08, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Part 3: Sign and harden",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08 Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/06-dns-identity-and-dnssec.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "DNSSEC on NIOS: set parameters before you sign",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08 Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/06-dns-identity-and-dnssec.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "The HSM and DS publication",
+  "links": [
+   {
+    "text": "Book 08 Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/06-dns-identity-and-dnssec.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Hardening NIOS: the agency's settings baseline",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "CIS Benchmarks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cis-benchmarks"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Part 4: Operate and evidence",
+  "links": [
+   {
+    "text": "CISA KEV",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   },
+   {
+    "text": "Book 08 Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Patching: hotfixes, images and known exploits",
+  "links": [
+   {
+    "text": "CISA KEV",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Logging and evidence for the SIEM",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 08 Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   },
+   {
+    "text": "Book 08 Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "The build mapped to Book 08's six phases",
+  "links": [
+   {
+    "text": "Book 08, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Decisions, vendor asks and next steps",
+  "links": [
+   {
+    "text": "Book 08, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/06-dns-identity-and-dnssec.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html"
+   }
+  ]
+ }
+]

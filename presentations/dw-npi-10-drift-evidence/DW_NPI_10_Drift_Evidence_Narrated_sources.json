@@ -1,0 +1,274 @@
+[
+ {
+  "slide": 2,
+  "title": "What the evidence has to show",
+  "links": [
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/09-running-the-inventory-scan.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/10-evidence-and-authorization.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Learn's facts, the cloud and the other chapters",
+  "links": [
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Microsoft's Sentinel rule, pinned and run offline",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the rule misses: initiators, keys, targets",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What it misses: the pipeline, names and scope",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The run, the approved baseline and the reads",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The drift rules: NPI-DRF-01 to NPI-DRF-09",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The review cycle and the annual vintage comparison",
+  "links": [
+   {
+    "text": "Book 17, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/09-running-the-inventory-scan.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/10-evidence-and-authorization.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The package, the chain and what the ISSO receives",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who runs it, who signs it, and what it may read",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: the rule, then two days of runs",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: reading the drift and the vintage",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: package, verify, the period, then break it",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 2: a test tenant, three changes to see",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Done when: the checklist, and the workbook's end",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ }
+]

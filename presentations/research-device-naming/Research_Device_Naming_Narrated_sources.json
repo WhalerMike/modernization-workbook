@@ -1,0 +1,154 @@
+[
+ {
+  "slide": 1,
+  "title": "Who Names the Device After AD?",
+  "links": [
+   {
+    "text": "Books 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "Two jobs Active Directory did at once",
+  "links": [
+   {
+    "text": "Book 08 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "secure dynamic update",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html#secure-dynamic-updates-and-the-dhcp-server"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Why devices can't register themselves securely",
+  "links": [
+   {
+    "text": "dynamic update",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#dynamic-update"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "DHCP registers the record on the device's behalf",
+  "links": [
+   {
+    "text": "Book 08 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "IPv6: addresses that nobody registers",
+  "links": [
+   {
+    "text": "Book 08 Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Servers and the cloud register differently",
+  "links": [
+   {
+    "text": "autoregistration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-autoregistration-feature-in"
+   },
+   {
+    "text": "Book 08 Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Why device names still matter after AD",
+  "links": [
+   {
+    "text": "Book 08 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "Book 12 Ch02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   },
+   {
+    "text": "Book 15 Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html"
+   },
+   {
+    "text": "Book 07 Ch01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/01-why-certificates-outlive-every-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Platform by platform: who names, who registers",
+  "links": [
+   {
+    "text": "Book 08 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "What the agency must do: before, cutover, after",
+  "links": [
+   {
+    "text": "Book 08 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   },
+   {
+    "text": "Book 12 Ch02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   },
+   {
+    "text": "Book 15 Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Decisions, next steps and where this fits",
+  "links": [
+   {
+    "text": "Book 05 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "Book 08 Ch04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/04-active-directory-dns-departure.html"
+   },
+   {
+    "text": "Ch07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Ch10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,292 @@
+[
+ {
+  "slide": 2,
+  "title": "Why reviews, and why as code",
+  "links": [
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What it costs, and which cloud it runs in",
+  "links": [
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "ID Governance licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-id-governance-licensing"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Graph deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Learn's tutorial, pinned and run against a fake",
+  "links": [
+   {
+    "text": "Review access to administrative roles using access reviews APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#review-access-to-administrative-roles-using"
+   },
+   {
+    "text": "microsoft-graph-docs-contrib at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the tutorial leaves to you: the review itself",
+  "links": [
+   {
+    "text": "Review access to administrative roles using access reviews APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#review-access-to-administrative-roles-using"
+   },
+   {
+    "text": "pinned at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What it leaves to you: evidence, targets, permission",
+  "links": [
+   {
+    "text": "pinned at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Create definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-definitions"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The reviewed file: seven series in the fixture",
+  "links": [
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The bodies: built only from Learn's documented shapes",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The checks: PA-AR-01 to PA-AR-14",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Create definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-definitions"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "PA-AR-06: the one guard that changes the setting",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The dry run, the diff, and -Apply",
+  "links": [
+   {
+    "text": "List definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-definitions"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The evidence: decisions read back for the ISSO",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who owns the reviews, and least privilege per call",
+  "links": [
+   {
+    "text": "List definitions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-definitions"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: run the tutorial and the dry run offline",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: Learn's body, the apply, the evidence",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: one real review, closed and read back",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   },
+   {
+    "text": "microsoft-graph-docs-contrib at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.html"
+   }
+  ]
+ }
+]

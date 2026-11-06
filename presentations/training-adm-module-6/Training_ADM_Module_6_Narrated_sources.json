@@ -1,0 +1,112 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the onboarding run is where owners are read",
+  "links": [
+   {
+    "text": "Connect machines to Azure Arc at scale with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Which Azure a GCC estate's servers go to",
+  "links": [
+   {
+    "text": "Planning identity for Azure Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What Microsoft's azure_arc role leaves to you",
+  "links": [
+   {
+    "text": "Connect machines to Azure Arc at scale with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The inventory: owners become groups and tags",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "azcmagent connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: see what the CMDB becomes, then run the role",
+  "links": [
+   {
+    "text": "Book 19, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: plan wave 0, then dry-run it",
+  "links": [
+   {
+    "text": "Book 19, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: break the CMDB on purpose, run the tests",
+  "links": [
+   {
+    "text": "Book 19, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/08-ansible-beside-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: connect one disposable server",
+  "links": [
+   {
+    "text": "Connect machines to Azure Arc at scale with Ansible",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-machines-to-azure-arc-at-scale-with"
+   },
+   {
+    "text": "azcmagent disconnect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-disconnect"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for Module 6",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

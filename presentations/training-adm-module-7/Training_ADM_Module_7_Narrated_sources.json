@@ -1,0 +1,78 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the rest of a leaver needs an extension",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Where the extensions sit, and the three rules",
+  "links": [
+   {
+    "text": "custom task extension",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-custom-task-extension"
+   },
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn's Logic App definition leaves to you",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
+    "text": "MicrosoftDocs/entra-docs at 07cb73d",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lint, run, build, check, and authorization",
+  "links": [
+   {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: run a test leaver in your test tenant",
+  "links": [
+   {
+    "text": "Book 19, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 7",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

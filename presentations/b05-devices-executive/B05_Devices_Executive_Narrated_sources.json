@@ -74,8 +74,16 @@
   "title": "Running both isn't a safe middle ground",
   "links": [
    {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
     "text": "MDMWinsOverGP",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+   },
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
    },
    {
     "text": "Book 05, Chapters 01",
@@ -92,6 +100,10 @@
   "title": "Hybrid join is a waypoint, not a destination",
   "links": [
    {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
     "text": "Book 05, Chapter 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
    },
@@ -105,6 +117,14 @@
   "slide": 7,
   "title": "What an ungoverned flip loses, and never covers",
   "links": [
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
+    "text": "stale devices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-manage-stale-devices-in-microsoft"
+   },
    {
     "text": "Conditional Access",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
@@ -124,6 +144,10 @@
   "title": "Each fact about a device has one source",
   "links": [
    {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
     "text": "Book 05, Chapter 03",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
    }
@@ -133,6 +157,14 @@
   "slide": 9,
   "title": "Intune-first: no ungoverned device, ever",
   "links": [
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
+    "text": "Autopilot registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-autopilot-registration-overview"
+   },
    {
     "text": "Book 05, Chapter 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
@@ -174,6 +206,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
    },
    {
+    "text": "Defender security settings management",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-how-to-use-intune-endpoint-security"
+   },
+   {
     "text": "Book 05, Chapters 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
    },
@@ -187,6 +223,14 @@
   "slide": 12,
   "title": "Three paths to one governed end state",
   "links": [
+   {
+    "text": "report-only mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#analyze-conditional-access-policy-impact"
+   },
+   {
+    "text": "Intune Multi Admin Approval",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-access-policies-to-require-multi-admin"
+   },
    {
     "text": "Book 05, Chapters 05",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
@@ -220,6 +264,10 @@
   "title": "Who decides what for devices and servers",
   "links": [
    {
+    "text": "update rings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rings-policy-settings"
+   },
+   {
     "text": "Book 05, Chapter 06",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
    }
@@ -229,6 +277,10 @@
   "slide": 15,
   "title": "Sunset Group Policy setting by setting",
   "links": [
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
    {
     "text": "Book 05, Chapters 07",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
@@ -243,6 +295,10 @@
   "slide": 16,
   "title": "Seven phases, about 34 weeks, each with a gate",
   "links": [
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
    {
     "text": "Book 05, Chapters 06",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
@@ -272,6 +328,10 @@
   "title": "The support dates that bind the fleet now",
   "links": [
    {
+    "text": "Windows 11 release information",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#windows-11-release-information"
+   },
+   {
     "text": "Book 05, Chapters 08",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
    },
@@ -285,6 +345,10 @@
   "slide": 19,
   "title": "Update rings set the patch clock",
   "links": [
+   {
+    "text": "update rings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-rings-policy-settings"
+   },
    {
     "text": "NIST SP 800-53",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
@@ -306,6 +370,14 @@
    {
     "text": "NIST SP 800-53",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "stale devices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-manage-stale-devices-in-microsoft"
    },
    {
     "text": "Book 05, Chapters 06",

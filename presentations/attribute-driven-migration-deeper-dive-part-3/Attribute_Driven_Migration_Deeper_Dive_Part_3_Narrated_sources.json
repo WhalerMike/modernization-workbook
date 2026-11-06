@@ -1,0 +1,230 @@
+[
+ {
+  "slide": 3,
+  "title": "Gate 7: set up the mover proof",
+  "links": [
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Gate 7: follow the personnel action through",
+  "links": [
+   {
+    "text": "Book 03, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 06, Ch 16",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/16-groups-roles-and-membership.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Gate 7: read the run, keep the evidence",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Gate 8: waves are attribute queries, leaver first",
+  "links": [
+   {
+    "text": "Book 00, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Gate 8: the per-wave attribute gate",
+  "links": [
+   {
+    "text": "Book 03, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   },
+   {
+    "text": "validation report",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html#the-validation-report"
+   },
+   {
+    "text": "dry run",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html#dry-run-cutover-and-rollback"
+   },
+   {
+    "text": "sole source",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html#proving-hr-is-the-sole-source"
+   },
+   {
+    "text": "ticket path",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html#closing-the-ticket-path"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Gate 8: retarget provisioning; what still needs AD",
+  "links": [
+   {
+    "text": "Book 03, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   },
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Retiring the OU tree: disable, never delete",
+  "links": [
+   {
+    "text": "Book 00, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+   },
+   {
+    "text": "Book 05, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Phase 4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html#phase-4-legacy-retirement"
+   },
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Gate 9: drift classes and the two comparisons",
+  "links": [
+   {
+    "text": "Book 03, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Gate 9: fix at the source; logs; the limits register",
+  "links": [
+   {
+    "text": "dynamic membership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 06, Ch 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   },
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 02, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Gate 9: the standing checks, track by track",
+  "links": [
+   {
+    "text": "Book 01, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/04-identity-transformation.html"
+   },
+   {
+    "text": "Book 03, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "What the overview simplified",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/10-retirement-steady-state-and-success.html"
+   },
+   {
+    "text": "Book 03, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Book 01, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html"
+   },
+   {
+    "text": "Book 05, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Decisions, the checklist, and where to go next",
+  "links": [
+   {
+    "text": "Book 03, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   }
+  ]
+ }
+]

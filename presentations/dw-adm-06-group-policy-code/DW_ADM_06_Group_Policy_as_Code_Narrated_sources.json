@@ -1,0 +1,252 @@
+[
+ {
+  "slide": 2,
+  "title": "Analytics finds the landing zone; it doesn't decide",
+  "links": [
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Learn says about the tools sets the stakes",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   },
+   {
+    "text": "Book 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Which cloud: Graph host and Intune instance",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Get-MgEnvironment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgenvironment"
+   },
+   {
+    "text": "Intune for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Microsoft's settings catalog samples, pinned",
+  "links": [
+   {
+    "text": "microsoft/mggraph-intune-samples at 2e66845",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mggraph-intune-samples-at-2e66845"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the samples get right, and the write gaps",
+  "links": [
+   {
+    "text": "microsoft/mggraph-intune-samples at 2e66845",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mggraph-intune-samples-at-2e66845"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   },
+   {
+    "text": "Book 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The record gaps, and the verdict",
+  "links": [
+   {
+    "text": "microsoft/mggraph-intune-samples at 2e66845",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mggraph-intune-samples-at-2e66845"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Read: the VK-INT-07 gate and the move plan",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Write: one reviewed file per policy",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lint: ten rules, four that carry the program",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   },
+   {
+    "text": "Book 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   },
+   {
+    "text": "Book 05, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Diff, then create only what is missing",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Verified calls, beta stage and open questions",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who approves it, which roles",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the gate, the sample twice, the plan",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: lint, dry run, apply, break it on purpose",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, a real import, Migrate",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "Graph deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Intune for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   },
+   {
+    "text": "Book 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/06-group-policy-as-code.html"
+   },
+   {
+    "text": "microsoft/mggraph-intune-samples at 2e66845",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mggraph-intune-samples-at-2e66845"
+   }
+  ]
+ }
+]

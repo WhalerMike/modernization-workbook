@@ -34,6 +34,18 @@
   "title": "Active Directory was the governance nobody wrote down",
   "links": [
    {
+    "text": "What's new in Windows Server 2025",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-s-new-in-windows-server-2025"
+   },
+   {
+    "text": "Group Policy overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-overview-for-windows-server"
+   },
+   {
+    "text": "cloud-first identity guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-cloud-first-identity"
+   },
+   {
     "text": "Book 01, Chapters 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
    },
@@ -64,6 +76,22 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
+    "text": "RFC 4120",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-4120"
+   },
+   {
+    "text": "ITU-T G.114",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#itu-t-g-114"
+   },
+   {
+    "text": "CAE",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
     "text": "Book 01, Chapter 01",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/01-why-modernization-is-hard.html"
    }
@@ -73,6 +101,10 @@
   "slide": 5,
   "title": "Platform: one governed host, one authoritative writer",
   "links": [
+   {
+    "text": "enterprise access model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enterprise-access-model"
+   },
    {
     "text": "NIST SP 800-207",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
@@ -110,6 +142,14 @@
    {
     "text": "NIST SP 800-207",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
    },
    {
     "text": "Book 01, Chapters 04",
@@ -178,6 +218,10 @@
    {
     "text": "CISA BOD 25-01",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "SCuBA Entra ID baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
    },
    {
     "text": "Book 01, Chapters 05",
@@ -270,6 +314,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
    },
    {
+    "text": "CAE",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
     "text": "Book 01, Chapters 08",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/08-access-plane.html"
    },
@@ -294,6 +342,10 @@
    {
     "text": "NIST SP 800-37 Rev. 2",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "cloud-first identity guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-cloud-first-identity"
    },
    {
     "text": "Entra licensing",
@@ -344,6 +396,26 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
    },
    {
+    "text": "Required Configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "Scattered Spider",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "NARA GRS 3.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nara-grs-3-2"
+   },
+   {
+    "text": "36 CFR 1220.34",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-36-1220-34"
+   },
+   {
     "text": "OMB M-19-17",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
    },
@@ -364,6 +436,10 @@
    {
     "text": "AD CS",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Arc Extended Security Updates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#prepare-to-deliver-extended-security-updates"
    },
    {
     "text": "Book 01, Chapters 09",

@@ -1,0 +1,252 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the workflows belong in code",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft gives you",
+  "links": [
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "createNewVersion",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workflow-createnewversion"
+   },
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "execution limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-execution-limits-and-quarantine"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Learn leaves to you",
+  "links": [
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "ID Governance licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-id-governance-licensing"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Six workflow files, scoped by code",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The lint: Learn's limits and the program's rules",
+  "links": [
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "execution limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-execution-limits-and-quarantine"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The plan: create, new version, or none",
+  "links": [
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "createNewVersion",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workflow-createnewversion"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Day-one readiness, and the tests",
+  "links": [
+   {
+    "text": "List userProcessingResults",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-userprocessingresults"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The verified facts",
+  "links": [
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "createNewVersion",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workflow-createnewversion"
+   },
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "execution limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-execution-limits-and-quarantine"
+   },
+   {
+    "text": "Ch. 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Where Learn differs, and what stays open",
+  "links": [
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What the output proves, and for whom",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who builds, who owns, who approves",
+  "links": [
+   {
+    "text": "Create workflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-workflow"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: the reads, and a clean lint",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: three broken copies",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the plan, and day one measured",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: one change, through the plan",
+  "links": [
+   {
+    "text": "execution limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-execution-limits-and-quarantine"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the Gate 3 checklist",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.html"
+   }
+  ]
+ }
+]

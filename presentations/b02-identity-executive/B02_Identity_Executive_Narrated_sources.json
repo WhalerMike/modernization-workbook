@@ -1,0 +1,434 @@
+[
+ {
+  "slide": 2,
+  "title": "The access decision has moved to identity",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "Book 02, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "AD isn't retiring, but the dates are already set",
+  "links": [
+   {
+    "text": "Entra releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-releases-and-announcements"
+   },
+   {
+    "text": "deprecated Windows features",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#audit-use-of-ntlmv1-on-a-windows-server"
+   },
+   {
+    "text": "Book 02, Ch. 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Lift-and-shift copies the risk into the tenant",
+  "links": [
+   {
+    "text": "Book 02, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Placement becomes attributes: governance by rule",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Book 02, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Four tracks: what Book 02 moves, and where the rest goes",
+  "links": [
+   {
+    "text": "Book 02, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Books 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Kerberos and NTLM never reach Conditional Access",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 02, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/03-ad-and-entra-side-by-side.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The hidden surface: eleven object types, not two",
+  "links": [
+   {
+    "text": "Book 02, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/04-the-hidden-migration-surface.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Delegation without OUs: scope by attribute",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 02, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/05-delegation-without-ous.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "One decider per decision, many doers",
+  "links": [
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 02, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who decides what in the migration",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Entra built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-built-in-roles"
+   },
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Book 02, Chapters 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Microsoft supplies the tools; someone owns the gaps",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 02, Ch. 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Start read-only, then ask for exactly what's missing",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 02, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/07-read-only-discovery.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/08-assessing-the-forest.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Build the target: Cloud Sync, PHS, no standing admin",
+  "links": [
+   {
+    "text": "Cloud Sync decision guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-from-microsoft-entra-connect-to"
+   },
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Book 02, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Phishing-resistant sign-in: PIV first, not last",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Book 02, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Eleven phases in five waves, each one gated",
+  "links": [
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "staged rollout",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-connect-cloud-authentication"
+   },
+   {
+    "text": "Book 02, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Retire Active Directory last, on six conditions",
+  "links": [
+   {
+    "text": "Book 02, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/04-the-hidden-migration-surface.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/06-who-owns-the-migration.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Evidence that comes out of operations",
+  "links": [
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "FedRAMP 20x KSI pages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 02, Chapters 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Decisions to make, owners and timing",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 02, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/01-why-identity-matters.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ }
+]

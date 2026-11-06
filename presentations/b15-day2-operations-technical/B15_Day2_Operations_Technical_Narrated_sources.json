@@ -1,0 +1,438 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a reset can hand over the account",
+  "links": [
+   {
+    "text": "Entra built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-built-in-roles"
+   },
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-63B-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-63b-4"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Three questions, one contract, five operating rules",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "Book 15, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "One front door: redirect, filter, reroute",
+  "links": [
+   {
+    "text": "OMB M-24-08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-08"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Triage by required authority: first match wins",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   },
+   {
+    "text": "Book 04, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Prefer the connector, but check what it covers",
+  "links": [
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Verify the person: the program's verification ladder",
+  "links": [
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "NIST SP 800-63B-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-63b-4"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Close with evidence: three records that must agree",
+  "links": [
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Entra data retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-data-retention"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Five roles, and whose accounts each can touch",
+  "links": [
+   {
+    "text": "Entra built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-built-in-roles"
+   },
+   {
+    "text": "privileged roles and permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "least privileged roles by task",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#least-privileged-roles-by-task-in-microsoft"
+   },
+   {
+    "text": "Book 15, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Scope and reach: AUs, restricted units and PIM",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "PIM role settings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-entra-role-settings-in"
+   },
+   {
+    "text": "Book 15, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Recovery with a Temporary Access Pass",
+  "links": [
+   {
+    "text": "NIST SP 800-63B-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-63b-4"
+   },
+   {
+    "text": "CISA AA23-320A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
+   },
+   {
+    "text": "Book 15, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "High-risk tasks: two approvers besides the executor",
+  "links": [
+   {
+    "text": "Book 15, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "The identity catalog: ten items, five verbs",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/05-the-service-catalogs.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Teams Phone: emergency calling is the operator's duty",
+  "links": [
+   {
+    "text": "Book 15, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/05-the-service-catalogs.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "SaaS integrations: a verdict before any configuration",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "required configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 15, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/06-saas-integration-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "The least-privileged Graph surface for SaaS",
+  "links": [
+   {
+    "text": "appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Book 15, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/06-saas-integration-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "The CMDB is a projection of the naming plane",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "CISA BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "Book 15, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Duplicates, stale CIs and what they break",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "One loop, and the Microsoft 365 evidence sources",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 15, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Azure: Policy, Defender for Cloud and Resource Graph",
+  "links": [
+   {
+    "text": "Book 15, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Three routes into the ITSM platform, one clock",
+  "links": [
+   {
+    "text": "Defender for Cloud ServiceNow integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-the-servicenow-integration"
+   },
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "Book 15, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "AWS: Config and Security Hub CSPM, not Audit Manager",
+  "links": [
+   {
+    "text": "Book 15, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "VMware: the evidence the agency produces itself",
+  "links": [
+   {
+    "text": "Book 15, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Who runs day two: one decider per row",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 15, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Decisions to make, and next steps for day two",
+  "links": [
+   {
+    "text": "AWS Service Management Connector end-of-support notice",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-smc-end-of-support"
+   },
+   {
+    "text": "Book 15, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/01-the-help-desk-decides.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.html"
+   }
+  ]
+ }
+]

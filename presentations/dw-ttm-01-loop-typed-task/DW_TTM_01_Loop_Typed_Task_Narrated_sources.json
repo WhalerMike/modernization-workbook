@@ -1,0 +1,230 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the record comes first",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The workbook's loop and where the kit sits",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "the coordination loop",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-coordination-loop"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/01-why-governance-decays.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The data contract: what every payload carries",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What exists: the contract, enforced in one place",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the chapter adds: finding_contract.py",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The empty intended state that looks present",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The tests: 22 for the contract, 107 in all",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The verified facts the code depends on",
+  "links": [
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Understanding PDIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-pdis"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What couldn't be verified",
+  "links": [
+   {
+    "text": "Understanding PDIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-pdis"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What the typed finding proves, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who builds it and who approves it",
+  "links": [
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: five sample payloads, checked",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the script's tests and the drift payloads",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 2: post one finding to a developer instance",
+  "links": [
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Understanding PDIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-pdis"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.html"
+   }
+  ]
+ }
+]

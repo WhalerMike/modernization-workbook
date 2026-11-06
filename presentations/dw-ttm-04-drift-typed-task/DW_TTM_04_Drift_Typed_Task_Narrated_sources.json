@@ -1,0 +1,224 @@
+[
+ {
+  "slide": 2,
+  "title": "Why run the body before it runs for real",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What exists: three workflows and one script",
+  "links": [
+   {
+    "text": "ISC v2025 WorkflowBody",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v2025-workflowbody"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "workflow_payload.py: the body, resolved offline",
+  "links": [
+   {
+    "text": "Native Change Account Updated",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-native-change"
+   },
+   {
+    "text": "Identity Attributes Changed",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-attributes-changed"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Fix 1: multivalued changes, reverted",
+  "links": [
+   {
+    "text": "Native Change Account Updated",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-native-change"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Fix 2: the attribute joins the de-duplication key",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The tests: seven new, two node tests, one rule",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts: the three triggers",
+  "links": [
+   {
+    "text": "ISC v2025 WorkflowBody",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v2025-workflowbody"
+   },
+   {
+    "text": "Scripted REST APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-scripted-rest"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What couldn't be verified about the workflows",
+  "links": [
+   {
+    "text": "Native Change Account Updated",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-native-change"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What Build 1 proves, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   },
+   {
+    "text": "Book 13, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 13, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who builds the workflows and the resource",
+  "links": [
+   {
+    "text": "ISC v2025 createWorkflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v2025-workflows"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: the native change, resolved",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: the mover, the signal, the script tests",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: one workflow, one sandbox, one capture",
+  "links": [
+   {
+    "text": "Native Change Account Updated",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-trigger-native-change"
+   },
+   {
+    "text": "ISC v2025 createWorkflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v2025-workflows"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Done when: the Build 1 checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.html"
+   }
+  ]
+ }
+]

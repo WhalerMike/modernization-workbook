@@ -1,0 +1,304 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a dynamic rule is code",
+  "links": [
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Learn says about the engine sets the stakes",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "dynamic group processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "memberOf operator",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-dynamic-membership-groups-with-the"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Which cloud: sign-in, evaluator and memberOf",
+  "links": [
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "group: evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "memberOf operator",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-dynamic-membership-groups-with-the"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn gives you: syntax, and five samples",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "PowerShell samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The pinned copy, run against a fake tenant",
+  "links": [
+   {
+    "text": "MicrosoftDocs/entra-docs at 07cb73d",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
+   },
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the samples leave to you",
+  "links": [
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "dynamic group processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "One file per group, with an owner and tests",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Parse and evaluate offline, as Learn's grammar says",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The linter: guards on the parsed tree",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "memberOf operator",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-dynamic-membership-groups-with-the"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What the linter found in Book 03's own table",
+  "links": [
+   {
+    "text": "Manage rules for dynamic membership groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 03, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The shadow diff, the pause manifest and the tests",
+  "links": [
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who owns the rules, and what each step may do",
+  "links": [
+   {
+    "text": "New-MgGroup",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#new-mggroup"
+   },
+   {
+    "text": "evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "PowerShell samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "group resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-resource-type"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Learn's samples and the rules, offline",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the pull request check, broken on purpose",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, Graph's evaluator, a drill",
+  "links": [
+   {
+    "text": "New-MgGroup",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#new-mggroup"
+   },
+   {
+    "text": "evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "dynamic membership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "dynamic group processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#understand-and-manage-dynamic-group"
+   },
+   {
+    "text": "PowerShell samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   },
+   {
+    "text": "evaluateDynamicMembership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-evaluatedynamicmembership"
+   },
+   {
+    "text": "PowerShell samples for dynamic membership processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
+   }
+  ]
+ }
+]

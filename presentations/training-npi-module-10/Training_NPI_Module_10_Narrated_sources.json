@@ -1,0 +1,98 @@
+[
+ {
+  "slide": 2,
+  "title": "Why every gate's state has to be kept true",
+  "links": [
+   {
+    "text": "Remove unused applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-recommendation-remove-unused"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The gate: run the lifecycle, and file the output",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "One run, and a baseline that counts only when approved",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The drift findings: NPI-DRF-01 to NPI-DRF-09",
+  "links": [
+   {
+    "text": "Remove unused applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-recommendation-remove-unused"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The review cycle, and the annual vintage comparison",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the ISSO receives: the package, chain, period",
+  "links": [
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: three changes in your own test tenant",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "The federal requirement and evidence for Gate G6",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

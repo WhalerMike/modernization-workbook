@@ -534,7 +534,7 @@
   ],
   [
    235,
-   "How the workbook works: eighteen books, four questions"
+   "How the workbook works: nineteen books, four questions"
   ],
   [
    292,
@@ -553,7 +553,7 @@
    "Seven phases and six gates: the workbook's model"
   ],
   [
-   535,
+   534,
    "Seven complementary projects, run inside the program"
   ],
   [
@@ -4737,55 +4737,55 @@
    "Every AI System Needs an Identity"
   ],
   [
-   47,
+   45,
    "An agent that acts is an account"
   ],
   [
-   100,
+   98,
    "AI arrived outside the identity program"
   ],
   [
-   156,
+   155,
    "What federal AI rules require, and don't"
   ],
   [
-   217,
+   215,
    "The inventory is a seed list, not an identity source"
   ],
   [
-   271,
+   269,
    "Whose token does it present?"
   ],
   [
-   324,
+   323,
    "Release stage and government cloud, October 2026"
   ],
   [
-   386,
+   385,
    "A named human, and a lifecycle that ends"
   ],
   [
-   440,
+   438,
    "No stored secrets, no standing privilege"
   ],
   [
-   492,
+   491,
    "Watch it, find what nobody declared, raise findings"
   ],
   [
-   551,
+   550,
    "Two decision tracks, one identity record"
   ],
   [
-   606,
+   605,
    "Run the inventory scan"
   ],
   [
-   662,
+   660,
    "Evidence the authorizing official can use"
   ],
   [
-   718,
+   716,
    "Decisions to make, and next steps"
   ]
  ],
@@ -7053,67 +7053,67 @@
    "Chapter 10: Drift and Evidence for the ISSO"
   ],
   [
-   44,
+   43,
    "What the evidence has to show"
   ],
   [
-   87,
+   86,
    "Learn's facts, the cloud and the other chapters"
   ],
   [
-   127,
+   126,
    "Microsoft's Sentinel rule, pinned and run offline"
   ],
   [
-   169,
+   168,
    "What the rule misses: initiators, keys, targets"
   ],
   [
-   205,
+   204,
    "What it misses: the pipeline, names and scope"
   ],
   [
-   241,
+   240,
    "The run, the approved baseline and the reads"
   ],
   [
-   281,
+   280,
    "The drift rules: NPI-DRF-01 to NPI-DRF-09"
   ],
   [
-   320,
+   319,
    "The review cycle and the annual vintage comparison"
   ],
   [
-   359,
+   358,
    "The package, the chain and what the ISSO receives"
   ],
   [
-   398,
+   397,
    "Who runs it, who signs it, and what it may read"
   ],
   [
-   434,
+   433,
    "Lab 1: the rule, then two days of runs"
   ],
   [
-   471,
+   470,
    "Lab 1: reading the drift and the vintage"
   ],
   [
-   510,
+   509,
    "Lab 1: package, verify, the period, then break it"
   ],
   [
-   551,
+   550,
    "Lab 2: a test tenant, three changes to see"
   ],
   [
-   587,
+   586,
    "Dangers, and the guard for each"
   ],
   [
-   626,
+   625,
    "Done when: the checklist, and the workbook's end"
   ]
  ],
@@ -7633,71 +7633,71 @@
    "Chapter 08: Evidence and Drift for the ISSO"
   ],
   [
-   41,
+   40,
    "What the evidence has to show"
   ],
   [
-   81,
+   80,
    "Which cloud: the audit read's Graph host"
   ],
   [
-   118,
+   117,
    "Learn's PIM audit page and its three queries"
   ],
   [
-   157,
+   156,
    "What the queries find, and what they mix up"
   ],
   [
-   199,
+   198,
    "What the queries leave out entirely"
   ],
   [
-   239,
+   238,
    "The run: state, events, and one folder per run"
   ],
   [
-   278,
+   277,
    "The audit read, and what it flags"
   ],
   [
-   315,
+   314,
    "Where Learn's pages differ, and why it fails closed"
   ],
   [
-   352,
+   351,
    "Compare, by fingerprint; Tier 0 drift is an incident"
   ],
   [
-   391,
+   390,
    "No names in the tracker; packages in a hash chain"
   ],
   [
-   431,
+   430,
    "The period the ISSO receives, and the schedule"
   ],
   [
-   472,
+   471,
    "Who runs it, who receives it, what it may read"
   ],
   [
-   507,
+   506,
    "Lab 1: Learn's queries and two days of runs"
   ],
   [
-   545,
+   544,
    "Lab 1: compare, package, the period, a break"
   ],
   [
-   583,
+   582,
    "Lab 2: a test tenant, one activation, read twice"
   ],
   [
-   621,
+   620,
    "Dangers, and the guard for each"
   ],
   [
-   658,
+   657,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -8165,63 +8165,63 @@
    "Chapter 08: One Writer per Attribute"
   ],
   [
-   39,
+   38,
    "Why two writers is drift you've scheduled"
   ],
   [
-   79,
+   78,
    "Why only this Pass 2 item is built"
   ],
   [
-   114,
+   113,
    "Export one: the inbound job's schema"
   ],
   [
-   147,
+   146,
    "Export two: SailPoint's provisioning policies"
   ],
   [
-   180,
+   179,
    "Three severities, and aliases a reviewer checks"
   ],
   [
-   216,
+   215,
    "The tests: six, from flow types to the CLI"
   ],
   [
-   249,
+   248,
    "The verified facts behind the two exports"
   ],
   [
-   289,
+   288,
    "What couldn't be verified about the writers"
   ],
   [
-   325,
+   324,
    "What the writer check proves, and for whom"
   ],
   [
-   360,
+   359,
    "Who owns each writer, and who decides"
   ],
   [
-   398,
+   397,
    "Lab 1: department has two writers"
   ],
   [
-   430,
+   429,
    "Lab 1: the alias, the guard, the reads"
   ],
   [
-   463,
+   462,
    "Lab 2: your own exports, reviewed"
   ],
   [
-   498,
+   497,
    "Dangers, and the guard for each"
   ],
   [
-   534,
+   533,
    "Done when: the writer checklist"
   ]
  ],

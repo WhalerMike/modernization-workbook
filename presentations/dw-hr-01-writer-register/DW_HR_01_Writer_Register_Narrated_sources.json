@@ -1,0 +1,244 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this gate comes first",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   },
+   {
+    "text": "Book 03, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud, for this read",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn leaves to you, and what the kit adds",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The register: one writer and a backstop per row",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The register checks: WR-01 to WR-09",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   },
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The scan: every protected write, tested",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Two GET permissions, and what the scan can't see",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The tests: nine for this chapter, 57 in all",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The verified facts, and where Learn is silent",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   },
+   {
+    "text": "Book 03, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "What the register and scan prove, and for whom",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds, who owns, who removes",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: what the scan reads, and October's scan",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the findings, a saved query, the tests",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: real records in a test tenant",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the writer register checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.html"
+   }
+  ]
+ }
+]

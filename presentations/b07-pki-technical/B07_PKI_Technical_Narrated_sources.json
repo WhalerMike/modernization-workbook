@@ -1,0 +1,548 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: certificates fail at expiry, not at cutover",
+  "links": [
+   {
+    "text": "CA/Browser Forum Ballot SC-081v3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cabf-sc-081v3"
+   },
+   {
+    "text": "NIST IR 8547",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ir-8547"
+   },
+   {
+    "text": "OMB M-26-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-15"
+   },
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 07, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/01-why-certificates-outlive-every-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What AD CS holds up, and the four verdicts",
+  "links": [
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Cloud PKI overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 07, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/02-what-ad-cs-holds-up.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/appendix-b-template-migration-matrix.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The gate, and where the misconfigurations live",
+  "links": [
+   {
+    "text": "Certified Pre-Owned",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certified-pre-owned"
+   },
+   {
+    "text": "Defender for Identity certificate assessments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-assessment-certificates"
+   },
+   {
+    "text": "Book 07, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Template classes ESC1–ESC4: detect and fix",
+  "links": [
+   {
+    "text": "Defender for Identity certificate assessments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-assessment-certificates"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Secure, delegate and audit CA administration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-delegate-and-audit-certification"
+   },
+   {
+    "text": "Book 07, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Directory and CA classes ESC5–ESC8, then ESC11 and ESC15",
+  "links": [
+   {
+    "text": "Defender for Identity certificate assessments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-assessment-certificates"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "certutil",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certutil"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Book 07, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Turn on CA auditing, then watch the baseline events",
+  "links": [
+   {
+    "text": "Secure, delegate and audit CA administration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-delegate-and-audit-certification"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Book 07, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The risk-scoring matrix, and what closed means",
+  "links": [
+   {
+    "text": "Defender for Identity certificate assessments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-assessment-certificates"
+   },
+   {
+    "text": "Book 07, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Hardening baselines: retained AD CS, Cloud PKI and Entra CBA",
+  "links": [
+   {
+    "text": "Secure, delegate and audit CA administration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-delegate-and-audit-certification"
+   },
+   {
+    "text": "Cloud PKI overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Entra CBA technical concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-technical-concepts"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Book 07, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Microsoft Cloud PKI: what it can and can't issue",
+  "links": [
+   {
+    "text": "Cloud PKI overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
+    "text": "Intune GCC High and DoD",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Two ways to anchor trust: a cloud root or bring-your-own-CA",
+  "links": [
+   {
+    "text": "Cloud PKI deployment models",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-cloud-pki-deployment-for-microsoft"
+   },
+   {
+    "text": "configure BYOCA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-cloud-pki-bring-your-own"
+   },
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The deployment-model decision, and the program's choice",
+  "links": [
+   {
+    "text": "Cloud PKI deployment models",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-cloud-pki-deployment-for-microsoft"
+   },
+   {
+    "text": "configure BYOCA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-cloud-pki-bring-your-own"
+   },
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "What AD CS is kept for, and who issues server certificates",
+  "links": [
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "smart card logon with third-party CAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#guidelines-for-enabling-smart-card-logon"
+   },
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Federal PKI for PIV, and one lifecycle platform",
+  "links": [
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "third-party smart card logon",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#guidelines-for-enabling-smart-card-logon"
+   },
+   {
+    "text": "FedRAMP Marketplace dataset",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Three delivery paths, one trusted certificate profile first",
+  "links": [
+   {
+    "text": "Cloud PKI overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "configure BYOCA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-cloud-pki-bring-your-own"
+   },
+   {
+    "text": "PKCS profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-and-use-pkcs-certificates-with"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "NDES and the connector, and which profile for which use",
+  "links": [
+   {
+    "text": "NDES enrollment agent renewal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#renewal-of-enrollment-agent-certificate-used"
+   },
+   {
+    "text": "PKCS profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-and-use-pkcs-certificates-with"
+   },
+   {
+    "text": "Entra join planning",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-join-deployment"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Strong certificate mapping: Full Enforcement is the present",
+  "links": [
+   {
+    "text": "PKCS profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-and-use-pkcs-certificates-with"
+   },
+   {
+    "text": "third-party smart card logon",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#guidelines-for-enabling-smart-card-logon"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Entra CBA: the sign-in, the trust store and revocation",
+  "links": [
+   {
+    "text": "Entra CBA technical concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-technical-concepts"
+   },
+   {
+    "text": "set up Entra CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "Entra CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Username bindings, affinity and factors",
+  "links": [
+   {
+    "text": "Entra CBA technical concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-technical-concepts"
+   },
+   {
+    "text": "set up Entra CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "Entra licensing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-licensing"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   },
+   {
+    "text": "Book 03, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Staged rollout, and moving off AD FS",
+  "links": [
+   {
+    "text": "Staged rollout",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-connect-cloud-authentication"
+   },
+   {
+    "text": "federation to cloud authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-from-federation-to-cloud"
+   },
+   {
+    "text": "Book 07, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/appendix-a-deployment-checklists.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Coexistence: five rules and trust in both directions",
+  "links": [
+   {
+    "text": "LDAPS certificates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-certificates-for-ldap-over-ssl-in"
+   },
+   {
+    "text": "set up Entra CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "certutil",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certutil"
+   },
+   {
+    "text": "NTAuth import",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-import-third-party-certification"
+   },
+   {
+    "text": "Book 07, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "CRL availability: outages are revocation outages",
+  "links": [
+   {
+    "text": "Cloud PKI overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "configure BYOCA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-microsoft-cloud-pki-bring-your-own"
+   },
+   {
+    "text": "Entra CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "set up Entra CBA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#set-up-microsoft-entra-certificate-based"
+   },
+   {
+    "text": "Book 07, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Six gated waves, each with a tested rollback",
+  "links": [
+   {
+    "text": "staged rollout",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-connect-cloud-authentication"
+   },
+   {
+    "text": "AD FS decommission guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#active-directory-federation-services-ad-fs"
+   },
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "Book 07, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html"
+   },
+   {
+    "text": "App. A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/appendix-a-deployment-checklists.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "The template matrix: classify by what was actually issued",
+  "links": [
+   {
+    "text": "Cloud PKI overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "PKCS profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-and-use-pkcs-certificates-with"
+   },
+   {
+    "text": "Entra CBA CRL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-cba-crl"
+   },
+   {
+    "text": "Book 07, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/appendix-b-template-migration-matrix.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/02-what-ad-cs-holds-up.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Renewal at scale, monitoring and drift",
+  "links": [
+   {
+    "text": "RFC 8555",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-8555"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Retire AD CS last, and hand the assessor the evidence",
+  "links": [
+   {
+    "text": "Decommission an enterprise CA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-decommission-a-windows-enterprise"
+   },
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ }
+]

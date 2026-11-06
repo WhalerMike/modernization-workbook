@@ -1,0 +1,86 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a PRV group's own state has to be governed",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Two features meet in a PRV group",
+  "links": [
+   {
+    "text": "Use Microsoft Entra groups to manage role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Three facts from Learn that shape the code",
+  "links": [
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The file and the findings: PA-PG-01 to PA-PG-09",
+  "links": [
+   {
+    "text": "Use Microsoft Entra groups to manage role assignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#use-microsoft-entra-groups-to-manage-role"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The plan's order, the guards, and who creates the groups",
+  "links": [
+   {
+    "text": "Create group",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-group"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and the evidence for Module 5",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "MS.AAD.7.4v1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

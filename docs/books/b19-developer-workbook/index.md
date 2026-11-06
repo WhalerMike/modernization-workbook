@@ -30,7 +30,7 @@ last-reviewed: 2026-11-03
 
 ::: {.callout-important appearance="default"}
 ## Status: approved
-All nine chapters are written, and the owner approved every page on October 31, 2026. A page that changes after its approval goes back on the weekly source watch list until it is approved again. Each chapter has a narrated deck and video, listed under [Narrated chapter tours](#narrated-chapter-tours). Every external claim was checked against Microsoft Learn or a workbook chapter on October 30, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
+All ten chapters are written, and the owner had approved every page by November 3, 2026. A page that changes after its approval goes back on the weekly source watch list until it is approved again. Each chapter has a narrated deck and video, listed under [Narrated chapter tours](#narrated-chapter-tours). Every external claim was checked against Microsoft Learn or a workbook chapter on October 30, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
 :::
 
 The [Attribute-Driven Migration](../guides/attribute-driven-migration.md) moves an agency from Active Directory to Microsoft Entra ID by placing every person, device and server in policy through attributes instead of OU placement. Its operator material already exists: the companion guide, the [implementation guide](../guides/attribute-driven-migration-implementation.md) with its ten gates, the [project plan](../../project-plans/attribute-driven-migration.md) and the narrated decks. Those tell an operator what to do and how to prove it was done. They don't teach anyone to build the software the migration runs on: the middleware between the HR system and Entra ID, the Graph clients, the checks that prove each gate, the rule library, the workflow extensions, and the pipelines that catch drift and hand evidence to the ISSO.
@@ -45,7 +45,7 @@ The project has two long documents, and they do different jobs. [Attribute-Drive
 |---|---|---|
 | Reader | Operators, migration leads and ISSOs | Developers and platform engineers |
 | Question it answers | What has to be true at each gate, and how do I prove it? | How do I build, test and ship the code that makes it true? |
-| Shape | Ten gates, from reading the OU tree (Gate 0) to keeping attributes true (Gate 9). Each has prerequisites, steps, a **Validate** step, rollback and evidence | Nine chapters, each starting from code in the `examples` folder, with a lab against fixtures, a test-tenant step, verified Graph and Azure facts, dangers and a checklist |
+| Shape | Ten gates, from reading the OU tree (Gate 0) to keeping attributes true (Gate 9). Each has prerequisites, steps, a **Validate** step, rollback and evidence | Nine code chapters, each starting from code in the `examples` folder, with a lab against fixtures, a test-tenant step, verified Graph and Azure facts, dangers and a checklist |
 | You finish with | A migrated estate and the evidence package for each gate | Middleware, Graph clients, validation checks, rule libraries, workflow extensions and drift pipelines, with passing tests |
 | Download | [attribute-driven-migration-implementation-guide.docx](../../../downloads/attribute-driven-migration-implementation-guide.docx) | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
 
@@ -61,10 +61,10 @@ They meet at the **Validate** step. Each gate in the guide names a validation ki
 |---|---|---|
 | Project plan | The phases, owners, dates and exit criteria the gates are scheduled against | [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) |
 | Implementation guide | The operator's guide: ten gates, each with steps, a **Validate** step, rollback and evidence. It says what has to be true at each gate; this workbook builds the software that makes it true | [Attribute-Driven Migration: An Implementation Guide](../guides/attribute-driven-migration-implementation.md) |
-| Developer workbook | This workbook: nine chapters, each building on code in the repository, with labs and tests | [Chapters](#chapters-table) below |
+| Developer workbook | This workbook: nine code chapters, each building on code in the repository, with labs and tests, and a deployment runbook | [Chapters](#chapters-table) below |
 | Presentations | The two-part technical deep dive and the three-part deeper dive follow the guide's gates. Each chapter also has a narrated tour: a deck and a video | [Presentations](../../presentations/index.md) · [Narrated chapter tours](#narrated-chapter-tours) |
 | Code | The `examples` folders the chapters build on, and the Microsoft samples they start from, pinned unmodified under `third_party` with their licenses | [`examples` on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) |
-| Code download | Every folder the nine chapters use, in one zip, with its tests and fixtures. Each script also has a `.txt` copy for mail systems that block scripts | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
+| Code download | Every folder the nine code chapters use, in one zip, with its tests and fixtures. Each script also has a `.txt` copy for mail systems that block scripts | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
 
 The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `validation-kit` (02, 03 and 06), `dynamic-rules` (02, 04 and 09), `lifecycle-extensions` (05), `group-policy-as-code` (06), `machine-configuration` (07 and 09), `ansible` (08) and `drift-pipeline` (09), and the pinned samples each chapter starts from.
 

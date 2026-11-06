@@ -1,0 +1,240 @@
+[
+ {
+  "slide": 2,
+  "title": "Why Gate 4 needs code",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Learn gives you: the automatic policy",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The request body, and the manager as approver",
+  "links": [
+   {
+    "text": "Create assignmentPolicies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-assignmentpolicies"
+   },
+   {
+    "text": "requestorManager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn leaves to you",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The policy files and the evaluator",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The lint: nine rules",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "requestorManager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "MS.AAD.7.5v1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The mover's residual review",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The reads, the clouds and the tests",
+  "links": [
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The verified facts, and where Learn stops",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "Create assignmentPolicies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-assignmentpolicies"
+   },
+   {
+    "text": "requestorManager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
+   },
+   {
+    "text": "administrative units",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#administrative-units-in-microsoft-entra-id"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "What the output proves, and for whom",
+  "links": [
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "MS.AAD.7.5v1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who builds, who owns, who reviews",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: the reads, and a clean lint",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: five broken policies",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the memberOf scan and a mover's residual",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: one policy and one move, in a test tenant",
+  "links": [
+   {
+    "text": "automatic assignment policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-an-automatic-assignment-policy-for"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the Gate 4 checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.html"
+   }
+  ]
+ }
+]

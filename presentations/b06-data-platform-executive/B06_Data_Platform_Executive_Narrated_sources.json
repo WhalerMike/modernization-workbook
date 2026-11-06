@@ -1,0 +1,460 @@
+[
+ {
+  "slide": 2,
+  "title": "The database is where legacy authentication hides",
+  "links": [
+   {
+    "text": "Choose an authentication mode",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#choose-an-authentication-mode"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "Book 06, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Silent NTLM fallback is invisible until measured",
+  "links": [
+   {
+    "text": "Book 06, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Three drivers end it; 2027-04-01 is the program's date",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Deprecated features (NTLM)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deprecated-features-for-windows-client"
+   },
+   {
+    "text": "Book 06, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/02-why-the-inheritance-must-end.html"
+   },
+   {
+    "text": "21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/21-what-done-looks-like.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Count the estate before deciding anything",
+  "links": [
+   {
+    "text": "Entra cloud-first identity guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-cloud-first-identity"
+   },
+   {
+    "text": "Book 06, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/03-the-shape-of-twenty-years.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/04-the-estate-inventory.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Retain, consolidate or retire gates everything",
+  "links": [
+   {
+    "text": "CREATE LOGIN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-login-transact-sql"
+   },
+   {
+    "text": "Microsoft Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Book 06, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/05-rationalization.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The audit sorts survivors into three categories",
+  "links": [
+   {
+    "text": "Microsoft Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "Register an SPN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#register-a-service-principal-name-for"
+   },
+   {
+    "text": "Book 06, Chapters 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/07-the-authentication-audit.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/08-reading-the-audit.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The target: every connection carries an Entra token",
+  "links": [
+   {
+    "text": "Managed identity for Arc-enabled SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Entra authentication setup tutorial",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-set-up-microsoft-entra"
+   },
+   {
+    "text": "CREATE LOGIN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-login-transact-sql"
+   },
+   {
+    "text": "Book 06, Chapters 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Five positions the engine decision settles",
+  "links": [
+   {
+    "text": "sys.server_principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-server-principals-transact-sql"
+   },
+   {
+    "text": "Disable SQL authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-sql-authentication-for-sql-server"
+   },
+   {
+    "text": "Book 06, Chapters 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/appendix-b-ato-kit.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Where it runs, and what it costs",
+  "links": [
+   {
+    "text": "SQL Server enabled by Azure Arc",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc"
+   },
+   {
+    "text": "Book 06, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/appendix-b-ato-kit.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Access is now decided in five places",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 06, Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "DBAs run the engine; application owners own the chain",
+  "links": [
+   {
+    "text": "Entra authentication setup tutorial",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-set-up-microsoft-entra"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 06, Chapters 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "16",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/16-groups-roles-and-membership.html"
+   },
+   {
+    "text": "17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Privileged steps sit outside the DBA team on purpose",
+  "links": [
+   {
+    "text": "Entra built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-built-in-roles"
+   },
+   {
+    "text": "PIM for Groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-identity-management-pim-for"
+   },
+   {
+    "text": "Arc identity and authorization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#arc-servers-identity-and-authorization"
+   },
+   {
+    "text": "Disable SQL authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-sql-authentication-for-sql-server"
+   },
+   {
+    "text": "privileged roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#privileged-roles-and-permissions-in"
+   },
+   {
+    "text": "Book 06, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Applications are the other half of the chain",
+  "links": [
+   {
+    "text": "Book 06, Chapters 18",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html"
+   },
+   {
+    "text": "19",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/19-connection-string-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "NTLM: discover, restrict, then block on 2027-04-01",
+  "links": [
+   {
+    "text": "Book 06, Chapters 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Certificates the AD CS retirement plan can't see",
+  "links": [
+   {
+    "text": "Cloud PKI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-cloud-pki-for"
+   },
+   {
+    "text": "smart card logon with third-party CAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#guidelines-for-enabling-smart-card-logon"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 06, Chapters 22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Done means five conditions, proven continuously",
+  "links": [
+   {
+    "text": "Disable SQL authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-sql-authentication-for-sql-server"
+   },
+   {
+    "text": "sys.dm_exec_connections",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sys-dm-exec-connections-transact-sql"
+   },
+   {
+    "text": "Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-conditional-access"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 06, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "20",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/20-the-closure-condition.html"
+   },
+   {
+    "text": "21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/21-what-done-looks-like.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Risks that can still derail the schedule",
+  "links": [
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Arc in US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc-in-us"
+   },
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "Book 06, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/04-the-estate-inventory.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "18",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html"
+   },
+   {
+    "text": "21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/21-what-done-looks-like.html"
+   },
+   {
+    "text": "22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "The platform question comes after, per data domain",
+  "links": [
+   {
+    "text": "Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   },
+   {
+    "text": "Book 06, Ch 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   },
+   {
+    "text": "23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/23-epilogue-the-platform-question.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Decisions to make, owners and timing",
+  "links": [
+   {
+    "text": "Book 06, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html"
+   },
+   {
+    "text": "23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/23-epilogue-the-platform-question.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/appendix-b-ato-kit.html"
+   },
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/13-who-owns-the-data-platform.html"
+   }
+  ]
+ }
+]

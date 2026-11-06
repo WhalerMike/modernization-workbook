@@ -29,7 +29,6 @@ Book 03: Chapter 10 — From Attributes to Access: https://whalermike.github.io/
 Book 01: Chapter 10 — Analyzing the Estate: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html
 Book 03: Chapter 12 — Execution Plan: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html
 Book 01: Chapter 09 — Who Leads the Transformation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html
-The Workbook Books: https://whalermike.github.io/modernization-workbook/docs/books/index.html
 Book 00 — Orientation & Program: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html
 Book 02 — Identity & Directory: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html
 Book 03 — HR-Driven Identity: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html

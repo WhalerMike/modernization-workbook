@@ -17,7 +17,7 @@ This repository extracts practical modernization concepts — single source of t
 | 3 | [Project Charter](PROJECT-CHARTER.md) | Purpose, scope, and success criteria. |
 | 4 | [Project Plan](PROJECT-PLAN.md) | Phased roadmap and domain workstreams. |
 | 5 | [Why Modernization Is Hard](docs/books/b01-transformation-arc/01-why-modernization-is-hard.md) | Leadership framing of the problem. |
-| 6 | [Client-Server to Hybrid-Cloud series](docs/books/b01-transformation-arc/index.md) | The eleven-chapter technical narrative. |
+| 6 | [Client-Server to Hybrid-Cloud series](docs/books/b01-transformation-arc/index.md) | The twelve-chapter technical narrative. |
 
 ## Contents
 
@@ -41,7 +41,7 @@ This repository extracts practical modernization concepts — single source of t
 
 ### Case Studies
 - [SQL Server Identity Transformation (overview)](docs/books/b06-data-platform/index.md)
-- [SQL Server Narrative Series (Books 01–10)](docs/books/b06-data-platform/index.md)
+- [Book 06: Data Platform, SQL Server Identity](docs/books/b06-data-platform/index.md)
 - [HR-Driven Identity: From the HR System of Record to Entra ID](docs/books/b03-hr-identity/index.md)
 
 ### Whitepapers

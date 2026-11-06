@@ -10,36 +10,36 @@ Workbook's developer workbook,
 Building Privileged Access.
 
 3
-00:00:05.688 --> 00:00:10.913
-This is Chapter 8, the last one:
-evidence and drift for the ISSO.
+00:00:05.688 --> 00:00:09.888
+This is Chapter 8: evidence
+and drift for the ISSO.
 
 4
-00:00:10.913 --> 00:00:14.662
+00:00:09.888 --> 00:00:13.637
 An inventory taken once only
 proves the day it was taken.
 
 5
-00:00:14.662 --> 00:00:19.051
+00:00:13.637 --> 00:00:18.026
 The ISSO needs every day of the
 period, every elevation in it,
 
 6
-00:00:19.051 --> 00:00:22.724
+00:00:18.026 --> 00:00:21.699
 and a record nobody could
 have edited afterwards.
 
 7
-00:00:22.724 --> 00:00:27.606
+00:00:21.699 --> 00:00:26.581
 We'll start from Learn's audit queries
 for PIM, see what they leave out, then
 
 8
-00:00:27.606 --> 00:00:32.650
+00:00:26.581 --> 00:00:31.625
 walk the run, the comparison, the package,
 the period, two labs and the dangers.
 
 9
-00:00:32.650 --> 00:00:37.850
+00:00:31.625 --> 00:00:36.840
 One note before we begin: the code is
 illustrative, tested against fixtures.

@@ -1,0 +1,340 @@
+[
+ {
+  "slide": 2,
+  "title": "What an app can reach, and which cloud reads it",
+  "links": [
+   {
+    "text": "oauth2PermissionGrants",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-oauth2permissiongrants-delegated"
+   },
+   {
+    "text": "national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The program's rules: review, justify, narrow, hand off",
+  "links": [
+   {
+    "text": "permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "RBAC for Applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#role-based-access-control-for-applications"
+   },
+   {
+    "text": "managed identity best practice",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-best-practice"
+   },
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Learn's review-and-revoke script, pinned and run",
+  "links": [
+   {
+    "text": "Review permissions granted to enterprise applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#review-permissions-granted-to-enterprise"
+   },
+   {
+    "text": "Grant or revoke API permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#grant-or-revoke-api-permissions"
+   },
+   {
+    "text": "entra-docs at 7f78b50",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-7f78b50"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the script gets wrong: removals and targets",
+  "links": [
+   {
+    "text": "Review permissions granted to enterprise applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#review-permissions-granted-to-enterprise"
+   },
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the script misses: reads, roles and hosts",
+  "links": [
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The code, its inputs and the sweep",
+  "links": [
+   {
+    "text": "oauth2PermissionGrants",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-oauth2permissiongrants-delegated"
+   },
+   {
+    "text": "Get servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-serviceprincipal"
+   },
+   {
+    "text": "unifiedRoleAssignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-unifiedroleassignments"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The check: nine rules, NPI-LP-01 to NPI-LP-09",
+  "links": [
+   {
+    "text": "permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "RBAC for Applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#role-based-access-control-for-applications"
+   },
+   {
+    "text": "Application Access Policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-access-policies-legacy"
+   },
+   {
+    "text": "managed identity best practice",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-best-practice"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The hand-off and the quarterly owner review",
+  "links": [
+   {
+    "text": "permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   },
+   {
+    "text": "Securing service principals",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#securing-service-principals-in-microsoft"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The plan: one action per broad grant or decision",
+  "links": [
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The separate write path, and why it's a person",
+  "links": [
+   {
+    "text": "permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Grant or revoke API permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#grant-or-revoke-api-permissions"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who answers the review, and what each task may hold",
+  "links": [
+   {
+    "text": "oauth2PermissionGrants",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-oauth2permissiongrants-delegated"
+   },
+   {
+    "text": "Get servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-serviceprincipal"
+   },
+   {
+    "text": "unifiedRoleAssignments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-unifiedroleassignments"
+   },
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: Learn's script, then the sweep",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the findings, the hand-off and the review",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the plan, a dry run and a refusal",
+  "links": [
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, one real removal",
+  "links": [
+   {
+    "text": "Grant or revoke API permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#grant-or-revoke-api-permissions"
+   },
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   },
+   {
+    "text": "Delete appRoleAssignedTo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delete-approleassignedto"
+   },
+   {
+    "text": "RBAC for Applications in Exchange Online",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#role-based-access-control-for-applications"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
+   }
+  ]
+ }
+]

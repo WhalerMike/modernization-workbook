@@ -1,0 +1,410 @@
+[
+ {
+  "slide": 2,
+  "title": "Distance sets a latency floor no product moves",
+  "links": [
+   {
+    "text": "ITU-T G.114",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#itu-t-g-114"
+   },
+   {
+    "text": "NIST CODATA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-codata-c"
+   },
+   {
+    "text": "speed of light",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-codata-c"
+   },
+   {
+    "text": "Bozkurt et al",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#why-is-the-internet-so-slow"
+   },
+   {
+    "text": "PAM 2017",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#why-is-the-internet-so-slow"
+   },
+   {
+    "text": "Book 09, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/01-why-physics-decides-the-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Transport is physics; control is compliance",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "RFC 4364",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-4364"
+   },
+   {
+    "text": "CISA BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
+   },
+   {
+    "text": "ED 26-03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ed-26-03"
+   },
+   {
+    "text": "BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "TIC 3.0 Branch Office Use Case v3.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-branch-office"
+   },
+   {
+    "text": "Book 09, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/02-transport-is-physics-control-is-compliance.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/03-what-tic-3-requires.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "TIC 3.0 sets goals, but it isn't requirement-free",
+  "links": [
+   {
+    "text": "CISA SASE guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-sase-tic"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "M-26-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-15"
+   },
+   {
+    "text": "M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "BOD 23-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-02"
+   },
+   {
+    "text": "BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
+   },
+   {
+    "text": "Book 09, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/03-what-tic-3-requires.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Centralize the truth; let tokens carry the trust",
+  "links": [
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Book 09, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/04-logical-centralization-and-token-security.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "SD-WAN reaches the floor; SASE makes it lawful",
+  "links": [
+   {
+    "text": "TCP/IP tuning",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tcp-ip-performance-tuning-for-azure-vms"
+   },
+   {
+    "text": "CISA SASE guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-sase-tic"
+   },
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 09, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "On re-routed paths, design around the real list",
+  "links": [
+   {
+    "text": "RFC 9293",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-9293"
+   },
+   {
+    "text": "RFC 4120",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-4120"
+   },
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
+    "text": "NTLM overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntlm-overview"
+   },
+   {
+    "text": "continuous access evaluation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
+    "text": "Book 09, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "802.1X proves the device; NPS is the last AD tie",
+  "links": [
+   {
+    "text": "IEEE 802.1X-2020",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ieee-802-1x-2020"
+   },
+   {
+    "text": "Entra join planning",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-join-deployment"
+   },
+   {
+    "text": "Intune NAC integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#network-access-control-nac-integration-with"
+   },
+   {
+    "text": "Book 09, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "One rule, four branch patterns, five decisions",
+  "links": [
+   {
+    "text": "CISA SASE guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-sase-tic"
+   },
+   {
+    "text": "TIC 3.0 Branch Office Use Case v3.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-branch-office"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 09, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/08-reference-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Who decides, who does the work for the network",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "FAR 1.602-1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#far-1-602-1"
+   },
+   {
+    "text": "GSA EIS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-eis"
+   },
+   {
+    "text": "CISA SASE guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-sase-tic"
+   },
+   {
+    "text": "Book 09, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The long interim: the refresh is the fork",
+  "links": [
+   {
+    "text": "GSA EIS transition report",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-eis-transition"
+   },
+   {
+    "text": "OMB M-19-26",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-26"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "M-26-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-15"
+   },
+   {
+    "text": "CISA TIC Program Guidebook",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-program-guidebook"
+   },
+   {
+    "text": "BOD 23-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-02"
+   },
+   {
+    "text": "BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
+   },
+   {
+    "text": "BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "ExpressRoute for Microsoft 365",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-expressroute-for-routing-microsoft-365"
+   },
+   {
+    "text": "Book 09, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/10-the-long-interim.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Field offices: fix the circuit, not the content",
+  "links": [
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
+   {
+    "text": "Book 09, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Microsoft 365 Optimize: a signed SC-7(4) exception",
+  "links": [
+   {
+    "text": "tenant restrictions v2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-tenant-restrictions-v2"
+   },
+   {
+    "text": "informed network routing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-informed-network-routing"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 09, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/12-microsoft-365-traffic.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/appendix-a-optimize-exemption-instruments.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Governor before traffic, boundary before cutover",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "GAO-19-58",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-19-58"
+   },
+   {
+    "text": "GAO-22-106195",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-22-106195"
+   },
+   {
+    "text": "GAO-26-107530",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-26-107530"
+   },
+   {
+    "text": "CISA TIC Program Guidebook",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-program-guidebook"
+   },
+   {
+    "text": "GSA EIS Public Pricer",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-eis-pricer"
+   },
+   {
+    "text": "Book 09, Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/13-sequencing-cost-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
+   },
+   {
+    "text": "tenant restrictions v2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-tenant-restrictions-v2"
+   },
+   {
+    "text": "FAR 1.602-1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#far-1-602-1"
+   },
+   {
+    "text": "Book 09, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/02-transport-is-physics-control-is-compliance.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/10-the-long-interim.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/12-microsoft-365-traffic.html"
+   },
+   {
+    "text": "13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/13-sequencing-cost-and-evidence.html"
+   }
+  ]
+ }
+]

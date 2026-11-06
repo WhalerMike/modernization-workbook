@@ -5,63 +5,63 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.723
+00:00:00.763 --> 00:00:03.707
 This briefing comes from
 AI Identity Governance,
 
 3
-00:00:03.723 --> 00:00:08.562
-one of the books of the Federal Modernization
-Workbook, and the last in the series.
+00:00:03.707 --> 00:00:07.012
+one of the books of the
+Federal Modernization Workbook.
 
 4
-00:00:08.562 --> 00:00:12.292
+00:00:07.012 --> 00:00:10.743
 It's written for Chief AI
 Officers, CIOs and CISOs,
 
 5
-00:00:12.292 --> 00:00:18.074
+00:00:10.743 --> 00:00:16.525
 identity and security operations teams,
 ISSOs, and authorizing officials.
 
 6
-00:00:18.074 --> 00:00:19.488
+00:00:16.525 --> 00:00:17.938
 I'll take four questions.
 
 7
-00:00:19.488 --> 00:00:22.350
+00:00:17.938 --> 00:00:20.800
 Why do AI agents need
 identities and owners?
 
 8
-00:00:22.350 --> 00:00:24.050
+00:00:20.800 --> 00:00:22.500
 What does governing them involve?
 
 9
-00:00:24.050 --> 00:00:25.637
+00:00:22.500 --> 00:00:24.087
 Who owns AI identity?
 
 10
-00:00:25.637 --> 00:00:30.037
+00:00:24.087 --> 00:00:28.487
 And how do you scan the inventory and
 evidence AI systems for authorization?
 
 11
-00:00:30.037 --> 00:00:34.650
+00:00:28.487 --> 00:00:33.100
 The short version: an AI system that
 can act is an account with permissions.
 
 12
-00:00:34.650 --> 00:00:37.648
+00:00:33.100 --> 00:00:36.098
 Most were deployed outside
 the identity program,
 
 13
-00:00:37.648 --> 00:00:41.012
+00:00:36.098 --> 00:00:39.462
 and there's no separate AI
 authorization to fall back on.
 
 14
-00:00:41.012 --> 00:00:43.440
+00:00:39.462 --> 00:00:41.880
 Let's start with what
 makes an agent an account.

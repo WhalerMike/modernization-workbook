@@ -147,7 +147,7 @@ const S_WHY = "Why AI needs identities", S_WHAT = "What the rules and the model 
     { text: "30 minutes for the CIO, CISO, Chief AI Officer, authorizing officials, privacy officer and sponsors", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.4, w: 9.0, h: 0.9, fontSize: 16 });
   narrate(s,
-`This is the executive briefing for Book 17 of the Federal Modernization Workbook, AI Identity Governance, the last book in the series. It runs about thirty minutes, for the people who make the calls: the CIO, the CISO, the Chief AI Officer, the authorizing officials, the privacy officer and the program's sponsors.
+`This is the executive briefing for Book 17 of the Federal Modernization Workbook, AI Identity Governance. It runs about thirty minutes, for the people who make the calls: the CIO, the CISO, the Chief AI Officer, the authorizing officials, the privacy officer and the program's sponsors.
 
 The argument fits in three sentences. An AI system that can act, not just answer, is an account: it signs in, holds permissions and touches agency records. Most AI arrived outside the identity program, with no owner of record, no credential lifecycle and no leaver process. And there is no AI-specific authorization to operate, so AI identities have to be inside the boundary the authorizing official already reviews.
 

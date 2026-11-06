@@ -1,0 +1,184 @@
+[
+ {
+  "slide": 2,
+  "title": "Book 05 is the Intune and Arc tracks: devices, servers",
+  "links": [
+   {
+    "text": "Book 05, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Intune and Arc cover, and the strategy for the rest",
+  "links": [
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "Which servers Arc reaches",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#which-servers-arc-reaches"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Group Policy governed by position. Intune has no position.",
+  "links": [
+   {
+    "text": "Group Policy processing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#group-policy-processing"
+   },
+   {
+    "text": "Intune policy conflicts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#common-questions-answers-and-scenarios-with"
+   },
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "Book 05, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Hybrid join is a waypoint, not a destination",
+  "links": [
+   {
+    "text": "hybrid join",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-your-microsoft-entra-hybrid-join"
+   },
+   {
+    "text": "Book 05, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Devices and servers take different roads",
+  "links": [
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
+    "text": "Book 05, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Intune-first: no ungoverned device, ever",
+  "links": [
+   {
+    "text": "Intune supported platforms",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#supported-operating-systems-and-browsers-in"
+   },
+   {
+    "text": "Book 05, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Three paths to the same governed state",
+  "links": [
+   {
+    "text": "Book 05, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Who decides, who does the work for the endpoint",
+  "links": [
+   {
+    "text": "Book 05, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/06-who-owns-the-endpoint.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Sunset Group Policy as a program, setting by setting",
+  "links": [
+   {
+    "text": "Group Policy analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
+   },
+   {
+    "text": "MDMWinsOverGP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#policy-csp-controlpolicyconflict"
+   },
+   {
+    "text": "Book 05, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Migrate the fleet in seven phases, about 34 weeks",
+  "links": [
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   },
+   {
+    "text": "Book 05, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Servers under Azure Arc, and the dates that matter",
+  "links": [
+   {
+    "text": "Book 05, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ }
+]

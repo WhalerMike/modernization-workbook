@@ -1,0 +1,260 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the SailPoint client reads and never writes",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What exists: base URL, token, search and lists",
+  "links": [
+   {
+    "text": "ISC v3 searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The ISC and Graph rows of the call list",
+  "links": [
+   {
+    "text": "ISC v3 searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "listAccounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-accounts"
+   },
+   {
+    "text": "getAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-account"
+   },
+   {
+    "text": "v2025 createWorkflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v2025-workflows"
+   },
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Read scopes, the workflow client, required-only",
+  "links": [
+   {
+    "text": "listAccounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-accounts"
+   },
+   {
+    "text": "getAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-account"
+   },
+   {
+    "text": "v2025 createWorkflow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v2025-workflows"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The tests: the same file, now for ISC and Graph",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The verified facts: ISC token, Search, Accounts",
+  "links": [
+   {
+    "text": "ISC v3 searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "listAccounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-accounts"
+   },
+   {
+    "text": "getAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-account"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts: Graph, GCC and FedRAMP",
+  "links": [
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List manager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-manager"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What couldn't be verified on SailPoint and Graph",
+  "links": [
+   {
+    "text": "List manager",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-manager"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the scopes prove, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who owns the SailPoint side",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: what the drift client needs from ISC",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: two jobs, two clients; the Graph app",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: two API clients in a sandbox tenant",
+  "links": [
+   {
+    "text": "ISC v3 getAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-account"
+   },
+   {
+    "text": "searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Done when: the SailPoint and Graph checklist",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,432 @@
+[
+ {
+  "slide": 1,
+  "title": "Book 13 — Ticket-to-Machine Reference",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "A ticket is evidence only when a re-read proves it",
+  "links": [
+   {
+    "text": "Book 13, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Ticket to machine",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#ticket-to-machine-not-ticket-to-human"
+   },
+   {
+    "text": "not ticket to human",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#ticket-to-machine-not-ticket-to-human"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "The coordination loop",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-coordination-loop"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The coordination loop: five steps, native surfaces",
+  "links": [
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "OMB M-24-15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-24-15"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "SCN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Native tools change state",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#native-tools-change-state-they-dont-close-findings"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The five-clause request chain",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "The five-clause request chain",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-five-clause-request-chain"
+   },
+   {
+    "text": "Book 00, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/04-the-principles.html"
+   },
+   {
+    "text": "Book 01, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Five lanes: who approves, what runs, what it proves",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Change classes and their lanes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#change-classes-and-their-lanes"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Approval gates keep humans on the decisions that matter",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#approval-gates-keep-humans-on-the-decisions-that-matter"
+   },
+   {
+    "text": "Book 01, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Change classes to lanes: drift, patching and access",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Change classes and their lanes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#change-classes-and-their-lanes"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Change classes to lanes: big changes, records, exceptions",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Change classes and their lanes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#change-classes-and-their-lanes"
+   },
+   {
+    "text": "FedRAMP 2026 rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "SCN",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-significant-change"
+   },
+   {
+    "text": "Book 00, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/07-who-runs-the-program.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Drift classes and their default lanes",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Drift classes and their default lanes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#drift-classes-and-their-default-lanes"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Honest limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#honest-limits"
+   },
+   {
+    "text": "Book 02, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/11-reference-deployment.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Severity and tempo: four windows",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Severity and tempo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#severity-and-tempo"
+   },
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "The program's tempo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#the-programs-tempo"
+   },
+   {
+    "text": "CISA Federal Incident Notification Guidelines",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-incident-notification"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the tempo shows leadership: five measures",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "What the tempo shows leadership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#what-the-tempo-shows-leadership"
+   },
+   {
+    "text": "What the tempo doesn't require",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#what-the-tempo-doesnt-require"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The evidence record: one shape for every lane",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "The evidence record",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-evidence-record"
+   },
+   {
+    "text": "NIST SP 800-137",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-137"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Worked examples: a drifted setting and an access request",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Book 04, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Worked examples: an unknown issuer and no actuator yet",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "When no machine can reach the surface",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#when-no-machine-can-reach-the-surface"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The certificate exception: volume rules out a ticket",
+  "links": [
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "CA/B Forum SC-081v3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cabf-sc-081v3"
+   },
+   {
+    "text": "RFC 8555",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-8555"
+   },
+   {
+    "text": "RFC 8659",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-8659"
+   },
+   {
+    "text": "Book 07, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "One front door for detection tools",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "One front door for detection tools",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#one-front-door-for-detection-tools"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "How the service desk fits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#how-the-service-desk-fits"
+   },
+   {
+    "text": "Book 10, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/07-the-front-door.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Failure modes from a reference implementation review",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Failure modes found in a reference implementation review",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#failure-modes-found-in-a-reference-implementation-review"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "What to decide, and where to read next",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Approval gates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#approval-gates-keep-humans-on-the-decisions-that-matter"
+   },
+   {
+    "text": "What the tempo shows leadership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#what-the-tempo-shows-leadership"
+   },
+   {
+    "text": "Honest limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html#honest-limits"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/09-who-governs.html"
+   },
+   {
+    "text": "who governs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/09-who-governs.html#who-governs-the-governors"
+   },
+   {
+    "text": "Book 13, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   },
+   {
+    "text": "Book 13, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   },
+   {
+    "text": "Book 13, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   },
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "Book 01, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/11-analysis-plan-delivery.html"
+   },
+   {
+    "text": "Book 07, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,434 @@
+[
+ {
+  "slide": 2,
+  "title": "Book 03 is the HR track: people, from their records",
+  "links": [
+   {
+    "text": "Book 03, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html"
+   },
+   {
+    "text": "11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   },
+   {
+    "text": "Book 05, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/03-where-device-and-server-data-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Access now runs on employee data",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "FICAM ILM Playbook",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ficam-ilm-playbook"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 03, Ch. 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Why orphans keep coming back: no channel from HR",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 03, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Federal HR 2.0: the window closes at interconnection",
+  "links": [
+   {
+    "text": "OPM Core HCM award",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-awards-contract-for-first-ever"
+   },
+   {
+    "text": "Book 03, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One owner per fact: the attribute authority map",
+  "links": [
+   {
+    "text": "Book 03, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "One person, one key, through every source change",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "Microsoft Graph user resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#user-resource-type"
+   },
+   {
+    "text": "Book 03, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Map to OPM's standards once, not to vendor fields",
+  "links": [
+   {
+    "text": "OPM Guide to Processing Personnel Actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-gppa"
+   },
+   {
+    "text": "dynamic membership rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-rules-for-dynamic-membership-groups"
+   },
+   {
+    "text": "Book 03, Ch. 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The provisioning pipeline, at decision level",
+  "links": [
+   {
+    "text": "Book 03, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Owners, users and guards of workforce identity",
+  "links": [
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 03, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who decides what for workforce identity",
+  "links": [
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST SP 800-79-2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-79-2"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "Book 03, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "responsibility matrix",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html#the-responsibility-matrix"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#roles"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Privacy and PIV: guards with clocks of their own",
+  "links": [
+   {
+    "text": "OMB A-108",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-108"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "NIST SP 800-79-2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-79-2"
+   },
+   {
+    "text": "Book 03, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-b-security-and-privacy.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Joiner, mover, leaver: by code, not by ticket",
+  "links": [
+   {
+    "text": "OPM Guide to Processing Personnel Actions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-gppa"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 03, Ch. 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Block first, then reconcile every credential",
+  "links": [
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "FICAM ILM Playbook",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ficam-ilm-playbook"
+   },
+   {
+    "text": "certificateUserIds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mapping-to-the-certificateuserids-attribute"
+   },
+   {
+    "text": "Lifecycle Workflows tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "Book 03, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Contractors: the source decision is still open",
+  "links": [
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "NIST SP 800-79-2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-79-2"
+   },
+   {
+    "text": "Book 03, Chapters 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/07-who-owns-workforce-identity.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Seven gated phases, and the feed Gate G1 needs",
+  "links": [
+   {
+    "text": "Book 03, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Book 00, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html"
+   },
+   {
+    "text": "Book 01, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "Phase 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Cut over one population at a time, then close tickets",
+  "links": [
+   {
+    "text": "Book 03, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "How you'll know it works: six numbers",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 03, Ch. 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Decisions to make, owners and timing",
+  "links": [
+   {
+    "text": "OMB/OPM Federal HR 2.0 memo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#creating-federal-hr-2-0-by-consolidating"
+   },
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 03, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/01-overview-and-applicability.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html"
+   },
+   {
+    "text": "Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html"
+   }
+  ]
+ }
+]

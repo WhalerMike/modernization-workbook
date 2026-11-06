@@ -1,0 +1,244 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a success response isn't closure",
+  "links": [
+   {
+    "text": "SDIM: Best Practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-best-practices"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The business rule: every close becomes a wait",
+  "links": [
+   {
+    "text": "SDIM: Best Practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-best-practices"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The re-read client: read, compare, close or reopen",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "ISC v3 getAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-account"
+   },
+   {
+    "text": "searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The guard: never verify against nothing",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The offline mode, and six waiting records",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The tests: six offline, nine re-read, six rule",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts behind every re-read",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "ISC v3 getAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-account"
+   },
+   {
+    "text": "searchPost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-isc-v3-search"
+   },
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "SDIM: Best Practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sailpoint-sdim-best-practices"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What couldn't be verified about the rule",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What the re-read proves, and for whom",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who owns the rule, the client and the evidence",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: six waiting findings at noon",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: a day later, and the rule's own tests",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 2: close one finding with evidence",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Attachment API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-attachment-api"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Done when: the re-read checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.html"
+   }
+  ]
+ }
+]

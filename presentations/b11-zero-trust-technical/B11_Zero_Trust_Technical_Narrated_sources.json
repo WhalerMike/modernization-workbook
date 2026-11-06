@@ -1,0 +1,628 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: the worst failures sat beneath any tool",
+  "links": [
+   {
+    "text": "CISA and FBI AA23-039A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-039a"
+   },
+   {
+    "text": "Microsoft Threat Intelligence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ms-threat-intel-esxi"
+   },
+   {
+    "text": "Book 11, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/01-a-whole-agency-property.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/06-beyond-microsoft-365.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The guidance describes the enterprise, not a tenant",
+  "links": [
+   {
+    "text": "CISA Zero Trust Maturity Model v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "Book 11, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/01-a-whole-agency-property.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Five pillars, three capabilities: why programs stall",
+  "links": [
+   {
+    "text": "CISA Zero Trust Maturity Model v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Book 11, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/02-governance-principles.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Principles one and two: defend identity and privilege",
+  "links": [
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "continuous access evaluation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#continuous-access-evaluation"
+   },
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "emergency access accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-emergency-access-accounts-in"
+   },
+   {
+    "text": "Book 11, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/02-governance-principles.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Principles three to five: evidence, enforcement, boundary",
+  "links": [
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "Intune for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 11, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/02-governance-principles.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Four documents, four kinds of authority, no score",
+  "links": [
+   {
+    "text": "EO 14028",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#eo-14028"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "FedRAMP Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 11, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/03-what-the-mandates-require.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What M-22-09 requires, pillar by pillar, in October 2026",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 11, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/03-what-the-mandates-require.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "BOD 25-01: six required actions and a tight scope",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "BOD 25-01 implementation guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-implementation-guidance"
+   },
+   {
+    "text": "Book 11, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The mandatory list is a subset of the baselines",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Required Configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "ScubaGoggles releases",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagoggles-releases"
+   },
+   {
+    "text": "Book 11, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Reporting to CISA, and what the directive doesn't cover",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "BOD 25-01 implementation guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-implementation-guidance"
+   },
+   {
+    "text": "Book 11, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/04-scuba-and-bod-25-01.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "ScubaGear and the Zero Trust Assessment at a glance",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "Book 11, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/05-two-assessment-tools.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Where the two tools overlap, and the inverse gap",
+  "links": [
+   {
+    "text": "Required Configurations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-required-configurations"
+   },
+   {
+    "text": "Book 11, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/05-two-assessment-tools.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Beyond Microsoft 365: each tool answers for its platform",
+  "links": [
+   {
+    "text": "AWS Security Hub CSPM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-security-hub"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   },
+   {
+    "text": "Book 11, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/06-beyond-microsoft-365.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Reconcile first: inventory, naming, no implicit trust",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-207",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-207"
+   },
+   {
+    "text": "Microsoft Threat Intelligence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ms-threat-intel-esxi"
+   },
+   {
+    "text": "Book 11, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/06-beyond-microsoft-365.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "The posture needs an owner no pillar or provider holds",
+  "links": [
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Book 11, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/07-who-owns-zero-trust.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "The responsibility matrix: one decider per row",
+  "links": [
+   {
+    "text": "Book 11, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/07-who-owns-zero-trust.html"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Least-privilege roles for running and reading the tools",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 11, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/07-who-owns-zero-trust.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Architecture first: the assessors run at step five",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "Book 11, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/08-close-before-you-assess.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Route every finding to one of three responses",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "implementation guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01-implementation-guidance"
+   },
+   {
+    "text": "Book 11, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/08-close-before-you-assess.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Before the first run: scope, host, accounts, output, logs",
+  "links": [
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA Logging Reference Architecture",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-logging"
+   },
+   {
+    "text": "Book 11, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/09-running-the-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "Running both tools: pin, record, never edit the output",
+  "links": [
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "Graph national clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Book 11, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/09-running-the-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "From result to claim: four stages and one worked trace",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "Book 11, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/09-running-the-assessment.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Findings, manual checks and absence of evidence",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Score, rank and reconcile at the control, not the tool",
+  "links": [
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "Book 11, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/09-running-the-assessment.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Exceptions, POA&Ms and re-assessment on a cadence",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST SP 800-37",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST OSCAL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#layers-and-models"
+   },
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 31,
+  "title": "Requirements mapping: the controls the evidence supports",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "Book 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/index.html"
+   },
+   {
+    "text": "Book 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   },
+   {
+    "text": "Book 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/index.html"
+   },
+   {
+    "text": "Book 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 32,
+  "title": "Decisions for this quarter, none of them a purchase",
+  "links": [
+   {
+    "text": "Book 11, Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/02-governance-principles.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/07-who-owns-zero-trust.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   }
+  ]
+ }
+]

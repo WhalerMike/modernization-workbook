@@ -1,0 +1,134 @@
+[
+ {
+  "slide": 4,
+  "title": "Gate 7: operating the tempo",
+  "links": [
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Five measures for the governance board",
+  "links": [
+   {
+    "text": "Book 13, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/10-ticket-to-machine.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The workbook's evidence record, field by field",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   },
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "One record per finding, and four checks on each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The package: three files, a chain, and a verifier",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Window adherence, and five fictional records",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Dangers to the evidence, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: export October and verify the package",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Try it: chain November, then remove a record",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: export live from your developer instance",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Check yourself: two questions on the evidence",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ }
+]

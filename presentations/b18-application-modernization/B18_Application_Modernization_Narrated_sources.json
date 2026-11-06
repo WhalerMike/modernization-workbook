@@ -1,0 +1,290 @@
+[
+ {
+  "slide": 2,
+  "title": "Most IT money keeps existing systems running",
+  "links": [
+   {
+    "text": "GAO-25-107795",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-25-107795"
+   },
+   {
+    "text": "GAO-19-471",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-19-471"
+   },
+   {
+    "text": "Book 18, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Big rewrites fail, and policy asks for segments",
+  "links": [
+   {
+    "text": "GAO-25-107795",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-25-107795"
+   },
+   {
+    "text": "Fowler",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fowler-strangler-fig"
+   },
+   {
+    "text": "Strangler Fig",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fowler-strangler-fig"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "Book 18, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Triage every application into one of six",
+  "links": [
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "FIPS 199",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-199"
+   },
+   {
+    "text": "GAO-25-107795",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-25-107795"
+   },
+   {
+    "text": "Book 18, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/02-triaging-the-portfolio.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "One target architecture, replaced piece by piece",
+  "links": [
+   {
+    "text": "OpenAPI 3.2.1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#openapi-3-2-1"
+   },
+   {
+    "text": "Book 18, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/03-the-target-reference-architecture.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/04-moving-the-data.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Move the data once, and prove nothing was lost",
+  "links": [
+   {
+    "text": "Book 18, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/04-moving-the-data.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "AI joins with an identity, an owner and no write power",
+  "links": [
+   {
+    "text": "OWASP Top 10 for LLM Applications 2025",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#owasp-llm-top-10"
+   },
+   {
+    "text": "LLM06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#owasp-llm06"
+   },
+   {
+    "text": "LLM10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#owasp-llm10"
+   },
+   {
+    "text": "OMB M-25-21",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-21"
+   },
+   {
+    "text": "M-25-22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-22"
+   },
+   {
+    "text": "Book 18, Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/05-generative-and-agentic-ai.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Compliance by design: the platform carries controls",
+  "links": [
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-26-05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-05"
+   },
+   {
+    "text": "NIST SP 800-218",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-218"
+   },
+   {
+    "text": "OMB M-25-05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-25-05"
+   },
+   {
+    "text": "Book 18, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/06-compliance-by-design.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "One owner per decision, four gates per change",
+  "links": [
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-26-10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-10"
+   },
+   {
+    "text": "NIST SP 800-218",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-218"
+   },
+   {
+    "text": "Nygard",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nygard-adr"
+   },
+   {
+    "text": "Book 18, Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/07-who-governs-the-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "A reference implementation you can run",
+  "links": [
+   {
+    "text": "PostgreSQL versioning",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#postgresql-versioning"
+   },
+   {
+    "text": "RFC 9457",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#rfc-9457"
+   },
+   {
+    "text": "Book 18, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/08-the-reference-implementation.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "TOGAF gives the order; Zachman, the checklist",
+  "links": [
+   {
+    "text": "OMB A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 18, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/09-togaf-and-zachman.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Run the portfolio in waves",
+  "links": [
+   {
+    "text": "AWS Prescriptive Guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-migration-strategies"
+   },
+   {
+    "text": "TMF fit",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tmf-fit"
+   },
+   {
+    "text": "MGT Act",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plaw-115-91"
+   },
+   {
+    "text": "OMB M-26-10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-10"
+   },
+   {
+    "text": "Book 18, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/10-running-the-portfolio-in-waves.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "GAO-25-107795",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gao-25-107795"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   },
+   {
+    "text": "LLM06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#owasp-llm06"
+   },
+   {
+    "text": "Book 18, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/02-triaging-the-portfolio.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/04-moving-the-data.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/05-generative-and-agentic-ai.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b18-application-modernization/10-running-the-portfolio-in-waves.html"
+   }
+  ]
+ }
+]

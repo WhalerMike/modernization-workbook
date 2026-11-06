@@ -1,0 +1,100 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the tenant enforces part, and code does the rest",
+  "links": [
+   {
+    "text": "Tutorial: Configure certificate autorotation in Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-configure-certificate-autorotation"
+   },
+   {
+    "text": "Configure restrictions on how applications can be configured",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The rules in the guide: Step 3's eight steps",
+  "links": [
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   },
+   {
+    "text": "Rotate certificates",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#arc-sql-rotate-certificates"
+   },
+   {
+    "text": "Secure gMSAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-group-managed-service-accounts"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Two kinds of policy, and how an exception overrides",
+  "links": [
+   {
+    "text": "Configure restrictions on how applications can be configured",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-restrictions-on-how-applications"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The policy: read, compare, plan; NPI-POL-01 to -06",
+  "links": [
+   {
+    "text": "Update tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-tenantappmanagementpolicy"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Rotation: from the owner's approval to removal",
+  "links": [
+   {
+    "text": "Tutorial: Configure certificate autorotation in Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-configure-certificate-autorotation"
+   },
+   {
+    "text": "Certificate creation methods",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#certificate-creation-methods"
+   },
+   {
+    "text": "keyCredential",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#keycredential-resource-type"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The separate write path: the bodies it allows",
+  "links": [
+   {
+    "text": "Update application",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-application"
+   },
+   {
+    "text": "Update tenantAppManagementPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-tenantappmanagementpolicy"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: dry-run, apply, and a hash nobody approved",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ }
+]

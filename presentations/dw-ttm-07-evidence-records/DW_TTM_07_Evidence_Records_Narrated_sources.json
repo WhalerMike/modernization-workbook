@@ -1,0 +1,202 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the ISSO needs records, not the tracker",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "One record per finding, in the workbook's shape",
+  "links": [
+   {
+    "text": "Book 13, Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "the evidence record",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-evidence-record"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/07-evidence-over-attestation.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Four checks per record, each reported by name",
+  "links": [
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "Book 12, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html"
+   },
+   {
+    "text": "the metric set",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html#the-metric-set"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The package: a hash per file and a chain",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The verifier, the live read, five records",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The tests: eight, from fields to chains",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The verified facts, and what isn't verified",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What the package proves, for the ISSO",
+  "links": [
+   {
+    "text": "NIST SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Who builds the pipeline and who reads it",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 1: exporting October's closed findings",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: verify, continue the chain, tamper",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: a live export from a developer instance",
+  "links": [
+   {
+    "text": "Table API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#servicenow-table-api"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Done when: the evidence checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.html"
+   }
+  ]
+ }
+]

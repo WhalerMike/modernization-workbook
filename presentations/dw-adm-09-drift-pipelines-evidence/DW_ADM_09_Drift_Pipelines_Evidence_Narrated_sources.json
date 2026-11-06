@@ -1,0 +1,204 @@
+[
+ {
+  "slide": 2,
+  "title": "From spot check to continuous monitoring",
+  "links": [
+   {
+    "text": "Book 13, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/06-the-drift-engine.html"
+   },
+   {
+    "text": "Book 13, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/04-change-control-and-provenance.html"
+   },
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/09-data-protection-and-classification.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Why GitHub Actions",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Which cloud: authority, Graph host, audience",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Learn's sample workflows, pinned and linted",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "What the samples leave to you: schedule and pins",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the samples leave to you: subject and scope",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The workflow: one job reads, one job writes",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Compare: refuse what can't be compared",
+  "links": [
+   {
+    "text": "Access token claims reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-token-claims-reference"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Five results, fingerprints, and no names",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   },
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The evidence package and its hash chain",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Where the sources differ, and release stage",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who owns the pipeline, who receives the evidence",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: lint the samples, record a baseline",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the next day, issues, chain, tamper",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant, a federated credential",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
+   }
+  ]
+ }
+]

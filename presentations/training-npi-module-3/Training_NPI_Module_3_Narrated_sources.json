@@ -1,0 +1,58 @@
+[
+ {
+  "slide": 4,
+  "title": "The decision in the guide: Step 2, condensed",
+  "links": [
+   {
+    "text": "Create a KDS root key",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-a-key-distribution-service-kds-root"
+   },
+   {
+    "text": "Secure group managed service accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-group-managed-service-accounts"
+   },
+   {
+    "text": "Delegated Managed Service Accounts overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The proposal: matrix rows M01 to M19",
+  "links": [
+   {
+    "text": "Delegated Managed Service Accounts overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The disposition and the waves: NPI-MAT-01 to -09",
+  "links": [
+   {
+    "text": "Delegated Managed Service Accounts overview and FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#delegated-managed-service-accounts-overview"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Waves and rollback, D-N4, and Gate 2",
+  "links": [
+   {
+    "text": "Setting up delegated Managed Service Accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#setting-up-delegated-managed-service"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Workload ID FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-id-faq"
+   }
+  ]
+ }
+]

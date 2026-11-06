@@ -1,0 +1,428 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a coverage gap looks like quiet",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 12, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The evidence contract: eight fields, every source",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The join key: naming-plane identity plus observed time",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "One queue for every finding, and what closes it",
+  "links": [
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Entra ID: categories, tables and the tiers to enable",
+  "links": [
+   {
+    "text": "Book 12, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Deploy from code; set retention in the workspace",
+  "links": [
+   {
+    "text": "Graph national clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 12, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Prove emission, and use Graph as a magnifying glass",
+  "links": [
+   {
+    "text": "List signIns",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "Book 12, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Azure: the activity log and resource logs",
+  "links": [
+   {
+    "text": "Book 12, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Azure Policy keeps new resources emitting, not old ones",
+  "links": [
+   {
+    "text": "Book 12, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The unified audit log: verify, collect, deduplicate",
+  "links": [
+   {
+    "text": "Book 12, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Unified audit retention follows the user's license",
+  "links": [
+   {
+    "text": "Book 12, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "From warehouse to detection: the MTTD floor",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 12, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Connector paths, and the table each one lands in",
+  "links": [
+   {
+    "text": "Sentinel in the Defender portal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-sentinel-in-the-microsoft-defender"
+   },
+   {
+    "text": "Book 12, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Prove connectors deliver; split the work with XDR",
+  "links": [
+   {
+    "text": "automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#automatic-attack-disruption-in-microsoft"
+   },
+   {
+    "text": "Book 12, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/05-from-log-warehouse-to-detection.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "BOD 26-04: four questions set the remediation clock",
+  "links": [
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/appendix-a-requirements-mapping.html"
+   },
+   {
+    "text": "FedRAMP NTC-0014",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntc-0014"
+   },
+   {
+    "text": "Book 12, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/06-vulnerability-management.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "The daily queue: inputs, defaults and the record",
+  "links": [
+   {
+    "text": "CISA KEV",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   },
+   {
+    "text": "Book 12, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/06-vulnerability-management.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Defender Vulnerability Management: prove the coverage",
+  "links": [
+   {
+    "text": "Book 12, Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/06-vulnerability-management.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Actuation is platform-native; governance is unified",
+  "links": [
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "Book 12, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   }
+  ]
+ },
+ {
+  "slide": 23,
+  "title": "Baselines that record their own drift",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST NCP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-ncp"
+   },
+   {
+    "text": "Book 12, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/07-patch-configuration-and-baselines.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Cloud posture: owned tool first, then one queue",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace data",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "Book 12, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/08-cloud-native-posture.html"
+   }
+  ]
+ },
+ {
+  "slide": 26,
+  "title": "CUI to sensitivity labels: the Registry decides",
+  "links": [
+   {
+    "text": "32 CFR Part 2002",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-32-2002"
+   },
+   {
+    "text": "Book 12, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/09-data-protection-and-classification.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "DLP on three surfaces, simulated before enforced",
+  "links": [
+   {
+    "text": "Book 12, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/09-data-protection-and-classification.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Three meanings of customer-managed key",
+  "links": [
+   {
+    "text": "Book 12, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/09-data-protection-and-classification.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Who runs security operations: decide, do, consult",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA Federal Incident Notification Guidelines",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-incident-notification"
+   },
+   {
+    "text": "BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "TIC 3.0 Program Guidebook",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-program-guidebook"
+   },
+   {
+    "text": "Book 12, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/10-who-runs-security-operations.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "The responsibility matrix: rows that narrow visibility",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "CISA notification guidelines",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-incident-notification"
+   },
+   {
+    "text": "BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "NARA GRS 3.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nara-grs-3-2"
+   },
+   {
+    "text": "Book 12, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/10-who-runs-security-operations.html"
+   }
+  ]
+ },
+ {
+  "slide": 31,
+  "title": "Owners, roles and separations that keep evidence honest",
+  "links": [
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 12, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/10-who-runs-security-operations.html"
+   }
+  ]
+ },
+ {
+  "slide": 32,
+  "title": "Decisions to make, and what to run on Monday",
+  "links": [
+   {
+    "text": "Book 12, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/10-who-runs-security-operations.html"
+   },
+   {
+    "text": "CISA BOD 26-04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-04"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   }
+  ]
+ }
+]

@@ -1,0 +1,288 @@
+[
+ {
+  "slide": 2,
+  "title": "Why one client pattern, and why it comes first",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud is which: four clouds, two sets of hosts",
+  "links": [
+   {
+    "text": "Graph national clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Compare Azure Gov",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "Get-MgEnvironment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgenvironment"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What GCC with commercial Azure means for the code",
+  "links": [
+   {
+    "text": "Compare Azure Gov",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "OAuth 2.0 client credentials flow",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-identity-platform-and-the-oauth-2"
+   },
+   {
+    "text": "Planning identity for Azure Gov",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The clients this chapter is the reference for",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   },
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html"
+   },
+   {
+    "text": "03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Microsoft's national cloud snippets, pinned",
+  "links": [
+   {
+    "text": "national clouds with the Graph SDKs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
+   },
+   {
+    "text": "Get-MgEnvironment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgenvironment"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the snippets leave to you: cloud and credentials",
+  "links": [
+   {
+    "text": "national clouds with the Graph SDKs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What they leave to you: permissions, paging, beta",
+  "links": [
+   {
+    "text": "Graph permissions overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-graph-permissions"
+   },
+   {
+    "text": "throttling guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-throttling-guidance"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "One table of endpoints, and every call declared",
+  "links": [
+   {
+    "text": "Graph permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The token check before a live run",
+  "links": [
+   {
+    "text": "Access token claims reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-token-claims-reference"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Paging and throttling the way Learn documents",
+  "links": [
+   {
+    "text": "throttling guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-throttling-guidance"
+   },
+   {
+    "text": "JSON batching",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#combine-multiple-http-requests-using-json"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Beta without depending on it",
+  "links": [
+   {
+    "text": "List windowsAutopilotDeviceIdentities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-windowsautopilotdeviceidentities"
+   },
+   {
+    "text": "Intune for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds it, who reviews it, and what it may hold",
+  "links": [
+   {
+    "text": "Graph permissions overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-graph-permissions"
+   },
+   {
+    "text": "List windowsAutopilotDeviceIdentities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-windowsautopilotdeviceidentities"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: Learn's snippets, the endpoints, the call list",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: beta, PowerShell, and the test suites",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test tenant and one permission",
+  "links": [
+   {
+    "text": "national clouds with the Graph SDKs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
+   },
+   {
+    "text": "Planning identity for Azure Gov",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "throttling guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-throttling-guidance"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html"
+   },
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ }
+]

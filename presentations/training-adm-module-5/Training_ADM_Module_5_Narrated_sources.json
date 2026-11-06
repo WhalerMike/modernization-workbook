@@ -1,0 +1,44 @@
+[
+ {
+  "slide": 8,
+  "title": "The provenance manifest: what was built and shipped",
+  "links": [
+   {
+    "text": "Book 19, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: follow Learn's steps by hand, then check them",
+  "links": [
+   {
+    "text": "Book 19, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/07-machine-configuration-packages.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for Module 5",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B Moderate baseline",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "FedRAMP Consolidated Rules for 2026",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-2026"
+   }
+  ]
+ }
+]

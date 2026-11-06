@@ -2,7 +2,7 @@
 
 ## Slide 1 — Every AI System Needs an Identity
 
-Welcome. This briefing comes from AI Identity Governance, one of the books of the Federal Modernization Workbook, and the last in the series. It's written for Chief AI Officers, CIOs and CISOs, identity and security operations teams, ISSOs, and authorizing officials. I'll take four questions. Why do AI agents need identities and owners? What does governing them involve? Who owns AI identity? And how do you scan the inventory and evidence AI systems for authorization? The short version: an AI system that can act is an account with permissions. Most were deployed outside the identity program, and there's no separate AI authorization to fall back on. Let's start with what makes an agent an account.
+Welcome. This briefing comes from AI Identity Governance, one of the books of the Federal Modernization Workbook. It's written for Chief AI Officers, CIOs and CISOs, identity and security operations teams, ISSOs, and authorizing officials. I'll take four questions. Why do AI agents need identities and owners? What does governing them involve? Who owns AI identity? And how do you scan the inventory and evidence AI systems for authorization? The short version: an AI system that can act is an account with permissions. Most were deployed outside the identity program, and there's no separate AI authorization to fall back on. Let's start with what makes an agent an account.
 
 ## Slide 2 — An agent that acts is an account
 

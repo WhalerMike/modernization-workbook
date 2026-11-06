@@ -1,0 +1,136 @@
+[
+ {
+  "slide": 4,
+  "title": "Clouds and endpoints: pick the cloud first",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Get-MgEnvironment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgenvironment"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What changes in a government cloud beyond hosts",
+  "links": [
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "national clouds with the Graph SDKs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
+   },
+   {
+    "text": "List methods",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-methods"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Sign in as a workload, without a secret",
+  "links": [
+   {
+    "text": "Arc managed identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
+   },
+   {
+    "text": "workload identity federation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#workload-identity-federation-concepts"
+   },
+   {
+    "text": "ScubaGear aad.md",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scuba-entra-baseline"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Least-privileged permissions, and what they hide",
+  "links": [
+   {
+    "text": "Graph permissions overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-graph-permissions"
+   },
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Four request patterns every Graph script needs",
+  "links": [
+   {
+    "text": "List users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-users"
+   },
+   {
+    "text": "throttling guidance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-throttling-guidance"
+   },
+   {
+    "text": "JSON batching",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#combine-multiple-http-requests-using-json"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: one permission, in your own test tenant",
+  "links": [
+   {
+    "text": "Book 19, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Where agencies are: GCC, GCC High and DoD",
+  "links": [
+   {
+    "text": "Graph deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Azure Government GA roadmap",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-azure-government-product-general"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement, and the evidence to keep",
+  "links": [
+   {
+    "text": "Book 02, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html"
+   },
+   {
+    "text": "BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html#cisa-bod-25-01-and-the-scuba-baselines"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary, and next: Module 2, Entra ID",
+  "links": [
+   {
+    "text": "Book 19, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
+   }
+  ]
+ }
+]

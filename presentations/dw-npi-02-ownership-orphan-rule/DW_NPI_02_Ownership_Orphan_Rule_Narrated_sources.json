@@ -1,0 +1,330 @@
+[
+ {
+  "slide": 2,
+  "title": "Why ownership is the gate",
+  "links": [
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   },
+   {
+    "text": "Book 04, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/02-why-standing-privilege-fails.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud, for this check and these writes",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Add owner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-owner"
+   },
+   {
+    "text": "Update servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-serviceprincipal"
+   },
+   {
+    "text": "Disable-ADAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-adaccount"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The rule the code holds: stricter than Learn's",
+  "links": [
+   {
+    "text": "Get-MgServicePrincipalOwner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgserviceprincipalowner"
+   },
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/02-the-structural-problem.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The orphan rule: disable first, never delete",
+  "links": [
+   {
+    "text": "Govern on-prem accounts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#govern-on-premises-service-accounts"
+   },
+   {
+    "text": "Deactivate an app registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deactivate-an-app-registration"
+   },
+   {
+    "text": "Disable user sign-in",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-user-sign-in-for-an-application"
+   },
+   {
+    "text": "Disable-ADAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-adaccount"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Learn's Graph samples, pinned and sent to a fake",
+  "links": [
+   {
+    "text": "List applications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-applications"
+   },
+   {
+    "text": "Add owner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-owner"
+   },
+   {
+    "text": "microsoft-graph-docs-contrib at a693031",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-docs-at-a693031"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "What the query counts wrong",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "What the samples leave out entirely, and the verdict",
+  "links": [
+   {
+    "text": "Add owner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-owner"
+   },
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The check: nine rules, NPI-OWN-01 to NPI-OWN-09",
+  "links": [
+   {
+    "text": "Get a user",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-a-user"
+   },
+   {
+    "text": "Overview of enterprise application ownership",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-enterprise-application-ownership"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/index.html"
+   },
+   {
+    "text": "Book 02, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The orphan rule as a plan nothing in it writes",
+  "links": [
+   {
+    "text": "Update servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-serviceprincipal"
+   },
+   {
+    "text": "Disable user sign-in",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-user-sign-in-for-an-application"
+   },
+   {
+    "text": "Add owner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-owner"
+   },
+   {
+    "text": "Disable-ADAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-adaccount"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The separate write path, and why it's a person",
+  "links": [
+   {
+    "text": "Update servicePrincipal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#update-serviceprincipal"
+   },
+   {
+    "text": "Add owner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#add-owner"
+   },
+   {
+    "text": "Disable user sign-in",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-user-sign-in-for-an-application"
+   },
+   {
+    "text": "Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who keeps each input, and who decides",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: samples, permissions, the check and the plan",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the findings, the plan, and a refused hash",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 2: two test orphans, confirmed and disabled",
+  "links": [
+   {
+    "text": "Disable user sign-in",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-user-sign-in-for-an-application"
+   },
+   {
+    "text": "Disable-ADAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#disable-adaccount"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Deactivate an app registration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#deactivate-an-app-registration"
+   },
+   {
+    "text": "Graph permissions reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-graph-permissions-reference"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.html"
+   }
+  ]
+ }
+]

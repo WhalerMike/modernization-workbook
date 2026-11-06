@@ -1,0 +1,282 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this gate needs code",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft gives you",
+  "links": [
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "execution conditions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-execution-conditions-and"
+   },
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The two intervals",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The rules: ST-01 to ST-05",
+  "links": [
+   {
+    "text": "execution conditions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-execution-conditions-and"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   },
+   {
+    "text": "Book 03, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "Book 03, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The rules: ST-06 to ST-09, and the thresholds",
+  "links": [
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   },
+   {
+    "text": "Book 03, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The read: two permissions, which cloud",
+  "links": [
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List userProcessingResults",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-userprocessingresults"
+   },
+   {
+    "text": "national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The tests: four for this chapter",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The verified facts",
+  "links": [
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List userProcessingResults",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-userprocessingresults"
+   },
+   {
+    "text": "execution conditions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-execution-conditions-and"
+   },
+   {
+    "text": "built-in tasks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflow-built-in-tasks"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Where Learn says nothing or differs",
+  "links": [
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "execution conditions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#lifecycle-workflows-execution-conditions-and"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "What the intervals prove, and for whom",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Who builds, who owns, who reports",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the read and the measurement",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: the findings and the intervals",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 1: the tests, then clean up",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Lab 2: measure a real test leaver",
+  "links": [
+   {
+    "text": "audit activities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-audit-log-categories-and"
+   },
+   {
+    "text": "List directoryAudits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-directoryaudits"
+   },
+   {
+    "text": "List userProcessingResults",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-userprocessingresults"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Done when: the separation checklist",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.html"
+   }
+  ]
+ }
+]

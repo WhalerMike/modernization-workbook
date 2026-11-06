@@ -1,0 +1,272 @@
+[
+ {
+  "slide": 1,
+  "title": "Infoblox DDI for Federal Agencies",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "DNS, DHCP and IPAM are one control plane",
+  "links": [
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   },
+   {
+    "text": "Book 08, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/01-dns-is-the-control-plane.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What federal rules require, and what none of them say",
+  "links": [
+   {
+    "text": "OMB M-08-23",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-08-23"
+   },
+   {
+    "text": "M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "M-21-07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-21-07"
+   },
+   {
+    "text": "TIC 3.0 v3.3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-security-capabilities"
+   },
+   {
+    "text": "BOD 23-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-23-01"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "DHCP and IPAM: failover, network views, discovery",
+  "links": [
+   {
+    "text": "AWS VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Module 2: Why Infoblox, and why federal needs it",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "CIS Benchmarks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cis-benchmarks"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "NIAP PCL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#niap-pcl"
+   },
+   {
+    "text": "CISA KEV",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "From requirement to capability to Infoblox feature",
+  "links": [
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "FedRAMP scope: what the Moderate listing covers",
+  "links": [
+   {
+    "text": "FedRAMP Marketplace products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Trinzic hardware against the workbook's design",
+  "links": [
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "NIAP PCL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#niap-pcl"
+   },
+   {
+    "text": "CISA BOD 26-02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02"
+   },
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Trinzic alone, or with cloud DDI?",
+  "links": [
+   {
+    "text": "VPC IPAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3",
+  "links": [
+   {
+    "text": "CIS Benchmarks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cis-benchmarks"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "NIAP PCL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#niap-pcl"
+   },
+   {
+    "text": "NIST SP 800-81r3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-81"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "A fair comparison: dedicated DDI and native clouds",
+  "links": [
+   {
+    "text": "FedRAMP products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   },
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Risks: certifications, vulnerabilities, authorization",
+  "links": [
+   {
+    "text": "NIST CMVP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-cmvp"
+   },
+   {
+    "text": "NIAP PCL",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#niap-pcl"
+   },
+   {
+    "text": "CISA KEV catalog",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-kev"
+   },
+   {
+    "text": "FedRAMP products.json",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Module 4: Universal DDI divisions and operating model",
+  "links": [
+   {
+    "text": "Book 08, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ },
+ {
+  "slide": 33,
+  "title": "Who does what: the DDI responsibility matrix",
+  "links": [
+   {
+    "text": "Book 08, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
+   },
+   {
+    "text": "NIST SP 800-37",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   }
+  ]
+ },
+ {
+  "slide": 34,
+  "title": "Rollout sequence, decisions and next steps",
+  "links": [
+   {
+    "text": "Book 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/index.html"
+   },
+   {
+    "text": "Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html"
+   }
+  ]
+ }
+]
