@@ -80,7 +80,7 @@ Four independent read-throughs produced the findings. I re-checked the headline 
 
 ## Correctly dropped (keep out of the public workbook)
 
-UIAO, OrgPath, ADR numbers, Spec numbers, "substrate", `DRIFT-*` labels, productization and bid-window posture, named shared-service providers as targets, and OPM Entra and OPM APIM stated as facts (pre-award). The bundle also rightly softened four overclaims:
+The program's internal name, OrgPath, ADR numbers, Spec numbers, "substrate", `DRIFT-*` labels, productization and bid-window posture, named shared-service providers as targets, and OPM Entra and OPM APIM stated as facts (pre-award). The bundle also rightly softened four overclaims:
 - "the Evidence Act requires one system of record";
 - "M-19-17 makes HR authoritative";
 - "no alternate closure path";

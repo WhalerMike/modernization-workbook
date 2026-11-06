@@ -9,7 +9,7 @@ specifics with this book's: front matter `family: b17-ai-identity`, `book: B17`;
 (`[^aX-key]` in appendices), rendered as chapter endnotes. The site is the **Federal Modernization Workbook**; the program
 is "the Federal Modernization Program". Today is 2026-10-22. This is the last book in the series.
 
-**Hard rules:** never write "UIAO", "FMP" or any other engine/product name for the program; never name a specific agency
+**Hard rules:** never write "FMP" or any engine/product name for the program; never name a specific agency
 (never carry Quarto shortcodes like `{{< meta agency.short >}}`); every external claim independently researched against a
 primary source you actually opened and endnoted; never send personal data (email addresses, names) to any website,
 including in HTTP headers — use a generic User-Agent; don't circumvent bot protection (if a site blocks you, record it in

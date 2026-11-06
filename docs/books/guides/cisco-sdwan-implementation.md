@@ -10,8 +10,8 @@ date-modified: 2026-10-29
 aliases:
   - /docs/research/cisco-sdwan-implementation.html
 review-status: approved
-reviewed-sha256: 6ab90478f2dd5ece700ec745da39bd0dc3dd5f785367ae30491655f3aad94610
-last-reviewed: 2026-11-03
+reviewed-sha256: ad6593d861d227b3cab5cdfa53501704535cf9405f0d193aad69fadaeb013f31
+last-reviewed: 2026-11-05
 ---
 # Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN {.unnumbered}
 

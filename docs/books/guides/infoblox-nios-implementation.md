@@ -9,8 +9,8 @@ date-modified: 2026-10-29
 aliases:
   - /docs/research/infoblox-nios-implementation.html
 review-status: approved
-reviewed-sha256: d6021c9d85f879811a26229b3d4945359e768ffc50b20fcd49096741c6a47054
-last-reviewed: 2026-11-03
+reviewed-sha256: 8e36457bbbfa582bb1ec87d3bb422f89112e47a337c5a111833b3e91fb346ee7
+last-reviewed: 2026-11-05
 ---
 # Implementing Book 08 on Infoblox NIOS {.unnumbered}
 
