@@ -128,7 +128,7 @@ The cut is the program's design, and it isn't arbitrary. Each plane corresponds 
 
 ### How the planes interact
 
-At the authoritative level, interaction runs one way: identity feeds addressing, addressing feeds network, network feeds telemetry, telemetry feeds security and compliance, and security and compliance feeds management. Every plane therefore has exactly one authoritative input, and any deviation surfaces as a drift finding rather than as a silent inconsistency.
+At the authoritative level, interaction runs one way: identity feeds addressing, addressing feeds network, network feeds telemetry, telemetry feeds security and compliance, and security and compliance feeds management. Each plane consumes only from the planes upstream of it, as the Consumes column above lists, and any deviation surfaces as a drift finding rather than as a silent inconsistency.
 
 Cycles exist only at runtime. A management-plane drift finding can trigger an identity re-evaluation, for example, when a device falls out of compliance and access has to be reassessed. Every such cycle passes through an explicit artifact (a finding, a plan, a closure record), never through ad hoc coupling between systems. That is what keeps the loop auditable: the runtime cycle leaves the same kind of record as everything else.
 
