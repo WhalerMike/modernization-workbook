@@ -7,7 +7,9 @@ release (too large for the repository or GitHub Pages). This script pairs
 them and writes:
 
   docs/presentations/videos.json          read by the Watch page's player and
-                                          by the fmw-video shortcode
+                                          by the fmw-video shortcode (a video's slide
+                                          sources are a path to its _sources.json, which
+                                          the player fetches on demand)
   docs/presentations/_video-library.md    the library table on the Watch page
 
 Each video also names the page it is built from (the first docs/ page its
@@ -216,10 +218,13 @@ def chapters_of(deck: Path, script: Path) -> list[list] | None:
     return chapters
 
 
-def sources_of(folder: Path, vid: str) -> list[dict] | None:
-    """Each slide's linked sources, from presentations/_build/link_sources.py, for the Watch page."""
+def sources_of(folder: Path, vid: str) -> str | None:
+    """The path of a video's per-slide linked sources (written by presentations/_build/link_sources.py).
+
+    Only the path goes in videos.json: the Watch page fetches that one file for the video it plays,
+    so the manifest stays small. The site publishes the files (_quarto.yml resources)."""
     side = folder / f"{vid}_sources.json"
-    return json.loads(side.read_text(encoding="utf-8")) if side.exists() else None
+    return side.relative_to(ROOT).as_posix() if side.exists() else None
 
 
 def collect() -> list[dict]:
