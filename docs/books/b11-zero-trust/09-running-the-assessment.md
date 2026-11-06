@@ -168,7 +168,7 @@ ScubaGear is one of the inputs at stage 1 for a Microsoft 365 deployment. Its cl
 
 The bundle is deterministic. The same tenant state, the same SCuBA policy version and the same canon version produce a byte-identical bundle, so an assessor can re-run the assembly months after the original audit and check the bundle hash. That property is the difference between evidence and an assertion: per-tool evidence that can't be re-executed is a claim someone made once.
 
-**What ScubaGear sees, and what it doesn't.** ScubaGear evaluates configuration in the Microsoft 365 tenant, the cloud half of the identity picture. The on-premises half comes from the program's Active Directory survey adapter, which produces the readiness bundle and its phase-tagged service principal name inventory ([Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md)). Both emit into the same evidence bundle, so together they describe the identity posture the agency carries through the move from Active Directory to Microsoft Entra ID, not just the cloud baseline on one day. The bounded claim is the honest one: ScubaGear is the configuration-conformance evidence source for the Microsoft 365 components in the boundary. Detecting and investigating intrusions needs more than configuration evidence, which is why its claims meet the drift engine and the logs security operations holds.
+**What ScubaGear sees, and what it doesn't.** ScubaGear evaluates configuration in the Microsoft 365 tenant, the cloud half of the identity picture. The on-premises half comes from the program's Active Directory survey adapter, which produces the readiness bundle and its phase-tagged service principal name inventory ([Book 02, Chapter 11](../b02-identity/11-reference-deployment.md)). Both emit into the same evidence bundle, so together they describe the identity posture the agency carries through the move from Active Directory to Microsoft Entra ID, not just the cloud baseline on one day. The bounded claim is the honest one: ScubaGear is the configuration-conformance evidence source for the Microsoft 365 components in the boundary. Detecting and investigating intrusions needs more than configuration evidence, which is why its claims meet the drift engine and the logs security operations holds.
 
 ## Interval evidence
 
@@ -202,7 +202,7 @@ ScubaGear claims map onto the substrate's drift classes as follows. The classes 
 | Conditional Access state contradicts the authentication assurance recorded for the user population | `DRIFT-AUTHZ` | P1: authorization integrity is load-bearing |
 | A principal named in a SCuBA finding can't be resolved in the identity plane | `DRIFT-IDENTITY` | P1: identity attribution is load-bearing |
 
-The same standard catalogs four drift conditions specific to service principal names that surface when the Active Directory inventory is compared across migration phases. ScubaGear evidence and that inventory join in the same bundle the assessor reads. Neither alone describes the identity posture; together they can be compared interval by interval.
+[Book 02, Chapter 11](../b02-identity/11-reference-deployment.md) catalogs four drift conditions specific to service principal names that surface when the Active Directory inventory is compared across migration phases. ScubaGear evidence and that inventory join in the same bundle the assessor reads. Neither alone describes the identity posture; together they can be compared interval by interval.
 
 ## A worked trace: one finding, four hops
 

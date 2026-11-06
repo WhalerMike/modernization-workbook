@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The question this book answers and the case in one paragraph. What CISA's Zero Trust Maturity Model, OMB M-22-09 and NIST SP 800-207 actually say about scope. Why three separately run assessments of the network, the clouds and the virtualization estate are three partial results rather than one score, and why a shared naming and identity plane has to come first. Two incidents that sat beneath what any single tool could observe, a worked example showing that even one vendor's two assessment tools don't add up to a whole-agency answer, and what the Federal Modernization Program adds to the stack an agency already runs.
+The question this book answers and the case in one paragraph. What CISA's Zero Trust Maturity Model, OMB M-22-09 and NIST SP 800-207 actually say about scope. Why three separately run assessments of the network, the clouds and the virtualization estate are three partial results rather than one score, and why a shared naming and identity plane has to come first. Two incidents that sat beneath what any single tool could observe, a worked example showing that even two assessment tools for one vendor's platform don't add up to a whole-agency answer, and what the Federal Modernization Program adds to the stack an agency already runs.
 :::
 
 ## The question this book answers
@@ -32,7 +32,7 @@ The reason this fails is architectural, not organizational. Zero Trust policy de
 
 ::: {.callout-important}
 ## The case in one paragraph
-**Problem.** Agencies assess the network, their cloud service providers and their on-premises virtualization as three separate exercises, staple the reports together and call the result a whole-agency Zero Trust score. Federal guidance describes Zero Trust as enterprise-wide and independent of network location, which only holds if all three domains resolve to the same asset, naming and identity records. When they don't, one workload is three objects to three assessors, and even Microsoft's own two assessment tools, run together, can't see past Microsoft's platform.
+**Problem.** Agencies assess the network, their cloud service providers and their on-premises virtualization as three separate exercises, staple the reports together and call the result a whole-agency Zero Trust score. Federal guidance describes Zero Trust as enterprise-wide and independent of network location, which only holds if all three domains resolve to the same asset, naming and identity records. When they don't, one workload is three objects to three assessors, and even the two assessment tools for Microsoft's platform, run together, can't see past that platform.
 
 **Solution.** Unify first, assess second. Build one authoritative naming and identity plane across the network, every cloud and the virtualization estate, govern that plane as a high-value target once it exists, close the known Microsoft 365 baseline findings before measuring maturity, and treat every vendor's assessment tool as an evidence input reconciled at the control level, not as the score.
 
@@ -87,7 +87,7 @@ The hypervisor case is a distinct threat class, not a naming inconvenience. Endp
 
 Both incidents make the same point from opposite ends. A provider's tool sees the provider's platform, and the most consequential failures happened where no single platform's tool was looking: in a provider's signing infrastructure, and beneath every guest operating system.
 
-## Even one vendor's two tools don't add up
+## Even two tools for one vendor's platform don't add up
 
 The sharpest illustration of the whole-agency problem sits inside a single vendor's ecosystem. Federal agencies running Microsoft 365 have two free, read-only assessment tools available, and they are often treated either as interchangeable or as together amounting to full Zero Trust coverage. Both readings are wrong, in opposite directions.
 
@@ -131,7 +131,7 @@ One figure in the program's design is a target, not a measurement. The program s
 ## How the rest of the book is organized
 
 - **Why** (this chapter and [Chapter 02](02-governance-principles.md)): the whole-agency argument, and the five governance principles that move a program past the Initial stage.
-- **What** (Chapters 03 to 06): what the maturity model and M-22-09 actually require, what SCuBA and BOD 25-01 cover, how the two Microsoft assessment tools differ, and the estate beyond Microsoft 365.
+- **What** (Chapters 03 to 06): what the maturity model and M-22-09 actually require, what SCuBA and BOD 25-01 cover, how the two assessment tools for Microsoft's platform differ, and the estate beyond Microsoft 365.
 - **Who** ([Chapter 07](07-who-owns-zero-trust.md)): who owns the agency's Zero Trust posture.
 - **How** (Chapters 08 to 10): closing BOD 25-01 findings before assessing, running the assessment and ingesting the evidence, and turning findings into a program.
 - **[Appendix A](appendix-a-requirements-mapping.md)**: requirements mapped to pillars, controls and books.
@@ -141,7 +141,7 @@ One figure in the program's design is a target, not a measurement. The program s
 1. Federal Zero Trust guidance is written for the enterprise: CISA's model, M-22-09 and SP 800-207 all describe agency-wide identity, inventory and policy, and none is scoped to a product or tenant.
 2. Separately run network, cloud and virtualization assessments are three partial results. They become one score only when all three resolve to one naming and identity plane, and that plane then has to be defended as a high-value target.
 3. The most consequential incidents sat where no single platform's tool was looking; in the 2023 email intrusion, the agency's own evidence caught what the provider didn't.
-4. Even one vendor's two assessment tools, run together, are a vendor-scoped answer. Every tool is an evidence input; the agency owns the verdict.
+4. Even two assessment tools for one vendor's platform, run together, are a vendor-scoped answer. Every tool is an evidence input; the agency owns the verdict.
 :::
 
 ::: {.callout-tip}
