@@ -58,13 +58,13 @@ Appendices: [A — Cloud PKI and CBA deployment checklists](appendix-a-deploymen
 
 - **Executives (20 minutes):** Chapters 01, 04 and 05, or the 15-minute presentation.
 - **Architects:** Chapters 01–05, then 07.
-- **PKI, identity and endpoint engineers:** Chapters 02–03 and 06–08, with both appendices at hand.
+- **PKI, identity and endpoint engineers:** Chapters 02–03 and 06–08, with Appendices A and B at hand.
 - **Security operations and assessors:** Chapters 03, 05, 08 and 09.
 - **Identity and credentialing teams:** Chapters 04, 06 and 09.
 
 ## Where this book sits in the workbook
 
-This is Book 07 of the [Federal Modernization Workbook](../index.md). [Book 02 — Identity & Directory](../b02-identity/04-the-hidden-migration-surface.md) finds the PKI as one of the hidden dependencies on Active Directory. [Book 03 — HR-Driven Identity](../b03-hr-identity/09-credentials-and-certificates.md) covers PIV issuance and termination. [Book 05 — Devices & Endpoints](../b05-devices/index.md) covers the Intune certificate profiles, and [Book 06 — Data Platform](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers where SQL Server depends on AD CS. For control-level depth on certificates, tokens and cryptographic identity, see the Federal Compliance book [Certificates, Tokens and Cryptographic Identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
+This is Book 07 of the [Federal Modernization Workbook](../index.md). [Book 02 — Identity & Directory](../b02-identity/04-the-hidden-migration-surface.md) finds the PKI as one of the hidden dependencies on Active Directory. [Book 03 — HR-Driven Identity](../b03-hr-identity/09-credentials-and-certificates.md) covers PIV issuance and termination. [Book 05 — Devices & Endpoints](../b05-devices/index.md) covers targeting and the crosswalk row for certificate profiles (Chapter 06 of this book covers the profiles), and [Book 06 — Data Platform](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers where SQL Server depends on AD CS. For control-level depth on certificates, tokens and cryptographic identity, see the Federal Compliance book [Certificates, Tokens and Cryptographic Identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
 
 ## Chapters
 
