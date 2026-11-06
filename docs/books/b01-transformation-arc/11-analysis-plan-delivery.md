@@ -171,7 +171,7 @@ On any non-transient failure the plan either:
 - **Halts:** stops at the failure, leaves completed actions in place and returns for remediation; or
 - **Rolls back:** invokes the inverse of every completed action in reverse order, each as a verified operation with its own result.
 
-The choice is set per action type, and the default is halt; rollback is explicit. Some action types are rollback-never by design. A leaver's deprovisioning is the clearest case: Microsoft Entra ID can restore some deleted objects, including users and groups, within 30 days,[^c11-graphbp] but the program doesn't treat that window as an undo. A wrongly deprovisioned person is restored through the joiner process with a recorded exception, so the lifecycle record stays true ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md)).
+The choice is set per action type, and the default is halt; rollback is explicit. Some action types are rollback-never by design. A leaver's deprovisioning is the clearest case: Microsoft Entra ID can restore some deleted objects, including users and groups, within 30 days,[^c11-graphbp] but the program doesn't treat that window as an undo. A wrongly deprovisioned person is restored through the cancellation path: a cancelled separation is a first-class event that re-enables what the separation disabled, from the corrected record and with evidence, so the lifecycle record stays true ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md)).
 
 ## How far automation may go
 

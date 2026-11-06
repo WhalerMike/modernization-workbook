@@ -120,7 +120,7 @@ Issuance is a separate decision. An AD CS *enterprise* CA is integrated with AD 
 
 ## Privileged access management
 
-Privileged access in the target has two mechanisms, and the program uses each where it fits:
+Privileged access in the target has two mechanisms and two special populations, and the program uses each where it fits:
 
 - **No standing privilege in Entra ID and Azure.** Every human administrative assignment is held as *eligible* in Privileged Identity Management, which provides just-in-time, time-bound, approval-based activation with MFA and a recorded justification.[^c08-pim] The only standing active assignments are the emergency access accounts and service principals that can't perform an activation. [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md) is the build, including the step that has to come first so approval settings can't lock the agency out of its own tenant.
 - **A vault for what can't be made just-in-time.** Standing credentials that PIM can't govern, such as on-premises Tier-0 accounts during coexistence, appliance and hypervisor administrators and non-federated systems, go through a PAM vault, whichever vendor supplies it, with check-out, session recording and rotation on release. Session recording (video, keystrokes, command lines) is a third-party PAM capability, not part of Entra PIM, and goes to the SIEM.
@@ -180,7 +180,7 @@ Each step is attribute-scoped and logged. Any failure becomes a tracked item.
 
 Access-plane migration passes when:
 
-- every user's primary method is FIDO2, a passkey, Windows Hello for Business or CBA configured as multifactor, with no SMS or voice as primary;
+- every user's primary method is FIDO2, a passkey, Windows Hello for Business or CBA configured as multifactor, with no SMS or voice in any role;
 - every smart-card user signs in through Entra CBA, not AD-anchored smart-card logon, and every CA in the trust store has a reachable CRL;
 - user-facing policies target attribute-scoped dynamic groups;
 - at least ZTNA, a secure web gateway and a CASB are in place and federated with Entra ID;
