@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The working detail of the GPO sunset that [Chapter 07](07-the-gpo-sunset-program.md) runs as a program: the seven phases broken into tasks, durations, exit gates, rings, tests and rollback steps. Then the program's policy library for the existing Windows fleet: how policies are typed, targeted and tagged, the five compliance policies, six configuration profiles, six endpoint security policies and two app protection policies, with the GPO paths they replace. The chapter closes with dynamic group and filter templates and Microsoft Graph templates for creating the policies as code; the setting-level crosswalk and CSP paths are in [Appendix A](appendix-a-gpo-to-intune-crosswalk.md).
+The working detail of the GPO sunset that [Chapter 07](07-the-gpo-sunset-program.md) runs as a program: the seven phases broken into tasks, durations, exit gates, rings, tests and rollback steps. Then the program's policy library for the existing Windows fleet: how policies are typed, targeted and tagged, the four compliance policies plus a server baseline, six configuration profiles, six endpoint security policies and two app protection policies, with the GPO paths they replace. The chapter closes with dynamic group and filter templates and Microsoft Graph templates for creating the policies as code; the setting-level crosswalk and CSP paths are in [Appendix A](appendix-a-gpo-to-intune-crosswalk.md).
 :::
 
 [Chapter 07](07-the-gpo-sunset-program.md) sets the rules: inventory before anything moves, one authority per setting, evidence before a GPO link is disabled, and disable before delete. This chapter is what an endpoint engineer works from inside those rules. It assumes the decision records from Chapter 07 exist, because a template is only applied to a setting that has been classified as required.
@@ -93,9 +93,9 @@ Each wave moves one workload for the whole population, in rings: the pilot cohor
 
 | Wave | Weeks | Workload | Work |
 |---|---|---|---|
-| 1 | 1–3 | Compliance policies | Move the compliance slider to Intune; assign CP-001 to CP-005 to production groups |
+| 1 | 1–3 | Compliance policies | Move the compliance slider to Intune; assign CP-001 to CP-003 and CP-005 to production groups (CP-004 is a server baseline, not an Intune policy) |
 | 2 | 4–6 | Endpoint Protection | Move the Endpoint Protection slider; assign ES-001 to ES-006; disable the matching GPO links per population |
-| 3 | 7–9 | Device configuration | Move the device configuration slider; assign SC-001, SC-003 to SC-005, SC-009 and SC-010; disable the matching GPO links per population |
+| 3 | 7–9 | Device configuration | Move the device configuration slider; assign SC-001, SC-003, SC-004, SC-009 and SC-010; disable the matching GPO links per population |
 | 4 | 10–12 | Windows Update policies | Move the Windows Update slider; assign the update rings ([Chapter 10](10-operating-and-evidencing-the-fleet.md#windows-updates)); stop WSUS for migrated devices |
 
 Don't move device configuration before Endpoint Protection on co-managed devices: switching the device configuration workload also moves Endpoint Protection and resource access, so the two can't be separated once device configuration moves.[^c08-comanage] Endpoint Protection goes first, on its own slider, and device configuration follows. After each wave, validate, watch for 72 hours, and only then start the next.
@@ -217,7 +217,7 @@ The program's recommended end state per workload, and the reference timing over 
 | Endpoint Protection | Intune; one security surface | Build | Pilot | Move | Complete |
 | Device configuration | Intune; settings catalog and OMA-URI | Build | Pilot | Move | Complete |
 | Windows Update policies | Intune; no WSUS infrastructure | — | Build and pilot | Move | Retire WSUS |
-| Resource access (Wi-Fi, VPN, certificates) | Intune; needs the certificate connector | — | Build | Pilot | Move |
+| Resource access (Wi-Fi, VPN, certificates) | Intune; needs the certificate connector; moves with device configuration | — | — | Move | Complete |
 | Client apps | Phased; complex apps may stay in Configuration Manager at first | — | — | Pilot | Phased move |
 
 Resource access is no longer a separate decision on current Configuration Manager versions, where its slider is fixed to Intune; Chapter 07 has the detail.
@@ -232,7 +232,7 @@ Compliance policies define the minimum posture a device must meet before Conditi
 
 ### CP-001: Windows workstation baseline
 
-**Platform:** Windows 11 · **Target:** all corporate workstations · **Group:** devices where `extensionAttribute11` is `Tier0`, `Tier1` or `Tier2`.
+**Platform:** Windows 11 · **Target:** corporate workstations in Tier 0 and Tier 1 · **Group:** devices where `extensionAttribute11` is `Tier0` or `Tier1`. Tier 2 devices get CP-003, which relaxes the password length to 12; because the most restrictive compliance setting applies, CP-001 can't also target them.
 **GPO equivalent:** an aggregate of Security Settings, BitLocker, Defender and system health GPOs.
 
 | Category | Setting | Value | GPO equivalent |
@@ -284,7 +284,7 @@ Credential Guard, network inspection and cloud-delivered protection aren't compl
 
 | Category | Setting | Value | Notes |
 |---|---|---|---|
-| Device properties | Minimum OS version | 10.0.26100 (Windows 11, version 24H2) | No exception for older hardware: Windows 10 is out of support |
+| Device properties | Minimum OS version | 10.0.26100 (Windows 11, version 24H2) | Windows 10 is out of support; a device still on it is an exception with an upgrade date |
 | Device health | Require BitLocker | Require | Personal devices don't receive this policy; they get AP-002 |
 | Defender | Antivirus | Require | — |
 | Password | Minimum password length | 12 | Reduced from 14 for usability; a program decision |
@@ -304,10 +304,10 @@ CP-004 is a server baseline, not an Intune compliance policy for Windows Server 
 
 | Requirement | Value | Delivered through |
 |---|---|---|
-| OS version | Windows Server 2025 (build 26100) | Server inventory under Azure Arc |
+| OS version | Windows Server 2019 or later as the minimum; Windows Server 2025 (build 26100) is the build target for new servers | Server inventory under Azure Arc |
 | Defender | Microsoft Defender for Servers Plan 2 | Defender for Cloud; endpoint security policy through Defender for Endpoint security settings management[^c08-ssm] |
 | Firewall | On, all profiles | Endpoint security firewall policy through security settings management |
-| Secure Boot | On | Machine configuration baseline (Chapter 09) |
+| Secure Boot | On | Machine configuration baseline (not yet specified in Chapter 09) |
 | Noncompliance | Server admin team notified after 1 day; no automatic retirement | Alerting in Chapter 10 |
 
 Security settings management has a licensing catch for servers: if the tenant's only Defender for Endpoint entitlement comes through Defender for Servers, the feature isn't available; at least one Defender for Endpoint user license must be active.[^c08-ssm]
@@ -334,10 +334,10 @@ Security settings management has a licensing catch for servers: if the tenant's 
 
 | Setting | CP-001 baseline | CP-002 Tier 0 | CP-003 Tier 2 | Server baseline (Ch 09) | CP-005 kiosk |
 |---|---|---|---|---|---|
-| Minimum OS | Windows 11 24H2 | Windows 11 25H2 | Windows 11 24H2 | Windows Server 2025 | Windows 11 24H2 |
-| BitLocker | Require | Require | Require | Chapter 09 | — |
+| Minimum OS | Windows 11 24H2 | Windows 11 25H2 | Windows 11 24H2 | Windows Server 2019 | Windows 11 24H2 |
+| BitLocker | Require | Require | Require | Not yet specified | — |
 | Defender risk score | — | Clear | — | Defender for Servers | — |
-| Password length | 14 | 14 | 12 | Chapter 09 | — |
+| Password length | 14 | 14 | 12 | Not yet specified | — |
 | Grace period | 1 day | 0 days | 3 days | 1 day (alert) | 2 days |
 | Retire list | 30 days | 7 days | 30 days | No | No |
 
@@ -608,7 +608,7 @@ Replaces the LAPS GPO (Computer Configuration > Administrative Templates > Syste
 | Post-authentication reset delay (hours) | 8 |
 | Administrator account name | Default (built-in Administrator) |
 
-The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program sets 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] Windows Server 2025 isn't a target; servers don't enroll, so server LAPS stays with the server toolchain in Chapter 09.
+The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program sets 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] Windows Server 2025 isn't a target; servers don't enroll, so server LAPS stays with the server toolchain; Chapter 09 doesn't yet specify it.
 
 ## App protection policies
 
