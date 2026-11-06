@@ -30,7 +30,7 @@ The first fact is NIST's. SP 800-53B provides three security control baselines, 
 
 The second fact is FedRAMP's. Under the FedRAMP Consolidated Rules for 2026, launched on June 25, 2026, a cloud service offering is FedRAMP Certified in a certification class from A to D.[^c03-launch] FedRAMP's notice on the designations said that for Rev5, "Class C will include the current Moderate baseline" and Class D the current High baseline.[^c03-ntc0004] FedRAMP's 2026 control reference lists, for every control, the Rev5 classes whose baselines include it. Counted across all twenty families, 322 controls and enhancements are listed for Class C.[^c03-fr-controls] OMB's FedRAMP memorandum explains the difference in a footnote: a FedRAMP authorization follows the steps in SP 800-37, "but the control baselines used have been specifically tailored for cloud offerings."[^c03-m2415]
 
-![The NIST Moderate baseline and FedRAMP Class C membership are separate facts; the crosswalk is an index that points into both and decides neither.](../../images/diagrams/b14-compliance/svg/ch03-two-facts-one-index.svg){#fig-ch03-two-facts-one-index fig-alt="Two cards side by side at the top. Left, slate: fact 1, NIST SP 800-53B, the Moderate baseline, for an agency system categorized Moderate, 287 controls and enhancements. Right, blue: fact 2, FedRAMP 2026, Class C membership, for a certified cloud service offering, 322 controls and enhancements. Dashed arrows from both lead to a violet card, an index, not a decision: the control crosswalk, 149 controls each pointing to the volumes and books that treat it as a subject, of which 121 sit in NIST Moderate and 122 in FedRAMP Class C. A green arrow labeled points into leads from the crosswalk to a green card, the agency's system security plan, covering every control the system's baseline selects with its origination and evidence. A slate arrow labeled selects runs from the NIST baseline directly to the system security plan."}
+![The NIST Moderate baseline and FedRAMP Class C membership are separate facts; the crosswalk is an index that points into both and decides neither.](../../images/diagrams/b14-compliance/svg/ch03-two-facts-one-index.svg){#fig-ch03-two-facts-one-index fig-alt="Two cards side by side at the top. Left, slate: fact 1, NIST SP 800-53B, the Moderate baseline, for an agency system categorized Moderate, 287 controls and enhancements. Right, blue: fact 2, FedRAMP 2026, Class C membership, for a certified cloud service offering, 322 controls and enhancements. Dashed arrows from both lead to a violet card, an index, not a decision: the control crosswalk, 152 controls each pointing to the volumes and books that treat it as a subject, of which 122 sit in NIST Moderate and 123 in FedRAMP Class C. A green arrow labeled points into leads from the crosswalk to a green card, the agency's system security plan, covering every control the system's baseline selects with its origination and evidence. A slate arrow labeled selects runs from the NIST baseline directly to the system security plan."}
 
 The two sets mostly overlap, and the places they don't are the places a plan goes wrong. Class C includes 36 controls and enhancements that NIST's Moderate baseline doesn't, and the controls this book relies on show the pattern:
 
@@ -80,7 +80,7 @@ The crosswalk is maintained by hand. Alongside it, the program's design generate
 
 ## Coverage by volume and by book
 
-The crosswalk indexes 149 distinct controls and enhancements in 18 families. Recounted from the table for this chapter, the distinct controls each volume treats are below. A control treated in several volumes is counted in each, so the column doesn't sum to 149.
+The crosswalk indexes 152 distinct controls and enhancements in 18 families. Recounted from the table for this chapter, the distinct controls each volume treats are below. A control treated in several volumes is counted in each, so the column doesn't sum to 152. Three of the 152, AT-2(3), PT-6 and PT-8, were missing from the source and are treated by no volume.
 
 | Volume (subject) | Distinct controls | Where the depth is |
 |---|---|---|
@@ -88,12 +88,12 @@ The crosswalk indexes 149 distinct controls and enhancements in 18 families. Rec
 | II — Data platform | 22 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_II_Book_00_Data_Platform_Overview.md); workbook [Book 06](../b06-data-platform/index.md) |
 | III — Security operations | 54 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_00_Security_Operations_Overview.md); workbook [Book 12](../b12-security-operations/index.md) |
 | IV — Governance and assurance | 54 | This book, [Chapters 05](05-program-management-controls.md) to [09](09-training-and-awareness-controls.md) and [11](11-the-authorization-package.md) |
-| V — Training and certification | 2 | [Volume overview](../b16-people/01-people-close-the-gap.md); [Chapter 09](09-training-and-awareness-controls.md) |
-| VI — Implementation as code | 38 | [Volume overview](../b15-day2-operations/02-day-two-is-where-compliance-lives.md) |
-| VII — Workflow-platform control-compliance automation | 9 | [Volume overview](../b15-day2-operations/02-day-two-is-where-compliance-lives.md) |
+| V — Training and certification | 2 | [Replaced by Book 16 chapter](../b16-people/01-people-close-the-gap.md); [Chapter 09](09-training-and-awareness-controls.md) |
+| VI — Implementation as code | 38 | [Replaced by Book 15 chapter](../b15-day2-operations/02-day-two-is-where-compliance-lives.md) |
+| VII — Workflow-platform control-compliance automation | 9 | [Replaced by Book 15 chapter](../b15-day2-operations/02-day-two-is-where-compliance-lives.md) |
 | VIII — Multi-cloud DDI landing-zone automation | 6 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md) |
-| IX — Workflow-platform day-2 operations | 16 | [Volume overview](../b15-day2-operations/01-the-help-desk-decides.md) |
-| **Series, distinct** | **149** | [Appendix A](appendix-a-control-crosswalk.md) |
+| IX — Workflow-platform day-2 operations | 16 | [Replaced by Book 15 chapter](../b15-day2-operations/01-the-help-desk-decides.md) |
+| **Series, distinct** | **152** | [Appendix A](appendix-a-control-crosswalk.md) |
 
 : Distinct controls treated in each volume, recounted from the crosswalk on October 21, 2026 {.striped .hover}
 
@@ -118,15 +118,15 @@ By book, coverage is concentrated. The crosswalk has 293 book-to-control pointer
 
 : The books that treat the most controls {.striped .hover}
 
-Ninety-four of the 149 controls are treated in exactly one book. The contingency, supply chain, privacy and program management families each live almost entirely in one governance book, which is why this book carries them in their own chapters ([06](06-contingency-and-continuity.md), [07](07-supply-chain-risk-management.md), [08](08-privacy-pii-processing.md) and [05](05-program-management-controls.md)). [Chapter 12](12-the-series-as-a-map.md) turns the index around and reads it as a map, volume by volume.
+Ninety-four of the 152 controls are treated in exactly one book. The contingency, supply chain, privacy and program management families each live almost entirely in one governance book, which is why this book carries them in their own chapters ([06](06-contingency-and-continuity.md), [07](07-supply-chain-risk-management.md), [08](08-privacy-pii-processing.md) and [05](05-program-management-controls.md)). [Chapter 12](12-the-series-as-a-map.md) turns the index around and reads it as a map, volume by volume.
 
 ### What the index doesn't cover
 
-The crosswalk says itself that it is not a gap analysis against a baseline. That can now be quantified. Of the 287 controls and enhancements in NIST's Moderate baseline, the crosswalk indexes 121. Of the 322 FedRAMP lists for Class C, it indexes 122.[^c03-53b-profiles][^c03-fr-controls] The remaining Moderate controls are of three kinds:
+The crosswalk says itself that it is not a gap analysis against a baseline. That can now be quantified. Of the 287 controls and enhancements in NIST's Moderate baseline, the crosswalk indexes 122. Of the 322 FedRAMP lists for Class C, it indexes 123.[^c03-53b-profiles][^c03-fr-controls] The remaining Moderate controls are of three kinds:
 
 - **Policy and procedure controls.** The "-1" control of each of the eighteen security families (AC-1, AU-1 and so on) is in the Moderate baseline. The series indexes only one of them, SR-1.
 - **Families the series doesn't build.** Physical and environmental protection (18 Moderate controls) and maintenance (9) have no crosswalk rows. In a cloud boundary much of PE is inherited from the provider; on premises it is the agency's.
-- **Enhancements the books don't cite by number.** Seventy-five Moderate-baseline enhancements, most of them in AC, CM and IA, have no row of their own; where a book treats them at all, it is under the base control.
+- **Enhancements the books don't cite by number.** Seventy-four Moderate-baseline enhancements, most of them in AC, CM and IA, have no row of their own; where a book treats them at all, it is under the base control.
 
 None of this is a defect in the index. It is the reason the index can't stand in for the system security plan. The plan has to address every control the system's baseline selects, and the crosswalk only says where the workbook can help with some of them.
 
@@ -134,7 +134,7 @@ None of this is a defect in the index. It is the reason the index can't stand in
 
 The crosswalk also carried a column of FedRAMP 20x indicator labels: theme codes such as KSI-IAM and KSI-MLA, and a label, KSI-022, for the training controls. Those labels predate the 2026 rules. FedRAMP now publishes 46 Key Security Indicators in ten themes, each with its own identifier (KSI-CED-RAT, KSI-CMT-RMV and so on) and a list of "Related SP 800-53 Controls." FedRAMP revised many of those mappings on October 13, 2026.[^c03-ksi] No indicator is numbered KSI-022; the training controls are cited by KSI-CED-RAT, "Reviewing All Training."
 
-Recomputed from FedRAMP's page on October 21, 2026, 118 of the crosswalk's 149 controls are cited by at least one indicator. By theme:
+Recomputed from FedRAMP's page on October 21, 2026, 118 of the 149 controls the crosswalk then indexed (before AT-2(3), PT-6 and PT-8 were added) are cited by at least one indicator. By theme:
 
 | Theme | Crosswalk controls cited | Indicators that cite them |
 |---|---|---|
@@ -151,7 +151,7 @@ Recomputed from FedRAMP's page on October 21, 2026, 118 of the crosswalk's 149 c
 
 : Crosswalk controls by FedRAMP 2026 indicator theme (a control cited by several themes is counted in each) {.striped .hover}
 
-Several of the crosswalk's theme assignments don't survive the check. AC-4 and AC-17 are cited by identity indicators, not network-architecture ones. CA-3 is cited by KSI-SCR-MON, not by the inventory theme. SI-2 is cited by KSI-CMT-VTD and SI-2(2) by KSI-SVC-EIS, not by the logging theme. CA-5, CA-6, the media protection controls, and every PM and PT control the series indexes are cited by no indicator at all.[^c03-ksi] [Appendix A](appendix-a-control-crosswalk.md) carries the per-control indicator list.
+Several of the crosswalk's theme assignments don't survive the check. AC-4 and AC-17 are cited by identity indicators, not network-architecture ones. CA-3 is cited by KSI-SCR-MON, not by the inventory theme. SI-2 is cited by KSI-CMT-VTD and SI-2(2) by KSI-SVC-EIS, not by the logging theme. CA-5, CA-6, the media protection controls, and every PT control and every PM control the series indexes except PM-7 are cited by no indicator at all.[^c03-ksi] [Appendix A](appendix-a-control-crosswalk.md) drops the indicator column; [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md) maps the current indicators, but only for the governance controls.
 
 ### The indicators bind providers
 
