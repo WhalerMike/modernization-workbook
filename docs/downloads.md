@@ -1,6 +1,6 @@
 ---
 title: "Downloads"
-subtitle: "Every file the workbook publishes: the kits, the Ansible examples, a reference implementation, the nineteen books as Word documents, and the narrated videos"
+subtitle: "Every file the workbook publishes: the kits, the Ansible examples, a reference implementation, the nineteen books and the developer workbook as Word documents, and the narrated videos"
 description: "One place for every Federal Modernization Workbook download: the read-only Start Kit assessment scripts, the read-only validation kit for the track implementation guides, the Copilot agent pack for in-house automation, the Help Desk / Cloud Services Entra ID Operations Kit, the Ansible example playbooks, the application modernization reference implementation, each book as a Word document, and the narrated presentation videos."
 doc-type: section-landing
 ---
