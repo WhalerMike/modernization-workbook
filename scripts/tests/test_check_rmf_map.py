@@ -46,8 +46,22 @@ class Case(unittest.TestCase):
         self.assertTrue(any("no-such-heading" in e for e in errs))
 
     def test_not_covered_missing_from_list(self):
-        errs = self._page(lambda t: t.replace("- **P-6, impact-level prioritization**", "- **Impact-level prioritization**"))
-        self.assertTrue(any("P-6" in e for e in errs))
+        def mutate(t):
+            head, row, tail = t.partition("| P-16 Enterprise Architecture")
+            return head + row + tail.replace("| Covered |\n", "| Not covered |\n", 1)
+        errs = self._page(mutate)
+        self.assertTrue(any("P-16 is marked Not covered" in e for e in errs))
+
+    def test_tally_must_match_marks(self):
+        errs = self._page(lambda t: t.replace("25 Covered, 13 Partial", "26 Covered, 12 Partial", 1))
+        self.assertTrue(any("tally" in e for e in errs))
+
+    def test_partial_by_design_needs_a_template_link(self):
+        def mutate(t):
+            head, row, tail = t.partition("| R-2 Risk Analysis")
+            return head + row + tail.replace("| Partial |\n", "| Partial by design |\n", 1)
+        errs = self._page(mutate)
+        self.assertTrue(any("R-2" in e and "template" in e for e in errs))
 
 
 if __name__ == "__main__":

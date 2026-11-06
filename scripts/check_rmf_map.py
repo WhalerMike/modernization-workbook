@@ -5,12 +5,14 @@
 
 Checks:
   1. All 47 SP 800-37 Rev. 2 task IDs appear exactly once as a table row, each
-     with a final-cell mark of Covered, Partial or Not covered.
+     with a final-cell mark of Covered, Partial, Partial by design or Not covered.
+     A Partial by design row must link the Book 14 appendix that holds its template.
   2. Every task marked Not covered is named in "Not covered, in one list", and
      that list cites only real task IDs.
   3. Every relative link resolves to a file and, where it carries an anchor, to
      a heading (or an explicit {#id}) in the target.
   4. last-reviewed is not older than date-modified.
+  5. The tally sentence in "The steps at a glance" equals the marks in the step tables.
 """
 from __future__ import annotations
 
@@ -27,10 +29,13 @@ EXPECTED = (
     + [f"A-{i}" for i in range(1, 7)] + [f"R-{i}" for i in range(1, 6)]
     + [f"M-{i}" for i in range(1, 8)]
 )
-MARKS = {"covered": "Covered", "partial": "Partial", "not covered": "Not covered"}
+MARKS = {"covered": "Covered", "partial": "Partial", "partial by design": "Partial by design",
+         "not covered": "Not covered"}
 ROW = re.compile(r"^\|\s*([PCSIARM]-\d+)\b")
 LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)\)")
 LIST_HEAD = "Not covered, in one list"
+TEMPLATE = "b14-compliance/appendix-"
+TALLY = re.compile(r"(\d+) Covered, (\d+) Partial, (\d+) Partial by design, (\d+) Not covered")
 
 
 def slugs(heading: str) -> set[str]:
@@ -79,21 +84,33 @@ def check(root: Path, page: Path | None = None) -> list[str]:
     errors: list[str] = []
 
     marks: dict[str, list[str]] = {}
+    lines_of: dict[str, str] = {}
     for line in text.splitlines():
         m = ROW.match(line)
         if m:
             cell = line.rstrip().rstrip("|").rsplit("|", 1)[-1].strip().replace("*", "")
             marks.setdefault(m.group(1), []).append(cell)
+            lines_of[m.group(1)] = line
     # The "at a glance" table has no task rows; step tables do.
     for tid in EXPECTED:
         rows = marks.get(tid, [])
         if len(rows) != 1:
             errors.append(f"{tid}: expected exactly one row, found {len(rows)}")
         elif rows[0].lower() not in MARKS:
-            errors.append(f"{tid}: mark {rows[0]!r} is not Covered, Partial or Not covered")
+            errors.append(f"{tid}: mark {rows[0]!r} is not one of {sorted(MARKS.values())}")
+        elif rows[0].lower() == "partial by design" and TEMPLATE not in lines_of[tid]:
+            errors.append(f"{tid}: Partial by design but the row links no Book 14 appendix template")
     for tid in marks:
         if tid not in EXPECTED:
             errors.append(f"{tid}: not an SP 800-37 Rev. 2 task ID")
+
+    counts = [sum(r[0].lower() == k for r in marks.values() if r)
+              for k in ("covered", "partial", "partial by design", "not covered")]
+    stated = TALLY.search(text)
+    if not stated:
+        errors.append("tally sentence not found in The steps at a glance")
+    elif [int(g) for g in stated.groups()] != counts:
+        errors.append(f"tally says {stated.group(0)!r}, the step tables give {counts}")
 
     section = re.search(rf"^## {LIST_HEAD}\n(.*?)(?=^## |\Z)", text, re.S | re.M)
     if not section:
