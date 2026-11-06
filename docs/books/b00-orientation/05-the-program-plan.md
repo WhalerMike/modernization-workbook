@@ -124,7 +124,7 @@ The program needs no license of its own, but the services it orchestrates do. Th
 | Microsoft Entra ID | PIM and risk-based Conditional Access (ID Protection) | Entra ID P2 or Entra ID Governance for PIM; P2 for ID Protection[^c05-entra] | Phase 1 (PIM for Tier 0), Phase 2 at scale |
 | Microsoft Entra ID Governance | Access reviews for member users, Lifecycle Workflows | Entra ID Governance; the master plan's "P2 for access reviews" is now only partly true, since some review capabilities still run on P2[^c05-entra] | Phase 2 |
 | Microsoft Intune | Device enrollment, compliance, configuration profiles | Intune Plan 1 | Phase 1 |
-| Microsoft Cloud PKI | Certificate issuance to Intune-managed devices | A subscription in addition to Intune Plan 1 or 2: the Intune Suite or the standalone add-on;[^c05-cloudpki] from July 2026 it is also included in Microsoft 365 E5 and E7[^c05-intune] | Phase 2 |
+| Microsoft Cloud PKI | Certificate issuance to Intune-managed devices | A subscription in addition to Intune Plan 1 or 2: the Intune Suite or the standalone add-on;[^c05-cloudpki] from July 2026 it is also included in Microsoft 365 E5 and E7 for commercial customers, so confirm the entitlement on the agency's government SKU[^c05-intune] | Phase 2 |
 | Microsoft Defender for Identity | AD security posture and lateral-movement findings during assessment | Microsoft 365 E5 or G5, EMS E5, or a standalone license[^c05-mdi] | Phase 0 |
 | Azure Arc-enabled servers | Server inventory, policy and machine configuration for on-premises servers | Management services at no extra cost for servers with Windows Server Software Assurance or pay-as-you-go licensing; other servers pay as they go[^c05-arc] | Phase 1 (platform host and pilot servers) |
 | Azure DNS Private Resolver | Hybrid DNS resolution | Azure consumption; an inbound and an outbound endpoint, each in its own dedicated subnet[^c05-dnspr] | Phase 2 |
@@ -185,7 +185,7 @@ The plan's own next steps are short, and they match Book 01's "an inventory, an 
 1. Book 01's seven phases and six gates are canonical; the master plan's phases map onto them, and its cutover stops short of retiring AD DS.
 2. Five constraints bind every phase: authoritative origin with provenance, time-bound privilege, non-authoritative copies, visible drift, and no rip-and-replace.
 3. Five workstreams run in parallel; the critical path runs through assessment, attribute design, the pilot and the rollout waves, and PKI always waits for identity.
-4. License by tier and check availability in the agency's cloud; access reviews now sit in Entra ID Governance, and Cloud PKI has moved into Microsoft 365 E5.
+4. License by tier and check availability in the agency's cloud; access reviews now sit in Entra ID Governance, and Cloud PKI has moved into Microsoft 365 E5 for commercial customers, so confirm the entitlement on the agency's government SKU.
 5. Week numbers are illustrative. The gates, not the calendar, decide when the next phase starts.
 
 ::: {.callout-tip}
