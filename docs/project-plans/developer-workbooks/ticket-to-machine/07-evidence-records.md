@@ -127,7 +127,7 @@ rm -rf out
    ```
 
    ```text
-   5 evidence records: 4 closed on a re-read, 1 declared exception
+   5 evidence records: 4 closed, 1 declared exception
    Window adherence: 2 of 3 closed inside the window
      IDF0000902: closed after its response window
      IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short

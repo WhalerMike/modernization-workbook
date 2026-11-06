@@ -1,5 +1,5 @@
 $ python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence-2026-11 --period 2026-11 --previous-manifest out/evidence/manifest.json --generated-at 2026-12-01T12:00:00Z
-5 evidence records: 4 closed on a re-read, 1 declared exception
+5 evidence records: 4 closed, 1 declared exception
 Window adherence: 2 of 3 closed inside the window
   IDF0000902: closed after its response window
   IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short
