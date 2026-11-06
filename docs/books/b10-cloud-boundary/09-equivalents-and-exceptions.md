@@ -132,7 +132,7 @@ Whatever the answer, a higher class is a different axis from feature availabilit
 | 4 | For each gap, choose a response: equivalent, provider exception, risk acceptance or alternative path, or going without (decided and recorded) | System owner proposes; authorizing official decides exceptions | Response per row |
 | 5 | Build equivalents and label their evidence as derived | Platform team or owning engineering team; CISO sets the evidence class | Equivalent and its evidence |
 | 6 | File provider-side requests with a quoted requirement and link | System owner, with acquisition | Request and answer recorded |
-| 7 | Record accepted gaps on the POA&M or in a dated exception | System owner; authorizing official signs | POA&M entry or signed exception |
+| 7 | Record gaps being closed on the POA&M and accepted gaps in a dated, signed exception | System owner; authorizing official signs | POA&M entry or signed exception |
 | 8 | Rerun the probe on a cadence and after relevant provider notices | Platform team; ISSO reviews | Updated dispositions and reopened rows |
 
 [Chapter 11](11-the-authorization-package.md) shows where each output lands in the authorization package.

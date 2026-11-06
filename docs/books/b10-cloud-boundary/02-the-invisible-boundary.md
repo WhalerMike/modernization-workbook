@@ -58,7 +58,7 @@ The program's earlier boundary model used five features as its worked example of
 | Azure Arc server monitoring | Arc is an Azure service, not a Microsoft 365 feature. Azure Arc-enabled servers are listed in Azure public's FedRAMP High audit scope.[^c02-azscope] | Not a GCC question. Decided by the Azure subscription and its boundary |
 | Expedited updates | "Expedite updates for Windows in Intune" is listed among features not available and planned for GCC High and DoD.[^c02-intunegov] | A GCC High and DoD gap, not a GCC one |
 
-One of the five is a documented GCC gap. Three are real gaps in a different environment, and the example appears to have merged GCC High's exclusions into GCC. One belongs to a different service family and a different boundary. The confirmed row is the important one: the per-location network assessment layer of the admin center, which [Chapter 04](04-gcc-and-the-feature-gap.md) shows to be the largest single documented loss.
+One of the five is a documented GCC gap. Two (Device Health Attestation and expedited updates) are real gaps in a different environment, and the example appears to have merged GCC High's exclusions into GCC. One (endpoint analytics) isn't a documented gap in any of these environments. One belongs to a different service family and a different boundary. The confirmed row is the important one: the per-location network assessment layer of the admin center, which [Chapter 04](04-gcc-and-the-feature-gap.md) shows to be the largest single documented loss.
 
 The correction cuts in both directions, and that is the lesson of this chapter. An invisible boundary hides features that are missing. An unverified boundary story hides features that are present, sends an agency to build compensations it doesn't need, and gives a Microsoft reviewer an easy reason to dismiss the parts of the argument that are true.
 
@@ -117,7 +117,7 @@ The payoff shows up in the authorization package. In the program's approach, eve
 ::: {.callout-note}
 ## What this chapter establishes
 1. What a boundary removes stays invisible because surfaces are shared, exclusions are scattered one per page, features change, and missing signals fail quietly.
-2. The widely repeated five-feature GCC example is mostly wrong: one feature is a documented GCC gap, three are GCC High and DoD gaps, and one is an Azure service decided by a different boundary.
+2. The widely repeated five-feature GCC example is mostly wrong: one feature is a documented GCC gap, two are GCC High and DoD gaps, one isn't a documented gap anywhere, and one is an Azure service decided by a different boundary.
 3. The program models what changes across any boundary along four dimensions (telemetry fidelity, identity authority, enforcement responsibility, provenance classification), each tied to a drift class; detection for two of them is still design only.
 4. The boundary becomes visible through a probe, derived-labeled substitute telemetry, compensating enforcement and one documentation surface, held to evidence rules: cite per row, label confidence, name the environment, re-read on a schedule.
 5. The boundary is treated as architecture because it changes which plane is authoritative, and because every boundary instantiates the same model.
