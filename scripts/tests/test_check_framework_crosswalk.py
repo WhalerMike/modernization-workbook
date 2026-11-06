@@ -49,8 +49,7 @@ class Check(unittest.TestCase):
             return cf.check(page, books)
 
     def test_rmf_scores_follow_the_map(self):
-        text = "
-".join([
+        text = chr(10).join([
             "| A-6 POA&M | x | [b](../books/b14-c/a.md) | e | Covered |",
             "| I-1 Build | x | [b](../books/b04-a/a.md) | e | Covered |",
             "| P-2 Strategy | x | [b](../books/b00-o/a.md) | e | Partial by design |",
