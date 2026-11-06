@@ -41,7 +41,7 @@ Ten findings change how the pipeline is planned:
 - **The Federal HR 2.0 solicitation anticipates an identity feed from Core HCM.**
   - Its appendix of required integrations includes, in a sample interconnection table for a large department or agency, an "Identity Management Solution": "Provision identity attributes using Core HCM is the authoritative source for user identity data."[^he-pws-appb]
   - It also says the Core HCM Steering Committee "will review and approve any agency-specific integrations requirements."[^he-pws-appb]
-  - Book 03 Chapter 03 says the reverse direction isn't in the solicitation. It is there as a sample, with no protocol or directory named. Submit the identity feed to the Steering Committee in Phase 0 *(design guidance)*.
+  - The reverse direction appears in the solicitation only as a sample, with no protocol, product or directory named, and Book 03 Chapter 03 now records this. Submit the identity feed to the Steering Committee in Phase 0 *(design guidance)*.
 - **OPM names its own Entra-based identity solution for the platform.** The performance work statement asks the contractor to "Integrate and implement OPM approved identity management solution using OPM MS Entra-based solution."[^he-pws-core] That is the platform's own sign-in and user provisioning, alongside the SCIM 2.0 requirement Book 03 records;[^he-pws-req5] it says nothing about how the platform feeds an agency's directory.
 - **Persistent integrations with OPM-managed systems go through an OPM-hosted API gateway**, with OAuth 2.0, rate limiting and IP filtering; exceptions need written approval.[^he-pws-appb] Whether an agency's identity middleware reads Core HCM directly or through that gateway couldn't be verified. It decides the middleware's source authentication and egress, so ask before building it.
 - **Future-dated hires and separations are hidden from the Atom feed by default.**
@@ -55,7 +55,7 @@ Ten findings change how the pipeline is planned:
 - **Lifecycle Workflows now writes account state in Active Directory too.** The enable, disable and delete tasks can act on synchronized AD users through the provisioning agent.[^he-lcw-tasks][^he-lcw-onprem] So account state has two writers, the pipeline's `active` value and the workflow; the pipeline must send `active` false no later than the leaver workflow's first run, or a later re-send can undo the workflow's disable *(inference; design guidance)*.
 - **Custom security attributes are a new carrier for sensitive HR values.** API-driven provisioning can set them on Entra ID users; their values are redacted in provisioning logs, and only attribute-assignment roles can read them.[^he-ms-csa] They can't drive dynamic membership,[^he-ms-csa-faq] so access codes stay in `extensionAttribute10`–`12` as Chapter 06 says, and custom security attributes suit sensitive values that no rule reads *(design guidance)*.
 
-The guide keeps Book 03's architecture unchanged. Findings 1, 2, 4 and 9 refine what Chapters 03 and 08 say; the rest add build detail.
+The guide keeps Book 03's architecture unchanged. Chapter 03 has absorbed the corrections in findings 1 and 2; findings 4 and 9 refine what Chapters 03 and 08 say, and the rest add build detail.
 
 ## Orientation: Book 03's pipeline on Oracle and Entra
 
@@ -71,7 +71,7 @@ The guide keeps Book 03's architecture unchanged. Findings 1, 2, 4 and 9 refine 
 
 ### What the solicitation says about identity
 
-Book 03 Chapter 03 records the solicitation's SCIM 2.0 requirement. The final amendment says more:
+Book 03 Chapter 03 records the solicitation's SCIM 2.0 requirement, the OPM Entra-based solution and the Steering Committee review. The final amendment's text, read here against the guide's own needs:
 
 | Where | What it says | What it means for the pipeline |
 |---|---|---|
@@ -230,6 +230,9 @@ The FedRAMP Marketplace lists Oracle's "Fusion Cloud" (package F1603257882) as F
 | Job title | `JobName` | Display only; at most 128 characters[^he-ms-user] | `title` | `title` | `jobTitle` |
 | Department | Department name | At most 64 characters[^he-ms-user] | enterprise `department` | `department` | `department` |
 | Division, cost center | Business unit, cost center | Name or code, chosen once | enterprise `division`, `costCenter` | `division`, — | `employeeOrgData` |
+| Region code | Duty station, through the crosswalk | Code list; no native property fits | extension `regionCode` | `extensionAttribute4` | `extensionAttribute4` |
+| Cost center code | Cost center | Code list; a mirror, because dynamic membership rules can't read `employeeOrgData` | extension `costCenterCode` | `extensionAttribute5` | `extensionAttribute5` |
+| Division code | Business unit | Code list; a mirror, because administrative-unit rules and the mover trigger can't read `employeeOrgData` | extension `divisionCode` | `extensionAttribute6` | `extensionAttribute6` |
 | Legal employer | Legal employer | At most 64 characters[^he-ms-user] | enterprise `organization` | `company` | `companyName` |
 | Manager | Manager's person number | Not self; unresolved never blocks a joiner; a separated manager is a finding | enterprise `manager.value` | `manager` (DN) | `manager` |
 | Worker type | `WorkerType` | Unknown refused; pending and nonworker scoped separately | extension `workerType` | `employeeType` | `employeeType` |
@@ -243,7 +246,7 @@ The FedRAMP Marketplace lists Oracle's "Fusion Cloud" (package F1603257882) as F
 | UPN, `samAccountName` | — | Generated in the app on create only, or by the middleware; the service doesn't resolve UPN conflicts[^he-ms-faq] | `userName` (optional) | `userPrincipalName`, `sAMAccountName` | `userPrincipalName` |
 | Email | — | Not sent; the directory generates it | — | generated | `mail` |
 
-The slot assignments are Book 03's program attribute map; Microsoft's Oracle worksheets supply slots 1 to 3.[^he-ms-oracle] For AD-landed users, convert the ISO dates in the AD app's mapping expression to the format Microsoft requires *(inference: test the expression in the tenant)*.[^he-lcw-sync]
+The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md)); Microsoft's Oracle worksheets supply slots 1 to 3.[^he-ms-oracle] Slots 4 to 6 mirror region, cost center and division as codes, because rules can read an extension attribute but not `employeeOrgData`; the SCIM names `regionCode`, `costCenterCode` and `divisionCode` are this guide's proposal *(design guidance)*. For AD-landed users, convert the ISO dates in the AD app's mapping expression to the format Microsoft requires *(inference: test the expression in the tenant)*.[^he-lcw-sync]
 
 ### The sequences
 
@@ -263,14 +266,14 @@ The slot assignments are Book 03's program attribute map; Microsoft's Oracle wor
 | Book 03 phase | Work on this stack | Exit evidence |
 |---|---|---|
 | 0 — Program alignment | Name the identity feed in the integration inventory; submit it to the Core HCM Steering Committee; settle the direct-or-gateway question; request a sandbox and the integration-user model | Inventory signed; Steering Committee request logged |
-| 1 — Attribute authority and schema | Fix the mapping above against a sandbox extract; decide published-date polling; code lists; confirm slots 1–3 and 10–12 free; populate `employeeId` on existing accounts; decide pending and contingent-worker scope | Signed schema; correlation threshold met |
+| 1 — Attribute authority and schema | Fix the mapping above against a sandbox extract; decide published-date polling; code lists; confirm slots 1–6 and 10–12 free; populate `employeeId` on existing accounts; decide pending and contingent-worker scope | Signed schema; correlation threshold met |
 | 2 — Pipeline build and test | Middleware in the boundary; an AD app and an Entra app per source; uploader and log reader as separate identities; Oracle integration user with JWT assertion; notification mailbox; deletion threshold; workflows and custom task extensions; the example's validation rules | Joiner, mover and leaver end to end in a test tenant with provenance; Microsoft's five-to-ten-record trial |
 | 3 — Hybrid go-live (pilot) | Provisioning agents under a gMSA; the full extract first, feeds immediately after;[^he-ms-oracle] shadow mode, aligned with the platform's shadow-mode UAT | Every difference explained; zero unmatched creations |
 | 4 — Automation | Leavers first; the on-demand path for late separations; pre-hire workflows only after published-date polling is proven | Zero missed leavers across a pay period |
 | 5 — Cutover | Switch the source contract to Core HCM at the agency's month-8 cutover; retarget populations from the AD app to the Entra app | Seven-day sole-source proof (Appendix C) |
 | 6 — Sustain | Daily changes-only reconciliation; alerts on feed lag and job quarantine | Metrics on the continuous-monitoring cadence |
 
-**Gate G1.** Book 00's Foundation gate requires that "HR-to-cloud provisioning is operational for the foundation scope, and the attribute slots in use are confirmed free and single-writer" ([Book 00, Chapter 09](../b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete)). On this stack the evidence is: the foundation population flowing through `/bulkUpload` from the current HR source, since Core HCM may not be live yet; provisioning-log reconciliation clean; slots 1–3 and 10–12 written only by the provisioning service; and the notification email and deletion threshold set on both apps. Produce the same evidence again when the source switches to Core HCM *(design guidance)*.
+**Gate G1.** Book 00's Foundation gate requires that "HR-to-cloud provisioning is operational for the foundation scope, and the attribute slots in use are confirmed free and single-writer" ([Book 00, Chapter 09](../b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete)). On this stack the evidence is: the foundation population flowing through `/bulkUpload` from the current HR source, since Core HCM may not be live yet; provisioning-log reconciliation clean; slots 1–6 and 10–12 written only by the provisioning service; and the notification email and deletion threshold set on both apps. Produce the same evidence again when the source switches to Core HCM *(design guidance)*.
 
 ### Security and privacy
 
@@ -296,7 +299,7 @@ The slot assignments are Book 03's program attribute map; Microsoft's Oracle wor
 
 ## The example code
 
-[examples/hcm-entra](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra) has two equivalent clients, `python/hcm_to_scim.py` (standard library only) and `powershell/HcmToScim.psm1` with `Invoke-HcmToScim.ps1`. Both read `config/mapping.json`, which holds the mapping above, the code lists and the validation rules.
+[examples/hcm-entra](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra) has two equivalent clients, `python/hcm_to_scim.py` (standard library only) and `powershell/HcmToScim.psm1` with `Invoke-HcmToScim.ps1`. Both read `config/mapping.json`, which holds the mapping above except the slot 4 to 6 rows (region, cost center and division codes, not yet in the file), the code lists and the validation rules.
 
 | What it does | Book 03 rule |
 |---|---|
