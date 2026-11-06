@@ -65,6 +65,9 @@ LABS_BLOCK = re.compile(r"^( *)<!-- labs:begin[^\n]*-->\n(?:(?!<!-- labs:begin).
 # As with the tour block, a block can't contain another start marker.
 REVISIONS_BLOCK = re.compile(r"\n*^<!-- revisions:start[^\n]*-->\n(?:(?!<!-- revisions:start).)*?"
                              r"^<!-- revisions:end -->\n*", re.S | re.M)
+# The edition in a deck link. scripts/deck_assets.py points every link at each new edition, so
+# the tag changes on every cut; the file the link names, and the rest of the line, still count.
+EDITION_LINK = re.compile(r"/releases/download/edition-\d{4}\.\d{2}(?:\.\d+)?/")
 FIELD = re.compile(r"^([A-Za-z][\w-]*):\s*(.*?)\s*$", re.M)
 REVIEW_FIELDS = ("review-status", "reviewed-sha256", "last-reviewed")
 
@@ -83,13 +86,15 @@ def body_sha256(text: str) -> str:
     so an editor that trims spaces doesn't reopen a review. A generated tour block, between
     its begin and end markers, is left out: the tour build adds and updates it on approved
     pages, and every other line still counts. So are a generated kit capture, generated lab links, and the generated
-    version and revision history section, which each edition rewrites."""
+    version and revision history section, which each edition rewrites. The edition tag in a
+    deck link is read as a fixed token, so a new edition doesn't reopen a review."""
     _, body = split(text)
     body = TOUR_BLOCK.sub("", body)
     body = CAPTURE_BLOCK.sub("", body)
     body = LABS_BLOCK.sub("", body)
     body = REVISIONS_BLOCK.sub("\n\n", body)
-    lines = [line.rstrip() for line in body.split("\n")]
+    body = EDITION_LINK.sub("/releases/download/edition/", body)
+    lines =[line.rstrip() for line in body.split("\n")]
     return hashlib.sha256("\n".join(lines).strip().encode("utf-8")).hexdigest()
 
 

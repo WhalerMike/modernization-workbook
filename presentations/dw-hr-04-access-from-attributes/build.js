@@ -259,7 +259,7 @@ require("../_build/devwb.js")({
       part: "How", title: "Lab 1: the memberOf scan and a mover's residual",
       body: [
         { terminal: "04-4", lines: "1-3" },
-        { terminal: "04-5", lines: "2-4" , label: "examples/hr-lifecycle  ·  residual for the fixture mover  ·  real output" },
+        { terminal: "04-5", lines: "2-3" , label: "examples/hr-lifecycle  ·  residual for the fixture mover  ·  real output" },
         { terminal: "04-6" },
         { cols: [[{ lead: "RV-02: the review is still open 13 days after the move, past the program's ten." }], [{ terminal: "04-7", lines: "1,3" }]] },
       ],

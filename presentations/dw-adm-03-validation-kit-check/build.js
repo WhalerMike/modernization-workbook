@@ -274,7 +274,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the check on the fixtures",
       body: [
-        { terminal: "03-1", lines: "3-5,7-9,11-15,17", kit: "examples/validation-kit" },
+        { terminal: "03-1", lines: "3,5,7,11-14,17", kit: "examples/validation-kit" },
         { cols: [[{ terminal: "03-2", kit: "examples/validation-kit" }], [{ terminal: "03-3", lines: "3-4,7-9,11", kit: "examples/validation-kit" }]] },
       ],
       sources: "Sources: examples/validation-kit (fictional contoso.example fixtures). Chapter 03, “Lab 1: fixtures, no tenant,” steps 1–3.",

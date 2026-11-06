@@ -23,7 +23,7 @@ Some pages publish before they are finished, so readers can use them and comment
 
 : Review fields in a gated page {.striped}
 
-A page **waits for review** when it isn't approved, or when its text no longer matches the fingerprint. Any change to an approved page, even one word, sends it back. The only parts left out of the fingerprint are blocks the build writes from other sources: a chapter's narrated-tour links, the captured output of a kit command, the generated lab links, and the version history. The weekly source watch lists every waiting page in its GitHub issue until each one is approved, and work that builds on a page, such as its narrated tour, waits for its approval too.
+A page **waits for review** when it isn't approved, or when its text no longer matches the fingerprint. Any change to an approved page, even one word, sends it back. The only parts left out of the fingerprint are blocks the build writes from other sources: a chapter's narrated-tour links, the captured output of a kit command, the generated lab links, and the version history. The edition number in a deck link is ignored too, since every new edition updates it; the rest of the link still counts. The weekly source watch lists every waiting page in its GitHub issue until each one is approved, and work that builds on a page, such as its narrated tour, waits for its approval too.
 
 **Which pages are gated.** The script lists them in `GATED`. Today they are:
 
