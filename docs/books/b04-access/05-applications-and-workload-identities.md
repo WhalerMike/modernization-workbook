@@ -256,7 +256,7 @@ An app registration is a workload identity: a service principal with credentials
 | 5. Attest | Owners, permissions and credentials re-attested on the tier's cadence; ownerless, unused or expired registrations flagged | AC-6, CA-7 |
 | 6. Retire | Deactivate first so nothing breaks silently, then revoke grants, remove credentials and delete | AC-2 |
 
-The control mappings are the program's; the compliance book [Vol IX Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_03_App_Registration_Governance.md) holds the authority table and closure argument, and [Vol VI Book 02](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_02_Identity_Access_as_Code.md) expresses the same rules as versioned policy. NIST SP 800-53 frames the principle behind stages 2 and 5: least privilege applies to processes acting on behalf of users, not only to users.[^c05-nist]
+The control mappings are the program's; the compliance book [Vol IX Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_03_App_Registration_Governance.md) holds the authority table and closure argument. NIST SP 800-53 frames the principle behind stages 2 and 5: least privilege applies to processes acting on behalf of users, not only to users.[^c05-nist]
 
 Three limits are worth stating plainly.
 

@@ -34,12 +34,12 @@ Every access object the program governs has a file in the repository, one file p
 
 | Object class | Held as | Safety rule checked before merge |
 |---|---|---|
-| Conditional Access policies, named locations, authentication strengths | One JSON or HCL file per object | Every blocking or grant policy excludes the emergency access group ([Chapter 07](07-the-conditional-access-policy-library.md)); new and changed policies deploy as report-only |
+| Conditional Access policies, named locations, authentication strengths | One JSON or HCL file per object | Every blocking or grant policy that has a user scope excludes the emergency access group, except CA090, which excludes nobody by design; policies that target only workload identities (CA015, CA037) have no user scope to exclude from ([Chapter 07](07-the-conditional-access-policy-library.md)); new and changed policies deploy as report-only |
 | PIM role settings for Entra roles and PIM for Groups | One file per role policy (the role's rules) | Activation requires the authentication context `c1` and justification for every role, and approval by the tier's approver group for Tier 0 and Tier 1 roles; a Tier 2 role without approval cites its documented risk acceptance; no rule permits a permanent active assignment except the documented emergency accounts ([Chapter 08](08-pim-self-request-with-approval.md)) |
 | Eligible role assignments | One file per role, listing eligible groups | Eligibility goes to role-assignable groups, not individuals ([Chapter 04](04-privileged-roles-and-tiers.md)) |
 | Groups used for access | One file per group | Names follow the `APP-` convention; no nested members; dynamic rules only where the tier allows ([Chapter 09](09-access-governance.md#naming-and-membership-type)) |
 | Catalogs, access packages, assignment policies | One file per package with its policies | Expiry set (never "never"); approval chain matches the tier; incompatible packages listed both ways |
-| Access review definitions | One file per review series | Fallback reviewer present whenever reviewers are managers or owners; auto-apply on; no-response default matches the schedule |
+| Access review definitions | One file per review series | Fallback reviewer present whenever reviewers are managers or owners; auto-apply and no-response default match the schedule in [Chapter 09](09-access-governance.md#cadence) (auto-apply is off for Microsoft 365 group membership) |
 | Lifecycle Workflows | One file per workflow | Leaver workflows include "remove all access package assignments" and "revoke all refresh tokens" |
 
 Port authentication (802.1X) and certificate lifecycle automation are the other half of the identity-as-code work in the program's compliance series; they are network and PKI subjects and stay there ([Vol VI Book 02](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_02_Identity_Access_as_Code.md), with [Vol I Book 02](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_02_Network_Access_Control_802_1X.md) and [Vol I Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md)).
@@ -208,6 +208,7 @@ This check runs in the pull request pipeline against the JSON files in the repos
 #Requires -Version 7.0
 # Federal Modernization Program: fail the build if any enabled or report-only
 # Conditional Access policy in the repository doesn't exclude the emergency access group.
+# CA090 (excludes nobody by design) and policies with no user scope (workload identities) are exempt.
 param(
     [Parameter(Mandatory)] [string] $PolicyPath,
     [Parameter(Mandatory)] [string] $EmergencyGroupId
@@ -216,6 +217,8 @@ param(
 $failures = foreach ($file in Get-ChildItem -Path $PolicyPath -Filter '*.json') {
     $policy = Get-Content -Path $file.FullName -Raw | ConvertFrom-Json
     if ($policy.state -eq 'disabled') { continue }
+    if ($policy.displayName -like 'CA090-*') { continue }
+    if (-not $policy.conditions.users) { continue }
 
     $excluded = @($policy.conditions.users.excludeGroups)
     if ($excluded -notcontains $EmergencyGroupId) {
@@ -308,7 +311,7 @@ The repository is the only normal path to production. The rules below are design
 
 ## Drift detection and closure
 
-Code governs the policy, but a Global Administrator can still change the tenant directly. Drift detection is the control that catches those changes, and the design rule is the one [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md) uses: close each finding at the source, never by editing the copy.
+Code governs the policy, but a Global Administrator can still change the tenant directly. Drift detection is the control that catches those changes, and the design rule is the program's own: close each finding at the source, never by editing the copy. [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md) closes findings the same way, at the right end.
 
 | Object classes | Detector | Cadence | Output |
 |---|---|---|---|
@@ -359,7 +362,7 @@ Under FedRAMP 20x the same records support Key Security Indicators. The indicato
 | `KSI-CMT-RMV` Redeploying vs Modifying | Changes go through redeploying version-controlled resources where reasonable | The repository as the only normal path; emergency changes back-ported |
 | `KSI-CMT-VTD` Validating Throughout Deployment | Testing and validation of changes during deployment is automated | Pre-merge checks; report-only stage; plan output attached to each pull request |
 
-The compliance series takes these records further, into the evidence contract and the attestation loop ([Vol VI Book 07](../b15-day2-operations/11-attestation-and-the-compliance-app.md), [Vol VII Book 04](../b15-day2-operations/11-attestation-and-the-compliance-app.md)), and its governance book carries the program's control contract for lifecycle automation and certification campaigns ([Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md)).
+The compliance series takes these records further, into the evidence contract and the attestation loop ([Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md), [Book 15, Chapter 11](../b15-day2-operations/11-attestation-and-the-compliance-app.md)), and its governance book carries the program's control contract for lifecycle automation and certification campaigns ([Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md)).
 
 ### The evidence package for a period
 

@@ -132,8 +132,6 @@ Constraints to design around:[^c08-settings]
 Once PIM points at `c1`, whoever can edit Conditional Access, the Conditional Access Administrator and Security Administrator roles, can weaken the requirement, remove it, or block eligible users from activating. Microsoft says to treat those roles as highly privileged.[^c08-settings] The program puts them in Tier 0 ([Chapter 04](04-privileged-roles-and-tiers.md#the-programs-privilege-tiers)) behind this same gate, and closes the loop with protected actions ([Step 6](#step-6-close-the-loop-with-protected-actions)).
 :::
 
-Chapter 07's library doesn't yet number this policy; it belongs in Wave 2 with the administrator policies.
-
 ### Step 3 — Configure role settings in the admin center {#step-3-configure-role-settings-in-the-admin-center}
 
 For each role in [Appendix B](appendix-b-pim-role-settings.md):
@@ -499,7 +497,7 @@ Only Global Administrators and Privileged Role Administrators can extend or rene
 | Approver group membership is reviewed | The group holds no role but is a privileged object |
 | Tier 0 approvers sit outside the Tier 0 role population, for example in the security office | Separation of duties where it matters most |
 
-[Chapter 06](06-who-decides-access.md) assigns these decision rights; the approver for a Tier 0 activation is a security function, not a peer administrator.
+[Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) assigns the decision on privileged role mapping and PIM settings to the CISO; the approver for a Tier 0 activation is a security function, not a peer administrator.
 
 ## Assessment evidence
 
