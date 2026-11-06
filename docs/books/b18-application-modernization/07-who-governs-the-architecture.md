@@ -53,9 +53,9 @@ The board is the program's change control body for the target architecture, in t
 | An exception to a standard for one application | Chief architect, with an end date | Board; CISO's representative for any control impact | Decision record with an expiry |
 | A design at Gate 2 | Chief architect or a delegated reviewer | Two board members, one from security | Decision record in the application's repository |
 | An application's disposition | Application owner, with the steward | Board for consistency with the target architecture | Triage record ([Chapter 02](02-triaging-the-portfolio.md)) |
-| The security and privacy control requirements a design must meet | CISO and senior agency official for privacy | Board | Requirement committed as policy |
+| The security and privacy control requirements a design must meet | CISO | Senior agency official for privacy (responsible with the CISO); board | Requirement committed as policy |
 | Residual risk for the system | Authorizing official alone | — | Authorization decision ([Book 14](../b14-compliance/index.md)) |
-| Contracts and licenses for a technology | CIO (FITARA approval) and sponsor | Board recommends | Acquisition record |
+| Contracts and licenses for a technology | CIO (FITARA approval) | Sponsor; board recommends | Acquisition record |
 
 The table follows the rule [Book 13, Chapter 09](../b13-governance/09-who-governs.md#the-governance-board) set for the governance board: the board reviews, it doesn't vote. Every decision has one decider. A board that decides by consensus produces decisions no one is accountable for, and slow ones.
 
@@ -94,7 +94,7 @@ Every application the triage changes passes four gates. Applications disposition
 | 1. Disposition | Once per application, and at each re-triage | A scored triage record and a disposition the owner has signed | Application owner, with the steward | PM-5 system inventory, CM-8 component inventory, SA-22 unsupported components |
 | 2. Design review | Before build for *replatform*, *refactor* and *rebuild*; for *rehost* only when the runtime changes | A decision record for each departure from a pattern; the interface contract (OpenAPI for services); a data classification; a threat model; the privacy check that decides whether a PIA is needed; for a user-facing change, the accessibility review of the design | Chief architect or delegate | PL-8, SA-3, SA-8, SA-17 where High, CM-4 |
 | 3. Pull request and CI | Every change | Required review by someone other than the author; passing unit, contract and integration tests; static analysis and dependency scans; automated accessibility rules for user-facing changes; an SBOM | Code owner for the component | CM-3, SA-10, SA-11, SA-15 |
-| 4. Release | Every production deployment | A signed build with provenance; a recorded impact analysis; a change record that links the pull requests it contains; for a user-facing change, the manual accessibility test results or a signed exception ([Chapter 06](06-compliance-by-design.md#section-508-gate)) | Release owner; change control body for significant changes | CM-3, CM-4, SR-4 provenance |
+| 4. Release | Every production deployment | A signed build with provenance; a recorded impact analysis; a change record that links the pull requests it contains; for a data cut-over, the validation report with its three results and a rehearsed rollback ([Chapter 04](04-moving-the-data.md#cutting-over)); for a user-facing change, the manual accessibility test results or a signed exception ([Chapter 06](06-compliance-by-design.md#section-508-gate)) | Release owner; change control body for significant changes | CM-3, CM-4, SR-4 provenance |
 
 Two of the gates are meetings and two are automation, and that ratio is deliberate. Gates 1 and 2 happen once per application, or once per significant change, and need human judgment. Gates 3 and 4 happen many times a day and can be enforced by the repository and the pipeline. A program that runs Gate 3 as a meeting will either stall or stop running it.
 
@@ -131,6 +131,7 @@ Each gate's output is already evidence; the work is keeping it where an assessor
 | Test, scan and SBOM outputs | Gate 3 | Pipeline artifact store, retained per the records schedule | SA-11, SA-15, SSDF PO.3.3 and PS.3.2 |
 | Signed build and provenance | Gate 4 | Artifact registry | SR-4, SA-10 |
 | Change record | Gate 4 | Change system, linked to the pull requests | CM-3, CM-4 |
+| Data validation report (three results) and rehearsed rollback | Gate 4, for a data cut-over | Application repository, linked from the change record | CM-3, CM-4 |
 | Accessibility test report, conformance report and any exception record | Gates 2 to 4 | Application repository | Section 508 and the Revised 508 Standards; M-24-08's documented testing |
 
 This is the same principle [Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md#no-closure-counts-unless-it-carries-its-proof) states for the program's own changes: no closure counts unless it carries its proof. For an application, the release that can't show its pull requests, tests and provenance didn't pass Gate 4, whatever the deployment log says. How the evidence reaches the authorization package is [Book 14](../b14-compliance/index.md)'s subject.
@@ -155,7 +156,7 @@ R = responsible (does the work), A = accountable (owns the outcome), C = consult
 | Approve IT contracts and licenses | A | C | C | C | I | I | C | I | I | I |
 | Keep gate evidence in the record | I | C | I | C | R | R | C | I | I | A |
 
-Read it with [Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what), which sets the program-wide decision rights; where the two differ, Book 00 governs and this table is wrong. Two rows deserve emphasis. The authorizing official is accountable for deciding whether a change is significant, because that decision can reopen the authorization; the board and the CISO only advise. And the CIO, not the board, approves what the agency buys.
+Read it with [Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what), which sets the program-wide decision rights; where the two differ, Book 00 governs and this table is wrong. Two rows deserve emphasis. The authorizing official is accountable for deciding whether a change is significant, because that decision can reopen the authorization; the CISO only advises, and the board is informed. And the CIO, not the board, approves what the agency buys.
 
 ## Where governance goes wrong
 

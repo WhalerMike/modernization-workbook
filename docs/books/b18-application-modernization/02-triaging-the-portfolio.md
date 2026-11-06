@@ -86,7 +86,7 @@ A few notes on using them.
 
 ## Recording dependencies as an evidence map
 
-Dependencies are the criterion a scoring sheet handles worst. A score of 4 says an application is well connected; it doesn't say to what, on whose evidence, or which of those connections a move would break. The program's design is to record dependencies as an evidence map, a list of typed entities joined by typed, directed relationships, each relationship carrying its source. The dependency score is then computed from the map rather than estimated by the owner.
+Dependencies are the criterion a scoring sheet handles worst. A single score doesn't say what an application is connected to, on whose evidence, or which of those connections a move would break. The program's design is to record dependencies as an evidence map, a list of typed entities joined by typed, directed relationships, each relationship carrying its source. The dependency score is then computed from the map rather than estimated by the owner.
 
 ### What goes on the map
 
@@ -127,7 +127,7 @@ The observed basis comes from the sources in the criteria table: network flows, 
 
 ### How the map feeds triage
 
-- **The dependency score is computed.** It weighs incoming and outgoing relationships, the number of outside exchanges and the share of links that are only assumed. The confidence flag for the criterion is the weakest flag among the links that drive the score.
+- **The dependency score is computed.** It weighs incoming and outgoing relationships, the number of outside exchanges and the share of links that are only assumed. As on every criterion, 5 is the best outcome, so many links, many outside exchanges or many assumed links pull the score down. The confidence flag for the criterion is the weakest flag among the links that drive the score.
 - **High-stakes cases are visible.** A master record with many outside exchanges, or a high-impact system with open questions, is a case for deep study under rule 7.
 - **Sequencing has its input.** [Chapter 10](10-running-the-portfolio-in-waves.md) builds waves from the map: dependents move before or with what they depend on, and a master record moves last, or behind a stable interface, as [Chapter 03](03-the-target-reference-architecture.md) describes.
 - **The map is the authoritative record of dependencies.** Diagrams, spreadsheets and wave plans are derived from it, not maintained beside it. [Book 13, Chapter 03](../b13-governance/03-one-authoritative-record.md) explains why.
@@ -138,12 +138,12 @@ The program's design is a two-axis score, a set of decision rules and an overrid
 
 ### Step 1: score two axes
 
-Each criterion is scored from 1 to 5. The six combine into two axes:
+Each criterion is scored from 1 to 5, with 5 the best outcome on every criterion. Five of the six combine into two axes; the dependency score doesn't enter either axis and is used for sequencing:
 
 | Axis | Criteria | How it reads |
 |---|---|---|
 | **Mission value** | Mission criticality, cost of the function if lost, and the number and kind of users | High: the agency needs this function, in this form or another |
-| **Technical health** | Technical condition, skills, data sensitivity (as migration difficulty) and dependencies | High: the application can be run and changed safely as it is |
+| **Technical health** | Technical condition, skills and data sensitivity (as migration difficulty) | High: the application can be run and changed safely as it is |
 
 Weights are the agency's choice; the program's starting point is equal weights within each axis, adjusted after the pilot calibration below. Each score also carries a confidence flag: *measured* (from system data), *attested* (from the owner) or *assumed* (no data). An application with mostly assumed scores can't get a final disposition; it goes to owner review first.
 
@@ -151,11 +151,11 @@ Weights are the agency's choice; the program's starting point is equal weights w
 
 ### Step 2: apply the decision table
 
-The decision table turns scores into a proposed disposition. The rules are applied in order, and the first match wins.
+The decision table turns scores into a proposed disposition. Rules 1 to 6 are applied in order, and the first match wins. Rule 7 is an override: it is checked afterward, against the disposition rules 1 to 6 proposed.
 
 | # | Condition | Proposed disposition | Why |
 |---|---|---|---|
-| 1 | Mission value low (≤ 2), or a commercial or shared service already provides the function | Retire | Cheapest outcome; A-130 prefers existing alternatives to custom development |
+| 1 | Mission value low (≤ 2) and technical health not high (< 4), or a commercial or shared service already provides the function | Retire | Cheapest outcome; A-130 prefers existing alternatives to custom development. Low value with high health falls to rule 2: retain, with a review date at which retirement is reconsidered |
 | 2 | Technical health high (≥ 4) and no platform exit is forcing a move | Retain, with a review date | Don't spend money on an application that works and is supported |
 | 3 | Technical health high, but the hosting platform is being exited | Rehost | The application is sound; only its location changes |
 | 4 | Code sound (condition and skills ≥ 3), but the platform, runtime or database is unsupported or costly | Replatform | Fix what is broken, keep what works |
