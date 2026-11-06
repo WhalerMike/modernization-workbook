@@ -80,7 +80,7 @@ tasks:
   - {id: I1.6, phase: 1, name: "PIV issuing CAs' CRLs checked against Entra's limits", dur: 3, after: [IG0], owner: "PIV credentialing office",
      source: "../books/b03-hr-identity/09-credentials-and-certificates.md"}
   - {id: IG1, kind: gate, phase: 1, name: "Gate 1 — Authority and schema signed", after: [I1.3, I1.4, I1.5, I1.6], owner: "ISSO",
-     criteria: "Identifier decision, authority map and schema signed; correlation meets the approved threshold on the pilot cohort; every enabled account correlated or on a dated exception list",
+     criteria: "Identifier decision, authority map and schema signed; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list",
      source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
   # ------------------------------------------------- Phase 2 — build and test
   - {id: I2.1, phase: 2, name: "Workforce identity service (middleware) built in-boundary", dur: 6, after: [I1.3], owner: "Identity engineering",

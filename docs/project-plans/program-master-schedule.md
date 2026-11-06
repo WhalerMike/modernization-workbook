@@ -41,7 +41,7 @@ This is the program's top-level schedule: every phase, every gate and the decisi
 
 ## Critical path
 
-The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. The provisional target end state (D11) is decided with the assessment's results, so it sits on the path at G0: it needs the sponsor and CIO in the room in week 4. Conditional Access, DNS, PKI and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
+The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces, with one departure: here the Cloud PKI certificate issuance and the Wi-Fi and VPN checks (P2.7) sit on the path, because the drift-clean hold that closes the pilot waits for them, while Book 00 runs Cloud PKI in parallel. The path runs: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. The provisional target end state (D11) is decided with the assessment's results, so it sits on the path at G0: it needs the sponsor and CIO in the room in week 4. Conditional Access, DNS and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
 
 The critical path, in order. Each item has zero total float: a day lost on any of them is a day lost at the finish.
 
@@ -332,14 +332,14 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 - One pilot division, then four waves of about a quarter of the estate each ([Book 00, Chapter 09](../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values)).
 - Durations are illustrative and sized to the roadmap's weeks; replace them with the agency's own estimates from the Phase 0 assessment.
 - The schedule assumes Phase 0 is approved without waiting for a vendor decision ([Start Here](../start-here.md)).
-- The HR-to-cloud feed for the foundation scope comes from the [Identity Lifecycle plan](identity-lifecycle.md); its privacy basis is that plan's longest task.
+- The HR-to-cloud feed for the foundation scope comes from the [Identity Lifecycle plan](identity-lifecycle.md); its privacy basis is the longest task before go-live in that plan.
 - The source of authority for contractors is decided in the Identity Lifecycle plan (D-I3), which onboards contractor populations as their divisions move.
 
 ## Schedule risks
 
 | Risk | Effect on the schedule | Response |
 |---|---|---|
-| The assessment finds more than the plan assumed | Every gate moves; the assessment is on the critical path | Run the read-only assessment in week 1; size Phase 1 from what it finds, and re-baseline at G0 |
+| The assessment finds more than the plan assumed | Every gate moves; the assessment is on the critical path | Start the read-only assessment as soon as the platform host (P0.2) is built, weeks 3 to 4; size Phase 1 from what it finds, and re-baseline at G0 |
 | Report-only Conditional Access shows unexpected impact | Uses the CA track's float; G1 slips only if more than the float is used | Start report-only in week 5, not week 7; read the sign-in logs weekly |
 | The privacy basis for the HR feed isn't ready | G1's HR-feed criterion fails | Start the PIA update and the SORN routine-use check in Phase 0 (Identity Lifecycle plan) |
 | Applications can't leave AD-bound service principal names on time | G4 slips week for week | Set the legacy-authentication end date early (D08) so application owners plan against it |
