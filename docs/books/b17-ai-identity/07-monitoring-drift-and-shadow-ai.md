@@ -119,7 +119,7 @@ Every tool above is in a different place, and several are absent from the higher
 | Defender for Endpoint local AI agent discovery | macOS in preview; no preview label for Windows[^c07-mde-local] | Agent 365's "sync shadow AI endpoint agents" and "block unsanctioned local endpoint agents" listed as not available in GCC[^c07-a365] | Not stated; confirm |
 | Defender CSPM AI security posture management | Generally available | Azure commercial | Generally available in Azure Government[^c07-mdc-ai] |
 
-Microsoft states that as of October 1, 2026, Agent 365 "meets all FedRAMP High controls reviewed by Microsoft's independent third-party assessor" and that final authorization "is pending."[^c07-a365] Until a certification appears on the FedRAMP Marketplace, an agency treating Agent 365 as in its boundary is relying on a pending decision, which [Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md) explains how to record.
+Microsoft states that as of October 1, 2026, Agent 365 "meets all FedRAMP High controls reviewed by Microsoft's independent third-party assessor" and that final authorization "is pending."[^c07-a365] Until a certification appears on the FedRAMP Marketplace, an agency treating Agent 365 as in its boundary is relying on a pending decision. The agency still authorizes its own system, as [Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md) explains.
 
 ## Drift: comparing what was declared with what is observed
 
