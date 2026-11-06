@@ -48,6 +48,14 @@ class Check(unittest.TestCase):
             page.write_text(text, encoding="utf-8")
             return cf.check(page, books)
 
+    def test_rmf_scores_follow_the_map(self):
+        text = chr(10).join([
+            "| A-6 POA&M | x | [b](../books/b14-c/a.md) | e | Covered |",
+            "| I-1 Build | x | [b](../books/b04-a/a.md) | e | Covered |",
+            "| P-2 Strategy | x | [b](../books/b00-o/a.md) | e | Partial by design |",
+        ])
+        self.assertEqual(cf.rmf_scores(text, [0, 1, 4, 14]), [1, 0, 2, 3])
+
     def test_clean_page_passes(self):
         self.assertEqual(self.run_check(PAGE), [])
 
