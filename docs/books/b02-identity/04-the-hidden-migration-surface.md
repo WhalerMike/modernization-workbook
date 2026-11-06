@@ -247,7 +247,7 @@ Retirement criteria (all must be true):
 - Every user is provisioned from the authoritative source for its population, not from AD sync: employees from HR, contractors and vendors from the source the agency designates for them ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#contractors-and-vendors-the-population-hrit-doesnt-cover)), and guests through invitation and entitlement management ([Chapter 10](10-migrating-and-governing.md)).
 - Every group is dynamic or managed in Entra ID.
 - No application uses on-premises AD authentication.
-- Every device is managed by Intune with no AD dependency.
+- Every end-user device is managed by Intune and every server is under Azure Arc, with no AD dependency for either.
 - Every service account has moved to an Entra ID workload identity.
 - Certificate issuance has moved to Book 07's target issuers, with AD CS retained where Book 07 keeps it; DNS, RADIUS, and LDAP applications are migrated and validated.
 
@@ -335,7 +335,7 @@ After all adapters have moved, the program's validation checklist (DM_090) is th
 | RADIUS | Every RADIUS client points at the new service; 30-day parallel window closed with no failures |
 | LDAP | Every application in the dependency map validated against its target; no bind traffic to domain controllers |
 | Sync engine | All six retirement criteria true |
-| Devices | Every workload on Intune; no GPO setting left without a decision |
+| Devices | Every end-user device on Intune and every server under Azure Arc; no GPO setting left without a decision |
 | Time | Every device and server has an explicit, policy-set time source |
 | File services | No domain-based namespace path in use |
 
