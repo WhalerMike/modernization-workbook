@@ -188,7 +188,7 @@ N5.3 asks for block events alerted to security operations. `New-NpiWcaAlertRule`
 
 ### The tests
 
-This chapter's tests are the 48 in `tests/NpiWorkloadCa.Tests.ps1`: 9 on Learn's sample and page as published, then the call list, the clouds and hosts, each rule on the files and on a file changed in memory, the tenant check, the plan, the dry run and the applies against the fake, the refusals, enforcement ring by ring, the sign-in reader and its summary, the alert, and the entry script's manifest and exit code. With Chapters 01 and 02, 145 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 48 in `tests/NpiWorkloadCa.Tests.ps1`: 9 on Learn's sample and page as published, then the call list, the clouds and hosts, each rule on the files and on a file changed in memory, the tenant check, the plan, the dry run and the applies against the fake, the refusals, enforcement ring by ring, the sign-in reader and its summary, the alert, and the entry script's manifest and exit code. They pass under PowerShell 7 with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code

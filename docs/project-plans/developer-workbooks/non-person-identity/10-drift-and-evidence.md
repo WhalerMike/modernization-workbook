@@ -53,7 +53,7 @@ Learn gives the facts the design turns on. Its security operations guide for app
 
 So the run has the same three parts as the first two workbooks' evidence runs. Chapters 01 and 02 describe the *state*: what exists, who owns it, what it holds. The audit read describes the *events* in a window: who added a credential or a grant, and whether the pipeline did. A comparison with the approved baseline turns the state into drift, and a chain of windows with no gap between them is what "drift checks running" means in code. *Design guidance.*
 
-Chapters 03 to 09 are written alongside this one, and their outputs aren't fixed. This chapter reads Chapter 01's and Chapter 02's run folders directly, and defines a small contract the others can write to: a findings file with `id`, `rule`, `severity`, `chapter`, `objectKey` and `fingerprint`, review records, and the rotation pipeline's credential log ([the contract](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/docs/ch10-contract.md)). Until a chapter writes its file, the run says so, and the period marks the controls that depend on it as incomplete.
+Chapters 03 to 09 are written, and their outputs are fixed in each chapter. This chapter reads Chapter 01's and Chapter 02's run folders directly, and defines a small contract that the other chapters' outputs can be written to: a findings file with `id`, `rule`, `severity`, `chapter`, `objectKey` and `fingerprint`, review records, and the rotation pipeline's credential log ([the contract](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/docs/ch10-contract.md)). No chapter's kit writes these files yet: the files in the repository are fixtures, and only `powershell/NpiDrift/NpiDrift.psm1` reads them. Until a chapter writes its file, the run says so, and the period marks the controls that depend on it as incomplete.
 
 ### Which cloud, for this read
 
@@ -133,13 +133,13 @@ With Chapter 01's `inventory` and Chapter 02's `ownership` tasks, the run needs 
 | NPI-DRF-08 | Finding when tenant-wide or a high-privilege Graph permission; Warn otherwise | A new consent grant or application permission, from the baseline and the audit events | Learn: grants of highly privileged permissions, high[^np10-secops] |
 | NPI-DRF-09 | Warn or Info | An evidence gap: a contract file refused, a chapter that sent nothing, the sign-in report unavailable in the cloud, the ownership check failed | *Design guidance* |
 
-Every finding has the stable ID Chapters 01 and 02 use, `<rule>:<objectKey>`, and a fingerprint: the first 16 hex characters of SHA-256 over `<rule>|<objectKey>|`, the first workbook's `fingerprint()` with an empty issue, so the fingerprint stays the same however the issue text changes. Chapters 03 to 09 compute it the same way, and `npi_evidence.py` checks every one.
+Every finding has the stable ID Chapters 01 and 02 use, `<rule>:<objectKey>`, and a fingerprint: the first 16 hex characters of SHA-256 over `<rule>|<objectKey>|`, the first workbook's `fingerprint()` with an empty issue, so the fingerprint stays the same however the issue text changes. The contract asks Chapters 03 to 09 to compute it the same way, and `npi_evidence.py` checks every one it is given.
 
 **Inside the pipeline.** A credential counts as the pipeline's only when two independent records agree: the event's initiator is a service principal in the reviewed `pipeline-identities.csv`, and the target and key ID are in the credential log Chapter 04's rotation pipeline writes. The pipeline's identity adding a key it didn't log, or a person adding a key the log lists, is still NPI-DRF-07 (research gaps, row 96). *Design guidance.*
 
 ### The review cycle
 
-N7.2 is the identity governance officer's. Chapters 07 and 09 build the reviews; this chapter reads only their records, through the contract's `fmp-npi-review/1` files, and writes `review-cycle.json`: for each app registration, legacy service principal, agent identity and blueprint, the last owners' permission review, the last sponsor attestation, and the agent's access assignments with their next expiry.
+N7.2 is the identity governance officer's. Chapters 07 and 09 build the reviews; this chapter reads only their records, through the contract's `fmp-npi-review/1` files (no kit module writes them yet, and Chapter 09 has no sponsor attestation or recertification step, so those records are fixtures until one does), and writes `review-cycle.json`: for each app registration, legacy service principal, agent identity and blueprint, the last owners' permission review, the last sponsor attestation, and the agent's access assignments with their next expiry.
 
 | Rule | Severity | What it flags | Source |
 |---|---|---|---|
@@ -197,7 +197,7 @@ For each control the period gives the open Findings and Warns at the period's en
 
 ### The tests
 
-Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside Chapters 01 and 02's tests, unchanged: 148 in `examples/non-person-identity`. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the other workbooks' tests, 142 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
+Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside the other chapters' tests, unchanged. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the other workbooks' tests, 142 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -757,10 +757,10 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] The reader app holds exactly the four Graph permissions and Reader, with a certificate or a federated credential, never a secret.
 - [ ] The baseline in use was approved by someone other than the person who runs the pipeline, and its SHA-256 is in the run's `run.json`.
 - [ ] Each audit window starts where the last one ended, and the newest package is from today.
-- [ ] `pipeline-identities.csv` is reviewed, and Chapter 04's pipeline writes the credential log.
+- [ ] `pipeline-identities.csv` is reviewed, and a credential log is present: no kit module writes Chapter 04's yet, so until one does, this item can't be met on a live run.
 - [ ] Lab 2 recorded the activity names, the service principal credential event and the sign-in report, and the code matches what it found.
 - [ ] Every NPI-DRF-07 has an owner's explanation or an incident record.
-- [ ] The review records from Chapters 07 and 09 arrive every run, and NPI-REV-04 is zero.
+- [ ] The review records from Chapters 07 and 09 arrive every run, and NPI-REV-04 is zero. Until a chapter writes them, NPI-REV-04 stays open on a live run and the period stays incomplete.
 - [ ] Each package verifies with `sha256sum -c SHA256SUMS`, and the period shows no chain break and no coverage gap.
 - [ ] The evidence container has a locked time-based retention policy in production.
 - [ ] The vintage comparison ran on the latest AI use-case inventory vintage, and its findings went to their owners.

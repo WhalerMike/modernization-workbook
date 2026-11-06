@@ -46,7 +46,7 @@ Owners are the most misunderstood control on an application: an owner can add a 
 
 The program's rule, from the plan and Book 02, is stricter *(Design guidance)*:
 
-- **Two human owners** on every app registration and service principal, "never service accounts" ([Book 02, Chapter 09](../../../books/b02-identity/09-building-the-entra-target.md#governing-service-principals)), and, in the plan's ownership task, "not service principals or guests." The code counts an owner only if it is a user, a member and enabled.
+- **Two human owners** on every app registration and service principal, "never service accounts" ([Book 02, Chapter 09](../../../books/b02-identity/09-building-the-entra-target.md#governing-service-principals)), and no guests *(Design guidance)*. The code counts an owner only if it is a user, a member and enabled.
 - **A service-management reference** that names a record in the system inventory, the plan's source of record (D-N1), not free text.
 - **An application owner for every Active Directory account**, found "before the account is touched" ([Book 02, Chapter 10](../../../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)). Active Directory has no owners attribute the code can trust, so the owner comes from an owners file kept with the record.
 
@@ -112,7 +112,7 @@ This chapter's code is `powershell/NpiOwnership/NpiOwnership.psm1`, two entry sc
 | NPI-OWN-01 | Finding | An app registration or legacy service principal with no valid human owner: an orphan candidate | Book 02; Learn: at least two owners[^np02-ownership] |
 | NPI-OWN-02 | Finding | One valid human owner | Book 02, Chapter 09 |
 | NPI-OWN-03 | Warn | An owner that is a service principal | Book 02: "never service accounts" |
-| NPI-OWN-04 | Warn | An owner that is a guest | Project plan, N1.1 (*Design guidance*; research gaps, row 16) |
+| NPI-OWN-04 | Warn | An owner that is a guest | *Design guidance* (research gaps, row 16) |
 | NPI-OWN-05 | Warn | An owner whose account is disabled or not found | *Design guidance* |
 | NPI-OWN-06 | Finding | No service-management reference | Learn;[^np02-ownership] project plan, N1.1 |
 | NPI-OWN-07 | Finding | A reference that isn't a record key, names no record, or names a retired one | D-N1 (*Design guidance*) |
@@ -145,7 +145,7 @@ The plan is written as `orphan-plan.json` with the register's SHA-256, the tenan
 
 ### The separate write path
 
-`Invoke-NpiOrphanAction.ps1` is the only code in the example that can write, and it writes only through `New-NpiWriter`, whose calls are the `orphan-apply` task's. It refuses to run unless:
+`Invoke-NpiOrphanAction.ps1` is the only code in this chapter that can write, and it writes only through `New-NpiWriter`, whose calls are the `orphan-apply` task's. It refuses to run unless:
 
 - the plan file's SHA-256 is the one passed as `-ApprovedSha256`;
 - the plan is for this tenant and this cloud, and no more than seven days old (*Design guidance*);
@@ -501,7 +501,7 @@ Remove-Item -Recurse -Force out/ownership-test, out/orphan-test, out/orphan-test
    Enable-ADAccount -Identity <test-account>
    ```
 
-   Delete the test account in the test domain and the test app's registration in the admin center (**Entra ID** > **App registrations**, open it, **Delete**), then the `out` folders:
+   Delete the test account in the test domain and the test app's registration in the admin center (**Entra ID** > **App registrations**, open it, **Delete**). Keep `out/ownership-test` until Chapters 03 and 09's labs are done, because they read it, or rebuild it for each. Then remove the `out` folders:
 
    ```powershell
    Remove-Item -Recurse -Force out/ownership-test, out/orphan-test, out/orphan-test-apply
