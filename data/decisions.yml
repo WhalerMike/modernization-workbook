@@ -1693,3 +1693,99 @@
   pages: [presentations/_build/README.md]
   prs: []
   status: settled
+
+- id: WD-132
+  date: 2026-11-06
+  question: Where does the External Partner Person class live in the workbook?
+  options: ["A stand-alone appendix book", "Light edits to existing pages only", "A new Book 03 chapter and a Book 04 appendix with the Microsoft Entra profile"]
+  choice: "A new Book 03 chapter 15 holds the class, the authority split, the standard, the record and the gates. A new Book 04 appendix C holds the Microsoft Entra partner access profile. A short Book 03 appendix holds the partner record template. Other books get light edits and pointers, not new files."
+  rationale: "It keeps the authoritative-source argument in the book that makes it. The workbook already handles partners as B2B guests across six chapters, so most of the proposal folds into existing pages."
+  basis: workbook-design
+  sources: []
+  pages: [InBox/Public_GitHub_Proposal_External_Partner_Identity_Class_for_the_Federal_Modernization_Workbook.docx, docs/books/b03-hr-identity/index.md, docs/books/b04-access/index.md]
+  prs: []
+  status: settled
+
+- id: WD-133
+  date: 2026-11-06
+  question: What does the workbook call the new class, and how does it relate to worker type and persona?
+  options: ["Use class, worker type and persona as three separate words", "Make the class the parent, with worker type and persona as views of it"]
+  choice: "External Partner Person is the class. Class is the parent term. Worker type stays the HR attribute, and the Externals persona becomes a view of the class and is renamed to match."
+  rationale: "The workbook sorts people by worker type and by persona today. Without one rule, three overlapping words drift apart across the books."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md, docs/books/b04-access/index.md]
+  prs: []
+  status: settled
+
+- id: WD-134
+  date: 2026-11-06
+  question: Which Entra user type do external partner persons receive?
+  options: ["Member by default", "Guest by default, with Member by exception"]
+  choice: "Partner persons stay Guest by default. Member requires an exception record."
+  rationale: "The workbook's internal baselines and its compliant-device policy scope Members and exclude guests. A partner synced as Member would fall into internal baselines by accident."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b04-access/index.md]
+  prs: []
+  status: settled
+
+- id: WD-135
+  date: 2026-11-06
+  question: Does the vendor-neutral standard or the Entra profile lead?
+  options: ["The neutral standard first and long", "A short neutral standard in one chapter, with the Entra profile as the practical page"]
+  choice: "The neutral standard stays short and sits in one chapter. The Entra profile is the main practical page."
+  rationale: "The workbook is Microsoft-first and cites Microsoft Learn. A long neutral standard would reverse that emphasis."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md, docs/books/b04-access/index.md]
+  prs: []
+  status: settled
+
+- id: WD-136
+  date: 2026-11-06
+  question: How much of the External Partner Person material ships in the first edition that carries it?
+  options: ["Text, decks, videos and a kit example together", "Text and the partner record first, with decks, videos and the kit example in the next regeneration"]
+  choice: "The first edition carries the text and the record. Decks, videos and the kit example follow in the next regeneration."
+  rationale: "Decks and videos are the costly tail of the work, and the text can be reviewed on its own."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md]
+  prs: []
+  status: settled
+
+- id: WD-137
+  date: 2026-11-06
+  question: Does the workbook teach assurance selection for partner persons, or only cite it?
+  options: ["Cite NIST SP 800-63 and stop", "Teach identity, authenticator and federation assurance selection briefly in the new chapter"]
+  choice: "The new Book 03 chapter teaches assurance selection by transaction risk, briefly, with its sources."
+  rationale: "Only Book 07 mentions federation assurance today, and no chapter teaches how to choose a level. The proposal depends on it."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md]
+  prs: []
+  status: settled
+
+- id: WD-138
+  date: 2026-11-06
+  question: In what order are the 1,625 consistency findings fixed, given the partner additions?
+  options: ["Fix everything first", "Hold everything until the additions land", "Fix findings on untouched and lightly touched pages first, and hold the 16 on pages the additions rewrite"]
+  choice: "Findings on pages the additions leave alone, or touch lightly, are fixed first. The 16 findings on Book 02 chapter 10 and the Book 03 and Book 13 indexes wait and are fixed together with the additions."
+  rationale: "Fixes on pages the additions do not rewrite are not wasted. Fixing the held pages first would spend effort on text that is about to change."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b02-identity/10-migrating-and-governing.md, docs/books/b03-hr-identity/index.md, docs/books/b13-governance/index.md]
+  prs: []
+  status: settled
+
+- id: WD-139
+  date: 2026-11-06
+  question: When are the sources behind the new partner chapter checked?
+  options: ["After the chapter is drafted", "Before any chapter text is written"]
+  choice: "About twelve primary sources are checked before any text for the new chapter is written, and the result goes in a verification note."
+  rationale: "A source check can overturn a claim in the proposal, and finding that after drafting means rework."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/index.md]
+  prs: []
+  status: settled
