@@ -67,7 +67,7 @@ Each class of change takes one of five lanes. The lane decides who approves, wha
 | Machine, gated | A named approver who isn't the requester or the plan's author, per instance, ring or approved batch | The execution layer after a dry run, under a service identity | The above, plus the approval, the dry run and the activation | L3, the default ceiling |
 | Human decision | The role that owns the decision | Whatever the decision authorizes, usually the gated lane | The decision record, then the gated-lane evidence | L2 until decided |
 | Protocol-enforced | The policy encoded in the protocol and in DNS | The issuing protocol, with no ticket per event | Issuance logs, inventory, policy records | Not a ticket lane |
-| Declared exception | The system owner, with a named compensating control and an end date | A person, through a time-boxed, proxied and recorded privileged session | The approval first, then the session recording | Temporary; tracked to closure |
+| Declared exception | The system owner writes it up with a named compensating control and an end date; the CISO approves a dated exception, and the authorizing official accepts an open-ended one | A person, through a time-boxed, proxied and recorded privileged session | The approval first, then the session recording | Temporary; tracked to closure |
 
 The classes below are the program's starting assignment. An agency tunes them in its own authoritative record; a class moves only by a reviewed change to that record.
 
@@ -75,7 +75,7 @@ The classes below are the program's starting assignment. An agency tunes them in
 |---|---|---|---|---|
 | Configuration drift with a deterministic fix, low or medium severity | A tenant setting reverted by hand away from the secure baseline | Machine, gated; autonomous only where the class is enumerated at L4 | Per instance at L3; the class in advance at L4 | The baseline version the fix restored |
 | Configuration drift with a deterministic fix, high severity | A storage account opened to public network access | Machine, gated, inside a 1-hour window; a person decides the fix if it isn't deterministic | Named approver per instance, unless the class is enumerated at L4 | Exposure window, from first detection to re-read |
-| Critical drift, or any drift in authorization or provenance | A change with no provenance event; a policy that contradicts a principal's recorded assurance level | Halt and alert, then human decision | By the escalation path in the finding's contract: the steward for a finding about the record, the workstream lead for a finding on a platform, the CISO for one that bears on a control requirement or on evidence | Investigation notes linked to the finding |
+| Critical drift, or authorization, provenance or identity drift on a claim in active use | A change with no provenance event; a policy that contradicts a principal's recorded assurance level | Halt and alert, then human decision | By the escalation path in the finding's contract: the steward for a finding about the record, the workstream lead for a finding on a platform, the CISO for one that bears on a control requirement or on evidence | Investigation notes linked to the finding |
 | Vulnerability remediation and patching | A missing security update on a server fleet | Machine, gated by maintenance window | Change approval for the window or batch | Scan before and after; time against the response window |
 | Access request inside policy | A user requests a role an approver can grant | Machine, gated through the five clauses | The approver named for that role | The just-in-time activation and its expiry |
 | Over-privilege or idle entitlement finding | An identity holding an entitlement unused for 90 days | Human decision by the entitlement owner, then gated removal | Entitlement owner | The owner's decision and the re-read of the binding |
@@ -83,7 +83,7 @@ The classes below are the program's starting assignment. An agency tunes them in
 | Change to the authoritative record itself | A new baseline, a rule threshold, a change to which source is authoritative | Human decision | Reviewed pull request; steward and sponsor for architecture or authoritative-origin rules | The merged change and its review |
 | Routine certificate issuance and renewal within policy | A web server's certificate renewed automatically | Protocol-enforced | None per event | Issuance and inventory records |
 | Certificate anomaly | A new issuing CA, a non-standard lifetime, a trust anchor change, an unknown-issuer certificate found in inventory, a blocked issuance attempt against a CAA record | Human decision, then gated | PKI owner | The anomaly finding and its disposition |
-| No machine actuator exists yet | An appliance with no supported interface | Declared exception | System owner, with compensating control and end date | Session recording; the exception's POA&M item |
+| No machine actuator exists yet | An appliance with no supported interface | Declared exception | System owner writes it up with compensating control and end date; CISO approves a dated exception, authorizing official an open-ended one | Session recording; the exception's POA&M item |
 | Emergency change | Containment during an incident | Act first under incident procedures, then record | Incident commander; retrospective review | Retroactive task and assessment |
 
 Two rules hold across the table. A machine never changes the authoritative record to make drift disappear: authority to change the record belongs to its review process, not to an adapter's fix path. And no class routes a gap through a person at a console without saying so: where no machine can reach the surface, the exception is declared, approved first and recorded.
@@ -180,7 +180,7 @@ Had the requester tried to approve their own request, clause 2 would have refuse
 ### Example 4: no actuator yet
 
 1. A drift finding names a legacy network appliance whose only management surface is an interactive console. No machine actuator exists.
-2. The system owner approves a declared exception: a named engineer, a two-hour window, access through the privileged access proxy with session recording, and a compensating control of daily configuration export and comparison. The exception carries an end date and a POA&M item for building an actuator or retiring the appliance.
+2. The system owner writes up a declared exception and the CISO approves it: a named engineer, a two-hour window, access through the privileged access proxy with session recording, and a compensating control of daily configuration export and comparison. The exception carries an end date and a POA&M item for building an actuator or retiring the appliance.
 3. The engineer makes the change inside the recorded session. The platform re-reads the appliance's exported configuration and closes the task with the recording attached.
 
 The exception is visible, approved before the work, and temporary. A silent console session for the same change would have produced none of that.
