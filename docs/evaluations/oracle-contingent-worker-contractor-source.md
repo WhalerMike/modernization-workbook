@@ -357,7 +357,7 @@ To move this page to **Proved**:
 
 Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
-Related: [Book 03 — HR-Driven Identity](../books/b03-hr-identity/index.md), the implementation guide [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../books/guides/hcm-entra-implementation.md), the [Attribute-Driven Migration companion guide](../books/guides/attribute-driven-migration.md), and [Integrating ServiceNow and SailPoint](../books/guides/snow-sailpoint-integration-kit.md), which treats contractors as a separate SailPoint source.
+Related: [Book 03 — HR-Driven Identity](../books/b03-hr-identity/index.md), the implementation guide [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../books/guides/hcm-entra-implementation.md), the [Attribute-Driven Migration companion guide](../books/guides/attribute-driven-migration.md), and [Integrating ServiceNow and SailPoint](../books/guides/snow-sailpoint-integration-kit.md).
 
 [^cw-ora-wr]: Oracle, *Oracle Fusion Cloud HCM: Using Global Human Resources*, "Work Relationships" (worker types employee, contingent worker, nonworker, pending worker and offer, with definitions; one primary work relationship), <https://docs.oracle.com/en/cloud/saas/human-resources/fawhr/work-relationships.html>, accessed October 29, 2026.
 [^cw-ora-wt]: Oracle, *Oracle Fusion Cloud HCM: Using Global Human Resources*, "Worker Types" (multiple work relationships of multiple types at once; the primary relationship's worker type applies where one is needed), <https://docs.oracle.com/en/cloud/saas/human-resources/fawhr/worker-types.html>, accessed October 29, 2026.

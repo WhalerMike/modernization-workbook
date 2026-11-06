@@ -172,7 +172,7 @@ Four reasons:
 
 Switching would spend the requirements, design and cost work already done to escape a risk that Book 09 already tells the agency how to manage.
 
-The record on Cisco is serious, though, and the choice holds only with these conditions. Each one becomes a Phase 0 exit criterion in [Chapter 11](../books/b09-network/11-field-office-wan-transformation.md):
+The record on Cisco is serious, though, and the choice holds only with these conditions. Each one is proposed as an addition to the Phase 0 exit criteria in [Chapter 11](../books/b09-network/11-field-office-wan-transformation.md), which doesn't list them yet:
 
 1. **Run the emergency-directive posture permanently.** Put a firewall in front of the manager, validator and controller with an allow-list of known edge and controller addresses. Isolate the management interface on an administrative network. Keep every control-plane and edge log off the device, in the agency's log platform and in CLAW. Alert on unexpected controller peering and on every successful administrator sign-in. Keep a tested runbook for rebuilding the control plane from patched images. CISA's supplemental direction lists these controls.[^ed-supp] Book 09's test applies: the agency can run the directive's sequence within a day ([Chapter 08](../books/b09-network/08-reference-architecture.md), Decision 4).
 2. **Hold a three-day patch lane for the control plane.** Nine exploited controller flaws in nine months means emergency upgrades inside BOD 26-04's shortest window are routine, not exceptional (inference). Keep a staging control plane on the same release train, pre-approve emergency changes, and collect Cisco's diagnostic bundle before every upgrade, as Cisco's advisory directs.[^cs-adv]
@@ -240,7 +240,7 @@ Its limits are CSV-only audit export, a gap between post-quantum and FIPS-mode f
   - Zscaler's audit-log and flow export (its help site renders by script);
   - tail-latency features on platforms other than Cisco;
   - Cato's own pages (blocked by bot protection).
-- **Book 09 changes this research suggests:** that [Chapter 05](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) note the nine 2026 KEV entries and the directive's scope over cloud-hosted controllers; that its FedRAMP table note Palo Alto's Moderate-only SD-WAN; and that Chapter 11's risk register list the post-quantum and FIPS 140-3 asks for its example platform.
+- **Book 09 changes this research prompted, all made:** [Chapter 05](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) notes the nine 2026 KEV entries and the directive's scope over cloud-hosted controllers, and its FedRAMP table notes Palo Alto's Moderate-only SD-WAN; Chapter 11's risk register lists the post-quantum and FIPS 140-3 asks for its example platform.
 - **To move to Proved:** run Chapter 11's ten-site pilot with the six conditions above as exit criteria, and record the evidence here.
 
 Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
