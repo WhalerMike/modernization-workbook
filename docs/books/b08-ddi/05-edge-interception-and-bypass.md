@@ -142,7 +142,7 @@ Unified DHCP and IPv6 governance addresses this through:
 ::: {.callout-note}
 ## What this chapter establishes
 1. The redirect-dns destination decides whether agency policy applies at all; it must be a network-addressable agency resolver, redirect-dns handles only IPv4 DNS over UDP, and a SASE or Umbrella resolver belongs behind the agency resolver, not in front of it.
-2. Encrypted DNS must terminate at agency resolvers or Protective DNS. DoT and DoQ can be blocked by port; DoH can be governed only at the endpoint, through operating-system and browser policy.
+2. Encrypted DNS must terminate at agency resolvers or Protective DNS. DoT and DoQ can be blocked by port; DoH needs endpoint policy (operating-system and browser), backed by RPZ and firewall blocks of known DoH services, or TLS inspection.
 3. A Windows DNS server can now accept DoH from clients but still forwards upstream in plain text, so meeting the encrypted-upstream expectation needs a capable resolver or an encrypting proxy; IPsec isn't a substitute.
 4. Rogue DHCP and rogue router advertisements can move a whole subnet to an attacker's resolver in one step; AD authorization doesn't stop them, switch-level snooping and RA Guard do.
 :::
