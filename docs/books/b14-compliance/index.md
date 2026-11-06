@@ -48,7 +48,7 @@ A control that is described in a plan but can't be shown working is a promise. A
 | **Who** | Who owns compliance, from the ISSO to the authorizing official | [10](10-who-owns-compliance.md) |
 | **How** | Build the authorization package and run continuous monitoring, and use the series as a map | [11](11-the-authorization-package.md), [12](12-the-series-as-a-map.md) |
 
-Appendices: [A — Control crosswalk](appendix-a-control-crosswalk.md) · [B — Product inventory questionnaire](appendix-b-product-inventory-questionnaire.md) · [C — Security assessment plan template](appendix-c-security-assessment-plan-template.md) · [D — Security assessment report template](appendix-d-security-assessment-report-template.md) · [E — Security impact analysis template](appendix-e-security-impact-analysis-template.md) · [F — Categorization walk-through](appendix-f-categorization-walkthrough.md)
+Appendices: [A — Control crosswalk](appendix-a-control-crosswalk.md) · [B — Product inventory questionnaire](appendix-b-product-inventory-questionnaire.md) · [C — Security assessment plan template](appendix-c-security-assessment-plan-template.md) · [D — Security assessment report template](appendix-d-security-assessment-report-template.md) · [E — Security impact analysis template](appendix-e-security-impact-analysis-template.md) · [F — Categorization walk-through](appendix-f-categorization-walkthrough.md) · [G — Prepare-step templates](appendix-g-prepare-step-templates.md)
 
 ## Reading paths
 
