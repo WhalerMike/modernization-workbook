@@ -308,7 +308,7 @@ CP-004 is a server baseline, not an Intune compliance policy for Windows Server 
 | Defender | Microsoft Defender for Servers Plan 2 | Defender for Cloud; endpoint security policy through Defender for Endpoint security settings management[^c08-ssm] |
 | Firewall | On, all profiles | Endpoint security firewall policy through security settings management |
 | Secure Boot | On | Machine configuration baseline (not yet specified in Chapter 09) |
-| Noncompliance | Server admin team notified after 1 day; no automatic retirement | Alerting in Chapter 10 |
+| Noncompliance | Server admin team notified after 1 day; no automatic retirement | Server alerting (Chapter 10 alerts are Intune only) |
 
 Security settings management has a licensing catch for servers: if the tenant's only Defender for Endpoint entitlement comes through Defender for Servers, the feature isn't available; at least one Defender for Endpoint user license must be active.[^c08-ssm]
 
