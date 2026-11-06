@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, task A0.4, and Phase 1, task A1.1. Workbook [Chapter 02](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-2) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -56,7 +56,7 @@ After this module, you'll be able to:
 
 ## Unit 1: The standard and the check (10 minutes)
 
-Read the chapter's [What Microsoft gives you](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#what-microsoft-gives-you). Learn's standard asks for two or more cloud-only accounts on `*.onmicrosoft.com`; passkey (FIDO2) or certificate-based authentication; Global Administrator active and permanent in PIM; exclusion from Conditional Access policies that block or restrict sign-in, through one group; and validation at least every 90 days. [Book 04, Chapter 04](../../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts) adopts it and adds dual custody and a post-use review.
+Read the chapter's [What Microsoft gives you](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#what-microsoft-gives-you). Learn's standard asks for two or more cloud-only accounts on `*.onmicrosoft.com`; passkey (FIDO2) or certificate-based authentication; Global Administrator active and permanent in PIM; exclusion from Conditional Access policies that block or restrict sign-in, through one group; and validation at least every 90 days. [Book 04, Chapter 04](../../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts) adopts it and adds a post-use review; dual custody is in [Book 04, Chapter 06](../../books/b04-access/06-who-decides-access.md#emergency-access)'s emergency access procedure.
 
 Then read [The check](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#the-check). For each rule, PA-EA-01 to PA-EA-10, note whether it's Learn's or the program's. Pay attention to PA-EA-08:
 

@@ -83,7 +83,7 @@ Sources: Microsoft's Graph deployments page says a GCC environment should "conti
 
 What changes in a government cloud, beyond the hosts:
 
-- **The scope names the cloud.** App-only tokens for GCC High use `https://graph.microsoft.us/.default`. Elsewhere it is `https://graph.microsoft.com/.default`, the form Microsoft's client-credentials guide uses.[^m1-sdknat][^m1-authsvc]
+- **The scope names the cloud.** App-only tokens for GCC High use `https://graph.microsoft.us/.default`, and for DoD `https://dod-graph.microsoft.us/.default`. Worldwide and GCC use `https://graph.microsoft.com/.default`, the form Microsoft's client-credentials guide uses.[^m1-sdknat][^m1-authsvc]
 - **The Python credential needs the government authority.** `azure-identity` signs in to the public cloud unless it's given `authority=AzureAuthorityHosts.AZURE_GOVERNMENT`.[^m1-azid] The Graph SDK then needs the national-cloud host (`NationalClouds.US_GOV`).[^m1-sdknat]
 - **Apps are registered per cloud.** "Apps can only access organizational data through the national cloud endpoints": an app registered in a commercial tenant can't read a GCC High tenant's data.[^m1-deploy]
 - **Graph Explorer isn't supported** on the GCC High, DoD or China endpoints.[^m1-deploy] A query proved in Graph Explorer has to be retested against the government endpoint *(design guidance)*.
@@ -101,7 +101,7 @@ A scheduled script signs in as itself, not as a person: an **app registration** 
 |---|---|---|
 | **Managed identity** | The script runs on an Azure resource, or on an Azure Arc-enabled server | No credential to store or rotate, at no extra cost. A system-assigned identity's service principal is created and deleted with the resource.[^m1-mi] Arc-enabled servers have one too.[^m1-arcmi] |
 | **Workload identity federation** | The script runs in GitHub Actions, Kubernetes, or another platform that issues its own tokens | The app trusts the external platform's tokens, so no secret is stored.[^m1-wif][^m1-fic] |
-| **Certificate** | Anywhere else, such as an on-premises scheduler | Microsoft recommends "a trusted certificate issued by a certificate authority" over an application secret.[^m1-appinst] The app signs a JWT assertion with it.[^m1-certcred] The certificate's lifecycle belongs to the program's certificate manager ([Book 07](../books/b07-pki/index.md)). |
+| **Certificate** | Anywhere else, such as an on-premises scheduler | Microsoft recommends "a trusted certificate issued by a certificate authority" over an application secret.[^m1-appinst] The app signs a JWT assertion with it.[^m1-certcred] The certificate's lifetime follows [Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md) (180 days), the app's owner rotates it, and the choice of CA follows [Book 07](../books/b07-pki/index.md). |
 | Client secret | Avoid | ScubaGear: application password addition *should* be blocked (MS.AAD.5.5v1), and lifetimes kept to 180 days (MS.AAD.5.6v1).[^m1-scuba] |
 
 **Consent.** Application permissions take effect only after tenant-wide admin consent. Microsoft Graph application permissions need a **Privileged Role Administrator**. Cloud Application Administrator and Application Administrator can consent to anything *except* Microsoft Graph app roles.[^m1-consent] Plan for that approval step in the change process: it's the moment someone with privilege decides what the script may read.
@@ -188,7 +188,7 @@ GCC needs no endpoint change, but it can lack features that commercial tenants h
 **Interim paths** *(design guidance)*:
 
 - **Scripts still on AzureAD or MSOnline.** Those modules are past their retirement date.[^m1-aadps] Rewrite each one on Microsoft Graph PowerShell, using Microsoft's migration guide,[^m1-mgmig] and use the rewrite to move it to app-only sign-in with its own least-privileged permissions.
-- **A collector that has to stay on premises for now.** Use a CA-issued certificate, not a secret,[^m1-appinst] and keep its lifetime inside the program's certificate rules ([Book 07](../books/b07-pki/index.md)). Move it to a managed identity on an Arc-enabled server when the server is onboarded.[^m1-arcmi]
+- **A collector that has to stay on premises for now.** Use a CA-issued certificate, not a secret,[^m1-appinst] and keep its lifetime to Book 04's 180-day policy ([Chapter 05](../books/b04-access/05-applications-and-workload-identities.md)), with the app's owner rotating it and the CA chosen per [Book 07](../books/b07-pki/index.md). Move it to a managed identity on an Arc-enabled server when the server is onboarded.[^m1-arcmi]
 - **A move from GCC to GCC High.** Register a new app in the government tenant,[^m1-deploy] and change the cloud name in the collector's configuration. If the code names a host anywhere, that's the defect to fix first.
 
 ## Unit 7: Exercise: Lab 1 (fixtures, no tenant)

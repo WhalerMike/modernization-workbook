@@ -101,7 +101,7 @@ Run every command from `examples/non-person-identity`, in PowerShell 7. Each lab
 
 ## How this path fits with the other pieces
 
-The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. Chapters 01 to 10 already have a narrated tour each, and each module links it; Chapter 11's comes later. Narrated decks for the modules themselves come later.
+The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. Chapters 01 to 10 already have a narrated tour each, and each module links it; Chapter 11's comes later. Each module also links its own narrated deck and video.
 
 | Piece | Where |
 |---|---|

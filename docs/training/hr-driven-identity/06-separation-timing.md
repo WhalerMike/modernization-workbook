@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G6 Separation. Workbook [Chapter 06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md). About 45 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-6) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_6_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_6.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_6_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -57,7 +57,7 @@ Then read the design:
 
 - [Book 03, Chapter 09, The canonical leaver sequence](../../books/b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence).
 - [Book 03, Chapter 08, Triggers and schedule](../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule): why a separation entered late misses the scheduled trigger.
-- [Book 19, Chapter 05, The leaver order](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order): the custom task extension that revokes the card and retires the devices, already built.
+- [Book 19, Chapter 05, The leaver order](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order): the custom task extension, built for the card revocation; retiring the devices in Intune follows the same pattern and is still to build.
 
 ## Unit 2: The intervals and the rules (6 minutes)
 

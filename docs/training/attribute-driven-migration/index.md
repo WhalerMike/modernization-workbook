@@ -104,7 +104,7 @@ Two more Microsoft Automation modules help as background: [Module 2](../ms-autom
 
 Every module has two exercises.
 
-**Lab 1: fixtures, no tenant.** Every Lab 1 runs on a laptop against the kits' fictional fixtures, and nothing signs in. Clone the repository and work in the `examples` folder each module names, or download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip), which holds every folder the chapters use. You need:
+**Lab 1: fixtures, no tenant.** Every Lab 1 runs on a laptop against the kits' fictional fixtures, and nothing signs in. Clone the repository and work in the `examples` folder each module names, or download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip), which holds every folder the chapters use. Module 3 needs a Git clone, not the zip, because its steps 4 and 5 call `git` (`-BaseRef HEAD`). You need:
 
 - PowerShell 7 with Pester 5, for Modules 2, 3, 4 and 5 (Module 5 needs Windows);
 - Python 3.10 or later with pytest, for Modules 1, 7, 8 and 9 (Module 8 also needs PyYAML);
@@ -117,7 +117,7 @@ Module 5's first step and Module 6's first step download pinned modules and coll
 
 ## Where this path sits
 
-This path is the training piece of the Attribute-Driven Migration project. The design is in the [companion guide](../../books/guides/attribute-driven-migration.md). The gates are in the [implementation guide](../../books/guides/attribute-driven-migration-implementation.md), and the schedule is in the [project plan](../../project-plans/attribute-driven-migration.md). The code and its labs are in [Book 19](../../books/b19-developer-workbook/index.md), and every lab is listed on the [Labs page](../labs.md#adm). Each chapter has a narrated tour, listed in Book 19's [narrated chapter tours](../../books/b19-developer-workbook/index.md#narrated-chapter-tours); the narrated decks for these modules come later. Federal sources are in the [federal framework crosswalk](../../reference/federal-framework-crosswalk.md).
+This path is the training piece of the Attribute-Driven Migration project. The design is in the [companion guide](../../books/guides/attribute-driven-migration.md). The gates are in the [implementation guide](../../books/guides/attribute-driven-migration-implementation.md), and the schedule is in the [project plan](../../project-plans/attribute-driven-migration.md). The code and its labs are in [Book 19](../../books/b19-developer-workbook/index.md), and every lab is listed on the [Labs page](../labs.md#adm). Each chapter has a narrated tour, listed in Book 19's [narrated chapter tours](../../books/b19-developer-workbook/index.md#narrated-chapter-tours); each module also links its own narrated deck and video. Federal sources are in the [federal framework crosswalk](../../reference/federal-framework-crosswalk.md).
 
 ## Status and review
 
