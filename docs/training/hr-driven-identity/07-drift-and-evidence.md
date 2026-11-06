@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G7 Drift and evidence. Workbook [Chapter 07](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md). About 60 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-7) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_7_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_7_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-7/Training_HR_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-7/Training_HR_Module_7_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_7.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_7_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_7_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-7/Training_HR_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-7/Training_HR_Module_7_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

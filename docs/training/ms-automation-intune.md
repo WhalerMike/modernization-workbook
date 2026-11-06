@@ -27,14 +27,15 @@ last-reviewed: 2026-11-05
 
 Your Conditional Access policies already require a compliant device. That's only as good as Intune's compliance records, and by default a device with no policy assigned counts as compliant. In this module you map each of Book 05's questions to the Graph API that answers it, the least-privileged permission, and whether the API is in v1.0 or only in beta. Five of them are built as tested, read-only checks, in Python and PowerShell, which you run in the labs. They're **illustrative: unit-tested against fixtures, not proven against live tenants**.
 
-**How this relates to the validation kit.** The [validation kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) already has six Intune-track checks, VK-INT-01 to VK-INT-06:
+**How this relates to the validation kit.** The [validation kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) already has seven Intune-track checks, VK-INT-01 to VK-INT-07:
 
 - missing provisioning-written extension attributes (VK-INT-01);
 - stale and duplicate devices, from the Entra ID device object (VK-INT-02);
 - Autopilot group tags (VK-INT-03);
 - assignment through dynamic groups versus filters (VK-INT-04);
 - conflict candidates (VK-INT-05);
-- platform inventory against the coverage matrix (VK-INT-06).
+- platform inventory against the coverage matrix (VK-INT-06);
+- Group Policy analytics reports, read from the beta endpoint (VK-INT-07).
 
 This module doesn't repeat them. Its checks read Intune's own records instead: compliance status per policy, compliance coverage, the Intune sync time, encryption and OS posture, and Autopilot profile assignment.
 
@@ -45,7 +46,7 @@ This module doesn't repeat them. Its checks read Intune's own records instead: c
 In this module, you'll:
 
 - Name the Graph API, least-privileged application permission and stage (v1.0 or beta) for each of Book 05's evidence questions.
-- Explain which three things the program relies on are beta-only, and what that means for evidence.
+- Explain which of the things the program relies on are beta-only, and what that means for evidence.
 - Read managed devices and per-policy compliance status, and the traps in each, including the join on device name.
 - Explain why remote actions and report export jobs don't belong in a read-only collector.
 - Say what differs in GCC High and DoD, why Windows Autopilot is a GCC and commercial check, and why GCC follows commercial Intune.
@@ -82,11 +83,13 @@ The last two rows aren't read-only, and the example code doesn't use them. [Unit
 
 ### v1.0 versus beta
 
-Microsoft supports the Intune beta APIs but says they "are subject to more frequent change", and recommends v1.0 where it can be used.[^m3-sclist] Three things the program relies on are beta-only today:
+Microsoft supports the Intune beta APIs but says they "are subject to more frequent change", and recommends v1.0 where it can be used.[^m3-sclist] Three of the things the program relies on are beta-only today (the compliance-policy settings and Group Policy analytics, below, are two more):
 
 - **The Settings Catalog** (`configurationPolicies`). Book 05's [policy library](../books/b05-devices/08-gpo-to-intune-policy-migration.md#configuration-profiles-settings-catalog) is mostly Settings Catalog profiles, so exporting the library as code (CM-2) depends on beta. The resource also carries endpoint security policies: its `templateReference.templateFamily` can be, for example, `endpointSecurityAntivirus`.[^m3-sclist]
 - **Assignment filters.** The filter list is beta-only.[^m3-filters] So is the filter on an assignment: beta documents `deviceAndAppManagementAssignmentFilterId` and `deviceAndAppManagementAssignmentFilterType` (`none`, `include` or `exclude`) on the assignment target.[^m3-exclbeta] The v1.0 base target type documents no properties,[^m3-targetv1] so v1.0 can't tell you which filter an assignment uses. This is why VK-INT-04 reads the Settings Catalog only with `-IncludeBeta`.
 - **Autopilot profiles.** v1.0 lists Autopilot device identities with their group tag, enrollment state and last contact. It doesn't have `deploymentProfileAssignmentStatus` or the deployment profiles themselves; both are beta.[^m3-apv1][^m3-apbeta][^m3-approfiles]
+
+Two more beta dependencies come from Book 05. Compliance-policy settings such as firewall, TPM and Defender exist only on the beta resource, so the v1.0 compliance-policy read (the first compliance rows in the table above) does not show them ([Book 05, Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md)). Group Policy analytics (`groupPolicyMigrationReports`) is also beta-only; VK-INT-07 reads it with `-IncludeBeta` ([Book 05, Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md)).
 
 The example code calls v1.0 for everything except the Autopilot profile check, which reads the beta endpoint on the same Graph host. A beta-dependent check should be re-run after each Graph beta change, before its result is used as evidence *(design guidance)*.
 

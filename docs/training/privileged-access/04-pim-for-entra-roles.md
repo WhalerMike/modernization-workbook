@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 1, task A1.6; Phase 2, tasks A2.1 and A2.2; Phase 3, task A3.1. Workbook [Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pa-module-4) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_4_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_4.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_4_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

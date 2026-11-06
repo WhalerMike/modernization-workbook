@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G2 Sources. Workbook [Chapter 02](../../project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md). About 50 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-2) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-2/Training_HR_Module_2_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

@@ -15,7 +15,7 @@ last-reviewed: 2026-11-03
 
 **Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 6 of 9 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 08](../../books/b19-developer-workbook/08-ansible-beside-arc.md)
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-adm-module-6) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_6_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_ADM_Module_6.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_6_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-6/Training_ADM_Module_6_Narrated.vtt).
 
 **Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_ADM_08_Ansible_Beside_Arc_Narrated).
 
@@ -70,7 +70,7 @@ The CMDB records `config_owner` and `patch_owner` for each asset, and the Arc tr
 
 *8 minutes*
 
-The inventory turns each owner into a group and a tag, and fails closed on an owner value it doesn't know. The wave plan runs only on the control node, lists the wave's ready and blocked servers, and stops on a production server in wave 0 or 1, a missing owner or a region in the wrong cloud. The onboarding playbook is in check mode unless you confirm the change. Read:
+The inventory turns each owner into a group and a tag, and fails closed on an owner value it doesn't know. The wave plan runs only on the control node, lists the wave's ready and blocked servers, and stops on a production server in wave 0 or 1 or a region in the wrong cloud. A missing owner blocks that server in the inventory, and the plan lists it as blocked. The onboarding playbook is in check mode unless you confirm the change. Read:
 
 - [First, the `patch_owner` column](../../books/b19-developer-workbook/08-ansible-beside-arc.md#first-the-patch_owner-column).
 - [The inventory](../../books/b19-developer-workbook/08-ansible-beside-arc.md#the-inventory).

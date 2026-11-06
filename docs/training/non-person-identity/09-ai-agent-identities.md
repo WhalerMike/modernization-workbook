@@ -14,13 +14,13 @@ last-reviewed: 2026-11-03
 
 *Part of the [Non-Person Identity learning path](index.md). The guide's [AI agents](../../books/guides/non-person-identity-implementation.md#ai-agents) section. Workbook [Chapter 09](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md). About 65 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-9) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_9_Narrated) (about 15 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_9_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-9/Training_NPI_Module_9_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-9/Training_NPI_Module_9_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_NPI_Module_9.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_9_Narrated) (about 15 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_9_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-9/Training_NPI_Module_9_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-9/Training_NPI_Module_9_Narrated.vtt).
 
 **Also:** the chapter's narrated tour, about 12 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_09_AI_Agent_Identities_Narrated).
 
 ## Introduction (3 minutes)
 
-AI agents are non-person identities, and they follow every gate before this module. They add three things. An agent can act, so an orphaned agent is disabled once the finding is confirmed, without waiting 30 days. A blueprint holds the credentials for every agent made from it, so one secret on it is every agent's secret. And by default the person who creates an agent becomes its sponsor and owner, so creation has to be gated.
+AI agents are non-person identities, and they follow every gate before this module. They add three things. An agent can act, so a sponsor who hasn't confirmed within ten business days of a handover makes it an orphan, an extra trigger on top of the program's disable-first orphan rule. A blueprint holds the credentials for every agent made from it, so one secret on it is every agent's secret. And by default the person who creates an agent becomes its sponsor and owner, so creation has to be gated.
 
 In this module you check a fictional tenant's agents against the program's rules, see the same rules run where the cloud has no agent identities, and plan two report-only agent Conditional Access policies.
 
@@ -56,7 +56,7 @@ After this module, you'll be able to:
 
 Read the guide's [AI agents](../../books/guides/non-person-identity-implementation.md#ai-agents) section: sponsors and blueprints, gated creation, credentials, recertification by expiry, and availability by cloud. Then read:
 
-- The guide's [Orphans](../../books/guides/non-person-identity-implementation.md#orphans): an agent is disabled once the finding is confirmed.
+- The guide's [Orphans](../../books/guides/non-person-identity-implementation.md#orphans): the program's disable-first rule, which Book 17 used for agents first.
 - The guide's [Dangers](../../books/guides/non-person-identity-implementation.md#dangers) row "The agent built by whoever was there".
 
 ## Unit 2: The rules as code (14 minutes)

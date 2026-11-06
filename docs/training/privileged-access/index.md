@@ -134,7 +134,7 @@ Run every PowerShell command from `examples/privileged-access`, in one PowerShel
 
 : Where each piece of privileged access lives {.striped .hover}
 
-The [implementation guide](../../books/guides/privileged-access-implementation.md) runs the same eight steps as gated work for an operator. Narrated decks for the modules are planned; when they exist, each module will link its deck. Until then, each workbook chapter's narrated tour is on the [workbook index](../../project-plans/developer-workbooks/privileged-access/index.md).
+The [implementation guide](../../books/guides/privileged-access-implementation.md) runs the same eight steps as gated work for an operator. Each module links its narrated deck and video. Each workbook chapter's narrated tour is on the [workbook index](../../project-plans/developer-workbooks/privileged-access/index.md).
 
 ## Status and review
 
