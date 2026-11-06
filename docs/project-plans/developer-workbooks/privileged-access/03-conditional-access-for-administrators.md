@@ -533,12 +533,12 @@ Lab 2, step 5, reading report-only results in the sign-in log before enforcement
 | A policy enforced before the emergency accounts work | The documented lockout, by Conditional Access instead of PIM | Chapter 02 first; PA-CA-01 before merge; `-Apply` refuses a write without the exclusion |
 | Microsoft's template created as published | No emergency exclusion, display text where an ID belongs, plain MFA | PA-CA-01, PA-CA-03, PA-CA-06; the template is a model, not a file |
 | A policy switched straight to On | Users blocked with no measurement | Every Create is report-only; enforcement needs `-AllowEnforce` in its own change |
-| `c1` selected in PIM while its policy is report-only | No gate, and no MFA fallback either | PA-CA-04 warns until it is On; Chapter 04 checks the state before it selects `c1` |
+| `c1` selected in PIM while its policy is report-only | No gate, and no MFA fallback either | PA-CA-04 warns until it is On; Chapter 04 requires a person to state that the policy is On (`-ActivationGateChecked`) before it selects `c1` |
 | The gate scoped to a directory role | It never applies at activation | PA-CA-05 |
 | Administrators without a phishing-resistant method when CA003 is enforced | They can't sign in | Lab 2's registration step; the report-only week; Book 04's readiness gate |
 | A pipeline that deletes a policy no file names | A portal-made policy, perhaps a needed one, disappears | No DELETE in the call list; NotInRepository is reported only |
 | A compliant-device policy in report-only | Mac, iOS and Android users prompted for a certificate | PA-CA-09 warns; exclude those platforms in the report-only phase if the prompts matter |
-| Whoever edits Conditional Access edits the gate | The gate is weakened or removed | Protected actions on `c2` (Book 04, Chapter 08, Step 6); the planned Chapter 08 compares the tenant with these files |
+| Whoever edits Conditional Access edits the gate | The gate is weakened or removed | Protected actions on `c2` (Book 04, Chapter 08, Step 6); Chapter 03's own plan, run on a schedule, reports where the tenant differs from these files; Chapter 08 doesn't read Conditional Access yet (research gaps, row 88) |
 | The write permission left on the app | A standing write path to Conditional Access | Grant it only for `-Apply` runs, from the pipeline identity; Lab 2 removes it |
 
 ## Checklist
