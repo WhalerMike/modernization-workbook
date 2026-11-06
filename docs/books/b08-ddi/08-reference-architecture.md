@@ -38,7 +38,7 @@ The SD-WAN redirect-dns target (Chapter 05) must be a network-addressable resolv
 
 ### Decision 2 — forwarding chain order
 
-Any additional resolver, such as a SASE provider's DNS service, must be a forwarding target of the agency-controlled resolver, never the redirect-dns target. The agency resolver is always the first hop under agency policy control, so its response policy zones, DNSSEC validation and logging apply before anything else sees the query. The correct order is: branch or on-premises client → agency resolver → DDI policy plane → optional SASE DNS → CISA Protective DNS or other approved recursion.
+Any additional resolver, such as a SASE provider's DNS service, must be a forwarding target of the agency-controlled resolver, never the redirect-dns target. The agency resolver is always the first hop under agency policy control, so its response policy zones, DNSSEC validation and logging apply before anything else sees the query. The correct order is: branch or on-premises client → agency resolver → DDI policy plane → optional SASE DNS → CISA Protective DNS. [Appendix C](appendix-c-applicability.md) covers the environments where Protective DNS doesn't apply.
 
 - **Check:** trace the order in the running configuration, not just the presence of each element. A chain with every component present but the SASE service first is the common failure.
 
@@ -58,7 +58,7 @@ The policy plane holds the authoritative forwarding rules for every private name
 
 ### Decision 4 — AD DNS inventory before retirement
 
-SRV records, conditional forwarders and namespace delegations held in AD DNS are inventoried and reprovisioned in the policy plane before any domain controller is decommissioned (Chapter 04). Skipping this step cannot be undone: once the last domain controller holding a zone is gone, its records cannot be recovered from it.
+SRV records, conditional forwarders and namespace delegations held in AD DNS are all inventoried before any domain controller is decommissioned, and everything except the locator records is reprovisioned in the policy plane by then (Chapter 04). The locator records move last, or lapse, because they stay where domain controllers can register them. Skipping the inventory cannot be undone: once the last domain controller holding a zone is gone, its records cannot be recovered from it.
 
 - **Check:** the inventory export exists, is dated, and has been reconciled against the policy plane before a decommissioning change is approved.
 
@@ -107,7 +107,7 @@ The architecture is the same in every environment; authorization and a few integ
 
 | Component | Moderate: commercial regions (including Microsoft 365 GCC-Moderate) | Moderate: AWS GovCloud (US), Azure Government | GCC High, FedRAMP High and DoD (High only) |
 |---|---|---|---|
-| Cloud-delivered DDI management plane | Must hold FedRAMP Moderate or better plus an agency ATO; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate authorization does not cover High; use a service authorized at the required level or keep the policy plane inside the agency's boundary |
+| Cloud-delivered DDI management plane | Must hold a FedRAMP certification at Moderate or higher; the agency authorizes its own DDI system that uses it; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate authorization does not cover High; use a service authorized at the required level or keep the policy plane inside the agency's boundary |
 | On-premises and in-tenant resolvers and grid | Inside the agency boundary | Inside the agency boundary | Inside the agency boundary |
 | SD-WAN redirect-dns to agency resolvers (Decisions 1 and 2) | Applies | Applies | Applies |
 | Response policy zones, DNSSEC, Protective DNS forwarding | Applies | Applies | Applies (air-gapped enclaves differ; see Applicability) |
