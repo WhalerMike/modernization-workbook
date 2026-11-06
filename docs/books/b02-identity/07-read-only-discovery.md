@@ -67,7 +67,7 @@ Read-only discovery can therefore show *where* a capability is deployed without 
 
 Password hashes are never returned to a directory read. They leave a domain controller only through directory replication, and pulling them that way needs the "Replicating Directory Changes" and "Replicating Directory Changes All" rights. "Replicating Directory Changes All" is the control access right that allows replication of secret domain data.[^c07-getchangesall] Microsoft Entra Connect's password hash sync account holds both rights for exactly this reason.[^c07-phs]
 
-For discovery this boundary cuts both ways. The assessment never needs these rights, and the program never requests them for an assessment account. But *which accounts already hold them* is one of the most important things a later, privileged assessment checks. Any holder that is not a domain controller or the sync service account is a finding (Chapter 08).
+For discovery this boundary cuts both ways. The assessment never needs these rights, and the program never requests them for an assessment account. But *which accounts already hold them* is one of the most important things to check once privileged access exists. Any holder that is not a domain controller or the sync service account is a finding. The Chapter 08 assessment doesn't collect those rights yet, so read the access control list on each domain root for the two replication rights as a separate, administrator-run check.
 
 ### Restricted containers and policy objects
 
