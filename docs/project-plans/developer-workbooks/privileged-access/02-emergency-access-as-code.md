@@ -465,7 +465,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers.[^pa02-ksi] The agen
 | A Global Administrator assignment that expires | The account stops working in the emergency it's for | PA-EA-05 flags time-bound, activated and inherited assignments |
 | A phone or app method on the account | It depends on one person's device | PA-EA-06 |
 | A drill nobody records | No one knows whether the accounts still work | PA-EA-09 from `emergency-validations.csv` |
-| A deployed rule nobody reviewed | The alert is edited in the portal and drifts | The template is code; the planned Chapter 08 compares it with what's deployed |
+| A deployed rule nobody reviewed | The alert is edited in the portal and drifts | The template is code. Chapter 08 doesn't compare the deployed rule yet; Lab 2 and the checklist compare it by hand |
 | Emergency account names in output | Findings name the accounts | The output folder is evidence; delete lab copies |
 
 ## Checklist
