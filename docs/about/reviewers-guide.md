@@ -32,7 +32,7 @@ A page **waits for review** when it isn't approved, or when its text no longer m
 - every implementation guide, such as the [Non-Person Identity implementation guide](../books/guides/non-person-identity-implementation.md) (`docs/books/guides/`);
 - every [training](../training/index.md) page (`docs/training/`).
 
-Files and folders whose names start with an underscore, such as the claims logs, aren't gated. The guides and training were added on 2026-11-03 ([WD-129](decision-register.md#wd-129)), so most of their pages are still waiting for their first review. If this list and `GATED` ever differ, the script is right.
+Files and folders whose names start with an underscore, such as the claims logs, aren't gated. The guides and training were added on 2026-11-03 ([WD-129](decision-register.md#wd-129)), and all of their pages have had their first review. If this list and `GATED` ever differ, the script is right.
 
 ## Draft and approved {#draft-and-approved}
 
