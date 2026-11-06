@@ -302,7 +302,7 @@ Three details of IIS log collection affect the evidence:[^aB-ama-iis]
 
 Phase 12's backup function uploads the nightly `gitea dump` archive (Gitea's single-archive backup of files and databases)[^aB-gitea-cli] and the zipped `D:\GitRepos\` to storage account `stfmpgovernance`, container `gitea-backups`, with 30-day retention, authenticating with the Arc managed identity (B.4). This is the default for the full-production (PostgreSQL) profile. The single-host SQLite profile, and any deployment without reachable Blob storage, instead quiesces Gitea, takes a Volume Shadow Copy-consistent snapshot of `gitea.db`, and ships the archive to local and SMB targets under the same retention.
 
-Both paths meet the program's cold-restore baseline of a 24-hour recovery point and 4-hour recovery time; the optional hot standby raises that to near-zero data loss and a recovery time in minutes, with witness-gated failover so only one node accepts commits at a time. In the full-production profile, Blob is the host's only outbound data path; in the single-host profile, backups stay on-premises and there's no outbound data path at all.
+Both paths meet the program's cold-restore baseline of a 24-hour recovery point and 4-hour recovery time; the optional hot standby raises that to near-zero data loss and a recovery time in minutes, with witness-gated failover so only one node accepts commits at a time. For backup data, Blob is the only outbound path in the full-production profile; in the single-host profile, backups stay on-premises and none leaves the host. Logs (C.3) and the other planes on the egress allowlist are separate.
 
 ## Family D — governance and telemetry
 
@@ -416,7 +416,7 @@ The program sanctions two profiles for Gitea's metadata (users, teams, OAuth app
 
 ### F.3 Build-time supply chain
 
-Every binary the Phase 1–13 build downloads is pinned to a URL and SHA-256 hash in the release manifest. The hosts are `github.com`, `objects.githubusercontent.com`, `download.microsoft.com`, `aka.ms`, `dotnetcli.azureedge.net`, `packages.microsoft.com`, the Gpg4win site, `*.powershellgallery.com` and `timestamp.digicert.com`. Operators with an internal artifact mirror substitute its URLs; the hashes stay the same. This plane is build-only: after cutover, the supply-chain hosts aren't on the runtime egress allowlist.
+Every binary the Phase 1–13 build downloads is pinned to a URL and SHA-256 hash in the release manifest. The hosts are `github.com`, `objects.githubusercontent.com`, `download.microsoft.com`, `aka.ms`, `dotnetcli.azureedge.net`, `packages.microsoft.com`, the Gpg4win site, `*.powershellgallery.com` and `timestamp.digicert.com`. Operators with an internal artifact mirror substitute its URLs; the hashes stay the same. This plane is build-only except for two hosts: after cutover, the hosts used only at build aren't on the runtime egress allowlist, while `github.com` (the mirror) and `download.microsoft.com` (Arc automatic updates, C.1) stay on it.
 
 ## Boundary and egress posture
 
@@ -436,7 +436,7 @@ None of these planes is "GCC-Moderate." The on-premises host is inside the agenc
 
 ### Runtime egress allowlist
 
-Phase 0.5 enumerates the runtime egress allowlist, and the proxy and firewall team permits only those host names through the agency's forward proxy; everything else is denied. The list is the union of family C's endpoints, the PostgreSQL host in the full-production profile, `github.com` for the mirror, and `api.github.com` for the CI notification (D.2). The proxy environment variables (`HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`) are set at machine scope so Git, PowerShell and the Arc agent use the same proxy; the Arc agent can also take its own proxy setting.[^aB-arc-proxy]
+Phase 0.5 enumerates the runtime egress allowlist, and the proxy and firewall team permits only those host names through the agency's forward proxy; everything else is denied. The list is the union of family C's endpoints, the PostgreSQL host in the full-production profile, `graph.microsoft.com` for the drift reporter's Microsoft Graph calls, `github.com` for the mirror, and `api.github.com` for the CI notification (D.2). The proxy environment variables (`HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`) are set at machine scope so Git, PowerShell and the Arc agent use the same proxy; the Arc agent can also take its own proxy setting.[^aB-arc-proxy]
 
 ### Inbound posture
 

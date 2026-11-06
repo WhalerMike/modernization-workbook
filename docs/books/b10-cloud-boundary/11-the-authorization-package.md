@@ -132,7 +132,7 @@ An agency will hold packages in more than one form for several years. Providers 
 | The provider's SSP is pasted into the agency's | The agency plan describes what the agency implements, configures, operates or inherits, and cites the provider by reference |
 | The boundary is a diagram in an appendix | The boundary record is one artifact that every narrative, POA&M entry and component definition cites |
 | A feature in the portal is written up as a control | Each capability has a disposition; compensating narratives say what is missing and mark the substitute derived |
-| Provider findings are copied into the agency POA&M | The agency POA&M holds only gaps the agency manages or accepts |
+| Provider findings are copied into the agency POA&M | The agency POA&M holds only gaps the agency intends to close; accepted gaps go in a signed exception |
 | Provider change notices are informational | Each is reviewed against the boundary record, and the authorizing official decides whether it is a significant change |
 | The package is refreshed every three years | The probe, drift findings and provider data keep it current, in machine-readable form |
 
