@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
+There are **139** workbook decisions: 136 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -165,6 +165,14 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | [WD-129](#wd-129) | 2026-11-03 | Which pages does the review gate hold for the editor's approval? | Workbook design | settled |
 | [WD-130](#wd-130) | 2026-11-03 | How does the Attribute-Driven Migration smoke test treat VK-DG-03, a validation kit check that can only run with delegated permissions? | Workbook design | settled |
 | [WD-131](#wd-131) | 2026-11-03 | How does the narration refer to the workbook's books and sources? | Workbook design | settled |
+| [WD-132](#wd-132) | 2026-11-06 | Where does the External Partner Person class live in the workbook? | Workbook design | settled |
+| [WD-133](#wd-133) | 2026-11-06 | What does the workbook call the new class, and how does it relate to worker type and persona? | Workbook design | settled |
+| [WD-134](#wd-134) | 2026-11-06 | Which Entra user type do external partner persons receive? | Workbook design | settled |
+| [WD-135](#wd-135) | 2026-11-06 | Does the vendor-neutral standard or the Entra profile lead? | Workbook design | settled |
+| [WD-136](#wd-136) | 2026-11-06 | How much of the External Partner Person material ships in the first edition that carries it? | Workbook design | settled |
+| [WD-137](#wd-137) | 2026-11-06 | Does the workbook teach assurance selection for partner persons, or only cite it? | Workbook design | settled |
+| [WD-138](#wd-138) | 2026-11-06 | In what order are the 1,625 consistency findings fixed, given the partner additions? | Workbook design | settled |
+| [WD-139](#wd-139) | 2026-11-06 | When are the sources behind the new partner chapter checked? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2277,6 +2285,134 @@ There are **131** workbook decisions: 128 settled, 0 challenged and 3 superseded
 | **Defined in** | — |
 
 [Agree, disagree or send evidence on WD-131](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-131%3A+)
+
+### WD-132: Where does the External Partner Person class live in the workbook? {#wd-132}
+
+| | |
+|---|---|
+| **Options considered** | A stand-alone appendix book; Light edits to existing pages only; A new *HR-Driven Identity* chapter and a *Access and Privilege* appendix with the Microsoft Entra profile |
+| **Choice** | A new *HR-Driven Identity* chapter 15 holds the class, the authority split, the standard, the record and the gates. A new *Access and Privilege* appendix C holds the Microsoft Entra partner access profile. A short *HR-Driven Identity* appendix holds the partner record template. Other books get light edits and pointers, not new files. |
+| **Rationale** | It keeps the authoritative-source argument in the book that makes it. The workbook already handles partners as B2B guests across six chapters, so most of the proposal folds into existing pages. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [`InBox/Public_GitHub_Proposal_External_Partner_Identity_Class_for_the_Federal_Modernization_Workbook.docx`](https://github.com/WhalerMike/modernization-workbook/blob/main/InBox/Public_GitHub_Proposal_External_Partner_Identity_Class_for_the_Federal_Modernization_Workbook.docx), [HR-Driven Identity](../books/b03-hr-identity/index.md), [Access and Privilege](../books/b04-access/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-132](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-132%3A+)
+
+### WD-133: What does the workbook call the new class, and how does it relate to worker type and persona? {#wd-133}
+
+| | |
+|---|---|
+| **Options considered** | Use class, worker type and persona as three separate words; Make the class the parent, with worker type and persona as views of it |
+| **Choice** | External Partner Person is the class. Class is the parent term. Worker type stays the HR attribute, and the Externals persona becomes a view of the class and is renamed to match. |
+| **Rationale** | The workbook sorts people by worker type and by persona today. Without one rule, three overlapping words drift apart across the books. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [HR-Driven Identity](../books/b03-hr-identity/index.md), [Access and Privilege](../books/b04-access/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-133](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-133%3A+)
+
+### WD-134: Which Entra user type do external partner persons receive? {#wd-134}
+
+| | |
+|---|---|
+| **Options considered** | Member by default; Guest by default, with Member by exception |
+| **Choice** | Partner persons stay Guest by default. Member requires an exception record. |
+| **Rationale** | The workbook's internal baselines and its compliant-device policy scope Members and exclude guests. A partner synced as Member would fall into internal baselines by accident. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Access and Privilege](../books/b04-access/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-134](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-134%3A+)
+
+### WD-135: Does the vendor-neutral standard or the Entra profile lead? {#wd-135}
+
+| | |
+|---|---|
+| **Options considered** | The neutral standard first and long; A short neutral standard in one chapter, with the Entra profile as the practical page |
+| **Choice** | The neutral standard stays short and sits in one chapter. The Entra profile is the main practical page. |
+| **Rationale** | The workbook is Microsoft-first and cites Microsoft Learn. A long neutral standard would reverse that emphasis. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [HR-Driven Identity](../books/b03-hr-identity/index.md), [Access and Privilege](../books/b04-access/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-135](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-135%3A+)
+
+### WD-136: How much of the External Partner Person material ships in the first edition that carries it? {#wd-136}
+
+| | |
+|---|---|
+| **Options considered** | Text, decks, videos and a kit example together; Text and the partner record first, with decks, videos and the kit example in the next regeneration |
+| **Choice** | The first edition carries the text and the record. Decks, videos and the kit example follow in the next regeneration. |
+| **Rationale** | Decks and videos are the costly tail of the work, and the text can be reviewed on its own. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [HR-Driven Identity](../books/b03-hr-identity/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-136](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-136%3A+)
+
+### WD-137: Does the workbook teach assurance selection for partner persons, or only cite it? {#wd-137}
+
+| | |
+|---|---|
+| **Options considered** | Cite NIST SP 800-63 and stop; Teach identity, authenticator and federation assurance selection briefly in the new chapter |
+| **Choice** | The new *HR-Driven Identity* chapter teaches assurance selection by transaction risk, briefly, with its sources. |
+| **Rationale** | Only *PKI and Certificates* mentions federation assurance today, and no chapter teaches how to choose a level. The proposal depends on it. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [HR-Driven Identity](../books/b03-hr-identity/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-137](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-137%3A+)
+
+### WD-138: In what order are the 1,625 consistency findings fixed, given the partner additions? {#wd-138}
+
+| | |
+|---|---|
+| **Options considered** | Fix everything first; Hold everything until the additions land; Fix findings on untouched and lightly touched pages first, and hold the 16 on pages the additions rewrite |
+| **Choice** | Findings on pages the additions leave alone, or touch lightly, are fixed first. The 16 findings on *Identity and Directory* chapter 10 and the *HR-Driven Identity* and *Governance, Drift and Evidence* indexes wait and are fixed together with the additions. |
+| **Rationale** | Fixes on pages the additions do not rewrite are not wasted. Fixing the held pages first would spend effort on text that is about to change. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md), [HR-Driven Identity](../books/b03-hr-identity/index.md), [Governance, Drift and Evidence](../books/b13-governance/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-138](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-138%3A+)
+
+### WD-139: When are the sources behind the new partner chapter checked? {#wd-139}
+
+| | |
+|---|---|
+| **Options considered** | After the chapter is drafted; Before any chapter text is written |
+| **Choice** | About twelve primary sources are checked before any text for the new chapter is written, and the result goes in a verification note. |
+| **Rationale** | A source check can overturn a claim in the proposal, and finding that after drafting means rework. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [HR-Driven Identity](../books/b03-hr-identity/index.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | — |
+
+[Agree, disagree or send evidence on WD-139](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-139%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
