@@ -53,7 +53,7 @@ OPM's data standards and nature-of-action codes describe **federal employees**. 
 | **Core HCM Contingent Worker** (best fit) | Oracle Fusion Cloud HCM treats contractors as a full worker type, the contingent worker: a person record, an assignment, a place in the organization and a lifecycle much like an employee's, with add, renew and convert actions and the same interfaces[^c06-cwk][^c06-cwk-renew][^c06-cwt] | No vendor-management system and no non-employee governance layer: sponsorship, contract linkage and end-date attestation still need an owner and a process. Confirm that the agency's Core HCM configuration will record contingent workers |
 | **PIV credential and sponsorship system** | Sponsorship, adjudication, the sponsoring office and an expiry already exist for every badged contractor: FIPS 201-3 requires a background investigation and favorable adjudication before issuance, and caps a PIV card's validity at six years[^c06-fips201] | Covers only people who get a PIV credential; vendors and short-term workers without one need another path |
 | **Contractor suitability register** | Many agencies already keep one, under personnel security or contracting: each contractor tied to the agency contract they work on, with the suitability determination and its date. It is often the only existing record that links a person to a contract under agency authority | Often records the vetting decision, not the end of the engagement. Owner, interface and update timing vary, and a register keyed by hand from COR spreadsheets inherits their lag |
-| **A non-employee lifecycle service** (complement) | Sponsor workflows, contract and vendor records, periodic attestation | A third source to integrate and govern; usually layered on one of the two options above rather than replacing them |
+| **A non-employee lifecycle service** (complement) | Sponsor workflows, contract and vendor records, periodic attestation | A third source to integrate and govern; usually layered on one of the options above rather than replacing them |
 
 : Where contractors and vendors can be sourced from {.striped .hover}
 
@@ -82,7 +82,7 @@ No single option is complete. The contingent worker record has no contract or ve
 
 : One authority per contractor fact {.striped .hover}
 
-A contractor's access ends at the **earliest** of: the contract end date passing; suitability withdrawn; the PIV credential revoked; the sponsor leaving with no one taking over within a short grace period (for example 14 days); or the sponsor missing a periodic recertification (for example every 180 days). The last two close the gap that free-text sponsor fields leave open, because the sponsor is a live reference into HR, not a name on a form. Reconcile in both directions: a badge with no contractor record, and a contractor record with no badge, are both drift findings (Chapter 11).
+A contractor's access ends at the **earliest** of: the contract end date passing; suitability withdrawn; the PIV card terminated or expired (a reissue doesn't end access); the sponsor leaving with no one taking over within a short grace period (for example 14 days); or the sponsor missing a periodic recertification (for example every 180 days). The last two close the gap that free-text sponsor fields leave open, because the sponsor is a live reference into HR, not a name on a form. Reconcile in both directions: a badge with no contractor record, and a contractor record with no badge, are both drift findings (Chapter 11).
 
 ### Before a register becomes an authority
 

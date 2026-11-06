@@ -40,7 +40,7 @@ Acceptance tests are written in business terms, by worker type and event, so tha
 
 : Acceptance scenarios, stated in business terms {.striped .hover}
 
-Lifecycle Workflows' templates map onto these rows: the pre-hire and new-hire templates generate a Temporary Access Pass and enable the account on the hire date, and the offboarding templates disable the account and remove group memberships; refresh-token revocation is a separate built-in task.[^aC-lcw-deploy][^aC-lcw-tasks] The tests prove the agency's configuration of them, not the templates.
+Lifecycle Workflows' templates map onto these rows: the pre-hire and new-hire templates generate a Temporary Access Pass on the hire date and carry an enable task, which in this book's design is the recorded backstop to the pipeline's enable, and the offboarding templates disable the account and remove group memberships; refresh-token revocation is a separate built-in task.[^aC-lcw-deploy][^aC-lcw-tasks] The tests prove the agency's configuration of them, not the templates.
 
 Defects are graded by severity; anything that could leave a separated person with access, or lock out an active one, blocks acceptance. Sign-off comes from HR, the identity owner, the ISSO and the business owner of the population.
 
