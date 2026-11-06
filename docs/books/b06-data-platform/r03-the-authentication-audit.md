@@ -89,6 +89,8 @@ The script computes `MigrationTarget` and `EntraIDBlockers` for you:
 - **SQL Server 2019 and earlier** gets "Upgrade to SQL 2022 + Arc, then Entra ID auth." Version is the gate (Category 3 in [Chapter 07](07-the-authentication-audit.md)).
 - **Blockers** flagged in `EntraIDBlockers`: mixed-mode authentication, an **enabled `sa` account**, orphaned logins and linked servers. Each is a remediation item before cutover; logins are handled in [Runbook R05](r05-login-migration-and-parallel-run.md).
 
+The D1.8 output has no host operating system, domain-join, Arc-agent or Arc-eligibility-category field, and its login types are only `SQL_LOGIN`, `WINDOWS_LOGIN` and `WINDOWS_GROUP`. It has no connection or `auth_scheme` data either. To produce the [Chapter 07](07-the-authentication-audit.md) Arc-eligibility category, join the instance records to the host inventory ([Runbook R02](r02-estate-discovery-and-consolidation-gate.md): host operating system and domain-join state) and to the captured Arc agent state (`azcmagent show`, [Runbook R04](r04-arc-deployment-and-managed-identity.md)), then apply the Chapter 07 decision flow to `MigrationTarget`, `EntraIDReady` and those fields. Types E, X, C and K come from a direct `sys.server_principals` query. Connection evidence comes from the `sys.dm_exec_connections` query and SQL Server Audit in [Runbook R05](r05-login-migration-and-parallel-run.md).
+
 The script doesn't detect the one hard platform blocker: Microsoft Entra authentication isn't supported on SQL Server failover cluster instances.[^r03-entra-sql] Flag clustered instances from your cluster inventory and treat them as Category 3 until they're re-platformed or excepted.
 
 ## The supporting discovery family
@@ -98,7 +100,7 @@ The script doesn't detect the one hard platform blocker: Microsoft Entra authent
 | Script | Spec | What it gives you | Used by |
 |---|---|---|---|
 | `Spec1-D1.5-Get-KerberosSPNInventory.ps1` | D1.5 | Every SPN in the domain, including `MSSQLSvc`, with duplicates, orphans and a per-service-class migration target | the [R02](r02-estate-discovery-and-consolidation-gate.md) inventory and [Runbook R06](r06-ntlm-detection-and-remediation.md) |
-| `Spec3-D1.7-Get-SPNCollisionReport.ps1` | D1.7 | SPN collisions, which cause Kerberos authentication failures and push connections to NTLM[^r03-dup-spn] | [Runbook R06](r06-ntlm-detection-and-remediation.md) |
+| `Spec3-D1.7-Get-SPNCollisionReport.ps1` | D1.7 | SPN collisions, which cause Kerberos authentication failures[^r03-dup-spn] | [Runbook R06](r06-ntlm-detection-and-remediation.md) |
 | `Spec1-D1.4-Get-AuthenticationProtocolAudit.ps1` | D1.4 | Delegation (unconstrained, constrained, resource-based) and NTLM dependency indicators on computer objects | [Runbook R06](r06-ntlm-detection-and-remediation.md) |
 | `Spec3-D1.10-Get-CertBasedAuthAudit.ps1` | D1.10 | Certificate-based authentication dependencies across the directory: the PKI inventory, machine and user certificates, smart-card-required accounts ([Chapter 22](22-where-sql-server-touches-adcs.md)) | [Runbook R10](r10-certificate-discovery-for-adcs.md) |
 | `Spec3-D1.12-New-ServiceAccountOwnerMatrix.ps1` | D1.12 | The owner-to-service-account matrix and migration waves, built from whichever D1.x outputs you pass it (the D1.8 audit via `-D8InputFile`) | program planning |
