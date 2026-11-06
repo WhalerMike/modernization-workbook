@@ -101,11 +101,11 @@ Read these with care. They are counts of inventory answers in a public file, not
 
 ## Step 3: prioritize
 
-Every finding takes the severity [Chapter 07](07-monitoring-drift-and-shadow-ai.md#the-findings) gives it, inside the program's drift model of [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md). The scan adds an order of work, which is design:
+Each finding that [Chapter 07](07-monitoring-drift-and-shadow-ai.md#the-findings) lists takes the severity it gives, inside the program's drift model of [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md). Chapter 07 pins no severity for the scan's inventory-quality and leaver checks (stage not recorded, no contact, retired and still holding access, and a non-agentic system with no identity record); those take the order-of-work group below. The scan adds an order of work, which is design:
 
 1. **Agentic AI first.** An AI system that can act, not just answer, comes before one that only produces output for a person. The agentic-with-no-authorization answer goes straight to the system owner and the ISSO, and once the directory join confirms there's no governed identity it is P1: halt and alert, never remediated automatically.
 2. **Authorization next.** A live system with no authorization answer goes to the ISSO to resolve against the agency's authorization records. Confirmed, it is P1; resolved as an inventory error, it becomes an inventory correction.
-3. **Owners and placement.** These go to the identity governance officer, because establishing an owner of record is identity work, whatever the inventory's contact field says.
+3. **Owners and placement.** Owner findings go to the identity governance officer, because establishing an owner of record is identity work, whatever the inventory's contact field says. Placement findings go to identity engineering, who map the bureau to the organization model.
 4. **Privacy.** PII with no PIA link goes to the privacy officer to check against the privacy office's own register.
 5. **Unreadable rows.** These go to the inventory coordinator, because until they're fixed the agency can't say what the other checks missed.
 
@@ -120,7 +120,7 @@ The report has one row per system and finding, with enough on each row that the 
 | Use case | The inventory ID and name; for a directory-only finding, the directory object ID |
 | Organization | The bureau or component, mapped to the agency's organization model |
 | Finding | One of the checks above, in plain words |
-| Priority | P1 or P2 per [Chapter 07](07-monitoring-drift-and-shadow-ai.md), and the order-of-work group |
+| Priority | P1 or P2 where [Chapter 07](07-monitoring-drift-and-shadow-ai.md) pins one, and the order-of-work group |
 | Obligation | What is unmet, in the agency's terms: no owner of record, no authorization located, no PIA located |
 | Action | The specific next step: name a sponsor, locate or start an authorization, locate or write a PIA, issue a governed identity, remove a retired system's access |
 | Controls | The SP 800-53 controls the gap affects, from [Chapter 07](07-monitoring-drift-and-shadow-ai.md#from-finding-to-evidence) |
