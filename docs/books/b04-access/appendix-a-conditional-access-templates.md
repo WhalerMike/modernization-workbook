@@ -38,7 +38,7 @@ Each template is the request body for `POST /identity/conditionalAccess/policies
 
 The methods are those of the `conditionalAccessPolicy` resource.[^aA-policy] The program's conventions:
 
-- **State is always `enabledForReportingButNotEnforced`** (report-only) in source control. Enforcement is a separate, reviewed change that sets `enabled` ([Chapter 07](07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)). The other value is `disabled`.[^aA-policy]
+- **The file carries the approved state.** A new or changed policy is committed as `enabledForReportingButNotEnforced` (report-only). Enforcement is a separate, reviewed change that sets `enabled` ([Chapter 07](07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)), so the file, and therefore source control, always matches the tenant. The other value is `disabled`.[^aA-policy]
 - **Placeholders are in braces.** `{group:CA-Exclude-EmergencyAccess}` is the object ID of that group; `{location:NL-TrustedNetworks}` is a named location ID; `{tenant:partners}` is a list of partner tenant IDs. The deployment script substitutes them from a per-tenant map, so the same templates serve every tenant.
 - **Role IDs are role template IDs,** which are the same in every tenant. The admin role list used below is the fourteen roles in Microsoft's managed admin-MFA policy plus Hybrid Identity Administrator.[^aA-managed][^aA-roles]
 - **Built-in authentication strength IDs** are fixed: `…0002` multifactor authentication, `…0003` passwordless MFA, `…0004` phishing-resistant MFA.[^aA-strengths-list]
@@ -72,12 +72,12 @@ Three constraints from the Graph documentation shape the risk templates. `riskRe
 ## Deploying the templates
 
 ::: {.callout-warning}
-The script is illustrative and hasn't been tested against a production tenant. Review it before running it. It only creates or updates policies in report-only state, but it changes tenant configuration, so run it from the pipeline identity the program approves for policy changes, not from an administrator's desktop.
+The script is illustrative and hasn't been tested against a production tenant. Review it before running it. It creates or updates policies in the state each file carries, but it changes tenant configuration, so run it from the pipeline identity the program approves for policy changes, not from an administrator's desktop.
 :::
 
 ```powershell
 #Requires -Modules Microsoft.Graph.Identity.SignIns
-# Federal Modernization Program: deploy Conditional Access templates in report-only state.
+# Federal Modernization Program: deploy Conditional Access templates in the state each file carries.
 # Templates live in .\templates\*.json; placeholders are resolved from .\tenant-map.json.
 
 param(
@@ -104,21 +104,21 @@ foreach ($file in Get-ChildItem -Path $TemplatePath -Filter '*.json') {
     }
 
     $body = $json | ConvertFrom-Json -AsHashtable
-    $body['state'] = 'enabledForReportingButNotEnforced'   # never enforce from the pipeline
+    # The state comes from the file: report-only until the reviewed pull request that enforces it.
 
     $match = $existing | Where-Object { $_.DisplayName -eq $body['displayName'] }
     if ($match) {
         Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $match.Id -BodyParameter $body
-        Write-Output "Updated (report-only): $($body['displayName'])"
+        Write-Output "Updated ($($body['state'])): $($body['displayName'])"
     }
     else {
         New-MgIdentityConditionalAccessPolicy -BodyParameter $body | Out-Null
-        Write-Output "Created (report-only): $($body['displayName'])"
+        Write-Output "Created ($($body['state'])): $($body['displayName'])"
     }
 }
 ```
 
-Two cautions. The update branch sets a policy that is already enforced back to report-only, which is intended for the pipeline's review loop but means the pipeline must never run against production policies without the change process that re-enforces them ([Chapter 10](10-access-as-code-and-evidence.md)). And protected actions, if enabled for Conditional Access, require the pipeline identity to satisfy their authentication context ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#protected-actions)). To export the live set for comparison, `Get-MgIdentityConditionalAccessPolicy -All | ConvertTo-Json -Depth 10` produces the same shape.
+Two cautions. The script writes each file's state to the tenant, so a template committed as `enabled` is enforced when it deploys; the second, reviewed pull request that sets `enabled` is the only path to enforcement, and the pipeline must never run against production policies outside that change process ([Chapter 10](10-access-as-code-and-evidence.md)). And protected actions, if enabled for Conditional Access, require the pipeline identity to satisfy their authentication context ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#protected-actions)). To export the live set for comparison, `Get-MgIdentityConditionalAccessPolicy -All | ConvertTo-Json -Depth 10` produces the same shape.
 
 ## Supporting objects
 
@@ -175,7 +175,7 @@ It is created with `New-MgPolicyAuthenticationStrengthPolicy -BodyParameter`, wh
 
 ## Policy templates
 
-Every template excludes the emergency access group. Templates are grouped by the wave in [Chapter 07](07-the-conditional-access-policy-library.md).
+Every template excludes the emergency access group, except CA090 and the workload identity policies (CA015 and CA037), which have no user scope to exclude it from. Templates are grouped by the wave in [Chapter 07](07-the-conditional-access-policy-library.md).
 
 ### Wave 1: foundation
 
@@ -467,7 +467,7 @@ CA011, limited guest access. The Guests scope includes guest and other external 
 }
 ```
 
-The partner tenant list is maintained by the partner onboarding process ([Chapter 09](09-access-governance.md)) and is the same list in CA009, CA011, CA012 and CA038; a partner added to one and not the others is a drift finding.
+The partner tenant list is the `{tenant:partners}` placeholder, resolved from the per-tenant map, and is the same list in CA009, CA010, CA011, CA012 and CA038; a partner added to one and not the others is a drift finding.
 
 CA016, compliant device for desktop Office, Members only:
 

@@ -38,7 +38,7 @@ The rules matter because Entra ID doesn't enforce them. As the next section show
 
 ## The roles
 
-The program's model has seven human roles and one system actor. The names are the program's; adapt them to the agency's organization chart, but keep the split between deciding and doing.
+The program's model has eight human roles and one system actor. The names are the program's; adapt them to the agency's organization chart, but keep the split between deciding and doing.
 
 | Role | Decides | Does | Entra role or group (program design) |
 |---|---|---|---|
@@ -241,7 +241,7 @@ Everything above describes who approves. The authority split decides which pipel
 | Enterprise application access (group to app role) | A2 | Business approver and application owner | Automation for membership; help desk for the one-time group-to-app binding |
 | Certification revocation | A2 | Application owner (through the review) | Automation |
 | User create or disable (joiner or leaver) | A2 | The lifecycle workflow ([Book 03](../b03-hr-identity/index.md)) | Automation |
-| ImmutableID hard-match repair | A3 | Identity engineering lead and IGO | Help desk or identity engineering, manually through Microsoft Graph |
+| ImmutableID hard-match repair | A3 | Identity engineering lead and IGO | Identity engineering, usually in Active Directory |
 | Admin consent | A3 | Per [the consent chain](#who-approves-admin-consent) | IGO office role holder; never the help desk |
 | Conditional Access change | Out of scope | Security, through change control | Security administrator |
 | Directory role or service principal change | Out of scope | Identity engineering and IGO | Identity engineering |
@@ -311,7 +311,7 @@ D = decides (accountable) · R = does the work · C = consulted · I = informed 
 |---|---|---|---|---|---|---|---|---|---|
 | Register a new application | D | R | C | R | | I | C | | |
 | Assign or change an app's risk tier | D | C | C | C | | C | C | | |
-| User consent setting and permission classifications | C | | | R | | C | C | | |
+| User consent setting and permission classifications | D | | | R | | C | C | | |
 | Admin consent, Tier 1 or any application permission | D | R | | C | I | I | I | | |
 | Admin consent, Tier 2 | D | R | C | C | I | | | | |
 | Admin consent, Tier 3 | I | D | C | C | I | | | | |
