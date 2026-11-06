@@ -249,7 +249,7 @@ Phase 5 runs platform-neutral and platform-specific checks. Failures quarantine 
 | `DRIFT-CO-MANAGEMENT-NEW` | A net-new Windows endpoint landed in Configuration Manager co-management instead of Intune-first |
 | `DRIFT-PROCUREMENT-RECORD-ABSENT` | A device enrolled in Intune with no matching procurement record |
 
-The keys these checks join on, and a read-only script that finds three of the five, are in [Chapter 03](03-where-device-and-server-data-lives.md). Each detection produces a signed evidence artifact in the governance repository. The program maps the evidence to the NIST SP 800-53 controls AC-2, AC-19, CM-2, CM-7, CM-8, IA-3, MA-2 and SC-15 for its FedRAMP Moderate boundary.[^c04-sp800-53] That mapping is the program's assertion for its own assessors, not a statement that these artifacts satisfy the controls by themselves. How the evidence is produced and presented is covered in [Chapter 10](10-operating-and-evidencing-the-fleet.md).
+The keys these checks join on, and a read-only script that finds three of the five, are in [Chapter 03](03-where-device-and-server-data-lives.md). Each detection produces a signed evidence artifact in the governance repository. The program maps the evidence to the NIST SP 800-53 controls AC-2, AC-19, CM-2, CM-7, CM-8, IA-3, MA-2 and SC-15 for its FedRAMP Moderate boundary.[^c04-sp800-53] That mapping is the program's assertion for its own assessors, not a statement that these artifacts satisfy the controls by themselves. How the evidence is produced and presented for Intune is covered in [Chapter 10](10-operating-and-evidencing-the-fleet.md).
 
 ## What this chapter establishes
 
