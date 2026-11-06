@@ -89,7 +89,7 @@ Work through them in order: Module 1 sets up what the other two use. The develop
 
 Run every command from `examples/ms-automation`. Module 2's lab writes an `out` folder there; delete it afterward.
 
-**Lab 2: your test tenant.** Each Lab 2 registers one app with a certificate and only the read permissions its checks need, runs them read-only, and ends by deleting the app registration. You need a test tenant in the worldwide or GCC cloud, never production, with fictional data; Microsoft Entra ID P1 or P2 for Module 2's sign-in and PIM data; an Intune license and a few test devices for Module 3; and an administrator who can grant admin consent. **The authors haven't run the Lab 2 steps.**
+**Lab 2: your test tenant.** Each Lab 2 registers one app with a certificate and only the read permissions its checks need, runs them read-only, and ends by deleting the app registration. You need a test tenant in the worldwide or GCC cloud, never production, with fictional data; Microsoft Entra ID P1 or P2 for Module 2's sign-in data, and P2 or Microsoft Entra ID Governance for its PIM data; an Intune license and a few test devices for Module 3; and an administrator who can grant admin consent. **The authors haven't run the Lab 2 steps.**
 
 **Watch:** each module has a narrated deck, about 13 to 14 minutes, linked from the module's page.
 

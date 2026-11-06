@@ -66,7 +66,7 @@ Every API below is generally available in Graph v1.0. Each one's reference page 
 | What happened in the directory? | `GET /auditLogs/directoryAudits` | `AuditLog.Read.All`[^m2-audit] | B15 Ch 08 |
 | Who signed in, and which policies applied? | `GET /auditLogs/signIns` | `AuditLog.Read.All`[^m2-signins] | B15 Ch 08 |
 | Who has registered which authentication methods? | `GET /reports/authenticationMethods/userRegistrationDetails` | `AuditLog.Read.All`[^m2-regdetails] | B04 Ch 07 |
-| Which methods does the tenant allow? | `GET /policies/authenticationMethodsPolicy` | `Policy.Read.AuthenticationMethod`[^m2-ampolicy] | B02 Ch 09 |
+| Which methods does the tenant allow? | `GET /policies/authenticationMethodsPolicy` | `Policy.Read.AuthenticationMethod`[^m2-ampolicy] | B02 Ch 10 |
 | Who does ID Protection consider risky? | `GET /identityProtection/riskyUsers` | `IdentityRiskyUser.Read.All`[^m2-risky] | B04 Ch 03 |
 
 ## Unit 3: Users, groups and Conditional Access
@@ -445,7 +445,7 @@ rm -rf ca
 
 You run the same checks read-only against a test tenant and compare them with the Microsoft Entra admin center.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional users; Microsoft Entra ID P1 or P2 for `signInActivity` and PIM data as [Unit 3](#users-and-sign-in-activity) notes; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with the `azure-identity` package (step 3 installs it), or Microsoft Graph PowerShell.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional users; Microsoft Entra ID P1 or P2 for `signInActivity` as [Unit 3](#users-and-sign-in-activity) notes, and Microsoft Entra ID P2 or Microsoft Entra ID Governance for PIM data; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with the `azure-identity` package (step 3 installs it), or Microsoft Graph PowerShell.
 - **You'll replace:** `<tenant-id>` (the test tenant's ID), `<app-id>` (the app's application (client) ID), `<thumbprint>` (its certificate's thumbprint, for PowerShell); `app.pem` is the PEM file with the certificate and its private key. Work in `examples/ms-automation`.
 
 1. **Register one app** in the tenant's own cloud, with a certificate credential and no secret.

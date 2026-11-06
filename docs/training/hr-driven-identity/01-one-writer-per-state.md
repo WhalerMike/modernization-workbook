@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G1 Writers. Workbook [Chapter 01](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md). About 50 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_1_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_1_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-1/Training_HR_Module_1_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -152,7 +152,7 @@ rm -rf out
     python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
     ```
 
-    The third query is the `directoryAudits` filter for the `disabled-at-separation` row: `activityDisplayName eq 'Disable account'` within the window, allowed for `inbound-provisioning` and `lifecycle-workflows`. Module 7 runs these queries.
+    The third query is the `directoryAudits` filter for the `disabled-at-separation` row: `activityDisplayName eq 'Disable account'` within the window, allowed for `inbound-provisioning` and `lifecycle-workflows`. Gate 7's scheduled review runs these queries; Module 7's lab reads the scan's findings.
 
 6. Run the tests:
 

@@ -85,13 +85,14 @@ Each module follows the same units: an introduction with the federal requirement
 
 ## How this path fits with the other pieces
 
-The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. The deck series is still planned; when it exists, each module will link its deck.
+The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. The guide's two-part narrated deck series is published, and each module links its own narrated deck and video.
 
 | Piece | Where |
 |---|---|
 | The design | [Book 03](../../books/b03-hr-identity/index.md) |
 | The gates | [HR-Driven Identity: An Implementation Guide](../../books/guides/hr-driven-identity-implementation.md) |
 | The code and its labs | [*Building HR-Driven Identity*](../../project-plans/developer-workbooks/hr-driven-identity/index.md), on [Book 19](../../books/b19-developer-workbook/index.md) |
+| The gate-level narrated decks | [Two-part deck series](../../books/guides/hr-driven-identity-implementation.md#watch-or-download) |
 | The schedule | [Identity Lifecycle & Provisioning plan](../../project-plans/identity-lifecycle.md) |
 | The federal sources | [Federal framework crosswalk](../../reference/federal-framework-crosswalk.md) |
 

@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G6 Lifecycle. Workbook [Chapter 10](../../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md). About 75 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-10) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_10_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_10_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-10/Training_NPI_Module_10_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-10/Training_NPI_Module_10_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_NPI_Module_10.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_10_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_10_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-10/Training_NPI_Module_10_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-10/Training_NPI_Module_10_Narrated.vtt).
 
 **Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_10_Drift_Evidence_Narrated).
 
@@ -228,7 +228,7 @@ rm -rf out
 
     Expect `Vintage 2026: 5 changes (1 AuthorizationChanged, 1 Left, 2 New, 1 Retired); findings 3 Finding, 2 Warn, 1 Info`.
 
-7. **Package both days, chained.** Open a second shell, a POSIX shell, at the root of your copy of the repository. Steps 7 to 11 run in `examples/drift-pipeline`, in that shell. The runs are the repository's copies of the two you just made:
+7. **Package both days, chained.** Open a second shell, a POSIX shell, at the root of your copy of the repository. Steps 7 to 10 run in `examples/drift-pipeline`, in that shell; step 11 runs in both. The runs are the repository's copies of the two you just made:
 
     ```bash
     cd examples/drift-pipeline

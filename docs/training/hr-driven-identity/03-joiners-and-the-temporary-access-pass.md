@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G3 Joiners. Workbook [Chapter 03](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md). About 50 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-hr-module-3) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_3_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_3.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_3_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-3/Training_HR_Module_3_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -189,7 +189,7 @@ rm -rf out/ch03
 *Not run by the authors.* Follow the workbook's [Lab 2](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#lab-2-test-tenant) in a worldwide or GCC test tenant with Microsoft Entra ID Governance trial or test licenses, never production, and test users whose hire date is a few days away.
 
 - **What you do:** export the tenant's workflows, plan one change, send it with Graph PowerShell as a Lifecycle Workflows Administrator, set the execution limit in the admin center, check that the manager receives the pass, and measure readiness on the start date.
-- **Permissions:** a reader app with a certificate holding `LifecycleWorkflows-Workflow.Read.All`; the Lifecycle Workflows Administrator role to send the change.
+- **Permissions:** a reader app with a certificate holding `LifecycleWorkflows-Workflow.Read.All` for the plan, plus `EntitlementManagement.Read.All`, `LifecycleWorkflows-Reports.Read.All`, `User-LifeCycleInfo.Read.All` and `User.Read.All` for the readiness measure; the Lifecycle Workflows Administrator role to send the change.
 - **Back-out:** delete a workflow the lab created (it can be restored for 30 days), or send the previous file's body as a further version; remove the reader app, its permission and certificate; delete the export and output folders.
 
 ## Knowledge check (5 minutes)

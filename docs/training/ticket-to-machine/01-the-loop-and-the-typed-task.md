@@ -15,7 +15,7 @@ last-reviewed: 2026-11-03
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 1 of 7 · 50 minutes · Guide [Gate 4](../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door) · Workbook [Chapter 01](../../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md)
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-ttm-module-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Training_TTM_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_TTM_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_TTM_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narrated.vtt).
 
 ## Unit 1: Introduction
 
@@ -43,7 +43,7 @@ In this module, you'll:
 
 *8 minutes*
 
-The loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence. The kit builds the identity half of three of them in Pass 1 and leaves actuation to a later pass. Read these, in order:
+The loop has five steps: test, detect drift, raise a typed task, actuate on the native surface, and close with evidence. The kit has three builds in Pass 1 that cover four of them and leaves actuation to a later pass. Read these, in order:
 
 1. [Book 13, Appendix B: the coordination loop](../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-coordination-loop), for the five steps.
 2. [Chapter 01: the loop, and where the kit sits](../../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#the-loop-and-where-the-kit-sits), for the table that maps each step to a kit file and a chapter.
