@@ -81,6 +81,9 @@ jobs:
       - name: Check references to books and chapters
         run: python3 scripts/book_crosswalk.py --check --strict
 
+      - name: Check the Federal Framework Crosswalk
+        run: python3 scripts/check_framework_crosswalk.py --check
+
       - name: Check the RMF map
         run: python3 scripts/check_rmf_map.py --check
 
