@@ -324,7 +324,7 @@ Both paths produce the same server configuration. [Chapter 05](05-the-governed-m
 
 On the manual path, the operator owns the change record, the approval and the rollback. The program's companion kit wraps the onboarding and baseline steps in two scripts, `Invoke-ArcOnboarding.ps1` (creates the least-privileged service principal, installs and connects the agent, and validates registration) and `Set-ArcPolicyBaseline.ps1` (assigns the Windows security-baseline machine configuration and enables Defender for Servers Plan 2). Both honor `-WhatIf`, and both must be configured for subscription, resource group, location and cloud before use. They're the program's tooling, not Microsoft cmdlets.
 
-On the governed path, the same scripts run with `-ApprovalRef` on every state-changing call, and the approval check refuses a gated write that has no approval reference or that's declared above the L3 ceiling. Every Arc resource is then traceable to an approval, and the policy baseline is evidence of automated configuration management rather than a one-time setup. Rolling back the governance layer (lowering the ceiling to record-only, or stopping the scheduled observers) doesn't require re-onboarding any server, because the operational state is held by Azure, not by the program. The evidence this produces, and the FedRAMP 20x indicators it supports, are in [Chapter 10](10-operating-and-evidencing-the-fleet.md).
+On the governed path, the same scripts run with `-ApprovalRef` on every state-changing call, and the approval check refuses a gated write that has no approval reference or that's declared above the L3 ceiling. Every Arc resource is then traceable to an approval, and the policy baseline is evidence of automated configuration management rather than a one-time setup. Rolling back the governance layer (lowering the ceiling to record-only, or stopping the scheduled observers) doesn't require re-onboarding any server, because the operational state is held by Azure, not by the program. [Chapter 10](10-operating-and-evidencing-the-fleet.md) covers evidence and the FedRAMP 20x indicators for Intune only; server evidence isn't covered there.
 
 ## Monitoring the server estate
 
@@ -333,7 +333,7 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 - Watch the three baselines together: machine configuration compliance, Update Manager compliance and Defender for Cloud recommendations. A server that's connected but failing all three is addressable, not governed.
 - Track ESU coverage and end-of-support dates as a standing report until the last Windows Server 2016 and SQL Server 2014 host is gone.
 
-[Chapter 10](10-operating-and-evidencing-the-fleet.md) brings the server and workstation signals together. The compute side of the same transition, from the application's point of view, is in the Client-Server to Hybrid-Cloud series, [Book 01, Chapter 07 — Compute Transformation](../b01-transformation-arc/07-compute-transformation.md).
+[Chapter 10](10-operating-and-evidencing-the-fleet.md) covers the Intune side only; it doesn't bring the server and workstation signals together. The compute side of the same transition, from the application's point of view, is in the Client-Server to Hybrid-Cloud series, [Book 01, Chapter 07 — Compute Transformation](../b01-transformation-arc/07-compute-transformation.md).
 
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
 
