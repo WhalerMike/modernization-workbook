@@ -89,6 +89,7 @@ class Titles(Case):
     def test_a_bracketed_book_name(self):
         self.assertEqual(self.kinds("Book 02 (Transport)."), [])
         self.assertEqual(self.kinds("Book 02 (Vulnerability Scanning)."), ["wrong-title"])
+        self.assertEqual(self.kinds("Book 02 (The start)."), [])
 
 
 class Bare(Case):
@@ -134,6 +135,22 @@ class Map(Case):
     def test_a_page_without_markers_is_left_alone(self):
         (self.root / "docs/books/index.md").write_text("Plain\n", encoding="utf-8")
         self.assertFalse(bc.write_map(self.root))
+
+
+class ReadList(Case):
+    def test_it_lists_changed_pages_their_citers_and_the_leaning_books(self):
+        (self.root / "docs/books/b02-second/01-start.md").write_text("# Chapter 01\n\nBook 01, Chapter 1 holds it.\n", encoding="utf-8")
+        (self.root / "docs/books/guides").mkdir()
+        (self.root / "docs/books/guides/g.md").write_text("[One](../b01-first/01-one.md)\n", encoding="utf-8")
+        text = bc.read_list(["docs/books/b01-first/01-one.md", "docs/books/b01-first/_verification/01-one.md", "scripts/x.py"], self.root)
+        self.assertIn("1 changed pages", text)
+        self.assertIn("- docs/books/b02-second/01-start.md: 01-one.md", text)
+        self.assertIn("- docs/books/guides/g.md: 01-one.md", text)
+        self.assertIn("- B01 The First Book: B02 Network and Transport", text)
+        self.assertNotIn("_verification", text)
+
+    def test_nothing_changed(self):
+        self.assertIn("0 changed pages", bc.read_list([], self.root))
 
 
 if __name__ == "__main__":

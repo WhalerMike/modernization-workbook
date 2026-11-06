@@ -4,6 +4,8 @@
     python scripts/book_crosswalk.py              # refresh the map on docs/books/index.md
     python scripts/book_crosswalk.py --check      # write the reference findings as JSON
     python scripts/book_crosswalk.py --check --out findings.json
+    python scripts/book_crosswalk.py --check --strict     # fail on any finding (PR check)
+    python scripts/book_crosswalk.py --read-list edition-2026.11.4   # what to read for an edition
 
 The map counts, for every pair of books, how often the chapters of one name or
 link the other. It fills the block between the two markers on the Books page.
@@ -19,9 +21,12 @@ Chapter 3" or "Book 13 Appendix B" and reports each one that can't be right:
   bare-chapter        "Chapter N" with no book named, in a book with no Chapter N
 
 "Book 02" in docs/compliance, or "Vol VII Book 02", is the Federal Compliance series'
-own numbering, not a workbook book, so those aren't read as references. It reports
-and never edits a page, and it exits 0 however many findings there are:
-some findings need a person to choose which side is right.
+own numbering, not a workbook book, so those aren't read as references. The check
+never edits a page.
+
+The read list is the consistency read for one edition. Given the last edition's tag
+it lists the book chapters and guides changed since, the pages elsewhere that cite
+them, and the books the map shows leaning most on each changed book.
 """
 from __future__ import annotations
 
@@ -30,6 +35,7 @@ import difflib
 import json
 import posixpath
 import re
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
@@ -82,6 +88,7 @@ class Library:
         self.chapters: dict[int, dict[int, str]] = defaultdict(dict)
         self.appendices: dict[int, dict[str, str]] = defaultdict(dict)
         self.chapter_pages: dict[int, dict[int, Path]] = {}
+        self.appendix_pages: dict[int, dict[str, Path]] = defaultdict(dict)
         for folder in sorted((root / BOOKS).glob("b[0-9][0-9]-*")):
             number = int(BOOK_DIR.match(folder.name).group(1))
             self.books[number] = folder
@@ -94,6 +101,7 @@ class Library:
                     self.chapter_pages[number][int(chapter.group(1))] = page
                 elif appendix:
                     self.appendices[number][appendix.group(1).upper()] = page_title(page)
+                    self.appendix_pages[number][appendix.group(1).upper()] = page
 
     def book_of(self, rel: str) -> int | None:
         parts = rel.split("/")
@@ -211,7 +219,7 @@ def check_text(lib: Library, rel: str, raw: str, prose: bool = True) -> list[Fin
                 add("no-chapter", m.start(), said, f"Book {book:02d} appendices: {letters}")
         else:
             name = BOOK_NAME.match(after)
-            if name and not shares_a_word(name.group(1), lib.titles[book]):
+            if name and not shares_a_word(name.group(1), " ".join([lib.titles[book], *lib.chapters[book].values()])):
                 add("wrong-title", m.start(), said + after[:name.end()], f'that book is "{lib.titles[book]}"')
 
     for m in CHAPTER_OF.finditer(text):
@@ -306,15 +314,66 @@ def connections(lib: Library, root: Path = ROOT) -> dict[int, Counter]:
     return counts
 
 
+def cited_pages(lib: Library, rel: str, text: str) -> set[str]:
+    """The book pages one page cites, by link or by "Book 05, Chapter 3"."""
+    text = blank_code(text)
+    cited: set[str] = set()
+    for m in BOOK_REF.finditer(text):
+        book = int(m.group(1))
+        if book not in lib.books or other_series(text, m):
+            continue
+        pages = [lib.chapter_pages[book].get(n) for n in numbers(m.group(2))] if m.group(2) else []
+        if m.group(3):
+            pages.append(lib.appendix_pages[book].get(m.group(3)))
+        cited |= {p.relative_to(lib.root).as_posix() for p in pages if p}
+    for m in LINK.finditer(text):
+        target = m.group(2).split("#")[0]
+        if target.endswith(".md") and not target.startswith(("http:", "https:")):
+            cited.add(posixpath.normpath(posixpath.join(posixpath.dirname(rel), target)))
+    return cited
+
+
+def incoming_of(counts: dict[int, Counter]) -> dict[int, Counter]:
+    incoming: dict[int, Counter] = defaultdict(Counter)
+    for book, others in counts.items():
+        for other, n in others.items():
+            incoming[other][book] += n
+    return incoming
+
+
+def read_list(changed: list[str], root: Path = ROOT) -> str:
+    """What an edition's consistency read covers, given the files changed since the last one."""
+    lib = Library(root)
+    pages = sorted(f for f in changed if f.endswith(".md") and f.startswith(f"{BOOKS}/")
+                   and "_verification" not in f and not f.rsplit("/", 1)[-1].startswith(SKIP_NAMES)
+                   and (root / f).exists() and not f.endswith("/index.md"))  # an index changes with each edition
+    wanted = set(pages)
+    citing: dict[str, set[str]] = defaultdict(set)
+    for page in published_pages(root):
+        rel = page.relative_to(root).as_posix()
+        if rel in wanted or rel == INDEX:
+            continue
+        for target in cited_pages(lib, rel, page.read_text(encoding="utf-8", errors="replace")) & wanted:
+            citing[rel].add(target)
+    incoming = incoming_of(connections(lib, root))
+    books = sorted({b for b in map(lib.book_of, pages) if b is not None})
+    out = [f"# Consistency read: {len(pages)} changed pages", "", "## Read in full", ""]
+    out += [f"- {p}" for p in pages] or ["- none"]
+    out += ["", "## Check where these pages cite them", ""]
+    out += [f"- {rel}: {', '.join(t.rsplit('/', 1)[-1] for t in sorted(citing[rel]))}" for rel in sorted(citing)] or ["- none"]
+    out += ["", "## Books that lean most on the changed books", ""]
+    for book in books:
+        top = sorted(incoming[book].items(), key=lambda kv: (-kv[1], kv[0]))[:TOP]
+        out.append(f"- B{book:02d} {short(lib.titles[book])}: " + (", ".join(f"B{b:02d} {short(lib.titles[b])}" for b, _ in top) or "none"))
+    return "\n".join(out) + "\n"
+
+
 def short(title: str) -> str:
     return re.sub(r"^Book\s+\d+\s*\W\s*", "", title.split(":")[0]).strip()
 
 
 def render_map(lib: Library, counts: dict[int, Counter]) -> str:
-    incoming: dict[int, Counter] = defaultdict(Counter)
-    for book, others in counts.items():
-        for other, n in others.items():
-            incoming[other][book] += n
+    incoming = incoming_of(counts)
 
     def cell(pairs: Counter) -> str:
         top = sorted(pairs.items(), key=lambda kv: (-kv[1], kv[0]))[:TOP]
@@ -348,16 +407,26 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true", help="report references that can't be right")
     ap.add_argument("--out", type=Path, help="with --check, write the findings to this JSON file")
+    ap.add_argument("--strict", action="store_true", help="with --check, exit 1 if there is any finding")
+    ap.add_argument("--read-list", metavar="REF", help="list what to read for the changes since REF, usually the last edition's tag")
     args = ap.parse_args()
+    if args.read_list:
+        names = subprocess.run(["git", "diff", "--name-only", f"{args.read_list}...HEAD"], cwd=ROOT,
+                               capture_output=True, text=True, check=True).stdout.split("\n")
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(read_list([n for n in names if n]))
+        return 0
     if not args.check:
         return 0 if write_map() else 1
     found = check_all()
+    for f in found if args.strict else []:
+        print(f"{f.file}:{f.line}: {f.kind}: {f.text} ({f.detail})".encode("ascii", "replace").decode())
     for kind, n in Counter(f.kind for f in found).most_common():
         print(f"{n:6} {kind}")
     print(f"{len(found):6} in all")
     if args.out:
         args.out.write_text(json.dumps([asdict(f) for f in found], indent=1), encoding="utf-8")
-    return 0
+    return 1 if args.strict and found else 0
 
 
 if __name__ == "__main__":
