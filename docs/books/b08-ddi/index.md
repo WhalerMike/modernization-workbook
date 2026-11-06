@@ -73,7 +73,7 @@ Five configuration decisions carry most of the risk along the way. Each is settl
 | 1. redirect-dns targets a network-addressable agency resolver | Ch 05, Ch 08 | Migrate authority |
 | 2. The agency resolver is the first hop; other resolvers are its forwarders | Ch 05, Ch 08 | Migrate authority |
 | 3. The policy plane holds every per-cloud conditional forwarding rule | Ch 07, Ch 08 | Federate clouds |
-| 4. AD DNS is inventoried and reprovisioned before any domain controller goes | Ch 04, Ch 10 | Inventory, Decommission |
+| 4. AD DNS is inventoried before any domain controller goes; locator records move last | Ch 04, Ch 10 | Inventory, Decommission |
 | 5. OCSP and CRL endpoints resolve from every origin | Ch 06, Ch 08 | Federate clouds, Harden |
 
 ## Reading paths

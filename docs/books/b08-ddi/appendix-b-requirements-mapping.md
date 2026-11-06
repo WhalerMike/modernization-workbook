@@ -1,6 +1,6 @@
 ---
 title: "Appendix B — Requirements Mapping and Sources"
-description: "A compliance-enabling crosswalk, not a compliance claim: each federal requirement that touches DNS, DHCP and IPAM (OMB M-22-09, M-26-14, M-08-23 and M-21-07, CISA Protective DNS and BOD 18-01, TIC 3.0, NIST SP 800-81 Rev. 3, SP 800-53 Rev. 5 and FedRAMP), what it actually asks, where the book addresses it and the evidence it calls for, followed by every source the book cites."
+description: "A compliance-enabling crosswalk, not a compliance claim: each federal requirement that touches DNS, DHCP and IPAM (OMB M-22-09, M-26-14, M-08-23 and M-21-07, CISA Protective DNS and BOD 18-01, TIC 3.0, NIST SP 800-81 Rev. 3, SP 800-53 Rev. 5 and FedRAMP), what it actually asks, where the book addresses it and the evidence it calls for, followed by the principal sources the book cites."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b08-ddi
@@ -19,12 +19,12 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-What each federal requirement that touches the name layer asks of DNS, DHCP and IPAM, in its own words where the wording matters; the chapter that addresses it and the evidence an assessor can expect; notes on reading the SP 800-53 controls; and the full source list, with primary sources separated from third-party ones.
+What each federal requirement that touches the name layer asks of DNS, DHCP and IPAM, in its own words where the wording matters; the chapter that addresses it and the evidence an assessor can expect; notes on reading the SP 800-53 controls; and the principal sources, with primary sources separated from third-party ones. Chapter footnotes cite the rest, with their own access dates.
 :::
 
 ::: {.callout-important}
 ## Compliance-enabling, not a compliance claim
-This appendix helps an agency reuse the book's design and evidence in its own system security plan. It doesn't claim that following the book satisfies any requirement or control. The agency's DNS, DHCP and IPAM services are part of the agency's own systems; the agency authorizes them, and any cloud service they depend on needs its own FedRAMP certification ([Chapter 03](03-federal-requirements.md)). Control selection, implementation statements and assessment belong to the agency and its assessors. Requirement wording is summarized; the cited documents govern. Every source was checked on October 20, 2026.
+This appendix helps an agency reuse the book's design and evidence in its own system security plan. It doesn't claim that following the book satisfies any requirement or control. The agency's DNS, DHCP and IPAM services are part of the agency's own systems; the agency authorizes them, and any cloud service they depend on needs its own FedRAMP certification ([Chapter 03](03-federal-requirements.md)). Control selection, implementation statements and assessment belong to the agency and its assessors. Requirement wording is summarized; the cited documents govern. The dates on which sources were opened are stated under Sources.
 :::
 
 ## Requirements mapping
@@ -56,7 +56,7 @@ This appendix helps an agency reuse the book's design and evidence in its own sy
 
 ## Sources
 
-Every URL below was opened on October 20, 2026, except the M-26-14 memorandum, opened on October 21, 2026, and the NIST SP 800-53 CM-2 and CM-6, NIST National Checklist Program, CIS Benchmarks and AWS FedRAMP pages, opened on October 29, 2026. Primary sources (federal documents, standards and the cloud and platform providers' own documentation of their services) are listed separately from third-party sources, which the chapters label as such in their footnotes.
+Every URL below was opened on October 20, 2026, except the M-26-14 memorandum, opened on October 21, 2026, and the NIST SP 800-53 CM-2 and CM-6, NIST National Checklist Program, CIS Benchmarks and AWS FedRAMP pages, opened on October 29, 2026. The Oracle and Broadcom sources that Chapter 07 cites were opened on October 30, 2026, and are listed in that chapter's footnotes. Primary sources (federal documents, standards and the cloud and platform providers' own documentation of their services) are listed separately from third-party sources, which the chapters label as such in their footnotes.
 
 ### Primary sources: federal requirements and guidance
 
