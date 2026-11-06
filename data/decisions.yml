@@ -1789,3 +1789,57 @@
   pages: [docs/books/b03-hr-identity/index.md]
   prs: []
   status: settled
+
+- id: WD-140
+  date: 2026-11-06
+  question: Which Microsoft Entra route is the default for partners outside the agency's own organization?
+  options: ["Cross-tenant synchronization and entitlement management as equal options", "Entitlement management with B2B guests as the default, cross-tenant synchronization as the exception"]
+  choice: "Entitlement management with B2B collaboration guests is the default route for outside partners. Cross-tenant synchronization is the exception, used only with a recorded reason."
+  rationale: "Microsoft's FAQ says cross-tenant synchronization is intended for use within an organization, for privacy reasons, and points to entitlement management for inviting B2B users across organizations. It pushes only internal members of the source tenant and does not collect user consent."
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, What is cross-tenant synchronization?', url: 'https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview'}
+  - {title: 'Microsoft Learn, Govern access for external users in entitlement management', url: 'https://learn.microsoft.com/entra/id-governance/entitlement-management-external-users'}
+  pages: [docs/books/b04-access/index.md, docs/books/b03-hr-identity/index.md]
+  prs: []
+  status: settled
+  note: "Refines WD-135, which kept the Entra profile as the practical page; it does not change that choice."
+
+- id: WD-141
+  date: 2026-11-06
+  question: How does the Entra profile keep WD-134 (Guest by default) when the product default differs?
+  options: ["Accept the product default (external member)", "Set the userType mapping to Guest explicitly and require an exception record for Member"]
+  choice: "The Entra profile states the userType mapping as a required setting, set to Guest. Member remains an exception that needs an exception record."
+  rationale: "Cross-tenant synchronization creates external members by default, and an existing guest is not changed unless the mapping is set to Always. The workbook's Conditional Access library scopes Members separately from guests, so the default would move partners into the internal baselines."
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Configure cross-tenant synchronization', url: 'https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure'}
+  - {title: 'Microsoft Learn, What is cross-tenant synchronization?', url: 'https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview'}
+  pages: [docs/books/b04-access/index.md]
+  prs: []
+  status: settled
+  note: "WD-134 stands; this entry records how it is applied."
+
+- id: WD-142
+  date: 2026-11-06
+  question: When are the cloud pair for Government-cloud partners and the unverified source items settled?
+  options: ["In the chapter draft", "In a second source pass before any chapter text"]
+  choice: "A second source pass settles the cloud pair for a partner in a Government cloud tenant, and the four unverified items (FIPS 201-3 eligibility, FedRAMP's current requirements, EO 14028's status, GRS 3.2 retention), before any chapter text is written. What it cannot settle stays listed as unverified."
+  rationale: "Finding a wrong cloud pair or an outdated requirement after drafting means rework, as WD-139 already reasoned."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b03-hr-identity/_verification/15-external-partner-identity.md]
+  prs: []
+  status: settled
+
+- id: WD-143
+  date: 2026-11-06
+  question: When do the sources for the partner chapter enter the Source Register?
+  options: ["Now", "When the chapter is written and cites them"]
+  choice: "The candidate sources enter the Source Register when the chapter is written and cites them in footnotes."
+  rationale: "The register accepts a row only for a source the books cite in a footnote, so rows added now would have no citation to check against."
+  basis: workbook-design
+  sources: []
+  pages: [docs/reference/source-register.md]
+  prs: []
+  status: settled
