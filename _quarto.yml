@@ -52,6 +52,8 @@ project:
     # (docs/presentations/watch.md, assets/fmw-video.lua). The MP4s stream
     # from the videos release; a caption track must come from the site itself.
     - "presentations/**/*_Narrated.vtt"
+    # Each video's per-slide source links, fetched by the Watch page on demand.
+    - "presentations/**/*_Narrated_sources.json"
     - "docs/presentations/videos.json"
     - "docs/presentations/fmw-chapters.js"
     - "docs/project-plans/files/*"
