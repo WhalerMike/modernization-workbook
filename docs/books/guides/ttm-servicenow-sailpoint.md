@@ -133,12 +133,13 @@ The guide assumes the starting state most agencies report, and gives an interim 
 
 : What each piece needs {.striped .hover}
 
-**Integration identities.** Four non-person identities carry the integration, each with two named owners and a federal sponsor in the system inventory, and each governed on the [non-person identity track](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) *(design guidance)*:
+**Integration identities.** Five non-person identities carry the integration, each with two named owners and a federal sponsor in the system inventory, and each governed on the [non-person identity track](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) *(design guidance)*:
 
 1. SailPoint's Entra connector app registration in the agency's tenant (the GCC High endpoints are a source setting, Gate 1);[^ttm-gov]
 2. the ServiceNow Entra spoke's app registration, a custom app that obtains OAuth 2.0 tokens, delegated or application;[^ttm-spoke]
-3. the ServiceNow integration user the SailPoint workflow posts as, and the verifier account the re-read client closes records as ([kit permissions](snow-sailpoint-integration-kit.md#permissions));
-4. the ISC API client the kit's clients read with.
+3. the ServiceNow integration user the SailPoint workflow posts as ([kit permissions](snow-sailpoint-integration-kit.md#permissions));
+4. the verifier account the re-read client closes records as;
+5. the ISC API client the kit's clients read with.
 
 **Environments.** A ServiceNow Personal Developer Instance or sub-production instance and a SailPoint sandbox tenant, with synthetic data like the kit's fixtures, before production ([Book 15, Chapter 13](../b15-day2-operations/13-building-day-two-automation-in-house.md#three-environments)).
 
@@ -149,12 +150,12 @@ The guide assumes the starting state most agencies report, and gives an interim 
 | Gate | Done when | Closes gap | Validate with |
 |---|---|---|---|
 | [G1 Boundary](#step-1-confirm-the-authorization-boundary) | Each product's FedRAMP status, the actions that run from a vendor cloud, and the integration identities are recorded and accepted | — | VK-NPI-02, VK-NPI-05; manual record |
-| [G2 Writers and approvers](#step-2-decide-the-writers-and-the-approvers) | One writer per attribute and one approver system per authority class are decided, and each change class has a lane | 2, 4 | No automated check yet |
+| [G2 Writers and approvers](#step-2-decide-the-writers-and-the-approvers) | One writer per attribute and one approver system per authority class are decided, and each change class has a lane | 2, 4 | `writer_check.py` flags any attribute with two writers; approvers and lanes are checked by hand |
 | [G3 Sources and starting drift](#step-3-connect-the-sources-and-measure-the-starting-drift) | HR, Entra ID and AD are aggregated and correlated on `employeeId`; the starting drift is measured | — | Kit drift tests; VK-HR-01, VK-HR-04 |
 | [G4 Front door](#step-4-open-the-front-door) | Drift events, requests and disconnected-application work arrive in ServiceNow as typed, owned, clocked tasks | — | Kit contract and ServiceNow script tests |
 | [G5 Actuation](#step-5-actuate-on-the-native-surface) | Each lane actuates through a connector or a declared exception, under a service identity, with a change record where its class needs one | 3 | No automated check yet |
 | [G6 Re-read](#step-6-close-only-on-a-re-read) | No finding or Service Desk ticket closes without a re-read of the target | 1 | Kit re-read and business-rule tests |
-| [G7 Tempo and evidence](#step-7-operate-the-tempo) | Windows are measured, the identity fixes route through the loop, and the evidence package is produced on a schedule | — | No automated check yet for the export |
+| [G7 Tempo and evidence](#step-7-operate-the-tempo) | Windows are measured, the identity fixes route through the loop, and the evidence package is produced on a schedule | — | `evidence_export.py` checks the export; the five measures have no automated check yet |
 
 : The seven gates {.striped .hover}
 
@@ -493,7 +494,7 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 1. **Schedule the drift reconciliation and the re-read client**, and keep their outputs with the date and the checker version.
 2. **Report the five measures** to the governance board: detection coverage, window adherence, escalation rate, machine-closure share and declared-exception count ([Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md#what-the-tempo-shows-leadership)).
 3. **Route the identity fixes through the loop**, below.
-4. **Export the evidence**: a nightly bundle of SailPoint events and ServiceNow records in Book 13's [evidence shape](../b13-governance/appendix-b-ticket-to-machine-reference.md#the-evidence-record), planned for the kit's Pass 2.
+4. **Export the evidence**: a bundle of SailPoint events and ServiceNow records in Book 13's [evidence shape](../b13-governance/appendix-b-ticket-to-machine-reference.md#the-evidence-record), which the kit's `evidence_export.py` writes as one record per closed finding; scheduling it nightly is up to the program.
 5. **Review each declared exception** at its end date, and each L4 class quarterly.
 
 **The identity fixes, on these products.** From the [identity maintenance explainer's](../explainers/identity-maintenance.md) fix catalog. Everything here is *(inference)* or *(design guidance)* unless a note cites a source.
@@ -553,7 +554,7 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 |---|---|---|
 | **Closure by ticket status** | A mapped "Closed" status completes SailPoint's provisioning task with nothing checked[^ttm-sdim-bp] | Gate 6's rule on every table SailPoint writes to |
 | **Two approver systems for one class** | The catalog app and SailPoint both approve, or neither does[^ttm-apps] | Gate 2's approver-per-class table |
-| **Two writers for one attribute** | Entra inbound provisioning and SailPoint overwrite each other | Gate 2's attribute map; the Pass 2 check |
+| **Two writers for one attribute** | Entra inbound provisioning and SailPoint overwrite each other | Gate 2's attribute map; the `writer_check.py` check |
 | **A vendor-cloud action nobody recorded** | Connector calls leave SailPoint's cloud, outside the boundary the authorizing official reviewed[^ttm-ad] | Gate 1's data-flow record |
 | **A feature outside the authorization** | A workflow or detection feature used in production isn't in the FedRAMP environment | Written confirmation from SailPoint before production (Gate 1) |
 | **"MFA attribute management" taken for a reset procedure** | A connector changes authentication data without verifying the person[^ttm-entra] | Resets stay with the help desk's verification (Gate 5) |
