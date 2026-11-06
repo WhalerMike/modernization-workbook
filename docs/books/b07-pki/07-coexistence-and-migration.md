@@ -68,7 +68,7 @@ The NPS server certificate needs particular care during the Wi-Fi move. Clients 
 
 ### AD CS chain into Entra ID
 
-To let Entra CBA accept certificates issued by AD CS (smart card certificates, software user certificates, PIV certificates chaining through a Federal PKI bridge), upload the root and every intermediate and issuing CA to the Entra ID trust store, each with an internet-facing CRL URL ([Chapter 06](06-device-and-user-certificates.md)).[^c07-cba-howto] This is also what lets AD FS certificate authentication move to Entra ID without reissuing a single certificate.
+To let Entra CBA accept certificates issued by AD CS (smart card certificates and software user certificates), upload the root and every intermediate and issuing CA to the Entra ID trust store, each with an internet-facing CRL URL ([Chapter 06](06-device-and-user-certificates.md)).[^c07-cba-howto] PIV certificates are not issued by the program's AD CS; the Federal PKI path goes into the trust store the same way, as an issuer the program doesn't run ([Chapter 09](09-federal-workforce-credentials.md)). This is also what lets AD FS certificate authentication move to Entra ID without reissuing a single certificate.
 
 ### Cloud chain into the forest
 
