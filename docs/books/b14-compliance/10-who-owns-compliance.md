@@ -160,7 +160,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Select the assessor and set its independence; approve the assessment plan (A-1, A-2) | | | C | C | D | C | C | R | | | |
 | Assess security controls and write the report (A-3, A-4) | | | C | | | C | C | D, R | C | | |
 | Assess privacy controls | | | | D, R | | C | C | R | | | |
-| Remediate findings within their windows (A-5) | | | C | | | D | R | R | R | | C |
+| Remediate findings within their windows (A-5) | | | C | | | D | R | C | R | | C |
 | Keep the plan of action and milestones (A-6) | | | C | C | C | D | R | | R | | C |
 | Approve the plan of action and milestones; accept residual risk | | | R | C | D | R | R | C | | | |
 | Assemble and submit the authorization package (R-1) | | | C | R | | D, R | R | C | R | | R |
