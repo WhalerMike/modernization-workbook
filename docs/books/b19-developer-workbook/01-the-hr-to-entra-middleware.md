@@ -43,7 +43,7 @@ The middleware that reads an HR extract and feeds Microsoft Entra ID's API-drive
 
 **Audience.** Developers who own the HR integration, and the engineers who review it. You should be comfortable in PowerShell 7 or Python and know what SCIM is. You don't need to know the HR product: everything here reads a CSV extract whose columns a mapping file names.
 
-[Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md) describes the pipeline's duties (validate, normalize, sequence, send, reconcile) and [Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md) the canonical schema and attribute map. [Appendix A](../b03-hr-identity/appendix-a-lifecycle-rules.md) holds the lifecycle rules, and [Appendix B](../b03-hr-identity/appendix-b-security-and-privacy.md) the security and privacy rules for what the pipeline may log. This chapter is the developer's view of those pages.
+[Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md) describes the pipeline's duties (validate, sequence and retry, normalize to SCIM, write provenance, reconcile) and [Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md) the canonical schema and attribute map. [Appendix A](../b03-hr-identity/appendix-a-lifecycle-rules.md) holds the lifecycle rules, and [Appendix B](../b03-hr-identity/appendix-b-security-and-privacy.md) the security and privacy rules for what the pipeline may log. This chapter is the developer's view of those pages.
 
 ## Where the middleware sits
 

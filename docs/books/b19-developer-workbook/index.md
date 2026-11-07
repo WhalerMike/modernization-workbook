@@ -30,7 +30,7 @@ last-reviewed: 2026-11-06
 
 ::: {.callout-important appearance="default"}
 ## Status: approved
-All ten chapters are written, and the owner had approved every page by November 3, 2026. A page that changes after its approval goes back on the weekly source watch list until it is approved again. Chapters 01 to 09 each have a narrated deck and video, listed under [Narrated chapter tours](#narrated-chapter-tours). Every external claim was checked against Microsoft Learn or a workbook chapter on October 30, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
+All ten chapters are written, and the owner had approved every page by November 3, 2026. A page that changes after its approval goes back on the weekly source watch list until it is approved again. Chapters 01 to 09 each have a narrated deck and video, listed under [Narrated chapter tours](#narrated-chapter-tours). Every external claim was checked against Microsoft Learn or a workbook chapter between October 30 and November 2, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
 :::
 
 The [Attribute-Driven Migration](../guides/attribute-driven-migration.md) moves an agency from Active Directory to Microsoft Entra ID by placing every person, device and server in policy through attributes instead of OU placement. Its operator material already exists: the companion guide, the [implementation guide](../guides/attribute-driven-migration-implementation.md) with its ten gates, the [project plan](../../project-plans/attribute-driven-migration.md) and the narrated decks. Those tell an operator what to do and how to prove it was done. They don't teach anyone to build the software the migration runs on: the middleware between the HR system and Entra ID, the Graph clients, the checks that prove each gate, the rule library, the workflow extensions, and the pipelines that catch drift and hand evidence to the ISSO.
@@ -66,7 +66,7 @@ They meet at the **Validate** step. Each gate in the guide names a validation ki
 | Code | The `examples` folders the chapters build on, and the Microsoft samples they start from, pinned unmodified under `third_party` with their licenses | [`examples` on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) |
 | Code download | Every folder the nine code chapters use, in one zip, with its tests and fixtures. Each script also has a `.txt` copy for mail systems that block scripts | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
 
-The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `validation-kit` (02, 03 and 06), `dynamic-rules` (02, 04 and 09), `lifecycle-extensions` (05), `group-policy-as-code` (06), `machine-configuration` (07 and 09), `ansible` (08) and `drift-pipeline` (09), and the pinned samples each chapter starts from.
+The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `validation-kit` (02, 03, 04, 06 and 09), `dynamic-rules` (02, 04 and 09), `lifecycle-extensions` (05), `group-policy-as-code` (06), `machine-configuration` (07 and 09), `ansible` (08) and `drift-pipeline` (09), and the pinned samples each chapter starts from.
 
 ## How each chapter is built
 
@@ -97,7 +97,7 @@ The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `valid
 | 09 | [Drift pipelines and evidence to the ISSO](09-drift-pipelines-and-evidence.md) | Learn's Azure Login OIDC sample workflows (pinned in `examples/third_party/azure-login-oidc-sample`), then the kits' run outputs in `examples/drift-pipeline` | Start from Learn's sample, then add what it leaves to you: a schedule, pinned actions, sign-in and Graph hosts for GCC, GCC High and DoD, a comparison of each run with the last that never treats a failed read as a fix, findings opened and closed by fingerprint without names, and an evidence package with a SHA-256 per file, the other kits' provenance and a hash chain | Written |
 | 10 | [Deploying to test and production](10-deploying-to-test-and-production.md) | `examples/drift-pipeline/deploy`, and the commands of Chapters 01 to 09 | A runbook in exact commands from the chapters' test-tenant steps to a live test environment, then production in waves: one settings file per stage with no secrets, a pre-flight check, a smoke test that says go or no-go, a recorded rollback, and the evidence the ISSO keeps. Not run against a live tenant | Approved |
 
-Chapter 02 is the foundation the other chapters lean on: read it before you build a new Graph or Azure client of your own. Chapters 01, 03, 04 and 07 were written first, because their code already existed.
+Chapter 02 is the foundation the other chapters lean on: read it before you build a new Graph or Azure client of your own. Chapters 01, 03 and 04 were written first, because their code already existed.
 
 ### Changes from the first outline
 
