@@ -369,7 +369,7 @@ Trust direction is relative, and access flows the opposite way to trust: members
 
 The source's verification called `Test-ADTrust`, which isn't a cmdlet in the ActiveDirectory module.[^c08-admodule] Use `netdom trust <trusting domain> /domain:<trusted domain> /verify`, which verifies the secure channel secrets for the trust, or `netdom query trust /verify` to check every outbound trust.[^c08-netdom] Both need administrative credentials for accurate results, so verification runs as its own elevated step, not inside the scheduled collection.
 
-Forest trusts often record partner relationships that will need a cloud equivalent. In Entra ID, the partner relationship is governed by cross-tenant access settings, which control inbound and outbound B2B collaboration and B2B direct connect with other Microsoft Entra organizations.[^c08-crosstenant] A forest trust doesn't convert into a cross-tenant setting; it identifies a partner whose access has to be redesigned.
+Forest trusts often record partner relationships that will need a cloud equivalent. In Entra ID, the partner relationship is governed by cross-tenant access settings, which control inbound and outbound B2B collaboration and B2B direct connect with other Microsoft Entra organizations.[^c08-crosstenant] A forest trust doesn't convert into a cross-tenant setting; it identifies a partner whose access has to be redesigned. Record each such partner's people under the External Partner Person class ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md)); the default Entra route is in [Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md#the-default-route-a-connected-organization-and-an-access-package).
 
 ## The assessment pipeline
 

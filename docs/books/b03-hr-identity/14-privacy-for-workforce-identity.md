@@ -151,6 +151,8 @@ For workforce identity that means **one correction path, and it runs through the
 
 A directory-side edit would fix the symptom and leave the record wrong, and the next feed would overwrite it; it is also a drift event (Chapter 11).
 
+**Partner persons.** People who belong to another organization (the External Partner Person class) have no agency HR record, but a directory of them, their access decisions and their sign-in logs is still retrieved by name and identifier, so the system-of-records question applies to them too. Collect only the attributes the agency's decisions read, and correct a wrong name or organization at the partner's source, not in the directory. [Chapter 15](15-external-partner-identity.md#privacy-records-and-redress) sets out the Privacy Act, minimization, records and redress points for the class.
+
 ## Retention
 
 The Privacy Act's own retention rule is for the accounting of disclosures; how long the records themselves are kept comes from the records schedule. A-130's minimization principle says to keep PII only as long as needed for its purpose, and SI-12 and SI-12(3), Information Disposal, make that a control.[^c14-a130][^c14-sp80053] OPM/GOVT-1 keeps the official personnel folder for the employee's service and handles other records under NARA schedules.[^c14-govt1-2012] For identity systems, General Records Schedule 3.2 covers system access records such as user profiles, log-in files and audit trails: destroy when business use ceases, or, for systems requiring special accountability for access, six years after the password is changed or the account is terminated.[^c14-grs32]
@@ -211,7 +213,7 @@ Run it before a change reaches the pipeline's change control (Chapter 12, Phase 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 13 — Reference Deployment (Illustrative)](13-reference-deployment.md) · [Book index](index.md) · [Next: Appendix A — Lifecycle Rules →](appendix-a-lifecycle-rules.md)
+[← Previous: Chapter 13 — Reference Deployment (Illustrative)](13-reference-deployment.md) · [Book index](index.md) · [Next: Chapter 15 — External Partner Identity →](15-external-partner-identity.md)
 :::
 
 [^c14-a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource*, July 28, 2016 (§5.a(1)(a)(ii), inventory of systems that process PII; §10, definition 57, personally identifiable information; Appendix I §5.f, the SAOP and the authorization decision; Appendix II §3, Fair Information Practice Principles: Access and Amendment, Minimization, Purpose Specification and Use Limitation; §4, Senior Agency Official for Privacy; §5.d, contractors and third parties; §5.e, privacy impact assessments; §5.i, the SAOP in the risk management framework), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf> (accessed Nov 2, 2026).

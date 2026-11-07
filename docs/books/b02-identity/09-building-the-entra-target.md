@@ -773,6 +773,8 @@ Conditional Access replaces the logon restrictions, network access controls, and
 | Service accounts | Workload identities (single-tenant service principals) | Workload identity assignment | Variable |
 | Break-glass | Emergency access accounts | Dedicated exclusion group | Excluded from restrictive policies |
 
+The Externals persona is the Conditional Access view of the External Partner Person class: partner people are Guest users by default, brought in through an access package with a sponsor, approver and expiry ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#class-worker-type-and-persona); [Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md#the-default-route-a-connected-organization-and-an-access-package)).
+
 Target the Admins persona with a group rather than by directory role alone: Conditional Access role targeting supports built-in directory roles only, not AU-scoped or custom roles.[^c09-ca-users]
 
 ### Named locations

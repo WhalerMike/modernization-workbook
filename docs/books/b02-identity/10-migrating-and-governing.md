@@ -38,8 +38,9 @@ Access reviews are periodic attestation that people still need the access they h
 |---|---|---|---|---|
 | PIM-eligible role assignments | Monthly for Tier 0 roles, quarterly for all other privileged roles ([Chapter 05](05-delegation-without-ous.md#delegation-principles)) | The security team, never the assignees alone: with Microsoft's **Members (self)** option, role-assignable groups aren't part of the review[^c10-pim-review] | Yes; remove if denied | Remove access |
 | Sensitive security group memberships | Quarterly | Group owners | Yes; remove if denied | Remove access |
-| Application assignments (Tier 1 apps) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
-| Guest access | Quarterly | Sponsors | Yes; disable if denied | Disable the guest account |
+| Application assignments (Tier 1 apps) | Quarterly | Two stages: the manager, then the application owner | Yes; remove if denied | No change; escalate |
+| Application assignments (Tier 2 apps) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
+| Guest access | Quarterly | Sponsors | Yes; denied guests are blocked from sign-in, then removed from the tenant after 30 days | Remove access |
 | Microsoft 365 group memberships | Semi-annually | Group owners | No (recommendations only) | No change |
 
 The monthly and quarterly reviews of privileged roles are also the program's evidence for NIST SP 800-53 AC-6(7) (see [The compliance amendment](#the-compliance-amendment-phishing-resistant-authenticators-and-privileged-access)). Reviews of PIM for Groups membership, and reviews scoped to inactive users, require Entra ID Governance.[^c10-governance-licensing]
@@ -49,11 +50,11 @@ The monthly and quarterly reviews of privileged roles are also the program's evi
 Access packages bundle resources (group memberships, application assignments, SharePoint site access) into units that people request, approvers approve, and policies expire. They replace "submit a ticket for group membership" with a governed, self-service workflow. The program uses four categories:
 
 - **Onboarding packages.** Baseline access for new hires: email, Teams, the intranet site, company-wide groups. Assigned by a Lifecycle Workflow on the hire date, or by an automatic assignment policy.
-- **Department packages.** Department resources (SharePoint sites, Teams channels, line-of-business applications), assigned from the department attribute through an automatic assignment policy.
+- **Department packages.** Department resources (SharePoint sites, Teams channels, line-of-business applications), assigned from the organization code in `extensionAttribute10` ([program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map)) through an automatic assignment policy.
 - **Project packages.** Time-bound access for a project, approved by the project lead and set to expire at the project end date.
 - **Cross-tenant packages.** Resources shared with partner organizations through B2B collaboration, with terms of use acceptance and sponsor approval.
 
-Expiration of assignments and separation-of-duties checks work with P2; automatic assignment policies, custom extensions, and Verified ID checks need Entra ID Governance.[^c10-entra-licensing] Avoid the preview `memberOf` operator in automatic assignment rules; Microsoft is ending that preview on November 3, 2026, after which those policies stop updating.[^c10-memberof] Where an access package must grant access to an AD-integrated (Kerberos) application, include a cloud security group that Cloud Sync provisions to AD.[^c10-gwb-cloud-sync]
+Expiration of assignments and separation-of-duties checks work with P2; automatic assignment policies, custom extensions, and Verified ID checks need Entra ID Governance.[^c10-entra-licensing] Don't use the preview `memberOf` operator in automatic assignment rules. Microsoft ended that preview on November 3, 2026, and rules that still use the operator stopped updating; replace them now.[^c10-memberof] Where an access package must grant access to an AD-integrated (Kerberos) application, include a cloud security group that Cloud Sync provisions to AD.[^c10-gwb-cloud-sync]
 
 ### Lifecycle Workflows
 
@@ -173,6 +174,8 @@ The program's invitation policies:
 - Self-service sign-up stays off, except for approved applications and identity providers.
 - Invitations across Microsoft clouds (for example, from a GCC High tenant into a commercial or GCC tenant) must use the user's UPN, not an email address.[^c10-b2b-faq]
 
+People from partner organizations are the External Partner Person class, defined in [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#the-route-into-the-tenant); [Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md#the-default-route-a-connected-organization-and-an-access-package) is their Entra profile. The default route is entitlement management plus B2B guests: an access package with a sponsor, an approver and an expiry. The account's user type is Guest, and Member needs an exception record. Cross-tenant synchronization is the exception, with a recorded reason. The partner tenant list, which the partner Conditional Access policies and the cross-tenant access settings share, is owned by the identity governance officer (IGO) ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#the-responsibility-matrix)).
+
 ### Cross-tenant access settings
 
 Cross-tenant access settings govern the relationship between your tenant and other Microsoft Entra tenants. By default, B2B collaboration with all other Entra organizations is allowed and B2B direct connect is blocked; organization-specific settings override the defaults.[^c10-cross-tenant]
@@ -240,7 +243,7 @@ That changes the order of the program's roadmap. The earlier version treated cer
 | 3 | Managed Windows devices | Windows Hello for Business | Intune enrollment; Windows Hello for Business policy; TPM 2.0 | 8–12 weeks |
 | 4 | Remaining users, including mobile | Passkeys in Microsoft Authenticator | Android 14 or iOS 17 or later; a passkey profile targeting the Authenticator AAGUIDs; registration campaign[^c10-authenticator-passkey] | 8–12 weeks |
 
-Phase 1 runs first, so administrators are protected before anyone else. Phases 2 to 4 reach different populations with different methods and run in parallel once phase 1 is done, so the roadmap takes 12 to 18 weeks end to end, not the 28 to 42 weeks its rows would add up to in sequence. Playbook Phase 7 below carries that 12–18 week estimate.
+Phase 1 runs first, so administrators are protected before anyone else. Phases 2 to 4 reach different populations with different methods and run in parallel once phase 1 is done, so the roadmap takes 12 to 18 weeks end to end, not the 28 to 42 weeks its rows would add up to in sequence. In the playbook below, Phase 5 carries roadmap phase 1, so administrators hold a phishing-resistant method before PIM and Conditional Access enforcement, and Phase 7 carries phases 2 to 4 (8–12 weeks).
 
 All four methods meet the built-in phishing-resistant MFA authentication strength (passkeys in Authenticator count as FIDO2 passkeys).[^c10-auth-strengths] Passkey profiles let you set different rules for different groups; for example, device-bound passkeys with attestation enforced for administrators, and synced passkeys allowed for lower-risk populations.[^c10-passkeys]
 
@@ -437,7 +440,7 @@ The indicator IDs and titles are from FedRAMP's published indicator pages.[^c10-
 
 ## The migration execution playbook
 
-The migration runs in eleven phases, grouped into five waves. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
+The migration runs in eleven phases, grouped into five waves. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The one exception is Phase 8, which can run in parallel with Phase 7. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
 
 ![The eleven playbook phases in five waves: foundation, objects, privilege and policy, authentication, and sustain.](../../images/diagrams/b02-identity/svg/ch10-migration-waves.svg){#fig-ch10-migration-waves fig-alt="Five boxes in a left-to-right chain. Phases 0 to 2, foundation, in slate: assess, sync, PHS, Conditional Access in report-only. Phases 3 and 4, objects, in blue: groups, then service accounts. Phases 5 and 6, privilege and policy, in amber: PIM, then Conditional Access enforced in waves. Phases 7 to 9, authentication, in blue: phishing-resistant methods, legacy cutoff, AD FS out. Phase 10, sustain, in violet: lifecycle, reviews, drift detection."}
 
@@ -497,19 +500,19 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 
 | Element | Detail |
 |---|---|
-| Prerequisites | Phase 4 complete; role mapping final ([Chapter 09](09-building-the-entra-target.md#privileged-access)); every administrator registered for a phishing-resistant method |
-| Steps | 1. Configure PIM role settings per the standards. 2. Convert every permanent active assignment to eligible, except the emergency accounts. 3. Configure PIM for Groups for resource-level just-in-time access. 4. Create recurring access reviews for all eligible assignments: monthly for Tier 0 roles, quarterly for the rest. 5. Add protected actions for Conditional Access, cross-tenant settings, named locations, and hard deletion. 6. Train administrators on activation. 7. Watch the PIM audit log for the first two weeks. |
-| Validation | Zero permanent active assignments except the emergency accounts; every administrator can activate; the first review cycle started; protected actions enforced |
+| Prerequisites | Phase 4 complete; role mapping final ([Chapter 09](09-building-the-entra-target.md#privileged-access)); FIDO2 keys procured; CBA trusted certificate authorities configured |
+| Steps | 1. Issue FIDO2 keys and CBA to privileged accounts (roadmap phase 1) and register every administrator for a phishing-resistant method. 2. Configure PIM role settings per the standards. 3. Convert every permanent active assignment to eligible, except the emergency accounts. 4. Configure PIM for Groups for resource-level just-in-time access. 5. Create recurring access reviews for all eligible assignments: monthly for Tier 0 roles, quarterly for the rest. 6. Add protected actions for Conditional Access, cross-tenant settings, named locations, and hard deletion. 7. Train administrators on activation. 8. Watch the PIM audit log for the first two weeks. |
+| Validation | 100% of privileged accounts on FIDO2 or CBA; zero permanent active assignments except the emergency accounts; every administrator can activate; the first review cycle started; protected actions enforced |
 | Rollback | Convert eligible assignments back to active, using an emergency account if activation fails |
-| Duration | 2–3 weeks |
+| Duration | 6–9 weeks (4–6 weeks of roadmap phase 1, then 2–3 weeks of PIM) |
 
 ### Phase 6: Conditional Access enforcement
 
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 5 complete; report-only analysis complete; MFA registration above 95% for each targeted population |
-| Steps | 1. Turn policies on for wave 1 (IT and security teams). 2. Watch for a week; work the help desk tickets. 3. Wave 2 (corporate staff), one week. 4. Wave 3 (field and remote workers), one week. 5. Wave 4 (everyone remaining), two weeks. 6. Turn on the risk policies (CA013, CA014) once the baseline is stable. 7. Final check: every policy enforcing, no unintended blocks. |
-| Validation | Every policy on; help desk volume back to baseline within a week of each wave; no reports of legitimate access blocked for more than an hour |
+| Steps | 1. Turn policies on for wave 1 (IT and security teams), every policy except CA001, which stays in report-only until Phase 8. 2. Watch for a week; work the help desk tickets. 3. Wave 2 (corporate staff), one week. 4. Wave 3 (field and remote workers), one week. 5. Wave 4 (everyone remaining), two weeks. 6. Turn on the risk policies (CA013, CA014) once the baseline is stable. 7. Final check: every policy except CA001 enforcing, no unintended blocks. |
+| Validation | Every policy except CA001 on; help desk volume back to baseline within a week of each wave; no reports of legitimate access blocked for more than an hour |
 | Rollback | Set the affected policies back to report-only; fix; re-enable |
 | Duration | 4–6 weeks |
 
@@ -517,18 +520,18 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 
 | Element | Detail |
 |---|---|
-| Prerequisites | Phase 6 complete; FIDO2 keys procured; CBA configured; Windows Hello for Business policy in Intune; Authenticator deployed |
-| Steps | 1. FIDO2 keys and CBA for privileged accounts (roadmap phase 1). 2. CBA for PIV and CAC holders (phase 2). 3. Windows Hello for Business on managed Windows devices (phase 3). 4. Authenticator passkey registration campaign (phase 4). 5. Track registration in the authentication methods reports. 6. Raise Conditional Access authentication strengths to phishing-resistant as each population crosses its threshold. |
-| Validation | 100% of privileged accounts on FIDO2 or CBA; more than 80% of managed-device users on Windows Hello for Business; more than 70% of all users on a phishing-resistant method; the remainder on a dated plan |
+| Prerequisites | Phase 6 complete; privileged accounts on FIDO2 or CBA (roadmap phase 1, done in Phase 5); CBA configured for PIV and CAC holders; Windows Hello for Business policy in Intune; Authenticator deployed |
+| Steps | 1. CBA for PIV and CAC holders (roadmap phase 2). 2. Windows Hello for Business on managed Windows devices (phase 3). 3. Authenticator passkey registration campaign (phase 4). 4. Track registration in the authentication methods reports. 5. Raise Conditional Access authentication strengths to phishing-resistant as each population crosses its threshold. |
+| Validation | Privileged accounts still 100% on FIDO2 or CBA; more than 80% of managed-device users on Windows Hello for Business; more than 70% of all users on a phishing-resistant method; the remainder on a dated plan |
 | Rollback | Lower the authentication strength to MFA for the affected population; keep the existing methods |
-| Duration | 12–18 weeks (roadmap phase 1, then phases 2–4 in parallel) |
+| Duration | 8–12 weeks (roadmap phases 2–4 in parallel) |
 
 ### Phase 8: Legacy authentication cutoff
 
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 7 complete or running in parallel; legacy discovery complete; every dependency remediated |
-| Steps | 1. Confirm zero successful legacy sign-ins for 30 consecutive days. 2. Enforce CA001 if it isn't already. 3. Confirm Basic authentication is off for every Exchange Online protocol; Microsoft has already removed it for most. 4. Disable SMTP AUTH on every mailbox except documented, approved exceptions, and move those to OAuth or a relay before Microsoft's retirement date. 5. Monitor for 30 days. |
+| Steps | 1. Confirm zero successful legacy sign-ins for 30 consecutive days. 2. Enforce CA001, which has run in report-only since Phase 2. 3. Confirm Basic authentication is off for every Exchange Online protocol; Microsoft has already removed it for most. 4. Disable SMTP AUTH on every mailbox except documented, approved exceptions, and move those to OAuth or a relay before Microsoft's retirement date. 5. Monitor for 30 days. |
 | Validation | Zero legacy sign-ins for 30 days after enforcement; no disruption; every exception documented and approved |
 | Rollback | Re-enable SMTP AUTH for a specific mailbox if a critical dependency appears; file an exception and a remediation plan |
 | Duration | 2–4 weeks |
@@ -574,8 +577,8 @@ Phase 10 ends with the target governed, not with AD retired. Hybrid lasts: retir
 The identity assessment produces structured JSON inventories that go into Git, where version control turns them into a drift record. The program's reference build uses Gitea; any Git host with an issues API works the same way.
 
 1. **Run the assessment.** `Invoke-FMPIdentityAssessment` produces JSON for users, groups, service accounts, privileged access, and legacy authentication.
-2. **Commit.** The output goes to the `identity-baseline` branch of the program's configuration repository.
-3. **Compare.** Each later run is compared with the committed baseline. New objects, removed objects, and attribute changes are drift.
+2. **Commit.** The output goes to the `identity-baseline` branch of the program's identity baseline repository, named `fmp-identity-baseline` by default in the [Appendix C](appendix-c-identity-assessment-module.md#module-implementation) module.
+3. **Compare.** Each later run is compared with the committed baseline. The module reports user additions and removals as drift; attribute-level and group membership drift are planned (see [Scheduled tasks](#scheduled-tasks)), and until then those exports are compared in Git directly.
 4. **Raise issues.** Drift above a threshold opens an issue with the diff, a severity, and a recommended action.
 
 The design rule is the same as in [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md): close each finding at the source (fix the record or the rule), never by editing the copy.

@@ -380,3 +380,7 @@ bundles:
     subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
     root: docs/books/b03-hr-identity
     pages: [14-privacy-for-workforce-identity.md]
+  - output: b03-hr-identity-15.docx
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [15-external-partner-identity.md]

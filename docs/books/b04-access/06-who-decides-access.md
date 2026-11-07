@@ -325,6 +325,7 @@ D = decides (accountable) · R = does the work · C = consulted · I = informed 
 | Credential type and rotation for an app | C | D | | R | | C | I | | |
 | Federated credential added to an app | D | R | | R | | C | I | | |
 | Access review of an app | D | R | C | | R | | I | | |
+| Partner tenant list: add at package go-live, remove at partner exit | D | | | R | | I | C | | |
 | Annual admin consent review | D | C | | R | | C | I | | |
 | Owner transfer | D | R | R | | R | | | | |
 | Orphaned application remediation | D | | C | C | R | I | I | | |
