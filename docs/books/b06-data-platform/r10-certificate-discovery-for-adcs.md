@@ -1,5 +1,5 @@
 ---
-title: "Runbook R10 — Certificate Discovery for SQL Server's ADCS Dependencies"
+title: "Runbook R10 — Certificate Discovery for SQL Server's AD CS Dependencies"
 description: "How to discover, ahead of any Active Directory Certificate Services decommission, the certificate dependencies that break SQL Server if the certificate authority is removed first: the program's read-only certificate audit, the in-engine reads, the extraction of SQL Server's three dependency classes, and the dependency-ordered CA sequence, all analytical; Book 07 has decided the issuers, and this runbook supplies the evidence for them."
 doc-type: workbook-chapter
 audience: [Technical, Customer]
@@ -13,7 +13,7 @@ tiers_adopted: []
 lifecycle_review: 2027-04-01
 ---
 
-# Runbook R10 — Certificate Discovery for SQL Server's ADCS Dependencies
+# Runbook R10 — Certificate Discovery for SQL Server's AD CS Dependencies
 
 *Before anyone sets a date to switch off the certificate authority, someone has to find out what it is still signing.*
 

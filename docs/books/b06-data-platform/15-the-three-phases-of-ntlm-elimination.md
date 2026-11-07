@@ -60,7 +60,7 @@ After Phase B, the only remaining NTLM-generating SQL Server connections should 
 
 ![What the Phase C block does to each kind of connection.](../../images/sql-server/diagrams/svg/book-06-ch02-phase-c-impact.svg){fig-alt="Under the Phase C block, Windows logins that fall back to NTLM fail at the LSA, Windows logins on Kerberos still work but stay invisible to Conditional Access, excepted instances still on NTLM fail, and Entra logins are unaffected."}
 
-The elimination phase disables NTLM across the estate. Group Policy pushed domain-wide sets the *Restrict NTLM* policies to deny on every host, and any connection that can't negotiate an alternative protocol fails at the LSA. Windows 11, version 24H2 and later also offer NTLM blocking policies in the NTLM policy CSP, including one that blocks all outbound NTLM except listed targets.[^c15-ntlm-csp] For SQL Server, Phase C is only safe after the login migration in [Chapters 11–12](11-three-principal-types.md) is complete for every instance in the estate.
+The elimination phase disables NTLM across the estate. Group Policy pushed domain-wide sets the *Restrict NTLM* policies to deny on every host, and any connection that can't negotiate an alternative protocol fails at the LSA. Windows 11, version 24H2 and later also offer NTLM blocking policies in the NTLM policy CSP, including one that blocks all outbound NTLM except listed targets.[^c15-ntlm-csp] For SQL Server, Phase C is only safe after the login migration in [Chapters 11–12](11-three-principal-types.md) is complete for every production instance.
 
 An instance whose connections use Entra ID OAuth 2.0 tokens generates no NTLM traffic. A Microsoft Entra login (type E or X) authenticates with a token issued by Entra ID, not through Kerberos or NTLM; the existing SQL and Windows authentication modes are a separate path.[^c15-entra-sql] An instance that has completed the login migration is therefore immune to Phase C: it wasn't generating NTLM before the block, and it isn't affected by the block after.
 
@@ -69,7 +69,7 @@ The sequencing imperative follows: complete the SQL Server login migration befor
 ::: {.callout-warning title="Unresolved: what happens to the long tail on 2027-04-01"}
 **Known fact.** Microsoft's plan is to disable network NTLM by default in the next major Windows release, subject to change; 2027-04-01 is this program's date, not Microsoft's ([Chapter 14](14-ntlm-and-the-patterns-that-generate-it.md)).
 
-**Dependency.** Pre-2022 instances, which can't use Entra authentication at all,[^c15-entra-sql] and deferred applications that can't reach Kerberos or Entra tokens by then rely on the certificate-based interim posture, which depends on Book 07's retained AD CS plan, with domain controller certificates staying on AD CS until the last domain controller retires ([Chapter 22](22-where-sql-server-touches-adcs.md)).
+**Dependency.** Pre-2022 instances, which can't use Entra authentication at all,[^c15-entra-sql] and applications in column C or D of [Chapter 18](18-the-four-class-pattern-for-applications.md) with a dated exception that can't reach Kerberos or Entra tokens by then rely on the certificate-based interim posture, which depends on Book 07's retained AD CS plan, with domain controller certificates staying on AD CS until the last domain controller retires ([Chapter 22](22-where-sql-server-touches-adcs.md)).
 
 **Unresolved decision.** Whether the Phase C date holds for instances whose interim posture isn't in place, or whether they get dated exceptions with network-level isolation.
 
