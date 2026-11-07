@@ -246,7 +246,7 @@ The program's privacy continuous monitoring strategy sets these cadences. They a
 | Data-flow comparison with scan results | Data owner and privacy officer | Quarterly | Comparison record |
 | Privacy notice and Privacy Act statement check | Web owner and privacy officer | Annually and on change | Captured notice text and URL check |
 | Breach response tabletop | SAOP | At least annually (M-17-12) | After-action report |
-| Privacy control assessment | ISSO and assessor | With the security assessment cycle | Privacy section of the assessment report |
+| Privacy control assessment | Senior agency official for privacy, with the assessor supporting ([Chapter 10](10-who-owns-compliance.md)) | With the security assessment cycle | Privacy section of the assessment report |
 
 : Privacy continuous monitoring cadences. Program design, except the tabletop frequency, which M-17-12 sets. {.striped .hover}
 
@@ -267,7 +267,7 @@ The breach tabletop frequency is M-17-12's.[^c08-m1712] Reporting a breach is an
 
 : Privacy milestones before go-live. Program design built on the cited requirements. {.striped .hover}
 
-The SORN timing and SAOP approval come from A-108 and A-130.[^c08-a108][^c08-a130] [Chapter 11](11-the-authorization-package.md) shows where the privacy artifacts sit in the authorization package.
+The SORN timing and SAOP approval come from A-108 and A-130.[^c08-a108][^c08-a130] [Chapter 11](11-the-authorization-package.md) shows where the privacy plan sits in the authorization package.
 
 A system that gives external partner persons access holds personal data about people the agency does not employ. The threshold decision, the system-of-records question, minimization, records retention and redress for that class are worked through in [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#privacy-records-and-redress).
 
