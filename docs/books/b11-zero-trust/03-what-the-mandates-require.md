@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 03 — What CISA's Maturity Model and M-22-09 Actually Require
 
-*Only one of the federal Zero Trust documents sets requirements, and none of them sets a score.*
+*Only one of the federal Zero Trust documents sets a list of specific actions by pillar, and none of them sets a score.*
 
 ::: {.callout-note}
 ## In this chapter
