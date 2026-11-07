@@ -90,7 +90,7 @@ Inside the phases, five domain workstreams carry the work. They run together rat
 | Identity | Attribute model, dynamic membership, lifecycle origin | Assessment complete | Early (wave 1) | Identity | Identity Lifecycle project; [Book 02](../b02-identity/index.md), [Book 03](../b03-hr-identity/index.md) |
 | Policy | Existing policy mapped to attribute-driven scope | Identity structure | After identity | Split between devices (GPO to Intune) and security (Conditional Access) | Endpoint project; [Book 05](../b05-devices/index.md), [Book 04](../b04-access/index.md) |
 | Services | Naming, IP address management and their dependencies | Assessment; may bridge | Parallel or mid | DNS | Network & Access project; [Book 08](../b08-ddi/index.md) |
-| Compute | Device and server identity and management | Identity structure | Mid to late | Devices; server management | Endpoint project; [Book 05](../b05-devices/index.md), [Book 06](../b06-data-platform/index.md) |
+| Compute | Device and server identity and management | Identity structure | Mid to late | Devices; server management | Endpoint and Data Platform projects; [Book 05](../b05-devices/index.md), [Book 06](../b06-data-platform/index.md) |
 | Access | Token-based, application-aware access | Identity and policy | Later | PKI (certificate-based authentication); no ZTNA pillar | Network & Access and Privileged Access projects; [Book 04](../b04-access/index.md), [Book 07](../b07-pki/index.md), [Book 09](../b09-network/index.md) |
 
 The pillar view leaves two gaps that the workstream view closes. Policy has no pillar of its own, so nobody owns the question of which policy surface (Group Policy, Intune, Conditional Access or machine configuration) owns a setting; Book 01 gives it a security-engineering lead. And the access plane, identity-aware access to applications instead of network location, has no pillar at all; Book 01 gives it a joint identity and security lead.
@@ -124,10 +124,10 @@ The program needs no license of its own, but the services it orchestrates do. Th
 | Microsoft Entra ID | PIM and risk-based Conditional Access (ID Protection) | Entra ID P2 or Entra ID Governance for PIM; P2 for ID Protection[^c05-entra] | Phase 1 (PIM for Tier 0), Phase 2 at scale |
 | Microsoft Entra ID Governance | Access reviews for member users, Lifecycle Workflows | Entra ID Governance; the master plan's "P2 for access reviews" is now only partly true, since some review capabilities still run on P2[^c05-entra] | Phase 2 |
 | Microsoft Intune | Device enrollment, compliance, configuration profiles | Intune Plan 1 | Phase 1 |
-| Microsoft Cloud PKI | Certificate issuance to Intune-managed devices | A subscription in addition to Intune Plan 1 or 2: the Intune Suite or the standalone add-on;[^c05-cloudpki] from July 2026 it is also included in Microsoft 365 E5 and E7 for commercial customers, so confirm the entitlement on the agency's government SKU[^c05-intune] | Phase 2 |
+| Microsoft Cloud PKI | Certificate issuance to Intune-managed devices | A subscription in addition to Intune Plan 1 or 2: the Intune Suite or the standalone add-on;[^c05-cloudpki] from July 2026 it is also included in Microsoft 365 E5 and E7 for commercial customers, so confirm the entitlement on the agency's government SKU[^c05-intune] | Phase 1 |
 | Microsoft Defender for Identity | AD security posture and lateral-movement findings during assessment | Microsoft 365 E5 or G5, EMS E5, or a standalone license[^c05-mdi] | Phase 0 |
 | Azure Arc-enabled servers | Server inventory, policy and machine configuration for on-premises servers | Management services at no extra cost for servers with Windows Server Software Assurance or pay-as-you-go licensing; other servers pay as they go[^c05-arc] | Phase 1 (platform host and pilot servers) |
-| Azure DNS Private Resolver | Hybrid DNS resolution | Azure consumption; an inbound and an outbound endpoint, each in its own dedicated subnet[^c05-dnspr] | Phase 2 |
+| Azure DNS Private Resolver | Hybrid DNS resolution | Azure consumption; an inbound and an outbound endpoint, each in its own dedicated subnet[^c05-dnspr] | Phase 1 |
 
 The master plan priced several items in dollars per month. The workbook doesn't carry those figures; they change, and they depend on the agreement the agency buys under.
 
@@ -148,7 +148,7 @@ The plan is built around five risks. The full register, with likelihood, impact,
 | Risk | How the plan answers it |
 |---|---|
 | Hidden dependencies are missed in discovery | A structured assessment, and a pilot designed to surface unknowns early |
-| Competing sources of truth persist | An authoritative origin designated per object class, and contention on the authoritative source tracked as its own drift class |
+| Competing sources of truth persist | An authoritative origin designated per object class, and contention on the authoritative source tracked as authorization drift |
 | The organization resists making authority explicit | Early stakeholder alignment in Phase 0, and a pilot that shows controlled rather than disruptive change |
 | Tooling leads the design | Target architecture and change-control pattern defined before any tool is selected or configured |
 | Physics or data residency limits centralization | Truth centralized logically; only subordinate copies distributed physically ([Book 09](../b09-network/index.md)) |
