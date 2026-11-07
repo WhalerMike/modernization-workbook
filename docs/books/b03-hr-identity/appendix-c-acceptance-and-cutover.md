@@ -60,7 +60,7 @@ For seven days after cutover, every create, change and disable for the populatio
 
 ## Closing the ticket path
 
-When the proof holds, the manual path for creating and changing accounts in that population closes: the service desk stops accepting account-creation tickets for it, and any exception goes through the governed exception process (Appendix A). This is the visible end state of HR-driven identity: nobody requests an account for a new hire, because the hire causes it.
+When the proof holds, the manual path for creating and changing accounts in that population closes: the help desk stops accepting account-creation tickets for it, and any exception goes through the governed exception process (Appendix A). This is the visible end state of HR-driven identity: nobody requests an account for a new hire, because the hire causes it.
 
 ## Where an HR connector already exists
 

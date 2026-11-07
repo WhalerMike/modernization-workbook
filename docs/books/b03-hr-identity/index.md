@@ -58,7 +58,7 @@ This book is a proposal: use Federal HR 2.0 and the move from Active Directory t
 ## Modernization outcomes
 
 - **Day-one readiness:** required accounts and approved baseline access are available when an affiliation begins.
-- **Separation-to-block latency:** logical access is blocked at the effective separation time, or within the agency-approved threshold.
+- **Separation-to-block interval:** logical access is blocked at the effective separation time, or within the agency-approved threshold.
 - **Revocation completion:** PIV and derived credentials, device certificates, sessions, and application-specific credentials are reconciled to completion.
 - **Mover convergence:** access derived from the prior assignment is removed, the new baseline applied, and residual exceptions reviewed.
 - **Correlation coverage:** governed workforce identities reconcile with enabled enterprise accounts.

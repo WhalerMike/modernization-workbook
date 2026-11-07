@@ -55,13 +55,13 @@ Its HR data exchange today is typical:
 
 **Phase 4 — Lifecycle automation and derived access.** Leaver automation goes first. In the first month the drift report shows a burst of high-severity findings: separated workers whose accounts the manual process hadn't reached, and orphan accounts left by years of ticket-driven account creation that the HR-driven pipeline can now see (Chapter 11). Each high-severity finding blocks the dependent provisioning action until it's resolved. Dynamic groups replace hand-maintained ones application by application; a test reorganization in HR moves a division's access with no directory edits.
 
-**Phase 5 — Cutover to cloud-mastered.** As the agency's Core HCM interconnection goes live, the source contract and boundary transformation switch source. New hires land cloud-mastered in Entra ID directly; existing AD-mastered populations follow per population as their dependencies on AD retire.
+**Phase 5 — Cutover to cloud-mastered.** At the agency's Core HCM cutover, the source contract and boundary transformation switch source. New hires land cloud-mastered in Entra ID directly; existing AD-mastered populations follow per population as their dependencies on AD retire.
 
 **Phase 6 — Sustained posture.** The six lifecycle metrics go into the monthly ConMon report. The separation-to-revocation interval, measured for the first time, becomes a number the agency can defend.
 
 ## The evidence package
 
-At any point after Phase 2, the agency can hand an assessor:
+At any point after Phase 4, the agency can hand an assessor:
 
 - the signed attribute authority map, canonical schema and code lists;
 - the source-contract, transformation, and workforce identity service configuration, under change control;
