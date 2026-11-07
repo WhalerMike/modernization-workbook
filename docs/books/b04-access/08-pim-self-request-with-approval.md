@@ -100,7 +100,7 @@ Work the steps in order. Step 0 isn't optional and can't be moved: configuring a
 Microsoft documents a tenant lockout this build can cause. It occurs when **all** of these are true: every Privileged Role Administrator and Global Administrator assignment is eligible and none is active; approval is required for activation; and no approvers are configured, so the default approvers (active Privileged Role and Global Administrators) don't exist.[^c08-settings] Avoid it with **both** halves of the fix: emergency access accounts with permanent active Global Administrator, and explicitly named approvers on every role that requires approval.
 :::
 
-Create and test the emergency access accounts to the standard in [Chapter 04](04-privileged-roles-and-tiers.md#emergency-access-accounts) before touching any role setting: two or more cloud-only accounts on `*.onmicrosoft.com`, permanent active Global Administrator, phishing-resistant authentication, excluded from Conditional Access policies that block or restrict sign-in, alerted on every use, and validated at least every 90 days.[^c08-emergency] Validate them again after any change to Conditional Access, authentication methods policy or the PIM settings built below.
+Create and test the emergency access accounts to the standard in [Chapter 04](04-privileged-roles-and-tiers.md#emergency-access-accounts) before touching any role setting: two cloud-only accounts on `*.onmicrosoft.com`, permanent active Global Administrator, phishing-resistant authentication, excluded from Conditional Access policies that block or restrict sign-in, alerted on every use, and validated at least every 90 days.[^c08-emergency] Validate them again after any change to Conditional Access, authentication methods policy or the PIM settings built below.
 
 ### Step 1 — Build the approver groups {#step-1-build-the-approver-groups}
 
@@ -368,7 +368,7 @@ Cross-tenant access settings and named-location permissions can also be protecte
 The build order runs the same way as Step 2:[^c08-protected-actions-add]
 
 1. Confirm you hold Conditional Access Administrator or Security Administrator.
-2. Create a second authentication context, **`c2`** (`FMP-ProtectedActions`), and its Conditional Access policy, `ProtectedActions-c2`: the privileged authentication strength and compliant device, **excluding an emergency access account**.
+2. Create a second authentication context, **`c2`** (`FMP-ProtectedActions`), and its Conditional Access policy, `ProtectedActions-c2`: the privileged authentication strength and compliant device, **excluding the emergency access group** (`CA-Exclude-EmergencyAccess`), as every enforced policy does.
 3. Confirm the policy is **On**. A policy that's off or in report-only mode doesn't satisfy a protected action.
 4. Assign `c2` to the permissions above under **Entra ID** > **Roles & admins** > **Protected actions**.
 5. Test by performing each action and confirming the step-up prompt appears.

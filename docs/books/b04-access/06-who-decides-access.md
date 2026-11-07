@@ -24,7 +24,7 @@ The roles that decide access and the roles that carry it out, and what each Micr
 
 [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) assigns the roles for moving a directory from Active Directory to Entra ID: the sponsor, the CISO, the authorizing official, the ISSO, identity engineering, AD administrators, application owners, the help desk, HR and users. That assignment holds here and isn't repeated. This chapter covers what happens after the migration, every day, when someone asks for access to an application, an application asks for permission to an API, or an owner leaves. Those are policy decisions in the sense of [Chapter 01](01-access-is-a-policy-decision.md). Each one has to be made by someone with the authority to make it and carried out by someone with the rights to carry it out, and in a well-run tenant those are different people.
 
-![Every request enters one front door, is triaged by the authority it needs, is approved in the ITSM or IGA pipeline, and is executed by automation or the help desk with the evidence recorded.](../../images/diagrams/b04-access/svg/ch06-authority-split.svg){#fig-ch06-authority-split fig-alt="A top-to-bottom flow. A slate intake card, one front door, turns a catalog item or redirected email into a ticket. It leads to an amber triage card that classifies by required authority, A0 to A3 or out of scope, with mail from Microsoft forced to A3. Triage branches three ways: a blue card for A0 and A1, the ITSM pipeline, where the requester's manager approves; a violet card for A2 and A3, the IGA pipeline, where the application owner approves and the governance officer approves A3; and a red card for out of scope, escalate, covering Conditional Access, directory roles and service principals. The ITSM and IGA cards each have a green arrow labeled approved into a green execute card: automation first, help desk for gaps, PIM activation before any change, no approval authority. That leads to a violet evidence card: closed ticket plus audit log, with approver, executor, object IDs and the audit reference."}
+![Every request enters one front door, is triaged by the authority it needs, is approved in the ITSM or IGA pipeline, and is executed by automation or the help desk with the evidence recorded.](../../images/diagrams/b04-access/svg/ch06-authority-split.svg){#fig-ch06-authority-split fig-alt="A top-to-bottom flow. A slate intake card, one front door, turns a catalog item or redirected email into a ticket. It leads to an amber triage card that classifies by required authority, A0 to A3 or out of scope, with mail from Microsoft forced to A3. Triage branches three ways: a blue card for A0 and A1, the ITSM pipeline, where the requester's manager or the service desk supervisor approves; a violet card for A2 and A3, the IGA pipeline, where the application owner approves A2 and A3 follows the task's own chain; and a red card for out of scope, escalate, covering Conditional Access, directory roles and service principals. The ITSM and IGA cards each have a green arrow labeled approved into a green execute card: automation first, help desk for gaps, PIM activation before any change, no approval authority. That leads to a violet evidence card: closed ticket plus audit log, with approver, executor, object IDs and the audit reference."}
 
 ## Deciding isn't doing
 
@@ -42,17 +42,17 @@ The program's model has eight human roles and one system actor. The names are th
 
 | Role | Decides | Does | Entra role or group (program design) |
 |---|---|---|---|
-| Identity governance officer (IGO) | Risk tier of every app; Tier 1 access and all admin consent outside Tier 3; exceptions; ownership assignments | Maintains the application registry and consent inventory; runs the annual governance review | Privileged Role Administrator and Global Reader, plus Global Administrator as the fallback, all eligible through PIM; member of the reviewer group for the admin consent workflow |
+| Identity governance officer (IGO) | Risk tier of every app; the second approval of R1 access and all admin consent outside R3; exceptions; ownership assignments | Maintains the application registry and consent inventory; runs the annual governance review | Privileged Role Administrator and Global Reader, plus Global Administrator as the fallback, all eligible through PIM; member of the reviewer group for the admin consent workflow |
 | Application owner | Who gets access to the app, within its tier's chain; submits and justifies consent requests | Reviews access on the tier's cadence; keeps registry metadata current | None by default. Named in the registry; added to the app's Owners list only if they also configure it ([Chapter 05](05-applications-and-workload-identities.md#ownership)) |
-| Business approver (departmental owner) | Whether the requester has a business need; Tier 3 access | Confirms staffing changes; reviews department-level group membership | None |
+| Business approver (departmental owner) | Whether the requester has a business need; R3 access | Confirms staffing changes; reviews department-level group membership | None |
 | Identity engineering | Technical design: app registration configuration, credential type, provisioning, group design | Builds registrations, service principals and directory-role assignments; handles escalations the help desk can't | Application Administrator or Cloud Application Administrator, eligible through PIM |
-| Help desk and cloud services | Nothing. Triage classifies a request; it doesn't approve it | Executes approved assignment and group changes; triages notifications and escalates | A privileged access group activated through PIM, holding the narrowest role that does the job (see below) |
+| Help desk and cloud services | Nothing. Triage classifies a request; it doesn't approve it | Executes approved assignment and group changes; triages notifications and escalates | One `PRV-T2-` group per role and scope, holding the narrowest role that does the job as an eligible assignment that the member activates through PIM (see below) |
 | Security operations | Whether an alert is an incident; emergency revocation | Monitors consent, credential and assignment events; leads incident response | Security Reader or Security Operator for investigation[^c06-roles] |
 | ISSO | Nothing alone; advises on any change that affects a control | Assembles evidence; tracks findings and exceptions to closure | Global Reader |
 | Authorizing official (AO) | Residual risk: exceptions that leave a control unmet, renewed exceptions, critical-scope consent without a compensating control | Nothing in the console | None |
 | Workflow automation (system actor) | Nothing | Routes tickets by tier, enforces SLAs, records approvals, executes connector actions | A workload identity with only the permissions its actions need |
 
-The CISO sits above the IGO, as the authority the IGO acts under, and is the dual reviewer for critical scopes. The AO's place in the model follows [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md#the-roles): any decision that amounts to accepting risk the controls don't cover reaches the AO, not just the IGO.
+The identity governance office is the IGO's team, and this book also calls it the governance office. The CISO sits above the IGO, as the authority the IGO acts under, and is the dual reviewer for critical scopes. The AO's place in the model follows [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md#the-roles): any decision that amounts to accepting risk the controls don't cover reaches the AO, not just the IGO.
 
 Global Administrator isn't on the list. In the program's design it's held permanently only by the emergency access accounts described in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#emergency-access-accounts), and used by nobody for routine work.
 
@@ -65,10 +65,10 @@ The application owner is the first line of accountability. The program's list of
 3. Run the app's access review on its tier's cadence and certify or remove each member.
 4. Submit every admin consent request with a business justification and a least-privilege analysis for each scope.
 5. Tell the IGO within five business days of any material change to the app's data, scopes or operator.
-6. Keep a named backup owner current. Tier 1 apps must have one; Tier 2 apps should.
+6. Keep a named backup owner current. R1 apps must have one; R2 apps should.
 7. Complete owner training when the IGO requires it.
 
-The business approver answers a different question: does this person need this access for their job? The approver is usually the requester's manager or department head. Keeping the two questions separate is what lets Tier 3 access be approved by the business approver alone, and Tier 1 access require both plus governance notice.
+The business approver answers a different question: does this person need this access for their job? The approver is usually the requester's manager or department head. Keeping the two questions separate is what lets R3 access be approved by the business approver alone, R2 access by the application owner, and R1 access by the application owner and then the identity governance office ([Chapter 09](09-access-governance.md#policies-who-may-request-who-approves-how-long) sets the chains).
 
 ### Help desk and cloud services
 
@@ -91,7 +91,7 @@ Decision rights live in the ticket; capability lives in the role. The two diverg
 
 | Role or relationship | What Microsoft documents it can do | Consequence for the model |
 |---|---|---|
-| Application Administrator | Create and manage all enterprise applications, app registrations and application proxy settings; consent to delegated permissions and to application permissions for every API except Microsoft Graph and Azure AD Graph; add credentials to any app and use them to act as it[^c06-roles] | A help desk PAG that activates this role can technically grant most consents and impersonate any app. "The help desk never approves consent" is a procedural rule unless the role is narrowed |
+| Application Administrator | Create and manage all enterprise applications, app registrations and application proxy settings; consent to delegated permissions and to application permissions for every API except Microsoft Graph and Azure AD Graph; add credentials to any app and use them to act as it[^c06-roles] | A help desk `PRV-T2-` group that holds this role can technically grant most consents and impersonate any app. "The help desk never approves consent" is a procedural rule unless the role is narrowed |
 | Cloud Application Administrator | The same, without application proxy[^c06-roles] | Same consequence |
 | Privileged Role Administrator | Grant consent for any permission to any API, including Microsoft Graph application permissions[^c06-grant-admin] | The role the IGO activates to execute an approved Graph application-permission grant; Microsoft notes a Global Administrator is typically required in practice, so test the path in the pilot ([Chapter 05](05-applications-and-workload-identities.md)) |
 | Global Administrator | Everything; the only role that can turn on the admin consent workflow in the admin center, and the only one that can approve workflow requests for Microsoft Graph app roles[^c06-workflow] | Emergency use, and the PIM-activated fallback for a Graph application-permission grant that Privileged Role Administrator can't complete ([Chapter 05](05-applications-and-workload-identities.md)) |
@@ -100,13 +100,13 @@ Decision rights live in the ticket; capability lives in the role. The two diverg
 
 Microsoft's own warning about Application Administrator is direct: assigning a user to it gives that user the ability to impersonate an application's identity, which can be an elevation of privilege over what their role assignments allow.[^c06-roles] An app with `RoleManagement.ReadWrite.Directory` makes Application Administrator a path to any role in the tenant.
 
-The program therefore narrows the help desk PAG. The PAG holds a custom role with the `appRoleAssignedTo/update` permission for group-to-app assignment, plus the least-privileged group and authentication roles its other tasks need, scoped to administrative units as [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md) describes. Application Administrator stays with identity engineering, eligible only, behind PIM approval ([Chapter 08](08-pim-self-request-with-approval.md)). Two technical controls back the procedural rule. App instance property lock ([Chapter 05](05-applications-and-workload-identities.md#app-instance-property-lock)) blocks credentials being added to locked service principals, and an alert on every consent and credential event ([Evidence](#evidence-and-monitoring)) catches what the lock doesn't cover. [Chapter 04](04-privileged-roles-and-tiers.md) places these roles in the privileged tier model.
+The program therefore narrows the help desk's roles. Its `PRV-T2-` groups ([Chapter 04](04-privileged-roles-and-tiers.md#role-assignable-groups) names them, one per role and scope) hold a custom role with the `appRoleAssignedTo/update` permission for group-to-app assignment, plus the least-privileged group and authentication roles its other tasks need, scoped to administrative units as [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md) describes. Application Administrator stays with identity engineering, eligible only, behind PIM approval ([Chapter 08](08-pim-self-request-with-approval.md)). Two technical controls back the procedural rule. App instance property lock ([Chapter 05](05-applications-and-workload-identities.md#app-instance-property-lock)) blocks credentials being added to locked service principals, and an alert on every consent and credential event ([Evidence](#evidence-and-monitoring)) catches what the lock doesn't cover. [Chapter 04](04-privileged-roles-and-tiers.md) places these roles in the privileged tier model.
 
 ## Risk tiers set the approval chain
 
-Every enterprise application gets a risk tier from the IGO before anyone is given access to it. An app discovered without a tier is treated as Tier 1 until the IGO classifies it, with no exceptions. That rule covers the service principals that appear on their own through user consent and Microsoft just-in-time provisioning ([Chapter 05](05-applications-and-workload-identities.md#two-objects-for-one-application)).
+Every enterprise application gets a risk tier from the IGO before anyone is given access to it. The application risk tiers are written R1 (high risk), R2 (moderate) and R3 (low), so they can't be confused with the privilege tiers T0 to T2 of [Chapter 04](04-privileged-roles-and-tiers.md#three-different-tiers-in-this-workbook). An app discovered without a tier is treated as R1 until the IGO classifies it, with no exceptions. That rule covers the service principals that appear on their own through user consent and Microsoft just-in-time provisioning ([Chapter 05](05-applications-and-workload-identities.md#two-objects-for-one-application)).
 
-| Criterion | Tier 1, high risk | Tier 2, moderate risk | Tier 3, low risk |
+| Criterion | R1, high risk | R2, moderate risk | R3, low risk |
 |---|---|---|---|
 | Permission type | Any application permission | Broad delegated permissions | Minimal delegated permissions only |
 | Data | PII, health, financial, HR or payroll, or tenant-wide data | Business-sensitive, department-level | Non-sensitive; user profile only |
@@ -115,14 +115,15 @@ Every enterprise application gets a risk tier from the IGO before anyone is give
 | Exposure | Internet-facing | Internal, with some federation | Fully internal |
 | Example permissions | `Mail.ReadWrite` (application), `User.ReadWrite.All` (application), `Files.ReadWrite.All` (application), `Directory.ReadWrite.All` (application) | `Files.ReadWrite`, `Calendars.ReadWrite`, `Mail.Read` (delegated) | `User.Read`, `openid`, `profile`, `email`, `offline_access` |
 | Example apps | Payroll and HR systems, SIEM connectors, partner portals | Project tools, department reporting, SharePoint integrations | Productivity tools, sign-in-only apps, read-only dashboards |
-| Access request approver | Application owner, with IGO notice and a hold window | Application owner | Business approver |
+| Access request approver | Application owner, then the identity governance office as a second approval stage | Application owner | Business approver (the requester's manager) |
+| Access request decision deadline | 5 days per stage | 5 days | 7 days |
 | Admin consent approver | IGO; CISO notified | Application owner confirms, IGO approves | Application owner; IGO informed |
 | Access review cadence | Quarterly | Semi-annual | Annual |
-| Owners | Named owner and named backup, both mandatory | Named owner mandatory; backup recommended | Named owner |
+| Registry owners (the Entra Owners list is separate: up to two technical people, whatever the tier) | Named owner and named backup, both mandatory | Named owner mandatory; backup recommended | Named owner |
 | Initial provisioning sign-off | CISO or deputy CISO | None beyond the chain | None beyond the chain |
 | Alerting | Every permission change | Consent grants | Standard audit log |
 
-An app qualifies for Tier 1 if it meets any one Tier 1 criterion, and for Tier 3 only if it meets all the Tier 3 criteria. Reclassification happens whenever the app's scopes, data, operator or owner change, or after a security incident involving it. Moving an app down a tier needs the IGO's documented approval. The tiers and every value in the table are the program's design; the permission names are Microsoft Graph's.
+An app qualifies for R1 if it meets any one R1 criterion, and for R3 only if it meets all the R3 criteria. Reclassification happens whenever the app's scopes, data, operator or owner change, or after a security incident involving it. Moving an app down a tier needs the IGO's documented approval. The tiers and every value in the table are the program's design; the permission names are Microsoft Graph's.
 
 ## The enterprise-application approval model
 
@@ -147,39 +148,41 @@ The catalog carries one item per request type, each with its own chain and SLA:
 
 | Request type | Approval chain | SLA (program design) |
 |---|---|---|
-| Application access | Business approver, then application owner, then execution; Tier 1 adds IGO notice | 3 business days |
-| Admin consent | Owner submits, security review, tier approver, then execution ([below](#who-approves-admin-consent)) | 5 business days (3 for Tier 3) |
+| Application access | By risk tier: R3, business approver; R2, application owner; R1, application owner, then the identity governance office. Then execution | Decision deadline per stage: R3 7 days, R2 5 days, R1 5 days per stage ([Chapter 09](09-access-governance.md#policies-who-may-request-who-approves-how-long)) |
+| Admin consent | Owner submits, security review, tier approver, then execution ([below](#who-approves-admin-consent)) | 5 business days (3 for R3) |
 | Consent revocation | Owner notified, IGO authorizes, then execution | 1 business day; 2 hours when incident-driven |
-| New application registration | Owner, IGO classification, CISO sign-off for Tier 1, then identity engineering | 5 business days for Tier 1, 3 otherwise |
+| New application registration | Owner, IGO classification, CISO sign-off for R1, then identity engineering | 5 business days for R1, 3 otherwise |
 | Owner assignment or transfer | Business approver nominates, IGO approves, then execution | 3 business days |
 | Risk tier reclassification | Owner requests, IGO decides | 5 business days |
 | Access group creation | Owner requests, IGO notified, then execution | 2 business days |
 | Decommissioning | Owner, business approver, IGO, then execution | 5 business days |
 | Policy exception | Owner or business approver, then IGO (and AO where [Exceptions](#exceptions) says so) | 5 business days |
 
+The access request's deadlines are decision deadlines for each approval stage, as [Chapter 09](09-access-governance.md#policies-who-may-request-who-approves-how-long) sets them; the end-to-end time is the sum of the stages an app's risk tier requires.
+
 A breached SLA escalates automatically to the next level, and breaches are reported to the IGO monthly.
 
 ### Approval
 
-For application access, the chain runs from the business approver (one business day) to the application owner (two business days) and then to execution. For Tier 1 apps, the IGO is notified before execution and has a four-business-hour window to place a hold. End to end, the standard access request has a three-business-day SLA for every tier.
+For application access, [Chapter 09](09-access-governance.md#policies-who-may-request-who-approves-how-long) sets the chain by risk tier, and the chain here follows it. An R3 request goes to the business approver, the requester's manager, who has 7 days to decide. An R2 request goes to the application owner, who has 5 days. An R1 request goes to the application owner (5 days) and then to the identity governance office as a second approval stage (5 days), which leaves an approval record in place of a notice. The request then goes to execution. Each stage's deadline is a decision deadline: a request not decided in time is denied and the requester asks again.
 
 #### Who approves admin consent
 
-Admin consent is the highest-risk request in the catalog, because a grant applies to the whole tenant immediately and stays until revoked ([Chapter 05](05-applications-and-workload-identities.md#admin-consent)). Every request gets a security review by the IGO office before the tier's approver sees it. The review checks that only necessary permissions are requested, that delegated permissions are used where application permissions aren't required, and that every critical permission has documented necessity.
+Admin consent is the highest-risk request in the catalog, because a grant applies to the whole tenant immediately and stays until revoked ([Chapter 05](05-applications-and-workload-identities.md#admin-consent)). Every request gets a security review by the identity governance office before the risk tier's approver sees it. The review checks that only necessary permissions are requested, that delegated permissions are used where application permissions aren't required, and that every critical permission has documented necessity.
 
-![Admin consent requests pass a security review, then go to the approver their tier requires; application permissions and critical scopes escalate to Tier 1 handling regardless of tier.](../../images/diagrams/b04-access/svg/ch06-approval-chain-by-tier.svg){#fig-ch06-approval-chain-by-tier fig-alt="A top-to-bottom flow. A slate request card, application owner submits, lists scopes by exact name, justification per scope, and a least-privilege analysis. It leads to an amber security review card, governance analyst checks, asking whether delegated permissions can be used and whether a narrower scope is available. The review branches to three cards in a row: green Tier 3, application owner approves with the governance officer informed; amber Tier 2, owner confirms and governance officer approves; red Tier 1, governance officer approves with the CISO notified. A separate red escalation card, application permission or critical scope, treated as Tier 1, with critical scopes needing the governance officer and the CISO, has a dashed arrow labeled forces into the Tier 1 card. All three tier cards lead to a blue grant card: a role holder grants in Entra ID, with Microsoft Graph application permissions granted by a Privileged Role Administrator, logged, and the registry updated."}
+![Admin consent requests pass a security review, then go to the approver their tier requires; application permissions and critical scopes escalate to R1 handling regardless of tier.](../../images/diagrams/b04-access/svg/ch06-approval-chain-by-tier.svg){#fig-ch06-approval-chain-by-tier fig-alt="A top-to-bottom flow. A slate request card, application owner submits, lists scopes by exact name, justification per scope, and a least-privilege analysis. It leads to an amber security review card, governance analyst checks, asking whether delegated permissions can be used and whether a narrower scope is available. The review branches to three cards in a row: green R3, application owner approves with the governance officer informed; amber R2, owner confirms and governance officer approves; red R1, governance officer approves with the CISO notified. A separate red escalation card, application permission or critical scope, treated as R1, with critical scopes needing the governance officer and the CISO, has a dashed arrow labeled forces into the R1 card. All three tier cards lead to a blue grant card: a role holder grants in Entra ID, with Microsoft Graph application permissions granted by a Privileged Role Administrator, logged, and the registry updated."}
 
 | Situation | Chain | Minimum approvers |
 |---|---|---|
-| Tier 1 app | Owner submits, security review, IGO approves, CISO notified | IGO |
-| Tier 2 app | Owner submits, security review, owner confirms, IGO approves | Owner and IGO |
-| Tier 3 app | Owner submits, security review, owner approves, IGO informed | Owner |
-| Any application permission, any tier | Handled as Tier 1 | IGO; CISO notified |
+| R1 app | Owner submits, security review, IGO approves, CISO notified | IGO |
+| R2 app | Owner submits, security review, owner confirms, IGO approves | Owner and IGO |
+| R3 app | Owner submits, security review, owner approves, IGO informed | Owner |
+| Any application permission, any tier | Handled as R1 | IGO; CISO notified |
 | Any permission the program rates Critical ([Chapter 05](05-applications-and-workload-identities.md#permissions-what-an-application-can-be-granted)), any tier | Dual review | IGO and CISO |
 
 Don't define the critical-scope trigger as any permission ending in `.All` at application level. That rule misses the most dangerous mail permissions: the Microsoft Graph application permissions to read and write every mailbox and to send as any user are `Mail.ReadWrite` and `Mail.Send`, with no `.All` suffix.[^c06-graph-perms] The program's trigger is the risk level in the permission table, not the name.
 
-Approval and execution stay separate even here. After approval, the grant is executed by whoever holds the role that can grant it: Privileged Role Administrator for Microsoft Graph application permissions (with a PIM-activated Global Administrator as the fallback where Microsoft's note that one is typically required holds; [Chapter 05](05-applications-and-workload-identities.md)), Cloud Application Administrator for delegated permissions and other APIs.[^c06-grant-admin] In the program's design that person is in the IGO office, activates the role through PIM against the ticket, and isn't the person who approved the request. The help desk records the outcome but never performs the grant. Requests that arrive through the admin consent workflow are intake for this chain, not a shortcut around it.
+Approval and execution stay separate even here. After approval, the grant is executed by whoever holds the role that can grant it: Privileged Role Administrator for Microsoft Graph application permissions (with a PIM-activated Global Administrator as the fallback where Microsoft's note that one is typically required holds; [Chapter 05](05-applications-and-workload-identities.md)), Cloud Application Administrator for delegated permissions and other APIs.[^c06-grant-admin] In the program's design that person is in the identity governance office, activates the role through PIM against the ticket, and isn't the person who approved the request. The help desk records the outcome but never performs the grant. Requests that arrive through the admin consent workflow are intake for this chain, not a shortcut around it.
 
 Revocation runs the other way. The owner, the IGO, the CISO or a security alert can start it. The owner gets 24 hours' notice unless the revocation is incident-driven. Execution removes the grant from the enterprise application's **Permissions** page, the registry is updated, and the owner and IGO are told. Two facts belong in every revocation ticket: tokens already issued stay valid until they expire, and users can consent again unless the app stops requesting the permission or user consent is blocked.[^c06-review-perms]
 
@@ -193,13 +196,13 @@ Access to an enterprise application is granted through security groups, never by
 
 The program sets **Assignment required** on every enterprise application, assigns only groups with direct members, and treats any nested group found in review as a finding to fix immediately.
 
-Access groups follow one naming convention so that reviews, alerts and the registry line up: `APP-<AppShortName>-<AccessRole>-<RiskTier>`, for example `APP-PAYROLL-USERS-T1`, `APP-PAYROLL-ADMINS-T1`, `APP-HRPORTAL-READONLY-T2` and `APP-PROJMGR-USERS-T3`. The short name matches the registry entry. Non-compliant names are flagged in review and renamed.
+Access groups follow one naming convention so that reviews, alerts and the registry line up: `APP-<AppShortName>-<AccessRole>-<RiskTier>`, where the risk tier is `R1`, `R2` or `R3`, for example `APP-PAYROLL-USERS-R1`, `APP-PAYROLL-ADMINS-R1`, `APP-HRPORTAL-READONLY-R2` and `APP-PROJMGR-USERS-R3`. The short name matches the registry entry. Non-compliant names are flagged in review and renamed.
 
 | Group type | Allowed for | Owner | Review cadence | Changes need |
 |---|---|---|---|---|
-| Assigned membership | Mandatory for Tier 1; required for Tier 2; acceptable for Tier 3 | Application owner | The app's tier cadence | An approved ticket and PIM activation |
-| Dynamic membership | Tier 3 by default; Tier 2 only with IGO approval; never Tier 1 | Application owner, who validates the rule each review | Annual rule validation | An approved ticket for any rule change |
-| Privileged access group (for example the help desk PAG) | Elevated role access through PIM | IGO and Privileged Role Administrator | Quarterly | PIM activation |
+| Assigned membership | Mandatory for R1; required for R2; acceptable for R3 | Application owner | The app's tier cadence | An approved ticket and PIM activation |
+| Dynamic membership | R3 by default; R2 only with IGO approval; never R1 | Application owner, who validates the rule each review | Annual rule validation | An approved ticket for any rule change |
+| Role-assignable privileged group (`PRV-<tier>-<role>[-<scope>]`, for example a help desk `PRV-T2-` group) | Eligible role access through PIM | IGO and Privileged Role Administrator | Quarterly; monthly for `PRV-T0-*` ([Chapter 09](09-access-governance.md#cadence)) | Approved request for membership; the role is activated through PIM |
 
 Dynamic groups only work when the attributes behind them are reliable, which is the subject of [Book 03](../b03-hr-identity/index.md). The program keeps them away from high-risk apps because a wrong attribute grants access nobody approved.
 
@@ -215,7 +218,7 @@ Groups are created, populated and removed only through tickets: creation by the 
 
 ### Review
 
-Access to each application is reviewed on its tier's cadence: quarterly for Tier 1, twice a year (January and July) for Tier 2, and annually (January) for Tier 3. The owner certifies each member as approved, removed or escalated to the business approver; certifications are due ten business days after the review opens, and removals are executed within five business days of certification. Separately, the IGO reviews every active admin consent grant once a year and revokes any no longer needed within 30 days. [Chapter 09](09-access-governance.md) covers how those reviews run in Entra ID Governance.
+Access to each application is reviewed on its risk tier's cadence: quarterly for R1, twice a year (January and July) for R2, and annually (January) for R3. [Chapter 09](09-access-governance.md#access-reviews) governs how those reviews run in Entra ID Governance. An R1 review has two stages: the requester's manager first, then the application owner for everyone the manager approved or marked "don't know". R2 and R3 reviews go to the application owner (for R3, the application or department owner). Reviewers decide with a justification, and when the review closes, auto-apply removes the access that was denied, so removal no longer waits on a ticket. Denied access still present five business days after close is a finding. Separately, the IGO reviews every active admin consent grant once a year and revokes any no longer needed within 30 days.
 
 ## The help desk and cloud services authority split
 
@@ -224,9 +227,9 @@ Everything above describes who approves. The authority split decides which pipel
 | Authority | Meaning in the program's model | Pipeline and approver |
 |---|---|---|
 | A0 | Low-impact support with no access change, such as a cloud-only password reset or retrieving a sign-in log | ITSM pipeline |
-| A1 | Changes to the requester's own account and entitlements, such as an MFA method reset, license change or profile update | ITSM pipeline; the requester's manager approves |
+| A1 | Changes to the requester's own account and entitlements, such as an MFA method reset, license change or profile update | ITSM pipeline; the requester's manager or the service desk supervisor approves |
 | A2 | Access changes governed by an owner, such as application access, group creation and owner management, or a certification revocation | IGA pipeline; the application owner approves |
-| A3 | Governance actions, such as admin consent or an ImmutableID hard-match repair | IGA pipeline; the application owner and IGO approve; never automated |
+| A3 | Governance actions, such as admin consent or an ImmutableID hard-match repair | IGA pipeline; the approvers are the task's own chain, set in the table below (admin consent: the IGO for R1 and the owner for R3, per [the consent chain](#who-approves-admin-consent); ImmutableID repair: the identity engineering lead and the IGO); never automated |
 | Out of scope | Conditional Access, directory roles, service principals | Escalated to security or identity engineering |
 
 | Task | Authority | Who approves | Who executes |
@@ -234,16 +237,16 @@ Everything above describes who approves. The authority split decides which pipel
 | Password reset, cloud-only user | A0 | Identity verification procedure | Automation |
 | Password reset, synced or federated user | A0 | Identity verification procedure | Help desk, on premises or through self-service password reset with writeback |
 | Sign-in or audit log retrieval | A0 | None | Automation, read-only |
-| MFA or authentication method reset | A1 | Manager, after identity verification | Automation or help desk |
+| MFA or authentication method reset | A1 | The service desk supervisor or the requester's manager, after identity verification | Help desk task; the ITSM connector has no authentication-method reset action |
 | License assignment or removal | A1 | Manager | Automation |
 | Add a user to a security group | A1 or A2, by the group's tier | Manager or application owner | Automation |
 | Create a group, manage group owners | A2 | Application owner | Automation |
-| Enterprise application access (group to app role) | A2 | Business approver and application owner | Automation for membership; help desk for the one-time group-to-app binding |
+| Enterprise application access (group to app role) | A2 | By risk tier: business approver (R3); application owner (R2); application owner, then the identity governance office (R1) | Automation for membership; help desk for the one-time group-to-app binding |
 | Certification revocation | A2 | Application owner (through the review) | Automation |
 | User create or disable (joiner or leaver) | A2 | The lifecycle workflow ([Book 03](../b03-hr-identity/index.md)) | Automation |
 | ImmutableID hard-match repair | A3 | Identity engineering lead and IGO | Identity engineering, usually in Active Directory |
 | Admin consent | A3 | Per [the consent chain](#who-approves-admin-consent) | IGO office role holder; never the help desk |
-| Conditional Access change | Out of scope | Security, through change control | Security administrator |
+| Conditional Access change | Out of scope | The security administrator and the IGO, through the change advisory board ([Book 15](../b15-day2-operations/03-intake-triage-and-routing.md)) | Identity engineering, as a pull request through the pipeline ([Chapter 10](10-access-as-code-and-evidence.md)); the help desk records and escalates but doesn't execute |
 | Directory role or service principal change | Out of scope | Identity engineering and IGO | Identity engineering |
 
 Two routing rules sit above the table. Any message that appears to come from Microsoft, including security notifications about consent or new service principals, is forced to A3 and escalate-only: the help desk verifies the event in the audit log within four business hours, checks it against an approved ticket, and escalates to the IGO within an hour if it can't match it. Nobody approves or denies anything on the strength of an email. And a request that lands directly on cloud services goes back to triage, because cloud services is the escalation tier, not the front door.
@@ -258,7 +261,7 @@ An owner who leaves or changes roles starts a transfer at least ten business day
 
 An application is orphaned when it has no named owner in the registry or the Owners list. Microsoft recommends monitoring so that every app has at least two owners, and using the app's `serviceManagementReference` to point at a team so ownership survives one person leaving.[^c06-owners] The program's orphan policy is:
 
-1. The app is reclassified as Tier 1 until it has an owner.
+1. The app is reclassified as R1 until it has an owner.
 2. The IGO takes interim ownership, and a ticket opens automatically.
 3. The IGO has 30 calendar days to assign an owner or start decommissioning.
 4. At day 31, access to the app is suspended, preferably by deactivating it so that it stops getting tokens but keeps its configuration ([Chapter 05](05-applications-and-workload-identities.md#two-objects-for-one-application)), and the business approver and CISO are told.
@@ -273,10 +276,10 @@ A request names the requirement being waived, why it can't be met, the compensat
 
 | Exception | Minimum approval | Also notified |
 |---|---|---|
-| Access review schedule, Tier 3 | IGO | — |
+| Access review schedule, R3 | IGO | — |
 | Group naming convention | IGO | — |
 | SLA change | IGO | Help desk management |
-| Access review schedule, Tier 1 or 2 | IGO with CISO concurrence | CISO |
+| Access review schedule, R1 or R2 | IGO with CISO concurrence | CISO |
 | Group-based assignment mandate | IGO and CISO | CISO |
 | Admin consent chain change | IGO and CISO | CISO; counsel where relevant |
 | Client secret instead of certificate ([Chapter 05](05-applications-and-workload-identities.md#credentials)) | IGO and CISO | ISSO |
@@ -312,15 +315,15 @@ D = decides (accountable) · R = does the work · C = consulted · I = informed 
 | Register a new application | D | R | C | R | | I | C | | |
 | Assign or change an app's risk tier | D | C | C | C | | C | C | | |
 | User consent setting and permission classifications | D | | | R | | C | C | | |
-| Admin consent, Tier 1 or any application permission | D | R | | C | I | I | I | | |
-| Admin consent, Tier 2 | D | R | C | C | I | | | | |
-| Admin consent, Tier 3 | I | D | C | C | I | | | | |
+| Admin consent, R1 or any application permission | D | R | | C | I | I | I | | |
+| Admin consent, R2 | D | R | C | C | I | | | | |
+| Admin consent, R3 | I | D | C | C | I | | | | |
 | Admin consent, Critical-rated permission | D (CISO concurs) | R | | C | I | C | C | I | |
 | Execute an approved consent grant | R | I | | | I | I | | | |
 | Consent revocation, incident-driven | C | I | | R | | D | I | | |
-| Application access request, Tier 1 | C | D | R | | R | | | | R |
-| Application access request, Tier 2 | I | D | R | | R | | | | R |
-| Application access request, Tier 3 | | C | D | | R | | | | R |
+| Application access request, R1 (the IGO approves as the second stage) | C | D | R | | R | | | | R |
+| Application access request, R2 | I | D | R | | R | | | | R |
+| Application access request, R3 | | C | D | | R | | | | R |
 | Group-to-app assignment and access group creation | I | D | | C | R | | | | |
 | Credential type and rotation for an app | C | D | | R | | C | I | | |
 | Federated credential added to an app | D | R | | R | | C | I | | |
@@ -329,14 +332,14 @@ D = decides (accountable) · R = does the work · C = consulted · I = informed 
 | Annual admin consent review | D | C | | R | | C | I | | |
 | Owner transfer | D | R | R | | R | | | | |
 | Orphaned application remediation | D | | C | C | R | I | I | | |
-| Help desk PAG membership and role scope | D | | | R | I | C | C | | |
+| Help desk `PRV-T2-` group membership and role scope | D | | | R | I | C | C | | |
 | Policy exception within IGO authority | D | R | R | | | | C | | |
 | Exception that accepts uncompensated risk | C | R | R | | | C | C | D | |
 | Break-glass invocation | I | | | R | | C | I | | |
 | Post-break-glass review | D | | | C | | R | I | I | |
 | Audit log review and alert triage | C | | | | R | D | I | | |
 
-Four rows need comment. A Critical-rated permission still has one decider, the IGO, but the IGO can't approve it without the CISO's concurrence. Execution of an approved consent grant sits with the IGO office because Privileged Role Administrator is the least-privileged role Microsoft lists for granting Microsoft Graph application permissions (Global Administrator, its fallback, is typically required in practice; [Chapter 05](05-applications-and-workload-identities.md)), and the IGO office holds both eligibly; the person executing is never the person who approved. Incident-driven revocation sits with security operations because speed matters more than the chain, and the IGO is consulted after the fact. Break-glass invocation has no single decider in the matrix because the procedure requires two senior administrators acting together; the IGO decides afterward whether it was justified.
+Four rows need comment. A Critical-rated permission still has one decider, the IGO, but the IGO can't approve it without the CISO's concurrence. Execution of an approved consent grant sits with the identity governance office because Privileged Role Administrator is the least-privileged role Microsoft lists for granting Microsoft Graph application permissions (Global Administrator, its fallback, is typically required in practice; [Chapter 05](05-applications-and-workload-identities.md)), and the identity governance office holds both eligibly; the person executing is never the person who approved. Incident-driven revocation sits with security operations because speed matters more than the chain, and the IGO is consulted after the fact. Break-glass invocation has no single decider in the matrix because the procedure requires two senior administrators acting together; the IGO decides afterward whether it was justified.
 
 ## Evidence and monitoring
 
