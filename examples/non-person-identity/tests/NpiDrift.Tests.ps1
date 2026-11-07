@@ -49,11 +49,11 @@ Describe 'Chapter 10: the Sentinel rule Learn links for added credentials, run a
         { Invoke-SentinelRule -Rows @() -Query ((Get-SentinelRuleQuery) -replace '=~ "success"', '=~ "failure"') } | Should -Throw '*doesn''t recognize*'
     }
     It 'finds the secret a person added to an app that already had a credential: the model for NPI-DRF-07' {
-        $out = @((Invoke-Rule).Output)
-        $out.Count | Should -Be 1
+        # Learn's rule can't tell a person's rotation from a person's stray key: it finds every key a user added to an app that already had one.
+        $out = @((Invoke-Rule).Output | Sort-Object keyIdentifier)
+        @($out | ForEach-Object keyIdentifier) | Should -Be @('9c000000-0000-4000-8000-000000000031', '9c000000-0000-4000-8000-000000000032', '9c000000-0000-4000-8000-000000000036')
         $out[0].targetDisplayName | Should -Be 'HR Connector'
         $out[0].keyType | Should -Be 'Password'
-        $out[0].keyIdentifier | Should -Be '9c000000-0000-4000-8000-000000000031'
     }
     It 'names the activity with a hyphen, as Learn''s activity list does and the code reads it' {
         (Get-SentinelRuleQuery) | Should -Match 'Update application - Certificates and secrets management'
@@ -63,7 +63,6 @@ Describe 'Chapter 10: the Sentinel rule Learn links for added credentials, run a
     It 'misses a credential added by an app, whatever the app is: the initiator must carry an "@"' {
         $ids = @((Invoke-Rule).Output | ForEach-Object keyIdentifier)
         $ids | Should -Not -Contain '9c000000-0000-4000-8000-000000000033'   # by Mail Automation, to Payroll Export's service principal
-        $ids | Should -Not -Contain '9c000000-0000-4000-8000-000000000032'   # by the rotation pipeline
     }
     It 'misses the first credential on an app that had none: old_value_set must not be "[]"' {
         @((Invoke-Rule).Output | ForEach-Object keyIdentifier) | Should -Not -Contain '9c000000-0000-4000-8000-000000000034'
@@ -216,19 +215,23 @@ Describe 'Chapter 10: the register drift findings' {
     It 'NPI-DRF-06: every enabled AD account whose password never expires, but not the person found only that way' {
         @(Get-F 'NPI-DRF-06' | ForEach-Object ObjectKey | Sort-Object) | Should -Be @('ad:ad000000-0000-4000-8000-000000000001', 'ad:ad000000-0000-4000-8000-000000000002', 'ad:ad000000-0000-4000-8000-000000000004')
     }
-    It 'NPI-DRF-07: the three credentials added outside the pipeline, not the pipeline''s logged rotation' {
+    It 'NPI-DRF-07: the three credentials added outside the pipeline, not the logged operator''s rotation' {
         @(Get-F 'NPI-DRF-07' | ForEach-Object { ($_.ObjectKey -split '/key:')[1] } | Sort-Object) | Should -Be @('9c000000-0000-4000-8000-000000000031', '9c000000-0000-4000-8000-000000000033', '9c000000-0000-4000-8000-000000000034')
         (Get-F 'NPI-DRF-07' | Where-Object ObjectKey -Like '*000000000033').ObjectKey | Should -BeLike 'app:1a000000-0000-4000-8000-000000000001/*'
     }
-    It 'NPI-DRF-07: the pipeline''s identity adding a key it didn''t log, or a person adding a logged key, is still outside' {
+    It 'NPI-DRF-07: a key the log doesn''t list, a logged key added by someone other than the operator, or a service principal, is still outside' {
         $rows = $script:Rows2
         $ev = @(Get-NpiAuditEvent -Reader (New-NpiDriftReader -Cloud gcc -Invoke (New-NpiDriftFixtureInvoker -AuditPath $script:Audit).Invoke) -Since ([datetime]'2026-10-29T06:00:00Z') -Until ([datetime]'2026-10-30T06:00:00Z'))
         $pipe = @([pscustomobject]@{ ServicePrincipalId = '5b000000-0000-4000-8000-000000000020' })
         $none = @(Test-NpiRegisterDrift -Rows $rows -AsOf ([datetime]'2026-10-30T06:00:00Z') -Events $ev -PipelineIdentities $pipe -CredentialLog @() | Where-Object Rule -EQ 'NPI-DRF-07')
-        ($none | Where-Object ObjectKey -Like '*000000000032').Issue | Should -Match 'not in its credential log'
-        $log = @([pscustomobject]@{ ObjectId = '0a000000-0000-4000-8000-000000000002'; KeyId = '9c000000-0000-4000-8000-000000000031'; ChangeId = 'CHG-X' })
+        ($none | Where-Object ObjectKey -Like '*000000000032').Issue | Should -Match 'not in the credential log'
+        $log = @([pscustomobject]@{ ObjectId = '0a000000-0000-4000-8000-000000000002'; KeyId = '9c000000-0000-4000-8000-000000000031'; ChangeId = 'CHG-X'; Operator = '5a000000-0000-4000-8000-000000000002' })
         $byUser = @(Test-NpiRegisterDrift -Rows $rows -AsOf ([datetime]'2026-10-30T06:00:00Z') -Events $ev -PipelineIdentities $pipe -CredentialLog $log | Where-Object Rule -EQ 'NPI-DRF-07')
-        ($byUser | Where-Object ObjectKey -Like '*000000000031').Issue | Should -Match 'in the credential log but added by user'
+        ($byUser | Where-Object ObjectKey -Like '*000000000031').Issue | Should -Match 'not the logged operator'
+        # Key 33 was added by a service principal: a log entry naming that principal as operator doesn't make it a person's run.
+        $app = @([pscustomobject]@{ ObjectId = '5b000000-0000-4000-8000-000000000001'; KeyId = '9c000000-0000-4000-8000-000000000033'; ChangeId = 'CHG-Y'; Operator = '5b000000-0000-4000-8000-000000000006' })
+        $bySp = @(Test-NpiRegisterDrift -Rows $rows -AsOf ([datetime]'2026-10-30T06:00:00Z') -Events $ev -PipelineIdentities $pipe -CredentialLog $app | Where-Object Rule -EQ 'NPI-DRF-07')
+        ($bySp | Where-Object ObjectKey -Like '*000000000033').Issue | Should -Match 'not the logged operator'
     }
     It 'NPI-DRF-08: a grant for all users is a Finding, with the audit events behind it' {
         $f = @(Get-F 'NPI-DRF-08')

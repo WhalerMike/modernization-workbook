@@ -92,13 +92,13 @@
       "loggedByService": "Core Directory",
       "operationType": "Update",
       "initiatedBy": {
-        "user": null,
-        "app": {
-          "appId": "1c000000-0000-4000-8000-000000000020",
-          "displayName": "Credential Rotation Pipeline",
-          "servicePrincipalId": "5b000000-0000-4000-8000-000000000020",
-          "servicePrincipalName": "Credential Rotation Pipeline"
-        }
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000002",
+          "displayName": null,
+          "userPrincipalName": "bob@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
       },
       "targetResources": [
         {
@@ -354,13 +354,13 @@
       "loggedByService": "Core Directory",
       "operationType": "Update",
       "initiatedBy": {
-        "user": null,
-        "app": {
-          "appId": "1c000000-0000-4000-8000-000000000020",
-          "displayName": "Credential Rotation Pipeline",
-          "servicePrincipalId": "5b000000-0000-4000-8000-000000000020",
-          "servicePrincipalName": "Credential Rotation Pipeline"
-        }
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000002",
+          "displayName": null,
+          "userPrincipalName": "bob@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
       },
       "targetResources": [
         {

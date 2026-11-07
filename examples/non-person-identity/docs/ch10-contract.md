@@ -52,8 +52,8 @@ A kind not received at all is NPI-REV-04 (Warn): the cycle can't be shown, which
 ```json
 {
   "schema": "fmp-npi-credential-log/1", "chapter": "04", "tenantId": "<tenant-id>",
-  "changes": [ { "objectId": "<application or service principal object id>", "keyId": "<key id>", "changeId": "CHG-...", "at": "2026-10-29T22:00:00Z" } ]
+  "changes": [ { "objectId": "<application or service principal object id>", "keyId": "<key id>", "changeId": "CHG-...", "operator": "<object id of the person who sent the rotation>", "at": "2026-10-29T22:00:00Z" } ]
 }
 ```
 
-Each credential the reviewed rotation pipeline added. A credential event in the audit log counts as inside the pipeline only when its initiator is a service principal listed in `-PipelineIdentitiesPath` (`ServicePrincipalId,Name,Record`) **and** its target object and key ID are in this log; anything else is NPI-DRF-07.
+Each credential the reviewed rotation added. Every rotation is a person's delegated run, so each entry names that person in `operator` (the user's object ID, as the audit log's initiator shows it); a file with an entry that has no `operator` is refused. A credential event in the audit log counts as inside the pipeline only when its target object and key ID are in this log **and** its initiator is the user named as that entry's `operator`; anything else, including a service principal, is NPI-DRF-07. `-PipelineIdentitiesPath` is still accepted so existing commands run, but it no longer decides anything.

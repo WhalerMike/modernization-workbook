@@ -9,7 +9,7 @@ nodes:
   ai: {tone: slate, width: 520, tag: "Start", title: "An AI system the inventory lists", body: ["=First question: whose boundary does it run in?"], size: 11}
   inside: {tone: blue, width: 165, tag: "Part of a system", title: "Inside an authorized system", body: ["=A new component of that system's plan; a significant change review"], size: 10}
   own: {tone: blue, width: 165, tag: "Its own system", title: "A new system", body: ["=Full RMF: categorize, select, assess, authorize"], size: 10}
-  svc: {tone: amber, width: 165, tag: "Provider's cloud", title: "A certified service", body: ["=Agency authorizes use; the agency's own tenant identities stay its job"], size: 10}
+  svc: {tone: amber, width: 165, tag: "Provider's cloud", title: "A certified service", body: ["=The agency authorizes its own system that uses the service; its own tenant identities stay its job"], size: 10}
   pkg: {tone: violet, width: 520, title: "One package carries the AI identity evidence", body: ["=Owner, credentials, permissions, monitoring and lifecycle, in that system's plan and assessment"], size: 11}
 edges:
   - [ai, inside]

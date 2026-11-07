@@ -195,6 +195,8 @@ Both plans are written with the register's SHA-256, the tenant, the cloud and th
 - the Key Vault create body is empty: the rotation never changes a certificate policy;
 - `DELETE` and `PUT` are never sent.
 
+The rotation is a person's delegated run, and Chapter 10's drift check relies on that. The credential log Chapter 10 reads (`fmp-npi-credential-log/1`) records, for each credential a rotation added, the object ID and key ID, the change record and the `operator`: the object ID of the person who signed in and sent the rotation. A credential counts as the rotation's only when the audit log's initiator is that person. No kit module writes the log yet; the change record for the rotation names the person, and that is where `operator` comes from. *Design guidance.*
+
 Before each write it re-reads the target and skips the write if the precheck no longer holds: the default policy changed since the diff was reviewed, a policy with the exception's name exists, the app already holds a policy, the app is already locked, the app's certificates or the vault's current version changed. Without `-Apply` it stops after the prechecks and reports `WouldSend`. With `-Apply` it sends, polls a Key Vault create until it completes,[^np04-kv-pending] and records every request in its manifest. A live run is delegated: a person signed in with Security Administrator and Cloud Application Administrator (or Application Administrator) for a policy run, and, for a rotation, Cloud Application Administrator and Key Vault Certificates Officer on the vault.
 
 | Task | Calls | Permissions and roles |

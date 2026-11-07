@@ -519,10 +519,15 @@ Get-Content out/wca-test/plan.json -Raw | ConvertFrom-Json | Format-Table Kind, 
 Get-Content out/wca-test/requests.json -Raw
 
 # Step 4: Apply, report-only
+$planSha = (Get-Content out/wca-test/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+
+# Step 4: Apply, report-only
 Disconnect-MgGraph
-Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
-./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply -Apply
-./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply2 -Apply
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Policy.Read.All,Policy.ReadWrite.ConditionalAccess,Application.Read.All
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply -Apply -ApprovedPlanSha256 $planSha
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-dry2
+$planSha2 = (Get-Content out/wca-test-dry2/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply2 -Apply -ApprovedPlanSha256 $planSha2
 
 # Step 5: Generate sign-ins and read them
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <test-app-client-id> -CertificateThumbprint <test-app-thumbprint>
@@ -542,9 +547,13 @@ $s.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = 
 $s | ConvertTo-Json -Depth 10 | Set-Content my-scope.json
 
 # Step 6: Enforce Ring 1 in a separate change
-Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
-./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
-./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce2 -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Policy.Read.All,Policy.ReadWrite.ConditionalAccess,Application.Read.All
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce-dry -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
+$planSha = (Get-Content out/wca-test-enforce-dry/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json -ApprovedPlanSha256 $planSha
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce2-dry -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
+$planSha2 = (Get-Content out/wca-test-enforce2-dry/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce2 -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json -ApprovedPlanSha256 $planSha2
 
 # Step 6: Enforce Ring 1 in a separate change
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <test-app-client-id> -CertificateThumbprint <test-app-thumbprint>
@@ -553,7 +562,9 @@ Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <test-app-cl
 $s = Get-Content my-scope.json -Raw | ConvertFrom-Json -AsHashtable
 $s.enforcement.rings = @()
 $s | ConvertTo-Json -Depth 10 | Set-Content my-scope.json
-./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-backout -Apply
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-backout-dry
+$planSha = (Get-Content out/wca-test-backout-dry/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-backout -Apply -ApprovedPlanSha256 $planSha
 
 # Step 7: Back it out
 Remove-Item -Recurse -Force out/wca-test*
@@ -609,16 +620,23 @@ Remove-Item my-scope.json
    Get-Content out/wca-test/requests.json -Raw
    ```
 
-4. **Apply, report-only.** Add `Policy.ReadWrite.ConditionalAccess` to the app, reconnect, and run step 3's plan with `-Apply`, then once more. Confirm in the admin center that the named location is untrusted and every new policy is **Report-only**, and record whether Graph v1.0 accepted the policies with `clientApplications` (research gaps, rows 71 and 72).
+4. **Apply, report-only.** Apply is a person's delegated run, on a plan a reviewer approved by its SHA-256; no application holds the write permission, and `-Apply` refuses to run without `-ApprovedPlanSha256` or as an application. The reviewer reads step 3's `plan.json` and approves the SHA-256 the dry run's `manifest.json` records for it. Then run the plan with `-Apply`, and once more. Confirm in the admin center that the named location is untrusted and every new policy is **Report-only**, and record whether Graph v1.0 accepted the policies with `clientApplications` (research gaps, rows 71 and 72).
 
-   1. On the reading app, **API permissions** > **Add a permission** > **Microsoft Graph** > **Application permissions**; select `Policy.ReadWrite.ConditionalAccess`, **Add permissions**, and **Grant admin consent for** your tenant.
-   2. Reconnect and apply twice:
+   1. Have the reviewer, who isn't the person applying, approve the plan: read `out/wca-test/plan.json` and record the SHA-256 of that file, which is the `plan.json` entry in `out/wca-test/manifest.json`:
+
+      ```powershell
+      $planSha = (Get-Content out/wca-test/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+      ```
+
+   2. Sign in as a person holding Conditional Access Administrator or Security Administrator (activated), delegated, and apply with the approved hash. The second run is a fresh dry run, because after the first apply the plan changes (the policies now exist), so it has its own hash for the reviewer to approve:
 
       ```powershell
       Disconnect-MgGraph
-      Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
-      ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply -Apply
-      ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply2 -Apply
+      Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Policy.Read.All,Policy.ReadWrite.ConditionalAccess,Application.Read.All
+      ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply -Apply -ApprovedPlanSha256 $planSha
+      ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-dry2
+      $planSha2 = (Get-Content out/wca-test-dry2/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+      ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-apply2 -Apply -ApprovedPlanSha256 $planSha2
       ```
 
 5. **Generate sign-ins and read them.** Have the test app get a token with its certificate from the egress host, and once from another network. After the logs catch up, register a separate reading app with only `AuditLog.Read.All` and `Policy.Read.ConditionalAccess` (or sign in as a Security Reader), and run `-Mode SignIns` over the window. Confirm that the sign-in from the egress host shows `reportOnlyNotApplied` for CA015-Ring1 and the other `reportOnlyFailure`, and that `appliedConditionalAccessPolicies` came back with that permission (research gaps, rows 74 and 79). Compare with the admin center's service principal sign-ins and their **Report-only** tab.[^np08-wid] On the egress host, and then on a host on another network, the test app signs in with its certificate:
@@ -635,7 +653,7 @@ Remove-Item my-scope.json
    ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud gcc -ScopePath my-scope.json -From <from> -To <to> -OutputPath out/wca-test-signins
    ```
 
-6. **Enforce Ring 1 in a separate change.** After at least 14 days with the ring Clear, have a reviewer record the summary's SHA-256 and D-N5 in the scope, and run with `-Apply -AllowEnforce -SignInSummaryPath <summary>`, twice. Get a token from the other network again: it should fail with AADSTS53003, "Access has been blocked by Conditional Access policies,"[^np08-errors] and, if the sign-in logs reach a test Log Analytics workspace, the query in `alert-rule.json` should return it (row 77). After the 14 days, signed in as the sign-in reading app, read those days into a fresh summary; the reviewer records its hash and D-N5:
+6. **Enforce Ring 1 in a separate change.** After at least 14 days with the ring Clear, have a reviewer record the summary's SHA-256 and D-N5 in the scope, and run with `-Apply -AllowEnforce -SignInSummaryPath <summary>` and the approved plan hash, twice. Get a token from the other network again: it should fail with AADSTS53003, "Access has been blocked by Conditional Access policies,"[^np08-errors] and, if the sign-in logs reach a test Log Analytics workspace, the query in `alert-rule.json` should return it (row 77). After the 14 days, signed in as the sign-in reading app, read those days into a fresh summary; the reviewer records its hash and D-N5:
 
    ```powershell
    Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <signins-app-id> -CertificateThumbprint <signins-thumbprint>
@@ -647,12 +665,16 @@ Remove-Item my-scope.json
    $s | ConvertTo-Json -Depth 10 | Set-Content my-scope.json
    ```
 
-   Then, signed in as the reading app with the write permission, apply twice:
+   Then, signed in as a person as in step 4, run a dry run, have the reviewer approve its plan hash, and apply; repeat for the second run with its own dry run and hash:
 
    ```powershell
-   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
-   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
-   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce2 -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Policy.Read.All,Policy.ReadWrite.ConditionalAccess,Application.Read.All
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce-dry -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
+   $planSha = (Get-Content out/wca-test-enforce-dry/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json -ApprovedPlanSha256 $planSha
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce2-dry -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json
+   $planSha2 = (Get-Content out/wca-test-enforce2-dry/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-enforce2 -Apply -AllowEnforce -SignInSummaryPath out/wca-test-signins-14d/signin-summary.json -ApprovedPlanSha256 $planSha2
    ```
 
    On the host on the other network, the test app signs in again; this one should fail with AADSTS53003:
@@ -661,13 +683,15 @@ Remove-Item my-scope.json
    Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <test-app-client-id> -CertificateThumbprint <test-app-thumbprint>
    ```
 
-7. **Back it out.** Remove Ring 1 from the enforcement record and run with `-Apply`: both policies return to report-only. Then set both to Off in the admin center, or delete them by hand in the test tenant (the code never deletes). Delete the named location, remove `Policy.ReadWrite.ConditionalAccess`, delete the apps and their certificates, and delete the `out` folders. Signed in as in step 6:
+7. **Back it out.** Remove Ring 1 from the enforcement record and run with `-Apply` and the reviewer's approved hash of a dry run: both policies return to report-only. Then set both to Off in the admin center, or delete them by hand in the test tenant (the code never deletes). Delete the named location, delete the apps and their certificates, and delete the `out` folders. Signed in as a person, as in step 6:
 
    ```powershell
    $s = Get-Content my-scope.json -Raw | ConvertFrom-Json -AsHashtable
    $s.enforcement.rings = @()
    $s | ConvertTo-Json -Depth 10 | Set-Content my-scope.json
-   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-backout -Apply
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-backout-dry
+   $planSha = (Get-Content out/wca-test-backout-dry/manifest.json -Raw | ConvertFrom-Json).files.'plan.json'
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test-backout -Apply -ApprovedPlanSha256 $planSha
    ```
 
    After the admin center steps:
@@ -743,7 +767,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | An enforced block nobody hears about | A production job fails silently, or an attacker's attempt goes unnoticed | The alert definition on 53003, reviewed and deployed with the enforcement |
 | A pipeline that deletes a policy no file names | A portal-made policy, perhaps a needed one, disappears | No DELETE in the call list; NotInRepository is reported only |
 | A license that lapses | Existing policies keep working but can't be changed, so a fix can't ship[^np08-wid] | D-N4 recorded in the scope; NPI-WCA-05 fails without it |
-| The write permission left on the app | A standing path to change every Conditional Access policy | Grant `Policy.ReadWrite.ConditionalAccess` only for `-Apply` runs, from the pipeline identity; Lab 2 removes it |
+| A write permission left on an application | A standing path to change every Conditional Access policy | No application holds `Policy.ReadWrite.ConditionalAccess`: `-Apply` is a person's delegated run, on a plan hash a reviewer approved, and refuses an application sign-in |
 
 ## Checklist
 
@@ -756,7 +780,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] Each ring's sign-in summary covers at least 14 days, shows every principal Clear, and its SHA-256 was recorded by a reviewer.
 - [ ] Each enforcement was its own change, under D-N5, with `-AllowEnforce`, one ring at a time; every exclusion has an owner, a reason and an end date.
 - [ ] The block alert is deployed to security operations before the first ring is enforced.
-- [ ] The read app holds only the read permissions; the write permission exists only on the identity that applies.
+- [ ] The read app holds only the read permissions; the write permission is used only in a person's delegated `-Apply` run, with the reviewer's approved plan hash.
 - [ ] The pinned Learn page matches its manifest, and every upstream commit since the pin has been reviewed.
 
 ::: {.callout-tip}

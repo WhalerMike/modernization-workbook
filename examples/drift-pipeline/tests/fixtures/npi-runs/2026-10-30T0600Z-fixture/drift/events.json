@@ -26,8 +26,8 @@
     "Class": "CredentialChange",
     "Result": "success",
     "CorrelationId": "c0000000-0000-4000-8000-000000000002",
-    "InitiatorType": "app",
-    "InitiatorId": "5b000000-0000-4000-8000-000000000020",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000002",
     "TargetType": "Application",
     "TargetId": "0a000000-0000-4000-8000-000000000007",
     "KeysAdded": [
@@ -134,8 +134,8 @@
     "Class": "CredentialChange",
     "Result": "success",
     "CorrelationId": "c0000000-0000-4000-8000-000000000009",
-    "InitiatorType": "app",
-    "InitiatorId": "5b000000-0000-4000-8000-000000000020",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000002",
     "TargetType": "Application",
     "TargetId": "0a000000-0000-4000-8000-000000000005",
     "KeysAdded": [

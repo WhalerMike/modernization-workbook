@@ -1,5 +1,5 @@
 $ python python/npi_evidence.py verify out/evidence/2026-10-30T0600Z-fixture
-{"evidence_manifest_sha256": "35993595b6a84a8c911d5127d3627fda40eb1bbdaadebf1fd0eeed5d4225d1a0", "files": 21, "run_id": "2026-10-30T0600Z-fixture"}
+{"evidence_manifest_sha256": "0e14d7c35dd7c4198544d5c82f866d7105f1f4332c161a1527247bb6e5ec046c", "files": 21, "run_id": "2026-10-30T0600Z-fixture"}
 $ (cd out/evidence/2026-10-30T0600Z-fixture && sha256sum -c --quiet SHA256SUMS)
 $ grep -c contoso out/evidence/2026-10-30T0600Z-fixture/summary.md
 0

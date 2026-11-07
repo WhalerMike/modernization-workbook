@@ -535,8 +535,8 @@ function Read-NpiContractFile {
         }
         $script:CredentialLogSchema {
             $ch = foreach ($c in @(Get-NpiHashValue $d 'changes')) {
-                foreach ($k in 'objectId', 'keyId', 'changeId') { if (-not (Get-NpiHashValue $c $k)) { throw "$(Split-Path $Path -Leaf): a change has no '$k'" } }
-                [pscustomobject]@{ ObjectId = [string]$c.objectId; KeyId = [string]$c.keyId; ChangeId = [string]$c.changeId }
+                foreach ($k in 'objectId', 'keyId', 'changeId', 'operator') { if (-not (Get-NpiHashValue $c $k)) { throw "$(Split-Path $Path -Leaf): a change has no '$k'" } }
+                [pscustomobject]@{ ObjectId = [string]$c.objectId; KeyId = [string]$c.keyId; ChangeId = [string]$c.changeId; Operator = [string]$c.operator }
             }
             return [pscustomobject]@{ Schema = $schema; Chapter = $chapter; Data = @($ch) }
         }
@@ -679,16 +679,19 @@ function Test-NpiRegisterDrift {
     }
 
     # 07: credentials added outside the pipeline.
-    $pipeline = @{}; foreach ($p in $PipelineIdentities) { if ($p.ServicePrincipalId) { $pipeline["$($p.ServicePrincipalId)".ToLowerInvariant()] = $true } }
-    $logged = @{}; foreach ($c in $CredentialLog) { $logged["$($c.ObjectId)|$($c.KeyId)".ToLowerInvariant()] = $c.ChangeId }
+    # Inside the pipeline: the rotation is a delegated person's run, so the event's initiator must be the person the credential log
+    # records as the operator for that object and key. A service principal never counts, listed or not (-PipelineIdentities is kept
+    # so existing commands run, and no longer decides anything).
+    $logged = @{}; foreach ($c in $CredentialLog) { $logged["$($c.ObjectId)|$($c.KeyId)".ToLowerInvariant()] = $c }
     foreach ($e in @($Events | Where-Object { $_.Class -in 'CredentialChange', 'CredentialAdded' -and $_.Result -eq 'success' })) {
         foreach ($k in @($e.KeysAdded)) {
             $row = Resolve-NpiTargetRow $idx $e.TargetId
             $key = if ($row) { $row.IdentityId } else { "$($e.TargetType):$($e.TargetId)" }
-            $byPipeline = $e.InitiatorType -eq 'app' -and $pipeline.ContainsKey("$($e.InitiatorId)".ToLowerInvariant())
-            $inLog = $logged.ContainsKey("$($e.TargetId)|$($k.KeyId)".ToLowerInvariant())
-            if ($byPipeline -and $inLog) { continue }
-            $why = if ($byPipeline) { 'by the pipeline''s identity but not in its credential log' } elseif ($inLog) { "in the credential log but added by $($e.InitiatorType) $($e.InitiatorId), not the pipeline" } else { "by $($e.InitiatorType) $($e.InitiatorId), not the pipeline" }
+            $entry = $logged["$($e.TargetId)|$($k.KeyId)".ToLowerInvariant()]
+            $inLog = [bool]$entry
+            $byOperator = $inLog -and $e.InitiatorType -eq 'user' -and "$($e.InitiatorId)".ToLowerInvariant() -eq "$($entry.Operator)".ToLowerInvariant()
+            if ($byOperator) { continue }
+            $why = if ($inLog) { "in the credential log, but added by $($e.InitiatorType) $($e.InitiatorId), not the logged operator $($entry.Operator)" } elseif ($e.InitiatorType -eq 'user') { "by user $($e.InitiatorId), not in the credential log" } else { "by $($e.InitiatorType) $($e.InitiatorId), not in the credential log" }
             $obj = if ($row) { & $label $row } else { "$($e.TargetType) $($e.TargetId)" }
             $f.Add((New-NpiDriftFinding 'NPI-DRF-07' 'Finding' "$key/key:$($k.KeyId)" $obj "$($k.KeyType) credential $($k.KeyId) added to the $(if ($e.TargetType -eq 'ServicePrincipal') { 'service principal' } else { 'application' }) at $($e.ActivityDateTime) ($($e.Activity)) $why"))
         }
