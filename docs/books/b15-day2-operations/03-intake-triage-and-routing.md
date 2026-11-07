@@ -94,8 +94,8 @@ Triage asks one question: what authority does this task need? Who received the r
 |---|---|---|
 | A0 | No access change: a cloud-only password reset after verification, a sign-in or audit log lookup, a client-side fix | ITSM |
 | A1 | Changes to the requester's own account or entitlements: an MFA method reset, a license, a profile attribute | ITSM; the service desk supervisor or the requester's manager approves |
-| A2 | Access governed by an owner: application access, group creation and ownership, a certification revocation, a joiner or leaver | IGA; the application owner approves |
-| A3 | Governance actions: admin consent, an ImmutableID hard-match repair, anything arriving as a Microsoft notification | IGA; the application owner and the IGO approve; never automated |
+| A2 | Access governed by an owner: application access, group creation and ownership, a certification revocation, a joiner or leaver | IGA; the application owner approves (a joiner or leaver instead follows the lifecycle gate in [Chapter 05](05-the-service-catalogs.md)) |
+| A3 | Governance actions: admin consent, an ImmutableID hard-match repair, anything arriving as a Microsoft notification | IGA; the approvers its task names, always including the IGO; never automated |
 | Out of scope | Conditional Access, directory roles, service principals and app registrations | Escalated to security or identity engineering |
 
 The program's triage checks run in a fixed order, because the first match wins and the early checks catch the dangerous cases.
@@ -116,7 +116,7 @@ The source guidance told technicians to confirm the sender is exactly `MSSecurit
 | Notification | Help desk action | Escalation |
 |---|---|---|
 | Admin consent request | Triage and record. Never approve from the email | Application owner, then the IGO ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#who-approves-admin-consent)) |
-| Sign-in risk alert | Check the sign-in log; if compromise is likely, place the account on hold | Security operations and the help desk supervisor |
+| Sign-in risk alert | Check the sign-in log; if compromise is likely, place the account on hold | Security operations and the service desk supervisor |
 | Identity Protection detection | Record it. Don't change risk policies | Security operations or identity engineering |
 | Service health | Correlate with open tickets and add a known-issue note | Help desk supervisor |
 | An audit-log entry showing a consent, role assignment or access grant with no approved ticket behind it | Record and escalate immediately. Don't remediate without direction | The IGO and the security operations center |
@@ -129,7 +129,7 @@ The class decides the pipeline, and the pipeline decides who sees the approval.
 
 **The ITSM pipeline (A0 and A1).** A ServiceNow flow asks the requester's manager for approval, then executes. The flow action that does this, Ask for Approval, sends a sign-off request for a record and tracks the result, and a due date on the approval stops the flow waiting forever by approving, rejecting or canceling automatically when nobody responds.[^c03-sn-approval] The program sets the due-date outcome to reject or cancel, never approve, so silence can't grant access. A0 tasks that need no approval, such as reading a sign-in log, run straight to execution.
 
-**The IGA pipeline (A2 and A3).** The IGA platform owns the access decision and the certification. The requester submits in the IGA portal; a business approver confirms the need, the application owner confirms the role, and the IGO is notified of Tier 1 access and can place a hold, and approves ImmutableID changes and admin consent through the Book 04 consent chain. On approval the IGA platform provisions through its Entra connector where the connector has write access to the target. Where it doesn't, most often for enterprise application role assignments and for ImmutableID operations, the IGA platform's ITSM integration raises a request item and a task for the residual manual step. The help desk sees nothing of this pipeline until that task arrives, and it never processes IGA portal submissions or approvals itself.
+**The IGA pipeline (A2 and A3).** The IGA platform owns the access decision and the certification. The requester submits in the IGA portal; a business approver confirms the need, the application owner confirms the role, and the IGO is notified of risk Tier 1 access and can place a hold, and approves ImmutableID changes and admin consent through the Book 04 consent chain. On approval the IGA platform provisions through its Entra connector where the connector has write access to the target. Where it doesn't, most often for enterprise application role assignments, the IGA platform's ITSM integration raises a request item and a task for the residual manual step. The help desk sees nothing of this pipeline until that task arrives, and it never processes IGA portal submissions or approvals itself.
 
 **The escalation lane (out of scope).** These tickets go to security, identity engineering or the change advisory board. The help desk records what it found and doesn't execute.
 
@@ -156,11 +156,11 @@ The source crosswalk mapped more tasks to the spoke than its documentation suppo
 
 Two corrections to the source matter for configuration. First, the source said reset, change-password and session-revocation actions can't run with application permissions. Today's documentation says Reset Password accepts the application permission `User-PasswordProfile.ReadWrite.All`, while Change Password and the user-management Revoke User SignIn Sessions action support only delegated work or school permissions.[^c03-sn-spoke] The connection type therefore decides which of those actions work. Second, an MFA reset has no spoke action, so it stays a person's task, and that makes the verification step later in this chapter the control that matters. Coverage changes between releases, so validate the crosswalk against the installed spoke.
 
-For synced users the reset path also needs care. Microsoft documents that an administrator can reset an on-premises-mastered user's password only with password writeback turned on and the user's domain managed; that page doesn't support federated domains, and the reset has to happen in on-premises AD.[^c03-reset-pw] Microsoft's writeback article is broader: a reset made in the Entra admin center writes back for federated or password-hash-synchronized users, but one made in the Microsoft 365 admin center doesn't, which leaves the cloud and on-premises passwords out of step.[^c03-writeback] Because the two pages differ on federation, the program has the technician reset a federated user's password in on-premises AD, and uses the Entra admin center only for password-hash-synchronized users on a managed domain. The runbook names the admin center to use.
+For synced users the reset path also needs care. Microsoft documents that an administrator can reset an on-premises-mastered user's password only with password writeback turned on and the user's domain managed; that page doesn't support federated domains, and the reset has to happen in on-premises AD.[^c03-reset-pw] Microsoft's writeback article is broader: a reset made in the Entra admin center writes back for federated or password-hash-synchronized users, but one made in the Microsoft 365 admin center doesn't, which leaves the cloud and on-premises passwords out of step.[^c03-writeback] Because the two pages differ on federation, the program has the technician reset a federated user's password in on-premises AD, and uses the Entra admin center only for password-hash-synchronized users on a managed domain. [Appendix A](appendix-a-help-desk-task-reference.md#credentials-and-authentication-methods) names the admin center to use.
 
 ## Who executes and who approves
 
-The rule underneath every pipeline is that the team executes and a manager or owner approves. The help desk and cloud services have no approval authority of their own. The requester never approves, and the approver isn't the executor. SP 800-53's AC-5 asks organizations to identify the duties that must be separated and to define access authorizations that support the separation;[^c03-sp80053] the ticket flow is where the program enforces it. Entra ID enforces part of it natively, since PIM approvers can't approve their own activation requests.[^c03-pim-approve]
+The rule underneath every pipeline is that the team executes and a manager or owner approves. The help desk and cloud services have no approval authority of their own over access; the one approver inside the desk is the service desk supervisor, for routine credential work only ([Chapter 10](10-who-runs-day-two.md)). The requester never approves, and the approver isn't the executor. SP 800-53's AC-5 asks organizations to identify the duties that must be separated and to define access authorizations that support the separation;[^c03-sp80053] the ticket flow is where the program enforces it. Entra ID enforces part of it natively, since PIM approvers can't approve their own activation requests.[^c03-pim-approve]
 
 Approval also follows the resolution, not the symptom. A OneDrive sync ticket shows the pattern: the same ticket can need no approval or two, depending on what the fix turns out to be.
 
@@ -183,7 +183,7 @@ The executor checks three things and puts the ticket on hold if any is missing:
 2. **The task is in the executor's queue, assigned.** New, pending-approval and on-hold tickets aren't ready.
 3. **The ticket carries what the action needs:** the approval chain with names and timestamps, the requester and their user principal name, the target application or object, the authority class and risk tier, and the specific action required.
 
-A gap goes to the help desk supervisor or the IGA team, not around them. Urgency doesn't change the rule. An ad hoc fix made outside the workflow, whoever asked for it, is a policy violation the next audit will find. If a request is genuinely urgent, the supervisor invokes the emergency change process inside the ITSM platform, so even the emergency leaves a ticket.
+A gap goes to the service desk supervisor or the IGA team, not around them. Urgency doesn't change the rule. An ad hoc fix made outside the workflow, whoever asked for it, is a policy violation the next audit will find. If a request is genuinely urgent, the supervisor invokes the emergency change process inside the ITSM platform, so even the emergency leaves a ticket.
 
 ## Verify the person before a sensitive action
 
@@ -247,7 +247,7 @@ PIM can require a justification, a ticket number and approval on activation. The
 
 Retention needs the same attention. Entra ID keeps audit and sign-in logs for 30 days on P1 or P2 and seven days on the free tier,[^c03-retention] far shorter than any audit cycle, so the logs are forwarded to the agency's SIEM and kept to the logging policy in [Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md). Help desk access to those logs is read-only and limited to triage inside an open ticket. The help desk doesn't export, copy, delete or change audit data.
 
-The help desk supervisor reports these conditions to the IGO within one business day of finding them:
+The service desk supervisor reports these conditions to the IGO within one business day of finding them:
 
 - a PIM activation with no valid, assigned ticket behind it;
 - an Entra change found afterward with no approved ticket;
@@ -266,7 +266,7 @@ The program sets acknowledgement and resolution targets by priority. They are pr
 | 3, normal | Enterprise application assignment, MFA reset | 4 hours | 3 business days | On day 2 |
 | 4, low | OneDrive sync, provisioning trigger | 8 hours | 5 business days | On day 4 |
 
-[Chapter 12](12-the-day-two-runbook.md) turns these into the operator's daily checks, and [Chapter 10](10-who-runs-day-two.md) assigns who watches the backlog.
+[Chapter 10](10-who-runs-day-two.md) assigns who watches the backlog.
 
 ## Describing, changing and adding a request type
 
