@@ -30,7 +30,7 @@ The values are the program's design. The ranges and behaviors they sit inside ar
 |---|---|
 | `c1` | Authentication context `FMP-PIM-Activation`, enforced by Conditional Access policy `PIM-Activation-c1`: authentication strength `FMP-Privileged-SeparateDevice`, compliant device, sign-in frequency every time ([Chapter 08](08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)) |
 | `PIM-Approvers-T0` | Approvers for Tier 0 activations, drawn from the security office; no member is eligible for a Tier 0 role |
-| `PIM-Approvers-T1` | Approvers for Tier 1 activations, drawn from identity engineering leads and the security office; no member is eligible for the role they approve |
+| `PIM-Approvers-T1` | Approvers for Tier 1 activations, drawn from identity engineering leads and the security office; no member is eligible for any Tier 1 role |
 | `PIM-Approvers-T2` | Used only for a Tier 2 role whose risk acceptance has been withdrawn, so that it requires approval |
 | SOC mailbox | The security operations distribution list that receives every activation alert |
 | Eligible to | The role-assignable group that holds the eligible assignment ([Chapter 04](04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)) |

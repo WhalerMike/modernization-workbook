@@ -211,7 +211,7 @@ Conditional Access can target service principals directly. Microsoft notes why w
 
 Block is the only grant control. Policies can run in report-only mode first, and results appear in the service principal sign-in logs.[^c05-ca-wid] The limits decide where the control can be used at all:[^c05-ca-wid]
 
-- Creating or modifying these policies requires Workload Identities Premium licenses. Without them, existing policies keep working but can't be changed.
+- Creating or modifying these policies requires Workload ID Premium licenses. Without them, existing policies keep working but can't be changed.
 - Policies apply only to single-tenant service principals registered in the tenant. Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered.
 - A policy assigned to a group that contains a service principal isn't enforced for it; the service principal has to be assigned to the policy directly.
 
