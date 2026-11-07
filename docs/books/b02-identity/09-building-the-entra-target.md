@@ -123,7 +123,7 @@ Computer objects belong to the **Intune track** (workstations and laptops) and t
 
 ### Organizational units
 
-OUs serve three governance functions in Active Directory: Group Policy scoping, administrative delegation, and logical organization. Entra ID has no OU construct; each function moves somewhere different.
+OUs serve three governance functions in Active Directory: Group Policy scoping, administrative delegation, and logical organization. The [book index](index.md) counts four jobs for the OU tree (delegation, policy scope, accountability and security scope); this table lists three, with accountability and security scope falling under logical organization. Entra ID has no OU construct; each function moves somewhere different.
 
 | AD OU function | Entra ID equivalent | Implementation notes |
 |---|---|---|
@@ -688,7 +688,7 @@ Every AD privileged group maps to an Entra ID role governed by PIM. The core rul
 | Enterprise Admins | Privileged Role Administrator | Eligible, with approval | Manages role assignments and PIM settings; separate approval chain |
 | Schema Admins | No equivalent | Not applicable | Microsoft manages the directory schema. Directory extensions are added through application registrations (Application Administrator) |
 | Account Operators | User Administrator scoped to administrative units | Eligible | Limits blast radius. Conditional Access can't target AU-scoped role assignments, so put these administrators in a group for policy targeting[^c09-ca-users] |
-| Server Operators | Intune role-based access, or Azure RBAC for Azure-hosted servers | Eligible | Server administration moves to device management |
+| Server Operators | Azure RBAC on Azure Arc-enabled and Azure-hosted servers | Eligible | Servers aren't Intune platforms; server administration moves to Azure Arc, delegated with Azure RBAC ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)) |
 | Backup Operators | Service-specific roles (for example, Exchange Administrator for mailbox recovery) | Eligible | No tenant-wide backup role |
 | DnsAdmins | No direct equivalent | Not applicable | DNS moves to the Microsoft 365 admin center or the DNS provider |
 | Group Policy Creator Owners | Intune Policy and Profile Manager (an Intune role) | Eligible | Group Policy functions move to Intune profiles and Conditional Access |
@@ -801,7 +801,7 @@ The program's baseline policies. Every policy excludes the break-glass group fro
 
 ::: {.callout-note}
 ## The full library is in Book 04
-[Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md) is the program's authoritative Conditional Access library. It keeps these identifiers, adds CA018–CA038 for the CISA BOD 25-01 Entra ID baseline, and revises three policies here: privileged-access-workstation enforcement moves from CA004's device filter to its own block policy, CA025, because a grant policy scoped by a device filter simply doesn't apply on other devices; CA013 takes a block form in BOD 25-01 tenants; and CA017 requires an app protection policy only, because Microsoft made the "approved client app" grant read-only on June 30, 2026.
+[Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md) is the program's authoritative Conditional Access library. It keeps these identifiers, adds CA018–CA038 for the CISA BOD 25-01 Entra ID baseline, and refines seven policies here: CA003 uses the program's custom phishing-resistant, separate-device authentication strength instead of the built-in one and adds the highly privileged directory roles to its targeting (the CA003 template in [Appendix C](appendix-c-identity-assessment-module.md#module-implementation) uses a placeholder for the phishing-resistant strength ID; substitute the custom strength's ID); privileged-access-workstation enforcement moves from CA004's device filter to its own block policy, CA025, because a grant policy scoped by a device filter simply doesn't apply on other devices; CA007 and CA008 each gain one governed exception; CA013 takes a block form in BOD 25-01 tenants; CA016 targets Members, not all users; and CA017 requires an app protection policy only, because Microsoft made the "approved client app" grant read-only on June 30, 2026.
 :::
 
 | Policy | Persona | Conditions | Grant controls | Session controls |

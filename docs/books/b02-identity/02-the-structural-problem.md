@@ -133,7 +133,7 @@ The program's design rests on four mechanisms, applied to the identity layer:
 
 - **Authoritative origin.** Every principal has one authoritative representation. Downstream systems reference it or synchronize from it. They don't keep independent copies.
 - **Provenance chain.** Every change records who made it, from what source, when and under which policy authority: the identity-layer equivalent of data-catalog lineage.
-- **Drift detection.** Differences between the authoritative state and what systems actually hold are classified (schema, semantic, provenance, authorization, identity and source-of-truth contention), each with a severity and a remediation commitment.
+- **Drift detection.** Differences between the authoritative state and what systems actually hold are classified into five classes (schema, semantic, provenance, authorization and identity; source-of-truth contention is an authorization check), each with a severity and a remediation commitment.
 - **Governance domains.** Identity, authorization, compliance, migration, evidence and operations each have a named owner.
 
 Together they make the bridge in the figure above concrete. An agency can't move from sessions to continuous verification without knowing its authoritative identity state, can't implement Zero Trust unless identity is the root namespace that every decision resolves against, and can't run an access plane that enforces policy against named services unless addressing is deterministic.

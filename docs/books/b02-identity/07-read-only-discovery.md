@@ -40,7 +40,7 @@ Taken together, these mean that in most domains a standard account can read most
 | Area | Typical read-only result | What it contributes to the plan |
 |---|---|---|
 | Forest and domain topology, domain controllers, sites, subnets, site links | Readable | Scope, functional levels, and the shape of replication |
-| OU hierarchy and Group Policy links | Readable | The structure that attribute-driven targeting replaces (Chapters 03 and 05) |
+| OU hierarchy and Group Policy links | Readable | The structure that attribute-driven targeting replaces (Chapters 02 and 05) |
 | Group Policy objects and settings reports | Usually readable, unless security filtering restricts a GPO | The GPO-to-Intune inventory |
 | Users, groups, computers and service principal names | Readable | The identity inventory and service account discovery (Chapter 09) |
 | Certificate templates and enrollment services, in the configuration partition | Readable | The AD CS dependency surface (Chapter 04) |
@@ -82,9 +82,9 @@ Each gap is recorded with four facts: what is missing, the narrowest right or ex
 | Gap | Narrowest way to close it | Why the plan needs it | Read-only substitute |
 |---|---|---|---|
 | Replication health and convergence | An administrator-run replication summary, or SIEM data | Cutover sequencing; domain controllers that fail to converge | None reliable |
-| Domain controller event logs | A log export or SIEM read access | Authentication patterns, including NTLM use (Chapter 03) | None |
+| Domain controller event logs | A log export or SIEM read access, including NTLM audit data | Authentication patterns, including NTLM use (Chapter 03) | None |
 | DNS server settings (aging, scavenging, forwarders) | DNS administrator export | Stale records that block the DNS adapter (Chapter 04) | Zone object reads cover records, not server settings |
-| Issued-certificate database | CA administrator export | Which certificates must be reissued from a new PKI | Template permissions and enrollment services |
+| Issued-certificate database | CA administrator export | Which certificates must be reissued from the target issuers ([Book 07](../b07-pki/04-the-target-pki.md)) | Template permissions and enrollment services |
 | Deleted Objects | Read on the container for one named account | Audit trail of recent deletions | Recycle Bin status only |
 | Fine-grained password policies | Domain Admin export | Password policy mapping for Entra ID | None |
 | Confidential attributes (LAPS, BitLocker recovery) | Not requested; coverage only | Deployment coverage, not secrets | Expiration and child-object presence |
@@ -133,7 +133,7 @@ Read-only queries change nothing, but they aren't invisible, and the output is s
 - Assessment account disabled.
 - Summary briefed to the engagement authority.
 
-The assessment tooling the program used for this stage is kept with the source guide in the repository archive. It needs a technical review before reuse: the review behind this chapter found several defects. Chapter 08 covers the privileged assessment that fills the gaps.
+The workbook ships the read-only collectors for this stage as the tested Start Kit ([Appendix B](appendix-b-forest-assessment-module.md)); the assessment tooling kept with the source guide in the repository archive is history only, and shouldn't be reused. Chapter 08 covers the privileged assessment that fills the gaps.
 
 ::: {.callout-tip}
 ## Continue the book
