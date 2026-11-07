@@ -52,7 +52,7 @@ Where `examples/servicenow-sailpoint` sits in Book 13's five-step loop, and the 
 | 4 Actuate | Not in Pass 1: no code writes to Entra ID, Active Directory or ISC | — |
 | 5 Close with evidence | The business rule turns any close into *Awaiting verification*; `reread_verification.py` closes on a re-read | 05, 07 |
 
-The record those steps share is the identity finding. Its data contract is in the [kit's README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/servicenow-sailpoint/README.md#the-identity-finding-data-contract): `kind`, `source`, `drift_class` (Book 03's seven classes), `severity` (P1 to P4), `system` (where the re-read happens), one subject identifier, `origin`, and an `intended_state` that says what a re-read must find. Where the fields land in Book 13's evidence record is in the implementation example's [table](../../../books/guides/snow-sailpoint-integration-kit.md#the-identity-finding-and-book-13s-evidence-record). This chapter doesn't repeat them; it makes them checkable.
+The record those steps share is the identity finding. Its data contract is in the [kit's README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/servicenow-sailpoint/README.md#the-identity-finding-data-contract): `kind`, `source`, `drift_class` (seven of Book 03's eight classes; the contract has no contractor credential drift), `severity` (P1 to P4), `system` (where the re-read happens), one subject identifier, `origin`, and an `intended_state` that says what a re-read must find. Where the fields land in Book 13's evidence record is in the implementation example's [table](../../../books/guides/snow-sailpoint-integration-kit.md#the-identity-finding-and-book-13s-evidence-record). This chapter doesn't repeat them; it makes them checkable.
 
 ## The code: `examples/servicenow-sailpoint`
 
@@ -73,7 +73,7 @@ The de-duplication key the module reports is the one [Chapter 04](04-drift-to-a-
 
 ### The tests
 
-`tests/python/test_finding_contract.py`, 22 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, 107 pytest tests pass, plus 15 node:test and 40 Pester tests, with no tenant or network.
+`tests/python/test_finding_contract.py`, 22 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, including Chapter 09's 32, 139 pytest tests pass, plus 15 node:test and 40 Pester tests, with no tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code

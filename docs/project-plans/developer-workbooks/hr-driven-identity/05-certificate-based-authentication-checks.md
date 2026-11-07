@@ -44,7 +44,7 @@ The checks behind the guide's Gate 5, "CBA trusts the issuing CAs with CRLs," an
 
 The guide's [Gate 5](../../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events) ties the card's lifecycle to the person's: issuance from a joiner record, revocation from a leaver. Revocation only reaches sign-in through the CRL. Book 03 explains why ([Chapter 09, Revocation checking](../../../books/b03-hr-identity/09-credentials-and-certificates.md#revocation-checking)), and Book 07 explains the trust store, the bindings and the single-factor and multifactor split ([Chapter 06, Entra certificate-based authentication](../../../books/b07-pki/06-device-and-user-certificates.md#entra-certificate-based-authentication)). This chapter doesn't restate them. It turns them into a check that runs every day, because a CRL grows with every revocation, and the day it crosses the limit is the day sign-in fails for every card from that CA.[^hw05-crl]
 
-Per-user binding coverage and affinity are the validation kit's **VK-PIV-01** ([Book 19, Chapter 03](../../../books/b19-developer-workbook/03-writing-a-validation-kit-check.md)) and the ADM guide's Gate 6. This chapter checks the tenant's settings, which VK-PIV-01 doesn't read.
+Per-user binding coverage and affinity are the validation kit's **VK-PIV-01** ([the validation kit's README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/validation-kit/README.md)) and the ADM guide's Gate 6. This chapter checks the tenant's settings, which VK-PIV-01 doesn't read.
 
 ### Which cloud, for this check
 

@@ -123,7 +123,7 @@ The record is shown with its short lists folded onto one line; the file has one 
 | HR pod administrator | The HR platform team, on Oracle Cloud Infrastructure | Loads and changes the synthetic workers in the HCM test pod; never in production |
 | ISSO | The system's information system security officer | Receives each stage's evidence; accepts the test stage before promotion |
 
-The second-operator rule and the role split are *design guidance*. The directory roles behind them are the guide's [prerequisites](../../../books/guides/hr-driven-identity-implementation.md#prerequisites): Application Administrator for the provisioning apps, Lifecycle Workflows Administrator for workflows, Identity Governance Administrator for automatic assignment policies, Authentication Policy Administrator for certificate-based authentication, each held as a PIM eligibility, not a standing assignment. The test stage's rollback also removes the synthetic accounts, which takes User Administrator.[^hw08-delete] Activate a role in the admin center under **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles**, then **Activate** on the role.[^hw08-pim]
+The second-operator rule and the role split are *design guidance*. The directory roles behind them are the guide's [prerequisites](../../../books/guides/hr-driven-identity-implementation.md#prerequisites): Lifecycle Workflows Administrator for workflows, Identity Governance Administrator for automatic assignment policies, Authentication Policy Administrator for certificate-based authentication, and, from the [pipeline guide](../../../books/guides/hcm-entra-implementation.md), Application Administrator for the provisioning apps, each held as a PIM eligibility, not a standing assignment. The test stage's rollback also removes the synthetic accounts, which takes User Administrator.[^hw08-delete] Activate a role in the admin center under **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles**, then **Activate** on the role.[^hw08-pim]
 
 ### Approvals and the change record
 
@@ -313,7 +313,7 @@ Every value that differs between environments lives in the settings file, and th
 | AC-5 and AC-6, separation of duties and least privilege | PF-02: every runbook role is a PIM eligibility, not a standing assignment; the reader identity holds only GET permissions | KSI-IAM-JIT, KSI-IAM-ELP | `preflight/exports/role-eligibility.json`; the reader app's permission list from `graph_export.py --list` |
 | CISA BOD 25-01, MS.AAD.7.5v1: highly privileged roles only through a privileged access management system | PF-02 | KSI-IAM-JIT | The same export; the tenant's ScubaGear report |
 | CM-3(2) and CM-6, changes tested and validated; settings verified | PF-04 and PF-05: jobs paused and schedules off before any change; PF-06 gates production on the test evidence | KSI-CMT-VTD, KSI-MLA-EVC | `preflight-*.json` with result `pass` |
-| AU-9 and AU-11, with SI-12: audit records protected and kept | Logs routed out before the first send | KSI-MLA-OSM (AU-9); no indicator in the crosswalk for AU-11 or SI-12 | The diagnostic setting's name and destination, recorded in the change record |
+| AU-9 and AU-11, with SI-12: audit records protected and kept | Logs routed out before the first send | KSI-MLA-OSM (AU-9, AU-11); none lists SI-12 | The diagnostic setting's name and destination, recorded in the change record |
 | FedRAMP AGU-USE-ABU | PF-01: the licensed services the system relies on are present | — | `preflight/exports/subscribed-skus.json` |
 
 : Pre-flight checks: requirements, KSIs and evidence {.striped .hover}
@@ -633,7 +633,7 @@ The check reads one user per worker by `employeeId` (a filterable property),[^hw
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
 | AU-9, protection of audit information | The stage's folder is hashed and uploaded to the immutable container | KSI-MLA-OSM | `SHA256SUMS`; the container's immutability setting |
-| AU-11 and SI-12, retention | Kept for the records schedule's period | No indicator in the crosswalk | The container's retention setting |
+| AU-11 and SI-12, retention | Kept for the records schedule's period | KSI-MLA-OSM (AU-11); none lists SI-12 | The container's retention setting |
 | CA-7, continuous monitoring (G7) | Chapter 07's drift run over the test tenant | KSI-MLA-EVC | `drift/` with its package |
 
 : Stage 1 evidence capture: requirements, KSIs and evidence {.striped .hover}
@@ -665,7 +665,7 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
    Written to out/ch08/rollback-plan/rollback.ps1; nothing was sent
    ```
 
-   **Expected result, live:** four more steps, `Remove synthetic account 990000` to `990003`, and `User.ReadWrite.All` in the scopes.
+   **Expected result, live:** four more steps, `Remove synthetic account 990000` to `990003`, and `User.ReadWrite.All` in the scopes. If the stage recorded an automatic assignment policy in its settings, there is also one `Remove automatic assignment policy` step for each policy, and `EntitlementManagement.ReadWrite.All` in the scopes.
 
 2. **Dry-run the script**, and have the second operator read every line:
 
@@ -684,7 +684,7 @@ The rollback is rehearsed in the test stage, in full, before promotion. It pause
    Dry run: 8 steps, nothing changed. Run again with -Apply to roll back.
    ```
 
-3. **Apply it.** Activate Application Administrator, Lifecycle Workflows Administrator and, in test, User Administrator; the script signs in with Graph PowerShell for the tenant's cloud:
+3. **Apply it.** Activate Application Administrator, Lifecycle Workflows Administrator, Identity Governance Administrator (if the plan removes an automatic assignment policy) and, in test, User Administrator; the script signs in with Graph PowerShell for the tenant's cloud:
 
    ```bash
    pwsh -NoProfile -File "$EVIDENCE/rollback-plan/rollback.ps1" -Apply
