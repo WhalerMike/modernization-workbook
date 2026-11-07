@@ -105,7 +105,7 @@ Consent restriction governs *who* may approve an integration. It doesn't decide 
 **Catalog item:** `entra.jml.joiner` · **Supports:** AC-2, with AC-6 and IA-5
 
 1. **Originate from the joiner event.** The account is provisioned from the HR joiner event, not an ad hoc request ([Book 03](../b03-hr-identity/index.md)). Provisioning before the HR record exists is the exception path, flagged and time-boxed.
-2. **Authorize.** The manager of record, taken from the authoritative record, plus the identity team.
+2. **Authorize.** The lifecycle workflow, with confirmation from the manager of record, taken from the authoritative record, and from identity operations.
 3. **Least privilege by derivation.** Group, license and role membership are derived from the identity's attributes (department, role, location), not picked by hand. Usage location and synchronization attributes are set from the record so the account is well formed at creation.
 4. **Elevate and act.** Create through Graph under a just-in-time scoped role, never standing global administrator.
 5. **Deliver credentials on a separate channel.** A Temporary Access Pass or other out-of-band channel; never a username and password in clear-text email.

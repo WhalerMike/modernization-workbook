@@ -171,7 +171,7 @@ Approval also follows the resolution, not the symptom. A OneDrive sync ticket sh
 | Storage provisioning trigger | Yes | Departmental owner or manager | Approval recorded |
 | MFA reset to break an authentication loop | Yes | The service desk supervisor or the requester's manager, after identity verification | Approval and verification recorded; authentication role activated |
 | ImmutableID repair | Yes, two-stage | Identity engineering lead and the IGO | Both approvals recorded; the fix made in AD, or in the cloud by a role that can write `onPremisesImmutableId` (not Hybrid Identity Administrator) |
-| Conditional Access exception or change | Escalate | Security administrator and the IGO, through the change advisory board | The help desk records and escalates; it doesn't execute |
+| Conditional Access exception or change | Escalate | The security office (acting as the security approver) and the IGO, through the change advisory board | The help desk records and escalates; it doesn't execute |
 
 When a fix turns out to need approval, the technician raises an approval task to the right approver and sets the ticket to pending approval. The ticket returns to the queue when the approver acts.
 

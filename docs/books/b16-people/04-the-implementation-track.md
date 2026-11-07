@@ -1,6 +1,6 @@
 ---
 title: "Chapter 04 — The Implementation Track"
-description: "The curriculum for the engineers and administrators who build and run the modernized estate: an orientation module, ten build modules for DDI, identity, PKI, access, devices and servers, network, the data platform, the cloud platform, security operations and day-two operations, each with its prerequisites, a hands-on lab and the evidence it has to land, mapped to Books 01 to 09, 10, 12 and 15; the order the modules run in, their pairing with the compliance track, a capstone, and example certifications checked against Microsoft Learn."
+description: "The curriculum for the engineers and administrators who build and run the modernized estate: a foundations module, ten build modules for DDI, identity, PKI, access, devices and servers, network, the data platform, the cloud platform, security operations and day-two operations, each with its prerequisites, a hands-on lab and the evidence it has to land, mapped to Books 01 to 09, 10, 12 and 15; the order the modules run in, their pairing with the compliance track, a capstone, and example certifications checked against Microsoft Learn."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b16-people
@@ -19,14 +19,14 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The curriculum for the engineers and administrators who build and run the estate. It sets out who the track is for and the one rule every module follows, an orientation module, ten build modules from DDI to day-two operations, each mapped to the book that teaches it and ending in a lab and an evidence artifact, the order the modules run in and how they pair with the compliance track, a capstone, and example certifications, checked against Microsoft Learn on October 22, 2026.
+The curriculum for the engineers and administrators who build and run the estate. It sets out who the track is for and the one rule every module follows, a foundations module, ten build modules from DDI to day-two operations, each mapped to the book that teaches it and ending in a lab and an evidence artifact, the order the modules run in and how they pair with the compliance track, a capstone, and example certifications, checked against Microsoft Learn on October 22, 2026.
 :::
 
 [Chapter 03](03-the-compliance-track.md) teaches the estate from the assessor's chair. This chapter teaches it from the engineer's. Its learners are the people who stand up the DNS and IPAM platform, rebuild identity in Microsoft Entra ID, move devices to Intune, replace the certificate authority, re-route the network, take SQL Server off Windows authentication, write the detection rules and run the estate on day two. Books 01 to 10, 12 and 15 describe what they build. The track turns those books into modules a person can be trained and checked on.
 
 The track is a sequence of builds, but its purpose is not to repeat the books. A learner who has read [Book 04](../b04-access/index.md) knows what an approval-gated role activation is. A learner who has finished the access module has configured one in a lab, watched it work, exported the audit trail it produces and handed that trail to an ISSO who could trace it to AC-6. The difference is the evidence, and it is why the track exists.
 
-![The implementation track's build order: orientation first, then addressing before identity, identity before access and transport, transport before data placement; devices, the cloud platform and security operations run in parallel once identity exists, and day-two operations comes last because it runs what every other module built.](../../images/diagrams/b16-people/svg/ch04-build-sequence.svg){#fig-ch04-build-sequence fig-alt="A top-to-bottom flow. At the top, a slate card: Module 0, orientation, the program, its gates and the compliance track's Module 0, Books 00 and 01. It leads to a blue card, Module 1, DDI, Book 08, which leads to a blue card, Module 2, identity, Books 02 and 03. Identity leads to two blue cards side by side: Module 3, certificates, Book 07, and Module 4, access and privileged access, Book 04. Certificates lead, with the label certificates before enforcement, to Module 6, network and network access control, Book 09, which leads to Module 7, data platform, Book 06. Access leads to a violet group labeled in parallel once identity exists, holding three cards: Module 5, devices and servers, Book 05; Module 8, cloud platform, Book 10 and Book 01 Chapter 03; and Module 9, security operations, Book 12. The data platform and the three parallel modules lead to a green card at the bottom: Module 10, day-two operations, Book 15, which runs what the other modules built."}
+![The implementation track's build order: foundations first, then addressing before identity, identity before access and transport, transport before data placement; devices, the cloud platform and security operations run in parallel once identity exists, and day-two operations comes last because it runs what every other module built.](../../images/diagrams/b16-people/svg/ch04-build-sequence.svg){#fig-ch04-build-sequence fig-alt="A top-to-bottom flow. At the top, a slate card: Module 0, foundations, the program, its gates and the compliance track's Module 0, Books 00 and 01. It leads to a blue card, Module 1, DDI, Book 08, which leads to a blue card, Module 2, identity, Books 02 and 03. Identity leads to two blue cards side by side: Module 3, certificates, Book 07, and Module 4, access and privileged access, Book 04. Certificates lead, with the label certificates before enforcement, to Module 6, network and network access control, Book 09, which leads to Module 7, data platform, Book 06. Access leads to a violet group labeled in parallel once identity exists, holding three cards: Module 5, devices and servers, Book 05; Module 8, cloud platform, Book 10 and Book 01 Chapter 03; and Module 9, security operations, Book 12. The data platform and the three parallel modules lead to a green card at the bottom: Module 10, day-two operations, Book 15, which runs what the other modules built."}
 
 ## Who the track is for
 
@@ -65,13 +65,13 @@ Three habits follow from the rule, and every lab teaches them.
 
 The lab environments the modules use, from recorded fixtures through trial tenants to product evaluation environments, are set up in [Chapter 06](06-vendor-training-and-labs.md). Every lab in this chapter runs in one of those environments, never against production.
 
-## Module 0 — Orientation
+## Module 0 — Foundations
 
 **Prerequisites:** none.
 
 **Read:** [Book 00, Chapter 04](../b00-orientation/04-the-principles.md), [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md), and the compliance track's [Module 0](03-the-compliance-track.md#module-0).
 
-**Learn:** the program's phases and gates, what a gate checks and who can stop one; why every build ends by landing evidence; and the difference between what a cloud provider proves and what the agency proves. An engineer needs the compliance track's orientation module because every module here ends by producing a record for someone in that track.
+**Learn:** the program's phases and gates, what a gate checks and who can stop one; why every build ends by landing evidence; and the difference between what a cloud provider proves and what the agency proves. An engineer needs the compliance track's foundations module because every module here ends by producing a record for someone in that track.
 
 **Outcome:** the learner can say which gate their work feeds, and what record that gate will ask for.
 

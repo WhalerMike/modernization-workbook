@@ -84,15 +84,15 @@ The build-and-run volumes sit across the others. Implementation deploys what the
 
 ## What the first assessment will find
 
-Before the program, the series expected an assessor to document a recognizable set of findings at a moderate-impact agency still running a perimeter-era estate. These are the program's expectations from its own analysis, not a published audit list, and an agency's own assessment will differ. They are worth knowing because each points at the book that closes it.
+Before the program, the series expected an assessor to document a recognizable set of findings at a moderate-impact agency still running a perimeter-era estate. These are the program's expectations from its own analysis, not a published audit list, and an agency's own assessment will differ. They are worth knowing because each points at the book that closes it. Where a row names a book that differs from [Appendix A](appendix-a-control-crosswalk.md), the row is the finding's home and the appendix is the control's: the finding is closed where its condition is fixed, and the control is closed where the appendix lists it.
 
 | Expected finding | The condition behind it | Closed in |
 |---|---|---|
-| CM-8: component inventory incomplete | Inventory assembled per environment, by hand or by periodic scan; new workloads missed until the next scan | Book [08](../b08-ddi/index.md); Book [12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md) |
+| CM-8: component inventory incomplete | Inventory assembled per environment, by hand or by periodic scan; new workloads missed until the next scan | Book [08](../b08-ddi/index.md) for the naming and addressing records; Book [12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md); the control as a whole is closed in Books [10](../b10-cloud-boundary/index.md) and [12](../b12-security-operations/index.md) ([Appendix A](appendix-a-control-crosswalk.md)) |
 | SC-20, SC-21: secure name resolution incomplete | Internal zones unsigned; no consistent validation across environments | Book [08](../b08-ddi/index.md) |
-| SC-7: no DNS-layer boundary control | Command-and-control and exfiltration domains resolvable through the standard resolver | Book [08](../b08-ddi/index.md) |
+| SC-7: no DNS-layer boundary control | Command-and-control and exfiltration domains resolvable through the standard resolver | Book [08](../b08-ddi/index.md) for the DNS-layer control; the control as a whole is closed in Books [09](../b09-network/index.md) and [12](../b12-security-operations/index.md) ([Appendix A](appendix-a-control-crosswalk.md)) |
 | AU-2, AU-12: naming and addressing events not in the SIEM | DNS and DHCP logs per environment, in different formats, or not collected | Books [08](../b08-ddi/index.md) and [12](../b12-security-operations/index.md) |
-| IA-9, SC-8: certificate-to-host binding undocumented | Workload certificates issued by hand and not tied to the inventory | Book [07](../b07-pki/index.md) |
+| IA-9, SC-8: certificate-to-host binding undocumented | Workload certificates issued by hand and not tied to the inventory | Book [07](../b07-pki/index.md) for the certificate binding; the control as a whole is closed in Book [06](../b06-data-platform/index.md) ([Appendix A](appendix-a-control-crosswalk.md)) |
 | SC-8: no network-layer encryption on direct internet circuits | Confidentiality depends on each application negotiating TLS | Book [09](../b09-network/index.md) |
 | AC-4, SC-7, SI-3: no application-layer inspection on direct internet paths | Traffic controlled by address and port only | Book [09](../b09-network/index.md) |
 | AU-12: session records incomplete | Flow logs without user, device, application or action | Book [09](../b09-network/index.md) |

@@ -61,15 +61,15 @@ Two cautions. First, a behavior signal measures the whole system, not just train
 
 ## Readiness per gate
 
-Book 01 evaluates every gate from data and names who decides it.[^c10-roadmap] Workforce readiness is one of the criteria. The program's design adds these criteria to the gates; each is a query on the readiness record, not a judgment at the review.
+Book 01 evaluates every gate from data and names who decides it.[^c10-roadmap] Workforce readiness is one of the criteria. The program's design adds these criteria to the gates; each is a query on the readiness record, not a judgment at the review. The master list of training criteria per gate is the table in [Chapter 08](08-who-owns-workforce-readiness.md#readiness-is-an-input-to-every-gate); this table summarizes it, and where the two differ, Chapter 08 governs.
 
 | Gate | Readiness criteria (design) | Decided by (Book 01) |
 |---|---|---|
 | G0 Ready to Plan | Sponsor, steering committee, steward and workstream leads oriented; the compliance track under way for the ISSOs of in-scope systems; the role roster for training exists and joins to the learning management system | Steward, with the sponsor as backup |
-| G1 Foundation Complete | Every platform team member who will change production in Phases 1–2 has passed their lab; every help desk technician with a new eligible role has passed the verification scenario; the pilot's training window is on the plan | Steward |
+| G1 Foundation Complete | Every platform team member who will change production in Phases 1–2 has passed their lab; every help desk technician with a new eligible role has passed the verification scenario; the pilot's training window is on the plan; HR staff trained on the data fields the provisioning feed uses and the emergency access procedure rehearsed | Steward |
 | G2 Pilot Clean | Pilot users' completion and method registration at or above the pilot targets; help desk ticket volume and user satisfaction within the pilot success criteria of [Book 00, Chapter 09](../b00-orientation/09-design-pilot-and-rollout.md#pilot-success-criteria) (below 5 percent of pilot users raising tickets, above 80 percent positive, both illustrative); every module corrected for what the pilot found | Steward and executive sponsor |
 | G3 Rollout Complete | Every wave met its readiness thresholds before it moved; no division moved with an untrained help desk; post-wave surveys and ticket trends reviewed for each wave | Executive sponsor and steering committee |
-| G4 Legacy Quiet | AD administrators moving to new roles trained and assessed in those roles; AD-era modules marked for retirement | Steward, with the sponsor as backup |
+| G4 Legacy Quiet | AD administrators moving to new roles trained and assessed in those roles; AD-era modules marked for retirement; IR-2 and CP-3 completion for the named plan roles | Steward, with the sponsor as backup |
 | G5 AD Retired | AD-era modules and runbooks retired from the catalog, except a documented Kerberos island's named procedures until its end date; no active assignments to retired courses | Executive sponsor and CIO |
 
 Each wave inside Phase 3 has the same check before it moves. The wave owner, identity engineering for identity waves and endpoint engineering for device waves, decides the wave's go/no-go ([Chapter 08](08-who-owns-workforce-readiness.md)), and the division lead and steward confirm readiness at the division-level exit Book 01 gives them. A wave that isn't ready moves its date, not its threshold. Microsoft's deployment guidance makes the same trade explicit for sign-in changes: when help desk ticket volume rises, slow the pace of deployment, communications and enforcement, and ramp them back up as it falls.[^c10-ms-passwordless]

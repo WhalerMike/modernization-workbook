@@ -151,7 +151,7 @@ That line buys four tests: the pass fixture gives `Pass` with a count of 0; the 
 - an export in `-InputPath` is read instead of Graph, and the evidence shows `Input`;
 - a tenant with no synchronization object is `NotApplicable`.
 
-The catalog test that lists every check ID in order also gains `VK-SYNC-02`, and the README gains its row. With those, the kit's suite was 274 tests on PowerShell 7, all passing. Six more came with the tenant ID in the run manifest (below), for 280 when the check was added. The kit has more tests since, and Lab 1 step 6 prints the count for your copy.
+The catalog test that lists every check ID in order also gains `VK-SYNC-02`, and the README gains its row. With those, the kit's suite was 274 tests on PowerShell 7, all passing. Six more came with the tenant ID in the run manifest (below), for 280 when the check was added. The kit has more tests since: the captured run in this edition's Lab 1 reports 297 passed, and step 6 prints the count for your copy.
 
 ### The safety tests
 
