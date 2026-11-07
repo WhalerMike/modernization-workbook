@@ -36,7 +36,7 @@ Two tenant settings sit above every compliance policy, under **Endpoint security
 
 | Setting | Default | Program value | Why |
 |---|---|---|---|
-| Mark devices with no compliance policy assigned as | Compliant | Not compliant | A device that falls outside every group (a missing tier attribute, for example) must not pass Conditional Access by default; Microsoft recommends this when compliance feeds Conditional Access |
+| Mark devices with no compliance policy assigned as | Compliant | Not compliant | A device that falls outside every group (a missing or UNPOSITIONED tier attribute, for example) must not pass Conditional Access by default; Microsoft recommends this when compliance feeds Conditional Access |
 | Compliance status validity period (days) | 30 | 14 | A device that hasn't reported within the period is treated as noncompliant; the range is 1 to 120 days |
 
 The 14-day validity period is a program choice: short enough that a device left in a drawer loses access before its posture is stale by a whole patch cycle, long enough not to catch staff on leave.
@@ -134,7 +134,7 @@ Three services keep their own device inventory, and they disagree in predictable
 | Entra ID device objects | Joined and registered devices, extension attributes, BitLocker recovery keys | Entra device ID | Stale objects left by reimaging, broken hybrid trust, or devices never enrolled |
 | Defender for Endpoint device inventory | Onboarded devices, sensor health, risk | Defender machine ID, with the Entra device ID | Devices onboarded but not enrolled, or enrolled but never onboarded |
 
-The program reconciles them weekly on the Entra device ID. Every enrolled device must have an Entra object with its tier, role and environment attributes set, and a healthy Defender sensor. Every Entra object for a corporate Windows device must have an Intune enrollment. A device missing from any one is a finding. The same comparison is the program's evidence for CM-8's requirement that the inventory include every component and contain no duplicates.
+The program reconciles them weekly on the Entra device ID. The Defender record carries that ID in `aadDeviceId` only when the machine is Entra joined, so hybrid-joined, workgroup and unmanaged machines need another join key to reach their Defender record ([Chapter 03](03-where-device-and-server-data-lives.md#what-each-microsoft-record-is-authoritative-for)); the program has to name that key before the Defender comparison is complete for them. Every enrolled device must have an Entra object with its tier, role and environment attributes set to real values (`UNPOSITIONED` is the explicit marker for a value no source could supply, and it is a finding), and a healthy Defender sensor. Every Entra object for a corporate Windows device must have an Intune enrollment. A device missing from any one is a finding. The same comparison is the program's evidence for CM-8's requirement that the inventory include every component and contain no duplicates.
 
 ### Stale records
 
@@ -167,8 +167,9 @@ $findings = foreach ($m in $intune) {
     if (-not $e) {
         [pscustomobject]@{ Device = $m.DeviceName; Finding = 'Enrolled, no Entra object' }
     }
-    elseif (-not $e.ExtensionAttributes.ExtensionAttribute11) {
-        [pscustomobject]@{ Device = $m.DeviceName; Finding = 'No security tier attribute' }
+    elseif (-not $e.ExtensionAttributes.ExtensionAttribute11 -or
+            $e.ExtensionAttributes.ExtensionAttribute11 -eq 'UNPOSITIONED') {
+        [pscustomobject]@{ Device = $m.DeviceName; Finding = 'No security tier attribute, or UNPOSITIONED' }
     }
 }
 
@@ -291,7 +292,7 @@ Two further mappings, SI-16 (memory protection) to Credential Guard and code int
 
 ### FedRAMP 20x Key Security Indicators
 
-FedRAMP's Consolidated Rules for 2026 express security outcomes as 46 Key Security Indicators in 10 themes.[^c10-ksi] Initial certification under the rules began on July 4, 2026, and ongoing certification follows them from January 1, 2027.[^c10-fedramp-cert] The indicators are written for cloud service offerings, not for an agency's endpoint fleet. The program uses them as a vocabulary for the evidence this chapter produces; the mapping below is the program's own claim, carried from the intune-arc governed-path material and checked against FedRAMP's indicator pages.[^c10-ksi-svc][^c10-ksi-cmt][^c10-ksi-mla][^c10-ksi-piy][^c10-ksi-cna][^c10-ksi-iam]
+FedRAMP's Consolidated Rules for 2026 express security outcomes as 46 Key Security Indicators in 10 themes.[^c10-ksi] Early adoption of the rules has been optional since July 4, 2026, and they take mandatory effect for all stakeholders on January 1, 2027.[^c10-fedramp-cert] The indicators are written for cloud service offerings, not for an agency's endpoint fleet. The program uses them as a vocabulary for the evidence this chapter produces; the mapping below is the program's own claim, carried from the intune-arc governed-path material and checked against FedRAMP's indicator pages.[^c10-ksi-svc][^c10-ksi-cmt][^c10-ksi-mla][^c10-ksi-piy][^c10-ksi-cna][^c10-ksi-iam]
 
 | Key Security Indicator | Evidenced on the endpoint surface by |
 |---|---|
@@ -324,7 +325,7 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 
 - [Book 02 — Identity & Directory](../b02-identity/index.md), for the identities these devices authenticate: [Chapter 04](../b02-identity/04-the-hidden-migration-surface.md) treats devices as one of the migration's hidden adapters, and [Chapter 10](../b02-identity/10-migrating-and-governing.md) covers Windows Hello for Business and phishing-resistant sign-in.
 - [Book 04 — Access & Privilege](../b04-access/index.md), for the Conditional Access policies that consume device compliance, and for the privileged access model that Tier 0 devices serve.
-- The [Endpoint & Device Modernization project plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md), which tracks this work as Observe, Onboard, Harden and Watch; this chapter is its Watch phase.
+- The [Endpoint & Device Modernization project plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md), which tracks this work as Observe, Onboard, Harden and Watch (with a Phase 0 for charter); this chapter is its Watch phase. The published schedule is the separate [Endpoint & Device plan](../../project-plans/endpoint-device.md), which numbers its phases differently.
 - [Gate 6 of the Intune track implementation guide](../guides/intune-track-implementation.md#gate-6-operating-it), which runs this chapter as a standing loop, and the read-only [validation kit](../../../downloads/validation-kit.zip) whose checks feed it.
 
 ::: {.callout-tip}

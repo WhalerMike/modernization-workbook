@@ -87,7 +87,7 @@ Even a flawless hybrid-join rollout doesn't by itself satisfy "all sign-in activ
 - **Personal devices, contractors and guests** are never hybrid joinable.
 - **Servers, virtual desktops, shared kiosks and service accounts** each need their own posture decision; servers are the subject of [Chapter 09](09-servers-under-azure-arc.md).
 
-The population an assessment is really probing is the slice that a Windows-only flip makes invisible behind a green checkmark. The program's answer is to make endpoint onboarding a governed, Intune-first discipline across every platform ([Chapter 04](04-intune-first-onboarding.md)), so the uncovered surface shows up as a gap. The Conditional Access side of the control, including compliance as an access signal, is in [Book 04](../b04-access/index.md), and Windows Hello for Business on the device is in [Chapter 10 of Book 02](../b02-identity/10-migrating-and-governing.md).
+The population an assessment is really probing is the slice that a Windows-only flip makes invisible behind a green checkmark. The program's answer is to make endpoint onboarding a governed discipline across every platform, Intune-first for devices the organization buys ([Chapter 04](04-intune-first-onboarding.md)), so the uncovered surface shows up as a gap. The Conditional Access side of the control, including compliance as an access signal, is in [Book 04](../b04-access/index.md), and Windows Hello for Business on the device is in [Chapter 10 of Book 02](../b02-identity/10-migrating-and-governing.md).
 
 ## The governed path
 
@@ -108,7 +108,7 @@ The governed path reaches the identical technical outcome: devices hybrid joined
 4. **Bake the enforcement.** Conditional Access runs in report-only mode first. Report-only policies are evaluated at sign-in but not enforced, and their results are logged in the sign-in logs,[^c02-report-only] which gives the coverage data: before any wave moves to enforcement, "registered and compliant" coverage is reconciled against the attribute-scoped target population, so the lockout failure mode can't happen silently.
 5. **Reconcile duplicates and lifecycle.** Phantom, dual-state and stale device objects are classified as drift and resolved against the authoritative source rather than left to inflate the managed-device count.
 6. **Produce evidence an authorizing official can sign.** Every wave produces signed plan, apply and reconcile evidence. The accreditation sentence isn't "it enforces managed-device sign-in" but "this operation class is gated, with a dry-run record and a rollback." [Chapter 10](10-operating-and-evidencing-the-fleet.md) covers the evidence for Intune only.
-7. **Cover the whole denominator.** Non-Windows, personal and guest surfaces go through Intune-first onboarding, so the control is satisfied for its real population and not only for the Windows slice.
+7. **Cover the whole denominator.** Non-Windows, personal and guest surfaces are counted and given their own path, so the control is satisfied for its real population and not only for the Windows slice. Personal devices take the user-driven exception path in [Chapter 04](04-intune-first-onboarding.md), and a guest's device belongs to another tenant ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md)); neither is Intune-first onboarding, which is reserved for devices the organization buys.
 8. **Plan the exit from the waypoint.** Each hybrid-joined device carries a target of Entra join and a trigger event, such as its refresh date, so the waypoint doesn't become the destination.
 
 The end state matches the ungoverned flip. The difference is that each of the 50,000 changes is owned, addressable, attributable, reversible and accredited. The loss ledger is paid down instead of run up.
@@ -125,7 +125,7 @@ The end state matches the ungoverned flip. The difference is that each of the 50
 1. Hybrid join of an existing domain-joined fleet is close to a tenant-wide switch: a sync-scope change and an SCP, after which devices register themselves with no per-device gate.
 2. Microsoft recommends Entra join for new and reset devices and hybrid join only as a low-impact step for existing domain-joined devices, never as the end state; converting a hybrid-joined device later requires a reset.
 3. Taken ungoverned, the flip keeps the runtime benefit and spends ownership, single-record integrity, staged rollout, provenance, lifecycle and the explicit domain-controller dependency.
-4. Hybrid join covers only domain-joined Windows, so a managed-device control needs Intune-first onboarding for everything else.
+4. Hybrid join covers only domain-joined Windows, so a managed-device control needs Intune-first onboarding for the net-new devices the organization buys and an exception path for the rest.
 5. The governed path reaches the same end state with every change owned, gated and evidenced. The What part of this book starts with where that evidence and the device data live, in [Chapter 03](03-where-device-and-server-data-lives.md).
 
 ::: {.callout-tip}

@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The doctrine for devices that have never been on the network: what Intune-first means, its five pillars and four exception paths, and the five-phase process that carries an organizational assignment from the purchase order to a validated, compliant device. The Windows mechanics in detail (Windows Autopilot versus Autopilot device preparation, registration and group tags, enrollment restrictions, naming, the Enrollment Status Page, and the compliance and configuration baseline), then the other platforms, and the drift classes that catch a device that slipped through.
+The doctrine for devices that have never been on the network: what Intune-first means, its five pillars and four exception paths, and the five-phase process that carries an organizational assignment from the purchase order to a validated, compliant device. The Windows mechanics in detail (Windows Autopilot versus Autopilot device preparation, registration and group tags, enrollment restrictions, naming, the Enrollment Status Page, and the compliance and configuration baseline), then the other platforms, and the drift checks that catch a device that slipped through.
 :::
 
 ::: {.callout-important}
@@ -88,7 +88,7 @@ Every net-new asset follows the same five phases, whatever the platform. What ch
 | 4. Provision | End user (zero-touch) or IT (assisted zero-touch) | Asset arrives at the recipient's location | Enrolled, assigned, compliant device | Compliance policy returns *Compliant*; Conditional Access grants access |
 | 5. Validate | Governance pipeline | The device's first compliance evaluation completes | Validation record in the governance audit log | All phase 5 checks pass; device leaves quarantine if it was in it |
 
-The program's latency target is 14 calendar days from purchase order to production-governed for standard hardware, and 5 calendar days for expedited orders. The short twin of this page named the phases Procure, Carrier, Validate, Enroll and Verify; the table above is the fuller version, and the two describe the same flow.
+The program's latency target is 14 calendar days from purchase order to production-governed for standard hardware, and 5 calendar days for expedited orders.
 
 Phase 3 doesn't pre-stage an Entra ID device object. For classic Autopilot that object isn't something the pipeline creates: Autopilot creates it automatically when the device is registered.[^c04-ap-registration] Phase 3's job is to confirm that the registration exists, carries the right group tag, and matches the procurement record.
 
@@ -228,8 +228,8 @@ A Windows device that isn't enrolled in Intune can't pass a Conditional Access p
 
 1. **Isolate it on the network first.** A disconnected or OT host stays on a segmented network with no route to cloud resources ([Book 09, Chapter 07](../b09-network/07-network-access-control.md)). With no sign-in to Microsoft Entra ID, Conditional Access isn't involved; the segment boundary is the control.
 2. **Manage its Defender settings where it has connectivity.** Onboard the device to Microsoft Defender for Endpoint and apply Intune endpoint security policies through Defender for Endpoint security settings management, which is built for devices that can't enroll in Intune and registers the device in Microsoft Entra ID if it isn't already. It doesn't support non-persistent VDI or 32-bit Windows.[^c04-mde-ssm] It manages security settings; it doesn't make the device compliant for Conditional Access.[^c04-ca-grant]
-3. **If its users must reach a protected cloud resource, record a named exclusion.** Put the accounts that use the device in an exclusion group such as `CA-Exclude-NonEnrollable-<device class>`, with a named owner, a written justification, a review date no more than 90 days out, and the authorizing official's risk acceptance ([Chapter 06](06-who-owns-the-endpoint.md)). Pair the exclusion with a policy that blocks that group from every device not on the approved list, using a device filter on `deviceId` with the `NotIn` operator. That is Microsoft's pattern for letting specific accounts work only from specific devices, and a negative operator also catches unregistered devices.[^c04-ca-filter] Microsoft advises using exclusions sparingly and removing them as soon as possible.[^c04-ca-plan]
-4. **Keep the compensating controls on.** The exclusion lifts only the device requirement: the authentication-strength and MFA policies still apply to the group, local administrator rights stay removed, and the device is recorded in the CMDB as its authority record with its owner and review date.
+3. **If its users must reach a protected cloud resource, record a named exclusion.** Put the accounts that use the device in an exclusion group. The group and the paired block policy below are this chapter's local design, not rows in Book 04's exclusion list or policy library, and a name such as `CA-Exclude-NonEnrollable-<device class>` is only an example. Give the group a named owner, a written justification, a named owner, a written justification, a review date no more than 90 days out, and the authorizing official's risk acceptance ([Chapter 06](06-who-owns-the-endpoint.md)). Pair the exclusion with a policy that blocks that group from every device not on the approved list, using a device filter on `deviceId` with the `NotIn` operator. That is Microsoft's pattern for letting specific accounts work only from specific devices, and a negative operator also catches unregistered devices.[^c04-ca-filter] Microsoft advises using exclusions sparingly and removing them as soon as possible.[^c04-ca-plan]
+4. **Keep the compensating controls on.** The exclusion lifts only the device requirement: the authentication-strength and MFA policies still apply to the group, local administrator rights stay removed, and the device is recorded in the CMDB with its owner and review date.
 
 The isolation-first order, the group name and the 90-day review are the program's design; the Conditional Access and Defender behavior is Microsoft's.
 
@@ -237,11 +237,11 @@ The isolation-first order, the group name and the 90-day review are the program'
 
 Devices that predate the process, or arrive outside normal procurement, fall through to user derivation or the unpositioned marker. They surface as findings for governance review, with three possible outcomes: file a procurement record retroactively, reclassify the asset, or quarantine it for disposition.
 
-## Validation, drift classes and evidence
+## Validation, drift checks and evidence
 
-Phase 5 runs platform-neutral and platform-specific checks. Failures quarantine the device under pillar 5. The doctrine adds five drift classes, which are the program's own taxonomy:
+Phase 5 runs platform-neutral and platform-specific checks. Failures quarantine the device under pillar 5. The doctrine adds five domain checks for onboarding. Each book owns the detail of its own domain's checks, and [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md) classifies every drift finding into one of its five classes:
 
-| Drift class | What it detects |
+| Domain check | What it detects |
 |---|---|
 | `DRIFT-PROCUREMENT-MISMATCH` | The device's organizational assignment differs from the procurement record |
 | `DRIFT-VENDOR-PROGRAM-CARRIER` | The assignment in the vendor program record (Autopilot group tag, Apple assignment and so on) differs from the procurement record, or is missing |
@@ -257,7 +257,7 @@ The keys these checks join on, and a read-only script that finds three of the fi
 2. The organizational assignment is set at the purchase order and carried by the vendor program, with an explicit unpositioned marker when nothing can supply it.
 3. In a GCC tenant, classic Autopilot with Entra join and OEM or reseller registration is the default, because its registration carries the procurement attribute; device preparation needs the attribute carried by the mapping table.
 4. Blocking personal Windows enrollment turns an unregistered device into an enrollment failure, which is the doctrine's quarantine in practice.
-5. Five drift classes catch the devices that slipped through, and they join on the keys from [Chapter 03](03-where-device-and-server-data-lives.md).
+5. Five drift checks catch the devices that slipped through, and they join on the keys from [Chapter 03](03-where-device-and-server-data-lives.md).
 
 [Chapter 05](05-the-governed-manual-and-retrofit-paths.md) takes up how the existing fleet reaches the same end state.
 
