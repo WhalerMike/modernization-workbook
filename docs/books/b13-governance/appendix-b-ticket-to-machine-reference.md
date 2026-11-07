@@ -27,7 +27,7 @@ The tables that [Chapter 10](10-ticket-to-machine.md) relies on: the coordinatio
 The lanes, ceilings, severities and response windows in this appendix are the Federal Modernization Program's design, not federal requirements. Where a federal document says something relevant, it is cited. The worked examples are illustrative patterns, not records of a real engagement, and every identifier in them is invented. Product capabilities change quickly; confirm current behavior with each vendor before a plan, procurement or acquisition decision rests on this appendix.
 :::
 
-**Watch or present it:** a [narrated, self-running edition of this appendix](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/B13_Ticket_to_Machine_Narrated.pptx) (about 10 minutes, captions) walks through the loop, the lanes, the tempo and the worked examples; the deck, script and video are on the [Presentations](../../presentations/index.md#reference-b13) page. For the same loop on named products, see the research example [Ticket-to-Machine on ServiceNow and SailPoint](../guides/ttm-servicenow-sailpoint.md), a companion to this vendor-neutral reference.
+**Watch or present it:** a [narrated, self-running edition of this appendix](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/B13_Ticket_to_Machine_Narrated.pptx) (about 10 minutes, captions) walks through the loop, the lanes, the tempo and the worked examples; the deck, script and video are on the [Presentations](../../presentations/index.md#reference-b13) page. For the same loop on named products, see the draft example guide [Ticket-to-Machine on ServiceNow and SailPoint](../guides/ttm-servicenow-sailpoint.md), a companion to this vendor-neutral reference.
 
 ## The coordination loop
 
@@ -57,9 +57,9 @@ Every governed change, every move, add, change, deletion and reset, travels the 
 
 The chain mirrors the [Book 01 actuation ladder](../b01-transformation-arc/11-analysis-plan-delivery.md): clause 2 is the human authorization that L3 gated actuation requires for each instance, or the advance acceptance of the class at L4, and clause 4 is the re-test that makes the result something an authorizing official can rely on. Privileged elevation follows [Book 04's](../b04-access/08-pim-self-request-with-approval.md) request-with-approval model.
 
-## Change classes and their lanes
+## Operation classes and their lanes {#change-classes-and-their-lanes}
 
-Each class of change takes one of five lanes. The lane decides who approves, what runs and what evidence results.
+Each operation class takes one of five lanes. (The five change classes of [Chapter 04](04-change-control-and-provenance.md), move, add, change, deletion and reset, are a different cut.) The lane decides who approves, what runs and what evidence results.
 
 | Lane | Who approves | What executes | Evidence produced | Ladder ceiling |
 |---|---|---|---|---|
@@ -71,11 +71,11 @@ Each class of change takes one of five lanes. The lane decides who approves, wha
 
 The classes below are the program's starting assignment. An agency tunes them in its own authoritative record; a class moves only by a reviewed change to that record.
 
-| Class of change | Example | Lane | Approval needed | Evidence beyond the lane's default |
+| Operation class | Example | Lane | Approval needed | Evidence beyond the lane's default |
 |---|---|---|---|---|
-| Configuration drift with a deterministic fix, low or medium severity | A tenant setting reverted by hand away from the secure baseline | Machine, gated; autonomous only where the class is enumerated at L4 | Per instance at L3; the class in advance at L4 | The baseline version the fix restored |
+| Configuration drift with a deterministic fix, low or medium severity | A setting on a dormant or historical configuration item reverted by hand away from the secure baseline | Machine, gated; autonomous only where the class is enumerated at L4 | Per instance at L3; the class in advance at L4 | The baseline version the fix restored |
 | Configuration drift with a deterministic fix, high severity | A storage account opened to public network access | Machine, gated, inside a 1-hour window; a person decides the fix if it isn't deterministic | Named approver per instance, unless the class is enumerated at L4 | Exposure window, from first detection to re-read |
-| Critical drift, or authorization, provenance or identity drift on a claim in active use | A change with no provenance event; a policy that contradicts a principal's recorded assurance level | Halt and alert, then human decision | By the escalation path in the finding's contract: the steward for a finding about the record, the workstream lead for a finding on a platform, the CISO for one that bears on a control requirement or on evidence | Investigation notes linked to the finding |
+| Critical drift, or authorization, provenance or identity drift on a claim in active use | A change with no provenance event; a policy that contradicts a principal's recorded assurance level | Halt and alert, then human decision | By the escalation path in the finding's contract: the steward for a finding about the record, the system owner and platform team for a finding on a platform, the CISO for one that bears on a control requirement or on evidence | Investigation notes linked to the finding |
 | Vulnerability remediation and patching | A missing security update on a server fleet | Machine, gated by maintenance window | Change approval for the window or batch | Scan before and after; time against the response window |
 | Access request inside policy | A user requests a role an approver can grant | Machine, gated through the five clauses | The approver named for that role | The just-in-time activation and its expiry |
 | Over-privilege or idle entitlement finding | An identity holding an entitlement unused for 90 days | Human decision by the entitlement owner, then gated removal | Entitlement owner | The owner's decision and the re-read of the binding |
@@ -96,11 +96,11 @@ The program's drift classes, as [Book 02](../b02-identity/11-reference-deploymen
 
 | Drift class | What it means | Default lane |
 |---|---|---|
-| Schema | A value's encoding or structure doesn't match the current schema | Machine-executed when the transform is deterministic, gated at L3 unless the authorizing official has accepted the class at L4; a format failure on a claim in use is critical and halts ([Chapter 06](06-the-drift-engine.md)) |
+| Schema | A value's encoding or structure doesn't match the current schema | Machine-executed when the transform is deterministic, gated at L3 unless the authorizing official has accepted the class at L4; a format failure is critical and halts ([Chapter 06](06-the-drift-engine.md)) |
 | Semantic | A value is well formed but means the wrong thing, such as a deprecated naming pattern | Machine, gated; often escalates |
 | Provenance | A state change appears with no provenance event | Halt and alert when the claim is in active use (P1); otherwise a P3 human decision ([Chapter 06](06-the-drift-engine.md)) |
 | Authorization | A policy contradicts what the record says a principal may do | Halt and alert when the claim is in active use (P1); otherwise a P3 human decision ([Chapter 06](06-the-drift-engine.md)) |
-| Identity | A principal exists with no counterpart in the record, or the reverse | Human decision, then gated |
+| Identity | A principal exists with no counterpart in the record, or the reverse | Halt and alert when the claim is in active use (P1); otherwise a P3 human decision ([Chapter 06](06-the-drift-engine.md)) |
 
 ## Severity and tempo
 
@@ -111,7 +111,7 @@ The tempo is how quickly each severity must be handled. It bounds the response, 
 | P1, critical | No: the run halts and alerts | Immediate | A named role decides before anything changes |
 | P2, high | Yes, if the fix is deterministic and the class qualifies | 1 hour | An approver per instance, unless the class is enumerated at L4 |
 | P3, medium | Yes, if the class qualifies | 24 hours | An approver per instance, or the class approved in advance |
-| P4, low | Yes, if the class qualifies | 72 hours | The class approved in advance, reviewed after the fact |
+| P4, low | Yes, if the class qualifies | 72 hours | The class approved in advance, reviewed after the fact, or an approver per instance |
 
 The source of this tempo said P3 and P4 findings auto-remediate. In the program's model that holds only for classes enumerated at L4; everywhere else the machine executes after a person approves, which is still a ticket to a machine. [Chapter 10](10-ticket-to-machine.md#which-change-classes-qualify) gives the six tests a class must pass to qualify.
 
@@ -153,8 +153,8 @@ All four examples are illustrative. Names, identifiers and times are invented.
 
 ### Example 1: a configuration setting drifts
 
-1. The nightly rule run compares a cloud tenant's sharing setting to the baseline in the authoritative record and finds it set to allow anonymous links. The rule is deterministic, the finding is P3, and in this example the authorizing official has accepted this class, restoring one named sharing setting on one tenant to its baseline, for L4.
-2. The governance platform raises task `FMP-DRIFT-0412` against the tenant's configuration item, owner the collaboration platform team, due in 24 hours.
+1. The nightly rule run compares a cloud tenant's sharing setting to the baseline in the authoritative record and finds it set to allow anonymous links. The rule is deterministic, the setting is live, so the finding is P2, and in this example the authorizing official has accepted this class, restoring one named sharing setting on one tenant to its baseline, for L4.
+2. The governance platform raises task `FMP-DRIFT-0412` against the tenant's configuration item, owner the collaboration platform team, due in 1 hour.
 3. Because the class is enumerated at L4, no per-instance approval is needed. The execution layer activates its service identity, calls the tenant's configuration interface to restore the baseline value, and records the artifact version that ran.
 4. It re-reads the setting, finds the baseline value, and closes the task with one record: finding, baseline version, before and after values, run log and re-read time. Without the L4 acceptance, step 3 would wait for a named approver; nothing else would change.
 
@@ -218,7 +218,7 @@ The same review supports two kinds of automated check. Negative tests prove the 
 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
-| Routine server and public TLS renewals | C5 and C6 | Retained AD CS; public CA | CyberArk Certificate Manager | Drivers renew and install; ACME where the endpoint supports it |
+| Routine server and public TLS renewals | Internal server TLS; public-facing TLS | Retained AD CS; public CA | CyberArk Certificate Manager | Drivers renew and install; ACME where the endpoint supports it |
 | Device certificates | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
 | Domain controller certificates | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches |
 | Unknown-issuer and out-of-policy certificates (the anomaly lane) | Internal server TLS | Any | CyberArk Certificate Manager | Network discovery finds them; placement and owners bring them under policy |

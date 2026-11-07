@@ -104,7 +104,7 @@ Who holds these roles, and how the decision rights are allocated, is [Chapter 06
 | Assigned, Tier 1 application access | Application owner | Quarterly | No | Yes |
 | Assigned, Tier 2 application access | Application owner | Semiannual | No | Yes |
 | Assigned, Tier 3 application access | Application owner or department owner | Annual | No | Yes |
-| Dynamic, Tier 3 only | Application owner | Annual (rule validation) | No | Yes, for rule changes |
+| Dynamic, Tier 3, or Tier 2 with approval | Application owner | Annual (rule validation) | No | Yes, for rule changes |
 | PIM-governed privileged access group | Governance office or Privileged Role Administrator | Quarterly | No | Activation required |
 
 ## Entitlement management

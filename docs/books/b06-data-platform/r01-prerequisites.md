@@ -110,7 +110,7 @@ The runbooks chain; later runbooks operate on the surviving set the earlier ones
 1. **[Runbook R02](r02-estate-discovery-and-consolidation-gate.md)** establishes the denominator and the retain / consolidate / retire **gate**. Only retain instances and consolidation targets go on.
 2. **[Runbook R03](r03-the-authentication-audit.md)** audits the surviving set's authentication posture.
 3. **[Runbook R04](r04-arc-deployment-and-managed-identity.md)** connects each retained host to Azure Arc and its Microsoft Entra identity; **[Runbook R05](r05-login-migration-and-parallel-run.md)** migrates its logins to Entra ID with a parallel-run window.
-4. **[Runbook R06](r06-ntlm-detection-and-remediation.md)** eliminates the patterns that generate NTLM; **[Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md)** transforms the group and access layer and the Conditional Access perimeter.
+4. **[Runbook R06](r06-ntlm-detection-and-remediation.md)** runs NTLM detection and repair here, and the Phase C block follows R07 and R08; **[Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md)** transforms the group and access layer and the Conditional Access perimeter.
 5. **[Runbook R08](r08-application-chain-and-connection-strings.md)** removes the stored credential in the application chain, the last mile.
 6. **[Runbook R09](r09-continuous-monitoring-and-closure.md)** proves the posture and keeps it continuously; **[Runbook R10](r10-certificate-discovery-for-adcs.md)** discovers and sequences the certificate and AD CS dependencies that must not be decommissioned out from under SQL Server.
 

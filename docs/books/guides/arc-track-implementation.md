@@ -147,7 +147,7 @@ Book 05 names the roles: Azure Connected Machine Onboarding for the onboarding i
 
 ## Step 2: The tag taxonomy and resource groups {#step-2-the-tag-taxonomy-and-resource-groups}
 
-On this track the tags are the attributes. They're applied at connection with `azcmagent connect --tags`, read by Azure Policy, Update Manager's dynamic scoping, Resource Graph and cost reporting, and kept by Azure Policy afterward ([companion guide](attribute-driven-migration.md#arc-track); [Book 05](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)).
+On this track the tags are the attributes. They're applied at connection with `azcmagent connect --tags`, read by Azure Policy, Update Manager's dynamic scoping, Resource Graph and cost reporting, and kept afterward by the CMDB reconciliation, with Azure Policy filling only derivable values ([companion guide](attribute-driven-migration.md#arc-track); [Book 05](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)).
 
 ### 2.1 Which attributes become tags
 
@@ -162,7 +162,7 @@ Book 05 sets the program's taxonomy. This guide adds the CMDB column, which says
 | `CostCenter` | `CC1234` | The item's funding line | Cost reporting |
 | `PatchGroup` | `Wave2` | The maintenance window assigned in change management | Update Manager dynamic scope |
 | `ArcOnboardedDate` | `2026-10-20` | Written by the onboarding run, not the CMDB | Wave tracking |
-| `CmdbId` *(optional, design guidance)* | `CI0012345` | The configuration item number | The join key to the CMDB and to Book 12's evidence contract ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#cm-8-is-the-precondition-for-si-2-at-scale)) |
+| `CmdbId` *(optional, design guidance)* | `CI0012345` | The configuration item number | Maps to the `asset_id` that is the join key in Book 12's evidence contract; the CMDB is a projection of that identity ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#cm-8-is-the-precondition-for-si-2-at-scale)) |
 | `ConfigOwner` *(optional, design guidance)* | `ArcMachineConfiguration` | The CMDB's `config_owner` ([Ansible guide](ansible-configuration-automation.md#one-owning-tool-per-setting)) | The two-tools check in [Step 7](#step-7-dangers-and-mitigations) |
 | `PatchOwner` *(optional, design guidance)* | `UpdateManager` | The CMDB's patch owner: Update Manager, or the tool that already patches the fleet, such as Ansible ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#azure-update-manager)) | Scoping: only `UpdateManager` servers get a scheduled patching configuration; the rest are assessed only |
 | `ArcSQLServerExtensionDeployment` | `Disabled` | Set only where SQL Server must not be auto-connected | The Arc SQL Server auto-onboarding ([Book 05](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)) |
@@ -217,7 +217,7 @@ az policy assignment create `
 
 ### 3.1 The onboarding identity
 
-The onboarding identity exists only to connect machines, and the credential is needed only while `azcmagent connect` runs; if it expires afterward, the server stays connected ([Book 05](../b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)). Choose it in this order:
+The onboarding identity exists only to connect machines, and the credential is needed only while `azcmagent connect` runs; if it expires afterward, the server stays connected ([Book 05](../b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)). Choose by where the automation runs, as the [Ansible guide](ansible-configuration-automation.md#arc-onboarding-at-scale) does: the managed identity where it runs on an Azure VM or an Arc-enabled server, and the certificate service principal everywhere else:
 
 1. **A service principal with a certificate**, holding *Azure Connected Machine Onboarding* on the target resource group and nothing else, created per wave and removed when the wave closes. Book 05 has the `az ad sp create-for-rbac --create-cert` command and the reasons: a certificate can be controlled with Conditional Access, and a stolen onboarding credential lets an attacker connect outside servers into the subscription ([same section](../b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)).
 2. **A managed identity, where the automation runs on an Azure VM or an Arc-enabled server.** Microsoft's Ansible role recommends the control node's managed identity for production because it removes stored secrets; it has no Azure permissions until granted the same onboarding role ([Ansible guide](ansible-configuration-automation.md#arc-onboarding-at-scale)). The managed identity removes the secret, not the scope rule: grant it on the wave's resource group, and remove the grant when the wave closes.
@@ -253,7 +253,7 @@ Each wave follows Book 05's five steps: prepare, connect, attest and baseline, v
 | 1 | Non-production, all OS families | Turns tag enforcement on; first Update Manager schedules |
 | 2 | Production servers of low criticality | Production change control, maintenance windows |
 | 3 | Production, high criticality; sensitive servers with local agent lockdown | Extension allowlists and `incomingconnections.enabled false` decided per server class first ([Book 05](../b05-devices/09-servers-under-azure-arc.md#lock-down-what-the-agent-will-accept)) |
-| 4 | Windows Server 2016 host remaining past January 12, 2027 | Exception: ESU enrollment in the same change ([Book 05](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates)) |
+| 4 | Windows Server 2016 host expected to remain past January 12, 2027, connected and enrolled before that date | Exception: ESU enrollment, a signed risk acceptance and a retirement date in the same change ([Book 05](../b05-devices/09-servers-under-azure-arc.md#extended-security-updates)) |
 | Other clouds and VMware | In parallel, by their own owners | Connector or bridge prerequisites |
 
 : Onboarding waves {.striped .hover}
@@ -297,7 +297,7 @@ A connected server is addressable, not governed, until its baseline is attached 
 - **Microsoft's built-in Azure compute security baselines** for Windows and Linux are the starting point on Azure and Arc ([Book 05](../b05-devices/09-servers-under-azure-arc.md#azure-policy-and-machine-configuration); [Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#the-baseline-lifecycle)).
 - **CIS-aligned content is in preview.** The customizable security baselines, which let you enable, exclude or adjust rules and download the result as a JSON file for policy-as-code, are a public preview; they cover the official CIS Benchmarks for Linux and the Azure compute baselines for Windows and Linux, and they support all public regions but not Azure Government during the preview.[^arc-baselines] CIS Benchmarks for Windows Server are a separate preview: Windows Server 2025 only, Level 1 member server and domain controller profiles, audit only, with 2022 and 2019 "coming soon."[^arc-cis-win] Microsoft also states the agent isn't tested on CIS-hardened systems ([companion guide](attribute-driven-migration.md#arc-coverage)), which is why the pilot includes a hardened build.
 - **Agency CM-6 settings** are what the agency's configuration management plan requires beyond those, built as custom machine configuration packages and versioned in the governance repository, with their source (CIS Benchmark, the National Checklist Program or a vendor guide) recorded per setting ([Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#the-baseline-lifecycle)).
-- **DISA STIGs are *(High only)*.** Where a High system shares the estate, its STIG content is a separate baseline for that system; the [Ansible guide's baseline content section](ansible-configuration-automation.md#baseline-content) covers the CIS and agency CM-6 sources, and the STIG content Red Hat and Broadcom publish (High only).
+- **DISA STIGs are *(High only)*.** Where a High system shares the estate, its STIG content is a separate baseline for that system; the [Ansible guide's baseline content section](ansible-configuration-automation.md#baseline-content) covers the CIS and agency CM-6 sources, and the STIG content Red Hat publishes (High only); Broadcom's STIG content is in the [Ansible guide's VMware section](ansible-configuration-automation.md#vmware).
 
 Treat a preview baseline as an assessment aid, not as the CM-2 baseline of record, until it's generally available or the authorizing official accepts it *(design guidance)*.
 

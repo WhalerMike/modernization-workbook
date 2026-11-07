@@ -55,7 +55,7 @@ Write rules against the canonical schema of Chapter 06: native attributes where 
 
 The codes (`FIN-LED`, `EMP`, `CTR`, `ANALYST`) are placeholders for the agency's own code lists. Extension attributes 1–15 are supported as string properties in rules.[^c10-dyn-rules] The `-in` operator takes a bracketed list.[^c10-dyn-rules] The direct-reports rule uses the manager's object ID; the manager is also added to the group, the rule covers direct reports only (not their reports), and it can't be combined with any other rule.[^c10-dyn-rules] `employeeType`, `employeeOrgData` and `manager` aren't on the list of user properties a rule can read, which is why worker type and organization have coded carriers.[^c10-dyn-rules]
 
-An agent's user account is a kind of user in Entra ID, and user rules evaluate it like any other user unless the rule excludes it.[^c10-dyn-rules] Add that exclusion to every rule that grants workforce access.
+An agent's user account is a kind of user in Entra ID, and user rules evaluate it like any other user unless the rule excludes it.[^c10-dyn-rules] Add that exclusion to every rule that grants workforce access; the patterns in the table below omit it for brevity.
 
 ### Limits and efficiency
 

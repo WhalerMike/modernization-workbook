@@ -40,7 +40,7 @@ Each request below follows the same layout: what to ask, why the provider can an
 
 **Basis.** The exclusions already exist as individual notes in the provider's documentation: Microsoft states them page by page for the admin center's network connectivity, Adoption Score, informed network routing, the Office 365 CDN, Windows release health and others ([Chapter 04](04-gcc-and-the-feature-gap.md)). The gap is that they can't be enumerated without reading every page. FedRAMP already requires a related list: a public list of the services in the offering and their security categories, complete enough for a customer "to determine which services are and are not included in the FedRAMP Minimum Assessment Scope without requesting access to underlying FedRAMP Certification Data" (CDS-CSO-SVC), with public offering information in human-readable and JSON form (CDS-CSO-PUB).[^aA-cds] That rule covers services, not features within them, so this request extends a list the provider already has to keep.
 
-**A useful answer.** A JSON or CSV file, updated on a stated cadence, that an agency can diff month to month and load into its feature-gap register.
+**A useful answer.** A JSON or CSV file, updated on a stated cadence, that an agency can diff month to month and load into its exclusion register.
 
 ### A2. Name the exception path per feature
 
@@ -113,7 +113,7 @@ Each request below follows the same layout: what to ask, why the provider can an
 | A7 | Change notifications as a feed | SCN-CSO-HRM, -HIS, -NOM |
 | A8 | Cryptographic modules per service | CMU-CSO-CMD, -UVM, -CAT |
 
-Each request is answerable, none needs a boundary argument, and A1, A5, A6, A7 and A8 rest on obligations the 2026 rules already place on providers. Record each request, its date and the provider's answer in the authorization package ([Chapter 11](11-the-authorization-package.md)): a documented "no" is evidence too. The explainer [Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#questions-to-ask) works through A6 and A8 against one Rev5 SaaS platform, with the questions an agency would put to its provider.
+Each request is answerable, none needs a boundary argument, and A1, A5, A6, A7 and A8 rest on obligations the 2026 rules already place on providers, which reach an existing Rev5 package on each rule family's own date ([Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#when-the-rules-reach-a-rev5-package)). Record each request, its date and the provider's answer in the authorization package ([Chapter 11](11-the-authorization-package.md)): a documented "no" is evidence too. The explainer [Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#questions-to-ask) works through A6 and A8 against one Rev5 SaaS platform, with the questions an agency would put to its provider.
 
 ::: {.callout-tip}
 ## Continue the book

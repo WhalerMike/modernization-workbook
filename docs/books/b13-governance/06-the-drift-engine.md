@@ -46,7 +46,7 @@ The program classifies every drift finding into exactly one of five classes. Fiv
 |---|---|---|---|
 | `DRIFT-SCHEMA` | A claim's structure no longer matches the declared schema | Rules | On every change to the record, and at runtime |
 | `DRIFT-SEMANTIC` | The structure is valid, but the meaning is stale or inconsistent with the record | Between rules and runtime | At runtime |
-| `DRIFT-PROVENANCE` | The provenance envelope is missing, invalid or broken, or a reference no longer resolves | Mappings | On every change to the record, and at runtime |
+| `DRIFT-PROVENANCE` | The provenance envelope is missing, invalid or broken, or a reference no longer resolves | Mappings for dangling references; runtime for a change with no record | On every change to the record, and at runtime |
 | `DRIFT-AUTHZ` | A claim was written, transmitted or acted on outside its authorized envelope | Runtime | At runtime |
 | `DRIFT-IDENTITY` | An issuer or object can't be resolved to a verified object in the record | Runtime | At runtime |
 
@@ -81,6 +81,7 @@ Earlier books defined drift checks for their own domains, with their own names. 
 | Book 03 Ch11: attribute drift | Semantic | Medium | A value differs from HR |
 | Book 03 Ch11: unauthorized write | Authorization | High | A write by a principal other than the provisioning service |
 | Book 03 Ch11: credential drift | Identity | High | A live credential bound to a worker the record has separated |
+| Book 03 Ch11: contractor credential drift | Identity | High | A card with no contractor record, or a record whose card ended while the engagement is still open |
 | Book 03 Ch11: schema drift | Schema | Medium | A record fails validation |
 | [Chapter 03](03-one-authoritative-record.md): contention (a write to a demoted copy) | Authorization | Critical when the copy is in use; otherwise High | Something wrote to a copy it isn't authorized to write: a second source of truth growing back |
 
@@ -92,7 +93,7 @@ Book 00's four categories govern attribute values only, which is why they map to
 
 Every finding carries one of four severities. Critical, High, Medium and Low in the domain books are the same scale as P1, P2, P3 and P4 here.
 
-| Severity | Default rule | Response | Response target |
+| Severity | Default rule | Response | Response window |
 |---|---|---|---|
 | P1, critical | A claim in active use with provenance, authorization or identity drift | Halt and alert; never remediated automatically | Immediate |
 | P2, high | A claim in active use with schema or semantic drift | Remediate within the operation class's ladder ceiling | 1 hour |
@@ -101,7 +102,7 @@ Every finding carries one of four severities. Critical, High, Medium and Low in 
 
 : Severity, its default rule and the response {.striped .hover}
 
-These severities and targets are the program's defaults, not an external standard. SP 800-53's CA-7 leaves the monitoring frequencies and response actions to the organization to define,[^c06-sp80053] and the program's choice is this table.
+These severities and response windows are the program's defaults, not an external standard. SP 800-53's CA-7 leaves the monitoring frequencies and response actions to the organization to define,[^c06-sp80053] and the program's choice is this table.
 
 Severity is computed, not argued. The default is a function of two inputs: the drift class, and whether the affected claim is in active use. A domain check may pin its own severity in the table of the book that owns it, as Book 00 does for Format (critical, and it halts the remediation pass) and Book 03 does for its HR classes. Where a check is pinned, the pinned value is what the engine uses; where it isn't, the default rule applies. Either way the result is a lookup, so two operators looking at the same finding get the same severity. That turns the question "is this serious?" into "did the classifier run correctly?", which can be tested.
 
@@ -123,9 +124,9 @@ Two independent settings govern every response, and confusing them is the most c
 - **Severity sets the clock**, and whether the run halts.
 - **The operation class's ceiling on the actuation ladder sets who may act.** The ladder is defined in [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md#how-far-automation-may-go): L0 Record, L1 Observe, L2 Advise, L3 Gated actuation as the default ceiling, and L4 Autonomous within guardrails only for enumerated low-blast-radius classes.
 
-A P3 finding is therefore not automatically something the engine fixes on its own. If the fix belongs to an operation class enumerated at L4 (re-applying a dynamic membership rule from the registry, say, if the program has enumerated that class), the engine fixes it and records the contract. If the class sits at L3, the engine generates a corrective plan, runs it dry, and executes once a person authorizes it. Tenant-wide role changes, Conditional Access enforcement changes, bulk device-state changes and network policy touching thousands of endpoints stay at L3 permanently, whatever the severity. The source design's phrase "auto-remediate if deterministic" is read here as "remediate up to the ceiling": being deterministic is necessary for automatic remediation, not sufficient.
+A P3 finding is therefore not automatically something the engine fixes on its own. If the fix belongs to an operation class enumerated at L4 (re-applying a dynamic membership rule from the registry, say, if the program has enumerated that class), the engine fixes it and records the contract. If the class sits at L3, the engine generates a corrective plan, runs it dry, and executes once a person authorizes it. Tenant-wide role changes, Conditional Access enforcement changes, bulk device-state changes and network policy touching thousands of endpoints stay at L3 permanently, whatever the severity. A domain book can add permanent classes of its own: [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md#the-response-ladder) keeps isolating a server at L3 or below, and so does disabling a privileged or emergency-access account. The source design's phrase "auto-remediate if deterministic" is read here as "remediate up to the ceiling": being deterministic is necessary for automatic remediation, not sufficient.
 
-Platforms offer the same distinction natively, and the program uses them that way. Azure Machine Configuration, for example, has three enforcement modes: Audit (only report on the state of the machine), Apply and Monitor (apply the configuration, then monitor for changes), and Apply and Autocorrect (bring the machine back into conformance if drift occurs).[^c06-machine-config] In the program's correspondence, Audit is an L1 posture and Apply and Autocorrect is L4 for that setting; choosing Autocorrect is a decision to enumerate that setting's class at L4, and it belongs in the record like any other.
+Platforms offer the same distinction natively, and the program uses them that way. Azure Machine Configuration, for example, has three enforcement modes: Audit (only report on the state of the machine), Apply and Monitor (apply the configuration, then monitor for changes), and Apply and Autocorrect (bring the machine back into conformance if drift occurs).[^c06-machine-config] In the program's correspondence, Audit is an L1 posture and Apply and Autocorrect is L4 for that setting; choosing Autocorrect is a decision to enumerate that setting's class at L4, and it belongs in the record like any other. Autocorrect is reserved for low-risk settings, because it corrects drift without recording that drift happened ([Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md)). An autocorrected setting therefore leaves no remediation contract unless its drift is exported to the engine.
 
 SP 800-53 has controls for automatic response. CM-3(5) asks for organization-defined security responses to be implemented automatically when baseline configurations are changed in an unauthorized manner, and CM-6(2) asks for organization-defined actions in response to unauthorized changes to configuration settings. CM-6(2) is in the High baseline; CM-3(5) is in neither the Moderate nor the High baseline.[^c06-sp80053][^c06-sp80053b] Automatic response is something an agency chooses, and the ladder is how the program makes that choice explicit per class.
 
@@ -139,7 +140,7 @@ The engine never does five things:
 
 ## The remediation contract
 
-Every drift event, remediated automatically or by a person, leaves a remediation contract: a structured record that enters the evidence chain ([Chapter 07](07-evidence-over-attestation.md)) and from there the authorization artifacts. There is no separate drift log disconnected from the system security plan.
+Every drift event the engine records, remediated automatically or by a person, leaves a remediation contract: a structured record that enters the evidence chain ([Chapter 07](07-evidence-over-attestation.md)) and from there the authorization artifacts. There is no separate drift log disconnected from the system security plan.
 
 ::: {.callout-warning}
 ## Illustrative, not production code
@@ -151,7 +152,7 @@ remediation_contract:
   drift_class: DRIFT-SEMANTIC            # one of the five classes
   severity: P2                           # P1 | P2 | P3 | P4
   check: b02-ch05/au-membership-rule     # the domain check that fired
-  record_version: 2026-10-20T00:00:00Z   # what the estate was compared with
+  record_version: 3f9c2ab                # commit the estate was compared with
   detection_timestamp: 2026-10-21T06:00:12Z
   detected_by: adapter/entra-directory   # adapter or workflow identifier
   ladder_ceiling: L4                     # the operation class's ceiling

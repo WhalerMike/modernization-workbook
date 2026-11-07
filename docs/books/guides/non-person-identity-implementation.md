@@ -418,7 +418,7 @@ The books' rule is to deactivate first so that nothing breaks silently, then rev
 
 | Identity | Disable | Then delete |
 |---|---|---|
-| AD account or gMSA | Disable; remove SPNs only after the observation period; log the decision | Delete after the observation window. Check for SPN dependencies first ([Book 06, R08](../b06-data-platform/r08-application-chain-and-connection-strings.md)) |
+| AD account or gMSA | Disable; remove SPNs only after the observation period; log the decision | Delete after the observation window. Check for SPN dependencies first ([Book 06, R02](../b06-data-platform/r02-estate-discovery-and-consolidation-gate.md)) and for LDAP-bind dependencies ([Book 06, R08](../b06-data-platform/r08-application-chain-and-connection-strings.md)) |
 | App registration (all tenants) | **Deactivate.** New tokens stop at once; existing tokens stay valid until they expire; configuration is kept. Remove other owners first, so only an administrator can reactivate it[^npi-deactivate] | Delete: soft-deleted and restorable for 30 days.[^npi-restore-app] Multitenant app objects aren't hard-deleted automatically after 30 days and must be removed by hand[^npi-recover] |
 | Service principal (this tenant) | Set **Enabled for users to sign-in?** to No (`accountEnabled=false`), which blocks tokens in this tenant only[^npi-deactivate] | Delete. A restore brings the configuration back except its policies, such as Conditional Access[^npi-restore-sp] |
 | User-assigned managed identity | Remove its role assignments | Delete the Azure resource. Soft-deleted managed identity service principals can't be recovered by customers[^npi-restore-sp] |

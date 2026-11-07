@@ -30,7 +30,8 @@ A page **waits for review** when it isn't approved, or when its text no longer m
 - every developer workbook under [Projects](../project-plans/developer-workbooks/index.md) (`docs/project-plans/developer-workbooks/`);
 - [Building the Attribute-Driven Migration](../books/b19-developer-workbook/index.md) (`docs/books/b19-developer-workbook/`);
 - every implementation guide, such as the [Non-Person Identity implementation guide](../books/guides/non-person-identity-implementation.md) (`docs/books/guides/`);
-- every [training](../training/index.md) page (`docs/training/`).
+- every [training](../training/index.md) page (`docs/training/`);
+- the [Source Register](../reference/source-register.md) (`docs/reference/source-register.md`).
 
 Files and folders whose names start with an underscore, such as the claims logs, aren't gated. The guides and training were added on 2026-11-03 ([WD-129](decision-register.md#wd-129)), and all of their pages have had their first review. If this list and `GATED` ever differ, the script is right.
 

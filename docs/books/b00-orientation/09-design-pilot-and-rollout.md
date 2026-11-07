@@ -112,7 +112,7 @@ The steward decides G1 ([Book 01, Chapter 09](../b01-transformation-arc/09-who-l
 - [ ] The baseline Conditional Access policies are enforced, after at least seven days in report-only with no unexpected impact, and no user sits outside the MFA requirement except the documented emergency access accounts.
 - [ ] Emergency access accounts are vaulted, monitored and tested.
 - [ ] Tier 0 infrastructure is covered by IPAM.
-- [ ] The platform host and the pilot servers are connected through Azure Arc, with machine configuration compliant (M-007).
+- [ ] The platform host is connected through Azure Arc with machine configuration compliant (M-007), and the pilot servers are connected; their own compliance is M-030, checked at G2.
 - [ ] HR-to-cloud provisioning is operational for the foundation scope, and the attribute slots in use are confirmed free and single-writer.
 - [ ] Every High finding is remediated and verified by re-scan.
 - [ ] Pilot scope, pilot groups, staged Intune policies, the Cloud PKI CA and the Private Resolver are in place (M-013).
@@ -221,7 +221,7 @@ The master plan's scaling rules carry over unchanged:
 - Waves start with the lowest-risk region and move toward more complex environments.
 - Every wave passes the same validation the pilot did, against the same success criteria.
 - Drift detection runs daily against the migrated scope from the first wave.
-- GPO links stay in place during a wave and are removed from a migrated OU only after seven days of clean compliance; the GPO objects themselves are retired in Phase 4 ([Book 05, Chapter 07](../b05-devices/07-the-gpo-sunset-program.md)).
+- GPO links stay in place during a wave; each is then disabled and, only after seven days of clean compliance, removed from the migrated OU; the GPO objects themselves are retired in Phase 4 ([Book 05, Chapter 07](../b05-devices/07-the-gpo-sunset-program.md)).
 
 Book 05 also talks about waves, but its waves are by workload, not by division: compliance, Endpoint Protection, device configuration, then Windows Update, each moved from Configuration Manager to Intune on co-managed devices. The two fit together. The division waves here decide which devices move; inside them, Book 05 uses each division wave as the next ring for every workload ([Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves)).
 
@@ -245,7 +245,7 @@ Scale exposes what a pilot can't. The master plan's risk table for this phase, w
 | Risk | Impact | Mitigation | Contingency |
 |---|---|---|---|
 | A wave exposes applications the pilot didn't see | Authentication failures, business disruption | Application discovery before each wave; Conditional Access in report-only for at least a week before enforcement, as for the pilot[^c09-ca-plan] | Exclude the application through a governed exception policy |
-| GPO-to-Intune gaps appear at scale | Configuration drift, compliance failures | Keep GPO links during the wave; unlink only after seven days of clean compliance | Re-enable GPO for the affected OUs; record the gap |
+| GPO-to-Intune gaps appear at scale | Configuration drift, compliance failures | Keep GPO links during the wave; disable, then remove, a link only after seven days of clean compliance | Re-enable GPO for the affected OUs; record the gap |
 | Dynamic group processing slows at high user counts | Policy assignment delays, enrollment gaps | Stagger attribute writes; monitor processing time; plan in hours | Convert critical policies to assigned groups for the wave |
 | Mass certificate issuance strains Cloud PKI | Issuance failures, Wi-Fi and VPN disruption | Stagger SCEP profile deployment across the wave; monitor issuance | Throttle enrollment; extend the wave |
 | Split-brain DNS inconsistencies across many sites | Name resolution failures for hybrid resources | Monitoring probes at each site; forward and reverse tests | Revert specific forwarding rules; keep AD DNS for affected zones |

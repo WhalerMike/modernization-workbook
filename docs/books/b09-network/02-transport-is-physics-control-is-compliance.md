@@ -36,7 +36,7 @@ Chapter 01 established why latency has a physical floor. This chapter applies it
 
 **Solution.** Buy transport on measured physics, knowing it closes exactly one control family (telecommunications diversity). Get the protection controls from the control layer: a branch-edge governor for path selection, encryption and telemetry, and policy enforcement points above it for boundary, flow, malware and monitoring. Protect that governor as the high-value, internet-facing system it is.
 
-**Ask.** Before the next transport or SD-WAN procurement, run the decision sequence at the end of this chapter against the current portfolio, file the authorization-boundary change before cutover rather than after, and name an owner for each step ([Chapter 09 — Who Owns the Network and Its Transport](09-who-owns-the-network.md)).
+**Ask.** Before the next transport or SD-WAN procurement, run the decision sequence at the end of this chapter against the current portfolio, file the authorization-boundary change and have it decided before cutover rather than after, and name an owner for each step ([Chapter 09 — Who Owns the Network and Its Transport](09-who-owns-the-network.md)).
 :::
 
 ![Transport is a physics decision and closes one control family; control is a compliance decision and closes the protection controls.](../../images/diagrams/b09-network/svg/ch02-pipe-and-governor.svg){#fig-ch02-pipe-and-governor fig-alt="Three stacked layers. At the top a violet card, the security service edge: SASE policy enforcement points providing boundary and flow enforcement (SC-7, AC-4), malware and web inspection (SI-3), and monitoring and telemetry to CISA (SI-4, AU). It rides on a blue card, the transport governor: an SD-WAN or equivalent branch edge providing encryption across every circuit (SC-8), traffic-class separation and path selection, and per-application path telemetry. That governs a slate card, transport: fiber DIA, MPLS, LEO, 5G and broadband, whose latency, loss and capacity differ enormously and which close no protection controls. A green arrow labeled more than one pipe leads from transport to a green card: the one family transport closes, telecommunications diversity (CP-8, SC-47)."}
@@ -101,7 +101,7 @@ Three objections usually follow, and each has an answer:
 
 - **"It's redundant."** SASE inspects and enforces on traffic that has arrived at its point of presence. A branch-edge layer decides which traffic goes where, over which link, with what priority, before it leaves the building. They work at different points on the path and neither substitutes for the other. CISA's own definition treats them as complementary: SASE combines networking tools such as SD-WAN with security tools such as a secure web gateway, cloud access security broker, zero trust network access and next-generation firewall.[^c02-sase]
 - **"It adds risk."** It does, and the honest answer says so. The section on the governor below sets out what the risk is and what it costs to manage. The branch already has a router with a management plane; the replacement produces telemetry and enforces auditable policy the incumbent doesn't, and has to be brought under the agency's vulnerability management like any other internet-reachable device.
-- **"It isn't authorized under our controls."** Ask which control or enhancement it violates. FedRAMP authorizes the security posture of a cloud service; it doesn't prescribe the network path used to reach one, and Chapter 03 sets out why a refusal with no identifiable control basis should be documented as a governance problem in its own right.
+- **"It isn't authorized under our controls."** Ask which control or enhancement it violates. FedRAMP certifies the security posture of a cloud service; it doesn't prescribe the network path used to reach one, and Chapter 03 sets out why a refusal with no identifiable control basis should be documented as a governance problem in its own right.
 
 ## The transport menu
 
@@ -158,7 +158,7 @@ The two decisions have to be made in the right order, because the order decides 
 0. **Secure the governor first**: bring the SD-WAN controller and its edges under vulnerability management, privileged-access control and off-box logging before they carry production traffic ([Chapter 05](05-sd-wan-sase-and-governed-transport.md)).
 1. **Buy the pipe on measured physics**, within the acquisition and supply-chain envelope, and with diversity where the mission needs it.
 2. **Deploy the governor before production traffic** moves onto the new connections.
-3. **Treat the boundary change as the significant change it is**, and file the authorization-boundary update before cutover, not after.
+3. **Treat the boundary change as the significant change it is**, and file the authorization-boundary update so that it is decided before cutover, not after (filing alone doesn't close the gate).
 4. **Handle Microsoft 365 traffic through its own documented exception** rather than an ad hoc bypass ([Chapter 12 — Microsoft 365 Traffic and the Optimize Inspection Exemption](12-microsoft-365-traffic.md)).
 5. **Register the supporting technical evidence**: path assignments per application class, the quality-of-service policy, the failover policy and its measured recovery time, and the telemetry source.
 

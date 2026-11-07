@@ -92,7 +92,7 @@ The JSON file is the one that matters. It carries each control's ID, requirement
 
 ## Running the Zero Trust Assessment
 
-Microsoft's Zero Trust Assessment checks hundreds of configuration items, drawn from Microsoft's published guidance for Entra, Intune, Azure networking and Purview, against the Secure Future Initiative and the Zero Trust pillars.[^c09-zta-overview] Two facts about it shape how the program uses it. It is a community project maintained by Microsoft employees, not an official Microsoft product, and it isn't supported through any Microsoft support program.[^c09-zta-repo] And it changes quickly: release 2.6.0 introduced a redesigned report and seven default pillars (Identity, Devices, Network, Data, Infrastructure, SecOps and AI), and release 3.1.0 shipped on October 20, 2026.[^c09-zta-guide][^c09-zta-release] Its source tracks the newest dependencies: the current guide asks for PowerShell 7.6 or later, while published packages can differ.[^c09-zta-guide] The version is pinned per run, and a version change is reviewed before the score is compared with an earlier one.
+Microsoft's Zero Trust Assessment checks hundreds of configuration items, drawn from Microsoft's published guidance for Entra, Intune, Azure networking and Purview, against the Secure Future Initiative and the Zero Trust pillars.[^c09-zta-overview] Two facts about it shape how the program uses it. It is a community project maintained by Microsoft employees, not an official Microsoft product, and it isn't supported through any Microsoft support program.[^c09-zta-repo] And it changes quickly: release 2.6.0 introduced a redesigned report and seven default pillars (Identity, Devices, Network, Data, Infrastructure, Security Operations and AI), and release 3.1.0 shipped on October 20, 2026.[^c09-zta-guide][^c09-zta-release] Its source tracks the newest dependencies: the current guide asks for PowerShell 7.6 or later, while published packages can differ.[^c09-zta-guide] The version is pinned per run, and a version change is reviewed before the score is compared with an earlier one.
 
 ```powershell
 # PowerShell 7, on a separate clean session or host from ScubaGear
@@ -146,7 +146,7 @@ Five properties of the declaration matter to an authorizing official.
 4. **`evidence-class: interval`.** Findings carry a time interval, not a single instant, and the claim preserves it.
 5. **`retention-years: 3`.** Retention is set in the registry, not by an operator. It is the program's default; the records officer's schedule governs where it differs.
 
-Registration means the substrate's drift engine governs the adapter itself: a ScubaGear configuration that emits outside its declared envelope raises `DRIFT-AUTHZ`, and a registry edit that breaks the schema raises `DRIFT-SCHEMA` in continuous integration.
+Registration means the substrate's drift engine governs the adapter itself: a ScubaGear configuration that emits outside its declared envelope is designed to raise `DRIFT-AUTHZ` (design only at runtime today), and a registry edit that breaks the schema raises `DRIFT-SCHEMA` in continuous integration.
 
 ## From policy results to claims
 
@@ -193,7 +193,7 @@ The Zero Trust Assessment is a different case. Many of its checks depend on prem
 
 ## Drift: what a finding can raise
 
-ScubaGear claims map onto the substrate's drift classes as follows. The classes and severities are the program's drift standard.
+ScubaGear claims map onto the substrate's drift classes as follows. The classes and severities are the program's drift standard. These P1 to P4 severities are separate from the priority buckets in [Chapter 10](10-evidence-not-verdicts.md), which come from the severity-divided-by-effort score.
 
 | SCuBA finding pattern | Drift class | Default severity |
 |---|---|---|

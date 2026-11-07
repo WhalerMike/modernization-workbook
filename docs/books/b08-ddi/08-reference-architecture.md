@@ -1,6 +1,6 @@
 ---
 title: "Chapter 08 — Reference Architecture and the Five Critical Decisions"
-description: "The end-to-end governed resolution path, the five configuration decisions that carry almost all of its operational risk and how to check each one, the components of a DDI policy plane, the move from per-cloud syncs to one authoritative state, how the design changes across commercial and federal clouds, and the questions still open with vendors."
+description: "The end-to-end governed resolution path, the five configuration decisions that carry most of its operational risk and how to check each one, the components of a DDI policy plane, the move from per-cloud syncs to one authoritative state, how the design changes across commercial and federal clouds, and the questions still open with vendors."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b08-ddi
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The governed resolution path from the branch edge to the per-cloud private zones, and the five configuration decisions that carry almost all of its operational risk, each with the check to run before the next change. What a DDI policy plane is made of and how it relates to the cloud DNS services it governs. The target operating model for agencies that already copy records into every cloud, how the design differs between commercial and federal clouds, and the vendor questions that are still open.
+The governed resolution path from the branch edge to the per-cloud private zones, and the five configuration decisions that carry most of its operational risk, each with the check to run before the next change. What a DDI policy plane is made of and how it relates to the cloud DNS services it governs. The target operating model for agencies that already copy records into every cloud, how the design differs between commercial and federal clouds, and the vendor questions that are still open.
 :::
 
 ## The end-to-end resolution flow and five decisions
@@ -28,7 +28,7 @@ The governed resolution path from the branch edge to the per-cloud private zones
 
 The end-to-end resolution flow runs from the SD-WAN branch edge, through a network-addressable agency-controlled resolver, into the DDI policy plane (policy, response policy zones, DNSSEC, IPAM) and on to per-cloud private zones and authoritative services. Internet-bound recursion leaves through CISA's Protective DNS Resolver, which federal civilian executive branch agencies are required to use and which blocks, redirects or sinkholes queries that match threat indicators before they reach a malicious destination.[^c08-cisapdns] The same path covers on-premises clients, which reach the agency resolver directly, and cloud workloads, which reach the policy plane through the per-cloud forwarding in Chapter 07.
 
-Five decisions carry almost all of the operational risk. Each one fails silently: the query still resolves, just outside policy or to the wrong address. Each therefore comes with a check to run in the live configuration, not the design document, before the next SD-WAN or DDI change.
+Five decisions carry most of the operational risk. Each one fails silently: the query still resolves, just outside policy or to the wrong address. Each therefore comes with a check to run in the live configuration, not the design document, before the next SD-WAN or DDI change.
 
 ### Decision 1 — the redirect-dns destination
 
@@ -52,7 +52,8 @@ The policy plane holds the authoritative forwarding rules for every private name
 | Azure private zones for agency namespaces | Azure DNS Private Resolver inbound endpoints |
 | Route 53 private hosted zones | Route 53 VPC Resolver inbound endpoints[^c08-r53] |
 | Google Cloud private zones | Cloud DNS inbound server policy entry points |
-| On-premises namespaces, from each cloud | The agency resolvers, through each cloud's outbound path (Resolver rules, forwarding rulesets, forwarding zones, NSX FQDN zones) |
+| Oracle Cloud Infrastructure private views | The VCN resolver's listening endpoint |
+| On-premises namespaces, from each cloud | The agency resolvers, through each cloud's outbound path (Resolver rules, forwarding rulesets, forwarding zones, OCI forwarding endpoint and resolver rules, NSX FQDN zones) |
 
 - **Check:** for one representative name in each private namespace, resolve it from on-premises, from each cloud and from a branch, and compare the answers. Any origin that returns a public address or NXDOMAIN has a missing or stale rule.
 
@@ -107,7 +108,7 @@ The architecture is the same in every environment; authorization and a few integ
 
 | Component | Moderate: commercial regions (including Microsoft 365 GCC-Moderate) | Moderate: AWS GovCloud (US), Azure Government | GCC High, FedRAMP High and DoD (High only) |
 |---|---|---|---|
-| Cloud-delivered DDI management plane | Must hold a FedRAMP certification at Moderate or higher; the agency authorizes its own DDI system that uses it; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate authorization does not cover High; use a service authorized at the required level or keep the policy plane inside the agency's boundary |
+| Cloud-delivered DDI management plane | Must hold a FedRAMP certification at Moderate or higher; the agency authorizes its own DDI system that uses it; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate certification does not cover High; use a service certified at the required level or keep the policy plane inside the agency's boundary |
 | On-premises and in-tenant resolvers and grid | Inside the agency boundary | Inside the agency boundary | Inside the agency boundary |
 | SD-WAN redirect-dns to agency resolvers (Decisions 1 and 2) | Applies | Applies | Applies |
 | Response policy zones, DNSSEC, Protective DNS forwarding | Applies | Applies | Applies (air-gapped enclaves differ; see Applicability) |
@@ -132,7 +133,7 @@ Some behaviors that the five decisions depend on are not documented by any vendo
 ::: {.callout-note}
 ## What this chapter establishes
 1. The governed path is SD-WAN edge, agency resolver, DDI policy plane, per-cloud private zones, with egress through Protective DNS.
-2. Five decisions carry almost all of the operational risk; each fails silently and needs a check in the running configuration.
+2. Five decisions carry most of the operational risk; each fails silently and needs a check in the running configuration.
 3. Cloud DNS services become consumers of one authoritative state, not independently authored sources; the policy plane overlays them rather than replacing them.
 4. Authorization, not architecture, is what changes between commercial and federal clouds.
 :::

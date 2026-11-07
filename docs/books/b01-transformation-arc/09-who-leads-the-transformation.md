@@ -130,7 +130,7 @@ Two rows need comment. Legacy-authentication end dates sit with the authorizing 
 
 ## Where each book assigns ownership
 
-Every book in the workbook has a Who chapter that applies this model to its own domain. Read the one for the domain you are about to change.
+Every other book in the workbook has a Who chapter that applies this model to its own domain; the table lists Books 02 to 09, and Books 00 and 10 to 18 carry theirs in the same way. Read the one for the domain you are about to change.
 
 | Book | Who chapter | What it settles |
 |---|---|---|
@@ -168,7 +168,7 @@ Once the program is underway, the steering committee should ask monthly (thresho
 
 1. **What is the drift trend?** Rising drift is a leading indicator of failure.
 2. **What share of production changes had a signed plan?** In steady state, anything short of all of them means ad-hoc changes have returned.
-3. **What share of employees have valid organizational attributes?** Set a threshold, such as 95%, and treat a drop as a regression.
+3. **What share of workers have valid organizational attributes?** Set a threshold, such as 95% during rollout, and treat a drop as a regression; Gate G3 and the identity verification need every record valid ([Chapter 12](12-migration-roadmap.md)).
 4. **How many Group Policy Objects are active?** The number should fall every month from the Phase 2 pilot onward; a plateau above the default policies and any Kerberos island's minimum set is a blocker.
 5. **How many devices have stayed hybrid-joined past the agreed limit (for example, 180 days)?** Hybrid join is a waypoint, not the end state; a growing number means the program is stuck at [Chapter 07](07-compute-transformation.md).
 6. **How many risk acceptances are open, and how many are past their end date?** Exceptions that never close are how a half-migration becomes permanent.
@@ -178,12 +178,12 @@ Once the program is underway, the steering committee should ask monthly (thresho
 None of this requires a vendor decision on day one. It requires an inventory, an owner and a date.
 
 1. **Name the owners.** Fill in the decision matrix with names, starting with the sponsor, the authorizing official and the steward, and confirm who in the agency already holds the zero trust implementation lead and ICAM governance roles.
-2. **Treat the series as project guidance.** Turn it into versioned artifacts: adapter interfaces, policy libraries, validation checks. The series is the narrative; the artifacts are the authority.
+2. **Treat the workbook as project guidance.** Turn it into versioned artifacts: adapter interfaces, policy libraries, validation checks. The workbook is the narrative; the artifacts are the authority.
 3. **Stand up the platform host** ([Chapter 03](03-platform-foundation.md)). The assessment runs from it and commits to its repository, and everything else follows from it.
 4. **Run a read-only assessment** ([Chapter 10](10-analyzing-the-estate.md)). In the program's experience a first pass takes days to a few weeks, depending on forest size and access approvals, and its output feeds every later decision.
 5. **Set the dates.** Put the gate dates from [Chapter 12](12-migration-roadmap.md) on the sponsor's calendar, and the end date of every exception on the authorizing official's.
 
-Microsoft has supplied the instruments for the new era. The program is the orchestra, this series is the score, and the people named in this chapter are the ones who have to play it. Retiring Active Directory is a governance transformation, and it should be led as one.
+Microsoft has supplied the instruments for the new era. The program is the orchestra, this workbook is the score, and the people named in this chapter are the ones who have to play it. Retiring Active Directory is a governance transformation, and it should be led as one.
 
 ## Key takeaways
 

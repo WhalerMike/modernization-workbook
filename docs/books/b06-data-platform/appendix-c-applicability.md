@@ -35,7 +35,7 @@ The engine-side steps (Chapters 09–12 and 20–21) depend on Microsoft Entra a
 |---|---|---|
 | Cloud | Microsoft's commercial cloud, including GCC-Moderate tenants. SQL Server needs access to the Azure public cloud to use Entra authentication. | [^aC-mi] |
 | SQL Server version | SQL Server 2022 (app registration and Key Vault certificate) and SQL Server 2025 (Arc managed identity, which Microsoft recommends for 2025 and later). | [^aC-overview] [^aC-mi] |
-| Operating system | Windows. The managed-identity setup is supported only for Arc-enabled SQL Server 2025 on Windows Server. | [^aC-mi] |
+| Operating system | Windows Server 2019 or later, the program's floor ([Book 00 Chapter 01](../b00-orientation/01-why-modernize-now.md)); Windows Server 2016 is an exception. The managed-identity setup is supported only for Arc-enabled SQL Server 2025 on Windows Server. | [^aC-mi] |
 | Topology | Standalone instances and Always On availability groups. | [^aC-overview] |
 
 ## Where it does not apply as written

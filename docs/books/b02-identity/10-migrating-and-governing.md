@@ -36,10 +36,10 @@ Access reviews are periodic attestation that people still need the access they h
 
 | Review target | Frequency | Reviewers | Apply results automatically | If reviewers don't respond |
 |---|---|---|---|---|
-| PIM-eligible role assignments | Monthly for Tier 0 roles, quarterly for all other privileged roles ([Chapter 05](05-delegation-without-ous.md#delegation-principles)) | The security team, never the assignees alone: with Microsoft's **Members (self)** option, role-assignable groups aren't part of the review[^c10-pim-review] | Yes; remove if denied | Remove access |
+| PIM-eligible role assignments | Monthly for privilege Tier 0 (T0) roles, quarterly for all other privileged roles ([Chapter 05](05-delegation-without-ous.md#delegation-principles)) | The security team, never the assignees alone: with Microsoft's **Members (self)** option, role-assignable groups aren't part of the review[^c10-pim-review] | Yes; remove if denied | Remove access |
 | Sensitive security group memberships | Quarterly | Group owners | Yes; remove if denied | Remove access |
-| Application assignments (Tier 1 apps) | Quarterly | Two stages: the manager, then the application owner | Yes; remove if denied | No change; escalate |
-| Application assignments (Tier 2 apps) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
+| Application assignments (application risk Tier 1) | Quarterly | Two stages: the manager, then the application owner | Yes; remove if denied | No change; escalate |
+| Application assignments (application risk Tier 2) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
 | Guest access | Quarterly | Sponsors | Yes; denied guests are blocked from sign-in, then removed from the tenant after 30 days | Remove access |
 | Microsoft 365 group memberships | Semi-annually | Group owners | No (recommendations only) | No change |
 
@@ -257,7 +257,7 @@ The Authentication methods policy decides which methods are available to which u
 - **Certificate-based authentication.** Enabled for PIV and CAC holders in phase 2, configured as multifactor so that it meets the phishing-resistant strength.
 - **Microsoft Authenticator.** Enabled for all users during the transition. Number matching is always on for Authenticator push notifications and users can't opt out.[^c10-number-match] Turn on the additional context (application name and sign-in location). Authenticator push doesn't satisfy M-22-09 for staff on its own; Microsoft's guidance pairs it with managed-device Conditional Access during the transition.[^c10-memo-2209-ms]
 - **Windows Hello for Business.** Enabled for all users on managed devices.
-- **Temporary Access Pass (TAP).** Enabled for onboarding and credential replacement, issued by the help desk and by the pre-hire workflow. Microsoft's defaults are a 1-hour default lifetime (configurable from 10 minutes to 30 days) and multi-use allowed; the program sets one-time use and a 1-hour lifetime. With a one-time TAP, the user has 10 minutes after sign-in to finish registering the new credential.[^c10-tap]
+- **Temporary Access Pass (TAP).** Enabled for onboarding and credential replacement, issued by the help desk and by the pre-hire workflow. Microsoft's defaults are a 1-hour default lifetime (configurable from 10 minutes to 30 days) and multi-use allowed; the program sets one-time use and a 1-hour lifetime for passes the help desk issues, and a lifetime of up to 24 hours from the hire date for the new-hire pass the pre-hire workflow generates, which Learn recommends as the maximum for new hires ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#built-in-tasks-by-stage)). With a one-time TAP, the user has 10 minutes after sign-in to finish registering the new credential.[^c10-tap]
 - **SMS and voice.** Disabled for staff. M-22-09 requires discontinuing them for routine access.[^c10-m2209]
 - **Email one-time passcode.** Guests only.
 - **Registration campaigns.** On, to prompt users without a strong method to register one at sign-in. The program allows three snoozes.
@@ -440,9 +440,9 @@ The indicator IDs and titles are from FedRAMP's published indicator pages.[^c10-
 
 ## The migration execution playbook
 
-The migration runs in eleven phases, grouped into five waves. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The one exception is Phase 8, which can run in parallel with Phase 7. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
+The migration runs in eleven phases, grouped into five stages. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The one exception is Phase 8, which can run in parallel with Phase 7. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
 
-![The eleven playbook phases in five waves: foundation, objects, privilege and policy, authentication, and sustain.](../../images/diagrams/b02-identity/svg/ch10-migration-waves.svg){#fig-ch10-migration-waves fig-alt="Five boxes in a left-to-right chain. Phases 0 to 2, foundation, in slate: assess, sync, PHS, Conditional Access in report-only. Phases 3 and 4, objects, in blue: groups, then service accounts. Phases 5 and 6, privilege and policy, in amber: PIM, then Conditional Access enforced in waves. Phases 7 to 9, authentication, in blue: phishing-resistant methods, legacy cutoff, AD FS out. Phase 10, sustain, in violet: lifecycle, reviews, drift detection."}
+![The eleven playbook phases in five stages: foundation, objects, privilege and policy, authentication, and sustain.](../../images/diagrams/b02-identity/svg/ch10-migration-waves.svg){#fig-ch10-migration-waves fig-alt="Five boxes in a left-to-right chain. Phases 0 to 2, foundation, in slate: assess, sync, PHS, Conditional Access in report-only. Phases 3 and 4, objects, in blue: groups, then service accounts. Phases 5 and 6, privilege and policy, in amber: PIM, then Conditional Access enforced in waves. Phases 7 to 9, authentication, in blue: phishing-resistant methods, legacy cutoff, AD FS out. Phase 10, sustain, in violet: lifecycle, reviews, drift detection."}
 
 ### Phase 0: Assessment
 

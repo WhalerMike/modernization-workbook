@@ -133,7 +133,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Contractor sponsorship and end-date attestation | | | | | | | R | D | | | | |
 | PIV issuance and termination procedures | | C | | C | C | C | D, R | C | | | | |
 | Exception process and its service levels (quarantine, emergency termination) | | C | C | R | D | | C | | C | | R | |
-| Fix a data error in an employee record | | D, R | | C | | | | | | | R | |
+| Fix a data error in an employee record | | D, R | | C | | | | | | | C | |
 | Agency side of the Core HCM interconnection | C | D | R | R | C | C | | | C | | | |
 | Authorize the feed and accept residual risk | C | | | C | C | C | | | R | D | | |
 

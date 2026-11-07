@@ -126,14 +126,14 @@ Each access-bearing group (Types 1 and 2, and the security half of Type 4) is bo
 ```sql
 -- Group login (review-required; preconditions per Runbook R05: SQL Server 2022 or later,
 -- Microsoft Entra authentication configured through Azure Arc, validated token)
-IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'sql-app-readers')
-    CREATE LOGIN [sql-app-readers] FROM EXTERNAL PROVIDER;   -- appears as type X, EXTERNAL_GROUP
+IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'SQL-PRD-APP01-AppDb-Reader')
+    CREATE LOGIN [SQL-PRD-APP01-AppDb-Reader] FROM EXTERNAL PROVIDER;   -- appears as type X, EXTERNAL_GROUP
 GO
 -- Map the database user and grant the role the Active Directory group previously held
 USE [AppDb];
 GO
-CREATE USER [sql-app-readers] FOR LOGIN [sql-app-readers];
-ALTER ROLE [db_datareader] ADD MEMBER [sql-app-readers];
+CREATE USER [SQL-PRD-APP01-AppDb-Reader] FROM LOGIN [SQL-PRD-APP01-AppDb-Reader];
+ALTER ROLE [app_reader] ADD MEMBER [SQL-PRD-APP01-AppDb-Reader];   -- a user-defined role, not a fixed one
 GO
 ```
 

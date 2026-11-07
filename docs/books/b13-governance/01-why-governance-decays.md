@@ -109,7 +109,7 @@ So the destination is settled. NIST also says why so few systems reach it: "if a
 
 The fix isn't tighter reporting. It is evidence that's deterministic: the same authoritative record and the same inputs always produce the same evidence, and the package can be regenerated on demand without anyone coordinating the assembly. These are the program's design properties, not an external standard:
 
-1. **No silent drops.** Every input is accepted, rejected with a reason, or queued. Nothing disappears.
+1. **No silent drops.** Every input is accepted or rejected with a reason. Nothing disappears.
 2. **Append-only storage.** Evidence is never edited in place. A correction is a new record that supersedes the old one.
 3. **Stable ordering.** Re-running the assembly produces records in the same order.
 4. **Idempotent ingestion.** Ingesting the same source twice yields the same record, not two.

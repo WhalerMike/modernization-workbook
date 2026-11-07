@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-The full mapping of commonly used Active Directory user attributes to Microsoft Graph properties, including the program's assignments for the fifteen extension attributes. Conditional Access policy templates in Microsoft Graph JSON for the policy set in [Chapter 09](09-building-the-entra-target.md#the-policy-set). The FMPIdentityAssessment PowerShell module that [Chapter 10](10-migrating-and-governing.md) schedules for drift detection, written against Microsoft Graph PowerShell.
+The full mapping of commonly used Active Directory user attributes to Microsoft Graph properties, including the extension-attribute slots this book reads (the full program map is in Book 03). Conditional Access policy templates in Microsoft Graph JSON for the policy set in [Chapter 09](09-building-the-entra-target.md#the-policy-set). The FMPIdentityAssessment PowerShell module that [Chapter 10](10-migrating-and-governing.md) schedules for drift detection, written against Microsoft Graph PowerShell.
 :::
 
 ## Attribute mapping reference
@@ -38,7 +38,7 @@ The table maps commonly used Active Directory user attributes to Microsoft Graph
 | `displayName`, `givenName`, `sn` | `displayName`, `givenName`, `surname` | Direct |
 | `mail`, `mailNickname`, `proxyAddresses` | `mail`, `mailNickname`, `proxyAddresses` | The primary SMTP address in `proxyAddresses` is a soft-match key |
 | `userAccountControl` | `accountEnabled` | The disabled bit becomes a Boolean |
-| `pwdLastSet` | `lastPasswordChangeDateTime` | Also used to invalidate issued tokens after a password change[^aC-synced-attributes] |
+| `pwdLastSet` | `lastPasswordChangeDateTime` (nearest equivalent, not synced) | `pwdLastSet` is synced as a mechanical property that tells Entra ID when to invalidate issued tokens after a password change[^aC-synced-attributes] |
 | `whenCreated` | `createdDateTime` | The date the object reached Entra ID, not the AD creation date |
 | `whenChanged` | No equivalent | |
 | `lastLogonTimestamp` | No mapping; use `signInActivity/lastSignInDateTime` | A separate signal from Entra ID sign-ins; needs P1 and `AuditLog.Read.All`[^aC-user-resource] |
@@ -46,7 +46,7 @@ The table maps commonly used Active Directory user attributes to Microsoft Graph
 | `manager`, `directReports` | `manager`, `directReports` (relationships) | Resolved as relationships |
 | `telephoneNumber`, `mobile`, `facsimileTelephoneNumber` | `businessPhones`, `mobilePhone`, `faxNumber` | Direct |
 | `streetAddress`, `l`, `st`, `postalCode` | `streetAddress`, `city`, `state`, `postalCode` | Direct |
-| `c`, `co`, `countryCode` | `country` | All three are synced; confirm which one your mapping writes to `country` |
+| `c`, `co`, `countryCode` | `country` | Entra ID's `country` corresponds to the AD country name `co`; the two-letter `c` is also synced ([Chapter 09](09-building-the-entra-target.md)) |
 | `physicalDeliveryOfficeName` | `officeLocation` | Direct |
 | `employeeID`, `employeeType` | `employeeId`, `employeeType` | Direct; both usable in Lifecycle Workflows scope rules |
 | `memberOf`, `member` | `memberOf`, `members` (relationships) | Resolved by the sync engine |
@@ -849,7 +849,7 @@ function Invoke-FMPIdentityAssessment {
 }
 ```
 
-The comparison covers user additions and removals only. Attribute-level drift, group membership drift, and the Conditional Access policy diff are listed as planned scheduled tasks in [Chapter 10](10-migrating-and-governing.md#scheduled-tasks); until they're built, compare those exports in Git directly.
+The comparison covers user additions and removals only. Attribute-level drift and group membership drift are planned ([Chapter 10](10-migrating-and-governing.md#the-assessment-pipeline)), and the Conditional Access policy diff is a planned scheduled task ([Chapter 10](10-migrating-and-governing.md#scheduled-tasks)); until they're built, compare those exports in Git directly.
 
 ::: {.callout-tip}
 ## Continue the book

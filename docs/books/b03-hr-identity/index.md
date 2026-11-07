@@ -58,7 +58,7 @@ This book is a proposal: use Federal HR 2.0 and the move from Active Directory t
 ## Modernization outcomes
 
 - **Day-one readiness:** required accounts and approved baseline access are available when an affiliation begins.
-- **Separation-to-block latency:** logical access is blocked at the effective separation time, or within the agency-approved threshold.
+- **Separation-to-block interval:** logical access is blocked at the effective separation time, or within the agency-approved threshold.
 - **Revocation completion:** PIV and derived credentials, device certificates, sessions, and application-specific credentials are reconciled to completion.
 - **Mover convergence:** access derived from the prior assignment is removed, the new baseline applied, and residual exceptions reviewed.
 - **Correlation coverage:** governed workforce identities reconcile with enabled enterprise accounts.
@@ -102,7 +102,7 @@ Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Sec
 
 - **Book 06, [Chapter 16](../b06-data-platform/16-groups-roles-and-membership.md)** and **[Chapter 17](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md)** apply the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
 - **[Book 07 — PKI & Certificates](../b07-pki/index.md)** sets the issuer and renewal owner for every certificate class, including the move off AD CS; [Book 06, Chapter 22](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers SQL Server's certificate dependencies; Chapter 09 covers only the certificate steps of the leaver sequence.
-- **[Federal Compliance Vol I Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own.
+- **[Federal Compliance Vol I Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own; the compliance volume describes itself as supporting them.
 - **[Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md)** covers the move from the OU tree to attribute-driven structure.
 - **[Book 02 — Identity & Directory](../b02-identity/index.md)** covers the directory migration this book builds on; [Chapter 09 there](../b02-identity/09-building-the-entra-target.md) designs the Entra ID target that inbound provisioning feeds.
 - **[Identity Lifecycle & Provisioning project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/identity-lifecycle-charter.md)** ([plan](../../project-plans/identity-lifecycle.md)) is the project charter that delivers this book's execution plan.

@@ -59,7 +59,7 @@ Your agency has spent three books building an identity architecture that can pro
 
 4. **A SaaS system of record integrates entirely through truth-plane surfaces.** The deployed human capital platform — Oracle HCM Cloud, in the externally managed tenancy Vol I Book 01 placed as the fourth landing-zone environment — touches the enterprise through federation (SAML/OIDC), provisioning protocol (SCIM 2.0), DNS resolution, and evidence export. Outbound HTTPS, no network adjacency, no agents, no domain join. Every one of those surfaces is an identity-plane or naming-plane function the substrate parts already govern.
 
-The controls this document closes — AC-2, IA-4, SI-12 — and the personnel-security controls whose automation evidence it supplies — PS-4, PS-5 — have no alternate closure path, because every one of them ultimately requires a fact that only the HR system of record possesses. AC-2(1) automated account management is realized by the same pipeline but does not carry a standalone necessity anchor. Each claim is demonstrated against control text in the closure table at the end.
+The controls this document supports — AC-2, IA-4, SI-12 — and the personnel-security controls whose automation evidence it supplies — PS-4, PS-5 — have no alternate closure path, because every one of them ultimately requires a fact that only the HR system of record possesses. AC-2(1) automated account management is realized by the same pipeline but does not carry a standalone necessity anchor. Each claim is demonstrated against control text in the closure table at the end.
 :::
 
 # What This Document Addresses

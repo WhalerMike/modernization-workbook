@@ -34,7 +34,7 @@ The schema below names Oracle fields because Oracle Fusion Cloud HCM is the Core
 |---|---|---|
 | Agency / subelement | Legal employer and component scope | `companyName`; organization code |
 | Personnel office identifier | Servicing HR office; delegated administration scope | Administrative-unit rule input |
-| Duty station | Location of record; location-based scoping; physical-access integration | Location code; `usageLocation` source |
+| Duty station | Location of record; location-based scoping; physical-access integration | Location code |
 | Occupational series, pay plan, grade | Position category for role-eligible access packages | Position category code |
 | Supervisory status | Approver and reviewer eligibility; manager-chain integrity | Supervisor group; `manager` checks |
 | Tenure, type of appointment, work schedule | Worker type and its lifecycle profile (pre-hire window, license, retention) | `employeeType`; worker-type code |
@@ -82,7 +82,7 @@ No single option is complete. The contingent worker record has no contract or ve
 
 : One authority per contractor fact {.striped .hover}
 
-A contractor's access ends at the **earliest** of: the contract end date passing; suitability withdrawn; the PIV card terminated or expired (a reissue doesn't end access); the sponsor leaving with no one taking over within a short grace period (for example 14 days); or the sponsor missing a periodic recertification (for example every 180 days). The last two close the gap that free-text sponsor fields leave open, because the sponsor is a live reference into HR, not a name on a form. Reconcile in both directions: a badge with no contractor record, and a contractor record with no badge, are both drift findings (Chapter 11).
+A contractor's access ends at the **earliest** of: the contract end date passing; suitability withdrawn; the PIV card terminated or expired (a reissue doesn't end access); the sponsor leaving with no one taking over within a short grace period (for example 14 days); or the sponsor missing a periodic recertification (for example every 180 days). The last two close the gap that free-text sponsor fields leave open, because the sponsor is a live reference into HR, not a name on a form. Reconcile in both directions: a badge with no contractor record, and a contractor record that should hold a badge but has none, are both drift findings (Chapter 11).
 
 ### Before a register becomes an authority
 
@@ -139,7 +139,7 @@ That is why the program mirrors values into extension slots. `employeeType` and 
 | Legal employer | Legal employer | enterprise `organization` | `company` | `companyName` | Yes | Agency or component |
 | Manager | Manager's person number | enterprise `manager` | `manager` (DN) | `manager` | Direct-reports rule only | Supervisory chain, approvals, reviewers |
 | Job title | `JobName` | `title` | `title` | `jobTitle` | Yes | Display; not an access input |
-| Worker type | Worker type / person type | custom extension `workerType` | `employeeType` | `employeeType` | No | Employee, contractor, intern, volunteer |
+| Worker type | Worker type / person type | custom extension `workerType` | `employeeType` | `employeeType` | No | Employee, contractor, intern, volunteer, vendor, external |
 | Hire date | Effective start date | custom extension `HireDate` | `extensionAttribute2` | `employeeHireDate` | Yes (preview) | Joiner workflow trigger |
 | Leave date | Termination effective date | custom extension `TermDate` | `extensionAttribute3` | `employeeLeaveDateTime` | No | Leaver workflow trigger |
 | Work country | Work address country | `addresses[type eq "work"].country` | `co` | `country` | Yes | Address; source for the `usageLocation` expression that licensing needs |
@@ -152,7 +152,7 @@ That is why the program mirrors values into extension slots. `employeeType` and 
 Notes on the table:
 
 - The SCIM mappings for both landing zones follow the example worksheets in Microsoft's Oracle HCM integration guide, which also maps a custom `JobCode` to `extensionAttribute1` in both AD and Entra ID. Custom attributes are added to the provisioning app's schema as SCIM schema extensions and then mapped.[^c06-oracle-tutorial][^c06-custom-attrs] For attributes with no AD equivalent, the same guide says to use `extensionAttribute1`–`15` or extend the AD schema.[^c06-oracle-tutorial]
-- **Neither date has a native AD attribute.** For AD-landed users, Microsoft's Oracle HCM worksheet writes `HireDate` and `TermDate` to `extensionAttribute2` and `extensionAttribute3`;[^c06-oracle-tutorial] a sync rule then maps each one to `employeeHireDate` or `employeeLeaveDateTime` in Entra ID. The AD attribute must be a string, and the value must be converted to the format Entra expects, usually with a date-format expression. Inbound provisioning, Entra Connect cloud sync and Entra Connect Sync all support both target attributes.[^c06-lcw-sync]
+- **Neither date has a native AD attribute.** For AD-landed users, Microsoft's Oracle HCM worksheet writes `HireDate` and `TermDate` to `extensionAttribute2` and `extensionAttribute3`;[^c06-oracle-tutorial] a sync rule then maps each one to `employeeHireDate` or `employeeLeaveDateTime` in Entra ID. The AD attribute must be a string, and the value must be converted to the format Entra expects, usually with a date-format expression. Inbound provisioning, Microsoft Entra Cloud Sync and Entra Connect Sync all support both target attributes.[^c06-lcw-sync]
 - **The choice of `extensionAttribute10`–`12` for access codes is this workbook's proposed implementation choice**, not a Microsoft default. Before Phase 1 closes, confirm that each one is in the provisioning app's target attribute list and isn't already used. Exchange calls `extensionAttribute1`–`15` custom attributes 1–15.[^c06-onprem-ext]
 - Rules can't use multi-value extension properties.[^c06-dyn-rules] All three access attributes hold one code.
 
@@ -165,9 +165,9 @@ The schema above names the HR-sourced carriers. The other books need more slots:
 | `extensionAttribute1` | Job code (`JobCode`) | Core HCM, through inbound provisioning | None; Microsoft's worksheet maps it here | Book 03 Ch 06 |
 | `extensionAttribute2` | Hire date, AD-side carrier | Core HCM `HireDate` | `employeeHireDate`. AD has no hire-date attribute, so AD-landed users carry it here and a sync rule maps it | Book 02 Ch 10, App C; Book 03 Ch 06 |
 | `extensionAttribute3` | Leave date, AD-side carrier | Core HCM `TermDate` | `employeeLeaveDateTime`, mapped the same way | Book 02 Ch 10, App C; Book 03 Ch 06 |
-| `extensionAttribute4` | Region code | Core HCM duty station, through the crosswalk | None that fits: rules can read `city`, `state` and `country`, but none of them is the agency's region | Book 01 Ch 11; Book 02 Ch 10, App C |
+| `extensionAttribute4` | Region code | Core HCM duty station, through the crosswalk | None that fits: rules can read `city`, `state` and `country`, but none of them is the agency's region | Book 01 Ch 11; Book 02 Ch 10, App C; Book 03 Ch 10 |
 | `extensionAttribute5` | Cost center code | Core HCM cost center | `employeeOrgData.costCenter` holds the value, but rules can't read it, so license assignment groups use this mirror | Book 02 App C |
-| `extensionAttribute6` | Division code | Core HCM business unit | `employeeOrgData.division` holds the value, but rules can't read it, so administrative-unit rules and the mover trigger use this mirror | Book 02 Ch 10, App C |
+| `extensionAttribute6` | Division code | Core HCM business unit | `employeeOrgData.division` holds the value, but rules can't read it, so administrative-unit rules and the mover trigger use this mirror | Book 02 Ch 05, Ch 10, App C |
 | `extensionAttribute7` | Account type: `Standard`, `Service`, `Privileged` | Identity team; during the transition, a sync rule derives it from OU placement | None (`userType` is only `Member` or `Guest`) | Book 02 Ch 09, App C; Book 04 Ch 03, Ch 07 (Admins persona) |
 | `extensionAttribute8` | Reserved | — | — | — |
 | `extensionAttribute9` | Clearance level | Personnel security system | None | Book 02 App C (restricted access packages) |

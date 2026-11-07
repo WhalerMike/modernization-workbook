@@ -90,7 +90,7 @@ The correlated record is the input to the migration plan's triage and to the ins
 ::: {.callout-note title="What this chapter establishes"}
 1. The transformation is incomplete until each application chain (user to application to database) is addressed.
 2. Each application is placed on two axes: how users authenticate to it, and how it authenticates to the database.
-3. The application audit supplies the data for both axes, and an application stuck on Entra Domain Services keeps its host instance off the Entra-exclusive posture.
+3. The application audit supplies the user-axis data, the database-axis data comes from the driver inventory, the code owner and the vendor, and an application stuck on Entra Domain Services keeps its host instance off the Entra-exclusive posture.
 :::
 
 ::: {.callout-tip}
