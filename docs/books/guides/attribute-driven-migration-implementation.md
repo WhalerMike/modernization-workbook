@@ -11,8 +11,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.html
 review-status: approved
-reviewed-sha256: 4f6e1bfad689407a62bd2a9766b9bea20fc72515f227528a721b4969f679671a
-last-reviewed: 2026-11-01
+reviewed-sha256: 3045556bef8d6f08c08ece3582321f233865e14e306ab6a5b891e7af79afe273
+last-reviewed: 2026-11-07
 ---
 # Attribute-Driven Migration: An Implementation Guide
 

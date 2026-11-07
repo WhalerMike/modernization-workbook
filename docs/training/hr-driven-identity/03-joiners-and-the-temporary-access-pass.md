@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 3
 review-status: approved
-reviewed-sha256: 2619b8cac22cc405ed173942b90356c94dd82f24166f55279c559699cf36f1aa
-last-reviewed: 2026-11-03
+reviewed-sha256: 58358df31125fcc419cd7ececd8baecb7a97a4cbbf7b145566550804cfdf6da3
+last-reviewed: 2026-11-07
 ---
 # Module 3: Make joiners ready on day one {.unnumbered}
 

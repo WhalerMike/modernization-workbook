@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 0cd329cdd6058fb53d19288635a190cd2395ba9a8a0b0046fdca471962abddde
-last-reviewed: 2026-11-03
+reviewed-sha256: 2c756da70cb817da5480fdf8e70b928b899bd9bfb7c9db58b5af075b3acd071e
+last-reviewed: 2026-11-07
 ---
 # Building Privileged Access {.unnumbered}
 

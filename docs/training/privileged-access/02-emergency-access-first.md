@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 2
 review-status: approved
-reviewed-sha256: 5a5e56c6a31931311af38602c98724f701bbdf9a26b78947b897bd3ceba30894
-last-reviewed: 2026-11-03
+reviewed-sha256: f85324bd44b0fe1777d8e1c66e5f0cc3f1829777a92ad2e33cf329afcdf13543
+last-reviewed: 2026-11-07
 ---
 # Module 2: Emergency access first {.unnumbered}
 

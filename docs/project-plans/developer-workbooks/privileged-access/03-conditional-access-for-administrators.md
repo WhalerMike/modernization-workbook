@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: cfba8829bc54e416c187dc0057091267a82162e03528cc91f32b7bbc1613e6f5
-last-reviewed: 2026-11-03
+reviewed-sha256: 32dee1d9560717cb0201d124bbc8783ab769d4683868676ab7c24acc1cc12696
+last-reviewed: 2026-11-07
 ---
 # Chapter 03 — Conditional Access for Administrators and the Activation Gate
 

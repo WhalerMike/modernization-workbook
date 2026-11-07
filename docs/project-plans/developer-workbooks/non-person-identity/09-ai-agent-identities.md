@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: ed6cf166e2128e1464b590685a4a12952e9b1eb1903ad9bd1e4a0af9dbd023a9
-last-reviewed: 2026-11-03
+reviewed-sha256: 24d6996333246b477037a4e9058bddf22015007706157ef0d743caaa3510edf8
+last-reviewed: 2026-11-07
 ---
 # Chapter 09 — AI Agent Identities
 

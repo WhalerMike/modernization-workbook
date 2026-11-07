@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 7
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 104cc41882b0543f6da4e195aa11c3ec351b7f9f7eed7351dd8a3c14d868b288
-last-reviewed: 2026-11-03
+reviewed-sha256: 7b16012277ece79c24bc4ffccb93846d87273b73d610b04fe01012db61577640
+last-reviewed: 2026-11-07
 ---
 # Attribute-Driven Migration, Module 7: Extend Lifecycle Workflows {.unnumbered}
 

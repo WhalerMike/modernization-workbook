@@ -17,8 +17,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: b0c76bd79442e5b17c5427230d660848b9b852f90e3f71dc4669cef4f595ddd3
-last-reviewed: 2026-11-03
+reviewed-sha256: 2dbc0e311d8f1fa50b0b9a78cea64415af850a8fceb0ff5aa2c2057302929976
+last-reviewed: 2026-11-07
 ---
 # Learning path: Non-Person Identity in Microsoft Entra ID {.unnumbered}
 

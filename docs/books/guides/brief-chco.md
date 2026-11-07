@@ -9,6 +9,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 7c6ec1f8341088ad9462d17eebe64379ee0f46ba0f0c48a69879dfa3738a6a21
+last-reviewed: 2026-11-07
 ---
 # For the CHCO: HR 2.0 and the Contractor Source {.unnumbered}
 

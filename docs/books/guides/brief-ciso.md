@@ -9,6 +9,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: ec97a36b31629c3440c550a48a9d43c9d1cd5353fd150fbd589c8a189e091cdd
+last-reviewed: 2026-11-07
 ---
 # For the CISO: Leavers and Account Findings {.unnumbered}
 

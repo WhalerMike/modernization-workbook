@@ -8,8 +8,8 @@ research-book: "Books 13, 15"
 series-order: 1
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: 9896a4484e83140ea51ae4de58ce9bada3b3c7b20366fff17b5a513ace2d489d
-last-reviewed: 2026-11-03
+reviewed-sha256: a3cec9ec09fc35b19d167e4184d2163d7ea88759e609b952a1a764f7fb07096e
+last-reviewed: 2026-11-07
 ---
 # Ticket-to-Machine, Module 1: The Loop and the Typed Task {.unnumbered}
 
