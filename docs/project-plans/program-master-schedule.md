@@ -184,7 +184,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | G3 — Rollout Complete | end of wk 36 | [Endpoint & Device Modernization](endpoint-device.md) (X-G3) | Waits for it | 19 d |
 | G3 — Rollout Complete | end of wk 36 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G3) | Waits for it | 0 |
 | P4.2  OU-based security groups retired | wk 38 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P42) | Waits for it | 0 |
-| P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P45) | Must finish D-A7 by it | 147 d margin |
+| start of P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P45) | Must finish D-A7 by it | 132 d margin |
 | P4.3  AD-integrated DNS zones moved, except the domain's own zones | wk 37–39 | [Network & Access Modernization](network-access.md) (X-P43) | Waits for it | 0 |
 | P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Data Platform Identity Transformation](data-platform.md) (X-P46) | Must finish DG4 by it | 58 d margin |
 | P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Non-Person Identity Modernization](non-person-identity.md) (X-P46) | Must finish NG3 by it | 57 d margin |

@@ -88,7 +88,7 @@ Every write in this runbook is a person's delegated sign-in, with a role activat
 | Conditional Access administrator | Conditional Access Administrator; Cloud Application Administrator as well for the rollback | Workload Conditional Access, rollback | Creating and updating a workload policy[^np11-wid] [^np11-ca-update] |
 | Server and AD engineer | Domain Admins in the test forest, or a delegated right to create gMSAs | gMSA | Creating a gMSA[^np11-gmsa] |
 | Reader app (certificate) | Graph application permissions `Application.Read.All`, `AuditLog.Read.All`, `Directory.Read.All`, `Policy.Read.All`, `User.Read.All`, `LicenseAssignment.Read.All`, `RoleManagement.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `Policy.Read.ConditionalAccess`; Reader on the subscription | Inventory, preflight, VK-NPI, Chapter 08's sign-in summary, drift | Each chapter's call list |
-| Deployment identity (certificate or federated credential) | Managed Identity Contributor on the test or production resource group | The pilot's managed identity, with the Azure CLI | [Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts) |
+| Identity engineer, for the Azure resource group | Managed Identity Contributor on the test or production resource group, activated through PIM for Azure resources | Creating the pilot's managed identity (Step 1.3), signed in to the Azure CLI as a person: every write is a person's, and the deployment identity holds no write role | [Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts) |
 
 Activate a role in the Microsoft Entra admin center: **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles** > **Activate**, with the change record number as the reason.[^np11-pim]
 
@@ -201,15 +201,15 @@ Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null
 Connect-MgGraph -Environment $cloud.GraphEnvironment -TenantId $s.tenantId -Scopes Application.ReadWrite.All, Policy.Read.All, Policy.ReadWrite.ApplicationConfiguration, Policy.ReadWrite.ConditionalAccess -NoWelcome
 ```
 
-**Sign in to the Azure CLI as the deployment identity** (certificate):
+**Sign in to the Azure CLI as the identity engineer** (a person, with Managed Identity Contributor activated on the resource group):
 
 ```powershell
 az cloud set --name $s.azure.environment
-az login --service-principal --username $s.deployIdentity.clientId --certificate $s.deployIdentity.certificatePemPath --tenant $s.tenantId
+az login --tenant $s.tenantId
 az account set --subscription $s.azure.subscriptionId
 ```
 
-`Connect-MgGraph` takes a client ID, tenant ID and certificate thumbprint for app-only access,[^np11-connect] and `az login --service-principal` takes a PEM file with the certificate appended to the private key.[^np11-az-login] Where the deployment identity is a federated credential in a pipeline, the pipeline's own sign-in step replaces the last block (the Azure Login action, for GitHub Actions).[^np11-oidc]
+`Connect-MgGraph` takes a client ID, tenant ID and certificate thumbprint for app-only access,[^np11-connect] which the read-only steps use. The Azure CLI sign-in is a person's: the one Azure write in this runbook, creating the pilot's managed identity, is made by the identity engineer, never by the deployment identity, so Chapter 05's rule that every write is a person's holds. Where the read-only steps run from a pipeline with a federated credential, the pipeline's own sign-in step replaces the app-only sign-in (the Azure Login action, for GitHub Actions).[^np11-oidc]
 
 ## The code this chapter adds
 
@@ -591,7 +591,7 @@ Record the step's evidence:
 
 Fulfils [G5 Conversion](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) for one workload. The pilot's GitHub workflow moves from its secret to a federated credential, and its Azure-hosted job from the legacy AD account to a user-assigned managed identity. The old secret and the legacy account stay enabled for the 30-day parallel run.
 
-1. **Create the managed identity with the Azure CLI**, signed in as the deployment identity:
+1. **Create the managed identity with the Azure CLI**, signed in as the identity engineer:
 
    ```powershell
    az identity create --name $s.pilot.managedIdentityName --resource-group $s.azure.resourceGroup --location $s.azure.location --query "{id:id, principalId:principalId, clientId:clientId}" --output json

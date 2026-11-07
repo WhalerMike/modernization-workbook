@@ -215,7 +215,7 @@ Long unique passwords aren't enough for emergency accounts. Emergency access acc
 
 ### Phase 4: watch
 
-Send Arc heartbeat, Intune compliance, Active Directory audit and Defender alerts to a Log Analytics workspace with defined alert rules. Capture a Conditional Access baseline on the first run, then compare against it on a schedule. A cross-domain status report shows which domains have fresh evidence and the headline pass and attention counts. It is the weekly status page on the manual path and the evidence feed on the governed path. [Chapter 10](10-operating-and-evidencing-the-fleet.md) describes the Intune evidence and alerts only; it has no cross-domain report.
+Send Arc heartbeat, Intune compliance, Active Directory audit and Defender alerts to a Log Analytics workspace with defined alert rules. Capture a Conditional Access baseline on the first run, then compare against it on a schedule. A cross-domain status report shows which domains have fresh evidence and the headline pass and attention counts. It is the weekly status page on the manual path and the evidence feed on the governed path. [Chapter 10](10-operating-and-evidencing-the-fleet.md) describes the Intune evidence and alerts only; it has no cross-domain report. The cross-domain report is not yet specified, and nothing in the program builds it now.
 
 ### Rollback
 

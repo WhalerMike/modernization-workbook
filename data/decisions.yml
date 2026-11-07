@@ -1843,3 +1843,15 @@
   pages: [docs/reference/source-register.md]
   prs: []
   status: settled
+
+- id: WD-144
+  date: 2026-11-06
+  question: Does the drift pipeline keep the OSCAL Assessment Results and POA&M export added in #393 and #401?
+  options: ["Remove the export", "Keep the export, with its pinned OSCAL 1.2.3 schemas, tests and the Book 19 Chapter 09 lab step"]
+  choice: "The export stays: the drift pipeline writes OSCAL 1.2.3 Assessment Results and a plan of action and milestones from a clean run, validated against the pinned schemas, and Book 19 Chapter 09 carries a lab step that runs it."
+  rationale: "It gives the ISSO the pipeline's evidence in the machine-readable form the federal assessment tools take and it is covered by its own tests."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md]
+  prs: [393, 401]
+  status: settled
