@@ -80,7 +80,7 @@ The Controls sheet lists these task types with their usual drift class, lane and
 | Access request | Machine, gated | AC-2, AC-3, AC-5 |
 | Attribute correction | Machine, gated (fix the source) | AC-2, CA-7 |
 | Stale access removal, contractor end date | Machine, gated | AC-2, AC-6 |
-| Orphan account; service account owner leaving | Machine, gated; human decision for the owner | AC-2, CA-7, CM-8 |
+| Orphan account; service account owner leaving | Human decision, then gated (the owner decides) | AC-2, CA-7, CM-8 |
 | Certificate renewal | Protocol-enforced | SC-12, SC-17 |
 | Emergency access check | Human decision | AC-2, SI-4 |
 | Privileged role activation review | Human decision | AC-6, AU-10, CM-5(1) |
