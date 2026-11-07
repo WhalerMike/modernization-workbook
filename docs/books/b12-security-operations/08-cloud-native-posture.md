@@ -157,7 +157,7 @@ None of these indicators is satisfied by a single-account conformance scan. The 
 
 : Controls this chapter contributes to, by layer {.striped .hover}
 
-The full control-level treatment, including the per-platform rationale, is in the Federal Compliance volume [Cloud-Native Security Posture and Containers](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_04_Cloud_Native_Posture.md). [Appendix A](appendix-a-requirements-mapping.md) maps the book's core controls.
+The full control-level treatment, including the per-platform rationale, is in the Federal Compliance volume [Cloud-Native Security Posture & Containers](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_04_Cloud_Native_Posture.md). [Appendix A](appendix-a-requirements-mapping.md) maps the book's core controls.
 
 ## What to take from this chapter
 
