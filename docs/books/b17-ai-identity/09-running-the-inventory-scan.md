@@ -79,7 +79,7 @@ The last column is the honest part. Every check above questions an answer; none 
 Joining the inventory to the directory, as [Chapter 03](03-the-inventory-as-an-identity-source.md) describes, adds the checks that matter most and that only the agency can run:
 
 - **No identity record.** A piloted or deployed use case with no AI system identity record, or a record with no directory objects. For an agentic system this is the P1 finding of [Chapter 07](07-monitoring-drift-and-shadow-ai.md): an agentic AI system with no governed identity.
-- **No accountable sponsor.** The record exists, but its sponsor is missing, has left, or isn't an agency employee ([Chapter 05](05-owners-sponsors-and-lifecycle.md)).
+- **No accountable sponsor.** The record exists, but its sponsor is missing, has left, or isn't a federal employee mastered in HR ([Chapter 05](05-owners-sponsors-and-lifecycle.md)).
 - **An identity with no inventory row.** A directory object that acts like an AI system (an agent identity, an AI service's service principal, a consented AI application) with no use case behind it. This is the shadow AI finding, and it is found from the directory side ([Chapter 07](07-monitoring-drift-and-shadow-ai.md#finding-what-nobody-declared)), not from the inventory.
 - **Retired, still holds access.** A use case marked *Retired* whose principals still have credentials, role assignments or consent grants. This is the leaver check, and it depends on the stable ID rule above.
 
@@ -137,7 +137,7 @@ Remediation needs no new tooling at this stage. Each action is done by the perso
 |---|---|---|---|
 | Agentic AI with no governed identity | System owner, with the identity team | Issue a governed identity with a sponsor, or disable the agent, or correct a misclassified inventory entry | The directory shows the identity record and sponsor, or the agent disabled; or the next vintage shows the corrected classification |
 | No authorization located | ISSO, with the authorizing official | Find the authorization the AI runs under, or start one | The authorization record, matched to `system_name_ato` |
-| No accountable sponsor or owner | Identity governance officer | Name a sponsor and technical owner in the identity system; update the inventory contact | The identity record carries both, and the sponsor is an agency employee |
+| No accountable sponsor or owner | System owner names them; the identity governance officer confirms the finding | Name a sponsor and technical owner in the identity system; update the inventory contact | The identity record carries both, and the sponsor is a federal employee mastered in HR |
 | No placement | Identity engineering | Map the bureau to the organization model | The record's placement attribute resolves |
 | PII with no PIA located | Privacy officer | Find the PIA that covers the system, or write one | The privacy office's register entry |
 | Retired, still holds access | Sponsor, with the identity team | Remove credentials, role assignments and consent grants; delete or disable the objects | The directory shows no remaining access |
