@@ -107,7 +107,7 @@ One sentence in Task A-6 is easy to misread. "Plan of action and milestones entr
 
 ![The plan of action and milestones as a lifecycle: every failing item resolves to one of three dispositions, and none of them is permanent.](../../images/diagrams/b14-compliance/svg/ch11-poam-lifecycle.svg){#fig-ch11-poam-lifecycle fig-alt="At the top, a slate card: a failing result from an assessment, an audit or continuous monitoring. It leads to an amber decision card: is there an in-date acceptance by the authorizing official? The no branch leads to a red card, actionable drift, POA&M item open with owner, milestones and deadline, OSCAL risk status open. The yes branch leads to a violet card, governed exception, accepted risk with a reference and an expiry date, OSCAL risk status deviation-approved. A dashed red arrow labeled expiry passes leads from the governed exception to a red card, lapsed acceptance, which reverts to open. The actionable drift card leads to a blue card, remediate through change control, then to a green card, closed only on re-test evidence. A dashed arrow from the green card back to the top is labeled next cycle. The lapsed acceptance card also leads to the remediate card."}
 
-The disposition vocabulary comes from the evidence contract the series specified, and it is the program's design. Every item that can fail resolves to one of three dispositions, and no item may be "always satisfied":
+The disposition vocabulary comes from the series' evidence layer, and it is the program's design. It refines the `disposition` field of the eight-field record in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md), which carries applied, accepted risk or open: actionable drift and lapsed acceptance are open, and a governed exception is an accepted risk. Every item that can fail resolves to one of three dispositions, and no item may be "always satisfied":
 
 | Disposition | Meaning | POA&M treatment | OSCAL risk status |
 |---|---|---|---|
@@ -128,7 +128,7 @@ The data and script in this section are illustrative. They haven't been tested a
 
 The source volume's commands invoked one particular evidence engine. The series' own evidence contract is engine-neutral, and so is this example: any pipeline that can produce failing findings with a disposition can produce a POA&M.
 
-A finding arrives from the evidence pipeline already carrying its disposition. The shape below follows the evidence contract in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md): an asset identity, a control, a verdict, a time and a disposition. The names are examples.
+A finding arrives from the evidence pipeline already carrying its disposition. The shape below follows the evidence contract in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md): an asset identity, a control, a verdict, a time and a disposition. The names are examples; Book 12 names the time field `observed_at`, and `collected` in this example is the same fact.
 
 ```json
 [
@@ -285,7 +285,7 @@ CA-7 leaves the frequencies to the organization. The program's design is a four-
 | Monthly | Posture report to the authorizing official: changes to plans, assessment results and the POA&M since the last report | CA-7 | ISSM |
 | Quarterly | Evidence quality review: which categories are stale, which verdicts rest on derived or manual evidence | CA-7 | ISSM |
 | Quarterly | Review of each provider's Ongoing Certification Report, and attendance at its Quarterly Review | CA-7, SA-9 | Designated senior official (below) |
-| Quarterly | Training completion review ([Chapter 09](09-training-and-awareness-controls.md)) | AT-2, AT-3 | Training coordinator |
+| Quarterly | Training completion review ([Chapter 09](09-training-and-awareness-controls.md)) | AT-2, AT-3 | ISSO |
 | Semi-annual | Incident response exercise | IR-3 | SOC lead |
 | Annual | Contingency plan test: a tabletop in the plan's first year, then a functional exercise with a restore from backup ([Chapter 06](06-contingency-and-continuity.md)) | CP-4 | Contingency planning coordinator |
 | Annual | Full re-assessment of every control by the independent assessor, covering those not monitored by automation | CA-2, CA-2(1), CA-7(1) | Control assessor |
@@ -312,7 +312,7 @@ Each evidence category has a freshness limit, after which its evidence no longer
 
 ### The evidence contract's five rules
 
-The series specified the evidence layer as an open contract rather than a tool, so that any conformant engine, whether a purpose-built governance platform, a commercial governance, risk and compliance product or native OSCAL tooling, can satisfy it. It takes three inputs: a control map in the authoritative record, in which each row ties a requirement to the mechanism that closes it and the evidence category that proves it; evidence records per category; and the cadence and disposition rules above. It produces two outputs: the OSCAL assessment plan, results and POA&M, and the continuous monitoring stream that re-emits them on the cadence. Five rules hold it together. They are the program's design.
+The series specified the evidence layer as an open contract rather than a tool (the rules below are that layer's; the record each source emits is Book 12's, Chapter 02), so that any conformant engine, whether a purpose-built governance platform, a commercial governance, risk and compliance product or native OSCAL tooling, can satisfy it. It takes three inputs: a control map in the authoritative record, in which each row ties a requirement to the mechanism that closes it and the evidence category that proves it; evidence records per category; and the cadence and disposition rules above. It produces two outputs: the OSCAL assessment plan, results and POA&M, and the continuous monitoring stream that re-emits them on the cadence. Five rules hold it together. They are the program's design.
 
 1. **The control map is the authoritative record.** No document asserts a closure the map doesn't carry, and a gate in continuous integration enforces it.
 2. **Mechanism, not product.** A closure claim names protocol behavior, never a vendor. The product that realizes the mechanism is recorded in the agency's selection record.

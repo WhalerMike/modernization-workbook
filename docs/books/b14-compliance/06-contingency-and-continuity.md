@@ -134,7 +134,7 @@ The section also records its assumptions: the alternate region is provisioned an
 
 ### Section 3: Roles and responsibilities
 
-The **contingency plan coordinator** is the one person with authority to declare the plan active, direct recovery resources, brief management and declare the plan deactivated. A named alternate holds the same authority. The coordinator evaluates events against the activation thresholds, declares activation (verbally, then in writing within two hours), notifies management and external stakeholders, coordinates the recovery leads, authorizes the move from recovery to reconstitution, and runs the after-action review.
+The **contingency planning coordinator** is the one person with authority to declare the plan active, direct recovery resources, brief management and declare the plan deactivated. A named alternate holds the same authority. The coordinator evaluates events against the activation thresholds, declares activation (verbally, then in writing within two hours), notifies management and external stakeholders, coordinates the recovery leads, authorizes the move from recovery to reconstitution, and runs the after-action review.
 
 | Recovery lead | Responsibilities |
 |---|---|
@@ -425,7 +425,7 @@ The architecture above uses Microsoft's services. An agency with workloads elsew
 | Oracle Cloud Infrastructure | OCI Full Stack Disaster Recovery, whose DR plans are automated runbooks for a protection group[^c06-oci] |
 | VMware | VMware Live Site Recovery (formerly Site Recovery Manager), which Broadcom now delivers as part of VCF Protection and Recovery[^c06-vmware] |
 
-The program's design is that recovery actions stay native to each platform, and what unifies them is evidence: each platform's test results, backup status and replication lag are recorded under the same evidence contract ([Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md)), so the CP-4, CP-9 and CP-10 evidence for the agency reads as one picture rather than five consoles. Recovering a workload from one platform into another is a deliberate design choice the plan has to state, not something any of these services does by default.
+The program's design is that recovery actions stay native to each platform, and what unifies them is evidence: each platform's test results, backup status and replication lag are recorded under the same evidence contract ([Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md)), so the CP-4, CP-9 and CP-10 evidence for the agency reads as one picture rather than four consoles. Recovering a workload from one platform into another is a deliberate design choice the plan has to state, not something any of these services does by default.
 
 ## FedRAMP's recovery planning indicators
 
