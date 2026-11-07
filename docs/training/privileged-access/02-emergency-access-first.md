@@ -14,7 +14,7 @@ last-reviewed: 2026-11-03
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, task A0.4, and Phase 1, task A1.1. Workbook [Chapter 02](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

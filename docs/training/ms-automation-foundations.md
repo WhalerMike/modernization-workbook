@@ -128,7 +128,7 @@ The example code keeps every call and its permission in one file, `graph-calls.j
 | Tool | Install | Use it for |
 |---|---|---|
 | Microsoft Graph PowerShell SDK | `Install-Module Microsoft.Graph`[^m1-sdkinst] | Interactive and scheduled administration; `Invoke-MgGraphRequest` for any endpoint |
-| Microsoft Graph Python SDK | `pip install msgraph-sdk`[^m1-sdkinst] | Services and pipelines; `PageIterator` follows pages for you[^m1-pypaging] |
+| Microsoft Graph Python SDK | `pip install msgraph-sdk`[^m1-sdkinst] | Services and pipelines; Learn's paging page shows a page iterator for the other SDK languages, not Python, so follow `@odata.nextLink` yourself[^m1-pypaging] |
 | `azure-identity` (Python) | `pip install azure-identity` | Managed identity, certificate and federated credentials, for Graph and Azure alike[^m1-azid] |
 | Az PowerShell, Azure CLI | (Module 4) | Azure Resource Manager: subscriptions, Arc, Policy |
 | AzureAD, AzureAD Preview, MSOnline | **Don't** | Deprecated on March 30, 2024; Microsoft said they would work only until March 30, 2025, the announced date (the actual shut-off came later, as [Book 02, Chapter 03](../books/b02-identity/03-ad-and-entra-side-by-side.md) records), and recommends migrating to Microsoft Graph PowerShell[^m1-aadps][^m1-mgmig] |

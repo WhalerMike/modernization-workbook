@@ -43,10 +43,10 @@ In this module, you'll:
 
 *8 minutes*
 
-Gate 1 records and decides; it builds nothing. You confirm each product's FedRAMP status on the Marketplace, ask the vendor in writing what's inside the authorization, record which actions run from a vendor's cloud as data flows, and register the four integration identities with a certificate or federated credential, never a long-lived secret. Read:
+Gate 1 records and decides; it builds nothing. You confirm each product's FedRAMP status on the Marketplace, ask the vendor in writing what's inside the authorization, record which actions run from a vendor's cloud as data flows, and register the integration identities (the two connections and the seven the kit runs) with a certificate or federated credential, never a long-lived secret. Read:
 
 - The guide's [Gate 1](../../books/guides/ttm-servicenow-sailpoint.md#step-1-confirm-the-authorization-boundary): its steps, its availability table and its interim path.
-- The guide's [prerequisites](../../books/guides/ttm-servicenow-sailpoint.md#prerequisites), for the four integration identities.
+- The guide's [prerequisites](../../books/guides/ttm-servicenow-sailpoint.md#prerequisites), for the integration identities.
 - The guide's [Validate (G1 Boundary)](../../books/guides/ttm-servicenow-sailpoint.md#validate-g1-boundary) step, which names the validation-kit checks and the manual record.
 
 ## Unit 3: ServiceNow roles, split by task
