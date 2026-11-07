@@ -104,7 +104,7 @@ SP 800-50 Rev. 1 asks learning programs to include the organization's communicat
 - The **privacy office** approves what users are told about what the agency can see on enrolled devices and what personal data recovery uses, and reviews any use of personal email or phone numbers for recovery.
 - **Legal counsel** reviews phishing exercises, as SP 800-50 Rev. 1 recommends ([Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md#phishing-exercises-at-21)).
 - The **records officer** decides how long training records and their derived evidence are kept ([Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md#how-long-to-keep-it)).
-- **Platform teams** enforce what the policy decides: identity engineering removes access when the CISO's suspension policy says so and owns each wave's go/no-go in Book 02's model.
+- **Platform teams** enforce what the policy decides: identity engineering removes access when the CISO's suspension policy says so and owns each identity wave's go/no-go in Book 02's model, and endpoint engineering owns each device wave's in Book 05's.
 
 ## Readiness is an input to every gate
 
@@ -112,12 +112,12 @@ SP 800-50 Rev. 1 asks learning programs to include the organization's communicat
 
 | Gate (owner, from Book 01) | Training criteria the gate checks |
 |---|---|
-| G0, Ready to Plan (steward) | Training lead named; learning program funded; CHCO, labor relations and the Section 508 program manager briefed; role rosters derivable from HR and identity records |
+| G0, Ready to Plan (steward, with the sponsor as backup) | Training lead named; learning program funded; CHCO, labor relations and the Section 508 program manager briefed; role rosters derivable from HR and identity records |
 | G1, Foundation Complete (steward) | Tier 0 administrators' role-based training complete before their phishing-resistant methods and eligible roles are enforced; help desk trained on the verification procedure and Temporary Access Pass handling |
 | G2, Pilot Clean (steward and sponsor) | Pilot division's end-user modules complete above threshold; follow-up lessons issued; help desk ticket themes reviewed and the modules revised |
-| Each wave in Phase 3 (wave owner, Book 02 Chapter 06) | Registration rate, training completion and help desk ticket volume within the wave's thresholds before enforcement |
+| Each wave in Phase 3 (wave owner: identity engineering, Book 02 Chapter 06; endpoint engineering for device waves, Book 05 Chapter 06) | Registration rate, training completion and help desk ticket volume within the wave's thresholds before enforcement |
 | G3, Rollout Complete (sponsor and steering committee) | Every division's training evidence reviewed by its ISSO; no privileged-tier person overdue |
-| G4, Legacy Quiet (steward) | Users of retiring file shares and legacy applications told and trained before each retirement; administrators of the retiring platforms retrained or reassigned |
+| G4, Legacy Quiet (steward, with the sponsor as backup) | Users of retiring file shares and legacy applications told and trained before each retirement; administrators of the retiring platforms retrained or reassigned |
 | G5, AD Retired (sponsor and CIO) | Steady-state curriculum in place: onboarding before access, annual refresh, role training on assignment, and the training record feeding continuous monitoring |
 
 ![How training readiness reaches a decision: the training lead reports, the ISSO reviews, the gate or wave owner decides.](../../images/diagrams/b16-people/svg/ch08-readiness-into-gates.svg){#fig-ch08-readiness-into-gates fig-alt="Four cards in a left-to-right chain. A slate card, the roster: who must be trained, from HR and identity records. A blue arrow leads to a blue card, the training lead reports completion per population from the learning management system. A blue arrow leads to a violet card, the ISSO reviews, confirms the record and routes the gaps. A violet arrow labeled checked by the program office leads to an amber card, the gate or wave owner decides go, no-go or conditional go, together with the other criteria."}
@@ -149,7 +149,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | What users are told the agency can see, and what recovery collects | | C | | R | | C | | C | | C | D (privacy) |
 | Retention of training records and derived evidence | | C | C | R | | C | | | | | D (records) |
 
-Seven rows need comment.
+Nine rows need comment.
 
 The **policy** row matches [Book 14, Chapter 10](../b14-compliance/10-who-owns-compliance.md#the-responsibility-matrix): the CISO decides, the CIO is consulted, and the system owner and ISSO do the system-level work. The **security content** row follows from it. The CISO decides what users are taught to do about sign-in, reporting and the help desk, because those instructions are the policy in the form users see.
 
