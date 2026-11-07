@@ -55,3 +55,21 @@ Mike settled the four points above (WD-140 to WD-143): entitlement management pl
 3. FedRAMP CR26 boundary rulesets and significant-change tiers (primary rulesets not opened).
 4. Whether Microsoft now lists cross-cloud sync as generally available.
 5. The Privacy Act (a)(5) retrieval clause (quote from the statute when drafting).
+
+## Third pass (2026-11-06): the five items before drafting
+
+Done for the chapter and profile drafts (Book 03 chapter 15, Book 04 Appendix C, Book 03 Appendix D). The pages cite these sources in footnotes.
+
+| # | Item | Source | What it says | Verdict |
+|---|---|---|---|---|
+| 18 | SP 800-63-4 definitions of IAL, AAL and FAL, and how a level is chosen | NIST SP 800-63-4, pages.nist.gov/800-63-4/sp800-63.html, sections 3.1 to 3.4 (first 100,000 characters of the page read; the tailoring text after the first part of section 3.4 was not) | IAL is "the robustness of the identity proofing process"; AAL "the robustness of the authentication process itself"; FAL "the robustness of the federation process used to communicate authentication". Levels 1 to 3 are described in 3.3.2. Selection: define the service (3.1); impact assessment by user group with Low, Moderate or High (3.2); combined impact by high-water mark or another documented method (3.2.4); initial level Low to 1, Moderate to 2, High to 3 for IAL and AAL, and High to FAL2 or FAL3 after an IdP risk assessment (3.3.3); tailoring, documented in a Digital Identity Acceptance Statement (3.4) | **confirmed**; tailoring detail beyond its first part not read |
+| 19 | SP 800-63C-4 federation levels and what the relying party checks | NIST SP 800-63C-4, pages.nist.gov/800-63-4/sp800-63c.html, sections 2.2 to 2.4 and 3.9 (first 100,000 of 355,130 characters read) | FAL1: IdP signs, RP validates the signature against the expected IdP, audience-restricted, replay-protected. FAL2: adds required injection protection, a single-RP assertion and a pre-established trust agreement. FAL3: adds holder-of-key or bound authenticator, manually established identifiers and keys. The RP confirms the issuer is the expected IdP (3.9). Assertion expiry checks were not in the part read | **confirmed** for FAL1 to FAL3; expiry and the planning note dated 10/06/2026 **not read** |
+| 20 | Whether cross-cloud sync is generally available | Microsoft Learn, "What is cross-tenant synchronization?" (re-read 2026-11-06) | Cross-cloud sync is stated as supported (commercial to Government and back, users only, no `manager`); the page carries no preview label. The earlier Microsoft 365 page that said public preview in August 2025 was not re-read | **changed**: state "supported as listed on Learn on Nov 6, 2026, no preview label"; the support level in the portal is still the reader's check |
+| 21 | Privacy Act (a)(5) wording | 5 U.S.C. 552a(a)(5), via law.cornell.edu, quoted in part by the fetch tool | "A group of any records under the control of any agency from which information is retrieved by the name of the individual" plus the identifying-number clause, which the fetch excerpt cut; the chapter quotes the statute from govinfo as ch14 already does | **confirmed** for the first clause; the identifying-number clause comes from the govinfo text the chapter cites |
+
+### Still unverified after the third pass
+
+1. Retention schedules for partner agreements, MOUs, ISAs and access-review records (GRS 3.2 covers system access records only). The chapter names the agency records officer as decider and gives no period.
+2. FedRAMP Consolidated Rules for 2026 boundary rulesets and significant-change tiers (primary rulesets not opened). The chapter makes no claim about them.
+3. The 63C-4 assertion-expiry rules and the planning note dated 10/06/2026; the rest of the section 3.4 tailoring text.
+4. The cross-cloud sync support level in the portal on the day a team builds it.

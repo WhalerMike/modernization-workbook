@@ -9083,6 +9083,186 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "ficam-architecture",
+   "title": "FICAM Architecture, version 3.3",
+   "publisher": "General Services Administration",
+   "url": "https://www.idmanagement.gov/arch/",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "nist-sp-800-63-4",
+   "title": "NIST SP 800-63-4, Digital Identity Guidelines (online edition)",
+   "publisher": "NIST",
+   "url": "https://pages.nist.gov/800-63-4/sp800-63.html",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "nist-sp-800-63-4-final",
+   "title": "NIST SP 800-63-4, publication record",
+   "publisher": "NIST",
+   "url": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "nist-sp-800-63c-4",
+   "title": "NIST SP 800-63C-4, Federation and Assertions (online edition)",
+   "publisher": "NIST",
+   "url": "https://pages.nist.gov/800-63-4/sp800-63c.html",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "fips-201-3-pdf",
+   "title": "NIST FIPS 201-3, full text (PDF)",
+   "publisher": "NIST",
+   "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.201-3.pdf",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "usc-5-552a-govinfo",
+   "title": "Privacy Act of 1974, 5 U.S.C. 552a (2023 edition, GovInfo)",
+   "publisher": "U.S. law and regulation",
+   "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "usc-29-794d-govinfo",
+   "title": "Section 508 of the Rehabilitation Act, 29 U.S.C. 794d (2023 edition, GovInfo)",
+   "publisher": "U.S. law and regulation",
+   "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "cisa-zero-trust-maturity-model",
+   "title": "CISA Zero Trust Maturity Model, version 2.0",
+   "publisher": "CISA",
+   "url": "https://www.cisa.gov/zero-trust-maturity-model",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "learn-cross-tenant-sync-overview",
+   "title": "Microsoft Learn: What is cross-tenant synchronization?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "learn-cross-tenant-sync-configure",
+   "title": "Microsoft Learn: Configure cross-tenant synchronization",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "learn-em-external-users",
+   "title": "Microsoft Learn: Govern access for external users in entitlement management",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/id-governance/entitlement-management-external-users",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "learn-em-connected-organizations",
+   "title": "Microsoft Learn: Manage connected organizations in entitlement management",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/id-governance/entitlement-management-organization",
+   "status": "active",
+   "added": "2026-11-06",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-06",
+     "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
   }
  ],
  "phrases": {
