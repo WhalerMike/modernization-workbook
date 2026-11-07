@@ -9,6 +9,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 73eb5ae267e77ed5181ee26e52e8f21d6b33471de4f998d178f07645ed64d838
+last-reviewed: 2026-11-07
 ---
 # For the CIO: The Clocks and the Cost {.unnumbered}
 

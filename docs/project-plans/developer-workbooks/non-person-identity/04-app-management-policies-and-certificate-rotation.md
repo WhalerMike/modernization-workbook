@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: a65ac8d4307b98586171c453f0bf231cb2ecf68d0fb5339f7a30b96cf84ac788
-last-reviewed: 2026-11-03
+reviewed-sha256: b6aaaee1034ba5d9935c31fc1dbb873543cbef4d23740561011be44d1a075535
+last-reviewed: 2026-11-07
 ---
 # Chapter 04 — App Management Policies and Certificate Rotation
 

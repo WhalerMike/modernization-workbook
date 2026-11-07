@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: f0af1c7de93876802238493754ad2527c76ef0209d0e4b8413bab79f5e797543
-last-reviewed: 2026-11-03
+reviewed-sha256: 6962cbefb978fd95566cd64f37f42b24b0803afa388d7496178a78ffdde2ccd9
+last-reviewed: 2026-11-07
 ---
 # Chapter 01 — The Writer Register as Code
 

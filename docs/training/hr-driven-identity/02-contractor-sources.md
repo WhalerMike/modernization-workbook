@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 2
 review-status: approved
-reviewed-sha256: a44a323c6774cc1ef3d97a589364b0db413508ae753b6c9de2e45294c9aff74b
-last-reviewed: 2026-11-03
+reviewed-sha256: d66b1a712f3766fad9dad547ef88e9b866df9f7f4cca4d5c611634202cad4c34
+last-reviewed: 2026-11-07
 ---
 # Module 2: Run contractors from their own source {.unnumbered}
 

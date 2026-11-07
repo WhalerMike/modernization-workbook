@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 1
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 2b012ac4769d49f8c112eeda58c1111e029e6dc3cd0a81ab2a19b9ca8979abec
-last-reviewed: 2026-11-03
+reviewed-sha256: c41270cbc280b494a1c6edf4fe4706c40fd650c161653899cd5db9aeeeba19e8
+last-reviewed: 2026-11-07
 ---
 # Attribute-Driven Migration, Module 1: Send HR Records through a Middleware that Fails Closed {.unnumbered}
 

@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/05-lifecycle-workflows-custom-extensions.html
 review-status: approved
-reviewed-sha256: 86d92f373843834b4eb6acf0d422e30ab27240d09d251fb86f61790b8f2c9b6e
-last-reviewed: 2026-11-03
+reviewed-sha256: 718834e8ce43a4d7c13416af55afd331c12184a760097b3c9e2f8a84b82d1b45
+last-reviewed: 2026-11-07
 ---
 # Chapter 05 — Lifecycle Workflows Custom Extensions
 

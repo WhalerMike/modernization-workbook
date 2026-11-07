@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/08-ansible-beside-arc.html
 review-status: approved
-reviewed-sha256: 6756bdcbd00cde852b712cf312e32fbd023c3dde3297c3afb9c9b5b64228a661
-last-reviewed: 2026-11-03
+reviewed-sha256: 755ec2a32eef58e99b66fef2bf5665b28af845eaadd79313cb875dfa38c81811
+last-reviewed: 2026-11-07
 ---
 # Chapter 08 — Ansible Beside Arc
 

@@ -17,8 +17,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 1887fb98f3cd29d5c9903e9c9103c99a2ec3b42499e914c22c869e30549a1814
-last-reviewed: 2026-11-03
+reviewed-sha256: f94f31009290e70539917794f4ab7fd04b1f9f49a8d3a35c0c8285e5627ac2c7
+last-reviewed: 2026-11-07
 ---
 # Learning path: HR-Driven Identity in Microsoft Entra ID {.unnumbered}
 

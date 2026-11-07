@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: ef131b5b61263d1f8f8186761a19ce64b783388b681f65be3abd35cea5447c45
-last-reviewed: 2026-11-03
+reviewed-sha256: c04cd6af007bd8d058c01e6053a1911cf8b1d0bd882f8241e19c396a49212e54
+last-reviewed: 2026-11-07
 ---
 # Chapter 07 — Evidence Records for Book 13 and the ISSO
 

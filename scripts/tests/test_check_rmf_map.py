@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 
+import re
 import sys
 import tempfile
 import unittest
@@ -38,7 +39,7 @@ class Case(unittest.TestCase):
         self.assertTrue(any("P-1" in e and "Maybe" in e for e in errs))
 
     def test_stale_review(self):
-        errs = self._page(lambda t: t.replace("last-reviewed: 2026-11-06", "last-reviewed: 2026-10-01"))
+        errs = self._page(lambda t: re.sub(r"(?m)^last-reviewed: \S+", "last-reviewed: 2026-10-01", t, count=1))
         self.assertTrue(any("older" in e for e in errs))
 
     def test_broken_anchor(self):

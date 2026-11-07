@@ -9,6 +9,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 70fcc6d5790c8be9496d6f8bcc3d47f704b8a3e7533b31c1ac70cf920c7df667
+last-reviewed: 2026-11-07
 ---
 # The One-Page Ask {.unnumbered}
 

@@ -9,8 +9,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 3c7318d7a50f647265cfc4b52c754971b31f5f65a5bc01d263854b59e667142c
-last-reviewed: 2026-11-03
+reviewed-sha256: a77681bc74c989bad8c69bcf7136ac1a2600ed35ebfe3eec1d6781581b25e4a7
+last-reviewed: 2026-11-07
 ---
 # Effective Meetings — Purpose, Agenda, Roles, and Follow-Through
 
