@@ -77,7 +77,7 @@ Verifying a closure is a read: probe the estate, attach the result, gate the clo
 
 ### The program holds itself to the same rule
 
-The series applies the rule to its own documents. Each book's table of controls closed is generated from the closure record and checked for drift, because hand-maintained numbers silently go wrong ([Chapter 03](03-the-baseline-and-the-crosswalk.md#a-hand-maintained-superset-and-a-generated-slice)). Beyond that, the program's design binds each closure claim to a named test that would disprove it, and it reports the share of claims that have one. That share is the program's own measure of how much of its closure story is proven rather than asserted. It is expected to rise, and it is published while it is low.
+The series applies the rule to its own documents. Each series volume's book has a table of controls closed that is generated from the closure record and checked for drift, because hand-maintained numbers silently go wrong ([Chapter 03](03-the-baseline-and-the-crosswalk.md#a-hand-maintained-superset-and-a-generated-slice)). Beyond that, the program's design binds each closure claim to a named test that would disprove it, and it reports the share of claims that have one. That share is the program's own measure of how much of its closure story is proven rather than asserted. It is expected to rise, and it is published while it is low.
 
 ### What "closed" means when the evidence is continuous
 
