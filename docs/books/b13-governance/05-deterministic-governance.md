@@ -35,7 +35,7 @@ Determinism is a design property of the program's tooling, not a federal require
 Three properties make governance deterministic, and none of them is speed.
 
 1. **Reproducibility.** The same record version and the same inputs produce the same bundle of evidence. Independent re-execution is the test.
-2. **Provenance.** Every claim carries its full envelope: who or what issued it, when it was observed and recorded, and the lineage that links it to the inputs and the rule that produced it. [Chapter 04](04-change-control-and-provenance.md) defines that envelope for changes; the same discipline applies to evidence.
+2. **Provenance.** Every claim carries its full envelope: who or what issued it, when it was observed and recorded, and the lineage that links it to the inputs and the rule that produced it. [Chapter 07](07-evidence-over-attestation.md#the-provenance-envelope) defines that envelope; [Chapter 04](04-change-control-and-provenance.md) applies the same discipline to changes.
 3. **Hash-verifiable lineage.** The bundle's hash is computed over the hashes of its claims, so a change to any claim anywhere breaks the bundle hash.
 
 | Property | What automation delivers | What determinism delivers |
@@ -78,13 +78,13 @@ A rule doesn't declare which components apply it, which controls it supports or 
 
 ### Layer 2: policy mappings
 
-The mapping layer joins rules to operational scope. A mapping entry says, in effect, "component X (or indicator Y) applies rule R within scope S." The mappings live in registries beside the rules: the list of adapters the program maintains ([Chapter 08](08-the-adapter-model.md)), and the bindings between rules and the controls or indicators they support.
+The mapping layer joins rules to operational scope. A mapping entry says, in effect, "component X (or indicator Y) is evaluated against rule R within scope S." The mappings live in registries beside the rules: the list of adapters the program maintains ([Chapter 08](08-the-adapter-model.md)), and the bindings between rules and the controls or indicators they support.
 
 Schema validation runs on every proposed mapping change and checks that each entry references a rule that exists. A dangling entry (one that names a retired rule, a renamed scope or an adapter that no longer exists) becomes a provenance finding, not a runtime crash. Mapping changes happen more often than rule changes: an adapter owner can add or retire a mapping through a normal reviewed change without invoking the rule-change process, and the schema gates keep the mappings consistent.
 
 ### Layer 3: runtime enforcement
 
-The runtime layer is the evaluation logic. It reads rules and mappings and evaluates them against live state. It has two parts: the adapters, each of which implements the program's conformance contract for its platform and emits drift findings and evidence ([Chapter 07](07-evidence-over-attestation.md)); and an enforcement library that holds the decision logic. In the program's current tooling the enforcement runtime is a library called by the engine, with no command-line surface of its own, by design: enforcement is reached through the engine's path, where the ladder's gates apply, not invoked ad hoc.
+The runtime layer is the evaluation logic. It reads rules and mappings and evaluates them against live state. It has two parts: the adapters, each of which implements the program's conformance contract for its platform and emits observations and evidence ([Chapter 07](07-evidence-over-attestation.md)); and an enforcement library that holds the decision logic and evaluates the observations into drift findings. In the program's current tooling the enforcement runtime is a library called by the engine, with no command-line surface of its own, by design: enforcement is reached through the engine's path, where the ladder's gates apply, not invoked ad hoc.
 
 The runtime is the **only** layer allowed to change observable state. Rules and mappings are read-only at runtime. How far the runtime may act on its own is not set here; it is set per operation class by the actuation ladder in [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md#how-far-automation-may-go), where gated actuation (L3) is the default ceiling.
 
@@ -122,7 +122,7 @@ A mapping in layer 2 binds that rule to scope and to the controls it supports, a
 mapping:
   rule: FMP-RULE-ORG-004
   rule_version: 3
-  applied_by: adapter/entra-directory
+  component: adapter/entra-directory
   scope: all-enabled-member-users
   supports_controls: [AC-2, CM-6]
 ```
@@ -134,7 +134,7 @@ finding:
   rule: FMP-RULE-ORG-004
   rule_version: 3
   mapping: adapter/entra-directory#all-enabled-member-users
-  record_version: 2026-10-20T00:00:00Z
+  record_version: 3f9c2ab
   input_hash: sha256:<hash of the collected snapshot>
   subject: <object id>
   result: fail
@@ -176,13 +176,13 @@ The five drift classes of [Chapter 06](06-the-drift-engine.md) each have a home 
 |---|---|---|
 | Schema | Rules: the declared schema against the actual structure | The owner of the data, or of the rule if the schema is wrong |
 | Semantic | Between rules and runtime: meaning has shifted | Governance review and a code change, both |
-| Provenance | Mappings: an entry references something that no longer resolves | The mapping owner; often a registry edit |
+| Provenance | Mappings, for an entry that references something that no longer resolves; runtime, for a state change with no change record | The mapping owner, often by a registry edit; for a change with no record, an investigation first ([Chapter 02](02-drift-is-the-primary-threat.md)) |
 | Authorization | Runtime: a component acted or emitted outside its authorized envelope | The runtime owner, with security review |
 | Identity | Runtime: an issuer or object can't be resolved to the record | The runtime owner and the record's steward |
 
 : Drift classes by home layer {.striped .hover}
 
-Provenance findings are mapping-layer concerns and are often simple to resolve. Semantic findings cross from the rules into the runtime and need both a governance decision and a code change. Knowing the layer turns "something is wrong" into "this reviewer, through this change boundary."
+Dangling-reference provenance findings are mapping-layer concerns and are often simple to resolve; a change with no record is found at runtime, is investigated first and is P1 when the claim is live ([Chapter 06](06-the-drift-engine.md)). Semantic findings cross from the rules into the runtime and need both a governance decision and a code change. Knowing the layer turns "something is wrong" into "this reviewer, through this change boundary."
 
 ## How rules map to controls
 

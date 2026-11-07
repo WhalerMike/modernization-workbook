@@ -1,6 +1,6 @@
 ---
 title: "Chapter 10 — Operational Tempo: Ticket to Machine, Not Ticket to Human"
-description: "The tempo at which detection, remediation and escalation run; why routine remediation should be a ticket that authorizes a machine rather than one that sends a person to a console; which change classes qualify; how approval gates and the actuation ladder keep humans on the decisions that matter; the declared-exception fallback; and how the service desk fits."
+description: "The tempo at which detection, remediation and escalation run; why routine remediation should be a ticket that authorizes a machine rather than one that sends a person to a console; which operation classes qualify; how approval gates and the actuation ladder keep humans on the decisions that matter; the declared-exception fallback; and how the service desk fits."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b13-governance
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Why a deterministic governance platform still decays without a declared tempo, and what that tempo is: response windows by severity, continuous detection, bounded remediation and escalation to named roles. Why native tools can change state but can't, on their own, produce the record an assessor relies on, and why putting a ticket in front of a person doesn't fix that. Which change classes qualify for a machine, how instance and class approvals map to the actuation ladder of [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md), what happens when no machine can reach the surface, how the service desk fits, and what the tempo shows operations and leadership. The detailed reference, including the controls and the vendor landscape, is in [Appendix B](appendix-b-ticket-to-machine-reference.md).
+Why a deterministic governance platform still decays without a declared tempo, and what that tempo is: response windows by severity, continuous detection, bounded remediation and escalation to named roles. Why native tools can change state but can't, on their own, produce the record an assessor relies on, and why putting a ticket in front of a person doesn't fix that. Which operation classes qualify for a machine, how instance and class approvals map to the actuation ladder of [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md), what happens when no machine can reach the surface, how the service desk fits, and what the tempo shows operations and leadership. The detailed reference, including the controls and the vendor landscape, is in [Appendix B](appendix-b-ticket-to-machine-reference.md).
 :::
 
 The drift engine in [Chapter 06](06-the-drift-engine.md) turns every difference between the record and the estate into a remediation contract with a class, a severity and an escalation path. That is necessary and not sufficient. A platform that detects perfectly and closes slowly produces a growing, accurate, timestamped list of things nobody fixed. Its evidence then documents neglect rather than discipline, and an assessor who reads it will draw that conclusion.
@@ -37,15 +37,15 @@ The program declares a response window for each severity. The severities come fr
 | P1, critical | No. The run halts and alerts | Immediate | A named role decides before anything changes |
 | P2, high | Yes, if the fix is deterministic and the class qualifies; otherwise a person decides the fix | 1 hour | An approver for each instance, unless the class is enumerated at L4 |
 | P3, medium | Yes, if the class qualifies | 24 hours | An approver for each instance, or the class approved in advance |
-| P4, low | Yes, if the class qualifies | 72 hours | The class approved in advance, reviewed after the fact |
+| P4, low | Yes, if the class qualifies | 72 hours | The class approved in advance, reviewed after the fact, or an approver per instance |
 
 Two limits apply to every row. First, an external clock overrides the program's window whenever it is shorter or different. A known exploited vulnerability runs on the remediation timelines of BOD 26-04, which revoked BOD 22-01 and BOD 19-02 on June 10, 2026 ([Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md)),[^c10-bod2604] and an incident runs on CISA's clock, which requires notification within one hour of the incident's identification by the agency's top-level incident response team ([Book 12, Chapter 10](../b12-security-operations/10-who-runs-security-operations.md)).[^c10-cisa] The program's windows govern drift against the record, not the agency's other obligations. Second, "may a machine fix it" never overrides the ceiling for the class. The source of these windows said P3 and P4 findings auto-remediate. In the program's model that is true only where the class has been enumerated for L4; everywhere else the machine executes after a human approves, which is still a ticket to a machine.
 
 The tempo makes three operating commitments.
 
-1. **Detection is continuous.** The record's own checks run on every change to it, and adapters report runtime state as they run ([Chapter 08](08-the-adapter-model.md)). Detection doesn't wait for an audit cycle.
+1. **Detection is repeated.** The record's own checks run on every change to it, and adapters report runtime state on their collection interval ([Chapter 08](08-the-adapter-model.md)); continuous capture is a target, not today's state ([Chapter 07](07-evidence-over-attestation.md)). Detection doesn't wait for an audit cycle.
 2. **Remediation is bounded.** Every finding has a window. A machine handles the deterministic fixes in qualifying classes; the rest go to a person with the window still running.
-3. **Escalation lands on named roles.** Each remediation contract names its path: the steward for a finding about the record, the responsible workstream lead for a finding on a platform, and the CISO for a finding that bears on a control requirement or on evidence ([Chapter 09](09-who-governs.md#who-reviews-drift)). Never a distribution list.
+3. **Escalation lands on named roles.** Each remediation contract names its path: the steward for a finding about the record, the system owner and platform team for a finding on a platform, and the CISO for a finding that bears on a control requirement or on evidence ([Chapter 09](09-who-governs.md#who-reviews-drift)). Never a distribution list.
 
 A program that declares a tempo and doesn't keep it is generating drift of its own, in its operations rather than its estate. The governance platform shows this through its own backlog: a queue with chronic open findings past their windows says the program's tempo and its staffing don't match, and [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority) makes a missed window on a priority-one finding a rollback trigger that goes to the steward and the sponsor.
 
@@ -78,20 +78,20 @@ The controls already describe this shape. CM-3(1) asks for automated mechanisms 
 
 It also changes what people do. SP 800-137 encourages automating data collection, analysis and reporting where possible and is equally clear that an organization's security program can't be fully automated: the tools still need people to implement and maintain them and to interpret what they find.[^c10-sp800137] In the program's model people tune the classifier, review the escalations, decide the exceptions and write the rules. They don't triage routine drift ticket by ticket, and they don't make routine changes by hand.
 
-## Which change classes qualify
+## Which operation classes qualify {#which-change-classes-qualify}
 
-A class of change qualifies for a ticket to a machine when it passes all six tests. The tests are the program's design.
+An operation class, a kind of operation such as restoring a group rule, qualifies for a ticket to a machine when it passes all six tests. (The five change classes of [Chapter 04](04-change-control-and-provenance.md), move, add, change, deletion and reset, are a different cut: they name the kind of change, not the unit the ladder governs.) The tests are the program's design.
 
 1. **A machine can reach the surface.** The platform exposes the change through an API or a management stack the execution layer can call under a scoped service identity.
 2. **The fix is deterministic.** The correct end state comes from the record, not from a judgment about context. If two careful engineers could reasonably choose different fixes, the class doesn't qualify.
 3. **The scope is bounded.** Each action targets one object, or a pre-materialized list, and the blast radius is computed before approval ([Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md)).
 4. **There is a way back.** Each action is rollback-paired, or the class is rollback-never by design with a defined recovery path, as a leaver's deprovisioning is.
 5. **The result can be verified.** A re-read can confirm the object now matches the record.
-6. **The class isn't on the permanent-L3 list.** Tenant-wide role changes, Conditional Access enforcement changes, bulk device-state changes and network policy that touches thousands of endpoints stay at gated actuation whatever the program's maturity ([Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md#how-far-automation-may-go)).
+6. **The class isn't on the permanent-L3 list.** Tenant-wide role changes, Conditional Access enforcement changes, bulk device-state changes and network policy that touches thousands of endpoints stay at gated actuation whatever the program's maturity ([Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md#how-far-automation-may-go)). A domain book can add permanent classes of its own: [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md#the-response-ladder) keeps isolating a server and disabling a privileged or emergency-access account at L3 or below.
 
 The tests decide whether a machine executes. The ladder decides whether a human approves each instance first. Examples, all illustrative:
 
-| Class of change | Qualifies for a machine? | Default ceiling | Notes |
+| Operation class | Qualifies for a machine? | Default ceiling | Notes |
 |---|---|---|---|
 | Re-apply a drifted configuration setting on one device or server, where the baseline is in the record | Yes | L3; an L4 candidate once its false-positive rate is known | CM-6; the stack's own remediation does the work ([Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md)) |
 | Deploy a security update through the native patch stack inside an approved window | Yes | L3, approved per ring or deployment | SI-2; an external deadline can shorten the window |
@@ -167,7 +167,7 @@ The work shifts from "monitor everything" to "tune the classifier and answer the
 
 ## What the tempo shows leadership
 
-Leadership needs three measures, and they are program health measures, not operations statistics.
+Leadership needs three measures, and they are program health measures, not operations statistics. The drift trend that [Chapter 09](09-who-governs.md#who-reviews-drift) gives the board is these measures read over successive periods, not one period's value.
 
 | Measure | Definition | What a bad trend means |
 |---|---|---|
@@ -181,7 +181,7 @@ Two more belong beside them. The **machine-closure share** is the share of closu
 
 - **It doesn't require round-the-clock staffing.** P3 and P4 findings close inside their windows through approved plans and L4 classes. A P1 halts the run and alerts, which keeps the record intact until a person responds.
 - **It doesn't require eliminating drift.** Drift is the signal. The tempo bounds the response, not the occurrence.
-- **It doesn't require a particular vendor.** The tempo runs on the agency's own governance platform and whatever ITSM platform the agency already has. The book's model names no required product; the [Ticket-to-Machine example guide](../guides/ttm-servicenow-sailpoint.md) shows one implementation. [Appendix B](appendix-b-ticket-to-machine-reference.md) gives the change classes and the evidence each produces, and [Book 10](../b10-cloud-boundary/index.md) explains how to check any product's FedRAMP status and availability in the agency's cloud.
+- **It doesn't require a particular vendor.** The tempo runs on the agency's own governance platform and whatever ITSM platform the agency already has. The book's model names no required product; the [Ticket-to-Machine example guide](../guides/ttm-servicenow-sailpoint.md) shows one implementation. [Appendix B](appendix-b-ticket-to-machine-reference.md) gives the operation classes and the evidence each produces, and [Book 10](../b10-cloud-boundary/index.md) explains how to check any product's FedRAMP status and availability in the agency's cloud.
 
 ## Honest limits
 

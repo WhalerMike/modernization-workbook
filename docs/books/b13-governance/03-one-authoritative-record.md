@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Why the estate needs one authoritative record, what that record holds, where it lives and the rules runtime systems follow to consume it. The provenance chain that ties every report, export and evidence packet back to the record version it came from. The six control planes, what each one is authoritative for and why the cut is six. How the record relates to the systems that own facts upstream of it, including the HR system of record and the attribute map in [Book 03](../b03-hr-identity/index.md). The governance platform's own principles, and what an authorizing official can expect from all of it.
+Why the estate needs one authoritative record, what that record holds, where it lives and the rules runtime systems follow to consume it. The provenance chain that ties every report, export and evidence bundle back to the record version it came from. The six control planes, what each one is authoritative for and why the cut is six. How the record relates to the systems that own facts upstream of it, including the HR system of record and the attribute map in [Book 03](../b03-hr-identity/index.md). The governance platform's own principles, and what an authorizing official can expect from all of it.
 :::
 
 ## The governance nobody wrote down
@@ -30,7 +30,7 @@ Microsoft has replaced the parts: Entra ID for the directory, Intune for Group P
 
 The program's answer is to make the governance explicit and to keep it in one place: an authoritative record that defines structure, policy intent and authority exactly once, with every other representation treated as a pointer back to it.
 
-![The authoritative record: upstream systems own their facts, the governed repository records desired state and authority, runtime systems read it, and derived artifacts point back to it.](../../images/diagrams/b13-governance/svg/ch03-record-and-pointers.svg){#fig-ch03-record-and-pointers fig-alt="Top to bottom. Two amber cards across the top: upstream authorities, the systems that own facts (HR system of record, identity platform, asset-lifecycle registry, infrastructure as code), with an arrow labeled authority recorded; and the only write path, a reviewed pull request with the registry updated, checks passed and an approver of record. Both point down to a violet card in the middle, the authoritative record, a governed repository holding policies, plans and evidence, schemas, rules and validation logic, and the authority map. From it, arrows lead down to a blue card, runtime systems, read-only, which resolve the record by a stable reference and never by a copy; and to a green card, derived artifacts, pointers not copies: reports, exports and evidence packets, each carrying source, version, time and producer. A dashed arrow labeled cites source and version runs from the derived artifacts back to the record."}
+![The authoritative record: upstream systems own their facts, the governed repository records desired state and authority, runtime systems read it, and derived artifacts point back to it.](../../images/diagrams/b13-governance/svg/ch03-record-and-pointers.svg){#fig-ch03-record-and-pointers fig-alt="Top to bottom. Two amber cards across the top: upstream authorities, the systems that own facts (HR system of record, identity platform, asset-lifecycle registry, infrastructure as code), with an arrow labeled authority recorded; and the only write path, a reviewed pull request with the registry updated, checks passed and an approver of record. Both point down to a violet card in the middle, the authoritative record, a governed repository holding policies, plans and evidence, schemas, rules and validation logic, and the authority map. From it, arrows lead down to a blue card, runtime systems, read-only, which resolve the record by a stable reference and never by a copy; and to a green card, derived artifacts, pointers not copies: reports, exports and evidence bundles, each carrying source, version, time and producer. A dashed arrow labeled cites source and version runs from the derived artifacts back to the record."}
 
 ## What the record is
 
@@ -50,7 +50,7 @@ The program keeps its governance artifacts in a version-controlled repository. I
 
 | Surface | What it holds | Example |
 |---|---|---|
-| Governance documents | Policies, plans and evidence: the human-readable statement of intent and the record of what was done | The delegation matrix, an authorized migration plan, an evidence packet |
+| Governance documents | Policies, plans and evidence: the human-readable statement of intent and the record of what was done | The delegation matrix, an authorized migration plan, an evidence bundle |
 | Schemas | The authority for structure: what a valid object, attribute or plan looks like | The plan schema, the attribute schema, the administrative-unit tier structure |
 | Rules | Consumer rules and validation logic: what the platform checks and how | Dynamic-group naming rules, plan validation checks, drift rules ([Chapter 05](05-deterministic-governance.md)) |
 
@@ -73,7 +73,7 @@ The rules are simple, and they are where most real-world drift starts. A script 
 Every artifact the program produces cites the record it was derived from. Documents fall into two classes:
 
 - **Authoritative origins** derive from nothing. They are the leaves of the chain: a policy, a schema, an authorized plan.
-- **Derived artifacts** (reports, exports, evidence packets, dashboards) must carry a provenance block naming the source document, its version, when the artifact was derived and what derived it.
+- **Derived artifacts** (reports, exports, evidence bundles, dashboards) must carry a provenance block naming the source document, its version, when the artifact was derived and what derived it.
 
 The block is anchored with a content hash over the claim it carries, so that a changed claim no longer matches its provenance.
 
@@ -165,8 +165,6 @@ Within the identity plane, where most of the directory-migration work happens, t
 
 : The four layers of identity-plane artifacts {.striped .hover}
 
-The layering is why a change to a group rule and a change to a drift rule go through different reviews ([Chapter 05](05-deterministic-governance.md)), even though both live in the same repository.
-
 ## The governance platform's own principles
 
 [Book 00](../b00-orientation/04-the-principles.md) states fifteen principles for the whole program. The governance platform that holds and enforces the record rests on a narrower set: three that apply wherever the platform is used, and three that bind only once the platform does more than record and report. All six are the program's design.
@@ -193,7 +191,7 @@ One more design position runs underneath all of them: the core of the record is 
 
 ## Changing the record, and measuring against it
 
-Because the record is the baseline for everything else, changing it is the most consequential act in the program. Every modification to the repository has to update the document registry. Doctrinal changes (superseding a document, retiring one, shifting its scope) also need a reviewed decision record, and every change passes governance review before merge. A direct commit without a decision record behind it is itself a drift signal. [Chapter 04](04-change-control-and-provenance.md) sets out the full change path.
+Because the record is the baseline for everything else, changing it is the most consequential act in the program. Every modification to the repository has to update the document registry. Doctrinal changes (superseding a document, retiring one, shifting its scope) also need a reviewed decision record, and every change passes the review its layer calls for before merge ([Chapter 05](05-deterministic-governance.md#reviewing-rules)). A direct commit to a doctrinal document without a decision record behind it is itself a drift signal. [Chapter 04](04-change-control-and-provenance.md) sets out the full change path.
 
 Drift is then evaluated against the record. [Chapter 06](06-the-drift-engine.md) presents the program's single drift model, with schema, semantic, provenance, authorization and identity classes, and maps the other books' drift checks onto it. One finding belongs to the record specifically: **contention**, a write directed at a copy that has been demoted after the roster of authoritative sources was ratified. It is an authorization finding in Chapter 06's model, since something acted on a copy it wasn't authorized to write. It also matters for a second reason. It is the signal that a second source of truth is trying to grow back. A continuous-integration gate on the repository fails on any critical finding against the record's own content, so the record can't drift from itself.
 
