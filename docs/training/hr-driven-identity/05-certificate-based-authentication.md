@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 5
 review-status: approved
-reviewed-sha256: 2c927c2294cb7dc1eb588741dc2fb30b893e0420df1da5b72096510460042ecf
-last-reviewed: 2026-11-03
+reviewed-sha256: b91bc73d5b801de1047edca43e3432e0fd7c31348a60239b9ba478e5b17b6c1d
+last-reviewed: 2026-11-07
 ---
 # Module 5: Check certificate-based authentication {.unnumbered}
 

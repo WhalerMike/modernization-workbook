@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 6
 review-status: approved
-reviewed-sha256: 2c6e50fd611cdf420d8cd8046688bfcd756c830d9a6e224fee30f23701fcaee6
-last-reviewed: 2026-11-03
+reviewed-sha256: 8bb614efec16b302ec9c20ccec3416bb71322ff929e4875eac66bf856fce313e
+last-reviewed: 2026-11-07
 ---
 # Module 6: Conditional Access for workload identities {.unnumbered}
 

@@ -10,8 +10,8 @@ date-modified: 2026-10-22
 aliases:
   - /docs/research/infoblox-training.html
 review-status: approved
-reviewed-sha256: e18c7cfd7a2c9ae81d74dcc48e027f8af33df751d7087186d66e9db1ed601427
-last-reviewed: 2026-11-03
+reviewed-sha256: 78418fc6c626243ecfcdf5a5eedd495b5e4800a71f829b561223d08038396aff
+last-reviewed: 2026-11-07
 ---
 # Infoblox Training and Learning Paths {.unnumbered}
 

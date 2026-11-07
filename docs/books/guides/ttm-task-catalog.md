@@ -13,8 +13,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 13"
 review-status: approved
-reviewed-sha256: 0ba95f3430f0a6f5b0cf21c7b6dd7cb671424ff35a7543c0c1cc1ab290521d9f
-last-reviewed: 2026-11-03
+reviewed-sha256: e9efe0c02e575934eba353241ffff36b2edbb57e8d56bb4e76003bef08e0aaf2
+last-reviewed: 2026-11-07
 ---
 # Building an internal Ticket-to-Machine task catalog {.unnumbered}
 

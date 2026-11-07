@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/04-dynamic-rules-as-code.html
 review-status: approved
-reviewed-sha256: 2bd9cb1c37798dd6de545557f04d2c5c5e3b50bdbc8141ee96f87aedce874d0e
-last-reviewed: 2026-11-03
+reviewed-sha256: 3ef858f8b82bf0f954723a1963e4c6ee8236d6511cef08e36fe7fcdfec572444
+last-reviewed: 2026-11-07
 ---
 # Chapter 04 — Dynamic Rules as Code
 

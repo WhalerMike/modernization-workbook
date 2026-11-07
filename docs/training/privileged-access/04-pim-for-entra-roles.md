@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 4
 review-status: approved
-reviewed-sha256: e893d568aa32181b9db526fe73633d52ffa2ce77d4674ec7a9195db061f4345b
-last-reviewed: 2026-11-03
+reviewed-sha256: e207b8508920a73b190b4d071153bca18befd4f14b4ae9593ad1287b9b1d5269
+last-reviewed: 2026-11-07
 ---
 # Module 4: PIM for Microsoft Entra roles as code {.unnumbered}
 

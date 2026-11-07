@@ -9,6 +9,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
+review-status: approved
+reviewed-sha256: 24113116c5f07f4dfe11e63a1bd5594fdf257bdc945459d5eb6fd4a17de2f678
+last-reviewed: 2026-11-07
 ---
 # Charter Sign-Off Sheet {.unnumbered}
 

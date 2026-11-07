@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 3
 review-status: approved
-reviewed-sha256: defb48a8ee9f3de1d13ec6303ee9e377ac6dfd5ee343edc1874c762eb0e16214
-last-reviewed: 2026-11-03
+reviewed-sha256: e03f03d0722e85e3b163924ee5f5e2469d75bb31f59391d46cd451321692555e
+last-reviewed: 2026-11-07
 ---
 # Module 3: Conditional Access for administrators and the activation gate {.unnumbered}
 

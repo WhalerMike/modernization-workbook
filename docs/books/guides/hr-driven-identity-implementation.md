@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 03"
 review-status: approved
-reviewed-sha256: 05ffbb581e8c9074770174d4ba1bbb8ec794e6fe475ffc218f05f8fe643d160c
-last-reviewed: 2026-11-05
+reviewed-sha256: 4b271e949946bf535e24fd9abe73591b1a8047124157c504a8713dd6ddc4d6de
+last-reviewed: 2026-11-07
 ---
 # HR-Driven Identity: An Implementation Guide
 

@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.html
 review-status: approved
-reviewed-sha256: ee02e107362ec7e4c7209c61ccd569ee7ec261d9fa44efd6a262ae184e61707c
-last-reviewed: 2026-11-03
+reviewed-sha256: 146b6308741ad728ccd9fbe8c6f505f59b81502112d57959c85a4a41789e0a94
+last-reviewed: 2026-11-07
 ---
 # Chapter 02 — Graph Clients for the Government Clouds
 

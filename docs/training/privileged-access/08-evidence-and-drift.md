@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 8
 review-status: approved
-reviewed-sha256: 20bd21c4d00ca1afc9c59e20f32d965ca2bf2dba1bac790d100c2560d76a6bb1
-last-reviewed: 2026-11-03
+reviewed-sha256: 23e87ea793a512e4f3c84451a745a4a1db46e52146aa9b9840e20c935d075be5
+last-reviewed: 2026-11-07
 ---
 # Module 8: Evidence and drift for the ISSO {.unnumbered}
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 3a2f2e49be9169200e462afe4996ecedef8afd4fff06c34881abc47f8c612a2e
-last-reviewed: 2026-11-03
+reviewed-sha256: e6237d74382a2b7794b29ff3492fe1ebc00e59bda4b5babae76dd87711fb82d6
+last-reviewed: 2026-11-07
 ---
 # Chapter 02 — Contractor Sources and Enforced End Dates
 
