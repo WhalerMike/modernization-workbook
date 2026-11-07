@@ -233,7 +233,7 @@ Workload ID Premium is a standalone product, not part of other premium plans. On
 
 Source: Microsoft's Workload ID FAQ.[^c05-wid-faq] Access reviews of service principals in privileged roles also need Entra ID P2 for the reviewers.[^c05-wid-faq] Microsoft says Workload ID Premium is available in Azure Government clouds through the account manager, and that the free trial isn't.[^c05-wid-faq]
 
-The program licenses Workload ID Premium for the single-tenant service principals classified Tier 1 in [Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain), because those are where a location-restricted block policy and risk detection earn their cost.
+The program licenses Workload ID Premium for the single-tenant service principals classified R1 (highest application risk tier) in [Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain), because those are where a location-restricted block policy and risk detection earn their cost.
 
 ## App instance property lock
 
@@ -249,7 +249,7 @@ An app registration is a workload identity: a service principal with credentials
 
 | Stage | What happens | Control the program maps it to |
 |---|---|---|
-| 1. Request | A ticket names two human owners, the purpose, and the specific scopes needed, and the registration gets a risk tier before any credential exists | AC-2 |
+| 1. Request | A ticket names the registry owner (and the backup owner where the risk tier requires or recommends one), the two technical people for the Entra Owners list, the purpose, and the specific scopes needed, and the registration gets a risk tier before any credential exists | AC-2 |
 | 2. Consent | Scoped consent only; delegated permissions before application permissions; privileged or write scopes approved by the tier's approver after security review | AC-6 |
 | 3. Credential | Managed identity or federated credential where possible; otherwise a certificate under the 180-day cap; secrets only by exception | IA-5(2), SC-17 |
 | 4. Rotate | Rotation is raised automatically before expiry and approved by the owner, so the app never depends on someone remembering | IA-5(2) |
@@ -323,7 +323,7 @@ $report | Sort-Object NeedsAttention, AppPermissionCount -Descending |
     Export-Csv -Path ".\FMP-AppRegistrationInventory-$(Get-Date -Format 'yyyyMMdd').csv" -NoTypeInformation
 ```
 
-Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, or hold application permissions. Each is a candidate for Tier 1 handling until classified. Service principals with no app registration in the tenant, such as third-party SaaS apps and managed identities, need a second pass over `Get-MgServicePrincipal` with the same permission queries.
+Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, or hold application permissions. Each is a candidate for R1 handling until classified. Service principals with no app registration in the tenant, such as third-party SaaS apps and managed identities, need a second pass over `Get-MgServicePrincipal` with the same permission queries.
 
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
 
@@ -337,7 +337,7 @@ Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, 
 
 ![This book's certificates and the engine that renews each.](../../images/diagrams/b04-access/svg/certs-clm.svg){fig-alt="Certificate credentials on app registrations and service principals go to the app's owner or Key Vault (outside book 07's classes); PIV and CAC in authentication strengths and break-glass go to PIV card system (renews piv credentials); Device certificates behind compliance checks go to Intune (renews device certificates)."}
 
-None of this book's certificates is renewed by the CLM platform. App-registration certificates are not one of Book 07's certificate classes; their lifetime is this book's 180-day policy, and their rotation belongs to the app's owner. Where they come from a CA, Book 07 is the authority for which one ([Chapter 04](../b07-pki/04-the-target-pki.md)), and the platform can at most provision them into Key Vault (inference).[^clm-drivers]
+None of this book's certificates is renewed by the CLM platform. App-registration certificates are not one of Book 07's certificate classes; their lifetime is this book's 180-day policy, and their rotation belongs to the app's owner. Where they come from a CA, the one authority for which CA is the cryptographic architecture in [Vol I Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md), as the credentials section above says; Book 07's chapters don't address app-registration certificates. The platform can at most provision them into Key Vault (inference).[^clm-drivers]
 
 
 ::: {.callout-tip}

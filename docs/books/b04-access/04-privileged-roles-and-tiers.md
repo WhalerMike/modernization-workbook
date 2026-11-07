@@ -93,10 +93,10 @@ The word tier appears in three places in this workbook with three meanings. They
 | Term | Where | Meaning | Numbering |
 |---|---|---|---|
 | Delegation tier | [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#the-three-tier-model) | Scope of an administrative assignment: enterprise read-only, department, sub-team | Tier 1 (widest) to Tier 3 (narrowest) |
-| Application risk tier | [Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain) | Risk of an enterprise application, which sets its approval chain and review cadence | Tier 1 (high risk) to Tier 3 (low risk) |
+| Application risk tier | [Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain) | Risk of an enterprise application, which sets its approval chain and review cadence | R1 (high risk) to R3 (low risk) |
 | Privilege tier | This chapter | What a role's holder could take over, which sets its PIM gate | Tier 0 (control plane) to Tier 2, plus read-only |
 
-The crosswalk is direct. Book 02's delegation Tier 1 (enterprise readers) are this chapter's read-only tier; its delegation Tiers 2 and 3 (AU-scoped administrators) are privilege Tier 2. Privilege Tiers 0 and 1 have no AU scope at all; they're tenant-wide by nature. Where a document needs to be unambiguous, the program writes privilege tiers as `T0`, `T1` and `T2`.
+The crosswalk is direct. Book 02's delegation Tier 1 (enterprise readers) are this chapter's read-only tier; its delegation Tiers 2 and 3 (AU-scoped administrators) are privilege Tier 2. Privilege Tiers 0 and 1 have no AU scope at all; they're tenant-wide by nature. Where a document needs to be unambiguous, the program writes privilege tiers as `T0`, `T1` and `T2` (`Tier 0`, `Tier 1` and `Tier 2` in prose), and application risk tiers as `R1`, `R2` and `R3`, so a group name such as `APP-PAYROLL-USERS-R1` can't be read as a privilege tier.
 
 ## How a role reaches a person
 
@@ -115,13 +115,13 @@ Only a group created with `isAssignableToRole` set to true can hold a Microsoft 
 - Through Microsoft Graph, membership changes need `RoleManagement.ReadWrite.Directory`; `Group.ReadWrite.All` isn't enough.
 - A tenant can have at most **500** role-assignable groups. The feature needs Microsoft Entra ID P1; just-in-time activation through PIM needs P2.
 
-These are the same constraints [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#role-assignment-matrix) applies to its `*-Admins` groups. The program names privileged groups `PRV-<tier>-<role>-<scope>`, for example `PRV-T0-PrivRoleAdmin`, `PRV-T1-ExchangeAdmin` and `PRV-T2-UserAdmin-AU-Finance`, so that the tier is visible in every review, alert and audit record.
+These are the same constraints [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#role-assignment-matrix) applies to its `*-Admins` groups. The program names privileged groups `PRV-<tier>-<role>[-<scope>]`, with the scope left out for a tenant-wide role, for example `PRV-T0-PrivRoleAdmin`, `PRV-T1-ExchangeAdmin` and `PRV-T2-UserAdmin-AU-Finance`, so that the tier is visible in every review, alert and audit record. One group holds one role at one scope. Book 02's example group `Finance-Admins` holds two roles over `AU-Department-Finance`; under this book's naming, which governs, the same two assignments are held by `PRV-T2-UserAdmin-AU-Finance` and `PRV-T2-GroupsAdmin-AU-Finance`.
 
 ### Two ways to model eligibility through a group
 
 Microsoft documents two patterns, and they behave differently.[^c04-graph-tutorial][^c04-pim-groups]
 
-1. **Eligible group-to-role assignment, active members.** The group holds an eligible assignment; members are permanent members of the group and activate the role itself.
+1. **Eligible group-to-role assignment, active members.** The group holds an eligible assignment; members are active members of the group, each with an end date, and activate the role itself.
 2. **Active group-to-role assignment, eligible members.** The group holds an active assignment; people are eligible members and activate their membership through PIM for Groups.
 
 The program uses the first pattern for Microsoft Entra roles. Microsoft notes that roles with permissions in SharePoint, Exchange or the Microsoft Purview portal can take significant time to become usable under the second pattern, and recommends the first pattern or direct PIM for Microsoft Entra roles in those cases.[^c04-pim-groups] The first pattern also keeps the activation on the role, where its role settings, alerts and reviews live.
@@ -184,7 +184,7 @@ The program's PAW rule is Book 02's: administration of privileged roles happens 
 
 Emergency access ("break-glass") accounts are the documented exception to everything above. They restore access when normal administrator sign-in, MFA, Conditional Access or PIM fails, so they can't depend on any of them. [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#emergency-access-accounts) sets the program's standard, and this book keeps it, with Microsoft's current wording applied:[^c04-emergency]
 
-- **Two or more** cloud-only accounts on the tenant's `*.onmicrosoft.com` domain, neither synchronized nor federated, and not tied to an individual or an employee's phone.
+- **Two** cloud-only accounts on the tenant's `*.onmicrosoft.com` domain, neither synchronized nor federated, and not tied to an individual or an employee's phone.
 - **Permanent active Global Administrator**, assigned in PIM. These and service principals that can't perform an activation are the only standing active assignments in the tenant.
 - **Phishing-resistant authentication**, a passkey (FIDO2) security key or certificate-based authentication, with methods different from those of the normal administrator accounts and credentials that don't expire.
 - **Excluded from Conditional Access policies that block or restrict sign-in**, through one dedicated exclusion group. Report-only policies need no exclusion, which is why [Chapter 07](07-the-conditional-access-policy-library.md)'s report-only CA090 still records their sign-ins.
