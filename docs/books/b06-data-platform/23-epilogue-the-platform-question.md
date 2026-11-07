@@ -70,7 +70,7 @@ The identity work isn't lost when a domain moves. Microsoft documents, for examp
 
 ::: {.callout-note title="What Chapter 23 establishes"}
 1. The authentication transformation produces the inventory that scopes the platform decision.
-2. The decision is made per data domain against a common set of dimensions and evidence, and two estates with two answers is normal.
+2. The decision is made per data domain against a common set of dimensions and evidence, and two data domains with two answers is normal.
 3. The goal is fewer authoritative platforms, not a single vendor.
 :::
 

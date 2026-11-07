@@ -125,7 +125,7 @@ The continuous audit described in [Chapter 20](20-the-closure-condition.md) shou
 
 ## FedRAMP Moderate in the commercial cloud
 
-The series assumes Microsoft's commercial cloud (Entra ID at `login.microsoftonline.com`, Azure public US regions) under an agency authorization at FedRAMP Moderate.
+This book assumes Microsoft's commercial cloud (Entra ID at `login.microsoftonline.com`, Azure public US regions) under an agency authorization at FedRAMP Moderate.
 
 **What the cloud authorization covers.** Azure's public cloud is authorized at FedRAMP High for its US regions; Microsoft's documentation calls this a High P-ATO, the term FedRAMP used before its 2026 rules replaced authorization designations with certification classes ([Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md)).[^c17-fedramp] The Moderate baseline is a subset of the High baseline, so a Moderate system can draw on High-authorized services; whether it inherits them is the agency's call. The public-cloud audit-scope list includes the services this chapter relies on:[^c17-scope]
 
@@ -138,7 +138,7 @@ The list names services, not features; confirm dynamic groups, administrative un
 
 **Keep previews out of the production access path.** Entra ID previews are offered under the preview terms in Microsoft's Product Terms for online services; public previews may have limited support, normal service level agreements don't apply, and a preview can be cancelled before it reaches general availability.[^c17-preview] Microsoft describes the `memberOf` operator, for example, as a preview not intended for production use.[^c17-memberof] For a Moderate system, that rules out:
 
-- the `memberOf` dynamic-rule operator (a preview that ends on November 3, 2026; see [Chapter 16](16-groups-roles-and-membership.md));
+- the `memberOf` dynamic-rule operator (a preview that ended on November 3, 2026; remove any remaining use; see [Chapter 16](16-groups-roles-and-membership.md));
 - preview user properties in membership rules, such as `employeeHireDate`;[^c17-dyn]
 - any PIM, access-review or provisioning capability that the Entra admin center or Microsoft Learn still marks as preview.
 
