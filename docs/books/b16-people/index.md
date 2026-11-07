@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's training and education pages, the end-user training guide, and the Federal Compliance series' training and certification volume (its overview, compliance track, implementation track, assessment and certification, and vendor training and lab environments). Every external claim was checked against a primary source on October 21–22, 2026 and carries a note. The replaced pages are kept in the repository's [`archive/b16-people/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b16-people) folder, and their old addresses forward to the chapters that replaced them.
+This book replaces the workbook's training and education pages, the end-user training guide, and the Federal Compliance series' training and certification volume (its overview, compliance track, implementation track, assessment and certification, and vendor training and lab environments). Every external claim was checked against a primary source, starting October 21, 2026, and carries a note with its date. The replaced pages are kept in the repository's [`archive/b16-people/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b16-people) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}
