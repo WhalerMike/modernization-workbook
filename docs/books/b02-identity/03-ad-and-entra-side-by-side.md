@@ -98,7 +98,7 @@ The Active Directory protocols aren't frozen; Microsoft has been hardening and r
 
 : Status of the Active Directory protocols as of October 2026 {.striped .hover}
 
-The source material for this chapter called NTLM simply "legacy." That understates the schedule: NTLMv1 is already gone from current Windows, and Microsoft has said network NTLM will be off by default in the next major release, though the code stays so administrators can turn it back on by policy.[^c03-ntlm-plan] An agency that waits for the cutover to find its NTLM dependencies will find them in production. That's why NTLM auditing belongs in the read-only discovery described in [Chapter 07](07-read-only-discovery.md).
+The source material for this chapter called NTLM simply "legacy." That understates the schedule: NTLMv1 is already gone from current Windows, and Microsoft has said network NTLM will be off by default in the next major release, though the code stays so administrators can turn it back on by policy.[^c03-ntlm-plan] An agency that waits for the cutover to find its NTLM dependencies will find them in production. That's why NTLM audit data is a named export request in the read-only discovery gap list in [Chapter 07](07-read-only-discovery.md).
 
 ## Cryptography
 
