@@ -409,7 +409,7 @@ The approval gate controls *use* of privilege; access reviews control *possessio
 | Setting | Program value |
 |---|---|
 | Scope | Eligible assignments of each role; T0 roles reviewed **monthly**, all other tiers **quarterly** |
-| Reviewers | Selected users: for T0 the `PIM-Approvers-T0` group; for T1 and T2 the role owner and the tier's approver group |
+| Reviewers | Selected users: for T0 the `PIM-Approvers-T0` group; for T1 the role owner and `PIM-Approvers-T1`; for T2 the role owner and the security office; for read-only roles the security office |
 | Upon completion | **Auto apply results to resource**: enabled |
 | If reviewers don't respond | **Remove access** |
 | Justification | Required for approvals |
@@ -559,7 +559,7 @@ The `AU-` rows are NIST's Audit and Accountability control family.[^c08-nist] Th
 | AC-5 | Separation of Duties | Approvers come from outside the requesting tier (Step 1); the platform blocks self-approval and approval by service principals |
 | AC-6 | Least Privilege | Between activations an administrator holds no administrative scope |
 | AC-6(1) | Authorize Access to Security Functions | The eligible-assignment inventory is the enumerable authorization list; the tier sets each role's gate |
-| AC-6(2) | Non-privileged Access for Nonsecurity Functions | Administrators work under their standard account and elevate only for the task |
+| AC-6(2) | Non-privileged Access for Nonsecurity Functions | Administrators hold roles on a separate cloud-only administrator account that is unprivileged between activations, and elevate only for the task |
 | AC-6(5) | Privileged Accounts | Privileged roles are restricted to the eligible population; active assignments are limited to the documented exceptions |
 | AC-6(7) | Review of User Privileges | Monthly (T0) and quarterly reviews of eligibility with automatic removal on denial or no response |
 | AC-6(9) | Log Use of Privileged Functions | PIM logs request, approval, activation and deactivation; the audit log carries them (Step 9) |
