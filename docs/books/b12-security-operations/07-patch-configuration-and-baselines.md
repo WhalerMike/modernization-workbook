@@ -98,13 +98,13 @@ Coordination isn't a console. It's a record every stack must emit. The program's
 |---|---|---|
 | `asset_id` | Authoritative name or address from the naming plane; the join key | `asset_id` |
 | `source_stack` | The stack that produced the record: `update-manager`, `ssm`, `osmh`, `vlcm`, `satellite`, `aap`, `machine-config` | `source` |
-| `surface` | Guest OS, application, hypervisor, firmware or appliance class | `surface` |
+| `surface` | Guest OS, application, hypervisor, firmware or appliance class; these refine the Chapter 02 values (operating system, network enforcement) for patch and baseline records | `surface` |
 | `control` | SI-2 for a patch record, CM-6 for a baseline record | `control` |
 | `finding_ref` | CVE or advisory ID, KEV flag, and the queue row it closes | — (links to the assessment record) |
 | `deadline` | The BOD 26-04 deadline assigned at assessment | — (carried from the queue) |
 | `patch_state` / `baseline_conformance` | Current against required patch level; pass or fail against the CM-2 baseline | `state`, `verdict` |
 | `observed_at` | When the state was measured, in synchronized UTC | `observed_at` |
-| `disposition` | Applied, scheduled, failed, or accepted risk with its POA&M reference | `disposition` |
+| `disposition` | Applied, accepted risk with its POA&M reference, or open; a scheduled or failed attempt stays open and is traced through `evidence_ref` | `disposition` |
 | `evidence_ref` | The stack's job, run or association ID, so an assessor can trace the record to its source | provenance |
 
 Every native stack can produce these fields; the program writes the mapping once per stack. The native outputs that carry them are documented:
