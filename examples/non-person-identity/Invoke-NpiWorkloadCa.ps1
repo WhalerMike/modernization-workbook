@@ -4,7 +4,8 @@
     Chapter 08: Conditional Access for workload identities.
       -Mode Check    the pre-merge check on workload-ca/ and the scope file (no tenant; exit 1 on a Finding)
       -Mode Plan     check the scope against the tenant, plan CA015 and CA037 per ring, and write the
-                     requests; a dry run unless -Apply. New policies are created report-only; a ring is
+                     requests; a dry run unless -Apply, which needs a person's delegated sign-in and
+                     -ApprovedPlanSha256, the SHA-256 of the reviewed dry run's plan.json. New policies are created report-only; a ring is
                      enforced only with -AllowEnforce, a D-N5 record and the reviewed -SignInSummaryPath.
       -Mode SignIns  read the service principal sign-in logs (Graph beta) and summarize the report-only
                      results per principal and ring; prints the summary's SHA-256 for the review record.
@@ -24,6 +25,7 @@ param(
     [datetime]$From,
     [datetime]$To,
     [string]$SignInSummaryPath,
+    [string]$ApprovedPlanSha256,
     [switch]$Apply,
     [switch]$AllowEnforce
 )
@@ -75,7 +77,12 @@ if ($Mode -eq 'SignIns') {
     return
 }
 
-# Plan
+# Plan. Writes are a person's reviewed run: delegated sign-in and the SHA-256 of the reviewed dry run's plan.json.
+if ($Apply -and -not $ApprovedPlanSha256) { throw '-Apply needs -ApprovedPlanSha256: the SHA-256 of the reviewed dry run''s plan.json (its manifest.json lists it).' }
+if ($Apply -and -not $FixturePath) {
+    $mg = Get-MgContext
+    if (-not $mg -or $mg.AuthType -ne 'Delegated') { throw 'wca-apply runs delegated only: sign in as a person (Security Administrator or Conditional Access Administrator), not as an application.' }
+}
 $task = if ($Apply) { 'wca-apply' } else { 'wca-read' }
 $client = & $newClient $task
 $tenantCheck = Test-NpiWcaTenantScope -Client $client -Scope $scope
@@ -83,6 +90,7 @@ $findings = @($check) + @($tenantCheck.Findings)
 $enforcement = Get-NpiWcaEnforcement -Scope $scope -AllowEnforce:$AllowEnforce -SignInSummaryPath $SignInSummaryPath
 $tenant = Get-NpiWcaTenant -Client $client
 $plan = @(Get-NpiWcaPlan -Repository $repo -Scope $scope -Tenant $tenant -Enforcement $enforcement -AsOf $AsOf)
+if ($Apply) { $null = Assert-NpiWcaApprovedPlan -Plan $plan -ApprovedSha256 $ApprovedPlanSha256 }
 $requests = @(Invoke-NpiWcaPlan -Client $client -Plan $plan -Findings $findings -EgressName $scope['egress']['name'])
 $alert = New-NpiWcaAlertRule -Repository $repo -Scope $scope
 $null = Export-NpiWcaRun -OutputPath $OutputPath -Cloud $Cloud -Task $task -Mode "$runMode-$(if ($Apply) { 'Apply' } else { 'DryRun' })" -TenantId $tenantId -Evidence $client.Evidence `

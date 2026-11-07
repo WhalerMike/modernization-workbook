@@ -81,7 +81,7 @@ Each row is pinned by a test: in the "as published" block of `tests/NpiDrift.Tes
 | Requires the initiator to carry an "@": a user principal name, or an app whose display name has one | A credential added by an app, whether the rotation pipeline or an app holding `Application.ReadWrite.All` (here Mail Automation adding a secret to Payroll Export), is never seen | Every initiator is read, user or app; the pipeline is named in a reviewed list, not inferred |
 | Keeps only events whose old key list isn't empty | The first secret on an app that had none, the riskiest kind, is dropped | Every added key ID, compared old against new |
 | Keeps only targets of type Application, even when a person adds the credential | A credential added to a service principal (`Add service principal credentials`) is dropped; Learn notes such updates are logged as separate entries[^np10-secops] | Service principal targets resolved to the app registration's register row |
-| Alerts on the pipeline's own rotation when a person runs it | It knows no pipeline and no change record, so every rotation alerts and the alert is ignored | Inside the pipeline only when the initiator is a listed pipeline identity **and** the key is in the pipeline's credential log (Chapter 04) |
+| Alerts on the pipeline's own rotation when a person runs it | It knows no pipeline and no change record, so every rotation alerts and the alert is ignored | Inside the pipeline only when the key is in the credential log (Chapter 04) **and** the initiator is the person the log records as its operator |
 | Parses only the first of several credentials added in one event | A second key added at the same moment is missed | Every key in the difference |
 | Carries the initiator's user principal name into the alert, split into `Name` and `UPNSuffix` | Names travel wherever the alert goes | Events kept as object IDs and key IDs; names dropped |
 | Looks back one hour, in a Sentinel workspace, with no link to the register, the owners, the expiry or the consent grants | Needs the workspace and its diagnostic setting before any evidence exists, and says nothing about the rest of N7.1 | The Graph audit read with `AuditLog.Read.All`, refused past the 30 days the log keeps,[^np10-retention] joined to the register, the baseline and Chapter 02's ownership check |
@@ -135,7 +135,7 @@ With Chapter 01's `inventory` and Chapter 02's `ownership` tasks, the run needs 
 
 Every finding has the stable ID Chapters 01 and 02 use, `<rule>:<objectKey>`, and a fingerprint: the first 16 hex characters of SHA-256 over `<rule>|<objectKey>|`, the first workbook's `fingerprint()` with an empty issue, so the fingerprint stays the same however the issue text changes. The contract asks Chapters 03 to 09 to compute it the same way, and `npi_evidence.py` checks every one it is given.
 
-**Inside the pipeline.** A credential counts as the pipeline's only when two independent records agree: the event's initiator is a service principal in the reviewed `pipeline-identities.csv`, and the target and key ID are in the credential log Chapter 04's rotation pipeline writes. The pipeline's identity adding a key it didn't log, or a person adding a key the log lists, is still NPI-DRF-07 (research gaps, row 96). *Design guidance.*
+**Inside the pipeline.** A credential counts as the pipeline's only when two independent records agree: the target and key ID are in the credential log Chapter 04's rotation writes, and the event's initiator is the delegated person the log records as the operator who sent the rotation (the user's object ID in `operator`). Every write is a person's, so a service principal never counts, listed or not; a person adding a key the log lists under someone else, or a key it doesn't list, is still NPI-DRF-07 (research gaps, row 96). *Design guidance.*
 
 ### The review cycle
 
@@ -407,7 +407,7 @@ rm -rf out
 
    <!-- capture:end -->
 
-   NPI-DRF-07 holds the three credentials added outside the pipeline: a secret a person added to HR Connector, a secret Mail Automation added to Payroll Export's service principal, and the first secret on Build Pipeline. The pipeline's two certificate rotations, on Deploy Bot and Vendor Portal, aren't there: both are by the listed identity and in the credential log. Vendor Portal's expiring certificate (NPI-DRF-05 on day 1) is gone. NPI-DRF-08 is Mail Automation's new grant for all users, with the two audit events behind it. NPI-DRF-04 is Legacy Reports (last sign-in May 1) and Old SAML Connector (none); Survey Tool, new since the baseline, isn't judged. NPI-DRF-09's Warn is the sample Chapter 05 file, refused because its fingerprint is wrong; its Infos are the five chapters that sent nothing. Open `events.json`: object IDs and key IDs, no names. Open `review-cycle.json`: Payroll Export's last owners' review is 2026-09-15; Mail Automation's, 2026-05-01, is too old (NPI-REV-01).
+   NPI-DRF-07 holds the three credentials added outside the pipeline: a secret a person added to HR Connector, a secret Mail Automation added to Payroll Export's service principal, and the first secret on Build Pipeline. The pipeline's two certificate rotations, on Deploy Bot and Vendor Portal, aren't there: both are by the person the credential log names as the operator, and in the log. Vendor Portal's expiring certificate (NPI-DRF-05 on day 1) is gone. NPI-DRF-08 is Mail Automation's new grant for all users, with the two audit events behind it. NPI-DRF-04 is Legacy Reports (last sign-in May 1) and Old SAML Connector (none); Survey Tool, new since the baseline, isn't judged. NPI-DRF-09's Warn is the sample Chapter 05 file, refused because its fingerprint is wrong; its Infos are the five chapters that sent nothing. Open `events.json`: object IDs and key IDs, no names. Open `review-cycle.json`: Payroll Export's last owners' review is 2026-09-15; Mail Automation's, 2026-05-01, is too old (NPI-REV-01).
 
 6. **Compare the AI use-case inventory vintages:**
 
@@ -741,8 +741,8 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | A day nobody read | A credential added in the gap has no evidence, and Gate 7's "drift checks running" passes on the days that were read | Each window starts where the last ended; a gap is a coverage gap in the period |
 | A window older than the log | The read returns part of the window and looks complete | Refused past 30 days; read the gap from the workspace and attach it |
 | Trusting Microsoft's rule as the check | App-initiated, first and service principal credentials go unseen | The Graph read of every initiator and target, every added key; tests pin what the rule misses |
-| Every rotation alerts | The pipeline's own rotations bury the one that matters, and the alert is ignored | Inside the pipeline needs both the listed identity and the credential log entry |
-| A pipeline identity misused | An attacker with the pipeline's credential adds a key | A key not in the credential log is still NPI-DRF-07 |
+| Every rotation alerts | The pipeline's own rotations bury the one that matters, and the alert is ignored | Inside the pipeline needs both the credential log entry and its recorded operator as the initiator |
+| An operator's or pipeline's identity misused | An attacker with a credential adds a key | A key not in the credential log, or added by anyone but its logged operator, is still NPI-DRF-07 |
 | Names in the tracker or the summary | Owners and initiators are listed for everyone who can read it | Events keep IDs; summaries carry rule IDs, object keys and fingerprints; a test searches them for every name in the fixtures |
 | A finding's text changes and it looks new | Every date in an issue reopens it | The fingerprint is the rule and object key only |
 | Another chapter's file accepted as written | A wrong tenant, a forged fingerprint or a misnamed rule enters the evidence | Each contract file is checked whole and refused with the reason |
@@ -757,7 +757,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] The reader app holds exactly the four Graph permissions and Reader, with a certificate or a federated credential, never a secret.
 - [ ] The baseline in use was approved by someone other than the person who runs the pipeline, and its SHA-256 is in the run's `run.json`.
 - [ ] Each audit window starts where the last one ended, and the newest package is from today.
-- [ ] `pipeline-identities.csv` is reviewed, and a credential log is present: no kit module writes Chapter 04's yet, so until one does, this item can't be met on a live run.
+- [ ] A credential log with each entry's `operator` is present: no kit module writes Chapter 04's yet, so until one does, this item can't be met on a live run.
 - [ ] Lab 2 recorded the activity names, the service principal credential event and the sign-in report, and the code matches what it found.
 - [ ] Every NPI-DRF-07 has an owner's explanation or an incident record.
 - [ ] The review records from Chapters 07 and 09 arrive every run, and NPI-REV-04 is zero. Until a chapter writes them, NPI-REV-04 stays open on a live run and the period stays incomplete.

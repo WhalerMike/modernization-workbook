@@ -83,7 +83,7 @@ audits = [
     ev("aud-00", "2026-10-20T10:00:00Z", C, "Application", I("0a000000", 6), "Mail Automation", user(1, "alice@contoso.example"), [], [(I("9c000000", 6), "Password", "automation")]),
     ev("aud-01", "2026-10-29T20:00:05Z", C, "Application", I("0a000000", 2), "HR Connector", user(3, "carol@contoso.example"),
        [(I("9c000000", 2), "AsymmetricX509Cert", "CN=hr-connector")], [(I("9c000000", 2), "AsymmetricX509Cert", "CN=hr-connector"), (I("9c000000", 31), "Password", "added")]),
-    ev("aud-02", "2026-10-29T22:00:00Z", C, "Application", I("0a000000", 7), "Deploy Bot", appi(20, "Credential Rotation Pipeline"),
+    ev("aud-02", "2026-10-29T22:00:00Z", C, "Application", I("0a000000", 7), "Deploy Bot", user(2, "bob@contoso.example"),
        [(I("9c000000", 7), "AsymmetricX509Cert", "CN=deploy-bot")], [(I("9c000000", 7), "AsymmetricX509Cert", "CN=deploy-bot"), (I("9c000000", 32), "AsymmetricX509Cert", "CN=deploy-bot")]),
     ev("aud-03", "2026-10-30T01:15:00Z", "Add service principal credentials", "ServicePrincipal", I("5b000000", 1), "Payroll Export", appi(6, "Mail Automation"),
        [], [(I("9c000000", 33), "Password", "sp-secret")]),
@@ -93,7 +93,7 @@ audits = [
     ev("aud-07", "2026-10-29T09:00:00Z", "Add service principal", "ServicePrincipal", I("5b000000", 9), "Survey Tool", user(7, "gina@contoso.example")),
     ev("aud-08", "2026-10-29T23:00:00Z", C, "Application", I("0a000000", 2), "HR Connector", user(4, "dave_partner.example#EXT#@contosoexample.onmicrosoft.com"),
        [(I("9c000000", 2), "AsymmetricX509Cert", "CN=hr-connector")], [(I("9c000000", 2), "AsymmetricX509Cert", "CN=hr-connector"), (I("9c000000", 35), "Password", "x")], result="failure"),
-    ev("aud-09", "2026-10-30T04:00:00Z", C, "Application", I("0a000000", 5), "Vendor Portal", appi(20, "Credential Rotation Pipeline"),
+    ev("aud-09", "2026-10-30T04:00:00Z", C, "Application", I("0a000000", 5), "Vendor Portal", user(2, "bob@contoso.example"),
        [(I("9c000000", 5), "AsymmetricX509Cert", "CN=vendor-portal")], [(I("9c000000", 36), "AsymmetricX509Cert", "CN=vendor-portal")]),
 ]
 dump(out / "audit.json", {"_comment": "Chapter 10: fictional directoryAudit items in Microsoft Graph's shape (List directoryAudits) for Lab 1's two windows (2026-10-28T06:00Z to 2026-10-29T06:00Z, and on to 2026-10-30T06:00Z), plus one older event and one failure. KeyDescription values follow the format Learn's linked Sentinel rule parses. contoso.example, invented IDs, a documentation IP address.", "directoryAudits": audits})
@@ -126,9 +126,9 @@ bad["fingerprint"] = "0000000000000000"
 dump(out / "contract" / "ch05-findings.json", {"schema": "fmp-npi-findings/1", "chapter": "05", "tenantId": T, "producedAt": "2026-10-28T06:00:00Z",
      "_comment": "A deliberately broken sample: its fingerprint isn't SHA-256(rule|objectKey|), so the drift run refuses the file (NPI-DRF-09).", "findings": [bad]})
 dump(out / "contract" / "ch04-credential-log.json", {"schema": "fmp-npi-credential-log/1", "chapter": "04", "tenantId": T,
-     "_comment": "A sample of the credential log Chapter 04's rotation pipeline can emit: each credential it added, by object ID and key ID, with its change record.",
-     "changes": [{"objectId": I("0a000000", 7), "keyId": I("9c000000", 32), "changeId": "CHG-2026-1029-01", "at": "2026-10-29T22:00:00Z"},
-                 {"objectId": I("0a000000", 5), "keyId": I("9c000000", 36), "changeId": "CHG-2026-1030-01", "at": "2026-10-30T04:00:00Z"}]})
+     "_comment": "A sample of the credential log Chapter 04's rotation pipeline can emit: each credential it added, by object ID and key ID, with its change record and the operator: the object ID of the person who signed in and sent the rotation.",
+     "changes": [{"objectId": I("0a000000", 7), "keyId": I("9c000000", 32), "changeId": "CHG-2026-1029-01", "operator": I("5a000000", 2), "at": "2026-10-29T22:00:00Z"},
+                 {"objectId": I("0a000000", 5), "keyId": I("9c000000", 36), "changeId": "CHG-2026-1030-01", "operator": I("5a000000", 2), "at": "2026-10-30T04:00:00Z"}]})
 dump(out / "contract" / "ch07-owner-review.json", {"schema": "fmp-npi-review/1", "chapter": "07", "kind": "owner-permission-review", "tenantId": T,
      "_comment": "A sample of the owners' quarterly permission review records Chapter 07 can emit. Reviewer IDs are object IDs.",
      "records": [{"identityKey": A(1), "reviewedOn": "2026-09-15", "decision": "Approved", "reviewerId": I("5a000000", 1)},

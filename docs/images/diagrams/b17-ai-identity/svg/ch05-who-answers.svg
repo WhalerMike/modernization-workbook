@@ -59,9 +59,6 @@
 <path d="M3.22 -11L0.98 -11L0.98 0L3.22 0ZM3.22 -11 "/>
 </g>
 <g id="glyph-0-19">
-<path d="M3.23 0L5.73 0L8.77 -9L6.45 -9L5.09 -4.33C4.86 -3.52 4.69 -2.7 4.52 -1.88C4.34 -2.7 4.16 -3.52 3.94 -4.33L2.56 -9L0.22 -9ZM3.23 0 "/>
-</g>
-<g id="glyph-0-20">
 <path d="M4.59 0C6.56 0 7.94 -1.05 8.25 -2.89L6.2 -3.31C6.03 -2.33 5.47 -1.72 4.61 -1.72C3.44 -1.72 2.83 -2.88 2.83 -4.5C2.83 -6.14 3.44 -7.27 4.61 -7.27C5.47 -7.27 6 -6.69 6.19 -5.73L8.23 -6.16C7.92 -7.95 6.53 -9 4.59 -9C2.12 -9 0.58 -7.3 0.58 -4.48C0.58 -1.69 2.12 0 4.59 0ZM4.59 0 "/>
 </g>
 <g id="glyph-1-0">
@@ -786,21 +783,20 @@
 <path fill="#ecfdf5" d="M276 352C276 352 462 352 462 352C468 352 474 346 474 340C474 340 474 295 474 295C474 289 468 283 462 283C462 283 276 283 276 283C270 283 264 289 264 295C264 295 264 340 264 340C264 346 270 352 276 352 "/>
 <g fill="#047857">
 <use xlink:href="#glyph-0-18" x="270" y="300.5"/>
-<use xlink:href="#glyph-0-3" x="274.5" y="300.5"/>
-<use xlink:href="#glyph-0-19" x="283.5" y="300.5"/>
-<use xlink:href="#glyph-0-2" x="292.5" y="300.5"/>
-<use xlink:href="#glyph-0-3" x="301.5" y="300.5"/>
-<use xlink:href="#glyph-0-4" x="310.5" y="300.5"/>
-<use xlink:href="#glyph-0-14" x="315.75" y="300.5"/>
-<use xlink:href="#glyph-0-11" x="324.75" y="300.5"/>
-<use xlink:href="#glyph-0-8" x="330.75" y="300.5"/>
-<use xlink:href="#glyph-0-5" x="339.75" y="300.5"/>
-<use xlink:href="#glyph-0-11" x="343.5" y="300.5"/>
-<use xlink:href="#glyph-0-2" x="349.5" y="300.5"/>
-<use xlink:href="#glyph-0-20" x="358.5" y="300.5"/>
-<use xlink:href="#glyph-0-14" x="367.5" y="300.5"/>
-<use xlink:href="#glyph-0-11" x="376.5" y="300.5"/>
-<use xlink:href="#glyph-0-7" x="382.5" y="300.5"/>
+<use xlink:href="#glyph-0-7" x="274.5" y="300.5"/>
+<use xlink:href="#glyph-0-2" x="284.25" y="300.5"/>
+<use xlink:href="#glyph-0-3" x="293.25" y="300.5"/>
+<use xlink:href="#glyph-0-4" x="302.25" y="300.5"/>
+<use xlink:href="#glyph-0-6" x="307.5" y="300.5"/>
+<use xlink:href="#glyph-0-4" x="311.25" y="300.5"/>
+<use xlink:href="#glyph-0-8" x="317.25" y="300.5"/>
+<use xlink:href="#glyph-0-5" x="326.25" y="300.5"/>
+<use xlink:href="#glyph-0-11" x="330" y="300.5"/>
+<use xlink:href="#glyph-0-2" x="336" y="300.5"/>
+<use xlink:href="#glyph-0-19" x="345" y="300.5"/>
+<use xlink:href="#glyph-0-14" x="354" y="300.5"/>
+<use xlink:href="#glyph-0-11" x="363" y="300.5"/>
+<use xlink:href="#glyph-0-7" x="369" y="300.5"/>
 </g>
 <g fill="#1e293b">
 <use xlink:href="#glyph-3-0" x="270" y="323.3"/>
