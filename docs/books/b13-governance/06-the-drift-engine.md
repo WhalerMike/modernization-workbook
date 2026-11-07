@@ -1,6 +1,6 @@
 ---
 title: "Chapter 06 — The Drift Engine"
-description: "The program's one drift model: what the drift engine compares, its five drift classes and how the drift checks in Books 00 to 03 map onto them, how severity is computed, the cadence of detection, what the engine remediates and what it never does, the remediation contract every finding leaves, and an honest account of what is built today."
+description: "The program's one drift model: what the drift engine compares, its five drift classes and how the drift checks in Books 00 to 03 and Book 05 map onto them, how severity is computed, the cadence of detection, what the engine remediates and what it never does, the remediation contract every finding leaves, and an honest account of what is built today."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b13-governance
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What the drift engine compares, and why it compares against a versioned record rather than a last-known-good snapshot. The program's one drift model: five classes, and how the drift checks defined in Books 00 to 03 map onto them. How severity is computed and how it relates to the actuation ladder. When detection runs, what the engine remediates and what it never does, the remediation contract each finding leaves, and which parts of the engine are built today.
+What the drift engine compares, and why it compares against a versioned record rather than a last-known-good snapshot. The program's one drift model: five classes, and how the drift checks defined in Books 00 to 03 and Book 05 map onto them. How severity is computed and how it relates to the actuation ladder. When detection runs, what the engine remediates and what it never does, the remediation contract each finding leaves, and which parts of the engine are built today.
 :::
 
 ## Drift as a signal
@@ -56,7 +56,7 @@ The program classifies every drift finding into exactly one of five classes. Fiv
 
 Earlier books defined drift checks for their own domains, with their own names. Those checks stay: each book owns the detail of its domain. They are not separate taxonomies. Each is an instance of one of the five classes, and this table is the reconciliation.
 
-![One drift model: the five classes, and the domain checks from Books 00 to 03 that are instances of each.](../../images/diagrams/b13-governance/svg/ch06-one-drift-model.svg){#fig-ch06-one-drift-model fig-alt="A table of five rows. Schema, amber: structure no longer fits the declared schema; instances are Format and enumeration Value from Book 00, a record that fails validation from Book 03, and an unrepresentable registry entry from Book 02 Chapter 05. Semantic, amber: structure valid, meaning stale or different from the record; instances are Phantom and Orphan value from Book 00, Value and Processing drift from Book 01, a membership rule or paused rule from Book 02 Chapter 05, and stale access and attribute drift from Book 03. Provenance, red: a change or reference with no resolvable record behind it; instances are a state change with no provenance event and a host or port moved without a record, from Book 02 Chapter 11. Authorization, red: something acted outside its authorized envelope; instances are a role assignment not in the matrix and a restriction mismatch from Book 02 Chapter 05, and an unauthorized write from Book 03. Identity, red: an object or issuer that does not resolve to the record; instances are an orphan group from Book 01, a missing administrative unit from Book 02 Chapter 05, and a missing identity, orphan account or credential drift from Book 03."}
+![One drift model: the five classes, and the domain checks from Books 00 to 03 and Book 05 that are instances of each.](../../images/diagrams/b13-governance/svg/ch06-one-drift-model.svg){#fig-ch06-one-drift-model fig-alt="A table of five rows. Schema, amber: structure no longer fits the declared schema; instances are Format and enumeration Value from Book 00, a record that fails validation from Book 03, and an unrepresentable registry entry from Book 02 Chapter 05. Semantic, amber: structure valid, meaning stale or different from the record; instances are Phantom and Orphan value from Book 00, Value and Processing drift from Book 01, a membership rule or paused rule from Book 02 Chapter 05, and stale access and attribute drift from Book 03, and a device assignment that differs from the procurement record or the vendor program record from Book 05. Provenance, red: a change or reference with no resolvable record behind it; instances are a state change with no provenance event and a host or port moved without a record, from Book 02 Chapter 11. Authorization, red: something acted outside its authorized envelope; instances are a role assignment not in the matrix and a restriction mismatch from Book 02 Chapter 05, and an unauthorized write from Book 03, and a device enrolled outside the zero-touch path or landed in co-management from Book 05. Identity, red: an object or issuer that does not resolve to the record; instances are an orphan group from Book 01, a missing administrative unit from Book 02 Chapter 05, and a missing identity, orphan account or credential drift from Book 03, and a device enrolled with no procurement record from Book 05."}
 
 | Book and check | Class | Book's severity | Why this class |
 |---|---|---|---|
@@ -83,6 +83,11 @@ Earlier books defined drift checks for their own domains, with their own names. 
 | Book 03 Ch11: credential drift | Identity | High | A live credential bound to a worker the record has separated |
 | Book 03 Ch11: contractor credential drift | Identity | High | A card with no contractor record, or a record whose card ended while the engagement is still open |
 | Book 03 Ch11: schema drift | Schema | Medium | A record fails validation |
+| [Book 05 Ch04](../b05-devices/04-intune-first-onboarding.md): `DRIFT-PROCUREMENT-MISMATCH` | Semantic | — | Valid shape; the device's organizational assignment differs from the procurement record |
+| Book 05 Ch04: `DRIFT-VENDOR-PROGRAM-CARRIER` | Semantic | — | The assignment in the vendor program record differs from the procurement record, or is missing |
+| Book 05 Ch04: `DRIFT-ENROLLMENT-VECTOR` | Authorization | — | A device enrolled through a non-zero-touch path without an exception grant |
+| Book 05 Ch04: `DRIFT-CO-MANAGEMENT-NEW` | Authorization | — | A net-new endpoint landed in co-management instead of Intune-first, outside the authorized path |
+| Book 05 Ch04: `DRIFT-PROCUREMENT-RECORD-ABSENT` | Identity | — | A device enrolled in Intune with no matching procurement record |
 | [Chapter 03](03-one-authoritative-record.md): contention (a write to a demoted copy) | Authorization | Critical when the copy is in use; otherwise High | Something wrote to a copy it isn't authorized to write: a second source of truth growing back |
 
 : Domain drift checks mapped to the five classes {.striped .hover}
@@ -194,7 +199,7 @@ An assessor looking at a system governed this way doesn't have to accept a drift
 ## Key takeaways
 
 - The drift engine compares observed state with a versioned record, so approved change isn't drift and every finding can be re-derived.
-- There is one drift model: five classes. The checks in Books 00 to 03 are instances of those classes, not separate taxonomies.
+- There is one drift model: five classes. The checks in Books 00 to 03 and Book 05 are instances of those classes, not separate taxonomies.
 - Severity is computed from class and liveness, or pinned by the owning book; it sets the clock and whether the run halts.
 - The actuation ladder, not the severity, decides who acts. P1 always halts for a person, and L3 is the default ceiling.
 - Schema and provenance detection are built; semantic is partial; authorization and identity are design only and are found today by assessment modules and people.

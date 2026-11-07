@@ -148,7 +148,7 @@ HR owns the fact that someone has joined, moved or left ([Book 03, Chapter 08](.
 
 | Item | What happens | Approval | Control |
 |---|---|---|---|
-| Leaver | The separation event drives disable or removal in the service **on the effective date**, with evidence for each step. The interval from separation to revocation inside the service becomes a continuous-monitoring measure. | Manager and identity team | AC-2(3) |
+| Leaver | The separation event drives disable or removal in the service **on the effective date**, with evidence for each step. The interval from separation to revocation inside the service becomes a continuous-monitoring measure. | The lifecycle workflow, with manager and identity operations confirmation | AC-2(3) |
 | Mover | A transfer re-derives entitlements in the service from the new assignment and raises an access review of anything left over. | Owner | PS-5 |
 
 : Phase 5. {.striped .hover}

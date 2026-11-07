@@ -107,7 +107,7 @@ None of the following is a requirement on agencies in its own right. Each is gui
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 04 — Moving the Data: DB2 and Oracle to PostgreSQL or SQL Server](04-moving-the-data.md) · [Book index](index.md) · [Next: Chapter 06 — Compliance by Design →](06-compliance-by-design.md)
+[← Previous: Chapter 04 — Moving the Data: Db2 and Oracle to PostgreSQL or SQL Server](04-moving-the-data.md) · [Book index](index.md) · [Next: Chapter 06 — Compliance by Design →](06-compliance-by-design.md)
 :::
 
 [^c05-m2521]: Office of Management and Budget, M-25-21, *Accelerating Federal Use of AI through Innovation, Governance, and Public Trust*, April 3, 2025, Section 4(b)(v) and footnote 22, <https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf> (accessed Oct 28, 2026).

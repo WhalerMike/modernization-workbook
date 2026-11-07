@@ -34,7 +34,7 @@ This book replaces the workbook's AI identity governance operational guide (its 
 
 **15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-17) page.
 
-**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO, Chief AI Officer, authorizing officials and privacy officer: why AI agents need identities, what federal AI rules require, ownership and lifecycle, shadow AI and the decisions to make, on the [Presentations](../../presentations/index.md#executive-b17) page.
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO, Chief AI Officer, authorizing officials: why AI agents need identities, what federal AI rules require, ownership and lifecycle, shadow AI and the decisions to make, on the [Presentations](../../presentations/index.md#executive-b17) page.
 
 **Technical deep dive (about 50 minutes live, 19 narrated)**: AI agents as identities and the federal rules, the inventory and the kinds of AI identity, owners, credentials and least privilege, and monitoring, shadow AI, the scan and the evidence, in modules on the [Presentations](../../presentations/index.md#technical-b17) page.
 :::

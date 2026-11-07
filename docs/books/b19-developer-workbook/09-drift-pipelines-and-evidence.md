@@ -588,7 +588,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 ## Checklist
 
 - [ ] The workflow passes `workflow_lint.py` with no findings, and every action is pinned to a commit.
-- [ ] The app has a federated credential whose subject is the pipeline's environment, and no client secret or certificate.
+- [ ] The app has a federated credential whose subject is the pipeline's environment, and no client secret. The shared reader app may also hold the certificate its other callers use ([Chapter 10](10-deploying-to-test-and-production.md)); the pipeline itself signs in with the federated credential only.
 - [ ] The app has only the Graph read permissions and Azure Reader the selected checks need, plus Storage Blob Data Contributor on the evidence container and nothing wider.
 - [ ] The cloud in the workflow, the Azure environment, the audience and the Graph host agree (`cloud --name` prints them).
 - [ ] The job that signs in has no write grant besides `id-token`; the job that writes issues has no Azure access.

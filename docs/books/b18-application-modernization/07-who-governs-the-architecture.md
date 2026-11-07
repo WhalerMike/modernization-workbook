@@ -51,6 +51,7 @@ The board is the program's change control body for the target architecture, in t
 | What is on the approved-technology list, and in which tier | Chief architect, as board chair | Board, with the CISO's representative | Pull request to the list, with a decision record |
 | The reference patterns and their versions | Chief architect | Board; platform team | Pattern repository release |
 | An exception to a standard for one application | Chief architect, with an end date | Board; CISO's representative for any control impact | Decision record with an expiry |
+| A change to the target architecture itself | Chief architect, proposing | Board; the steward and the sponsor must concur ([Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what)) | Decision record plus the sponsor's recorded concurrence |
 | A design at Gate 2 | Chief architect or a delegated reviewer | Two board members, one from security | Decision record in the application's repository |
 | An application's disposition | Application owner, with the steward | Board for consistency with the target architecture | Triage record ([Chapter 02](02-triaging-the-portfolio.md)) |
 | The security and privacy control requirements a design must meet | CISO | Senior agency official for privacy (responsible with the CISO); board | Requirement committed as policy |
@@ -70,7 +71,7 @@ The table follows the rule [Book 13, Chapter 09](../b13-governance/09-who-govern
 | The platform team lead | Runs the pipelines and runtime the patterns depend on |
 | The program steward | Keeps the decisions in the program's record and sequences them with the waves ([Chapter 10](10-running-the-portfolio-in-waves.md)) |
 | Application owners, when their application is on the agenda | Decide for their application |
-| The records officer, on request | Retention and disposition of data an application retires |
+| The records officer, required at Gate 1 for a retire disposition and otherwise on request | Retention and disposition of the records an application holds when it retires |
 | The Section 508 program manager's delegate, for designs with a user interface | The accessibility expert OMB M-24-08 encourages agencies to make a decision-maker at development checkpoints[^c07-m2408] ([Chapter 06](06-compliance-by-design.md#section-508-gate)) |
 
 The authorizing official, or a designated representative, can observe. They shouldn't be members, because the board's recommendations feed decisions only the authorizing official can make, and that separation is part of what an assessor checks.
@@ -79,9 +80,9 @@ The authorizing official, or a designated representative, can observe. They shou
 
 The board governs through three artifacts. They live in a repository, change by pull request and are versioned like code.
 
-**The approved-technology list.** Each technology the portfolio uses gets a tier. The program's design uses four: *adopt* (the default for new work), *trial* (allowed for named applications while the board evaluates it), *contain* (allowed where it already runs, not for new work) and *retire* (on a dated exit). For this book's target, Java and Spring Boot, React, Node.js for the narrow roles [Chapter 03](03-the-target-reference-architecture.md) gives it, PostgreSQL or SQL Server and OCI containers sit in *adopt*; DB2 and Oracle sit in *contain* or *retire*, depending on what the triage found. The list carries supported versions and their end-of-support dates, because SA-22 asks the organization to replace components when the vendor stops supporting them.[^c07-sp80053] A list without versions is a brochure.
+**The approved-technology list.** Each technology the portfolio uses gets a tier. The program's design uses four: *adopt* (the default for new work), *trial* (allowed for named applications while the board evaluates it), *contain* (allowed where it already runs, not for new work) and *retire* (on a dated exit). For this book's target, Java and Spring Boot, React, Node.js for the narrow roles [Chapter 03](03-the-target-reference-architecture.md) gives it, PostgreSQL or SQL Server and OCI containers sit in *adopt*; Db2 and Oracle sit in *contain* or *retire*, depending on what the triage found. The list carries supported versions and their end-of-support dates, because SA-22 asks the organization to replace components when the vendor stops supporting them.[^c07-sp80053] A list without versions is a brochure.
 
-**Reference patterns.** A pattern is a runnable starting point, not a slide: a service template with the contract test already wired in, a front-end template with the identity library configured, a data-migration job with validation built in, an agent with an allow-list and an audit log. [Chapter 08](08-the-reference-implementation.md) is the book's example. Teams that start from a pattern inherit the review the pattern already passed, so Gate 2 for a standard service is short and Gate 2 for a design that departs from the pattern is where the board spends its time.
+**Reference patterns.** A pattern is a runnable starting point, not a slide: a service template with the contract test already wired in, a front-end template with the identity library configured, a data-migration job with validation built in, an agent with an allow-list and an audit log. Agents follow one design standard: an agent reads and proposes, people approve and services apply, so no agent writes to a system of record. [Chapter 08](08-the-reference-implementation.md) is the book's example. Teams that start from a pattern inherit the review the pattern already passed, so Gate 2 for a standard service is short and Gate 2 for a design that departs from the pattern is where the board spends its time.
 
 **Architecture decision records.** A decision record is a short document, kept with the code, that states one significant decision and why it was made. The format most teams use goes back to Michael Nygard's 2011 proposal: a title, the context, the decision, a status and the consequences, numbered in sequence and stored in the project repository. When a decision is reversed, the old record is marked superseded rather than deleted, so the history stays visible.[^c07-nygard] Decision records are the cheapest evidence the program has. They answer the question an assessor asks about PL-8 ("how does this system's architecture fit the enterprise one?") in the words of the people who made the choice, at the time they made it.
 
@@ -91,14 +92,14 @@ Every application the triage changes passes four gates. Applications disposition
 
 | Gate | When | What passes it | Who decides | Controls it evidences |
 |---|---|---|---|---|
-| 1. Disposition | Once per application, and at each re-triage | A scored triage record and a disposition the owner has signed | Application owner, with the steward | PM-5 system inventory, CM-8 component inventory, SA-22 unsupported components |
-| 2. Design review | Before build for *replatform*, *refactor* and *rebuild*; for *rehost* only when the runtime changes | A decision record for each departure from a pattern; the interface contract (OpenAPI for services); a data classification; a threat model; the privacy check that decides whether a PIA is needed; for a user-facing change, the accessibility review of the design | Chief architect or delegate | PL-8, SA-3, SA-8, SA-17 where High, CM-4 |
-| 3. Pull request and CI | Every change | Required review by someone other than the author; passing unit, contract and integration tests; static analysis and dependency scans; automated accessibility rules for user-facing changes; an SBOM | Code owner for the component | CM-3, SA-10, SA-11, SA-15 |
-| 4. Release | Every production deployment | A signed build with provenance; a recorded impact analysis; a change record that links the pull requests it contains; for a data cut-over, the validation report with its three results and a rehearsed rollback ([Chapter 04](04-moving-the-data.md#cutting-over)); for a user-facing change, the manual accessibility test results or a signed exception ([Chapter 06](06-compliance-by-design.md#section-508-gate)) | Release owner; change control body for significant changes | CM-3, CM-4, SR-4 provenance |
+| 1. Disposition | Once per application, and at each re-triage | A scored triage record and a disposition the owner has signed; for *retire*, the privacy check on the records and personal data that go away, and the records officer's required consultation on how they are migrated, transferred or destroyed | Application owner, with the steward; the records officer is a required consulted party for *retire* | PM-5 system inventory, CM-8 component inventory, SA-22 unsupported components |
+| 2. Design review | Before build for *replatform*, *refactor* and *rebuild*; for *rehost* only when the runtime, the hosting location or the way the application handles data changes | A decision record for each departure from a pattern; the interface contract (OpenAPI for services); a data classification; a threat model; the privacy check that decides whether a PIA is needed; for a user-facing change, the accessibility review of the design | Chief architect or delegate | PL-8, SA-3, SA-8, SA-17 where High, CM-4 |
+| 3. Pull request and CI | Every change | Required review by someone other than the author; passing unit, contract and integration tests; static analysis and dependency scans; automated accessibility rules for user-facing changes; an SBOM | Code owner for the component, who acts for the delivery team lead, the role accountable in the matrix below | CM-3, SA-10, SA-11, SA-15 |
+| 4. Release | Every production deployment | A signed build with provenance; a recorded impact analysis; a change record that links the pull requests it contains; for a data cut-over, the validation report with its three results and a rehearsed rollback ([Chapter 04](04-moving-the-data.md#cutting-over)); for a user-facing change, the manual accessibility test results or a signed exception ([Chapter 06](06-compliance-by-design.md#section-508-gate)) | Release owner, who acts for the application owner, the role accountable in the matrix below; change control body for significant changes | CM-3, CM-4, SR-4 provenance |
 
 Two of the gates are meetings and two are automation, and that ratio is deliberate. Gates 1 and 2 happen once per application, or once per significant change, and need human judgment. Gates 3 and 4 happen many times a day and can be enforced by the repository and the pipeline. A program that runs Gate 3 as a meeting will either stall or stop running it.
 
-Gate 2 also decides when a change is significant enough to go back to the authorizing official. That threshold is the authorizing official's to set, in the system's continuous monitoring strategy ([Book 14](../b14-compliance/index.md)); the gate's job is to apply it and record the answer.
+Gate 2 also decides when a change is significant enough to go back to the authorizing official. Whether a change is significant, and so needs reauthorization, is the authorizing official's decision, with the system owner and the ISSO responsible for the analysis ([Book 14, Chapter 10](../b14-compliance/10-who-owns-compliance.md#the-responsibility-matrix)); the gate's job is to apply that decision and record the answer. A written significance threshold is not yet specified in Book 14.
 
 ## Git and pipeline practice
 
@@ -140,21 +141,21 @@ This is the same principle [Book 13, Chapter 04](../b13-governance/04-change-con
 
 R = responsible (does the work), A = accountable (owns the outcome), C = consulted, I = informed. One A per row.
 
-| Activity | CIO | Chief architect (board chair) | Board | Application owner | Delivery team lead | Platform team | CISO | Privacy office | Authorizing official | Steward |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Charter the board and name its chair | A | R | I | I | I | I | C | C | I | C |
-| Maintain the approved-technology list | C | A | R | I | C | C | C | I | I | I |
-| Publish and version reference patterns | I | A | C | I | C | R | C | C | I | I |
-| Grant an exception to a standard | I | A | C | R | C | C | C | C | I | I |
-| Gate 1: dispositions | I | C | C | A | C | I | I | I | I | R |
-| Gate 2: design review | I | A | R | C | R | C | C | C | I | I |
-| Gate 3: pull request and CI | I | I | I | I | A | R | C | I | I | I |
-| Gate 4: release | I | I | I | A | R | R | C | I | I | I |
-| Set control requirements for designs | I | C | C | I | I | C | A | R | I | I |
-| Decide whether a change is significant | I | C | I | C | C | I | C | C | A | I |
-| Accept residual risk | I | I | I | C | I | I | C | C | A | I |
-| Approve IT contracts and licenses | A | C | C | C | I | I | C | I | I | I |
-| Keep gate evidence in the record | I | C | I | C | R | R | C | I | I | A |
+| Activity | CIO | Chief architect (board chair) | Board | Application owner | Delivery team lead | Platform team | CISO | Privacy office | Authorizing official | Steward | Records officer |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Charter the board and name its chair | A | R | I | I | I | I | C | C | I | C | I |
+| Maintain the approved-technology list | C | A | R | I | C | C | C | I | I | I | I |
+| Publish and version reference patterns | I | A | C | I | C | R | C | C | I | I | I |
+| Grant an exception to a standard | I | A | C | R | C | C | C | C | I | I | I |
+| Gate 1: dispositions | I | C | C | A | C | I | I | C | I | R | C |
+| Gate 2: design review | I | A | R | C | R | C | C | C | I | I | I |
+| Gate 3: pull request and CI | I | I | I | I | A | R | C | I | I | I | I |
+| Gate 4: release | I | I | I | A | R | R | C | I | I | I | I |
+| Set control requirements for designs | I | C | C | I | I | C | A | R | I | I | I |
+| Decide whether a change is significant | I | C | I | C | C | I | C | C | A | I | I |
+| Accept residual risk | I | I | I | C | I | I | C | C | A | I | I |
+| Approve IT contracts and licenses | A | C | C | C | I | I | C | I | I | I | I |
+| Keep gate evidence in the record | I | C | I | C | R | R | C | I | I | A | I |
 
 Read it with [Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what), which sets the program-wide decision rights; where the two differ, Book 00 governs and this table is wrong. Two rows deserve emphasis. The authorizing official is accountable for deciding whether a change is significant, because that decision can reopen the authorization; the CISO only advises, and the board is informed. And the CIO, not the board, approves what the agency buys.
 
