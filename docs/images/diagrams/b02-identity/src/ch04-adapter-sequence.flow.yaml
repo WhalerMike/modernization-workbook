@@ -4,7 +4,7 @@
 rankdir: LR
 graph: {nodesep: 0.25, ranksep: 0.4}
 nodes:
-  pki: {tone: red, width: 190, tag: "CRITICAL · DM_020", title: "PKI / certificate services", body: ["=Replacement CA live before the first expiry wave"], size: 12}
+  pki: {tone: red, width: 190, tag: "CRITICAL · DM_020", title: "PKI / certificate services", body: ["=Target issuers issuing before the first expiry wave"], size: 12}
   rad: {tone: red, width: 190, tag: "CRITICAL · DM_030", title: "RADIUS / 802.1X / VPN", body: ["=Parallel run, then cut over clients"], size: 12}
   ldap: {tone: red, width: 190, tag: "CRITICAL · DM_040", title: "LDAP proxy", body: ["=30-day discovery, cut over in waves"], size: 12}
   ops: {tone: amber, width: 190, tag: "HIGH · DM_010 · DM_060", title: "IPAM, DNS, DHCP and devices", body: ["=Zones off AD; workloads to Intune"], size: 12}

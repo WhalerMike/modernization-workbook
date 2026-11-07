@@ -32,6 +32,11 @@ This module is illustrative. It hasn't been tested against a production forest. 
 The workbook now ships this module as files, with Pester tests against a fictional forest on Windows PowerShell 5.1 and PowerShell 7: [examples/start-kit on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit), or the [start-kit.zip download](../../../downloads/start-kit.zip). The kit is the read-only half: it leaves out the Gitea functions, `Test-FMPTrust` and the native GPO backup, because each one writes or needs administrator rights, and it adds the schema, DHCP, Kerberos SPN map, LDAP binding and SQL Server collectors [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md) calls for. Its README lists every difference from the code below. Like this appendix, it's illustrative: unit-tested against fixtures, not proven against a live estate.
 :::
 
+::: {.callout-warning}
+## Don't load both assessment modules in one session
+`FMPADAssessment` and `FMPIdentityAssessment` ([Appendix C](appendix-c-identity-assessment-module.md)) both export `Get-FMPUserInventory` and `Get-FMPGroupInventory`, with different parameters: `-Domain` and `-OutputPath` here, `-SearchBase` and `-ExportPath` there. Import one module at a time, and remove the first (`Remove-Module`) before importing the other.
+:::
+
 ## Corrections to the source design
 
 The source module was flattened onto single lines during conversion, and several functions didn't work as written. The table lists what changed and why.

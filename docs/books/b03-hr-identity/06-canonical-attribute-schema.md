@@ -33,14 +33,16 @@ The schema below names Oracle fields because Oracle Fusion Cloud HCM is the Core
 | OPM standard data element | Identity use | Lands as (crosswalk below) |
 |---|---|---|
 | Agency / subelement | Legal employer and component scope | `companyName`; organization code |
-| Personnel office identifier | Servicing HR office; delegated administration scope | Administrative-unit rule input |
-| Duty station | Location of record; location-based scoping; physical-access integration | Location code |
+| Personnel office identifier | Servicing HR office; delegated administration scope | Administrative-unit rule input (not yet carried) |
+| Duty station | Location of record; location-based scoping; physical-access integration | Location code (not yet carried) |
 | Occupational series, pay plan, grade | Position category for role-eligible access packages | Position category code |
-| Supervisory status | Approver and reviewer eligibility; manager-chain integrity | Supervisor group; `manager` checks |
+| Supervisory status | Approver and reviewer eligibility; manager-chain integrity | Supervisor group (not yet carried); `manager` checks |
 | Tenure, type of appointment, work schedule | Worker type and its lifecycle profile (pre-hire window, license, retention) | `employeeType`; worker-type code |
 | Nature of action + effective date | Lifecycle trigger: joiner, mover, conversion, leave, return, leaver, correction | Hire and leave dates; account state |
 
 : OPM standard data elements and what identity does with them {.striped .hover}
+
+The three entries marked "not yet carried" (the personnel office input, the supervisor group and the location code) have no row in the crosswalk below, and which carriers hold them is not yet specified. Until it is, an access decision that needs one (supervisory status decides privileged eligibility, [Chapter 10](10-from-attributes-to-access.md)) has no attribute to read.
 
 Confirm each element's current name, values and how Core HCM exposes it against OPM's current standards at engagement time (Chapter 12, verification register). OPM requires that the coded blocks of the SF-50 use only codes listed in the EHRI Data Standards,[^c06-gppa] which is what makes them dependable as access inputs. Where an access decision needs a code that a standard element supplies, the code is the standard's — not a locally invented list.
 
@@ -50,7 +52,7 @@ OPM's data standards and nature-of-action codes describe **federal employees**. 
 
 | Option | What it gives | What it lacks |
 |---|---|---|
-| **Core HCM Contingent Worker** (best fit) | Oracle Fusion Cloud HCM treats contractors as a full worker type, the contingent worker: a person record, an assignment, a place in the organization and a lifecycle much like an employee's, with add, renew and convert actions and the same interfaces[^c06-cwk][^c06-cwk-renew][^c06-cwt] | No vendor-management system and no non-employee governance layer: sponsorship, contract linkage and end-date attestation still need an owner and a process. Confirm that the agency's Core HCM configuration will record contingent workers |
+| **Core HCM Contingent Worker** | Oracle Fusion Cloud HCM treats contractors as a full worker type, the contingent worker: a person record, an assignment, a place in the organization and a lifecycle much like an employee's, with add, renew and convert actions and the same interfaces[^c06-cwk][^c06-cwk-renew][^c06-cwt] | No vendor-management system and no non-employee governance layer: sponsorship, contract linkage and end-date attestation still need an owner and a process. Confirm that the agency's Core HCM configuration will record contingent workers |
 | **PIV credential and sponsorship system** | Sponsorship, adjudication, the sponsoring office and an expiry already exist for every badged contractor: FIPS 201-3 requires a background investigation and favorable adjudication before issuance, and caps a PIV card's validity at six years[^c06-fips201] | Covers only people who get a PIV credential; vendors and short-term workers without one need another path |
 | **Contractor suitability register** | Many agencies already keep one, under personnel security or contracting: each contractor tied to the agency contract they work on, with the suitability determination and its date. It is often the only existing record that links a person to a contract under agency authority | Often records the vetting decision, not the end of the engagement. Owner, interface and update timing vary, and a register keyed by hand from COR spreadsheets inherits their lag |
 | **A non-employee lifecycle service** (complement) | Sponsor workflows, contract and vendor records, periodic attestation | A third source to integrate and govern; usually layered on one of the options above rather than replacing them |

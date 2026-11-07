@@ -79,7 +79,7 @@ The master plan numbers seven phases from 0 to 6, the same count as Book 01, but
 | No counterpart | No counterpart | 5 — AD DS retirement | G5 — AD Retired | Added by Book 01: domain controllers demoted, or a dated Kerberos island |
 | 6 — Steady state (42 on): weekly re-assessment, daily drift detection, monthly compliance report, quarterly access review, annual architecture review | 5 — Steady-state governance | 6 — Steady state | — | Same intent; Book 01's illustrative schedule reaches it at week 49 because it includes Phase 5 |
 
-Two consequences matter for planning. First, the master plan's 52 weeks do not include retiring AD DS, so an estate that intends to get there should budget Book 01's extra phase on top. Book 01's own fifty-two-week sequence is a model for a mid-size, clean forest; large federal estates typically run multi-year. Second, the master plan's single design phase becomes, in Book 01, the first half of the Foundation phase: designs are approved from the assessment, then the same phase builds the enterprise primitives the designs describe.
+Two consequences matter for planning. First, the master plan's 52 weeks do not include retiring AD DS, so an estate that intends to get there should budget Book 01's extra phase on top. Book 01's own forty-eight-week sequence, which runs through AD DS retirement, is a model for a mid-size, clean forest; large federal estates typically run multi-year. Second, the master plan's single design phase becomes, in Book 01, the first half of the Foundation phase: designs are approved from the assessment, then the same phase builds the enterprise primitives the designs describe.
 
 ## Five workstreams, run in parallel
 

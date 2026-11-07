@@ -148,9 +148,9 @@ Active Directory delegated OU-level rights through access-control lists on the O
 
 | Tier | Scope | Pattern | Typical roles |
 |------|-------|---------|---------------|
-| **Tier 1: Enterprise** | All governed users | `AU-ORG-Enterprise` defines the governed population; reader roles are assigned at tenant scope | Global Reader, Security Reader (tenant scope) |
-| **Tier 2: Department** | All users in one department, in one region | `AU-[REGION]-[DEPT]` | User Administrator, Groups Administrator |
-| **Tier 3: Division** | Users in one division of that department | `AU-[REGION]-[DEPT]-[DIV]` | Helpdesk Administrator, Password Administrator |
+| **Tier 1: Enterprise** | All governed users | `AU-Enterprise` defines the governed population; reader roles are assigned at tenant scope | Global Reader, Security Reader (tenant scope) |
+| **Tier 2: Department** | All users in one department | `AU-Department-[DEPT]`, for example `AU-Department-Finance` | User Administrator, Groups Administrator |
+| **Tier 3: Division** | Users in one division of that department | `AU-[DEPT]-[DIV]`, for example `AU-IT-CyberOps` | Helpdesk Administrator, Password Administrator |
 
 Assign the Tier 1 reader roles at tenant scope, not at the enterprise unit. Those roles can't be scoped to an administrative unit, and because units don't restrict reading anyway, a tenant-scoped reader role delivers the same visibility.[^c04-au-roles]
 
@@ -168,8 +168,8 @@ Roles are scoped to administrative units, never granted tenant-wide except for e
 
 ```text
 role:        User Administrator
-principal:   Structure-NCR-Finance-Admins    ← a role-assignable group (assigned membership, PIM-eligible)
-scope:       /administrativeUnits/AU-NCR-Finance
+principal:   Finance-Admins    ← a role-assignable group (assigned membership, PIM-eligible)
+scope:       /administrativeUnits/AU-Department-Finance
 ```
 
 A member of the administrators group can reset passwords and manage users and groups, but only for the unit's members, and AU-scoped password resets apply only to users who don't hold administrator roles.[^c04-au-roles] Groups used as role principals must be role-assignable. A role-assignable group's membership must be assigned, never dynamic, it can't contain other groups, the property can only be set at creation, and a tenant can have at most 500 of them.[^c04-rag] Manage their membership as eligible assignments in Privileged Identity Management; every user eligible for membership in a PIM-managed group needs a Microsoft Entra ID P2 or Microsoft Entra ID Governance license.[^c04-pim-groups] [Book 04](../b04-access/04-privileged-roles-and-tiers.md) covers privileged roles in depth.
