@@ -42,9 +42,9 @@ The code behind the plan's tasks A2.7 and A3.7: "first monthly review of Tier 0 
 
 ## Why reviews, and why as code
 
-The approval gate controls the use of privilege; reviews control who keeps the eligibility. Book 04, Chapter 08's Step 8 creates one recurring review per role, Tier 0 monthly and the rest quarterly, with auto-apply on and "remove access" when reviewers don't respond ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)). Chapter 09's schedule adds the `PRV-*` group reviews and the fallback reviewers, and warns that a role held by a group shows the group, not its members ([Book 04, Chapter 09](../../../books/b04-access/09-access-governance.md#cadence)). Book 04, Chapter 10 makes review definitions one of the object classes held in the repository ([Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md#an-access-review-definition-in-microsoft-graph-powershell)). Learn's own deployment plan lists Global Administrator, Privileged Authentication Administrator, Conditional Access Administrator and Security Administrator among the roles to review regularly, permanent and eligible assignments both.[^pa07-deploy]
+The approval gate controls the use of privilege; reviews control who keeps the eligibility. Book 04, Chapter 08's Step 8 creates one recurring review per role, Tier 0 monthly and the rest quarterly, with auto-apply on and "remove access" when reviewers don't respond ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)). Chapter 09's schedule adds the `PRV-*` group reviews and the fallback reviewers ([Book 04, Chapter 09](../../../books/b04-access/09-access-governance.md#cadence)). Chapter 08's Step 8 and Appendix B warn that a role held by a group shows the group, not its members ([Book 04, Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md)). Book 04, Chapter 10 makes review definitions one of the object classes held in the repository ([Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md#an-access-review-definition-in-microsoft-graph-powershell)). Learn's own deployment plan lists Global Administrator, Privileged Authentication Administrator, Conditional Access Administrator and Security Administrator among the roles to review regularly, permanent and eligible assignments both.[^pa07-deploy]
 
-A review set up by hand drifts. A reviewer leaves, a duration is shortened, auto-apply is switched off for one cycle and never back on. Held as code, each series has a file, a diff and a reviewer, and Chapter 08 (planned) can compare the tenant with it.
+A review set up by hand drifts. A reviewer leaves, a duration is shortened, auto-apply is switched off for one cycle and never back on. Held as code, each series has a file, a diff and a reviewer, and Chapter 08 can compare the tenant with it.
 
 ### What it costs, and where it runs
 
@@ -90,7 +90,7 @@ This chapter adds a module of its own, `powershell/PaAccessReviews/PaAccessRevie
 
 ### The reviewed JSON
 
-One file holds every series. Each review has a name with the managed prefix (`PAR-`), a kind, a tier, a cadence, reviewers, fallback reviewers and a description for reviewers; defaults hold the rest. `Read-PaArConfig` refuses a reviewer named by UPN, a name without the prefix, a name used twice, and anything that isn't an object ID where one belongs. The fixture's seven series follow Book 04, Chapter 09's schedule (*Design guidance*):
+One file holds every series. Each review has a name with the managed prefix (`PAR-`), a kind, a tier, a cadence, reviewers, fallback reviewers and a description for reviewers; defaults hold the rest. `Read-PaArConfig` refuses a reviewer named by UPN, a name without the prefix, a name used twice, and anything that isn't an object ID where one belongs. The fixture's seven series follow Book 04, Chapter 09's schedule (*Design guidance*), with three differences from Book 04. Role series cover users with active and eligible assignments, where Chapter 08's Step 8 scopes the review to eligible assignments. The Global Administrator series uses "No change" on silence, the one exception Chapter 08's Step 8 records for the emergency accounts and Chapter 09 and Appendix B do not. The Tier 1 series list only the tier's approver group and the fallback, without the role owner Chapter 09 and Appendix B add:
 
 | Series | Kind | Scope | Cadence | Reviewers, fallback | On silence |
 |---|---|---|---|---|---|
@@ -177,7 +177,7 @@ The run writes `decisions.csv`, `instances.json`, `findings.json` and a manifest
 
 ### The tests
 
-This chapter's tests are the 57 in `tests/AccessReviews.Tests.ps1`: 11 on Learn's tutorial as published, then the calls and permissions, the reviewed JSON and bodies, each rule, the plan's actions, `-Apply` and its refusals, the evidence and its paging, and the entry script's manifest. With Chapters 01, 02, 03 and 06, 208 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 57 in `tests/AccessReviews.Tests.ps1`: 11 on Learn's tutorial as published, then the calls and permissions, the reviewed JSON and bodies, each rule, the plan's actions, `-Apply` and its refusals, the evidence and its paging, and the entry script's manifest. The kit's 330 tests pass under PowerShell 7, with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
