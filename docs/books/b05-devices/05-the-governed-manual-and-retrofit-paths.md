@@ -62,7 +62,7 @@ Every path runs the same four phases in the same order. Nothing is restricted un
 | 3 — Harden | State-changing | SPN repair, NTLM restriction, Conditional Access baseline | Close the identity gaps, only after Phase 1 is signed off |
 | 4 — Watch | Read-only | Conditional Access drift, compliance and cross-domain status | Keep the estate from drifting back |
 
-The endpoint project plan follows the same sequence, with a Phase 0 for charter and alignment in front of it ([endpoint and device project plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md)).
+The endpoint project charter's plan follows the same sequence, with a Phase 0 for charter and alignment in front of it ([endpoint and device project plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md)). The published schedule, the [Endpoint & Device plan](../../project-plans/endpoint-device.md), is a separate plan with its own phase numbers: its Phase 0 is Observe and its Phase 4 is servers under Azure Arc. Phase numbers in this book are the chapter's own phases (1 Observe to 4 Watch) unless a sentence names the published plan.
 
 ### Rules that hold on every path
 
@@ -112,7 +112,7 @@ The commands in this chapter are examples. They haven't been run against a produ
 
 ### Phase 1: baseline the estate
 
-The baseline is read-only. It covers four inventories: NTLM use over the last 30 days, every SPN with duplicates and stale owners flagged, the SQL Server hardening posture, and Intune enrollment status. To find NTLMv1 use, Microsoft's method is to enable logon success auditing on domain controllers and read the NTLM version recorded in Event ID 4624.[^c05-ntlmv1-audit] The *Restrict NTLM* audit policies log the NTLM requests that a later deny setting would block, in the NTLM operational log.[^c05-csp-lsa] For SPNs, `setspn` lists and searches registrations:
+The baseline is read-only. It covers five inventories: NTLM use over the last 30 days, every SPN with duplicates and stale owners flagged, the SQL Server hardening posture, Intune enrollment status, and Group Policy overlap. To find NTLMv1 use, Microsoft's method is to enable logon success auditing on domain controllers and read the NTLM version recorded in Event ID 4624.[^c05-ntlmv1-audit] The *Restrict NTLM* audit policies log the NTLM requests that a later deny setting would block, in the NTLM operational log.[^c05-csp-lsa] For SPNs, `setspn` lists and searches registrations:
 
 ```powershell
 # SPNs registered on one service account
@@ -205,7 +205,7 @@ WHERE session_id = @@SPID;
 
 ### Phase 3: harden SQL Server
 
-The hardening audit reports the authentication mode (Windows authentication only is the goal), the server configuration options that should be off (`xp_cmdshell`, OLE Automation procedures, CLR, cross-database ownership chaining, Database Mail XPs and similar), and the status of the `sa` account. Then onboard the SQL Server hosts to Arc and enable Defender for SQL Servers on Machines.[^c05-defender-sql] Replacing Windows and SQL authentication with Entra ID for SQL Server 2022 and later is a separate engine-level transformation. The [SQL Server Identity Transformation narrative](../b06-data-platform/index.md) covers it.
+The hardening audit reports the authentication mode (Windows authentication only is the goal), the server configuration options that should be off (`xp_cmdshell`, OLE Automation procedures, CLR, cross-database ownership chaining, Database Mail XPs and similar), and the status of the `sa` account. Then onboard the SQL Server hosts to Arc and enable Defender for SQL Servers on Machines.[^c05-defender-sql] Replacing Windows and SQL authentication with Entra ID for SQL Server 2022 and later is a separate engine-level transformation. The [Book 06, Data Platform: SQL Server Identity](../b06-data-platform/index.md) covers it.
 
 ### Phase 3: Conditional Access baseline
 
@@ -215,7 +215,7 @@ Long unique passwords aren't enough for emergency accounts. Emergency access acc
 
 ### Phase 4: watch
 
-Send Arc heartbeat, Intune compliance, Active Directory audit and Defender alerts to a Log Analytics workspace with defined alert rules. Capture a Conditional Access baseline on the first run, then compare against it on a schedule. A cross-domain status report shows which domains have fresh evidence and the headline pass and attention counts. It is the weekly status page on the manual path and the evidence feed on the governed path. [Chapter 10](10-operating-and-evidencing-the-fleet.md) describes the Intune evidence and alerts only; it has no cross-domain report. The cross-domain report is not yet specified, and nothing in the program builds it now.
+Send Arc heartbeat, Intune compliance, Active Directory audit and Defender alerts to a Log Analytics workspace with defined alert rules. Record the Conditional Access baseline as the versioned desired state, then compare actual state against that record on a schedule. The comparison is against the record, not against a last-known-good snapshot of the tenant. A cross-domain status report shows which domains have fresh evidence and the headline pass and attention counts. It is the weekly status page on the manual path and the evidence feed on the governed path. [Chapter 10](10-operating-and-evidencing-the-fleet.md) describes the Intune evidence and alerts only; it has no cross-domain report. The cross-domain report is not yet specified, and nothing in the program builds it now.
 
 ### Rollback
 
@@ -251,7 +251,7 @@ If you expect to add governance later, the manual path is designed for it. Don't
 The governed path reaches the same end state as the manual path. The same steps run. What governance adds is the binding from organizational intent to each technical change.
 
 - **Address before you actuate.** Organizational attributes must be present on every device before any policy targets it. Scope is derived from attributes, not from an OU or a hand-built group.
-- **Cap the blast radius.** High-blast-radius classes, such as privileged access workstations, servers and kiosks, stay gated on human approval.
+- **Cap the blast radius.** High-blast-radius operation classes, such as tenant-wide role changes, Conditional Access enforcement changes and bulk device-state changes, stay gated on human approval. So do operations on high-impact device populations, such as privileged access workstations, servers and kiosks.
 - **Plan, then apply with a dry run.** No change is applied without a preview of its impact.
 - **Report-only first.** Enforcement is measured before it's switched on.
 - **Reconcile duplicates and lifecycle.** One object per machine. Orphaned and phantom device objects are findings, not leftover state.
@@ -260,7 +260,7 @@ The governed path reaches the same end state as the manual path. The same steps 
 
 ### The actuation ladder
 
-Every governed operation declares a rung. The rung is a property of the operation, not a global switch. The program's federal default write ceiling is L3: a human approves, and the program executes through the provider's API. Autonomous L4 actuation is refused inside the boundary. The ladder and the ceiling are the program's design. Raising the ceiling takes deliberate configuration outside the kit, and a tightened boundary can lower it, for example to L1 so that only observers run.
+Every governed operation declares a rung. The rung is a property of the operation, not a global switch. The program's federal default write ceiling is L3: a human approves, and the program executes through the provider's API. Autonomous L4 actuation is refused by default. It runs only for enumerated low-blast-radius classes that the authorizing official has accepted one class at a time, and tenant-wide role changes, Conditional Access enforcement changes, bulk device-state changes and network policy that touches thousands of endpoints stay at L3 permanently ([Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md#how-far-automation-may-go)). The ladder and the ceiling are the program's design. Raising the ceiling takes deliberate configuration outside the kit, and a tightened boundary can lower it, for example to L1 so that only observers run.
 
 ![The actuation ladder runs from recording desired state to gated change; autonomous change is above the program's federal ceiling and refused.](../../images/diagrams/b05-devices/svg/ch05-actuation-ladder.svg){#fig-ch05-actuation-ladder fig-alt="Five cards in a row, left to right. L0, Record, in slate: desired state written down. L1, Observe, in violet: read-only audits and drift. L2, Advise, in violet: change-set previewed, not applied. L3 ceiling, Gated, in green: human approves, applied through the provider API; the arrow into it is labeled approval reference. L4, Autonomous, in red: no human in the loop, refused; the dashed red arrow into it is labeled blocked."}
 
@@ -270,13 +270,13 @@ Every governed operation declares a rung. The rung is a property of the operatio
 | L1 | Observe | Actual state collected and drift detected, read-only | NTLM, SPN, SQL Server and Intune audits; the drift report |
 | L2 | Advise | Corrective change-set generated and shown | The dry-run previews |
 | L3 | Gated | A human approves; the program applies the change through the provider API | Every state-changing step, carrying an approval reference |
-| L4 | Autonomous | The loop closes without a human | Above the ceiling; refused |
+| L4 | Autonomous | The loop closes without a human | Above the default ceiling; refused unless the authorizing official has accepted the class |
 
 The approval check refuses any write above the ceiling, refuses a gated write that has no approval reference, and logs every decision. Microsoft provides a native second-approver gate for part of the endpoint surface. Intune Multi Admin Approval can require a second administrator to approve changes to app deployments, compliance policies, settings catalog policies, scripts, role assignments, and the wipe, retire and delete device actions. The person who requests a change can't approve it, not even a Global Administrator or Intune Administrator. The gate also applies to automation that calls Microsoft Graph.[^c05-maa] Where it covers a workload, the program records the Multi Admin Approval request as the L3 approval instead of building a parallel one.
 
 ### The reconciliation loop
 
-The governed path runs the modernization domains through the program's drift-detection loop, not as one-shot scripts. The loop has six phases: snapshot, compare, classify, alert, remediate and verify. It runs as a dry run by default, and high-blast-radius operations are gated for governance review. The read-only audits from Phase 1 and Phase 4 are the snapshot, compare and classify steps for each domain. Remediate and verify are the gated L3 write: the same step, run again with an approval reference once a human approves the change-set. The kit's governed invocation looks like this:
+The governed path runs the modernization domains through the program's drift-detection loop, not as one-shot scripts. The loop has six phases: snapshot, compare, classify, alert, remediate and verify. The snapshot phase reads actual state; the compare phase measures it against the versioned record of desired state, not against a last-known-good snapshot ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md)). It runs as a dry run by default, and high-blast-radius operations are gated for governance review. The read-only audits from Phase 1 and Phase 4 are the snapshot, compare and classify steps for each domain. Remediate and verify are the gated L3 write: the same step, run again with an approval reference once a human approves the change-set. The kit's governed invocation looks like this:
 
 ```powershell
 Import-Module .\lib\IntuneArcModernization.psm1
@@ -316,14 +316,14 @@ Over the manual end state, the governed path delivers:
 - continuous, exportable evidence, anchored to provenance instead of assembled at audit time;
 - drift caught and classified by the loop instead of discovered by an incident.
 
-FedRAMP's Consolidated Rules for 2026 express security outcomes as 46 Key Security Indicators in 10 themes.[^c05-ksi] Initial certification under the rules began on July 4, 2026, and ongoing certification follows them from January 1, 2027.[^c05-fedramp-cert] The indicators are written for cloud service offerings. The program uses them as a vocabulary for the evidence it produces. The mapping below is the program's own claim about a bounded slice of the catalog.
+FedRAMP's Consolidated Rules for 2026 express security outcomes as 46 Key Security Indicators in 10 themes.[^c05-ksi] Early adoption of the rules has been optional since July 4, 2026, and they take mandatory effect for all stakeholders on January 1, 2027.[^c05-fedramp-cert] The indicators are written for cloud service offerings. The program uses them as a vocabulary for the evidence it produces. The mapping below is the program's own claim about a bounded slice of the catalog.
 
 | Key Security Indicator | Evidenced on the governed path by |
 |---|---|
 | KSI-IAM-APM, Adopting Passwordless Methods | The Conditional Access baseline and phishing-resistant sign-in |
 | KSI-IAM-ELP, Ensuring Least Privilege | Attribute-scoped assignment instead of tenant-wide assignment |
 | KSI-SVC-ACM, Automating Configuration Management | Machine configuration baselines on Arc servers |
-| KSI-CNA-EIS, Enforcing Intended State | Conditional Access drift comparison against the captured baseline |
+| KSI-CNA-EIS, Enforcing Intended State | Conditional Access drift comparison against the recorded baseline |
 | KSI-CMT-LMC, Logging Changes | The approval reference attached to every state-changing run |
 | KSI-MLA-EVC, Evaluating Configurations | The cross-domain drift report against the baseline |
 
