@@ -75,14 +75,14 @@ Below the program-wide matrix, the master plan assigned every major activity acr
 | Read-only assessment (0) | A | C | R | C | C | C | C | I | — |
 | Full delegated assessment (0) | A | C | R | C | R | R | C | I | — |
 | Security assessment (0) | A | I | C | I | I | C | R | I | CISO sets which findings are priority one for G0 |
-| Modernization plan generation (0–1) | A | I | R | R | R | R | R | I | — |
+| Modernization plan generation (1) | A | I | R | R | R | R | R | I | — |
 | Plan review and approval (1) | R/A | C | C | C | C | C | C | C | — (the steward approves each plan after the workstream and security leads review it; the steering committee reviews the combined set but doesn't sign) |
 | Attribute taxonomy (1) | A | I | R | C | I | I | I | I | HR decides what each attribute means |
 | Intune policy design (1) | A | I | C | R | I | I | C | I | CISO's control requirements |
 | Conditional Access design (1) | A | I | C | C | I | I | R | I | CISO decides the baseline |
 | Sync deployment (2) | A | C | R | I | I | I | C | I | — |
-| Hybrid DNS resolver deployment (2) | A | C | I | I | R | I | I | I | — |
-| Cloud PKI deployment (2) | A | C | C | C | I | R | C | I | — |
+| Hybrid DNS resolver deployment (1–2) | A | C | I | I | R | I | I | I | — |
+| Cloud PKI deployment (1–2) | A | C | C | C | I | R | C | I | — |
 | Pilot execution (2) | A | R | R | R | R | R | R | R | G2: steward and sponsor |
 | Wave-based rollout (3) | A | R | R | R | R | R | C | R | G3: sponsor and steering committee |
 | Legacy decommissioning (4–5) | R/A | R | R | R | R | R | C | I | Sponsor and CIO decide retirement; records officer consulted first |

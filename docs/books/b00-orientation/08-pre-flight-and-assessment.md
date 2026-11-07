@@ -24,7 +24,7 @@ Phase 0 of the roadmap, Pre-flight, seen from the program office: what has to ex
 
 ## Where pre-flight sits in the program
 
-[Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md) sets the roadmap: seven phases and six gates. Phase 0, Pre-flight, has one goal, to produce the planning artifacts and stand up the platform host, and one exit, gate G0, Ready to Plan: the platform host is operational, the assessment is committed, and no priority-one findings are open. Everything in this chapter serves those three conditions.
+[Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md) sets the roadmap: seven phases and six gates. Phase 0, Pre-flight, has one goal, to produce the planning artifacts and stand up the platform host, and one exit, gate G0, Ready to Plan: the platform host is operational, the assessment is committed, no priority-one findings are open, a provisional target end state is recorded, and the no-new-AD-dependency rule is in force. Everything in this chapter serves those five conditions.
 
 The program's master plan covers the same ground in more detail and numbers it differently. Its Phase 0, Platform Build, and most of its Phase 1, Assessment, fall inside Book 01's Phase 0. The tail of that assessment phase, generating and approving the plans and preparing the pilot, is the first work after G0, because G0 is the gate that makes the program ready to plan; [Chapter 05](05-the-program-plan.md) gives the full mapping. Two calendars follow from that. Book 01's illustrative calendar gives pre-flight four weeks. The master plan spends about nine weeks on the same work: three to build the host, then six to assess, generate plans, review them and prepare for the pilot. Neither figure is a commitment, and large estates run longer. Plan from the milestone list, not the week count, and expect the assessment to take as long as the forest needs.
 
@@ -210,7 +210,7 @@ The assessment phase produces twenty-three deliverables: fifteen assessment arti
 | 19 | DNSModernizationPlan.json | `plans/` | Plan generator | Phases 1 to 4 |
 | 20 | PKIModernizationPlan.json | `plans/` | Plan generator | Phases 1 to 4 |
 | 21 | AttributeDesign.json | `plans/` | Plan generator | Phases 1 to 6 |
-| 22 | SecurityRemediationPlan.json | `plans/` | Plan generator | Phases 0 to 4 |
+| 22 | SecurityRemediationPlan.json | `plans/` | Plan generator | Phases 1 to 4 |
 | 23 | TrustDecommissionPlan.json | `plans/` | Plan generator | Phases 4 and 5 |
 
 : The twenty-three assessment-phase deliverables {.striped .hover}
@@ -221,7 +221,7 @@ The set is sensitive. It maps privileged groups, service accounts and certificat
 
 ## Gate G0: the go/no-go checklist
 
-G0 combines the platform checklist above with assessment milestones M-008 to M-010 and Book 01's three conditions. The steward decides it, with the executive sponsor as backup ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)); the steering committee's review is an input to that decision, not a second signature. Each item is answered from the repository, and the gate record is committed under `reports/phase-gates/` using the program's gate review template ([Chapter 07](07-who-runs-the-program.md#the-gate-review)).
+G0 combines the platform checklist above with assessment milestones M-008 to M-010 and Book 01's five conditions. The steward decides it, with the executive sponsor as backup ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)); the steering committee's review is an input to that decision, not a second signature. Each item is answered from the repository, and the gate record is committed under `reports/phase-gates/` using the program's gate review template ([Chapter 07](07-who-runs-the-program.md#the-gate-review)).
 
 **Platform host operational**
 
@@ -257,7 +257,7 @@ Three pieces of the master plan's assessment phase come after G0, in Book 01's P
 
 ## Key takeaways
 
-1. Pre-flight has one exit: the platform host works, the assessment is committed, and no priority-one finding is open. The plans come right after, because G0 is the gate that makes the program ready to plan.
+1. Pre-flight has one exit: the platform host works, the assessment is committed, no priority-one finding is open, a provisional target end state is recorded, and the no-new-AD-dependency rule is in force. The plans come right after, because G0 is the gate that makes the program ready to plan.
 2. Gitea on Windows Server 2025 behind IIS is the reference design, not the only option; the requirement is one authoritative, protected writer.
 3. Every artifact is a reviewed commit with a status, and canon enters only through a push the hooks and protections can see, never through the mirror.
 4. The assessment runs in five steps from default read to approved plans, and it covers the master plan's twelve domains plus the DHCP, LDAP and transaction-profile streams and the RADIUS and NPS inventory that Book 01 adds.

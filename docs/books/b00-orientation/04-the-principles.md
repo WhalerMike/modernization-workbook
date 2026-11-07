@@ -65,7 +65,7 @@ Hierarchical governance (organizational units, Group Policy inheritance, delegat
 - Administrative units can't be nested.[^c04-au] An OU tree becomes a flat set of attribute-selected units, and the hierarchy lives in the attribute values, not in the containers.
 - For synced users, the attributes that drive unit membership are mastered in Active Directory, not in the cloud.[^c04-extattr]
 
-**Carried in depth by:** [Book 02, Chapter 05 — Delegation Without OUs](../b02-identity/05-delegation-without-ous.md) (the three-tier unit model, registry and drift checks) and [Book 01, Chapter 04 — Identity Transformation](../b01-transformation-arc/04-identity-transformation.md) (attributes, dynamic groups and units as the four mechanisms).
+**Carried in depth by:** [Book 02, Chapter 05 — Delegation Without OUs](../b02-identity/05-delegation-without-ous.md) (the three-tier unit model, registry and drift checks) and [Book 01, Chapter 04 — Identity Transformation](../b01-transformation-arc/04-identity-transformation.md) (attributes, dynamic groups, units and Conditional Access targeting as the four mechanisms).
 
 ## 4. Directory migration: the hidden surface {#principle-4}
 
@@ -214,7 +214,7 @@ The drift engine doesn't believe that the HR system and the directory still agre
 
 : Drift categories for organizational attribute values {.striped .hover}
 
-Critical findings halt the remediation pass. The severities are the program's defaults, not an external standard. The four categories govern the attribute values themselves. Each domain adds its own classes on top: HR-to-directory drift (missing identities, stale access, orphan accounts, unauthorized writes, credential drift) and administrative-unit drift (rule differences, paused rule processing, unexpected role assignments) are defined in the books below.
+Book 01 uses "Value" and "Orphan" differently (Value for a value that differs from the HR record, Orphan for a security group outside the governed library), and Book 13's drift classes resolve the two meanings ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md)). Critical findings halt the remediation pass. The severities are the program's defaults, not an external standard. The four categories govern the attribute values themselves. Each domain adds its own classes on top: HR-to-directory drift (missing identities, stale access, orphan accounts, unauthorized writes, credential drift) and administrative-unit drift (rule differences, paused rule processing, unexpected role assignments) are defined in the books below.
 
 **Carried in depth by:** [Book 03, Chapter 11 — Drift, Metrics and Evidence](../b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory), [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#drift-detection) for administrative units, and [Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#drift-categories). [Book 13, Governance, Drift & Evidence](../b13-governance/index.md), consolidates them.
 
@@ -235,7 +235,7 @@ Windows Authentication was good engineering for its world. The destination is cl
 ## 13. Education, training and test plans {#principle-13}
 
 - **Education builds the mental model:** governance is a system, identity is the primitive, maps replace inventories, provenance is non-negotiable, modernization is a lifecycle, and drift is the feedback signal.
-- **Training has two tracks.** Contributors learn to land a reviewed change. Operators learn to run the discovery and drift tools and interpret their output.
+- **Training has two audiences and four tracks.** Contributors learn to land a reviewed change. Operators learn to run the discovery and drift tools and interpret their output. Book 16 builds four tracks inside those audiences: compliance, implementation, vendor training and labs, and end-user training ([Book 16, Chapter 01](../b16-people/01-people-close-the-gap.md)).
 - **Test plans live in one catalog.** Every plan has a canonical entry, declares its pass signal, and stays in the catalog when retired.
 
 These are the program's design. **Carried in depth by:** [Book 16, People: Training & Education](../b16-people/index.md). The books' own acceptance and validation material shows the test-plan pattern: [Book 03, Appendix C — Acceptance and Cutover](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) and the validation test plan in [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#validation-test-plan). The test plan catalog itself appears in [Book 14, Chapter 11](../b14-compliance/11-the-authorization-package.md).
