@@ -85,29 +85,29 @@ actions:
   - id: A0001
     type: create-administrative-unit
     target:
-      display_name: AU-NCR-Finance
-      membership_rule: '(user.extensionAttribute4 -eq "NCR") -and (user.extensionAttribute10 -in ["FIN-LED","FIN-AP"])'
+      display_name: AU-Department-Finance
+      membership_rule: '(user.extensionAttribute10 -in ["FIN-LED","FIN-AP"])'
       restricted: false   # see "Restricted management" below
     provenance:
       source: assessments/2026-04-24-1030-host-tierB/ou-hierarchy.json#ou/FIN
       rule: delegation-matrix/tier2-au
     rollback:
       type: delete-administrative-unit
-      target: AU-NCR-Finance
+      target: AU-Department-Finance
     depends_on: []
   - id: A0002
     type: assign-role-scoped
     target:
       role: User Administrator
-      principal: Structure-NCR-Finance-Admins   # role-assignable group, assigned membership
-      scope: /administrativeUnits/AU-NCR-Finance
+      principal: Finance-Admins   # role-assignable group, assigned membership
+      scope: /administrativeUnits/AU-Department-Finance
     provenance: …
     depends_on: [A0001]
 ```
 
 Three platform facts shape these two actions:
 
-- **Dynamic administrative units.** Rules use the same syntax as dynamic groups, and `extensionAttribute1` through `extensionAttribute15` are usable as string properties.[^c11-dynrules] The example reads the region code from `extensionAttribute4`, its slot in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map). Each member of an administrative unit that uses a dynamic membership rule needs a Microsoft Entra ID P1 license, as does each administrator assigned a role over the unit.[^c11-aulicense]
+- **Dynamic administrative units.** Rules use the same syntax as dynamic groups, and `extensionAttribute1` through `extensionAttribute15` are usable as string properties.[^c11-dynrules] The example reads the organization code from `extensionAttribute10`, its slot in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map). Each member of an administrative unit that uses a dynamic membership rule needs a Microsoft Entra ID P1 license, as does each administrator assigned a role over the unit.[^c11-aulicense]
 - **Role-assignable groups.** A role assignment in a plan always targets a role-assignable group with assigned membership, because Microsoft Entra ID doesn't allow dynamic membership for role-assignable groups.[^c11-rag]
 - **Restricted management.** The program sets `restricted: false` for department administrative units. A restricted management administrative unit blocks modification by anyone not explicitly assigned at its scope, which is its purpose, but its members also can't be managed with Privileged Identity Management, entitlement management, Lifecycle Workflows or access reviews; the setting can't be changed after creation; a tenant can have at most 100 of them; and Microsoft Graph application permissions don't apply to their objects, so the execution layer's service principal would need a Microsoft Entra role assigned at that unit's scope.[^c11-rmau] Restricted units are reserved for small, sensitive populations such as executive accounts and emergency access groups, and their plans carry that role assignment explicitly.
 
@@ -186,7 +186,7 @@ Every operation class has a ceiling on this ladder. [Chapter 03](03-platform-fou
 | L0 | Record | Traditional (record and observe) | Hold desired state in the authoritative source |
 | L1 | Observe | Initial (observe and advise) | Collect actual state and detect drift; read-only |
 | L2 | Advise | Initial (observe and advise) | Generate a corrective plan and surface it; no writes |
-| L3 | Gated actuation | Advanced | Execute a plan a human has authorized, after a dry run; the default ceiling for high-blast-radius classes |
+| L3 | Gated actuation | Advanced | Execute a plan a human has authorized, after a dry run; the default ceiling for every class, program-wide |
 | L4 | Autonomous within guardrails | Optimal | Close the loop without a person, only for enumerated low-blast-radius classes |
 
 Tenant-wide role changes, Conditional Access enforcement changes, bulk device-state changes and network policy that touches thousands of endpoints stay at L3 permanently, whatever the program's overall maturity.

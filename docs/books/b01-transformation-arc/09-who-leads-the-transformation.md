@@ -105,14 +105,14 @@ Retiring AD and its servers retires the systems that hold years of access record
 
 ## Decision rights across the program
 
-The matrix is the program's recommended model at the level of the whole program. Each book's Who chapter refines it for its domain; where they go deeper, they govern. Adapt it to the agency's governance structure, but keep one decider per row; the one deliberate exception is gate G2, which the steward and the executive sponsor co-sign ([Chapter 12](12-migration-roadmap.md)).
+The matrix is the program's recommended model at the level of the whole program. Each book's Who chapter refines it for its domain; where they go deeper, they govern. Adapt it to the agency's governance structure, but keep one decider per row; the deliberate exceptions are gate G2, which the steward and the executive sponsor co-sign ([Chapter 12](12-migration-roadmap.md)), and a change to the target architecture or the rules for authoritative origin, which needs the sponsor's concurrence ([Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what)).
 
 D = decides (accountable) · R = does the work · C = consulted · blank = informed at most.
 
 | Decision or work item | Sponsor / CIO | CISO | AO | Program office | Platform teams | App owners | Help desk | HR | Records / privacy |
 |---|---|---|---|---|---|---|---|---|---|
 | Program scope, funding and sequence | D | C | C | R | C | C | | C | |
-| Target architecture and the authoritative repository | C | C | | D, R | R | C | | | |
+| Target architecture and the authoritative repository (a change to either needs the sponsor's concurrence) | D | C | | D, R | R | C | | | |
 | Control requirements (MFA strength, Conditional Access baseline, logging) | | D | C | C | R | | | | |
 | Gate decisions G0, G1, G4 ([Chapter 12](12-migration-roadmap.md)) | C | C | | D | R | C | | | |
 | Gate decision G2 (co-signed) | D | C | C | D, R | R | C | C | | |
@@ -120,7 +120,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Authorize systems and boundary changes; accept residual risk | C | C | D | R | C | | | | |
 | Authoritative worker attributes and their meaning | | | | C | R | | | D | C |
 | Application cutover and test sign-off, per application | | | | C | R | D | C | | |
-| Help desk identity verification and recovery procedure | | D | | C | C | | R | | |
+| Help desk identity verification and recovery procedure | | D | | C | C | | R | | C |
 | Legacy authentication and NTLM end dates | C | C | D | R | R | C | C | | |
 | Retention of AD-era logs and records before decommission | C | C | | R | R | | | | D |
 | Retire domain controllers, AD FS and AD-dependent services | D | C | C | R | R | C | | | C |
@@ -149,7 +149,7 @@ The books agree on three habits. Deciding and doing are separate: the person who
 
 1. **The authoritative source is the operational truth.** Attributes, dynamic groups, Conditional Access policies, device profiles and server tags are defined in the repository before they exist in the target. The target is a materialization, not the source.
 2. **Every change is a plan.** Nothing reaches the target except through an authorized plan, so every change has provenance by construction.
-3. **Drift is detected, not reported.** Divergence between source and reality becomes a tracked item at the next drift run, at least nightly, before auditors find it.
+3. **Drift is detected, not reported.** Divergence between source and reality becomes a tracked item at the next drift run, at least nightly by default for checks with no cadence of their own ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md#cadence)), before auditors find it.
 4. **Evidence is built in.** Every plan produces an evidence packet, and authorization packages regenerate from the source instead of spreadsheets.
 5. **Governance and execution are separate.** A component that could both decide and act could cover its tracks; these can't.
 

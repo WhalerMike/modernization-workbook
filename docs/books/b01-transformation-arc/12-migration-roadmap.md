@@ -26,7 +26,7 @@ The structural move the whole program turns on and the five principles that foll
 
 ## The program claim
 
-This chapter sequences Chapters 03 to 08 as an **illustrative fifty-two-week program** with five parallel workstreams (identity, policy, services, compute, access) and six named gates, G0 to G5. The week numbers are a sequencing model, not a commitment: large federal estates typically run multi-year. The roadmap lives in the authoritative repository, and every gate criterion can be evaluated mechanically.
+This chapter sequences Chapters 03 to 08 as an **illustrative forty-eight-week program** (steady state follows from week 49) with five parallel workstreams (identity, policy, services, compute, access) and six named gates, G0 to G5. The week numbers are a sequencing model, not a commitment: large federal estates typically run multi-year. The roadmap lives in the authoritative repository, and every gate criterion can be evaluated mechanically.
 
 ![The seven phases of the roadmap and the six gates between them.](../../images/diagrams/b01-transformation-arc/svg/ch12-phase-gates.svg){#fig-ch12-phase-gates fig-alt="Seven stacked phase boxes joined by arrows labeled with gates. Phase 0, Pre-flight, weeks 1 to 4, slate: platform host, assessment, repository; gate G0 Ready to Plan. Phase 1, Foundation, weeks 5 to 8, blue: groups, administrative units, Conditional Access baseline, HR feed; gate G1 Foundation Complete. Phase 2, Pilot division, weeks 9 to 16, blue: the whole pattern on one division; gate G2 Pilot Clean. Phase 3, General rollout, weeks 17 to 36, blue: division by division, two or three at a time; gate G3 Rollout Complete. Phase 4, Legacy retirement, weeks 37 to 44, amber: GPOs, OU groups, DNS, DHCP, AD CS logon, SPNs; gate G4 Legacy Quiet. Phase 5, AD DS retirement, weeks 45 to 48, red: or a documented Kerberos island with an end date; gate G5 AD Retired. Phase 6, Steady state, week 49 on, green: assess, plan and check drift on a cadence."}
 
@@ -35,7 +35,7 @@ Two properties define the program:
 1. **Parallel, not sequential.** The five workstreams run together. Finishing one before starting the next doubles the duration and produces worse outcomes.
 2. **Gated, not open-ended.** A phase starts only when the prior gate clears, and ends only when its own criteria are green.
 
-Illustratively, a mid-size organization (5,000 to 50,000 users, 500 to 5,000 servers) with a clean forest and few Kerberos applications might reach AD DS retirement in about forty-eight weeks of the illustrative fifty-two-week first year. Scale changes the duration of each phase, not the structure.
+Illustratively, a mid-size organization (5,000 to 50,000 users, 500 to 5,000 servers) with a clean forest and few Kerberos applications might reach AD DS retirement in the illustrative forty-eight weeks. Scale changes the duration of each phase, not the structure.
 
 ## The direction of travel
 
@@ -157,7 +157,7 @@ Rollback triggers are thresholds, not judgment calls. The values are the agency'
 | Drift above threshold for more than 24 hours | Phase | Halt; no new deliveries until clean |
 | Conditional Access blocks more than a set share of legitimate sign-ins | Enterprise | Revert the policy; authorize a replacement |
 | Drift detection stops reporting | Platform | Escalate; halt all phase work |
-| An evidence packet fails signature validation | Delivery | Halt; investigate; restore the last known-good state |
+| An evidence packet fails hash or signature validation, whichever the package carries | Delivery | Halt; investigate; restore the last known-good state |
 | SLA breach on a priority-one finding | Any | Notify steward and sponsor |
 
 Pilots exist to catch problems before they become rollbacks.

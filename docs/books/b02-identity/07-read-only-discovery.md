@@ -98,7 +98,7 @@ The gap list becomes a short written request to the directory team or security r
 - **Read only.** No write, create, delete or permission-change rights. Rights that expose secrets are never requested: replication of secret data, confidential-attribute reads, and tombstone reanimation.
 - **Specific.** Each line names the right, the exact object path and the business reason, taken from the gap list. "Domain Admin for the assessment" is not an acceptable line.
 - **Time-bound.** Each delegation expires at the end of the assessment window, and the account's `accountExpires` is set to match.
-- **One named, dedicated account.** A standard user with no existing elevated memberships. Its activity can then be attributed and told apart from normal use.
+- **One named, dedicated account.** A standard user with no existing elevated memberships. Its activity can then be attributed and told apart from normal use. Used as it stands, with no delegation added, it is the program's Tier A (default read); the delegations in the request are Tier B (narrow additions).
 - **Preferably an export.** Where the directory team can run a report and hand over the output (replication summary, DNS server settings, CA database export), that is better than granting a right at all.
 
 The directory team implements the delegations with its own change process. The program doesn't hand over commands for others to run with their privileges.

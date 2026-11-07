@@ -432,7 +432,7 @@ Assessment data is sensitive. It contains the forest's topology, its privileged 
 
 ### The assessment account
 
-The program's design is a group managed service account, `svc-fmp-assess$`, with delegated read rights and nothing more:
+The program's design is a group managed service account, `svc-fmp-assess$`, with delegated read rights and nothing more. Without the delegations below it is the Tier A account (default read) from [Book 01, Chapter 10](../b01-transformation-arc/10-analyzing-the-estate.md); the delegations are what make it Tier B (narrow additions):
 
 - Read on the domain naming contexts and the configuration partition (default for authenticated users).
 - Read-permissions rights on OUs whose ACLs aren't readable by default.
