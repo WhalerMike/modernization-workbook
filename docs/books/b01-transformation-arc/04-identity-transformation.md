@@ -125,14 +125,14 @@ Membership is not instantaneous. Changes are usually processed within a few hour
 
 ### Naming convention
 
-Every governed dynamic group follows one pattern, for example `Structure-[SCOPE]-[PURPOSE]`:
+Every governed structural dynamic group follows one pattern, for example `Structure-[SCOPE]-[PURPOSE]`. Groups built for another purpose carry their own governed prefix, such as the `CA-Persona-` groups that [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md) uses for Conditional Access:
 
 - `Structure-FIN-Users`: Finance users
 - `Structure-IT-SEC-SOC-Users`: SOC analysts
 - `Structure-HR-Licensed`: HR users targeted for specific licenses
 - `Structure-EXEC-CA`: executive users targeted by specific Conditional Access policies
 
-Groups that don't match the pattern are orphan drift. The drift engine finds them, and cleanup is escalated.
+Groups that match no governed prefix are orphan drift. The drift engine finds them, and cleanup is escalated.
 
 ## Administrative units: the delegation replacement
 
@@ -160,11 +160,11 @@ Each unit uses a dynamic membership rule that mirrors the corresponding dynamic-
 
 Two controls protect unit scope. **Dynamic membership** means no administrator can hand-add a user; the only way in is an attribute change through the governed workflow. **Restricted management**, applied to units that hold sensitive objects, goes further: only administrators assigned at the unit's scope can change the Entra properties of its members, and tenant-scoped administrators can't.[^c04-rmau]
 
-Restriction is narrower than it sounds and costs more than it appears, so the program decides it per unit, with a default of no. A Global Administrator or Privileged Role Administrator still can't edit a protected object directly, but can add or remove the unit's members and assign themselves a role over it; restriction makes that bypass deliberate and audited, not impossible. Users and groups in a restricted unit also can't be managed by Microsoft Entra ID Governance features (Privileged Identity Management, entitlement management, lifecycle workflows and access reviews), the setting can only be chosen when the unit is created, and a tenant can hold at most 100 such units.[^c04-rmau] Use restriction for executives, break-glass accounts and groups that gate sensitive applications, not for the broad HR-driven populations that lifecycle workflows must manage. Dynamic membership and restriction together don't recreate what OU access-control lists provided.
+Restriction is narrower than it sounds and costs more than it appears, so the program decides it per unit, with a default of no. A Global Administrator or Privileged Role Administrator still can't edit a protected object directly, but can add or remove the unit's members and assign themselves a role over it; restriction makes that bypass deliberate and audited, not impossible. Users and groups in a restricted unit also can't be managed by Microsoft Entra ID Governance features (Privileged Identity Management, entitlement management, lifecycle workflows and access reviews), the setting can only be chosen when the unit is created, and a tenant can hold at most 100 such units.[^c04-rmau] Use restriction for executives, emergency access accounts and groups that gate sensitive applications, not for the broad HR-driven populations that lifecycle workflows must manage. Dynamic membership and restriction together don't recreate what OU access-control lists provided.
 
 ### Role assignments
 
-Roles are scoped to administrative units, never granted tenant-wide except for break-glass accounts and the Tier 1 readers. The assignment pattern:
+Roles are scoped to administrative units, never granted tenant-wide except for emergency access accounts and the Tier 1 readers. The assignment pattern:
 
 ```text
 role:        User Administrator
@@ -240,7 +240,7 @@ Every finding opens a tracked item with defined response expectations. [Book 03,
 
 ## Migration phases
 
-Moving an existing forest into the attribute-driven model is a phased runbook, not a flag-day cutover. They are the identity workstream's own phases, numbered within the workstream; [Chapter 12](12-migration-roadmap.md) places them in the program roadmap, whose phases are numbered separately (identity steady state arrives with the program's Phase 6), and [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) carries the identity migration in detail.
+Moving an existing forest into the attribute-driven model is a phased runbook, not a flag-day cutover. They are the identity workstream's own phases, numbered within the workstream; [Chapter 12](12-migration-roadmap.md) places them in the program roadmap, whose phases are numbered separately (identity steady state arrives with the program's Phase 6), and [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) carries the identity migration in detail, under its own eleven-phase playbook numbered 0 to 10.
 
 ### Phase 0: assessment
 

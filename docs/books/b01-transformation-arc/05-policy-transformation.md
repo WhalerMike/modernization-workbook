@@ -148,9 +148,9 @@ The coexistence period adds a second source. On a hybrid device that receives bo
 
 Conditional Access has no layers to lean on. Every policy that applies to a sign-in must be satisfied, and if any applicable policy blocks, evaluation stops and the user is blocked.[^c05-ca-eval] So the program doesn't layer a block over a grant policy to correct a scoping mistake in it; a deliberate grant-and-block pair from Book 04's library is a design, not a correction. A scoping mistake is fixed in the grant policy's assignment, because a narrow block layered under a broad requirement produces lockouts that are hard to trace.
 
-## Break-glass exclusions and testing
+## Emergency access exclusions and testing
 
-Every library excludes the emergency access accounts. Microsoft recommends two or more cloud-only emergency accounts, protected by a phishing-resistant method, excluded from every Conditional Access policy that blocks or restricts sign-in, and tested on a schedule (for example, every quarter). Report-only policies don't block and don't need the exclusion.[^c05-emergency] The program puts the accounts in one group, `CA-Exclude-EmergencyAccess`, which every enforced policy excludes ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md)). The accounts are vaulted, used only in documented emergencies, and every use opens an incident ticket.
+Every library excludes the emergency access accounts (commonly called break-glass accounts). Microsoft recommends two or more cloud-only emergency accounts, protected by a phishing-resistant method, excluded from every Conditional Access policy that blocks or restricts sign-in, and tested on a schedule (for example, every quarter). Report-only policies don't block and don't need the exclusion.[^c05-emergency] The program puts the accounts in one group, `CA-Exclude-EmergencyAccess`, which every enforced policy excludes ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md)). The accounts are vaulted, used only in documented emergencies, and every use opens an incident ticket.
 
 Every policy change passes four stages, and the pipeline rejects any change that skips one:
 
@@ -159,7 +159,7 @@ Every policy change passes four stages, and the pipeline rejects any change that
 3. **Pilot:** a pilot group, watched by the drift engine for a set period. Conditional Access policies run in report-only mode first, which evaluates them at sign-in and logs the result without enforcing it,[^c05-report-only] and are then enforced for the pilot group.
 4. **Production:** only after a clean pilot, expanding ring by ring.
 
-![Every policy change passes four gates, and a failure at any gate returns it to the plan.](../../images/diagrams/b01-transformation-arc/svg/ch05-change-gates.svg){#fig-ch05-change-gates fig-alt="Four cards in a vertical chain. Stage 1, amber, plan validation: schema, boundary and one-owning-layer checks. Stage 2, blue, simulated tenant: tests assert the expected effect. Stage 3, violet, pilot: a pilot group watched by the drift engine, with Conditional Access in report-only mode. Stage 4, green, production after a clean pilot. A dashed red arrow from each of the first three stages loops back to a slate pill labeled return to plan."}
+![Every policy change passes four stages, and a failure at any stage returns it to the plan.](../../images/diagrams/b01-transformation-arc/svg/ch05-change-gates.svg){#fig-ch05-change-gates fig-alt="Four cards in a vertical chain. Stage 1, amber, plan validation: schema, boundary and one-owning-layer checks. Stage 2, blue, simulated tenant: tests assert the expected effect. Stage 3, violet, pilot: a pilot group watched by the drift engine, with Conditional Access in report-only mode. Stage 4, green, production after a clean pilot. A dashed red arrow from each of the first three stages loops back to a slate pill labeled return to plan."}
 
 ## Retiring legacy Group Policy Objects
 

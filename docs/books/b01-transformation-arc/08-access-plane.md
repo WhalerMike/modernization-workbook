@@ -38,7 +38,7 @@ Zero Trust is a set of architectural principles, not a product. NIST SP 800-207 
 
 1. **Verify explicitly.** Identity, device posture, risk and session state are evaluated per request; being inside the network confers no trust.
 2. **Use least-privilege access.** Access is time-bound and scoped to resource and purpose, with no standing privilege.
-3. **Assume breach.** Treat every session as potentially compromised; continuous access evaluation can revoke it mid-flight, and break-glass exclusions stay minimal and audited.
+3. **Assume breach.** Treat every session as potentially compromised; continuous access evaluation can revoke it mid-flight, and emergency access exclusions stay minimal and audited.
 
 No single control is Zero Trust. The pattern is Conditional Access, Intune compliance, privileged identity management and certificate-based authentication working together. Three AD-era patterns retire with it:
 
@@ -124,7 +124,7 @@ Privileged access in the target has two mechanisms and two special populations, 
 
 - **No standing privilege in Entra ID and Azure.** Every human administrative assignment is held as *eligible* in Privileged Identity Management, which provides just-in-time, time-bound, approval-based activation with MFA and a recorded justification.[^c08-pim] The only standing active assignments are the emergency access accounts and service principals that can't perform an activation. [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md) is the build, including the step that has to come first so approval settings can't lock the agency out of its own tenant.
 - **A vault for what can't be made just-in-time.** Standing credentials that PIM can't govern, such as on-premises Tier-0 accounts during coexistence, appliance and hypervisor administrators and non-federated systems, go through a PAM vault, whichever vendor supplies it, with check-out, session recording and rotation on release. Session recording (video, keystrokes, command lines) is a third-party PAM capability, not part of Entra PIM, and goes to the SIEM.
-- **Break-glass accounts** follow [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts): at least two cloud-only accounts with permanent Global Administrator, phishing-resistant credentials stored securely, excluded from blocking Conditional Access policies, alerted on every use, and validated at least every 90 days.
+- **Emergency access accounts** follow [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts): at least two cloud-only accounts with permanent Global Administrator, phishing-resistant credentials stored securely, excluded from blocking Conditional Access policies, alerted on every use, and validated at least every 90 days.
 - **Elevated service accounts** use managed identities and workload identity federation where possible, gMSAs on remaining Kerberos islands, and vaulted accounts only as a last resort.
 
 Two drift types apply here: a standing privileged assignment that isn't one of the documented exceptions is *privilege drift*; a vaulted credential whose owner or system no longer exists is *orphan drift*. Both become tracked items.
@@ -184,7 +184,7 @@ Access-plane migration passes when:
 - every smart-card user signs in through Entra CBA, not AD-anchored smart-card logon, and every CA in the trust store has a reachable CRL;
 - user-facing policies target attribute-scoped dynamic groups;
 - at least ZTNA, a secure web gateway and a CASB are in place and federated with Entra ID;
-- every human Entra and Azure administrative assignment is eligible in PIM, every standing credential outside PIM goes through the PAM vault with session recording, and break-glass use is audited on a schedule;
+- every human Entra and Azure administrative assignment is eligible in PIM, every standing credential outside PIM goes through the PAM vault with session recording, and emergency access use is audited on a schedule;
 - CAE is enabled for supported applications, with strict location enforcement only where the network's egress addresses are stable and known;
 - legacy authentication is blocked and every remaining NTLM dependency has an owner and an end date;
 - the VPN remains only for named legacy applications with an end-of-life date.

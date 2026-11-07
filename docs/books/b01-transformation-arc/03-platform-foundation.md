@@ -73,7 +73,7 @@ Assessment, planning and delivery run here:
 - **Python** (a supported Python 3 release) for graph analysis of OU trees and dependencies, and for schema validation.
 - **API integrators** that wrap Microsoft Graph, Azure Resource Manager, Intune, IPAM, ITSM, PAM and posture-assessment output behind uniform contracts.
 
-Every script lives in the repository, every run writes a signed log entry, and every API call carries a correlation ID tied to a plan and a commit. The reads themselves are ordinary, documented cmdlets; the engine adds normalization, provenance and the commit. [Chapter 10](10-analyzing-the-estate.md) describes the eleven ingestion streams, and Book 02 carries the full assessment ([Chapter 08](../b02-identity/08-assessing-the-forest.md) and its [assessment module](../b02-identity/appendix-b-forest-assessment-module.md)).
+Every script lives in the repository, every run writes a signed log entry, and every API call carries a correlation ID tied to a plan and a commit. The reads themselves are ordinary, documented cmdlets; the engine adds normalization, provenance and the commit. [Chapter 10](10-analyzing-the-estate.md) describes the eleven ingestion streams, and Book 02 carries the forest-level assessment ([Chapter 08](../b02-identity/08-assessing-the-forest.md) and its [assessment module](../b02-identity/appendix-b-forest-assessment-module.md)).
 
 ::: {.callout-warning}
 ## Illustrative code
