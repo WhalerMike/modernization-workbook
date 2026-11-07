@@ -212,7 +212,7 @@ Remove-Item -Recurse -Force out
 
 *Not run by the authors.* Follow the workbook's [Chapter 05, Lab 2](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md#lab-2-test-tenant). It has the exact commands.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, a test subscription, a test Active Directory domain and a test repository, never production, with fictional names; a reading app with `Application.Read.All`, `AuditLog.Read.All` and Reader; and a person with Cloud Application Administrator and Managed Identity Contributor for the write.
+- **You need:** a test tenant in the worldwide or GCC cloud, a test subscription, a test Active Directory domain and a test repository, never production, with fictional names; a reader app with `Application.Read.All`, `AuditLog.Read.All` and Reader; and a person with Cloud Application Administrator and Managed Identity Contributor for the write.
 - **What you do:** make a test conversion from a client secret to a federated credential, capture the real `iss` and `sub` from one workflow run, plan, apply, exchange for real, and run the parallel run through to the legacy account's disable.
 - **Back-out:** step 7 enables the test account again, removes the test credentials, deletes the test identity, the test app registration and the test account by hand (this code never deletes), and deletes the `out` folders.
 

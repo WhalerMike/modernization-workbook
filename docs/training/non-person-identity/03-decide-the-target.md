@@ -215,7 +215,7 @@ Remove-Item -Recurse -Force out
 *Not run by the authors.* Follow the workbook's [Chapter 03, Lab 2](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#lab-2-test-tenant). It has the exact commands.
 
 - **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional people, and the Lab 2 runs of Modules 1 and 2 (`out/inventory-test`, `out/ownership-test`). The run only reads.
-- **What you do:** grant `User.Read.All` and `LicenseAssignment.Read.All` to Module 1's reading app, write the owners' inputs for the test accounts, run the matrix, record what the license read shows, and check in the admin center which principals Conditional Access can target.
+- **What you do:** grant `User.Read.All` and `LicenseAssignment.Read.All` to Module 1's reader app, write the owners' inputs for the test accounts, run the matrix, record what the license read shows, and check in the admin center which principals Conditional Access can target.
 - **Back-out:** step 6 removes the two permissions and deletes `out/matrix-test`.
 
 ## Knowledge check (5 minutes)

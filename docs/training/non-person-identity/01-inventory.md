@@ -192,7 +192,7 @@ Remove-Item -Recurse -Force out
 *Not run by the authors.* Follow the workbook's [Chapter 01, Lab 2](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#lab-2-test-tenant). It has the exact commands.
 
 - **You need:** a test tenant in the worldwide or GCC cloud with a test Azure subscription, and a test Active Directory domain, never production, with fictional people.
-- **What you do:** register a reading app with a certificate, grant it `Application.Read.All`, `Directory.Read.All` and Reader on one resource group, run the inventory live, and compare the register with the admin center's lists.
+- **What you do:** register a reader app with a certificate, grant it `Application.Read.All`, `Directory.Read.All` and Reader on one resource group, run the inventory live, and compare the register with the admin center's lists.
 - **Back-out:** step 8 removes the Reader assignment and the two permissions, deletes the app registration and its certificate, and deletes `out/inventory-test`.
 
 ## Knowledge check (5 minutes)

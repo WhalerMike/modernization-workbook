@@ -98,7 +98,7 @@ The client joins three inputs on `employeeId`: an HR extract (CSV: `employeeId`,
 | Orphan account | Enabled member user with no or an unknown `employeeId`; enabled uncorrelated ISC account | High |
 | Attribute drift | Department or manager differs from HR | Medium |
 | Unauthorized write | An Entra audit "Update user" entry changing an HR-mastered property, by someone other than the provisioning service; **only** when an audit extract is supplied or fetched (`AuditLog.Read.All`)[^ms-audit] | High |
-| Credential drift, schema drift | Not computed: they need the card system, Intune and the middleware's validation output | — |
+| Credential drift, contractor credential drift, schema drift | Not computed: they need the card system, Intune and the middleware's validation output | — |
 
 Output is JSON (the findings, and which classes were and weren't computed) and CSV, with each finding's class, severity, priority, system, subject, expected and observed values, and evidence. `--push-to-servicenow` posts them to the same Scripted REST endpoint, and still writes nothing without `--apply`. In a new pipeline's first month, expect a burst of High findings; Book 03 calls that the measurement working.
 

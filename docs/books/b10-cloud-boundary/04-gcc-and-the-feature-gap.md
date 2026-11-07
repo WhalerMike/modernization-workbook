@@ -78,7 +78,7 @@ Alongside that layer, other documented exclusions follow the same pattern:
 
 ::: {.callout-important}
 ## Build the register on documented exclusions only
-Every row in an agency's feature-gap register should carry a citation to the provider's own statement that the feature is unavailable in its environment. Gaps inferred from a boundary model, or from a feature that "seems" to return nothing, belong in a separate list marked as unconfirmed until they are tested ([Chapter 02](02-the-invisible-boundary.md)). An argument built on inferred rows won't survive a reviewer holding the provider's documentation; one built on cited rows can't be dismissed.
+Every row in an agency's exclusion register should carry a citation to the provider's own statement that the feature is unavailable in its environment. Gaps inferred from a boundary model, or from a feature that "seems" to return nothing, belong in the register marked as inferred, and stay out of any claim until they are tested ([Chapter 02](02-the-invisible-boundary.md)). An argument built on inferred rows won't survive a reviewer holding the provider's documentation; one built on cited rows can't be dismissed.
 :::
 
 ## A note on names

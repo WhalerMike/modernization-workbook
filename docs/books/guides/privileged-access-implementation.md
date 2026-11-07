@@ -40,6 +40,7 @@ The [Privileged Access & Administrative Identity plan](../../project-plans/privi
 | `Invoke-PaEmergencyCheck.ps1` | PA-EA-01 to 10 | Each emergency account against the standard: cloud-only, permanent active Global Administrator, phishing-resistant methods, excluded from every enforced policy, drilled within 90 days; writes the alert as a template | G2 |
 | `Invoke-PaCaAdmin.ps1 -CheckOnly`, then its dry run | PA-CA-01 to 09 | The administrator policies, the strength and the contexts as files: the emergency exclusion, the 14 roles, the gate's shape; then what a run would change, with nothing sent | G3 |
 | `Invoke-PaPimRoleSettings.ps1` (dry run) | PA-PIM-01 to 09 | Each role's PIM rules against its reviewed file: the lockout guards, the tier caps, the wave order, standing assignments still to convert | G4 |
+| `Invoke-PaPimAlertCheck.ps1` | PA-PIM-10 to 13 | The PIM notification settings of the highly privileged roles, and of groups that hold them: no added recipient on the assignment alert or on Global Administrator activation | G4 |
 | `Invoke-PaPimGroups.ps1` (dry run) | PA-PG-01 to 09 | The PRV groups and their member and owner schedules and policies against the reviewed file | G5 |
 | `Invoke-PaAzurePim.ps1` (dry run) | PA-AZ-01 to 06 | Azure role settings by tier at every governed scope; standing Owner, Contributor and User Access Administrator | G6 |
 | `Invoke-PaAccessReviews.ps1 -Mode Plan`, `-Mode Evidence` | PA-AR-01 to 14; PA-AR-E01 to E08 | The review series as files, then each decision as evidence | G7 |
@@ -224,13 +225,13 @@ This is the one step that can't move. Learn documents the lockout: every Global 
 
 ## Step 3: Put administrators behind Conditional Access {#step-3-put-administrators-behind-conditional-access}
 
-Book 04's Wave 2 is the administrator set: CA003 (phishing-resistant MFA by group and by role), CA004 (compliant device), CA005 (trusted networks), CA025 (PAW only) and CA027 (Azure management for operators only). Its activation gate is context `c1` and the policy `PIM-Activation-c1`, which asks again for the strength and a compliant device at the moment of elevation ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators); [Chapter 08, Step 2](../b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)).
+Book 04's Wave 2 is the administrator set of six policies: CA003 (phishing-resistant MFA by group and by role), CA004 (compliant device), CA005 (trusted networks), CA025 (PAW only), CA026 (server and Arc administration) and CA027 (Azure management for operators only). The kit holds five of them; CA026 isn't a file yet. Its activation gate is context `c1` and the policy `PIM-Activation-c1`, which asks again for the strength and a compliant device at the moment of elevation ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators); [Chapter 08, Step 2](../b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)).
 
 **Prerequisites.** Gate G2 passed, and one emergency account signed in. Every administrator has at least one phishing-resistant method registered (plan task A1.2): Learn warns that enforcing first risks locking you out.[^pag-admin-phish]
 
 **Steps.**
 
-1. **Keep every object as a file** in `ca-policies/`: the contexts `c1` and `c2`, the strength `FMP-Privileged-SeparateDevice`, the five Wave 2 policies, `PIM-Activation-c1` and `ProtectedActions-c2`. A per-tenant map resolves the group and location IDs.
+1. **Keep every object as a file** in `ca-policies/`: the contexts `c1` and `c2`, the strength `FMP-Privileged-SeparateDevice`, the five Wave 2 policies the kit holds (CA026 isn't built yet), `PIM-Activation-c1` and `ProtectedActions-c2`. A per-tenant map resolves the group and location IDs.
 2. **Run the pre-merge check on every pull request.** Every file excludes the emergency group, whatever its state, because a file is enforced by changing one word *(design guidance)*. CA003 targets all 14 roles Learn recommends.[^pag-admin-phish]
 3. **Create everything report-only.** The plan creates contexts and the strength before the policies that use them. Every new policy lands report-only.
 4. **Read a week of report-only results** in the sign-in log before enforcing ([Book 04, Chapter 10, change control](../b04-access/10-access-as-code-and-evidence.md#change-control)). Learn warns a report-only compliant-device policy can prompt Mac, iOS and Android users for a certificate.[^pag-report-only]
@@ -310,7 +311,7 @@ Each role has its own settings, and in Graph each role's policy has 17 rules wit
 - **`Invoke-PaPimRoleSettings.ps1`**, as a dry run by the reader app, shows an empty `diff.csv` for every applied wave and no Finding: PA-PIM-01 (approval with no approver) and PA-PIM-02 (emergency accounts) clear.
 - PA-PIM-09 lists no standing human assignment outside an exception in the converted waves.
 - **`Invoke-PaPimAlertCheck.ps1`** reports no PA-PIM-10 (a highly privileged role with no added recipient on its assignment alert, MS.AAD.7.7v1) and no PA-PIM-11 (Global Administrator activation with no added recipient, MS.AAD.7.8v1). For each group that holds one of those roles, such as a PRV group, it reports no PA-PIM-12 or PA-PIM-13: the same two alerts on the group's PIM for Groups member policy, as CISA's baseline asks. It only reads ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)).
-- Book 04's validation tests 1 to 12 pass for the pilot class (plan task A2.8).
+- Book 04's validation tests 1 to 12 pass for the pilot class (plan task A2.8). Tests 13 and 14 wait: 13 needs protected actions assigned and 14 needs PAWs issued, which Step 3's interim path allows to come later.
 - Gate owner: the CISO (plan Gate 2 for the pilot class, Gate 3 for every tier).
 :::
 
@@ -603,6 +604,7 @@ Every control named is in the NIST SP 800-53B Moderate baseline.[^pag-moderate] 
 - **Stages.** The authentication context on activation is preview on two Learn pages and generally available in the release notes (row 42). Reviews of PIM for Groups groups are preview.
 - **Service principal members of PRV groups.** Graph v1.0 doesn't return them as group members, so the inventory doesn't list them (row 91).
 - **Where approvals are logged.** If an approval is logged only under the access review service, PA-AUD-02 fires: it fails closed (row 85).
+- **CA026.** Book 04's Wave 2 has six policies; the kit holds five, because CA026 isn't a file yet (plan task A2.5 covers CA025 to CA027).
 - **PRV membership through access packages** (plan task A3.3) isn't built (row 58).
 - **The deployment runbook.** The workbook's [Chapter 09](../../project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md) takes the gates to a test tenant and then production, but it hasn't been run against a live tenant.
 - **Tenant behavior.** Nothing in this guide was run in a tenant. The checks are fixture-tested, and every Lab 2 is unrun by the authors.

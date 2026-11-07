@@ -62,7 +62,7 @@ The series crosswalk is a reverse index. It answers one question: for a given SP
 
 The rules for what earns a row are the author's, and they are strict:
 
-- **Only first-class treatment counts.** A row was extracted from each book's own control-closure tables and from the sections where the control is the substantive subject. A control a book mentions in passing, cites in a framework cross-reference or names in a vendor appendix was deliberately left out.
+- **Only first-class treatment counts.** A row was extracted from the control-closure tables in each series volume's books and from the sections where the control is the substantive subject. A control a book mentions in passing, cites in a framework cross-reference or names in a vendor appendix was deliberately left out.
 - **Titles are NIST's.** Every title is the official SP 800-53 Rev. 5 short title, which sometimes differs from a book's prose. For this chapter all 149 identifiers and titles were checked against the CSRC control catalog export for release 5.2.0 and the OSCAL catalog. All 149 exist and none is withdrawn; the titles match apart from capitalization and the crosswalk's practice of prefixing an enhancement with its base control's title.[^c03-cprt][^c03-oscal]
 - **Enhancements get their own row only when a book cites the enhancement.** Otherwise coverage is recorded at the base control.
 - **Implementation rows sit beside architecture rows.** Where the implementation volume turns a control into deployable code, it appears on the same row as the architecture book that closes it, so the "what" and the "how" are visible together.
@@ -76,11 +76,11 @@ The rules for what earns a row are the author's, and they are strict:
 
 ### A hand-maintained superset and a generated slice
 
-The crosswalk is maintained by hand. Alongside it, the program's design generates a smaller crosswalk from its machine-checked closure record, behind the same drift gate as each book's generated "controls closed here" table, so that slice can't silently fall out of step. The hand-maintained table is the superset: it indexes controls in books the closure record hasn't yet reached. The difference between the two is a queue of controls that are *claimed in prose but not yet proven by the record*, and the series publishes it rather than hiding it. As the record is back-filled book by book, the generated slice grows toward the full index. That is the same rule [Chapter 04](04-closure-with-proof.md) applies to closure itself: a number someone maintains by hand is a claim; a number a generator derives from records is evidence.
+The crosswalk is maintained by hand. Alongside it, the program's design generates a smaller crosswalk from its machine-checked closure record, behind the same drift gate as each series volume's book's generated "controls closed here" table, so that slice can't silently fall out of step. The hand-maintained table is the superset: it indexes controls in books the closure record hasn't yet reached. The difference between the two is a queue of controls that are *claimed in prose but not yet proven by the record*, and the series publishes it rather than hiding it. As the record is back-filled book by book, the generated slice grows toward the full index. That is the same rule [Chapter 04](04-closure-with-proof.md) applies to closure itself: a number someone maintains by hand is a claim; a number a generator derives from records is evidence.
 
 ## Coverage by volume and by book
 
-The crosswalk indexes 152 distinct controls and enhancements in 18 families. Recounted from the table for this chapter, the distinct controls each volume treats are below. A control treated in several volumes is counted in each, so the column doesn't sum to 152. Three of the 152, AT-2(3), PT-6 and PT-8, were missing from the source and are treated by no volume.
+The crosswalk indexes 152 distinct controls and enhancements in 18 families. [Appendix A](appendix-a-control-crosswalk.md) names the workbook chapter for each control and has no volume column, so the volume and book counts below were made from the [archived series crosswalk](https://github.com/WhalerMike/modernization-workbook/blob/main/archive/b14-compliance/docs/compliance/Vol_0_Book_02_Control_Crosswalk.md), which is the table that carries the volume. The distinct controls each volume treats are below. A control treated in several volumes is counted in each, so the column doesn't sum to 152. Three of the 152, AT-2(3), PT-6 and PT-8, were missing from the source and are treated by no volume.
 
 | Volume (subject) | Distinct controls | Where the depth is |
 |---|---|---|
@@ -95,7 +95,7 @@ The crosswalk indexes 152 distinct controls and enhancements in 18 families. Rec
 | IX — Workflow-platform day-2 operations | 16 | [Replaced by Book 15 chapter](../b15-day2-operations/01-the-help-desk-decides.md) |
 | **Series, distinct** | **152** | [Appendix A](appendix-a-control-crosswalk.md) |
 
-: Distinct controls treated in each volume, recounted from the crosswalk on October 21, 2026 {.striped .hover}
+: Distinct controls treated in each volume, counted from the archived crosswalk on October 21, 2026 {.striped .hover}
 
 The crosswalk's own summary table gave 12 controls for the workflow-platform automation volume and 10 for the day-2 operations volume. Recounted from the rows themselves, the figures are 9 and 16: three enhancements the text attributes to the automation volume (AC-2(3), AC-2(4) and SA-9(2)) are indexed under the day-2 volume's SaaS-integration book, and the day-2 volume's per-book rows add up to 16 distinct controls. The table above uses the recount. Volumes VI to IX raise the per-volume figures far more than the series total, because they mostly operationalize controls the architecture volumes already treat.
 
@@ -122,7 +122,7 @@ Ninety-four of the 152 controls are treated in exactly one book. The contingency
 
 ### What the index doesn't cover
 
-The crosswalk says itself that it is not a gap analysis against a baseline. That can now be quantified. Of the 287 controls and enhancements in NIST's Moderate baseline, the crosswalk indexes 122. Of the 322 FedRAMP lists for Class C, it indexes 123.[^c03-53b-profiles][^c03-fr-controls] The remaining Moderate controls are of three kinds:
+The crosswalk says itself that it is not a gap analysis against a baseline. That can now be quantified. Of the 287 controls and enhancements in NIST's Moderate baseline, the crosswalk indexes 122. Of the 322 FedRAMP lists for Class C, it indexes 123.[^c03-53b-profiles][^c03-fr-controls] The remaining Moderate controls include three kinds:
 
 - **Policy and procedure controls.** The "-1" control of each of the eighteen security families (AC-1, AU-1 and so on) is in the Moderate baseline. The series indexes only one of them, SR-1.
 - **Families the series doesn't build.** Physical and environmental protection (18 Moderate controls) and maintenance (9) have no crosswalk rows. In a cloud boundary much of PE is inherited from the provider; on premises it is the agency's.
@@ -165,29 +165,32 @@ So read an indicator mapping in the crosswalk as a statement about *the provider
 
 The crosswalk starts from controls. The questionnaire starts from the estate. It exists because a compliance plan executed without full visibility into the agency's deployed tooling can't select a coordination approach, or claim an inherited control, without first knowing what is already in place and how it is authorized.
 
-It is organized by the same volumes as the crosswalk. Each row is a product category (cloud platforms, DDI and IPAM, certificates and PKI, the HR system of record, directory and identity provider, network equipment, network access control, SD-WAN and SASE, privileged access, vulnerability assessment, patch and systems management, cloud posture, SIEM, XDR, SOAR, backup, SBOM tooling, GRC and OSCAL tooling, the workflow platform and its connectors, and so on) with example products. For each, the agency fills four working columns:
+It is organized by the workbook book each answer feeds. Each row is a product category (cloud platforms, DDI and IPAM, certificates and PKI, the HR system of record, directory and identity provider, network equipment, network access control, SD-WAN and SASE, privileged access, vulnerability assessment, patch and systems management, cloud posture, SIEM, XDR, SOAR, backup, SBOM tooling, GRC and OSCAL tooling, the workflow platform and its connectors, and so on) with example products. For each, the agency fills four working columns:
 
 | Column | What to record |
 |---|---|
-| In use? | Yes, no, or partly |
+| In use? | Yes, no, or planned |
 | Product and offering | The specific offering, not the vendor: a government edition and a commercial edition of the same product are different answers |
 | FedRAMP status | The Marketplace status, certification class and FedRAMP ID, read on the day you fill the row |
-| Deployment surface | Cloud service, network equipment, operating system, or cross-surface |
+| Surface | Cloud platform, network equipment, operating system, or across several of them |
 
 : The questionnaire's working columns {.striped .hover}
 
-A fifth column, *Maps to*, is pre-filled. It names the series book and functional plane the answer feeds, which is how the questionnaire hands off to the crosswalk.
+A fifth column, *Feeds*, is pre-filled. It names the workbook book, and the chapter where one fits, that uses the answer, and the controls in [Appendix A](appendix-a-control-crosswalk.md) the product is most likely to evidence, which is how the questionnaire hands off to the crosswalk.
 
 The FedRAMP status column is the one that goes stale fastest. The Marketplace publishes its data as a dataset that records, for each listing, its status, certification class and impact level. On October 21, 2026 it held 781 listings, and the statuses included "FedRAMP Certified," "Initial Implementation," "FedRAMP In Process," "Agency Authorization In Process" and "Legacy FedRAMP Ready."[^c03-marketplace] The last of those exists because FedRAMP stopped accepting FedRAMP Ready submissions after July 28, 2026.[^c03-timeline] A status recorded in the spring may not be the status in the fall; record the date you read it.
 
 ### The scope rule and its dispositions
 
-The questionnaire asks the agency to name the level its boundary is authorized at, and then to check every in-boundary dependency against it. Its dispositions, with two corrections:
+The questionnaire asks the agency to name the security categorization of the system a dependency serves, and then to give every in-boundary dependency a disposition against it. Its dispositions, with two corrections:
 
 | Situation | Disposition |
 |---|---|
-| Certified at the boundary's level (Class C for a Moderate boundary) | In scope. Record the FedRAMP ID |
+| Certified at a class that matches the system's categorization (Class C for a Moderate system) | In scope. Record the FedRAMP ID |
 | Certified only at a higher class (Class D, no Class C offering) | Usable. The questionnaire flagged this case for review; under M-24-15, agencies must presume a FedRAMP package adequate for an authorization "at or below" its impact level, and FedRAMP's notice on the designations says agencies may use a certification package at any security category they deem appropriate under the Risk Management Framework.[^c03-m2415][^c03-ntc0004] Record it; the higher class is not a defect |
+| Certified at a lower class than the system's categorization | Flag it. The authorizing official decides whether the certification package supports this use; record the decision, or find an offering certified at the matching class |
+| In an implementation or in-process status, not yet certified | Flag it. Record the status and its date; plan as though certification may not arrive on time |
+| A cloud service the agency has determined is outside FedRAMP's scope | Record the scope determination and who made it. The service is still assessed in the agency's own authorization |
 | On-premises equipment or software, not a cloud service | Not a FedRAMP item. FedRAMP's scope is cloud computing products and services that handle federal information for an agency.[^c03-scope] The equipment is assessed inside the agency's own authorization, with its own evidence; [Appendix B](appendix-b-product-inventory-questionnaire.md) lists the instruments the series uses |
 | A cloud service that isn't FedRAMP certified | Flag it. Agencies must promote the use of certified services when the use is within FedRAMP's scope, and some uses are outside it.[^c03-scope] The program's design is to treat an uncertified in-boundary dependency as a decision for the authorizing official: find a certified or government edition, replace it, or document why the use is out of scope |
 | A category with no product at all | Flag it as a gap |

@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book brings together the workbook's *Physics of a Single Source of Truth* series, the branch-networking whitepapers (*The Branch Edge Gap*, *The Long Interim*, *SD-WAN vs. DIA Under TIC 3.0*, *Network Transport and Governance*, and the field-office WAN paper), the Microsoft 365 Optimize exemption instruments, and the short SD-WAN, SASE and RADIUS pages. Every external claim was checked against a primary source on October 20–21, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b09-network/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b09-network) folder, and their old addresses forward to the chapters that replaced them.
+This book brings together the workbook's *Physics of a Single Source of Truth* series, the branch-networking whitepapers (*The Branch Edge Gap*, *The Long Interim*, *SD-WAN vs. DIA Under TIC 3.0*, *Network Transport and Governance*, and the field-office WAN paper), the Microsoft 365 Optimize exemption instruments, and the short SD-WAN, SASE and RADIUS pages. Every external claim was checked against a primary source starting October 20, 2026, with later additions dated in their footnotes, and carries a footnote; third-party sources are labeled as such. The earlier pages are kept in the repository's [`archive/b09-network/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b09-network) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

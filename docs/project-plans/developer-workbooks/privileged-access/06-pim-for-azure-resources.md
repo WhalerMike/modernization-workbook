@@ -38,7 +38,7 @@ The code behind the project plan's task A3.2, "Azure privileged roles eligible t
 
 **Goal.** By the end of this chapter you can hold PIM for Azure resources as code. A reviewed JSON file says which scopes are governed, which roles, the settings for each tier, who is eligible, and which standing assignments are allowed and who owns each one. The code reads the estate through Resource Manager, prints a diff, writes the requests it would send, and sends them only when you run it again with `-Apply`. You can say, for each rule in the code, whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
 
-**Audience.** Platform engineers who own the Azure management group hierarchy, and the identity engineers and ISSOs who review their changes. You should read PowerShell 7 and know what an Azure role assignment and a scope are. Chapter 01's Azure section is the read this chapter builds on. You don't need a subscription until Lab 2.
+**Audience.** Platform engineers who own the Azure management group hierarchy, and the identity engineers and ISSOs who review their changes. You should read PowerShell 7 and know what an Azure role assignment and a scope are. Chapter 01's "The rows" section and Lab 1's Azure scopes are the read this chapter builds on. You don't need a subscription until Lab 2.
 
 ## The context the code depends on
 
@@ -60,7 +60,7 @@ The schedules a request produces are read back from `roleEligibilitySchedules` a
 
 **Who can be eligible.** Learn says you can make users eligible but not applications, service principals or managed identities, because they can't perform the activation steps, and that users with eligible or time-bound assignments need a valid license (Microsoft Entra ID P2 or Microsoft Entra ID Governance).[^pa06-integration] So a standing Contributor held by a deployment pipeline can't be converted. The code reports it and leaves it alone.
 
-**What counts as privileged.** Learn's privileged administrator roles are Owner, Contributor, Reservations Administrator, Role Based Access Control Administrator and User Access Administrator.[^pa06-privileged-roles] This chapter governs the three the project plan names, Owner, Contributor and User Access Administrator, and the desired state can add the others by role definition ID. Microsoft's best practice is at most three subscription owners.[^pa06-azure-best]
+**What counts as privileged.** Learn's privileged administrator roles are Owner, Contributor, Reservations Administrator, Role Based Access Control Administrator and User Access Administrator.[^pa06-privileged-roles] This chapter governs three, Owner, Contributor and User Access Administrator, the Azure roles in Book 04, Chapter 04's placements and the program's scope (the project plan names subscription owners and Azure privileged roles), and the desired state can add the others by role definition ID. Microsoft's best practice is at most three subscription owners.[^pa06-azure-best]
 
 ### Which cloud, for these calls
 
@@ -101,7 +101,7 @@ Replaying the examples, and reading them beside the walkthroughs, shows what the
 
 ## The code: `PaAzurePim` in `examples/privileged-access`
 
-[`examples/privileged-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access) gains a second module for this chapter, `powershell/PaAzurePim/PaAzurePim.psm1`, with its own call list `config/calls-ch06.json`, entry script `Invoke-PaAzurePim.ps1`, tests and fixtures. The notes are in [`docs/ch06.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/docs/ch06.md).
+[`examples/privileged-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access) gains another module for this chapter, `powershell/PaAzurePim/PaAzurePim.psm1`, with its own call list `config/calls-ch06.json`, entry script `Invoke-PaAzurePim.ps1`, tests and fixtures. The notes are in [`docs/ch06.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/docs/ch06.md).
 
 ### What it builds on
 
@@ -126,7 +126,7 @@ The module imports Chapter 01's `PrivilegedAccess` module and changes nothing in
 
 User Access Administrator is the narrower of the two roles Learn names: it holds `*/read` and `Microsoft.Authorization/*`, while Owner can also change every resource.[^pa06-privileged-roles] Role Based Access Control Administrator holds `roleAssignments/write` too, and Learn's general role-assignment pages offer it as the least-privileged way to assign roles,[^pa06-privileged-roles] but the PIM walkthroughs and the PIM APIs page name only Owner and User Access Administrator.[^pa06-rest-eligible] [^pa06-pim-apis] The code follows the stricter statement and declares User Access Administrator (research gaps, row 62). `Get-PaAzRequiredRole` returns the union for a task, so the dry run needs Reader and the apply needs User Access Administrator, and the manifest says which.
 
-**A desired state.** `Read-PaAzDesiredState` loads the reviewed file and refuses what Learn or the program rules out: a service principal as an eligible holder,[^pa06-integration] an activation outside 1 to 24 hours,[^pa06-settings] approval with no approver group, the root scope, and an authentication context before its Conditional Access policy is confirmed. That last guard is Learn's advice: create and enable the Conditional Access policy for the authentication context before you set it in PIM.[^pa06-settings] The authentication context `c1` and its policy are Chapter 03's (planned). The settings per tier follow Book 04, [Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md): four hours of activation for Tier 0 and eight for Tier 1, approval by `PIM-Approvers-T0` or `PIM-Approvers-T1`, justification and a ticket on activation, MFA and justification on an active assignment, eligibility for at most 90 or 180 days, and no permanent active assignment. *Design guidance* for the values.
+**A desired state.** `Read-PaAzDesiredState` loads the reviewed file and refuses what Learn or the program rules out: a service principal as an eligible holder,[^pa06-integration] an activation outside 1 to 24 hours,[^pa06-settings] approval with no approver group, the root scope, and an authentication context before its Conditional Access policy is confirmed. That last guard is Learn's advice: create and enable the Conditional Access policy for the authentication context before you set it in PIM.[^pa06-settings] The authentication context `c1` and its policy are Chapter 03's. The settings per tier follow Book 04, [Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md): four hours of activation for Tier 0 and eight for Tier 1, approval by `PIM-Approvers-T0` or `PIM-Approvers-T1`, justification and a ticket on activation, MFA and justification on an active assignment, eligibility for at most 90 or 180 days, and no permanent active assignment. *Design guidance* for the values.
 
 **A read.** `Get-PaAzPimState` reads, at each governed scope, both schedule lists and one policy per governed role, found with the walkthrough's `roleDefinitionId` filter. Rows are de-duplicated by ID and inherited rows skipped, as in Chapter 01. A schedule is `ActivePermanent` only when it is `Assigned`, has no end, isn't linked to an eligibility, and is direct.
 
@@ -161,7 +161,7 @@ Pester 5 under PowerShell 7: 38 tests in `tests/AzurePim.Tests.ps1`, none needin
 - 6 replaying Microsoft's examples, one for each row of the gap table above that the examples show.
 - 4 on the read, 5 on the desired state, 10 on the plan, and 7 on the dry run, the apply against the fake, the fake's policy and principal checks, and the entry script.
 
-With Chapters 01 and 02's tests, the example runs 116.
+The kit runs 330 tests in all.
 
 ::: {.callout-important}
 ## Illustrative code

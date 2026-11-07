@@ -45,7 +45,7 @@ For an application using a service principal, `Microsoft.Data.SqlClient` uses `A
 
 ## Entra options by driver
 
-The same change looks different in each Microsoft driver family, and the version deployed decides which modes exist. The application audit's driver inventory ([Chapter 18](18-the-four-class-pattern-for-applications.md)) is checked against this table:
+The same change looks different in each Microsoft driver family, and the version deployed decides which modes exist. The driver inventory, which supplies the database-axis data alongside the code owner and the vendor ([Chapter 18](18-the-four-class-pattern-for-applications.md)), is checked against this table:
 
 | Driver | Managed identity | Service principal | Credential chain | Notes |
 |---|---|---|---|---|

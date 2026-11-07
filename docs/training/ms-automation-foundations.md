@@ -104,7 +104,7 @@ A scheduled script signs in as itself, not as a person: an **app registration** 
 | **Certificate** | Anywhere else, such as an on-premises scheduler | Microsoft recommends "a trusted certificate issued by a certificate authority" over an application secret.[^m1-appinst] The app signs a JWT assertion with it.[^m1-certcred] The certificate's lifetime follows [Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md) (180 days), the app's owner rotates it, and the choice of CA follows [Book 07](../books/b07-pki/index.md). |
 | Client secret | Avoid | ScubaGear: application password addition *should* be blocked (MS.AAD.5.5v1), and lifetimes kept to 180 days (MS.AAD.5.6v1).[^m1-scuba] |
 
-**Consent.** Application permissions take effect only after tenant-wide admin consent. Microsoft Graph application permissions need a **Privileged Role Administrator**. Cloud Application Administrator and Application Administrator can consent to anything *except* Microsoft Graph app roles.[^m1-consent] Plan for that approval step in the change process: it's the moment someone with privilege decides what the script may read.
+**Consent.** Application permissions take effect only after tenant-wide admin consent. Microsoft Graph application permissions need a **Privileged Role Administrator**, the least privileged role listed; in practice this typically requires a Global Administrator, and it may not be enough ([Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md)). Cloud Application Administrator and Application Administrator can consent to anything *except* Microsoft Graph app roles.[^m1-consent] Plan for that approval step in the change process: it's the moment someone with privilege decides what the script may read.
 
 ## Unit 4: Permissions and tools
 
@@ -131,7 +131,7 @@ The example code keeps every call and its permission in one file, `graph-calls.j
 | Microsoft Graph Python SDK | `pip install msgraph-sdk`[^m1-sdkinst] | Services and pipelines; `PageIterator` follows pages for you[^m1-pypaging] |
 | `azure-identity` (Python) | `pip install azure-identity` | Managed identity, certificate and federated credentials, for Graph and Azure alike[^m1-azid] |
 | Az PowerShell, Azure CLI | (Module 4) | Azure Resource Manager: subscriptions, Arc, Policy |
-| AzureAD, AzureAD Preview, MSOnline | **Don't** | Deprecated on March 30, 2024; Microsoft said they would work only until March 30, 2025, and recommends migrating to Microsoft Graph PowerShell[^m1-aadps][^m1-mgmig] |
+| AzureAD, AzureAD Preview, MSOnline | **Don't** | Deprecated on March 30, 2024; Microsoft said they would work only until March 30, 2025, the announced date (the actual shut-off came later, as [Book 02, Chapter 03](../books/b02-identity/03-ad-and-entra-side-by-side.md) records), and recommends migrating to Microsoft Graph PowerShell[^m1-aadps][^m1-mgmig] |
 
 The example client calls the REST API directly with the standard library. That isn't a recommendation against the SDKs, which handle paging and retries for you. It keeps every request visible, so the patterns below can be read and tested line by line *(design guidance)*. [Book 19, Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) starts from Microsoft's own SDK snippets and explains each rule the client adds.
 
@@ -163,7 +163,7 @@ The example client calls the REST API directly with the standard library. That i
 ### What this means for the books
 
 - **Every evidence script states its cloud and its permissions.** Book 15's control automation should record the endpoint and the exact permissions for each collector, so a GCC High move ([Book 10](../books/b10-cloud-boundary/index.md)) is a configuration change, not a rewrite *(design guidance)*.
-- **No collector uses a client secret.** That puts Book 04's application-credential rules (MS.AAD.5.5v1 to 5.7v1) into practice for the program's own automation.
+- **No collector uses a client secret.** That puts ScubaGear's application-credential policies (MS.AAD.5.5v1 to 5.7v1) and Book 04's stricter rule (secrets blocked, certificates capped at 180 days) into practice for the program's own automation.
 - **A collector that pages, retries and keeps delta links** produces complete evidence at a predictable cost. One that doesn't produces evidence that looks complete.
 
 ## Unit 6: Where agencies are
@@ -358,9 +358,9 @@ rm -rf ca
 
 <!-- labs:end -->
 
-You register an app with one permission, run one read-only task, see the token check and the wrong-cloud refusal work, and remove the app. Follow the developer workbook's [Chapter 02, Lab 2](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md#lab-2-test-tenant), which uses the Conditional Access export because it needs one permission.
+You register an app with one permission, run one read-only task, and remove the app. (The chapter's later steps, which show the token check and the wrong-cloud refusal, add a second permission and aren't part of this lab.) Follow the developer workbook's [Chapter 02, Lab 2](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md#lab-2-test-tenant), which uses the Conditional Access export because it needs one permission.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional data; an administrator who can grant tenant-wide admin consent to a Microsoft Graph application permission, which is a Privileged Role Administrator ([Unit 3](#signing-in-as-a-workload)); Python with the `azure-identity` package (the run below installs it), or Microsoft Graph PowerShell.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional data; an administrator who can grant tenant-wide admin consent to a Microsoft Graph application permission, which is a Privileged Role Administrator, and in practice typically a Global Administrator ([Unit 3](#signing-in-as-a-workload)); Python with the `azure-identity` package (the run below installs it), or Microsoft Graph PowerShell.
 - **You'll replace:** `<tenant-id>` (the test tenant's ID), `<app-id>` (the app's application (client) ID); `app.pem` is the PEM file with the app's certificate and private key.
 - **The app registration:** a certificate credential, no secret, and the application permission `Policy.Read.All`, with admin consent. Nothing else.
 - **The run**, from `examples/ms-automation`. It only reads:

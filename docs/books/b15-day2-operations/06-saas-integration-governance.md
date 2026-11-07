@@ -126,7 +126,7 @@ The SAML signing certificate and the provisioning token are authenticators with 
 
 : Phase 3. {.striped .hover}
 
-The platform facts behind this phase: when an administrator configures SAML single sign-on, Entra ID generates a self-signed signing certificate valid for three years by default. A new certificate can be created with any expiry up to three years, or uploaded, and Microsoft recommends a rollover in which the application picks up the new certificate from the federation metadata before it is made active. Entra ID emails expiry notices 60, 30 and 7 days ahead to up to five addresses.[^c06-certs] The program's design puts the agency's own certificate policy in charge of that lifecycle ([Book 07](../b07-pki/index.md)): a shorter lifetime than the default, a named distribution list in the notification slot, and rotation raised by the catalog well before the first notice.
+The platform facts behind this phase: when an administrator configures SAML single sign-on, Entra ID generates a self-signed signing certificate valid for three years by default. A new certificate can be created with any expiry up to three years, or uploaded, and Microsoft recommends a rollover in which the application picks up the new certificate from the federation metadata before it is made active. Entra ID emails expiry notices 60, 30 and 7 days ahead to up to five addresses.[^c06-certs] The program's design puts the agency's own certificate policy in charge of that lifecycle (a SAML signing certificate isn't one of [Book 07](../b07-pki/index.md)'s certificate classes, and [Appendix A](appendix-a-help-desk-task-reference.md) names who renews it): a shorter lifetime than the default, a named distribution list in the notification slot, and rotation raised by the catalog well before the first notice.
 
 ### Phase 4: provision and authorize
 
@@ -263,15 +263,15 @@ The inventory above counts integrations. The [Help Desk Kit](https://github.com/
 
 | Finding | What the script checks | Tier | Who acts |
 |---|---|---|---|
-| Orphaned application | No owner on the service principal, nor on the application object for apps registered in the tenant | Tier 1 | The governance officer assigns an owner before any access is granted |
-| Critical permission | A critical permission, such as `Mail.Send` or `RoleManagement.ReadWrite.Directory`, held as an application permission or a delegated scope | Tier 1 | The application owner justifies it or it's removed |
+| Orphaned application | No owner on the service principal, nor on the application object for apps registered in the tenant | Risk Tier 1 | The governance officer assigns an owner before any access is granted |
+| Critical permission | A critical permission, such as `Mail.Send` or `RoleManagement.ReadWrite.Directory`, held as an application permission or a delegated scope | Risk Tier 1 | The application owner justifies it or it's removed |
 | Acts as every user | A delegated grant consented on behalf of all users with a critical or high-risk scope (the `TenantWideRiskyScopes` column) | Flagged for review | The application owner and the governance officer |
 
 : The Help Desk Kit audit. Checks from the kit's script; tiers and owners are program design. {.striped .hover}
 
 The third finding needs a word. A delegated grant has a consent type: *AllPrincipals* authorizes the application to impersonate all users, and *Principal* authorizes it for one user.[^c06-oauth2-grant] An application admin-consented for every user can act as anyone who signs in to it, within the scopes granted. That is the nearest thing Entra ID has to Active Directory's unconstrained delegation, which lets a server act as any user who connects to it against any service ([Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md)). The difference is the limit: the Entra grant stops at its scopes, so the finding is about which scopes, not whether delegation exists. The workbook's Start Kit runs the Active Directory check; this script runs the Entra one.
 
-Every finding is a governance action (A3 in [Chapter 03](03-intake-triage-and-routing.md)), so the help desk never remediates one. A tenant-wide grant the catalog didn't produce is drift and goes to the governance officer and security operations. Externally published applications aren't detected by the script; raise them to Tier 1 by hand. The script isn't tenant-tested: review it and run it in a sub-production tenant first.
+Every finding is a governance action (A3 in [Chapter 03](03-intake-triage-and-routing.md)), so the help desk never remediates one. A tenant-wide grant the catalog didn't produce is drift and goes to the governance officer and security operations. Externally published applications aren't detected by the script; raise them to risk Tier 1 by hand. The script isn't tenant-tested: review it and run it in a sub-production tenant first.
 
 ## Keeping integrations authorized
 

@@ -84,13 +84,13 @@ Authorization belongs to a specific cloud service offering, not to a vendor or a
 
 | Offering | Marketplace status | What it means for selection |
 |---|---|---|
-| Infoblox Government Cloud (FR2017257053) | FedRAMP Certified, Moderate, since December 15, 2022; SaaS in AWS GovCloud (US) | The listed service description covers Universal DDI, Universal Asset Insights and the threat defense components TIDE and Dossier. In July 2026 Infoblox announced that Universal DDI Management, NIOS-X servers and Universal Asset Insights were available through it.[^c12-ibx-pr] On-premises NIOS appliances aren't a cloud service and sit inside the agency's own boundary |
+| Infoblox Government Cloud (FR2017257053) | FedRAMP Certified, Moderate, since December 15, 2022; SaaS in AWS GovCloud (US) | The listed service description covers Universal DDI, Universal Asset Insights and the threat defense components TIDE and Dossier. A July 2026 Infoblox press release describes that offering as including Universal DDI Management, NIOS-X servers and Universal Asset Insights.[^c12-ibx-pr] On-premises NIOS appliances aren't a cloud service and sit inside the agency's own boundary |
 | BlueCat, EfficientIP | No listing | Their DDI products can be deployed as software or appliances that the agency operates inside its own boundary (BlueCat documents Address Manager and DNS/DHCP Server appliances for Azure and Azure Government[^c12-bluecat-azure]). The Marketplace lists no FedRAMP authorization for either vendor, so a vendor-hosted management service from them would need its own authorization path |
 | Azure (commercial) | FedRAMP Certified, High | Azure DNS is listed in Microsoft's FedRAMP High audit scope for Azure public regions[^c12-azure-scope] |
 | AWS US East/West; AWS GovCloud | FedRAMP Certified, Moderate; High | AWS lists Amazon Route 53 as in scope in both.[^c12-aws-scope] Scope is listed per service and per Region, and either Region can host a Moderate system, since the High baseline contains the Moderate controls *(inference)* |
 | Cisco Catalyst SD-WAN for Government (FR2012534927) | FedRAMP Certified, Moderate, since March 14, 2024 | Relevant when the SD-WAN management plane that sets redirect-dns is itself cloud-delivered |
 
-Two cautions. A Moderate authorization doesn't cover High or DoD workloads ([Applicability](appendix-c-applicability.md)), whatever the vendor's commercial-versus-federal comparison tables say about feature parity. And confirm current status on the Marketplace for every candidate at decision time rather than relying on this table or on vendor claims.
+Two cautions. A Moderate certification doesn't cover High or DoD workloads ([Applicability](appendix-c-applicability.md)), whatever the vendor's commercial-versus-federal comparison tables say about feature parity. And confirm current status on the Marketplace for every candidate at decision time rather than relying on this table or on vendor claims.
 
 ## Comparing the platform models
 
@@ -109,7 +109,7 @@ For a smaller agency, or one whose workloads run in a single cloud with no divis
 
 ### Why decide now
 
-The case for deciding before the next migration wave, rather than after, rests on forcing functions the series has already verified. M-22-09 requires encrypted DNS to agency-designated resolvers ([Chapter 05](05-edge-interception-and-bypass.md)). Every new cloud adds an independent DNS system and another set of conditional forwarders ([Chapter 07](07-cloud-private-endpoints-and-ipam.md)). Agencies retiring Active Directory must have the AD DNS inventory reprovisioned before the last domain controller goes, and starting after it is gone means recovering from orphaned records under pressure ([Chapter 04](04-active-directory-dns-departure.md)). And rogue DHCP option 6 can move a subnet off the governed resolver in one step ([Chapter 05](05-edge-interception-and-bypass.md)). None of these waits for a platform decision; each is cheaper with one.
+The case for deciding before the next migration wave, rather than after, rests on forcing functions the series has already verified. M-22-09 requires encrypted DNS, and says agencies should explicitly configure endpoints to use agency-designated resolvers ([Chapter 05](05-edge-interception-and-bypass.md)). Every new cloud adds an independent DNS system and another set of conditional forwarders ([Chapter 07](07-cloud-private-endpoints-and-ipam.md)). Agencies retiring Active Directory must have the AD DNS inventory reprovisioned before the last domain controller goes, and starting after it is gone means recovering from orphaned records under pressure ([Chapter 04](04-active-directory-dns-departure.md)). And rogue DHCP option 6 can move a subnet off the governed resolver in one step ([Chapter 05](05-edge-interception-and-bypass.md)). None of these waits for a platform decision; each is cheaper with one.
 
 ### Questions to put to every vendor
 
@@ -119,7 +119,7 @@ Take these to every candidate, in writing, before committing. Several were raise
 2. **Cloud integration limits.** What are the documented limits of each cloud integration, and do they affect private endpoint resolution or conditional forwarding for cloud-managed namespaces? The Azure DNS limits above answer the first half for one vendor; the second half is still a question.
 3. **Wildcards and namespace occupancy.** Does IPAM track wildcard records and subdomain occupancy, or only host-level A and AAAA records?
 4. **Source address under redirect-dns.** When the edge redirects a query, does the resolver see the workstation's address or the edge router's? The answer decides whether query logs attribute traffic to a device.
-5. **Sovereign-cloud telemetry.** Microsoft 365 informed network routing supports WW Commercial tenants but not GCC Moderate, GCC High or DoD;[^c12-inr] ask the SD-WAN vendor and Microsoft whether any alternative telemetry is planned.
+5. **Sovereign-cloud telemetry.** Microsoft 365 informed network routing supports WW Commercial tenants but not GCC-Moderate, GCC High or DoD;[^c12-inr] ask the SD-WAN vendor and Microsoft whether any alternative telemetry is planned.
 6. **AD DNS migration support.** Is there a published, supported path from AD-integrated DNS to the platform that preserves SRV resolution and secure dynamic updates during coexistence?
 
 ## Residual risk and limitations
@@ -130,8 +130,8 @@ The residual risks are real:
 
 - **Sync lag and sync failure** between the policy plane and per-cloud DNS or IPAM services become the new source of divergence. Vendors document their own sync limits, such as SOA changes that take several intervals to reach Azure,[^c12-ibx-azure] so monitor synchronization health and test resolution after every high-impact change.
 - **Control-plane concentration.** If the management plane is unavailable, changes cannot be made, but existing resolution should continue from local resolver state. Define the operational response and any local override procedures, and decide in advance who may invoke them ([Chapter 09](09-who-owns-dns.md)).
-- **Authorization scope.** A Moderate authorization does not cover High or DoD environments ([Applicability](appendix-c-applicability.md)).
-- **Commercial-only optimizations.** Microsoft 365 informed network routing is unavailable in GCC Moderate, GCC High and DoD, and the only SD-WAN solution Microsoft lists for it is Cisco IOS XE SD-WAN 20.4/17.4 or later;[^c12-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
+- **Certification scope.** A Moderate certification does not cover High or DoD environments ([Applicability](appendix-c-applicability.md)).
+- **Commercial-only optimizations.** Microsoft 365 informed network routing is unavailable in GCC-Moderate, GCC High and DoD, and the only SD-WAN solution Microsoft lists for it is Cisco IOS XE SD-WAN 20.4/17.4 or later;[^c12-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
 - **Loopback endpoint agents.** A client-side DNS agent listening on loopback cannot be a redirect-dns target; a network-addressable resolver is required.
 - **Encrypted DNS bypass** remains possible where endpoint and network controls are incomplete.
 - **Open engineering questions** for very large branch estates, such as resolver and forwarding-proxy sizing and source-address behavior under redirect-dns, need vendor engagement and testing.

@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's PKI Modernization Guide with one ordered book. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The guide's PowerShell assessment module isn't reproduced here: it stays in the repository's [`archive/b07-pki/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b07-pki) folder, with the rest of the original guide, until it has had a technical review. The guide's old address forwards to this page.
+This book replaces the workbook's PKI Modernization Guide with one ordered book. Every external claim was checked against a primary source between October 20 and November 2, 2026 and carries a footnote. The guide's PowerShell assessment module isn't reproduced here: it stays in the repository's [`archive/b07-pki/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b07-pki) folder, with the rest of the original guide, until it has had a technical review. The guide's old address forwards to this page.
 :::
 
 ::: {.callout-tip}
@@ -36,7 +36,7 @@ This book replaces the workbook's PKI Modernization Guide with one ordered book.
 
 **Technical deep dive (about 50 minutes live, 23 narrated)**: hardening AD CS, the target PKI, device and user certificates and decommissioning, in modules on the [Presentations](../../presentations/index.md#technical-b07) page.
 
-**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, CISO, PKI owner and authorizing officials: the two clocks of cutover and expiry, shrinking lifetimes, the AD CS inventory, four issuers instead of one, who owns the CA, the waves and retiring AD CS last, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b07) page.
+**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, CISO, PKI and CA administrators and authorizing officials: the two clocks of cutover and expiry, shrinking lifetimes, the AD CS inventory, four issuers instead of one, who owns the CA, the waves and retiring AD CS last, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b07) page.
 
 **Under review**: an implementation guide, [Certificate Lifecycle on CyberArk Certificate Manager](../guides/cyberark-certificate-lifecycle.md), builds this book's certificate lifecycle on the program's CLM platform. An explainer, [Certificates, Tokens and Keys Across the Hybrid Estate](../explainers/hybrid-credentials.md), follows SQL Server with Entra ID, the clouds' key vaults, PIV and RADIUS through coexistence to after AD, with who issues and who renews each credential.
 :::

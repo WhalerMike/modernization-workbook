@@ -169,7 +169,7 @@ The program uses one numbering for these attributes, which is the device half of
 |---|---|---|
 | `extensionAttribute1` | Region | `EAST`, `WEST`, `CENTRAL` |
 | `extensionAttribute3` | Department or function | `Governance`, `Engineering`, `Finance` |
-| `extensionAttribute11` | Security tier | `Tier0`, `Tier1`, `Tier2` |
+| `extensionAttribute11` | Security tier | `Tier0`, `Tier1`, `Tier2`, `UNPOSITIONED` (no source could supply a tier; a finding, never a steady state) |
 | `extensionAttribute12` | Device role | `PAW`, `Kiosk`, `SharedDevice`, `Dedicated` |
 | `extensionAttribute13` | Environment | `Production`, `Staging`, `Dev` |
 
@@ -343,7 +343,7 @@ Security settings management has a licensing catch for servers: if the tenant's 
 
 ## Configuration profiles (settings catalog)
 
-Settings catalog profiles replace ADMX-backed Group Policy with cloud-delivered configuration. Each profile below maps the GPO paths to the settings that replace them. All are assigned to all corporate devices unless the profile says otherwise.
+Settings catalog profiles replace ADMX-backed Group Policy with cloud-delivered configuration. Each profile below maps the GPO paths to the settings that replace them. All are assigned to all corporate devices unless the profile says otherwise. The exception is the settings that replace User Configuration paths: Folder Redirection in SC-004, and the wallpaper and Windows Spotlight rows in SC-010. Those are the user half of Group Policy, so they go to the HR track's user groups, not to the device assignment ([Intune track guide, Step 2.3](../guides/intune-track-implementation.md)).
 
 The IDs SC-002 (Defender Antivirus), SC-006 (BitLocker), SC-007 (Windows Firewall) and SC-008 (Windows LAPS) are retired. Each was a settings catalog profile that duplicated an Endpoint security policy configuring the same settings, and Microsoft's guidance is to manage a given setting through one method, because duplicates across policy types conflict.[^c08-es-conflicts] Their settings live in ES-001, ES-002, ES-003 and ES-006, and the four IDs aren't reused. [Appendix A](appendix-a-gpo-to-intune-crosswalk.md) maps the GPO settings to the Endpoint security IDs accordingly.
 
@@ -528,7 +528,7 @@ With silent encryption, recovery keys go to Entra ID automatically, which needs 
 
 ### ES-003: firewall
 
-Replaces the Windows Defender Firewall with Advanced Security GPOs (Computer Configuration > Windows Settings > Security Settings), the retired SC-007 profile, and the firewall rows of the SC-001 baseline.
+Replaces the Windows Defender Firewall with Advanced Security GPOs (Computer Configuration > Windows Settings > Security Settings), and the retired SC-007 profile.
 
 | Profile | State | Inbound default | Outbound default | Log dropped packets | Log successful connections |
 |---|---|---|---|---|---|

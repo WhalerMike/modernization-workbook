@@ -57,7 +57,7 @@ The order of preference among these credentials is settled in the workbook: a ma
 
 ### Policy on workload identities
 
-Conditional Access can target workload identities, but narrowly. Policies apply only to single-tenant service principals registered in the tenant; Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered, and a policy assigned to a group that contains a service principal isn't enforced for it. The available control is to block, by location, by risk or with authentication contexts, and creating or changing these policies requires Workload Identities Premium licenses.[^c04-ca-wid] Microsoft states that Workload Identities Premium is available in Azure for US Government.[^c04-entra-gov] A vendor's AI service, consented in as a multitenant application, is therefore outside workload-identity Conditional Access altogether. Its controls are consent, permissions and monitoring.
+Conditional Access can target workload identities, but narrowly. Policies apply only to single-tenant service principals registered in the tenant; Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered, and a policy assigned to a group that contains a service principal isn't enforced for it. The available control is to block, by location, by risk or with authentication contexts, and creating or changing these policies requires Workload ID Premium licenses.[^c04-ca-wid] Microsoft states that Workload ID Premium is available in Azure for US Government.[^c04-entra-gov] A vendor's AI service, consented in as a multitenant application, is therefore outside workload-identity Conditional Access altogether. Its controls are consent, permissions and monitoring.
 
 ## Agent identities: Microsoft Entra Agent ID
 
@@ -126,11 +126,11 @@ The agency's cloud decides what it can use. As of October 2026, Microsoft's docu
 | Agent ID platform: blueprints, agent identities, sponsors | Generally available (April 2026) | Available to all Entra customers | No Agent ID entry on Entra's Azure Government feature list |
 | Agent's user account | Preview, Frontier program tenants only | Agent 365 | None |
 | Conditional Access for agents | Agent targeting labeled preview in the policy builder; agent identities Block only | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3 | GCC: available for agents with delegated access |
-| ID Protection for agents | Agent risk condition labeled preview; detections run offline | Agent 365 required "starting soon" | GCC: listed with Conditional Access |
+| ID Protection for agents | Agent risk condition labeled preview; detections run offline | Entra ID P2 during preview; Agent 365 required "starting soon" | GCC: listed with Conditional Access |
 | ID Governance for agents: access packages, sponsor lifecycle workflows | Sponsor lifecycle workflows generally available (May 2026) | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3 | GCC: available |
 | Network controls for agents; Purview audit and DLP for agent interactions | — | Agent 365 | GCC: not available |
 | Workload identities: managed identities, federation | Generally available | Free | Not listed on Entra's Azure Government feature list; confirm in the agency's cloud |
-| Conditional Access and ID Protection for workload identities | Generally available | Workload Identities Premium | Available in Azure for US Government |
+| Conditional Access and ID Protection for workload identities | Generally available | Workload ID Premium | Available in Azure for US Government |
 
 : Agent and workload identity capabilities by stage, license and government cloud, October 2026. {.striped .hover}
 

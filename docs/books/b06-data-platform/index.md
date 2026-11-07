@@ -26,7 +26,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book is the former SQL Server Identity Transformation narrative series and its Implementation Companion, combined into one ordered book that reads Why / What / Who / How, with a new chapter on who owns the data platform. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The previous pages are kept in the repository's [`archive/b06-data-platform/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b06-data-platform) folder, and their old addresses forward here. The old Word download names still work.
+This book is the former SQL Server Identity Transformation narrative series and its Implementation Companion, combined into one ordered book that reads Why / What / Who / How, with a new chapter on who owns the data platform. Every external claim was checked against a primary source on or after October 20, 2026 and carries a footnote that gives its date. The previous pages are kept in the repository's [`archive/b06-data-platform/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b06-data-platform) folder, and their old addresses forward here. The old Word download names still work.
 :::
 
 ::: {.callout-tip}

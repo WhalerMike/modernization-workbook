@@ -63,7 +63,7 @@ Read the chapter's [The context the code depends on](../../project-plans/develop
 
 - **Resource Manager, not Graph.** Three resource types under `Microsoft.Authorization` do the work. Learn marks `2020-10-01` as the generally available release of every PIM resource type; the code pins it.
 - **Policies don't inherit.** Settings at a subscription aren't inherited by a resource group under it, so the file lists every scope it governs.
-- **Who can be eligible.** Users, not applications, service principals or managed identities, which can't perform the activation steps. A standing Contributor held by a deployment pipeline is reported and left alone.
+- **Who can be eligible.** Users and groups, not applications, service principals or managed identities, which can't perform the activation steps. A standing Contributor held by a deployment pipeline is reported and left alone.
 - **What counts as privileged.** Learn's privileged administrator roles; the chapter governs the three the plan names. Microsoft's best practice is at most three subscription owners.
 
 ## Unit 2: The plan and the apply (8 minutes)

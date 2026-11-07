@@ -138,7 +138,7 @@ Group Policy governed devices by their position in the OU tree, and that positio
 1. Group Policy's value was never only its settings. It was a governance model derived from OU placement.
 2. Cloud-native endpoints can't use Group Policy, and Intune replaces placement with flat assignment, reported conflicts and a slower check-in cycle.
 3. Group Policy analytics measures how many settings have an MDM equivalent in a given estate; it doesn't close the governance gap, and Microsoft recommends rebuilding from requirements rather than migrating GPOs.
-4. Running GPO and MDM on the same setting is a race, so coexistence needs a written list of overlaps and a retirement date for each.
+4. Running GPO and MDM on the same setting gives a result nobody chose: Group Policy wins by default, MDM wins where `MDMWinsOverGP` applies, and outside the Policy CSP it is a race. Coexistence therefore needs a written list of overlaps and a retirement date for each.
 5. The gaps in targeting, coverage, drift visibility, delegation, timing and portability must be rebuilt on purpose. [Chapter 02](02-the-hybrid-join-trap.md) shows what happens when the fleet's device identity is changed without doing so.
 
 ::: {.callout-tip}

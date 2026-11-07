@@ -367,7 +367,7 @@ Run the checks on a schedule and route findings to the owner of the source, beca
 
 : The track's drift checks and where each finding is fixed (design guidance) {.striped .hover}
 
-The weekly reconciliation of Intune, Entra ID and Defender inventories is the core of the loop ([device inventory reconciliation](../b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation)). Log Analytics exports can take up to 48 hours, so Tier 0 and per-setting status come from Graph ([what Log Analytics receives](../b05-devices/10-operating-and-evidencing-the-fleet.md#what-log-analytics-receives-and-when)). Book 05's drift classes for net-new devices ([Chapter 04](../b05-devices/04-intune-first-onboarding.md#validation-drift-classes-and-evidence)) mostly surface through VK-INT-01 and VK-INT-03.
+The weekly reconciliation of Intune, Entra ID and Defender inventories is the core of the loop ([device inventory reconciliation](../b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation)). Log Analytics exports can take up to 48 hours, so Tier 0 and per-setting status come from Graph ([what Log Analytics receives](../b05-devices/10-operating-and-evidencing-the-fleet.md#what-log-analytics-receives-and-when)). Book 05's drift classes for net-new devices ([Chapter 04](../b05-devices/04-intune-first-onboarding.md#validation-drift-checks-and-evidence)) mostly surface through VK-INT-01 and VK-INT-03.
 
 ### Step 6.3: evidence
 

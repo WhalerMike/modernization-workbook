@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book consolidates twenty-two earlier workbook pages on identity and directory modernization (whitepapers, operational guides, reference architecture, learning pages and framing case studies) into one ordered book. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b02-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b02-identity) folder, and their old addresses forward to the chapters that replaced them.
+This book consolidates twenty-two earlier workbook pages on identity and directory modernization (whitepapers, operational guides, reference architecture, learning pages and framing case studies) into one ordered book. Every external claim was first checked against a primary source on October 20, 2026 and carries a footnote; later checks are dated in the footnotes. The earlier pages are kept in the repository's [`archive/b02-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b02-identity) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}
@@ -64,7 +64,7 @@ Appendices: [A — Federal requirements crosswalk](appendix-a-federal-requiremen
 
 ## Where this book sits in the workbook
 
-This is Book 02 of the [Federal Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../b03-hr-identity/index.md). The SQL Server estate's move off Windows authentication is in the [SQL Server Identity Transformation](../b06-data-platform/index.md) series.
+This is Book 02 of the [Federal Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../b03-hr-identity/index.md). The SQL Server estate's move off Windows authentication is in [Book 06, Data Platform: SQL Server Identity](../b06-data-platform/index.md).
 
 ## Chapters
 

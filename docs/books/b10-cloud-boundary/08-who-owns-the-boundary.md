@@ -54,7 +54,7 @@ Two more facts shape the split. The authorizing official can delegate the day-to
 
 The **sponsor and CIO** decide which clouds the agency uses for which workloads, fund the landing zone and the platform team that runs it, and set the order in which workloads move. In the program's model they also own the honest version of the plan: a certification class or a second listing in progress is not a commitment that excluded features will arrive, and a plan that assumes they will has a date no one controls ([Chapter 04](04-gcc-and-the-feature-gap.md)). The CIO breaks ties between the platform team, security and the workload owners, which will happen, because all of them can reasonably claim the landing zone.
 
-The **authorizing official** determines the authorization boundary and accepts residual risk. For this book that means four things. The boundary itself: which cloud services, subscriptions, tenants and connections are inside the agency's system, decided before workloads arrive rather than discovered by an assessor. The documented exceptions in [Chapter 09](09-equivalents-and-exceptions.md): every gap the agency accepts rather than closes, with an owner and an end date. The significant-change decisions: whether a new subscription class, a new connection or a provider's transformative change requires reauthorization. And the plan of action and milestones, which SP 800-37 lists among the things authorizing officials approve.[^c08-sp80037] A designated representative can run the process; only the authorizing official signs.
+The **authorizing official** determines the authorization boundary and accepts residual risk. For this book that means four things. The boundary itself: which cloud services, subscriptions, tenants and connections are inside the agency's system, decided before workloads arrive rather than discovered by an assessor. The documented exceptions in [Chapter 09](09-equivalents-and-exceptions.md): every gap the agency accepts rather than closes, with an owner and an end or review date. The significant-change decisions: whether a new subscription class, a new connection or a provider's transformative change requires reauthorization. And the plan of action and milestones, which SP 800-37 lists among the things authorizing officials approve.[^c08-sp80037] A designated representative can run the process; only the authorizing official signs.
 
 The **system owner** is the program's **boundary owner**. SP 800-37 makes the system owner responsible for the procurement, development, integration, operation and maintenance of the system, for developing and maintaining its security and privacy plans with the system security officer, and for assembling the authorization package and submitting it to the authorizing official.[^c08-sp80037] In the program's model the system owner also keeps the boundary record: the list of in-scope services, subscriptions and connections, the capability dispositions from the boundary probe ([Chapter 09](09-equivalents-and-exceptions.md)), and the exception register. The system owner is where the rule "nothing enters production outside the recorded boundary" is enforced: a workload whose subscription isn't in the record doesn't go live.
 
@@ -89,8 +89,8 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Subscription vending and placement of a new workload | | | D | C | R | R | | C | |
 | Feature dependency checked against capability dispositions | | | D | C | R | R | C | | |
 | Boundary probe and capability dispositions | | | C | C | D, R | C | R | C | |
-| In-boundary equivalent: design and evidence class | | C | C | D | R | C | R | R | |
-| Documented exception with an end date | | D | R | C | C | C | C | C | |
+| In-boundary equivalent: design and evidence | | C | C | D | R | C | R | R | |
+| Documented exception with an end or review date | | D | R | C | C | C | C | C | |
 | Provider-side exception request (for example ExpressRoute for Microsoft 365) | C | C | D | C | R | C | R | | R |
 | Review of ongoing certification reports and Quarterly Reviews | | C | C | D, R | C | | | C | |
 | Provider change notice: does it change the agency's risk? | | D | R | R | C | C | C | C | |
@@ -158,7 +158,7 @@ Two notes. FedRAMP's guidance for packages hosted in USDA Connect says the agenc
 | A new subscription is a platform ticket | Placement inside the authorized system is the system owner's decision; vending is the platform team's mechanism |
 | A feature in the admin portal is a feature the agency has | The system owner checks each design dependency against the capability dispositions before it's built |
 | The provider's package is copied into the SSP | The SSP describes only what the agency implements, configures, operates or inherits |
-| Provider change notices go to whoever is on the distribution list | The CISO's designated official reviews them, and the authorizing official decides whether one changes the agency's risk |
+| Provider change notices go to whoever is on the distribution list | The ISSO reads them against the boundary record, and the authorizing official decides whether one changes the agency's risk |
 | The contract is a licensing matter | The SKU and the shared responsibility split are boundary decisions, written into the order by the contracting officer |
 | Asking the provider for more is a negotiation | Only the agency head or a delegate can require more than FedRAMP does, and FedRAMP is notified |
 

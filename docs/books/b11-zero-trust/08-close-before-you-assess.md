@@ -51,7 +51,7 @@ For example, an `MS.AAD.1.1v1` ("Legacy authentication SHALL be blocked") findin
 
 ## The sequence: architecture before assessment
 
-The program's modernization sequence has six phases, and it puts the assessment tools at the fifth step, not the first:
+The close-then-assess sequence has six phases, and it puts the assessment tools at the fifth step, not the first:
 
 | Phase | What happens | Where the assessment tools fit |
 |---|---|---|
@@ -62,7 +62,7 @@ The program's modernization sequence has six phases, and it puts the assessment 
 | **5 — Validate** | Confirm the built architecture produces the state it was designed to produce | **ScubaGear and the Zero Trust Assessment run here, as confirmation, not discovery** |
 | 6 — Authorize | The authorizing official decides on the evidence; continuous monitoring follows | Continuous ScubaGear and Zero Trust Assessment evidence feeds the authorization package and BOD 25-01 reporting |
 
-This isn't an idiosyncratic order. NIST's Risk Management Framework runs Implement, then Assess, then Authorize, then Monitor.[^c08-sp80037] BOD 25-01 makes the same point for new tenants: the mandatory baselines are implemented, and continuous monitoring begins, before the authorizing official grants the ATO.[^c08-bod2501] (The source paper described phase 6 as submitting KSI-ready evidence to FedRAMP 20x evaluators. FedRAMP authorizes cloud service offerings; an agency's own Microsoft 365 tenant is authorized by the agency's authorizing official, so phase 6 here is the agency's decision.[^c08-ksi])
+This isn't an idiosyncratic order. NIST's Risk Management Framework runs Implement, then Assess, then Authorize, then Monitor.[^c08-sp80037] BOD 25-01 makes the same point for new tenants: the mandatory baselines are implemented, and continuous monitoring begins, before the authorizing official grants the ATO.[^c08-bod2501] (The source paper described phase 6 as submitting KSI-ready evidence to FedRAMP 20x evaluators. FedRAMP certifies the cloud service offering; an agency's own Microsoft 365 tenant is authorized by the agency's authorizing official, so phase 6 here is the agency's decision.[^c08-ksi])
 
 An agency that runs ScubaGear as its program before phase 2 is reading a thermometer before the treatment plan exists. The findings are accurate. There's no framework yet to act on them coherently, so they pile up as point fixes that never add up to a defensible, integrated posture, and the continuous-reporting feed reports that pile to CISA faithfully, on schedule, indefinitely.
 
@@ -95,7 +95,7 @@ A finding with no response recorded is the only state the program treats as a fa
 
 BOD 25-01's reporting obligation can be met by continuous integration with CISA's monitoring or by quarterly manual reports.[^c08-bod2501] Either satisfies the directive. What a point-in-time scan doesn't give the program on its own is a durable run-to-run record, aging of each open deviation against a remediation target, and a clean signal for "this deviation is new" versus "this is a known, governed exception."
 
-The program builds that layer on top of the assessors' output without reimplementing either assessor. For ScubaGear it layers drift detection, exception lifecycle and a continuous-monitoring gate over the pass and fail verdicts. For Zero Trust Assessment results, and for maturity self-assessments against CISA's model, it sorts every below-target finding into one of three dispositions: actionable new drift, a lapsed acceptance, or a governed exception. It flags acceptances that can be retired, computes drift between runs, and fails the pipeline only when something is genuinely unowned. The layer is explicit about what it isn't: not an assessor, not a maturity model, not a remediator. It stands on the tool's own output and doesn't guess at its format. [Chapter 09](09-running-the-assessment.md) covers running the tools and ingesting their output, and [Chapter 10](10-evidence-not-verdicts.md) turns the dispositions into a program; the Microsoft 365 operating model, SCuBA drift as typed remediation tasks with closure evidence, is in [Vol VII Book 02 of the Federal Compliance series](../b15-day2-operations/08-control-automation-m365-and-azure.md).
+The program builds that layer on top of the assessors' output without reimplementing either assessor. For ScubaGear it layers drift detection, exception lifecycle and a continuous-monitoring gate over the pass and fail verdicts. For Zero Trust Assessment results, and for maturity self-assessments against CISA's model, it sorts every below-target finding into one of three dispositions: actionable new drift, a lapsed acceptance, or a governed exception. It flags acceptances that can be retired, computes drift between runs, and fails the pipeline only when something is genuinely unowned. The layer is explicit about what it isn't: not an assessor, not a maturity model, not a remediator. It stands on the tool's own output and doesn't guess at its format. [Chapter 09](09-running-the-assessment.md) covers running the tools and ingesting their output, and [Chapter 10](10-evidence-not-verdicts.md) turns findings into a program. (The three dispositions classify a below-target finding in that layer's output; the three responses above route each finding to a fix. They are separate sets.) The Microsoft 365 operating model, SCuBA drift as typed remediation tasks with closure evidence, is in [Vol VII Book 02 of the Federal Compliance series](../b15-day2-operations/08-control-automation-m365-and-azure.md).
 
 That is what turns "remediate deviations" and "continuous reporting" from a narrative claim into something an assessor or CISA can check independently: a re-runnable disposition of every open finding, dated, owned and aging against a target.
 
@@ -116,12 +116,12 @@ BOD 25-01 asks agencies to do two structurally different things: run an assessor
 |---|---|---|---|---|
 | HTTPS for every web and API endpoint (M-22-09) | Internal server TLS and Public-facing TLS | Retained AD CS; public CA | CyberArk Certificate Manager | Discovers and renews them |
 | PIV and derived PIV for phishing-resistant MFA | PIV | Federal PKI | PIV card system | Nothing |
-| Device certificates | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+| Device certificates | Device and user auth (Intune) | Cloud PKI, or AD CS through the Intune connector | Intune | Nothing |
 | DNSSEC validation | Not a Book 07 class | The DNS platform | Platform-managed, or not X.509 | Nothing: not X.509 |
 
 ![This book's certificates and the engine that renews each.](../../images/diagrams/b11-zero-trust/svg/certs-clm.svg){fig-alt="HTTPS for every web and API endpoint (M-22-09) go to CyberArk Certificate Manager (renews and installs); PIV and derived PIV for phishing-resistant MFA go to PIV card system (renews piv credentials); Device certificates go to Intune (renews device certificates); DNSSEC validation go to Platform-managed, or not X.509 (no clm lifecycle)."}
 
-The governed certificate lifecycle that certificate-based authentication and device identity rest on is three engines: Intune, AD CS autoenrollment for domain controllers, and CyberArk Certificate Manager for server and public TLS ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md)).[^clm-disc]
+The governed certificate lifecycle that certificate-based authentication and device identity rest on is three renewal engines, Intune, AD CS autoenrollment for domain controllers, and CyberArk Certificate Manager for server and public TLS, with PIV running on its own card and credential lifecycle ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md); [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)).[^clm-disc]
 
 
 ::: {.callout-tip}

@@ -30,7 +30,7 @@ Before you fix anything, you need to know how far the directory is from HR. A te
 In this module, you'll:
 
 - Explain what Gate 3 connects, the key it correlates on, and what it files as the baseline.
-- Name Book 03's drift classes, and say which ones the kit doesn't compute.
+- Name Book 03's drift classes, and say which ones the kit doesn't compute. The kit carries seven of Book 03's eight classes and has no value for contractor credential drift.
 - Run the drift reconciliation over fixtures and compare two runs as new, persisting and resolved.
 - Explain why a comparison of runs that computed different classes is refused.
 

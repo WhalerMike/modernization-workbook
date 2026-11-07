@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's three-part SIEM telemetry emission guide and its telemetry specification, and draws on the Security Operations volumes of the Federal Compliance series, which stay in the repository for control-level depth. Every external claim was checked against a primary source on October 21, 2026 and carries a note. The replaced pages are kept in the repository's [`archive/b12-security-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b12-security-operations) folder, and their old addresses forward to the chapters that replaced them.
+This book replaces the workbook's three-part SIEM telemetry emission guide and its telemetry specification, and draws on the Security Operations volumes of the Federal Compliance series, which stay in the repository for control-level depth. External claims were checked against primary sources beginning October 21, 2026; each carries a note with its own check date. The replaced pages are kept in the repository's [`archive/b12-security-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b12-security-operations) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

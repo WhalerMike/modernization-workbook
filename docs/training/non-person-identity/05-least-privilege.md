@@ -225,7 +225,7 @@ Remove-Item -Recurse -Force out
 
 *Not run by the authors.* Follow the workbook's [Chapter 07, Lab 2](../../project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md#lab-2-test-tenant). It has the exact commands.
 
-- **You need:** a test tenant in the worldwide or GCC cloud and a test subscription, never production; a test app registration and a test user-assigned managed identity; a reading app with `Application.Read.All`, `Directory.Read.All`, `RoleManagement.Read.Directory` and Reader; and a person with Privileged Role Administrator for the write.
+- **You need:** a test tenant in the worldwide or GCC cloud and a test subscription, never production; a test app registration and a test user-assigned managed identity; a reader app with `Application.Read.All`, `Directory.Read.All`, `RoleManagement.Read.Directory` and Reader; and a person with Privileged Role Administrator for the write.
 - **What you do:** grant the test app `Directory.ReadWrite.All`, sweep it, record the owner's `Remove` decision, have a second person approve the plan's SHA-256, dry-run and apply it, and confirm on the next sweep and in the audit log that the grant is gone.
 - **Back-out:** step 6 grants the removed permissions again with Learn's grant request, removes the test identity's role assignments, deletes the test identity and the test app registration, and deletes the `out` folders.
 
@@ -249,7 +249,7 @@ Remove-Item -Recurse -Force out
 4. Who sends the plan's writes in a live run?
     a. An unattended app holding `AppRoleAssignment.ReadWrite.All`
     b. A person, signed in with Privileged Role Administrator, in a delegated session
-    c. The reading app from step 2
+    c. The reader app from step 2
     d. Any application owner
 5. vm-batch01's owner decided `Keep` on July 15. Why is its row open in the 2026-Q4 review?
     a. Only decisions dated this quarter count; earlier ones show as `LastDecision`

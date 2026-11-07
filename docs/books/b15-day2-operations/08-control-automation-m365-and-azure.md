@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The five-step loop the program runs on every control surface, and why the coordination platform reads control state but never writes it. What produces control evidence in Microsoft 365 (ScubaGear, Microsoft Graph, Purview audit, Purview Compliance Manager) and in Azure (Azure Policy regulatory compliance initiatives, Defender for Cloud regulatory compliance, Azure Resource Graph), each checked for availability in GCC, GCC High and Azure Government. Three ways results reach the IT service management (ITSM) platform, where ServiceNow's own compliance applications overlap the design, and a read-only collector to start from.
+The five-step loop the program runs on every control surface, and why the coordination platform reads control state but holds no standing write to it. What produces control evidence in Microsoft 365 (ScubaGear, Microsoft Graph, Purview audit, Purview Compliance Manager) and in Azure (Azure Policy regulatory compliance initiatives, Defender for Cloud regulatory compliance, Azure Resource Graph), each checked for availability in GCC, GCC High and Azure Government. Three ways results reach the IT service management (ITSM) platform, where ServiceNow's own compliance applications overlap the design, and a read-only collector to start from.
 :::
 
 [Chapter 07](07-the-cmdb-and-asset-identity.md) gave every asset one identity in the configuration management database (CMDB). This chapter and [Chapter 09](09-control-automation-aws-and-vmware.md) put control results against those identities. Microsoft 365 and Azure come first because most agencies run both, and because the two surfaces show the two shapes the problem takes. Microsoft 365 is software as a service: the agency configures it but doesn't host it, so its control obligations are mostly about identity, configuration baselines and data protection. Azure is infrastructure the agency fills with its own workloads, so it adds resource configuration, vulnerabilities and patching.
@@ -44,7 +44,7 @@ The program runs the same five steps on every control surface. The surface chang
 
 Two rules hold the loop together.
 
-**The coordination platform reads; it doesn't write.** A workflow platform holding standing write access to Conditional Access or tenant configuration would itself be a privilege problem, the kind AC-6 least privilege exists to prevent.[^c08-sp80053] The ITSM platform needs read access to control state and the right to create tasks in its own tables. Where an automated fix is safe and reversible, it runs as a scoped, logged action under its own approval, through the execution layer [Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md#approval-gates-keep-humans-on-the-decisions-that-matter) describes, never through standing access granted to the workflow tool.
+**The coordination platform reads; it holds no standing write.** A workflow platform holding standing write access to Conditional Access or tenant configuration would itself be a privilege problem, the kind AC-6 least privilege exists to prevent.[^c08-sp80053] The ITSM platform needs read access to control state and the right to create tasks in its own tables. Where an automated fix is safe and reversible, it runs as a scoped, logged action under its own approval, through the execution layer [Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md#approval-gates-keep-humans-on-the-decisions-that-matter) describes, never through standing access granted to the workflow tool.
 
 **A task closes on a re-test, not on a click.** The record closes when the next native test of the same asset shows the fixed state. That is the `disposition` rule of the evidence contract in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md), and it is why the test in step 1 has to run on a schedule, not on demand.
 
@@ -118,7 +118,7 @@ The routes can be combined, but each source should feed through exactly one of t
 
 ### The clock on each task
 
-Every task carries a due date, and the source of that date matters. For vulnerabilities and patches the agency's clock is BOD 26-04, *Prioritizing Security Updates Based on Risk* (June 10, 2026), which sets deadlines by whether an asset is publicly exposed and whether the vulnerability is in CISA's Known Exploited Vulnerabilities catalog, and is mandatory for federal civilian executive branch agencies.[^c08-bod2604] [Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md#the-programs-remediation-clock) builds that clock. The source volume encoded FedRAMP's Potential Agency Impact (PAIN) timeframe table as the agency's service level instead. That table belongs to FedRAMP's Vulnerability Detection and Response rules, which "apply to all providers with FedRAMP Certifications," state their timeframes as "SHOULD" expectations, and vary them by certification class as well as by PAIN rating and exposure.[^c08-fedramp-vdr] An agency reads a provider's results against those rules; it doesn't run its own queue on them. For configuration findings with no external deadline, the due date is the program's own service level, set per severity.
+Every task carries a due date, and the source of that date matters. For vulnerabilities and patches the agency's clock is BOD 26-04, *Prioritizing Security Updates Based on Risk* (June 10, 2026), which sets deadlines by four factors (whether an asset is publicly exposed, whether the vulnerability is in CISA's Known Exploited Vulnerabilities catalog, and whether it is automatable and its technical impact), and is mandatory for federal civilian executive branch agencies.[^c08-bod2604] [Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md#the-programs-remediation-clock) builds that clock. The source volume encoded FedRAMP's Potential Agency Impact (PAIN) timeframe table as the agency's service level instead. That table belongs to FedRAMP's Vulnerability Detection and Response rules, which "apply to all providers with FedRAMP Certifications," state their timeframes as "SHOULD" expectations, and vary them by certification class as well as by PAIN rating and exposure.[^c08-fedramp-vdr] An agency reads a provider's results against those rules; it doesn't run its own queue on them. For configuration findings with no external deadline, the due date is the program's own service level, set per severity.
 
 ## Where ServiceNow's own products overlap
 
@@ -180,9 +180,9 @@ do {
             surface     = 'cloud service provider'
             control     = 'CM-6'
             state       = $row.defRef
-            verdict     = if ($row.state -eq 'Exempt') { 'exception' } else { 'drift' }
+            verdict     = if ($row.state -eq 'Exempt') { 'warn' } else { 'fail' }
             observed_at = $row.evalAt
-            disposition = if ($row.state -eq 'Exempt') { 'exception (check register)' } else { 'open' }
+            disposition = 'open'   # accepted risk only once the register and its POA&M reference confirm it
             source_ref  = $row.resId
         })
     }
@@ -196,7 +196,7 @@ foreach ($p in Get-MgIdentityConditionalAccessPolicy -All) {
         surface     = 'identity'
         control     = 'AC-2'
         state       = "$($p.DisplayName) [$($p.State)] excluded users: $(@($p.Conditions.Users.ExcludeUsers).Count)"
-        verdict     = 'exception'   # until compared with the approved exception register; drift if not on it
+        verdict     = 'warn'   # until compared with the approved exception register; fail if not on it
         observed_at = $observedAt
         disposition = 'open'
         source_ref  = $p.Id
@@ -207,11 +207,11 @@ $records | ConvertTo-Json -Depth 4 | Set-Content -Path $OutFile -Encoding utf8
 "Wrote $($records.Count) records to $OutFile"
 ```
 
-The script deliberately stops at the record. Matching `source_ref` to the CMDB identity, comparing exclusions with the approved exception register, and opening or updating tasks belong to the platform side of the loop, under the identity and permissions [Chapter 07](07-the-cmdb-and-asset-identity.md) and [Chapter 11](11-attestation-and-the-compliance-app.md) describe. The filter to the FedRAMP initiative is left to the reader because the built-in initiative's definition differs between Azure and Azure Government.
+The script uses the contract's values: `verdict` is `pass`, `warn` or `fail`, and `disposition` is `applied`, `accepted risk` or `open`. An exempt resource is a `warn` and a non-exempt one a `fail`; both start `open`. The script deliberately stops at the record. Matching `source_ref` to the CMDB identity, comparing exclusions with the approved exception register, and opening or updating tasks belong to the platform side of the loop, under the identity and permissions [Chapter 07](07-the-cmdb-and-asset-identity.md) and [Chapter 11](11-attestation-and-the-compliance-app.md) describe. The filter to the FedRAMP initiative is left to the reader because the built-in initiative's definition differs between Azure and Azure Government.
 
 ## Honest limits
 
-- **The loop is only as good as the test.** A setting no native test covers is invisible to the loop. ScubaGear covers what the baselines cover; the FedRAMP initiative covers the technical settings it maps and leaves manual controls to people. Coverage is a validation question for [Chapter 12](12-the-day-two-runbook.md).
+- **The loop is only as good as the test.** A setting no native test covers is invisible to the loop. ScubaGear covers what the baselines cover; the FedRAMP initiative covers the technical settings it maps and leaves manual controls to people.
 - **"Closed" lags the fix.** Azure Policy's daily cycle and Compliance Manager's 24-hour refresh mean a record closes up to a day after the change. Evidence timestamps record the evaluation, not the instant of the fix.
 - **Government clouds differ.** Defender for Cloud's ServiceNow integration isn't available in Azure Government; Compliance Manager's continuous assessments are still rolling out in GCC; universal templates aren't available in GCC, GCC High or DoD. Check each feature against Microsoft's current matrix before building on it, and record the result in the feature register [Book 10, Chapter 09](../b10-cloud-boundary/09-equivalents-and-exceptions.md) describes.
 - **Automated remediation still needs a change record.** An Azure Policy `deployIfNotExists` or `modify` remediation changes state; in the program's design it still carries a change record, with the policy engine as the actuator instead of a person.
@@ -222,7 +222,7 @@ The mapping is the program's, not a published crosswalk.
 
 | Control | What the loop contributes |
 |---|---|
-| AC-2, AC-6 | Conditional Access and role exceptions raised as requests with an approver and expiry, reviewed, and re-tested through Graph; the coordination platform holds read access only |
+| AC-2, AC-6 | Conditional Access and role exceptions raised as requests with an approver and expiry, reviewed, and re-tested through Graph; the coordination platform holds no standing write on the surface |
 | CM-3 | Label, DLP and baseline changes carried as change records, including those an automated remediation makes |
 | CM-6 | ScubaGear and Azure Policy failures raised as tasks against the configuration item and closed on a re-test |
 | RA-5, SI-2 | Defender for Cloud and Update Manager results routed into the queues of [Book 12](../b12-security-operations/index.md), clocked by BOD 26-04 |
@@ -234,7 +234,7 @@ The mapping is the program's, not a published crosswalk.
 
 - Microsoft already tests most of the settings; the agency's job is to own the result, not to re-test it.
 - Run one loop everywhere: test, detect, raise against the configuration item, actuate natively, close on a re-test.
-- Keep the ITSM platform read-only on the estate it governs.
+- Give the ITSM platform no standing write on the estate it governs; writes run only as scoped, approved, logged actions.
 - Use Compliance Manager and Defender for Cloud scores as signals, not as the evidence of record.
 - Check every feature in your own cloud: GCC, GCC High and Azure Government don't all have the same features.
 - Choose one route per source into the ITSM platform, and make every exception a request with an expiry.

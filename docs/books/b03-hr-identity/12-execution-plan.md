@@ -133,7 +133,7 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | PIV / credentialing office | The CMS, issuance and revocation, the CMS side of the leaver extension |
 | Endpoint management | Intune device actions and certificate profiles |
 | ISSO | Phase gates, evidence review, the security assessment (Appendix B) |
-| Service desk | Exceptions and failed-task follow-up |
+| Help desk | Exceptions and failed-task follow-up |
 
 : Roles {.striped .hover}
 

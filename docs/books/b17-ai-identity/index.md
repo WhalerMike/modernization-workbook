@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's AI identity governance operational guide (its overview, the governed path and the central deployment model) and the federal AI governance readiness brief. Every external claim was checked against a primary source on October 21–22, 2026 and carries a note. Federal AI policy and the identity platforms for AI agents are both moving quickly; the release stage and government-cloud availability of each feature are stated as of those dates. The replaced pages are kept in the repository's [`archive/b17-ai-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b17-ai-identity) folder, and their old addresses forward to the chapters that replaced them.
+This book replaces the workbook's AI identity governance operational guide (its overview, the governed path and the central deployment model) and the federal AI governance readiness brief. Every external claim was checked against a primary source between October 21 and November 2, 2026 and carries a note. Federal AI policy and the identity platforms for AI agents are both moving quickly; the release stage and government-cloud availability of each feature are stated as of those dates. The replaced pages are kept in the repository's [`archive/b17-ai-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b17-ai-identity) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

@@ -31,7 +31,7 @@ The Phase 0 discovery and rationalization runbook. It builds the estate inventor
 
 ## Why this runbook runs before everything else
 
-Effort is finite, and the program's 2027-04-01 NTLM backstop ([Runbook R06](r06-ntlm-detection-and-remediation.md), [Runbook R09](r09-continuous-monitoring-and-closure.md)) doesn't move. That date is the program's own planning anchor, not a Microsoft deadline: Microsoft has deprecated NTLM, removed NTLMv1 from Windows Server 2025, and says NTLMv2 will be removed from Windows Server in a future release, without a published date ([Chapter 02](02-why-the-inheritance-must-end.md)).[^r02-ntlm-deprecated] Migrating the logins of an instance only to retire it three months later is wasted work measured against a fixed date. The program's consolidation-gate decision makes the sequencing normative: classify every instance **retain**, **consolidate into a target**, or **retire** *before* any login is touched. Only **retain** instances and the **consolidation targets** enter the authentication migration that Runbooks R03 to R10 describe.
+Effort is finite, and the program's 2027-04-01 NTLM backstop ([Runbook R06](r06-ntlm-detection-and-remediation.md), [Runbook R09](r09-continuous-monitoring-and-closure.md)) doesn't move. That date is the program's own planning anchor, not a Microsoft deadline: Microsoft has deprecated NTLM, removed NTLMv1 from Windows Server 2025, and says NTLMv2 will be removed from Windows Server in a future release, without a published date ([Chapter 02](02-why-the-inheritance-must-end.md)).[^r02-ntlm-deprecated] Migrating the logins of an instance only to retire it three months later is wasted work measured against a fixed date. The SQL Server engine-authentication decision ([Chapter 12](12-the-engine-authentication-decision.md)) makes the sequencing normative: classify every instance **retain**, **consolidate into a target**, or **retire** *before* any login is touched. Only **retain** instances and the **consolidation targets** enter the authentication migration that Runbooks R03 to R10 describe.
 
 The deliverable of this runbook is one row per instance with that classification, justified by the three rationalization lenses. Everything downstream operates on the surviving set.
 
@@ -108,12 +108,12 @@ Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeNetwork -ProbeA
 The program's function is pure derivation over the read-only discovery output: it reads no live host or directory and changes nothing. Its `classification` counts (retain, consolidate, retire, review) and its `denominator` are the gate's headline numbers. Know what the automated pass can and can't see:
 
 - It classifies on two signals only: the engine version and a last-access age in days. An instance with a last-access age at or above `-ZombieThresholdDays` (default 400) is classified retire; a pre-2022 engine is classified consolidate; a SQL Server 2022 or later engine is classified retain.
-- An instance whose signal is insufficient lands in **review**, never silently in retain. Discovery-only `Spec3-D1.8` output carries no version, so on its own almost every instance lands in review. Supply versions (from the R03 deep audit) and last-access ages (from Lens 1) to get a meaningful first pass.
+- An instance whose signal is insufficient lands in **review**, never silently in retain. Discovery-only `Spec3-D1.8` output carries no version, so on its own almost every instance lands in review. Supply versions (from the `-QueryInstances` pass of the estate inventory, above) and last-access ages (from Lens 1) to get a meaningful first pass.
 - The dependency lens (Lens 3) and the choice of consolidation target are human judgment the function doesn't make. Treat its output as a first pass that the architects confirm or override, with the reason recorded.
 
 ### What the inventory must capture
 
-For every instance: version, edition and build (support and licensing posture), host operating system (Arc and upgrade envelope), domain-join state and owning domain (the forest-entanglement picture), and the service-account identity and its source domain. For every database: size, **last-access timestamp**, recovery model and owning application (the utilization and zombie picture). Like the audit it precedes, the inventory is **re-run, not snapshotted**: instances appear and disappear across a multi-month assessment.
+For every instance: version, edition and build (support and licensing posture), host operating system (Arc and upgrade envelope), domain-join state and owning domain (the forest-entanglement picture), and the service-account identity and its source domain. For every database: size, **last-access timestamp**, recovery model, owning application, whether it holds PII, and its SORN and PIA (the utilization, zombie and privacy picture). Like the audit it precedes, the inventory is **re-run, not snapshotted**: instances appear and disappear across a multi-month assessment.
 
 ## Step 2 — Apply the three rationalization lenses (read-only)
 
@@ -144,7 +144,7 @@ ORDER BY database_name;
 
 ### Lens 2 — Version and end-of-life posture
 
-The `CREATE LOGIN ... FROM EXTERNAL PROVIDER` syntax the whole transformation depends on needs **SQL Server 2022 (16.x) or later** on premises.[^r02-entra-sql] An earlier engine can't accept Microsoft Entra logins, whatever else changes; [Chapter 07](07-the-authentication-audit.md) calls this Category 3. Read it off the R03 audit fields once the deep audit has run: `SQLVersionMajor` and the computed `MigrationTarget` already say "upgrade to SQL 2022 + Arc" for pre-2022 instances. For most aged instances the right answer isn't "upgrade in place" but "consolidate the surviving workload onto a modern target and retire the old engine," which also reclaims core licenses.
+The `CREATE LOGIN ... FROM EXTERNAL PROVIDER` syntax the whole transformation depends on needs **SQL Server 2022 (16.x) or later** on premises.[^r02-entra-sql] An earlier engine can't accept Microsoft Entra logins, whatever else changes; [Chapter 07](07-the-authentication-audit.md) calls this Category 3. Read it off the version the `-QueryInstances` pass of the estate inventory returns before the gate; once the R03 deep audit has run on the surviving set, `SQLVersionMajor` and the computed `MigrationTarget` already say "upgrade to SQL 2022 + Arc" for pre-2022 instances. For most aged instances the right answer isn't "upgrade in place" but "consolidate the surviving workload onto a modern target and retire the old engine," which also reclaims core licenses.
 
 Two platform facts shape the target choice. On SQL Server 2025 the engine can use the Arc server's system-assigned managed identity for Entra authentication, so a new consolidation target built on 2025 avoids the app registration and certificate that SQL Server 2022 needs ([Runbook R04](r04-arc-deployment-and-managed-identity.md)).[^r02-sql-mi] And Entra authentication isn't supported on SQL Server failover cluster instances, so a clustered workload consolidates onto a standalone instance or an availability group, or carries an exception.[^r02-entra-sql]
 
@@ -166,7 +166,7 @@ WHERE   s.is_linked = 1;
 
 ## Step 3 — The retain / consolidate / retire decision (the gate)
 
-The three lenses resolve to one classification per instance. The program's consolidation-gate decision makes it the normative prerequisite: engine-layer authentication migration runs only on **retain** instances and on the **consolidation targets** that absorb consolidated workloads.
+The three lenses resolve to one classification per instance. The engine-authentication decision makes it the normative prerequisite: engine-layer authentication migration runs only on **retain** instances and on the **consolidation targets** that absorb consolidated workloads.
 
 | Classification | Meaning | Enters authentication migration? |
 |---|---|---|

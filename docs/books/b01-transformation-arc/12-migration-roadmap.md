@@ -35,7 +35,7 @@ Two properties define the program:
 1. **Parallel, not sequential.** The five workstreams run together. Finishing one before starting the next doubles the duration and produces worse outcomes.
 2. **Gated, not open-ended.** A phase starts only when the prior gate clears, and ends only when its own criteria are green.
 
-Illustratively, a mid-size organization (5,000 to 50,000 users, 500 to 5,000 servers) with a clean forest and few Kerberos applications might finish in about fifty-two weeks. Scale changes the duration of each phase, not the structure.
+Illustratively, a mid-size organization (5,000 to 50,000 users, 500 to 5,000 servers) with a clean forest and few Kerberos applications might reach AD DS retirement in about forty-eight weeks of the illustrative fifty-two-week first year. Scale changes the duration of each phase, not the structure.
 
 ## The direction of travel
 
@@ -95,7 +95,7 @@ The last two G0 conditions come straight from Microsoft's guidance for leaving A
 
 This is the longest phase. Illustratively, budget two to three weeks per division, with two or three divisions in parallel. Each division follows the same sub-pattern (plan, in-division pilot, full availability, drift-clean hold), reports green, yellow or red weekly, and draws on the shared authoritative source.
 
-- **Gate G3, Rollout Complete:** every division has passed its exit gate; every HR-listed employee has valid attributes; every user PC is cloud-joined and every server Arc-connected, or recorded in a documented exception; zero cross-division drift.
+- **Gate G3, Rollout Complete:** every division has passed its exit gate; every HR-listed worker has valid attributes; every user PC is cloud-joined and every server Arc-connected, or recorded in a documented exception; zero cross-division drift.
 
 ### Phase 4 — Legacy retirement (weeks 37–44)
 
@@ -148,7 +148,7 @@ A weekly cross-workstream sync resequences work around dependencies; a division'
 
 ## Gates, rollback and authority
 
-Every gate criterion is evaluated from the repository and the drift reports. "Zero drift for fourteen days" is a filtered drift query, "valid attributes for every employee" a query on the canonical user table, and "every PC cloud-joined" a device-inventory query. The engine reports green, the steward concurs, and the pull request merges. A gate the engine can't evaluate needs a better criterion.
+Every gate criterion is evaluated from the repository and the drift reports. "Zero drift for fourteen days" is a filtered drift query, "valid attributes for every worker" a query on the canonical user table, and "every PC cloud-joined" a device-inventory query. The engine reports green, the steward concurs, and the pull request merges. A gate the engine can't evaluate needs a better criterion.
 
 Rollback triggers are thresholds, not judgment calls. The values are the agency's to set:
 

@@ -190,7 +190,7 @@ The policy plane should produce the continuous telemetry and audit trail that Fe
 - Response policy and Protective DNS hit data.
 - IPAM discovery and inventory reports for CM-8 component inventory, and continuous discovery data for CMDB reconciliation.[^c11-sp80053]
 - Configuration change and role audit trails (who changed what, when and through which interface) for AU-2, AU-6 and AU-12.[^c11-sp80053]
-- Resolution-path consistency metrics: the percentage of queries answered by the governed resolver.
+- Governed-resolver coverage: the percentage of queries answered by the governed resolver. (Resolution-path consistency, the success measure in [Chapter 12](12-selection-cost-and-residual-risk.md), is a different measure: the percentage of tested names that return the intended answer from every governed origin.)
 - Stale record and dangling CNAME rates for hygiene reporting.
 - Drift reports and SRV check history for the migration period.
 

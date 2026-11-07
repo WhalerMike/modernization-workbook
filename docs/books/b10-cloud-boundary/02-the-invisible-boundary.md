@@ -41,7 +41,7 @@ The last part is why the boundary matters operationally and not just on paper. A
 ## The case in one paragraph
 **Problem.** What a boundary removes is spread across separate product pages, changes over time and fails quietly, so designs depend on it without knowing. The best-known GCC example makes the opposite error as well: of the five features it lists as silently unavailable in GCC, Microsoft documents one as unavailable there, and the other four are either available, unavailable only in GCC High and DoD, or not Microsoft 365 features at all. An unverified boundary claim is as dangerous as an unseen boundary.
 
-**Solution.** Make the boundary a named, modeled object. Test which capabilities actually work, record each one with a citation and a confidence label (vendor-confirmed, inferred, restricted or retention-limited), describe what changes across the boundary along four dimensions, and mark every substitute signal as derived.
+**Solution.** Make the boundary a named, modeled object. Test which capabilities actually work, record each one with a citation and an evidence class (vendor-confirmed, inferred, restricted or retention-limited), describe what changes across the boundary along four dimensions, and mark every substitute signal as derived.
 
 **Ask.** Rebuild any boundary gap list the agency relies on so that every row cites a vendor page, and drop or relabel every row that doesn't. Build designs and authorization narratives only on the confirmed rows.
 :::
@@ -66,7 +66,7 @@ The program's own register of GCC telemetry gaps already draws this distinction.
 
 ## Four things that change across a boundary
 
-A boundary in the program's architecture isn't only a network or tenant edge. It is any surface across which one of four things changes. This is the program's model, not a FedRAMP or Microsoft construct, and it is what lets one boundary produce one coherent account instead of a list of unrelated findings.
+A boundary in the program's architecture isn't only a network or tenant edge. It is any surface across which one of four things changes. This is the program's **Boundary Impact Model**, not a FedRAMP or Microsoft construct, and it is what lets one boundary produce one coherent account instead of a list of unrelated findings.
 
 | Dimension | The question it asks | Drift class when violated |
 |---|---|---|
@@ -90,7 +90,7 @@ There is a definitional reason this model has to be the agency's and not FedRAMP
 
 The program addresses each dimension with mechanisms inside the boundary rather than waiting for the provider to change the platform. They are program design, and [Chapter 09](09-equivalents-and-exceptions.md) and [Chapter 11](11-the-authorization-package.md) develop them:
 
-1. **A boundary probe.** A programmatic test of which features actually function in the agency's environment, producing a structured disposition for each capability (functional, partial, silent or blocked) instead of a portal screenshot.
+1. **A boundary probe.** A programmatic test of which features actually function in the agency's environment, producing a structured disposition for each capability (works, absent, works with limits or fails silently) instead of a portal screenshot.
 2. **In-boundary telemetry.** Adapters that run inside the agency's boundary and emit claims explicitly classified as derived when they stand in for an unavailable provider signal, so consumers can always tell authoritative from substitute.
 3. **Compensating enforcement.** Agency-side enforcement for controls the platform can't provide in the environment, with evidence flowing through the same evidence chain as everything else ([Evidence Chain](../b13-governance/07-evidence-over-attestation.md)).
 4. **One documentation surface.** The boundary is recorded once, as a first-class artifact that the system security plan, the plan of action and milestones and the component definition all reference, rather than as a series of footnotes in separate control narratives.
@@ -99,8 +99,8 @@ The program addresses each dimension with mechanisms inside the boundary rather 
 
 Four evidence rules keep the visible boundary honest:
 
-- **Cite per row.** Every capability on the boundary list carries the vendor page that states its availability, read on a stated date. "GCC withholds telemetry" will be rejected by a Microsoft reviewer; "network connectivity in the admin center is documented as unavailable in GCC Moderate, GCC High and DoD" won't be.
-- **Label confidence.** Keep vendor-confirmed, inferred, restricted and retention-limited rows apart, and build designs and authorization narratives on confirmed rows only. An argument resting on inferred rows won't survive a reviewer holding the documentation.
+- **Cite per row.** Every capability on the boundary record carries the vendor page that states its availability, read on a stated date. "GCC withholds telemetry" will be rejected by a Microsoft reviewer; "network connectivity in the admin center is documented as unavailable in GCC Moderate, GCC High and DoD" won't be.
+- **Label the evidence class.** Keep vendor-confirmed, inferred, restricted and retention-limited rows apart, and build designs and authorization narratives on confirmed rows only. An argument resting on inferred rows won't survive a reviewer holding the documentation.
 - **Name the environment.** Record GCC, GCC High and DoD separately. The corrected example shows how easily one environment's exclusions are attributed to another.
 - **Re-read on a schedule.** Exclusions and features change; a register is a snapshot. The probe is what turns the snapshot into something current.
 
@@ -112,14 +112,14 @@ First, a boundary changes the topology of the system. Crossing it changes which 
 
 Second, it is the same problem on every boundary. GCC is the worked example, but an identity-federation boundary, a classified-network boundary and an agency-to-agency boundary all fit the same four dimensions. Solving it once in the architecture is cheaper than solving it again for each compliance regime, and it keeps the answer the same when the regime changes, as FedRAMP's did in 2026 ([Chapter 03](03-what-changed-at-fedramp.md)).
 
-The payoff shows up in the authorization package. In the program's approach, every boundary the system crosses is named, modeled and monitored for drift. The boundary appears in the system security plan with a disposition along each of the four dimensions. Compensating mechanisms are documented per dimension rather than as generic mitigations. A drift finding cites the boundary it crossed (for example, `DRIFT-PROVENANCE @ gcc-moderate-edge`), which makes remediation scope explicit. [Chapter 11](11-the-authorization-package.md) shows the package structure, and [Chapter 08](08-who-owns-the-boundary.md) assigns who keeps the boundary list current.
+The payoff shows up in the authorization package. In the program's approach, every boundary the system crosses is named, modeled and monitored for drift. The boundary appears in the system security plan with a disposition along each of the four dimensions. Compensating mechanisms are documented per dimension rather than as generic mitigations. A drift finding cites the boundary it crossed (for example, `DRIFT-PROVENANCE @ gcc-moderate-edge`), which makes remediation scope explicit. [Chapter 11](11-the-authorization-package.md) shows the package structure, and [Chapter 08](08-who-owns-the-boundary.md) assigns who keeps the boundary record current.
 
 ::: {.callout-note}
 ## What this chapter establishes
 1. What a boundary removes stays invisible because surfaces are shared, exclusions are scattered one per page, features change, and missing signals fail quietly.
 2. The widely repeated five-feature GCC example is mostly wrong: one feature is a documented GCC gap, two are GCC High and DoD gaps, one isn't a documented gap anywhere, and one is an Azure service decided by a different boundary.
 3. The program models what changes across any boundary along four dimensions (telemetry fidelity, identity authority, enforcement responsibility, provenance classification), each tied to a drift class; detection for two of them is still design only.
-4. The boundary becomes visible through a probe, derived-labeled substitute telemetry, compensating enforcement and one documentation surface, held to evidence rules: cite per row, label confidence, name the environment, re-read on a schedule.
+4. The boundary becomes visible through a probe, derived-labeled substitute telemetry, compensating enforcement and one documentation surface, held to evidence rules: cite per row, label the evidence class, name the environment, re-read on a schedule.
 5. The boundary is treated as architecture because it changes which plane is authoritative, and because every boundary instantiates the same model.
 :::
 
