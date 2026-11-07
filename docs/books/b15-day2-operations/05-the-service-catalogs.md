@@ -54,7 +54,7 @@ The catalog has ten items in three families: lifecycle (joiner, mover, leaver, l
 | Group membership | AC-6 | Group owner and an approver | Time-bound where the group grants elevation; linked to the access review |
 | License assignment | AC-2 | Manager | Group-based licensing preferred over per-user assignment |
 | Conditional Access exception | AC-3 | Security approver | Mandatory expiry and review, using the governed exclusion groups [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#prerequisites) defines |
-| Guest invitation | AC-2 | Sponsor and security | A named sponsor and an expiry on every guest |
+| Guest invitation | AC-2 | Agency business owner decides; the sponsor is a named role and requests; the application owner is consulted | A named sponsor and an expiry on every guest |
 
 : The help-desk catalog. Controls from SP 800-53 Rev. 5;[^c05-sp80053] approval gates and enforcement are program design. {.striped .hover}
 
@@ -168,7 +168,8 @@ The catalog only works if the roles behind it stay separate. The program's desig
 | Service desk | Verification, execution of items with no connector action, and the record of what was done; never approval |
 | Identity team | Approval of lifecycle items, alongside the manager; the joiner, mover and leaver derivations. Routine credential items are approved by the service desk supervisor or the requester's manager ([Chapter 10](10-who-runs-day-two.md)) |
 | Resource and group owners | Approval of access items for what they own |
-| Security approver | Conditional Access exceptions, guest invitations, MFA resets for sensitive accounts |
+| Security approver | Conditional Access exceptions, MFA resets for sensitive accounts |
+| Agency business owner | The decision on guest invitations; the sponsor, a named role, requests them ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#who-does-what-partner-and-agency)) |
 | Telephony administrators | Numbers, policies, routing and the network-to-location map, through catalog items |
 | Facilities and the security desk | The accuracy of building and floor addresses, and receiving emergency notifications |
 | Counsel and the telecommunications office | The determination that the configuration meets the FCC rules |

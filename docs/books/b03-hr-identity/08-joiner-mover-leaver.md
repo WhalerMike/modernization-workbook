@@ -106,6 +106,8 @@ That schedule matters for evidence. A workflow never runs earlier than the time 
 
 : Lifecycle Workflows built-in tasks by stage[^c08-lcw-tasks] {.striped .hover}
 
+The pass the joiner task generates is a new-hire pass: its lifetime runs up to 24 hours from the hire date, the maximum Microsoft Learn recommends for a new hire. A pass the help desk issues for credential replacement is separate and lasts 1 hour ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)).
+
 No built-in task revokes a certificate or a PIV credential, or retires a device. Those steps go through a custom task extension or a separate process (Chapter 09). For contractors the same custom task also sends the PIV office its termination notice on the end date, so the card's termination clock starts on that date ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)).
 
 ### Guardrails at agency scale
