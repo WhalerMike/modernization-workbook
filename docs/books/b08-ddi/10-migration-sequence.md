@@ -270,7 +270,7 @@ The migration is finished when four things are true and the query logs prove the
 
 The four risks that most often stop it are the ones this chapter's gates exist for: split-brain from missing or stale forwarding rules, private endpoints falling back to public addresses, orphaned SRV records when domain controllers are retired before their records are inventoried, and OCSP or CRL endpoints that resolve from some locations and not others.
 
-Before the next SD-WAN or DDI change, whatever phase the program is in: audit every branch's redirect-dns target; verify the forwarding chain order in the running configuration; complete the AD DNS inventory before touching a domain controller; confirm the sovereign-cloud limits on Microsoft 365 telemetry with the program office if any part of the estate is in GCC-Moderate, GCC High or DoD ([Appendix C](appendix-c-applicability.md)); and take open questions to the vendors rather than working around unconfirmed behavior.
+Before the next SD-WAN or DDI change, whatever phase the program is in: audit every branch's redirect-dns target; verify the forwarding chain order in the running configuration; complete the AD DNS inventory before touching a domain controller; confirm the sovereign-cloud limits on Microsoft 365 telemetry with the program office if any part of the estate is in GCC Moderate, GCC High or DoD ([Appendix C](appendix-c-applicability.md)); and take open questions to the vendors rather than working around unconfirmed behavior.
 
 ::: {.callout-note}
 ## What this chapter establishes

@@ -2,7 +2,7 @@
 # certificate class. The gate is the program's; the steps follow Microsoft's
 # decommissioning procedure (KB 889250) and AD CS revocation guidance. The CDP
 # and AIA endpoints, and the remaining AD objects, wait for the last outstanding
-# certificate to expire.
+# certificate to expire. Nine steps, as in the numbered procedure.
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.26}
 nodes:
@@ -13,7 +13,9 @@ nodes:
   s4: {tone: amber, width: 340, tag: "Step 4", title: "Revoke and publish the last CRL", body: ["Reason: cessation of operation", "CRL lifetime past the last revoked certificate"], size: 12}
   s5: {tone: slate, width: 340, tag: "Step 5", title: "Uninstall role services", body: ["=NDES, enrollment web services and web enrollment before the CA"], size: 12}
   s6: {tone: red, width: 340, tag: "Step 6", title: "Clean up trust", body: ["=Entra trust store, Intune trusted profiles, NTAuthCertificates, CLM"], size: 12}
-  s7: {tone: green, width: 340, tag: "Step 7", title: "Wait, then remove and record", body: ["CDP and AIA serve until the last certificate expires", "Then AD objects, database, decommission record"], size: 12}
+  s7: {tone: green, width: 340, tag: "Step 7", title: "Keep the endpoints, then remove", body: ["CDP and AIA serve until the last certificate expires", "Then the remaining AD objects and the database"], size: 12}
+  s8: {tone: slate, width: 340, tag: "Step 8", title: "Clean up domain controllers", body: ["=Only after they hold certificates from a retained CA"], size: 12}
+  s9: {tone: green, width: 340, tag: "Step 9", title: "Record it", body: ["=Decommission record in the evidence repository"], size: 12}
   byo: {kind: text, tone: amber, width: 210, text: "Under BYOCA, the root and any CA that signed the Cloud PKI issuing CA stay"}
 edges:
   - [gate, s1]
@@ -23,4 +25,6 @@ edges:
   - [s4, s5]
   - [s5, s6]
   - [s6, s7]
+  - [s7, s8]
+  - [s8, s9]
   - [byo, s4, {style: dashed}]

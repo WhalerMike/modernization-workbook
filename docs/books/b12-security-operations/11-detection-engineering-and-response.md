@@ -249,7 +249,7 @@ The program places every response on the actuation ladder of [Book 01, Chapter 1
 | L4 Within guardrails | High, enumerated class | Runs without a person, logged, reversible | Reviewed after the fact | Closing incidents matching a known-benign watchlist; vendor attack disruption where the authorizing official has accepted it |
 | Standing control | n/a | Configuration that bounds exposure if detection misses | n/a | Sign-in frequency and token policies ([Book 04](../b04-access/index.md)) |
 
-The mapping is the program's design. Three operation classes stay at L3 or below permanently, whatever the program's maturity: isolating a server, disabling a privileged or emergency-access account, and any tenant-wide change. A false-positive isolation of a production database server is an outage, and a disabled emergency account during an incident is a lockout.
+The mapping is the program's design. Three operation classes stay at L3 or below permanently, whatever the program's maturity: isolating a server, disabling a privileged or emergency-access account, and any tenant-wide change. A false-positive isolation of a production database server is an outage, and a disabled emergency account during an incident is a lockout. In this book's playbooks those classes are not run as gated playbooks: the playbook excludes them, and a named human decides and acts outside it, advised by the alert.
 
 Defender XDR's automatic attack disruption is the case that tests the ladder. It contains assets on its own when Defender correlates a high-confidence attack, revoking sessions, suspending users and containing devices and users at the endpoint layer, with every action logged, reversible, and subject to exclusions for named users, device groups and IP ranges.[^c11-disruption] That is L4 by the vendor's design. The program does not leave it as a default nobody chose. The authorizing official either accepts attack disruption as an enumerated L4 class, with exclusions configured for emergency-access accounts and the server device groups the permanent-L3 rule protects, or the program records why it is limited. Either way the decision is written down, which is what the ladder exists to produce. Confirm attack disruption's availability in the agency's cloud before relying on it.
 
@@ -270,7 +270,7 @@ The containment path for a high-confidence session anomaly (FMP-DET-04) or a con
   "identity": "managed identity: User.RevokeSessions.All, IdentityRiskyUser.ReadWrite.All",
   "steps": [
     { "guard": "incident.severity == 'High' && entities.Account.count == 1" },          // confidence gate
-    { "guard": "account not in watchlist FMP-EmergencyAccess and not privileged" },      // permanent-L3 classes go to a human
+    { "guard": "account not in watchlist FMP-EmergencyAccess and not privileged" },      // permanent-L3 classes are excluded: a human handles them outside this playbook
     { "prepare": "comment: proposed action, evidence, rollback (none needed: user re-authenticates)" },
     { "approve": "named approver from the on-call roster releases or rejects; timeout = reject" }, // L3 gate
     { "graph": "POST /users/{id}/revokeSignInSessions" },                                // AC-12

@@ -127,7 +127,7 @@ The script degrades rather than crashing. Know what each state means:
 
 ## Feeding continuous-monitoring closure
 
-The audit JSON is the raw input for the continuous-monitoring evidence that [Chapter 20](20-the-closure-condition.md) and [Chapter 21](21-what-done-looks-like.md) describe and [Runbook R09](r09-continuous-monitoring-and-closure.md) automates. Re-running it on a schedule turns "did we eliminate NTLM, mixed mode and the enabled `sa` account" into a live artifact you can compare run to run, rather than a one-time claim. Wire the JSON into the program's continuous-monitoring ingestion (CCM-BIR in the program's tooling) the same way the rest of the discovery pipeline feeds it.
+The audit JSON is the raw input for the continuous-monitoring evidence that [Chapter 20](20-the-closure-condition.md) and [Chapter 21](21-what-done-looks-like.md) describe and [Runbook R09](r09-continuous-monitoring-and-closure.md) automates. Re-running it on a schedule turns "did we eliminate NTLM, mixed mode and the enabled `sa` account" into a live artifact you can compare run to run, rather than a one-time claim. Wire the JSON into the program's continuous-monitoring ingestion (the CCM-BIR pipeline in the program's tooling, which carries the per-instance compliance record) the same way the rest of the discovery pipeline feeds it.
 
 ## Safety
 

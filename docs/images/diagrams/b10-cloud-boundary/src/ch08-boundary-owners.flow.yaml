@@ -10,12 +10,12 @@ graph: {nodesep: 0.15, ranksep: 0.45}
 nodes:
   spon: {tone: amber, width: 150, tag: "Decides", title: "Sponsor and CIO", body: ["=Funding, choice of cloud, sequence"], size: 12}
   ao: {tone: amber, width: 150, tag: "Decides", title: "Authorizing official", body: ["=Authorization boundary, residual risk, every exception"], size: 12}
-  ciso: {tone: violet, width: 150, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, evidence, provider reports"], size: 12}
+  ciso: {tone: violet, width: 150, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, evidence, provider reports and change notices"], size: 12}
   so: {tone: amber, width: 150, tag: "Keeps the record", title: "System owner", body: ["=Boundary record and authorization package"], size: 12}
   plat: {tone: blue, width: 150, tag: "Builds and runs", title: "Cloud platform team", body: ["=Landing zone, policy, subscription vending, probe"], size: 12}
   acq: {tone: slate, width: 150, tag: "Buys", title: "Acquisition and CO", body: ["=Cloud contract, SKU, responsibility terms"], size: 12}
   wl: {tone: blue, width: 150, tag: "Builds inside", title: "Workload owners", body: ["=Applications in vended subscriptions"], size: 12}
-  soc: {tone: violet, width: 150, tag: "Operates", title: "Security operations", body: ["=Drift detection, provider change notices"], size: 12}
+  soc: {tone: violet, width: 150, tag: "Operates", title: "Security operations", body: ["=Drift detection"], size: 12}
   csp: {tone: slate, width: 150, tag: "Supplies", title: "Cloud provider", body: ["=Certification package, change notices, configuration guides"], size: 12}
   frp: {kind: pill, tone: slate, width: 150, text: "FedRAMP receives the agency's ATO letter and handles package conflicts; consulted"}
 edges:
