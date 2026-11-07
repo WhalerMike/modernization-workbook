@@ -99,7 +99,7 @@ Before anyone builds a compliance application, the agency should know what its p
 - **Configuration Compliance.** Microsoft documents an integration that brings Defender for Cloud's posture-management findings into ServiceNow's Configuration Compliance module, alongside an ITSM integration that creates incidents, problems and changes from Defender for Cloud recommendations.[^c11-mdc-snow] Microsoft's support matrix lists that ServiceNow integration as generally available in commercial Azure and not available in Azure Government, which matters for an agency whose subscriptions live there.[^c11-mdc-matrix]
 - **Partner applications for FedRAMP's indicators.** In July 2026 a ServiceNow partner announced an application, planned for the ServiceNow Store, that runs inside Continuous Authorization and Monitoring, mirrors FedRAMP's 46 indicators and opens remediation issues in ServiceNow's risk management application when evidence falls short.[^c11-partner] That is a vendor announcement, not a verified capability; treat it as a sign that the gap is being filled commercially, and evaluate it like any other product.
 
-The platform itself is authorized for federal use. FedRAMP's marketplace data lists ServiceNow's Government Community Cloud as FedRAMP Certified at Class D (High impact), first certified in 2019, with 101 agency authorizations as of October 21, 2026.[^c11-fr-market] (The source volumes told writers never to cite High for the platform. The marketplace says High; the agency's own system categorization is a separate question.)
+The platform itself is FedRAMP Certified; the agency's own authorization to use it is a separate decision. FedRAMP's marketplace data lists ServiceNow's Government Community Cloud as FedRAMP Certified at Class D (High impact), first certified in 2019, with 101 agency authorizations as of October 21, 2026.[^c11-fr-market] (The source volumes told writers never to cite High for the platform. The marketplace says High; the agency's own system categorization is a separate question.)
 
 ### Build, buy or both
 
@@ -143,7 +143,7 @@ The design keeps the same boundary discipline as every other automated path in t
 
 - **The MID Server sits inside the authorization boundary.** ServiceNow describes the MID Server as "a Java application that runs as a Windows service" on a server in the customer's network, mediating between that network and the instance.[^c11-snow-mid] Placing it in-boundary keeps credentials and execution where the agency's controls apply.
 - **Connector identities read; they don't administer.** The Microsoft Graph and Azure identities hold read access to the state they evaluate, plus narrowly scoped write for specific, approved, logged remediations. They never hold standing tenant administration. Each newly automated remediation is a review of that scope, because scope creep is the sharpest risk in the whole design.
-- **The instance is FedRAMP-authorized**, and reaching any SaaS surface outside the boundary requires an explicit acknowledgement setting.
+- **The platform is FedRAMP Certified**, and the agency authorizes the instance separately, and reaching any SaaS surface outside the boundary requires an explicit acknowledgement setting.
 - **The catalog approval, the change record, the gate verdict and the CMDB reconciliation are the audit evidence.** Nothing in the application closes work without them.
 
 ### Standing it up
@@ -263,7 +263,7 @@ The pipeline is the same whatever the platform. Remediation records from the AWS
 
 ## What else the platform can carry
 
-The source material sketched a portfolio of further ServiceNow applications beyond the compliance application, the network-change application and the day-two catalog. The program's position on them is a sequence, not a schedule:
+The source material sketched a portfolio of further ServiceNow applications beyond the compliance application and the day-two catalog. The program's position on them is a sequence, not a schedule:
 
 - **Identity and access governance** is the next candidate: joiner, mover and leaver automation driven by HR events, access certification campaigns, and identity evidence fed into the same attestation loop. It extends the day-two catalog's joiner, mover and leaver requests rather than duplicating them ([Chapter 05](05-the-service-catalogs.md)), and it depends on a reliable HR identity source ([Book 03](../b03-hr-identity/index.md)) and on the Entra ID work in [Book 02](../b02-identity/index.md). Microsoft's own access reviews and lifecycle workflows cover part of this ([Book 04, Chapter 09](../b04-access/09-access-governance.md)); the same buy-before-build test applies.
 - **Further candidates** are just-in-time privileged access, device compliance, extending the queues to the AWS estate, and analytics over the access evidence, which must stay advisory and never act on its own.

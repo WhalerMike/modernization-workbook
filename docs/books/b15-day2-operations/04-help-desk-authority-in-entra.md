@@ -118,7 +118,7 @@ Hybrid Identity Administrator and Application Administrator stay in Book 04's Ti
 
 ### Onboarding and offboarding technicians
 
-Onboarding is an access-package request for the technician's role groups, approved by the help desk supervisor and the identity governance officer, followed by PIM training before the first activation. The program reviews help desk role membership quarterly, as Book 04 sets for Tier 2, with the supervisor certifying each technician's continued need and removal on non-response.
+Onboarding is an access-package request for the technician's role groups, approved by the identity governance officer on the service desk supervisor's request, followed by PIM training before the first activation. The program reviews help desk role membership quarterly, as Book 04 sets for Tier 2, with the supervisor certifying each technician's continued need and removal on non-response.
 
 Offboarding is faster and needs no governance approval, because removing access never increases risk: the supervisor's request removes the technician from the role groups. If the technician has an active activation at the time, identity engineering removes the active assignment as well, then revokes the technician's sessions.
 
@@ -170,7 +170,7 @@ A task is high-risk in the program's design when one person could use it to take
 | Credential or method reset, or a pass, for an account the help desk can't touch (a privileged role, a role-assignable group member, a restricted unit member) | Hands over an account that controls others | Privileged Authentication Administrator (Tier 0), or the restricted unit's scoped admins | Account owner's manager | Security office |
 | ImmutableID or hard-match repair | A wrong mapping links a cloud account to the wrong on-premises object, which then becomes its source of authority[^c04-hardmatch] | Identity engineering | Identity engineering lead | Identity governance officer |
 | Delete, disable or restore an account outside the HR-driven lifecycle | Destroys or revives access without the authoritative record | User Administrator, in identity engineering | Account owner's manager | Identity governance officer |
-| Enterprise-app assignment to a Tier 1 application | Opens high-risk data to a group | Help desk, custom assignment role | Application owner | Identity governance officer notified, with a four-business-hour window to place a hold, per [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain) |
+| Enterprise-app assignment to a risk Tier 1 application | Opens high-risk data to a group | Help desk, custom assignment role | Application owner | Identity governance officer notified, with a four-business-hour window to place a hold, per [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain) |
 | Bulk change (many users, one request) | One mistake repeated at scale | Automation, under [Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md)'s change classes | Change owner | Change advisory board |
 
 Admin consent isn't on the list because the help desk never performs it at all; it triages and escalates ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#who-approves-admin-consent)).
