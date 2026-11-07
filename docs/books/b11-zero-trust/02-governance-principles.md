@@ -28,11 +28,11 @@ CISA's Zero Trust Maturity Model (ZTMM) is easy to misread. Its best-known figur
 
 Governance, in the model's own definition, "refers to the definition and associated enforcement of agency cybersecurity policies, procedures, and processes, within and across pillars."[^c02-ztmm] Definition and enforcement, within and across pillars: a program can buy a strong tool for every pillar and still have none of that.
 
-The common result is a program that spends two years or more buying a tool per pillar and stalls at the Initial stage, or low in Advanced. This chapter argues that the stall is structural, that governance is the capability programs invest in least, and that five principles, most of which are decisions rather than purchases, are what move a program past it. [Chapter 01](01-a-whole-agency-property.md) made the case that Zero Trust belongs to the whole agency; this chapter sets out how the agency governs it.
+The common result is a program that spends two years or more buying a tool per pillar and stalls below Advanced. This chapter argues that the stall is structural, that governance is the capability programs invest in least, and that five principles, most of which are decisions rather than purchases, are what move a program past it. [Chapter 01](01-a-whole-agency-property.md) made the case that Zero Trust belongs to the whole agency; this chapter sets out how the agency governs it.
 
 ::: {.callout-important}
 ## The case in one paragraph
-**Problem.** Programs read the maturity model as a five-pillar shopping list, buy a tool per pillar, and stall at Initial or low Advanced, because the model defines maturity as five pillars operated through three cross-cutting capabilities, and Governance is the one programs fund least.
+**Problem.** Programs read the maturity model as a five-pillar shopping list, buy a tool per pillar, and stall below Advanced, because the model defines maturity as five pillars operated through three cross-cutting capabilities, and Governance is the one programs fund least.
 
 **Solution.** Five governance principles. Identity is a necessary anchor but not a self-authenticating one. Privileged and administrative identity needs controls of its own. Continuous evidence is a governance property, not a tool feature. Governance must enforce, not only observe. And the cloud boundary must be modeled, not assumed away.
 
@@ -141,7 +141,7 @@ Each is a structural step that compounds. Together they are the governance capab
 
 ::: {.callout-note}
 ## What this chapter establishes
-1. CISA's model defines maturity as five pillars operated through three cross-cutting capabilities. Its Advanced and Optimal criteria are cross-pillar, so another per-pillar tool doesn't move a program past Initial.
+1. CISA's model defines maturity as five pillars operated through three cross-cutting capabilities. Its Advanced and Optimal criteria are cross-pillar, so another per-pillar tool doesn't move a program past the stall below Advanced.
 2. Identity is the root namespace the other pillars resolve through, but it is not self-authenticating. It must be continuously re-evaluated and defended as the highest-value target.
 3. Privileged identity needs time-boxed, verified access, with emergency accounts governed and tested rather than left as exceptions.
 4. Evidence that can't be regenerated is an assertion, and policy that isn't enforced is a report.
