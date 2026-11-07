@@ -34,7 +34,7 @@ Joiner, mover and leaver, plus the two transitions estates forget until they hur
 | **Mover** | Assignment change: new position, organization, location or supervisor | Attributes re-stamped; dynamic memberships re-evaluated, so the old organization's access leaves as the new one's arrives; access review on what remains (PS-5); approvals follow the new supervisor of record |
 | **Leaver** | Effective-dated separation | The leaver sequence of Chapter 09: immediately block logical access, then reconcile credentials, devices, entitlements, application access, and later disposition — one workflow, one evidence trail (PS-4) |
 | **Rehire** | Returning worker matched to the prior worker record | Prior identifier re-linked; the person resumes an identity rather than getting a second one (IA-4) |
-| **Conversion** | Worker type changes; affiliation continuous | Same identifier, access re-derived from the new worker type; no duplicate identity |
+| **Conversion** | Worker type changes; same person and key, new affiliation | Same identifier, access re-derived from the new worker type; no duplicate identity |
 
 : The five lifecycle events and the identity actions they cause {.striped .hover}
 
@@ -159,11 +159,11 @@ The separation record is an HR fact, but the person it describes touches all fou
 
 : One leaver event, four tracks {.striped .hover}
 
-Until those extensions exist, the program's fallback is a leaver checklist with a named owner per row, and the separation-to-revocation interval (Chapter 11) measures how long it takes. The task ceiling bites here: a four-track leaver can run long, so group steps inside one Logic App, or chain a leaver and a post-leaver workflow *(design guidance)*. The companion guide's [four tracks](../guides/attribute-driven-migration.md#four-tracks) set out who owns each track.
+Until those extensions exist, the program's fallback is a leaver checklist with a named owner per row, and the separation-to-revocation interval (Chapter 11) measures how long it takes. The task ceiling bites here: a four-track leaver can run long, so group steps inside one Logic App, or chain a leaver and a post-separation workflow *(design guidance)*. The companion guide's [four tracks](../guides/attribute-driven-migration.md#four-tracks) set out who owns each track.
 
 ## Rehire and conversion
 
-- **Rehire.** The returning worker is matched to the prior worker record by person number, and the provisioning match on `employeeId` re-links the existing account if it still exists; Microsoft's HR-driven provisioning can reactivate or reprovision a rehire's old account.[^c08-automate][^c08-inbound-faq] If the account was deleted, the new account carries the same `employeeId`; the identifier history lives in the HR record, not the directory.
+- **Rehire.** The returning worker is matched to the prior worker record by the enterprise person key, and the provisioning match on `employeeId` re-links the existing account if it still exists; Microsoft's HR-driven provisioning can reactivate or reprovision a rehire's old account.[^c08-automate][^c08-inbound-faq] If the account was deleted, the new account carries the same `employeeId`; the identifier history lives in the HR record, not the directory.
 - **Conversion.** A contractor-to-employee change is an attribute change on the same person, not a leaver plus a joiner. `employeeType` and the worker-type code change; access re-derives; the identifier stays.
 
 ## Deletion

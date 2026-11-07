@@ -1,6 +1,6 @@
 ---
 title: "Chapter 11 — Drift, Metrics and Evidence"
-description: "The lifecycle metrics an event-driven pipeline makes measurable, the classes of drift between HR and the directory and how to detect each one, the evidence each lifecycle event leaves, and what the architecture contributes to NIST SP 800-53 Rev. 5 AC-2, AC-2(1), PS-4, PS-5, IA-4 and SI-12 — and what the agency still has to supply."
+description: "The lifecycle metrics an event-driven pipeline makes measurable, the classes of drift between HR and the directory and how to detect each one, the evidence each lifecycle event leaves, and what the architecture contributes to NIST SP 800-53 Rev. 5 AC-2, AC-2(1), PS-4, PS-5, PS-7, IA-4 and SI-12 — and what the agency still has to supply."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity
@@ -31,7 +31,7 @@ An event-driven lifecycle is also a measured one: every interval from event to a
 | Separation-to-block interval | HR effective date and time → account disabled and sessions revoked (Chapter 09, steps 1–2) | PS-4a: system access disabled within the organization-defined period, continuously |
 | Separation-to-revocation interval | HR effective date and time → last confirmed revocation in the leaver sequence (Chapter 09, step 4) | PS-4b: authenticators and credentials terminated or revoked, with exceptions and how they closed |
 | Transfer-to-review interval | Transfer effective date → completion of the review on residual access | PS-5: ongoing need for access reviewed and transfer actions initiated within the organization-defined period |
-| Joiner readiness rate | Share of new hires whose account, licenses and baseline access exist at start of day one | AC-2 automation working in the creation direction |
+| Day-one readiness | Share of new hires whose account, licenses and baseline access exist at start of day one | AC-2 automation working in the creation direction |
 | Correlation coverage | Share of enabled accounts that resolve to a current worker record by the correlation key (Chapter 04) | The orphan population, as a query instead of a hunt |
 | Derivation purity | Share of access-granting memberships computed by rule rather than assigned by hand | How much of the estate still runs on fragments |
 
@@ -54,7 +54,7 @@ Drift is any difference between what the HR record says and what the directory h
 | Orphan account | An enabled account that matches no worker record | Enabled accounts with no or unknown `employeeId` | High |
 | Attribute drift | A department, code or manager value that differs from HR | Field-by-field comparison of the canonical schema (Chapter 06) | Medium |
 | Unauthorized write | A write to an HR-mastered attribute by a principal other than the provisioning service | Entra audit log and AD change auditing, filtered on the attributes of Chapter 06 and `certificateUserIds` / `altSecurityIdentities` | High |
-| Credential drift | A valid PIV binding, derived credential or device certificate for a separated worker | CMS status and Intune certificate reports joined on the worker | High |
+| Credential drift | A valid PIV binding, derived credential or device certificate for a separated worker, or a terminated or expired card on an active employee | CMS status and Intune certificate reports joined on the worker | High |
 | Contractor credential drift | A PIV card for someone the contractor source doesn't hold, or a contractor record whose card was terminated or expired with the engagement still open | CMS status joined to the contractor source on the enterprise person key ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)) | High |
 | Schema drift | A record that fails validation in the middleware | The middleware's validation output (Chapter 05) | Medium |
 
@@ -92,7 +92,7 @@ The architecture implements mechanisms and produces evidence for these controls.
 | **AC-2(1)** Automated System Account Management | Provisioning and Lifecycle Workflows run the account lifecycle from effective-dated HR events | Workflow run history, per task; provisioning logs | Automation for applications not integrated with enterprise identity services |
 | **PS-4** Personnel Termination | The separation record starts the leaver sequence on the effective date; the block and the revocations are timestamped and reconciled | Separation-to-block and separation-to-revocation intervals; CMS and Intune records; exceptions | The organization-defined time period; exit interviews, retrieval of security-related property, and retained access to information the individual controlled (PS-4c–e); separations HR records late |
 | **PS-5** Personnel Transfer | The mover event re-derives access and starts a review of residual access | Transfer-to-review interval; review decisions | Review of logical and physical access needs; the organization-defined actions and time period; notification of the organization-defined personnel (PS-5d) |
-| **PS-7** External Personnel Security | Contractor engagements end on the contractor source's earliest end date, not on the provider's notice; the provider's termination notice is one more leaver input ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)) | End-date-to-block interval for contractors; provider notices received against engagements already ended | The provider's notification requirement and its organization-defined time period (PS-7d)[^c11-nist-80053]; contract language that carries it |
+| **PS-7** External Personnel Security | Contractor engagements end on the contractor source's earliest end date, not on the provider's notice; the provider's termination notice is one more leaver input ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)) | Separation-to-block interval read for contractors (engagement end date to block); provider notices received against engagements already ended | The provider's notification requirement and its organization-defined time period (PS-7d)[^c11-nist-80053]; contract language that carries it |
 | **IA-4** Identifier Management | One enterprise person key with mapped source, affiliation and directory keys, preserved across rehire and conversion (Chapter 04); worker type available as the IA-4(4) status characteristic (contractor, foreign national, non-organizational user) | Correlation coverage; identifier mapping records | The identifier decision; authorization to assign identifiers; the reuse-prevention period; identifiers for non-person entities |
 | **SI-12** Information Management and Retention | Lineage for governed identity facts, from the HR record through middleware provenance to each consumer | Provenance records retained in the agency's log store | Records schedules, legal holds, and disposition for each category of record; privacy requirements for workforce data |
 

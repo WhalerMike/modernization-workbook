@@ -31,7 +31,7 @@ In many agencies there is no enterprise HR-driven identity lifecycle. Accounts i
 Two migrations are coming to those agencies regardless:
 
 - **HR moves to the Core HCM platform.** Federal HR 2.0 consolidates more than 100 agency Core HCM systems onto one government-wide platform, Oracle Fusion Cloud HCM, with new interconnections and HR data reviewed and migrated for the move (Chapter 03).[^c01-hr20][^c01-award]
-- **Identity moves from Active Directory toward Entra ID.** Microsoft's path is to transfer users' *source of authority* (SOA), meaning which directory masters the account object, from Active Directory to the cloud and govern the user lifecycle with Microsoft Entra ID Governance, keeping Active Directory accounts only where applications still need them.[^c01-soa][^c01-road]
+- **Identity moves from Active Directory toward Entra ID.** Microsoft's path is to transfer users' *object SOA* (Microsoft's *source of authority*), meaning which directory masters the account object, from Active Directory to the cloud and govern the user lifecycle with Microsoft Entra ID Governance, keeping Active Directory accounts only where applications still need them.[^c01-soa][^c01-road]
 
 The proposal is to use the two together as the opportunity to **start HR-driven identity**: the HR system of record becomes the source of authority for who works here, in what role and for whom, and Entra ID, Active Directory and the rest of ICAM follow from it by rule, with evidence. Microsoft calls this HR-driven provisioning — "the process of creating digital identities based on a human resources system," in which "the HR systems become the source of authority."[^c01-hrdriven] This book adds two things Microsoft's guidance leaves to the agency. For federal employees, the contract is **OPM's standard personnel data** — the government-wide data standards and nature-of-action codes — not one vendor's field names. And because HRIT covers federal employees only, **contractors and vendors** — tracked today in contracting officer's representative (COR) spreadsheets — need their own authoritative source, mapped into the same model (Chapter 06).
 
@@ -145,7 +145,7 @@ A covered identity can be traced from a personnel action in Core HCM to its dire
 
 That is the HR track's share of the migration's goal: every person, device, server and workload governed by attributes that are true, owned by exactly one source, and read by policy ([What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes)). For people, it means joining, moving and leaving change access automatically and correctly, with no ticket and no hand-edited group. Delegation and policy follow facts about the person, not a position in a folder tree, and every access decision and change leaves evidence.
 
-**How you know you're there** *(design guidance; the book's own gates are in [Appendix C](appendix-c-acceptance-and-cutover.md))*:
+**How you know you're there** *(design guidance; the book's phase gates are in [Chapter 12](12-execution-plan.md), and the population cutover acceptance is in [Appendix C](appendix-c-acceptance-and-cutover.md))*:
 
 - Every enabled account correlates to an authoritative record (HR or the contractor source) or carries an owned exception.
 - Every OU-derived access group is a validated rule over coded attributes, so no hand-maintained membership remains for it.
