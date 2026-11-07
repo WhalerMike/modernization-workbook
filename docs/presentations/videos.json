@@ -10998,6 +10998,11 @@
     "name": "dynamic-rules",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
     "zip": null
+   },
+   {
+    "name": "lifecycle-extensions",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
+    "zip": null
    }
   ],
   "chapters": [
