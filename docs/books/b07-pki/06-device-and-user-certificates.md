@@ -36,7 +36,7 @@ Keep the two jobs apart in planning. The device side is about issuers and profil
 
 Every other profile depends on it. A trusted certificate profile deploys the public certificate of the root CA, and of intermediate or issuing CAs, so the device can build the chain to whatever issues its own certificates. Export each CA certificate as a DER-encoded `.cer` file, never the private key, and create one trusted certificate profile per platform.[^c06-trusted-root] Deploy it to the same groups that receive the SCEP, PKCS or imported PKCS profiles and the Wi-Fi, VPN or email profiles that use them. SCEP profiles reference the trusted certificate profile directly; PKCS profiles reference the CA server instead, but the device still needs the chain. If a device doesn't trust the root, the SCEP or PKCS profile fails.[^c06-trusted-root]
 
-On Windows you choose the destination store: computer root, computer intermediate or user intermediate. The profile carries only root or intermediate certificates; Microsoft doesn't support using it to deliver anything else.[^c06-trusted-root] The guide's claim that the profile covers Linux was wrong: trusted certificate profiles are created for Android, iOS/iPadOS, macOS and Windows.[^c06-pkcs]
+On Windows you choose the destination store: computer root, computer intermediate or user intermediate. The profile carries only root or intermediate certificates; Microsoft doesn't support using it to deliver anything else.[^c06-trusted-root] The PKI guide's claim that the profile covers Linux was wrong: trusted certificate profiles are created for Android, iOS/iPadOS, macOS and Windows.[^c06-pkcs]
 
 With Cloud PKI, create trusted certificate profiles for the Cloud PKI root and issuing CAs. With a bring-your-own-CA (BYOCA) issuing CA anchored to a private root, create one for *every* CA certificate in the private hierarchy as well as for the Cloud PKI issuing CA, on every platform.[^c06-byoca] [Chapter 04](04-the-target-pki.md) covers the choice between the two Cloud PKI models.
 
@@ -46,7 +46,7 @@ With SCEP the device generates its own key pair and sends a certificate request;
 
 ### SCEP with Microsoft Cloud PKI
 
-Cloud PKI hosts the CAs, a SCEP registration authority for each issuing CA, the CRL distribution point and the AIA endpoint, so it needs no on-premises CA, NDES server or Certificate Connector.[^c06-cpki] The administrator creates the root and issuing CAs (or a BYOCA issuing CA), creates trusted certificate profiles for them, and creates a SCEP profile per platform that points at the issuing CA's SCEP URI. The device checks in, builds its request, the validation service checks it against the challenge, and the issuing CA signs.[^c06-cpki] The guide said that Intune generates the request on the device's behalf. It doesn't; the device does.[^c06-cpki]
+Cloud PKI hosts the CAs, a SCEP registration authority for each issuing CA, the CRL distribution point and the AIA endpoint, so it needs no on-premises CA, NDES server or Certificate Connector.[^c06-cpki] The administrator creates the root and issuing CAs (or a BYOCA issuing CA), creates trusted certificate profiles for them, and creates a SCEP profile per platform that points at the issuing CA's SCEP URI. The device checks in, builds its request, the validation service checks it against the challenge, and the issuing CA signs.[^c06-cpki] The PKI guide said that Intune generates the request on the device's behalf. It doesn't; the device does.[^c06-cpki]
 
 The constraints that shape design:
 
@@ -80,7 +80,7 @@ NDES maps a request to a template by the request's purpose: signature, encryptio
 
 ### Keep the connector current
 
-The guide's "v6.2406 or later" is out of date. Each connector release is supported for six months after the next one ships, and an out-of-support connector keeps working for up to 18 months before it may stop. Version 6.2406.0.1001 (September 2024) added the KB5014754 changes; the current release is 6.2510.3.3007 (May 18, 2026), and 6.2510.3.2002 (February 2026) began blocking unknown certificate extensions in SCEP requests.[^c06-connector] Let the connector update itself (it needs outbound 443 to `autoupdate.msappproxy.net`) and alert when the admin center shows it as Warning or Error.[^c06-connector] Up to 100 connector instances can run in a tenant; any instance with the PKCS feature can pick up any PKCS or revocation request, so every such instance needs the same CA permissions.[^c06-connector]
+The PKI guide's "v6.2406 or later" is out of date. Each connector release is supported for six months after the next one ships, and an out-of-support connector keeps working for up to 18 months before it may stop. Version 6.2406.0.1001 (September 2024) added the KB5014754 changes; the current release is 6.2510.3.3007 (May 18, 2026), and 6.2510.3.2002 (February 2026) began blocking unknown certificate extensions in SCEP requests.[^c06-connector] Let the connector update itself (it needs outbound 443 to `autoupdate.msappproxy.net`) and alert when the admin center shows it as Warning or Error.[^c06-connector] Up to 100 connector instances can run in a tenant; any instance with the PKCS feature can pick up any PKCS or revocation request, so every such instance needs the same CA permissions.[^c06-connector]
 
 ## PKCS and imported PKCS profiles
 
@@ -92,12 +92,12 @@ Imported PKCS profiles distribute certificates that were issued elsewhere, typic
 
 ## Which profile for which use
 
-The guide's use-case table mixed client and server certificates. Corrected, and limited to what Intune can actually deliver:
+The PKI guide's use-case table mixed client and server certificates. Corrected, and limited to what Intune can actually deliver:
 
 | Use case | Profile | Issuer | Platforms | Notes |
 |---|---|---|---|---|
 | Wi-Fi 802.1X (EAP-TLS), device or user | Trusted certificate + SCEP | Cloud PKI | Windows, iOS/iPadOS, Android, macOS | The RADIUS server must trust the Cloud PKI chain |
-| Wired 802.1X | Trusted certificate + SCEP | Cloud PKI | Windows workstations | Servers stay on AD CS auto-enrollment |
+| Wired 802.1X | Trusted certificate + SCEP | Cloud PKI | Windows workstations | Servers stay on AD CS, renewed through CyberArk Certificate Manager; domain controllers stay on autoenrollment |
 | VPN client authentication | Trusted certificate + SCEP | Cloud PKI, or AD CS through NDES while the VPN trusts only AD CS | Windows, iOS/iPadOS, Android, macOS | |
 | Client certificate for web application mTLS | Trusted certificate + SCEP | Cloud PKI | As the application supports | |
 | User certificate for Entra CBA | Trusted certificate + SCEP | Cloud PKI or AD CS | Windows, iOS/iPadOS, Android, macOS | The issuing CA must be in the Entra trust store |
@@ -107,7 +107,7 @@ The guide's use-case table mixed client and server certificates. Corrected, and 
 
 : Intune certificate profiles by use case {.striped .hover}
 
-Three rows from the guide are gone. *RADIUS NPS server*, *Remote Desktop Gateway* and *application proxy connector* certificates are server certificates, and Intune doesn't manage Windows Server; [Chapter 07](07-coexistence-and-migration.md) covers them. *MDM enrollment bootstrap* isn't a certificate profile at all; enrollment doesn't depend on one. Targeting is the program's design: assign profiles to groups whose membership derives from governed attributes, with the dynamic group and filter templates in [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md), not from hand-maintained lists.
+Four rows from the PKI guide are gone. *RADIUS NPS server*, *Remote Desktop Gateway* and *application proxy connector* certificates are server certificates, and Intune doesn't manage Windows Server; [Chapter 07](07-coexistence-and-migration.md) covers them. *MDM enrollment bootstrap* isn't a certificate profile at all; enrollment doesn't depend on one. Targeting is the program's design: assign profiles to groups whose membership derives from governed attributes, with the dynamic group and filter templates in [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md), not from hand-maintained lists.
 
 Entra-joined devices are a special case for Wi-Fi. They have no on-premises computer object, so RADIUS authentication that maps a device certificate to an AD computer account doesn't work for them; Microsoft's alternative is certificates pushed by Intune or user credentials.[^c06-aadj-plan] Check the RADIUS policy before you move the first Entra-joined device onto 802.1X.
 
@@ -123,13 +123,13 @@ A strong mapping is any of:
 - **The SID in a SAN URL.** Intune's form: `URL=tag:microsoft.com,2022-09-14:sid:<value>`, added to new and renewed Intune certificates when the profile asks for it.[^c06-scep-infra][^c06-scep-profile]
 - **An explicit strong mapping on the account,** written to `altSecurityIdentities`: `X509IssuerSerialNumber` (Microsoft's recommended form, with the serial number in reversed byte order), `X509SKI` or `X509SHA1PublicKey`. The `X509IssuerSubject`, `X509SubjectOnly` and `X509RFC822` forms are weak.[^c06-kb5014754]
 
-PIV certificates come from the Federal PKI, not AD CS, and KB5014754 says environments with non-Microsoft CAs "will not be protected using the new SID extension".[^c06-kb5014754] Besides an explicit `altSecurityIdentities` mapping, which IDManagement.gov recommends over UPN mapping for smart card logon,[^hc-idmscl] there is a government-specific option. Since the September 2024 update, the KDC policy **Allow name-based strong mappings for certificates** treats a name or UPN mapping as strong for certificates from an issuing CA named by its thumbprint that carry a named certificate policy OID; Microsoft's example uses a Federal PKI policy OID.[^hc-govmap] It suits PIV estates that can't write a per-user mapping for every card before enforcement; it ends with the domain controllers. The research explainer [Certificates, Tokens and Keys Across the Hybrid Estate](../explainers/hybrid-credentials.md) follows PIV sign-in from AD to Entra.
+PIV certificates come from the Federal PKI, not AD CS, and KB5014754 says environments with non-Microsoft CAs "will not be protected using the new SID extension".[^c06-kb5014754] Besides an explicit `altSecurityIdentities` mapping, which IDManagement.gov recommends over UPN mapping for smart card logon,[^hc-idmscl] there is a government-specific option. Since the September 2024 update, the KDC policy **Allow name-based strong mappings for certificates** treats a name or UPN mapping as strong for certificates from an issuing CA named by its thumbprint that carry a named certificate policy OID; Microsoft's example uses a Federal PKI policy OID.[^hc-govmap] It suits PIV estates that can't write a per-user mapping for every card before enforcement; it ends with the domain controllers. The explainer [Certificates, Tokens and Keys Across the Hybrid Estate](../explainers/hybrid-credentials.md) follows PIV sign-in from AD to Entra.
 
 The same `altSecurityIdentities` values are what Entra Connect can sync to `certificateUserIds` for Entra CBA; [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) covers that write path and the risk of letting AD administrators control it.
 
 ### The enforcement timeline and where it stands today
 
-The guide said enforcement began in February 2025. That was one step of four:
+The PKI guide said enforcement began in February 2025. That was one step of four:
 
 | Date | What happened |
 |---|---|
@@ -148,7 +148,7 @@ Two things follow for the migration. First, any certificate that still authentic
 
 Strong mapping applies to Intune **user** certificates on all platforms, and to **device** certificates only on Microsoft Entra hybrid joined Windows devices; both need the user or device to be synced from AD so that Entra ID holds an on-premises SID.[^c06-scep-profile][^c06-pkcs]
 
-- **SCEP profiles:** add a SAN attribute of type URI with the value `{{OnPremisesSecurityIdentifier}}`. Intune resolves it and writes the tagged SID URL. The variable works only with the URI attribute.[^c06-scep-profile] The guide said Cloud PKI SCEP includes the SID automatically with no configuration; Microsoft's SCEP profile instructions say you must add the variable, so add it.[^c06-scep-profile] AD CS servers with the KB5014754 update support the tag; a third-party CA might refuse to issue a certificate with it, so check with the vendor first.[^c06-scep-infra]
+- **SCEP profiles:** add a SAN attribute of type URI with the value `{{OnPremisesSecurityIdentifier}}`. Intune resolves it and writes the tagged SID URL. The variable works only with the URI attribute.[^c06-scep-profile] The PKI guide said Cloud PKI SCEP includes the SID automatically with no configuration; Microsoft's SCEP profile instructions say you must add the variable, so add it.[^c06-scep-profile] AD CS servers with the KB5014754 update support the tag; a third-party CA might refuse to issue a certificate with it, so check with the vendor first.[^c06-scep-infra]
 - **PKCS profiles:** run connector 6.2406.0.1001 or later (in practice, the current release), set `EnableSidSecurityExtension` to 1 under `HKLM\Software\Microsoft\MicrosoftIntune\PFXCertificateConnector`, and restart the two PFX connector services. The change applies to new and renewed certificates. To roll back, restore the value, restart the services and create a new PKCS profile to reissue without the SID.[^c06-pkcs]
 - **Entra-joined devices** have no on-premises SID. Their device certificates can't be strongly mapped to AD and aren't meant for Kerberos; use them for Wi-Fi, VPN and applications.
 - **Certificates used to sign in to AD** (certificate or smart card logon, which is Kerberos PKINIT) must also come from a CA in the forest's NTAuth store. AD CS enterprise CAs publish themselves there; any other CA, including a Cloud PKI or BYOCA issuing CA, has to be added explicitly.[^c06-ntauth] Don't add a CA to NTAuth unless you intend it to issue logon certificates for the forest; NTAuth membership is one of the objects Chapter 03 tells you to watch.
@@ -200,7 +200,7 @@ The flow, as Microsoft documents it:[^c06-cba-deep]
 4. If Conditional Access requires MFA and the authentication binding rule makes the certificate multifactor, Entra ID signs the user in. If the certificate is only single-factor, Entra ID offers a registered second factor.
 5. Entra ID returns a primary refresh token, and the application gets its token.
 
-The guide put Conditional Access last and token issuance before it; in practice MFA strength is evaluated against what Conditional Access requires before sign-in completes.[^c06-cba-deep] Allow the certificate authentication endpoint through proxies and firewalls and **turn off TLS inspection** for `*.certauth.login.microsoftonline.com`, or the client certificate never reaches Entra ID.[^c06-cba-deep]
+The PKI guide put Conditional Access last and token issuance before it; in practice MFA strength is evaluated against what Conditional Access requires before sign-in completes.[^c06-cba-deep] Allow the certificate authentication endpoint through proxies and firewalls and **turn off TLS inspection** for `*.certauth.login.microsoftonline.com`, or the client certificate never reaches Entra ID.[^c06-cba-deep]
 
 ### The trust store
 
@@ -209,16 +209,16 @@ Upload every CA in the chain that issues user certificates. Microsoft now has a 
 For each CA, set the base CRL URL and, if the CA publishes them, the delta CRL URL. Without a CRL URL, a revoked certificate still authenticates.[^c06-cba-howto] Turn on **Require CRL validation** so that a CA without a CRL fails closed, and use exemptions only while fixing a broken CRL.[^c06-crl] The other revocation facts were verified in [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) and still hold:[^c06-crl]
 
 - CRLs must be reachable over HTTP or HTTPS from the internet; Microsoft recommends HTTP. Entra ID supports one CRL endpoint per CA and downloads it within 10 seconds or fails.
-- Entra ID **doesn't support OCSP**. The guide said OCSP was supported if configured; that was wrong.[^c06-ocsp]
+- Entra ID **doesn't support OCSP**. The PKI guide said OCSP was supported if configured; that was wrong.[^c06-ocsp]
 - Interactive sign-in can download a CRL of up to 20 MB in the commercial cloud (including GCC) and 45 MB in Azure Government; the service limits are 65 MB and 150 MB.
 - Entra ID caches the CRL until its next update. A newly revoked certificate is caught only when a newer base or delta CRL loads, so revoke the user's sessions when revocation must be immediate.
 - Chains are built on Subject Key Identifier and Authority Key Identifier, and CRL validation covers up to 10 CAs from the leaf.
 
-The trust store is also a blast radius. Adding a CA lets any certificate it issues authenticate *any* user it can be bound to, including synchronized users; Microsoft tells administrators to make sure the PKI can't be easily compromised and to rely on high-affinity bindings.[^c06-cba-howto] **CA scoping** narrows that: a rule ties a CA (by its SKI) to one group, and a user outside the group can't authenticate with that CA's certificates. It allows one group per CA and up to 30 rules, and a mistake can lock users out.[^c06-cba-deep] Use it when several PKIs serve different populations, for example a Federal PKI shared service provider for PIV and a Cloud PKI CA for derived software certificates.
+The trust store is also a blast radius. Adding a CA lets any certificate it issues authenticate *any* user it can be bound to, including synchronized users; Microsoft tells administrators to make sure the PKI can't be easily compromised and to rely on high-affinity bindings.[^c06-cba-howto] **CA scoping** narrows that: a rule ties a CA (by its SKI) to one group, and a user outside the group can't authenticate with that CA's certificates. It allows one group per CA and up to 30 rules, and a mistake can lock users out.[^c06-cba-deep] Use it when several PKIs serve different populations, for example a Federal PKI shared service provider for PIV and a separate derived credential issuer for derived credentials.
 
 ### Username bindings and affinity
 
-Username bindings map a certificate field to a user attribute. By default the SAN Principal Name maps to `userPrincipalName`.[^c06-cba-howto] The full binding table, with example `certificateUserIds` values, is in [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md); in summary, `PrincipalName`, `RFC822Name`, `Subject` and `IssuerAndSubject` are **low affinity**, and `SKI`, `SHA1PublicKey` and `IssuerAndSerialNumber` are **high affinity**.[^c06-cba-deep] The guide classed Issuer + Subject as high affinity; Microsoft classes it as low, because a CA can issue several certificates with the same subject.
+Username bindings map a certificate field to a user attribute. By default the SAN Principal Name maps to `userPrincipalName`.[^c06-cba-howto] The full binding table, with example `certificateUserIds` values, is in [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md); in summary, `PrincipalName`, `RFC822Name`, `Subject` and `IssuerAndSubject` are **low affinity**, and `SKI`, `SHA1PublicKey` and `IssuerAndSerialNumber` are **high affinity**.[^c06-cba-deep] The PKI guide classed Issuer + Subject as high affinity; Microsoft classes it as low, because a CA can issue several certificates with the same subject.
 
 How Entra ID evaluates them:[^c06-cba-deep]
 
@@ -233,7 +233,7 @@ The program's position: production tenants require high affinity, using `IssuerA
 
 The authentication binding policy decides whether a certificate counts as one factor or two. The tenant default is single-factor; an Authentication Policy Administrator can change the default or add rules by certificate issuer, by policy OID, or by both.[^c06-cba-howto] When rules overlap, issuer-and-OID rules beat OID rules, and OID rules beat issuer rules; a certificate whose OIDs map to both single-factor and multifactor is treated as single-factor.[^c06-cba-deep] A derived credential whose policy OID differs from the card's doesn't inherit the card's rule; give it its own.[^c06-cba-deep] Enter OIDs in dotted form; "All Issuance Policies" must be entered as `2.5.29.32.0`.[^c06-cba-howto]
 
-The guide's rationale for multifactor is right in substance: Microsoft says a certificate should be treated as multifactor only if it's protected by a PIN or biometric.[^c06-cba-deep] A PIV card qualifies; a software certificate in the user store doesn't. Use policy OIDs to separate them where one CA issues both.
+The PKI guide's rationale for multifactor is right in substance: Microsoft says a certificate should be treated as multifactor only if it's protected by a PIN or biometric.[^c06-cba-deep] A PIV card qualifies; a software certificate in the user store doesn't. Use policy OIDs to separate them where one CA issues both.
 
 A single-factor certificate can be the first factor with a passkey, passwordless phone sign-in or a FIDO2 key as the second, or a password can be first and the certificate second.[^c06-cba-deep] Two rules protect users from lockout:[^c06-cba-howto][^c06-cba-deep]
 
@@ -242,11 +242,11 @@ A single-factor certificate can be the first factor with a passkey, passwordless
 
 ### Conditional Access
 
-The built-in **Phishing-resistant MFA** authentication strength accepts CBA alongside FIDO2 security keys and Windows Hello for Business. A custom authentication strength can allow only CBA, as single-factor, multifactor or both, and its advanced options can require certificates from a particular issuer or with a particular policy OID for sensitive resources.[^c06-cba-deep] Conditional Access needs Entra ID P1.[^c06-entra-licensing] The guide said CBA itself needs P1; it doesn't, though the PKI bulk upload does and Conditional Access, which every real deployment uses, does.[^c06-cba-howto][^c06-entra-licensing]
+The built-in **Phishing-resistant MFA** authentication strength accepts CBA alongside FIDO2 security keys and Windows Hello for Business. A custom authentication strength can allow only CBA, as single-factor, multifactor or both, and its advanced options can require certificates from a particular issuer or with a particular policy OID for sensitive resources.[^c06-cba-deep] Conditional Access needs Entra ID P1.[^c06-entra-licensing] The PKI guide said CBA itself needs P1; it doesn't, though the PKI bulk upload does and Conditional Access, which every real deployment uses, does.[^c06-cba-howto][^c06-entra-licensing]
 
 ### Staged rollout
 
-Staged rollout lets synchronized users in a federated domain sign in at Entra ID with CBA instead of being redirected to AD FS, while everyone else stays federated.[^c06-cba-migrate] Microsoft is explicit that it's a temporary testing mechanism, not a permanent mixed state, and that the domain should be cut over to managed authentication once testing succeeds.[^c06-sro] Its limits are tighter than the guide implied:[^c06-sro]
+Staged rollout lets synchronized users in a federated domain sign in at Entra ID with CBA instead of being redirected to AD FS, while everyone else stays federated.[^c06-cba-migrate] Microsoft is explicit that it's a temporary testing mechanism, not a permanent mixed state, and that the domain should be cut over to managed authentication once testing succeeds.[^c06-sro] Its limits are tighter than the PKI guide implied:[^c06-sro]
 
 - It applies only to users synced by Entra Connect, not cloud-only users, and only to browser and modern-authentication sign-in; legacy authentication still goes to the federation server.
 - Up to 10 groups per feature. Nested groups and dynamic groups aren't supported. A group added for the first time is limited to 200 users to avoid a time-out; members added later take up to 24 hours to take effect. Microsoft recommends cloud groups to avoid sync delay.
@@ -279,7 +279,7 @@ Many agencies run AD FS only to do certificate authentication. Entra CBA removes
 - **Protect the sync path.** If a binding uses a synced attribute, anyone with administrative access to the Entra Connect server can change the value; keep that access tight and privileged accounts cloud-only.[^c06-cba-migrate]
 - **Federation risk during the move.** Users in a federated domain who are on staged rollout are still exposed to a compromise of the federation server until the whole domain is converted.[^c06-cba-migrate] That argues for a short staged-rollout period, not a long one.
 - **Record the federation configuration before conversion.** `Get-MgDomainFederationConfiguration` captures it, along with customized settings such as `federatedIdpMfaBehavior` and `PromptLoginBehavior`; back up the AD FS farm (the AD FS Rapid Restore Tool) and the Microsoft 365 relying party trust and its claim rules.[^c06-fed-migrate]
-- **Conversion isn't one-way.** The guide called it one-way. `Update-MgDomain -AuthenticationType "Managed"` converts a domain, and Microsoft's rollback is to re-federate with `New-MgDomainFederationConfiguration` and restore claim rules.[^c06-fed-migrate] Rollback is possible, but only while the AD FS farm can still be brought back, which is why [Chapter 07](07-coexistence-and-migration.md) keeps it restorable through a defined window.
+- **Conversion isn't one-way.** The PKI guide called it one-way. `Update-MgDomain -AuthenticationType "Managed"` converts a domain, and Microsoft's rollback is to re-federate with `New-MgDomainFederationConfiguration` and restore claim rules.[^c06-fed-migrate] Rollback is possible, but only while the AD FS farm can still be brought back, which is why [Chapter 07](07-coexistence-and-migration.md) keeps it restorable through a defined window.
 
 ## What Chapter 07 takes from here
 

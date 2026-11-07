@@ -31,7 +31,7 @@ The program's coexistence rules:
 1. **Each use case has one issuer at a time per population.** A device group gets its Wi-Fi certificate from AD CS or from Cloud PKI, never both by design; overlap happens only during the renewal window of a move.
 2. **Trust goes up before issuance moves.** A relying party trusts the new chain before the first certificate from it is issued to anything that relying party sees.
 3. **Revocation must be reachable wherever validation happens.** For every CA, someone can name the CRL URL each relying party uses, and that URL works from where the relying party sits.
-4. **Nothing is revoked to force a move.** An AD CS certificate is replaced at renewal or expiry, not revoked early (the guide's own rule, which stands).
+4. **Nothing is revoked to force a move.** An AD CS certificate is replaced at renewal or expiry, not revoked early (the PKI guide's own rule, which stands).
 5. **Every move has a rollback that has been tested,** and the rollback doesn't depend on something the move itself retired.
 
 ![Trust has to run both ways during coexistence: the AD CS root goes into the Entra ID trust store so Entra ID accepts AD CS-issued user certificates, the Cloud PKI chain goes to domain-joined machines so they accept Cloud PKI-issued certificates, and logon certificates need their issuing CA in NTAuth.](../../images/diagrams/b07-pki/svg/ch07-trust-directions.svg){#fig-ch07-trust-directions fig-alt="Two clusters side by side. Left, slate, the on-premises Active Directory forest: AD CS with its offline root and enterprise issuing CAs; domain-joined relying parties such as RADIUS, VPN and mutual-TLS web servers; and, in amber, the NTAuth store of CAs allowed to issue logon certificates. Right, blue, the Microsoft cloud: Cloud PKI with a root and issuing CA or a BYOCA issuing CA; the Entra ID CBA trust store holding every CA in the user-certificate chain; and Intune-managed devices with trusted certificate profiles for both chains. Arrows: AD CS to the Entra ID trust store, labeled upload with internet CRL URLs. Cloud PKI to the domain-joined relying parties, labeled Group Policy or -dspublish RootCA. Cloud PKI to NTAuth, dashed amber, labeled only if it issues logon certificates. AD CS and Cloud PKI each to the Intune-managed devices, labeled trusted certificate profile. A red note pointing at AD CS: LDAP-only CRL locations fail for Entra ID and Entra-joined devices."}
@@ -40,11 +40,11 @@ The program's coexistence rules:
 
 ### Domain controller certificates
 
-Domain controller certificates stay on AD CS for as long as there are domain controllers. The guide's reason was that Cloud PKI can't issue the KDC Authentication EKU. The decisive reason is simpler and verifiable: Cloud PKI issues only to Intune-enrolled devices through SCEP, and Intune doesn't manage Windows Server.[^c07-cpki][^c07-intune-platforms] Domain controllers enroll through AD auto-enrollment, and that is how they renew.
+Domain controller certificates stay on AD CS for as long as there are domain controllers. The PKI guide's reason was that Cloud PKI can't issue the KDC Authentication EKU. The decisive reason is simpler and verifiable: Cloud PKI issues only to Intune-enrolled devices through SCEP, and Intune doesn't manage Windows Server.[^c07-cpki][^c07-intune-platforms] Domain controllers enroll through AD autoenrollment, and that is how they renew.
 
 Make sure the template is right before coexistence starts, because Microsoft Entra joined devices are less forgiving than domain-joined ones:
 
-- **Use the Kerberos Authentication template, or a copy of it.** The older Domain Controller and Domain Controller Authentication templates don't include the KDC Authentication OID. A domain controller certificate for certificate-based sign-in must carry Client Authentication (`1.3.6.1.5.5.7.3.2`), Server Authentication (`1.3.6.1.5.5.7.3.1`) and KDC Authentication (`1.3.6.1.5.2.3.5`), the domain's DNS name in the SAN, and a CRL distribution point that points to a valid CRL (or an AIA pointing to an OCSP responder). Microsoft's guidance is to duplicate the Kerberos Authentication template with current cryptography and have it supersede the older domain controller templates, so auto-enrollment replaces them.[^c07-dc-certs]
+- **Use the Kerberos Authentication template, or a copy of it.** The older Domain Controller and Domain Controller Authentication templates don't include the KDC Authentication OID. A domain controller certificate for certificate-based sign-in must carry Client Authentication (`1.3.6.1.5.5.7.3.2`), Server Authentication (`1.3.6.1.5.5.7.3.1`) and KDC Authentication (`1.3.6.1.5.2.3.5`), the domain's DNS name in the SAN, and a CRL distribution point that points to a valid CRL (or an AIA pointing to an OCSP responder). Microsoft's guidance is to duplicate the Kerberos Authentication template with current cryptography and have it supersede the older domain controller templates, so autoenrollment replaces them.[^c07-dc-certs]
 - **Give it an HTTP CRL location.** Entra-joined devices can't read the CRL from Active Directory before they've authenticated, so an LDAP-only CDP on a domain controller certificate breaks their on-premises sign-in. Publish the CRL on an HTTP (not HTTPS) URL, listed first among the distribution points, and publish the delta CRL there too if the CA issues them.[^c07-aadj-sso]
 - **Put the root on Entra-joined devices** with an Intune trusted certificate profile.[^c07-dc-pki]
 
@@ -52,7 +52,7 @@ Classify every domain controller template BRIDGE ([Chapter 02](02-what-ad-cs-hol
 
 ### LDAPS
 
-The guide said LDAPS certificates "for endpoints consumed by cloud services" could move to Cloud PKI. They can't: an LDAPS endpoint is a server, and Cloud PKI doesn't issue to servers.[^c07-cpki] LDAPS on domain controllers is enabled simply by installing a qualifying certificate: Server Authentication EKU, the domain controller's FQDN in the subject CN or a SAN DNS entry, a private key in the local computer store without strong private key protection, a key from the Schannel provider, and a chain both the domain controller and LDAPS clients trust. Active Directory checks the NTDS service's certificate store first and picks up a new certificate there without a restart; in the computer's Personal store, a domain controller that finds several qualifying certificates picks one at random.[^c07-ldaps][^c07-ldaps-3p]
+The PKI guide said LDAPS certificates "for endpoints consumed by cloud services" could move to Cloud PKI. They can't: an LDAPS endpoint is a server, and Cloud PKI doesn't issue to servers.[^c07-cpki] LDAPS on domain controllers is enabled simply by installing a qualifying certificate: Server Authentication EKU, the domain controller's FQDN in the subject CN or a SAN DNS entry, a private key in the local computer store without strong private key protection, a key from the Schannel provider, and a chain both the domain controller and LDAPS clients trust. Active Directory checks the NTDS service's certificate store first and picks up a new certificate there without a restart; in the computer's Personal store, a domain controller that finds several qualifying certificates picks one at random.[^c07-ldaps][^c07-ldaps-3p]
 
 During coexistence that has two consequences. The LDAPS certificate keeps renewing from AD CS, and every LDAPS *client* must trust that chain, including cloud-side components and appliances that bind to domain controllers. When an application migrates off LDAP ([Book 02, Chapter 04](../b02-identity/04-the-hidden-migration-surface.md) covers the LDAP adapter), remove it from the list of LDAPS clients; LDAPS itself ends with the domain controllers.
 
@@ -60,7 +60,7 @@ Which certificate serves LDAPS follows from the template rule above. Microsoft's
 
 ### Other server certificates
 
-NPS and other RADIUS servers, Remote Desktop gateways, internal web servers, SQL Server ([Book 06, Chapter 22](../b06-data-platform/22-where-sql-server-touches-adcs.md)) and network appliances all need server certificates, and none of them is an Intune-managed device. They keep their AD CS-issued certificates during coexistence; internet-facing names use a public CA. [Chapter 04](04-the-target-pki.md) decides how they renew: certificates for internal names are requested and renewed through CyberArk Certificate Manager rather than by hand or by server autoenrollment, so each server moves off autoenrollment as it's onboarded to the platform. [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md) covers that renewal engine in operation. Where the program needs certificate lifecycle tooling across servers and appliances, it uses its existing vendor, CyberArk, and CyberArk Certificate Manager, which CyberArk documents as discovering certificates across the enterprise and renewing them before they expire.[^c07-cyberark-names] The program consolidates on it rather than adding a second lifecycle vendor. Palo Alto Networks completed its acquisition of CyberArk on February 11, 2026,[^c07-panw] and now presents CyberArk Certificate Manager as Next-Generation Trust Security, which it describes as the evolution of the SaaS offering previously known as Venafi TLS Protect;[^c07-ngts] check the current product name in contract documents.
+NPS and other RADIUS servers, Remote Desktop gateways, application proxy connector hosts, internal web servers, SQL Server ([Book 06, Chapter 22](../b06-data-platform/22-where-sql-server-touches-adcs.md)) and network appliances all need server certificates, and none of them is an Intune-managed device. They keep their AD CS-issued certificates during coexistence; internet-facing names use a public CA. [Chapter 04](04-the-target-pki.md) decides how they renew: certificates for internal names are requested and renewed through CyberArk Certificate Manager rather than by hand or by server autoenrollment, so each server moves off autoenrollment as it's onboarded to the platform. [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md) covers that renewal engine in operation. Where the program needs certificate lifecycle tooling across servers and appliances, it uses its existing vendor, CyberArk, and CyberArk Certificate Manager, which CyberArk documents as discovering certificates across the enterprise and renewing them before they expire.[^c07-cyberark-names] The program consolidates on it rather than adding a second lifecycle vendor. Palo Alto Networks completed its acquisition of CyberArk on February 11, 2026,[^c07-panw] and now presents CyberArk Certificate Manager as Next-Generation Trust Security, which it describes as the evolution of the SaaS offering previously known as Venafi TLS Protect;[^c07-ngts] check the current product name in contract documents.
 
 The NPS server certificate needs particular care during the Wi-Fi move. Clients validate it against the root they trust and, for wireless, expect the server's FQDN in its SAN;[^c07-eap-certs] the client certificates it validates change issuer when devices move to Cloud PKI. NPS must trust the Cloud PKI chain before the first pilot device gets a Cloud PKI Wi-Fi certificate (rule 2), and must keep trusting the AD CS chain until the last AD CS client certificate has expired.
 
@@ -85,7 +85,7 @@ A certificate used to sign in to AD (smart card logon or other certificate logon
 
 ### More than one forest
 
-Each forest has its own configuration partition, so each needs its own trust distribution (GPO or `-dspublish`) and, if applicable, its own NTAuth entry. Each forest's AD CS root that issues user certificates goes into the single Entra ID trust store. Where several PKIs serve different populations, Entra CBA's CA scoping can tie each CA to the group of users it's meant for.[^c07-cba-deep] The guide's phrase "trusted by Cloud PKI (via Entra upload)" conflated two things: Cloud PKI doesn't trust other CAs; Entra ID's CBA trust store does.
+Each forest has its own configuration partition, so each needs its own trust distribution (GPO or `-dspublish`) and, if applicable, its own NTAuth entry. Each forest's AD CS root that issues user certificates goes into the single Entra ID trust store. Where several PKIs serve different populations, Entra CBA's CA scoping can tie each CA to the group of users it's meant for.[^c07-cba-deep] The PKI guide's phrase "trusted by Cloud PKI (via Entra upload)" conflated two things: Cloud PKI doesn't trust other CAs; Entra ID's CBA trust store does.
 
 ## CRL availability
 
@@ -100,24 +100,24 @@ Most coexistence outages are revocation outages. The relying parties now sit in 
 
 : Where each CRL must be reachable during coexistence {.striped .hover}
 
-Fixing an AD CS CDP means two things. Add an HTTP distribution point that's reachable from the internet (a highly available web server or content delivery network; Microsoft recommends HTTP over HTTPS to avoid a circular dependency), and recognize that the new URL appears only in certificates issued *after* the change. Entra ID uses the CRL URL configured on the CA in its trust store, not the one inside each certificate,[^c07-cba-howto] so Entra CBA works as soon as the trust store points at the published CRL; other relying parties that read the CDP from the certificate keep failing until the certificate renews. The guide suggested Microsoft Entra application proxy for publishing an internal CRL; the program publishes CRLs on plain anonymous HTTP endpoints instead, because Entra ID must download the CRL without authentication within 10 seconds and fails the sign-in if it can't.[^c07-crl]
+Fixing an AD CS CDP means two things. Add an HTTP distribution point that's reachable from the internet (a highly available web server or content delivery network; Microsoft recommends HTTP over HTTPS to avoid a circular dependency), and recognize that the new URL appears only in certificates issued *after* the change. Entra ID uses the CRL URL configured on the CA in its trust store, not the one inside each certificate,[^c07-cba-howto] so Entra CBA works as soon as the trust store points at the published CRL; other relying parties that read the CDP from the certificate keep failing until the certificate renews. The PKI guide suggested Microsoft Entra application proxy for publishing an internal CRL; the program publishes CRLs on plain anonymous HTTP endpoints instead, because Entra ID must download the CRL without authentication within 10 seconds and fails the sign-in if it can't.[^c07-crl]
 
-Entra ID doesn't support OCSP (the guide said it did), so OCSP responders matter only to on-premises relying parties that use them.[^c07-crl]
+Entra ID doesn't support OCSP (the PKI guide said it did), so OCSP responders matter only to on-premises relying parties that use them.[^c07-crl]
 
 ## Renewal while two issuers overlap
 
-The guide's renewal rules stand, with two corrections:
+The PKI guide's renewal rules stand, with two corrections:
 
-- **Existing AD CS certificates renew through auto-enrollment** until their population moves. Don't revoke early.
+- **Existing AD CS certificates renew through autoenrollment** until their population moves. Don't revoke early.
 - **New Intune-enrolled devices get the Cloud PKI certificate** for every use case already moved, from their first check-in.
-- **A population moves at the profile assignment, and the old certificate leaves at its renewal.** Remove the AD CS auto-enrollment permission or GPO link for that use case only after the population holds valid Cloud PKI certificates and the relying parties have accepted them.
-- **Lifetimes.** The guide said to set Cloud PKI validity at or above the remaining AD CS validity to avoid gaps. The gap that matters is between a device getting its new certificate and losing its old one, so the program's rule is different: keep the AD CS certificate valid until the Cloud PKI one is in use, which the auto-enrollment rule above already does. Set Cloud PKI leaf lifetimes by policy; Intune SCEP and PKCS profiles shouldn't go below five days, because a certificate that close to expiry can be rejected on install.[^c07-scep-infra]
-- **Removing a profile revokes.** When a SCEP profile assignment is removed from a group, or a device leaves the assigned group, Intune revokes and removes the SCEP certificate on Windows, iOS/iPadOS and macOS.[^c07-intune-remove] A rollback that "falls back to AD CS certificates" only works if those certificates still exist, which is another reason auto-enrollment stays on until a wave's exit gate.
+- **A population moves at the profile assignment, and the old certificate leaves at its renewal.** Remove the AD CS autoenrollment permission or GPO link for that use case only after the population holds valid Cloud PKI certificates and the relying parties have accepted them.
+- **Lifetimes.** The PKI guide said to set Cloud PKI validity at or above the remaining AD CS validity to avoid gaps. The gap that matters is between a device getting its new certificate and losing its old one, so the program's rule is different: keep the AD CS certificate valid until the Cloud PKI one is in use, which the autoenrollment rule above already does. Set Cloud PKI leaf lifetimes by policy; Intune SCEP and PKCS profiles shouldn't go below five days, because a certificate that close to expiry can be rejected on install.[^c07-scep-infra]
+- **Removing a profile revokes.** When a SCEP profile assignment is removed from a group, or a device leaves the assigned group, Intune revokes and removes the SCEP certificate on Windows, iOS/iPadOS and macOS.[^c07-intune-remove] A rollback that "falls back to AD CS certificates" only works if those certificates still exist, which is another reason autoenrollment stays on until a wave's exit gate.
 - **Issuing CA renewal.** Cloud PKI now supports in-place renewal of eligible issuing CAs, so issuance continues without editing SCEP profiles or assignments.[^c07-cpki-renew] Plan it in the CA lifecycle calendar ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)) rather than at the deadline.
 
 ## The migration playbook
 
-The guide's six phases stand as six waves. Each has an entry gate (the previous wave's exit gate), the work, an exit gate, a rollback and a planning duration. Durations are the program's planning figures for a single-forest estate, not commitments; scale them to the inventory from wave 1.
+The PKI guide's six phases stand as six waves. Each has an entry gate (the previous wave's exit gate), the work, an exit gate, a rollback and a planning duration. Durations are the program's planning figures for a single-forest estate, not commitments; scale them to the inventory from wave 1.
 
 ![Six waves, each gated: Assess, Foundation, Pilot, Scale, Cutover and Decommission; each wave's exit gate is the next wave's entry gate, and each wave has its own rollback.](../../images/diagrams/b07-pki/svg/ch07-migration-waves.svg){#fig-ch07-migration-waves fig-alt="Six cards from top to bottom. Wave 1, slate, Assess, weeks 1 to 4: gate, every template classified and Critical and High hardening findings closed. Wave 2, amber, Foundation, weeks 5 to 8: gate, issuing CA live, trust profiles at 99 percent of managed devices, test certificate validates. Wave 3, blue, Pilot, weeks 9 to 16: gate, 95 percent issuance success and every pilot relying party accepts the new chain. Wave 4, blue, Scale, weeks 17 to 28: gate, every managed device holds cloud certificates for MIGRATE use cases. Wave 5, green, Cutover, weeks 29 to 36: gate, domains managed, AD FS certificate authentication off, no AD CS certificates left for MIGRATE use cases. Wave 6, violet, Decommission, weeks 37 to 44: gate, MIGRATE-only AD CS components retired, BRIDGE and RETAIN documented. A red text note beside the waves: rollback is defined per wave and is tested before the wave starts."}
 
@@ -148,9 +148,9 @@ The guide's six phases stand as six waves. Each has an entry gate (the previous 
 8. Remediate Critical and High hardening findings first.
 9. Commit the assessment record to the program's evidence repository.
 
-The guide's PowerShell assessment module (its Appendix C) automated steps 1–5. It remains in the archive pending a technical review and isn't reproduced in this book; use it only after that review, or use the read-only checks in Chapter 03.
+The PKI guide's PowerShell assessment module (its Appendix C) automated steps 1–5. It remains in the archive pending a technical review and isn't reproduced in this book; use it only after that review, or use the read-only checks in Chapter 03.
 
-**Exit gate.** Assessment approved by the PKI owner and the security team ([Chapter 05](05-who-owns-the-certificate-estate.md)); no unclassified templates; every Critical and High finding remediated and re-tested, which is [Chapter 03](03-hardening-what-stays.md)'s migration gate.
+**Exit gate.** Assessment approved by the PKI and CA administrators and the CISO and ISSO ([Chapter 05](05-who-owns-the-certificate-estate.md)); no unclassified templates; every Critical and High finding remediated and re-tested, which is [Chapter 03](03-hardening-what-stays.md)'s migration gate.
 
 **Rollback.** None needed: the wave reads, it doesn't change. The remediations in step 8 have their own change records and rollbacks.
 
@@ -162,7 +162,7 @@ The guide's PowerShell assessment module (its Appendix C) automated steps 1–5.
 
 1. Create the Cloud PKI CAs: a root and issuing CA, or a BYOCA issuing CA whose request is signed with the Subordinate Certification Authority template on the private CA.[^c07-byoca] Use licensed (HSM-backed) keys, not a trial.
 2. For BYOCA, export the full chain and confirm the private CA's CRL and AIA locations are reachable over HTTP from where relying parties sit; replace LDAP-only AIA if necessary.
-3. Install or update the Certificate Connector (current release) on its own servers if any BRIDGE workload still needs SCEP from AD CS or PKCS ([Chapter 06](06-device-and-user-certificates.md)).
+3. Install or update the Certificate Connector (current release) on its own servers if AD CS still serves SCEP or PKCS to Intune ([Chapter 06](06-device-and-user-certificates.md)).
 4. Upload every CA that will issue user certificates to the Entra ID trust store with its CRL URL.
 5. Deploy Intune trusted certificate profiles for the cloud chain to all managed devices, per platform.
 6. Deploy the cloud chain to domain-joined relying parties (Group Policy or `-dspublish`). Publish to NTAuth only if a cloud CA will issue logon certificates.
@@ -188,7 +188,7 @@ The guide's PowerShell assessment module (its Appendix C) automated steps 1–5.
 5. Test Entra CBA sign-in: in the sign-in log, confirm the certificate binding and authentication level, and that Conditional Access accepted the strength.
 6. Watch the Intune certificate reports and the Entra sign-in logs throughout; route failures to the troubleshooting runbook ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)).
 
-AD CS auto-enrollment stays on for pilot devices throughout the wave. That's what makes the rollback work.
+AD CS autoenrollment stays on for pilot devices throughout the wave. That's what makes the rollback work.
 
 **Exit gate.** At least 95% issuance success on pilot devices; no authentication failures caused by certificate configuration; pilot users authenticating with CBA at the intended authentication level; every pilot relying party accepting cloud-issued certificates. These are the program's thresholds.
 
@@ -207,11 +207,11 @@ AD CS auto-enrollment stays on for pilot devices throughout the wave. That's wha
 3. Extend staged rollout to further user populations as the sign-in data supports. Staged rollout is a test mechanism with a 10-group limit, not a way to run a permanent mixed state;[^c07-sro] if the populations don't fit, cut over domain by domain (wave 5) rather than stretching staged rollout.
 4. Confirm coverage on each platform: Windows, iOS/iPadOS, Android and macOS.
 5. Track two populations per use case: devices holding both AD CS and cloud certificates (expected during the wave), and devices holding only cloud certificates (the target).
-6. For each ring whose devices hold valid cloud certificates and whose relying parties have accepted them, remove AD CS auto-enrollment for the MIGRATE templates that ring used.
+6. For each ring whose devices hold valid cloud certificates and whose relying parties have accepted them, remove AD CS autoenrollment for the MIGRATE templates that ring used.
 
-**Exit gate.** Every managed device holds cloud-issued certificates for its MIGRATE use cases; all users intended for Entra CBA are on it, by staged rollout or by a converted domain; AD CS auto-enrollment for MIGRATE templates removed on every migrated ring.
+**Exit gate.** Every managed device holds cloud-issued certificates for its MIGRATE use cases; all users intended for Entra CBA are on it, by staged rollout or by a converted domain; AD CS autoenrollment for MIGRATE templates removed on every migrated ring.
 
-**Rollback.** Per ring: re-link the auto-enrollment GPO or restore the template permission so AD CS certificates are issued again at the next policy refresh, then remove that ring's SCEP assignment. For users: remove the groups from staged rollout.
+**Rollback.** Per ring: re-link the autoenrollment GPO or restore the template permission so AD CS certificates are issued again at the next policy refresh, then remove that ring's SCEP assignment. For users: remove the groups from staged rollout.
 
 **Duration.** Twelve weeks.
 
@@ -227,12 +227,12 @@ AD CS auto-enrollment stays on for pilot devices throughout the wave. That's wha
 4. Remove staged rollout groups for converted domains.
 5. Turn off AD FS certificate authentication for any relying parties that stay on AD FS.
 6. Keep AD FS restorable but out of the sign-in path for the rollback window (the program uses 30 days).
-7. Keep BRIDGE templates on AD CS: domain controllers, LDAPS, NPS and other servers.
+7. Keep BRIDGE and RETAIN templates on AD CS: domain controllers, LDAPS, NPS, internal web and SQL Server TLS, and other servers.
 8. Revise AD CS operating procedures to cover BRIDGE and RETAIN scope only.
 
 **Exit gate.** All target domains managed; AD FS certificate authentication off; Entra CBA working for all users; no AD CS certificates on managed endpoints for MIGRATE templates. Before AD FS is decommissioned, Microsoft's guidance is to observe application usage for at least a week with Entra Connect Health and the sign-in logs.[^c07-adfs-decom]
 
-**Rollback.** Re-federate the domain with `New-MgDomainFederationConfiguration` from the recorded configuration and restore the claim rules;[^c07-fed-migrate] bring AD FS back into the path; re-link the auto-enrollment GPOs for any ring whose certificates must come back. The program's recovery objective is four hours, which is achievable only while the AD FS farm is restorable, hence step 6.
+**Rollback.** Re-federate the domain with `New-MgDomainFederationConfiguration` from the recorded configuration and restore the claim rules;[^c07-fed-migrate] bring AD FS back into the path; re-link the autoenrollment GPOs for any ring whose certificates must come back. The program's recovery objective is four hours, which is achievable only while the AD FS farm is restorable, hence step 6.
 
 **Duration.** Eight weeks.
 
@@ -240,14 +240,14 @@ AD CS auto-enrollment stays on for pilot devices throughout the wave. That's wha
 
 **Entry gate.** Wave 5 exit gate; rollback window closed with no incidents; BRIDGE and RETAIN workloads documented and running.
 
-**Work.** Retire the AD CS components that served only MIGRATE workloads: NDES and connector servers no longer needed, CES/CEP servers, auto-enrollment GPOs for retired templates, and issuing CAs whose remaining certificates have all expired or been superseded. Archive each retired CA's database and keys, keep publishing its final CRL for as long as its certificates could still be validated, and remove its enrollment service object from the directory. Keep the offline root under its documented recovery procedures. [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md) gives the decommissioning procedure step by step.
+**Work.** Retire the AD CS components that served only MIGRATE workloads: NDES and connector servers no longer needed, CES/CEP servers, autoenrollment GPOs for retired templates, and issuing CAs whose remaining certificates have all expired or been superseded. Archive each retired CA's database and keys, keep publishing its final CRL for as long as its certificates could still be validated, and remove its enrollment service object from the directory. Keep the offline root under its documented recovery procedures. [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md) gives the decommissioning procedure step by step.
 
-Two corrections to the guide's version of this wave:
+Two corrections to the PKI guide's version of this wave:
 
-- **The BYOCA case.** The guide said "don't revoke" under BYOCA, which is right but incomplete. The BYOCA issuing CA's certificate was signed by a CA in the private hierarchy, and that CA's CRL is what relying parties check for it. Whichever private CA signed the BYOCA certificate must stay, and keep publishing CRLs, for as long as the BYOCA issuing CA is in use. [Chapter 04](04-the-target-pki.md) recommends signing the BYOCA request with the offline root for exactly this reason: the root outlives the issuing CAs.
-- **The cloud-root case.** The guide said to revoke the AD CS issuing CA's certificate from the root when Cloud PKI has its own root. Revoke only after every certificate the issuing CA issued has expired or been revoked and no BRIDGE or RETAIN workload depends on that issuing CA, and publish the root's CRL afterward. Revoking a still-used issuing CA breaks every certificate under it.
+- **The BYOCA case.** The PKI guide said "don't revoke" under BYOCA, which is right but incomplete. The BYOCA issuing CA's certificate was signed by a CA in the private hierarchy, and that CA's CRL is what relying parties check for it. Whichever private CA signed the BYOCA certificate must stay, and keep publishing CRLs, for as long as the BYOCA issuing CA is in use. [Chapter 04](04-the-target-pki.md) recommends signing the BYOCA request with the offline root for exactly this reason: the root outlives the issuing CAs.
+- **The cloud-root case.** The PKI guide said to revoke the AD CS issuing CA's certificate from the root when Cloud PKI has its own root. Revoke only after every certificate the issuing CA issued has expired or been revoked and no BRIDGE or RETAIN workload depends on that issuing CA, and publish the root's CRL afterward. Revoking a still-used issuing CA breaks every certificate under it.
 
-**Exit gate.** MIGRATE-only AD CS components retired or archived; offline root retained and documented; no orphaned auto-enrollment GPOs; decommission record committed to the evidence repository.
+**Exit gate.** MIGRATE-only AD CS components retired or archived; offline root retained and documented; no orphaned autoenrollment GPOs; decommission record committed to the evidence repository.
 
 **Rollback.** Restore the issuing CA from its backup, rejoin it, republish its templates and re-link its GPOs. The program plans eight to twelve hours for a full CA restoration, which is why backups are tested before this wave starts.
 
@@ -256,7 +256,7 @@ Two corrections to the guide's version of this wave:
 ## Rollback rules that hold across waves
 
 - A wave doesn't start until its rollback has been rehearsed in a test scope.
-- No wave's rollback depends on a component the same wave retires. Auto-enrollment, AD FS and the AD CS issuing CAs each stay restorable until the wave after the one that stopped using them.
+- No wave's rollback depends on a component the same wave retires. Autoenrollment, AD FS and the AD CS issuing CAs each stay restorable until the wave after the one that stopped using them.
 - Removing a SCEP profile assignment revokes the certificates it issued on Windows, iOS/iPadOS and macOS, and so does editing the profile.[^c07-intune-remove] Treat profile changes and unassignment as changes with impact, not as a harmless undo.
 - Staged rollout changes for existing groups can take up to 24 hours,[^c07-sro] so a user rollback isn't instant; plan the communication accordingly.
 
