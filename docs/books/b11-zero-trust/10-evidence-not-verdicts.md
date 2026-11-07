@@ -77,7 +77,7 @@ Only the findings (ScubaGear Fail and Warning; Zero Trust Assessment Failed and 
 
 - **Severity, 0 to 100**, is the check's risk weighted by its status, so a failed high-risk check outranks an Investigate item of the same risk.
 - **Priority** is severity divided by effort, so a high-severity, low-effort check (a quick win) outranks a high-severity, high-effort one.
-- **Buckets** are P1 at 50 or above, P2 at 30 or above, P3 at 15 or above, and P4 above zero.
+- **Buckets** are P1 at 50 or above, P2 at 30 or above, P3 at 15 or above, and P4 above zero. These priority buckets are a separate scale from the P1 to P4 drift severities later in this chapter and in [Chapter 09](09-running-the-assessment.md), which carry fixed responses.
 
 The Zero Trust Assessment supplies the inputs. Microsoft rates each recommendation on three scales: Risk Level (High means potential environment-wide exposure until mitigated; Low means defense in depth or an operational optimization), User Impact (how many non-privileged users have to act or be told) and Implementation Cost (from targeted actions to programs that need ongoing commitment).[^c10-zta-glossary] The program uses Risk Level for severity and Implementation Cost for effort. User Impact doesn't change the rank; it changes the communications plan and the change window.
 
@@ -126,9 +126,9 @@ Microsoft's Zero Trust Workshop is an optional planning aid. The Zero Trust Asse
 
 A ranked worklist is still a list of tool findings. A Zero Trust program has to answer a different question: why do most programs stall below Advanced maturity, and what moves them? [Chapter 02](02-governance-principles.md) gives the governance answer. Pillars are administered rather than governed; evidence is shaped by each tool rather than by the claim it supports; and drift is found at audit time rather than continuously. CISA's maturity model describes Zero Trust as five pillars operated through three cross-cutting capabilities, Visibility and Analytics, Automation and Orchestration, and Governance, and says each pillar can mature in those capabilities and each capability can mature independently of the pillars.[^c10-ztmm] None of the three failures is fixed by buying another pillar tool.
 
-The program doesn't replace pillar tooling. It supplies the shared fabric beneath all five pillars: one authoritative record per object, a provenance envelope on every claim, the drift taxonomy as continuous verification, and OSCAL-native evidence. Each pillar keeps its tools; the fabric is what makes their output verifiable in one form an assessor can read.
+The program doesn't replace pillar tooling. It supplies the shared evidence substrate beneath all five pillars: one authoritative record per object, a provenance envelope on every claim, the drift taxonomy as continuous verification, and OSCAL-native evidence. Each pillar keeps its tools; the substrate is what makes their output verifiable in one form an assessor can read.
 
-| ZTMM pillar | What the shared fabric contributes | In practice |
+| ZTMM pillar | What the shared substrate contributes | In practice |
 |---|---|---|
 | Identity | One identity record that the other pillars resolve against | A stale service-principal credential is one finding visible to every pillar that uses the principal, not two findings someone correlates by hand |
 | Devices | Device claims in the same provenance envelope, keyed to the identity plane | Intune compliance and the Conditional Access device signal arrive from two adapters but filter by device, identity or pillar without re-querying either tool |
@@ -172,11 +172,11 @@ The program detects drift in five classes, each mapped to a Zero Trust concern.
 | `DRIFT-SCHEMA` | Declared and observed state don't match structurally |
 | `DRIFT-SEMANTIC` | State is structurally valid but stale |
 
-Schema and provenance drift run in continuous integration today. Runtime detection of identity, authorization and semantic drift is defined in the program's drift standard and partly implemented, for the adapters that implement the runtime contract.
+Schema and provenance drift run in continuous integration today. Runtime detection of drift is defined in the program's drift standard, and its status differs by class ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md)): semantic drift is partly built, for the adapters that implement the runtime contract, while identity and authorization drift are design only.
 
 Drift findings go to the authorizing official, not only to security operations. A control that passed every interval and fails one is a change to an authorized system, and the authorizing official decides whether it is significant.[^c10-sp80037] Treating interval-to-interval drift as an artifact the authorizing official sees is the cheapest adoption step in this chapter.
 
-One distinction keeps this honest. Drift detection is continuity of evidence and posture, not of sessions or tokens. Revoking a session within seconds of a risk signal is the job of Microsoft Entra's Continuous Access Evaluation and token protection ([Book 04](../b04-access/index.md), [Book 09, Chapter 06](../b09-network/06-legacy-protocols-on-re-routed-paths.md)), and how well that works inside a given government cloud is a separate question from anything an assessment tool reports.
+One distinction keeps this honest. Drift detection is continuity of evidence and posture, not of sessions or tokens. Revoking a session when a critical event occurs (which can take up to 15 minutes to propagate) is the job of Microsoft Entra's Continuous Access Evaluation and token protection ([Book 04](../b04-access/index.md), [Book 09, Chapter 06](../b09-network/06-legacy-protocols-on-re-routed-paths.md)), and how well that works inside a given government cloud is a separate question from anything an assessment tool reports.
 
 ## Re-assess on a cadence
 
@@ -199,7 +199,7 @@ None of these is a procurement. Each is a decision with an owner from [Chapter 0
 3. **Bring one adapter under the canonical taxonomy.** Pick the highest-leverage tool in any pillar, declare it in the registry, and emit its findings as OSCAL beside the existing evidence. ScubaGear is the usual first choice. (Program lead, with the pillar owner.)
 4. **Move exceptions into the configuration file** and the repository, with expirations, and route every standing one to the authorizing official. (CISO.)
 5. **Stand up drift detection as a governance function.** Run the substrate's schema and provenance checks in continuous integration, and surface interval-to-interval drift to the authorizing official. (Program lead and security operations.)
-6. **Model the cloud boundary explicitly.** In a government cloud, record platform feature gaps as governed findings rather than implicit constraints. (System owner and ISSO.)
+6. **Model the cloud boundary explicitly.** In a government cloud, record platform feature gaps as governed findings rather than implicit constraints. (CISO and ISSO.)
 7. **Reconcile asset identity first.** Reconcile Network, every cloud and the virtualization estate to one authoritative source before scoring any of them ([Chapter 06](06-beyond-microsoft-365.md)). (Identity-plane owner.)
 8. **Convert one detective control to preventive, and time-box privileged access**, including the assessment accounts. (CISO, with identity engineering.)
 
@@ -208,8 +208,8 @@ None needs a year-long program. Each is a structural step that compounds.
 ## Honest limits
 
 - Optimal maturity needs continuous, automated, cross-pillar policy evaluation. The program supplies the substrate that makes it tractable; it doesn't supply every pillar's runtime today.
-- Identity, authorization and semantic drift are detected at runtime only by adapters that implement the runtime contract. Coverage is growing, not complete.
-- The scoring method is the program's. It is documented and repeatable, but it isn't a federal standard, and a P1 is a priority, not a risk acceptance.
+- Semantic drift is detected at runtime only by adapters that implement the runtime contract, and that coverage is partial. Identity and authorization drift detection at runtime is design only.
+- The scoring method is the program's. It is documented and repeatable, but it isn't a federal standard, and a P1 priority bucket is a priority, not a risk acceptance (drift severities P1 to P4 are a separate scale).
 - The boundary model is structural; inventorying a particular agency's boundary impacts is that agency's work.
 - No tool, and no number of tools, certifies Zero Trust maturity. The evidence supports the decisions; named people make them.
 

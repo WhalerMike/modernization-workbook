@@ -95,7 +95,7 @@ The sharpest illustration of the whole-agency problem sits inside a single vendo
 |---|---|---|
 | Question it answers | Compliance: does the Microsoft 365 configuration match the federal secure configuration baselines? | Maturity: how closely does the tenant follow Microsoft's Zero Trust guidance? |
 | Federal mandate | Yes. BOD 25-01 requires agencies to deploy CISA's assessment tools against every in-scope tenant, report results by integrating with CISA's continuous monitoring solution or by quarterly submission, and implement the mandatory policies[^c01-bod2501] | No. It is Microsoft's own guidance, aligned to its Secure Future Initiative and the Zero Trust pillars[^c01-zta] |
-| Scope | Microsoft 365 workloads with SCuBA baselines, including Entra ID, Defender, Exchange Online, Power Platform, SharePoint and OneDrive, and Teams; Google Workspace baselines (assessed by ScubaGoggles) are also in the required configurations[^c01-scuba-req][^c01-scuba] | Tests drawn from Microsoft's guidance for Entra, Intune, Azure networks and Purview, reported on Identity, Devices, Network and Data tabs[^c01-zta] |
+| Scope | Microsoft 365 workloads with SCuBA baselines, including Entra ID, Security Suite (which replaced Defender in ScubaGear 2.0.0), Exchange Online, Power Platform, SharePoint and OneDrive, and Teams; Google Workspace baselines (assessed by ScubaGoggles) are also in the required configurations[^c01-scuba-req][^c01-scuba] | Tests drawn from Microsoft's guidance for Entra, Intune, Azure networks and Purview, reported in a redesigned report with one tab per pillar across seven default pillars (Identity, Devices, Network, Data, Infrastructure, Security Operations and AI)[^c01-zta] |
 | Where they overlap | Mainly Entra identity (legacy authentication, MFA, Conditional Access, privileged roles) and, as of the Zero Trust Assessment's version 3.1.0, Defender threat policies ([Chapter 05](05-two-assessment-tools.md)) | The same identity surface, alongside device, network and data checks SCuBA's baselines don't make |
 
 Dropping either tool leaves gaps the other doesn't fill. Dropping ScubaGear because the Zero Trust Assessment covers identity abandons the tool the directive actually names and the federal baseline for workloads such as Exchange Online, Teams and Power Platform. Dropping the Zero Trust Assessment because ScubaGear already runs leaves device, network and data configuration unmeasured against Microsoft's guidance. [Chapter 05](05-two-assessment-tools.md) compares them in detail.
@@ -130,7 +130,7 @@ One figure in the program's design is a target, not a measurement. The program s
 
 ## How the rest of the book is organized
 
-- **Why** (this chapter and [Chapter 02](02-governance-principles.md)): the whole-agency argument, and the five governance principles that move a program past the Initial stage.
+- **Why** (this chapter and [Chapter 02](02-governance-principles.md)): the whole-agency argument, and the five governance principles that move a program past the stall below Advanced.
 - **What** (Chapters 03 to 06): what the maturity model and M-22-09 actually require, what SCuBA and BOD 25-01 cover, how the two assessment tools for Microsoft's platform differ, and the estate beyond Microsoft 365.
 - **Who** ([Chapter 07](07-who-owns-zero-trust.md)): who owns the agency's Zero Trust posture.
 - **How** (Chapters 08 to 10): closing BOD 25-01 findings before assessing, running the assessment and ingesting the evidence, and turning findings into a program.
