@@ -36,7 +36,7 @@ The enhancements make the expectation more concrete. AU-6(1) asks the organizati
 
 None of these texts names a product, and none says in words that a log aggregator fails. The source volume for this chapter put it more strongly than the controls do. What the controls do say is that review and analysis are activities with a frequency, an output and a recipient, and that the organization has to be able to show them happening. A workspace with no enabled analytics rules, or with every rule disabled pending tuning, can show storage. It cannot show analysis.
 
-OMB M-26-14, which rescinded M-21-31 in May 2026, points the same way for logging generally. Its minimum logging baseline lists the activities agency logs must support, from determining the identity behind an operation to "monitoring, detecting, and hunting for anomalous system or user activity," and ends with "generating appropriate automated alerts for all of the above." Its maturity model scores an information system's collection operations by whether "logs generate actionable alerts" and by how much of the baseline those alerts cover, from under half at the initial level to at least 95 percent, with detections "routinely evaluated and tuned," at the optimal level.[^c05-m2614] FedRAMP's 2026 key security indicators for monitoring, logging and auditing ask, among other things, that logs be persistently reviewed and that a SIEM or similar system be used and persistently reviewed for centralized, tamper-resistant logging.[^c05-ksi-mla] Retention and the federal logging requirements in full are covered in [Book 02](../b02-identity/index.md) and [Book 08](../b08-ddi/index.md); [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) turns them into metrics.
+OMB M-26-14, which rescinded M-21-31 in May 2026, points the same way for logging generally. Its minimum logging baseline lists the activities agency logs must support, from determining the identity behind an operation to "monitoring, detecting, and hunting for anomalous system or user activity," and ends with "generating appropriate automated alerts for all of the above." Its maturity model scores an information system's collection operations by whether "logs generate actionable alerts" and by how much of the baseline those alerts cover, from under half at the initial level to at least 95 percent, with detections "routinely evaluated and tuned," at the optimal level.[^c05-m2614] FedRAMP's 2026 key security indicators for monitoring, logging and auditing ask, among other things, that logs be persistently reviewed and that a SIEM or similar system be used and persistently reviewed for centralized, tamper-resistant logging.[^c05-ksi-mla] Retention and the federal logging requirements are covered in [Chapter 03](03-identity-telemetry.md) and [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md), which also turns them into metrics; [Book 08](../b08-ddi/index.md) covers DNS logging.
 
 ## Warehouse versus detection engine
 
@@ -181,10 +181,10 @@ SentinelHealth
 | where Status == 'Failure'
 ```
 
-For everything else, the program checks the data itself. The query below compares the last event in each dependent table with the longest silence that table is allowed. The thresholds are program design and belong in the rule library next to the rules that depend on each table.
+For everything else, the program checks the data itself. The query below compares the last event in each listed table with the longest silence that table is allowed. It shows the core tables as an example: every other table the library reads, among them `AzureDiagnostics`, `ThreatIntelIndicators` and the Purview tables, gets its own row and threshold. The thresholds are program design and belong in the rule library next to the rules that depend on each table.
 
 ```kql
-// Freshness of every table the rule library depends on
+// Freshness of the core tables the rule library depends on (extend the list to every table it reads)
 let Expected = datatable(TableName:string, MaxSilence:timespan) [
     "SigninLogs",                      1h,
     "AADNonInteractiveUserSignInLogs", 1h,
@@ -290,7 +290,7 @@ The control-by-control treatment, including the incident-response controls, is i
 
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
 
-[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the single lifecycle tool for the certificate classes that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
