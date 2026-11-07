@@ -48,7 +48,7 @@ STATUS_TO_MATRIX = {
     "Zachman": ["Zachman"],
 }
 # Matrix rows that are not in the status table: the frameworks the workbook relies on most.
-EXTRA_ROWS = ["NIST SP 800-53", "FedRAMP", "CISA ZTMM", "HSPD-12", "OMB M-26-14", "FISMA"]
+EXTRA_ROWS = ["NIST SP 800-53", "FedRAMP", "CISA ZTMM", "HSPD-12", "PIV, HSPD-12", "OMB M-26-14", "FISMA"]
 # Books that tie an RMF task to a control and an artifact: a requirements-mapping appendix, or (Books 10,
 # 19) an evidence table in the chapter the map links. A judgment from reading them, so it's kept here.
 RMF_TIED = {6, 8, 9, 10, 11, 12, 13, 14, 17, 19}
