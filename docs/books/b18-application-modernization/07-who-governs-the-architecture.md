@@ -42,7 +42,7 @@ What the rules leave open is how the review happens, how often and in what form.
 
 ## The architecture review board
 
-The board is the program's change control body for the target architecture, in the sense CM-3 uses. In most agencies it should be an existing forum with a defined agenda rather than a new one. Where the agency already has an enterprise architecture function, the board is that function's review body; where the Federal Modernization Program runs a governance board ([Book 13, Chapter 09](../b13-governance/09-who-governs.md#the-governance-board)), architecture is a standing item on its agenda.
+The board is the program's change control body for the target architecture, in the sense CM-3 uses. In most agencies it should be an existing forum with a defined agenda rather than a new one. Where the agency already has an enterprise architecture function, the board is that function's review body; where the Federal Modernization Program runs a governance board ([Book 13, Chapter 09](../b13-governance/09-who-governs.md#the-governance-board)), architecture is a standing item on its agenda, led by the chief architect while the steward chairs the governance board.
 
 ### What it decides
 

@@ -114,7 +114,7 @@ The left column lists each chapter of this book and the main artifacts of the re
 | OpenAPI contract and contract test | C, G | Interface definition in the target application architecture; a conformance check run on every change |
 | Spring Boot service over PostgreSQL | C, D | A building block of the target application and technology architecture |
 | React front end | C | The user-facing application component |
-| DB2/Oracle to PostgreSQL migration CLI | E, F, G | The transition mechanism for data, scheduled in a wave and governed by its validation |
+| DB2/Oracle to PostgreSQL migration tool | E, F, G | The transition mechanism for data, scheduled in a wave and governed by its validation |
 | Row-count, checksum and aggregate validation report | G | Proof that the implementation conforms to the target without loss |
 | Provider-neutral agent pattern with a stub model | C, Requirements Management | Target application pattern for AI, with its identity and approval requirements |
 | Wave plan and gate decisions ([Chapter 10](10-running-the-portfolio-in-waves.md)) | F, G | Implementation and migration plan; governance checkpoints |
@@ -130,7 +130,7 @@ Zachman cells are named by column and stage, as above. Most chapters fill severa
 | [Ch01](01-a-portfolio-not-a-rewrite.md) | 1 Executive | Why; What | Motivation Identification; Inventory Identification (the list of applications in scope) |
 | [Ch02](02-triaging-the-portfolio.md) | 1 Executive; 2 Business Management | What; Who; Why | Inventory Identification; Responsibility Definition (owners); Motivation Definition (the dispositions as business ends and means) |
 | [Ch03](03-the-target-reference-architecture.md) | 3 Architect; 4 Engineer | How; Where | Process Representation (services and contracts); Distribution Specification (containers, orchestration) |
-| [Ch04](04-moving-the-data.md) | 3 Architect; 4 Engineer; 6 Enterprise | What | Inventory Representation (logical model); Inventory Specification (physical schema, type mapping); Inventory Instantiations (the migrated rows) |
+| [Ch04](04-moving-the-data.md) | 3 Architect; 4 Engineer; 6 Enterprise | What | Inventory Representation (logical model); Inventory Specification (physical schema, type mapping); Inventory Instantiation (the migrated rows) |
 | [Ch05](05-generative-and-agentic-ai.md) | 3 Architect; 4 Engineer | Who; How | Responsibility Representation (agent roles, human approval); Responsibility Specification (agent identities and tool permissions) |
 | [Ch06](06-compliance-by-design.md) | 2 Business Management; 4 Engineer | Why | Motivation Definition (policy and privacy rules); Motivation Specification (controls as implemented) |
 | [Ch07](07-who-governs-the-architecture.md) | 2 Business Management; 3 Architect | Who; When | Responsibility Definition (decision rights); Timing Representation (the gates in the life cycle) |
@@ -139,12 +139,12 @@ Zachman cells are named by column and stage, as above. Most chapters fill severa
 | Portfolio inventory | 1 Executive | What; How | Inventory Identification; Process Identification |
 | OpenAPI contract | 3 Architect | How | Process Representation (system inputs and outputs) |
 | Spring Boot service | 5 Technician | How | Process Configuration |
-| Contract test | 5 Technician; 6 Enterprise | How | Process Configuration checked against Process Representation; its run results are Process Instantiations |
+| Contract test | 5 Technician; 6 Enterprise | How | Process Configuration checked against Process Representation; its run results are a Process Instantiation |
 | PostgreSQL schema | 4 Engineer; 5 Technician | What | Inventory Specification; Inventory Configuration |
 | React front end | 5 Technician | Who; How | Responsibility Configuration (the screens each role works in); Process Configuration |
 | Container images and deployment files | 5 Technician | Where | Distribution Configuration |
-| Migration CLI | 5 Technician | What; When | Inventory Configuration; Timing Configuration (the cut-over run) |
-| Validation report | 6 Enterprise | What | Inventory Instantiations: counts, checksums and aggregates of the real rows |
+| Migration tool | 5 Technician | What; When | Inventory Configuration; Timing Configuration (the cut-over run) |
+| Validation report | 6 Enterprise | What | Inventory Instantiation: counts, checksums and aggregates of the real rows |
 | Agent pattern with a stub model | 4 Engineer; 5 Technician | Who | Responsibility Specification; Responsibility Configuration |
 
 Two gaps show up when the table is read by column. The **Where** column is thin above row 4: the book says little about the agency's business locations or network topology, because [Book 09](../b09-network/index.md) and [Book 10](../b10-cloud-boundary/index.md) do. And the **When** column is thin below row 2: the book schedules waves but doesn't model application timing, such as batch windows and event schedules. That belongs in each application's design review, and the decision record is where to put it. Gaps like these are what Zachman is for.

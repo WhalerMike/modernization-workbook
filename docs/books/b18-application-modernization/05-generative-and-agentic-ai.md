@@ -1,6 +1,6 @@
 ---
 title: "Chapter 05 — Generative and Agentic AI in the Architecture"
-description: "Where generative and agentic AI fits in a modernized application (assistive features, retrieval-augmented generation, code modernization assistance and agents that call tools); a provider-neutral model interface; the guardrails an agent needs (an identity and owner, a tool allow-list, least privilege, human approval for actions that change records, a step limit and an audit trail); the Model Context Protocol as an example tool protocol; and the OWASP, NIST and CISA material that informs the design, with the federal rules left to Book 17."
+description: "Where generative and agentic AI fits in a modernized application (assistive features, retrieval-augmented generation, code modernization assistance and agents that call tools); a provider-neutral model interface; the guardrails an agent needs (an identity and sponsor, a tool allow-list, least privilege, human approval for actions that change records, a step limit and an audit trail); the Model Context Protocol as an example tool protocol; and the OWASP, NIST and CISA material that informs the design, with the federal rules left to Book 17."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b18-application-modernization
@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 05 — Generative and Agentic AI in the Architecture
 
-*A model is a component behind an interface, and an agent is an identity with an owner, a short list of tools and no power to change a record on its own.*
+*A model is a component behind an interface, and an agent is an identity with a sponsor, a short list of tools and no power to change a record on its own.*
 
 ::: {.callout-note}
 ## In this chapter
