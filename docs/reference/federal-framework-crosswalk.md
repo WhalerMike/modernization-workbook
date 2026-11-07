@@ -90,7 +90,7 @@ The frameworks the workbook relies on most are not on the usual modernization li
 | OMB Circular A-130 | 2 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 2 | 3 | 3 | 0 | 2 | 3 | 3 | 0 |
 | Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 3 | 0 | 0 | 3 | 2 | 0 |
 | Federal records | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 1 | 2 | 0 | 1 | 0 |
-| M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | 0 | 0 | 0 | 2 | 0 |
+| M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 1 | 0 | 0 | 2 | 0 |
 | Evidence Act (was the Federal Data Strategy) | 0 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 0 |
 | NIST CSF 2.0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 0 | 1 | 0 | 1 | 0 | 0 | 0 |
 | Section 508 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 3 | 0 | 3 | 0 |
@@ -98,7 +98,7 @@ The frameworks the workbook relies on most are not on the usual modernization li
 | Clinger-Cohen, CPIC and A-11 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 2 | 0 |
 | FITARA (M-26-10) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 2 | 0 |
 | Cloud Smart | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| Technology Modernization Fund | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
+| Technology Modernization Fund | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
 | 21st Century IDEA and M-23-22 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 0 |
 | TOGAF Standard, 10th Edition | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
 | Zachman Framework 3.0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
@@ -155,7 +155,7 @@ Before these additions the Privacy Act and E-Government Act §208 row scored 0 i
 
 ## Additions made, November 5, 2026
 
-Sources now have a permanent home in the [Source Register](source-register.md), which slides and video descriptions link to and which holds each source's address under revision control. The seventeen sources the Start series and the Book 00 decks cite link to their register row from the tables below. Other rows link to the register once a slide or video cites them; the register holds only what slides and videos link to.
+Sources now have a permanent home in the [Source Register](source-register.md), which slides and video descriptions link to and which holds each source's address under revision control. The seventeen sources the Start series and the Book 00 decks cite link to their register row from the tables below, as do four OMB memoranda the register has since added (M-24-08, M-24-15, M-25-21 and M-26-10). The register has since grown to hold many more rows than these twenty-one, and the remaining crosswalk rows link to theirs as the links are added.
 
 ## Additions made, November 6, 2026
 
@@ -175,7 +175,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
 | 15 U.S.C. §7443 | National cybersecurity awareness and education program | Book 16 (People: Training & Education) | Cited as current |
-| 21st Century IDEA (Pub. L. 115-336) | Website and digital-service criteria; §3(c) intranets | Book 00 (Orientation & Program); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| 21st Century IDEA (Pub. L. 115-336) | Website and digital-service criteria; §3(c) intranets | Book 00 (Orientation & Program); Book 15 (Compliance Automation & Day-2 Operations); Book 18 (Application Modernization) | Cited as current |
 | 26 U.S.C. §6103 | Confidentiality of federal tax information | Book 12 (Security Operations & Telemetry) | Cited as current |
 | 31 U.S.C. §1105(a) | President's budget submission | Book 09 (Network & Transport) | Cited as current |
 | 40 U.S.C. §11331 | Federal information systems standards (NIST standards made compulsory) | Book 14 (Federal Compliance & Authorization) | Cited as current |
@@ -185,21 +185,21 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | Advancing American AI Act | AI use-case inventory statute | Book 17 (AI Identity Governance) | Cited as current |
 | Chief Financial Officers Act of 1990 | Defines the covered 'CFO Act agencies' | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 09 (Network & Transport); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
 | Chief Human Capital Officers Act (5 U.S.C. §§1401-1402) | CHCO Act | Book 16 (People: Training & Education) | Cited as current |
-| Clinger-Cohen Act (40 U.S.C. §11312, §11313) | Capital planning and investment control | Book 00 (Orientation & Program); Book 09 (Network & Transport) | Cited as current |
+| Clinger-Cohen Act (40 U.S.C. §11312, §11313) | Capital planning and investment control | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 18 (Application Modernization) | Cited as current |
 | Computer Matching and Privacy Protection Act (Privacy Act matching provisions) | Computer matching agreements and notices | Book 14 (Federal Compliance & Authorization) | Cited as current |
-| E-Government Act of 2002 (Pub. L. 107-347), incl. §208 | E-Government Act; §208 privacy impact assessments and web privacy policies | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| E-Government Act of 2002 (Pub. L. 107-347), incl. §208 | E-Government Act; §208 privacy impact assessments and web privacy policies | Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current |
 | Federal Acquisition Supply Chain Security Act of 2018 (41 U.S.C. §1326 et seq.) | FASCSA; FASC exclusion and removal orders | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | Federal Cybersecurity Enhancement Act of 2015 (6 U.S.C. §663 note) | Basis for CISA intrusion detection/prevention, incl. Protective DNS | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport) | Cited as current |
 | Federal Cybersecurity Workforce Assessment Act of 2015 (Pub. L. 114-113, div. N, title III; 5 U.S.C. 301 note) | Cybersecurity position coding | Book 16 (People: Training & Education) | Cited as current |
 | FedRAMP Authorization Act (2022) | Codified FedRAMP; requires OMB guidance on agency use | Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | FISMA 2014 (44 U.S.C. ch. 35 subch. II; §§3553, 3554) | Federal Information Security Modernization Act of 2014 | Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
-| FITARA (40 U.S.C. §11319) | Federal IT Acquisition Reform Act: CIO approval of IT budgets and contracts | Book 00 (Orientation & Program); Book 17 (AI Identity Governance) | Cited as current |
+| FITARA (40 U.S.C. §11319) | Federal IT Acquisition Reform Act: CIO approval of IT budgets and contracts | Book 00 (Orientation & Program); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current |
 | Foundations for Evidence-Based Policymaking Act of 2018 (Pub. L. 115-435; 44 U.S.C. 3502, 3511, 3520) | Evidence Act: data inventory, Chief Data Officer | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 17 (AI Identity Governance) | Cited as current |
 | Kari's Law and RAY BAUM'S Act §506 (47 CFR part 9, §§9.3, 9.16) | Direct 911 dialing and dispatchable location for multi-line telephone systems | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | Modernizing Government Technology Act (Pub. L. 115-91, §1078) | MGT Act; created the Technology Modernization Fund | Book 00 (Orientation & Program) | Cited as current |
 | NDAA for FY2021 (Pub. L. 116-283), §9401(g) | Amended the Workforce Assessment Act | Book 16 (People: Training & Education) | Cited as current |
 | OPEN Government Data Act (Evidence Act Title II) | Open, Public, Electronic and Necessary Government Data Act | Book 02 (Identity & Directory) | Cited as current |
-| Privacy Act of 1974 (5 U.S.C. §552a; Pub. L. 93-579) | Privacy Act | Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| Privacy Act of 1974 (5 U.S.C. §552a; Pub. L. 93-579) | Privacy Act | Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 18 (Application Modernization) | Cited as current |
 | Section 508 of the Rehabilitation Act (29 U.S.C. §794d) | Accessibility of federal ICT | Book 00 (Orientation & Program); Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 18 (Application Modernization) | Cited as current |
 | Social Security Number Fraud Prevention Act of 2017 (Pub. L. 115-59) | Limits SSNs on mailed documents | Book 14 (Federal Compliance & Authorization) | Cited as current |
 
@@ -274,15 +274,15 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | M-23-07 | Update to transition to electronic records (with NARA) | Book 00 (Orientation & Program) | Cited as current |
 | M-23-16 | Update to M-22-18 | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Rescinded by M-26-05 (Jan 23, 2026) |
 | M-23-22 | Delivering a digital-first public experience | Book 00 (Orientation & Program) | Cited as current |
-| M-24-08 | Digital accessibility and Section 508 management | Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 18 (Application Modernization) | Cited as current |
+| [M-24-08](source-register.md#m-24-08){#m-24-08} | Digital accessibility and Section 508 management | Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 18 (Application Modernization) | Cited as current |
 | M-24-10 | Governance and risk management for agency use of AI | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Replaced by M-25-21 (Apr 3, 2025) |
-| M-24-15 | Modernizing FedRAMP | Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | In force; rescinded and replaced the 2011 FedRAMP memorandum |
+| [M-24-15](source-register.md#m-24-15){#m-24-15} | Modernizing FedRAMP | Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | In force; rescinded and replaced the 2011 FedRAMP memorandum |
 | M-24-18 | Responsible acquisition of AI | Book 17 (AI Identity Governance) | Rescinded by M-25-22 (Apr 3, 2025) |
-| M-25-21 | Federal use of AI: innovation, governance, public trust | Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current; see [Governing and Buying AI Under M-25-21 and M-25-22](../books/explainers/omb-ai-memos-m-25-21-m-25-22.md) |
+| [M-25-21](source-register.md#m-25-21){#m-25-21} | Federal use of AI: innovation, governance, public trust | Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current; see [Governing and Buying AI Under M-25-21 and M-25-22](../books/explainers/omb-ai-memos-m-25-21-m-25-22.md) |
 | M-25-22 | Efficient acquisition of AI | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current; see [Governing and Buying AI Under M-25-21 and M-25-22](../books/explainers/omb-ai-memos-m-25-21-m-25-22.md) |
 | M-26-04 | Unbiased AI principles (LLM procurement) | Book 17 (AI Identity Governance) | Cited as current |
-| [M-26-05](source-register.md#m-26-05){#m-26-05} | Risk-based approach to software and hardware security | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Cited as current |
-| M-26-10 | Transparency, accountability and oversight of federal technology (FITARA) | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance) | In force; monthly contract reporting sunsets after the October 2026 report |
+| [M-26-05](source-register.md#m-26-05){#m-26-05} | Risk-based approach to software and hardware security | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 18 (Application Modernization) | Cited as current |
+| [M-26-10](source-register.md#m-26-10){#m-26-10} | Transparency, accountability and oversight of federal technology (FITARA) | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | In force; monthly contract reporting sunsets after the October 2026 report |
 | [M-26-14](source-register.md#m-26-14){#m-26-14} | Agency logging and network visibility | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | M-26-15 | Migration to post-quantum cryptography | Book 07 (PKI & Certificates); Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | M-26-18 | Login.gov as the universal sign-on for public services | Book 00 (Orientation & Program) | Cited as current |
@@ -297,7 +297,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 |---|---|---|---|
 | Circular A-108 | Privacy Act review, reporting and publication (SORNs, matching notices) | Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 18 (Application Modernization) | Cited as current |
 | Circular A-11 (2025), incl. §51, §55 and the Capital Programming Guide v3.0 | Preparation, submission and execution of the budget | Book 00 (Orientation & Program); Book 09 (Network & Transport) | 2025 edition has no Exhibit 300 or Section 300 |
-| Circular A-130 (2016) | Managing information as a strategic resource | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
+| Circular A-130 (2016) | Managing information as a strategic resource | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current |
 
 :::
 
@@ -391,7 +391,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | SP 800-53 Rev. 4 / FedRAMP Rev. 4 baseline | Prior control catalog | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Superseded by Rev. 5 |
 | [SP 800-53 Rev. 5 (release 5.2.0)](source-register.md#sp-800-53){#sp-800-53} | Security and privacy controls | All 20 books | Cited as current |
 | SP 800-53A Rev. 5 | Control assessment procedures | Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
-| SP 800-53B | Control baselines | All except Book 00 (Orientation & Program); Book 02 (Identity & Directory); Book 05 (Devices & Endpoints); Book 07 (PKI & Certificates) | Cited as current |
+| SP 800-53B | Control baselines | All except Book 00 (Orientation & Program); Book 02 (Identity & Directory); Book 05 (Devices & Endpoints) | Cited as current |
 | SP 800-60 | Information types to security categories | Book 14 (Federal Compliance & Authorization) | Cited as current |
 | SP 800-61 Rev. 2 | Incident handling guide (prior) | Book 12 (Security Operations & Telemetry) | Superseded by Rev. 3 (Apr 2025) |
 | SP 800-61 Rev. 3 | Incident response (CSF 2.0 community profile) | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Supersedes Rev. 2 |
@@ -476,7 +476,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | OPM Interpretive Guidance for Cybersecurity Positions (2018) | Position coding guidance | Book 16 (People: Training & Education) | Cited as current |
 | OPM/GOVT-1 SORN | General Personnel Records | Book 03 (HR-Driven Identity) | Cited as current |
 | SF-50 Notification of Personnel Action | OPM standard form | Book 03 (HR-Driven Identity) | Cited as current |
-| Technology Modernization Fund guidance (2026 Call for Proposals; fit and repayment) | TMF | Book 00 (Orientation & Program); Book 09 (Network & Transport) | Cited as current |
+| Technology Modernization Fund guidance (2026 Call for Proposals; fit and repayment) | TMF | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 18 (Application Modernization) | Cited as current |
 
 :::
 
