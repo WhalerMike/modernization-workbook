@@ -90,7 +90,7 @@ The program organizes a system's evidence into eight areas, each fed by particul
 | 2 | Addressing and inventory | [Book 08](../b08-ddi/index.md); [Book 10, Ch 06](../b10-cloud-boundary/06-ipam-and-network-as-code.md) | CM-8 | [Book 12, Ch 02](../b12-security-operations/02-the-evidence-contract.md) |
 | 3 | Network | [Book 09](../b09-network/index.md) | SC-7, SC-8, AC-4 | [Book 09, Ch 13](../b09-network/13-sequencing-cost-and-evidence.md); [Book 12, Ch 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) |
 | 4 | Telemetry | [Book 12](../b12-security-operations/index.md) | CA-7, SI-4, AU-6, RA-5 | [Book 12, Ch 02, 05, 06, 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) |
-| 5 | Endpoint | [Book 05](../b05-devices/index.md); [Book 09, Ch 07](../b09-network/07-network-access-control.md) | CM-8, IA-3, SI-2 | [Book 05, Ch 10](../b05-devices/10-operating-and-evidencing-the-fleet.md); [Book 12, Ch 07](../b12-security-operations/07-patch-configuration-and-baselines.md) |
+| 5 | Endpoint | [Book 05](../b05-devices/index.md); [Book 09, Ch 07](../b09-network/07-network-access-control.md) | CM-8, IA-3, SI-2 | [Book 05, Ch 10](../b05-devices/10-operating-and-evidencing-the-fleet.md); [Book 09, Ch 07](../b09-network/07-network-access-control.md); [Book 12, Ch 07](../b12-security-operations/07-patch-configuration-and-baselines.md) |
 | 6 | Configuration, change and supply chain | [Book 13](../b13-governance/index.md); [Book 15](../b15-day2-operations/index.md) | CM-2, CM-3, SR family, PM family | [Book 13, Ch 04, 06](../b13-governance/04-change-control-and-provenance.md); [Book 14, Ch 05, 07](../b14-compliance/07-supply-chain-risk-management.md) |
 | 7 | Continuity | Agency continuity program | CP-2, CP-3, CP-4 | [Book 14, Ch 06](../b14-compliance/06-contingency-and-continuity.md) |
 | 8 | Training | This book | AT-2, AT-3, AT-4, IR-2, CP-3 | [Book 14, Ch 09](../b14-compliance/09-training-and-awareness-controls.md); [Chapter 10](10-measuring-readiness.md) |
@@ -141,7 +141,7 @@ Each module follows the same pattern: read the book that built the mechanism clo
 
 ### Module 5 — Endpoint
 
-**Practice.** Write the endpoint inventory evidence statement for one population of devices or servers: device identity at the port (IA-3), inventory completeness (CM-8) and remediation (SI-2), with the records from [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md).
+**Practice.** Write the endpoint inventory evidence statement for one population of devices or servers: device identity at the port (IA-3), inventory completeness (CM-8) and remediation (SI-2), with the records from [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md) and, for the port identity records behind IA-3, [Book 09, Chapter 07](../b09-network/07-network-access-control.md).
 
 **The discipline.** Endpoint evidence is the close-it side of the telemetry area's find-it: one book assesses and prioritizes, another actually remediates, and the evidence for SI-2 is the remediation record, not the scan. The learner should check the inventory against the addressing anchor from Module 2.
 
