@@ -8685,6 +8685,11 @@
     "name": "lifecycle-extensions",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
     "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
    }
   ],
   "chapters": [
@@ -8785,6 +8790,11 @@
     "name": "dynamic-rules",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
     "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
    }
   ],
   "chapters": [
@@ -8880,6 +8890,11 @@
     "name": "hr-lifecycle",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle",
     "zip": "downloads/hr-driven-identity-code.zip"
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
    }
   ],
   "chapters": [
