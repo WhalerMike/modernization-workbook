@@ -91,7 +91,7 @@ The master plan's twenty-five-item checklist is the most useful single artifact 
 | 16 | Every trust marked for removal removed | Trust decommission plan: all non-essential trusts gone | Identity lead |
 | 17 | AD FS farm out of the sign-in path (if present) | No federated domains remain; no AD FS sign-in activity | Identity lead |
 | 18 | Service accounts migrated to group managed service accounts or workload identities, or documented as exceptions | Service account inventory | Identity lead |
-| 19 | Drift detection running daily, with weekly reassessment reports | Repository history shows daily drift results and weekly assessment diffs | Steward |
+| 19 | Drift detection running daily by default (a check with its own cadence in [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md#cadence) follows that), with weekly reassessment reports | Repository history shows daily drift results and weekly assessment diffs | Steward |
 | 20 | Every planning document at its current, approved status | Repository status audit | Steward |
 | 21 | Decommissioned servers removed from AD computer objects | Re-scan of the computer inventory | Infrastructure lead |
 | 22 | Monitoring and alerting configured for every modernized service | Alert test for each workstream | All leads |
@@ -178,7 +178,7 @@ Steady state has no exit gate. The master plan's objective for it holds: operate
 | Operation | Cadence | How | Output |
 |---|---|---|---|
 | Reassessment | Weekly | The assessment runs on a schedule and commits its diff to the repository. While AD runs it reads the forest; afterward it reads the cloud surfaces (Entra ID, Intune, Arc, DNS and PKI) | A weekly delta in the repository |
-| Drift detection | Daily | Current state compared with the approved plans | A tracked finding per drift, with an owner and a severity SLA |
+| Drift detection | Daily by default; a check with its own cadence follows it ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md#cadence)) | Current state compared with the approved plans | A tracked finding per drift, with an owner and a severity SLA |
 | Compliance monitoring | Continuous | Intune compliance, Azure Policy and machine configuration compliance, Entra sign-in health | A monthly compliance report committed to the repository |
 | Certificate lifecycle | Daily | Renewal monitoring on all three engines: Intune for device certificates, AD CS autoenrollment for domain controllers, and the CLM platform for everything else; certificate-based authentication binding checks | Expiry alerts at 30, 14 and 7 days |
 | DNS health | Continuous | Service-location record probes, resolver health checks, query analytics | Alert when the resolution failure rate exceeds 0.1% |

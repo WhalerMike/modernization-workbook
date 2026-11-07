@@ -264,6 +264,11 @@ Disconnect-MgGraph
 
 The FMPIdentityAssessment module packages the identity assessment and drift functions used in Chapters 09 and 10. It's a script module (`.psm1`) with a manifest (`.psd1`).
 
+::: {.callout-warning}
+## Don't load both assessment modules in one session
+`FMPIdentityAssessment` and `FMPADAssessment` ([Appendix B](appendix-b-forest-assessment-module.md)) both export `Get-FMPUserInventory` and `Get-FMPGroupInventory`, with different parameters: `-SearchBase` and `-ExportPath` here, `-Domain` and `-OutputPath` there. Import one module at a time, and remove the first (`Remove-Module`) before importing the other, so a call never reaches the wrong function. Phase 0 of [Chapter 10](10-migrating-and-governing.md) uses both, one after the other.
+:::
+
 ### Tooling: Microsoft Graph PowerShell only
 
 The module uses the `ActiveDirectory` module for the forest and the Microsoft Graph PowerShell SDK for the tenant. It doesn't use the MSOnline or AzureAD modules, and nothing in this book should. Microsoft deprecated both on March 30, 2024. MSOnline was retired, and stopped working, between early April and late May 2025; AzureAD lost support after March 30, 2025 and was retired in early July 2025.[^aC-msonline-retirement] Microsoft's migration guide and cmdlet map cover the replacements,[^aC-graph-migration][^aC-cmdlet-map] and the ones that matter for this book are:
