@@ -86,7 +86,7 @@ AUs hold users, groups or devices, so they serve the HR track (users and groups)
 | Tier | Scope | Who | What they can do |
 |---|---|---|---|
 | Tier 1 | Enterprise | Security, compliance, executives | Read-only visibility across all governed principals |
-| Tier 2 | Department or division | Department administrators | Full user lifecycle management within their AU |
+| Tier 2 | Department | Department administrators | Full user lifecycle management within their AU |
 | Tier 3 | Sub-team (department, division, and role tier) | Help desk and per-team administrators | Password resets and basic user support within a narrow AU |
 
 The program's matrix mapped each tier to an AU: `AU-Enterprise` for Tier 1, department AUs such as `AU-Department-IT` for Tier 2, and division AUs such as `AU-IT-CyberOps` for Tier 3. Tier 1 needs a correction. Its roles (Global Reader, Security Reader, Reports Reader) aren't on the list of roles that can be assigned at AU scope,[^c05-assign-roles] so they're assigned at tenant scope. Because AUs don't restrict reading anyway, a tenant-scoped reader role delivers exactly the "read-only visibility across everything" that Tier 1 calls for.
@@ -125,7 +125,7 @@ Department AUs read the organization code in `extensionAttribute10`, not the `de
 | `AU-IT-AppDev` | IT / AppDev | Dynamic: `(user.extensionAttribute6 -eq "IT-APPDEV")` |
 | `AU-Legal-GRC` | Legal / GRC | Dynamic: `(user.extensionAttribute6 -eq "LGL-GRC")` |
 
-Division AUs read the division code the HR feed supplies. The program carries it in `extensionAttribute6`, a copy of `employeeOrgData.division` that rules can read; the slot is fixed in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) in the HR-driven IAM series. The placeholder division codes carry their department's prefix, so each is unique across the agency; where an agency's division codes repeat across departments, add the department's organization codes to the rule with `-and`.
+Division AUs read the division code the HR feed supplies. The program carries it in `extensionAttribute6`, a copy of `employeeOrgData.division` that rules can read; the slot is fixed in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) in Book 03, HR-Driven Identity. The placeholder division codes carry their department's prefix, so each is unique across the agency; where an agency's division codes repeat across departments, add the department's organization codes to the rule with `-and`.
 
 ## Role assignment matrix
 
@@ -141,6 +141,8 @@ Division AUs read the division code the HR feed supplies. The program carries it
 | Helpdesk Administrator | `IT-CyberOps-Admins` | `AU-IT-CyberOps` | 3 |
 | Password Administrator | `IT-CyberOps-Admins` | `AU-IT-CyberOps` | 3 |
 | Authentication Administrator | `IT-InfraOps-Admins` | `AU-IT-InfraOps` | 3 |
+
+The `*-Admins` names are the descriptive form used in this chapter. [Book 04](../b04-access/04-privileged-roles-and-tiers.md) names the same role-holding groups with the program's privileged-group pattern, for example `PRV-T2-UserAdmin-<AU>` for the User Administrator rows, so the privilege tier shows in every review and alert.
 
 Two corrections to the principals in this table:
 
@@ -202,8 +204,8 @@ These map to the access control family of NIST SP 800-53 Revision 5, which feder
 | Scope | Typical roles | Review cadence |
 |---|---|---|
 | Single department | Help desk, local administration | Quarterly |
-| Division or region | Tier 2 operations | Quarterly |
-| Tier 0 privileged roles | Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator | Monthly |
+| Division or region | Delegation Tier 3 operations | Quarterly |
+| Privilege Tier 0 (T0) roles | Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator | Monthly |
 | Other privileged roles | Service administrators, such as Exchange, SharePoint, Intune and Application Administrator | Quarterly |
 | Break-glass | Emergency only | Continuous monitoring |
 

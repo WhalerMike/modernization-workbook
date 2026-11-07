@@ -185,7 +185,7 @@ The HISG grounds its case in five sources. Their status on October 31, 2026:
 | HISG source | Status | Where the workbook uses it |
 |---|---|---|
 | CISA Emergency Directive 21-01, SolarWinds Orion | Closed January 8, 2026; CISA judged its purpose met[^aA-ed2101] | [Chapter 01](01-why-identity-matters.md#what-a-lift-and-shift-puts-at-risk); [Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md) |
-| CISA Emergency Directive 21-02, on-premises Exchange | Closed January 8, 2026; remaining actions moved to BOD 22-01[^aA-ed2102] | [Chapter 01](01-why-identity-matters.md#what-a-lift-and-shift-puts-at-risk); [Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md) |
+| CISA Emergency Directive 21-02, on-premises Exchange | Closed January 8, 2026; remaining actions moved to BOD 22-01, since replaced by BOD 26-04[^aA-ed2102] | [Chapter 01](01-why-identity-matters.md#what-a-lift-and-shift-puts-at-risk); [Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md) |
 | OMB M-22-09 | Not rescinded; its FY 2024 deadlines have passed, and the program treats it as in force | This appendix; [Book 11, Chapter 03](../b11-zero-trust/03-what-the-mandates-require.md) |
 | CISA Zero Trust Maturity Model, June 2021 draft | Superseded by Version 2.0, April 2023; the HISG's link to the draft no longer resolves[^aA-ztmm] | [Book 11](../b11-zero-trust/index.md) cites Version 2.0 |
 | NIST SP 800-207, *Zero Trust Architecture*, August 2020 | Current[^aA-sp800207] | [Book 11](../b11-zero-trust/index.md) |
