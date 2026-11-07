@@ -145,7 +145,7 @@ Rules:
 | A report template and the assembly prompt above | The findings. The control assessor determines them. |
 | Validation-kit results whose evidence block records each query, its time and the permissions used, which fill the evidence columns of section 5 | Independent assessment. A kit result is evidence the assessor weighs, not an assessor's finding ([Chapter 11](11-the-authorization-package.md#the-assessment-plan-and-the-test-plans)). |
 | Drift-pipeline findings with dispositions (actionable drift, governed exception, lapsed acceptance) that feed section 6 | The authorizing official's acceptance of any exception. |
-| The POA&M lifecycle and an illustrative OSCAL POA&M builder in [Chapter 11](11-the-authorization-package.md#illustrative-code) for the step after this report | An OSCAL Assessment Results file. No kit generates one from a kit run; the report stays a document until the agency builds that step. |
+| The POA&M lifecycle and an illustrative OSCAL POA&M builder in [Chapter 11](11-the-authorization-package.md#illustrative-code) for the step after this report; and the drift pipeline's `oscal_export.py`, which turns one verified evidence package into an OSCAL 1.2.3 Assessment Results file and a POA&M | An assessment that has been done. The generated Assessment Results file records the drift pipeline's findings only, not the assessor's judgment on controls the kit doesn't test, so the report stays the assessor's document and the file is an input to it. |
 
 The kits' outputs are illustrative and tested against fixtures, not against a live agency tenant.
 

@@ -240,7 +240,7 @@ Check the output against the pasted standard text before using any of it. The as
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix E — Security Impact Analysis Template](appendix-e-security-impact-analysis-template.md) · [Book index](index.md)
+[← Previous: Appendix E — Security Impact Analysis Template](appendix-e-security-impact-analysis-template.md) · [Book index](index.md) · [Next: Appendix G — Prepare-Step Templates](appendix-g-prepare-step-templates.md)
 :::
 
 [^aF-sp80037]: National Institute of Standards and Technology, SP 800-37 Rev. 2, *Risk Management Framework for Information Systems and Organizations*, December 2018, Tasks P-12, C-1, C-2 and C-3 (chapter 3) and Appendix E (roles), <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf> (accessed Nov 6, 2026).
