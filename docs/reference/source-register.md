@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-05
+date-modified: 2026-11-06
 review-status: approved
 reviewed-sha256: 27b883a94083abbd0c060d33db693869d963ac78f15495dbe88324f0ee398bcb
 last-reviewed: 2026-11-06
@@ -14,7 +14,7 @@ last-reviewed: 2026-11-06
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 519 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 531 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -63,6 +63,7 @@ This register lists 519 sources. A slide or a video description links to a sourc
 | [CISA TIC 3.0 Core Guidance Volume 1: Program Guidebook](https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf){#tic-3-program-guidebook} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tic-3-program-guidebook"} |
 | [CISA TIC 3.0 Security Capabilities Catalogs](https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Security_Capabilities_Catalogs_September_2026_17.pdf){#tic-3-security-capabilities} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tic-3-security-capabilities"} |
 | [CISA Zero Trust Maturity Model v2.0, Zero Trust Maturity Model](https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf){#cisa-ztmm} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-ztmm"} |
+| [CISA Zero Trust Maturity Model, version 2.0](https://www.cisa.gov/zero-trust-maturity-model){#cisa-zero-trust-maturity-model} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="cisa-zero-trust-maturity-model"} |
 | [CISA, The Journey to Zero Trust: Using Secure Access Service Edge in a Modern TIC 3.0 Solution](https://www.cisa.gov/resources-tools/resources/using-sase-modern-tic-30-solution){#cisa-sase-tic} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-sase-tic"} |
 | [NSA and CISA AA23-278A, Top Ten Cybersecurity Misconfigurations](https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-278a){#aa23-278a} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aa23-278a"} |
 
@@ -106,6 +107,7 @@ This register lists 519 sources. A slide or a video description links to a sourc
 | Source | Status | In the register since | Last scan |
 |---|---|---|---|
 | [Federal Public Key Infrastructure 101](https://www.idmanagement.gov/university/fpki/){#gsa-fpki-101} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="gsa-fpki-101"} |
+| [FICAM Architecture, version 3.3](https://www.idmanagement.gov/arch/){#ficam-architecture} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="ficam-architecture"} |
 | [FICAM Identity Lifecycle Management Playbook](https://www.idmanagement.gov/playbooks/ilm/){#ficam-ilm-playbook} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ficam-ilm-playbook"} |
 | [GSA EIS Public Pricer](https://eis-public-pricer.eos.gsa.gov/){#gsa-eis-pricer} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="gsa-eis-pricer"} |
 | [GSA Enterprise Infrastructure Solutions](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions){#gsa-eis} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="gsa-eis"} |
@@ -319,6 +321,10 @@ This register lists 519 sources. A slide or a video description links to a sourc
 | [Microsoft Identity Manager 2016 news and updates](https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016){#microsoft-identity-manager-2016-news-and} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-identity-manager-2016-news-and"} |
 | [Microsoft identity platform and the OAuth 2.0 client credentials flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-client-creds-grant-flow){#microsoft-identity-platform-and-the-oauth-2} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-identity-platform-and-the-oauth-2"} |
 | [Microsoft Intune for US Government GCC High and DoD service description](https://learn.microsoft.com/intune/fundamentals/government-service){#microsoft-intune-for-us-government-gcc-high} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-intune-for-us-government-gcc-high"} |
+| [Microsoft Learn: Configure cross-tenant synchronization](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure){#learn-cross-tenant-sync-configure} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-cross-tenant-sync-configure"} |
+| [Microsoft Learn: Govern access for external users in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-external-users){#learn-em-external-users} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-em-external-users"} |
+| [Microsoft Learn: Manage connected organizations in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-organization){#learn-em-connected-organizations} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-em-connected-organizations"} |
+| [Microsoft Learn: What is cross-tenant synchronization?](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview){#learn-cross-tenant-sync-overview} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-cross-tenant-sync-overview"} |
 | [Microsoft Sentinel in the Microsoft Defender portal](https://learn.microsoft.com/azure/sentinel/microsoft-sentinel-defender-portal){#microsoft-sentinel-in-the-microsoft-defender} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-sentinel-in-the-microsoft-defender"} |
 | [Migrate from federation to cloud authentication](https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication){#migrate-from-federation-to-cloud} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="migrate-from-federation-to-cloud"} |
 | [Migrate from Microsoft Entra Connect to Cloud Sync: Decision Guide](https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/connect-to-cloud-sync-decision-guide){#migrate-from-microsoft-entra-connect-to} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="migrate-from-microsoft-entra-connect-to"} |
@@ -466,6 +472,7 @@ This register lists 519 sources. A slide or a video description links to a sourc
 | [NIST FIPS 186-5, Digital Signature Standard (DSS)](https://csrc.nist.gov/pubs/fips/186-5/final){#fips-186-5} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-186-5"} |
 | [NIST FIPS 199, Standards for Security Categorization of Federal Information and Information Systems](https://csrc.nist.gov/pubs/fips/199/final){#fips-199} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-199"} |
 | [NIST FIPS 200, Minimum Security Requirements for Federal Information and Information Systems](https://csrc.nist.gov/pubs/fips/200/final){#fips-200} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-200"} |
+| [NIST FIPS 201-3, full text (PDF)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.201-3.pdf){#fips-201-3-pdf} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="fips-201-3-pdf"} |
 | [NIST FIPS 201-3, Personal Identity Verification (PIV) of Federal Employees and Contractors](https://csrc.nist.gov/pubs/fips/201-3/final){#fips-201-3} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-201-3"} |
 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](https://csrc.nist.gov/pubs/ir/8547/ipd){#ir-8547} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ir-8547"} |
 | [NIST National Checklist Program](https://csrc.nist.gov/projects/national-checklist-program){#nist-ncp} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="nist-ncp"} |
@@ -483,7 +490,10 @@ This register lists 519 sources. A slide or a video description links to a sourc
 | [NIST SP 800-53 Rev. 5, Security and Privacy Controls for Information Systems and Organizations](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final){#sp-800-53} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-53"} |
 | [NIST SP 800-53A Rev. 5, Assessing Security and Privacy Controls in Information Systems and Organizations](https://csrc.nist.gov/pubs/sp/800/53/a/r5/final){#sp-800-53a} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-53a"} |
 | [NIST SP 800-53B, Control Baselines for Information Systems and Organizations](https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final){#sp-800-53b} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-53b"} |
+| [NIST SP 800-63-4, Digital Identity Guidelines (online edition)](https://pages.nist.gov/800-63-4/sp800-63.html){#nist-sp-800-63-4} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="nist-sp-800-63-4"} |
+| [NIST SP 800-63-4, publication record](https://csrc.nist.gov/pubs/sp/800/63/4/final){#nist-sp-800-63-4-final} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="nist-sp-800-63-4-final"} |
 | [NIST SP 800-63B-4, Digital Identity Guidelines: Authentication and Authenticator Management](https://csrc.nist.gov/pubs/sp/800/63/b/4/final){#sp-800-63b-4} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-63b-4"} |
+| [NIST SP 800-63C-4, Federation and Assertions (online edition)](https://pages.nist.gov/800-63-4/sp800-63c.html){#nist-sp-800-63c-4} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="nist-sp-800-63c-4"} |
 | [NIST SP 800-79-2, Guidelines for the Authorization of Personal Identity Verification Card Issuers and Derived PIV Credential Issuers](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-79-2.pdf){#sp-800-79-2} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-79-2"} |
 | [NIST SP 800-81 Rev. 3, Secure Domain Name System (DNS) Deployment Guide](https://csrc.nist.gov/pubs/sp/800/81/r3/final){#sp-800-81} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-81"} |
 | [NIST SP 800-88 Rev. 2, Guidelines for Media Sanitization](https://csrc.nist.gov/pubs/sp/800/88/r2/final){#sp-800-88} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-88"} |
@@ -647,11 +657,14 @@ This register lists 519 sources. A slide or a video description links to a sourc
 | [FAR 39.103, Modular contracting](https://www.acquisition.gov/far/39.103){#far-39-103} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="far-39-103"} |
 | [Foundations for Evidence-Based Policymaking Act of 2018](https://www.govinfo.gov/content/pkg/PLAW-115publ435/html/PLAW-115publ435.htm){#evidence-act} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="evidence-act"} |
 | [National Defense Authorization Act for Fiscal Year 2018 (MGT Act, § 1077)](https://www.govinfo.gov/content/pkg/PLAW-115publ91/html/PLAW-115publ91.htm){#plaw-115-91} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plaw-115-91"} |
+| [Privacy Act of 1974, 5 U.S.C. 552a (2023 edition, GovInfo)](https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm){#usc-5-552a-govinfo} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="usc-5-552a-govinfo"} |
+| [Section 508 of the Rehabilitation Act, 29 U.S.C. 794d (2023 edition, GovInfo)](https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm){#usc-29-794d-govinfo} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="usc-29-794d-govinfo"} |
 
 ## Revision history
 
 | Date | Source | Change |
 |---|---|---|
+| November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
 | November 5, 2026 | 449 sources | Added: cited on the narrated deck slides |
 | November 5, 2026 | 70 sources | Added: cited on the Start series and Book 00 slides |
 | November 5, 2026 | 11 sources | More slide wording links here |
