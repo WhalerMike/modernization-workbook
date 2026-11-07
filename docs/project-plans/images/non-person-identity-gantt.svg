@@ -73,9 +73,9 @@
 <text x="14" y="454" font-size="10.5" fill="#64748b">N3.1  App management policy: new client secrets and symm…</text>
 <line x1="441.2" y1="450.5" x2="600.0" y2="450.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="423.5" y="446" width="17.6" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="471" font-size="10.5" fill="#1e293b">N3.2  Wave 1, HIGH-risk accounts: workload identities cr…</text>
+<text x="14" y="471" font-size="10.5" fill="#1e293b">N3.2  Conversion wave 1, HIGH-risk accounts: workload id…</text>
 <rect x="600.0" y="463" width="52.9" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="488" font-size="10.5" fill="#1e293b">N3.3  Wave 1 parallel run: old and new credentials side…</text>
+<text x="14" y="488" font-size="10.5" fill="#1e293b">N3.3  Conversion wave 1 parallel run: old and new creden…</text>
 <rect x="652.9" y="480" width="77.6" height="9" rx="2" fill="#DC2626"/>
 <text x="14" y="505" font-size="10.5" fill="#1e293b">N3.4  Remaining waves converted, each with its own 30-da…</text>
 <rect x="688.2" y="497" width="211.8" height="9" rx="2" fill="#DC2626"/>
@@ -93,7 +93,7 @@
 <text x="14" y="590" font-size="10.5" fill="#1e293b">NG3  Gate 3 — Credentials modernized</text>
 <path d="M900.0 581.0 L905.5 586.5 L900.0 592.0 L894.5 586.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
 <text x="14" y="607" font-size="10.5" fill="#64748b">X-DG4  SQL Server&#x27;s application chain on Entra principal…</text>
-<path d="M896.5 598.0 L902.0 603.5 L896.5 609.0 L891.0 603.5 Z" fill="#059669"/>
+<path d="M868.2 598.0 L873.7 603.5 L868.2 609.0 L862.7 603.5 Z" fill="#059669"/>
 <text x="14" y="624" font-size="10.5" fill="#64748b">X-P46  AD-bound service principal names migrated, retire…</text>
 <path d="M1101.2 615.0 L1106.7 620.5 L1101.2 626.0 L1095.7 620.5 Z" fill="#059669"/>
 <rect x="0" y="629" width="980" height="17" fill="#f8fafc"/>
@@ -113,7 +113,7 @@
 <path d="M783.5 717.0 L789.0 722.5 L783.5 728.0 L778.0 722.5 Z" fill="#7C3AED"/>
 <rect x="0" y="731" width="980" height="17" fill="#f8fafc"/>
 <text x="6" y="743.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — Conditional Access for workload identities</text>
-<text x="14" y="760" font-size="10.5" fill="#64748b">N5.1  Scope set: Tier 1 single-tenant service principals…</text>
+<text x="14" y="760" font-size="10.5" fill="#64748b">N5.1  Scope set: R1 single-tenant service principals ass…</text>
 <line x1="600.0" y1="756.5" x2="847.1" y2="756.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="582.4" y="752" width="17.6" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="777" font-size="10.5" fill="#64748b">N5.2  CA015 location restriction and CA037 high-risk blo…</text>
@@ -143,10 +143,10 @@
 <line x1="547.1" y1="926.5" x2="882.4" y2="926.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="511.8" y="922" width="35.3" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="947" font-size="10.5" fill="#64748b">X-IG4  Mover and leaver automation proven (Identity Life…</text>
-<path d="M635.3 938.0 L640.8 943.5 L635.3 949.0 L629.8 943.5 Z" fill="#059669"/>
+<path d="M642.4 938.0 L647.9 943.5 L642.4 949.0 L636.9 943.5 Z" fill="#059669"/>
 <text x="14" y="964" font-size="10.5" fill="#64748b">N6.5  Sponsorship tasks added to the HR-driven mover and…</text>
-<line x1="670.6" y1="960.5" x2="882.4" y2="960.5" stroke="#cbd5e1" stroke-width="2"/>
-<rect x="635.3" y="956" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<line x1="677.6" y1="960.5" x2="882.4" y2="960.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="642.4" y="956" width="35.3" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="981" font-size="10.5" fill="#64748b">N6.6  Agent Conditional Access in report-only: block all…</text>
 <line x1="547.1" y1="977.5" x2="882.4" y2="977.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="511.8" y="973" width="35.3" height="9" rx="2" fill="#2563EB"/>
@@ -154,7 +154,7 @@
 <line x1="547.1" y1="994.5" x2="882.4" y2="994.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="511.8" y="990" width="35.3" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="1015" font-size="10.5" fill="#64748b">NG6  Gate 6 — AI identities governed</text>
-<path d="M670.6 1006.0 L676.1 1011.5 L670.6 1017.0 L665.1 1011.5 Z" fill="#7C3AED"/>
+<path d="M677.6 1006.0 L683.1 1011.5 L677.6 1017.0 L672.1 1011.5 Z" fill="#7C3AED"/>
 <rect x="0" y="1020" width="980" height="17" fill="#f8fafc"/>
 <text x="6" y="1032.5" font-size="11" font-weight="600" fill="#1e293b">Phase 7 — Steady state</text>
 <text x="14" y="1049" font-size="10.5" fill="#1e293b">N7.1  Register drift scheduled: ownerless, unused or exp…</text>

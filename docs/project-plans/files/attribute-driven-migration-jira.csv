@@ -101,7 +101,7 @@ Duration 0 working days · end of wk 5 · total float 17 d · predecessors: D-A3
 Criteria: Correlation threshold met on the pilot cohort; every enabled account correlated or on a dated exception list; no duplicate keys; every other write path to the access slots removed in AD and Entra ID; logs leaving Entra ID
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema",fmw,fmw-attribute-driven-migration,fmw-id-ag2,gate,owner-ciso,,2027-02-08,2027-02-05,32,80,,,,
 28,Epic,,Attribute-Driven Migration: Phase 3 — Sync,"Phase 3 — Sync of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-01-27,2027-02-24,,,,,,
+https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-01-27,2027-02-26,,,,,,
 29,Task,28,"A3.1 Sync mapping for the slot register: carriers in the provisioning apps' target lists, date mappings, the transitional account-type rule, the DoNotSync filter; soft and hard match blocked","A3.1 · Task · owner or approver: Identity engineering
 Duration 5 working days · wk 4–5 · total float 8 d · predecessors: AG1
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#stage-3-map-the-attributes-through-sync",fmw,fmw-attribute-driven-migration,fmw-id-a3.1,task,owner-identity-engineering,,2027-01-27,2027-02-02,30,32,,,,
@@ -111,14 +111,14 @@ If decided late: The sync design is approved without the attribute flow for the 
 Comes from program-master-schedule:P1.7 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-p17,external,owner-identity-engineering-program,,2027-02-15,2027-02-12,,,,,,
 31,Task,28,"X-IG3 HR feed live for the foundation scope, shadow differences explained (Identity Lifecycle plan, Gate 3)","X-IG3 · External · owner or approver: ISSO (Identity Lifecycle plan)
-Duration 0 working days · end of wk 8 · total float 4 d · predecessors: —
+Duration 0 working days · end of wk 8 · total float 2 d · predecessors: —
 If decided late: The coded slots have no live writer, so the group library can't be shadowed on real data
 Comes from identity-lifecycle:IG3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-attribute-driven-migration,fmw-id-x-ig3,external,owner-isso-identity-lifecycle-plan,,2027-02-25,2027-02-24,32,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-attribute-driven-migration,fmw-id-x-ig3,external,owner-isso-identity-lifecycle-plan,,2027-03-01,2027-02-26,32,,,,,
 32,Task,28,AG3 Gate 3 — Attributes flowing,"AG3 · Gate · owner or approver: Identity engineering lead
-Duration 0 working days · end of wk 8 · total float 4 d · predecessors: A3.1, X-IG3, AG2
+Duration 0 working days · end of wk 8 · total float 2 d · predecessors: A3.1, X-IG3, AG2
 Criteria: Object counts within ±1%; no sync errors; every slot in the register arrives in Entra ID with the value HR sent; shadow-mode differences explained; both match types blocked outside a planned window
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-1-sync-deployment-and-initial-sync",fmw,fmw-attribute-driven-migration,fmw-id-ag3,gate,owner-identity-engineering-lead,,2027-02-25,2027-02-24,41,55,81,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-1-sync-deployment-and-initial-sync",fmw,fmw-attribute-driven-migration,fmw-id-ag3,gate,owner-identity-engineering-lead,,2027-03-01,2027-02-26,41,55,81,,,
 33,Epic,,Attribute-Driven Migration: Phase 4 — Groups and administrative units,"Phase 4 — Groups and administrative units of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-01-20,2027-03-12,,,,,,
 34,Task,33,A4.1 Dynamic user group library: node and functional rules on codes; every access rule guarded by accountEnabled and userType and excluding agents' accounts; nesting flattened; no memberOf,"A4.1 · Task · owner or approver: Identity engineering, with application owners
@@ -201,69 +201,69 @@ Duration 0 working days · end of wk 4 · total float 53 d · predecessors: D-A5
 Criteria: Personas from authoritative codes, grant and block in pairs, empty slots reported; device and server conventions published and handed to the Endpoint plan; non-person owners and sponsors keyed to the person key
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#attribute-to-mechanism-crosswalk",fmw,fmw-attribute-driven-migration,fmw-id-ag5,gate,owner-ciso,,2027-01-29,2027-01-28,64,,,,,
 54,Epic,,Attribute-Driven Migration: Phase 6 — PIV and CAC binding,"Phase 6 — PIV and CAC binding of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-02-25,2027-09-10,,,,,,
+https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-03-01,2027-09-10,,,,,,
 55,Task,54,A6.1 Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer,"A6.1 · Task · owner or approver: Identity engineering, with the PIV program office
-Duration 5 working days · wk 8–9 · total float 10 d · predecessors: AG3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-a6.1,task,owner-identity-engineering-with-the-piv-program-office,,2027-02-25,2027-03-03,56,,,,,
+Duration 5 working days · wk 9 · total float 8 d · predecessors: AG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-a6.1,task,owner-identity-engineering-with-the-piv-program-office,,2027-03-01,2027-03-05,56,,,,,
 56,Task,54,D-A6 Required affinity binding for PIV and CAC,"D-A6 · Decision · owner or approver: CISO
-Duration 0 working days · end of wk 9 · total float 10 d · predecessors: A6.1
+Duration 0 working days · end of wk 9 · total float 8 d · predecessors: A6.1
 Options: High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer
 If decided late: PIV sign-in goes to the pilot at the tenant default, which is low affinity
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#username-bindings-and-affinity",fmw,fmw-attribute-driven-migration,fmw-id-d-a6,decision,owner-ciso,,2027-03-04,2027-03-03,57,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#username-bindings-and-affinity",fmw,fmw-attribute-driven-migration,fmw-id-d-a6,decision,owner-ciso,,2027-03-08,2027-03-05,57,,,,,
 57,Task,54,A6.2 High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID,"A6.2 · Task · owner or approver: Identity engineering
-Duration 5 working days · wk 9–10 · total float 10 d · predecessors: D-A6
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#binding-the-piv-certificate-to-the-entra-user",fmw,fmw-attribute-driven-migration,fmw-id-a6.2,task,owner-identity-engineering,,2027-03-04,2027-03-10,58,59,61,,,
+Duration 5 working days · wk 10 · total float 8 d · predecessors: D-A6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#binding-the-piv-certificate-to-the-entra-user",fmw,fmw-attribute-driven-migration,fmw-id-a6.2,task,owner-identity-engineering,,2027-03-08,2027-03-12,58,59,61,,,
 58,Task,54,X-P28 Certificate-based authentication for PIV and CAC holders (program P2.8),"X-P28 · External · owner or approver: Identity engineering (program)
 Duration 0 working days · end of wk 12 · total float fixed date · predecessors: A6.2
 If decided late: PIV sign-in reaches the pilot with bindings nobody has measured
 Comes from program-master-schedule:P2.8 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-p28,external,owner-identity-engineering-program,,2027-03-25,2027-03-24,,,,,,
 59,Task,54,D-A7 Who writes the binding after AD,"D-A7 · Decision · owner or approver: ICAM governance body
-Duration 0 working days · end of wk 10 · total float 132 d · predecessors: A6.2
+Duration 0 working days · end of wk 10 · total float 130 d · predecessors: A6.2
 Options: The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale)
 If decided late: User issuance can't move off AD CS, because nothing writes the binding without AD
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-d-a7,decision,owner-icam-governance-body,,2027-03-11,2027-03-10,60,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-d-a7,decision,owner-icam-governance-body,,2027-03-15,2027-03-12,60,,,,,
 60,Task,54,"X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start)","X-P45 · External · owner or approver: PKI lead (program)
 Duration 0 working days · end of wk 36 · total float fixed date · predecessors: D-A7
 If decided late: Issuance moves off AD CS with no writer for the binding
 Comes from program-master-schedule:P4.5:start in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-p45,external,owner-pki-lead-program,,2027-09-13,2027-09-10,,,,,,
 61,Task,54,AG6 Gate 6 — PIV binding proven on the pilot,"AG6 · Gate · owner or approver: CISO
-Duration 0 working days · end of wk 10 · total float 29 d · predecessors: A6.2
+Duration 0 working days · end of wk 10 · total float 27 d · predecessors: A6.2
 Criteria: Every pilot card holder bound; high affinity piloted with no lockouts; phishing-resistant strength for CBA users; the leaver removes the binding as well as revoking the card
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-ag6,gate,owner-ciso,,2027-03-11,2027-03-10,65,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-ag6,gate,owner-ciso,,2027-03-15,2027-03-12,65,,,,,
 62,Epic,,Attribute-Driven Migration: Phase 7 — The mover proof,"Phase 7 — The mover proof of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-03-25,2027-04-23,,,,,,
+https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-03-29,2027-04-23,,,,,,
 63,Task,62,"X-I43 Joiner and mover automation (Identity Lifecycle plan, I4.3)","X-I43 · External · owner or approver: Identity engineering (Identity Lifecycle plan)
-Duration 0 working days · end of wk 12 · total float 14 d · predecessors: —
+Duration 0 working days · end of wk 12 · total float 12 d · predecessors: —
 If decided late: There's no mover workflow to prove the foundation against
 Comes from identity-lifecycle:I4.3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-attribute-driven-migration,fmw-id-x-i43,external,owner-identity-engineering-identity-lifecycle-plan,,2027-03-25,2027-03-24,64,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-attribute-driven-migration,fmw-id-x-i43,external,owner-identity-engineering-identity-lifecycle-plan,,2027-03-29,2027-03-26,64,,,,,
 64,Task,62,"A7.1 Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean","A7.1 · Task · owner or approver: Identity engineering, with HR
-Duration 5 working days · wk 12–13 · total float 14 d · predecessors: X-I43, X-P22, AG5
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#worked-example-one-user-and-one-mover-event",fmw,fmw-attribute-driven-migration,fmw-id-a7.1,task,owner-identity-engineering-with-hr,,2027-03-25,2027-03-31,65,,,,,
+Duration 5 working days · wk 13 · total float 12 d · predecessors: X-I43, X-P22, AG5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#worked-example-one-user-and-one-mover-event",fmw,fmw-attribute-driven-migration,fmw-id-a7.1,task,owner-identity-engineering-with-hr,,2027-03-29,2027-04-02,65,,,,,
 65,Task,62,AG7 Gate 7 — Mover proven across the tracks,"AG7 · Gate · owner or approver: CISO
-Duration 0 working days · end of wk 13 · total float 14 d · predecessors: A7.1, AG6
+Duration 0 working days · end of wk 13 · total float 12 d · predecessors: A7.1, AG6
 Criteria: The test mover's access changed only through the attributes, within the measured latency; nothing assigned by hand; the device's groups unchanged; the sponsor of any non-person identity the user sponsors notified; the change traced from the personnel action to the drift report
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#worked-example-one-user-and-one-mover-event",fmw,fmw-attribute-driven-migration,fmw-id-ag7,gate,owner-ciso,,2027-04-01,2027-03-31,66,68,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#worked-example-one-user-and-one-mover-event",fmw,fmw-attribute-driven-migration,fmw-id-ag7,gate,owner-ciso,,2027-04-05,2027-04-02,66,68,,,,
 66,Task,62,X-G2 Program G2 — Pilot Clean,"X-G2 · External · owner or approver: Steward (program)
 Duration 0 working days · end of wk 16 · total float fixed date · predecessors: AG7
 If decided late: The pilot is called clean without a mover having been proved
 Comes from program-master-schedule:G2 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-g2,external,owner-steward-program,,2027-04-26,2027-04-23,,,,,,
 67,Epic,,Attribute-Driven Migration: Phase 8 — Cut-over and the OU tree,"Phase 8 — Cut-over and the OU tree of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-04-01,2027-11-05,,,,,,
+https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-04-05,2027-11-05,,,,,,
 68,Task,67,A8.1 Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave,"A8.1 · Task · owner or approver: Identity engineering
-Duration 3 working days · wk 13–14 · total float 14 d · predecessors: AG7
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#stage-7-cut-over-in-phases",fmw,fmw-attribute-driven-migration,fmw-id-a8.1,task,owner-identity-engineering,,2027-04-01,2027-04-05,69,70,,,,
+Duration 3 working days · wk 14 · total float 12 d · predecessors: AG7
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#stage-7-cut-over-in-phases",fmw,fmw-attribute-driven-migration,fmw-id-a8.1,task,owner-identity-engineering,,2027-04-05,2027-04-07,69,70,,,,
 69,Task,67,"X-D07 Wave plan: which divisions, in which order (program D07)","X-D07 · External · owner or approver: Executive sponsor (program)
 Duration 0 working days · end of wk 16 · total float fixed date · predecessors: A8.1
 If decided late: Waves are drawn by OU, not by attribute value
 Comes from program-master-schedule:D07 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-d07,external,owner-executive-sponsor-program,,2027-04-26,2027-04-23,,,,,,
 70,Task,67,"A8.2 Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes","A8.2 · Task · owner or approver: Identity engineering
-Duration 5 working days · wk 14–15 · total float 31 d · predecessors: A8.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html#proving-hr-is-the-sole-source",fmw,fmw-attribute-driven-migration,fmw-id-a8.2,task,owner-identity-engineering,,2027-04-06,2027-04-12,71,,,,,
+Duration 5 working days · wk 14–15 · total float 29 d · predecessors: A8.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html#proving-hr-is-the-sole-source",fmw,fmw-attribute-driven-migration,fmw-id-a8.2,task,owner-identity-engineering,,2027-04-08,2027-04-14,71,,,,,
 71,Task,67,"X-P31 Wave 1, first region (program P3.1)","X-P31 · External · owner or approver: Identity engineering (program)
 Duration 0 working days · end of wk 21 · total float fixed date · predecessors: A8.2
 If decided late: Wave 1 closes with no attribute gate
@@ -273,7 +273,7 @@ Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/p
 Duration 0 working days · end of wk 26 · total float fixed date · predecessors: —
 If decided late: Shown for reference: the HR plan's own cut-over
 Comes from identity-lifecycle:IG5 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-attribute-driven-migration,fmw-id-x-ig5,external,owner-isso-identity-lifecycle-plan,,2027-07-01,2027-06-30,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-attribute-driven-migration,fmw-id-x-ig5,external,owner-isso-identity-lifecycle-plan,,2027-07-05,2027-07-02,,,,,,
 73,Task,67,X-G3 Program G3 — Rollout Complete,"X-G3 · External · owner or approver: Steward (program)
 Duration 0 working days · end of wk 36 · total float 0 · predecessors: —
 If decided late: The transitional sync rules that read OU placement can't come out while any population still depends on them
@@ -303,12 +303,12 @@ Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/p
 https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-02-08,2027-12-03,,,,,,
 80,Task,79,D-A8 Drift severity and response times,"D-A8 · Decision · owner or approver: CISO
 Duration 0 working days · end of wk 5 · total float 40 d · predecessors: AG2
-Options: The program's classes (missing identity, stale access, orphan, attribute drift, unauthorized write, credential drift, schema drift) with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots
+Options: Book 03's classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, Book 13's five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots
 If decided late: Drift findings pile up with nobody obliged to close them
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html#drift-between-hr-and-the-directory",fmw,fmw-attribute-driven-migration,fmw-id-d-a8,decision,owner-ciso,,2027-02-08,2027-02-05,81,,,,,
 81,Task,79,"A9.1 Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue","A9.1 · Task · owner or approver: Security operations
-Duration 5 working days · wk 8–9 · total float 27 d · predecessors: AG4, AG3, D-A8
-Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#stage-8-detect-and-correct-drift",fmw,fmw-attribute-driven-migration,fmw-id-a9.1,task,owner-security-operations,,2027-02-25,2027-03-03,82,84,,,,
+Duration 5 working days · wk 9 · total float 25 d · predecessors: AG4, AG3, D-A8
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#stage-8-detect-and-correct-drift",fmw,fmw-attribute-driven-migration,fmw-id-a9.1,task,owner-security-operations,,2027-03-01,2027-03-05,82,84,,,,
 82,Task,79,"X-P211 Drift-clean hold on the pilot (program P2.11, its start)","X-P211 · External · owner or approver: Steward (program)
 Duration 0 working days · end of wk 14 · total float fixed date · predecessors: A9.1
 If decided late: The drift-clean hold has no scan to measure it

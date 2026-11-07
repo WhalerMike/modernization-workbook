@@ -371,17 +371,17 @@ Source: ../books/b06-data-platform/08-reading-the-audit.md</Notes>
       <OutlineNumber>3</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-03-15T08:00:00</Start>
-      <Finish>2027-05-04T17:00:00</Finish>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-04-22T17:00:00</Finish>
     </Task>
     <Task>
       <UID>16</UID>
       <ID>16</ID>
-      <Name>X-ARC Pilot servers under Arc with machine configuration (program P2.9)</Name>
+      <Name>X-ARC Pilot servers connected through Arc with machine configuration applied (program P1.13)</Name>
       <OutlineNumber>3.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-12T17:00:00</Start>
-      <Finish>2027-03-12T17:00:00</Finish>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -390,7 +390,7 @@ Source: ../books/b06-data-platform/08-reading-the-audit.md</Notes>
 If decided late: The pilot SQL Server host has no Arc pattern to follow, and the pilot waits
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-03-12T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>17</UID>
@@ -398,8 +398,8 @@ Source: program-master-schedule.md</Notes>
       <Name>D2.1 Pilot host on Arc: egress confirmed, onboarding service principal, managed-identity token validated, SQL Server extension deployed</Name>
       <OutlineNumber>3.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-15T08:00:00</Start>
-      <Finish>2027-03-19T17:00:00</Finish>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-03-09T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -425,13 +425,13 @@ Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#st
       <Name>D2.2 Graph permissions (SQL Server 2025) or admin consent (SQL Server 2022) granted by a Privileged Role Administrator</Name>
       <OutlineNumber>3.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-22T08:00:00</Start>
-      <Finish>2027-03-23T17:00:00</Finish>
+      <Start>2027-03-10T08:00:00</Start>
+      <Finish>2027-03-11T17:00:00</Finish>
       <Duration>PT16H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>Identity team</Contact>
-      <Notes>Owner or approver: Identity team
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
 Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#roles-and-permissions</Notes>
       <PredecessorLink>
         <PredecessorUID>17</PredecessorUID>
@@ -446,8 +446,8 @@ Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#ro
       <Name>D2.3 Entra authentication on; Entra admin group set; Entra logins and users created beside the Windows ones</Name>
       <OutlineNumber>3.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-24T08:00:00</Start>
-      <Finish>2027-03-30T17:00:00</Finish>
+      <Start>2027-03-12T08:00:00</Start>
+      <Finish>2027-03-18T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -467,8 +467,8 @@ Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-
       <Name>D2.4 Parallel run: 30-day observation, recorded with SQL Server Audit</Name>
       <OutlineNumber>3.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-31T08:00:00</Start>
-      <Finish>2027-04-29T17:00:00</Finish>
+      <Start>2027-03-19T08:00:00</Start>
+      <Finish>2027-04-19T17:00:00</Finish>
       <Duration>PT176H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -488,8 +488,8 @@ Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-
       <Name>D-D5 Disable the superseded Windows logins on the pilot instance</Name>
       <OutlineNumber>3.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-29T17:00:00</Start>
-      <Finish>2027-04-29T17:00:00</Finish>
+      <Start>2027-04-19T17:00:00</Start>
+      <Finish>2027-04-19T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -511,8 +511,8 @@ Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-
       <Name>D2.5 Cutover: Windows logins disabled, not dropped; sa disabled and renamed; scheduled audit started</Name>
       <OutlineNumber>3.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-30T08:00:00</Start>
-      <Finish>2027-05-04T17:00:00</Finish>
+      <Start>2027-04-20T08:00:00</Start>
+      <Finish>2027-04-22T17:00:00</Finish>
       <Duration>PT24H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -532,8 +532,8 @@ Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#the-s
       <Name>DG2 Gate 2 — Pilot instance on Entra authentication</Name>
       <OutlineNumber>3.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-05-04T17:00:00</Start>
-      <Finish>2027-05-04T17:00:00</Finish>
+      <Start>2027-04-22T17:00:00</Start>
+      <Finish>2027-04-22T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -556,7 +556,7 @@ Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#ve
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-03-01T08:00:00</Start>
-      <Finish>2027-07-27T17:00:00</Finish>
+      <Finish>2027-07-15T17:00:00</Finish>
     </Task>
     <Task>
       <UID>25</UID>
@@ -587,8 +587,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT24H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>Identity team</Contact>
-      <Notes>Owner or approver: Identity team
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
 Source: ../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md#sequencing-the-administrative-unit-comes-first</Notes>
       <PredecessorLink>
         <PredecessorUID>25</PredecessorUID>
@@ -609,13 +609,13 @@ Source: ../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-per
       <Name>D3.2 Access groups and dynamic rules verified; group logins bound; Conditional Access perimeter confirmed on the pilot</Name>
       <OutlineNumber>4.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-05-05T08:00:00</Start>
-      <Finish>2027-05-25T17:00:00</Finish>
+      <Start>2027-04-23T08:00:00</Start>
+      <Finish>2027-05-13T17:00:00</Finish>
       <Duration>PT120H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>Identity team</Contact>
-      <Notes>Owner or approver: Identity team
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
 Source: ../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md#provision-attribute-based-dynamic-groups-entra-dynamic-groups</Notes>
       <PredecessorLink>
         <PredecessorUID>26</PredecessorUID>
@@ -636,8 +636,8 @@ Source: ../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-per
       <Name>D3.3 Estate waves: every retain instance and target through Arc, Entra authentication, the parallel run and cutover</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-05-05T08:00:00</Start>
-      <Finish>2027-07-27T17:00:00</Finish>
+      <Start>2027-04-23T08:00:00</Start>
+      <Finish>2027-07-15T17:00:00</Finish>
       <Duration>PT480H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -746,8 +746,8 @@ Source: ../books/b06-data-platform/r06-ntlm-detection-and-remediation.md#phased-
       <Name>DG3 Gate 3 — Estate on Entra logins, NTLM restricted</Name>
       <OutlineNumber>4.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-07-27T17:00:00</Start>
-      <Finish>2027-07-27T17:00:00</Finish>
+      <Start>2027-07-15T17:00:00</Start>
+      <Finish>2027-07-15T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -834,8 +834,8 @@ Source: ../books/b06-data-platform/18-the-four-class-pattern-for-applications.md
       <Name>D4.2 Gate conditions prepared: identity holds its database role; change tested on a production-matching Arc stack</Name>
       <OutlineNumber>5.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-05-05T08:00:00</Start>
-      <Finish>2027-05-25T17:00:00</Finish>
+      <Start>2027-04-23T08:00:00</Start>
+      <Finish>2027-05-13T17:00:00</Finish>
       <Duration>PT120H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -861,8 +861,8 @@ Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.
       <Name>D-D8 Connection-string cutover, application by application</Name>
       <OutlineNumber>5.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-06-01T17:00:00</Start>
-      <Finish>2027-06-01T17:00:00</Finish>
+      <Start>2027-05-20T17:00:00</Start>
+      <Finish>2027-05-20T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -890,8 +890,8 @@ Source: ../books/b06-data-platform/19-connection-string-migration.md#the-gate-co
       <Name>D4.3 Connection strings cut over; prior configuration kept; legacy logins disabled, not dropped</Name>
       <OutlineNumber>5.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-06-02T08:00:00</Start>
-      <Finish>2027-08-03T17:00:00</Finish>
+      <Start>2027-05-21T08:00:00</Start>
+      <Finish>2027-07-22T17:00:00</Finish>
       <Duration>PT360H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -932,8 +932,8 @@ Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.
       <Name>DG4 Gate 4 — Application chain on Entra principals</Name>
       <OutlineNumber>5.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-08-03T17:00:00</Start>
-      <Finish>2027-08-03T17:00:00</Finish>
+      <Start>2027-07-22T17:00:00</Start>
+      <Finish>2027-07-22T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -986,7 +986,7 @@ Source: program-master-schedule.md</Notes>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-03-03T08:00:00</Start>
-      <Finish>2027-12-14T17:00:00</Finish>
+      <Finish>2027-12-02T17:00:00</Finish>
     </Task>
     <Task>
       <UID>44</UID>
@@ -1067,8 +1067,8 @@ Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#ph
       <Name>D5.2 Validation period: closure records and the six evidence sets live and satisfied; drift treated as a violation</Name>
       <OutlineNumber>6.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-08-04T08:00:00</Start>
-      <Finish>2027-09-28T17:00:00</Finish>
+      <Start>2027-07-23T08:00:00</Start>
+      <Finish>2027-09-16T17:00:00</Finish>
       <Duration>PT320H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1100,8 +1100,8 @@ Source: ../books/b06-data-platform/r09-continuous-monitoring-and-closure.md#the-
       <Name>D5.3 Phase C: Restrict NTLM set to deny across the estate</Name>
       <OutlineNumber>6.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-09-29T08:00:00</Start>
-      <Finish>2027-10-05T17:00:00</Finish>
+      <Start>2027-09-17T08:00:00</Start>
+      <Finish>2027-09-23T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1127,8 +1127,8 @@ Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#ph
       <Name>DG5 Gate 5 — Estate closed</Name>
       <OutlineNumber>6.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-10-05T17:00:00</Start>
-      <Finish>2027-10-05T17:00:00</Finish>
+      <Start>2027-09-23T17:00:00</Start>
+      <Finish>2027-09-23T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1149,8 +1149,8 @@ Source: ../books/b06-data-platform/20-the-closure-condition.md#the-five-closure-
       <Name>D5.4 Exception long tail: pre-2022 and Class 4 instances upgraded, re-platformed or retired by their sunset dates</Name>
       <OutlineNumber>6.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-10-06T08:00:00</Start>
-      <Finish>2027-12-14T17:00:00</Finish>
+      <Start>2027-09-24T08:00:00</Start>
+      <Finish>2027-12-02T17:00:00</Finish>
       <Duration>PT400H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>

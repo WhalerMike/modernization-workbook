@@ -297,7 +297,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
     <Task>
       <UID>12</UID>
       <ID>12</ID>
-      <Name>N1.1 An application owner found for every service account; two human owners on every app registration and service principal; serviceManagementReference set</Name>
+      <Name>N1.1 An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set</Name>
       <OutlineNumber>2.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T08:00:00</Start>
@@ -349,7 +349,7 @@ Source: ../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-program
       <Milestone>1</Milestone>
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
-Options: Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (Book 04's rule, applied at once to agents because they can act); retire at once; keep running on a dated exception
+Options: Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (a non-person identity rule, not Book 04's, which gives the office 30 days and then suspends; applied at once to agents because they can act); retire at once; keep running on a dated exception
 If decided late: Unowned accounts can't be disposed of, and Gate 1 can't pass
 Source: ../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps</Notes>
       <PredecessorLink>
@@ -399,7 +399,7 @@ Source: ../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsa
       <Milestone>1</Milestone>
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
-Criteria: Every service account has a named application owner; every app registration and service principal has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception
+Criteria: Every service account has a named application owner; every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4) has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception
 Source: ../books/b02-identity/09-building-the-entra-target.md#governing-service-principals</Notes>
       <PredecessorLink>
         <PredecessorUID>13</PredecessorUID>
@@ -481,7 +481,7 @@ Source: ../books/guides/attribute-driven-migration.md#non-person-identity-track<
       <Milestone>1</Milestone>
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
-Options: License for the single-tenant service principals classified Tier 1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access
+Options: License for the single-tenant service principals classified R1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access
 If decided late: Workload Conditional Access can't be created or changed, and privileged service principal reviews aren't available
 Source: ../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds</Notes>
       <PredecessorLink>
@@ -592,7 +592,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#enforcing
     <Task>
       <UID>26</UID>
       <ID>26</ID>
-      <Name>N3.2 Wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested</Name>
+      <Name>N3.2 Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested</Name>
       <OutlineNumber>4.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-08T08:00:00</Start>
@@ -625,7 +625,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#workload-identity-
     <Task>
       <UID>27</UID>
       <ID>27</ID>
-      <Name>N3.3 Wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled</Name>
+      <Name>N3.3 Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-29T08:00:00</Start>
@@ -797,8 +797,8 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
       <Name>X-DG4 SQL Server's application chain on Entra principals (Data Platform plan, Gate 4)</Name>
       <OutlineNumber>4.11</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-08-03T17:00:00</Start>
-      <Finish>2027-08-03T17:00:00</Finish>
+      <Start>2027-07-22T17:00:00</Start>
+      <Finish>2027-07-22T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -807,7 +807,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
 If decided late: The SQL Server accounts handed over in Phase 0 are still on Windows authentication
 Source: data-platform.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-08-03T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-07-22T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>35</UID>
@@ -977,7 +977,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#governing-service-
     <Task>
       <UID>43</UID>
       <ID>43</ID>
-      <Name>N5.1 Scope set: Tier 1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope</Name>
+      <Name>N5.1 Scope set: R1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope</Name>
       <OutlineNumber>6.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-01T08:00:00</Start>
@@ -1042,7 +1042,7 @@ Source: ../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-r
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
 Options: Enforce; extend report-only; enforce with named exclusions, each recorded with its owner and end date
-If decided late: Tier 1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass
+If decided late: R1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass
 Source: ../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities</Notes>
       <PredecessorLink>
         <PredecessorUID>44</PredecessorUID>
@@ -1085,7 +1085,7 @@ Source: ../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-r
       <Milestone>1</Milestone>
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
-Criteria: Every Tier 1 single-tenant service principal assigned directly to the enforced location and risk policies; report-only results reviewed before enforcement; every out-of-scope identity (managed identities, multitenant and SaaS apps) recorded with the control that covers it instead
+Criteria: Every R1 single-tenant service principal assigned directly to the enforced location and risk policies; report-only results reviewed before enforcement; every out-of-scope identity (managed identities, multitenant and SaaS apps) recorded with the control that covers it instead
 Source: ../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities</Notes>
       <PredecessorLink>
         <PredecessorUID>46</PredecessorUID>
@@ -1102,7 +1102,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#condition
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-01-18T08:00:00</Start>
-      <Finish>2027-05-05T17:00:00</Finish>
+      <Finish>2027-05-07T17:00:00</Finish>
     </Task>
     <Task>
       <UID>49</UID>
@@ -1235,8 +1235,8 @@ Source: ../books/b17-ai-identity/06-credentials-and-least-privilege.md#privilege
       <Name>X-IG4 Mover and leaver automation proven (Identity Lifecycle plan, Gate 4)</Name>
       <OutlineNumber>7.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-21T17:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1245,7 +1245,7 @@ Source: ../books/b17-ai-identity/06-credentials-and-least-privilege.md#privilege
 If decided late: The sponsor's mover and leaver events have no HR-driven workflow to ride on
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-04-21T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>55</UID>
@@ -1253,8 +1253,8 @@ Source: identity-lifecycle.md</Notes>
       <Name>N6.5 Sponsorship tasks added to the HR-driven mover and leaver workflows; ten-business-day confirmation; human workflows kept off agents' user accounts</Name>
       <OutlineNumber>7.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-22T08:00:00</Start>
-      <Finish>2027-05-05T17:00:00</Finish>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1322,8 +1322,8 @@ Source: ../books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md#drift-comp
       <Name>NG6 Gate 6 — AI identities governed</Name>
       <OutlineNumber>7.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-05-05T17:00:00</Start>
-      <Finish>2027-05-05T17:00:00</Finish>
+      <Start>2027-05-07T17:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>

@@ -1,7 +1,7 @@
 ---
 title: "Identity Lifecycle & Provisioning: HR-Driven Identity"
 subtitle: "A sample project plan for Book 03's pipeline: from the integration-point inventory to cloud-mastered populations, with the decisions that hold the HR feed's critical path"
-description: "A sample PMP-style project plan for the Identity Lifecycle & Provisioning project, built from Book 03, Chapter 12: a work breakdown by Book 03 phase, a computed critical path that shows why the HR feed is the program's most compressed track, every gate with its approver and criteria, and the intermediate decisions (enterprise identifier, contractor source, cutover populations) with owners and decide-by weeks."
+description: "A sample PMP-style project plan for the Identity Lifecycle & Provisioning project, built from Book 03, Chapter 12: a work breakdown by Book 03 phase, a computed critical path that shows why the HR feed is among the program's most compressed tracks, every gate with its approver and criteria, and the intermediate decisions (enterprise identifier, contractor source, cutover populations) with owners and decide-by weeks."
 doc-type: project-plan
 plan-type: "Project"
 plan-books: "Book 03"
@@ -26,9 +26,9 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 | **Built from** | Book 03 |
 | **Sponsor** | Executive sponsor and CIO; HR leadership |
 | **Plan manager** | Identity engineering lead, with the agency HR 2.0 integrated project team point of contact |
-| **Duration** | 26 weeks (128 working days), computed from the network |
+| **Duration** | 26 weeks (130 working days), computed from the network |
 | **Work** | 27 tasks, 6 gates, 5 decision points |
-| **Critical path** | 25 of 38 items; 7 more within 5 days of it |
+| **Critical path** | 20 of 38 items; 13 more within 5 days of it |
 | **Calendar** | Week 1 = the program's Phase 0 approval; five working days a week |
 
 : Plan at a glance {.striped}
@@ -41,37 +41,32 @@ This plan builds [Book 03](../books/b03-hr-identity/index.md)'s pipeline: HR as 
 
 ## Critical path
 
-The computed path runs through the integration-point inventory, the crosswalk, the authority map and schema, the middleware build, the end-to-end test and the shadow-mode observation. It is the most compressed track in the program: it has only a few days of float against the program's G1, so a week lost here is a week lost at G1. The privacy basis is the task to watch. It must be in place before production HR data flows at go-live, and many privacy offices need longer than this sample allows, so it starts on day one, not in Phase 1. If the agency's PIA update takes longer, re-baseline here first.
+The computed path runs through the integration-point inventory, the crosswalk, the authority map and schema, the middleware build, the end-to-end test and the shadow-mode observation. It is among the most compressed tracks in the program: it has only a few days of float against the program's G1, so a week lost here is a week lost at G1. The privacy basis is the task to watch. It is a Phase 1 gate item, so Gate 1 won't sign without it, and many privacy offices need longer than this sample allows, so it starts on day one. If the agency's PIA update takes longer, re-baseline here first.
 
 The critical path, in order. Each item has zero total float: a day lost on any of them is a day lost at the finish.
 
 | # | ID | Item | Owner or approver | When |
 |---|---|---|---|---|
-| 1 | I0.1 | Integration-point inventory, naming the HR-driven identity feed | HR 2.0 project team point of contact | wk 1 |
-| 2 | I0.2 | Entra migration plan names HR as the source for each population | Program office | wk 1 |
-| 3 | IG0 | Gate 0 — Inventory signed and submitted | ISSO | end of wk 1 |
-| 4 | I1.1 | Standard-attribute crosswalk and nature-of-action trigger table | Identity engineering | wk 2 |
-| 5 | I1.2 | Attribute authority map signed | HR | wk 3 |
-| 6 | I1.3 | Canonical schema finalized and validated against a sandbox extract | Identity engineering | wk 3–4 |
-| 7 | I2.1 | Workforce identity service (middleware) built in-boundary | Identity engineering | wk 4–5 |
-| 8 | I2.4 | End-to-end proof in the test tenant, including device retire and test-CA revocation | Identity engineering | wk 5–6 |
-| 9 | IG2 | Gate 2 — Pipeline proven end to end | ISSO | end of wk 6 |
-| 10 | I3.2 | Initial full sync with scoping filters; mismatches reconciled | Identity engineering | wk 6 |
-| 11 | I3.3 | Shadow mode on the pilot cohort; every difference explained | Identity engineering | wk 7 |
-| 12 | D-I4 | Let the pipeline act on the pilot cohort | ISSO | end of wk 7 |
-| 13 | I3.4 | Delta feeds live; first joiner/mover/leaver cycle closes with evidence | Identity engineering | wk 8 |
-| 14 | IG3 | Gate 3 — HR feed live for the foundation scope | ISSO | end of wk 8 |
-| 15 | I4.1 | Leaver automation on for covered populations; block and revocation intervals measured | Identity engineering | wk 8–10 |
-| 16 | I4.4 | Hand-kept groups converted to rules, shadow-compared one by one | Platform teams | wk 9–14 |
-| 17 | I4.3 | Joiner and mover automation; rehire and conversion matching validated | Identity engineering | wk 10–12 |
-| 18 | I4.5 | Access packages re-based on the supervisor of record | Identity engineering | wk 12–14 |
-| 19 | I4.6 | A full pay-period cycle with zero missed leavers; test reorganization | ISSO | wk 14–16 |
-| 20 | IG4 | Gate 4 — Lifecycle automated | ISSO | end of wk 16 |
-| 21 | D-I5 | Order of populations to cut over, aligned to the Core HCM onboarding | Executive sponsor and CIO | end of wk 16 |
-| 22 | I5.1 | Employee populations retargeted to the Entra app, one by one, evidence-gated | Identity engineering | wk 16–24 |
-| 23 | I5.2 | Contractor populations onboarded from their decided source and retargeted | Identity engineering | wk 18–24 |
-| 24 | I5.3 | OU-bound policy retired; rollback path tested once | Platform teams | wk 24–26 |
-| 25 | IG5 | Gate 5 — Populations cloud-mastered | ISSO | end of wk 26 |
+| 1 | I0.4 | Privacy basis: routine use, PIA update, minimized attribute set | Privacy officer | wk 1–5 |
+| 2 | IG1 | Gate 1 — Authority and schema signed | ISSO | end of wk 5 |
+| 3 | I2.4 | End-to-end proof in the test tenant, including device retire and test-CA revocation | Identity engineering | wk 6 |
+| 4 | IG2 | Gate 2 — Pipeline proven end to end | ISSO | end of wk 6 |
+| 5 | I3.2 | Initial full sync with scoping filters; mismatches reconciled | Identity engineering | wk 6–7 |
+| 6 | I3.3 | Shadow mode on the pilot cohort; every difference explained | Identity engineering | wk 7–8 |
+| 7 | D-I4 | Let the pipeline act on the pilot cohort | ISSO | end of wk 8 |
+| 8 | I3.4 | Delta feeds live; first joiner/mover/leaver cycle closes with evidence | Identity engineering | wk 8 |
+| 9 | IG3 | Gate 3 — HR feed live for the foundation scope | ISSO | end of wk 8 |
+| 10 | I4.1 | Leaver automation on for covered populations; block and revocation intervals measured | Identity engineering | wk 9–10 |
+| 11 | I4.4 | Hand-kept groups converted to rules, shadow-compared one by one | Platform teams | wk 10–14 |
+| 12 | I4.3 | Joiner and mover automation; rehire and conversion matching validated | Identity engineering | wk 11–12 |
+| 13 | I4.5 | Access packages re-based on the supervisor of record | Identity engineering | wk 13–14 |
+| 14 | I4.6 | A full pay-period cycle with zero missed leavers; test reorganization | ISSO | wk 15–16 |
+| 15 | IG4 | Gate 4 — Lifecycle automated | ISSO | end of wk 16 |
+| 16 | D-I5 | Order of populations to cut over, aligned to the Core HCM onboarding | Executive sponsor and CIO | end of wk 16 |
+| 17 | I5.1 | Employee populations retargeted to the Entra app, one by one, evidence-gated | Identity engineering | wk 17–24 |
+| 18 | I5.2 | Contractor populations onboarded from their decided source and retargeted | Identity engineering | wk 19–24 |
+| 19 | I5.3 | OU-bound policy retired; rollback path tested once | Platform teams | wk 25–26 |
+| 20 | IG5 | Gate 5 — Populations cloud-mastered | ISSO | end of wk 26 |
 
 : The critical path {.striped .hover}
 
@@ -79,13 +74,19 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 
 | ID | Item | Float | When |
 |---|---|---|---|
-| I0.3 | Legacy identity data to retain identified | 1 d | wk 1 |
-| D-I2 | Worker-type taxonomy and the three access-attribute code lists | 1 d | end of wk 3 |
-| I1.4 | UPN, sAMAccountName, OU placement and scoping rules | 1 d | wk 3–4 |
-| I2.3 | Joiner, mover and leaver workflows and custom task extensions | 1 d | wk 4–5 |
-| I0.4 | Privacy basis: routine use, PIA update, minimized attribute set | 2 d | wk 1–5 |
-| I2.2 | API-driven provisioning apps; least-privilege permissions; throttling sized | 3 d | wk 4 |
-| D-I1 | Enterprise person key, and how source keys map to it | 5 d | end of wk 1 |
+| I0.1 | Integration-point inventory, naming the HR-driven identity feed | 2 d | wk 1 |
+| I0.2 | Entra migration plan names HR as the source for each population | 2 d | wk 1 |
+| IG0 | Gate 0 — Inventory signed and submitted | 2 d | end of wk 1 |
+| I1.1 | Standard-attribute crosswalk and nature-of-action trigger table | 2 d | wk 2 |
+| I1.2 | Attribute authority map signed (HR's part is program decision D02) | 2 d | wk 3 |
+| I1.3 | Canonical schema finalized and validated against a sandbox extract | 2 d | wk 3–4 |
+| I2.1 | Workforce identity service (middleware) built in-boundary | 2 d | wk 4–5 |
+| I3.1 | Two provisioning agents under a gMSA with OU-scoped rights | 2 d | wk 6 |
+| I0.3 | Legacy identity data to retain identified | 3 d | wk 1 |
+| D-I2 | Worker-type taxonomy and the three access-attribute code lists | 3 d | end of wk 3 |
+| I1.4 | UPN, sAMAccountName, OU placement and scoping rules | 3 d | wk 3–4 |
+| I2.3 | Joiner, mover and leaver workflows and custom task extensions | 3 d | wk 4–5 |
+| I2.2 | API-driven provisioning apps; least-privilege permissions; throttling sized | 5 d | wk 4 |
 
 : Near-critical items {.striped .hover}
 
@@ -95,22 +96,22 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 
 | ID | Decision | Decides | Needed by | Decide by | Float | Options | If it's late |
 |---|---|---|---|---|---|---|---|
-| D-I1 | Enterprise person key, and how source keys map to it | HR, with identity engineering | I1.2 | end of wk 2 | 5 d | The HCM person number; another HR key; a minted enterprise key | The authority map can't be signed; the critical path waits |
-| D-I2 | Worker-type taxonomy and the three access-attribute code lists | HR | I1.4 | end of wk 3 | 1 d | Employee, contractor, intern, volunteer, vendor, external, each with a license, access ceiling and retention | Naming, placement and scoping rules wait |
-| D-I4 | Let the pipeline act on the pilot cohort | ISSO | I3.4 | end of wk 7 | **0 (critical)** | Act; extend shadow mode | The go-live waits, and with it the program's G1 |
+| D-I1 | Enterprise person key, and how source keys map to it | ICAM governance body, with HR and identity engineering | I1.2 | end of wk 3 | 7 d | The HCM person number; another HR key; a minted enterprise key | The authority map can't be signed; the critical path waits |
+| D-I2 | Worker-type taxonomy and the three access-attribute code lists | HR | I1.4 | end of wk 4 | 3 d | Employee, contractor, intern, volunteer, vendor, external, each with a license, access ceiling and retention | Naming, placement and scoping rules wait |
+| D-I4 | Let the pipeline act on the pilot cohort | ISSO | I3.4 | end of wk 8 | **0 (critical)** | Act; extend shadow mode | The go-live waits, and with it the program's G1 |
 | D-I5 | Order of populations to cut over, aligned to the Core HCM onboarding | Executive sponsor and CIO | I5.1 | end of wk 16 | **0 (critical)** | Follow the program's waves; follow the agency's Core HCM go-live | Retargeting can't be scheduled |
-| D-I3 | Source of authority for contractors and other non-employees | HR | I5.2 | end of wk 18 | 71 d | Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact | Contractors stay on COR spreadsheets; their cutover can't be planned |
+| D-I3 | Source of authority for contractors and other non-employees | ICAM governance body | I5.2 | end of wk 18 | 65 d | Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact | Contractors stay on COR spreadsheets; their cutover can't be planned |
 
 : Decision points, by decide-by date {.striped .hover}
 
 ## Gates
 
-Each gate is the next phase's entry condition. The approver signs it against the criteria, from evidence in the repository.
+A gate opens the work that names it as a predecessor, which is usually the next phase but not always. The approver signs it against the criteria, from evidence in the repository.
 
 | Gate | When | Approver | Criteria |
 |---|---|---|---|
 | [Gate 0 — Inventory signed and submitted](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment) | end of wk 1 | ISSO | The integration-point inventory is signed by the ISSO and submitted to the agency's HR 2.0 team |
-| [Gate 1 — Authority and schema signed](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | end of wk 4 | ISSO | Identifier decision, authority map and schema signed; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list |
+| [Gate 1 — Authority and schema signed](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | end of wk 5 | ISSO | Identifier decision, authority map and schema signed; privacy basis (routine use, PIA update, minimized attribute set) in place; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list |
 | [Gate 2 — Pipeline proven end to end](../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test) | end of wk 6 | ISSO | Joiner, mover and leaver each run end to end in the test tenant with a provenance record and a workflow run |
 | [Gate 3 — HR feed live for the foundation scope](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot) | end of wk 8 | ISSO | The observation period's differences explained and fixed; a full joiner/mover/leaver cycle on the pilot cohort closed with evidence; zero unmatched-record creations |
 | [Gate 4 — Lifecycle automated](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access) | end of wk 16 | ISSO | Zero missed leavers across a pay period; block within threshold; account-creation tickets retired for covered populations; a test reorganization propagates with zero manual changes |
@@ -126,12 +127,12 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
 | D-I1  Enterprise person key, and how source keys map to it | end of wk 1 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-DI1) | Waits for it | 3 d |
-| I1.2  Attribute authority map signed | wk 3 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I12) | Waits for it | 2 d |
+| I1.2  Attribute authority map signed (HR's part is program decision D02) | wk 3 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I12) | Waits for it | 2 d |
 | I1.5  HR data baselined; employeeId populated; orphan candidates owned | wk 2–4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I15) | Waits for it | 20 d |
-| IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-IG3) | Waits for it | 4 d |
-| IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Program master schedule](program-master-schedule.md) (X-IDL) | Waits for it | 2 d |
-| I4.3  Joiner and mover automation; rehire and conversion matching validated | wk 10–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I43) | Waits for it | 14 d |
-| IG4  Gate 4 — Lifecycle automated | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-IG4) | Waits for it | 60 d |
+| IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-IG3) | Waits for it | 2 d |
+| IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Program master schedule](program-master-schedule.md) (X-IDL) | Waits for it | 0 |
+| I4.3  Joiner and mover automation; rehire and conversion matching validated | wk 11–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I43) | Waits for it | 12 d |
+| IG4  Gate 4 — Lifecycle automated | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-IG4) | Waits for it | 58 d |
 | IG5  Gate 5 — Populations cloud-mastered | end of wk 26 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-IG5) | Reference only | — |
 
 : Plans that take a date from this one {.striped .hover}
@@ -144,11 +145,11 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| I0.1 | **[Integration-point inventory, naming the HR-driven identity feed](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment)** | Task | HR 2.0 project team point of contact | 5 | — | wk 1 | 0 |
-| I0.2 | **[Entra migration plan names HR as the source for each population](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment)** | Task | Program office | 3 | I0.1 (SS) +2 d | wk 1 | 0 |
-| I0.3 | [Legacy identity data to retain identified](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment) | Task | Records officer | 4 | — | wk 1 | 1 d |
-| I0.4 | [Privacy basis: routine use, PIA update, minimized attribute set](../books/b03-hr-identity/appendix-b-security-and-privacy.md) | Task | Privacy officer | 25 | — | wk 1–5 | 2 d |
-| IG0 | **[Gate 0 — Inventory signed and submitted](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment)** | Gate | ISSO | — | I0.1, I0.2, I0.3 | end of wk 1 | 0 |
+| I0.1 | [Integration-point inventory, naming the HR-driven identity feed](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment) | Task | HR 2.0 project team point of contact | 5 | — | wk 1 | 2 d |
+| I0.2 | [Entra migration plan names HR as the source for each population](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment) | Task | Program office | 3 | I0.1 (SS) +2 d | wk 1 | 2 d |
+| I0.3 | [Legacy identity data to retain identified](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment) | Task | Records officer | 4 | — | wk 1 | 3 d |
+| I0.4 | **[Privacy basis: routine use, PIA update, minimized attribute set](../books/b03-hr-identity/appendix-b-security-and-privacy.md)** | Task | Privacy officer | 25 | — | wk 1–5 | 0 |
+| IG0 | [Gate 0 — Inventory signed and submitted](../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment) | Gate | ISSO | — | I0.1, I0.2, I0.3 | end of wk 1 | 2 d |
 
 : Phase 0 — Program alignment {.striped .hover}
 
@@ -156,15 +157,15 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| D-I1 | [Enterprise person key, and how source keys map to it](../books/b03-hr-identity/04-attribute-authority.md) | Decision | HR, with identity engineering | — | IG0 | end of wk 1 | 5 d |
-| I1.1 | **[Standard-attribute crosswalk and nature-of-action trigger table](../books/b03-hr-identity/06-canonical-attribute-schema.md)** | Task | Identity engineering | 5 | IG0 | wk 2 | 0 |
-| I1.2 | **[Attribute authority map signed](../books/b03-hr-identity/04-attribute-authority.md)** | Task | HR | 3 | I1.1, D-I1 | wk 3 | 0 |
-| I1.3 | **[Canonical schema finalized and validated against a sandbox extract](../books/b03-hr-identity/06-canonical-attribute-schema.md)** | Task | Identity engineering | 4 | I1.2 | wk 3–4 | 0 |
-| D-I2 | [Worker-type taxonomy and the three access-attribute code lists](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Decision | HR | — | I1.2 | end of wk 3 | 1 d |
-| I1.4 | [UPN, sAMAccountName, OU placement and scoping rules](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Task | Identity engineering | 3 | D-I2 | wk 3–4 | 1 d |
-| I1.5 | [HR data baselined; employeeId populated; orphan candidates owned](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Task | HR | 12 | IG0 | wk 2–4 | 6 d |
-| I1.6 | [PIV issuing CAs' CRLs checked against Entra's limits](../books/b03-hr-identity/09-credentials-and-certificates.md) | Task | PIV credentialing office | 3 | IG0 | wk 2 | 15 d |
-| IG1 | [Gate 1 — Authority and schema signed](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Gate | ISSO | — | I1.3, I1.4, I1.5, I1.6 | end of wk 4 | 6 d |
+| D-I1 | [Enterprise person key, and how source keys map to it](../books/b03-hr-identity/04-attribute-authority.md) | Decision | ICAM governance body, with HR and identity engineering | — | IG0 | end of wk 1 | 7 d |
+| I1.1 | [Standard-attribute crosswalk and nature-of-action trigger table](../books/b03-hr-identity/06-canonical-attribute-schema.md) | Task | Identity engineering | 5 | IG0 | wk 2 | 2 d |
+| I1.2 | [Attribute authority map signed (HR's part is program decision D02)](../books/b03-hr-identity/04-attribute-authority.md) | Task | ICAM governance body | 3 | I1.1, D-I1 | wk 3 | 2 d |
+| I1.3 | [Canonical schema finalized and validated against a sandbox extract](../books/b03-hr-identity/06-canonical-attribute-schema.md) | Task | Identity engineering | 4 | I1.2 | wk 3–4 | 2 d |
+| D-I2 | [Worker-type taxonomy and the three access-attribute code lists](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Decision | HR | — | I1.2 | end of wk 3 | 3 d |
+| I1.4 | [UPN, sAMAccountName, OU placement and scoping rules](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Task | Identity engineering | 3 | D-I2 | wk 3–4 | 3 d |
+| I1.5 | [HR data baselined; employeeId populated; orphan candidates owned](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Task | HR | 12 | IG0 | wk 2–4 | 8 d |
+| I1.6 | [PIV issuing CAs' CRLs checked against Entra's limits](../books/b03-hr-identity/09-credentials-and-certificates.md) | Task | PIV credentialing office | 3 | IG0 | wk 2 | 17 d |
+| IG1 | **[Gate 1 — Authority and schema signed](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema)** | Gate | ISSO | — | I1.3, I1.4, I1.5, I1.6, I0.4 | end of wk 5 | 0 |
 
 : Phase 1 — Attribute authority and schema {.striped .hover}
 
@@ -172,10 +173,10 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| I2.1 | **[Workforce identity service (middleware) built in-boundary](../books/b03-hr-identity/05-the-provisioning-pipeline.md)** | Task | Identity engineering | 6 | I1.3 | wk 4–5 | 0 |
-| I2.2 | [API-driven provisioning apps; least-privilege permissions; throttling sized](../books/b03-hr-identity/05-the-provisioning-pipeline.md) | Task | Identity engineering | 3 | I1.3 | wk 4 | 3 d |
-| I2.3 | [Joiner, mover and leaver workflows and custom task extensions](../books/b03-hr-identity/08-joiner-mover-leaver.md) | Task | Identity engineering | 6 | I1.4 | wk 4–5 | 1 d |
-| I2.4 | **[End-to-end proof in the test tenant, including device retire and test-CA revocation](../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test)** | Task | Identity engineering | 4 | I2.1, I2.2, I2.3, IG1 | wk 5–6 | 0 |
+| I2.1 | [Workforce identity service (middleware) built in-boundary](../books/b03-hr-identity/05-the-provisioning-pipeline.md) | Task | Identity engineering | 6 | I1.3 | wk 4–5 | 2 d |
+| I2.2 | [API-driven provisioning apps; least-privilege permissions; throttling sized](../books/b03-hr-identity/05-the-provisioning-pipeline.md) | Task | Identity engineering | 3 | I1.3 | wk 4 | 5 d |
+| I2.3 | [Joiner, mover and leaver workflows and custom task extensions](../books/b03-hr-identity/08-joiner-mover-leaver.md) | Task | Identity engineering | 6 | I1.4 | wk 4–5 | 3 d |
+| I2.4 | **[End-to-end proof in the test tenant, including device retire and test-CA revocation](../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test)** | Task | Identity engineering | 4 | I2.1, I2.2, I2.3, IG1 | wk 6 | 0 |
 | IG2 | **[Gate 2 — Pipeline proven end to end](../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test)** | Gate | ISSO | — | I2.4 | end of wk 6 | 0 |
 
 : Phase 2 — Pipeline build and test {.striped .hover}
@@ -184,10 +185,10 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| I3.1 | [Two provisioning agents under a gMSA with OU-scoped rights](../books/b03-hr-identity/05-the-provisioning-pipeline.md) | Task | Platform teams | 2 | IG1 | wk 4 | 8 d |
-| I3.2 | **[Initial full sync with scoping filters; mismatches reconciled](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Task | Identity engineering | 3 | IG2, I3.1, I0.4 | wk 6 | 0 |
-| I3.3 | **[Shadow mode on the pilot cohort; every difference explained](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Task | Identity engineering | 5 | I3.2 | wk 7 | 0 |
-| D-I4 | **[Let the pipeline act on the pilot cohort](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Decision | ISSO | — | I3.3 | end of wk 7 | 0 |
+| I3.1 | [Two provisioning agents under a gMSA with OU-scoped rights](../books/b03-hr-identity/05-the-provisioning-pipeline.md) | Task | Platform teams | 2 | IG1 | wk 6 | 2 d |
+| I3.2 | **[Initial full sync with scoping filters; mismatches reconciled](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Task | Identity engineering | 3 | IG2, I3.1, I0.4 | wk 6–7 | 0 |
+| I3.3 | **[Shadow mode on the pilot cohort; every difference explained](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Task | Identity engineering | 5 | I3.2 | wk 7–8 | 0 |
+| D-I4 | **[Let the pipeline act on the pilot cohort](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Decision | ISSO | — | I3.3 | end of wk 8 | 0 |
 | I3.4 | **[Delta feeds live; first joiner/mover/leaver cycle closes with evidence](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Task | Identity engineering | 3 | D-I4 | wk 8 | 0 |
 | IG3 | **[Gate 3 — HR feed live for the foundation scope](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)** | Gate | ISSO | — | I3.4 | end of wk 8 | 0 |
 
@@ -197,12 +198,12 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| I4.1 | **[Leaver automation on for covered populations; block and revocation intervals measured](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Task | Identity engineering | 10 | IG3 | wk 8–10 | 0 |
-| I4.2 | [Exception routes: emergency terminations, litigation holds](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access) | Task | Help desk | 5 | IG3 | wk 8–9 | 25 d |
-| I4.3 | **[Joiner and mover automation; rehire and conversion matching validated](../books/b03-hr-identity/08-joiner-mover-leaver.md)** | Task | Identity engineering | 10 | I4.1 | wk 10–12 | 0 |
-| I4.4 | **[Hand-kept groups converted to rules, shadow-compared one by one](../books/b03-hr-identity/10-from-attributes-to-access.md)** | Task | Platform teams | 25 | I4.1 (SS) +5 d | wk 9–14 | 0 |
-| I4.5 | **[Access packages re-based on the supervisor of record](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Task | Identity engineering | 10 | I4.3 | wk 12–14 | 0 |
-| I4.6 | **[A full pay-period cycle with zero missed leavers; test reorganization](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Task | ISSO | 10 | I4.3, I4.4, I4.5, I4.2 | wk 14–16 | 0 |
+| I4.1 | **[Leaver automation on for covered populations; block and revocation intervals measured](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Task | Identity engineering | 10 | IG3 | wk 9–10 | 0 |
+| I4.2 | [Exception routes: emergency terminations, litigation holds](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access) | Task | Help desk | 5 | IG3 | wk 9 | 25 d |
+| I4.3 | **[Joiner and mover automation; rehire and conversion matching validated](../books/b03-hr-identity/08-joiner-mover-leaver.md)** | Task | Identity engineering | 10 | I4.1 | wk 11–12 | 0 |
+| I4.4 | **[Hand-kept groups converted to rules, shadow-compared one by one](../books/b03-hr-identity/10-from-attributes-to-access.md)** | Task | Platform teams | 25 | I4.1 (SS) +5 d | wk 10–14 | 0 |
+| I4.5 | **[Access packages re-based on the supervisor of record](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Task | Identity engineering | 10 | I4.3 | wk 13–14 | 0 |
+| I4.6 | **[A full pay-period cycle with zero missed leavers; test reorganization](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Task | ISSO | 10 | I4.3, I4.4, I4.5, I4.2 | wk 15–16 | 0 |
 | IG4 | **[Gate 4 — Lifecycle automated](../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)** | Gate | ISSO | — | I4.6 | end of wk 16 | 0 |
 
 : Phase 4 — Lifecycle automation and derived access {.striped .hover}
@@ -211,11 +212,11 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| D-I3 | [Source of authority for contractors and other non-employees](../books/b03-hr-identity/06-canonical-attribute-schema.md) | Decision | HR | — | IG1 | end of wk 4 | 71 d |
+| D-I3 | [Source of authority for contractors and other non-employees](../books/b03-hr-identity/06-canonical-attribute-schema.md) | Decision | ICAM governance body | — | IG1 | end of wk 5 | 65 d |
 | D-I5 | **[Order of populations to cut over, aligned to the Core HCM onboarding](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population)** | Decision | Executive sponsor and CIO | — | IG4 | end of wk 16 | 0 |
-| I5.1 | **[Employee populations retargeted to the Entra app, one by one, evidence-gated](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population)** | Task | Identity engineering | 40 | D-I5 | wk 16–24 | 0 |
-| I5.2 | **[Contractor populations onboarded from their decided source and retargeted](../books/b03-hr-identity/06-canonical-attribute-schema.md)** | Task | Identity engineering | 30 | D-I3, I5.1 (SS) +10 d | wk 18–24 | 0 |
-| I5.3 | **[OU-bound policy retired; rollback path tested once](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population)** | Task | Platform teams | 10 | I5.1, I5.2 | wk 24–26 | 0 |
+| I5.1 | **[Employee populations retargeted to the Entra app, one by one, evidence-gated](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population)** | Task | Identity engineering | 40 | D-I5 | wk 17–24 | 0 |
+| I5.2 | **[Contractor populations onboarded from their decided source and retargeted](../books/b03-hr-identity/06-canonical-attribute-schema.md)** | Task | Identity engineering | 30 | D-I3, I5.1 (SS) +10 d | wk 19–24 | 0 |
+| I5.3 | **[OU-bound policy retired; rollback path tested once](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population)** | Task | Platform teams | 10 | I5.1, I5.2 | wk 25–26 | 0 |
 | IG5 | **[Gate 5 — Populations cloud-mastered](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population)** | Gate | ISSO | — | I5.3 | end of wk 26 | 0 |
 
 : Phase 5 — Cutover, population by population {.striped .hover}
@@ -228,12 +229,13 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 |---|---|---|---|
 | Identity engineering | 15 | — | — |
 | ISSO | 1 | 1 | 6 |
-| HR | 2 | 2 | — |
 | Platform teams | 3 | — | — |
+| HR | 1 | 1 | — |
+| ICAM governance body | 1 | 1 | — |
 | Executive sponsor and CIO | — | 1 | — |
 | HR 2.0 project team point of contact | 1 | — | — |
-| HR, with identity engineering | — | 1 | — |
 | Help desk | 1 | — | — |
+| ICAM governance body, with HR and identity engineering | — | 1 | — |
 | PIV credentialing office | 1 | — | — |
 | Privacy officer | 1 | — | — |
 | Program office | 1 | — | — |
@@ -252,10 +254,10 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 
 | Risk | Effect on the schedule | Response |
 |---|---|---|
-| The privacy basis (routine use, PIA update) isn't ready at go-live | No production data can flow; G1 slips week for week | Start it on day one; agree the minimized attribute set first (Book 03, Appendix B) |
+| The privacy basis (routine use, PIA update) isn't ready by Gate 1 | Gate 1 can't be signed, and no production data can flow; G1 slips week for week | Start it on day one; agree the minimized attribute set first (Book 03, Appendix B) |
 | HR data is wrong at the source | The pipeline provisions drifted access faster than tickets did | Baseline and fix HR data in Phase 1, before automation (Book 03, Chapter 12) |
 | The correlation threshold isn't met on the pilot cohort | Gate 1 fails; the critical path waits | Start correlation work in week 2 and report the rate weekly |
-| The contractor source stays undecided | Contractors stay on COR spreadsheets past wave 2 | Put D-I3 on the steering committee agenda before G2 |
+| The contractor source stays undecided | Contractors stay on COR spreadsheets past wave 2 | Put D-I3 on the ICAM governance body's agenda before G2 |
 
 : Schedule risks {.striped .hover}
 

@@ -33,7 +33,7 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 
 : Plan at a glance {.striped}
 
-This plan builds the privileged half of [Book 04](../books/b04-access/index.md): the privilege tiers in [Chapter 04](../books/b04-access/04-privileged-roles-and-tiers.md), the administrator policies in the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators), PIM self-request with approval in [Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md) and [Appendix B](../books/b04-access/appendix-b-pim-role-settings.md), the reviews in [Chapter 09](../books/b04-access/09-access-governance.md), and the repository and evidence in [Chapter 10](../books/b04-access/10-access-as-code-and-evidence.md). It follows the [charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md): inventory, elevate just-in-time for one role class, reduce, govern the exceptions, evidence. It feeds the [program master schedule](program-master-schedule.md): the emergency access accounts and phishing-resistant registration it builds are G1 criteria, and its pilot is the program's PIM milestone in Phase 2.
+This plan builds the privileged half of [Book 04](../books/b04-access/index.md): the privilege tiers in [Chapter 04](../books/b04-access/04-privileged-roles-and-tiers.md), the administrator policies in the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators), PIM self-request with approval in [Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md) and [Appendix B](../books/b04-access/appendix-b-pim-role-settings.md), the reviews in [Chapter 09](../books/b04-access/09-access-governance.md), and the repository and evidence in [Chapter 10](../books/b04-access/10-access-as-code-and-evidence.md). It follows the [charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md): inventory, elevate just-in-time for one role class, reduce, govern the exceptions, evidence. It feeds the [program master schedule](program-master-schedule.md): the emergency access accounts it builds and the phishing-resistant registration it opens to Tier 0 administrators are G1 criteria, and its pilot is the program's PIM milestone in Phase 2.
 
 ## Schedule
 
@@ -41,7 +41,7 @@ This plan builds the privileged half of [Book 04](../books/b04-access/index.md):
 
 ## Critical path
 
-This project runs ahead of the program, as [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#why-this-order) intends, so what binds it early is the program's gates, not its own finish. The program's G1 (end of week 8) needs the emergency access accounts and phishing-resistant registration for administrators: they're done with ten working days to spare. The program's G2 (end of week 16) needs just-in-time elevation in use for the pilot class, this plan's Gate 2: it lands with twelve days to spare. Those margins, shown under *Links to other plans*, are the numbers to track; the float on the early decisions is measured to this plan's finish and overstates their slack. Read them against G1: the tier model, the break-glass custody and the approvers have to be settled by week 4.
+This project runs ahead of the program, as [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#why-this-order) intends, so what binds it early is the program's gates, not its own finish. The program's G1 (end of week 8) needs the emergency access accounts and phishing-resistant registration for Tier 0 administrators: they're done with ten working days to spare. The program's G2 (end of week 16) needs just-in-time elevation in use for the pilot class, this plan's Gate 2: it lands with twelve days to spare. Those margins, shown under *Links to other plans*, are the numbers to track; the float on the early decisions is measured to this plan's finish and overstates their slack. Read them against G1: the tier model, the break-glass custody and the approvers have to be settled by week 4.
 
 The computed critical path is the tail: the program's G3, then retiring the access-related Group Policy settings the library has replaced, then naming the residual standing privilege in the system security plan and taking it to the authorizing official. Inside the foundation, the order is fixed. Emergency access comes first, then the activation policy, then the role settings, because switching on approval before the emergency accounts exist is the one sequence that locks the agency out.
 
@@ -81,7 +81,7 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 
 ## Gates
 
-Each gate is the next phase's entry condition. The approver signs it against the criteria, from evidence in the repository.
+A gate opens the work that names it as a predecessor, which is usually the next phase but not always. The approver signs it against the criteria, from evidence in the repository.
 
 | Gate | When | Approver | Criteria |
 |---|---|---|---|
@@ -133,7 +133,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 |---|---|---|---|---|---|---|---|
 | D-A2 | [Emergency access credentials and custody](../books/b04-access/06-who-decides-access.md#emergency-access) | Decision | CISO | — | A0.4 | end of wk 1 | 32 d |
 | A1.1 | [Two emergency accounts built to the standard, excluded by one group, alerted and tested](../books/b04-access/08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first) | Task | Identity engineering | 5 | D-A2, X-G0 | wk 5 | 15 d |
-| A1.2 | [Phishing-resistant MFA registered for every eligible administrator](../books/b04-access/08-pim-self-request-with-approval.md#prerequisites) | Task | Identity engineering | 10 | X-G0 | wk 5–6 | 10 d |
+| A1.2 | [Phishing-resistant MFA registered for every eligible administrator, Tier 0 first (the program's G1 criterion covers Tier 0 administrators only)](../books/b04-access/08-pim-self-request-with-approval.md#prerequisites) | Task | Identity engineering | 10 | X-G0 | wk 5–6 | 10 d |
 | A1.3 | [Audit and sign-in logs exported to the workspace at 365-day retention](../books/b04-access/08-pim-self-request-with-approval.md#step-9-export-audit-records-for-retention) | Task | Identity engineering | 5 | X-G0 | wk 5 | 30 d |
 | D-A3 | [Approvers for PIM activation, by tier](../books/b04-access/08-pim-self-request-with-approval.md#approver-design-and-separation-of-duties) | Decision | CISO | — | D-A1 | end of wk 2 | 36 d |
 | A1.4 | [Approver groups built, at least two approvers per tier](../books/b04-access/08-pim-self-request-with-approval.md#step-1-build-the-approver-groups) | Task | Identity engineering | 3 | D-A3, X-G0 | wk 5 | 24 d |

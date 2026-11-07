@@ -10,15 +10,15 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devic
 4,Task,1,"E0.3 NTLM audit (stage 1) and SPN inventory, duplicates and stale owners flagged","E0.3 · Task · owner or approver: Server infrastructure
 Duration 20 working days · wk 1–4 · total float 1 d · predecessors: —
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-1-baseline-the-estate",fmw,fmw-endpoint-device,fmw-id-e0.3,task,owner-server-infrastructure,,2027-01-04,2027-01-29,6,,,,,,,
-5,Task,1,"D-E1 Path: manual, governed or retrofit","D-E1 · Decision · owner or approver: Sponsor / CIO
-Duration 0 working days · end of wk 2 · total float 24 d · predecessors: E0.1
+5,Task,1,"D-E1 Path: manual, governed or retrofit","D-E1 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 2 · total float 44 d · predecessors: E0.1
 Options: Manual (small estate or pilot, no control plane yet); governed (larger estate, or the authorizing official must sign); retrofit (estate already modernized by hand)
 If decided late: Nobody knows who holds the decision record; co-management for the pilot can't start
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#how-to-choose",fmw,fmw-endpoint-device,fmw-id-d-e1,decision,owner-sponsor-cio,,2027-01-14,2027-01-13,15,,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#how-to-choose",fmw,fmw-endpoint-device,fmw-id-d-e1,decision,owner-executive-sponsor-and-cio,,2027-01-14,2027-01-13,15,,,,,,,
 6,Task,1,EG0 Gate 0 — Observation signed off,"EG0 · Gate · owner or approver: CISO / ISSO
 Duration 0 working days · end of wk 4 · total float 1 d · predecessors: E0.1, E0.2, E0.3
 Criteria: Every linked GPO and setting inventoried; the NTLM audit window closed; SPNs inventoried with duplicates flagged; device records correlated and the loss ledger run
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#four-phases-observe-first",fmw,fmw-endpoint-device,fmw-id-eg0,gate,owner-ciso-isso,,2027-02-01,2027-01-29,10,11,12,27,41,42,43,44
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#four-phases-observe-first",fmw,fmw-endpoint-device,fmw-id-eg0,gate,owner-ciso-isso,,2027-02-01,2027-01-29,10,11,12,27,42,43,44,45
 7,Epic,,Endpoint & Device Modernization: Phase 1 — Classify and author,"Phase 1 — Classify and author of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-01-11,2027-02-26,,,,,,,,
 8,Task,7,E1.1 Every setting classified and given a disposition; a decision record per setting,"E1.1 · Task · owner or approver: Endpoint engineering
@@ -35,12 +35,12 @@ Options: Upgrade to Windows 11 before the device's wave; keep the device as an e
 If decided late: The compliance policies can't set their OS floor, so baseline authoring waits
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html",fmw,fmw-endpoint-device,fmw-id-d-e3,decision,owner-ciso-isso,,2027-02-01,2027-01-29,13,,,,,,,
 11,Task,7,D-E4 Windows provisioning for net-new devices,"D-E4 · Decision · owner or approver: Endpoint engineering
-Duration 0 working days · end of wk 4 · total float 12 d · predecessors: EG0
+Duration 0 working days · end of wk 4 · total float 32 d · predecessors: EG0
 Options: Classic Windows Autopilot, user-driven, Entra join, OEM or reseller registration with a group tag (the program's GCC default); Autopilot device preparation, with the attribute carried by the serial-number mapping table
 If decided late: New hardware has no governed path and keeps arriving as tomorrow's migration
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html#which-one-in-a-gcc-tenant",fmw,fmw-endpoint-device,fmw-id-d-e4,decision,owner-endpoint-engineering,,2027-02-01,2027-01-29,16,,,,,,,
 12,Task,7,D-E6 Update model: Windows Autopatch or program-managed rings,"D-E6 · Decision · owner or approver: CISO / ISSO
-Duration 0 working days · end of wk 4 · total float 105 d · predecessors: EG0
+Duration 0 working days · end of wk 4 · total float 123 d · predecessors: EG0
 Options: Autopatch groups configured to the program's ring table, where the license allows; Intune update rings built from SC-005
 If decided late: The Windows Update wave can't be built, and WSUS stays
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#windows-autopatch",fmw,fmw-endpoint-device,fmw-id-d-e6,decision,owner-ciso-isso,,2027-02-01,2027-01-29,34,,,,,,,
@@ -51,171 +51,176 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devic
 Duration 4 working days · wk 8 · total float 1 d · predecessors: E1.2, D-E2
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#testing-at-each-gate",fmw,fmw-endpoint-device,fmw-id-e1.3,task,owner-endpoint-engineering,,2027-02-22,2027-02-25,17,18,,,,,,
 15,Task,7,E1.4 Co-management on for the pilot collection; MDMWinsOverGP decided per population,"E1.4 · Task · owner or approver: Endpoint engineering
-Duration 10 working days · wk 4–5 · total float 17 d · predecessors: E1.1, D-E1
+Duration 10 working days · wk 4–5 · total float 37 d · predecessors: E1.1, D-E1
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-2-coexistence-planning",fmw,fmw-endpoint-device,fmw-id-e1.4,task,owner-endpoint-engineering,,2027-01-25,2027-02-05,17,,,,,,,
 16,Task,7,"E1.5 Intune-first intake: procurement fields, Autopilot registration with group tags, enrollment restrictions","E1.5 · Task · owner or approver: Endpoint engineering
-Duration 10 working days · wk 5–6 · total float 12 d · predecessors: D-E4
+Duration 10 working days · wk 5–6 · total float 32 d · predecessors: D-E4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/04-intune-first-onboarding.html#the-five-phase-process",fmw,fmw-endpoint-device,fmw-id-e1.5,task,owner-endpoint-engineering,,2027-02-01,2027-02-12,17,,,,,,,
 17,Task,7,EG1 Gate 1 — Policy library authored and reviewed,"EG1 · Gate · owner or approver: CISO / ISSO
-Duration 0 working days · end of wk 8 · total float 3 d · predecessors: E1.3, E1.4, E1.5
+Duration 0 working days · end of wk 8 · total float 23 d · predecessors: E1.3, E1.4, E1.5
 Criteria: A decision record for every setting; every required setting owned by exactly one policy; peer review signed off; lab devices report Succeeded; pilot devices co-managed and syncing
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#testing-at-each-gate",fmw,fmw-endpoint-device,fmw-id-eg1,gate,owner-ciso-isso,,2027-02-26,2027-02-25,22,,,,,,,
 18,Task,7,X-G1 Program G1 — Foundation Complete,"X-G1 · External · owner or approver: Steward
 Duration 0 working days · end of wk 8 · total float fixed date · predecessors: E1.3
 If decided late: The pilot can't start: groups, AUs and the Conditional Access baseline aren't in place
 Comes from program-master-schedule:G1 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-g1,external,owner-steward,,2027-03-01,2027-02-26,22,48,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-g1,external,owner-steward,,2027-03-01,2027-02-26,22,23,,,,,,
 19,Epic,,Endpoint & Device Modernization: Phase 2 — Pilot,"Phase 2 — Pilot of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-03-01,2027-04-23,,,,,,,,
 20,Task,19,X-D06 Program decision D06: device pattern for each pilot cohort,"X-D06 · External · owner or approver: Program office
-Duration 0 working days · end of wk 8 · total float 2 d · predecessors: —
+Duration 0 working days · end of wk 8 · total float 22 d · predecessors: —
 If decided late: Pilot devices can't move, and this plan's pilot waits
 Comes from program-master-schedule:D06 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-d06,external,owner-program-office,,2027-03-01,2027-02-26,21,22,,,,,,
-21,Task,19,D-E7 Cut date for each hybrid-joined pilot device,"D-E7 · Decision · owner or approver: Sponsor / CIO
+21,Task,19,D-E7 Cut date for each hybrid-joined pilot device,"D-E7 · Decision · owner or approver: Executive sponsor and CIO
 Duration 0 working days · end of wk 8 · total float 40 d · predecessors: X-D06
 Options: The device's refresh date; an OS upgrade; a troubleshooting rebuild (each needs a reset to reach Entra join)
 If decided late: The pilot fails its no-hybrid-join-without-a-cut-date criterion, and so does the program's G2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html#the-governed-path",fmw,fmw-endpoint-device,fmw-id-d-e7,decision,owner-sponsor-cio,,2027-03-01,2027-02-26,28,,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html#the-governed-path",fmw,fmw-endpoint-device,fmw-id-d-e7,decision,owner-executive-sponsor-and-cio,,2027-03-01,2027-02-26,28,,,,,,,
 22,Task,19,"E2.1 Pilot devices moved by pattern, with device attributes populated","E2.1 · Task · owner or approver: Endpoint engineering
-Duration 8 working days · wk 9–10 · total float 2 d · predecessors: EG1, X-G1, X-D06
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html#the-governed-path",fmw,fmw-endpoint-device,fmw-id-e2.1,task,owner-endpoint-engineering,,2027-03-01,2027-03-10,23,27,,,,,,
-23,Task,19,E2.2 Sliders at Pilot Intune; policies assigned to the 5% cohort with a 7-day grace period; GPOs left linked,"E2.2 · Task · owner or approver: Endpoint engineering
-Duration 5 working days · wk 10–11 · total float 2 d · predecessors: E2.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-4-pilot",fmw,fmw-endpoint-device,fmw-id-e2.2,task,owner-endpoint-engineering,,2027-03-11,2027-03-17,24,25,,,,,,
+Duration 8 working days · wk 12–13 · total float 7 d · predecessors: E2.2, EG1, X-G1, X-D06
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html#the-governed-path",fmw,fmw-endpoint-device,fmw-id-e2.1,task,owner-endpoint-engineering,,2027-03-22,2027-03-31,27,,,,,,,
+23,Task,19,E2.2 Sliders at Pilot Intune; policies assigned to the pilot cohort with a 7-day grace period; GPOs left linked,"E2.2 · Task · owner or approver: Endpoint engineering
+Duration 5 working days · wk 11 · total float 0 · predecessors: X-G1 +10 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-4-pilot",fmw,fmw-endpoint-device,fmw-id-e2.2,task,owner-endpoint-engineering,critical-path,2027-03-15,2027-03-19,22,24,25,,,,,
 24,Task,19,E2.3 Conflicts measured (gpresult against per-setting status); application and user tests against the baseline,"E2.3 · Task · owner or approver: Endpoint engineering
-Duration 20 working days · wk 11–15 · total float 2 d · predecessors: E2.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-4-pilot",fmw,fmw-endpoint-device,fmw-id-e2.3,task,owner-endpoint-engineering,,2027-03-18,2027-04-14,26,,,,,,,
-25,Task,19,E2.4 Compliant-device Conditional Access in report-only for the pilot; coverage reconciled,"E2.4 · Task · owner or approver: Identity team
-Duration 10 working days · wk 11–13 · total float 17 d · predecessors: E2.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#compliance-and-the-conditional-access-hand-off",fmw,fmw-endpoint-device,fmw-id-e2.4,task,owner-identity-team,,2027-03-18,2027-03-31,28,,,,,,,
+Duration 20 working days · wk 12–15 · total float 0 · predecessors: E2.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-4-pilot",fmw,fmw-endpoint-device,fmw-id-e2.3,task,owner-endpoint-engineering,critical-path,2027-03-22,2027-04-16,26,,,,,,,
+25,Task,19,E2.4 Compliant-device Conditional Access in report-only for the pilot; coverage reconciled,"E2.4 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 12–13 · total float 15 d · predecessors: E2.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#compliance-and-the-conditional-access-hand-off",fmw,fmw-endpoint-device,fmw-id-e2.4,task,owner-identity-engineering,,2027-03-22,2027-04-02,28,,,,,,,
 26,Task,19,"E2.5 First setting class retired: GPO backed up, evidence checked, links disabled on the pilot OUs","E2.5 · Task · owner or approver: Endpoint engineering
-Duration 5 working days · wk 15–16 · total float 2 d · predecessors: E2.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html#freezing-and-unlinking-gpos",fmw,fmw-endpoint-device,fmw-id-e2.5,task,owner-endpoint-engineering,,2027-04-15,2027-04-21,28,,,,,,,
+Duration 5 working days · wk 16 · total float 0 · predecessors: E2.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html#freezing-and-unlinking-gpos",fmw,fmw-endpoint-device,fmw-id-e2.5,task,owner-endpoint-engineering,critical-path,2027-04-19,2027-04-23,28,,,,,,,
 27,Task,19,E2.8 SPNs repaired for pilot applications; NTLM restriction plan per application,"E2.8 · Task · owner or approver: Application owners
-Duration 10 working days · wk 10–12 · total float 22 d · predecessors: E2.1, EG0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-3-repair-spns-before-enforcing-kerberos",fmw,fmw-endpoint-device,fmw-id-e2.8,task,owner-application-owners,,2027-03-11,2027-03-24,28,35,,,,,,
+Duration 10 working days · wk 13–15 · total float 7 d · predecessors: E2.1, EG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-3-repair-spns-before-enforcing-kerberos",fmw,fmw-endpoint-device,fmw-id-e2.8,task,owner-application-owners,,2027-04-01,2027-04-14,28,35,,,,,,
 28,Task,19,EG2 Gate 2 — Pilot clean,"EG2 · Gate · owner or approver: Endpoint engineering
-Duration 0 working days · end of wk 16 · total float 2 d · predecessors: E2.5, E2.4, E2.8, D-E7
+Duration 0 working days · end of wk 16 · total float 0 · predecessors: E2.5, E2.4, E2.8, D-E7
 Criteria: No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; an NTLM restriction plan per application
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#testing-at-each-gate",fmw,fmw-endpoint-device,fmw-id-eg2,gate,owner-endpoint-engineering,,2027-04-22,2027-04-21,29,31,36,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#testing-at-each-gate",fmw,fmw-endpoint-device,fmw-id-eg2,gate,owner-endpoint-engineering,critical-path,2027-04-26,2027-04-23,29,31,36,,,,,
 29,Task,19,X-G2 Program G2 — Pilot Clean,"X-G2 · External · owner or approver: Steward and executive sponsor
 Duration 0 working days · end of wk 16 · total float fixed date · predecessors: EG2
 If decided late: The workload waves can't start
 Comes from program-master-schedule:G2 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-g2,external,owner-steward-and-executive-sponsor,,2027-04-26,2027-04-23,31,35,52,54,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-g2,external,owner-steward-and-executive-sponsor,,2027-04-26,2027-04-23,31,35,53,55,,,,
 30,Epic,,Endpoint & Device Modernization: Phase 3 — Workload cutover,"Phase 3 — Workload cutover of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-04-22,2027-09-10,,,,,,,,
-31,Task,30,"E3.1 Wave 1, compliance policies: slider to Intune; CP-001 to CP-005 in rings, each watched 72 hours","E3.1 · Task · owner or approver: Endpoint engineering
-Duration 15 working days · wk 17–19 · total float 0 · predecessors: EG2, X-G2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.1,task,owner-endpoint-engineering,critical-path,2027-04-26,2027-05-14,32,,,,,,,
-32,Task,30,"E3.2 Wave 2, Endpoint Protection: ES-001 to ES-006; matching GPO links disabled","E3.2 · Task · owner or approver: Endpoint engineering
-Duration 15 working days · wk 20–22 · total float 0 · predecessors: E3.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.2,task,owner-endpoint-engineering,critical-path,2027-05-17,2027-06-04,33,,,,,,,
-33,Task,30,"E3.3 Wave 3, device configuration: the settings catalog profiles; matching GPO links disabled","E3.3 · Task · owner or approver: Endpoint engineering
-Duration 15 working days · wk 23–25 · total float 0 · predecessors: E3.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.3,task,owner-endpoint-engineering,critical-path,2027-06-07,2027-06-25,34,,,,,,,
-34,Task,30,"E3.4 Wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices","E3.4 · Task · owner or approver: Endpoint engineering
-Duration 15 working days · wk 26–28 · total float 0 · predecessors: E3.3, D-E6
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.4,task,owner-endpoint-engineering,critical-path,2027-06-28,2027-07-16,37,,,,,,,
+https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-04-26,2027-09-10,,,,,,,,
+31,Task,30,"E3.1 Workload wave 1, compliance policies: slider to Intune; CP-001 to CP-003 and CP-005 in rings, each watched 72 hours","E3.1 · Task · owner or approver: Endpoint engineering
+Duration 15 working days · wk 17–19 · total float 18 d · predecessors: EG2, X-G2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.1,task,owner-endpoint-engineering,,2027-04-26,2027-05-14,32,,,,,,,
+32,Task,30,"E3.2 Workload wave 2, Endpoint Protection: ES-001 to ES-006; matching GPO links disabled","E3.2 · Task · owner or approver: Endpoint engineering
+Duration 15 working days · wk 20–22 · total float 18 d · predecessors: E3.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.2,task,owner-endpoint-engineering,,2027-05-17,2027-06-04,33,,,,,,,
+33,Task,30,"E3.3 Workload wave 3, device configuration: the settings catalog profiles; matching GPO links disabled","E3.3 · Task · owner or approver: Endpoint engineering
+Duration 15 working days · wk 23–25 · total float 18 d · predecessors: E3.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.3,task,owner-endpoint-engineering,,2027-06-07,2027-06-25,34,,,,,,,
+34,Task,30,"E3.4 Workload wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices","E3.4 · Task · owner or approver: Endpoint engineering
+Duration 15 working days · wk 26–28 · total float 18 d · predecessors: E3.3, D-E6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-5-workload-cutover-in-waves",fmw,fmw-endpoint-device,fmw-id-e3.4,task,owner-endpoint-engineering,,2027-06-28,2027-07-16,37,,,,,,,
 35,Task,30,"E3.6 NTLM stage 2 per application, after owner sign-off: LM and NTLMv1 refused","E3.6 · Task · owner or approver: Application owners
-Duration 30 working days · wk 17–22 · total float 40 d · predecessors: E2.8, X-G2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-3-restrict-ntlm-in-stages",fmw,fmw-endpoint-device,fmw-id-e3.6,task,owner-application-owners,,2027-04-26,2027-06-04,38,62,,,,,,
+Duration 30 working days · wk 17–22 · total float 58 d · predecessors: E2.8, X-G2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-3-restrict-ntlm-in-stages",fmw,fmw-endpoint-device,fmw-id-e3.6,task,owner-application-owners,,2027-04-26,2027-06-04,39,63,,,,,,
 36,Task,30,E3.7 Weekly inventory reconciliation and daily drift export running; alerts set,"E3.7 · Task · owner or approver: Endpoint engineering
-Duration 10 working days · wk 16–18 · total float 62 d · predecessors: EG2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#device-inventory-reconciliation",fmw,fmw-endpoint-device,fmw-id-e3.7,task,owner-endpoint-engineering,,2027-04-22,2027-05-05,38,63,,,,,,
-37,Task,30,E3.8 Residual cleanup: remaining links disabled; tattooed preference items cleared or owned,"E3.8 · Task · owner or approver: Endpoint engineering
-Duration 10 working days · wk 29–30 · total float 0 · predecessors: E3.4
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-6-verification-and-residual-cleanup",fmw,fmw-endpoint-device,fmw-id-e3.8,task,owner-endpoint-engineering,critical-path,2027-07-19,2027-07-30,38,,,,,,,
-38,Task,30,EG3 Gate 3 — Workloads cut over,"EG3 · Gate · owner or approver: Endpoint engineering
-Duration 0 working days · end of wk 30 · total float 0 · predecessors: E3.8, E3.6, E3.7
+Duration 10 working days · wk 17–18 · total float 78 d · predecessors: EG2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#device-inventory-reconciliation",fmw,fmw-endpoint-device,fmw-id-e3.7,task,owner-endpoint-engineering,,2027-04-26,2027-05-07,39,64,,,,,,
+37,Task,30,E3.8 Residual cleanup: remaining links disabled after 7 clean days; tattooed preference items cleared or owned,"E3.8 · Task · owner or approver: Endpoint engineering
+Duration 10 working days · wk 29–30 · total float 18 d · predecessors: E3.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-6-verification-and-residual-cleanup",fmw,fmw-endpoint-device,fmw-id-e3.8,task,owner-endpoint-engineering,,2027-07-19,2027-07-30,38,39,,,,,,
+38,Task,30,X-P35 Program P3.5: GPO links off migrated OUs after 7 clean days,"X-P35 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 34 · total float fixed date · predecessors: E3.8
+If decided late: The 90-day hold on the disabled GPOs starts late, and so does their deletion
+Comes from program-master-schedule:P3.5 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-p35,external,owner-platform-teams-program,,2027-08-26,2027-08-25,61,,,,,,,
+39,Task,30,EG3 Gate 3 — Workloads cut over,"EG3 · Gate · owner or approver: Endpoint engineering
+Duration 0 working days · end of wk 30 · total float 18 d · predecessors: E3.8, E3.6, E3.7
 Criteria: Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; evidence filed
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#testing-at-each-gate",fmw,fmw-endpoint-device,fmw-id-eg3,gate,owner-endpoint-engineering,critical-path,2027-08-02,2027-07-30,60,,,,,,,
-39,Task,30,X-G3 Program G3 — Rollout Complete,"X-G3 · External · owner or approver: Executive sponsor and steering committee
-Duration 0 working days · end of wk 36 · total float 19 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#testing-at-each-gate",fmw,fmw-endpoint-device,fmw-id-eg3,gate,owner-endpoint-engineering,,2027-08-02,2027-07-30,61,,,,,,,
+40,Task,30,X-G3 Program G3 — Rollout Complete,"X-G3 · External · owner or approver: Executive sponsor and steering committee
+Duration 0 working days · end of wk 36 · total float 37 d · predecessors: —
 If decided late: Formal retirement and NTLM stage 3 can't close
 Comes from program-master-schedule:G3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-g3,external,owner-executive-sponsor-and-steering-committee,,2027-09-13,2027-09-10,61,62,63,,,,,
-40,Epic,,Endpoint & Device Modernization: Phase 4 — Servers under Azure Arc,"Phase 4 — Servers under Azure Arc of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-g3,external,owner-executive-sponsor-and-steering-committee,,2027-09-13,2027-09-10,62,63,64,,,,,
+41,Epic,,Endpoint & Device Modernization: Phase 4 — Servers under Azure Arc,"Phase 4 — Servers under Azure Arc of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-01-04,2027-07-16,,,,,,,,
-41,Task,40,"E4.1 Arc resource groups per owning team; Onboarding role to the service principal only, Resource Administrator to server operations, scoped and held through PIM","E4.1 · Task · owner or approver: Server infrastructure
-Duration 5 working days · wk 5 · total float 15 d · predecessors: EG0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#roles",fmw,fmw-endpoint-device,fmw-id-e4.1,task,owner-server-infrastructure,,2027-02-01,2027-02-05,45,,,,,,,
-42,Task,40,"E4.2 Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed","E4.2 · Task · owner or approver: Server infrastructure
-Duration 5 working days · wk 5 · total float 11 d · predecessors: EG0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#resource-groups-and-tags",fmw,fmw-endpoint-device,fmw-id-e4.2,task,owner-server-infrastructure,,2027-02-01,2027-02-05,46,,,,,,,
-43,Task,40,E4.3 Network readiness per site: Arc service tags or a private link scope; azcmagent check from a representative server,"E4.3 · Task · owner or approver: Server infrastructure
-Duration 10 working days · wk 5–6 · total float 12 d · predecessors: EG0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#network",fmw,fmw-endpoint-device,fmw-id-e4.3,task,owner-server-infrastructure,,2027-02-01,2027-02-12,48,,,,,,,
-44,Task,40,D-E5 Arc onboarding method,"D-E5 · Decision · owner or approver: Server infrastructure
-Duration 0 working days · end of wk 4 · total float 20 d · predecessors: EG0
+42,Task,41,"E4.1 Arc resource groups per owning team; Onboarding role to the service principal only, Resource Administrator to server operations, scoped and held through PIM","E4.1 · Task · owner or approver: Server infrastructure
+Duration 5 working days · wk 5 · total float 5 d · predecessors: EG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#roles",fmw,fmw-endpoint-device,fmw-id-e4.1,task,owner-server-infrastructure,,2027-02-01,2027-02-05,46,,,,,,,
+43,Task,41,"E4.2 Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed","E4.2 · Task · owner or approver: Server infrastructure
+Duration 5 working days · wk 5 · total float 1 d · predecessors: EG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#resource-groups-and-tags",fmw,fmw-endpoint-device,fmw-id-e4.2,task,owner-server-infrastructure,,2027-02-01,2027-02-05,47,,,,,,,
+44,Task,41,E4.3 Network readiness per site: Arc service tags or a private link scope; azcmagent check from a representative server,"E4.3 · Task · owner or approver: Server infrastructure
+Duration 10 working days · wk 5–6 · total float 2 d · predecessors: EG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#network",fmw,fmw-endpoint-device,fmw-id-e4.3,task,owner-server-infrastructure,,2027-02-01,2027-02-12,49,,,,,,,
+45,Task,41,D-E5 Arc onboarding method,"D-E5 · Decision · owner or approver: Server infrastructure
+Duration 0 working days · end of wk 4 · total float 10 d · predecessors: EG0
 Options: A certificate-based service principal through the tool the server team already runs (Configuration Manager, Ansible or Group Policy); the portal script for a handful of servers or a pilot; Arc-enabled VMware vSphere; the multicloud connector for AWS
 If decided late: The pilot server wave can't create its credential
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#choose-a-method",fmw,fmw-endpoint-device,fmw-id-d-e5,decision,owner-server-infrastructure,,2027-02-01,2027-01-29,45,,,,,,,
-45,Task,40,"E4.4 Certificate-based onboarding service principal at resource-group scope, created as a recorded change and handed to the chosen tool","E4.4 · Task · owner or approver: Server infrastructure
-Duration 2 working days · wk 6 · total float 15 d · predecessors: D-E5, E4.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#create-the-onboarding-service-principal",fmw,fmw-endpoint-device,fmw-id-e4.4,task,owner-server-infrastructure,,2027-02-08,2027-02-09,48,,,,,,,
-46,Task,40,"E4.5 Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists","E4.5 · Task · owner or approver: Server infrastructure
-Duration 10 working days · wk 6–7 · total float 11 d · predecessors: E4.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#the-day-one-baseline",fmw,fmw-endpoint-device,fmw-id-e4.5,task,owner-server-infrastructure,,2027-02-08,2027-02-19,49,,,,,,,
-47,Task,40,"E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist","E4.6 · Task · owner or approver: Server infrastructure
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#choose-a-method",fmw,fmw-endpoint-device,fmw-id-d-e5,decision,owner-server-infrastructure,,2027-02-01,2027-01-29,46,,,,,,,
+46,Task,41,"E4.4 Certificate-based onboarding service principal at resource-group scope, created as a recorded change and handed to the chosen tool","E4.4 · Task · owner or approver: Server infrastructure
+Duration 2 working days · wk 6 · total float 5 d · predecessors: D-E5, E4.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#create-the-onboarding-service-principal",fmw,fmw-endpoint-device,fmw-id-e4.4,task,owner-server-infrastructure,,2027-02-08,2027-02-09,49,,,,,,,
+47,Task,41,"E4.5 Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists","E4.5 · Task · owner or approver: Server infrastructure
+Duration 10 working days · wk 6–7 · total float 1 d · predecessors: E4.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#the-day-one-baseline",fmw,fmw-endpoint-device,fmw-id-e4.5,task,owner-server-infrastructure,,2027-02-08,2027-02-19,50,,,,,,,
+48,Task,41,"E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist","E4.6 · Task · owner or approver: Server infrastructure
 Duration 5 working days · wk 1 · total float 135 d · predecessors: —
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#extended-security-updates",fmw,fmw-endpoint-device,fmw-id-e4.6,task,owner-server-infrastructure,,2027-01-04,2027-01-08,56,,,,,,,
-48,Task,40,"E4.7 Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set","E4.7 · Task · owner or approver: Server infrastructure
-Duration 4 working days · wk 9 · total float 2 d · predecessors: X-G1, E4.3, E4.4
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#connect",fmw,fmw-endpoint-device,fmw-id-e4.7,task,owner-server-infrastructure,,2027-03-01,2027-03-04,49,,,,,,,
-49,Task,40,"E4.8 Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Endpoint onboarded","E4.8 · Task · owner or approver: Server infrastructure
-Duration 4 working days · wk 9–10 · total float 2 d · predecessors: E4.7, E4.5
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#the-day-one-baseline",fmw,fmw-endpoint-device,fmw-id-e4.8,task,owner-server-infrastructure,,2027-03-05,2027-03-10,50,51,,,,,,
-50,Task,40,X-P29 Pilot servers under Arc with machine configuration (program P2.9),"X-P29 · External · owner or approver: Platform teams (program)
-Duration 0 working days · end of wk 10 · total float fixed date · predecessors: E4.8
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#extended-security-updates",fmw,fmw-endpoint-device,fmw-id-e4.6,task,owner-server-infrastructure,,2027-01-04,2027-01-08,57,,,,,,,
+49,Task,41,"E4.7 Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set","E4.7 · Task · owner or approver: Server infrastructure
+Duration 4 working days · wk 7 · total float 2 d · predecessors: E4.3, E4.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#connect",fmw,fmw-endpoint-device,fmw-id-e4.7,task,owner-server-infrastructure,,2027-02-15,2027-02-18,50,,,,,,,
+50,Task,41,"E4.8 Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Servers Plan 2 onboarded","E4.8 · Task · owner or approver: Server infrastructure
+Duration 4 working days · wk 8 · total float 1 d · predecessors: E4.7, E4.5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#the-day-one-baseline",fmw,fmw-endpoint-device,fmw-id-e4.8,task,owner-server-infrastructure,,2027-02-22,2027-02-25,51,52,,,,,,
+51,Task,41,X-P113 Pilot servers connected through Arc with machine configuration applied (program P1.13),"X-P113 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 8 · total float fixed date · predecessors: E4.8
 If decided late: The program's pilot has no governed servers, and the Data Platform plan's pilot SQL Server host has no Arc pattern to follow
-Comes from program-master-schedule:P2.9 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-p29,external,owner-platform-teams-program,,2027-03-15,2027-03-12,,,,,,,,
-51,Task,40,"E4.9 Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)","E4.9 · Task · owner or approver: Server infrastructure
-Duration 3 working days · wk 10–11 · total float 34 d · predecessors: E4.8
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#rollback",fmw,fmw-endpoint-device,fmw-id-e4.9,task,owner-server-infrastructure,,2027-03-11,2027-03-15,52,,,,,,,
-52,Task,40,"E4.10 Estate waves: each creates its credential, connects, attests, attaches the baseline, verifies and closes by removing what onboarding needed","E4.10 · Task · owner or approver: Server infrastructure
+Comes from program-master-schedule:P1.13 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-p113,external,owner-platform-teams-program,,2027-03-01,2027-02-26,,,,,,,,
+52,Task,41,"E4.9 Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)","E4.9 · Task · owner or approver: Server infrastructure
+Duration 3 working days · wk 8–9 · total float 43 d · predecessors: E4.8
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#rollback",fmw,fmw-endpoint-device,fmw-id-e4.9,task,owner-server-infrastructure,,2027-02-26,2027-03-02,53,,,,,,,
+53,Task,41,"E4.10 Estate waves: each creates its credential, connects, attests, attaches the baseline, verifies and closes by removing what onboarding needed","E4.10 · Task · owner or approver: Server infrastructure
 Duration 50 working days · wk 17–26 · total float 5 d · predecessors: X-G2, E4.9
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#onboarding",fmw,fmw-endpoint-device,fmw-id-e4.10,task,owner-server-infrastructure,,2027-04-26,2027-07-02,53,55,56,,,,,
-53,Task,40,E4.11 Update Manager across the estate: periodic assessment on every server; scheduled patching in maintenance windows scoped by PatchGroup,"E4.11 · Task · owner or approver: Server infrastructure
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#onboarding",fmw,fmw-endpoint-device,fmw-id-e4.10,task,owner-server-infrastructure,,2027-04-26,2027-07-02,54,56,57,,,,,
+54,Task,41,E4.11 Update Manager across the estate: periodic assessment on every server; scheduled patching in maintenance windows scoped by PatchGroup,"E4.11 · Task · owner or approver: Server infrastructure
 Duration 10 working days · wk 19–20 · total float 40 d · predecessors: E4.10 (SS) +10 d
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#azure-update-manager",fmw,fmw-endpoint-device,fmw-id-e4.11,task,owner-server-infrastructure,,2027-05-10,2027-05-21,56,,,,,,,
-54,Task,40,"E4.12 Servers Arc doesn't reach recorded and tiered; Windows Server 2012 hosts migrated, upgraded or isolated with the risk accepted","E4.12 · Task · owner or approver: Server infrastructure
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#azure-update-manager",fmw,fmw-endpoint-device,fmw-id-e4.11,task,owner-server-infrastructure,,2027-05-10,2027-05-21,57,,,,,,,
+55,Task,41,"E4.12 Servers Arc doesn't reach recorded and tiered; Windows Server 2012 hosts migrated, upgraded or isolated with the risk accepted","E4.12 · Task · owner or approver: Server infrastructure
 Duration 15 working days · wk 17–19 · total float 45 d · predecessors: X-G2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#which-servers-arc-reaches",fmw,fmw-endpoint-device,fmw-id-e4.12,task,owner-server-infrastructure,,2027-04-26,2027-05-14,56,,,,,,,
-55,Task,40,"E4.13 Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported","E4.13 · Task · owner or approver: Server infrastructure
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#which-servers-arc-reaches",fmw,fmw-endpoint-device,fmw-id-e4.12,task,owner-server-infrastructure,,2027-04-26,2027-05-14,57,,,,,,,
+56,Task,41,"E4.13 Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported","E4.13 · Task · owner or approver: Server infrastructure
 Duration 5 working days · wk 27 · total float 5 d · predecessors: E4.10
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#monitoring-the-server-estate",fmw,fmw-endpoint-device,fmw-id-e4.13,task,owner-server-infrastructure,,2027-07-05,2027-07-09,56,,,,,,,
-56,Task,40,EG4 Gate 4 — Servers under Arc,"EG4 · Gate · owner or approver: CISO / ISSO
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#monitoring-the-server-estate",fmw,fmw-endpoint-device,fmw-id-e4.13,task,owner-server-infrastructure,,2027-07-05,2027-07-09,57,,,,,,,
+57,Task,41,EG4 Gate 4 — Servers under Arc,"EG4 · Gate · owner or approver: CISO / ISSO
 Duration 0 working days · end of wk 27 · total float 5 d · predecessors: E4.10, E4.11, E4.12, E4.13, E4.6
 Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#what-this-chapter-establishes",fmw,fmw-endpoint-device,fmw-id-eg4,gate,owner-ciso-isso,,2027-07-12,2027-07-09,57,63,,,,,,
-57,Task,40,X-P37 Every server Arc-connected or excepted (program P3.7),"X-P37 · External · owner or approver: Platform teams (program)
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html#what-this-chapter-establishes",fmw,fmw-endpoint-device,fmw-id-eg4,gate,owner-ciso-isso,,2027-07-12,2027-07-09,58,64,,,,,,
+58,Task,41,X-P37 Every server Arc-connected or excepted (program P3.7),"X-P37 · External · owner or approver: Platform teams (program)
 Duration 0 working days · end of wk 28 · total float fixed date · predecessors: EG4
 If decided late: The program's G3 fails its every-server-Arc-connected-or-excepted criterion
 Comes from program-master-schedule:P3.7 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-p37,external,owner-platform-teams-program,,2027-07-19,2027-07-16,,,,,,,,
-58,Epic,,Endpoint & Device Modernization: Phase 5 — Formal retirement,"Phase 5 — Formal retirement of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-04-26,2027-11-04,,,,,,,,
-59,Task,58,X-D08 Program decision D08: end dates for legacy authentication and NTLM,"X-D08 · External · owner or approver: Authorizing official
-Duration 0 working days · end of wk 16 · total float 119 d · predecessors: —
+59,Epic,,Endpoint & Device Modernization: Phase 5 — Formal retirement,"Phase 5 — Formal retirement of the sample plan Endpoint & Device Modernization: Group Policy to Intune and Azure Arc.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-endpoint-device,phase,,,,2027-04-26,2027-11-30,,,,,,,,
+60,Task,59,X-D08 Program decision D08: end dates for legacy authentication and NTLM,"X-D08 · External · owner or approver: Authorizing official
+Duration 0 working days · end of wk 16 · total float 137 d · predecessors: —
 If decided late: NTLM stage 3 has no date for application owners to plan against
 Comes from program-master-schedule:D08 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-d08,external,owner-authorizing-official,,2027-04-26,2027-04-23,62,,,,,,,
-60,Task,58,E5.1 Migrated GPOs disabled and held 90 days as the rollback net,"E5.1 · Task · owner or approver: Endpoint engineering
-Duration 64 working days · wk 31–43 · total float 0 · predecessors: EG3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-7-formal-retirement",fmw,fmw-endpoint-device,fmw-id-e5.1,task,owner-endpoint-engineering,critical-path,2027-08-02,2027-10-28,61,,,,,,,
-61,Task,58,E5.2 Backups restore-tested; GPOs archived and deleted; exception register closed,"E5.2 · Task · owner or approver: Endpoint engineering
-Duration 5 working days · wk 43–44 · total float 0 · predecessors: E5.1, X-G3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-7-formal-retirement",fmw,fmw-endpoint-device,fmw-id-e5.2,task,owner-endpoint-engineering,critical-path,2027-10-29,2027-11-04,64,,,,,,,
-62,Task,58,E5.3 NTLM stage 3: deny all; exceptions removed as each dependency retires,"E5.3 · Task · owner or approver: Application owners
-Duration 20 working days · wk 37–40 · total float 19 d · predecessors: E3.6, X-D08, X-G3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-3-restrict-ntlm-in-stages",fmw,fmw-endpoint-device,fmw-id-e5.3,task,owner-application-owners,,2027-09-13,2027-10-08,64,,,,,,,
-63,Task,58,"E5.4 Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2, workstations and servers, handed to the ISSO","E5.4 · Task · owner or approver: Endpoint engineering
-Duration 5 working days · wk 37 · total float 34 d · predecessors: E3.7, EG4, X-G3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#reporting-and-the-evidence-an-assessor-reads",fmw,fmw-endpoint-device,fmw-id-e5.4,task,owner-endpoint-engineering,,2027-09-13,2027-09-17,64,,,,,,,
-64,Task,58,EG5 Gate 5 — GPOs retired,"EG5 · Gate · owner or approver: CISO / ISSO
-Duration 0 working days · end of wk 44 · total float 0 · predecessors: E5.2, E5.3, E5.4
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-endpoint-device,fmw-id-x-d08,external,owner-authorizing-official,,2027-04-26,2027-04-23,63,,,,,,,
+61,Task,59,E5.1 Migrated GPOs disabled and held 90 days as the rollback net,"E5.1 · Task · owner or approver: Endpoint engineering
+Duration 64 working days · wk 34–47 · total float 0 · predecessors: EG3, X-P35
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-7-formal-retirement",fmw,fmw-endpoint-device,fmw-id-e5.1,task,owner-endpoint-engineering,critical-path,2027-08-26,2027-11-23,62,,,,,,,
+62,Task,59,E5.2 Backups restore-tested; GPOs archived and deleted; exception register closed,"E5.2 · Task · owner or approver: Endpoint engineering
+Duration 5 working days · wk 47–48 · total float 0 · predecessors: E5.1, X-G3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#phase-7-formal-retirement",fmw,fmw-endpoint-device,fmw-id-e5.2,task,owner-endpoint-engineering,critical-path,2027-11-24,2027-11-30,65,,,,,,,
+63,Task,59,E5.3 NTLM stage 3: deny all; exceptions removed as each dependency retires,"E5.3 · Task · owner or approver: Application owners
+Duration 20 working days · wk 37–40 · total float 37 d · predecessors: E3.6, X-D08, X-G3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html#phase-3-restrict-ntlm-in-stages",fmw,fmw-endpoint-device,fmw-id-e5.3,task,owner-application-owners,,2027-09-13,2027-10-08,65,,,,,,,
+64,Task,59,"E5.4 Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2, workstations and servers, handed to the ISSO","E5.4 · Task · owner or approver: Endpoint engineering
+Duration 5 working days · wk 37 · total float 52 d · predecessors: E3.7, EG4, X-G3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html#reporting-and-the-evidence-an-assessor-reads",fmw,fmw-endpoint-device,fmw-id-e5.4,task,owner-endpoint-engineering,,2027-09-13,2027-09-17,65,,,,,,,
+65,Task,59,EG5 Gate 5 — GPOs retired,"EG5 · Gate · owner or approver: CISO / ISSO
+Duration 0 working days · end of wk 48 · total float 0 · predecessors: E5.2, E5.3, E5.4
 Criteria: No GPO in scope linked to an OU with migrated devices; every retired GPO backed up with a decision record; only dated exceptions remain, each with an owner and review date; workload sliders at Intune
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html#the-end-state",fmw,fmw-endpoint-device,fmw-id-eg5,gate,owner-ciso-isso,critical-path,2027-11-05,2027-11-04,,,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html#the-end-state",fmw,fmw-endpoint-device,fmw-id-eg5,gate,owner-ciso-isso,critical-path,2027-12-01,2027-11-30,,,,,,,,
