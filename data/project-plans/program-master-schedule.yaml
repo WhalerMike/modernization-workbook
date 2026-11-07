@@ -61,7 +61,7 @@ tasks:
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14"}
   - {id: P0.4, phase: 0, name: "Read-only assessment run and committed", dur: 10, after: [P0.2, P0.3], owner: "Program office",
      source: "../books/b00-orientation/08-pre-flight-and-assessment.md"}
-  - {id: P0.5, phase: 0, name: "Transactions profiled for applications proposed to move from their data", dur: 8, after: [P0.1], owner: "App owners",
+  - {id: P0.5, phase: 0, name: "Transactions profiled for applications proposed to move from their data", dur: 8, after: [P0.1], owner: "Application owners",
      source: "../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation"}
   - {id: P0.6, phase: 0, name: "Change process asks whether each change adds an AD dependency; exceptions to the AO", dur: 3, after: [P0.1], owner: "Program office",
      source: "../books/b13-governance/04-change-control-and-provenance.md#no-new-dependencies-on-active-directory"}
@@ -109,8 +109,10 @@ tasks:
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#scope"}
   - {id: P1.12, phase: 1, name: "Design review approved (M-021)", dur: 2, after: [P1.3, P1.7, P1.8, D05], owner: "Steward",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
-  - {id: G1, kind: gate, phase: 1, name: "G1 — Foundation Complete", after: [P1.12, X-IDL, P1.6, P1.9, P1.10, P1.11], owner: "Steward",
-     criteria: "Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed",
+  - {id: P1.13, phase: 1, name: "Pilot servers connected through Arc with machine configuration applied (M-030)", dur: 10, after: ["G0+10"], owner: "Platform teams",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md"}
+  - {id: G1, kind: gate, phase: 1, name: "G1 — Foundation Complete", after: [P1.12, X-IDL, P1.6, P1.9, P1.10, P1.11, P1.13], owner: "Steward",
+     criteria: "Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; pilot servers connected through Arc; FIDO2 and passkeys open to Tier 0 administrators; High findings closed",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete"}
   # ---------------------------------------------------------------- Phase 2
   - {id: D06, kind: decision, phase: 2, name: "Device pattern for each pilot cohort", after: [G1], owner: "Program office",
@@ -122,7 +124,7 @@ tasks:
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
   - {id: P2.3, phase: 2, name: "Pilot devices moved by pattern (M-023)", dur: 8, after: [P2.2, D06], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
-  - {id: P2.4, phase: 2, name: "First migrated GPOs unlinked from the pilot OUs", dur: 5, after: [P2.3], owner: "Platform teams",
+  - {id: P2.4, phase: 2, name: "First migrated GPOs unlinked from the pilot OUs, after 20 days of testing beside the linked GPOs", dur: 5, after: ["P2.2+20"], owner: "Platform teams",
      source: "../books/b05-devices/07-the-gpo-sunset-program.md"}
   - {id: P2.5, phase: 2, name: "PIM for every pilot administrator (M-026)", dur: 5, after: [P2.1], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
@@ -132,15 +134,13 @@ tasks:
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
   - {id: P2.8, phase: 2, name: "Certificate-based authentication for PIV and CAC holders (M-029)", dur: 8, after: [P2.1], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
-  - {id: P2.9, phase: 2, name: "Pilot servers under Arc with machine configuration (M-030)", dur: 10, after: [G1], owner: "Platform teams",
-     source: "../books/b05-devices/09-servers-under-azure-arc.md"}
   - {id: P2.10, phase: 2, name: "Rollback rehearsed surface by surface", dur: 3, after: [P2.3], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface"}
-  - {id: P2.11, phase: 2, name: "Drift-clean hold (14 days, illustrative); success criteria met (M-031)", dur: 10, after: [P2.4, P2.5, P2.6, P2.7, P2.8, P2.9, P2.10], owner: "Program office",
+  - {id: P2.11, phase: 2, name: "Drift-clean hold (14 days, illustrative); success criteria met (M-031)", dur: 10, after: [P2.5, P2.6, P2.7, P2.8, P2.10], owner: "Program office",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
   - {id: P2.12, phase: 2, name: "Retrospective and runbook updates committed", dur: 5, after: ["P2.11:SS+5"], owner: "Program office",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
-  - {id: G2, kind: gate, phase: 2, name: "G2 — Pilot Clean", after: [P2.11, P2.12], owner: "Steward and executive sponsor (co-signed)",
+  - {id: G2, kind: gate, phase: 2, name: "G2 — Pilot Clean", after: [P2.11, P2.12, P2.4], owner: "Steward and executive sponsor (co-signed)",
      criteria: "Zero drift for the hold period; no AD-only users and no hybrid-joined PC without a cut date; no unresolved rollback trigger; retrospective committed",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
   # ---------------------------------------------------------------- Phase 3
@@ -168,17 +168,17 @@ tasks:
   - {id: D08, kind: decision, phase: 4, name: "End dates for legacy authentication and NTLM", after: [G2], owner: "Authorizing official",
      options: "A dated end per protocol; a dated, risk-accepted exception per application", late: "Application owners have no date to plan against; SPN retirement slips",
      source: "../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program"}
-  - {id: P4.1, phase: 4, name: "Migrated GPOs retired", dur: 5, after: [G3], owner: "Platform teams",
+  - {id: P4.1, phase: 4, name: "Migrated GPOs disabled and held as the rollback net (deletion follows the 90-day hold: Endpoint plan E5.2)", dur: 5, after: [G3], owner: "Platform teams",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
   - {id: P4.2, phase: 4, name: "OU-based security groups retired", dur: 5, after: [P4.1], owner: "Platform teams",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
   - {id: P4.3, phase: 4, name: "AD-integrated DNS zones moved, except the domain's own zones", dur: 15, after: [G3], owner: "Platform teams",
      source: "../books/b08-ddi/10-migration-sequence.md"}
-  - {id: P4.4, phase: 4, name: "AD-authorized DHCP retired", dur: 5, after: [P4.3], owner: "Platform teams",
+  - {id: P4.4, phase: 4, name: "DHCP scopes moved off the AD-authorized servers (de-authorizing them is the Network plan's D-N12)", dur: 5, after: [P4.3], owner: "Platform teams",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
   - {id: P4.5, phase: 4, name: "User and device issuance off AD CS; smart-card logon GPO retired", dur: 15, after: [G3], owner: "Platform teams",
      source: "../books/b07-pki/07-coexistence-and-migration.md"}
-  - {id: P4.6, phase: 4, name: "AD-bound service principal names migrated, retired or islanded, app by app", dur: 30, after: [G3, D08], owner: "App owners",
+  - {id: P4.6, phase: 4, name: "AD-bound service principal names migrated, retired or islanded, app by app", dur: 30, after: [G3, D08], owner: "Application owners",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
   - {id: P4.7, phase: 4, name: "AD authentication volume measured below the agreed threshold", dur: 10, after: [P4.6, P4.2, P4.4, P4.5], owner: "Program office",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}

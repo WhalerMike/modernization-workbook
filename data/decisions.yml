@@ -626,7 +626,8 @@
   sources: []
   pages: [docs/research/index.md]
   prs: [107, 109]
-  status: settled
+  status: superseded
+  superseded_by: WD-103
 
 - id: WD-049
   date: 2026-10-22
@@ -739,6 +740,7 @@
   pages: [docs/books/guides/ttm-servicenow-sailpoint.md, docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md, docs/research/index.md]
   prs: [107, 137, 138, 143]
   status: settled
+  note: 'Research was retired by WD-103, so the vendor-named companions no longer live there: each now sits in Guides, Training, Reference, Evaluations or Explainers by type, still labeled as an example and not an endorsement.'
 
 - id: WD-058
   date: 2026-10-24
@@ -1566,7 +1568,7 @@
   question: In what order does the orphan rule act on a non-person identity nobody will own?
   options: ['Give the office 30 days to find an owner, then suspend (the implementation guide''s wording)', 'Disable once the finding is confirmed, then a 30-day claim window (plan decision D-N2)']
   choice: Disable first, then a 30-day claim window in which the office names an owner or the identity is retired. The implementation guide changes to match the plan and Chapter 02.
-  rationale: The plan's decision D-N2 and Chapter 02 already used this order, taken from the orphan rule in Access and Privilege, Chapter 06. The identity is disabled, not deleted, so a claim within the window can restore it.
+  rationale: The plan's decision D-N2 and Chapter 02 already used this order. Disable-first is a non-person identity rule, not Book 04's. Access and Privilege, Chapter 06 gives the office 30 days and then suspends at day 31, which is the option rejected here. The identity is disabled, not deleted, so a claim within the window can restore it.
   basis: workbook-design
   sources: []
   pages: [docs/books/guides/non-person-identity-implementation.md, docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md, docs/project-plans/non-person-identity.md, docs/books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps]

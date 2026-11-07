@@ -37,7 +37,7 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-acces
 11,Task,9,"A1.1 Two emergency accounts built to the standard, excluded by one group, alerted and tested","A1.1 · Task · owner or approver: Identity engineering
 Duration 5 working days · wk 5 · total float 15 d · predecessors: D-A2, X-G0
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-0-establish-emergency-access-accounts-first",fmw,fmw-privileged-access,fmw-id-a1.1,task,owner-identity-engineering,,2027-02-01,2027-02-05,16,22,,,
-12,Task,9,A1.2 Phishing-resistant MFA registered for every eligible administrator,"A1.2 · Task · owner or approver: Identity engineering
+12,Task,9,"A1.2 Phishing-resistant MFA registered for every eligible administrator, Tier 0 first (the program's G1 criterion covers Tier 0 administrators only)","A1.2 · Task · owner or approver: Identity engineering
 Duration 10 working days · wk 5–6 · total float 10 d · predecessors: X-G0
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#prerequisites",fmw,fmw-privileged-access,fmw-id-a1.2,task,owner-identity-engineering,,2027-02-01,2027-02-12,16,22,,,
 13,Task,9,A1.3 Audit and sign-in logs exported to the workspace at 365-day retention,"A1.3 · Task · owner or approver: Identity engineering

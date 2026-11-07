@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **144** workbook decisions: 141 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
+There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -81,7 +81,7 @@ There are **144** workbook decisions: 141 settled, 0 challenged and 3 superseded
 | [WD-045](#wd-045) | 2026-10-21 | Are emergency access accounts excluded from Conditional Access policies? | Microsoft Learn | settled |
 | [WD-046](#wd-046) | 2026-10-22 | Who turns off an orphaned AI agent identity, and who sponsors one? | Workbook design | settled |
 | [WD-047](#wd-047) | 2026-10-22 | How long does a new policy run in report-only mode before enforcement? | Workbook design | settled |
-| [WD-048](#wd-048) | 2026-10-22 | Where does material go that is not yet reviewed enough to join the books? | Workbook design | settled |
+| [WD-048](#wd-048) | 2026-10-22 | Where does material go that is not yet reviewed enough to join the books? | Workbook design | superseded by WD-103 |
 | [WD-049](#wd-049) | 2026-10-22 | How often does the narration name the workbook? | Workbook design | superseded by WD-054 |
 | [WD-050](#wd-050) | 2026-10-23 | Which federal frameworks and services are in scope for the program? | External requirement | settled |
 | [WD-051](#wd-051) | 2026-10-23 | How do wide tables and diagrams appear in Word and web editions? | Workbook design | settled |
@@ -948,8 +948,9 @@ There are **144** workbook decisions: 141 settled, 0 challenged and 3 superseded
 | **Sources** | None external: the choice rests on the pages it shaped. |
 | **Pages affected** | [Research has moved](../research/index.md) |
 | **Date** | 2026-10-22 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | [#107](https://github.com/WhalerMike/modernization-workbook/pull/107), [#109](https://github.com/WhalerMike/modernization-workbook/pull/109) |
+| **Superseded by** | [WD-103](#wd-103): How should the workbook's pages be organized as the number of guides, labs and evaluations grows? |
 
 [Agree, disagree or send evidence on WD-048](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-048%3A+)
 
@@ -1095,6 +1096,7 @@ There are **144** workbook decisions: 141 settled, 0 challenged and 3 superseded
 | **Date** | 2026-10-24 |
 | **Status** | settled |
 | **Defined in** | [#107](https://github.com/WhalerMike/modernization-workbook/pull/107), [#137](https://github.com/WhalerMike/modernization-workbook/pull/137), [#138](https://github.com/WhalerMike/modernization-workbook/pull/138), [#143](https://github.com/WhalerMike/modernization-workbook/pull/143) |
+| **Note** | Research was retired by [WD-103](#wd-103), so the vendor-named companions no longer live there: each now sits in Guides, Training, Reference, Evaluations or Explainers by type, still labeled as an example and not an endorsement. |
 
 [Agree, disagree or send evidence on WD-057](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-057%3A+)
 
@@ -2129,7 +2131,7 @@ There are **144** workbook decisions: 141 settled, 0 challenged and 3 superseded
 | **Plan decision** | [D-N2](../project-plans/non-person-identity.md#decision-points) in the non person identity plan |
 | **Options considered** | Give the office 30 days to find an owner, then suspend (the implementation guide's wording); Disable once the finding is confirmed, then a 30-day claim window (plan decision D-N2) |
 | **Choice** | Disable first, then a 30-day claim window in which the office names an owner or the identity is retired. The implementation guide changes to match the plan and Chapter 02. |
-| **Rationale** | The plan's decision D-N2 and Chapter 02 already used this order, taken from the orphan rule in Access and Privilege, Chapter 06. The identity is disabled, not deleted, so a claim within the window can restore it. |
+| **Rationale** | The plan's decision D-N2 and Chapter 02 already used this order. Disable-first is a non-person identity rule, not *Access and Privilege*'s. Access and Privilege, Chapter 06 gives the office 30 days and then suspends at day 31, which is the option rejected here. The identity is disabled, not deleted, so a claim within the window can restore it. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
 | **Pages affected** | [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Chapter 02 — Ownership and the Orphan Rule](../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md), [Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents](../project-plans/non-person-identity.md), [Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps) |
@@ -2518,7 +2520,7 @@ Defined in [the plan's decision points](../project-plans/attribute-driven-migrat
 | D-A5 | The persona set the Conditional Access library targets | CISO | The program's personas, built from the worker type and account type codes; personas plus division-specific overlays; fewer personas with more exclusions (not recommended) | [Source chapter](../books/b04-access/03-the-conditional-access-model.md#naming-and-the-persona-model) | Left to the agency |
 | D-A6 | Required affinity binding for PIV and CAC | CISO | High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer | [Source chapter](../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity) | Left to the agency |
 | D-A7 | Who writes the binding after AD | ICAM governance body | The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale) | [Source chapter](../books/guides/attribute-driven-migration.md#pki-binding) | Left to the agency |
-| D-A8 | Drift severity and response times | CISO | The program's classes (missing identity, stale access, orphan, attribute drift, unauthorized write, credential drift, schema drift) with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots | [Source chapter](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) | Left to the agency |
+| D-A8 | Drift severity and response times | CISO | *HR-Driven Identity*'s classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, *Governance, Drift and Evidence*'s five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots | [Source chapter](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) | Left to the agency |
 
 : Attribute-Driven Migration: decision points {.striped .hover}
 
@@ -2563,12 +2565,12 @@ Defined in [the plan's decision points](../project-plans/endpoint-device.md#deci
 
 | ID | Decision | Decides | Options | Basis | Workbook decision |
 |---|---|---|---|---|---|
-| D-E1 | Path: manual, governed or retrofit | Sponsor / CIO | Manual (small estate or pilot, no control plane yet); governed (larger estate, or the authorizing official must sign); retrofit (estate already modernized by hand) | [Source chapter](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#how-to-choose) | Left to the agency |
+| D-E1 | Path: manual, governed or retrofit | Executive sponsor and CIO | Manual (small estate or pilot, no control plane yet); governed (larger estate, or the authorizing official must sign); retrofit (estate already modernized by hand) | [Source chapter](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#how-to-choose) | Left to the agency |
 | D-E2 | Settings with no Intune equivalent | CISO / ISSO | A Remediation script, reviewed later for a native replacement; a Configuration Manager baseline on co-managed devices; a dated exception with its GPO linked for that population only; a standing exception, accepted by the authorizing official | [Source chapter](../books/b05-devices/07-the-gpo-sunset-program.md#step-2-classify-each-setting) | Left to the agency |
 | D-E3 | Windows 10 posture | CISO / ISSO | Upgrade to Windows 11 before the device's wave; keep the device as an exception with an upgrade date | [Source chapter](../books/b05-devices/08-gpo-to-intune-policy-migration.md) | Left to the agency |
 | D-E4 | Windows provisioning for net-new devices | Endpoint engineering | Classic Windows Autopilot, user-driven, Entra join, OEM or reseller registration with a group tag (the program's GCC default); Autopilot device preparation, with the attribute carried by the serial-number mapping table | [Source chapter](../books/b05-devices/04-intune-first-onboarding.md#which-one-in-a-gcc-tenant) | Left to the agency |
 | D-E6 | Update model: Windows Autopatch or program-managed rings | CISO / ISSO | Autopatch groups configured to the program's ring table, where the license allows; Intune update rings built from SC-005 | [Source chapter](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#windows-autopatch) | Left to the agency |
-| D-E7 | Cut date for each hybrid-joined pilot device | Sponsor / CIO | The device's refresh date; an OS upgrade; a troubleshooting rebuild (each needs a reset to reach Entra join) | [Source chapter](../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path) | Left to the agency |
+| D-E7 | Cut date for each hybrid-joined pilot device | Executive sponsor and CIO | The device's refresh date; an OS upgrade; a troubleshooting rebuild (each needs a reset to reach Entra join) | [Source chapter](../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path) | Left to the agency |
 | D-E5 | Arc onboarding method | Server infrastructure | A certificate-based service principal through the tool the server team already runs (Configuration Manager, Ansible or Group Policy); the portal script for a handful of servers or a pilot; Arc-enabled VMware vSphere; the multicloud connector for AWS | [Source chapter](../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method) | Left to the agency |
 
 : Endpoint & Device Modernization: decision points {.striped .hover}
@@ -2579,10 +2581,10 @@ Defined in [the plan's decision points](../project-plans/identity-lifecycle.md#d
 
 | ID | Decision | Decides | Options | Basis | Workbook decision |
 |---|---|---|---|---|---|
-| D-I1 | Enterprise person key, and how source keys map to it | HR, with identity engineering | The HCM person number; another HR key; a minted enterprise key | [Source chapter](../books/b03-hr-identity/04-attribute-authority.md) | Left to the agency |
+| D-I1 | Enterprise person key, and how source keys map to it | ICAM governance body, with HR and identity engineering | The HCM person number; another HR key; a minted enterprise key | [Source chapter](../books/b03-hr-identity/04-attribute-authority.md) | Left to the agency |
 | D-I2 | Worker-type taxonomy and the three access-attribute code lists | HR | Employee, contractor, intern, volunteer, vendor, external, each with a license, access ceiling and retention | [Source chapter](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Left to the agency |
 | D-I4 | Let the pipeline act on the pilot cohort | ISSO | Act; extend shadow mode | [Source chapter](../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot) | Left to the agency |
-| D-I3 | Source of authority for contractors and other non-employees | HR | Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact | [Source chapter](../books/b03-hr-identity/06-canonical-attribute-schema.md) | Left to the agency |
+| D-I3 | Source of authority for contractors and other non-employees | ICAM governance body | Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact | [Source chapter](../books/b03-hr-identity/06-canonical-attribute-schema.md) | Left to the agency |
 | D-I5 | Order of populations to cut over, aligned to the Core HCM onboarding | Executive sponsor and CIO | Follow the program's waves; follow the agency's Core HCM go-live | [Source chapter](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population) | Left to the agency |
 
 : Identity Lifecycle & Provisioning: decision points {.striped .hover}
@@ -2593,18 +2595,18 @@ Defined in [the plan's decision points](../project-plans/network-access.md#decis
 
 | ID | Decision | Decides | Options | Basis | Workbook decision |
 |---|---|---|---|---|---|
-| D-N1 | DDI platform model | Sponsor and CIO | SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation) | [Source chapter](../books/b08-ddi/12-selection-cost-and-residual-risk.md#comparing-the-platform-models) | Left to the agency |
+| D-N1 | DDI platform model | Executive sponsor and CIO | SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation) | [Source chapter](../books/b08-ddi/12-selection-cost-and-residual-risk.md#comparing-the-platform-models) | Left to the agency |
 | D-N2 | Resolver path: the redirect-dns target and the forwarding chain order (Decisions 1 and 2) | DNS/DDI team | A DDI resolver at the branch; a forwarding proxy in a regional hub. Never a client loopback stub, and any SASE resolver is a forwarding target of the agency resolver, never the redirect target | [Source chapter](../books/b08-ddi/08-reference-architecture.md#decision-1-the-redirect-dns-destination) | Left to the agency |
 | D-N3 | Order of zones to move, and the cutover pattern for each | DNS/DDI team | Per zone: split horizon, subdomain delegation, or progressive migration with conditional forwarding. AD locator records stay where domain controllers can register them, and move last | [Source chapter](../books/b08-ddi/10-migration-sequence.md#three-cutover-patterns) | Left to the agency |
-| D-N4 | Control-plane hosting model, recorded as the boundary disposition | Sponsor and CIO | An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations | [Source chapter](../books/b09-network/11-field-office-wan-transformation.md#risks-and-mitigations) | Left to the agency |
+| D-N4 | Control-plane hosting model, recorded as the boundary disposition | Executive sponsor and CIO | An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations | [Source chapter](../books/b09-network/11-field-office-wan-transformation.md#risks-and-mitigations) | Left to the agency |
 | D-N5 | Egress pattern for each pilot site | Network engineering | A, hairpin; C, governed local breakout (the program's reference pattern); D, agent-delivered SASE. Never B, bare local breakout | [Source chapter](../books/b09-network/08-reference-architecture.md#decision-3-choose-the-egress-pattern-per-site-and-change-the-boundary-first) | Left to the agency |
 | D-N6 | Path to a domain controller for each branch class | Network engineering | A private path (MPLS, IPsec or the SD-WAN overlay); a ZTNA connector that publishes the domain controllers (single sign-on only); a Kerberos KDC proxy | [Source chapter](../books/b09-network/06-legacy-protocols-on-re-routed-paths.md#ways-to-provide-the-path) | Left to the agency |
 | D-N7 | Boundary change for local egress, decided before the first production cutover | Authorizing official | Approve the significant change through reauthorization or ongoing authorization; refuse, and the sites stay on their current path | [Source chapter](../books/b09-network/13-sequencing-cost-and-evidence.md#the-decision-sequence) | Left to the agency |
 | D-N8 | Microsoft 365 Optimize exemption (the SC-7(4) traffic-flow exception) | Authorizing official | Grant it for a stated duration and review cadence, on named and compensating controls; refuse it | [Source chapter](../books/b09-network/12-microsoft-365-traffic.md#the-sc-74-documented-traffic-flow-exception) | Left to the agency |
 | D-N9 | Fabric go-live, site by site: governor live, inspecting and logging | System owner | Turn on the site's new egress; hold the site on its current path | [Source chapter](../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step) | Left to the agency |
-| D-N10 | RADIUS and NAC platform, and the trigger that retires NPS (D3) | Sponsor and CIO | NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access | [Source chapter](../books/b09-network/07-network-access-control.md#what-can-replace-it) | Left to the agency |
+| D-N10 | RADIUS and NAC platform, and the trigger that retires NPS (D3) | Executive sponsor and CIO | NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access | [Source chapter](../books/b09-network/07-network-access-control.md#what-can-replace-it) | Left to the agency |
 | D-N11 | Move the pilot sites from monitor mode to wired enforcement | Network engineering | Enforce on workstation ports; stay in monitor mode until the baseline's exceptions are closed | [Source chapter](../books/b09-network/07-network-access-control.md#rolling-it-out) | Left to the agency |
-| D-N12 | Decommission AD DNS and Windows DHCP | Sponsor and CIO | Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone | [Source chapter](../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp) | Left to the agency |
+| D-N12 | Decommission AD DNS and Windows DHCP | Executive sponsor and CIO | Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone | [Source chapter](../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp) | Left to the agency |
 
 : Network & Access Modernization: decision points {.striped .hover}
 
@@ -2615,9 +2617,9 @@ Defined in [the plan's decision points](../project-plans/non-person-identity.md#
 | ID | Decision | Decides | Options | Basis | Workbook decision |
 |---|---|---|---|---|---|
 | D-N1 | Source of record for non-person identities | CIO | The owning workload's record (the system inventory or CMDB entry and the application registration) and, for AI, the AI use-case inventory, with the register keyed to them; a separate identity register kept by the identity team | [Source chapter](../books/guides/attribute-driven-migration.md#non-person-identity-track) | Left to the agency |
-| D-N2 | Orphan rule for identities nobody will own | CISO | Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (*Access and Privilege*'s rule, applied at once to agents because they can act); retire at once; keep running on a dated exception | [Source chapter](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps) | [WD-122](#wd-122) |
+| D-N2 | Orphan rule for identities nobody will own | CISO | Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (a non-person identity rule, not *Access and Privilege*'s, which gives the office 30 days and then suspends; applied at once to agents because they can act); retire at once; keep running on a dated exception | [Source chapter](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps) | [WD-122](#wd-122) |
 | D-N3 | Retire, re-platform or keep, account by account | Application owners | Retire (unused or unowned); re-platform to a managed identity, a gMSA or dMSA, or an app registration with a federated credential or certificate; keep on Kerberos with an SPN, islanded with an end date the authorizing official accepts | [Source chapter](../books/guides/attribute-driven-migration.md#non-person-identity-track) | Left to the agency |
-| D-N4 | Workload ID Premium licensing scope | CISO | License for the single-tenant service principals classified Tier 1 (*Access and Privilege*'s position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access | [Source chapter](../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds) | Left to the agency |
+| D-N4 | Workload ID Premium licensing scope | CISO | License for the single-tenant service principals classified R1 (*Access and Privilege*'s position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access | [Source chapter](../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds) | Left to the agency |
 | D-N5 | Enforce the workload identity policies | CISO | Enforce; extend report-only; enforce with named exclusions, each recorded with its owner and end date | [Source chapter](../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities) | Left to the agency |
 | D-N6 | AI identity capabilities the program builds on in the agency's cloud | CIO, with the Chief AI Officer | Agent identities where generally available in the agency's cloud, with GCC's documented subset; service principals and managed identities under the same governance where agent identities aren't available; preview capabilities as watch items | [Source chapter](../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) | Left to the agency |
 

@@ -290,7 +290,7 @@ Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-0-establis
     <Task>
       <UID>12</UID>
       <ID>12</ID>
-      <Name>A1.2 Phishing-resistant MFA registered for every eligible administrator</Name>
+      <Name>A1.2 Phishing-resistant MFA registered for every eligible administrator, Tier 0 first (the program's G1 criterion covers Tier 0 administrators only)</Name>
       <OutlineNumber>2.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-01T08:00:00</Start>

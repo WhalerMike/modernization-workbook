@@ -265,7 +265,7 @@ tasks:
      source: "program-master-schedule.md"}
   # ------------------------------------------------- Phase 9 — drift, limits, steady state
   - {id: D-A8, kind: decision, phase: 9, name: "Drift severity and response times", after: [AG2], owner: "CISO",
-     options: "The program's classes (missing identity, stale access, orphan, attribute drift, unauthorized write, credential drift, schema drift) with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots",
+     options: "Book 03's classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, Book 13's five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots",
      late: "Drift findings pile up with nobody obliged to close them",
      source: "../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory"}
   - {id: A9.1, phase: 9, name: "Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue", dur: 5, after: [AG4, AG3, D-A8], owner: "Security operations",

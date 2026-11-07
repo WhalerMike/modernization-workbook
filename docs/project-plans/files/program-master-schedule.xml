@@ -198,8 +198,8 @@ Source: ../books/b00-orientation/08-pre-flight-and-assessment.md</Notes>
       <Duration>PT64H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>App owners</Contact>
-      <Notes>Owner or approver: App owners
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
 Source: ../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation</Notes>
       <PredecessorLink>
         <PredecessorUID>3</PredecessorUID>
@@ -394,8 +394,8 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestone
       <Name>X-IDL HR-to-cloud provisioning live for the foundation scope</Name>
       <OutlineNumber>2.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-24T17:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -404,7 +404,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestone
 If decided late: G1 fails its HR-feed criterion and waits
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-02-24T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>17</UID>
@@ -670,8 +670,29 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestone
     <Task>
       <UID>28</UID>
       <ID>28</ID>
-      <Name>G1 — Foundation Complete</Name>
+      <Name>P1.13 Pilot servers connected through Arc with machine configuration applied (M-030)</Name>
       <OutlineNumber>2.17</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b05-devices/09-servers-under-azure-arc.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>48000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>G1 — Foundation Complete</Name>
+      <OutlineNumber>2.18</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-26T17:00:00</Start>
       <Finish>2027-02-26T17:00:00</Finish>
@@ -680,7 +701,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestone
       <Milestone>1</Milestone>
       <Contact>Steward</Contact>
       <Notes>Owner or approver: Steward
-Criteria: Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed
+Criteria: Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; pilot servers connected through Arc; FIDO2 and passkeys open to Tier 0 administrators; High findings closed
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete</Notes>
       <PredecessorLink>
         <PredecessorUID>27</PredecessorUID>
@@ -718,10 +739,16 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundati
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
     </Task>
     <Task>
-      <UID>29</UID>
-      <ID>29</ID>
+      <UID>30</UID>
+      <ID>30</ID>
       <Name>Phase 2 — Pilot division</Name>
       <OutlineNumber>3</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
@@ -730,8 +757,8 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundati
       <Finish>2027-04-23T17:00:00</Finish>
     </Task>
     <Task>
-      <UID>30</UID>
-      <ID>30</ID>
+      <UID>31</UID>
+      <ID>31</ID>
       <Name>D06 Device pattern for each pilot cohort</Name>
       <OutlineNumber>3.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -746,15 +773,15 @@ Options: New devices Entra joined; existing devices reset and re-enrolled; hybri
 If decided late: Pilot devices can't move; the critical path waits
 Source: ../books/b05-devices/02-the-hybrid-join-trap.md</Notes>
       <PredecessorLink>
-        <PredecessorUID>28</PredecessorUID>
+        <PredecessorUID>29</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>31</UID>
-      <ID>31</ID>
+      <UID>32</UID>
+      <ID>32</ID>
       <Name>P2.1 Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)</Name>
       <OutlineNumber>3.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -767,15 +794,15 @@ Source: ../books/b05-devices/02-the-hybrid-join-trap.md</Notes>
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
       <PredecessorLink>
-        <PredecessorUID>28</PredecessorUID>
+        <PredecessorUID>29</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>32</UID>
-      <ID>32</ID>
+      <UID>33</UID>
+      <ID>33</ID>
       <Name>P2.2 Pilot Conditional Access and Intune policies assigned (M-024, M-025)</Name>
       <OutlineNumber>3.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -788,15 +815,15 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Note
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
       <PredecessorLink>
-        <PredecessorUID>31</PredecessorUID>
+        <PredecessorUID>32</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>33</UID>
-      <ID>33</ID>
+      <UID>34</UID>
+      <ID>34</ID>
       <Name>P2.3 Pilot devices moved by pattern (M-023)</Name>
       <OutlineNumber>3.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -809,26 +836,26 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Note
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
       <PredecessorLink>
-        <PredecessorUID>32</PredecessorUID>
+        <PredecessorUID>33</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>30</PredecessorUID>
+        <PredecessorUID>31</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>34</UID>
-      <ID>34</ID>
-      <Name>P2.4 First migrated GPOs unlinked from the pilot OUs</Name>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>P2.4 First migrated GPOs unlinked from the pilot OUs, after 20 days of testing beside the linked GPOs</Name>
       <OutlineNumber>3.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-01T08:00:00</Start>
-      <Finish>2027-04-07T17:00:00</Finish>
+      <Start>2027-04-19T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -838,13 +865,13 @@ Source: ../books/b05-devices/07-the-gpo-sunset-program.md</Notes>
       <PredecessorLink>
         <PredecessorUID>33</PredecessorUID>
         <Type>1</Type>
-        <LinkLag>0</LinkLag>
+        <LinkLag>96000</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>35</UID>
-      <ID>35</ID>
+      <UID>36</UID>
+      <ID>36</ID>
       <Name>P2.5 PIM for every pilot administrator (M-026)</Name>
       <OutlineNumber>3.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -857,15 +884,15 @@ Source: ../books/b05-devices/07-the-gpo-sunset-program.md</Notes>
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
       <PredecessorLink>
-        <PredecessorUID>31</PredecessorUID>
+        <PredecessorUID>32</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>36</UID>
-      <ID>36</ID>
+      <UID>37</UID>
+      <ID>37</ID>
       <Name>P2.6 Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)</Name>
       <OutlineNumber>3.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -878,15 +905,15 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Note
       <Notes>Owner or approver: Platform teams
 Source: ../books/b08-ddi/10-migration-sequence.md</Notes>
       <PredecessorLink>
-        <PredecessorUID>28</PredecessorUID>
+        <PredecessorUID>29</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>37</UID>
-      <ID>37</ID>
+      <UID>38</UID>
+      <ID>38</ID>
       <Name>P2.7 Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)</Name>
       <OutlineNumber>3.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -899,15 +926,15 @@ Source: ../books/b08-ddi/10-migration-sequence.md</Notes>
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
       <PredecessorLink>
-        <PredecessorUID>33</PredecessorUID>
+        <PredecessorUID>34</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>38</UID>
-      <ID>38</ID>
+      <UID>39</UID>
+      <ID>39</ID>
       <Name>P2.8 Certificate-based authentication for PIV and CAC holders (M-029)</Name>
       <OutlineNumber>3.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -920,28 +947,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Note
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
       <PredecessorLink>
-        <PredecessorUID>31</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
-    </Task>
-    <Task>
-      <UID>39</UID>
-      <ID>39</ID>
-      <Name>P2.9 Pilot servers under Arc with machine configuration (M-030)</Name>
-      <OutlineNumber>3.10</OutlineNumber>
-      <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-01T08:00:00</Start>
-      <Finish>2027-03-12T17:00:00</Finish>
-      <Duration>PT80H0M0S</Duration>
-      <DurationFormat>7</DurationFormat>
-      <Milestone>0</Milestone>
-      <Contact>Platform teams</Contact>
-      <Notes>Owner or approver: Platform teams
-Source: ../books/b05-devices/09-servers-under-azure-arc.md</Notes>
-      <PredecessorLink>
-        <PredecessorUID>28</PredecessorUID>
+        <PredecessorUID>32</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
@@ -951,7 +957,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md</Notes>
       <UID>40</UID>
       <ID>40</ID>
       <Name>P2.10 Rollback rehearsed surface by surface</Name>
-      <OutlineNumber>3.11</OutlineNumber>
+      <OutlineNumber>3.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-01T08:00:00</Start>
       <Finish>2027-04-05T17:00:00</Finish>
@@ -962,7 +968,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md</Notes>
       <Notes>Owner or approver: Platform teams
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface</Notes>
       <PredecessorLink>
-        <PredecessorUID>33</PredecessorUID>
+        <PredecessorUID>34</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
@@ -972,7 +978,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface
       <UID>41</UID>
       <ID>41</ID>
       <Name>P2.11 Drift-clean hold (14 days, illustrative); success criteria met (M-031)</Name>
-      <OutlineNumber>3.12</OutlineNumber>
+      <OutlineNumber>3.11</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-12T08:00:00</Start>
       <Finish>2027-04-23T17:00:00</Finish>
@@ -982,18 +988,6 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface
       <Contact>Program office</Contact>
       <Notes>Owner or approver: Program office
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean</Notes>
-      <PredecessorLink>
-        <PredecessorUID>34</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
-      <PredecessorLink>
-        <PredecessorUID>35</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
       <PredecessorLink>
         <PredecessorUID>36</PredecessorUID>
         <Type>1</Type>
@@ -1029,7 +1023,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-cl
       <UID>42</UID>
       <ID>42</ID>
       <Name>P2.12 Retrospective and runbook updates committed</Name>
-      <OutlineNumber>3.13</OutlineNumber>
+      <OutlineNumber>3.12</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-19T08:00:00</Start>
       <Finish>2027-04-23T17:00:00</Finish>
@@ -1050,7 +1044,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-cl
       <UID>43</UID>
       <ID>43</ID>
       <Name>G2 — Pilot Clean</Name>
-      <OutlineNumber>3.14</OutlineNumber>
+      <OutlineNumber>3.13</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-23T17:00:00</Start>
       <Finish>2027-04-23T17:00:00</Finish>
@@ -1069,6 +1063,12 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-cl
       </PredecessorLink>
       <PredecessorLink>
         <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
@@ -1324,7 +1324,7 @@ Source: ../books/b01-transformation-arc/09-who-leads-the-transformation.md#decis
     <Task>
       <UID>56</UID>
       <ID>56</ID>
-      <Name>P4.1 Migrated GPOs retired</Name>
+      <Name>P4.1 Migrated GPOs disabled and held as the rollback net (deletion follows the 90-day hold: Endpoint plan E5.2)</Name>
       <OutlineNumber>5.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-09-13T08:00:00</Start>
@@ -1387,7 +1387,7 @@ Source: ../books/b08-ddi/10-migration-sequence.md</Notes>
     <Task>
       <UID>59</UID>
       <ID>59</ID>
-      <Name>P4.4 AD-authorized DHCP retired</Name>
+      <Name>P4.4 DHCP scopes moved off the AD-authorized servers (de-authorizing them is the Network plan's D-N12)</Name>
       <OutlineNumber>5.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-10-04T08:00:00</Start>
@@ -1437,8 +1437,8 @@ Source: ../books/b07-pki/07-coexistence-and-migration.md</Notes>
       <Duration>PT240H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>App owners</Contact>
-      <Notes>Owner or approver: App owners
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
 Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
       <PredecessorLink>
         <PredecessorUID>53</PredecessorUID>

@@ -28,7 +28,7 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 | **Plan manager** | Steward (program office) |
 | **Duration** | 48 weeks (240 working days), computed from the network |
 | **Work** | 47 tasks, 6 gates, 11 decision points, 1 milestone from other plans |
-| **Critical path** | 34 of 65 items; 5 more within 5 days of it |
+| **Critical path** | 36 of 65 items; 4 more within 5 days of it |
 | **Calendar** | Week 1 = the week Phase 0 is approved; five working days a week |
 
 : Plan at a glance {.striped}
@@ -56,31 +56,33 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 | 7 | D02 | Authoritative source for each attribute that drives access | HR | end of wk 4 |
 | 8 | P1.1 | Attribute taxonomy finalized (M-014) | Platform teams | wk 5 |
 | 9 | P1.2 | Dynamic group design tested; enterprise groups and administrative units built (M-015) | Platform teams | wk 6–7 |
-| 10 | P1.3 | Intune policy design complete; pilot profiles staged (M-016) | Platform teams | wk 7–8 |
-| 11 | P1.12 | Design review approved (M-021) | Steward | wk 8 |
-| 12 | G1 | G1 — Foundation Complete | Steward | end of wk 8 |
-| 13 | P2.1 | Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022) | Platform teams | wk 9–10 |
-| 14 | P2.2 | Pilot Conditional Access and Intune policies assigned (M-024, M-025) | Platform teams | wk 11 |
-| 15 | P2.3 | Pilot devices moved by pattern (M-023) | Platform teams | wk 12–13 |
-| 16 | P2.7 | Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | Platform teams | wk 13–14 |
-| 17 | P2.11 | Drift-clean hold (14 days, illustrative); success criteria met (M-031) | Program office | wk 15–16 |
-| 18 | P2.12 | Retrospective and runbook updates committed | Program office | wk 16 |
-| 19 | G2 | G2 — Pilot Clean | Steward and executive sponsor (co-signed) | end of wk 16 |
-| 20 | D07 | Wave plan: which divisions, in which order | Executive sponsor and steering committee | end of wk 16 |
-| 21 | P3.1 | Wave 1, first region, about 25% (M-032) | Platform teams | wk 17–21 |
-| 22 | P3.2 | Wave 2, about 50% cumulative (M-033) | Platform teams | wk 21–25 |
-| 23 | P3.3 | Wave 3, about 75% cumulative (M-034) | Platform teams | wk 25–30 |
-| 24 | P3.4 | Wave 4, everything remaining or excepted (M-035) | Platform teams | wk 30–34 |
-| 25 | P3.6 | Attribute coverage at 100%; exception register reconciled (M-037) | Program office | wk 34–36 |
-| 26 | G3 | G3 — Rollout Complete | Executive sponsor and steering committee | end of wk 36 |
-| 27 | P4.6 | AD-bound service principal names migrated, retired or islanded, app by app | App owners | wk 37–42 |
-| 28 | P4.7 | AD authentication volume measured below the agreed threshold | Program office | wk 43–44 |
-| 29 | G4 | G4 — Legacy Quiet | Steward (backup: executive sponsor) | end of wk 44 |
-| 30 | P5.1 | AD changes frozen; final assessment and evidence packet | Program office | wk 45 |
-| 31 | P5.2 | Domain controllers without operations master roles demoted | Platform teams | wk 46 |
-| 32 | P5.3 | Remaining domain controllers demoted or islanded; domain zones moved or retired | Platform teams | wk 47 |
-| 33 | P5.4 | VMs decommissioned; final state archived; retirement record committed | Platform teams | wk 48 |
-| 34 | G5 | G5 — AD Retired | Executive sponsor and CIO | end of wk 48 |
+| 10 | P1.13 | Pilot servers connected through Arc with machine configuration applied (M-030) | Platform teams | wk 7–8 |
+| 11 | P1.3 | Intune policy design complete; pilot profiles staged (M-016) | Platform teams | wk 7–8 |
+| 12 | P1.12 | Design review approved (M-021) | Steward | wk 8 |
+| 13 | G1 | G1 — Foundation Complete | Steward | end of wk 8 |
+| 14 | P2.1 | Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022) | Platform teams | wk 9–10 |
+| 15 | P2.2 | Pilot Conditional Access and Intune policies assigned (M-024, M-025) | Platform teams | wk 11 |
+| 16 | P2.3 | Pilot devices moved by pattern (M-023) | Platform teams | wk 12–13 |
+| 17 | P2.7 | Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | Platform teams | wk 13–14 |
+| 18 | P2.11 | Drift-clean hold (14 days, illustrative); success criteria met (M-031) | Program office | wk 15–16 |
+| 19 | P2.4 | First migrated GPOs unlinked from the pilot OUs, after 20 days of testing beside the linked GPOs | Platform teams | wk 16 |
+| 20 | P2.12 | Retrospective and runbook updates committed | Program office | wk 16 |
+| 21 | G2 | G2 — Pilot Clean | Steward and executive sponsor (co-signed) | end of wk 16 |
+| 22 | D07 | Wave plan: which divisions, in which order | Executive sponsor and steering committee | end of wk 16 |
+| 23 | P3.1 | Wave 1, first region, about 25% (M-032) | Platform teams | wk 17–21 |
+| 24 | P3.2 | Wave 2, about 50% cumulative (M-033) | Platform teams | wk 21–25 |
+| 25 | P3.3 | Wave 3, about 75% cumulative (M-034) | Platform teams | wk 25–30 |
+| 26 | P3.4 | Wave 4, everything remaining or excepted (M-035) | Platform teams | wk 30–34 |
+| 27 | P3.6 | Attribute coverage at 100%; exception register reconciled (M-037) | Program office | wk 34–36 |
+| 28 | G3 | G3 — Rollout Complete | Executive sponsor and steering committee | end of wk 36 |
+| 29 | P4.6 | AD-bound service principal names migrated, retired or islanded, app by app | Application owners | wk 37–42 |
+| 30 | P4.7 | AD authentication volume measured below the agreed threshold | Program office | wk 43–44 |
+| 31 | G4 | G4 — Legacy Quiet | Steward (backup: executive sponsor) | end of wk 44 |
+| 32 | P5.1 | AD changes frozen; final assessment and evidence packet | Program office | wk 45 |
+| 33 | P5.2 | Domain controllers without operations master roles demoted | Platform teams | wk 46 |
+| 34 | P5.3 | Remaining domain controllers demoted or islanded; domain zones moved or retired | Platform teams | wk 47 |
+| 35 | P5.4 | VMs decommissioned; final state archived; retirement record committed | Platform teams | wk 48 |
+| 36 | G5 | G5 — AD Retired | Executive sponsor and CIO | end of wk 48 |
 
 : The critical path {.striped .hover}
 
@@ -88,7 +90,6 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 
 | ID | Item | Float | When |
 |---|---|---|---|
-| P2.4 | First migrated GPOs unlinked from the pilot OUs | 2 d | wk 13–14 |
 | P0.3 | Least-privilege service principals for Entra ID, Intune and Arc | 4 d | wk 1–2 |
 | P2.10 | Rollback rehearsed surface by surface | 4 d | wk 13–14 |
 | P1.11 | Every High assessment finding remediated and re-scanned | 5 d | wk 5–7 |
@@ -118,12 +119,12 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 
 ## Gates
 
-Each gate is the next phase's entry condition. The approver signs it against the criteria, from evidence in the repository.
+A gate opens the work that names it as a predecessor, which is usually the next phase but not always. The approver signs it against the criteria, from evidence in the repository.
 
 | Gate | When | Approver | Criteria |
 |---|---|---|---|
 | [G0 — Ready to Plan](../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority) | end of wk 4 | Steward (backup: executive sponsor) | Platform host operational; assessment committed; no open priority-one findings; provisional target end state recorded; no-new-AD-dependency rule in force |
-| [G1 — Foundation Complete](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete) | end of wk 8 | Steward | Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed |
+| [G1 — Foundation Complete](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete) | end of wk 8 | Steward | Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; pilot servers connected through Arc; FIDO2 and passkeys open to Tier 0 administrators; High findings closed |
 | [G2 — Pilot Clean](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean) | end of wk 16 | Steward and executive sponsor (co-signed) | Zero drift for the hold period; no AD-only users and no hybrid-joined PC without a cut date; no unresolved rollback trigger; retrospective committed |
 | [G3 — Rollout Complete](../books/b01-transformation-arc/12-migration-roadmap.md#phase-3-general-rollout-weeks-1736) | end of wk 36 | Executive sponsor and steering committee | Every division past its exit gate; every HR-listed employee with valid attributes; every PC cloud-joined and every server Arc-connected, or excepted; zero cross-division drift |
 | [G4 — Legacy Quiet](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744) | end of wk 44 | Steward (backup: executive sponsor) | Only the minimum GPOs; no AD security groups in use; every zone but the domain's moved; user and device issuance off AD CS; every SPN migrated, retired or islanded; AD authentication below threshold |
@@ -133,7 +134,7 @@ Each gate is the next phase's entry condition. The approver signs it against the
 
 ## Links to other plans
 
-- **X-IDL, HR-to-cloud provisioning live for the foundation scope,** is IG3 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Gate 3 — HR feed live for the foundation scope), end of wk 8. This plan waits for it; it can slip 2 d before it moves this plan. G1 fails its HR-feed criterion and waits.
+- **X-IDL, HR-to-cloud provisioning live for the foundation scope,** is IG3 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Gate 3 — HR feed live for the foundation scope), end of wk 8. This plan waits for it; it can slip 0 before it moves this plan. G1 fails its HR-feed criterion and waits.
 
 Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
 
@@ -153,40 +154,41 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | P1.2  Dynamic group design tested; enterprise groups and administrative units built (M-015) | wk 6–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P12) | Must finish AG4 by it | 8 d margin |
 | P1.2  Dynamic group design tested; enterprise groups and administrative units built (M-015) | wk 6–7 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P12) | Waits for it | 0 |
 | G1 — Foundation Complete | end of wk 8 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G1) | Must finish M4.1 by it | 4 d margin |
-| G1 — Foundation Complete | end of wk 8 | [Data Platform Identity Transformation](data-platform.md) (X-G1) | Waits for it | 94 d |
+| P1.13  Pilot servers connected through Arc with machine configuration applied (M-030) | wk 7–8 | [Data Platform Identity Transformation](data-platform.md) (X-ARC) | Waits for it | 2 d |
+| G1 — Foundation Complete | end of wk 8 | [Data Platform Identity Transformation](data-platform.md) (X-G1) | Waits for it | 86 d |
 | G1 — Foundation Complete | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-G1) | Must finish E1.3 by it | 1 d margin |
-| D06  Device pattern for each pilot cohort | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-D06) | Waits for it | 2 d |
+| D06  Device pattern for each pilot cohort | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-D06) | Waits for it | 22 d |
+| P1.13  Pilot servers connected through Arc with machine configuration applied (M-030) | wk 7–8 | [Endpoint & Device Modernization](endpoint-device.md) (X-P113) | Must finish E4.8 by it | 1 d margin |
 | G1 — Foundation Complete | end of wk 8 | [Non-Person Identity Modernization](non-person-identity.md) (X-G1) | Waits for it | 28 d |
 | G1 — Foundation Complete | end of wk 8 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G1) | Must finish A1.1, A1.2 by it | 10 d margin |
 | G1 — Foundation Complete | end of wk 8 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G1) | Waits for it | 13 d |
 | start of P2.1  Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022) | wk 9–10 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P21S) | Waits for it | 2 d |
-| P2.9  Pilot servers under Arc with machine configuration (M-030) | wk 9–10 | [Data Platform Identity Transformation](data-platform.md) (X-ARC) | Waits for it | 0 |
-| P2.9  Pilot servers under Arc with machine configuration (M-030) | wk 9–10 | [Endpoint & Device Modernization](endpoint-device.md) (X-P29) | Must finish E4.8 by it | 2 d margin |
 | start of P2.2  Pilot Conditional Access and Intune policies assigned (M-024, M-025) | wk 11 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P22) | Must finish A4.4 by it | 2 d margin |
 | start of P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26S) | Must finish N1.1 by it | 2 d margin |
 | P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26) | Waits for it | 49 d |
-| P2.8  Certificate-based authentication for PIV and CAC holders (M-029) | wk 11–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P28) | Must finish A6.2 by it | 10 d margin |
+| P2.8  Certificate-based authentication for PIV and CAC holders (M-029) | wk 11–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P28) | Must finish A6.2 by it | 8 d margin |
 | P2.3  Pilot devices moved by pattern (M-023) | wk 12–13 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P23) | Waits for it | 4 d |
 | P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | wk 13–14 | [Network & Access Modernization](network-access.md) (X-P27) | Waits for it | 47 d |
-| G2 — Pilot Clean | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G2) | Must finish AG7 by it | 17 d margin |
-| D07  Wave plan: which divisions, in which order | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-D07) | Must finish A8.1 by it | 14 d margin |
-| start of P2.11  Drift-clean hold (14 days, illustrative); success criteria met (M-031) | wk 15–16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P211) | Must finish A9.1 by it | 27 d margin |
+| G2 — Pilot Clean | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G2) | Must finish AG7 by it | 15 d margin |
+| D07  Wave plan: which divisions, in which order | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-D07) | Must finish A8.1 by it | 12 d margin |
+| start of P2.11  Drift-clean hold (14 days, illustrative); success criteria met (M-031) | wk 15–16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P211) | Must finish A9.1 by it | 25 d margin |
 | start of P2.11  Drift-clean hold (14 days, illustrative); success criteria met (M-031) | wk 15–16 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-HOLD) | Must finish M5.3 by it | 4 d margin |
 | G2 — Pilot Clean | end of wk 16 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G2) | Waits for it | 26 d |
-| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Data Platform Identity Transformation](data-platform.md) (X-D08) | Waits for it | 57 d |
-| G2 — Pilot Clean | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-G2) | Must finish EG2 by it | 2 d margin |
-| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-D08) | Waits for it | 119 d |
+| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Data Platform Identity Transformation](data-platform.md) (X-D08) | Waits for it | 49 d |
+| G2 — Pilot Clean | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-G2) | Must finish EG2 by it | **no margin** |
+| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-D08) | Waits for it | 137 d |
 | D08  End dates for legacy authentication and NTLM | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-D08) | Waits for it | 68 d |
 | G2 — Pilot Clean | end of wk 16 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G2) | Must finish AG2 by it | 12 d margin |
-| P3.1  Wave 1, first region, about 25% (M-032) | wk 17–21 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P31) | Must finish A8.2 by it | 31 d margin |
+| P3.1  Wave 1, first region, about 25% (M-032) | wk 17–21 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P31) | Must finish A8.2 by it | 29 d margin |
 | P3.7  Every server Arc-connected or excepted | wk 17–28 | [Endpoint & Device Modernization](endpoint-device.md) (X-P37) | Must finish EG4 by it | 5 d margin |
+| P3.5  GPO links off migrated OUs after 7 clean days (M-036) | wk 33–34 | [Endpoint & Device Modernization](endpoint-device.md) (X-P35) | Must finish E3.8 by it | 18 d margin |
 | G3 — Rollout Complete | end of wk 36 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G3) | Waits for it | 0 |
-| G3 — Rollout Complete | end of wk 36 | [Endpoint & Device Modernization](endpoint-device.md) (X-G3) | Waits for it | 19 d |
+| G3 — Rollout Complete | end of wk 36 | [Endpoint & Device Modernization](endpoint-device.md) (X-G3) | Waits for it | 37 d |
 | G3 — Rollout Complete | end of wk 36 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G3) | Waits for it | 0 |
 | P4.2  OU-based security groups retired | wk 38 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P42) | Waits for it | 0 |
-| start of P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P45) | Must finish D-A7 by it | 132 d margin |
+| start of P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P45) | Must finish D-A7 by it | 130 d margin |
 | P4.3  AD-integrated DNS zones moved, except the domain's own zones | wk 37–39 | [Network & Access Modernization](network-access.md) (X-P43) | Waits for it | 0 |
-| P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Data Platform Identity Transformation](data-platform.md) (X-P46) | Must finish DG4 by it | 58 d margin |
+| P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Data Platform Identity Transformation](data-platform.md) (X-P46) | Must finish DG4 by it | 66 d margin |
 | P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Non-Person Identity Modernization](non-person-identity.md) (X-P46) | Must finish NG3 by it | 57 d margin |
 | start of P5.1  AD changes frozen; final assessment and evidence packet | wk 45 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P51) | Must finish AG8 by it | 20 d margin |
 | G5 — AD Retired | end of wk 48 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G5) | Must finish AG9 by it | 40 d margin |
@@ -207,7 +209,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | P0.2 | **[Platform host built, repository seeded, host connected through Arc](../books/b01-transformation-arc/03-platform-foundation.md)** | Task | Platform teams | 7 | P0.1 | wk 1–2 | 0 |
 | P0.3 | [Least-privilege service principals for Entra ID, Intune and Arc](../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14) | Task | Platform teams | 3 | P0.1 | wk 1–2 | 4 d |
 | P0.4 | **[Read-only assessment run and committed](../books/b00-orientation/08-pre-flight-and-assessment.md)** | Task | Program office | 10 | P0.2, P0.3 | wk 3–4 | 0 |
-| P0.5 | [Transactions profiled for applications proposed to move from their data](../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation) | Task | App owners | 8 | P0.1 | wk 1–3 | 9 d |
+| P0.5 | [Transactions profiled for applications proposed to move from their data](../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation) | Task | Application owners | 8 | P0.1 | wk 1–3 | 9 d |
 | P0.6 | [Change process asks whether each change adds an AD dependency; exceptions to the AO](../books/b13-governance/04-change-control-and-provenance.md#no-new-dependencies-on-active-directory) | Task | Program office | 3 | P0.1 | wk 1–2 | 14 d |
 | D11 | **[Provisional target end state: AD retired, or a dated Kerberos island](../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14)** | Decision | Executive sponsor and CIO | — | P0.4 | end of wk 4 | 0 |
 | G0 | **[G0 — Ready to Plan](../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)** | Gate | Steward (backup: executive sponsor) | — | P0.4, P0.5, P0.6, D11 | end of wk 4 | 0 |
@@ -222,7 +224,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | P1.1 | **[Attribute taxonomy finalized (M-014)](../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones)** | Task | Platform teams | 5 | D02 | wk 5 | 0 |
 | P1.2 | **[Dynamic group design tested; enterprise groups and administrative units built (M-015)](../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones)** | Task | Platform teams | 8 | P1.1 | wk 6–7 | 0 |
 | P1.3 | **[Intune policy design complete; pilot profiles staged (M-016)](../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones)** | Task | Platform teams | 5 | P1.2 | wk 7–8 | 0 |
-| X-IDL | [HR-to-cloud provisioning live for the foundation scope](identity-lifecycle.md) | External | Identity Lifecycle project | — | — | end of wk 8 | 2 d |
+| X-IDL | [HR-to-cloud provisioning live for the foundation scope](identity-lifecycle.md) | External | Identity Lifecycle project | — | — | end of wk 8 | 0 |
 | P1.5 | [Conditional Access design running in report-only (M-017)](../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones) | Task | CISO | 10 | G0 | wk 5–6 | 7 d |
 | D03 | [Enforce the Conditional Access baseline](../books/b01-transformation-arc/12-migration-roadmap.md#phase-1-foundation-weeks-58) | Decision | CISO | — | P1.5 | end of wk 6 | 7 d |
 | P1.6 | [Baseline enforced; emergency access accounts vaulted and tested](../books/b01-transformation-arc/12-migration-roadmap.md#phase-1-foundation-weeks-58) | Task | Platform teams | 3 | D03 | wk 7 | 7 d |
@@ -234,7 +236,8 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | P1.11 | [Every High assessment finding remediated and re-scanned](../books/b00-orientation/09-design-pilot-and-rollout.md#foundation-build-and-pre-pilot-readiness) | Task | Platform teams | 15 | G0 | wk 5–7 | 5 d |
 | D05 | [Choose the pilot division](../books/b00-orientation/09-design-pilot-and-rollout.md#scope) | Decision | Program office | — | G0 | end of wk 4 | 18 d |
 | P1.12 | **[Design review approved (M-021)](../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones)** | Task | Steward | 2 | P1.3, P1.7, P1.8, D05 | wk 8 | 0 |
-| G1 | **[G1 — Foundation Complete](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete)** | Gate | Steward | — | P1.12, X-IDL, P1.6, P1.9, P1.10, P1.11 | end of wk 8 | 0 |
+| P1.13 | **[Pilot servers connected through Arc with machine configuration applied (M-030)](../books/b05-devices/09-servers-under-azure-arc.md)** | Task | Platform teams | 10 | G0 +10 d | wk 7–8 | 0 |
+| G1 | **[G1 — Foundation Complete](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete)** | Gate | Steward | — | P1.12, X-IDL, P1.6, P1.9, P1.10, P1.11, P1.13 | end of wk 8 | 0 |
 
 : Phase 1 — Foundation {.striped .hover}
 
@@ -246,16 +249,15 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | P2.1 | **[Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones)** | Task | Platform teams | 10 | G1 | wk 9–10 | 0 |
 | P2.2 | **[Pilot Conditional Access and Intune policies assigned (M-024, M-025)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones)** | Task | Platform teams | 5 | P2.1 | wk 11 | 0 |
 | P2.3 | **[Pilot devices moved by pattern (M-023)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones)** | Task | Platform teams | 8 | P2.2, D06 | wk 12–13 | 0 |
-| P2.4 | [First migrated GPOs unlinked from the pilot OUs](../books/b05-devices/07-the-gpo-sunset-program.md) | Task | Platform teams | 5 | P2.3 | wk 13–14 | 2 d |
+| P2.4 | **[First migrated GPOs unlinked from the pilot OUs, after 20 days of testing beside the linked GPOs](../books/b05-devices/07-the-gpo-sunset-program.md)** | Task | Platform teams | 5 | P2.2 +20 d | wk 16 | 0 |
 | P2.5 | [PIM for every pilot administrator (M-026)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones) | Task | Platform teams | 5 | P2.1 | wk 11 | 15 d |
 | P2.6 | [Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)](../books/b08-ddi/10-migration-sequence.md) | Task | Platform teams | 15 | G1 | wk 9–11 | 15 d |
 | P2.7 | **[Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones)** | Task | Platform teams | 7 | P2.3 | wk 13–14 | 0 |
 | P2.8 | [Certificate-based authentication for PIV and CAC holders (M-029)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones) | Task | Platform teams | 8 | P2.1 | wk 11–12 | 12 d |
-| P2.9 | [Pilot servers under Arc with machine configuration (M-030)](../books/b05-devices/09-servers-under-azure-arc.md) | Task | Platform teams | 10 | G1 | wk 9–10 | 20 d |
 | P2.10 | [Rollback rehearsed surface by surface](../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface) | Task | Platform teams | 3 | P2.3 | wk 13–14 | 4 d |
-| P2.11 | **[Drift-clean hold (14 days, illustrative); success criteria met (M-031)](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Task | Program office | 10 | P2.4, P2.5, P2.6, P2.7, P2.8, P2.9, P2.10 | wk 15–16 | 0 |
+| P2.11 | **[Drift-clean hold (14 days, illustrative); success criteria met (M-031)](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Task | Program office | 10 | P2.5, P2.6, P2.7, P2.8, P2.10 | wk 15–16 | 0 |
 | P2.12 | **[Retrospective and runbook updates committed](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Task | Program office | 5 | P2.11 (SS) +5 d | wk 16 | 0 |
-| G2 | **[G2 — Pilot Clean](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Gate | Steward and executive sponsor (co-signed) | — | P2.11, P2.12 | end of wk 16 | 0 |
+| G2 | **[G2 — Pilot Clean](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Gate | Steward and executive sponsor (co-signed) | — | P2.11, P2.12, P2.4 | end of wk 16 | 0 |
 
 : Phase 2 — Pilot division {.striped .hover}
 
@@ -280,12 +282,12 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
 | D08 | [End dates for legacy authentication and NTLM](../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program) | Decision | Authorizing official | — | G2 | end of wk 16 | 100 d |
-| P4.1 | [Migrated GPOs retired](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744) | Task | Platform teams | 5 | G3 | wk 37 | 20 d |
+| P4.1 | [Migrated GPOs disabled and held as the rollback net (deletion follows the 90-day hold: Endpoint plan E5.2)](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744) | Task | Platform teams | 5 | G3 | wk 37 | 20 d |
 | P4.2 | [OU-based security groups retired](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744) | Task | Platform teams | 5 | P4.1 | wk 38 | 20 d |
 | P4.3 | [AD-integrated DNS zones moved, except the domain's own zones](../books/b08-ddi/10-migration-sequence.md) | Task | Platform teams | 15 | G3 | wk 37–39 | 10 d |
-| P4.4 | [AD-authorized DHCP retired](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744) | Task | Platform teams | 5 | P4.3 | wk 40 | 10 d |
+| P4.4 | [DHCP scopes moved off the AD-authorized servers (de-authorizing them is the Network plan's D-N12)](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744) | Task | Platform teams | 5 | P4.3 | wk 40 | 10 d |
 | P4.5 | [User and device issuance off AD CS; smart-card logon GPO retired](../books/b07-pki/07-coexistence-and-migration.md) | Task | Platform teams | 15 | G3 | wk 37–39 | 15 d |
-| P4.6 | **[AD-bound service principal names migrated, retired or islanded, app by app](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744)** | Task | App owners | 30 | G3, D08 | wk 37–42 | 0 |
+| P4.6 | **[AD-bound service principal names migrated, retired or islanded, app by app](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744)** | Task | Application owners | 30 | G3, D08 | wk 37–42 | 0 |
 | P4.7 | **[AD authentication volume measured below the agreed threshold](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744)** | Task | Program office | 10 | P4.6, P4.2, P4.4, P4.5 | wk 43–44 | 0 |
 | G4 | **[G4 — Legacy Quiet](../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744)** | Gate | Steward (backup: executive sponsor) | — | P4.7 | end of wk 44 | 0 |
 
@@ -314,7 +316,7 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Platform teams | 35 | — | — |
 | Program office | 8 | 3 | — |
 | Executive sponsor and CIO | — | 3 | 1 |
-| App owners | 2 | — | — |
+| Application owners | 2 | — | — |
 | CISO | 1 | 1 | — |
 | Executive sponsor and steering committee | — | 1 | 1 |
 | Steward | 1 | — | 1 |
