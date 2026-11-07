@@ -62,7 +62,7 @@ The configuration and PowerShell in this appendix are illustrative and haven't b
 | Forwarded headers | `Host` and `X-Forwarded-Proto`, so Gitea builds correct public URLs[^aB-gitea-proxy] |
 | Security headers | HSTS (`max-age=31536000`, `includeSubDomains`), set with IIS's native site-level `<hsts>` element, available since IIS 10.0 version 1709;[^aB-iis-hsts] `X-Content-Type-Options: nosniff`; `X-Frame-Options: DENY` |
 | Request size | `maxAllowedContentLength` raised to 524,288,000 bytes (500 MB); the IIS default is 30,000,000 bytes (about 28.6 MB)[^aB-iis-limits] |
-| Authentication | Interactive sign-in through Entra ID OIDC for the web UI; personal access tokens for `git` over HTTPS |
+| Authentication | Interactive sign-in through Entra ID OIDC for the web UI; personal access tokens for `git` over HTTPS; for administrative access, a client certificate over mutual TLS, required through IIS's SSL settings ([Book 01, Chapter 03](../b01-transformation-arc/03-platform-foundation.md)) |
 | Audit | IIS W3C extended logs, read by the conformance adapter and forwarded by the Azure Monitor Agent |
 
 This is the only plane that answers on the host's network address for HTTP. Gitea is bound to loopback and unreachable directly. The rewrite rule is single, catch-all and stop-processing, with no static-content fall-through. Gitea's own IIS guidance adds the steps that are easy to miss: install the WebSocket Protocol feature (Gitea's real-time updates use a WebSocket at `/-/ws`), don't let the proxy decode the request URI (an encoded `%2F` must stay encoded), turn off ARR's reverse rewrite of the host in response headers (otherwise redirects send browsers to the internal address), and serve a certificate with its full chain so `git clone` works.[^aB-gitea-proxy]
@@ -256,6 +256,7 @@ The hook chain rejects unsigned pushes to `main`, `canon/*` and any path under t
 | Caller | Authentication path | Where the identity comes from | Bound to |
 |---|---|---|---|
 | Federated contributor | Entra ID OIDC sign-in (web UI), then a personal access token for `git` | Entra ID tenant and group claims | Groups assigned to the Gitea app registration |
+| Administrator | Client certificate over mutual TLS at the IIS reverse proxy, required for administrative access | Enterprise PKI, per Book 01, Chapter 03; the certificate template and the mapping of a certificate to an administrator are not yet specified | The administrative access that IIS's SSL settings gate |
 | AD-only contributor | LDAPS bind through the Gitea source | Forest user in the governed Users OU | `IT-INF-PLATFORM-CanonStewards` admin filter |
 | Optional API caller | IIS Negotiate (Kerberos, then NTLM) | Forest user, impersonated in the API process | NTFS ACLs on what the API touches |
 | Gitea service | gMSA `CORP\svc-fmp-gitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea` |
@@ -313,7 +314,7 @@ Every bare repository under `D:\GitRepos\` carries the program's hook bodies, de
 | Hook | Rule |
 |---|---|
 | `pre-receive` | Reject pushes to `main` unless the author is in the canon stewards group |
-| `pre-receive` | Reject any commit containing `FOUO` or "For Official Use Only" markings |
+| `pre-receive` | Reject any commit containing `FOUO` or "For Official Use Only" markings, or CUI banner and category markings (for example `CUI` or `CONTROLLED`) |
 | `pre-receive` | Validate canon-file YAML front matter (`document_id`, `version`, `status`, `owner`) |
 | `pre-receive` | Reject canon files not matching `^FMP_\d{3}_[\w]+_v\d+\.\d+\.md$` |
 | `pre-receive` | Reject unsigned `.ps1` files under `scripts/` |
@@ -432,7 +433,7 @@ Every binary the Phase 1–13 build downloads is pinned to a URL and SHA-256 has
 | Azure Blob backup target | Azure commercial (Class D) — documented exception |
 | GitHub pull mirror | Public internet, read-only ingest |
 
-None of these planes is "GCC-Moderate." The on-premises host is inside the agency's own authorization boundary, not a cloud service's; Entra ID for a GCC tenant runs in Azure public; and Intune no longer appears because it doesn't manage the server (C.2). The Azure set is recorded as a discrete exception, with a decision record and risk acceptance, not as a quiet departure from the tenant's boundary.
+None of these planes is "GCC Moderate." The on-premises host is inside the agency's own authorization boundary, not a cloud service's; Entra ID for a GCC tenant runs in Azure public; and Intune no longer appears because it doesn't manage the server (C.2). The Azure set is recorded as a discrete exception, with a decision record and risk acceptance, not as a quiet departure from the tenant's boundary.
 
 ### Runtime egress allowlist
 
@@ -482,7 +483,7 @@ Gitea roles map to three groups:
 
 These groups are driven by user attributes, and a synced user's attributes are written in on-premises AD and reach Entra ID through directory sync before any group recalculates. The attributes have exactly one writer, the governance plane, and drift against it is a finding, not an accepted edit. A move in the HR feed reaches Gitea after directory sync, dynamic group processing (B.2) and the user's next sign-in, so the program measures it in hours and handles leavers directly. The group mapping is part of Phase 14, which the build guide marks as under operational validation. [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md) covers the joiner-mover-leaver flow.
 
-The program's key security indicator library tests this host's posture on every evaluation run: continuous-monitoring presence and freshness (CA-7), repository and TLS inventory completeness (CM-8), IIS log presence and retention (AU-2, AU-6), and monitoring evidence freshness (SI-4). A failure opens a service-level ticket and gates the next authorization review.
+The program's own posture-indicator library (the agency's checks of this host, not FedRAMP's provider Key Security Indicators) tests this host's posture on every evaluation run: continuous-monitoring presence and freshness (CA-7), repository and TLS inventory completeness (CM-8), IIS log presence and retention (AU-2, AU-6), and monitoring evidence freshness (SI-4). A failure opens a service-level ticket and gates the next authorization review.
 
 ## Other repository options
 

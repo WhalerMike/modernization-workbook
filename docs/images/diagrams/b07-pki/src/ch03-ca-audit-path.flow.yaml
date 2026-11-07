@@ -11,7 +11,7 @@ nodes:
   dc: {tone: slate, width: 210, tag: "Domain controllers", title: "Audit Directory Service Changes", body: ["=SACL on Public Key Services; event 5136"], size: 12}
   log: {tone: slate, width: 210, tag: "CA server", title: "Local Security log", body: ["=Sized so a collection outage can't overwrite evidence"], size: 12}
   wef: {tone: violet, width: 210, tag: "Collect", title: "Windows Event Forwarding", body: ["=Collector confirms arrival"], size: 12}
-  siem: {tone: violet, width: 240, tag: "Alert", title: "SIEM", body: ["4886, 4887, 4888 requests and issuance", "4882, 4885, 4890, 4892 configuration drift", "4896, 4897 database and role changes"], size: 12}
+  siem: {tone: violet, width: 240, tag: "Alert", title: "SIEM", body: ["4886, 4887, 4888 requests and issuance", "4870 revocation", "4882, 4885, 4890, 4892 configuration drift", "4896, 4897 database and role changes"], size: 12}
   mdi: {tone: violet, width: 210, tag: "Posture", title: "Defender for Identity sensor on the CA", body: ["=Assessments and alerts"], size: 12}
 order:
   - [filt, pol, dc]

@@ -66,6 +66,8 @@ The commands in this appendix are examples. They haven't been run against a prod
 
 : Cloud PKI deployment checklist {.striped .hover}
 
+**Owner roles in this table and in A.2, mapped to [Chapter 05](05-who-owns-the-certificate-estate.md).** PKI architect and PKI admin are PKI and CA administrators. Intune admin is endpoint engineering. AD admin and Identity admin are the identity team (identity engineering). Network and Server admin are the server and network teams. The Licensing owner is not yet specified: Chapter 05 has no licensing role, and the program has not named who owns the tenant's license entitlements.
+
 Changes from the PKI guide's version: the CSR steps now apply only to the BYOCA model, because a Cloud PKI root signs its own issuing CA inside Intune; CA certificates are exported DER-encoded; the cloud chain goes to domain-joined relying parties in the Foundation wave, before the pilot needs it, not in Scale; the connector is optional and must be on a current, supported release rather than "v6.2406+"; and the strong-mapping, NTAuth and three-CA-limit steps are new.
 
 ## A.2 Entra CBA configuration checklist

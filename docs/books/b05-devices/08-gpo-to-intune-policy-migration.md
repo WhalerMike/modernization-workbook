@@ -77,7 +77,7 @@ Build every policy in this chapter, but assign none of them.
 
 ### Phase 4: pilot
 
-The pilot cohort is about 5% of the fleet, chosen to be representative across tiers, regions and departments.
+The pilot cohort is about 5% of the fleet, chosen to be representative across tiers, regions and departments. This is the device cohort for this migration, not a second pilot: the program's pilot is one division, typically IT, with 50 to 100 devices as a floor ([Book 00, Chapter 09](../b00-orientation/09-design-pilot-and-rollout.md#phase-2-the-pilot)). Draw the 5% from the pilot division first; if the division can't supply a representative mix of tiers, regions and departments, add volunteer devices from other divisions until it does, and treat whichever of the two is larger as the cohort size.
 
 - Assign the compliance policies to the pilot groups with a longer grace period than production; the program uses 7 days instead of 1. The grace period is the schedule on the **Mark device noncompliant** action, set in days from 0 to 365.[^c08-noncompliance]
 - Assign the configuration profiles and endpoint security policies to the same groups.
