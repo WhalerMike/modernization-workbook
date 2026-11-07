@@ -65,7 +65,7 @@ Read the chapter's [Why reviews, and why as code](../../project-plans/developer-
 
 Then read [The reviewed JSON](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md#the-reviewed-json) and [The bodies](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md#the-bodies). Note:
 
-- Seven series follow [Book 04, Chapter 09's schedule](../../books/b04-access/09-access-governance.md#cadence): Entra roles, PRV group membership (PIM for Groups reviews are in preview), and an Azure role series through a preview API.
+- Seven series follow [Book 04, Chapter 09's schedule](../../books/b04-access/09-access-governance.md#cadence): Entra roles, PRV group membership (PIM for Groups reviews are in preview), and an Azure role series through a preview API. The Azure series is a Tier 0 series, so it runs monthly with the other Tier 0 roles; Chapter 09 puts the remaining Azure roles at quarterly.
 - A role series covers users. Groups that hold the role are reviewed through their own membership series, and PA-AR-14 flags a group without one.
 
 ## Unit 2: The checks, the plan and the evidence (10 minutes)

@@ -12,7 +12,7 @@ last-reviewed: 2026-11-03
 
 # Labs {.unnumbered}
 
-Every developer workbook chapter ends with two labs, and every learning path module has an exercise built on them.
+Every developer workbook chapter except the deployment runbooks ends with two labs, and every learning path module has an exercise built on them. The runbooks are not gates, so they have no labs of their own; two learning path modules still carry exercises for them: [Non-Person Identity, Module 11](non-person-identity/11-deploying-to-test-and-production.md) and [Attribute-Driven Migration, Module 9](attribute-driven-migration/09-deploying-to-test-and-production.md).
 
 - **Lab 1: fixtures, no tenant.** It runs on a laptop against the kit's fictional fixtures. Nothing signs in, and nothing leaves the machine. Where a chapter shows a terminal image after a command, that image is the kit's real output on those fixtures.
 - **Lab 2.** It repeats the chapter in a non-production tenant, instance or subscription, never production. The authors haven't run the Lab 2s; each says so, and says how to back out what it built.
@@ -122,7 +122,7 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:
 
-- **A Microsoft Entra test tenant**, in the same cloud as production (worldwide, GCC or GCC High), with the licenses the lab names. Some labs add an Azure test subscription or a disposable server.
+- **A Microsoft Entra test tenant**, in the worldwide or GCC cloud for learning, with the licenses the lab names; then rehearse in the agency's own cloud, as [Book 16's two-step lab path](../books/b16-people/06-vendor-training-and-labs.md) describes. Some labs add an Azure test subscription or a disposable server.
 - **A ServiceNow Personal Developer Instance**, free to members of ServiceNow's Developer Program, or a sub-production instance. [Chapter 01 of Building Ticket-to-Machine](../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#lab-2-a-servicenow-developer-instance) says how its instance is reset.
 - **A SailPoint Identity Security Cloud sandbox tenant**, the agency's own.
 

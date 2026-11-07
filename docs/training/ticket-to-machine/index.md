@@ -96,7 +96,7 @@ Run every command from `examples/servicenow-sailpoint`. The labs write to an `ou
 
 - a ServiceNow Personal Developer Instance, never production ([Chapter 01, Lab 2](../../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#lab-2-a-servicenow-developer-instance));
 - a SailPoint ISC sandbox tenant. How an agency gets one is between it and SailPoint ([Chapter 03, Lab 2](../../project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md#lab-2-a-sailpoint-sandbox-tenant));
-- for Modules 3, 4 and 6, a test Entra tenant in the worldwide or GCC cloud, with synthetic data.
+- for Modules 3, 4 and 6, a test Entra tenant in the worldwide or GCC cloud for learning, with synthetic data (before a gate passes, rehearse once in your agency's own cloud, as [Book 16](../../books/b16-people/06-vendor-training-and-labs.md#what-changes-in-the-government-clouds) describes).
 
 Every Lab 2 ends with a back-out step, but later modules reuse some of what an earlier back-out deletes. Back out after the last module that uses the objects, or at the end of the path, and keep these until then: Module 1's scoped application (Module 2 builds its roles in it), Module 2's workflow client (Module 5) and verifier user (Module 6), and the finding you close in Module 6's Lab 2 (Module 7). Back out everything else at the end of each module.
 

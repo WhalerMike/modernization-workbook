@@ -307,8 +307,6 @@ Waves select devices by attribute value, so each wave's scope is a query and its
 
 ### Step 5.1: the runbook for one wave
 
-**Entry criteria.**
-
 **Entry criteria.** Gates 0 to 4 passed for the wave's divisions; **VK-INT-01** and **VK-INT-03** clean for its devices; a fresh **VK-DG-05** snapshot from the day before; the wave's rollback written, GPO backups taken and re-enable owners named; the help desk briefed.
 
 **Steps.**
@@ -349,7 +347,7 @@ Stale objects still match dynamic rules and inflate the inventory, so clean them
 3. **Clean hybrid-joined devices in Active Directory** and let sync carry it, and don't delete system-managed Autopilot devices from Entra ID.[^iti-stale-devices]
 4. **Don't count on Intune cleanup rules**: they only hide records after 30 to 270 days and leave the Entra object.[^iti-intune-cleanup] Prevent the hybrid dual state at its source ([companion guide](attribute-driven-migration.md#dynamic-device-groups-intune-track)).
 
-A device leaving the fleet follows Book 05's retirement sequence, with the Entra object deleted last ([Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation)).
+A device leaving the fleet follows Book 05's retirement sequence, with the Entra object deleted last ([Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#retirement-and-wipe)).
 
 ### Step 6.2: drift
 
