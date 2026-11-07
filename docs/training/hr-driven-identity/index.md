@@ -67,13 +67,13 @@ Work through them in order. Module 7 reads what Modules 1, 2, 3, 4 and 6 produce
 | 2 | [Run contractors from their own source](02-contractor-sources.md) | G2 Sources | [02](../../project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md) | 50 min |
 | 3 | [Make joiners ready on day one](03-joiners-and-the-temporary-access-pass.md) | G3 Joiners | [03](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md) | 50 min |
 | 4 | [Assign access from attributes and review what a move leaves](04-access-and-movers.md) | G4 Access and movers | [04](../../project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md) | 50 min |
-| 5 | [Check certificate-based authentication](05-certificate-based-authentication.md) | G5 Credentials | [05](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md) | 45 min |
-| 6 | [Time separations from the logs](06-separation-timing.md) | G6 Separation | [06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md) | 45 min |
+| 5 | [Check certificate-based authentication](05-certificate-based-authentication.md) | G5 Credentials | [05](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md) | 50 min |
+| 6 | [Time separations from the logs](06-separation-timing.md) | G6 Separation | [06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md) | 50 min |
 | 7 | [Find lifecycle drift and file the evidence](07-drift-and-evidence.md) | G7 Drift and evidence | [07](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md) | 60 min |
 
 : The modules of the HR-Driven Identity learning path {.striped .hover}
 
-**Total time:** about 5 hours 50 minutes, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
+**Total time:** about 6 hours, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
 
 Each module follows the same units: an introduction with the federal requirement it meets, learning objectives, prerequisites, one to three concept units, Lab 1, Lab 2, a knowledge check and a summary.
 

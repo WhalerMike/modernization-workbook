@@ -207,8 +207,8 @@ A Log Analytics workspace maps onto those definitions cleanly. Tables on the Ana
 
 | Setting | Value | Why |
 |---|---|---|
-| Analytics retention | At least 180 days | Immediately queryable: M-26-14's *searchable* |
-| Total retention | At least 365 days, longer where a records schedule requires it | Long-term retention reached by search job: *retrievable* |
+| Analytics retention | At least 183 days (six months) | Immediately queryable: M-26-14's *searchable* |
+| Total retention | At least 366 days (one year), longer where a records schedule requires it | Long-term retention reached by search job: *retrievable* |
 | Table plan | Analytics for tables that detections query; Basic considered only for high-volume tables (Graph activity) that are hunted rather than alerted on | Cost managed by plan, not by leaving categories off |
 
 Retention is set per table, by portal, `az monitor log-analytics workspace table update` with `--retention-time` and `--total-retention-time`, or `Update-AzOperationalInsightsTable`.[^c03-la-retention] Shortening a table's total retention takes effect only after a 30-day wait, which protects against mistakes; lengthening it applies to data already in the table.[^c03-la-retention] The Entra admin center's own 30-day window is no substitute: it is a viewing convenience, not evidence storage.
@@ -298,7 +298,7 @@ expected
 
 `MISSING` means the category was never enabled, was enabled against a different workspace, or (for the risk tables) has had nothing to report; check the GET output from Path C before concluding anything. `STALE` is the more dangerous result: emission worked and then stopped, and any query over a wide time range will keep returning the old data and hide the gap. Some tenants legitimately produce no provisioning or risk events in a quiet week, so the program records an expected-quiet exception for those tables rather than lowering the bar for the sign-in tables.
 
-Where the workspace is Microsoft Sentinel, its **Microsoft Entra ID** data connector writes these same categories to these same tables, and needs read and write permission on the Entra diagnostic settings to show its status.[^c03-sentinel-entra] The program still treats the tenant diagnostic setting, deployed from code, as the control of record, and checks for duplicate settings sending the same categories to the same workspace. How the tables become detections is [Chapter 05](05-from-log-warehouse-to-detection.md), and the control-level detail is in the compliance volume [Vol III Book 06, SIEM, XDR and Detection](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
+Where the workspace is Microsoft Sentinel, its **Microsoft Entra ID** data connector writes these same categories to these same tables, and needs read and write permission on the Entra diagnostic settings to show its status.[^c03-sentinel-entra] The program still treats the tenant diagnostic setting, deployed from code, as the control of record, and checks for duplicate settings sending the same categories to the same workspace. How the tables become detections is [Chapter 05](05-from-log-warehouse-to-detection.md), and the control-level detail is in the compliance volume [Vol III Book 06, SIEM, XDR, and Detection Engineering](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
 
 ## Privacy: identity telemetry is PII
 

@@ -1,6 +1,6 @@
 ---
 title: "Module 7: Find lifecycle drift and file the evidence"
-description: "Gate G7 and workbook Chapter 07: write one read-only run of the six lifecycle drift classes and six metrics from the HR export, the directory, the card system and Modules 1 to 6's outputs, package each run with a hash chain, verify it, and assemble a period an ISSO can check. About 60 minutes, with a lab on fixtures and a test tenant lab."
+description: "Gate G7 and workbook Chapter 07: write one read-only run of the six lifecycle drift classes and six metrics from the HR export, the directory, the card system and the outputs of Modules 1, 2, 3, 4 and 6, package each run with a hash chain, verify it, and assemble a period an ISSO can check. About 60 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module

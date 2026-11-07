@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book consolidates the workbook's device and server modernization pages (the Group Policy sunset guides, the Intune policy migration guide, Intune-first onboarding, the Intune and Azure Arc path guides, the hybrid-join whitepaper and their short companion pages) into one ordered book. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b05-devices/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b05-devices) folder, and their old addresses forward to the chapters that replaced them.
+This book consolidates the workbook's device and server modernization pages (the Group Policy sunset guides, the Intune policy migration guide, Intune-first onboarding, the Intune and Azure Arc path guides, the hybrid-join whitepaper and their short companion pages) into one ordered book. Every external claim was checked against a primary source between October 20 and October 30, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b05-devices/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b05-devices) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}
@@ -75,7 +75,7 @@ Appendix: [A — GPO to Intune crosswalk](appendix-a-gpo-to-intune-crosswalk.md)
 
 ## Where this book sits in the workbook
 
-This is Book 05 of the [Federal Modernization Workbook](../index.md). It builds on [Book 02 — Identity & Directory](../b02-identity/index.md) for the directory migration, and hands device compliance to [Book 04 — Access & Privilege](../b04-access/index.md), where Conditional Access decides what a compliant device may reach. The [Endpoint & Device Modernization project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-charter.md) ([plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md)) delivers it, and Book 01's chapters on [policy](../b01-transformation-arc/05-policy-transformation.md) and [compute](../b01-transformation-arc/07-compute-transformation.md) tell the same story at the level of the whole estate.
+This is Book 05 of the [Federal Modernization Workbook](../index.md). It builds on [Book 02 — Identity & Directory](../b02-identity/index.md) for the directory migration, and hands device compliance to [Book 04 — Access & Privilege](../b04-access/index.md), where Conditional Access decides what a compliant device may reach. The [Endpoint & Device Modernization project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-charter.md) ([plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md); the published schedule is the [Endpoint & Device plan](../../project-plans/endpoint-device.md)) delivers it, and Book 01's chapters on [policy](../b01-transformation-arc/05-policy-transformation.md) and [compute](../b01-transformation-arc/07-compute-transformation.md) tell the same story at the level of the whole estate.
 
 ## Chapters
 

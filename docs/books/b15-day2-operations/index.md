@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's help-desk Entra operations guide, the day-two operator runbook, the ServiceNow compliance-kit roadmap, and the Federal Compliance series' implementation, automation and day-two operations volumes that cover the help desk, ITSM and telephony catalogs, SaaS integration, the CMDB, control compliance automation, attestation, the evidence pipeline and validation harnesses. Every external claim was checked against a primary source on October 21–22, 2026 and carries a note. The replaced pages are kept in the repository's [`archive/b15-day2-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b15-day2-operations) folder, and their old addresses forward to the chapters that replaced them.
+This book replaces the workbook's help-desk Entra operations guide, the day-two operator runbook, the ServiceNow compliance-kit roadmap, and the Federal Compliance series' implementation, automation and day-two operations volumes that cover the help desk, ITSM and telephony catalogs, SaaS integration, the CMDB, control compliance automation, attestation, the evidence pipeline and validation harnesses. Every external claim was checked against a primary source between October 21 and November 2, 2026, and each note carries its own date. The replaced pages are kept in the repository's [`archive/b15-day2-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b15-day2-operations) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip appearance="default"}
@@ -42,6 +42,8 @@ The kit applies this book's help-desk model: five Word documents (the intake and
 **Technical deep dive (about 50 minutes live, 19 narrated)**: intake and triage, help desk authority in Entra ID, catalogs and the CMDB, and control automation, in modules on the [Presentations](../../presentations/index.md#technical-b15) page.
 
 **Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, service owner, help desk and operations leads and the CISO: the help desk as the risk point, one front door, executors who never decide, reconciled inventory, measuring day-two health and buying native compliance apps first, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b15) page.
+
+**In-house automation executive briefing (about 9 minutes narrated)**: for Chapter 13, building day-two automation in-house when there's no funding for new products, with a pilot to approve, on the [Presentations](../../presentations/index.md#executive-b15-inhouse) page.
 
 **Draft**: the Microsoft automation reference, [Module 1: Graph and Azure Foundations](../../training/ms-automation-foundations.md) and [Module 2: Microsoft Entra ID through Microsoft Graph](../../training/ms-automation-entra.md), covers the endpoints, sign-in, permissions and request patterns behind this book's control automation, with tested read-only checks in Python and PowerShell.
 :::

@@ -1,6 +1,6 @@
 ---
 title: "Module 11: Deploy to test, then production"
-description: "Workbook Chapter 11, the deployment runbook, across every gate: one settings file per stage with no secret, a read-only preflight, a safe order from inventory to report-only Conditional Access, a smoke test on synthetic objects, an evidence record for every requirement row, a rollback approved by its SHA-256 and rehearsed in test, the go/no-go criteria, then production in waves. You dry-run the five deploy scripts on fixtures and see a fixture stage refused at the evidence check. About 60 minutes, with a lab on fixtures and a pointer to the live test and production stages; the chapter hasn't been run against a live tenant."
+description: "Workbook Chapter 11, the deployment runbook, across every gate: one settings file per stage with no secret, a read-only preflight, a safe order from inventory to report-only Conditional Access, a smoke test on synthetic objects, an evidence record for every requirement row, a rollback approved by its SHA-256 and rehearsed in test, the go/no-go criteria, then production in waves. You dry-run four of the five deploy scripts on fixtures and see a fixture stage refused at the evidence check. About 60 minutes, with a lab on fixtures and a pointer to the live test and production stages; the chapter hasn't been run against a live tenant."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -34,9 +34,9 @@ The order puts what can block a sign-in last: inventory and owners, the app mana
 | Requirement | KSI | Evidence |
 |---|---|---|
 | CM-3 Configuration Change Control; CM-5; AC-5 | KSI-CMT-LMC (CM-3); KSI-IAM-JIT (CM-5, AC-5) | `S0-change-record-approvals-and-settings-file.json`: the change record and the settings file's SHA-256 |
-| IA-5, IA-5(2), IA-9; AC-6, AC-6(5) | KSI-IAM-SNU; KSI-IAM-ELP | `PRE-preflight.json`, PF-02 and PF-05: the deployment identity with no secret, the reader app with reads only |
+| IA-5, IA-5(2), IA-9; AC-6, AC-6(5) | KSI-IAM-SNU; KSI-IAM-ELP (none cites IA-9) | `PRE-preflight.json`, PF-02 and PF-05: the deployment identity with no secret, the reader app with reads only |
 | CA-7, CM-2; CM-3(2), CM-4(2) | KSI-MLA-EVC; KSI-CMT-VTD | `PRE-preflight.json`, PF-09 and PF-08: the VK-NPI baseline before the change, workload policies not enforced |
-| AC-2, CM-8, IA-4; IA-5, IA-9; AC-3, AC-6; AU-2, AU-12 | KSI-PIY-GIV, KSI-IAM-SNU, KSI-IAM-ELP, KSI-MLA-LET, KSI-MLA-EVC | `SMOKE-smoke-test.json`: ST-01 to ST-07 on the synthetic objects |
+| AC-2, CM-8, IA-4; IA-5, IA-9; AC-3, AC-6; AU-2, AU-12 | KSI-PIY-GIV, KSI-IAM-SNU, KSI-IAM-ELP, KSI-MLA-LET, KSI-MLA-EVC (none cites IA-9) | `SMOKE-smoke-test.json`: ST-01 to ST-07 on the synthetic objects |
 | AU-9 Protection of Audit Information | KSI-MLA-OSM | `SHA256SUMS`, checked by `Test-NpiDeployEvidence.ps1` |
 | CM-3; CP-10 System Recovery and Reconstitution | KSI-CMT-RMV, KSI-RPL-ABO | `ROLLBACK-rollback.json`, written by an applied rollback; a dry run records `DryRun`, which the go/no-go doesn't accept |
 
@@ -54,7 +54,7 @@ After this module, you'll be able to:
 
 ## Prerequisites (1 minute)
 
-- Modules 1 to 10, or at least their Lab 1s: this module doesn't teach the kit's chapters again. The runbook runs Chapters 01, 02, 04, 05, 06, 08 and 10 in order.
+- Modules 1 to 10, or at least their Lab 1s: this module doesn't teach the kit's chapters again. The runbook runs Chapters 01, 02, 04, 05, 08 and 10 in order, and does Chapter 06's gMSA step by hand.
 - [Module 10](10-drift-and-evidence.md), for the evidence package and the first-week drift runs that production ends with.
 
 ## Unit 1: What the runbook adds (10 minutes)

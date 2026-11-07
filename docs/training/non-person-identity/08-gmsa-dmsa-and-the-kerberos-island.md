@@ -62,7 +62,7 @@ Read the guide's [Step 5](../../books/guides/non-person-identity-implementation.
 
 Read the workbook chapter in this order:
 
-- [The context the code depends on](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-context-the-code-depends-on): what a gMSA and a dMSA are, why the chapter has an end date built in, and the program's four rules *(design guidance)*.
+- [The context the code depends on](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-context-the-code-depends-on): what a gMSA and a dMSA are, why the chapter has an end date built in, and the program's five rules *(design guidance)*.
 - [The check and the plan](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-check-and-the-plan): NPI-KRB-01 to -09, and one action per account.
 - [The island list and the reconciliation](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-island-list-and-the-reconciliation).
 - [The separate write path](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-separate-write-path): why the read holds no domain administration and the write is a person's.

@@ -44,14 +44,14 @@ The Kerberos-only part of credential modernization (the project plan's N3.5 and 
 
 **What a gMSA and a dMSA are.** A gMSA is a domain account whose password the domain controllers manage and which several servers can retrieve; services that use the Service Control Manager, IIS application pools and Task Scheduler tasks can run as one.[^np06-gmsa-manage] Learn's Entra guidance says to use gMSAs for on-premises services unless a service, such as failover clustering, doesn't support them, and that Windows changes the password every 30 days.[^np06-entra-gmsa] A dMSA, new in Windows Server 2025, supersedes a traditional service account: once the migration completes, the old account's password can no longer be used, authentication is tied to the machines mapped to the dMSA, and the original account is disabled.[^np06-dmsa-overview] Book 02's [matrix](../../../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) gives the targets: a traditional account that serves Kerberos on-premises goes to a gMSA, or a dMSA on a Windows Server 2025 domain; an MSA is upgraded to a gMSA first; IIS application pools and scheduled tasks go to a gMSA now and to a managed identity once they move to Azure.
 
-**Why this chapter has an end date built in.** A gMSA works only while AD is authoritative ([companion guide](../../../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)). The program decides at G0 whether its end state is AD retired or a dated Kerberos island (D11, provisional), sets end dates for legacy authentication and NTLM at D08, and retires AD at G5. The project plan's risk register is blunt: a workload still running under a gMSA loses its credential when the last domain controller is demoted. So the code doesn't stop at "converted": every gMSA and dMSA ends this chapter either moving to a workload identity (Chapter 05), retiring, or on the island list with an end date, and the island list is what the program's SPN retirement (P4.6) works from. Book 02, Chapter 10's [What still needs AD after Phase 10](../../../books/b02-identity/10-migrating-and-governing.md#what-still-needs-ad-after-phase-10) lists Kerberos applications as one of the dependencies AD retirement has to clear.
+**Why this chapter has an end date built in.** A gMSA works only while AD is authoritative ([companion guide](../../../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)). The program decides at G0 whether its end state is AD retired or a dated Kerberos island (D11, provisional), sets end dates for legacy authentication and NTLM at D08, and retires AD at program G5. The project plan's risk register is blunt: a workload still running under a gMSA loses its credential when the last domain controller is demoted. So the code doesn't stop at "converted": every gMSA and dMSA ends this chapter either moving to a workload identity (Chapter 05), retiring, or on the island list with an end date, and the island list is what the program's SPN retirement (P4.6) works from. Book 02, Chapter 10's [What still needs AD after Phase 10](../../../books/b02-identity/10-migrating-and-governing.md#what-still-needs-ad-after-phase-10) lists Kerberos applications as one of the dependencies AD retirement has to clear.
 
 The program's rules for this chapter *(Design guidance)*:
 
 - **Every Kerberos account has a reviewed disposition:** `Convert` (to a gMSA or a dMSA), `Island` (it stays, with an SPN owner and an end date), `WorkloadIdentity` (Chapter 05 moves it) or `Retire`, in `kerberos-dispositions.csv`, kept with the application records. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
 - **Who may retrieve a managed password is reviewed data**, in `password-retrievers.json`, not whatever AD holds today.
 - **A dMSA migration runs for 30 days before it completes.** That is the program's parallel run for every conversion, and it covers four 7-day ticket lifetimes, the wait Learn recommends before completing (at least two).[^np06-dmsa-overview]
-- **Every account that stays on Kerberos has an SPN owner and an end date no later than D08's;** every gMSA and dMSA ends no later than G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
+- **Every account that stays on Kerberos has an SPN owner and an end date no later than D08's;** every gMSA and dMSA ends no later than program G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
 - **Never delete.** The old account is disabled at most, by `Complete-ADServiceAccountMigration` for a dMSA or by `Disable-ADAccount` after a clean 30-day parallel run on a gMSA ([Book 02, Chapter 10, Phase 4](../../../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)); retirement goes through the plan's reviewed decommission process.
 
 ### Which domain, and which cloud
@@ -86,9 +86,9 @@ Each row is pinned by a test: in `tests/KerberosIslandSamples.Tests.ps1` for the
 | Restarts every running service on the host to pick up the dMSA | A restart of unrelated services | Host steps are the server owner's, recorded, never run by this code (research gaps, row 57) |
 | Warns never to delete the original account,[^np06-dmsa-setup] while the Entra page's move to a gMSA ends by deleting it[^np06-entra-gmsa] | The pages disagree; a deleted account can't be reverted to | Never delete, the stricter: no delete, uninstall, undo or reset call exists; the old gMSA source is disabled after a 30-day parallel run (research gaps, rows 55 and 56) |
 | gMSA commands are templates with `<placeholders>` that don't parse; no Kerberos encryption type | — | Concrete parameters from reviewed data; `KerberosEncryptionType AES256`, as the gMSA overview advises AES[^np06-gmsa-overview] |
-| No SPN owner, end date, D08, D11 or G5 | N3.6 and N7.3 are left to you | The island list and the reconciliation (NPI-KRB-05 to -07) |
+| No SPN owner, end date, D08, D11 or program G5 | N3.6 and N7.3 are left to you | The island list and the reconciliation (NPI-KRB-05 to -07) |
 
-**The verdict.** Use Learn's cmdlets and their order as the model for every write. Don't use the procedures as the program: they read the KDS key, skip the migration's own limits and waits, and stop at "migrated", with nothing that keeps the account from being forgotten at G5.
+**The verdict.** Use Learn's cmdlets and their order as the model for every write. Don't use the procedures as the program: they read the KDS key, skip the migration's own limits and waits, and stop at "migrated", with nothing that keeps the account from being forgotten at program G5.
 
 ## The code: what `examples/non-person-identity` adds
 
@@ -101,7 +101,7 @@ This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, tw
 | Chapter 01's run folder | The pipeline | `register.json` and `manifest.json`; the run refuses a register whose SHA-256 isn't the manifest's |
 | `kerberos-dispositions.csv` | Application owners, through identity engineering | Per Kerberos account: `Disposition`; for `Convert`, `Target` (`gMSA` or `dMSA`), `NewAccount`, `Workload` (`Service`, `IisAppPool` or `ScheduledTask`) and `Hosts`; `SpnOwnerUpn`; `EndDate`; `Reference` for a workload identity; then `HostChangedOn` and `MigrationStartedOn` as the work happens |
 | `password-retrievers.json` | Server and AD engineering, reviewed | Per gMSA and dMSA, the distinguished names allowed to retrieve its password; Learn recommends a security group of the hosts[^np06-gmsa-manage] |
-| `end-state.json` | Identity engineering lead, from the program master schedule | D11's decision (`AdRetired` or `KerberosIsland` with an end of life), D08's end date and G5's date. There is no default; a missing or unknown decision stops the run |
+| `end-state.json` | Identity engineering lead, from the program master schedule | D11's decision (`AdRetired` or `KerberosIsland` with an end of life), D08's end date and program G5's date. There is no default; a missing or unknown decision stops the run |
 
 ### The check and the plan
 
@@ -115,7 +115,7 @@ This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, tw
 | NPI-KRB-04 | Finding | A target that can't be used: a dMSA from an MSA, or with unconstrained delegation, a host or a domain without Windows Server 2025, one dMSA for two accounts; a gMSA with no reviewed retrievers; a gMSA or dMSA converted again | Learn[^np06-dmsa-overview] [^np06-dmsa-faq] |
 | NPI-KRB-05 | Finding | An account that stays on Kerberos with no SPN owner | Project plan, N3.6 |
 | NPI-KRB-06 | Finding / Warn | No end date, or one after D08's; Warn while D08 isn't set | Project plan, N3.6 |
-| NPI-KRB-07 | Finding | A gMSA or dMSA not reconciled with D11: no destination; a move or retirement after G5; an island account past G5 when AD is retired, or past the island's end of life | Project plan, N7.3 and G5 |
+| NPI-KRB-07 | Finding | A gMSA or dMSA not reconciled with D11: no destination; a move or retirement after program G5; an island account past program G5 when AD is retired, or past the island's end of life | Project plan, N7.3 and program G5 |
 | NPI-KRB-08 | Warn | A managed service account in a privileged group | Learn[^np06-entra-gmsa] |
 | NPI-KRB-09 | Info | A SQL Server account, handed to the Data Platform plan | Chapter 01 |
 
@@ -139,7 +139,7 @@ The plan is written as `kerberos-plan.json` with the register's SHA-256, the SHA
 
 `island-list.csv` holds every account that stays on Kerberos under the name it will have (the dMSA or gMSA a conversion creates, or the account itself), with its SPNs, SPN owner, end date, whether the date is within D08 and whether it is ready for the program's SPN retirement (P4.6). The run's manifest records `islandHandoffReady`, true only when D08 is set and every row is ready.
 
-`reconciliation.json` holds every gMSA and dMSA, existing or planned, with its destination and outcome: `MovesToWorkloadIdentity`, `Retires`, `OnIslandList`, `HandedOff` or `Unreconciled`. When the program confirms or revises D11 (D09, week 36), `end-state.json` changes in a reviewed pull request and the run is repeated inside the 72-day margin before G5.
+`reconciliation.json` holds every gMSA and dMSA, existing or planned, with its destination and outcome: `MovesToWorkloadIdentity`, `Retires`, `OnIslandList`, `HandedOff` or `Unreconciled`. When the program confirms or revises D11 (D09, week 36), `end-state.json` changes in a reviewed pull request and the run is repeated inside the 72-day margin before program G5.
 
 ### The separate write path
 
@@ -650,7 +650,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 
 | Danger | What happens | The guard |
 |---|---|---|
-| A gMSA left behind at G5 | The workload loses its credential when the last domain controller is demoted | Every gMSA and dMSA reconciled with D11 and G5 (NPI-KRB-07); the run repeated when D11 changes |
+| A gMSA left behind at program G5 | The workload loses its credential when the last domain controller is demoted | Every gMSA and dMSA reconciled with D11 and program G5 (NPI-KRB-07); the run repeated when D11 changes |
 | A dMSA migration completed too early, or on a host that can't use it | The old account is disabled; the service fails on hosts the dMSA hasn't learned | Complete only 30 days after the start; Windows Server 2025 on every host and one domain controller; no unconstrained delegation (NPI-KRB-04) |
 | The old account deleted | No way back; the service and the dMSA link to it | No delete, uninstall, undo or reset call exists; the writer refuses them by name |
 | A root key used before it replicates | gMSA password retrieval fails on other domain controllers | Creations wait until a key has been usable for 10 hours (NPI-KRB-01); the code never creates a key |

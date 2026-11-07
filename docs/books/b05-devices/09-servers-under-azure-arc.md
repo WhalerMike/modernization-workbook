@@ -67,8 +67,8 @@ This chapter is the [Azure Arc track](../guides/attribute-driven-migration.md#ar
 | Azure VMs | Not Arc. Microsoft says not to install Arc on Azure VMs because they already have the same capabilities.[^c09-arc-prereq] Policy, RBAC and tags apply to them natively | Native Azure resource |
 | Kubernetes clusters; SQL Server | Arc-enabled Kubernetes attaches any CNCF-certified cluster as an Azure resource.[^c09-arc-k8s] SQL Server enabled by Azure Arc is [Book 06, Chapter 09](../b06-data-platform/09-what-arc-provides-to-sql-server.md) | Cluster agents; SQL extension |
 | Windows 10 and 11 clients | Only in server-like roles, such as signage or point of sale, on machines that are always on and connected. End-user machines belong in Intune[^c09-arc-prereq] | Connected Machine agent |
-| AIX, Solaris, HP-UX, mainframe operating systems, network devices | Not supported: none is on Microsoft's operating system list[^c09-arc-prereq] | None; [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) tiers 2 to 4 |
-| Vendor-sealed appliances and virtual appliances | Not covered where the vendor doesn't allow an agent *(program reading)* | None; [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) tiers 2 to 4 |
+| AIX, Solaris, HP-UX, mainframe operating systems, network devices | Not supported: none is on Microsoft's operating system list[^c09-arc-prereq] | None; [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) coverage tiers 2 to 4 |
+| Vendor-sealed appliances and virtual appliances | Not covered where the vendor doesn't allow an agent *(program reading)* | None; [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) coverage tiers 2 to 4 |
 
 The full matrix is in the companion guide's [Arc track](../guides/attribute-driven-migration.md#arc-track).
 
@@ -249,7 +249,7 @@ Onboard on-premises servers as Arc machines rather than installing the Defender 
 
 ## Extended Security Updates
 
-Arc is also how many organizations keep end-of-support servers patched while they migrate. As of today, October 20, 2026, the dates are:
+Arc is also how many organizations keep end-of-support servers patched while they migrate. As of October 29, 2026, the dates are:
 
 | Product | Status | Arc ESU detail |
 |---|---|---|
@@ -313,14 +313,14 @@ If a server was Entra joined through the sign-in extension, uninstall that exten
 
 ## The manual and governed server paths
 
-Both paths produce the same server configuration. [Chapter 05](05-the-governed-manual-and-retrofit-paths.md) describes the paths in general and the actuation ladder (L0 record, L1 observe, L2 advise, L3 gated, L4 autonomous, refused). For servers, the operations land on the ladder like this:
+Both paths produce the same server configuration. [Chapter 05](05-the-governed-manual-and-retrofit-paths.md) describes the paths in general and the actuation ladder (L0 record, L1 observe, L2 advise, L3 gated, L4 autonomous, refused by default). For servers, the operations land on the ladder like this:
 
 | Rung | Server operations | Manual path | Governed path |
 |---|---|---|---|
 | L1 Observe | `azcmagent check`, `azcmagent show`, Arc inventory, policy compliance, Update Manager assessment, ESU coverage | Operator runs and files the output | Scheduled; results compared with the desired state in canon |
 | L2 Advise | Proposed tags, policy assignments, extension allowlists, patch schedules | Reviewed in the change record | Generated change-set surfaced for approval |
 | L3 Gated | Create the service principal, `azcmagent connect`, assign machine configuration, enable Defender for Servers, enroll ESUs, install the Entra ID sign-in extension, disconnect | Operator approves under local change control; first run is a dry run | Runs only with a recorded approval reference |
-| L4 Autonomous | Any of the above with no human approval | Not applicable | Refused at the federal L3 ceiling |
+| L4 Autonomous | Any of the above with no human approval | Not applicable | Refused at the default L3 ceiling unless the authorizing official has accepted the class |
 
 On the manual path, the operator owns the change record, the approval and the rollback. The program's companion kit wraps the onboarding and baseline steps in two scripts, `Invoke-ArcOnboarding.ps1` (creates the least-privileged service principal, installs and connects the agent, and validates registration) and `Set-ArcPolicyBaseline.ps1` (assigns the Windows security-baseline machine configuration and enables Defender for Servers Plan 2). Both honor `-WhatIf`, and both must be configured for subscription, resource group, location and cloud before use. They're the program's tooling, not Microsoft cmdlets.
 

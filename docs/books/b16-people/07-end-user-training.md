@@ -105,7 +105,7 @@ The guide also listed security questions and a personal email address as recover
 
 ### When everything is lost
 
-A user who has lost every method can't self-serve, and the training should say what happens next, because it is exactly what an attacker will imitate. The help desk follows the verification ladder in [Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action): the user proves who they are by signing in with another phishing-resistant method, by in-person or supervised video verification against the PIV card or the HR record, or, where the agency has enabled it, through Entra account recovery with an identity verification provider. Then the help desk issues a short-lived Temporary Access Pass and stays with the user while they register a new phishing-resistant method ([Book 15, Chapter 04](../b15-day2-operations/04-help-desk-authority-in-entra.md#temporary-access-pass-and-mfa-re-registration)).
+A user who has lost every method can't self-serve, and the training should say what happens next, because it is exactly what an attacker will imitate. The help desk follows the verification ladder in [Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action): for a user who has lost every method, the ladder accepts identity proofing: in-person verification against the PIV card or government ID or, where the agency has enabled it, Entra account recovery with an identity verification provider. A video call against the badge photo belongs to the rung below, for a user who can still sign in with a weaker method. Then the help desk issues a short-lived Temporary Access Pass and stays with the user while they register a new phishing-resistant method ([Book 15, Chapter 04](../b15-day2-operations/04-help-desk-authority-in-entra.md#temporary-access-pass-and-mfa-re-registration)).
 
 Users need to know two things about that process. It takes longer than a phone call used to, by design. And every account recovery sends a notice to the user; SP 800-63B-4 requires one in all cases, with instructions for what to do if the user didn't ask for it.[^c07-sp80063b] A recovery notice the user didn't expect is a report, not something to delete.
 
@@ -137,7 +137,7 @@ The guide's file module is mostly right and worth keeping. OneDrive's Known Fold
 
 Shared drives move to SharePoint team sites and Teams. The training should teach where a team's files now live, how to sync a library to File Explorer, and how sharing works under the agency's rules. Sharing is where data handling training ([Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md#literacy-training-and-awareness-at-2)) meets the new tools: a link that grants access to "anyone" is a different act from attaching a copy, and sensitivity labels travel with the file.
 
-The guide's warning about old drives stays, word for word in substance: don't delete files from the old mapped drives yourself. The program retires each file share on a schedule after the records officer has been consulted ([Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md#records-management-and-privacy)), and both locations stay available side by side until then.
+The guide's warning about old drives stays, word for word in substance: don't delete files from the old mapped drives yourself. The program retires each file share on a schedule after the records officer has been consulted ([Book 00, Chapter 10](../b00-orientation/10-retirement-steady-state-and-success.md#records-before-hardware-the-decommissioning-checklist)), and both locations stay available side by side until then.
 
 ### Groups and access requests
 
@@ -168,7 +168,7 @@ The rules below are the program's design, consistent with the verification ladde
 | The help desk will | The help desk will never |
 |---|---|
 | Ask you to confirm a ticket from your signed-in session, or to sign in with your PIV card or passkey while you're on the call | Ask for your password, your PIN, or a code from your phone, text messages or email |
-| Ask you to verify in person or on a video call against your badge or HR record if you've lost every method | Ask you to approve an Authenticator prompt for them |
+| Ask you to verify in person against your badge or ID if you've lost every method | Ask you to approve an Authenticator prompt for them |
 | Issue a one-time Temporary Access Pass to you directly, during that verification, and stay while you set up a new method | Send a pass, a reset link or a code to an email address or phone number you give them on the call |
 | Send you a notice whenever a credential or method on your account changes | Accept your manager's say-so, caller ID or answers to personal questions as proof of who you are |
 | Use a remote-assistance session that you start from the agency's support portal | Ask you to install remote-access software from a link in a message |
@@ -199,7 +199,7 @@ The program's wave calendar applies that cadence to each group. The days are rel
 
 ### Help desk volume paces the waves
 
-Microsoft recommends tracking help desk ticket volume throughout a phishing-resistant rollout, slowing deployments, communications and enforcement when it rises and resuming when it falls, and using date ranges rather than fixed dates, with an Entra group per wave added to policies one at a time.[^c07-pr-deploy] [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) and [Book 05, Chapter 06](../b05-devices/06-who-owns-the-endpoint.md) already make registration rates and ticket volume go/no-go inputs for each wave. This chapter adds training completion to the same check. A wave whose users haven't been trained isn't ready, however clean its technical criteria are. [Chapter 10](10-measuring-readiness.md) sets out how those three numbers are measured and evidenced, and [Chapter 08](08-who-owns-workforce-readiness.md) who decides when they are good enough.
+Microsoft recommends tracking help desk ticket volume throughout a phishing-resistant rollout, slowing deployments, communications and enforcement when it rises and resuming when it falls, and using date ranges rather than fixed dates, with an Entra group per wave added to policies one at a time.[^c07-pr-deploy] [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) and [Book 05, Chapter 06](../b05-devices/06-who-owns-the-endpoint.md) already make registration rates (Book 02, for identity waves), enrollment completion rates (Book 05, for device waves) and ticket volume go/no-go inputs for each wave. This chapter adds training completion to the same check. A wave whose users haven't been trained isn't ready, however clean its technical criteria are. [Chapter 10](10-measuring-readiness.md) sets out how those three numbers are measured and evidenced, and [Chapter 08](08-who-owns-workforce-readiness.md) who decides when they are good enough.
 
 ### What to send, and what never to send
 

@@ -328,7 +328,7 @@ For medium-confidence detections, the playbook gathers context and hands the dec
 
 ### Suppression of known-benign incidents
 
-Health-check hosts that trip the beaconing rule, scheduled penetration tests and maintenance windows produce incidents the SOC already understands. An automation rule closes them as they are created, with a closing reason and a comment, and can carry an expiration date so a time-limited exception cannot become permanent.[^c11-autorules] This is the one L4 class the program enables by default, because its blast radius is the incident queue, its condition is a watchlist with a named owner, and every closure is recorded. Better still is fixing the rule so it does not fire, which the lifecycle review does.
+Health-check hosts that trip the beaconing rule, scheduled penetration tests and maintenance windows produce incidents the SOC already understands. An automation rule closes them as they are created, with a closing reason and a comment. Each rule must carry an expiration date and a named approver, as the decision-rights matrix in [Chapter 10](10-who-runs-security-operations.md) requires, so a time-limited exception cannot become permanent; a suppression with no end date goes to the authorizing official.[^c11-autorules] This is the one L4 class the program enables by default, because its blast radius is the incident queue, its condition is a watchlist with a named owner, and every closure is recorded. Better still is fixing the rule so it does not fire, which the lifecycle review does.
 
 ## The incident response plan
 

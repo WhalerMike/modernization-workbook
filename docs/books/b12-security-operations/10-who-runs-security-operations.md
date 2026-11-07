@@ -111,7 +111,7 @@ Every analytics rule and every playbook has exactly one owner, a named engineer 
 | Purpose | The activity it detects, mapped to M-26-14's baseline activity or the agency's threat model |
 | Source tables | Every table it reads, so a silent table can be traced to the rules it blinds ([Chapter 05](05-from-log-warehouse-to-detection.md)) |
 | Response | The playbook or runbook it hands to, and whether that response acts automatically |
-| Test | The known-good event that should trigger it, and the date it last did ([Chapter 11](11-detection-engineering-and-response.md)) |
+| Test | The known-bad sample that should trigger it, and the date it last did ([Chapter 11](11-detection-engineering-and-response.md)) |
 | Review date | When the owner next confirms it still works and still matters |
 | Exceptions | Any suppression, with its approver and end date |
 

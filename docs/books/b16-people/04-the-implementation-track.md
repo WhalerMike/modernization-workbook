@@ -22,7 +22,7 @@ lifecycle_review: 2027-04-01
 The curriculum for the engineers and administrators who build and run the estate. It sets out who the track is for and the one rule every module follows, an orientation module, ten build modules from DDI to day-two operations, each mapped to the book that teaches it and ending in a lab and an evidence artifact, the order the modules run in and how they pair with the compliance track, a capstone, and example certifications, checked against Microsoft Learn on October 22, 2026.
 :::
 
-[Chapter 03](03-the-compliance-track.md) teaches the estate from the assessor's chair. This chapter teaches it from the engineer's. Its learners are the people who stand up the DNS and IPAM platform, rebuild identity in Microsoft Entra ID, move devices to Intune, replace the certificate authority, re-route the network, take SQL Server off Windows authentication, write the detection rules and run the estate on day two. Books 01 to 09, 12 and 15 describe what they build. The track turns those books into modules a person can be trained and checked on.
+[Chapter 03](03-the-compliance-track.md) teaches the estate from the assessor's chair. This chapter teaches it from the engineer's. Its learners are the people who stand up the DNS and IPAM platform, rebuild identity in Microsoft Entra ID, move devices to Intune, replace the certificate authority, re-route the network, take SQL Server off Windows authentication, write the detection rules and run the estate on day two. Books 01 to 10, 12 and 15 describe what they build. The track turns those books into modules a person can be trained and checked on.
 
 The track is a sequence of builds, but its purpose is not to repeat the books. A learner who has read [Book 04](../b04-access/index.md) knows what an approval-gated role activation is. A learner who has finished the access module has configured one in a lab, watched it work, exported the audit trail it produces and handed that trail to an ISSO who could trace it to AC-6. The difference is the evidence, and it is why the track exists.
 
@@ -130,7 +130,7 @@ Each module below lists what it builds, the book that teaches it, its prerequisi
 
 **Build:** the Conditional Access policy set and its persona model ([Book 04, Chapters 03 and 07](../b04-access/07-the-conditional-access-policy-library.md)), the privileged role tiers and emergency access accounts ([Chapter 04](../b04-access/04-privileged-roles-and-tiers.md)), and approval-gated activation of administrative roles ([Chapter 08](../b04-access/08-pim-self-request-with-approval.md)).
 
-**Lab:** create the emergency access accounts first. Then deploy one Conditional Access policy in report-only mode and review its results; the program's design is at least 14 days in report-only before enforcement. Configure one eligible administrative role with approval and an access review, and activate it.
+**Lab:** create the emergency access accounts first. Then deploy one Conditional Access policy in report-only mode and review its results; the program's design is at least seven days in report-only before enforcement, with two to four weeks preferred. Configure one eligible administrative role with approval and an access review, and activate it.
 
 **Evidence:** the report-only results, and the role's activation and audit trail. The trail of activations is the evidence for least privilege, not the policy definition.
 
@@ -202,7 +202,7 @@ Each module below lists what it builds, the book that teaches it, its prerequisi
 
 ## Order and pairing
 
-Modules 1, 2, 6 and 7 are a real dependency chain: address before you identify, identify before you shape transport, and shape transport before you place data. Certificates (Module 3) come before network access control enforces. Access, devices, the cloud platform and security operations run in parallel once identity exists. Day-two operations comes last.
+Modules 1, 2, 6 and 7 are a real dependency chain: address before you identify, identify before you shape transport, and shape transport before you place data. Certificates (Module 3) come before network access control enforces. Access (Module 4) follows identity; devices, the cloud platform and security operations then run in parallel. Day-two operations comes last.
 
 The program's design is to pair each build module with the compliance module that reads its evidence, and to run the pair together where staffing allows, so an engineer and an ISSO work from the same records:
 
@@ -226,7 +226,7 @@ The learner picks one build module and carries it out end to end in a lab, or ag
 
 ## Example certifications
 
-None of the track depends on an outside certification, and none is endorsed. Certifications are useful as a general signal and as a structured way to learn a product; they don't show that someone can build this estate to this program's evidence standard, which the capstone does. The Microsoft certifications named above, as Microsoft Learn shows them on October 22, 2026:
+None of the track depends on an outside certification, and none is endorsed. Certifications are useful as a general signal and as a structured way to learn a product; they don't show that someone can build this estate to this program's evidence standard, which the capstone does. The Microsoft certifications that map to these modules, as Microsoft Learn shows them on October 22, 2026:
 
 | Certification | Exam | Modules | Status |
 |---|---|---|---|

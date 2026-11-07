@@ -19,12 +19,12 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The two Azure planes, the activity log (control plane) and resource logs (data plane), and how to export each by CLI and Bicep. Why the program sends resource logs to resource-specific tables, and how Azure Policy's DeployIfNotExists enforces emission on new resources, with the limits that leave gaps if nobody runs a remediation task. Then the third plane, the Microsoft 365 unified audit log: confirming it is on, registering for the Office 365 Management Activity API, the subscription and content rules that break first-time collectors, the GCC endpoints, and the license tiers that decide how long the evidence survives.
+The two Azure emission paths, the activity log (control plane) and resource logs (data plane), and how to export each by CLI and Bicep. Why the program sends resource logs to resource-specific tables, and how Azure Policy's DeployIfNotExists enforces emission on new resources, with the limits that leave gaps if nobody runs a remediation task. Then the third emission path, the Microsoft 365 unified audit log: confirming it is on, registering for the Office 365 Management Activity API, the subscription and content rules that break first-time collectors, the GCC endpoints, and the license tiers that decide how long the evidence survives.
 :::
 
 [Chapter 03](03-identity-telemetry.md) covered identity. Neither of the two pipelines in this chapter is touched by the Entra diagnostic setting: Azure resource activity has its own diagnostic settings, and Microsoft 365 workload activity (Exchange, SharePoint, OneDrive, Teams, Power Platform, Purview) lives in the unified audit log, read through its own API. An agency can have perfect identity telemetry and still be blind to what happened inside its subscriptions and its mailboxes.
 
-![Three emission planes, three mechanisms: subscription diagnostic settings for the activity log, per-resource settings enforced by Azure Policy for resource logs, and the Management Activity API for the unified audit log.](../../images/diagrams/b12-security-operations/svg/ch04-three-planes.svg){#fig-ch04-three-planes fig-alt="Three columns, each a stack of cards. Left, blue: Azure control plane, the activity log, collected by default and kept 90 days, exported by one diagnostic setting per subscription to the AzureActivity table; it records create, update, delete and action operations and RBAC changes but typically not reads. Middle, blue: Azure resource plane, resource logs, not collected by default, one diagnostic setting per resource, enforced by Azure Policy DeployIfNotExists plus remediation tasks, landing in resource-specific tables. Right, slate: Microsoft 365 unified audit log, verified with Get-AdminAuditLogConfig in Exchange Online PowerShell, collected through Office 365 Management Activity API subscriptions to five content types, retained 180 days or one year by license. All three columns point down to a violet card: one workspace, one verification loop."}
+![Three emission paths, three mechanisms: subscription diagnostic settings for the activity log, per-resource settings enforced by Azure Policy for resource logs, and the Management Activity API for the unified audit log.](../../images/diagrams/b12-security-operations/svg/ch04-three-planes.svg){#fig-ch04-three-planes fig-alt="Three columns, each a stack of cards. Left, blue: Azure control plane, the activity log, collected by default and kept 90 days, exported by one diagnostic setting per subscription to the AzureActivity table; it records create, update, delete and action operations and RBAC changes but typically not reads. Middle, blue: Azure resource plane, resource logs, not collected by default, one diagnostic setting per resource, enforced by Azure Policy DeployIfNotExists plus remediation tasks, landing in resource-specific tables. Right, slate: Microsoft 365 unified audit log, verified with Get-AdminAuditLogConfig in Exchange Online PowerShell, collected through Office 365 Management Activity API subscriptions to five content types, retained 180 days or one year by license. All three columns point down to a violet card: one workspace, one verification loop."}
 
 ## Part 1: the Azure activity log
 
@@ -166,7 +166,7 @@ Microsoft also warns to delete a resource's diagnostic settings when the resourc
 
 ## Part 3: enforce emission with Azure Policy
 
-Everything above configures what exists today. A resource created tomorrow is born silent unless policy makes emission a property of the platform rather than a checklist item. Azure Policy's built-in definitions cover both planes:
+Everything above configures what exists today. A resource created tomorrow is born silent unless policy makes emission a property of the platform rather than a checklist item. Azure Policy's built-in definitions cover both Azure paths:
 
 | Built-in | Effect | Scope |
 |---|---|---|
@@ -226,7 +226,7 @@ AzureDiagnostics
 | order by Events desc
 ```
 
-None of these queries proves *completeness*; they prove that something is arriving. Only the policy compliance state, evaluated against the full resource inventory, shows coverage. The program reports the compliance percentage as the coverage metric and treats the queries as liveness checks on top of it.
+None of these queries proves *completeness*; they prove that something is arriving. Only the policy compliance state, evaluated against the full resource inventory, shows coverage. The program reports the compliance percentage as the policy input to the collection coverage metric in [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md), which divides inventory assets with required logs by inventory assets, and treats the queries as liveness checks on top of it.
 
 ## Part 4: the Microsoft 365 unified audit log
 
@@ -413,7 +413,7 @@ The record types are values of `AuditLogRecordType`.[^c04-mgmt-schema] The sourc
 
 ## Where the evidence goes next
 
-All three planes now land in one workspace, with one verification loop and retention set to the baseline. [Chapter 05](05-from-log-warehouse-to-detection.md) turns these tables into detections, and [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) turns the coverage and liveness checks into continuous-monitoring evidence. The control-level detail for SIEM and detection is in [Vol III Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
+All three emission paths now land in one workspace, with one verification loop and retention set to the baseline. [Chapter 05](05-from-log-warehouse-to-detection.md) turns these tables into detections, and [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) turns the coverage and liveness checks into continuous-monitoring evidence. The control-level detail for SIEM and detection is in [Vol III Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
 
 ::: {.callout-tip}
 ## Continue the book

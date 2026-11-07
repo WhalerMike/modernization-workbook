@@ -226,13 +226,13 @@ The program's security and privacy architecture is set by its principles ([Book 
 
 ### Program Management (PM)
 
-Program management controls are organization-wide, not system-level. [Chapter 05](05-program-management-controls.md) covers them, and [Chapter 07](07-supply-chain-risk-management.md) covers PM-30 with the supply chain family.
+Program management controls are organization-wide, not system-level. [Chapter 05](05-program-management-controls.md) covers them, and [Chapter 07](07-supply-chain-risk-management.md) covers PM-30 with the supply chain family. PM-5 is the list of systems, which no workbook book builds; [Book 06, Chapter 04](../b06-data-platform/04-the-estate-inventory.md) inventories databases and is input to CM-8 and PM-5(1), not the system inventory ([Chapter 05](05-program-management-controls.md)).
 
 | Control | Title | NIST SP 800-53B | FedRAMP 2026 class | Workbook chapter | Status (design) |
 |---|---|---|---|---|---|
 | PM-1 | Information Security Program Plan | none | none | — | Open |
 | PM-2 | Information Security Program Leadership Role | none | none | — | Open |
-| PM-5 | System Inventory | none | none | [B06 Ch04](../b06-data-platform/04-the-estate-inventory.md) | Partly closed |
+| PM-5 | System Inventory | none | none | — | Open |
 | PM-7 | Enterprise Architecture | Privacy only | none | — | Open |
 | PM-9 | Risk Management Strategy | Privacy only | none | — | Open |
 | PM-11 | Mission and Business Process Definition | Privacy only | none | — | Open |

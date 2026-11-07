@@ -1,6 +1,6 @@
 ---
 title: "Chapter 05 — Program Management Controls"
-description: "What the Program Management (PM) family in NIST SP 800-53 Rev. 5 asks of an agency, why it sits outside every system baseline and every FedRAMP class, and the artifact and evidence behind each of the thirteen controls the program depends on: the security program plan, the senior official, the POA&M process, the system inventory, measures of performance, enterprise architecture, the risk management strategy, the authorization process, mission and business process definition, testing, training and monitoring, security contacts, the supply chain risk management strategy and the continuous monitoring strategy."
+description: "What the Program Management (PM) family in NIST SP 800-53 Rev. 5 asks of an agency, why it sits outside every security baseline and every FedRAMP class, and the artifact and evidence behind each of the thirteen controls the program depends on: the security program plan, the senior official, the POA&M process, the system inventory, measures of performance, enterprise architecture, the risk management strategy, the authorization process, mission and business process definition, testing, training and monitoring, security contacts, the supply chain risk management strategy and the continuous monitoring strategy."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b14-compliance
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Why the Program Management family is organization-level, outside the NIST system baselines and absent from every FedRAMP class, so no cloud provider's certification supplies it. What each of the thirteen PM controls the program depends on asks for, the artifact that answers it and the evidence an assessor can check. Which parts of the program's templates are federal requirements and which are the program's own design, and the corrections this chapter makes to the program's earlier PM material.
+Why the Program Management family is organization-level, outside the NIST security baselines and absent from every FedRAMP class, so no cloud provider's certification supplies it. What each of the thirteen PM controls the program depends on asks for, the artifact that answers it and the evidence an assessor can check. Which parts of the program's templates are federal requirements and which are the program's own design, and the corrections this chapter makes to the program's earlier PM material.
 :::
 
 Most of this book is about controls that a system carries: a configuration, a log, a backup. The Program Management family is different. NIST SP 800-53B, which sets the Low, Moderate and High control baselines, marks the whole family "deployed organization-wide," "not associated with security control baselines" and "independent of any system impact level," and says the controls "are implemented at the organization level and are not directed at individual information systems."[^c05-sp80053b] FedRAMP's 2026 control reference, which lists the FedRAMP class for every control that has one, lists none for any of the 37 PM controls and enhancements.[^c05-fr-pm]
@@ -32,7 +32,7 @@ Earlier program material framed these controls as artifacts that "FedRAMP 20x Au
 
 ## The controls at a glance
 
-The table lists the thirteen PM controls this chapter covers, in the order the sections below take them. The control statements are paraphrased from SP 800-53 Rev. 5, release 5.2.0.[^c05-sp80053] None of them is in a NIST system baseline and none is in a FedRAMP class; every one is the agency's.[^c05-sp80053b][^c05-fr-pm]
+The table lists the thirteen PM controls this chapter covers, in the order the sections below take them. The control statements are paraphrased from SP 800-53 Rev. 5, release 5.2.0.[^c05-sp80053] None of them is in a NIST security baseline, though PM-7, PM-9, PM-11 and PM-14 are in the privacy baseline that applies to systems ([Chapter 08](08-privacy-pii-processing.md)), and none is in a FedRAMP class; every one is the agency's.[^c05-sp80053b][^c05-fr-pm]
 
 | Control | Title | What it asks, in short | The artifact | What an assessor can check |
 |---|---|---|---|---|
@@ -83,18 +83,18 @@ Two of those roles are reserved to government staff. SP 800-37 calls the authori
 
 The role matrix below is the program's template. It names roles against activities; the PM-2 and PM-10 evidence is the same matrix with a named person in every cell that carries an R or an A, and the signed appointment of the senior agency information security officer.
 
-| Activity | Authorizing official | Senior agency information security officer | System security officer | DevSecOps lead | SOC lead | Privacy officer |
-|---|---|---|---|---|---|---|
-| Authorization decision | **A** | R | C | I | I | C |
-| Annual assessment | A | **R** | R | C | C | C |
-| POA&M management | I | A | **R** | C | C | I |
-| Incident response | A | R | **R** | C | **R** | C |
-| Vulnerability remediation reporting (BOD 26-04) | I | A | R | **R** | R | I |
-| Review of providers' Ongoing Certification Reports | I | A | **R** | C | C | I |
-| Privacy impact assessment | I | C | C | C | I | **R** |
-| Security training | I | **A** | R | C | C | I |
+| Activity | Authorizing official | Senior agency information security officer | System security officer | DevSecOps lead | SOC lead | Privacy officer | System owner | Assessor |
+|---|---|---|---|---|---|---|---|---|
+| Authorization decision | **A** | R | C | I | I | C | R | C |
+| Annual assessment | A | C | C | C | C | C | C | **R** |
+| POA&M management | C | C | **R** | C | C | I | **A** | — |
+| Incident response | C | **A** | C | C | **R** | C | C | — |
+| Vulnerability remediation reporting (BOD 26-04) | I | A | R | **R** | R | I | — | — |
+| Review of providers' Ongoing Certification Reports | I | A | **R** | C | C | I | — | — |
+| Privacy impact assessment | I | C | C | C | I | **R** | — | — |
+| Security training | I | **A** | R | C | C | I | — | — |
 
-R = responsible, A = accountable, C = consulted, I = informed. [Book 13, Chapter 09](../b13-governance/09-who-governs.md) sets out the governance roles around these, and [Chapter 10](10-who-owns-compliance.md) of this book sets out who owns compliance as a whole.
+R = responsible, A = accountable, C = consulted, I = informed, a dash = no part in the activity. The authorizing official approves the POA&M and accepts residual risk, and the system owner decides on it; in incident response the SOC lead handles the incident and the senior agency information security officer makes the major incident determination ([Book 12, Chapter 10](../b12-security-operations/10-who-runs-security-operations.md)). [Book 13, Chapter 09](../b13-governance/09-who-governs.md) sets out the governance roles around these, and [Chapter 10](10-who-owns-compliance.md) of this book sets out who owns compliance as a whole.
 
 ## The risk management strategy (PM-9)
 
@@ -104,7 +104,7 @@ The strategy is what every later risk decision cites. When the authorizing offic
 
 SP 800-39, the NIST guide the earlier material built on, describes risk management as four components (frame, assess, respond and monitor) applied at three tiers: the organization, the mission and business process, and the information system.[^c05-sp80039] The earlier template mapped the tiers to the components ("Tier 2: risk assessment"; "Tier 3: risk response"). That is corrected: every tier frames, assesses, responds to and monitors risk, at its own level. SP 800-39 also lists five risk responses, not four: accepting, avoiding, mitigating, sharing and transferring.[^c05-sp80039]
 
-The center of the strategy is the risk tolerance statement, signed by the authorizing official and the senior agency information security officer. The program's template expresses tolerance per category; the values are an example of the form, which each agency sets for itself.
+The center of the strategy is the risk tolerance statement, signed by the head of agency or the senior accountable official for risk management, with the authorizing official and the senior agency information security officer consulted ([Chapter 10](10-who-owns-compliance.md)). The program's template expresses tolerance per category; the values are an example of the form, which each agency sets for itself.
 
 | Risk category | Example tolerance | Rationale to record |
 |---|---|---|
@@ -116,7 +116,7 @@ The center of the strategy is the risk tolerance statement, signed by the author
 
 [Appendix G](appendix-g-prepare-step-templates.md#template-1-risk-management-strategy-and-risk-tolerance-p-2) gives a fill-in outline for the strategy and the tolerance statement, and leaves every value to the agency.
 
-The program's register scores each risk as likelihood times impact, each on a 1-to-5 scale, and sets a response window by score: document and monitor at 1–4, a POA&M within 90 days at 5–9, within 30 days at 10–15, and escalation to the authorizing official with a POA&M within 15 days at 16–25. Those thresholds are the program's design, not federal requirements. Where a federal timeline applies, it governs: a vulnerability in CISA's Known Exploited Vulnerabilities catalog carries the remediation timeline BOD 26-04 sets, whatever the register's score.[^c05-bod2604]
+The program's starting register in [Book 00, Appendix A](../b00-orientation/appendix-a-risk-register-and-traceability.md) rates likelihood from Low to High and impact from Low to Critical, and says an agency can re-rate on whatever scale its risk assessment uses. For an agency register that scores numerically, the program's design is to score each risk as likelihood times impact, each on a 1-to-5 scale, and set a response window by score: document and monitor at 1–4, a POA&M within 90 days at 5–9, within 30 days at 10–15, and escalation to the authorizing official with a POA&M within 15 days at 16–25. Those thresholds are the program's design, not federal requirements. Where a federal timeline applies, it governs: a vulnerability in CISA's Known Exploited Vulnerabilities catalog carries the remediation timeline BOD 26-04 sets, whatever the register's score.[^c05-bod2604]
 
 ## The plan of action and milestones process (PM-4)
 
@@ -182,7 +182,7 @@ The program implements PM-7 as review gates in the system life cycle. A system p
 1. **Concept.** Security categorization, a privacy threshold analysis, the proposed boundary and data flows.
 2. **Design.** Control selection and tailoring, a threat model, supply chain requirements written into the acquisition.
 3. **Build.** Security testing in the pipeline, the software bill of materials, configuration baselines.
-4. **Deploy.** The authorization decision, or the authorization to use for a consumed cloud service, before production.
+4. **Deploy.** The authorization decision, or for a system that uses a consumed cloud service, the authorization of the agency's system that uses it, before production.
 5. **Operate.** Continuous monitoring, the annual assessment, POA&M management and the next review of the architecture.
 
 FedRAMP's KSI-PIY-RSD, which asks providers to review how well they build security and privacy into the software life cycle, lists PM-7 among its related controls.[^c05-fr-ksi] For a provider, that indicator is the evidence. For an agency, the gate records are.
@@ -212,13 +212,13 @@ FISMA sets the floor for testing: periodic testing and evaluation of the effecti
 
 | Activity | Frequency | Responsible | Evidence |
 |---|---|---|---|
-| Control assessment by an independent assessor | At least annually, as FISMA sets the floor[^c05-fisma] | Senior agency information security officer, for the authorizing official | Assessment report |
+| Control assessment by an independent assessor | At least annually, as FISMA sets the floor[^c05-fisma] | Assessor, selected by the authorizing official | Assessment report |
 | Penetration test | Annually (program design); CA-8 is in the NIST High baseline only[^c05-sp80053] | Assessor | Test report |
 | Incident response tabletop | Twice a year | System security officer, SOC lead | After-action report |
 | Automated control monitoring | Continuous | DevSecOps, SOC | Monitoring dashboard and exported results |
 | Vulnerability scanning | Continuous | SOC | Scanner output ([Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md)) |
 | Software composition scan | Every merge | DevSecOps | Pipeline logs ([Chapter 07](07-supply-chain-risk-management.md)) |
-| Contingency plan test | Annually, at the exercise level SP 800-34 recommends for the system's impact level | System security officer | Test plan, results and after-action report ([Chapter 06](06-contingency-and-continuity.md)) |
+| Contingency plan test | Annually, at the exercise level SP 800-34 recommends for the system's impact level | Contingency planning coordinator | Test plan, results and after-action report ([Chapter 06](06-contingency-and-continuity.md)) |
 | Configuration baseline review | Quarterly | DevSecOps | Baseline comparison |
 
 The training plan covers role-based security awareness for all users, program procedures for the security team, incident response for the response team, supply chain awareness for developers and acquisition staff, and privacy for everyone with access to personally identifiable information. [Chapter 09](09-training-and-awareness-controls.md) covers the AT controls and their evidence; [Book 16, People: Training & Education](../b16-people/index.md), carries training in depth. The monitoring plan is the continuous monitoring strategy above.
@@ -248,7 +248,7 @@ The strategy is the organizational commitment that turns a software-composition 
 |---|---|
 | CIO | Approves the charter |
 | Senior agency information security officer | Executive sponsor; owns the strategy and its annual review |
-| System security officer | Runs the program day to day; keeps the supply chain entries in the risk register |
+| Supply chain risk lead | Runs the program day to day; keeps the supplier assessments current and the supply chain entries in the risk register ([Chapter 10](10-who-owns-compliance.md)) |
 | DevSecOps lead | Owns the software-composition pipeline |
 | Acquisition security liaison | Writes supply chain requirements into solicitations and contracts (SR-2, SR-3 and SR-5, [Chapter 07](07-supply-chain-risk-management.md)) |
 | Supplier risk analyst | Assesses suppliers (SR-6) and critical suppliers (PM-30(1)) |
@@ -262,7 +262,7 @@ Three of the earlier material's claims about this strategy are corrected. The bi
 
 | Statement | Status | Basis |
 |---|---|---|
-| The PM family is organization-level, outside the NIST system baselines | NIST guidance | SP 800-53B Table 3-13[^c05-sp80053b] |
+| The PM family is organization-level, outside the NIST security baselines (PM-7, PM-9, PM-11 and PM-14 are in the privacy baseline) | NIST guidance | SP 800-53B Table 3-13[^c05-sp80053b] |
 | No PM control is in a FedRAMP class | Fact of the 2026 control reference | FedRAMP Full Rev5 Control Reference, PM family[^c05-fr-pm] |
 | Agencies keep a security program plan, designate a senior agency information security officer, use POA&Ms, keep a system inventory and an enterprise architecture, and plan supply chain risk management | Requirement | FISMA; OMB Circular A-130[^c05-fisma][^c05-a130] |
 | The authorizing official and senior agency information security officer roles are reserved to government personnel; risk acceptance can't be delegated | NIST guidance | SP 800-37 Rev. 2, Appendix D[^c05-sp80037] |

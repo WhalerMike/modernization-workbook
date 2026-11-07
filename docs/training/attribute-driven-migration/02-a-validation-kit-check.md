@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 2: Write a Validation Kit Check"
 subtitle: "Build and read VK-SYNC-02, the check that soft match and hard-match takeover are blocked, and learn why a read-only check still has to ask for the least privilege it can"
-description: "Research draft: Module 2 of the Attribute-Driven Migration learning path. You learn the anatomy of a validation kit check, its catalog entry, its three severities, the default-to-unsafe rule and the safety tests, then run VK-SYNC-02 on the kit's fixtures and an export, see each of its outcomes and break it on purpose. Guide Gate 3; Book 19, Chapter 03."
+description: "Research draft: Module 2 of the Attribute-Driven Migration learning path. You learn the anatomy of a validation kit check, its catalog entry, its three severities, the default-to-unsafe rule and the safety tests, then run VK-SYNC-02 on the kit's fixtures and an export, see its Pass, Fail and Warn outcomes and break it on purpose. Guide Gate 3; Book 19, Chapter 03."
 research-status: draft
 research-type: training module
 research-book: "Book 19"

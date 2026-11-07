@@ -20,7 +20,7 @@ last-reviewed: 2026-11-03
 
 When HR moves a person to a new organization, a rule on the organization code should take away the old department's access and give the new one. Automatic assignment policies in entitlement management do that. But a rule can be wrong in ways the portal won't tell you: two policies on one package that a user matches at once, a rule that reads a display name, or a rule on `memberOf`, which Learn quarantines from November 3, 2026. And a rule can't see access the person was given by hand.
 
-In this module you lint the policies before they reach the tenant, scan the tenant's policies for `memberOf`, and list what a move leaves behind for the manager of record to review.
+In this module you lint the policies before they reach the tenant, scan the tenant's policies for `memberOf`, and list what a move leaves behind for the supervisor of record to review.
 
 **The federal requirement.** This gate meets NIST SP 800-53 AC-2 (authorize access on organization-defined attributes, and account review), AC-6 (least privilege), AC-5 (separation of duties), PS-5 (personnel transfer) and CISA SCuBA MS.AAD.7.5v1 (highly privileged roles only through a privileged access management system, required under BOD 25-01). The requirements and evidence are in the [Gate 4 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-4-assign-access-from-attributes-and-review-what-a-move-leaves) (under **Federal requirements and evidence** in Step 4) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md#federal-requirements-and-evidence).
 
@@ -202,7 +202,7 @@ rm -rf out/ch04
     b. Privileged access is assigned by rule; HR attributes should decide who may request eligibility, and the role is activated through PIM
     c. The rule must use `memberOf` instead
     d. Only the manager can be in scope
-4. In the residual review, which items go to the manager of record?
+4. In the residual review, which items go to the supervisor of record?
     a. Every assignment and group the mover holds
     b. Only dynamic groups
     c. Assignments from request policies and groups held outside packages

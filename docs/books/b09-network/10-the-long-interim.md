@@ -156,7 +156,7 @@ The interim posture changes paths without a governor at the branch, so it meets 
 
 - **Address continuity, not sequence continuity.** Long-lived stateful sessions fail on proxied and re-routed paths through resets, proxy idle timeouts, pinned or mutual TLS, unparseable protocols and MTU changes. A path change doesn't break TCP sequence numbers, which belong to the endpoints; a re-route that changes the client's apparent source address does break established connections. That is why deterministic egress (action 3) comes early.
 - **Kerberos tolerates NAT under Microsoft's defaults.** What breaks when a branch moves to local breakout is the private path to the domain controllers for the five operations in action 7, which produces the characteristic report that everything works except signing in.
-- **Round trips dominate.** For a chatty transaction, a branch-edge device recovers roughly a fifth to a quarter of the network time, while cutting 30 sequential round trips to 3 recovers about an order of magnitude. An agency justifying a future branch-edge program on latency alone has chosen the weaker of its two arguments; the stronger is governance and evidence.
+- **Round trips dominate.** For a chatty transaction, a branch-edge device recovers roughly 17 to 25 percent of the network time, while cutting 30 sequential round trips to 3 recovers about an order of magnitude. An agency justifying a future branch-edge program on latency alone has chosen the weaker of its two arguments; the stronger is governance and evidence.
 
 ## What to put in the program plan
 

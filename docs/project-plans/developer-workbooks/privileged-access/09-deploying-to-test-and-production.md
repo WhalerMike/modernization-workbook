@@ -20,12 +20,12 @@ last-reviewed: 2026-11-03
 
 ::: {.callout-note}
 ## In this chapter
-The runbook the owner asked for: Chapters 02 to 08 deployed to a live test tenant with PIM and a test Azure subscription, then to the production tenant. The commands are the same in both stages; only the settings file changes. The order of work is built so a lockout can't happen: the emergency access accounts are verified and excluded from every Conditional Access policy first, new policies go in report-only, and approval is switched on only after both hold. Four scripts in `examples/privileged-access/deploy` do what the earlier chapters' code doesn't: write each chapter's input files from the settings file, run the pre-flight checks, read the smoke test's evidence, and plan the rollback. Each step shows the NIST SP 800-53 controls, OMB and CISA requirements it supports and the FedRAMP 20x indicator its evidence lines up with, and writes an evidence record the ISSO keeps; the go/no-go checks that every record is present and passing. This chapter has no labs of its own. Each step points back to the chapter whose code it runs.
+The runbook the owner asked for: Chapters 02 to 08 deployed to a live test tenant with PIM and a test Azure subscription, then to the production tenant. The commands are the same in both stages; only the settings file changes. The order of work is built so a lockout can't happen: the emergency access accounts are verified and excluded from every Conditional Access policy first, new policies go in report-only, and approval is switched on only after both hold. Six scripts in `examples/privileged-access/deploy` do what the earlier chapters' code doesn't: write each chapter's input files from the settings file, run the pre-flight checks, read the smoke test's evidence, plan the rollback, and record and check the evidence. Each step shows the NIST SP 800-53 controls, OMB and CISA requirements it supports and the FedRAMP 20x indicator its evidence lines up with, and writes an evidence record the ISSO keeps; the go/no-go checks that every record is present and passing. This chapter has no labs of its own. Each step points back to the chapter whose code it runs.
 :::
 
 ::: {.callout-important}
 ## Status: not run against a live tenant
-Nobody has run this runbook against a live tenant or subscription. The four `deploy` scripts were run in fixture mode against a fictional tenant on November 2, 2026, and their output below is that run. Every "expected result" for a live step is what the code and Microsoft Learn lead us to expect, not something we've seen. Run Stage 1 completely, record what really happened against each expectation, and settle the open questions in the [research gaps](#open-questions) before Stage 2.
+Nobody has run this runbook against a live tenant or subscription. The six `deploy` scripts were run in fixture mode against a fictional tenant on November 2, 2026, and their output below is that run. Every "expected result" for a live step is what the code and Microsoft Learn lead us to expect, not something we've seen. Run Stage 1 completely, record what really happened against each expectation, and settle the open questions in the [research gaps](#open-questions) before Stage 2.
 :::
 
 ## Requirements, indicators and evidence
@@ -87,7 +87,7 @@ Open one change record for each stage. Its number goes in the settings file's `c
 
 Build these in the test tenant before Stage 1, and in production before Stage 2. Each is a portal step, with the exact path from the chapter that built it in Lab 2.
 
-1. **Licenses.** Microsoft Entra ID P2 or Microsoft Entra ID Governance, enough for every user who is eligible, approves, or is assigned to or performs an access review.[^pa09-license] The pre-flight checks that a subscription carries one of the two service plans (PA-DEP-03); counting users against the units is yours.
+1. **Licenses.** Microsoft Entra ID P2 or Microsoft Entra ID Governance, enough for every user who is eligible, approves, or is assigned to or performs an access review.[^pa09-license] The pre-flight checks that a subscription carries one of the two service plans (PA-DEP-03); counting users against the units is yours. Chapter 07's program position is stricter for reviews: budget Microsoft Entra ID Governance for every reviewer and every reviewed privileged user, and PIM for Groups reviews need it. A subscription that passes PA-DEP-03 on P2 alone isn't yet licensed for that.
 2. **The emergency access accounts**, built to the standard, and their exclusion group: [Chapter 02, Lab 2](02-emergency-access-as-code.md#lab-2-test-tenant). Learn asks for two or more cloud-only accounts on `*.onmicrosoft.com`, phishing-resistant methods different from the normal administrators', permanent active Global Administrator, exclusion from every policy that blocks or restricts sign-in, monitoring of their sign-ins and audit events, and validation at least every 90 days.[^pa09-emergency]
 3. **The log workspace and action group**, with the diagnostic setting that sends `AuditLogs`, `SignInLogs` and `NonInteractiveUserSignInLogs`: [Chapter 02, Lab 2, step 1](02-emergency-access-as-code.md#lab-2-test-tenant).
 4. **The groups.** `PIM-Approvers-T0` and `PIM-Approvers-T1` (security groups, two or more members each), the reviewers and fallback reviewers groups, `CA-Persona-Admins` and `CA-Access-AzureOperators`, and the role-assignable group `PRV-T1-TeamsAdmin`: **Entra ID** > **Groups** > **All groups** > **New group**, with **Microsoft Entra roles can be assigned to the group** set to **Yes** for the `PRV` group.[^pa09-rag-create]
@@ -201,7 +201,7 @@ Lockout is the danger that matters most. Learn names the case: every Privileged 
 | PA-DEP-01 | Finding | No secret in the settings file, and each app uses a certificate or federated credential | *Design guidance* |
 | PA-DEP-02 | Finding | No placeholder left | *Design guidance* |
 | PA-DEP-08 | Finding | `test` or `production`, and production has a change record | *Design guidance* |
-| PA-DEP-03 | Finding; Info | An enabled subscription carries `AAD_PREMIUM_P2` or `Entra_Identity_Governance`; Info names it, with its units | Learn: PIM needs Microsoft Entra ID P2 or ID Governance[^pa09-license] [^pa09-service-plans] [^pa09-sku] |
+| PA-DEP-03 | Finding; Info | An enabled subscription carries `AAD_PREMIUM_P2` or `Entra_Identity_Governance`; Info names it, with its units; either plan passes, so read the plan it names against Chapter 07's Governance position for reviewers and reviewed users | Learn: PIM needs Microsoft Entra ID P2 or ID Governance[^pa09-license] [^pa09-service-plans] [^pa09-sku] |
 | PA-DEP-04 | Finding | Every Finding of Chapter 02's check, PA-EA-01 to PA-EA-10, unchanged | Learn's standard[^pa09-emergency], [Chapter 02](02-emergency-access-as-code.md) |
 | PA-DEP-05 | Finding | Every Conditional Access policy in the tenant, enabled, report-only or off, excludes every emergency account, through the group or directly | Learn excludes them from policies that block or restrict;[^pa09-emergency] *design guidance* for every state |
 | PA-DEP-06 | Finding | Every policy file the stage will deploy excludes the emergency group | [Chapter 03](03-conditional-access-for-administrators.md), PA-CA |
@@ -803,7 +803,7 @@ The change owner and the ISSO sign the promotion only when every row holds. Each
 | 6 | The rollback ran with 0 Blocked, and the tenant read back as before | `rollback/rollback-plan.json`, `preflight-after-rollback`, `emergency-after-rollback`, `pim-after-rollback` |
 | 7 | The stage was deployed again, and its smoke test passed again | The second attempt's folders |
 | 8 | The evidence package verifies | `evidence-package/`, the `verify` output, `out/deploy-test.sha256` |
-| 9 | Every live result that differed from this chapter's expectation is recorded, and research gaps rows 101 to 106 have an answer | The change record, `_verification/research-gaps.md` |
+| 9 | Every live result that differed from this chapter's expectation is recorded, and research gaps rows 101 to 106, 113 and 114 have an answer | The change record, `_verification/research-gaps.md` |
 | 10 | The production settings file differs from the test file only in values, and the production change record is approved | Step 2.1's comparison, the approved record |
 | 11 | Every requirement row of the test stage has its evidence record present, passing and unchanged, with the records' hash chain intact | `./deploy/Test-PaEvidence.ps1` exit code 0 and `evidence/coverage.csv`, for the second deployment; the first attempt's `rollback` record `Pass` |
 
@@ -1048,12 +1048,12 @@ Keep the whole stage folder and `<outputRoot>.sha256` with the change record. Th
 
 ## The code: `examples/privileged-access/deploy`
 
-The earlier chapters' entry scripts do every write in this runbook. The four `deploy` scripts add only what the runbook needs and the chapters didn't have:
+The earlier chapters' entry scripts do every write in this runbook. The six `deploy` scripts add only what the runbook needs and the chapters didn't have:
 
 | Script | What it does | Sends |
 |---|---|---|
 | `New-PaDeployInputs.ps1` | Checks the settings file, then writes each chapter's input files from it, with a manifest | Nothing |
-| `Test-PaPreflight.ps1` | PA-DEP-01 to PA-DEP-09, in the order above; exit 1 when blocked | GETs: `subscribedSkus` and Chapter 02's reads |
+| `Test-PaPreflight.ps1` | PA-DEP-01 to PA-DEP-06, PA-DEP-08 and PA-DEP-09 (there is no PA-DEP-07), in the order above; exit 1 when blocked | GETs: `subscribedSkus` and Chapter 02's reads |
 | `Invoke-PaSmokeTest.ps1` | One phase's checks against its expected result; exit 1 on any FAIL | GETs: active instances, directory audits, access review definitions, instances and decisions |
 | `Invoke-PaRollback.ps1` | The rollback plan in reverse order; `-Apply` runs it and refuses a plan with a Blocked step | Nothing in a dry run; with `-Apply`, the earlier chapters' scripts and the Azure requests in the plan |
 | `Add-PaEvidenceRecord.ps1` | Judges an earlier chapter's run folder as `requirements.json` says, and writes the step's evidence record | Nothing |
@@ -1109,7 +1109,7 @@ Where the sources differ, recorded so a later edit doesn't loosen the code:
 
 ## Open questions {#open-questions}
 
-The questions only a live tenant can answer are rows 101 to 106 of the workbook's research gaps log, `_verification/research-gaps.md` in the repository: the principal on an activation through an eligible group (101), how soon the audit log shows a PIM event (102), the write permission Learn lists for reading requests (103), the stricter report-only rule (104), the time-bound restore (105), and an app-only restore under a rule that wants MFA on active assignment (106).
+The questions only a live tenant can answer are rows 101 to 106, 113 and 114 of the workbook's research gaps log, `_verification/research-gaps.md` in the repository. Row 113 is the group alert check's delegated role, group list, reads and sovereign-cloud calls, and row 114 is the Microsoft.Graph and Az module versions the first live run records. The rest: the principal on an activation through an eligible group (101), how soon the audit log shows a PIM event (102), the write permission Learn lists for reading requests (103), the stricter report-only rule (104), the time-bound restore (105), and an app-only restore under a rule that wants MFA on active assignment (106).
 
 ## Dangers
 
@@ -1139,7 +1139,7 @@ The questions only a live tenant can answer are rows 101 to 106 of the workbook'
 - [ ] The rollback was rehearsed in test, and the tenant read back as before.
 - [ ] Every conversion had a confirmed activation with a ticket, one wave at a time.
 - [ ] Seven days of production drift were read, and the week's package verifies.
-- [ ] Every live result that differed from an expectation here is recorded, with research gaps rows 101 to 106 answered.
+- [ ] Every live result that differed from an expectation here is recorded, with research gaps rows 101 to 106, 113 and 114 answered.
 - [ ] `Test-PaEvidence.ps1` reports GO for the test stage before promotion and for production at the end of the first week, and `coverage.csv` is in each change record.
 
 ::: {.callout-tip}

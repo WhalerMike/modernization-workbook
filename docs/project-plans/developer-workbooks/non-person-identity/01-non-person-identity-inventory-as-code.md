@@ -46,7 +46,7 @@ The plan's Gate 0 asks for "every AD service account, MSA, gMSA and dMSA, every 
 
 On the Entra side, consent and Microsoft's own services create service principals, so the register is always longer than the list of apps anyone asked for ([Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#two-objects-for-one-application)). Learn's schema gives each service principal a `servicePrincipalType`: `Application`, `ManagedIdentity`, `Legacy` (an app with credentials but no app registration, usable only in the tenant that created it), `ServiceIdentity` for an agent identity, and `SocialIdp` for internal use.[^np01-sp-type] A managed identity's service principal carries its Azure resource ID in `alternativeNames`,[^np01-sp-update] and a user-assigned identity can hold federated credentials in Resource Manager.[^np01-arm-fic] List applications also returns agent identity blueprints, marked by `@odata.type`.[^np01-app-list]
 
-So the register reads two Active Directory collections, nine Graph collections and one Resource Manager one:
+So the register reads two Active Directory collections, eight Graph collections and one Resource Manager one:
 
 | What | Where | Why this one |
 |---|---|---|

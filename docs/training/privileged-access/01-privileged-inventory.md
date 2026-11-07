@@ -54,7 +54,7 @@ After this module, you'll be able to:
 Read the chapter's [What the inventory has to hold](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#what-the-inventory-has-to-hold). Note three things:
 
 - Learn names four kinds of assignment: permanent eligible, permanent active, time-bound eligible and time-bound active. It says to keep zero permanently active assignments, except the emergency access accounts.
-- A role assigned to a role-assignable group reaches every member. The program assigns roles to `PRV-<tier>-<role>` groups, never to a person ([Book 04, Chapter 04](../../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)).
+- A role assigned to a role-assignable group reaches every member. The program assigns roles to `PRV-<tier>-<role>[-<scope>]` groups, never to a person ([Book 04, Chapter 04](../../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)).
 - The tier comes from `config/tiers.json`, keyed by role template ID. A role that isn't in the file is reported as unclassified, never assumed safe. *Design guidance.*
 
 Then read [What it leaves to you](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#what-it-leaves-to-you): the gap table between Learn's sample and the example. The most important row: the sample sees no eligible assignment.
@@ -65,7 +65,7 @@ Read three sections of the chapter:
 
 - [The reader](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#the-reader): only declared calls, GET only, one host, every page. Note why the reader asks for `User.ReadBasic.All` as well as `GroupMember.ReadBasic.All`.
 - [The rows](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#the-rows): one row per assignment, with its state and route.
-- [The findings](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#the-findings): PA-INV-01 to PA-INV-09. Two thresholds are Learn's (fewer than five Global Administrators, at most three subscription Owners); the rest are the program's.
+- [The findings](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#the-findings): PA-INV-01 to PA-INV-09. Two thresholds are Learn's (fewer than five Global Administrators, at most three subscription Owners), and the floor of two Global Administrators is CISA's (MS.AAD.7.1v1); the rest are the program's.
 
 ## Exercise: Lab 1, fixtures, no tenant (25 minutes)
 

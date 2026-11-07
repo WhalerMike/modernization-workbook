@@ -142,7 +142,7 @@ The details matter for a records-conscious agency:[^c05-deletion]
 - **The cascade isn't immediate.** It runs asynchronously, possibly hours or days after the blueprint is deleted, and each child deletion appears as its own audit entry with the actor shown as an application named **Delete Agent Identities Task**.
 - **Deleted objects still count.** Soft-deleted and orphaned objects count toward directory quota until permanently deleted, including the limit of 250 agent identities per blueprint when using app-only permissions.
 
-The program's retirement sequence is therefore: disable, record the decision and the sponsor's attestation in the inventory, let the expiring access packages lapse or remove them, wait the agreed observation period, then delete. Audit and sign-in records, not the directory object, carry the evidence afterward, just as they do for a deleted person's account ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#deletion)).
+The program's retirement sequence is therefore: disable, record the decision and the sponsor's attestation in the identity record, let the expiring access packages lapse or remove them, wait the agreed observation period, then delete. Audit and sign-in records, not the directory object, carry the evidence afterward, just as they do for a deleted person's account ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#deletion)).
 
 ### The orphaned agent
 

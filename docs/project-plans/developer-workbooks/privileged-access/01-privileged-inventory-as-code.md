@@ -42,7 +42,7 @@ The read behind the project plan's Gate 0, "standing administrative privilege in
 
 ## What the inventory has to hold
 
-A role reaches a person in four ways that look the same on an admin's screen and very different to an attacker. Learn names them: permanent eligible, permanent active, time-bound eligible and time-bound active, and says to keep zero permanently active assignments for roles other than the emergency access accounts.[^pa01-pim-plan] An eligible assignment the holder has activated shows up as active for the activation window. And a role assigned to a role-assignable group reaches every member of it, which is how Book 04 wants it to work: the program assigns roles to `PRV-<tier>-<role>` groups, never to a person ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)).
+A role reaches a person in four ways that look the same on an admin's screen and very different to an attacker. Learn names them: permanent eligible, permanent active, time-bound eligible and time-bound active, and says to keep zero permanently active assignments for roles other than the emergency access accounts.[^pa01-pim-plan] An eligible assignment the holder has activated shows up as active for the activation window. And a role assigned to a role-assignable group reaches every member of it, which is how Book 04 wants it to work: the program assigns roles to `PRV-<tier>-<role>[-<scope>]` groups, never to a person ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)).
 
 So the inventory reads three Graph collections and two Resource Manager ones:
 
@@ -94,7 +94,7 @@ Running the samples against the fixture tenant shows what they do and what they 
 
 ## The code: `examples/privileged-access`
 
-[`examples/privileged-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access) is new. It is one PowerShell module, `powershell/PrivilegedAccess/PrivilegedAccess.psm1`, two entry scripts, the call list and the tier map. This chapter's entry script is `Invoke-PaInventory.ps1`.
+[`examples/privileged-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access) is new. At this chapter it is one PowerShell module, `powershell/PrivilegedAccess/PrivilegedAccess.psm1`, two entry scripts, the call list and the tier map; later chapters add their own modules. This chapter's entry script is `Invoke-PaInventory.ps1`.
 
 ### The reader
 
@@ -145,7 +145,7 @@ Azure rows get their tier from Book 04, Chapter 04's placement table: a role tha
 
 ### The tests
 
-Pester 5 under PowerShell 7, 78 tests in three files, none needing a module, a tenant or a network. This chapter's are:
+Pester 5 under PowerShell 7; the kit runs 330 tests, none needing a module, a tenant or a network. This chapter's are:
 
 - `tests/MicrosoftSamples.Tests.ps1`, 9 tests in the Chapter 01 block: Learn's samples, run as published.
 - `tests/PrivilegedInventory.Tests.ps1`, 33 tests: clouds and the call list, refused calls and hosts, paging with page sizes of 1, 2 and 50, eligible and activated states, group expansion, tiers, Azure de-duplication, each finding, the whole fixture's counts, and the manifest's hashes.

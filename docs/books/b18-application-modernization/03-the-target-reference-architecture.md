@@ -40,7 +40,7 @@ The technology choices below are the program's design, not a federal requirement
 | Orchestration | Kubernetes, or a managed service built on it | Kubernetes 1.37 is the newest minor release; the project maintains the three most recent minor releases[^c03-k8s] | One deployment and scaling model across environments |
 | Data | PostgreSQL or SQL Server | See [Chapter 04](04-moving-the-data.md) | The two targets this book supports for data off DB2 and Oracle |
 
-Versions are a snapshot. The architecture review board in [Chapter 07](07-who-governs-the-architecture.md) owns the approved list and its upgrade dates; this table is the starting point, not the standard itself.
+Versions are a snapshot. The chief architect, through the architecture review board in [Chapter 07](07-who-governs-the-architecture.md), owns the approved list and its upgrade dates; this table is the starting point, not the standard itself.
 
 ## Services: Java and Spring Boot
 
@@ -65,7 +65,7 @@ Why Java for a federal services layer, and not something newer? Because the serv
 
 React is the front-end layer for new and rebuilt user interfaces. React 19 was released in December 2024, and 19.3 in September 2026.[^c03-react] The program's design keeps front ends thin: they render, validate input for usability, and call APIs. Business rules belong in services, where they are tested and authorized once, not in each user interface.
 
-Federal front ends carry requirements that the framework doesn't solve on its own: Section 508 accessibility, the 21st Century IDEA criteria for public-facing services, and, for public sign-in, OMB's direction toward Login.gov. [Chapter 06](06-compliance-by-design.md#section-508-gate) sets the accessibility gate a rebuilt front end passes, and the others are covered where the workbook treats them; the workbook's [federal framework crosswalk](../../reference/federal-framework-crosswalk.md) summarizes their status. A shared component library that builds accessibility in once is worth more to a portfolio than any framework choice.
+Federal front ends carry requirements that the framework doesn't solve on its own: Section 508 accessibility, the 21st Century IDEA criteria for public-facing services, and, for public sign-in, OMB's direction toward Login.gov. [Chapter 06](06-compliance-by-design.md#section-508-gate) sets the accessibility gate a rebuilt front end passes, and the others are outside the workbook's scope, which doesn't cover public-facing digital services or the sign-on the public uses for them; the workbook's [federal framework crosswalk](../../reference/federal-framework-crosswalk.md) summarizes their status. A shared component library that builds accessibility in once is worth more to a portfolio than any framework choice.
 
 ## Node.js where it fits
 
@@ -135,7 +135,7 @@ The CSRC pages for SP 800-204 and SP 800-190 list no newer revision or draft as 
 |---|---|
 | Retire | Nothing, except that any function that moves elsewhere is reached through a published API |
 | Retain | Optionally, an API façade in front of it so new applications don't integrate directly with its internals |
-| Rehost | The platform, where the application can run in a container; otherwise nothing |
+| Rehost | Nothing; the application moves without code changes, and putting it in a container is a replatform |
 | Replatform | The platform layer and, for the database, [Chapter 04](04-moving-the-data.md) |
 | Refactor | All of it, introduced through the strangler-fig façade one function at a time |
 | Rebuild | All of it, still delivered in increments behind contracts |
@@ -150,7 +150,7 @@ The CSRC pages for SP 800-204 and SP 800-190 list no newer revision or draft as 
 
 ## What leadership should take from this
 
-1. **Approve one target, and a way to change it.** The value is in everyone using the same stack; the risk is in the stack aging. Give the architecture review board both the list and the duty to keep it current.
+1. **Approve one target, and a way to change it.** The value is in everyone using the same stack; the risk is in the stack aging. Give the chief architect, through the architecture review board, both the list and the duty to keep it current.
 2. **Fund the upgrade cadence.** Recent Spring Boot generations get about thirteen months of open-source support, and Node.js and Kubernetes move on clocks of their own. Budget for platform upgrades as recurring work, or the modernized portfolio becomes the next legacy one.
 3. **Ask how each refactor will be strangled.** A refactor proposal should name its façade, its first function to move, how shared data will be handled and when rollback ends.
 
