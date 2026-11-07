@@ -330,7 +330,7 @@ Two cautions. Gitea's webhook documentation describes manual redelivery of faile
 
 ### D.3 Drift reporter
 
-Phase 14.4 registers a scheduled task that runs as the gMSA (scheduled tasks support gMSAs)[^aB-gmsa] and authenticates to Azure and Graph with the Arc managed identity, so no interactive credential lives on the host. It collects the Arc resource's tags, the Gitea team list, administrative-unit membership through Graph, the Arc agent's last heartbeat, and the Gitea accounts whose Entra ID users are disabled, then submits them to the drift engine, which reports `DRIFT-SCHEMA`, `DRIFT-SEMANTIC`, `DRIFT-PROVENANCE`, `DRIFT-AUTHZ` and `DRIFT-IDENTITY` findings. Non-zero counts open service-level tickets. The build guide marks this Phase 14 capability as declared but still under operational validation.
+Phase 14.4 registers a scheduled task that runs as the gMSA (scheduled tasks support gMSAs)[^aB-gmsa] and authenticates to Azure and Graph with the Arc managed identity, so no interactive credential lives on the host. It collects the Arc resource's tags, the Gitea team list, administrative-unit membership through Graph, the Arc agent's last heartbeat, and the Gitea accounts whose Entra ID users are disabled, then submits them to the drift engine, which reports `DRIFT-SCHEMA`, `DRIFT-SEMANTIC`, `DRIFT-PROVENANCE`, `DRIFT-AUTHZ` and `DRIFT-IDENTITY` findings (the last two classes are design only and are not yet detected at runtime; see [Chapter 02](02-the-invisible-boundary.md)). Non-zero counts open service-level tickets. The build guide marks this Phase 14 capability as declared but still under operational validation.
 
 ### D.4 Conformance adapter
 
@@ -526,7 +526,7 @@ Every plane in the six families is one of four kinds:
 3. **Local and signed**, with application control refusing anything the program didn't sign.
 4. **Telemetry**, observed by the conformance adapter and reported to the drift engine.
 
-Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared without a recorded decision, `DRIFT-PROVENANCE` if its origin can't be traced, `DRIFT-AUTHZ` if its authorization drifted from the group mapping. The host is governed by the closure of this list, not by the absence of incidents.
+Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared without a recorded decision, `DRIFT-PROVENANCE` if its origin can't be traced, `DRIFT-AUTHZ` if its authorization drifted from the group mapping (that class is design only and is not yet detected at runtime). The host is governed by the closure of this list, not by the absence of incidents.
 
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
 
@@ -537,7 +537,7 @@ Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared with
 | HTTPS Git (Gitea) TLS on 443 | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it; the CAPI driver binds IIS and grants the app pool read access to the key |
 | Optional API TLS and WinRM over HTTPS | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews them |
 | Gitea's LDAPS connection to domain controllers | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches the DC certificates |
-| Hook signing | Code signing | CA chosen by the CISO | Platform-managed, or not X.509 | At most watches; signing is a separate CyberArk product |
+| Hook signing | Code signing | CA chosen by the CISO | Approved request, never unattended | At most watches; signing is a separate CyberArk product |
 | Google's trust of Entra's SAML signing certificate | Not a Book 07 class | Entra | The app's owner or Key Vault | Nothing |
 
 ![This book's certificates and the engine that renews each.](../../images/diagrams/b10-cloud-boundary/svg/certs-clm.svg){fig-alt="HTTPS Git (Gitea) TLS on 443, Optional API TLS and WinRM over HTTPS go to CyberArk Certificate Manager (renews and installs); Gitea's LDAPS connection to domain controllers go to AD CS autoenrollment (renews; the platform only watches); Hook signing go to Platform-managed, or not X.509 (no clm lifecycle); Google's trust of Entra's SAML signing certificate go to the app's owner or Key Vault (outside book 07's classes)."}

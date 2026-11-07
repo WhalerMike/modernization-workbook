@@ -144,7 +144,7 @@ This is the provision that most rewards a provider with an evidence pipeline and
 
 ## Rev5 and the 2026 rules side by side
 
-The Consolidated Rules aren't only for new 20x certifications. Each rule family declares the certification types it applies to, and the boundary families (MAS, CMU, VDR and CDS) and SCN all list both "20x" and "Rev5."[^c03-crjson] FedRAMP publishes Rev5 versions of fifteen rule families, including MAS and SCN, for Classes B through D.[^c03-rev5]
+The Consolidated Rules aren't only for new 20x certifications. Each rule family declares the certification types it applies to, and the boundary families (MAS, CMU, VDR and CDS) and SCN all list both "20x" and "Rev5."[^c03-crjson] FedRAMP publishes Rev5 versions of fifteen rule families, including MAS and SCN, for Classes B through D.[^c03-rev5] An existing Rev5 certification adopts each family on its own schedule rather than all at once ([Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#when-the-rules-reach-a-rev5-package)).
 
 In practice the two will coexist for years. A Rev5 package was written in the older vocabulary, with a provider-drawn authorization boundary in its system security plan, and that document doesn't rewrite itself on January 1, 2027. An agency will hold Rev5 packages and 20x packages for different services at the same time, and should read each in its own terms: the boundary diagram in a Rev5 package describes the provider's assessed scope; the Minimum Assessment Scope output in a 20x package describes the same thing as data.
 
