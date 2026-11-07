@@ -1,6 +1,6 @@
 ---
 title: "Infoblox DDI for Federal Agencies"
-subtitle: "An hour-long technical deep dive: the platform, why it is one of the strongest choices for federal DNS, DHCP and IPAM, the risks to manage, and how divisions run their own DDI under central governance"
+subtitle: "A half-hour technical deep dive: the platform, why it is one of the strongest choices for federal DNS, DHCP and IPAM, the risks to manage, and how divisions run their own DDI under central governance"
 description: "Research under review: a narrated technical deep dive on Infoblox NIOS and Universal DDI for federal agencies, with the requirements that drive the need, a fair comparison, the platform's risks, and delegated administration for divisions."
 research-status: in review
 research-type: evaluation
@@ -21,19 +21,19 @@ This research item asks a narrower question than [Book 08](../books/b08-ddi/inde
 
 | Edition | File |
 |---|---|
-| Deck, presented live (about 50 minutes) | [Infoblox_DDI_Federal_Deep_Dive.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Infoblox_DDI_Federal_Deep_Dive.pptx) |
-| Narrated, self-running (about 26 minutes, captions) | [Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx) |
+| Deck, presented live (about 28 minutes) | [Infoblox_DDI_Federal_Deep_Dive.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Infoblox_DDI_Federal_Deep_Dive.pptx) |
+| Narrated, self-running (about 28 minutes, captions) | [Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.vtt) |
 
 ## What it covers
 
 | Module | Minutes | Content |
 |---|---|---|
-| Orientation | 5 | DNS, DHCP and IPAM as one control plane; what federal rules require, and that none of them names a vendor |
-| 1. The platform | 12 | The NIOS Grid, Universal DDI and the Infoblox Portal with their documented limits; DNS (views, DNSSEC with HSM, DNS Firewall, encrypted DNS); DHCP and IPAM; Threat Defense; automation and logging |
-| 2. Why Infoblox, and why federal networks need what it does | 16 | Requirement → capability → feature; what the FedRAMP Moderate listing covers and what stays in the agency's boundary; Trinzic hardware against the workbook's design, and whether Trinzic should run alone or with cloud DDI; the hardening baseline (the agency's CM-6 settings from NIST SP 800-81 Rev. 3, with DISA STIGs as an optional High only reference), FIPS 140 and NIAP; a fair comparison; risks and procurement asks |
-| 3. Divisions on NIOS | 16 | The permission model; scoping an admin group to one division; network views, DNS views and extensible attributes; approval workflow and the CSV-import gap; CAC/PIV and SAML sign-in; Microsoft servers; what stays central; reporting limits; separating DNS, DHCP and IPAM by team, and combining service teams with divisions |
-| 4. Divisions on Universal DDI, and the operating model | 10 | Access views, IP spaces and IPAM Federation; four delegation patterns; a worked four-division example (illustrative design); the responsibility matrix; rollout, decisions and next steps |
+| Orientation | 3 | DNS, DHCP and IPAM as one control plane; what federal rules require, and that none of them names a vendor |
+| 1. The platform | 5 | The NIOS Grid, Universal DDI and the Infoblox Portal with their documented limits; DNS (views, DNSSEC with HSM, DNS Firewall, encrypted DNS); DHCP and IPAM; Threat Defense; automation and logging |
+| 2. Why Infoblox, and why federal networks need what it does | 8 | Requirement → capability → feature; what the FedRAMP Moderate listing covers and what stays in the agency's boundary; Trinzic hardware against the workbook's design, and whether Trinzic should run alone or with cloud DDI; the hardening baseline (the agency's CM-6 settings from NIST SP 800-81 Rev. 3, with DISA STIGs as an optional High only reference), FIPS 140 and NIAP; a fair comparison; risks and procurement asks |
+| 3. Divisions on NIOS | 7 | The permission model; scoping an admin group to one division; network views, DNS views and extensible attributes; approval workflow and the CSV-import gap; CAC/PIV and SAML sign-in; Microsoft servers; what stays central; reporting limits; separating DNS, DHCP and IPAM by team, and combining service teams with divisions |
+| 4. Divisions on Universal DDI, and the operating model | 5 | Access views, IP spaces and IPAM Federation; four delegation patterns; a worked four-division example (illustrative design); the responsibility matrix; rollout, decisions and next steps |
 
 *High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 

@@ -101,7 +101,7 @@ Read these with care. They are counts of inventory answers in a public file, not
 
 ## Step 3: prioritize
 
-Each finding that [Chapter 07](07-monitoring-drift-and-shadow-ai.md#the-findings) lists takes the severity it gives, inside the program's drift model of [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md). Chapter 07 pins no severity for the scan's inventory-quality and leaver checks (stage not recorded, no contact, retired and still holding access, and a non-agentic system with no identity record); those take the order-of-work group below. The scan adds an order of work, which is design:
+Each finding that [Chapter 07](07-monitoring-drift-and-shadow-ai.md#the-findings) lists takes the severity it gives, inside the program's drift model of [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md). Chapter 07 also gives the scan's inventory-quality and leaver checks (stage not recorded, no contact, retired and still holding access, and a non-agentic system with no identity record) their severities, and they take the order-of-work group below like the rest. The scan adds an order of work, which is design:
 
 1. **Agentic AI first.** An AI system that can act, not just answer, comes before one that only produces output for a person. The agentic-with-no-authorization answer goes straight to the system owner and the ISSO, and once the directory join confirms there's no governed identity it is P1: halt and alert, never remediated automatically.
 2. **Authorization next.** A live system with no authorization answer goes to the ISSO to resolve against the agency's authorization records. Confirmed, it is P1; resolved as an inventory error, it becomes an inventory correction.

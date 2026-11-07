@@ -201,7 +201,7 @@ Duration 0 working days · end of wk 4 · total float 53 d · predecessors: D-A5
 Criteria: Personas from authoritative codes, grant and block in pairs, empty slots reported; device and server conventions published and handed to the Endpoint plan; non-person owners and sponsors keyed to the person key
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#attribute-to-mechanism-crosswalk",fmw,fmw-attribute-driven-migration,fmw-id-ag5,gate,owner-ciso,,2027-01-29,2027-01-28,64,,,,,
 54,Epic,,Attribute-Driven Migration: Phase 6 — PIV and CAC binding,"Phase 6 — PIV and CAC binding of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
-https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-02-25,2027-10-01,,,,,,
+https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-02-25,2027-09-10,,,,,,
 55,Task,54,A6.1 Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer,"A6.1 · Task · owner or approver: Identity engineering, with the PIV program office
 Duration 5 working days · wk 8–9 · total float 10 d · predecessors: AG3
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-a6.1,task,owner-identity-engineering-with-the-piv-program-office,,2027-02-25,2027-03-03,56,,,,,
@@ -219,15 +219,15 @@ If decided late: PIV sign-in reaches the pilot with bindings nobody has measured
 Comes from program-master-schedule:P2.8 in another plan; its date is set there.
 Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-p28,external,owner-identity-engineering-program,,2027-03-25,2027-03-24,,,,,,
 59,Task,54,D-A7 Who writes the binding after AD,"D-A7 · Decision · owner or approver: ICAM governance body
-Duration 0 working days · end of wk 10 · total float 147 d · predecessors: A6.2
+Duration 0 working days · end of wk 10 · total float 132 d · predecessors: A6.2
 Options: The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale)
 If decided late: User issuance can't move off AD CS, because nothing writes the binding without AD
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-d-a7,decision,owner-icam-governance-body,,2027-03-11,2027-03-10,60,,,,,
-60,Task,54,X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5),"X-P45 · External · owner or approver: PKI lead (program)
-Duration 0 working days · end of wk 39 · total float fixed date · predecessors: D-A7
+60,Task,54,"X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start)","X-P45 · External · owner or approver: PKI lead (program)
+Duration 0 working days · end of wk 36 · total float fixed date · predecessors: D-A7
 If decided late: Issuance moves off AD CS with no writer for the binding
-Comes from program-master-schedule:P4.5 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-p45,external,owner-pki-lead-program,,2027-10-04,2027-10-01,,,,,,
+Comes from program-master-schedule:P4.5:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-attribute-driven-migration,fmw-id-x-p45,external,owner-pki-lead-program,,2027-09-13,2027-09-10,,,,,,
 61,Task,54,AG6 Gate 6 — PIV binding proven on the pilot,"AG6 · Gate · owner or approver: CISO
 Duration 0 working days · end of wk 10 · total float 29 d · predecessors: A6.2
 Criteria: Every pilot card holder bound; high affinity piloted with no lockouts; phishing-resistant strength for CBA users; the leaver removes the binding as well as revoking the card
