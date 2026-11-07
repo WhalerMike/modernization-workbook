@@ -49,7 +49,7 @@ The ScubaGear Entra ID baseline (`aad.md`) is the source for every ID below, as 
 
 ## Intune
 
-**ScubaGear has no Intune baseline.** Its baselines cover Entra ID, Defender, Exchange Online, Power Platform, SharePoint and OneDrive, and Teams.[^gpc-scubarepo] Intune practices are therefore checked by reading Intune's own configuration through Microsoft Graph, as [Book 15, Chapter 08](../books/b15-day2-operations/08-control-automation-m365-and-azure.md) describes. The one ScubaGear tie is indirect: MS.AAD.3.7v1 and 3.8v1 require managed devices in Conditional Access, and Intune compliance is what makes a device count as managed.
+**ScubaGear has no Intune baseline.** Its baselines cover Entra ID, the security suite, Exchange Online, Power BI, Power Platform, SharePoint and OneDrive, and Teams.[^gpc-scubarepo] Intune practices are therefore checked by reading Intune's own configuration through Microsoft Graph, as [Book 15, Chapter 08](../books/b15-day2-operations/08-control-automation-m365-and-azure.md) describes. The one ScubaGear tie is indirect: MS.AAD.3.7v1 and 3.8v1 require managed devices in Conditional Access, and Intune compliance is what makes a device count as managed.
 
 | Practice | Book | Microsoft page | Check | Reviewed |
 |---|---|---|---|---|

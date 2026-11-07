@@ -133,14 +133,15 @@ The guide assumes the starting state most agencies report, and gives an interim 
 
 : What each piece needs {.striped .hover}
 
-**Integration identities.** Five non-person identities carry the integration, each with two named owners and a federal sponsor in the system inventory, and each governed on the [non-person identity track](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) *(design guidance)*:
+**Integration identities.** Nine non-person identities carry the integration, two for the connections and the seven the kit runs, one per task, each with two named owners and a federal sponsor in the system inventory, and each governed on the [non-person identity track](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) *(design guidance)*:
 
 1. SailPoint's Entra connector app registration in the agency's tenant (the GCC High endpoints are a source setting, Gate 1);[^ttm-gov]
 2. the ServiceNow Entra spoke's app registration, a custom app that obtains OAuth 2.0 tokens, delegated or application;[^ttm-spoke]
-3. the ServiceNow integration user the SailPoint workflow posts as ([kit permissions](snow-sailpoint-integration-kit.md#permissions));
-4. the verifier account the re-read client closes records as;
-5. the ISC API client the kit's clients read with.
+3. the ServiceNow integration user the SailPoint workflow posts as (`finding_writer`; [kit permissions](snow-sailpoint-integration-kit.md#permissions));
+4. the verifier account the re-read client closes records as (`verifier`), and the evidence reader the export and the pre-flight checks read as (`evidence_reader`);
+5. the ISC API clients the kit uses: the reader for the drift and re-read clients (`isc_reader`), the deploy checker that lists the workflows (`isc_deploy_checker`), the workflow administrator that creates, enables and disables them (`isc_workflow_admin`), and the workflow tester that test-runs a disabled workflow (`isc_workflow_tester`).
 
+Items 1 and 2 are the two connections; items 3 to 5 are the seven the kit runs, as [Chapter 09 of the developer workbook](../../project-plans/developer-workbooks/ticket-to-machine/09-deploying-to-test-and-production.md) lists them.
 **Environments.** A ServiceNow Personal Developer Instance or sub-production instance and a SailPoint sandbox tenant, with synthetic data like the kit's fixtures, before production ([Book 15, Chapter 13](../b15-day2-operations/13-building-day-two-automation-in-house.md#three-environments)).
 
 **Roles in the program.** A gate owner for each gate, the identity governance office (IGO) for decisions about access, the ServiceNow platform owner, the SailPoint administrator, and the ISSO who receives each gate's evidence ([Book 13, Chapter 09](../b13-governance/09-who-governs.md)).
@@ -342,7 +343,7 @@ Loop step 3: every drift event, request and residual manual step arrives in Serv
 
 ### Steps
 
-1. **Create the identity finding table and its endpoint** in a scoped application: a table extending Task, a Scripted REST API resource that validates the payload, maps severity to a priority and a due date on Book 13's tempo, de-duplicates on source, subject and class, and stores the intended state a re-read must find ([Build 1](snow-sailpoint-integration-kit.md#build-1-drift-to-a-typed-task); table and setup in the kit README).
+1. **Create the identity finding table and its endpoint** in a scoped application: a table extending Task, a Scripted REST API resource that validates the payload, maps severity to a priority and a due date on Book 13's tempo, de-duplicates on source, subject and class (and the attribute when the payload names one), and stores the intended state a re-read must find ([Build 1](snow-sailpoint-integration-kit.md#build-1-drift-to-a-typed-task); table and setup in the kit README).
 2. **Create one SailPoint workflow per trigger**, posting to that endpoint with an HTTP Request step. Workflows can't be created enabled; enable each after a test run.[^ttm-wf]
 3. **Install the Service Catalog app** for people's requests, with the approval routing Gate 2 decided. SailPoint says requests are raised "after Separation of Duties checks," approved in ServiceNow, provisioned by ISC, and the status written back.[^ttm-apps]
 4. **Install the Service Desk integration** for disconnected applications only. It turns ISC provisioning actions into Service Request or Incident tickets.[^ttm-sdim] Each one is a declared exception (Gate 5).
@@ -494,7 +495,7 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 1. **Schedule the drift reconciliation and the re-read client**, and keep their outputs with the date and the checker version.
 2. **Report the five measures** to the governance board: detection coverage, window adherence, escalation rate, machine-closure share and declared-exception count ([Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md#what-the-tempo-shows-leadership)).
 3. **Route the identity fixes through the loop**, below.
-4. **Export the evidence**: a bundle of SailPoint events and ServiceNow records in Book 13's [evidence shape](../b13-governance/appendix-b-ticket-to-machine-reference.md#the-evidence-record), which the kit's `evidence_export.py` writes as one record per closed finding; scheduling it nightly is up to the program.
+4. **Export the evidence**: the monthly evidence package, SailPoint events and ServiceNow records in Book 13's [evidence shape](../b13-governance/appendix-b-ticket-to-machine-reference.md#the-evidence-record), built by period. The kit's `evidence_export.py` writes the ServiceNow half as one record per closed finding; running it on a schedule is a separate collection step that is up to the program.
 5. **Review each declared exception** at its end date, and each L4 class quarterly.
 
 **The identity fixes, on these products.** From the [identity maintenance explainer's](../explainers/identity-maintenance.md) fix catalog. Everything here is *(inference)* or *(design guidance)* unless a note cites a source.
@@ -528,7 +529,7 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 
 **Availability.** Nothing beyond Gates 1 to 6.
 
-**Interim path.** Until the evidence export exists, assemble the monthly package by hand from a ServiceNow report of closed findings with their evidence attachments and a SailPoint event search for the same period.
+**Interim path.** The export builds the ServiceNow half. Until a SailPoint half exists, assemble that half of the monthly package by hand from a SailPoint event search for the same period, beside the export's records of closed findings with their evidence attachments.
 
 ::: {.callout-important}
 ## Validate (G7 Tempo and evidence)

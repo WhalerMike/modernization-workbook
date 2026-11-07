@@ -359,7 +359,7 @@ A PIV card without the binding to the account is a badge. The binding identifies
 
 | Requirement | KSI | What the ISSO keeps |
 |---|---|---|
-| IA-2(12) (acceptance of PIV credentials) and IA-5(2) (public key-based authentication), Moderate baseline[^hri-nist-mod] | None lists IA-2(12); KSI-IAM-APM, KSI-IAM-ELP, KSI-SVC-ASM (IA-5(2)) | The CBA configuration export: trusted CAs, CRL settings, binding rules, required affinity |
+| IA-2(12) (acceptance of PIV credentials) and IA-5(2) (public key-based authentication), Moderate baseline[^hri-nist-mod] | None lists IA-2(12); KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-SNU, KSI-SVC-ASM (IA-5(2)) | The CBA configuration export: trusted CAs, CRL settings, binding rules, required affinity |
 | CISA SCuBA MS.AAD.3.1v1 (phishing-resistant MFA for all users) and MS.AAD.3.6v1 (for highly privileged roles), BOD 25-01 required[^hri-bod] | KSI-IAM-APM, as [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) maps it | The ScubaGear report; the authentication strength policy |
 | FIPS 201-3: issuance only after a proper authority authorizes it; termination and reissuance rules ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence)) | None | The card system's issuance and revocation records, joined to the HR or contractor event |
 | NIST SP 800-63-4 (proofing and authentication assurance) | None | Proofing level and authenticator assurance as attributes, per person |
@@ -549,7 +549,7 @@ Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-eviden
 ## What couldn't be verified {#what-couldnt-be-verified}
 
 - **Temporary Access Pass in GCC High.** Learn's Azure Government availability table has no row for it, or for the Lifecycle Workflows task that issues it.
-- **The workflow ceiling.** Learn's licensing page says 50 workflows; its service limits page says 100. The validation kit uses 100.
+- **The workflow ceiling.** Learn's licensing page says 50 workflows; its service limits page says 100. The validation kit's own ceiling is 100; the guide budgets to 50 until Microsoft reconciles the two pages.
 - **Where a GCC tenant's custom task extension can run.** No Learn page says whether the Logic App may sit in an Azure Government subscription. The guide's reading, a commercial subscription linked to the tenant, is an inference from the identity planning page.
 - **A separate GCC table.** Learn lists Azure Government availability only; GCC availability here follows from GCC using the commercial Entra service, except Entra ID Governance, which Learn names for GCC directly.
 - **The writer of `certificateUserIds` after AD**, for cloud-mastered users ([ADM Gate 6](attribute-driven-migration-implementation.md#gate-6-piv-and-cac-binding)).
