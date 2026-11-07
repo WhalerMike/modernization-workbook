@@ -79,11 +79,11 @@ Learn gives the portal steps and one request body. It doesn't keep policies wher
 
 ## The code: what `examples/hr-lifecycle` adds
 
-Dynamic group rules as code, with a full parser, a lint and the shadow diff that shows a membership change before it happens, are [Book 19, Chapter 04](../../../books/b19-developer-workbook/04-dynamic-rules-as-code.md) (`examples/dynamic-rules`); this chapter's evaluator handles only the subset its policies use and sends anything else there. The validation kit's **VK-DG-05** compares group counts with a snapshot taken before a test move, and **VK-HR-03** reconciles counts per organization code with HR ([Book 19, Chapter 03](../../../books/b19-developer-workbook/03-writing-a-validation-kit-check.md)). The mover workflow that removes the old package and notifies the manager is [Chapter 03](03-joiner-workflows-as-code.md)'s `mover.json`. Eligibility for privileged groups through PIM is [*Building Privileged Access*, Chapter 05](../privileged-access/05-pim-for-groups.md). This chapter adds `python/access_assignment.py`, the three policy files and their fixtures.
+Dynamic group rules as code, with a full parser, a lint and the shadow diff that shows a membership change before it happens, are [Book 19, Chapter 04](../../../books/b19-developer-workbook/04-dynamic-rules-as-code.md) (`examples/dynamic-rules`); this chapter's evaluator handles only the subset its policies use and sends anything else there. The validation kit's **VK-DG-05** compares group counts with a snapshot taken before a test move, and **VK-HR-03** reconciles counts per organization code with HR ([the validation kit's README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/validation-kit/README.md)). The mover workflow that removes the old package and notifies the manager is [Chapter 03](03-joiner-workflows-as-code.md)'s `mover.json`. Eligibility for privileged groups through PIM is [*Building Privileged Access*, Chapter 05](../privileged-access/05-pim-for-groups.md). This chapter adds `python/access_assignment.py`, the three policy files and their fixtures.
 
 ### The policy files
 
-`config/access` holds two automatic policies, one per department package, each on the organization code in `extensionAttribute10` and the worker type, with a seven-day grace; and one request policy for infrastructure administrator eligibility, where ORG-210 employees may request and the manager approves, with a fallback. The request policy grants eligibility only: the role is activated through PIM, as the guide's step 7 requires. Each file's `_program` block holds its tier, the package's name, the expected scope, and the groups the package grants, which the residual review uses.
+`config/access` holds two automatic policies, one per department package, each on the organization code in `extensionAttribute10` and the worker type, with a seven-day grace; and one request policy for infrastructure administrator eligibility, where ORG-210 employees may request and the manager approves, with a fallback. The request policy grants eligibility only: the role is activated through PIM, as the guide's Gate 4, step 7 requires. Each file's `_program` block holds its tier, the package's name, the expected scope, and the groups the package grants, which the residual review uses.
 
 ### The lint
 
@@ -95,9 +95,9 @@ Dynamic group rules as code, with a full parser, a lint and the shadow diff that
 | AA-04 | Warn | A rule on no coded slot or worker type | *Design guidance*, from Book 03, Chapter 10 |
 | AA-05 | Finding | An automatic policy that doesn't both create and remove | *Design guidance*; Learn's defaults[^hw04-auto] |
 | AA-06 | Warn | A grace period over 14 days | *Design guidance*, from [Book 04, Chapter 09](../../../books/b04-access/09-access-governance.md#lifecycle-workflows-at-the-access-level) |
-| AA-07 | Finding | A request policy without the manager as approver and a fallback | Learn[^hw04-mgr]; the guide's step 5 |
+| AA-07 | Finding | A request policy without the manager as approver and a fallback | Learn[^hw04-mgr]; the guide's Gate 4, step 5 |
 | AA-08 | Warn | A rule outside the evaluator's subset | — (lint it with `examples/dynamic-rules`) |
-| AA-09 | Finding | A tier T0, T1 or privileged package assigned by rule | The guide's step 7; SCuBA MS.AAD.7.5v1[^hw04-bod] |
+| AA-09 | Finding | A tier T0, T1 or privileged package assigned by rule | The guide's Gate 4, step 7; SCuBA MS.AAD.7.5v1[^hw04-bod] |
 
 The evaluator reads `-eq`, `-ne`, `-in`, `-startsWith`, `-and`, `-or`, `-not` and parentheses over `user.<property>`, compares strings without regard to case, and raises an error for any other operator. The population file is a list of users with their coded attributes; a real run uses an export of the users in scope.
 
@@ -115,7 +115,7 @@ The code reads `transitiveMemberOf` rather than `memberOf` on purpose: for anoth
 
 ### The tests
 
-This chapter's tests are the nine in the Chapter 04 block of `tests/test_joiners_and_access.py`: the evaluator, the shipped policies, each rule on the broken files, disjoint policies, the scope limit, the export scan, the residual's classes, the completed review's interval and the review sheet. The kit's 57 tests pass under Python 3.14 with no package, tenant or network.
+This chapter's tests are the nine in the Chapter 04 block of `tests/test_joiners_and_access.py`: the evaluator, the shipped policies, each rule on the broken files, disjoint policies, the scope limit, the export scan, the residual's classes, the completed review's interval and the review sheet. The kit's 57 tests pass under Python 3.10 or later with no package, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code

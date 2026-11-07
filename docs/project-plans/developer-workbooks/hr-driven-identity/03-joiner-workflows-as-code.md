@@ -77,7 +77,7 @@ Learn gives one request at a time, written by hand. It doesn't keep the definiti
 
 ## The code: what `examples/hr-lifecycle` adds
 
-Much of the joiner's code exists. The HR feed that sends the account early and disabled is [Book 19, Chapter 01](../../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md). Custom task extensions, and the check that a leaver blocks before its custom task, are [Book 19, Chapter 05](../../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order) (`examples/lifecycle-extensions`). The validation kit's **VK-HR-05** reports users whose hire date passed with no processing record, and **VK-HR-06** reads whether execution limits are set and counts workflows against a ceiling ([Book 19, Chapter 03](../../../books/b19-developer-workbook/03-writing-a-validation-kit-check.md)). This chapter adds `python/joiner_workflows.py`, its six workflow files and its fixtures, and links to those for the rest.
+Much of the joiner's code exists. The HR feed that sends the account early and disabled is [Book 19, Chapter 01](../../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md). Custom task extensions, and the check that a leaver blocks before its custom task, are [Book 19, Chapter 05](../../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order) (`examples/lifecycle-extensions`). The validation kit's **VK-HR-05** reports users whose hire date passed with no processing record, and **VK-HR-06** reads whether execution limits are set and counts workflows against a ceiling ([the validation kit's README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/validation-kit/README.md)). This chapter adds `python/joiner_workflows.py`, its six workflow files and its fixtures, and links to those for the rest.
 
 ### The workflow files
 
@@ -118,7 +118,7 @@ Much of the joiner's code exists. The HR feed that sends the account early and d
 
 ### The tests
 
-This chapter's tests are the nine in the Chapter 03 block of `tests/test_joiners_and_access.py`: the shipped files lint clean, the bad files raise each rule, both argument names, the task limits, the two ceilings, the stripped body, the plan, the refusal and readiness. The kit's 57 tests pass under Python 3.14 with no package, tenant or network.
+This chapter's tests are the nine in the Chapter 03 block of `tests/test_joiners_and_access.py`: the shipped files lint clean, the bad files raise each rule, both argument names, the task limits, the two ceilings, the stripped body, the plan, the refusal and readiness. The kit's 57 tests pass under Python 3.10 or later with no package, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -489,7 +489,7 @@ rm -rf exports out/ch03 out/ch03-vk
 | Scope rule | Listed user properties, including `employeeType` and `onPremisesExtensionAttributes/extensionAttribute1` to `15`; `eq`, `ne`, `in`, `startsWith` | — | v1.0 | [^hw03-scope] |
 | Pass task | `1b555e50-7f65-41d5-b514-5894a026d10d`; lifetime 10 to 43,200 minutes; one-time use; manager and manager's mail; no other methods, sign-ins or role assignments | Not confirmed for GCC High | GA | [^hw03-tasks] |
 | Pass for a new hire | 24-hour maximum recommended | — | — | [^hw03-time] |
-| Other task IDs the files use | Request user access package assignment `c1ec1e76-…`; Disable `1dfdfcc7-…`; Revoke all refresh tokens `509589a4-…`; Delete user `8d18588d-…`; Remove access package assignment `4a0b64f2-…` | — | — | [^hw03-tasks] |
+| Other task IDs the files use | Request user access package assignment `c1ec1e76-…`; Disable `1dfdfcc7-…`; Revoke all refresh tokens `509589a4-…`; Delete user `8d18588d-…`; Remove access package assignment `4a0b64f2-…`; Send email to notify manager of user move `aab41899-…`; Remove all access package assignments for user `42ae2956-…` | — | — | [^hw03-tasks] |
 | Tasks per workflow | 25 | — | — | [^hw03-limits-svc] |
 | Execution limits | Tenant or per workflow, percentage or count, quarantine on a scheduled run; on-demand runs aren't limited; a workflow limit "isn't currently reflected in the API" | — | GA | [^hw03-limits] |
 | Catch-up window | A scheduled workflow processes a user up to three days after the trigger date | — | — | [^hw03-catchup] |
