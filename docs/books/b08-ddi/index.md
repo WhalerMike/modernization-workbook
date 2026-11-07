@@ -43,7 +43,7 @@ This book brings together the workbook's Next Generation DDI series, the Next Ge
 **Under review**: a vendor-neutral briefing, [What a Federal DDI Platform Must Do](../explainers/ddi-platform-requirements.md), and a product deep dive, [Infoblox DDI for Federal Agencies](../../evaluations/infoblox-ddi-federal.md), and an implementation guide, [Implementing Book 08 on Infoblox NIOS](../guides/infoblox-nios-implementation.md).
 :::
 
-DNS was designed to answer one question: what is the address for this name? In a hybrid multi-cloud agency it now does far more. It publishes private endpoints, selects SaaS front doors, enforces security policy, anchors certificate validation and defines the application surface that Zero Trust policy is written against. Most agencies still run it as a commodity utility spread across independent platforms: Active Directory DNS or an on-premises DDI grid, AWS Route 53, Azure DNS, Google Cloud DNS and VMware NSX. The result is split-brain DNS that breaks private connectivity, certificate trust and Layer 7 policy at once, and that shows up as certificate errors and access denials rather than DNS errors. This book makes the case for one authoritative DDI policy plane, and walks through who owns it, how to get there and how to run it.
+DNS was designed to answer one question: what is the address for this name? In a hybrid multi-cloud agency it now does far more. It publishes private endpoints, selects SaaS front doors, enforces security policy, anchors certificate validation and defines the application surface that Zero Trust policy is written against. Most agencies still run it as a commodity utility spread across independent platforms: Active Directory DNS or an on-premises DDI grid, AWS Route 53, Azure DNS, Google Cloud DNS, Oracle Cloud Infrastructure DNS and VMware NSX. The result is split-brain DNS that breaks private connectivity, certificate trust and Layer 7 policy at once, and that shows up as certificate errors and access denials rather than DNS errors. This book makes the case for one authoritative DDI policy plane, and walks through who owns it, how to get there and how to run it.
 
 ## Why, what, who, how
 
@@ -73,7 +73,7 @@ Five configuration decisions carry most of the risk along the way. Each is settl
 | 1. redirect-dns targets a network-addressable agency resolver | Ch 05, Ch 08 | Migrate authority |
 | 2. The agency resolver is the first hop; other resolvers are its forwarders | Ch 05, Ch 08 | Migrate authority |
 | 3. The policy plane holds every per-cloud conditional forwarding rule | Ch 07, Ch 08 | Federate clouds |
-| 4. AD DNS is inventoried before any domain controller goes; locator records move last | Ch 04, Ch 10 | Inventory, Decommission |
+| 4. AD DNS is inventoried before any domain controller goes; locator records move last | Ch 04, Ch 08, Ch 10 | Inventory, Decommission |
 | 5. OCSP and CRL endpoints resolve from every origin | Ch 06, Ch 08 | Federate clouds, Harden |
 
 ## Reading paths

@@ -24,7 +24,7 @@ The environment the book is written for, FedRAMP Moderate in commercial regions 
 
 ::: {.callout-important}
 ## Platform facts as of October 20, 2026
-Service availability in government clouds changes month to month. Every platform fact on this page was checked against the provider's documentation or the FedRAMP Marketplace on October 20, 2026. Recheck the linked pages before relying on them.
+Service availability in government clouds changes month to month. Every platform fact on this page was checked against the provider's documentation or the FedRAMP Marketplace on October 20, 2026, except the region authorization facts, which were checked on October 29, 2026. Recheck the linked pages before relying on them.
 :::
 
 The architecture in this book applies in every environment: one authoritative DDI policy plane, agency-controlled resolvers as the first hop, and consistent forwarding and policy everywhere. What changes from one environment to the next is which services are authorized, which integrations exist and which optimizations are available. This appendix sets out those boundaries so that readers in higher-impact environments know which statements in the chapters need adjusting.
