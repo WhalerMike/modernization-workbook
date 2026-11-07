@@ -39,7 +39,7 @@ Each phase ends with a rollback point and a resolution-path consistency test (th
 
 ## How the operational playbook maps to the six phases
 
-The program's operational DNS playbook breaks the same work into eleven smaller steps, written for the common case of an Azure-heavy estate. The table maps them onto the six phases so that a team working from the playbook and a program office tracking the phases see the same progress. The durations are the program's planning estimates for a single forest and a hub-and-spoke Azure footprint; they are not commitments, and the gates, not the estimates, decide when a step ends.
+The program's operational DNS playbook breaks the same work into eleven smaller steps, written for the common case of an Azure-heavy estate. The table maps them onto the six phases so that a team working from the playbook and a program office tracking the phases see the same progress. The durations are the program's planning estimates for a single forest and a hub-and-spoke Azure footprint; they are not commitments, and the gates, not the estimates, decide when a step ends. The step numbers are the playbook's own labels, not the execution order: the phase column sets the order, and a step in a later phase doesn't start before the earlier phase is finished.
 
 | Playbook step | Book phase | Validation that closes it | Planning estimate |
 |---|---|---|---|
@@ -191,7 +191,7 @@ Three patterns cover almost every zone. Each has a defined rollback.
 |---|---|---|---|
 | Split horizon (same name, different answers) | A name must return a private address inside and a public one outside ([Chapter 02](02-split-brain-dns.md)) | A public zone and a private zone of the same name with different record sets; the private zone visible only to the governed resolvers | Withdraw the private view; internal clients fall through to the public answer |
 | Subdomain delegation | A new namespace, such as a cloud subdomain, moves while the parent stays put | NS records (and glue where needed) for the child in the parent zone, pointing at the new authority; a private view of the child for internal resolution | Remove the delegation records from the parent and the child zone from the target |
-| Progressive migration with conditional forwarding | Whole zones move one at a time | Bidirectional forwarding from Phase 2; export, import and validate each zone, then remove the forwarder that pointed at its old home | Restore the zone from the archived export and point the forwarders back |
+| Progressive migration with conditional forwarding | Whole zones move one at a time | Bidirectional forwarding from Phase 2; export, import and validate each zone, then remove the forwarder that pointed at its old home | Point the forwarders back at the old copy, which stays in place until Phase 5 |
 
 ::: {.callout-important}
 ## Rollback can delete records in Azure Private DNS
@@ -204,7 +204,7 @@ The GlobalNames zone (single-label names, the WINS replacement described in [Cha
 
 ### DHCP scopes
 
-DHCP moves scope by scope, with its options. On Windows, `Export-DhcpServer` and `Import-DhcpServer` carry the configuration, scopes and leases between servers; the import requires a backup path, because it backs up the target server's DHCP database before changing it.[^c10-dhcp-export][^c10-dhcp-import] Moving to a DDI platform uses the platform's own import or synchronization, but the order is the same: move the scope, confirm the options, then authorize the new server and de-authorize the old one.
+DHCP moves scope by scope, with its options. On Windows, `Export-DhcpServer` and `Import-DhcpServer` carry the configuration, scopes and leases between servers; the import requires a backup path, because it backs up the target server's DHCP database before changing it.[^c10-dhcp-export][^c10-dhcp-import] Moving to a DDI platform uses the platform's own import or synchronization, but the order is the same: move the scope, confirm the options, then bring the new server into service. On Windows targets that includes authorizing the new DHCP server in Active Directory; leave the old server authorized until its de-authorization in Phase 5, so the rollback survives.
 
 Three points decide whether a DHCP cutover is quiet:
 
@@ -248,7 +248,7 @@ The gates, all of which must pass:
 4. **Failover has been tested** on the new resolvers and DHCP servers, not assumed.
 5. **The old servers are idle.** A final query-log review shows no direct queries reaching the legacy DNS servers that no longer host locator zones. Domain controllers keep the DNS role, and the locator zones on them keep receiving registrations, until the last domain controller is retired.
 
-Then decommission in this order: remove the legacy DNS addresses from DHCP options, Group Policy and VNet settings; remove the on-premises conditional forwarders for zones that have moved; archive the final zone and DHCP exports; de-authorize the old DHCP servers in Active Directory;[^c10-dhcp-indc] and only then remove the DNS and DHCP server roles from servers that no longer host locator zones (the DNS role stays on domain controllers until the last one is retired). The archived exports and the old servers' DNS and DHCP logs are federal records: cybersecurity event logs fall under NARA's General Records Schedule 3.2 item 036, kept 30 months, and configuration and change records under GRS 3.1 item 030, so the agency records officer confirms their disposition before anything is destroyed ([Book 00, Chapter 10](../b00-orientation/10-retirement-steady-state-and-success.md#records-before-hardware-the-decommissioning-checklist)).[^c10-grs] Allow a 7-day burn-in with no client impact before the phase closes. The rollback during burn-in is to reinstall the role from the archived exports and put the addresses back into DHCP and Group Policy, which is why the exports are archived before anything is removed.
+Then decommission in this order: remove the legacy DNS addresses from DHCP options, Group Policy and VNet settings; remove the on-premises conditional forwarders for zones that have moved; archive the final zone and DHCP exports; de-authorize the old DHCP servers in Active Directory;[^c10-dhcp-indc] and only then remove the DNS and DHCP server roles from servers that no longer host locator zones (the DNS role stays on domain controllers until the last one is retired). The archived exports and the old servers' DNS and DHCP logs are federal records: cybersecurity event logs fall under NARA's General Records Schedule 3.2 item 036, kept 30 months (NARA is revising items 035 and 036, which still cite the rescinded M-21-31, so check the current transmittal), and configuration and change records under GRS 3.1 item 030, so the agency records officer confirms their disposition before anything is destroyed ([Book 00, Chapter 10](../b00-orientation/10-retirement-steady-state-and-success.md#records-before-hardware-the-decommissioning-checklist)).[^c10-grs] Allow a 7-day burn-in with no client impact before the phase closes. The rollback during burn-in is to reinstall the role from the archived exports and put the addresses back into DHCP and Group Policy, which is why the exports are archived before anything is removed.
 
 ::: {.callout-warning}
 ## Do not decommission early
@@ -270,7 +270,7 @@ The migration is finished when four things are true and the query logs prove the
 
 The four risks that most often stop it are the ones this chapter's gates exist for: split-brain from missing or stale forwarding rules, private endpoints falling back to public addresses, orphaned SRV records when domain controllers are retired before their records are inventoried, and OCSP or CRL endpoints that resolve from some locations and not others.
 
-Before the next SD-WAN or DDI change, whatever phase the program is in: audit every branch's redirect-dns target; verify the forwarding chain order in the running configuration; complete the AD DNS inventory before touching a domain controller; confirm the sovereign-cloud limits on Microsoft 365 telemetry with the program office if any part of the estate is in GCC or DoD ([Appendix C](appendix-c-applicability.md)); and take open questions to the vendors rather than working around unconfirmed behavior.
+Before the next SD-WAN or DDI change, whatever phase the program is in: audit every branch's redirect-dns target; verify the forwarding chain order in the running configuration; complete the AD DNS inventory before touching a domain controller; confirm the sovereign-cloud limits on Microsoft 365 telemetry with the program office if any part of the estate is in GCC-Moderate, GCC High or DoD ([Appendix C](appendix-c-applicability.md)); and take open questions to the vendors rather than working around unconfirmed behavior.
 
 ::: {.callout-note}
 ## What this chapter establishes
