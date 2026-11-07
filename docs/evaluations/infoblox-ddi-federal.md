@@ -13,7 +13,7 @@ aliases:
 
 # Infoblox DDI for Federal Agencies {.unnumbered}
 
-This research item asks a narrower question than [Book 08](../books/b08-ddi/index.md): if an agency builds the single DNS, DHCP and IPAM policy plane that Book 08 argues for, how well does Infoblox deliver it, and how would the agency's divisions run their own DNS, DHCP and IPAM on it without losing central governance? The book stays vendor-neutral; this deck makes a product case and shows the evidence on both sides.
+This evaluation asks a narrower question than [Book 08](../books/b08-ddi/index.md): if an agency builds the single DNS, DHCP and IPAM policy plane that Book 08 argues for, how well does Infoblox deliver it, and how would the agency's divisions run their own DNS, DHCP and IPAM on it without losing central governance? The book stays vendor-neutral; this deck makes a product case and shows the evidence on both sides.
 
 ## Watch or download
 
@@ -41,7 +41,7 @@ This research item asks a narrower question than [Book 08](../books/b08-ddi/inde
 
 - **No federal rule names a vendor or requires a "DDI platform".** The rules require capabilities: DNSSEC, encrypted DNS, forwarding to CISA's Protective DNS, address and domain inventory, IPv6 and validated cryptography, with DNS logging now carried by guidance. Those capabilities are hard to deliver consistently without one authoritative DDI plane, and that is the case for a platform like Infoblox.
 - **Where Infoblox is strong:** the only purpose-built DDI vendor with a FedRAMP listing (Moderate, cloud management), a published product-specific hardening checklist for NIOS 9.x to cross-check the agency's own settings (the DISA STIG, High only; CIS publishes no NIOS benchmark),[^ibx-cis] mature Grid architecture with central DNSSEC key custody, multi-cloud DNS and IPAM management, and a delegation model fine-grained enough for divisions.
-- **The risks, stated plainly:** as of October 22, 2026 Infoblox has no active FIPS 140 certificate (its 140-2 certificates went historical on September 21, 2026; 140-3 modules are in review), no current NIAP certification, and no CDM Approved Products List entry; the FedRAMP listing is Moderate only with little reuse; there were critical NIOS vulnerabilities in 2025–2026, none in CISA's Known Exploited Vulnerabilities catalog; and reporting ingest caps, token licensing and hybrid-management limits need planning. The deck turns each into a mitigation or a contract term.
+- **The risks, stated plainly:** as of October 22, 2026 Infoblox has no active FIPS 140 certificate (its 140-2 certificates went historical on September 22, 2026; 140-3 modules are in review), no current NIAP certification, and no CDM Approved Products List entry; the FedRAMP listing is Moderate only with little reuse; there were critical NIOS vulnerabilities in 2025–2026, none in CISA's Known Exploited Vulnerabilities catalog; and reporting ingest caps, token licensing and hybrid-management limits need planning. The deck turns each into a mitigation or a contract term.
 - **Disclosure:** two of the three authors of NIST SP 800-81 Rev. 3 are Infoblox employees. The deck says so wherever it cites that guide.
 
 ## Status and review
@@ -50,7 +50,7 @@ This research item asks a narrower question than [Book 08](../books/b08-ddi/inde
 
 Training: [Infoblox Training and Learning Paths](../training/infoblox-training.md) maps Infoblox's official courses, certifications, labs and videos to the roles in this deck; the deck's backup ends with a "Learn more" slide.
 
-Two companions: the plain-language explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](trinzic-multicloud-ddi.md), and the vendor-neutral [What a Federal DDI Platform Must Do](../books/explainers/ddi-platform-requirements.md), which covers the same requirements and delegation patterns without recommending a product.
+Two companions: the plain-language evaluation [Trinzic Alone, or Trinzic Plus Cloud DDI?](trinzic-multicloud-ddi.md), and the vendor-neutral [What a Federal DDI Platform Must Do](../books/explainers/ddi-platform-requirements.md), which covers the same requirements and delegation patterns without recommending a product.
 
 Implementation: [Implementing Book 08 on Infoblox NIOS](../books/guides/infoblox-nios-implementation.md) is the step-by-step companion: Phase 0 decisions, the Grid build, migration from Microsoft DNS and DHCP, DNSSEC, the agency's hardening baseline, FIPS mode and operations, mapped to Book 08's six phases.
 

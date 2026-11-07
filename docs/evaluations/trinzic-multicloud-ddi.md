@@ -1,7 +1,7 @@
 ---
 title: "Trinzic Alone, or Trinzic Plus Cloud DDI?"
-subtitle: "A 15-minute, plain-language explainer: what Infoblox's on-premises appliances can and can't do in AWS, Azure and Google Cloud, the three ways to extend them, and which fits which agency"
-description: "Research under review: a narrated explainer for architects learning DDI, on whether Infoblox Trinzic appliances can run an agency's DNS, DHCP and IPAM alone or should be combined with vNIOS, Universal DDI or native cloud DNS for multi-cloud."
+subtitle: "A 15-minute, plain-language evaluation: what Infoblox's on-premises appliances can and can't do in AWS, Azure and Google Cloud, the three ways to extend them, and which fits which agency"
+description: "Research under review: a narrated evaluation for architects learning DDI, on whether Infoblox Trinzic appliances can run an agency's DNS, DHCP and IPAM alone or should be combined with vNIOS, Universal DDI or native cloud DNS for multi-cloud."
 research-status: in review
 research-type: evaluation
 research-book: "Book 08"
@@ -14,7 +14,7 @@ aliases:
 
 # Trinzic Alone, or Trinzic Plus Cloud DDI? {.unnumbered}
 
-Trinzic is Infoblox's line of physical appliances that run NIOS, its DNS, DHCP and IPAM software, inside the agency's own data centers. This explainer is for architects still learning DDI. It defines the terms first, then answers one question: can Trinzic run an agency's DDI on its own, or does a multi-cloud agency need it to work with cloud-based DDI?
+Trinzic is Infoblox's line of physical appliances that run NIOS, its DNS, DHCP and IPAM software, inside the agency's own data centers. This evaluation is for architects still learning DDI. It defines the terms first, then answers one question: can Trinzic run an agency's DDI on its own, or does a multi-cloud agency need it to work with cloud-based DDI?
 
 ## Watch or download
 

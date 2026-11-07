@@ -17,7 +17,7 @@ aliases:
 
 This page fills gaps in how the workbook covers that design in the clouds:
 
-- **Infoblox with Azure and AWS is covered.** Book 08 [Chapter 07](../books/b08-ddi/07-cloud-private-endpoints-and-ipam.md) covers Azure private endpoints, the Azure DNS Private Resolver in a hub-and-spoke network, the hybrid resolution patterns and AWS VPC IPAM. [Chapter 08](../books/b08-ddi/08-reference-architecture.md) sets the per-cloud conditional forwarding (Decision 3) and the order of the forwarding chain (Decision 2). The research explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](trinzic-multicloud-ddi.md) sets out the three Infoblox options: vNIOS in each cloud (A), Universal DDI writing to the cloud DNS services (B), and the Grid alongside native cloud DNS with two-way forwarding (C).
+- **Infoblox with Azure and AWS is covered.** Book 08 [Chapter 07](../books/b08-ddi/07-cloud-private-endpoints-and-ipam.md) covers Azure private endpoints, the Azure DNS Private Resolver in a hub-and-spoke network, the hybrid resolution patterns and AWS VPC IPAM. [Chapter 08](../books/b08-ddi/08-reference-architecture.md) sets the per-cloud conditional forwarding (Decision 3) and the order of the forwarding chain (Decision 2). The evaluation [Trinzic Alone, or Trinzic Plus Cloud DDI?](trinzic-multicloud-ddi.md) sets out the three Infoblox options: vNIOS in each cloud (A), Universal DDI writing to the cloud DNS services (B), and the Grid alongside native cloud DNS with two-way forwarding (C).
 - **The Route 53 Resolver is covered more thinly than Azure's.** Book 08 names its endpoints, rules and rule sharing, but doesn't lay out how they work or what differs in AWS GovCloud (US), service by service. Part 1 does.
 - **Oracle Cloud is covered at the comparison level.** Book 08 Chapter 07 compares Oracle Cloud Infrastructure's private DNS with the other platforms, and notes that the HR platform runs on Oracle Cloud. Part 1 adds its resolver in the same depth as the other two, with the US Government Cloud and FedRAMP scope.
 - **BIND in AWS or Azure isn't covered.** The books touch it only briefly: [Book 08, Chapter 08](../books/b08-ddi/08-reference-architecture.md) holds self-managed DNS servers in a cloud, such as BIND, to the single-plane rule, and [Chapter 07](../books/b08-ddi/07-cloud-private-endpoints-and-ipam.md) points here for running BIND beside the native resolvers; [Book 12, Chapter 05](../books/b12-security-operations/05-from-log-warehouse-to-detection.md) mentions it because Microsoft's ASIM DNS parser for Infoblox NIOS also handles BIND logs. Design depth is what the books lack, and Parts 2 to 4 supply it.
@@ -29,7 +29,7 @@ Every provider, product and policy fact was checked against primary sources (AWS
 
 ## Watch or download
 
-The page has a narrated deck in two parts, about 16 minutes each, built only from this page and the workbook pages it links, with its labels kept. Each part has a deck for presenting live, a narrated self-running deck with captions, a video and its narration script.
+The page has a narrated deck in two parts, about 16 minutes each live and 17 narrated, built only from this page and the workbook pages it links, with its labels kept. Each part has a deck for presenting live, a narrated self-running deck with captions, a video and its narration script.
 
 | Part | Covers | Deck, narrated deck and video | Narration script |
 |---|---|---|---|

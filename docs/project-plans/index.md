@@ -53,8 +53,8 @@ The program master schedule is the integrated plan, and the project plans link t
 | [Privileged Access & Administrative Identity](privileged-access.md) | Sample ready | [Book 04](../books/b04-access/index.md) |
 | [Data Platform Identity Transformation](data-platform.md) | Sample ready | [Book 06](../books/b06-data-platform/index.md) |
 | [Non-Person Identity Modernization](non-person-identity.md) | Sample ready | [Book 02, Chapters 09 and 10](../books/b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); [Book 17](../books/b17-ai-identity/index.md); the companion guide's [non-person identity track](../books/guides/attribute-driven-migration.md#non-person-identity-track) |
-| [Attribute-Driven Migration](attribute-driven-migration.md) | Sample ready | The [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md) and its [implementation guide](../books/guides/attribute-driven-migration-implementation.md); [Book 19](../books/b19-developer-workbook/index.md), its developer workbook; the two technical deep-dive decks on the [Presentations](../presentations/index.md#technical-attribute-driven-migration) page |
-| [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) | Sample ready | [Book 13](../books/b13-governance/index.md) |
+| [Attribute-Driven Migration](attribute-driven-migration.md) | Sample ready | Books [01](../books/b01-transformation-arc/index.md), [02](../books/b02-identity/index.md), [03](../books/b03-hr-identity/index.md), [04](../books/b04-access/index.md), [05](../books/b05-devices/index.md) and [07](../books/b07-pki/index.md); the [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md) and its [implementation guide](../books/guides/attribute-driven-migration-implementation.md); [Book 19](../books/b19-developer-workbook/index.md), its developer workbook; the two technical deep-dive decks on the [Presentations](../presentations/index.md#technical-attribute-driven-migration) page |
+| [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) | Sample ready | [Book 13](../books/b13-governance/index.md), with [Book 14](../books/b14-compliance/index.md) and [Book 15](../books/b15-day2-operations/index.md) |
 | [Supply Chain & Software Bill of Materials](supply-chain-sbom.md) | Sample ready | [Book 14](../books/b14-compliance/index.md) |
 
 : The plan set: the seven projects in [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md), plus the non-person identity track and the cross-track attribute foundation of the [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md#four-tracks) {.striped .hover}
@@ -71,7 +71,7 @@ Each plan has the same sections, in the order a project manager reviews them.
 | **Schedule** | A Gantt chart: critical-path tasks in red, other tasks in blue with their float, gates and decisions as diamonds |
 | **Critical path** | The chain of tasks with zero float, in order, and the near-critical tasks that join it once their float is spent |
 | **Decision points** | Each decision with its owner, what it unblocks, the last week it can be made without moving the finish, and what a late decision costs |
-| **Gates** | Each gate's approver and criteria; a gate is the next phase's entry condition |
+| **Gates** | Each gate's approver and criteria; a gate opens the work that names it as a predecessor, which is usually the next phase but not always |
 | **Work breakdown and schedule** | Every task by phase: owner, duration, predecessors, weeks and float, each linked to the chapter it comes from |
 | **Responsibility, assumptions, risks** | One owner per row, what the dates assume, and the risks that would move them |
 | **Baseline and change control** | When to baseline, how to report, and how a change to a date gets made |
