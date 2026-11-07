@@ -23,7 +23,7 @@ last-reviewed: 2026-11-03
 
 *5 minutes, with the objectives and prerequisites*
 
-The OU tree scoped Group Policy, and Group Policy inheritance retires with it. Gate 0 splits every GPO by track, and its Validate step runs VK-INT-07 to show which GPOs Group Policy analytics has imported and how ready they are. Gate 5 moves each setting to exactly one owner. Gate 8 cuts over by disabling GPO links, never deleting them. This module is the code between those gates: a plan per setting, a library of reviewed files, and a sync that creates only what a dry run showed.
+The OU tree scoped Group Policy, and Group Policy inheritance retires with it. Gate 0 splits every GPO by track, and its Validate step runs VK-INT-07 to show which GPOs Group Policy analytics has imported and how ready they are. Gate 5 moves each user-configuration setting to exactly one owner (computer settings go through the Intune guide's Gate 3, which is where this module's device settings land). Gate 8 cuts over by disabling GPO links, never deleting them. This module is the code between those gates: a plan per setting, a library of reviewed files, and a sync that creates only what a dry run showed.
 
 **The federal requirement.** Moving Group Policy to Intune changes the baseline of every device, so the plan, the library and the sync record are configuration-management evidence. From [Chapter 06's table](../../books/b19-developer-workbook/06-group-policy-as-code.md#federal-requirements-and-evidence):
 
@@ -63,7 +63,7 @@ In this module, you'll:
 The operator side is already written: Book 05 runs the GPO sunset, and the Intune track guide turns it into steps. VK-INT-07 works per GPO. `Get-GpcMovePlan` works per setting and gives each one a disposition. Microsoft's import sample creates a policy with one POST and never looks at the tenant first. Read:
 
 - The guide's [Gate 0, step 5 and its Validate step](../../books/guides/attribute-driven-migration-implementation.md#gate-0-read-the-ou-tree), and [Gate 5, step 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
-- [Chapter 06: where this sits](../../books/b19-developer-workbook/06-group-policy-as-code.md#where-this-sits), for the two rules that shape the code: one owner per setting, and build unassigned.
+- [Chapter 06: where this sits](../../books/b19-developer-workbook/06-group-policy-as-code.md#where-this-sits), for the two rules that shape the code: one owning policy per setting, and build unassigned.
 - [Chapter 06: what Microsoft's samples leave to you](../../books/b19-developer-workbook/06-group-policy-as-code.md#what-it-leaves-to-you).
 - [Read: the gate and the move plan](../../books/b19-developer-workbook/06-group-policy-as-code.md#read-the-gate-and-the-move-plan).
 
@@ -199,7 +199,7 @@ You run the gate, run Microsoft's sample twice, build the plan, lint the library
    Test-GpcLibrary -Library (Read-GpcLibrary -Path ./policies) -Plan $plan | Format-List
    ```
 
-   Expected: one row, `Info` `GPC-08`: the hibernate setting has conflicting GPO values, and decision `DR-0105` picks the value.
+   Expected: one row, `Info` `GPC-08`: the hibernate setting has conflicting GPO values, and decision `DR-0105` picks the value. (`DR-0105` is a decision record, not a dynamic-rule lint rule like Module 3's `DR-05`.)
 
 5. **Run the dry run, then apply.**
 
@@ -260,7 +260,7 @@ You run the gate, run Microsoft's sample twice, build the plan, lint the library
 Import a test GPO into Group Policy analytics, run VK-INT-07 live as a read-only operator, build the move plan live, dry-run and apply as a Policy and Profile Manager, compare the result with what Group Policy analytics' Migrate builds, and drill drift by changing a value in the admin center. Follow [Chapter 06, Lab 2](../../books/b19-developer-workbook/06-group-policy-as-code.md#lab-2-test-tenant).
 
 - **You need:** a test tenant with Intune licenses and a test GPO export, never production. In GCC High and DoD, use `-Cloud gcchigh` or `-Cloud dod`.
-- **Back it out:** step 8 deletes the created policies by the IDs in `out/apply/sync-record.json`, and the Migrate comparison policy.
+- **Back it out:** step 8 deletes the created policies by the IDs in `out/apply/sync-record.json`, and the Migrate comparison policy; then delete the imported GPO, as the chapter's clean-up does.
 
 ## Unit 6: Knowledge check
 

@@ -274,8 +274,8 @@ Remove-Item -Recurse -Force out
 
 *Not run by the authors.* Follow the workbook's [Chapter 08, Lab 2](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#lab-2-test-tenant). It has the exact commands.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with a Workload Identities Premium trial or license; one test app registration with a certificate; and a host whose public egress address you know.
-- **What you do:** write a scope with the test app's enterprise application object ID in Ring 1, plan with a reading app, apply report-only, generate sign-ins from inside and outside the egress range, then, in a separate change after at least 14 days with the ring `Clear`, enforce Ring 1 and see a token from outside the range blocked.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with a Workload ID Premium trial or license; one test app registration with a certificate; and a host whose public egress address you know.
+- **What you do:** write a scope with the test app's enterprise application object ID in Ring 1, plan with a reader app, apply report-only, generate sign-ins from inside and outside the egress range, then, in a separate change after at least 14 days with the ring `Clear`, enforce Ring 1 and see a token from outside the range blocked.
 - **Back-out:** step 7 removes Ring 1 from the enforcement record and applies, so both policies return to report-only. Then you turn them off or delete them by hand (the code never deletes), delete the named location, remove `Policy.ReadWrite.ConditionalAccess`, delete the apps and their certificates, and delete the `out` folders.
 
 ## Knowledge check (5 minutes)

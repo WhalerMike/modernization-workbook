@@ -61,7 +61,7 @@ When you finish the path, you'll be able to:
 
 ## Modules
 
-Work through them in order. They follow the guide's gates, G1 to G6, with the guide's AI agents section after the gates it builds on. So the workbook's chapters come in a slightly different order: Chapters 07 and 08 (G4) come before Chapters 05 and 06 (G5). Module 11, the deployment runbook, comes last: it runs every gate's code in one safe order, and each of its steps names its gate.
+Work through them in order. They follow the guide's gates, G1 to G6, with the guide's AI agents section after the gates it builds on. So the workbook's chapters come in a slightly different order: Chapters 07 and 08 (G4) come before Chapters 05 and 06 (G5). Module 11, the deployment runbook, comes last: it runs every gate's code in one safe order, and each of its steps names its gate. The workbook's plan numbers its own gates, Gate 0 to Gate 7, and a module may say "Gate 2" or "Gate 7" for those; a plan gate isn't always its G twin (the plan's Gate 5 is G4), so check the gate table on the [workbook's index](../../project-plans/developer-workbooks/non-person-identity/index.md) when the two numbers differ.
 
 | # | Module | Gate | Workbook chapter | Time |
 |---|---|---|---|---|
@@ -81,7 +81,7 @@ Work through them in order. They follow the guide's gates, G1 to G6, with the gu
 
 **Total time:** about 11 hours 20 minutes, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
 
-**Why eleven modules.** The guide has six gates, but G1, G4 and G5 each need two workbook chapters, and every chapter's Lab 1 is 7 to 14 steps. A module that ran two of those labs would take two hours. So each module teaches one chapter, and the gate column shows where it sits in the guide. Chapter 11, the runbook, serves every gate, so it's a module of its own. The guide's [SQL Server](../../books/guides/non-person-identity-implementation.md#sql-server) section has no chapter of its own: Module 1 shows its accounts handed to the Data Platform plan.
+**Why eleven modules.** The guide has six gates, but G1, G4 and G5 each need two workbook chapters, and every chapter's Lab 1 is 7 to 11 steps. A module that ran two of those labs would take two hours. So each module teaches one chapter, and the gate column shows where it sits in the guide. Chapter 11, the runbook, serves every gate, so it's a module of its own. The guide's [SQL Server](../../books/guides/non-person-identity-implementation.md#sql-server) section has no chapter of its own: Module 1 shows its accounts handed to the Data Platform plan.
 
 **If you're an ISSO reviewer,** read each module's introduction, its federal requirement table and its summary, and skip the labs. Modules 10 and 11 are yours in full. The workbook's [reading paths](../../project-plans/developer-workbooks/non-person-identity/index.md#reading-paths) suggest an order for each role.
 
@@ -89,13 +89,13 @@ Each module follows the same units: an introduction with the federal requirement
 
 ## What you need for the labs
 
-**Lab 1: a laptop, no tenant.** Every module's Lab 1 runs the code in [`examples/non-person-identity`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity) against the kit's fictional fixtures, for the fictional tenant and the domain `corp.contoso.example`. You need:
+**Lab 1: a laptop, no tenant.** Every module's Lab 1 (except Module 10's, which also uses `examples/drift-pipeline` in a POSIX shell) runs the code in [`examples/non-person-identity`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity) against the kit's fictional fixtures, for the fictional tenant and the domain `corp.contoso.example`. You need:
 
 - a copy of the repository, so you can work in `examples/non-person-identity`;
 - PowerShell 7.1 or later with Pester 5;
 - for Module 10, also Python 3.10 or later with pytest and PyYAML, and a shell with `sha256sum` (Linux, macOS or Git Bash).
 
-Run every command from `examples/non-person-identity`, in PowerShell 7. Each lab writes an `out` folder there and deletes it at the end. Nothing in Lab 1 signs in to anything or sends a request.
+Run every command from `examples/non-person-identity`, in PowerShell 7, except Module 10's steps 7 to 11, which run in `examples/drift-pipeline` in a POSIX shell and give that folder an `out` too. Each lab writes an `out` folder there and deletes it at the end. Nothing in Lab 1 signs in to anything or sends a request.
 
 **Lab 2: your own test tenant.** Lab 2 needs a Microsoft Entra test tenant in the worldwide or GCC cloud, never production, with fictional data. Some modules add a test Azure subscription, a Key Vault, a test Active Directory domain or Workload ID Premium. Each module says which. The workbook has no hosted sandbox: you bring the tenant. **The authors didn't run the Lab 2 steps.** Each one ends with a way to back it out. Read the [guide's prerequisites](../../books/guides/non-person-identity-implementation.md#prerequisites) for the roles and licenses before you start.
 

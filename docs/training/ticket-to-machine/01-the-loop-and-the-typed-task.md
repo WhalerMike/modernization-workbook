@@ -29,7 +29,7 @@ Your agency's service desk closes an access ticket when a technician types "done
 
 In this module, you'll:
 
-- Explain the loop's five steps and name the kit file that performs each one.
+- Explain the loop's five steps and name the kit file for each step that has one, and the step that has none.
 - Describe the fields of the identity finding's data contract and what each one is for.
 - Validate a finding payload on a laptop and predict whether ServiceNow accepts, rejects or de-duplicates it, and when it falls due.
 - Recognize an intended state that gives the re-read nothing to check.

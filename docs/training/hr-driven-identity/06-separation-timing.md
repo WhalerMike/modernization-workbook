@@ -1,6 +1,6 @@
 ---
 title: "Module 6: Time separations from the logs"
-description: "Gate G6 and workbook Chapter 06: measure separation-to-block and separation-to-revocation for every leaver from the audit log, the Lifecycle Workflows results, the card system and Intune, and find late separations, uncollected cards, re-enables, failed runs and deletes before devices are retired. About 45 minutes, with a lab on fixtures and a test tenant lab."
+description: "Gate G6 and workbook Chapter 06: measure separation-to-block and separation-to-revocation for every leaver from the audit log, the Lifecycle Workflows results, the card system and Intune, and find late separations, uncollected cards, re-enables, failed runs and deletes before devices are retired. About 50 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -12,7 +12,7 @@ last-reviewed: 2026-11-03
 ---
 # Module 6: Time separations from the logs {.unnumbered}
 
-*Part of the [HR-Driven Identity learning path](index.md). Gate G6 Separation. Workbook [Chapter 06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md). About 45 minutes.*
+*Part of the [HR-Driven Identity learning path](index.md). Gate G6 Separation. Workbook [Chapter 06](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md). About 50 minutes.*
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_6.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_6_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-6/Training_HR_Module_6_Narrated.vtt).
 
@@ -64,7 +64,7 @@ Then read the design:
 Read two sections of workbook Chapter 06:
 
 - [The intervals](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-intervals): *blocked* is the later of the disable and the session revocation; *revoked* adds the card and the devices.
-- [The rules](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-rules): ST-01 to ST-09, and which thresholds are samples the agency replaces.
+- [The rules](../../project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md#the-rules): ST-01 to ST-09 (separation-timing rules, not the smoke tests the Non-Person Identity runbook numbers ST-01 to ST-07), and which thresholds are samples the agency replaces.
 
 ## Exercise: Lab 1, fixtures, no tenant (20 minutes)
 

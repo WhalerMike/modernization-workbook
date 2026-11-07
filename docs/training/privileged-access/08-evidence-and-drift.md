@@ -53,7 +53,7 @@ After this module, you'll be able to:
 ## Prerequisites (1 minute)
 
 - [Module 1](01-privileged-inventory.md) and [Module 2](02-emergency-access-first.md): the run repeats their two reads unchanged.
-- The first workbook's [Chapter 09](../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md), which the comparison and the package build on. Skim it.
+- Book 19, [Chapter 09](../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md), which the comparison and the package build on. Skim it.
 
 ## Unit 1: What the evidence has to show (8 minutes)
 

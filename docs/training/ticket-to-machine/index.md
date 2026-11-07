@@ -15,7 +15,7 @@ last-reviewed: 2026-11-05
 
 In this learning path, you build the identity half of [Book 13's Ticket-to-Machine loop](../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-coordination-loop) on two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud (ISC) for identity governance. You learn it in the order the example implementation guide builds it, one or two gates per module, and you prove each step with the developer workbook's tested code.
 
-The path doesn't repeat those pages. Each module frames the work, sets your objectives, sends you to the exact guide, workbook and book sections that teach it, runs the workbook's Lab 1 as an exercise, and checks what you learned.
+The path doesn't repeat the guide, workbook or book pages. Each module frames the work, sets your objectives, sends you to the exact guide, workbook and book sections that teach it, carries the workbook's Lab 1 in full as an exercise (Lab 2 is a short pointer), and checks what you learned.
 
 ::: {.callout-note}
 ## An example, not an endorsement
@@ -29,7 +29,7 @@ The loop is vendor-neutral. This path uses ServiceNow and SailPoint because the 
 | **Level** | Intermediate |
 | **Roles** | Developer, identity governance (IGA) engineer, ITSM (ServiceNow) engineer, ISSO reviewer |
 | **Products** | ServiceNow (a Personal Developer Instance for Lab 2), SailPoint Identity Security Cloud (a sandbox tenant for Lab 2), Microsoft Graph (read only) |
-| **Scope** | A FedRAMP Moderate civilian estate, as the guide's [starting state](../../books/guides/ttm-servicenow-sailpoint.md#where-agencies-start) describes |
+| **Scope** | A FedRAMP Moderate civilian estate, as the [guide's audience note](../../books/guides/ttm-servicenow-sailpoint.md) describes |
 | **Modules** | 7 |
 | **Time** | About 5 hours 40 minutes, not counting the optional Lab 2 exercises |
 
@@ -37,7 +37,7 @@ The loop is vendor-neutral. This path uses ServiceNow and SailPoint because the 
 
 When you finish this path, you'll be able to:
 
-- Explain the loop's five steps, and say which file in the kit performs each one.
+- Explain the loop's five steps, and name the kit file for each step that has one and the step that has none.
 - Validate an identity finding payload on a laptop and predict what ServiceNow will do with it.
 - Configure and verify least privilege for every ServiceNow role, ISC scope and Graph permission the kit uses.
 - Detect an attribute with two writers before it causes drift that never settles.
@@ -54,7 +54,8 @@ When you finish this path, you'll be able to:
 
 ## Watch first (optional)
 
-- The workbook's story deck, *One Drift Case, End to End*: one fictional person's drifted department followed through every module's gate, with the Lab 1 command and a knowledge check for each scene, about 20 minutes: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/TTM_Story_One_Drift_Case.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/TTM_Story_One_Drift_Case_Narrated.pptx) (about 21 minutes, captions) · [▶ Watch](../../presentations/watch.html?v=TTM_Story_One_Drift_Case_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/TTM_Story_One_Drift_Case_Narrated.mp4).
+- The workbook's story deck, *One Drift Case, End to End*: one fictional person's drifted department followed through every module's gate, with the Lab 1 command and a knowledge check for each scene, about 21 minutes: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/TTM_Story_One_Drift_Case.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/TTM_Story_One_Drift_Case_Narrated.pptx) (about 21 minutes, captions) · [▶ Watch](../../presentations/watch.html?v=TTM_Story_One_Drift_Case_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/TTM_Story_One_Drift_Case_Narrated.mp4).
+- The two-part narrated deck series for the implementation guide (Parts 1 and 2) is listed in the [example guide](../../books/guides/ttm-servicenow-sailpoint.md).
 - The narrated deck for the example guide: [▶ Watch](../../presentations/watch.html?v=Research_TTM_ServiceNow_SailPoint_Narrated), about 10 minutes.
 - The narrated deck for Book 13's Appendix B: [Presentations](../../presentations/index.md#reference-b13).
 
@@ -101,7 +102,7 @@ Every Lab 2 ends with a back-out step, but later modules reuse some of what an e
 
 ## Where this path sits
 
-This path is the fourth of the guide's [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the [example guide](../../books/guides/ttm-servicenow-sailpoint.md), its narrated deck, the [developer workbook](../../project-plans/developer-workbooks/ticket-to-machine/index.md) and this path. The kit and its Pass 1 scope are explained in [Integrating ServiceNow and SailPoint (Pass 1)](../../books/guides/snow-sailpoint-integration-kit.md). Federal sources are in the [federal framework crosswalk](../../reference/federal-framework-crosswalk.md).
+This path is the fourth of the guide's [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the [example guide](../../books/guides/ttm-servicenow-sailpoint.md), its narrated deck series (Parts 1 and 2, listed in the guide), the [developer workbook](../../project-plans/developer-workbooks/ticket-to-machine/index.md) and this path. The kit and its Pass 1 scope are explained in [Integrating ServiceNow and SailPoint (Pass 1)](../../books/guides/snow-sailpoint-integration-kit.md). Federal sources are in the [federal framework crosswalk](../../reference/federal-framework-crosswalk.md).
 
 ## Status and review
 

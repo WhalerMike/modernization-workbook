@@ -104,7 +104,7 @@ You resolve each workflow against its event and run the two new script tests. Wo
    python clients/python/workflow_payload.py --trigger idn:native-change-account-updated --event tests/fixtures/events/native-change-account-updated.json
    ```
 
-   Expected output:
+   Expected output (the workflow name says provenance and the class is `unauthorized_write`: Book 03's unauthorized write is the kit's reading of Book 13's provenance drift):
 
    ```text
    Workflow: Drift to ServiceNow - native change (provenance)

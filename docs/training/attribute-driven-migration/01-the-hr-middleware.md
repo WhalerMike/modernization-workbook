@@ -215,7 +215,7 @@ You run the hardened client on the fictional HR extract, check its record, break
 Create an API-driven inbound provisioning app in a test tenant, extend its schema with CSV2SCIM, grant the sender one permission, send five fictional records with the hardened client, and reconcile them against the provisioning logs. Follow [Chapter 01, Lab 2](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md#lab-2-test-tenant).
 
 - **You need:** a test tenant, never production, with Microsoft Entra ID P1, P2 or ID Governance, and a sender identity with a certificate or managed identity, never a secret.
-- **Back it out:** step 7 sends the five records again as inactive, with a termination date, and unsets the token variable.
+- **Back it out:** step 7 sends the five records again as inactive, with a termination date, and unsets the token variable; then delete the test users and the app, as the chapter's clean-up does.
 
 ## Unit 6: Knowledge check
 
