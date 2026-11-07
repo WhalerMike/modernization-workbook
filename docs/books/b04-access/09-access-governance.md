@@ -348,6 +348,8 @@ The program's design treats access governance as one more consumer of [Book 03, 
 
 : Privacy obligations in access governance {.striped .hover}
 
+External Partner Persons are guests by default and arrive through a package, so these four layers govern them. The business owner of the partner relationship decides the access, the sponsor is a named role who answers the quarterly review, and at partner exit the packages are removed, the guests follow under the removal rule above, and the IGO removes the partner from the partner tenant list ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md); [Appendix C](appendix-c-partner-access-profile-entra.md#validation-tests), test T10).
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 08 — PIM Self-Request with Approval](08-pim-self-request-with-approval.md) · [Book index](index.md) · [Next: Chapter 10 — Access as Code, and the Evidence It Produces →](10-access-as-code-and-evidence.md)

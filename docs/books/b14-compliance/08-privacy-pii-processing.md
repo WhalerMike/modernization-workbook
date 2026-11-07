@@ -269,6 +269,8 @@ The breach tabletop frequency is M-17-12's.[^c08-m1712] Reporting a breach is an
 
 The SORN timing and SAOP approval come from A-108 and A-130.[^c08-a108][^c08-a130] [Chapter 11](11-the-authorization-package.md) shows where the privacy artifacts sit in the authorization package.
 
+A system that gives external partner persons access holds personal data about people the agency does not employ. The threshold decision, the system-of-records question, minimization, records retention and redress for that class are worked through in [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#privacy-records-and-redress).
+
 ## Who owns what
 
 | Role | Owns |

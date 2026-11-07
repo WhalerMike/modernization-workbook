@@ -106,7 +106,7 @@ No system becomes authoritative because it receives a copy. No source field shou
 - **Workforce source:** for federal employees, an Executive Branch civilian agency preparing for or operating on the Federal HR 2.0 Core HCM platform (Oracle Fusion Cloud HCM), or any other source that can provide governed workforce records and effective-dated changes. For contractors and vendors, which HRIT does not cover, the source the agency designates (Chapter 06).
 - **Starting point:** agencies with no HR-driven provisioning today, where accounts come from tickets — the common case. Agencies that already run an HR-to-directory connector can use the same material to replace it.
 - **Directories:** hybrid estates where some users are still mastered in on-premises Active Directory and others are, or are becoming, cloud-managed in Entra ID.
-- **Populations:** employees and other human affiliations for which the agency has identified an authoritative source, a lifecycle owner, and approved policy.
+- **Populations:** employees and other human affiliations for which the agency has identified an authoritative source, a lifecycle owner, and approved policy. That includes the External Partner Person, a person whose affiliation record and primary credential belong to another organization such as a state, a tribal government or another agency; the partner is authoritative for the affiliation and the agency for access ([Chapter 15](15-external-partner-identity.md)).
 
 ## Where it doesn't apply as written
 

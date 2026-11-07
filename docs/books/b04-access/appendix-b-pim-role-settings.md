@@ -357,7 +357,7 @@ For a Tier 2 role whose approval has been risk-accepted, set `isApprovalRequired
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix A — Conditional Access Policy Templates](appendix-a-conditional-access-templates.md) · [Book index](index.md)
+[← Previous: Appendix A — Conditional Access Policy Templates](appendix-a-conditional-access-templates.md) · [Book index](index.md) · [Next: Appendix C — Partner Access Profile (Microsoft Entra) →](appendix-c-partner-access-profile-entra.md)
 :::
 
 [^aB-settings]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Oct 20, 2026).

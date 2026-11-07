@@ -164,6 +164,8 @@ The table maps each kit's evidence output to a likely records category. **The ca
 
 Two things are the same for every row. Security logs that the same runs send to the SIEM are covered by [Book 12, Chapter 10](../b12-security-operations/10-who-runs-security-operations.md) and GRS 3.2 items 030, 031 and 036, with 036 under revision. And none of the kits writes a retention or hold check today; the purge jobs and storage settings that need one belong to the system owner, under the register.
 
+External partner persons add four evidence items to the same register, each confirmed with the records officer like the rows above: drift findings on the partner configuration and the partner list, the record of each suspension, the record of each termination, and the approval for each partner guest (who approved, the named sponsor, the expiry). The partner list is reconciled against the per-partner record, and the readiness checks and their evidence are in [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#readiness-checks).
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 12 — Governance at Scale and the Continuous-Monitoring Program](12-governance-at-scale.md) · [Book index](index.md) · [Next: Appendix A — Requirements Mapping: Controls, Mandates and Books →](appendix-a-requirements-mapping.md)

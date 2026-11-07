@@ -131,6 +131,8 @@ Microsoft documents two workforce-tenant patterns, and they map onto FIPS 201-3'
 
 Custom OpenID Connect identity-provider federation is documented for Entra External ID **external** tenants (customer scenarios), not for guest sign-in to a workforce tenant, whose invited guests use Entra accounts, Microsoft accounts, email one-time passcodes, Google or SAML/WS-Fed federation.[^c09-tenant-features] OIDC still matters in the other direction: the agency's Entra tenant is the identity provider for its own applications over SAML or OIDC, which is the FIPS 201-3 model with the agency as the home IdP.
 
+A partner person's credential is not an agency-issued credential. The partner issues it and runs its lifecycle, the agency does not issue it, and PIV scope stays federal employees and contractors; this chapter never treats a partner credential as PIV-equivalent. What the agency decides is which assurance it accepts for each transaction, as [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#assurance-by-transaction-risk) sets out.
+
 ### GSA's FICAM playbooks
 
 GSA's IDManagement.gov publishes the government-wide implementation guidance; each playbook says it isn't official policy and supplements OMB and NIST.[^c09-sso][^c09-cloudpb][^c09-altauthn]

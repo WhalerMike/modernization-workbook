@@ -1,7 +1,7 @@
 ---
 title: "Book 03 — HR-Driven Identity"
 subtitle: "HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes"
-description: "Book 03 of the Federal Modernization Workbook, one book for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, an illustrative reference deployment, and privacy for workforce identity."
+description: "Book 03 of the Federal Modernization Workbook, one book for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, an illustrative reference deployment, privacy for workforce identity, and external partner identity."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity
@@ -25,22 +25,24 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book is the former HR-Driven Identity series, which had already consolidated nine separate pages. It now reads Why / What / Who / How, with a new chapter on who owns workforce identity. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The previous pages are kept in the repository's [`archive/b03-hr-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b03-hr-identity) folder, and their old addresses forward here. Federal HR 2.0 program facts change; check them at engagement time. Chapter 14, Privacy for Workforce Identity, was added on November 2, 2026 and checked against its primary sources that day.
+This book is the former HR-Driven Identity series, which had already consolidated nine separate pages. It now reads Why / What / Who / How, with a new chapter on who owns workforce identity. Every external claim was checked against a primary source on October 20, 2026 and carries a footnote. The previous pages are kept in the repository's [`archive/b03-hr-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b03-hr-identity) folder, and their old addresses forward here. Federal HR 2.0 program facts change; check them at engagement time. Chapter 14, Privacy for Workforce Identity, was added on November 2, 2026 and checked against its primary sources that day. Chapter 15, External Partner Identity, and Appendix D, Partner Identity Record, are draft additions: the class of people whose affiliation record and credential belong to another organization.
 :::
 
 ::: {.callout-tip}
 ## Download and present
 **[b03-hr-identity-bundle.docx](../../../downloads/b03-hr-identity-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy. The old `hr-driven-iam-*.docx` file names still work.
 
-One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](../../../downloads/b03-hr-identity-02.docx) · [03](../../../downloads/b03-hr-identity-03.docx) · [04](../../../downloads/b03-hr-identity-04.docx) · [05](../../../downloads/b03-hr-identity-05.docx) · [06](../../../downloads/b03-hr-identity-06.docx) · [07](../../../downloads/b03-hr-identity-07.docx) · [08](../../../downloads/b03-hr-identity-08.docx) · [09](../../../downloads/b03-hr-identity-09.docx) · [10](../../../downloads/b03-hr-identity-10.docx) · [11](../../../downloads/b03-hr-identity-11.docx) · [12](../../../downloads/b03-hr-identity-12.docx) · [13](../../../downloads/b03-hr-identity-13.docx) · [14](../../../downloads/b03-hr-identity-14.docx)
+One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](../../../downloads/b03-hr-identity-02.docx) · [03](../../../downloads/b03-hr-identity-03.docx) · [04](../../../downloads/b03-hr-identity-04.docx) · [05](../../../downloads/b03-hr-identity-05.docx) · [06](../../../downloads/b03-hr-identity-06.docx) · [07](../../../downloads/b03-hr-identity-07.docx) · [08](../../../downloads/b03-hr-identity-08.docx) · [09](../../../downloads/b03-hr-identity-09.docx) · [10](../../../downloads/b03-hr-identity-10.docx) · [11](../../../downloads/b03-hr-identity-11.docx) · [12](../../../downloads/b03-hr-identity-12.docx) · [13](../../../downloads/b03-hr-identity-13.docx) · [14](../../../downloads/b03-hr-identity-14.docx) · [15](../../../downloads/b03-hr-identity-15.docx)
+
+Appendix D is in the whole-book Word document above; it has no one-chapter file.
 
 **15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-03) page.
 
 **Technical deep dive (about 50 minutes live, 22 narrated)**: attribute authority, the provisioning pipeline, lifecycle and the PIV binding, and evidence and the execution plan, in modules on the [Presentations](../../presentations/index.md#technical-b03) page.
 
-**Executive briefing (about 30 minutes live, 16 narrated)**: for the CIO, HR leadership, CISO and privacy officer: HR as the source of authority, the Federal HR 2.0 window, attribute authority, joiner-mover-leaver, the open contractor decision and Gate G1's HR feed, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b03) page.
+**Executive briefing (about 30 minutes live, 16 narrated)**: for the CIO, HR leadership, CISO and privacy officer: HR as the source of authority, the Federal HR 2.0 window, attribute authority, joiner-mover-leaver, the open contractor decision and the HR feed for Book 00's Gate G1 (Foundation Complete), with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b03) page.
 
-**Under review**: [DNS for HR-Driven Identity Across Clouds](../explainers/hr-identity-dns.md) explains what the HR-to-identity pipeline must resolve across Oracle, Azure, AWS and on-premises.
+**Under review**: [DNS for HR-Driven Identity Across Clouds](../explainers/hr-identity-dns.md) explains what the HR-to-identity pipeline must resolve across Oracle, Azure, AWS, VMware and on-premises.
 
 **Under review**: [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../guides/hcm-entra-implementation.md) is an implementation guide that builds this book's pipeline from the Core HCM platform Federal HR 2.0 awarded to Entra ID, with illustrative Python and PowerShell.
 
@@ -87,9 +89,9 @@ The goal across all four is set out in the guide's [What this migration accompli
 | **Why** | Why should HR, not IT, decide who exists, and why now? | [01](01-overview-and-applicability.md), [02](02-why-hr-is-the-source-of-authority.md), [03](03-federal-hr-2-0.md) |
 | **What** | What data, owned by whom, flowing how? | [04](04-attribute-authority.md), [05](05-the-provisioning-pipeline.md), [06](06-canonical-attribute-schema.md) |
 | **Who** | Who owns, uses and guards workforce identity data | [07](07-who-owns-workforce-identity.md) |
-| **How** | Lifecycle, credentials, access, evidence, the plan, a reference deployment, and privacy | [08](08-joiner-mover-leaver.md), [09](09-credentials-and-certificates.md), [10](10-from-attributes-to-access.md), [11](11-drift-metrics-and-evidence.md), [12](12-execution-plan.md), [13](13-reference-deployment.md), [14](14-privacy-for-workforce-identity.md) |
+| **How** | Lifecycle, credentials, access, evidence, the plan, a reference deployment, privacy, and partner persons | [08](08-joiner-mover-leaver.md), [09](09-credentials-and-certificates.md), [10](10-from-attributes-to-access.md), [11](11-drift-metrics-and-evidence.md), [12](12-execution-plan.md), [13](13-reference-deployment.md), [14](14-privacy-for-workforce-identity.md), [15](15-external-partner-identity.md) |
 
-Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Security and privacy assessment](appendix-b-security-and-privacy.md) · [C — Acceptance and cutover](appendix-c-acceptance-and-cutover.md)
+Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Security and privacy assessment](appendix-b-security-and-privacy.md) · [C — Acceptance and cutover](appendix-c-acceptance-and-cutover.md) · [D — Partner identity record](appendix-d-partner-identity-record.md)
 
 ## Chapters
 
@@ -98,12 +100,12 @@ Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Sec
 
 ## Where this book sits in the workbook
 
-- **[Book 06, Chapter 16](../b06-data-platform/16-groups-roles-and-membership.md)** applies the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
+- **Book 06, [Chapter 16](../b06-data-platform/16-groups-roles-and-membership.md)** and **[Chapter 17](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md)** apply the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
 - **[Book 07 — PKI & Certificates](../b07-pki/index.md)** sets the issuer and renewal owner for every certificate class, including the move off AD CS; [Book 06, Chapter 22](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers SQL Server's certificate dependencies; Chapter 09 covers only the certificate steps of the leaver sequence.
 - **[Federal Compliance Vol I Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own.
 - **[Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md)** covers the move from the OU tree to attribute-driven structure.
 - **[Book 02 — Identity & Directory](../b02-identity/index.md)** covers the directory migration this book builds on; [Chapter 09 there](../b02-identity/09-building-the-entra-target.md) designs the Entra ID target that inbound provisioning feeds.
-- **[Identity Lifecycle & Provisioning project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/identity-lifecycle-charter.md)** ([plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/identity-lifecycle-plan.md)) is the project charter that delivers this book's execution plan.
+- **[Identity Lifecycle & Provisioning project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/identity-lifecycle-charter.md)** ([plan](../../project-plans/identity-lifecycle.md)) is the project charter that delivers this book's execution plan.
 
 <!-- revisions:start: generated by scripts/generate_revisions.py from data/editions.yml; edit those, not this section -->
 

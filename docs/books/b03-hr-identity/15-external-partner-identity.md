@@ -95,7 +95,7 @@ User type is where the views can silently diverge. The workbook's member baselin
 
 The partner and the agency each carry part of every decision. The table below allocates them. For the agency side, it uses the format of [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#the-responsibility-matrix): one decider per row. The decider is the **agency business owner**, the agency official accountable for the program or business process the partner persons serve. That title is provisional; agencies use different names for the role, and the record names a person, not a title.
 
-The **sponsor** is a named role: the agency-side person, usually the program manager who works with the partner, who vouches for its persons and reviews their access. Every relationship has at least one; the sponsor reviews and requests suspensions but doesn't approve their own requests.
+The **sponsor** is a named role: the agency-side person, usually the program manager who works with the partner, who vouches for its persons and reviews their access. Every relationship has at least one; the sponsor reviews and requests suspensions but doesn't approve their own requests. The identity governance officer (IGO) owns the list of approved partner organizations and tenants ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#the-responsibility-matrix)).
 
 D = decides · R = does the work · C = consulted · I = informed.
 

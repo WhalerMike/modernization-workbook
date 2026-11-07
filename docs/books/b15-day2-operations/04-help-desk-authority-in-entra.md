@@ -223,6 +223,8 @@ The help desk's boundary, both ways, is set in [Book 04, Chapter 06](../b04-acce
 | Assign approved groups to enterprise apps with the custom assignment role | Hold Application Administrator, or grant any consent |
 | Read sign-in and audit logs inside an assigned ticket | Export, copy or retain log data outside the SIEM |
 
+External partner persons stay inside the same boundary. The help desk may reset a partner guest's invitation on the sponsor's request, but suspension, termination, guest approval and any change to the partner configuration are decided by the agency business owner and executed outside the help desk, and drift on the partner configuration is a finding for identity engineering and the IGO ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#who-does-what-partner-and-agency); [Appendix A](appendix-a-help-desk-task-reference.md#accounts-and-profiles)).
+
 Who staffs the help desk and cloud services tiers, and how their work is measured, is [Chapter 10](10-who-runs-day-two.md)'s subject. The catalog items that put these tasks in front of users are [Chapter 05](05-the-service-catalogs.md)'s.
 
 ::: {.callout-tip}

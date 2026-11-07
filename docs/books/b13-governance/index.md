@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's executive governance series, its architecture doctrine pages (single source of truth, the six planes, change control and provenance, the three-layer rule model, the drift engine, the evidence chain), the governance executive briefs, the modernization governance and ticket-to-machine whitepapers, and the continuous-monitoring project charter and plan. Every external claim was checked against a primary source on October 21, 2026 and carries a note. The earlier pages are kept in the repository's [`archive/b13-governance/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b13-governance) folder, and their old addresses forward to the chapters that replaced them.
+This book replaces the workbook's executive governance series, its architecture doctrine pages (single source of truth, the six planes, change control and provenance, the three-layer rule model, the drift engine, the evidence chain), the governance executive briefs, the modernization governance and ticket-to-machine whitepapers, and the continuous-monitoring project charter and plan. Every external claim was checked against a primary source and carries a note with its own check date. The earlier pages are kept in the repository's [`archive/b13-governance/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b13-governance) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}
