@@ -61,7 +61,7 @@ CIS Benchmarks
 : The Center for Internet Security's consensus configuration guides for operating systems, cloud platforms and network products, including Cisco IOS XE 17.x, Cisco NX-OS, Cisco ASA, Juniper OS, Palo Alto Firewall 11 and F5. For network gear, a Moderate civilian agency typically draws its CM-6 settings from a CIS Benchmark and the vendor's own hardening guide. There is no CIS Benchmark for Cisco Catalyst SD-WAN Manager.[^aC-cis]
 
 CLAW (Comprehensive Log Aggregation Warehouse)
-: CISA's cloud-based service for collecting and aggregating agency-provided telemetry, and the route by which agencies that leave MTIPS keep CISA's visibility. CISA earlier called it the Cloud Log Aggregation Warehouse, and the NCPS Cloud Interface Reference Architecture is now the CLAW Cloud Interface Reference Architecture. (One of the book's sources had the two names backward, calling "Comprehensive" the error.)[^aC-sase]
+: CISA's cloud-based service for collecting and aggregating agency-provided telemetry, and the route by which agencies that leave MTIPS keep CISA's visibility. CISA earlier called it the Cloud Log Aggregation Warehouse, and the NCPS Cloud Interface Reference Architecture is now the CISA Cloud Interface Reference Architecture (C-CIRA), which explains how agencies provide cloud-generated security information to CLAW. (One of the book's sources had the two names backward, calling "Comprehensive" the error.)[^aC-sase]
 
 CM-6 Configuration Settings
 : The NIST SP 800-53 control under which the agency sets and documents the most restrictive configuration consistent with operations, using common secure configurations it chooses, and approves and records any deviation. The control's discussion says those configurations can come from product vendors, federal agencies, consortia and others. It doesn't require any one checklist.[^aC-cm6]
@@ -81,7 +81,7 @@ Deterministic egress
 : A stable, documented source address for each branch's outbound traffic, usually a NAT configuration decision. It keeps address-keyed applications and location-aware policies working.
 
 DIA (direct internet access)
-: Local internet breakout at the branch, instead of backhauling internet-bound traffic to a central access point. Carriers also sell "dedicated internet access" circuits under the same abbreviation; Book 09 uses DIA for the breakout architecture. The sources once expanded DIA as a Defense Information Systems Agency circuit, which is wrong twice: DISA is that agency, its network is DISN, and DIA is the Defense Intelligence Agency ([Chapter 02](02-transport-is-physics-control-is-compliance.md)).
+: Local internet breakout at the branch, instead of backhauling internet-bound traffic to a central access point. Carriers also sell "dedicated internet access" circuits under the same abbreviation; Book 09 uses DIA for the circuit or service that provides local breakout. The sources once expanded DIA as a Defense Information Systems Agency circuit, which is wrong twice: DISA is that agency, its network is DISN, and DIA is the Defense Intelligence Agency ([Chapter 02](02-transport-is-physics-control-is-compliance.md)).
 
 DNS over HTTPS (DoH) and DNS over TLS (DoT)
 : Protocols that encrypt DNS queries between a client and a resolver, standardized in RFC 8484 and RFC 7858. M-22-09 calls for encrypted DNS where technically supported; see [Book 08, Chapter 03](../b08-ddi/03-federal-requirements.md).[^aC-rfc8484][^aC-rfc7858]
@@ -99,7 +99,7 @@ EIS (Enterprise Infrastructure Solutions)
 : GSA's government-wide telecommunications and infrastructure contract, which replaced Networx and the other expiring vehicles. Its option periods run to July 31, 2027 and July 30, 2032.[^aC-eis]
 
 FedRAMP
-: The federal program that authorizes cloud service offerings against NIST SP 800-53. It governs the security posture of the service, not the path an agency uses to reach it. Under the Consolidated Rules for 2026, "authorization" becomes "certification," with mandatory adoption on January 1, 2027.[^aC-fedramp]
+: The federal program that certifies cloud service offerings against NIST SP 800-53 (each agency still authorizes its own use of a service). It governs the security posture of the service, not the path an agency uses to reach it. Under the Consolidated Rules for 2026, "authorization" becomes "certification," with mandatory adoption on January 1, 2027.[^aC-fedramp]
 
 FedRAMP Certification Class
 : The 2026 replacement for FedRAMP impact levels, Classes A through D; Class C includes the former Moderate baseline. FedRAMP stops accepting new Rev. 5 certification requests on June 11, 2027; the end date for existing Rev. 5 certifications "has not been finalized but is likely to be no later than 2029."[^aC-fr0004][^aC-ntc0013]
@@ -232,6 +232,9 @@ SI-4 System Monitoring
 
 Significant change
 : A change "likely to substantively affect the security or privacy posture of a system," which may trigger an event-driven authorization action.[^aC-sp80037]
+
+SSE (security service edge)
+: The security services layer of SASE: the secure web gateway, cloud access security broker, firewall and zero trust network access functions that sit above SD-WAN and inspect and govern traffic. See [Chapter 02](02-transport-is-physics-control-is-compliance.md) and [Chapter 05](05-sd-wan-sase-and-governed-transport.md).
 
 STIG (Security Technical Implementation Guide) (High only)
 : A Defense Information Systems Agency configuration guide for a specific product and version, based on DoD policy and a DoD baseline.[^aC-stig] It's Defense material, not the Moderate civilian baseline; some civilian agencies borrow one as an optional reference where no other product checklist exists. *High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference. See CIS Benchmarks, CM-6 and NCP.
