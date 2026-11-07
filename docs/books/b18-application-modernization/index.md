@@ -1,7 +1,7 @@
 ---
 title: "Book 18 — Application Modernization"
-subtitle: "Why modernizing thousands of legacy mission applications is a portfolio decision, not a rewrite: triage, the target reference architecture, moving the data off DB2 and Oracle, generative and agentic AI with owners, compliance by design, architecture governance, a runnable reference implementation, TOGAF and Zachman, and running the portfolio in waves"
-description: "Book 18 of the Federal Modernization Workbook: how an agency with thousands of legacy mission applications decides, one application at a time, whether to retire, retain, rehost, replatform, refactor or rebuild it; the target reference architecture of Java and Spring Boot services, React front ends, Node.js where it fits, API-first contracts and containers; moving data from DB2 and Oracle to PostgreSQL or SQL Server with schema conversion, validation, cut-over and coexistence; generative and agentic AI with an identity and an owner for every agent; NIST SP 800-53, privacy, data governance and OMB Circular A-130 built into the design; the review board, standards, patterns and gates that govern it; a runnable reference implementation; the mapping to TOGAF and Zachman; and running the portfolio in waves."
+subtitle: "Why modernizing thousands of legacy mission applications is a portfolio decision, not a rewrite: triage, the target reference architecture, moving the data off DB2 and Oracle, generative and agentic AI with sponsors, compliance by design, architecture governance, a runnable reference implementation, TOGAF and Zachman, and running the portfolio in waves"
+description: "Book 18 of the Federal Modernization Workbook: how an agency with thousands of legacy mission applications decides, one application at a time, whether to retire, retain, rehost, replatform, refactor or rebuild it; the target reference architecture of Java and Spring Boot services, React front ends, Node.js where it fits, API-first contracts and containers; moving data from DB2 and Oracle to PostgreSQL or SQL Server with schema conversion, validation, cut-over and coexistence; generative and agentic AI with an identity and a sponsor for every agent; NIST SP 800-53, privacy, data governance and OMB Circular A-130 built into the design; the review board, standards, patterns and gates that govern it; a runnable reference implementation; the mapping to TOGAF and Zachman; and running the portfolio in waves."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b18-application-modernization
@@ -24,7 +24,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book is new material; it replaces no earlier workbook pages. Every external claim was checked against a primary source between October 28 and 29, 2026 and carries a note, and each chapter keeps its verification log in the repository. Product versions and support windows (Java, Spring Boot, Node.js, React, PostgreSQL) and the status of migration tools are stated as of those dates. The reference implementation in Chapter 08 is illustrative: its tests pass against a real PostgreSQL engine, but it has not been run against a real DB2 or Oracle database or in production.
+This book is new material; it replaces no earlier workbook pages. Every external claim was checked against a primary source between October 28 and November 2, 2026 and carries a note, and each chapter keeps its verification log in the repository. Product versions and support windows (Java, Spring Boot, Node.js, React, PostgreSQL) and the status of migration tools are stated as of those dates. The reference implementation in Chapter 08 is illustrative: its tests pass against a real PostgreSQL engine, but it has not been run against a real DB2 or Oracle database or in production.
 :::
 
 ::: {.callout-tip}
@@ -35,7 +35,7 @@ This book is new material; it replaces no earlier workbook pages. Every external
 
 **15-minute presentation (about 9 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-18) page.
 
-**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, chief architect, portfolio owners, CISO, privacy officer and authorizing officials: the application as the unit of decision, triage, one target architecture, proving the data, AI with an owner, compliance by design and the decisions to make, on the [Presentations](../../presentations/index.md#executive-b18) page.
+**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, chief architect, portfolio owners, CISO, privacy officer and authorizing officials: the application as the unit of decision, triage, one target architecture, proving the data, AI with a sponsor, compliance by design and the decisions to make, on the [Presentations](../../presentations/index.md#executive-b18) page.
 
 **Technical deep dive (about 50 minutes live, 19 narrated)**: triage scoring, the target architecture, moving and proving the data, AI guardrails, controls and gates, the reference implementation, TOGAF and Zachman, and the waves, in modules on the [Presentations](../../presentations/index.md#technical-b18) page.
 :::
