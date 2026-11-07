@@ -31,8 +31,7 @@ This appendix helps an agency reuse the workbook's governance design and evidenc
 
 - **NIST SP 800-53B** gives the NIST baselines that include the control (L, M, H, or none), read from NIST's OSCAL Low, Moderate and High baseline profiles.[^aA-53b] **FedRAMP 2026** gives the FedRAMP Rev5 classes whose baselines include it (B, C, D, or none), read from the "FedRAMP Rev5 Baselines" line on each control in FedRAMP's 2026 control reference.[^aA-fedramp-controls] The two columns are verified separately and don't always agree. FedRAMP adds controls to NIST's baselines, and the difference matters for this book: CM-3(2) and SI-2(2) are in NIST's Moderate baseline, but CM-5(1) and CM-6(1) are NIST High only and CM-3(1) is NIST High only, while FedRAMP puts CM-5(1) and CM-6(1) in Classes C and D and CM-3(1) in Class D only. "Required at Moderate" therefore means nothing until it says which: an agency system categorized Moderate uses the NIST baseline its categorization selects, and a FedRAMP Class C service uses FedRAMP's.
 - **Indicators** lists the FedRAMP 2026 Key Security Indicators whose "Related SP 800-53 Controls" include the control, as published on October 21, 2026. FedRAMP revised many of these mappings on October 13, 2026, so check the page before relying on a row. The indicators bind cloud service providers seeking certification, not agencies.[^aA-fedramp-ksi]
-- **Carried in** names the Book 13 chapters that design or evidence the control. Chapters are named by their file names in the book's plan.
-- **Other books** names the workbook books that build part of it.
+- **Carried in** names the Book 13 chapters that design or evidence the control.- **Other books** names the workbook books that build part of it.
 - Control identifiers and titles are from SP 800-53 Rev. 5, release 5.2.0, checked against NIST's control catalog export on CSRC and the OSCAL catalog.[^aA-53]
 
 ## NIST SP 800-53 Rev. 5 controls
@@ -117,9 +116,9 @@ SR-4 appears in no NIST or FedRAMP baseline, and neither do CA-7(6), CM-3(3), CM
 | SC-12 | Cryptographic Key Establishment and Management | Establish and manage cryptographic keys according to defined requirements | L M H | B C D | KSI-SVC-ASM | [Appendix B](appendix-b-ticket-to-machine-reference.md) | [Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md) |
 | SC-17 | Public Key Infrastructure Certificates | Issue certificates under a defined certificate policy or obtain them from an approved provider; include only approved trust anchors in trust stores | M H | C D | KSI-SVC-ASM | [Appendix B](appendix-b-ticket-to-machine-reference.md) | [Book 07](../b07-pki/index.md) |
 
-### Controls the evidence planes report against
+### Controls the surface slots report against
 
-[Chapter 11](11-reciprocity-and-one-authorization.md) describes the seven functional areas, functions where each platform's evidence lands, each with a primary control pair. The pairs are the program's design; the indicator mappings below are FedRAMP's, and they correct several the source material assumed.
+[Chapter 11](11-reciprocity-and-one-authorization.md) describes the seven surface slots, the places where each platform's evidence lands, each with a primary control pair. The pairs are the program's design; the indicator mappings below are FedRAMP's, and they correct several the source material assumed.
 
 | Plane (program design) | Primary controls | Indicators that cite them | Source assumed |
 |---|---|---|---|
@@ -181,7 +180,7 @@ The source material behind this book was drafted while FedRAMP's rules, OMB's Fe
 | SI-2 feeds KSI-SVC and KSI-MLA; RA-5, CA-2 and CA-5 feed KSI-MLA; IA-5(2) and SC-17 feed KSI-IAM | On FedRAMP's page, SI-2 is cited by KSI-CMT-VTD and SI-2(2) by KSI-SVC-EIS. RA-5 is cited by KSI-SCR-MON, CA-2 by KSI-PIY-RIS, and CA-5 by no indicator. SC-17 is cited by KSI-SVC-ASM, and IA-5(2) by KSI-SVC-ASM and three IAM indicators.[^aA-fedramp-ksi] |
 | Eight reciprocity indicators, KSI-RECIP-001 to 008, are FedRAMP 20x Key Security Indicators | FedRAMP publishes 46 indicators in ten themes and none is a reciprocity indicator.[^aA-fedramp-ksi] The reciprocity checks are the program's own health checks and should be labeled that way ([Chapter 11](11-reciprocity-and-one-authorization.md)). |
 | One controlling ATO covers every consuming agency, and each agency's reciprocity record is not a new authorization | Under SP 800-37, a consuming organization's authorizing official issues an authorization to use, carrying the same responsibility as an authorization to operate.[^aA-sp80037] M-24-15 has agencies presume the FedRAMP package adequate "for their use in issuing an authorization to operate," and FedRAMP's rules require agencies to complete the ATO process.[^aA-m2415][^aA-fedramp-agu] A signed reciprocity record is good evidence for that decision. It doesn't replace it. |
-| BOD 25-01 has five obligations, and the fifth, "remediate deviations," is the one the directive is for | The directive's required actions are tenant inventory, tool deployment with continuous or quarterly reporting, implementing the mandatory policies and their future updates, and meeting the baselines for new tenants before an ATO. Remediating deviations is the purpose the directive states in its background, achieved through the mandatory policies, and authorizing officials may accept risk for deviations.[^aA-bod2501] The source's practical point stands: four of those actions can be met without closing a single finding. |
+| BOD 25-01 has five obligations, and the fifth, "remediate deviations," is the one the directive is for | The directive has six required actions: tenant inventory, tool deployment with continuous or quarterly reporting, implementing the mandatory policies, implementing later policy updates on CISA's timelines, meeting the baselines for new tenants before an ATO, and explaining deviations when reporting ([Book 11, Chapter 04](../b11-zero-trust/04-scuba-and-bod-25-01.md)). Remediating deviations is the purpose the directive states in its background, achieved through the mandatory policies, and authorizing officials may accept risk for deviations.[^aA-bod2501] The source's practical point stands: the administrative actions, inventory, tool deployment and reporting, and explaining deviations, can be met without closing a single finding. |
 | Under BOD 26-04, agency policy updates were due August 7, 2026 and full compliance December 7, 2026 | The policy review is Phase I and took effect on issue, June 10, 2026. Phase II falls 60 days after issue and Phase III, the remediation timelines and asset tagging, 180 days after issue, which is December 7, 2026.[^aA-bod2604] |
 | Agencies "must" review each provider's Ongoing Certification Report | The Collaborative Continuous Monitoring rule CCM-AGM-ROR says MUST; the Agency Use summary rule AGU-USE-ROR says SHOULD for the same review.[^aA-fedramp-ccm][^aA-fedramp-agu] Treat the review as required and plan for it; the workbook follows the stricter rule. |
 | KSI-CMT-RMV forbids modifying a resource in place | The indicator says changes are executed through redeployment of version-controlled resources "wherever reasonable."[^aA-fedramp-ksi] It is a strong preference with room for a documented exception, which is how [Appendix B](appendix-b-ticket-to-machine-reference.md) treats it. |
@@ -210,7 +209,7 @@ Every URL below was opened on October 21, 2026.
 
 ### Federal Compliance volumes (control-level depth)
 
-- [Governance Platform Integration Overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_X_Book_00_Governance_Substrate_Integration_Overview.md)
+- [Governance Substrate Integration Overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_X_Book_00_Governance_Substrate_Integration_Overview.md)
 
 ::: {.callout-tip}
 ## Continue the book
