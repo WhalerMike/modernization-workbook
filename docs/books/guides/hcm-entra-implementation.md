@@ -299,7 +299,7 @@ The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr
 
 ## The example code
 
-[examples/hcm-entra](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra) has two equivalent clients, `python/hcm_to_scim.py` (standard library only) and `powershell/HcmToScim.psm1` with `Invoke-HcmToScim.ps1`. Both read `config/mapping.json`, which holds the mapping above (the slot 4 to 6 rows for region, cost center and division codes are listed there, but the clients don't emit them yet), the code lists and the validation rules.
+[examples/hcm-entra](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra) has two equivalent clients, `python/hcm_to_scim.py` (standard library only) and `powershell/HcmToScim.psm1` with `Invoke-HcmToScim.ps1`. Both read `config/mapping.json`, which holds the mapping above (the slot 4 to 6 rows for region, cost center and division codes are listed there, but the clients don't emit them yet), the code lists and the validation rules. The folder also holds the correlation tool that [Gate 2](attribute-driven-migration-implementation.md#gate-2-prove-the-attributes) depends on, in the same two forms (`python/hcm_correlate.py`; `powershell/HcmCorrelation.psm1` with `Invoke-HcmCorrelation.ps1`): it checks that every enabled account matches exactly one worker record and that each matched record agrees with the directories, and its README describes it.
 
 | What it does | Book 03 rule |
 |---|---|
