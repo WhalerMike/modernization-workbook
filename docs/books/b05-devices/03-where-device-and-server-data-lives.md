@@ -113,7 +113,7 @@ Defender's view reaches access decisions through Intune. A Windows compliance po
 
 No Microsoft service is authoritative for why the organization bought a device, who it's assigned to, where it's meant to be, or when it should be retired. Those facts come from procurement, and the program treats the procurement record, and the configuration management database it feeds, as their origin. Procurement is the first governance step ([Chapter 04](04-intune-first-onboarding.md)): the organizational assignment is captured on the purchase order, not inferred later from whoever powered the device on.
 
-The CMDB is a source of truth for business facts and a consumer for technical ones. It shouldn't be where anyone decides a device is compliant or managed; it should import those states from Intune, Arc and Defender and flag the records where they disagree with its own.
+The CMDB holds the business facts for workflow and is a consumer for technical ones. It is a projection, not the authority: the authoritative naming and addressing record (the naming plane) governs asset identity, and where the CMDB disagrees with it, the CMDB is wrong and the disagreement is a finding ([Book 15, Chapter 07](../b15-day2-operations/07-the-cmdb-and-asset-identity.md#the-cmdb-is-a-projection-not-the-authority)). It shouldn't be where anyone decides a device is compliant or managed; it should import those states from Intune, Arc and Defender and flag the records where they disagree with its own.
 
 ## Three stores that policy reads
 
@@ -226,7 +226,7 @@ Intune isn't only for Microsoft platforms. It manages Apple, Android and Linux d
 
 ### What Intune and Arc don't reach *(design guidance)*
 
-Every device and server needs exactly one source of truth for its attributes, whichever tool manages it. Outside Intune and Arc, that source is the CMDB or asset inventory: the same record that owns the business facts for managed devices ([Which system owns which fact](#which-system-owns-which-fact)). The program puts every class of device in one of four tiers.
+Every device and server needs exactly one record of its attributes, whichever tool manages it. Outside Intune and Arc, that record is the CMDB or asset inventory: the same record that holds the business facts for managed devices ([Which system owns which fact](#which-system-owns-which-fact)), with identity reconciled to the naming plane ([the CMDB and its limits](#the-procurement-record-and-the-cmdb)). The program puts every class of device in one of four coverage tiers (not the security tiers, Tier0 to Tier2, in [Chapter 08](08-gpo-to-intune-policy-migration.md)).
 
 1. **Managed by Intune or Arc.** This is the default. Attributes are written at enrollment or onboarding from the procurement record, and policy reads them ([Chapter 04](04-intune-first-onboarding.md), [Chapter 09](09-servers-under-azure-arc.md)).
 2. **Managed by the platform's own tool, with an evidence feed.** The tool stays, but the attributes are mastered in the CMDB. Each tool sends its inventory and configuration state to the CMDB on a schedule. Examples:
@@ -242,7 +242,7 @@ Every device and server needs exactly one source of truth for its attributes, wh
    The CMDB record exists even though no tool manages the device.
 4. **Segmented and isolated, or retired.** Out-of-support systems, and anything that can't be inventoried with confidence, go behind segmentation with a recorded risk acceptance and a retirement date. [Chapter 09](09-servers-under-azure-arc.md#extended-security-updates) requires this for Windows Server 2012.
 
-The tiers are how the inventory meets CM-8: it includes every component and counts none twice ([Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)). A device that belongs to no tier is a finding.
+The coverage tiers are how the inventory meets CM-8: it includes every component and counts none twice ([Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)). A device that belongs to no coverage tier is a finding.
 
 ## What this chapter establishes
 

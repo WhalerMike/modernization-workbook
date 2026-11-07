@@ -38,7 +38,7 @@ The mechanisms named in the tables are:
 
 | GPO area | Intune mechanism | Notes and limits |
 |---|---|---|
-| Account policies: password | Settings catalog (Device Lock); compliance policy to evaluate | Compliance evaluates the resulting state; it doesn't configure it.[^aA-es] For Entra ID accounts the password policy lives in Entra ID, not on the device. |
+| Account policies: password | Compliance policy (CP-001; CP-003 for Tier 2); Device Lock is used only for account lockout | In this program the compliance policy states the password length and type, and a device that doesn't meet them is noncompliant. Compliance evaluates the resulting state; it doesn't configure it.[^aA-es] For Entra ID accounts the password policy lives in Entra ID, not on the device. |
 | Account policies: lockout | Settings catalog (Device Lock, `AccountLockoutPolicy`) | Needs Windows 11, version 22H2 with KB5053657, or version 24H2 and later.[^aA-devicelock] Applies to local accounts on the device. Entra ID sign-ins are governed by smart lockout, which by default locks after ten failed attempts in Azure Public tenants and three in Azure US Government tenants; customizing it needs Entra ID P1.[^aA-smart-lockout] |
 | Advanced audit policy | Settings catalog (Audit) | One Policy CSP setting per subcategory, for example `AccountLogonLogoff_AuditLogon`.[^aA-audit] |
 | User rights assignment | Settings catalog (User Rights) | Policy CSP UserRights, for example `DenyLocalLogOn` and `DenyRemoteDesktopServicesLogOn`.[^aA-userrights] |
@@ -79,8 +79,8 @@ The program's lookup card for the most commonly deployed GPO settings in enterpr
 
 | # | GPO path | GPO setting | Intune surface | Intune setting | Program ID | Notes |
 |---|---|---|---|---|---|---|
-| 1 | Computer > Windows Settings > Security Settings > Account Policies | Minimum password length | Settings catalog; compliance to evaluate | Device Lock: minimum password length | CP-001 | Compliance evaluates; configuration sets |
-| 2 | Computer > Windows Settings > Security Settings > Account Policies | Password must meet complexity requirements | Settings catalog; compliance to evaluate | Device Lock: password complexity | CP-001 | — |
+| 1 | Computer > Windows Settings > Security Settings > Account Policies | Minimum password length | Compliance policy | Password: minimum password length | CP-001 (CP-003 for Tier 2) | The program states this rule as a compliance requirement; no settings catalog profile sets it, and a device below it is noncompliant |
+| 2 | Computer > Windows Settings > Security Settings > Account Policies | Password must meet complexity requirements | Compliance policy | Password: password type (alphanumeric) | CP-001 | Stated as a compliance requirement, as in row 1 |
 | 3 | Computer > Windows Settings > Security Settings > Account Policies | Account lockout threshold | Settings catalog | Device Lock: Account Lockout Policy | SC-001 | Windows 11 22H2 with KB5053657, or 24H2+ |
 | 4 | Computer > Windows Settings > Security Settings > Account Policies | Account lockout duration | Settings catalog | Device Lock: Account Lockout Policy | SC-001 | Same setting as row 3 |
 | 5 | Computer > Admin Templates > Windows Components > BitLocker | Choose drive encryption method | Endpoint security: disk encryption | Encryption method by drive type | ES-002 | Licensed per user beyond enabling encryption |
@@ -115,7 +115,7 @@ The program's lookup card for the most commonly deployed GPO settings in enterpr
 | 34 | Computer > Admin Templates > Control Panel > Personalization | Force a specific default lock screen image | Settings catalog (Personalization) | Lock Screen Image Url | SC-010 | Test edition support |
 | 35 | Computer > Admin Templates > Start Menu and Taskbar | Start layout | Settings catalog (Start) | Configure Start Pins | SC-010 | Windows 11 JSON pin list |
 | 36 | Computer > Admin Templates > Windows Components > Cloud Content | Turn off Microsoft consumer experiences | Settings catalog (Experience) | Allow Windows consumer features | SC-010 | Enterprise and Education |
-| 37 | Computer > Admin Templates > Windows Components > Defender > Network Inspection System | Turn on protocol recognition | Endpoint security: antivirus | Allow intrusion prevention system | ES-001 | Source mapped to compliance |
+| 37 | Computer > Admin Templates > Windows Components > Defender > Network Inspection System | Turn on protocol recognition | Endpoint security: antivirus | Allow intrusion prevention system | Not yet specified | ES-001 has no row for it yet, though network inspection is a configuration setting, not a compliance one (Chapter 08) |
 | 38 | Computer > Admin Templates > Network > DNS Client | DNS suffix search list | Check Group Policy analytics | DNS suffix search list | — | Custom OMA-URI or script if no MDM support |
 | 39 | Computer > Admin Templates > System > Logon | Always wait for the network at computer startup and logon | Retire | — | — | Exists for domain logon processing |
 | 40 | Computer > Admin Templates > System > Group Policy | Configure Group Policy slow link detection | Retire | — | — | No Group Policy processing on cloud-native devices |
