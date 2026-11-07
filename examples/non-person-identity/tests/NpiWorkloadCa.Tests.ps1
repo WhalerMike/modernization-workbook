@@ -426,7 +426,7 @@ Describe 'The block alert and the entry script' {
         foreach ($e in $script:Scope['inScope']) { $a['query'] | Should -Match $e['objectId'] }
         $a['deployment'] | Should -Match "doesn't write to Azure Monitor"
     }
-    It 'a dry run writes the plan, requests, findings, alert and a manifest with only GETs' {
+    It 'a dry run writes the plan, requests, findings, alert and a manifest with only GETs; -Apply needs the approved plan hash' {
         $out = Join-Path $script:Tmp 'run'
         $null = & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcc -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath $out
         $m = Get-Content (Join-Path $out 'manifest.json') -Raw | ConvertFrom-Json
@@ -435,6 +435,24 @@ Describe 'The block alert and the entry script' {
         @($m.requests.method | Sort-Object -Unique) | Should -Be @('GET')
         @($m.files.PSObject.Properties.Name) | Should -Be @('alert-rule.json', 'findings.json', 'plan.json', 'requests.json')
         foreach ($f in $m.files.PSObject.Properties) { Get-NpiFileHash -Path (Join-Path $out $f.Name) | Should -Be $f.Value }
+        # Apply is a person's reviewed run: it refuses without the approved plan hash or with a wrong one, and applies the approved one.
+        $out = Join-Path $script:Tmp 'noapply'
+        { & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcc -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath $out -Apply } | Should -Throw '*-ApprovedPlanSha256*'
+        Test-Path -LiteralPath (Join-Path $out 'manifest.json') | Should -BeFalse
+        $out = Join-Path $script:Tmp 'wronghash'
+        { & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcc -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath $out -Apply -ApprovedPlanSha256 ('0' * 64) } | Should -Throw '*nobody reviewed*'
+        Test-Path -LiteralPath (Join-Path $out 'manifest.json') | Should -BeFalse
+        $dry = Join-Path $script:Tmp 'dry'
+        $null = & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcc -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath $dry
+        $approved = (Get-Content (Join-Path $dry 'manifest.json') -Raw | ConvertFrom-Json).files.'plan.json'
+        $out = Join-Path $script:Tmp 'approved'
+        $null = & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcc -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath $out -Apply -ApprovedPlanSha256 $approved
+        (Get-Content (Join-Path $out 'manifest.json') -Raw | ConvertFrom-Json).mode | Should -Be 'Fixture-Apply'
+        $t = Get-TestPlan -Fake (New-Fake)
+        $p = Join-Path $script:Tmp 'plan-hash.json'
+        Write-NpiJson -Path $p -Value @($t.Plan | Select-Object Kind, Name, Ring, Action, Changes, Note)
+        Get-NpiWcaPlanSha256 -Plan $t.Plan | Should -Be (Get-NpiFileHash -Path $p)
+        { Assert-NpiWcaApprovedPlan -Plan $t.Plan -ApprovedSha256 '' } | Should -Throw '*-ApprovedPlanSha256*'
     }
     It 'refuses a scope written for another cloud' {
         { & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcchigh -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw "*not 'gcchigh'*"

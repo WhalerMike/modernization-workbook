@@ -3,7 +3,7 @@ $ cat out/provenance.json
   "schema": "fmp-hcm-provenance/1",
   "as_of": "2026-10-25",
   "extract_sha256": "ca06b111d5fdd45b8355952d0a9beb403eb442af61a6f4a5dc0f0ef9bb643344",
-  "mapping_sha256": "f3c9f3bfe786be3296c3eb94dc0b6fb46c49cc500859682175649fb5472cd424",
+  "mapping_sha256": "b5d313c3ba039bfe4e7778fdbe24019225d004ec62842f73b73094c42fcf6fbb",
   "counts": {
     "ready": 9,
     "quarantined": 9,

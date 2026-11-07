@@ -5,7 +5,7 @@ nodes:
   g_none: {tone: plain, width: 270, title: "No CLM lifecycle", body: ["DNSSEC KSK and ZSK"], size: 12}
   e_none: {tone: slate, width: 210, tag: "No CLM lifecycle", title: "Platform-managed, or not X.509", size: 12}
   g_watch: {tone: plain, width: 270, title: "Watched by the platform", body: ["CRL and OCSP names resolvable from every origin"], size: 12}
-  e_watch: {tone: slate, width: 210, tag: "Renews; the platform only watches", title: "AD CS autoenrollment", size: 12}
+  e_watch: {tone: slate, width: 210, tag: "Renews; the platform only watches", title: "Key ceremony and CRL schedule", size: 12}
   g_clm: {tone: plain, width: 270, title: "Renewed by the platform", body: ["DoH and DoT resolver certificates", "Public names issued through ACME dns-01", "MTA-STS policy host and TLSA-pinned services"], size: 12}
   e_clm: {tone: amber, width: 210, tag: "Renews and installs", title: "CyberArk Certificate Manager", size: 12}
 edges:

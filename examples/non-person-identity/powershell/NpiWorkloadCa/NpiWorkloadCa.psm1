@@ -990,6 +990,41 @@ function New-NpiWcaAlertRule {
 
 # ----------------------------------------------------------------------------- the run
 
+function Get-NpiWcaPlanSha256 {
+    <#
+    .SYNOPSIS
+        Returns the lowercase SHA-256 of the plan exactly as a run writes it to plan.json, so it is
+        the same value manifest.json records for plan.json and a reviewer can approve it from the
+        dry run's output.
+    .EXAMPLE
+        # $plan is the output of Get-NpiWcaPlan.
+        Get-NpiWcaPlanSha256 -Plan $plan
+    #>
+    param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Plan)
+    $tmp = Join-Path ([IO.Path]::GetTempPath()) ("npi-wca-plan-{0}.json" -f [guid]::NewGuid())
+    try {
+        Write-NpiJson -Path $tmp -Value @($Plan | Select-Object Kind, Name, Ring, Action, Changes, Note)
+        Get-NpiFileHash -Path $tmp
+    } finally { Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue }
+}
+
+function Assert-NpiWcaApprovedPlan {
+    <#
+    .SYNOPSIS
+        Throws unless -ApprovedSha256 is given and equals the SHA-256 of the plan about to be
+        applied. Writes to a tenant are a person's reviewed run: the reviewer approves the hash of a
+        dry run's plan.json, and any change to the plan or the tenant since then refuses the run.
+    .EXAMPLE
+        # The hash of the reviewed dry run's plan.json.
+        Assert-NpiWcaApprovedPlan -Plan $plan -ApprovedSha256 (Get-NpiWcaPlanSha256 -Plan $plan)
+    #>
+    param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Plan, [string]$ApprovedSha256)
+    if (-not $ApprovedSha256) { throw 'Apply needs -ApprovedPlanSha256: the SHA-256 of the reviewed dry run''s plan.json (the files entry for plan.json in its manifest.json).' }
+    $hash = Get-NpiWcaPlanSha256 -Plan $Plan
+    if ($hash -ne $ApprovedSha256.Trim().ToLowerInvariant()) { throw "The plan's SHA-256 is $hash, not the approved $ApprovedSha256; the plan or the tenant changed since the review. Run a new dry run and review it; refusing to apply a plan nobody reviewed." }
+    $hash
+}
+
 function Export-NpiWcaRun {
     <#
     .SYNOPSIS
@@ -1024,7 +1059,7 @@ function Export-NpiWcaRun {
     Get-Item -LiteralPath (Join-Path $OutputPath 'manifest.json')
 }
 
-Export-ModuleMember -Function Get-NpiWcaCallList, Get-NpiWcaCall, Get-NpiWcaRequiredPermission, New-NpiWcaClient, Resolve-NpiWcaRequest, Invoke-NpiWcaGet,
+Export-ModuleMember -Function Get-NpiWcaPlanSha256, Assert-NpiWcaApprovedPlan, Get-NpiWcaCallList, Get-NpiWcaCall, Get-NpiWcaRequiredPermission, New-NpiWcaClient, Resolve-NpiWcaRequest, Invoke-NpiWcaGet,
     New-NpiWcaFixtureInvoker, Invoke-NpiWcaFake, Read-NpiWcaScope, Read-NpiWcaRepository, Read-NpiWcaLearnSample, ConvertTo-NpiWcaCidr, Test-NpiWcaIpInRange,
     Test-NpiWcaPolicyBody, Test-NpiWcaRepository, Test-NpiWcaTenantScope, Get-NpiWcaEnforcement, Get-NpiWcaDesiredLocation, Get-NpiWcaDesiredPolicy,
     Compare-NpiWcaValue, Get-NpiWcaTenant, Get-NpiWcaPlan, Invoke-NpiWcaPlan, Get-NpiWcaSignIn, Get-NpiWcaSignInSummary, New-NpiWcaAlertRule, Export-NpiWcaRun
