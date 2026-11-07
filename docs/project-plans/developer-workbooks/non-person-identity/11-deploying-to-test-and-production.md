@@ -25,7 +25,7 @@ The runbook that takes the kit from the second lab of Chapters 01 to 10 to a liv
 
 ::: {.callout-important}
 ## Status: a runbook nobody has run against a live tenant
-This chapter is new and held for the owner's review. Nobody has run it against a live tenant, subscription or forest. The commands that call Microsoft Graph, Azure and Active Directory follow Microsoft Learn and the earlier chapters' code, and the kit's new scripts have been run only in fixture mode, against a fictional test and production tenant served by a fake. Every live result below is labeled **Expected**: it is what the code and Learn say should happen, not something anyone has seen. The output labeled **Dry run, November 2, 2026** is real: the kit's scripts printed it on that date, on the kit's fixtures.
+This chapter is new and approved, and it has no narrated tour yet. Nobody has run it against a live tenant, subscription or forest. The commands that call Microsoft Graph, Azure and Active Directory follow Microsoft Learn and the earlier chapters' code, and the kit's new scripts have been run only in fixture mode, against a fictional test and production tenant served by a fake. Every live result below is labeled **Expected**: it is what the code and Learn say should happen, not something anyone has seen. The output labeled **Dry run, November 2, 2026** is real: the kit's scripts printed it on that date, on the kit's fixtures.
 :::
 
 ## Goal and audience
@@ -64,6 +64,7 @@ Each step below ends with a table of the requirements it helps meet, the FedRAMP
 |---|---|---|
 | KSI-IAM-SNU | Securing Non-User Authentication | Preflight, 1.1, 1.2, 1.3, 1.4, smoke test |
 | KSI-IAM-JIT | Authorizing Just-in-Time | Before you start, preflight |
+| KSI-IAM-AAM | Automating Account Management | 1.3, 2.2 |
 | KSI-IAM-ELP | Ensuring Least Privilege | Preflight, 1.5, smoke test, 2.3 |
 | KSI-PIY-GIV | Generating Inventories | Prepare, 1.1, smoke test |
 | KSI-CMT-LMC | Logging Changes | Before you start, 1.2, 2.3, 2.5 |
@@ -86,7 +87,7 @@ Every write in this runbook is a person's delegated sign-in, with a role activat
 |---|---|---|---|
 | Identity engineer | Cloud Application Administrator and Security Administrator | Prepare, app management policy, federated credentials, smoke test | The app management policy needs Security Administrator plus Cloud Application Administrator or Application Administrator[^np11-amp-configure] |
 | Conditional Access administrator | Conditional Access Administrator; Cloud Application Administrator as well for the rollback | Workload Conditional Access, rollback | Creating and updating a workload policy[^np11-wid] [^np11-ca-update] |
-| Server and AD engineer | Domain Admins in the test forest, or a delegated right to create gMSAs | gMSA | Creating a gMSA[^np11-gmsa] |
+| Server and AD engineer | Domain Admins in the stage's forest (test in Stage 1, production in Stage 2), or a delegated right to create gMSAs | gMSA | Creating a gMSA[^np11-gmsa] |
 | Reader app (certificate) | Graph application permissions `Application.Read.All`, `AuditLog.Read.All`, `Directory.Read.All`, `Policy.Read.All`, `User.Read.All`, `LicenseAssignment.Read.All`, `RoleManagement.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `Policy.Read.ConditionalAccess`; Reader on the subscription | Inventory, preflight, VK-NPI, Chapter 08's sign-in summary, drift | Each chapter's call list |
 | Identity engineer, for the Azure resource group | Managed Identity Contributor on the test or production resource group, activated through PIM for Azure resources | Creating the pilot's managed identity (Step 1.3), signed in to the Azure CLI as a person: every write is a person's, and the deployment identity holds no write role | [Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts) |
 
@@ -138,6 +139,7 @@ These are the only values you replace in this chapter's commands:
 | `<oos-object-id>`, `<oos-name>`, `<oos-class>`, `<oos-control>`, `<oos-reviewed-by>`, `<oos-reviewed-on>` | One identity that stays out of the Conditional Access scope (each managed identity and multitenant app in the tenant, including the pilot's managed identity) and the control that covers it, as Chapter 08's `outOfScope` entries have them; without a record for each, Chapter 08's check raises NPI-WCA-06 and the apply refuses to start |
 | `<d-n4-outcome>` | The CISO's Workload ID Premium decision (D-N4), in words, with `<d-n4-by>` and `<d-n4-on>` |
 | `<d-n5-by>`, `<d-n5-on>` | Who decided D-N5 (enforce a wave), and when |
+| `<reviewer-upn>` | The reviewer's user principal name: a reviewer who is not the operator, as the Approvals table requires |
 | `<sha>` | A plan's SHA-256, as the reviewer passes it back to you |
 | `<test-evidence>` | The test stage's smoke-test folder, `<outputRoot>/smoke-final` from the test settings file |
 | `<gmsa-name>`, `<netbios-domain>` | On the gMSA test host only, which has no session block: `ad.gmsaName` from the settings file, and the forest's NetBIOS domain name |
@@ -658,14 +660,14 @@ Record the step's evidence:
 |---|---|---|---|
 | IA-5; IA-9 Service Identification and Authentication (tailored in) | The pilot authenticates with a federated credential and a managed identity, no stored secret, after an exchange test | KSI-IAM-SNU | `S1.3-federated-credential-and-managed-identity-parallel-run.json` and `runs/S1.3/` (Chapter 05's plan, exchange tests and apply) |
 | CM-3(2), CM-4(2) | The token exchange tested before the cutover | KSI-CMT-VTD | `exchange-tests.json` in Chapter 05's run, re-hashed |
-| AC-2(3) Disable Accounts | The legacy account stays enabled through the parallel run and is disabled, never deleted, after it (production, day 31) | KSI-IAM-SNU | The cutover log; the day-31 apply run (Step 2.2) |
+| AC-2(3) Disable Accounts | The legacy account stays enabled through the parallel run and is disabled, never deleted, after it (production, day 31) | KSI-IAM-AAM | The cutover log; the day-31 apply run (Step 2.2) |
 
 ### Step 1.4: gMSA on a test host (G5)
 
-Fulfils the AD half of [G5](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run). As a member of Domain Admins in the test forest (or with a delegated right to create gMSAs), after the KDS root key's 10 hours:
+Fulfils the AD half of [G5](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run). As a member of Domain Admins in the stage's forest, the test forest in Stage 1 and the production forest in Stage 2 (or with a delegated right to create gMSAs), after the KDS root key's 10 hours:
 
 ```powershell
-New-ADServiceAccount -Name $s.ad.gmsaName -DNSHostName "$($s.ad.gmsaName).$($s.ad.domain)" -PrincipalsAllowedToRetrieveManagedPassword $s.ad.gmsaRetrieverGroup -Server $s.ad.server
+New-ADServiceAccount -Name $s.ad.gmsaName -DNSHostName "$($s.ad.gmsaName).$($s.ad.domain)" -PrincipalsAllowedToRetrieveManagedPassword $s.ad.gmsaRetrieverGroup -KerberosEncryptionType AES256 -Server $s.ad.server
 Get-ADServiceAccount -Identity $s.ad.gmsaName -Properties PrincipalsAllowedToRetrieveManagedPassword -Server $s.ad.server | Select-Object Name, Enabled, PrincipalsAllowedToRetrieveManagedPassword
 ```
 
@@ -976,7 +978,7 @@ Record the step's evidence:
 |---|---|---|---|
 | AC-2, CM-8, IA-4; IA-5, IA-9; AC-3, AC-6; CM-3, CM-6 | Steps 1.1 to 1.5 in production, each recorded with the same `Write-NpiDeployEvidence.ps1` command | As in Steps 1.1 to 1.5 | Production's `S1.1`, `S1.2` (with `-RunPath "$out/policy-apply"`), `S1.3` and `S1.5` records |
 | IA-5; SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD) | The tenant-wide app management policy applied | KSI-IAM-SNU, KSI-CMT-LMC | Production's `S1.2` record over `policy-apply`; the ScubaGear result |
-| AC-2(3) Disable Accounts | The legacy account disabled on day 31, never deleted | KSI-IAM-SNU | Production's `S1.3` record, re-run with `-RunPath "$out/federation", "$out/federation-apply", "$out/federation-day31"` and the day-31 apply folder |
+| AC-2(3) Disable Accounts | The legacy account disabled on day 31, never deleted | KSI-IAM-AAM | Production's `S1.3` record, re-run with `-RunPath "$out/federation", "$out/federation-apply", "$out/federation-day31"` and the day-31 apply folder |
 
 ### Step 2.3: Staged enable by wave
 
@@ -994,7 +996,7 @@ Each wave is one of Chapter 08's rings, listed in the settings file's `waves`. F
    $sha = (Get-FileHash "$out/wca-signins-Ring1/signin-summary.json" -Algorithm SHA256).Hash.ToLower()
    $sc = Get-Content $s.conditionalAccess.scopePath -Raw | ConvertFrom-Json -AsHashtable
    $sc.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = '<d-n5-by>'; decidedOn = '<d-n5-on>' }
-                        rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = $s.operators[1].upn; reviewedOn = (Get-Date -Format yyyy-MM-dd) }); exclusions = @() }
+                        rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = '<reviewer-upn>'; reviewedOn = (Get-Date -Format yyyy-MM-dd) }); exclusions = @() }
    $sc | ConvertTo-Json -Depth 10 | Set-Content $s.conditionalAccess.scopePath
    ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -OutputPath "$out/wca-enforce-Ring1" -Apply -AllowEnforce -SignInSummaryPath "$out/wca-signins-Ring1/signin-summary.json"
    ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -OutputPath "$out/wca-enforce-Ring1-2" -Apply -AllowEnforce -SignInSummaryPath "$out/wca-signins-Ring1/signin-summary.json"
@@ -1096,7 +1098,7 @@ Each stage's evidence folder, `<outputRoot>/evidence`, holds one record per requ
 | Both | The VK-NPI `ValidationResults.json` (PF-09) | The baseline before the change | G1–G6 | CA-7, CM-2 | KSI-MLA-EVC |
 | Both | `S1.1-inventory-and-owners.json` (`runs/S1.1/`) | Every non-person identity and its owners; SQL Server handed off | G1 | AC-2, CM-8, IA-4; M-22-09 §III.A | KSI-PIY-GIV, KSI-IAM-SNU |
 | Both | `S1.2-app-management-policy.json` (policy plan in test, apply in production) | The app management policy reviewed, then applied | G3 | IA-5, CM-3, CM-6; SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD) | KSI-IAM-SNU, KSI-CMT-LMC |
-| Both | `S1.3-federated-credential-and-managed-identity-parallel-run.json` (`runs/S1.3/`), the conversion file and cutover log under `inputs/` | The pilot's federated credential and managed identity, the parallel run and, in production, the day-31 disable | G5 | IA-5, IA-9, AC-2(3) | KSI-IAM-SNU, KSI-CMT-VTD |
+| Both | `S1.3-federated-credential-and-managed-identity-parallel-run.json` (`runs/S1.3/`), the conversion file and cutover log under `inputs/` | The pilot's federated credential and managed identity, the parallel run and, in production, the day-31 disable | G5 | IA-5, IA-9, AC-2(3) | KSI-IAM-SNU, KSI-IAM-AAM, KSI-CMT-VTD |
 | Both | `S1.5-workload-conditional-access-report-only.json` (`runs/S1.5/`), the scope file under `inputs/` | Workload policies created report-only, assigned directly | G4 | AC-3, AC-6, CM-3(2), CM-4(2) | KSI-IAM-ELP, KSI-CMT-VTD |
 | Both | `SMOKE-smoke-test.json` (`runs/SMOKE/`) | Every control worked on objects nobody depends on | G1, G3, G4, G5 | AC-2, AC-3, AC-6, AU-2, AU-12, CA-7, CM-8, IA-4, IA-5, IA-9 | KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV |
 | Test | `ROLLBACK-rollback.json` (`runs/ROLLBACK/`); `evidence-after-rollback/` | The rollback was rehearsed and returned the tenant to its starting state | All | CM-3, CP-10 | KSI-CMT-RMV, KSI-RPL-ABO |
@@ -1131,7 +1133,7 @@ AU-6, AU-9, CA-7, CM-3 and CP-10 are the program's reading for the smoke test, t
 | Token-exchange audience by cloud | `api://AzureADTokenExchange` for the global service, `api://AzureADTokenExchangeUSGov` for Entra ID for US Government | Different | GA | [^np11-mi-trust-app] |
 | Azure Login action | `audience` defaults to `api://AzureADTokenExchange` in public clouds; `environment` for Azure Government | `AzureUSGovernment` | GA | [^np11-oidc] |
 | Create a user | `New-ADUser -AccountPassword -Enabled -PasswordNeverExpires`; not on a read-only DC | — | — | [^np11-new-aduser] |
-| FedRAMP 20x KSIs | 46 indicators in ten themes; the eleven above exist with the names given; related controls include AC-2, AC-6(5) and IA-5(2) for KSI-IAM-SNU, CM-3 and CM-4(2) for KSI-CMT-VTD, CA-7 for KSI-MLA-EVC, AU-9 for KSI-MLA-OSM and CP-10 for KSI-RPL-ABO; changelog last dated October 13, 2026 | — | — | [^np11-ksi] |
+| FedRAMP 20x KSIs | 46 indicators in ten themes; the twelve above exist with the names given; related controls include AC-2, AC-6(5) and IA-5(2) for KSI-IAM-SNU, CM-3 and CM-4(2) for KSI-CMT-VTD, CA-7 for KSI-MLA-EVC, AU-9 for KSI-MLA-OSM and CP-10 for KSI-RPL-ABO; changelog last dated October 13, 2026 | — | — | [^np11-ksi] |
 
 Facts carried from earlier chapters, not re-read: the federated credential rules and the `AADSTS70021` propagation delay ([Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts)), the sign-in log's P1 or P2 license ([Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts)), the app management policy create and assign requests ([Chapter 04](04-app-management-policies-and-certificate-rotation.md#verified-facts)), the Workload ID service plan IDs ([Chapter 03](03-the-migration-path-matrix-as-code.md#verified-facts)), and the guide's rollback, evidence and deactivation facts.
 
