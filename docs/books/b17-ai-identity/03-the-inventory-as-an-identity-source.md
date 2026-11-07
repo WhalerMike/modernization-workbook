@@ -146,7 +146,7 @@ The program reads it accordingly. A deployed or piloted use case with `have_ato`
 
 ## Using the inventory as the seed list
 
-The program uses the inventory as the starting list for AI identity governance, not as its system of record. The method, which [Chapter 09](09-running-the-inventory-scan.md) runs in full, has four steps:
+The program uses the inventory as the starting list for AI identity governance, not as its system of record. The identity-side tasks within the method that [Chapter 09](09-running-the-inventory-scan.md) runs in full are:
 
 1. **Load the agency's internal submission.** Use the version sent to OMB, which carries identifiers and the real contacts, rather than the public CSV. Keep pre-deployment entries: they're the AI systems about to need identities.
 2. **Normalize the leads.** Map `agency_bureau` to the agency's organization model, `system_name_ato` to its system inventory, and `vendor_name` to its vendor and application records.
@@ -194,8 +194,8 @@ The program's design reads `has_pii` as an access-tier input (above) and as a pr
 |---|---|---|
 | PIA covers the AI use (M-03-22 §II.B.2; RA-8) | Before granting an AI identity access to a PII store, checks `has_pii` and `pia_url` and asks the privacy office whether the PIA covers the agent's use | Privacy office |
 | Purpose limitation (PT-3) | Scopes the AI identity's permissions to the purposes in the use case and the PIA; no tenant-wide read | Privacy office; AI system owner |
-| AI impact assessment for high-impact AI (M-25-21 §4(b)(ii)) | Supplies the identity and access facts for the assessment and points it to the PIA | CAIO; privacy office |
-| Minimization in what's published | Keeps owner and sponsor names out of the public inventory file | Inventory owner |
+| AI impact assessment for high-impact AI (M-25-21 §4(b)(ii)) | Supplies the identity and access facts for the assessment and points it to the PIA | Use-case risk acceptor; CAIO and privacy office consulted |
+| Minimization in what's published | Keeps owner and sponsor names out of the public inventory file | Inventory coordinator |
 | Shadow AI with PII | Treats an unreported AI identity with access to PII as a privacy matter to assess, not only a governance finding ([Chapter 07](07-monitoring-drift-and-shadow-ai.md)) | Privacy office; ISSO |
 
 : Privacy obligations for AI identities {.striped .hover}
