@@ -136,8 +136,8 @@ Source: ../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Sponsor / CIO</Contact>
-      <Notes>Owner or approver: Sponsor / CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Options: Manual (small estate or pilot, no control plane yet); governed (larger estate, or the authorizing official must sign); retrofit (estate already modernized by hand)
 If decided late: Nobody knows who holds the decision record; co-management for the pilot can't start
 Source: ../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#how-to-choose</Notes>
@@ -504,8 +504,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Sponsor / CIO</Contact>
-      <Notes>Owner or approver: Sponsor / CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Options: The device's refresh date; an OS upgrade; a troubleshooting rebuild (each needs a reset to reach Entra join)
 If decided late: The pilot fails its no-hybrid-join-without-a-cut-date criterion, and so does the program's G2
 Source: ../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path</Notes>
@@ -522,14 +522,20 @@ Source: ../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path</Notes
       <Name>E2.1 Pilot devices moved by pattern, with device attributes populated</Name>
       <OutlineNumber>3.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-01T08:00:00</Start>
-      <Finish>2027-03-10T17:00:00</Finish>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-03-31T17:00:00</Finish>
       <Duration>PT64H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
       <Contact>Endpoint engineering</Contact>
       <Notes>Owner or approver: Endpoint engineering
 Source: ../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path</Notes>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
       <PredecessorLink>
         <PredecessorUID>17</PredecessorUID>
         <Type>1</Type>
@@ -552,11 +558,11 @@ Source: ../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path</Notes
     <Task>
       <UID>23</UID>
       <ID>23</ID>
-      <Name>E2.2 Sliders at Pilot Intune; policies assigned to the 5% cohort with a 7-day grace period; GPOs left linked</Name>
+      <Name>E2.2 Sliders at Pilot Intune; policies assigned to the pilot cohort with a 7-day grace period; GPOs left linked</Name>
       <OutlineNumber>3.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-11T08:00:00</Start>
-      <Finish>2027-03-17T17:00:00</Finish>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -564,9 +570,9 @@ Source: ../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path</Notes
       <Notes>Owner or approver: Endpoint engineering
 Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot</Notes>
       <PredecessorLink>
-        <PredecessorUID>22</PredecessorUID>
+        <PredecessorUID>18</PredecessorUID>
         <Type>1</Type>
-        <LinkLag>0</LinkLag>
+        <LinkLag>48000</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
@@ -576,8 +582,8 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot<
       <Name>E2.3 Conflicts measured (gpresult against per-setting status); application and user tests against the baseline</Name>
       <OutlineNumber>3.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-18T08:00:00</Start>
-      <Finish>2027-04-14T17:00:00</Finish>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
       <Duration>PT160H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -597,13 +603,13 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot<
       <Name>E2.4 Compliant-device Conditional Access in report-only for the pilot; coverage reconciled</Name>
       <OutlineNumber>3.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-18T08:00:00</Start>
-      <Finish>2027-03-31T17:00:00</Finish>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-02T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>Identity team</Contact>
-      <Notes>Owner or approver: Identity team
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
 Source: ../books/b05-devices/10-operating-and-evidencing-the-fleet.md#compliance-and-the-conditional-access-hand-off</Notes>
       <PredecessorLink>
         <PredecessorUID>23</PredecessorUID>
@@ -618,8 +624,8 @@ Source: ../books/b05-devices/10-operating-and-evidencing-the-fleet.md#compliance
       <Name>E2.5 First setting class retired: GPO backed up, evidence checked, links disabled on the pilot OUs</Name>
       <OutlineNumber>3.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-15T08:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-04-19T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -639,8 +645,8 @@ Source: ../books/b05-devices/07-the-gpo-sunset-program.md#freezing-and-unlinking
       <Name>E2.8 SPNs repaired for pilot applications; NTLM restriction plan per application</Name>
       <OutlineNumber>3.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-11T08:00:00</Start>
-      <Finish>2027-03-24T17:00:00</Finish>
+      <Start>2027-04-01T08:00:00</Start>
+      <Finish>2027-04-14T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -666,8 +672,8 @@ Source: ../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-
       <Name>EG2 Gate 2 — Pilot clean</Name>
       <OutlineNumber>3.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-21T17:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -731,13 +737,13 @@ Source: program-master-schedule.md</Notes>
       <OutlineNumber>4</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-04-22T08:00:00</Start>
+      <Start>2027-04-26T08:00:00</Start>
       <Finish>2027-09-10T17:00:00</Finish>
     </Task>
     <Task>
       <UID>31</UID>
       <ID>31</ID>
-      <Name>E3.1 Wave 1, compliance policies: slider to Intune; CP-001 to CP-005 in rings, each watched 72 hours</Name>
+      <Name>E3.1 Workload wave 1, compliance policies: slider to Intune; CP-001 to CP-003 and CP-005 in rings, each watched 72 hours</Name>
       <OutlineNumber>4.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-26T08:00:00</Start>
@@ -764,7 +770,7 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-worklo
     <Task>
       <UID>32</UID>
       <ID>32</ID>
-      <Name>E3.2 Wave 2, Endpoint Protection: ES-001 to ES-006; matching GPO links disabled</Name>
+      <Name>E3.2 Workload wave 2, Endpoint Protection: ES-001 to ES-006; matching GPO links disabled</Name>
       <OutlineNumber>4.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-17T08:00:00</Start>
@@ -785,7 +791,7 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-worklo
     <Task>
       <UID>33</UID>
       <ID>33</ID>
-      <Name>E3.3 Wave 3, device configuration: the settings catalog profiles; matching GPO links disabled</Name>
+      <Name>E3.3 Workload wave 3, device configuration: the settings catalog profiles; matching GPO links disabled</Name>
       <OutlineNumber>4.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-06-07T08:00:00</Start>
@@ -806,7 +812,7 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-worklo
     <Task>
       <UID>34</UID>
       <ID>34</ID>
-      <Name>E3.4 Wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices</Name>
+      <Name>E3.4 Workload wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-06-28T08:00:00</Start>
@@ -863,8 +869,8 @@ Source: ../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-
       <Name>E3.7 Weekly inventory reconciliation and daily drift export running; alerts set</Name>
       <OutlineNumber>4.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-22T08:00:00</Start>
-      <Finish>2027-05-05T17:00:00</Finish>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -881,7 +887,7 @@ Source: ../books/b05-devices/10-operating-and-evidencing-the-fleet.md#device-inv
     <Task>
       <UID>37</UID>
       <ID>37</ID>
-      <Name>E3.8 Residual cleanup: remaining links disabled; tattooed preference items cleared or owned</Name>
+      <Name>E3.8 Residual cleanup: remaining links disabled after 7 clean days; tattooed preference items cleared or owned</Name>
       <OutlineNumber>4.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-07-19T08:00:00</Start>
@@ -902,8 +908,32 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-6-verifi
     <Task>
       <UID>38</UID>
       <ID>38</ID>
-      <Name>EG3 Gate 3 — Workloads cut over</Name>
+      <Name>X-P35 Program P3.5: GPO links off migrated OUs after 7 clean days</Name>
       <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-25T17:00:00</Start>
+      <Finish>2027-08-25T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The 90-day hold on the disabled GPOs starts late, and so does their deletion
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-08-25T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>EG3 Gate 3 — Workloads cut over</Name>
+      <OutlineNumber>4.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-07-30T17:00:00</Start>
       <Finish>2027-07-30T17:00:00</Finish>
@@ -934,10 +964,10 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-eac
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>39</UID>
-      <ID>39</ID>
+      <UID>40</UID>
+      <ID>40</ID>
       <Name>X-G3 Program G3 — Rollout Complete</Name>
-      <OutlineNumber>4.9</OutlineNumber>
+      <OutlineNumber>4.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-09-10T17:00:00</Start>
       <Finish>2027-09-10T17:00:00</Finish>
@@ -952,8 +982,8 @@ Source: program-master-schedule.md</Notes>
       <ConstraintDate>2027-09-10T17:00:00</ConstraintDate>
     </Task>
     <Task>
-      <UID>40</UID>
-      <ID>40</ID>
+      <UID>41</UID>
+      <ID>41</ID>
       <Name>Phase 4 — Servers under Azure Arc</Name>
       <OutlineNumber>5</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
@@ -962,8 +992,8 @@ Source: program-master-schedule.md</Notes>
       <Finish>2027-07-16T17:00:00</Finish>
     </Task>
     <Task>
-      <UID>41</UID>
-      <ID>41</ID>
+      <UID>42</UID>
+      <ID>42</ID>
       <Name>E4.1 Arc resource groups per owning team; Onboarding role to the service principal only, Resource Administrator to server operations, scoped and held through PIM</Name>
       <OutlineNumber>5.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -983,8 +1013,8 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#roles</Notes>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>42</UID>
-      <ID>42</ID>
+      <UID>43</UID>
+      <ID>43</ID>
       <Name>E4.2 Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed</Name>
       <OutlineNumber>5.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1004,8 +1034,8 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#resource-groups-and-t
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>43</UID>
-      <ID>43</ID>
+      <UID>44</UID>
+      <ID>44</ID>
       <Name>E4.3 Network readiness per site: Arc service tags or a private link scope; azcmagent check from a representative server</Name>
       <OutlineNumber>5.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1025,8 +1055,8 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#network</Notes>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>44</UID>
-      <ID>44</ID>
+      <UID>45</UID>
+      <ID>45</ID>
       <Name>D-E5 Arc onboarding method</Name>
       <OutlineNumber>5.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1048,8 +1078,8 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method</Note
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>45</UID>
-      <ID>45</ID>
+      <UID>46</UID>
+      <ID>46</ID>
       <Name>E4.4 Certificate-based onboarding service principal at resource-group scope, created as a recorded change and handed to the chosen tool</Name>
       <OutlineNumber>5.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1062,21 +1092,21 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method</Note
       <Notes>Owner or approver: Server infrastructure
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal</Notes>
       <PredecessorLink>
-        <PredecessorUID>44</PredecessorUID>
+        <PredecessorUID>45</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>41</PredecessorUID>
+        <PredecessorUID>42</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>46</UID>
-      <ID>46</ID>
+      <UID>47</UID>
+      <ID>47</ID>
       <Name>E4.5 Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists</Name>
       <OutlineNumber>5.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1089,15 +1119,15 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding
       <Notes>Owner or approver: Server infrastructure
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline</Notes>
       <PredecessorLink>
-        <PredecessorUID>42</PredecessorUID>
+        <PredecessorUID>43</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>47</UID>
-      <ID>47</ID>
+      <UID>48</UID>
+      <ID>48</ID>
       <Name>E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist</Name>
       <OutlineNumber>5.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1111,13 +1141,13 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline<
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates</Notes>
     </Task>
     <Task>
-      <UID>48</UID>
-      <ID>48</ID>
+      <UID>49</UID>
+      <ID>49</ID>
       <Name>E4.7 Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set</Name>
       <OutlineNumber>5.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-01T08:00:00</Start>
-      <Finish>2027-03-04T17:00:00</Finish>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
       <Duration>PT32H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1125,40 +1155,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#extended-security-upd
       <Notes>Owner or approver: Server infrastructure
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#connect</Notes>
       <PredecessorLink>
-        <PredecessorUID>18</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
-      <PredecessorLink>
-        <PredecessorUID>43</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
-      <PredecessorLink>
-        <PredecessorUID>45</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
-    </Task>
-    <Task>
-      <UID>49</UID>
-      <ID>49</ID>
-      <Name>E4.8 Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Endpoint onboarded</Name>
-      <OutlineNumber>5.9</OutlineNumber>
-      <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-05T08:00:00</Start>
-      <Finish>2027-03-10T17:00:00</Finish>
-      <Duration>PT32H0M0S</Duration>
-      <DurationFormat>7</DurationFormat>
-      <Milestone>0</Milestone>
-      <Contact>Server infrastructure</Contact>
-      <Notes>Owner or approver: Server infrastructure
-Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline</Notes>
-      <PredecessorLink>
-        <PredecessorUID>48</PredecessorUID>
+        <PredecessorUID>44</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
@@ -1173,22 +1170,25 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline<
     <Task>
       <UID>50</UID>
       <ID>50</ID>
-      <Name>X-P29 Pilot servers under Arc with machine configuration (program P2.9)</Name>
-      <OutlineNumber>5.10</OutlineNumber>
+      <Name>E4.8 Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Servers Plan 2 onboarded</Name>
+      <OutlineNumber>5.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-12T17:00:00</Start>
-      <Finish>2027-03-12T17:00:00</Finish>
-      <Duration>PT0H0M0S</Duration>
+      <Start>2027-02-22T08:00:00</Start>
+      <Finish>2027-02-25T17:00:00</Finish>
+      <Duration>PT32H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
-      <Milestone>1</Milestone>
-      <Contact>Platform teams (program)</Contact>
-      <Notes>Owner or approver: Platform teams (program)
-If decided late: The program's pilot has no governed servers, and the Data Platform plan's pilot SQL Server host has no Arc pattern to follow
-Source: program-master-schedule.md</Notes>
-      <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-03-12T17:00:00</ConstraintDate>
+      <Milestone>0</Milestone>
+      <Contact>Server infrastructure</Contact>
+      <Notes>Owner or approver: Server infrastructure
+Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline</Notes>
       <PredecessorLink>
         <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
@@ -1197,19 +1197,22 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>51</UID>
       <ID>51</ID>
-      <Name>E4.9 Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)</Name>
-      <OutlineNumber>5.11</OutlineNumber>
+      <Name>X-P113 Pilot servers connected through Arc with machine configuration applied (program P1.13)</Name>
+      <OutlineNumber>5.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-11T08:00:00</Start>
-      <Finish>2027-03-15T17:00:00</Finish>
-      <Duration>PT24H0M0S</Duration>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
-      <Milestone>0</Milestone>
-      <Contact>Server infrastructure</Contact>
-      <Notes>Owner or approver: Server infrastructure
-Source: ../books/b05-devices/09-servers-under-azure-arc.md#rollback</Notes>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The program's pilot has no governed servers, and the Data Platform plan's pilot SQL Server host has no Arc pattern to follow
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
       <PredecessorLink>
-        <PredecessorUID>49</PredecessorUID>
+        <PredecessorUID>50</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
@@ -1218,6 +1221,27 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#rollback</Notes>
     <Task>
       <UID>52</UID>
       <ID>52</ID>
+      <Name>E4.9 Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)</Name>
+      <OutlineNumber>5.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T08:00:00</Start>
+      <Finish>2027-03-02T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Server infrastructure</Contact>
+      <Notes>Owner or approver: Server infrastructure
+Source: ../books/b05-devices/09-servers-under-azure-arc.md#rollback</Notes>
+      <PredecessorLink>
+        <PredecessorUID>50</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>53</UID>
+      <ID>53</ID>
       <Name>E4.10 Estate waves: each creates its credential, connects, attests, attaches the baseline, verifies and closes by removing what onboarding needed</Name>
       <OutlineNumber>5.12</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1236,15 +1260,15 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#onboarding</Notes>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>51</PredecessorUID>
+        <PredecessorUID>52</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>53</UID>
-      <ID>53</ID>
+      <UID>54</UID>
+      <ID>54</ID>
       <Name>E4.11 Update Manager across the estate: periodic assessment on every server; scheduled patching in maintenance windows scoped by PatchGroup</Name>
       <OutlineNumber>5.13</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1257,15 +1281,15 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#onboarding</Notes>
       <Notes>Owner or approver: Server infrastructure
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#azure-update-manager</Notes>
       <PredecessorLink>
-        <PredecessorUID>52</PredecessorUID>
+        <PredecessorUID>53</PredecessorUID>
         <Type>3</Type>
         <LinkLag>48000</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>54</UID>
-      <ID>54</ID>
+      <UID>55</UID>
+      <ID>55</ID>
       <Name>E4.12 Servers Arc doesn't reach recorded and tiered; Windows Server 2012 hosts migrated, upgraded or isolated with the risk accepted</Name>
       <OutlineNumber>5.14</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1285,8 +1309,8 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#which-servers-arc-rea
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>55</UID>
-      <ID>55</ID>
+      <UID>56</UID>
+      <ID>56</ID>
       <Name>E4.13 Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported</Name>
       <OutlineNumber>5.15</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1299,15 +1323,15 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#which-servers-arc-rea
       <Notes>Owner or approver: Server infrastructure
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server-estate</Notes>
       <PredecessorLink>
-        <PredecessorUID>52</PredecessorUID>
+        <PredecessorUID>53</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>56</UID>
-      <ID>56</ID>
+      <UID>57</UID>
+      <ID>57</ID>
       <Name>EG4 Gate 4 — Servers under Arc</Name>
       <OutlineNumber>5.16</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1320,12 +1344,6 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server
       <Notes>Owner or approver: CISO / ISSO
 Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes</Notes>
-      <PredecessorLink>
-        <PredecessorUID>52</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
       <PredecessorLink>
         <PredecessorUID>53</PredecessorUID>
         <Type>1</Type>
@@ -1345,15 +1363,21 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-est
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>47</PredecessorUID>
+        <PredecessorUID>56</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>57</UID>
-      <ID>57</ID>
+      <UID>58</UID>
+      <ID>58</ID>
       <Name>X-P37 Every server Arc-connected or excepted (program P3.7)</Name>
       <OutlineNumber>5.17</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1369,25 +1393,25 @@ Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
       <ConstraintDate>2027-07-16T17:00:00</ConstraintDate>
       <PredecessorLink>
-        <PredecessorUID>56</PredecessorUID>
+        <PredecessorUID>57</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>58</UID>
-      <ID>58</ID>
+      <UID>59</UID>
+      <ID>59</ID>
       <Name>Phase 5 — Formal retirement</Name>
       <OutlineNumber>6</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-04-26T08:00:00</Start>
-      <Finish>2027-11-04T17:00:00</Finish>
+      <Finish>2027-11-30T17:00:00</Finish>
     </Task>
     <Task>
-      <UID>59</UID>
-      <ID>59</ID>
+      <UID>60</UID>
+      <ID>60</ID>
       <Name>X-D08 Program decision D08: end dates for legacy authentication and NTLM</Name>
       <OutlineNumber>6.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1404,19 +1428,25 @@ Source: program-master-schedule.md</Notes>
       <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
     </Task>
     <Task>
-      <UID>60</UID>
-      <ID>60</ID>
+      <UID>61</UID>
+      <ID>61</ID>
       <Name>E5.1 Migrated GPOs disabled and held 90 days as the rollback net</Name>
       <OutlineNumber>6.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-08-02T08:00:00</Start>
-      <Finish>2027-10-28T17:00:00</Finish>
+      <Start>2027-08-26T08:00:00</Start>
+      <Finish>2027-11-23T17:00:00</Finish>
       <Duration>PT512H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
       <Contact>Endpoint engineering</Contact>
       <Notes>Owner or approver: Endpoint engineering
 Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
       <PredecessorLink>
         <PredecessorUID>38</PredecessorUID>
         <Type>1</Type>
@@ -1425,13 +1455,13 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>61</UID>
-      <ID>61</ID>
+      <UID>62</UID>
+      <ID>62</ID>
       <Name>E5.2 Backups restore-tested; GPOs archived and deleted; exception register closed</Name>
       <OutlineNumber>6.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-10-29T08:00:00</Start>
-      <Finish>2027-11-04T17:00:00</Finish>
+      <Start>2027-11-24T08:00:00</Start>
+      <Finish>2027-11-30T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1439,21 +1469,21 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal
       <Notes>Owner or approver: Endpoint engineering
 Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement</Notes>
       <PredecessorLink>
-        <PredecessorUID>60</PredecessorUID>
+        <PredecessorUID>61</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>39</PredecessorUID>
+        <PredecessorUID>40</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>62</UID>
-      <ID>62</ID>
+      <UID>63</UID>
+      <ID>63</ID>
       <Name>E5.3 NTLM stage 3: deny all; exceptions removed as each dependency retires</Name>
       <OutlineNumber>6.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1472,21 +1502,21 @@ Source: ../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>59</PredecessorUID>
+        <PredecessorUID>60</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>39</PredecessorUID>
+        <PredecessorUID>40</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>63</UID>
-      <ID>63</ID>
+      <UID>64</UID>
+      <ID>64</ID>
       <Name>E5.4 Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2, workstations and servers, handed to the ISSO</Name>
       <OutlineNumber>6.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
@@ -1505,26 +1535,26 @@ Source: ../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>56</PredecessorUID>
+        <PredecessorUID>57</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
       <PredecessorLink>
-        <PredecessorUID>39</PredecessorUID>
+        <PredecessorUID>40</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
     </Task>
     <Task>
-      <UID>64</UID>
-      <ID>64</ID>
+      <UID>65</UID>
+      <ID>65</ID>
       <Name>EG5 Gate 5 — GPOs retired</Name>
       <OutlineNumber>6.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-11-04T17:00:00</Start>
-      <Finish>2027-11-04T17:00:00</Finish>
+      <Start>2027-11-30T17:00:00</Start>
+      <Finish>2027-11-30T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1533,12 +1563,6 @@ Source: ../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-
 Criteria: No GPO in scope linked to an OU with migrated devices; every retired GPO backed up with a decision record; only dated exceptions remain, each with an owner and review date; workload sliders at Intune
 Source: ../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state</Notes>
       <PredecessorLink>
-        <PredecessorUID>61</PredecessorUID>
-        <Type>1</Type>
-        <LinkLag>0</LinkLag>
-        <LagFormat>7</LagFormat>
-      </PredecessorLink>
-      <PredecessorLink>
         <PredecessorUID>62</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
@@ -1546,6 +1570,12 @@ Source: ../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state</Notes>
       </PredecessorLink>
       <PredecessorLink>
         <PredecessorUID>63</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>64</PredecessorUID>
         <Type>1</Type>
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>

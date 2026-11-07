@@ -37,7 +37,7 @@ critical_path_note: |
 assumptions:
   - "SQL Server's engine accounts, logins and application connection strings are in the [Data Platform plan](data-platform.md); this plan inventories them and hands them over ([Book 06, Chapter 09](../books/b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account))."
   - "Privileged non-human identities (service principals in directory roles or holding protected permissions) are swept in the [Privileged Access plan](privileged-access.md) (A3.4); this plan covers the rest and doesn't repeat that sweep ([Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md#governing-app-registrations))."
-  - "Workload ID Premium is licensed for the Tier 1 single-tenant service principals, as Book 04 sets out; without it, workload Conditional Access can't be created or changed ([Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds))."
+  - "Workload ID Premium is licensed for the single-tenant service principals classified R1, the highest of the risk tiers R1 to R3, as Book 04 sets out; without it, workload Conditional Access can't be created or changed ([Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds))."
   - "The AI identity capabilities used are those generally available in the agency's own cloud; agent Conditional Access and agent risk stay in report-only as watch items while they're in preview ([Book 17, Chapter 04](../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds); [Chapter 06](../books/b17-ai-identity/06-credentials-and-least-privilege.md#conditional-access-and-risk-policies))."
   - "Book 02 sizes service account conversion at six to eight weeks; this sample runs it longer, in waves, because each wave needs its own 30-day parallel run ([Book 02, Chapter 10](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)). Durations are illustrative."
 
@@ -87,18 +87,18 @@ tasks:
      criteria: "Every AD service account, MSA, gMSA and dMSA, every app registration, service principal and managed identity, and every AI use case in the current vintage in one register with type, risk and candidate target; HIGH-risk accounts listed; stale leads confirmed against sign-in logs, not retired on a guess; SQL Server accounts handed to the Data Platform plan",
      source: "../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization"}
   # ------------------------------------------------- Phase 1 — ownership
-  - {id: N1.1, phase: 1, name: "An application owner found for every service account; two human owners on every app registration and service principal; serviceManagementReference set", dur: 25, after: [NG0], owner: "Application owners",
+  - {id: N1.1, phase: 1, name: "An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set", dur: 25, after: [NG0], owner: "Application owners",
      source: "../books/b04-access/05-applications-and-workload-identities.md#ownership"}
   - {id: N1.2, phase: 1, name: "AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record", dur: 15, after: [NG0], owner: "Sponsoring offices, with the identity governance officer",
      source: "../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-programs-rule-two-named-humans-and-a-record"}
   - {id: D-N2, kind: decision, phase: 1, name: "Orphan rule for identities nobody will own", after: [NG0], owner: "CISO",
-     options: "Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (Book 04's rule, applied at once to agents because they can act); retire at once; keep running on a dated exception",
+     options: "Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (a non-person identity rule, not Book 04's, which gives the office 30 days and then suspends; applied at once to agents because they can act); retire at once; keep running on a dated exception",
      late: "Unowned accounts can't be disposed of, and Gate 1 can't pass",
      source: "../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps"}
   - {id: N1.3, phase: 1, name: "Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window", dur: 5, after: [N1.1, D-N2], owner: "Identity governance officer",
      source: "../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas"}
   - {id: NG1, kind: gate, phase: 1, name: "Gate 1 — Every non-person identity owned", after: [N1.2, N1.3], owner: "CISO",
-     criteria: "Every service account has a named application owner; every app registration and service principal has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception",
+     criteria: "Every service account has a named application owner; every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4) has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception",
      source: "../books/b02-identity/09-building-the-entra-target.md#governing-service-principals"}
   # ------------------------------------------------- Phase 2 — decide per account
   - {id: N2.1, phase: 2, name: "Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement", dur: 15, after: [NG1], owner: "Identity engineering, with application owners",
@@ -108,7 +108,7 @@ tasks:
      late: "The conversion waves can't be built, and the program's SPN retirement (P4.6) has no list to work from",
      source: "../books/guides/attribute-driven-migration.md#non-person-identity-track"}
   - {id: D-N4, kind: decision, phase: 2, name: "Workload ID Premium licensing scope", after: [N2.1], owner: "CISO",
-     options: "License for the single-tenant service principals classified Tier 1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access",
+     options: "License for the single-tenant service principals classified R1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access",
      late: "Workload Conditional Access can't be created or changed, and privileged service principal reviews aren't available",
      source: "../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds"}
   - {id: N2.2, phase: 2, name: "Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave", dur: 5, after: [D-N3], owner: "Identity engineering",
@@ -122,9 +122,9 @@ tasks:
      source: "program-master-schedule.md"}
   - {id: N3.1, phase: 3, name: "App management policy: new client secrets and symmetric keys blocked, certificates capped at 180 days for new apps; app instance property lock on owned apps", dur: 5, after: [NG0], owner: "Identity engineering",
      source: "../books/b04-access/05-applications-and-workload-identities.md#enforcing-the-order-with-app-management-policies"}
-  - {id: N3.2, phase: 3, name: "Wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested", dur: 15, after: [NG2, X-G1, N3.1], owner: "Identity engineering, with application owners",
+  - {id: N3.2, phase: 3, name: "Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested", dur: 15, after: [NG2, X-G1, N3.1], owner: "Identity engineering, with application owners",
      source: "../books/b02-identity/09-building-the-entra-target.md#workload-identity-federation"}
-  - {id: N3.3, phase: 3, name: "Wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled", dur: 22, after: [N3.2], owner: "Application owners",
+  - {id: N3.3, phase: 3, name: "Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled", dur: 22, after: [N3.2], owner: "Application owners",
      source: "../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization"}
   - {id: N3.4, phase: 3, name: "Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled", dur: 60, after: ["N3.3:SS+10"], owner: "Identity engineering, with application owners",
      source: "../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization"}
@@ -160,18 +160,18 @@ tasks:
      criteria: "No service principal holds a broad tenant-wide permission without a recorded justification; managed identities' role assignments scoped to resources; privileged non-human identities closed in the Privileged Access plan; the first quarterly review cycle closed with its findings acted on",
      source: "../books/b02-identity/09-building-the-entra-target.md#governing-service-principals"}
   # ------------------------------------------------- Phase 5 — Conditional Access for workload identities
-  - {id: N5.1, phase: 5, name: "Scope set: Tier 1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope", dur: 5, after: [D-N4, X-G1, NG1], owner: "Identity engineering",
+  - {id: N5.1, phase: 5, name: "Scope set: R1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope", dur: 5, after: [D-N4, X-G1, NG1], owner: "Identity engineering",
      source: "../books/b02-identity/09-building-the-entra-target.md#conditional-access-for-workload-identities"}
   - {id: N5.2, phase: 5, name: "CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read", dur: 20, after: [N5.1], owner: "Identity engineering",
      source: "../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities"}
   - {id: D-N5, kind: decision, phase: 5, name: "Enforce the workload identity policies", after: [N5.2], owner: "CISO",
      options: "Enforce; extend report-only; enforce with named exclusions, each recorded with its owner and end date",
-     late: "Tier 1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass",
+     late: "R1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass",
      source: "../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities"}
   - {id: N5.3, phase: 5, name: "Policies enforced ring by ring; block events alerted to security operations", dur: 10, after: [D-N5], owner: "Identity engineering",
      source: "../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities"}
   - {id: NG5, kind: gate, phase: 5, name: "Gate 5 — Workload identities under Conditional Access", after: [N5.3], owner: "CISO",
-     criteria: "Every Tier 1 single-tenant service principal assigned directly to the enforced location and risk policies; report-only results reviewed before enforcement; every out-of-scope identity (managed identities, multitenant and SaaS apps) recorded with the control that covers it instead",
+     criteria: "Every R1 single-tenant service principal assigned directly to the enforced location and risk policies; report-only results reviewed before enforcement; every out-of-scope identity (managed identities, multitenant and SaaS apps) recorded with the control that covers it instead",
      source: "../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities"}
   # ------------------------------------------------- Phase 6 — AI agents
   - {id: D-N6, kind: decision, phase: 6, name: "AI identity capabilities the program builds on in the agency's cloud", after: [N0.3], owner: "CIO, with the Chief AI Officer",

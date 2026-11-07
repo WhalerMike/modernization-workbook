@@ -22,7 +22,7 @@ start_label: "Week 1 = the program's Phase 0 approval"
 project_start: 2027-01-04
 
 purpose: |
-  This plan builds the [Network & Access Modernization](../books/b00-orientation/06-the-project-portfolio.md#network-access-modernization) project from [Book 08](../books/b08-ddi/index.md) (DNS, DHCP and IPAM) and [Book 09](../books/b09-network/index.md) (transport, TIC 3.0 and network access control). It follows the project's own phases, as [Book 09, Chapter 09](../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table) assigns them: naming and addressing first, then a governed-transport pilot behind a secured governor, then enforcement at the customer edge, and last [Book 08's gated decommission](../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp) of AD DNS and DHCP. It runs inside the [program master schedule](program-master-schedule.md): it takes the cloud resolver from the program's P1.7, follows the pilot division's DNS move (P2.6) and the program's move of the AD-integrated zones (P4.3), and uses the device certificates from P2.7. Its success measures are the charter's, at pilot scale.
+  This plan builds the [Network & Access Modernization](../books/b00-orientation/06-the-project-portfolio.md#network-access-modernization) project from [Book 08](../books/b08-ddi/index.md) (DNS, DHCP and IPAM) and [Book 09](../books/b09-network/index.md) (transport, TIC 3.0 and network access control). It adapts the charter's phases in [Book 09, Chapter 09](../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table), moving identity availability into Phase 3 and adding Phases 2 and 5: naming and addressing first, then a governed-transport pilot behind a secured governor, then enforcement at the customer edge, and last [Book 08's gated decommission](../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp) of AD DNS and DHCP. It runs inside the [program master schedule](program-master-schedule.md): it takes the cloud resolver from the program's P1.7, follows the pilot division's DNS move (P2.6) and the program's move of the AD-integrated zones (P4.3), and uses the device certificates from P2.7. Its success measures are the charter's, at pilot scale.
 
 critical_path_note: |
   The computed path is short, and it sits at the end. It starts with the program's move of the AD-integrated zones (P4.3, week 39), then runs through the 30-day SRV hold, the decommission decision and the ordered retirement of the legacy DNS servers to Gate 5 in week 46, two weeks before the program's G5. Book 08 makes that tail a set of gates, not dates, so it can't be compressed: the 30 clean days count only from the last zone move. Most earlier work carries float against this plan's finish, but one program date binds it much sooner. Coexistence (N1.1) must be in place when the program starts moving the pilot division's DNS (the start of P2.6, end of week 8), and it finishes with two days to spare, so the cloud resolver from P1.7 and coexistence are tracked as near-critical, and the DDI platform decision (D-N1) has about three weeks of float. The pilot's own chain runs through the naming plane: the fabric goes live only after Gate 1, which follows the pilot-division move, so a slip in P2.6 moves the pilot cutover and Gate 3 week for week. The NAC chain carries about nine weeks of float once the program's device certificates (P2.7) arrive.
@@ -53,13 +53,13 @@ risks:
 
 tasks:
   # ------------------------------------------------- Phase 0 — charter, alignment and inventory
-  - {id: N0.1, phase: 0, name: "Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried", dur: 5, owner: "Sponsor and CIO",
+  - {id: N0.1, phase: 0, name: "Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried", dur: 5, owner: "Executive sponsor and CIO",
      source: "../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table"}
   - {id: N0.2, phase: 0, name: "AD DNS and DHCP inventory, read-only, committed as JSON; DnsAdmins emptied of non-domain-administrators", dur: 10, owner: "AD administrators",
      source: "../books/b08-ddi/10-migration-sequence.md#phase-1-inventory-and-baseline"}
   - {id: N0.3, phase: 0, name: "DDI candidates scored on evidence: Marketplace status, policy-plane coverage, the five decisions, vendor questions in writing", dur: 12, after: [N0.1], owner: "DNS/DDI team",
      source: "../books/b08-ddi/12-selection-cost-and-residual-risk.md#selection-criteria"}
-  - {id: D-N1, kind: decision, phase: 0, name: "DDI platform model", after: [N0.3], owner: "Sponsor and CIO",
+  - {id: D-N1, kind: decision, phase: 0, name: "DDI platform model", after: [N0.3], owner: "Executive sponsor and CIO",
      options: "SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation)",
      late: "Coexistence can't be deployed, and the pilot division's DNS move (program P2.6) has nothing to move onto",
      source: "../books/b08-ddi/12-selection-cost-and-residual-risk.md#comparing-the-platform-models"}
@@ -98,7 +98,7 @@ tasks:
      criteria: "Every name class in the validation matrix resolves correctly from on-premises, each cloud and the branch path; no private endpoint name returns a public address; OCSP and CRL endpoints resolve from every origin; every branch's redirect-dns target is an agency resolver; resolution-path consistency baselined",
      source: "../books/b08-ddi/10-migration-sequence.md#phase-4-cloud-federation"}
   # ------------------------------------------------- Phase 2 — securing the governor
-  - {id: D-N4, kind: decision, phase: 2, name: "Control-plane hosting model, recorded as the boundary disposition", after: [NG0], owner: "Sponsor and CIO",
+  - {id: D-N4, kind: decision, phase: 2, name: "Control-plane hosting model, recorded as the boundary disposition", after: [NG0], owner: "Executive sponsor and CIO",
      options: "An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations",
      late: "The control plane can't be built or hardened, and the pilot waits",
      source: "../books/b09-network/11-field-office-wan-transformation.md#risks-and-mitigations"}
@@ -144,7 +144,7 @@ tasks:
      criteria: "Pilot sites stable for 30 days with the control layer live, inspecting and logging to the SIEM; boundary change decided before cutover; SC-7(4) memo signed and site register current; CISA telemetry parity confirmed per site before any legacy circuit ends; one path decision emitted as a claim; the VPN path documented as residual",
      source: "../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step"}
   # ------------------------------------------------- Phase 4 — customer-edge enforcement
-  - {id: D-N10, kind: decision, phase: 4, name: "RADIUS and NAC platform, and the trigger that retires NPS (D3)", after: [N0.1], owner: "Sponsor and CIO",
+  - {id: D-N10, kind: decision, phase: 4, name: "RADIUS and NAC platform, and the trigger that retires NPS (D3)", after: [N0.1], owner: "Executive sponsor and CIO",
      options: "NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access",
      late: "Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on",
      source: "../books/b09-network/07-network-access-control.md#what-can-replace-it"}
@@ -174,11 +174,11 @@ tasks:
      source: "../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp"}
   - {id: N5.3, phase: 5, name: "Hardening: Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, monitoring dashboards", dur: 15, after: [N1.4], owner: "DNS/DDI team",
      source: "../books/b08-ddi/10-migration-sequence.md#phase-6-policy-and-compliance-hardening"}
-  - {id: D-N12, kind: decision, phase: 5, name: "Decommission AD DNS and Windows DHCP", after: [N5.1, N5.2], owner: "Sponsor and CIO",
+  - {id: D-N12, kind: decision, phase: 5, name: "Decommission AD DNS and Windows DHCP", after: [N5.1, N5.2], owner: "Executive sponsor and CIO",
      options: "Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone",
      late: "Legacy DNS servers and their DnsAdmins exposure stay in service into the program's AD retirement phase",
      source: "../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp"}
-  - {id: N5.4, phase: 5, name: "Legacy DNS servers retired in order; exports archived; records officer confirms disposition; 7-day burn-in", dur: 10, after: [D-N12], owner: "AD administrators",
+  - {id: N5.4, phase: 5, name: "Legacy DNS servers and Windows DHCP servers retired in order, DHCP de-authorized last; exports archived; records officer confirms disposition; 7-day burn-in", dur: 10, after: [D-N12], owner: "AD administrators",
      source: "../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp"}
   - {id: NG5, kind: gate, phase: 5, name: "Gate 5 — Legacy name services retired, evidence complete", after: [N5.3, N5.4, NG3, NG4], owner: "DNS/DDI team",
      criteria: "Gates 3 and 4 passed; Chapter 11's evidence checklist complete, the five decisions checked first; no client impact through the burn-in; logs searchable for six months and retrievable for a year; DnsAdmins and delegated roles reviewed; only the domain's own zones left on AD DNS, reached by forwarding, until the last domain controllers go",

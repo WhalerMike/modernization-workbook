@@ -99,7 +99,7 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 
 ## Gates
 
-Each gate is the next phase's entry condition. The approver signs it against the criteria, from evidence in the repository.
+A gate opens the work that names it as a predecessor, which is usually the next phase but not always. The approver signs it against the criteria, from evidence in the repository.
 
 | Gate | When | Approver | Criteria |
 |---|---|---|---|

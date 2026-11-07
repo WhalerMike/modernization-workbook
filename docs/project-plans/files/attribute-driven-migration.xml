@@ -660,7 +660,7 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authorit
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-01-27T08:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Finish>2027-02-26T17:00:00</Finish>
     </Task>
     <Task>
       <UID>29</UID>
@@ -713,8 +713,8 @@ Source: program-master-schedule.md</Notes>
       <Name>X-IG3 HR feed live for the foundation scope, shadow differences explained (Identity Lifecycle plan, Gate 3)</Name>
       <OutlineNumber>4.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-24T17:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -723,7 +723,7 @@ Source: program-master-schedule.md</Notes>
 If decided late: The coded slots have no live writer, so the group library can't be shadowed on real data
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-02-24T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>32</UID>
@@ -731,8 +731,8 @@ Source: identity-lifecycle.md</Notes>
       <Name>AG3 Gate 3 — Attributes flowing</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-24T17:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1248,7 +1248,7 @@ Source: ../books/guides/attribute-driven-migration.md#attribute-to-mechanism-cro
       <OutlineNumber>7</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-02-25T08:00:00</Start>
+      <Start>2027-03-01T08:00:00</Start>
       <Finish>2027-09-10T17:00:00</Finish>
     </Task>
     <Task>
@@ -1257,8 +1257,8 @@ Source: ../books/guides/attribute-driven-migration.md#attribute-to-mechanism-cro
       <Name>A6.1 Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer</Name>
       <OutlineNumber>7.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-25T08:00:00</Start>
-      <Finish>2027-03-03T17:00:00</Finish>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1278,8 +1278,8 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
       <Name>D-A6 Required affinity binding for PIV and CAC</Name>
       <OutlineNumber>7.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-03T17:00:00</Start>
-      <Finish>2027-03-03T17:00:00</Finish>
+      <Start>2027-03-05T17:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1301,8 +1301,8 @@ Source: ../books/b07-pki/06-device-and-user-certificates.md#username-bindings-an
       <Name>A6.2 High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID</Name>
       <OutlineNumber>7.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-04T08:00:00</Start>
-      <Finish>2027-03-10T17:00:00</Finish>
+      <Start>2027-03-08T08:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1346,8 +1346,8 @@ Source: program-master-schedule.md</Notes>
       <Name>D-A7 Who writes the binding after AD</Name>
       <OutlineNumber>7.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-10T17:00:00</Start>
-      <Finish>2027-03-10T17:00:00</Finish>
+      <Start>2027-03-12T17:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1393,8 +1393,8 @@ Source: program-master-schedule.md</Notes>
       <Name>AG6 Gate 6 — PIV binding proven on the pilot</Name>
       <OutlineNumber>7.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-10T17:00:00</Start>
-      <Finish>2027-03-10T17:00:00</Finish>
+      <Start>2027-03-12T17:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1416,7 +1416,7 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
       <OutlineNumber>8</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-03-25T08:00:00</Start>
+      <Start>2027-03-29T08:00:00</Start>
       <Finish>2027-04-23T17:00:00</Finish>
     </Task>
     <Task>
@@ -1425,8 +1425,8 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
       <Name>X-I43 Joiner and mover automation (Identity Lifecycle plan, I4.3)</Name>
       <OutlineNumber>8.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-24T17:00:00</Start>
-      <Finish>2027-03-24T17:00:00</Finish>
+      <Start>2027-03-26T17:00:00</Start>
+      <Finish>2027-03-26T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1435,7 +1435,7 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
 If decided late: There's no mover workflow to prove the foundation against
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-03-24T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-03-26T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>64</UID>
@@ -1443,8 +1443,8 @@ Source: identity-lifecycle.md</Notes>
       <Name>A7.1 Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean</Name>
       <OutlineNumber>8.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-25T08:00:00</Start>
-      <Finish>2027-03-31T17:00:00</Finish>
+      <Start>2027-03-29T08:00:00</Start>
+      <Finish>2027-04-02T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1476,8 +1476,8 @@ Source: ../books/guides/attribute-driven-migration.md#worked-example-one-user-an
       <Name>AG7 Gate 7 — Mover proven across the tracks</Name>
       <OutlineNumber>8.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-31T17:00:00</Start>
-      <Finish>2027-03-31T17:00:00</Finish>
+      <Start>2027-04-02T17:00:00</Start>
+      <Finish>2027-04-02T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1529,7 +1529,7 @@ Source: program-master-schedule.md</Notes>
       <OutlineNumber>9</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-04-01T08:00:00</Start>
+      <Start>2027-04-05T08:00:00</Start>
       <Finish>2027-11-05T17:00:00</Finish>
     </Task>
     <Task>
@@ -1538,8 +1538,8 @@ Source: program-master-schedule.md</Notes>
       <Name>A8.1 Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave</Name>
       <OutlineNumber>9.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-01T08:00:00</Start>
-      <Finish>2027-04-05T17:00:00</Finish>
+      <Start>2027-04-05T08:00:00</Start>
+      <Finish>2027-04-07T17:00:00</Finish>
       <Duration>PT24H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1583,8 +1583,8 @@ Source: program-master-schedule.md</Notes>
       <Name>A8.2 Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes</Name>
       <OutlineNumber>9.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-06T08:00:00</Start>
-      <Finish>2027-04-12T17:00:00</Finish>
+      <Start>2027-04-08T08:00:00</Start>
+      <Finish>2027-04-14T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1628,8 +1628,8 @@ Source: program-master-schedule.md</Notes>
       <Name>X-IG5 Populations cloud-mastered (Identity Lifecycle plan, Gate 5)</Name>
       <OutlineNumber>9.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-06-30T17:00:00</Start>
-      <Finish>2027-06-30T17:00:00</Finish>
+      <Start>2027-07-02T17:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1638,7 +1638,7 @@ Source: program-master-schedule.md</Notes>
 If decided late: Shown for reference: the HR plan's own cut-over
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-06-30T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-07-02T17:00:00</ConstraintDate>
     </Task>
     <Task>
       <UID>73</UID>
@@ -1793,7 +1793,7 @@ Source: program-master-schedule.md</Notes>
       <Milestone>1</Milestone>
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
-Options: The program's classes (missing identity, stale access, orphan, attribute drift, unauthorized write, credential drift, schema drift) with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots
+Options: Book 03's classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, Book 13's five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots
 If decided late: Drift findings pile up with nobody obliged to close them
 Source: ../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory</Notes>
       <PredecessorLink>
@@ -1809,8 +1809,8 @@ Source: ../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-
       <Name>A9.1 Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue</Name>
       <OutlineNumber>10.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-25T08:00:00</Start>
-      <Finish>2027-03-03T17:00:00</Finish>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>

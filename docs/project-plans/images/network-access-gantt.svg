@@ -144,7 +144,7 @@
 <rect x="777.4" y="837" width="39.1" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="862" font-size="10.5" fill="#1e293b">D-N12  Decommission AD DNS and Windows DHCP</text>
 <path d="M926.1 853.0 L931.6 858.5 L926.1 864.0 L920.6 858.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
-<text x="14" y="879" font-size="10.5" fill="#1e293b">N5.4  Legacy DNS servers retired in order; exports archi…</text>
+<text x="14" y="879" font-size="10.5" fill="#1e293b">N5.4  Legacy DNS servers and Windows DHCP servers retire…</text>
 <rect x="926.1" y="871" width="26.1" height="9" rx="2" fill="#DC2626"/>
 <text x="14" y="896" font-size="10.5" fill="#1e293b">NG5  Gate 5 — Legacy name services retired, evidence com…</text>
 <path d="M952.2 887.0 L957.7 892.5 L952.2 898.0 L946.7 892.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>

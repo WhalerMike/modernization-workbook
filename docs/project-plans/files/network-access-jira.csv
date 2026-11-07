@@ -1,20 +1,20 @@
 ﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks,Blocks
 1,Epic,,"Network & Access Modernization: Phase 0 — Charter, alignment and inventory","Phase 0 — Charter, alignment and inventory of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-04,2027-01-26,,,,,
-2,Task,1,N0.1 Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried,"N0.1 · Task · owner or approver: Sponsor and CIO
+2,Task,1,N0.1 Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried,"N0.1 · Task · owner or approver: Executive sponsor and CIO
 Duration 5 working days · wk 1 · total float 15 d · predecessors: —
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#the-charters-plan-in-one-table",fmw,fmw-network-access,fmw-id-n0.1,task,owner-sponsor-and-cio,,2027-01-04,2027-01-08,4,23,29,37,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#the-charters-plan-in-one-table",fmw,fmw-network-access,fmw-id-n0.1,task,owner-executive-sponsor-and-cio,,2027-01-04,2027-01-08,4,23,29,37,
 3,Task,1,"N0.2 AD DNS and DHCP inventory, read-only, committed as JSON; DnsAdmins emptied of non-domain-administrators","N0.2 · Task · owner or approver: AD administrators
 Duration 10 working days · wk 1–2 · total float 22 d · predecessors: —
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-1-inventory-and-baseline",fmw,fmw-network-access,fmw-id-n0.2,task,owner-ad-administrators,,2027-01-04,2027-01-15,6,,,,
 4,Task,1,"N0.3 DDI candidates scored on evidence: Marketplace status, policy-plane coverage, the five decisions, vendor questions in writing","N0.3 · Task · owner or approver: DNS/DDI team
 Duration 12 working days · wk 2–4 · total float 15 d · predecessors: N0.1
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html#selection-criteria",fmw,fmw-network-access,fmw-id-n0.3,task,owner-dns-ddi-team,,2027-01-11,2027-01-26,5,,,,
-5,Task,1,D-N1 DDI platform model,"D-N1 · Decision · owner or approver: Sponsor and CIO
+5,Task,1,D-N1 DDI platform model,"D-N1 · Decision · owner or approver: Executive sponsor and CIO
 Duration 0 working days · end of wk 4 · total float 15 d · predecessors: N0.3
 Options: SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation)
 If decided late: Coexistence can't be deployed, and the pilot division's DNS move (program P2.6) has nothing to move onto
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html#comparing-the-platform-models",fmw,fmw-network-access,fmw-id-d-n1,decision,owner-sponsor-and-cio,,2027-01-27,2027-01-26,6,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html#comparing-the-platform-models",fmw,fmw-network-access,fmw-id-d-n1,decision,owner-executive-sponsor-and-cio,,2027-01-27,2027-01-26,6,,,,
 6,Task,1,NG0 Gate 0 — Inventory committed and decisions owned,"NG0 · Gate · owner or approver: DNS/DDI team
 Duration 0 working days · end of wk 4 · total float 15 d · predecessors: N0.2, D-N1
 Criteria: AD DNS inventory dated, committed and reviewed (Decision 4); every branch's redirect-dns target read from the running configuration; platform model decided; one named decider for every row of the DNS and network matrices
@@ -67,11 +67,11 @@ Criteria: Every name class in the validation matrix resolves correctly from on-p
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-4-cloud-federation",fmw,fmw-network-access,fmw-id-ng1,gate,owner-dns-ddi-team,,2027-05-03,2027-04-30,33,,,,
 19,Epic,,Network & Access Modernization: Phase 2 — Securing the governor,"Phase 2 — Securing the governor of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-11,2027-04-09,,,,,
-20,Task,19,"D-N4 Control-plane hosting model, recorded as the boundary disposition","D-N4 · Decision · owner or approver: Sponsor and CIO
+20,Task,19,"D-N4 Control-plane hosting model, recorded as the boundary disposition","D-N4 · Decision · owner or approver: Executive sponsor and CIO
 Duration 0 working days · end of wk 4 · total float 138 d · predecessors: NG0
 Options: An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations
 If decided late: The control plane can't be built or hardened, and the pilot waits
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#risks-and-mitigations",fmw,fmw-network-access,fmw-id-d-n4,decision,owner-sponsor-and-cio,,2027-01-27,2027-01-26,21,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#risks-and-mitigations",fmw,fmw-network-access,fmw-id-d-n4,decision,owner-executive-sponsor-and-cio,,2027-01-27,2027-01-26,21,,,,
 21,Task,19,"N2.1 Control plane built and taken through the ED 26-03 sequence: inventory, off-box logs, patch, hunt, harden, syslog to CISA through CLAW","N2.1 · Task · owner or approver: Network engineering
 Duration 25 working days · wk 4–9 · total float 138 d · predecessors: D-N4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html#securing-the-controller-and-the-edges",fmw,fmw-network-access,fmw-id-n2.1,task,owner-network-engineering,,2027-01-27,2027-03-02,24,,,,
@@ -130,11 +130,11 @@ Criteria: Pilot sites stable for 30 days with the control layer live, inspecting
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#an-owner-for-each-step",fmw,fmw-network-access,fmw-id-ng3,gate,owner-ciso,,2027-06-02,2027-06-01,51,,,,
 36,Epic,,Network & Access Modernization: Phase 4 — Customer-edge enforcement,"Phase 4 — Customer-edge enforcement of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-11,2027-09-10,,,,,
-37,Task,36,"D-N10 RADIUS and NAC platform, and the trigger that retires NPS (D3)","D-N10 · Decision · owner or approver: Sponsor and CIO
+37,Task,36,"D-N10 RADIUS and NAC platform, and the trigger that retires NPS (D3)","D-N10 · Decision · owner or approver: Executive sponsor and CIO
 Duration 0 working days · end of wk 1 · total float 112 d · predecessors: N0.1
 Options: NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access
 If decided late: Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#what-can-replace-it",fmw,fmw-network-access,fmw-id-d-n10,decision,owner-sponsor-and-cio,,2027-01-11,2027-01-08,39,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#what-can-replace-it",fmw,fmw-network-access,fmw-id-d-n10,decision,owner-executive-sponsor-and-cio,,2027-01-11,2027-01-08,39,,,,
 38,Task,36,X-P27 Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7),"X-P27 · External · owner or approver: Platform teams (program)
 Duration 0 working days · end of wk 14 · total float 47 d · predecessors: —
 If decided late: Monitor mode has no device certificates to authenticate, and the NAC rollout waits
@@ -174,12 +174,12 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/1
 48,Task,44,"N5.3 Hardening: Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, monitoring dashboards","N5.3 · Task · owner or approver: DNS/DDI team
 Duration 15 working days · wk 33–35 · total float 52 d · predecessors: N1.4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-6-policy-and-compliance-hardening",fmw,fmw-network-access,fmw-id-n5.3,task,owner-dns-ddi-team,,2027-08-16,2027-09-03,51,,,,
-49,Task,44,D-N12 Decommission AD DNS and Windows DHCP,"D-N12 · Decision · owner or approver: Sponsor and CIO
+49,Task,44,D-N12 Decommission AD DNS and Windows DHCP,"D-N12 · Decision · owner or approver: Executive sponsor and CIO
 Duration 0 working days · end of wk 44 · total float 0 · predecessors: N5.1, N5.2
 Options: Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone
 If decided late: Legacy DNS servers and their DnsAdmins exposure stay in service into the program's AD retirement phase
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-5-decommission-ad-dns-and-dhcp",fmw,fmw-network-access,fmw-id-d-n12,decision,owner-sponsor-and-cio,critical-path,2027-11-03,2027-11-02,50,,,,
-50,Task,44,N5.4 Legacy DNS servers retired in order; exports archived; records officer confirms disposition; 7-day burn-in,"N5.4 · Task · owner or approver: AD administrators
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-5-decommission-ad-dns-and-dhcp",fmw,fmw-network-access,fmw-id-d-n12,decision,owner-executive-sponsor-and-cio,critical-path,2027-11-03,2027-11-02,50,,,,
+50,Task,44,"N5.4 Legacy DNS servers and Windows DHCP servers retired in order, DHCP de-authorized last; exports archived; records officer confirms disposition; 7-day burn-in","N5.4 · Task · owner or approver: AD administrators
 Duration 10 working days · wk 44–46 · total float 0 · predecessors: D-N12
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-5-decommission-ad-dns-and-dhcp",fmw,fmw-network-access,fmw-id-n5.4,task,owner-ad-administrators,critical-path,2027-11-03,2027-11-16,51,,,,
 51,Task,44,"NG5 Gate 5 — Legacy name services retired, evidence complete","NG5 · Gate · owner or approver: DNS/DDI team

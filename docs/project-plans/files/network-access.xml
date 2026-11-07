@@ -91,8 +91,8 @@
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>Sponsor and CIO</Contact>
-      <Notes>Owner or approver: Sponsor and CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Source: ../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table</Notes>
     </Task>
     <Task>
@@ -142,8 +142,8 @@ Source: ../books/b08-ddi/12-selection-cost-and-residual-risk.md#selection-criter
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Sponsor and CIO</Contact>
-      <Notes>Owner or approver: Sponsor and CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Options: SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation)
 If decided late: Coexistence can't be deployed, and the pilot division's DNS move (program P2.6) has nothing to move onto
 Source: ../books/b08-ddi/12-selection-cost-and-residual-risk.md#comparing-the-platform-models</Notes>
@@ -470,8 +470,8 @@ Source: ../books/b08-ddi/10-migration-sequence.md#phase-4-cloud-federation</Note
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Sponsor and CIO</Contact>
-      <Notes>Owner or approver: Sponsor and CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Options: An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations
 If decided late: The control plane can't be built or hardened, and the pilot waits
 Source: ../books/b09-network/11-field-office-wan-transformation.md#risks-and-mitigations</Notes>
@@ -873,8 +873,8 @@ Source: ../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step</
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Sponsor and CIO</Contact>
-      <Notes>Owner or approver: Sponsor and CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Options: NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access
 If decided late: Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on
 Source: ../books/b09-network/07-network-access-control.md#what-can-replace-it</Notes>
@@ -1125,8 +1125,8 @@ Source: ../books/b08-ddi/10-migration-sequence.md#phase-6-policy-and-compliance-
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Sponsor and CIO</Contact>
-      <Notes>Owner or approver: Sponsor and CIO
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
 Options: Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone
 If decided late: Legacy DNS servers and their DnsAdmins exposure stay in service into the program's AD retirement phase
 Source: ../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp</Notes>
@@ -1146,7 +1146,7 @@ Source: ../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-an
     <Task>
       <UID>50</UID>
       <ID>50</ID>
-      <Name>N5.4 Legacy DNS servers retired in order; exports archived; records officer confirms disposition; 7-day burn-in</Name>
+      <Name>N5.4 Legacy DNS servers and Windows DHCP servers retired in order, DHCP de-authorized last; exports archived; records officer confirms disposition; 7-day burn-in</Name>
       <OutlineNumber>6.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-11-03T08:00:00</Start>

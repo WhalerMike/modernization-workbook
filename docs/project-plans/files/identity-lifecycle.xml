@@ -188,7 +188,7 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment<
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-01-11T08:00:00</Start>
-      <Finish>2027-01-26T17:00:00</Finish>
+      <Finish>2027-02-05T17:00:00</Finish>
     </Task>
     <Task>
       <UID>8</UID>
@@ -201,8 +201,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment<
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>HR, with identity engineering</Contact>
-      <Notes>Owner or approver: HR, with identity engineering
+      <Contact>ICAM governance body, with HR and identity engineering</Contact>
+      <Notes>Owner or approver: ICAM governance body, with HR and identity engineering
 Options: The HCM person number; another HR key; a minted enterprise key
 If decided late: The authority map can't be signed; the critical path waits
 Source: ../books/b03-hr-identity/04-attribute-authority.md</Notes>
@@ -237,7 +237,7 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
     <Task>
       <UID>10</UID>
       <ID>10</ID>
-      <Name>I1.2 Attribute authority map signed</Name>
+      <Name>I1.2 Attribute authority map signed (HR's part is program decision D02)</Name>
       <OutlineNumber>2.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-18T08:00:00</Start>
@@ -245,8 +245,8 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
       <Duration>PT24H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
-      <Contact>HR</Contact>
-      <Notes>Owner or approver: HR
+      <Contact>ICAM governance body</Contact>
+      <Notes>Owner or approver: ICAM governance body
 Source: ../books/b03-hr-identity/04-attribute-authority.md</Notes>
       <PredecessorLink>
         <PredecessorUID>9</PredecessorUID>
@@ -374,14 +374,14 @@ Source: ../books/b03-hr-identity/09-credentials-and-certificates.md</Notes>
       <Name>IG1 Gate 1 — Authority and schema signed</Name>
       <OutlineNumber>2.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-01-26T17:00:00</Start>
-      <Finish>2027-01-26T17:00:00</Finish>
+      <Start>2027-02-05T17:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
       <Contact>ISSO</Contact>
       <Notes>Owner or approver: ISSO
-Criteria: Identifier decision, authority map and schema signed; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list
+Criteria: Identifier decision, authority map and schema signed; privacy basis (routine use, PIA update, minimized attribute set) in place; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list
 Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema</Notes>
       <PredecessorLink>
         <PredecessorUID>11</PredecessorUID>
@@ -407,6 +407,12 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authorit
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
     </Task>
     <Task>
       <UID>17</UID>
@@ -416,7 +422,7 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authorit
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-01-26T08:00:00</Start>
-      <Finish>2027-02-09T17:00:00</Finish>
+      <Finish>2027-02-11T17:00:00</Finish>
     </Task>
     <Task>
       <UID>18</UID>
@@ -487,8 +493,8 @@ Source: ../books/b03-hr-identity/08-joiner-mover-leaver.md</Notes>
       <Name>I2.4 End-to-end proof in the test tenant, including device retire and test-CA revocation</Name>
       <OutlineNumber>3.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-04T08:00:00</Start>
-      <Finish>2027-02-09T17:00:00</Finish>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-02-11T17:00:00</Finish>
       <Duration>PT32H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -526,8 +532,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and
       <Name>IG2 Gate 2 — Pipeline proven end to end</Name>
       <OutlineNumber>3.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-09T17:00:00</Start>
-      <Finish>2027-02-09T17:00:00</Finish>
+      <Start>2027-02-11T17:00:00</Start>
+      <Finish>2027-02-11T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -549,8 +555,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and
       <OutlineNumber>4</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-01-27T08:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
     </Task>
     <Task>
       <UID>24</UID>
@@ -558,8 +564,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and
       <Name>I3.1 Two provisioning agents under a gMSA with OU-scoped rights</Name>
       <OutlineNumber>4.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-01-27T08:00:00</Start>
-      <Finish>2027-01-28T17:00:00</Finish>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-02-09T17:00:00</Finish>
       <Duration>PT16H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -579,8 +585,8 @@ Source: ../books/b03-hr-identity/05-the-provisioning-pipeline.md</Notes>
       <Name>I3.2 Initial full sync with scoping filters; mismatches reconciled</Name>
       <OutlineNumber>4.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-10T08:00:00</Start>
-      <Finish>2027-02-12T17:00:00</Finish>
+      <Start>2027-02-12T08:00:00</Start>
+      <Finish>2027-02-16T17:00:00</Finish>
       <Duration>PT24H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -612,8 +618,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pil
       <Name>I3.3 Shadow mode on the pilot cohort; every difference explained</Name>
       <OutlineNumber>4.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-15T08:00:00</Start>
-      <Finish>2027-02-19T17:00:00</Finish>
+      <Start>2027-02-17T08:00:00</Start>
+      <Finish>2027-02-23T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -633,8 +639,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pil
       <Name>D-I4 Let the pipeline act on the pilot cohort</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-19T17:00:00</Start>
-      <Finish>2027-02-19T17:00:00</Finish>
+      <Start>2027-02-23T17:00:00</Start>
+      <Finish>2027-02-23T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -656,8 +662,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pil
       <Name>I3.4 Delta feeds live; first joiner/mover/leaver cycle closes with evidence</Name>
       <OutlineNumber>4.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-22T08:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Start>2027-02-24T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
       <Duration>PT24H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -677,8 +683,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pil
       <Name>IG3 Gate 3 — HR feed live for the foundation scope</Name>
       <OutlineNumber>4.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-24T17:00:00</Start>
-      <Finish>2027-02-24T17:00:00</Finish>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -700,8 +706,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pil
       <OutlineNumber>5</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-02-25T08:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
     </Task>
     <Task>
       <UID>31</UID>
@@ -709,8 +715,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pil
       <Name>I4.1 Leaver automation on for covered populations; block and revocation intervals measured</Name>
       <OutlineNumber>5.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-25T08:00:00</Start>
-      <Finish>2027-03-10T17:00:00</Finish>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -730,8 +736,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automati
       <Name>I4.2 Exception routes: emergency terminations, litigation holds</Name>
       <OutlineNumber>5.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-02-25T08:00:00</Start>
-      <Finish>2027-03-03T17:00:00</Finish>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
       <Duration>PT40H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -751,8 +757,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automati
       <Name>I4.3 Joiner and mover automation; rehire and conversion matching validated</Name>
       <OutlineNumber>5.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-11T08:00:00</Start>
-      <Finish>2027-03-24T17:00:00</Finish>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-03-26T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -772,8 +778,8 @@ Source: ../books/b03-hr-identity/08-joiner-mover-leaver.md</Notes>
       <Name>I4.4 Hand-kept groups converted to rules, shadow-compared one by one</Name>
       <OutlineNumber>5.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-04T08:00:00</Start>
-      <Finish>2027-04-07T17:00:00</Finish>
+      <Start>2027-03-08T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
       <Duration>PT200H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -793,8 +799,8 @@ Source: ../books/b03-hr-identity/10-from-attributes-to-access.md</Notes>
       <Name>I4.5 Access packages re-based on the supervisor of record</Name>
       <OutlineNumber>5.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-03-25T08:00:00</Start>
-      <Finish>2027-04-07T17:00:00</Finish>
+      <Start>2027-03-29T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -814,8 +820,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automati
       <Name>I4.6 A full pay-period cycle with zero missed leavers; test reorganization</Name>
       <OutlineNumber>5.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-08T08:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -853,8 +859,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automati
       <Name>IG4 Gate 4 — Lifecycle automated</Name>
       <OutlineNumber>5.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-21T17:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -876,8 +882,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automati
       <OutlineNumber>6</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
-      <Start>2027-01-27T08:00:00</Start>
-      <Finish>2027-06-30T17:00:00</Finish>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
     </Task>
     <Task>
       <UID>39</UID>
@@ -885,13 +891,13 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automati
       <Name>D-I3 Source of authority for contractors and other non-employees</Name>
       <OutlineNumber>6.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-01-26T17:00:00</Start>
-      <Finish>2027-01-26T17:00:00</Finish>
+      <Start>2027-02-05T17:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>HR</Contact>
-      <Notes>Owner or approver: HR
+      <Contact>ICAM governance body</Contact>
+      <Notes>Owner or approver: ICAM governance body
 Options: Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact
 If decided late: Contractors stay on COR spreadsheets; their cutover can't be planned
 Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
@@ -908,8 +914,8 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
       <Name>D-I5 Order of populations to cut over, aligned to the Core HCM onboarding</Name>
       <OutlineNumber>6.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-21T17:00:00</Start>
-      <Finish>2027-04-21T17:00:00</Finish>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -931,8 +937,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population
       <Name>I5.1 Employee populations retargeted to the Entra app, one by one, evidence-gated</Name>
       <OutlineNumber>6.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-04-22T08:00:00</Start>
-      <Finish>2027-06-16T17:00:00</Finish>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-06-18T17:00:00</Finish>
       <Duration>PT320H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -952,8 +958,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population
       <Name>I5.2 Contractor populations onboarded from their decided source and retargeted</Name>
       <OutlineNumber>6.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-05-06T08:00:00</Start>
-      <Finish>2027-06-16T17:00:00</Finish>
+      <Start>2027-05-10T08:00:00</Start>
+      <Finish>2027-06-18T17:00:00</Finish>
       <Duration>PT240H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -979,8 +985,8 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
       <Name>I5.3 OU-bound policy retired; rollback path tested once</Name>
       <OutlineNumber>6.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-06-17T08:00:00</Start>
-      <Finish>2027-06-30T17:00:00</Finish>
+      <Start>2027-06-21T08:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
       <Duration>PT80H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>0</Milestone>
@@ -1006,8 +1012,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population
       <Name>IG5 Gate 5 — Populations cloud-mastered</Name>
       <OutlineNumber>6.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-06-30T17:00:00</Start>
-      <Finish>2027-06-30T17:00:00</Finish>
+      <Start>2027-07-02T17:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>

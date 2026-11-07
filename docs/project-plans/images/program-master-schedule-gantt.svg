@@ -61,7 +61,7 @@
 <text x="14" y="284" font-size="10.5" fill="#1e293b">P1.3  Intune policy design complete; pilot profiles stag…</text>
 <rect x="442.5" y="276" width="12.5" height="9" rx="2" fill="#DC2626"/>
 <text x="14" y="301" font-size="10.5" fill="#64748b">X-IDL  HR-to-cloud provisioning live for the foundation…</text>
-<path d="M455.0 292.0 L460.5 297.5 L455.0 303.0 L449.5 297.5 Z" fill="#059669"/>
+<path d="M460.0 292.0 L465.5 297.5 L460.0 303.0 L454.5 297.5 Z" fill="#059669"/>
 <text x="14" y="318" font-size="10.5" fill="#64748b">P1.5  Conditional Access design running in report-only (…</text>
 <line x1="435.0" y1="314.5" x2="452.5" y2="314.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="410.0" y="310" width="25.0" height="9" rx="2" fill="#2563EB"/>
@@ -91,35 +91,33 @@
 <path d="M410.0 462.0 L415.5 467.5 L410.0 473.0 L404.5 467.5 Z" fill="#D97706"/>
 <text x="14" y="488" font-size="10.5" fill="#1e293b">P1.12  Design review approved (M-021)</text>
 <rect x="455.0" y="480" width="5.0" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="505" font-size="10.5" fill="#1e293b">G1 — Foundation Complete</text>
-<path d="M460.0 496.0 L465.5 501.5 L460.0 507.0 L454.5 501.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
-<rect x="0" y="510" width="980" height="17" fill="#f8fafc"/>
-<text x="6" y="522.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Pilot division</text>
-<text x="14" y="539" font-size="10.5" fill="#64748b">D06  Device pattern for each pilot cohort</text>
-<path d="M460.0 530.0 L465.5 535.5 L460.0 541.0 L454.5 535.5 Z" fill="#D97706"/>
-<text x="14" y="556" font-size="10.5" fill="#1e293b">P2.1  Sync deployed; pilot attributes, groups, AUs and d…</text>
-<rect x="460.0" y="548" width="25.0" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="573" font-size="10.5" fill="#1e293b">P2.2  Pilot Conditional Access and Intune policies assig…</text>
-<rect x="485.0" y="565" width="12.5" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="590" font-size="10.5" fill="#1e293b">P2.3  Pilot devices moved by pattern (M-023)</text>
-<rect x="497.5" y="582" width="20.0" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="607" font-size="10.5" fill="#64748b">P2.4  First migrated GPOs unlinked from the pilot OUs</text>
-<line x1="530.0" y1="603.5" x2="535.0" y2="603.5" stroke="#cbd5e1" stroke-width="2"/>
-<rect x="517.5" y="599" width="12.5" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="624" font-size="10.5" fill="#64748b">P2.5  PIM for every pilot administrator (M-026)</text>
-<line x1="497.5" y1="620.5" x2="535.0" y2="620.5" stroke="#cbd5e1" stroke-width="2"/>
-<rect x="485.0" y="616" width="12.5" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="641" font-size="10.5" fill="#64748b">P2.6  Division DNS migrated, DHCP re-homed, hybrid resol…</text>
+<text x="14" y="505" font-size="10.5" fill="#1e293b">P1.13  Pilot servers connected through Arc with machine…</text>
+<rect x="435.0" y="497" width="25.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="522" font-size="10.5" fill="#1e293b">G1 — Foundation Complete</text>
+<path d="M460.0 513.0 L465.5 518.5 L460.0 524.0 L454.5 518.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="527" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="539.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Pilot division</text>
+<text x="14" y="556" font-size="10.5" fill="#64748b">D06  Device pattern for each pilot cohort</text>
+<path d="M460.0 547.0 L465.5 552.5 L460.0 558.0 L454.5 552.5 Z" fill="#D97706"/>
+<text x="14" y="573" font-size="10.5" fill="#1e293b">P2.1  Sync deployed; pilot attributes, groups, AUs and d…</text>
+<rect x="460.0" y="565" width="25.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="590" font-size="10.5" fill="#1e293b">P2.2  Pilot Conditional Access and Intune policies assig…</text>
+<rect x="485.0" y="582" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="607" font-size="10.5" fill="#1e293b">P2.3  Pilot devices moved by pattern (M-023)</text>
+<rect x="497.5" y="599" width="20.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="624" font-size="10.5" fill="#1e293b">P2.4  First migrated GPOs unlinked from the pilot OUs, a…</text>
+<rect x="547.5" y="616" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="641" font-size="10.5" fill="#64748b">P2.5  PIM for every pilot administrator (M-026)</text>
 <line x1="497.5" y1="637.5" x2="535.0" y2="637.5" stroke="#cbd5e1" stroke-width="2"/>
-<rect x="460.0" y="633" width="37.5" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="658" font-size="10.5" fill="#1e293b">P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verif…</text>
-<rect x="517.5" y="650" width="17.5" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="675" font-size="10.5" fill="#64748b">P2.8  Certificate-based authentication for PIV and CAC h…</text>
-<line x1="505.0" y1="671.5" x2="535.0" y2="671.5" stroke="#cbd5e1" stroke-width="2"/>
-<rect x="485.0" y="667" width="20.0" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="692" font-size="10.5" fill="#64748b">P2.9  Pilot servers under Arc with machine configuration…</text>
-<line x1="485.0" y1="688.5" x2="535.0" y2="688.5" stroke="#cbd5e1" stroke-width="2"/>
-<rect x="460.0" y="684" width="25.0" height="9" rx="2" fill="#2563EB"/>
+<rect x="485.0" y="633" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="658" font-size="10.5" fill="#64748b">P2.6  Division DNS migrated, DHCP re-homed, hybrid resol…</text>
+<line x1="497.5" y1="654.5" x2="535.0" y2="654.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="460.0" y="650" width="37.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="675" font-size="10.5" fill="#1e293b">P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verif…</text>
+<rect x="517.5" y="667" width="17.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">P2.8  Certificate-based authentication for PIV and CAC h…</text>
+<line x1="505.0" y1="688.5" x2="535.0" y2="688.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="485.0" y="684" width="20.0" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="709" font-size="10.5" fill="#64748b">P2.10  Rollback rehearsed surface by surface</text>
 <line x1="525.0" y1="705.5" x2="535.0" y2="705.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="517.5" y="701" width="7.5" height="9" rx="2" fill="#2563EB"/>
@@ -155,7 +153,7 @@
 <text x="6" y="947.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Legacy retirement</text>
 <text x="14" y="964" font-size="10.5" fill="#64748b">D08  End dates for legacy authentication and NTLM</text>
 <path d="M560.0 955.0 L565.5 960.5 L560.0 966.0 L554.5 960.5 Z" fill="#D97706"/>
-<text x="14" y="981" font-size="10.5" fill="#64748b">P4.1  Migrated GPOs retired</text>
+<text x="14" y="981" font-size="10.5" fill="#64748b">P4.1  Migrated GPOs disabled and held as the rollback ne…</text>
 <line x1="822.5" y1="977.5" x2="872.5" y2="977.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="810.0" y="973" width="12.5" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="998" font-size="10.5" fill="#64748b">P4.2  OU-based security groups retired</text>
@@ -164,7 +162,7 @@
 <text x="14" y="1015" font-size="10.5" fill="#64748b">P4.3  AD-integrated DNS zones moved, except the domain&#x27;s…</text>
 <line x1="847.5" y1="1011.5" x2="872.5" y2="1011.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="810.0" y="1007" width="37.5" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="1032" font-size="10.5" fill="#64748b">P4.4  AD-authorized DHCP retired</text>
+<text x="14" y="1032" font-size="10.5" fill="#64748b">P4.4  DHCP scopes moved off the AD-authorized servers (d…</text>
 <line x1="860.0" y1="1028.5" x2="885.0" y2="1028.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="847.5" y="1024" width="12.5" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="1049" font-size="10.5" fill="#64748b">P4.5  User and device issuance off AD CS; smart-card log…</text>
