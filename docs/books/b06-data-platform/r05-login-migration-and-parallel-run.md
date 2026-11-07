@@ -22,7 +22,7 @@ lifecycle_review: 2027-04-01
 Generating the Entra logins from the audit (dry run first), creating Entra database users beside the existing Windows users, the 30-day parallel-run window and its exit criteria, cutover by disabling the superseded Windows logins, the rollback that disabling makes instant, and remediating an enabled `sa` account. Every step that runs T-SQL against an instance is review-required.
 :::
 
-**Pairs with:** [Chapter 11 — Three Principal Types: User, Group, Service Principal](11-three-principal-types.md) and [Chapter 12 — What the Engine-Authentication Decision Settles](12-the-engine-authentication-decision.md). Those chapters explain why the migration is a parallel run rather than a big-bang cutover, under the program's consolidation-gated, parallel-run decision; this runbook is the T-SQL and the validation that make it safe.
+**Pairs with:** [Chapter 11 — Three Principal Types: User, Group, Service Principal](11-three-principal-types.md) and [Chapter 12 — What the Engine-Authentication Decision Settles](12-the-engine-authentication-decision.md). Those chapters explain why the migration is a parallel run rather than a big-bang cutover, under the SQL Server engine-authentication decision; this runbook is the T-SQL and the validation that make it safe.
 
 ::: {.callout-important}
 ## Automation status and production safety
