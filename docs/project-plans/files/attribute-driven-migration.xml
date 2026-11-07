@@ -1249,7 +1249,7 @@ Source: ../books/guides/attribute-driven-migration.md#attribute-to-mechanism-cro
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
       <Start>2027-02-25T08:00:00</Start>
-      <Finish>2027-10-01T17:00:00</Finish>
+      <Finish>2027-09-10T17:00:00</Finish>
     </Task>
     <Task>
       <UID>55</UID>
@@ -1366,11 +1366,11 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
     <Task>
       <UID>60</UID>
       <ID>60</ID>
-      <Name>X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5)</Name>
+      <Name>X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start)</Name>
       <OutlineNumber>7.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
-      <Start>2027-10-01T17:00:00</Start>
-      <Finish>2027-10-01T17:00:00</Finish>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
@@ -1379,7 +1379,7 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
 If decided late: Issuance moves off AD CS with no writer for the binding
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
-      <ConstraintDate>2027-10-01T17:00:00</ConstraintDate>
+      <ConstraintDate>2027-09-10T17:00:00</ConstraintDate>
       <PredecessorLink>
         <PredecessorUID>59</PredecessorUID>
         <Type>1</Type>

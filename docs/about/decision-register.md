@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **143** workbook decisions: 140 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
+There are **144** workbook decisions: 141 settled, 0 challenged and 3 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -177,6 +177,7 @@ There are **143** workbook decisions: 140 settled, 0 challenged and 3 superseded
 | [WD-141](#wd-141) | 2026-11-06 | How does the Entra profile keep WD-134 (Guest by default) when the product default differs? | Microsoft Learn | settled |
 | [WD-142](#wd-142) | 2026-11-06 | When are the cloud pair for Government-cloud partners and the unverified source items settled? | Workbook design | settled |
 | [WD-143](#wd-143) | 2026-11-06 | When do the sources for the partner chapter enter the Source Register? | Workbook design | settled |
+| [WD-144](#wd-144) | 2026-11-06 | Does the drift pipeline keep the OSCAL Assessment Results and POA&M export added in | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2483,6 +2484,22 @@ There are **143** workbook decisions: 140 settled, 0 challenged and 3 superseded
 | **Defined in** | — |
 
 [Agree, disagree or send evidence on WD-143](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-143%3A+)
+
+### WD-144: Does the drift pipeline keep the OSCAL Assessment Results and POA&M export added in {#wd-144}
+
+| | |
+|---|---|
+| **Options considered** | Remove the export; Keep the export, with its pinned OSCAL 1.2.3 schemas, tests and the *Building the Attribute-Driven Migration* Chapter 09 lab step |
+| **Choice** | The export stays: the drift pipeline writes OSCAL 1.2.3 Assessment Results and a plan of action and milestones from a clean run, validated against the pinned schemas, and *Building the Attribute-Driven Migration* Chapter 09 carries a lab step that runs it. |
+| **Rationale** | It gives the ISSO the pipeline's evidence in the machine-readable form the federal assessment tools take and it is covered by its own tests. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Chapter 09 — Drift Pipelines and Evidence to the ISSO](../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md) |
+| **Date** | 2026-11-06 |
+| **Status** | settled |
+| **Defined in** | [#393](https://github.com/WhalerMike/modernization-workbook/pull/393), [#401](https://github.com/WhalerMike/modernization-workbook/pull/401) |
+
+[Agree, disagree or send evidence on WD-144](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-144%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

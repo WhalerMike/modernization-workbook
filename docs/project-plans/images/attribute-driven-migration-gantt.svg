@@ -164,7 +164,7 @@
 <text x="14" y="1032" font-size="10.5" fill="#64748b">D-A7  Who writes the binding after AD</text>
 <path d="M504.0 1023.0 L509.5 1028.5 L504.0 1034.0 L498.5 1028.5 Z" fill="#D97706"/>
 <text x="14" y="1049" font-size="10.5" fill="#64748b">X-P45  User and device issuance off AD CS; smart-card lo…</text>
-<path d="M945.0 1040.0 L950.5 1045.5 L945.0 1051.0 L939.5 1045.5 Z" fill="#059669"/>
+<path d="M900.0 1040.0 L905.5 1045.5 L900.0 1051.0 L894.5 1045.5 Z" fill="#059669"/>
 <text x="14" y="1066" font-size="10.5" fill="#64748b">AG6  Gate 6 — PIV binding proven on the pilot</text>
 <path d="M504.0 1057.0 L509.5 1062.5 L504.0 1068.0 L498.5 1062.5 Z" fill="#7C3AED"/>
 <rect x="0" y="1071" width="980" height="17" fill="#f8fafc"/>

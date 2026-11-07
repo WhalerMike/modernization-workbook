@@ -42,7 +42,7 @@ Where `examples/servicenow-sailpoint` sits in Book 13's five-step loop, and the 
 
 ## The loop, and where the kit sits
 
-[Book 13, Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-coordination-loop) gives the loop: test, detect drift, raise a typed task, actuate on the native surface, close with evidence. The kit builds the identity half of three steps and leaves actuation to a later pass, as [the implementation example](../../../books/guides/snow-sailpoint-integration-kit.md#what-pass-1-builds) says.
+[Book 13, Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#the-coordination-loop) gives the loop: test, detect drift, raise a typed task, actuate on the native surface, close with evidence. The kit has three builds in Pass 1 that cover four of the steps, and leaves actuation to a later pass, as [the implementation example](../../../books/guides/snow-sailpoint-integration-kit.md#what-pass-1-builds) says.
 
 | Loop step | What does it in the kit | Chapter |
 |---|---|---|

@@ -143,8 +143,12 @@ Each AI finding is an instance of one of the five drift classes in [Book 13, Cha
 | An AI system with no organizational placement | The identity record lacks the placement attribute every governed principal carries | Schema | P2 | Within its operation class's ceiling | Identity engineering |
 | PII with no privacy impact assessment reference | `has_pii` is Yes and no PIA in the privacy office's register covers the system | Provenance | P2 (pinned) | Never | Privacy officer |
 | An unsanctioned generative AI service in use | A discovered service with no authorization verdict | Authorization | P2 (pinned) | Never | The SaaS authorization gate of Book 15, Chapter 06 |
+| An inventory entry with no development stage recorded | A use case whose stage column is empty, so the stage-dependent checks cannot run | Provenance | P2 | Never | Inventory coordinator |
+| A retired AI system whose identity still holds access | An inventory entry reported as retired, with a credential, grant or role still live on a matching directory object | Identity | P1 (identity drift on a live object) | Never | Security operations first, then the identity governance officer |
+| An inventory entry with no contact | A use case whose contact field is empty, so no person can be asked about it | Provenance | P2 | Never | Identity governance officer |
+| A non-agentic AI system with no identity record | An inventory entry classified as not agentic, with no identity record for any directory object it uses | Identity | P2 | Never | System owner and identity engineering |
 
-Five rows need comment.
+Five of the rows need comment; the four inventory-quality and leaver rows at the end of the table take P2 except the retired system that still holds access, which is P1 because it is identity drift on a live object.
 
 The **agentic AI system with no governed identity** is the finding this book exists to prevent. An AI system that can act, not just answer, and has no identity record behind it is a principal nobody owns holding access nobody reviews. Book 13's default rule makes identity drift on a live object P1, and the program keeps it there: it halts, it alerts a named person, and nothing remediates it automatically, because the right fix might be to issue an identity, to disable an agent that turns out to be unwanted, or to correct an inventory entry that misclassified a chatbot as an agent. Those are decisions, not repairs.
 
@@ -189,6 +193,10 @@ The control column uses SP 800-53 Rev. 5. The program's mapping, which is design
 | No organizational placement | IA-4, AC-2 |
 | PII with no PIA | RA-8 (privacy impact assessments) |
 | Unsanctioned generative AI service | SA-9 and AC-20, as in Book 15, Chapter 06 |
+| No development stage recorded | CM-8 (system component inventory), PM-5 (system inventory) |
+| Retired system still holding access | AC-2 (account management), IA-5 (authenticator management), CM-8 |
+| No contact | AC-2, CM-8(4) (accountability information) |
+| Non-agentic system with no identity record | AC-2, IA-4 (identifier management) |
 
 The source design for this mapping cited PT-2 as the privacy impact assessment control and AR-2 for privacy risk assessment. In Rev. 5, PT-2 is *Authority to Process Personally Identifiable Information*, the privacy impact assessment control is RA-8, and the AR family from Rev. 4's privacy appendix no longer exists; the table is corrected accordingly.[^c07-sp80053] It also drops CA-8 (penetration testing) and SI-7 (software integrity), which don't describe the gaps those findings measure.
 

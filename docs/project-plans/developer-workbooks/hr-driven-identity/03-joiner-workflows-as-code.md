@@ -403,7 +403,7 @@ rm -rf exports out/ch03 out/ch03-vk
 
 <!-- labs:end -->
 
-1. **Export.** Register a reader app with a certificate and grant `LifecycleWorkflows-Workflow.Read.All` with admin consent. Then put a token for it in `HRLC_GRAPH_TOKEN` and export:
+1. **Export.** Register a reader app with a certificate and grant `LifecycleWorkflows-Workflow.Read.All` with admin consent, plus `EntitlementManagement.Read.All`, `LifecycleWorkflows-Reports.Read.All`, `User-LifeCycleInfo.Read.All` and `User.Read.All` for the readiness export in step 6. Then put a token for it in `HRLC_GRAPH_TOKEN` and export:
 
    ```bash
    export HRLC_GRAPH_TOKEN='<graph-token>'

@@ -1,16 +1,16 @@
 # Research: Infoblox DDI for Federal Agencies — technical deep dive
 
-An hour-long technical presentation on Infoblox DNS, DHCP and IPAM (NIOS Grid and Universal DDI) for federal agencies, built with the shared deck kit in [`../_build/`](../_build/README.md). It is an under-review item in the workbook's [Evaluations](../../docs/evaluations/index.md) section ([docs/evaluations/infoblox-ddi-federal.md](../../docs/evaluations/infoblox-ddi-federal.md)), not part of the vendor-neutral workbook books. The title slide labels it "Research — program analysis, under review", and the closing notes say it is the program's research analysis, not an endorsement by any federal agency. No specific federal agency is named. This folder sits outside `docs/`, so the site doesn't render it.
+A half-hour technical presentation on Infoblox DNS, DHCP and IPAM (NIOS Grid and Universal DDI) for federal agencies, built with the shared deck kit in [`../_build/`](../_build/README.md). It is an under-review item in the workbook's [Evaluations](../../docs/evaluations/index.md) section ([docs/evaluations/infoblox-ddi-federal.md](../../docs/evaluations/infoblox-ddi-federal.md)), not part of the vendor-neutral workbook books. The title slide labels it "Research — program analysis, under review", and the closing notes say it is the program's research analysis, not an endorsement by any federal agency. No specific federal agency is named. This folder sits outside `docs/`, so the site doesn't render it.
 
-The deck has a 5-minute orientation, then two parts (about 28 and 26 minutes), in four modules; about 60 minutes of narration in all. Each module opens with a divider slide, so the modules can be watched separately:
+The deck has a 3-minute orientation, then two parts (about 13 and 12 minutes), in four modules; about 28 minutes of narration in all, as measured from the speaker notes and the recorded video. Each module opens with a divider slide, so the modules can be watched separately:
 
 | Part | Module | Minutes |
 |---|---|---|
-| Orientation | Title; DNS, DHCP and IPAM as one control plane; what federal rules require (and that none names a vendor) | 5 |
-| 1 — The platform and the case for it | 1. The platform: Grid, Universal DDI and its limits, DNS, DHCP and IPAM, Threat Defense, automation and logging | 12 |
-| | 2. Why Infoblox, and why federal networks need what it does: requirement-to-feature map, FedRAMP scope, Trinzic hardware against the workbook's design, Trinzic alone or with cloud DDI, assurance, comparison, risks and procurement asks | 16 |
-| 2 — Divisions under central governance | 3. Divisions on NIOS: permissions, scoping, views and extensible attributes, approvals (the CSV gap), sign-in, Microsoft servers, what stays central, reporting, separating DNS, DHCP and IPAM by team, service teams and divisions together | 16 |
-| | 4. Universal DDI divisions and the operating model: access views and IPAM Federation, four patterns, worked example, responsibility matrix, rollout | 10 |
+| Orientation | Title; DNS, DHCP and IPAM as one control plane; what federal rules require (and that none names a vendor) | 3 |
+| 1 — The platform and the case for it | 1. The platform: Grid, Universal DDI and its limits, DNS, DHCP and IPAM, Threat Defense, automation and logging | 5 |
+| | 2. Why Infoblox, and why federal networks need what it does: requirement-to-feature map, FedRAMP scope, Trinzic hardware against the workbook's design, Trinzic alone or with cloud DDI, assurance, comparison, risks and procurement asks | 8 |
+| 2 — Divisions under central governance | 3. Divisions on NIOS: permissions, scoping, views and extensible attributes, approvals (the CSV gap), sign-in, Microsoft servers, what stays central, reporting, separating DNS, DHCP and IPAM by team, service teams and divisions together | 7 |
+| | 4. Universal DDI divisions and the operating model: access views and IPAM Federation, four patterns, worked example, responsibility matrix, rollout | 5 |
 
 | File | Use |
 |---|---|

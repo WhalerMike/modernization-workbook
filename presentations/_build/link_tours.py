@@ -121,6 +121,15 @@ The title slide carries the Date Code of the build and the chapter's review stat
     dates = tours.setdefault("_dates", {})
     dates[wb] = when
 
+def covered(wb, rows):
+    """"Every chapter has" when each chapter page has a tour, else "Chapters 01 to NN each have"."""
+    pages = [f for f in (ROOT / WB[wb][0]).glob("[0-9][0-9]-*.md")]
+    if len(rows) >= len(pages):
+        return "Every chapter has"
+    nums = sorted(r[0] for r in rows)
+    return f"Chapters {nums[0]} to {nums[-1]} each have"
+
+
 # Workbook indexes: a "Narrated chapter tours" section before "## How each chapter is built" is replaced or added after the chapter table.
 dates = tours.pop("_dates", {})
 for wb, rows in tours.items():
@@ -132,7 +141,7 @@ for wb, rows in tours.items():
     docs = "../" * (len(idx.relative_to(ROOT).parts) - 2)  # docs/
     md = MARKED.sub("", md)
     lines = ["## Narrated chapter tours", "",
-             f"Every chapter has a narrated tour: a deck in Why, What, Who and How order, a self-running edition with captions, and a video. "
+             f"{covered(wb, rows)} a narrated tour: a deck in Why, What, Who and How order, a self-running edition with captions, and a video. "
              f"The tours were recorded on {dates[wb]} from the approved chapters, and a tour is re-recorded when its chapter changes. "
              + (f"All of them are also on the [Watch page]({docs}presentations/watch.md)." if all(r[6] for r in rows)
                 else "The videos and decks follow on the Watch page and the edition's Release when they are uploaded; until then each deck links to its folder on GitHub."), "",

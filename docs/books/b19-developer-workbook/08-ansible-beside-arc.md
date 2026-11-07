@@ -135,8 +135,9 @@ Three rules fail closed. An owner value the script doesn't know stops it: `updat
 
 - no wave is given, or the wave has no ready server;
 - `arc_cloud` isn't `AzureCloud` or `AzureUSGovernment`, or a server's region belongs to the other cloud (a `usgov` or `usdod` region needs `AzureUSGovernment`, and no other region does);
-- a production server is planned in wave 0 or 1, which the Arc track keeps for non-production (*design guidance*);
-- a server has no `config_owner` or `patch_owner`.
+- a production server is planned in wave 0 or 1, which the Arc track keeps for non-production (*design guidance*).
+
+A server with no `config_owner` or `patch_owner` doesn't stop the plan: the inventory blocks that server before the plan sees it, and the plan lists it as blocked.
 
 Both onboarding playbooks import it as their first play. If the plan stops, no server is contacted.
 
@@ -157,7 +158,7 @@ Both onboarding playbooks import it as their first play. If the plan stops, no s
 |---|---|---|
 | `test_inventory.py` | 29 | The new column: owner groups and tags, waves, blocked candidates and their reasons, unknown owners and waves fail, the sample is commercial Azure |
 | `test_read_only.py` | 39 | Both onboarding playbooks start with the plan, target one wave, check both owners, run in batches and are gated; Microsoft's role only with `confirm_change`, with the CMDB's values |
-| `test_local_runs.py` | 14 | The plan is written, and stops on an empty wave, a production server in the pilot, a region from the other cloud and a missing patch owner; both dry runs leave nothing behind and make no network request; 06 refuses Azure Government |
+| `test_local_runs.py` | 14 | The plan is written, and stops on an empty wave, a production server in the pilot, a region from the other cloud, and lists a server with a missing patch owner as blocked; both dry runs leave nothing behind and make no network request; 06 refuses Azure Government |
 | `test_microsoft_role.py` | 8 | What the pinned role does (token scope, default tag, signal, token on the command line, no owners or waves); the installed role is the pinned copy; the role can't dry-run |
 
 `run_all.sh` runs `yamllint --strict`, `ansible-lint --strict` with the production profile, a syntax check of all six playbooks, and the tests.
