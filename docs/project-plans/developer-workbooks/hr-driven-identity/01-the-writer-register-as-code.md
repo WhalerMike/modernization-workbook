@@ -78,7 +78,7 @@ What exists already isn't rebuilt. The feed that sets `active` and the date carr
 
 ### The register
 
-The file holds the guide's lifecycle rows. Each row has an `id`, the audited `activity`, an optional `auditProperty` (the `modifiedProperties` name for an `Update user` record), one `writer`, an optional `backstop`, and, for deletion, a `forbidden` list. Writers are named groups: `inbound-provisioning` (the HR app and the contractor-source app, through one middleware), `lifecycle-workflows`, `cms-integration` (Gate 5's binding writer) and the interim `ad-sync`. The file also records the register's version, who signed it and when, and the versioned scope filter, as the guide's step 2 asks.
+The file holds the guide's lifecycle rows. Each row has an `id`, the audited `activity`, an optional `auditProperty` (the `modifiedProperties` name for an `Update user` record), one `writer`, an optional `backstop`, and, for deletion, a `forbidden` list. Writers are named groups: `inbound-provisioning` (the HR app and the contractor-source app, through one middleware), `lifecycle-workflows`, `cms-integration` (Gate 5's binding writer) and the interim `ad-sync`. The file also records the register's version, who signed it and when, and the versioned scope filter, as the guide's Gate 1, step 2 asks.
 
 The `auditProperty` names (`EmployeeHireDate`, `EmployeeLeaveDateTime`, `ExtensionAttribute10`, `ExtensionAttribute11`, `CertificateUserIds`) aren't documented on Learn. They are the program's best reading, and Lab 2 confirms them against real records before the scan is trusted (verification log, row 9).
 
@@ -94,7 +94,7 @@ The `auditProperty` names (`EmployeeHireDate`, `EmployeeLeaveDateTime`, `Extensi
 | WR-06 | Finding | A backstop that is the writer itself | *Design guidance* |
 | WR-07 | Finding | Rows for the same audited change that name different writers | *Design guidance* |
 | WR-08 | Warn | The register isn't recorded as signed | The guide: the ISSO keeps the signed register |
-| WR-09 | Warn | The scope filter has no version | The guide's step 2 |
+| WR-09 | Warn | The scope filter has no version | The guide's Gate 1, step 2 |
 | WS-01 | Finding | A protected write by an identity that is neither writer nor backstop | Book 03, Chapter 11: unauthorized write |
 | WS-02 | Warn | A protected write by the backstop | *Design guidance*: the writer should have acted first |
 | WS-04 | Finding | A write by a writer the row forbids | The guide's Step 1 table |

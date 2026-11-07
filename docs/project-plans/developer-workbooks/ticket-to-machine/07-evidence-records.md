@@ -58,7 +58,7 @@ The loop's fifth clause, "emits verified, secured evidence automatically," for i
 
 Five fictional records in `tests/fixtures/evidence/closed_records.json` cover the cases: one closed in its window, one closed late, one whose evidence was edited after it closed, one cancelled as a declared exception, and one closed with no evidence at all.
 
-Window adherence is measured as Book 13 and [Book 12, Chapter 12](../../../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md#the-metric-set) define it: closures inside the window over closures judged, not a ratio of open findings that improves as new ones arrive.
+Window adherence is measured as Book 13 and [Book 12, Chapter 12](../../../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md#the-metric-set) define it: closures inside the window over closures judged, not a ratio of open findings that improves as new ones arrive. Book 13 also counts findings still open past their window, and Book 12 counts overdue items; an export of closed findings can't see those, so it gives the closure half and the overdue count comes from a query of the open findings.
 
 ### The tests
 

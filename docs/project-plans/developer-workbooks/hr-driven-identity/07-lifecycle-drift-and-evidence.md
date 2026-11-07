@@ -50,7 +50,7 @@ The evidence also has to survive. Entra's own retention is short: 30 days for au
 
 ### Which cloud, for this read
 
-The run's only new Graph read is the workforce user list (`graph_export.py --task drift-read`): `graph.microsoft.com` for GCC, `graph.microsoft.us` for GCC High and `dod-graph.microsoft.us` for DoD.[^hw07-deployments] The other inputs are the outputs of Chapters 01 to 06, the HR export and the card system's status export, which carry no host. Learn's feature availability page lists basic and advanced security and usage reports and SIEM connectivity as available in Azure Government; in GCC they are the commercial service.[^hw07-feat] The pipeline that schedules the run signs in as Book 19, Chapter 09 describes, per cloud.
+The run's only new Graph read is the workforce user list (`graph_export.py --task drift-read`): `graph.microsoft.com` for GCC, `graph.microsoft.us` for GCC High and `dod-graph.microsoft.us` for DoD.[^hw07-deployments] The other inputs are the outputs of Chapters 01, 02, 03, 04 and 06, the HR export and the card system's status export, which carry no host. Learn's feature availability page lists basic and advanced security and usage reports and SIEM connectivity as available in Azure Government; in GCC they are the commercial service.[^hw07-feat] The pipeline that schedules the run signs in as Book 19, Chapter 09 describes, per cloud.
 
 ## Start with Book 19, Chapter 09's pipeline
 
@@ -94,7 +94,7 @@ It writes the run folder once, and refuses a folder that already exists: `run.js
 | LD-03 | Finding | An enabled account that matches no worker or contractor record and no owned exception (orphan) | Book 03, Chapter 11 |
 | LD-04 | Finding | A WS-01 or WS-04 finding from Chapter 01's scan (unauthorized write), keeping Chapter 01's object key so the fingerprint is the same | Book 03, Chapter 11; Chapter 01 here |
 | LD-05 | Finding | An active PIV card for a separated worker (credential drift) | Book 03, Chapter 11 |
-| LD-06 | Finding | An active PIV card for a person the contractor source doesn't hold, or whose engagement ended (contractor credential drift) | Book 03, Chapter 11 |
+| LD-06 | Finding | An active PIV card for a person the contractor source doesn't hold, or whose engagement ended (contractor credential drift) | Book 03, Chapter 11; the "engagement ended" limb is *design guidance*, since Book 03's second limb is the reverse: a contractor record whose card was terminated or expired with the engagement still open |
 
 Severities are Book 03's defaults, which it says are the program's, not an external standard. Credential drift here reads the card system only; Intune device certificates are a join the agency adds when its Intune report is in the evidence store (*design guidance*).
 
@@ -117,7 +117,7 @@ The thresholds in `config/drift.json` are proposed starting values (*design guid
 
 - **`package`** checks the run against `run.json` and the lifecycle manifest (every file, nothing extra, one tenant, cloud and mode, no request that isn't a GET), copies it under `run/`, and writes `summary.md` (fingerprints and object keys, no names), `EVIDENCE-MANIFEST.json` (the metrics, the open findings by fingerprint, what opened and closed since the previous package, the previous package's manifest SHA-256) and `SHA256SUMS`. A previous package for another tenant, cloud or mode, or a run that isn't later, is refused.
 - **`verify`** rechecks every file against the manifest and `SHA256SUMS`, and the run inside against its own manifests.
-- **`period`** verifies every package whose window falls in the period, reports breaks in the chain and gaps in coverage, gives each metric's series, and maps what is open at the end to AC-2, AU-6, PS-4, PS-5 and CA-7. The mapping follows Book 03's [control support table](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5) and is *design guidance*: the assessor decides each control. It scores three of Gate 7's criteria and reports the fourth, the sole-source proof ([Book 03, Appendix C](../../../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr-is-the-sole-source)), as not decided by this code.
+- **`period`** verifies every package whose window falls in the period, reports breaks in the chain and gaps in coverage, gives each metric's series, and maps what is open at the end to AC-2, AU-6, PS-4, PS-5 and CA-7. The mapping follows Book 03, Chapter 11's [control support table](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5) and its text on AU-6 and CA-7, and is *design guidance*: the assessor decides each control. It scores three of Gate 7's criteria and reports the fourth, the sole-source proof ([Book 03, Appendix C](../../../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr-is-the-sole-source)), as not decided by this code.
 
 `scripts/run_example_tests.py` now lists `hr-lifecycle` with the kits whose changes also run the drift pipeline's suite, because `test_hr_evidence.py` builds its runs with this kit's code.
 
@@ -394,7 +394,7 @@ rm -rf exports out
    python python/graph_export.py --task drift-read --cloud gcc --out exports/drift
    ```
 
-2. **Run Chapters 01 to 06 against the test tenant's exports**, as each chapter's Lab 2 describes, each into its own new folder. Keep the folders those labs write (stop before their back-out steps): the next step reads `out/ch01-test`, `out/ch02-test-extract`, `out/ch03/readiness-test`, `out/ch04/residual-test` and `out/separation-test`.
+2. **Run Chapters 01, 02, 03, 04 and 06 against the test tenant's exports**, as each chapter's Lab 2 describes, each into its own new folder. Keep the folders those labs write (stop before their back-out steps): the next step reads `out/ch01-test`, `out/ch02-test-extract`, `out/ch03/readiness-test`, `out/ch04/residual-test` and `out/separation-test`.
 3. **Write a run** with `--users exports/drift/workforce-users.json`, the test tenant's ID and `--mode tenant`:
 
    ```bash
@@ -490,7 +490,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers: the agency authoriz
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 06 — Separation Timing from the Logs](06-separation-timing.md) · [Workbook index](index.md)
+[← Previous: Chapter 06 — Separation Timing from the Logs](06-separation-timing.md) · [Workbook index](index.md) · [Next: Chapter 08 — Deploying to a Test Tenant, Then to Production →](08-deploying-to-test-and-production.md)
 :::
 
 [^hw07-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026; carried from Book 19, Chapter 02).
