@@ -65,7 +65,7 @@ Every task needs an assigned ticket. No task is done from an email, a chat messa
 | Suspend a partner person | Not help desk: identity engineering executes | Tenant | Agency business owner decides on the sponsor's or security operations' request; emergency suspension follows the incident ticket | Partner record names the person and the sponsor | Disable entry; ticket; record of the suspension |
 | Terminate a partner person or end the relationship | Not help desk: identity lifecycle | Tenant | Agency business owner decides; the sponsor can't approve their own request | Partner record and access package expiry checked | Removal entries; ticket; record of the termination |
 | Change partner configuration (tenant list, cross-tenant settings, mapping) | Not help desk | Tenant | Not help desk: identity engineering through the change path; IGO owns the partner list | — | Drift findings against the partner record ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md#requirements-and-ksi-map)) |
-| Assign or remove a license | License Administrator[^aA-by-task] | User's AU | Department owner, through the identity governance platform | License isn't group-assigned (change the group instead) | "Change user license"[^aA-audit] |
+| Assign or remove a license | License Administrator[^aA-by-task] | User's AU | Manager, through the ITSM pipeline | License isn't group-assigned (change the group instead) | "Change user license"[^aA-audit] |
 | Set "on-premises sync enabled" | Hybrid Identity Administrator[^aA-by-task] | Tenant | Not help desk: identity engineering | — | "Update user" |
 
 ## Groups and application access
@@ -73,8 +73,8 @@ Every task needs an assigned ticket. No task is done from an email, a chat messa
 | Task | Least-privileged role | Scope | Approval | Verify before | Evidence |
 |---|---|---|---|---|---|
 | Add or remove a member of an access group | Group owner, or Groups Administrator scoped to the group's AU[^aA-au-roles]; Microsoft's task list also names User Administrator[^aA-by-task] | Group's AU | Identity governance platform approval (business approver, application owner) | Group isn't role-assignable, dynamic or governed by an access package | Group membership entries; ticket |
-| Assign an approved group to an enterprise app role | Custom role with `servicePrincipals/appRoleAssignedTo/update`; Microsoft's built-in alternatives are app owner, Cloud Application Administrator, Application Administrator and User Administrator[^aA-custom-apps][^aA-by-task] | One app, or tenant | Application owner (with governance officer notice and a four-business-hour hold window for Tier 1 apps, [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain)) | Group and app role named exactly in the ticket; group-based assignment needs Entra ID P1[^aA-assign] | "Add app role assignment to group"[^aA-audit] |
-| Remove a group from an enterprise app (revocation) | Same custom role | One app, or tenant | Finalized access review decision, or governance officer direction | Review decision is final, not in progress | "Remove app role assignment from group"[^aA-audit]; review ID in the ticket |
+| Assign an approved group to an enterprise app role | Custom role with `servicePrincipals/appRoleAssignedTo/update`; Microsoft's built-in alternatives are app owner, Cloud Application Administrator, Application Administrator and User Administrator[^aA-custom-apps][^aA-by-task] | One app, or tenant | Application owner (with identity governance officer notice and a four-business-hour hold window for risk Tier 1 apps, [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain)) | Group and app role named exactly in the ticket; group-based assignment needs Entra ID P1[^aA-assign] | "Add app role assignment to group"[^aA-audit] |
+| Remove a group from an enterprise app (revocation) | Same custom role | One app, or tenant | Finalized access review decision, or identity governance officer direction | Review decision is final, not in progress | "Remove app role assignment from group"[^aA-audit]; review ID in the ticket |
 | Read an app's assignments | Custom role with `appRoleAssignedTo/read`[^aA-custom-apps] | One app, or tenant | None (read-only, inside a ticket) | — | Ticket |
 | Create a security group | Groups Administrator[^aA-by-task] | Tenant | Not help desk unless delegated: identity engineering creates groups to the naming standard | — | Group creation entry |
 | Change app roles, permissions, credentials or consent | Not help desk ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#what-each-entra-role-can-actually-do)) | — | — | — | — |
@@ -86,7 +86,7 @@ Every task needs an assigned ticket. No task is done from an email, a chat messa
 | Check a user's sync state (sync enabled, last sync time, duplicates) | Read access only; any reader role | Tenant | None | — | Ticket notes |
 | Read Entra Connect Health sync errors | Azure role Reader on Connect Health (Owner and Contributor also can)[^aA-by-task] | Connect Health resource | None | — | Ticket |
 | Compare on-premises anchor and cloud `onPremisesImmutableId` | Read access in AD and Entra ID | — | None | [Script 2](#script-2-compare-the-on-premises-anchor-with-the-cloud-account) | Script output in the ticket |
-| Repair an ImmutableID mismatch or duplicate object | Not help desk. The fix is usually in AD (`mS-DS-ConsistencyGuid`); a cloud write of `onPremisesImmutableId` needs Authentication, User or Privileged Authentication Administrator for the target, not Hybrid Identity Administrator[^aA-graph-users][^aA-hardmatch] | Identity engineering | Identity engineering lead and governance officer | Target isn't privileged or role-eligible (hard match is blocked for those since July 1, 2026);[^aA-hardmatch] values supplied by the authoritative source | "Update user"; sync export log; ticket |
+| Repair an ImmutableID mismatch or duplicate object | Not help desk. The fix is usually in AD (`mS-DS-ConsistencyGuid`); a cloud write of `onPremisesImmutableId` needs Authentication, User or Privileged Authentication Administrator for the target, not Hybrid Identity Administrator[^aA-graph-users][^aA-hardmatch] | Identity engineering | Identity engineering lead and identity governance officer | Target isn't privileged or role-eligible (hard match is blocked for those since July 1, 2026);[^aA-hardmatch] values supplied by the authoritative source | "Update user"; sync export log; ticket |
 | Run a delta sync | Identity engineering on the sync server: `Start-ADSyncSyncCycle -PolicyType Delta`[^aA-scheduler] | Sync server | Identity engineering | Change is ready to export | Sync run history |
 | Change sync rules, filtering or Connect configuration | Hybrid Identity Administrator, plus server administration[^aA-by-task] | Tenant | Change advisory board | — | Change record |
 
@@ -98,23 +98,23 @@ Escalate to identity engineering and stop on any of these: a duplicate object fo
 |---|---|---|---|---|---|
 | Read a user's sign-in and audit logs | Reports Reader[^aA-by-task] | Tenant | None, inside an assigned ticket | — | Findings in the ticket; logs stay in the SIEM |
 | See which Conditional Access policies applied to a sign-in | Security Reader (reads both logs and policies)[^aA-ca-logs] | Tenant | None, inside an assigned ticket | — | Policy name and result in the ticket |
-| Diagnose a Conditional Access block | Read as above; changes are not help desk | — | Security operations, and the governance officer for exceptions | Policy and result identified | Escalation in the ticket |
-| Triage a Microsoft consent or security notification | None needed to triage; never act from the email | — | Escalate: application owner, then governance officer; security operations for risk alerts | Check the audit log for "Consent to application" events[^aA-audit] | Ticket with source, findings, escalation target and time |
+| Diagnose a Conditional Access block | Read as above; changes are not help desk | — | Security operations, and the identity governance officer for exceptions | Policy and result identified | Escalation in the ticket |
+| Triage a Microsoft consent or security notification | None needed to triage; never act from the email | — | Escalate: application owner, then identity governance officer; security operations for risk alerts | Check the audit log for "Consent to application" events[^aA-audit] | Ticket with source, findings, escalation target and time |
 | Check a device's join and compliance state | A reader role in Entra ID, and an Intune role for compliance detail | Tenant | None | — | Ticket |
 
-Microsoft notifications are triaged the same way every time. Consent request notifications go to the application owner and the governance officer and are never approved by the help desk. A sign-in risk alert goes to the security operations center with the help desk supervisor informed; the help desk can revoke the user's sessions on the incident ticket but doesn't change risk policy. A service health notice is correlated with open tickets and posted as a known issue.
+Microsoft notifications are triaged the same way every time. Consent request notifications go to the application owner and the identity governance officer and are never approved by the help desk. A sign-in risk alert goes to the security operations center with the service desk supervisor informed; the help desk can revoke the user's sessions on the incident ticket but doesn't change risk policy. A service health notice is correlated with open tickets and posted as a known issue.
 
 ## Escalation matrix
 
 | Issue | Help desk can handle | Escalate to | Trigger |
 |---|---|---|---|
-| Admin consent request | Triage only | Application owner, then governance officer | Any consent request, from any source |
+| Admin consent request | Triage only | Application owner, then identity governance officer | Any consent request, from any source |
 | Consent already granted with no matching ticket | Document only | Governance officer and security operations, immediately | Any "Consent to application" event without an approved request |
 | Enterprise-app group assignment | Yes, with the custom role and an approved ticket | Identity engineering | Assignment doesn't persist; app or group not found; approval data incomplete |
 | ImmutableID or duplicate object | Detect and document | Identity engineering | Any mismatch, duplicate or sync error |
 | Credential or method reset | Yes, for non-admins in its AUs | Identity engineering (limited admins); Tier 0 holders (privileged, protected) | Target check fails; reset fails |
-| Conditional Access block | Identify and document | Security operations; governance officer for exceptions | A policy is the confirmed cause |
-| Directory role assignment | No | Identity engineering and governance officer | Any request to assign or remove a role |
+| Conditional Access block | Identify and document | Security operations; identity governance officer for exceptions | A policy is the confirmed cause |
+| Directory role assignment | No | Identity engineering and identity governance officer | Any request to assign or remove a role |
 | App registration or service principal | No | Application owner and identity engineering | Any create, change or delete |
 | OneDrive, client-side cause | Yes | End-user device support | Reinstall fails; device policy conflict |
 | OneDrive provisioning or storage | Partly | SharePoint Administrator | Pre-provisioning or quota change needed |
@@ -146,14 +146,14 @@ These are the program's starting service levels for help desk identity tickets, 
 
 | Priority | Examples | Acknowledge | Resolve | Supervisor alerted |
 |---|---|---|---|---|
-| 1, critical | Security-driven revocation, governance-officer directed | 15 minutes | 4 hours | At half the resolution window |
-| 2, high | Access-review revocation, hybrid identity escalation | 1 hour | 8 business hours | At 6 hours |
-| 3, normal | Enterprise-app assignment, MFA recovery | 4 hours | 3 business days | On day 2 |
-| 4, low | OneDrive client issues | 8 hours | 5 business days | On day 4 |
+| 1, critical | Security-related or IGO-directed | 15 minutes | 4 hours | At half the resolution window |
+| 2, high | Certification revocation, ImmutableID repair | 1 hour | 8 business hours | At 6 hours |
+| 3, normal | Enterprise application assignment, MFA reset | 4 hours | 3 business days | On day 2 |
+| 4, low | OneDrive sync, provisioning trigger | 8 hours | 5 business days | On day 4 |
 
 ## Conditions a supervisor reports
 
-The help desk supervisor reports each of these to the identity governance officer within one business day of discovery (program design):
+The service desk supervisor reports each of these to the identity governance officer within one business day of discovery (program design):
 
 - A privileged activation whose ticket number doesn't match an assigned ticket.
 - A directory change by a help desk account with no approved ticket.

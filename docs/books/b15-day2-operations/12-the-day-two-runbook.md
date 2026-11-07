@@ -26,7 +26,7 @@ Every chapter in this book has added a piece of machinery: one front door for re
 
 Two things make a runbook more than a checklist. Each step has to say what it proves, so an operator who skips one knows what evidence stops arriving. And the runbook has to include steps that check the automation, not just the estate, because the most dangerous failure in an automated operation is a silent one: a log source that stops sending, a detection that stopped matching after a schema change, a pipeline that deployed without closing the control it was written for. A control that fails silently is worse than one known to be absent. It carries false confidence into an authorization.
 
-The five operating rules every step obeys are in [Chapter 02](02-day-two-is-where-compliance-lives.md#the-day-two-operating-rules): originate with the source of truth, carry the authorization the control requires, act under least privilege elevated just in time, close with proof, and emit the evidence automatically. This chapter doesn't restate them; it applies them.
+The five operating rules every step obeys are in [Chapter 02](02-day-two-is-where-compliance-lives.md#the-day-two-operating-rules): originate with the source of truth, carry the authorization the control requires, execute under least privilege, elevated just in time, close with provenance, and emit the evidence automatically. This chapter doesn't restate them; it applies them.
 
 ![The operator runbook by cadence: daily probing and routing, weekly tests of the detectors, monthly regeneration and review, quarterly step-back reviews, with every step emitting evidence.](../../images/diagrams/b15-day2-operations/svg/ch12-runbook-cadence.svg){#fig-ch12-runbook-cadence fig-alt="Four cards stacked top to bottom, connected by arrows. A blue card, daily, probe and route: synchronization and service-health probe, telemetry-completeness check, catalog tasks closed with proof, log review findings into the queue. A blue card, weekly, test the detectors: detection-efficacy replay, vulnerability finding freshness, reconcile-exception queue, human-only closures reviewed. A violet card, monthly, regenerate and review: assessment results and POA&M, baseline conformance re-check, Tier 0 privileged access review, harness results reviewed. A violet card, quarterly, step back: other privileged access reviews, custom role records, trend and evidence-quality review, known-bad library refreshed. The last card leads to a green card: every step emits evidence, one evidence-contract record per run, bound to its control, Chapter 11."}
 
@@ -42,14 +42,14 @@ The table is the program's design. NIST leaves almost every frequency here to th
 | Daily | Log review findings | Review happened, and what it found entered the same queue as everything else | AU-6 | Security operations |
 | Weekly | Detection-efficacy replay | Detection rules still fire on the patterns they were written for | CA-2, SI-4 | Detection engineering |
 | Weekly | Vulnerability finding freshness | Open findings are current and inside their remediation deadlines | RA-5, SI-2 | Vulnerability management |
-| Weekly | Reconciliation exceptions | Findings for assets the CMDB couldn't match are being resolved, not ignored | CM-8 | Configuration management |
+| Weekly | Reconciliation exceptions | Findings for assets the CMDB couldn't match are being resolved, not ignored | CM-8 | CMDB owner |
 | Weekly | Human-only closures | Every task closed without automated proof is reviewed and either evidenced or reopened | CA-2, CA-7 | Service desk lead |
 | Monthly | Regenerate assessment results and the POA&M | The package reflects current evidence | CA-2, CA-5, CA-7 | ISSO |
-| Monthly | Baseline conformance re-check | Configuration matches the intended baseline after reconciliation | CM-6 | Platform teams |
+| Monthly | Baseline conformance re-check | Configuration matches the intended baseline after reconciliation | CM-6 | Platform owners |
 | Monthly | Tier 0 privileged access review | Every Tier 0 assignment is still needed | AC-6(7), AC-2 | Governance office |
 | Monthly | Harness results review | The checks on the automation passed, or their failures are tracked | CA-2, CA-7 | ISSO |
 | Quarterly | Other privileged access reviews | Every non-Tier-0 privileged assignment is still needed | AC-6(7), AC-2 | Role owners |
-| Quarterly | Custom role records | Each custom role's permissions, backing group and purpose are still right | AC-6, AC-2 | Identity architecture |
+| Quarterly | Custom role records | Each custom role's permissions, backing group and purpose are still right | AC-6, AC-2 | Identity engineering |
 | Quarterly | Trend and evidence-quality review | Which controls drift repeatedly; which verdicts rest on manual evidence | CA-7 (CA-7(3) as design) | ISSM |
 | Quarterly | Known-bad event library refresh | The efficacy tests still reflect current attacker behavior and current schemas | CA-2, SI-4 | Detection engineering |
 
@@ -70,8 +70,8 @@ The ungoverned shape: an email arrives, an operator with standing portal rights 
 1. **Originate.** The email opens a catalog request against the reconciled identity record. If the account is disabled, the request stops and routes to the security office rather than proceeding.
 2. **Authorize.** Self-service where policy allows. Otherwise the service desk verifies the person against the record the agency already holds, never against facts the caller supplies ([Chapter 04](04-help-desk-authority-in-entra.md#identity-proofing-before-any-credential-action)).
 3. **Elevate and act.** The catalog actuator resets the credential through Graph under a just-in-time scoped role. The operator holds no standing administrator role.
-4. **Deliver on a separate channel.** A Temporary Access Pass, Microsoft's "time-limited passcode that can be configured for single use or multiple sign-ins,"[^c12-tap] or another channel distinct from the one the request came in on. Two messages to the same inbox are still one channel.
-5. **Close with proof.** The closing check confirms the new credential is active and the old one no longer works. The change record holds who asked, who approved, what verification happened and the check result.
+4. **Deliver on a separate channel.** A Temporary Access Pass, Microsoft's "time-limited passcode that can be configured for single use or multiple sign-ins,"[^c12-tap] or another channel distinct from the one the request came in on. Issuing a pass needs an authentication role, not the Password or Helpdesk Administrator role that does the reset. Two messages to the same inbox are still one channel.
+5. **Close with provenance.** The closing check confirms the new credential is active and the old one no longer works. The change record holds who asked, who approved, what verification happened and the check result.
 
 ### 2. Authenticator (MFA) reset
 
@@ -86,7 +86,7 @@ After an authenticator reset, the next person to register a method controls the 
 2. **Authorize: the gate is the point.** The operator verifies identity to policy before anything happens, at the assurance level the account's risk tier requires, and a privileged or sensitive account needs a second approver ([Chapter 04](04-help-desk-authority-in-entra.md#the-high-risk-tasks-and-why-they-need-a-second-approver)).
 3. **Elevate and act.** Require re-registration through Graph under a just-in-time role ([Chapter 04](04-help-desk-authority-in-entra.md#temporary-access-pass-and-mfa-re-registration)).
 4. **Alert.** Every reset raises an audit event and a security alert (SI-4). Repeated resets on one identity are a detection signal, not routine.
-5. **Close with proof.** The record carries the verification evidence and confirms the old method is gone and a new registration is pending under the user's control.
+5. **Close with provenance.** The record carries the verification evidence and confirms the old method is gone and a new registration is pending under the user's control.
 
 ### 3. Admin consent for a third-party application
 
@@ -109,7 +109,7 @@ Consent restriction governs *who* may approve an integration. It doesn't decide 
 3. **Least privilege by derivation.** Group, license and role membership are derived from the identity's attributes (department, role, location), not picked by hand. Usage location and synchronization attributes are set from the record so the account is well formed at creation.
 4. **Elevate and act.** Create through Graph under a just-in-time scoped role, never standing global administrator.
 5. **Deliver credentials on a separate channel.** A Temporary Access Pass or other out-of-band channel; never a username and password in clear-text email.
-6. **Close with proof.** The check confirms the account exists with exactly the derived entitlements and an anchored owner.
+6. **Close with provenance.** The check confirms the account exists with exactly the derived entitlements and an anchored owner.
 
 ### 5. Running a script for a requester
 
@@ -123,7 +123,7 @@ If the requester writes the command and the operator runs it under administrator
 1. **Parameters travel; commands don't.** The request supplies validated inputs to a pre-approved, version-controlled script held in the platform. The form can submit only the parameters the script declares, and the script is the only thing that runs. A secret is resolved on the connector host, never typed into a form.
 2. **Originate and authorize.** The request resolves against the authoritative record for the objects it changes, and the change type's approval gate holds it.
 3. **Elevate and act.** The script acts through Graph under a just-in-time scoped role.
-4. **Close with proof.** The closing record captures the exact parameters, the before-and-after state of each changed object, and a check confirming the intended change and nothing broader. A genuinely one-off bulk change outside the catalog is a change-managed, peer-reviewed, logged operation ([Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md)); never an emailed command.
+4. **Close with provenance.** The closing record captures the exact parameters, the before-and-after state of each changed object, and a check confirming the intended change and nothing broader. A genuinely one-off bulk change outside the catalog is a change-managed, peer-reviewed, logged operation ([Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md)); never an emailed command.
 
 ### 6. The morning synchronization check
 
@@ -169,7 +169,7 @@ $conflicts = Get-MgUser -All `
     -ConsistencyLevel eventual -CountVariable conflictCount `
     -Property 'id', 'onPremisesProvisioningErrors'
 
-# 3. One record per run, shaped for the evidence pipeline.
+# 3. One raw result per run. The collector maps it to the eight-field evidence contract.
 [pscustomobject]@{
     source        = 'sync-probe'
     timestamp     = (Get-Date).ToUniversalTime().ToString('o')

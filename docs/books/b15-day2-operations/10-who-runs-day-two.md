@@ -86,7 +86,7 @@ The service desk manager owns the staffing response: more people for a capacity 
 
 ### Identity operations
 
-Identity operations is two roles from [Book 04](../b04-access/06-who-decides-access.md#the-roles). The **identity governance officer** decides the risk tier of applications, the approval chain for access, admin consent outside the lowest tier, and the membership and scope of the service desk's privileged access group, which it reviews quarterly. **Identity engineering** designs and builds: app registrations, provisioning, group design, the custom roles and administrative-unit scopes the service desk uses, and the workload identities that let automation act. It handles the escalations the desk can't, eligible rather than standing. In the target model, joiner, mover and leaver events run from the HR system of record through lifecycle workflows ([Book 03](../b03-hr-identity/index.md)), so most identity changes reach day two as automation to watch, not tickets to work.
+Identity operations is two roles from [Book 04](../b04-access/06-who-decides-access.md#the-roles). The **identity governance officer** decides the risk tier of applications, the approval chain for access, admin consent outside the lowest tier, and the membership and scope of the service desk's `PRV-T2-*` role groups, which it reviews quarterly. **Identity engineering** designs and builds: app registrations, provisioning, group design, the custom roles and administrative-unit scopes the service desk uses, and the workload identities that let automation act. It handles the escalations the desk can't, eligible rather than standing. In the target model, joiner, mover and leaver events run from the HR system of record through lifecycle workflows ([Book 03](../b03-hr-identity/index.md)), so most identity changes reach day two as automation to watch, not tickets to work.
 
 ### Platform owners
 
@@ -181,7 +181,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | A catalog item's purpose, fields and steps | C | | C | C | C | D | R | C | | | |
 | The approval gate a catalog item enforces | D | | C | | D (IGO, access items) | C | R | | | | |
 | Runbook content and review | | | C | C | R | D, R | C | | | | |
-| Service desk privileged access group: membership, scope, quarterly review | C | | C | | D (IGO), R | | | | | C | |
+| Service desk `PRV-T2-*` role groups: membership, scope, quarterly review | C | | C | | D (IGO), R | | | | | C | |
 | Automation service identity and its permissions | D | | C | | R | C | R | | C | C | |
 | Change to the ITSM platform's approval rules, routing or integrations | C | | C (platform's ISSO) | C | C | | R | C | D | C | |
 | Standard-change model | C | | C | C | | R | R | | D | | |
