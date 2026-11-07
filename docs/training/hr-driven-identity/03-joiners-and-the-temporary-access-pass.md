@@ -40,7 +40,7 @@ After this module, you'll be able to:
 - explain why workflows belong in reviewed files, and how the plan decides between a create and a new version;
 - run the workflow lint and explain the Temporary Access Pass findings (JW-05);
 - explain why the workflow budget is held to 50;
-- measure the day-one readiness rate and say what makes a hire ready.
+- measure the day-one readiness rate (Book 03's joiner readiness rate) and say what makes a hire ready.
 
 ## Prerequisites (1 minute)
 
@@ -62,7 +62,7 @@ Then read the design in [Book 03, Chapter 08](../../books/b03-hr-identity/08-joi
 Read four sections of workbook Chapter 03:
 
 - [The workflow files](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-workflow-files): six files, all scoped on codes, never on names.
-- [The lint](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-lint): JW-01 to JW-15, and which come from Learn and which are design guidance.
+- [The lint](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-lint): JW-01 to JW-12 and JW-14, with JW-15 raised by the plan, and which come from Learn and which are design guidance.
 - [The plan](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#the-plan): match by display name, then create, new version, or leave alone.
 - [Day-one readiness](../../project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md#day-one-readiness): the four things a ready hire has.
 

@@ -26,8 +26,8 @@ In this module you keep the administrator policies, the gate and the privileged 
 ## The lockout check for this module
 This is the first module that writes, so it is the first that could lock people out. Two guards stand between the files and the tenant:
 
-- **PA-CA-01** fails any policy file that isn't disabled and doesn't exclude the emergency group. Every file carries the exclusion whatever its state, because a file is enforced by changing one word. *Design guidance.*
-- **`-Apply` refuses to start** if the pre-merge check has a Finding, or if any policy it would write leaves out the emergency group.
+- **PA-CA-01** fails any policy file that isn't disabled and doesn't exclude the emergency access exclusion group. Every file carries the exclusion whatever its state, except a named report-only instrument such as CA090, because a file is enforced by changing one word. *Design guidance.*
+- **`-Apply` refuses to start** if the pre-merge check has a Finding, or if any policy it would write leaves out the emergency access exclusion group.
 
 Before Lab 2 enforces anything, build Module 2's emergency accounts and confirm one can sign in. Register a phishing-resistant method for each test administrator first: Learn warns that enabling the policy first risks locking you out. The plan's A2.6 tests an emergency sign-in before and after each ring is enforced.
 :::
@@ -57,7 +57,7 @@ After this module, you'll be able to:
 ## Prerequisites (1 minute)
 
 - [Module 2](02-emergency-access-first.md): the emergency accounts and their exclusion group.
-- [Book 04, Chapter 07's Wave 2](../../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators): the administrator policies CA003, CA004, CA005, CA025 and CA027.
+- [Book 04, Chapter 07's Wave 2](../../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators): the administrator policies CA003, CA004, CA005, CA025 and CA027, plus CA026, which is in Wave 2 but isn't a file in the kit yet.
 
 ## Unit 1: The gate and its order (8 minutes)
 

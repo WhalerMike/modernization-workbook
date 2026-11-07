@@ -30,6 +30,7 @@ listing:
       - "*.md"
       - "!index.md"
       - "!ms-automation-*.md"
+      - "!labs.md"
       - "!ticket-to-machine/**"
       - "!hr-driven-identity/**"
       - "!privileged-access/**"
@@ -71,12 +72,12 @@ Three modules that teach you to script Microsoft Entra ID and Intune through Mic
 | # | Module | What you learn | Books | Time |
 |---|---|---|---|---|
 | 1 | [Graph and Azure Foundations](ms-automation-foundations.md) | Clouds and endpoints, signing in without a secret, permissions and consent, tools, paging, throttling, batching and delta | 02, 04, 05, 06, 10, 15 | 85 min |
-| 2 | [Microsoft Entra ID through Microsoft Graph](ms-automation-entra.md) | Users, groups, Conditional Access, PIM, applications, logs and authentication methods; five checks mapped to ScubaGear | 02, 04 | 95 min |
+| 2 | [Microsoft Entra ID through Microsoft Graph](ms-automation-entra.md) | Users, groups, Conditional Access, PIM, applications, logs and authentication methods; four of its five checks mapped to ScubaGear | 02, 04 | 95 min |
 | 3 | [Intune through Microsoft Graph](ms-automation-intune.md) | Managed devices, compliance, configuration, assignment filters, Autopilot, v1.0 versus beta; five checks mapped to NIST SP 800-53 Moderate | 05 | 85 min |
 
 : The Microsoft Automation modules in order {.striped .hover}
 
-Work through them in order: Module 1 sets up what the other two use. The developer workbook's [Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) goes deeper on the Graph client, and the [Ticket-to-Machine](ticket-to-machine/index.md), [HR-Driven Identity](hr-driven-identity/index.md) and [Non-Person Identity](non-person-identity/index.md) paths build on Module 1. **If you're an ISSO reviewer,** read each module's introduction, Where agencies are and summary, and skip the labs.
+Work through them in order: Module 1 sets up what the other two use. The developer workbook's [Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) goes deeper on the Graph client, and the [Ticket-to-Machine](ticket-to-machine/index.md), [HR-Driven Identity](hr-driven-identity/index.md), [Non-Person Identity](non-person-identity/index.md), [Privileged Access](privileged-access/index.md) and [Attribute-Driven Migration](attribute-driven-migration/index.md) paths build on Module 1. **If you're an ISSO reviewer,** read each module's introduction, Where agencies are and summary, and skip the labs.
 
 ### What you need for the Microsoft Automation labs
 
@@ -109,11 +110,11 @@ Seven modules, one per gate of the [HR-driven identity implementation guide](../
 
 ## Privileged Access learning path
 
-Eight modules, one per chapter of the developer workbook [*Building Privileged Access*](../project-plans/developer-workbooks/privileged-access/index.md), each with a lab on fixtures and a lab in your own test tenant. It follows the workbook and the [project plan](../project-plans/privileged-access.md), and its modules match the gates of the [implementation guide](../books/guides/privileged-access-implementation.md) one for one. Emergency access comes first, and every module that writes has a guard against locking people out. Start at the [learning path](privileged-access/index.md).
+Eight modules, one per chapter (01 to 08) of the developer workbook [*Building Privileged Access*](../project-plans/developer-workbooks/privileged-access/index.md); operators who deploy the kit also use its Chapter 09, the deployment runbook. Each with a lab on fixtures and a lab in your own test tenant. It follows the workbook and the [project plan](../project-plans/privileged-access.md), and its modules match the gates of the [implementation guide](../books/guides/privileged-access-implementation.md) one for one. Emergency access comes first, and every module that writes has a guard against locking people out. Start at the [learning path](privileged-access/index.md).
 
 ## Attribute-Driven Migration learning path
 
-Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../books/b19-developer-workbook/index.md), one chapter each, in the order of the [implementation guide's](../books/guides/attribute-driven-migration-implementation.md) gates. Each runs the chapter's Lab 1 on fixtures, points to its Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's [Module 1](ms-automation-foundations.md). Start at the [learning path](attribute-driven-migration/index.md).
+Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../books/b19-developer-workbook/index.md), one chapter each, in the order of the [implementation guide's](../books/guides/attribute-driven-migration-implementation.md) gates. Each runs the chapter's Lab 1 on fixtures (Chapter 10 has no Lab 1; its module runs the chapter's fixture dry run), points to its Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's [Module 1](ms-automation-foundations.md). Start at the [learning path](attribute-driven-migration/index.md).
 
 ## Non-Person Identity learning path
 

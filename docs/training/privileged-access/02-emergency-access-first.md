@@ -244,7 +244,7 @@ Remove-Item -Recurse -Force out
     b. A refreshed token in a stolen session, FIDO2 sign-ins that obtain a refresh token, role changes and new security methods don't appear in `SigninLogs`.
     c. Learn's queries require all three.
     d. To lower the alert's cost.
-3. A report-only Conditional Access policy doesn't exclude the emergency group. What does PA-EA-08 report?
+3. A report-only Conditional Access policy doesn't exclude the emergency access exclusion group. What does PA-EA-08 report?
     a. A Finding, like an enforced policy.
     b. Info: Learn says report-only policies need no exclusion.
     c. Nothing; report-only policies aren't read.
