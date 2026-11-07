@@ -62,7 +62,7 @@ For a partner on SAML/WS-Fed federation, such as `tailspin.example`, Conditional
 
 ## Conditional Access linkage
 
-No new policy is needed. Five library policies already carry the partner list `{tenant:partners}`: CA009 (MFA) and CA010 (terms of use) include partner users, while CA011, CA012 and CA038 apply guest limits to everyone *except* partner tenants. The list must be identical in all five; a partner in one and not the others is a drift finding ([Appendix A](appendix-a-conditional-access-templates.md#policy-templates)). A partner enters that list only when its access package goes live, and leaves it at partner exit.
+No new policy is needed. Five library policies already carry the partner list `{tenant:partners}`: CA009 (MFA) and CA010 (terms of use) include partner users, while CA011, CA012 and CA038 apply guest limits to everyone *except* partner tenants. The list must be identical in all five; a partner in one and not the others is a drift finding ([Appendix A](appendix-a-conditional-access-templates.md#policy-templates)). A partner enters that list only when its access package goes live, and leaves it at partner exit. The IGO (identity governance officer) owns the list ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix)).
 
 The user type decides which of those policies apply. Conditional Access sorts external users into **B2B collaboration guest users** (user type Guest) and **B2B collaboration member users** (user type Member).[^aC4-ca-external] CA009 and CA010 include both. CA011, CA012 and CA038 match only `b2bCollaborationGuest` and `otherExternalUser`, and CA016 excludes every external type. So the user type matters in four places:
 
@@ -271,7 +271,7 @@ Native sign-in and audit retention is 30 days on P1 and P2, so logs are streamed
 | Target-side sync changes | Agency audit log, actor `Microsoft.Azure.SyncFabric`[^aC4-cts-configure] | Creates, updates and deletes per cycle against the expected unique count |
 | Entitlement management | Agency audit log, category `EntitlementManagement` ([Chapter 09](09-access-governance.md#the-records-entra-id-produces)) | Requests, approvals, expiries and removals per partner package |
 | Sign-ins and Conditional Access | Agency sign-in log; `ConditionalAccessStatus`, `AppliedConditionalAccessPolicies`[^aC4-signin] | CA009 failures, partner users from unexpected locations, denied attempts after removal |
-| Cross-tenant settings changes | Audit category `CrossTenantAccessSettings`[^aC4-xtap] | Any change, alerted to the identity governance office |
+| Cross-tenant settings changes | Audit category `CrossTenantAccessSettings`[^aC4-xtap] | Any change, alerted to the IGO |
 | Drift | The repository and the five-policy check | Partner list mismatch; any `UserType` other than Guest without a record; trust values that differ from the record ([Chapter 07](07-the-conditional-access-policy-library.md#drift)) |
 
 ```powershell

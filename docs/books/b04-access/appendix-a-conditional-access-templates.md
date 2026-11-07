@@ -467,7 +467,7 @@ CA011, limited guest access. The Guests scope includes guest and other external 
 }
 ```
 
-The partner tenant list is the `{tenant:partners}` placeholder, resolved from the per-tenant map, and is the same list in CA009, CA010, CA011, CA012 and CA038; a partner added to one and not the others is a drift finding.
+The partner tenant list is the `{tenant:partners}` placeholder, resolved from the per-tenant map, and is the same list in CA009, CA010, CA011, CA012 and CA038; a partner added to one and not the others is a drift finding. The IGO owns the list: a partner is added when its access package goes live and removed at partner exit ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix); [Appendix C](appendix-c-partner-access-profile-entra.md#conditional-access-linkage)). CA010 uses the same list.
 
 CA016, compliant device for desktop Office, Members only:
 

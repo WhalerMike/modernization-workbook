@@ -206,7 +206,7 @@ A dynamic membership rule moves the access decision to whoever can write the att
 
 ## How other pages use this schema
 
-[Book 06, Chapter 17](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md) applies the same attribute-to-access discipline to SQL Server logins and database roles. [Book 02, Chapter 09 — Building the Entra ID Target](../b02-identity/09-building-the-entra-target.md) and the Conditional Access library link here rather than carrying their own attribute map; the device groups in [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) use the device map above.
+Book 06, [Chapter 16](../b06-data-platform/16-groups-roles-and-membership.md) and [Chapter 17](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md) apply the same attribute-to-access discipline to SQL Server logins and database roles. [Book 02, Chapter 09 — Building the Entra ID Target](../b02-identity/09-building-the-entra-target.md) and the Conditional Access library link here rather than carrying their own attribute map; the device groups in [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) use the device map above.
 
 
 ::: {.callout-tip}
