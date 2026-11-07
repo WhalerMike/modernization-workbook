@@ -7,7 +7,7 @@ doc-type: section-landing
 
 # Downloads {.unnumbered}
 
-Everything here is free to download. The kits and the Word editions are rebuilt from the same sources as the site, so a download always matches the page you read.
+Everything here is free to download. The kits rebuilt on every site deploy and the Word editions are built from the same sources as the site, so those downloads match the page you read. The Help Desk kit is a pinned release asset with a fixed hash, so it changes only when a new release is cut.
 
 ## Kits
 
