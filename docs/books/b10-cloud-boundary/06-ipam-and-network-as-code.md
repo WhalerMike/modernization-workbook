@@ -62,7 +62,7 @@ Classic DHCP depends on a Layer 2 broadcast, and software-defined networks don't
 
 - **Azure.** Virtual networks are Layer 3 overlays with no Layer 2 semantics. Azure assigns private addresses from the subnet range and reserves five in every subnet: the network address, the default gateway, two addresses that map Azure DNS into the virtual network, and the last address.[^c06-vnetfaq]
 - **AWS.** The VPC assigns addresses from the subnet and also reserves five: the network address, the VPC router, the Amazon DNS server at the base of the VPC range plus two, one reserved for future use, and the broadcast address, which is reserved because VPCs don't support broadcast.[^c06-aws-subnet] (The base-plus-two address is the DNS server, not a DHCP responder, as some descriptions have it.)
-- **VMware NSX.** DHCP is handled by the NSX logical gateways, and VMware Cloud Foundation 9.1 integrates natively with an enterprise IPAM for block allocation and DNS registration ([Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md)).
+- **VMware NSX.** DHCP is handled by the NSX logical gateways, and VMware Cloud Foundation 9.1 integrates natively with Infoblox, as its example of an enterprise IPAM, for block allocation and DNS registration ([Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md)).
 
 Because no fabric's assignments are visible to the others, the address plan has to live above all of them, and each fabric has to draw from it. How deeply each platform can integrate with an external authority differs: AWS VPC IPAM can hand a scope's allocation authority to an external IPAM in commercial Regions but not in GovCloud, VMware Cloud Foundation 9.1 integrates natively, and Azure needs a mirror-and-reconcile pattern ([Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md)). The Azure pattern is the one this book's reference environment uses.
 
@@ -76,7 +76,7 @@ The pattern that keeps the enterprise IPAM authoritative has three parts:
 2. **Mirror into Azure.** The Azure root pool holds the Azure range; every range used elsewhere that overlaps it is entered as a static CIDR, so Azure can't hand it out.
 3. **Enforce the pool.** Virtual Network Manager doesn't stop overlapping address space on its own. Microsoft's documented fix is an Azure Policy definition that denies any virtual network without an allocation from a designated pool; since a pool hands out only non-overlapping prefixes, overlap becomes impossible inside the policy's scope.[^c06-avnm-policy]
 
-Then reconcile: DDI discovery reads what Azure actually allocated and compares it with the enterprise reservations, and a mismatch is a finding ([Book 08, Chapter 11](../b08-ddi/11-operating-the-control-plane.md)).
+Then reconcile: DDI discovery reads what Azure actually allocated and compares it with the enterprise reservations, and a mismatch is a finding ([Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md)).
 
 ::: {.callout-warning}
 The code in this chapter is illustrative, adapted from Microsoft's published samples, and hasn't been tested against a production tenant. Replace the names, ranges and identifiers, validate against the current resource provider API versions, and deploy through the change-controlled pipeline in [Chapter 07](07-the-front-door.md), not from a workstation.
@@ -222,7 +222,7 @@ The workbook gives no resource code for this module, because the resource schema
 1. Apply `platform`, then `ipam`, then `ddi` and `network`, in dependency order, through the change-controlled pipeline, never a portal.
 2. Run the response policy zone in log-only mode first to baseline normal resolution, then switch it to enforcing. (It's the same discipline as Azure Policy's audit-then-deny rollout.)
 3. Register the `ipam` output as the authoritative inventory source the CM-8 join reads.
-4. Point the `edge` at the `ddi` resolver, so egress name resolution is governed at the enforcement point ([Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md)).
+4. Point the `edge` at the `ddi` resolver, so egress name resolution is governed at the enforcement point ([Book 08, Chapter 05](../b08-ddi/05-edge-interception-and-bypass.md)).
 
 ## Inputs that change underneath the code
 

@@ -75,7 +75,7 @@ The rule that runs through every row is **say that it's derived**. An equivalent
 
 A worked example shows the pattern. Network connectivity in the Microsoft 365 admin center, which gives commercial tenants per-location network assessments and insights, isn't available to GCC Moderate, GCC High or DoD tenants.[^c09-mac] Microsoft's separate network connectivity test tool, by contrast, lists the US Government (GCC) version as supporting signed-in tests, saved reports, sharing within the tenant, network health status and command-line testing; only sharing reports publicly is disabled for GCC.[^c09-mac-tool] The two aren't the same thing. The admin center's insights come from regular in-product measurements aggregated daily for the tenant, while the test tool's results are run locally in the tool.[^c09-mac-tool] So an in-boundary equivalent built on the test tool needs a schedule (tests run from each location, from the command line, on a cadence the network team sets), a place for the results to land, and the `derived` label. It closes part of the gap. The comparative per-provider scoring that commercial tenants receive isn't replaced by it, and the register row should say so, because an agency choosing a transport or SASE provider will have to fund its own measurement for that ([Book 09](../b09-network/index.md)).
 
-Microsoft 365 informed network routing is the opposite case: Microsoft documents that it isn't available to GCC Moderate tenants, and [Book 08, Appendix C](../b08-ddi/appendix-c-applicability.md) and [Book 09, Chapter 12](../b09-network/12-microsoft-365-traffic.md) cover what an agency does instead. Not every exclusion has an equivalent. When none exists, the honest entry is an exception.
+Microsoft 365 informed network routing is the opposite case: Microsoft documents that it isn't available to GCC Moderate tenants, and [Book 08, Appendix C](../b08-ddi/appendix-c-applicability.md) records the limit and [Book 09, Chapter 12](../b09-network/12-microsoft-365-traffic.md) covers what an agency does instead. Not every exclusion has an equivalent. When none exists, the honest entry is an exception.
 
 ## Use documented exceptions
 
@@ -94,7 +94,7 @@ When no provider path exists, or the agency decides not to use one, the remainin
 - A gap the agency intends to close (with an equivalent still being built, a provider ask outstanding, or a migration planned) goes on the plan of action and milestones, with a milestone and an owner.
 - A gap the agency has decided to live with goes into a signed exception with an end date or a review date, so that "permanent" is a decision someone repeats, not a default.
 
-Each exception record carries the register row, the capability disposition, the dependent designs, what compensates (if anything) and its evidence class, the residual risk in plain words, the signer, the end or review date, and the event that would reopen it: a provider change notice, a certification change, or a probe result that changes. [Book 09, Appendix A](../b09-network/appendix-a-optimize-exemption-instruments.md) shows the same discipline applied to Microsoft 365 traffic exemptions, with separate signers for the risk acceptance, the scope register and the architecture determination.
+Each exception record carries the register row, the capability disposition, the dependent designs, what compensates (if anything) and its evidence, the residual risk in plain words, the signer, the end or review date, and the event that would reopen it: a provider change notice, a certification change, or a probe result that changes. [Book 09, Appendix A](../b09-network/appendix-a-optimize-exemption-instruments.md) shows the same discipline applied to Microsoft 365 traffic exemptions, with separate signers for the risk acceptance, the scope register and the architecture determination.
 
 ## Make the scope arguments the 2026 rules allow
 
@@ -108,7 +108,7 @@ Each exception record carries the register row, the capability disposition, the 
 
 **4. Agencies can't simply demand more.** An agency must not require a certified offering to provide information or materials beyond what FedRAMP requires, or to hold a specific certification type or path, unless the agency head or an authorized delegate determines there is a demonstrable need and notifies FedRAMP.[^c09-agu] This cuts against agencies as much as for them. An ask to a provider is strongest when it's a request for something FedRAMP already requires (machine-readable certification data, change notices, configuration guidance) or a feature-level ask with a cited requirement, and weakest when it's an open-ended demand for parity.
 
-These rules apply to Rev5 certifications as well as to new ones: FedRAMP's Rev5 Class C ruleset includes the Minimum Assessment Scope, Significant Change Notification and Certification Data Sharing families,[^c09-rev5c] and adoption of the 2026 rules becomes mandatory on January 1, 2027.[^c09-timeline]
+These rules apply to Rev5 certifications as well as to new ones: FedRAMP's Rev5 Class C ruleset includes the Minimum Assessment Scope, Significant Change Notification and Certification Data Sharing families,[^c09-rev5c] and adoption of the 2026 rules becomes mandatory on January 1, 2027.[^c09-timeline] An existing Rev5 certification adopts each family on its own schedule, with grace periods running into 2028 ([Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#when-the-rules-reach-a-rev5-package)).
 
 ## Buy the capability, not the badge
 
@@ -130,7 +130,7 @@ Whatever the answer, a higher class is a different axis from feature availabilit
 | 2 | Find the provider's statement for each, per cloud | Platform team | Register rows with citations and evidence class |
 | 3 | Probe each dependency in the agency's own tenant | Platform team | Capability dispositions |
 | 4 | For each gap, choose a response: equivalent, provider exception, risk acceptance or alternative path, or going without (decided and recorded) | System owner proposes; authorizing official decides exceptions | Response per row |
-| 5 | Build equivalents and label their evidence as derived | Platform team or owning engineering team; CISO sets the evidence class | Equivalent and its evidence |
+| 5 | Build equivalents and label their evidence as derived | Platform team or owning engineering team; CISO decides what counts as evidence | Equivalent and its evidence |
 | 6 | File provider-side requests with a quoted requirement and link | System owner, with acquisition | Request and answer recorded |
 | 7 | Record gaps being closed on the POA&M and accepted gaps in a dated, signed exception | System owner; authorizing official signs | POA&M entry or signed exception |
 | 8 | Rerun the probe on a cadence and after relevant provider notices | Platform team; ISSO reviews | Updated dispositions and reopened rows |
