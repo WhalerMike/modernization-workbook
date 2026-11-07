@@ -43,7 +43,7 @@ The anatomy of a validation kit check, built end to end on a new one, VK-SYNC-02
 
 **Audience.** Developers and engineers who extend the kit, and ISSOs who want to know what a check's result can and can't be trusted to mean. You should read PowerShell and know Pester's `Describe` and `It`.
 
-The kit is the executable form of the **Validate** step at each gate of the [implementation guide](../guides/attribute-driven-migration-implementation.md) and the three track guides. Its [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) lists every check, its permission and its Learn page. [Book 13, Chapter 07](../b13-governance/07-evidence-over-attestation.md) explains why the program wants evidence a machine produced over a statement someone signed.
+The kit is the executable form of the **Validate** step at each gate of the [implementation guide](../guides/attribute-driven-migration-implementation.md) and the four track guides. Its [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) lists every check, its permission and its Learn page. [Book 13, Chapter 07](../b13-governance/07-evidence-over-attestation.md) explains why the program wants evidence a machine produced over a statement someone signed.
 
 ## Why this check
 
@@ -151,7 +151,7 @@ That line buys four tests: the pass fixture gives `Pass` with a count of 0; the 
 - an export in `-InputPath` is read instead of Graph, and the evidence shows `Input`;
 - a tenant with no synchronization object is `NotApplicable`.
 
-The catalog test that lists every check ID in order also gains `VK-SYNC-02`, and the README gains its row. With those, the kit's suite was 274 tests on PowerShell 7, all passing. Six more came with the tenant ID in the run manifest (below), for 280.
+The catalog test that lists every check ID in order also gains `VK-SYNC-02`, and the README gains its row. With those, the kit's suite was 274 tests on PowerShell 7, all passing. Six more came with the tenant ID in the run manifest (below), for 280 when the check was added. The kit has more tests since, and Lab 1 step 6 prints the count for your copy.
 
 ### The safety tests
 
@@ -354,7 +354,7 @@ Import-Module ./powershell/ValidationKit -Force
 
    <!-- capture:end -->
 
-**Expected result:** every test passes, and you've seen each of the check's four outcomes: Pass, Fail, Warn and NotApplicable.
+**Expected result:** every test passes, and you've seen the check's Pass, Fail and Warn outcomes. The tests cover the fourth, NotApplicable, for a tenant with no synchronization object.
 
 ## Lab 2: test tenant
 

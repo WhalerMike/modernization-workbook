@@ -107,7 +107,7 @@ Checking the three samples offline shows what they do well and what they leave t
 
 ## The code: what `examples/drift-pipeline` adds
 
-[`examples/drift-pipeline`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline) is two Python files, one sample workflow and two test files. `drift_pipeline.py` uses only the standard library; `workflow_lint.py` needs PyYAML.
+[`examples/drift-pipeline`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline) adds two Python files, one sample workflow and two test files to what the folder already holds. `drift_pipeline.py` uses only the standard library; `workflow_lint.py` needs PyYAML. The folder also holds the evidence modules for the other kits (`hr_evidence.py`, `npi_evidence.py`, `pa_evidence.py`) with a test file each, the OSCAL export (`oscal_export.py`, with its tests in `oscal/tests`) and the `deploy/` folder that [Chapter 10](10-deploying-to-test-and-production.md) covers.
 
 ### The workflow
 
@@ -168,7 +168,7 @@ The packager doesn't sign. The hashes show that nothing changed after packaging;
 
 ### The tests
 
-`tests/test_drift_pipeline.py` has 54 tests: loading and refusing runs (including runs of different or unrecorded tenants, and the override), every result type, issue drafts, provenance, packaging, the hash chain, verification and the cloud table. `tests/test_workflow_lint.py` has 20: Learn's three samples as published, the pinned action, and the sample workflow with one defect introduced at a time. Neither needs a tenant or a network. The fixtures are two fictional kit runs for `contoso.example`, one day apart, written by `tests/make_fixtures.py`, and the provenance files the other kits wrote from their own fixtures.
+`tests/test_drift_pipeline.py` has 54 tests: loading and refusing runs (including runs of different or unrecorded tenants, and the override), every result type, issue drafts, provenance, packaging, the hash chain, verification and the cloud table. `tests/test_workflow_lint.py` has 20: Learn's three samples as published, the pinned action, and the sample workflow with one defect introduced at a time. Neither needs a tenant or a network. The other three test files in `tests` hold the remaining 68 of the 142 that step 9 expects. The fixtures are two fictional kit runs for `contoso.example`, one day apart, written by `tests/make_fixtures.py`, and the provenance files the other kits wrote from their own fixtures.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -555,7 +555,7 @@ This chapter turns the other chapters' outputs into continuous monitoring: a run
 | The package becomes OSCAL 1.2.3 Assessment Results and a POA&M, with dispositions and risk status, valid against NIST's schema (step 10: `out/oscal/assessment-results.json`, `poam.json`). RMF tasks A-4, A-6 and M-4 | CA-2; CA-5; CA-7 | KSI-MLA-EVC; KSI-MLA-RVL | The evidence container |
 | The pipeline signs in with a federated credential; no secret is stored (Lab 2, step 1: `credential.json`, `az ad app federated-credential create`) | IA-5 | KSI-IAM-SNU | The app registration; the Entra audit log |
 | The pipeline identity reads the tenant and writes only to the evidence container (Lab 2, steps 2 and 3: Graph read permissions, Reader, and Storage Blob Data Contributor on the container) | AC-6 | KSI-IAM-ELP | The app registration and role assignments |
-| Evidence can be created and read, but not changed or deleted, until retention ends (Lab 2, step 3: the `drift-evidence` container's time-based retention, locked in production) | AU-9; AU-11 (Audit Record Retention) | No indicator pairing in this repository's verified mappings | The storage account |
+| Evidence can be created and read, but not changed or deleted, until retention ends (Lab 2, step 3: the `drift-evidence` container's time-based retention, locked in production) | AU-9; AU-11 (Audit Record Retention) | KSI-MLA-OSM for AU-9 ([Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md)); AU-11 has no indicator pairing in this repository's verified mappings | The storage account |
 | The workflow copied into the repository passes the linter before it runs (Lab 2, step 4) | CM-3(2) | KSI-CMT-VTD | The test repository's history |
 | A run by hand writes the baseline package and one issue (Lab 2, step 5) | CA-7 | KSI-MLA-EVC | The evidence container; the tracker |
 | A real change becomes one new finding, in a package chained to the first that `sha256sum -c` verifies (Lab 2, step 6) | CA-7; SI-4; SI-7 | KSI-MLA-EVC; KSI-SVC-VRI | The evidence container |
@@ -601,7 +601,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 08 — Ansible Beside Arc](08-ansible-beside-arc.md) · [Workbook index](index.md)
+[← Previous: Chapter 08 — Ansible Beside Arc](08-ansible-beside-arc.md) · [Workbook index](index.md) · [Next: Chapter 10 — Deploying to Test and Production →](10-deploying-to-test-and-production.md)
 :::
 
 [^c09-oidc]: Microsoft Learn, "Use the Azure Login action with OpenID Connect," <https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect> (accessed Oct 30, 2026).

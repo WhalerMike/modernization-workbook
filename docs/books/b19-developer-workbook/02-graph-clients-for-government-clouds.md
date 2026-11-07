@@ -80,7 +80,7 @@ Chapters 01, 03 and 04 were written first, because their code already existed. E
 | `examples/dynamic-rules` | [04](04-dynamic-rules-as-code.md) | Learn's environment names, `Global`, `USGov`, `USGovDoD` | `Get-DrGraphEndpoint` refuses a name it doesn't know |
 | `examples/ms-automation` | this chapter | `global`, `gcc`, `gcchigh`, `dod` | Everything in this chapter's checklist |
 
-Two naming schemes are in use: the program's (`gcc`, `gcchigh`, `dod`) and Learn's PowerShell environment names (`Global`, `USGov`, `USGovDoD`). Both are fine; the table above maps one to the other. What isn't fine is a default. A cloud name a client doesn't recognize must stop the run. Learn's own dynamic membership samples fall back to the worldwide endpoint on an unknown answer, which Chapter 04 shows and guards against. When you build a new client, use the checklist at the end of this chapter.
+Three naming schemes are in use: the program's (`gcc`, `gcchigh`, `dod`), Learn's PowerShell environment names (`Global`, `USGov`, `USGovDoD`), and the cloud names `examples/lifecycle-extensions` takes for `--cloud` in [Chapter 05](05-lifecycle-workflows-custom-extensions.md) (`Global`, `GCC`, `GCCHigh`, `DoD`). That last set belongs to that tool only: `graphkit` refuses `GCCHigh`, as the lab below shows. All are fine within their own tool; the table above maps the first two to each other. What isn't fine is a default. A cloud name a client doesn't recognize must stop the run. Learn's own dynamic membership samples fall back to the worldwide endpoint on an unknown answer, which Chapter 04 shows and guards against. When you build a new client, use the checklist at the end of this chapter.
 
 ## Start with Microsoft's sample
 

@@ -130,7 +130,7 @@ The extension settings default to launch and wait, a one-hour wait, one retry of
 
 ### Lint, run, build, check
 
-`tools/lcwext.py` has five commands.
+`tools/lcwext.py` has six commands. `learn-sample`, described above, extracts Learn's definition from the pinned page. The other five:
 
 - **`lint`** applies twelve rules (LX-01 to LX-12; the [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions#lint-rules) lists them) to any definition, Learn's included. LX-11 adds up the worst-case retry waits of every HTTP action and fails the definition if they reach the extension's timeout. With four retries capped at two minutes, the two HTTP actions can wait 16 minutes, inside the one-hour wait.
 - **`run`** runs a definition against the fakes for a payload and a cloud, with optional downstream failures (`--fail 503,503`) and repeat deliveries (`--deliveries 2`), and prints what reached Graph and what Lifecycle Workflows records for the task.

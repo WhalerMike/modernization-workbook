@@ -422,7 +422,7 @@ python "$env:ADM_DEPLOY/preflight.py" --settings $env:ADM_SETTINGS --out $env:AD
 python "$env:ADM_DEPLOY/preflight.py" --settings $env:ADM_SETTINGS --live --out "$env:ADM_EVIDENCE_DIR/live"
 ```
 
-Each run writes its own evidence record (`evidence NNN-preflight.json: preflight pass`). **Expected:** the first run passes `PF-01` to `PF-10` and prints the live probes as `DRY`. The second runs them: the Azure CLI's cloud, tenant, subscription and signed-in identity (`user.name` is the deploy identity's client ID) match the settings, the PowerShell modules are present, and both certificate files exist. Any `FAIL` stops the stage. In production the command also takes `--other` and `--test-smoke-report` ([Stage 2](#stage-2-production)).
+Each run writes its own evidence record (`evidence NNN-preflight.json: preflight pass`). **Expected:** the first run passes `PF-01` to `PF-10` and prints the live probes as `DRY`. The second runs them: the Azure CLI's cloud, tenant, subscription and signed-in identity (`user.name` is the deploy identity's client ID) match the settings, the PowerShell modules are present, and both certificate files exist. Any `FAIL` stops the stage. In production the command also takes `--other`, `--test-smoke-report` and `--test-evidence-check` ([Stage 2](#stage-2-production)).
 
 ## Stage 1: live test {#stage-1-live-test}
 
@@ -660,7 +660,7 @@ Start-Sleep -Seconds 600
 Invoke-MgGraphRequest -Method GET -Uri "/v1.0/identityGovernance/lifecycleWorkflows/workflows/$($wf.id)/userProcessingResults" -OutputType Json | Set-Content "$env:ADM_EVIDENCE_DIR/lcw-run.json"
 ```
 
-**Expected:** the activate call returns `204 No Content`, and `lcw-run.json` shows one user processing result for the test user, ending `completed`, with the custom task's result from the Logic App ([Chapter 05](05-lifecycle-workflows-custom-extensions.md#lab-2-test-tenant)).[^c10-lcw-activate][^c10-lcw-status] In the test stage, leave scheduling off: production turns it on per wave.
+**Expected:** the activate call returns `204 No Content`, and `lcw-run.json` shows one user processing result for the test user, ending `completed`, with the custom task's result from the Logic App ([Chapter 05](05-lifecycle-workflows-custom-extensions.md#lab-2-test-tenant)).[^c10-lcw-activate][^c10-lcw-status] In the test stage, leave scheduling off: production turns it on once, at the first wave.
 
 **Evidence.** In PowerShell 7:
 
@@ -848,7 +848,7 @@ ansible-playbook playbooks/05_arc_wave_plan.yml -e onboarding_wave="$ADM_ARC_WAV
 ansible-playbook "$ADM_ARC_PLAYBOOK" -e onboarding_wave="$ADM_ARC_WAVE" | tee "$ADM_EVIDENCE_DIR/arc-check-mode.txt"
 ```
 
-**Expected:** the wave plan lists the wave's servers with both owners and stops on a production server in a pilot wave or a missing patch owner; the second command, in check mode, reports what it would send and changes nothing on any server ([Chapter 08](08-ansible-beside-arc.md#lab-2-test-subscription-and-a-disposable-server)). Then connect:
+**Expected:** the wave plan lists the wave's servers with both owners and stops on a production server in a pilot wave, and lists a server with a missing patch owner as blocked, stopping only if the wave has no ready server; the second command, in check mode, reports what it would send and changes nothing on any server ([Chapter 08](08-ansible-beside-arc.md#lab-2-test-subscription-and-a-disposable-server)). Then connect:
 
 ```bash
 ansible-playbook "$ADM_ARC_PLAYBOOK" -e onboarding_wave="$ADM_ARC_WAVE" -e confirm_change=true | tee "$ADM_EVIDENCE_DIR/arc-connect.txt"
@@ -1354,7 +1354,7 @@ The commands are the test stage's [step 11](#step-11-roll-back), with `productio
 | The production file used in the test stage, or the reverse | Test commands change production | Separate tenants, subscriptions and identities, checked by `PF-09`; the live probes compare the signed-in tenant with the file |
 | Promotion on a fixture or failing test run | Production starts on evidence that proves nothing | `PF-10`: the report must be live, passing, test-stage, and match the hash in `production.json` |
 | A rule that matches the wrong people | Access granted or removed for hundreds at once | Groups created paused; Learn's evaluate call against named users before processing starts |
-| A workflow that runs before anyone has tested it | Leavers processed in bulk on the first schedule | Created in the admin center, where it starts disabled; on demand for one user first; scheduling only in production, per wave |
+| A workflow that runs before anyone has tested it | Leavers processed in bulk on the first schedule | Created in the admin center, where it starts disabled; on demand for one user first; scheduling only in production, once, at the first wave |
 | A GPO deleted at cut-over | The one-command rollback is gone | Links disabled and recorded as `gpo-link-disabled`; the rollback re-enables |
 | Apply before audit | A server changes before anyone knows what the package does there | Audit assignment first; apply and monitor only after its result, as a new version |
 | An Ansible run that connects servers by accident | Servers onboard outside the wave | Wave plan, then the playbook's own check mode; `confirm_change=true` only on the third command |
