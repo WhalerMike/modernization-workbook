@@ -15,7 +15,7 @@ last-reviewed: 2026-11-03
 ---
 # Infoblox Training and Learning Paths {.unnumbered}
 
-A companion to the research deep dive [Infoblox DDI for Federal Agencies](../evaluations/infoblox-ddi-federal.md) and to the training model in [Book 16 — People: Training & Education](../books/b16-people/index.md), whose [Chapter 06](../books/b16-people/06-vendor-training-and-labs.md) sets the rules for vendor training and labs. Every link below is official Infoblox material (or, where noted, a cloud provider's own page) and was opened on October 22, 2026. Infoblox's prices, course catalogs and trials change; confirm before you plan a budget.
+A companion to the technical deep dive [Infoblox DDI for Federal Agencies](../evaluations/infoblox-ddi-federal.md) and to the training model in [Book 16 — People: Training & Education](../books/b16-people/index.md), whose [Chapter 06](../books/b16-people/06-vendor-training-and-labs.md) sets the rules for vendor training and labs. Every link below is official Infoblox material (or, where noted, a cloud provider's own page) and was opened on October 22, 2026. Infoblox's prices, course catalogs and trials change; confirm before you plan a budget.
 
 ## Before you plan: four facts that shape the plan
 
@@ -65,7 +65,7 @@ Book 16's lab rules apply: labs never touch production, use synthetic data, and 
 | AWS VPC IPAM with Universal DDI | [Amazon VPC IPAM and Universal DDI Integration](https://docs.infoblox.com/space/BloxOneDDI/1803780139/Amazon+VPC+IPAM+and+Universal+DDI+Integration) | Not available in AWS GovCloud (US); private scopes only; needs the VPC IPAM Advanced Tier |
 | NIOS-X servers on Azure | [Deploying NIOS-X Servers from the Azure Marketplace](https://docs.infoblox.com/space/BloxOneInfrastructure/204800816) | For Universal DDI sites |
 
-The research explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](../evaluations/trinzic-multicloud-ddi.md) explains when each of these patterns fits.
+The explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](../evaluations/trinzic-multicloud-ddi.md) explains when each of these patterns fits.
 
 ## Federal-focused sessions
 

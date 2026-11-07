@@ -22,7 +22,7 @@ last-reviewed: 2026-11-03
 ---
 # Learning path: Privileged Access in Microsoft Entra ID and Azure {.unnumbered}
 
-Privilege should be just-in-time, by tier, and provable. This learning path teaches you to build the software that gets an estate there: code that reads every privileged assignment, checks the emergency access accounts, holds Conditional Access, PIM and access review settings as reviewed files, and hands the ISSO evidence a reviewer can check. You work through the eight chapters of the developer workbook [*Building Privileged Access*](../../project-plans/developer-workbooks/privileged-access/index.md) in order. In each module you run the workbook's tested code on your laptop, then read what the same step takes in a test tenant.
+Privilege should be just-in-time, by tier, and provable. This learning path teaches you to build the software that gets an estate there: code that reads every privileged assignment, checks the emergency access accounts, holds Conditional Access, PIM and access review settings as reviewed files, and hands the ISSO evidence a reviewer can check. You work through Chapters 01 to 08 of the developer workbook [*Building Privileged Access*](../../project-plans/developer-workbooks/privileged-access/index.md) in order; operators who deploy the kit also read its Chapter 09, the deployment runbook. In each module you run the workbook's tested code on your laptop, then read what the same step takes in a test tenant.
 
 Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), it is a short series of modules, each built on the one before. The modules don't repeat the workbook, the project plan or [Book 04](../../books/b04-access/index.md). They tell you what to read, in what order, what to run, and what to check you understood.
 
@@ -45,7 +45,7 @@ So Module 2 checks the emergency access accounts before any module changes a set
 | Module | The guard |
 |---|---|
 | 2 | PA-EA-01 to PA-EA-10 check each account against the standard, and an alert fires on any sign-in or audit event for them |
-| 3 | PA-CA-01 fails a policy file that doesn't exclude the emergency group; `-Apply` refuses a policy that leaves the group out |
+| 3 | PA-CA-01 fails a policy file that doesn't exclude the emergency access exclusion group; `-Apply` refuses a policy that leaves the group out |
 | 4 | PA-PIM-01 refuses approval with no approver; PA-PIM-02 refuses any change until the emergency accounts hold Global Administrator, active, permanent and direct |
 | 5 | PA-PG-G4 refuses eligible owners with no active owner; PA-PG-G6 refuses more removals than `-MaxRemovals`, the sign of a wrong or truncated file |
 | 6 | Eligible first, then the removal, so no holder loses a role before they can activate it |
@@ -104,7 +104,7 @@ Work through them in order. The modules follow the workbook's chapters, which fo
 
 **Total time:** about 7 hours 20 minutes, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
 
-**Why eight modules.** There is one module per workbook chapter. Each chapter builds a different skill, with its own PowerShell module, call list, findings and Lab 1, so no two fit in one module of under an hour. Modules 4, 5 and 6 all hold PIM settings as code, but they differ in what matters: Module 4 has the lockout guard and the rollout waves, Module 5 the group rules and the removal guard, and Module 6 goes through Azure Resource Manager, not Graph, with Azure roles instead of Graph permissions.
+**Why eight modules.** There is one module per workbook chapter from 01 to 08 (Chapter 09 is the deployment runbook, for operators who deploy the kit). Each chapter builds a different skill, with its own PowerShell module, call list, findings and Lab 1, so no two fit in one module of under an hour. Modules 4, 5 and 6 all hold PIM settings as code, but they differ in what matters: Module 4 has the lockout guard and the rollout waves, Module 5 the group rules and the removal guard, and Module 6 goes through Azure Resource Manager, not Graph, with Azure roles instead of Graph permissions.
 
 Each module follows the same units: an introduction with the federal requirement it meets, learning objectives, prerequisites, one or two concept units, Lab 1, Lab 2, a knowledge check and a summary.
 

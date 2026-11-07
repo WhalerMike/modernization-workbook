@@ -23,7 +23,7 @@ last-reviewed: 2026-11-03
 
 *5 minutes, with the objectives and prerequisites*
 
-Gate 5 sets the conventions the server track builds on: once connected, an Arc server is an Azure resource whose tags are its attributes, and each setting has one owning tool. For the settings machine configuration owns, the code is a DSC configuration and Azure Policy delivers it. Learn's cmdlets build a package and a definition. They don't make the same bytes twice, and they write your user name and computer name into what the machines download. In this module you follow Learn's steps, then run the build that checks between them.
+Gate 5 sets the conventions the server track builds on: once connected, an Arc server is an Azure resource whose tags are its attributes. The Arc track and the Ansible guide add the rule that each setting has one owning tool. For the settings machine configuration owns, the code is a DSC configuration and Azure Policy delivers it. Learn's cmdlets build a package and a definition. They don't make the same bytes twice, and they write your user name and computer name into what the machines download. In this module you follow Learn's steps, then run the build that checks between them.
 
 **The federal requirement.** A package is the server baseline in a file, so what was built, from what, and what shipped is the evidence. From [Chapter 07's table](../../books/b19-developer-workbook/07-machine-configuration-packages.md#federal-requirements-and-evidence):
 
@@ -53,8 +53,8 @@ In this module, you'll:
 
 ### Prerequisites
 
-- [Module 4](04-group-policy-as-code.md), for one owning tool per setting.
-- Windows with PowerShell 7.1 or later and Pester 5.
+- [Module 4](04-group-policy-as-code.md), for one owning policy per setting, and Chapter 07's rule of one owning tool per setting.
+- Windows with PowerShell 7.1.3 or later and Pester 5.
 
 ## Unit 2: Where machine configuration sits
 

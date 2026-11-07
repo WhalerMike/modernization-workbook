@@ -27,7 +27,7 @@ last-reviewed: 2026-11-05
 
 Your ISSO asks for those answers every month, and today someone gets them by clicking through the admin center and pasting screenshots. In this module you map each question to the Graph API that answers it, the least-privileged permission, and the shape of the data. Five of them are built as tested, read-only checks, in Python and PowerShell, which you run in the labs. They're **illustrative: unit-tested against fixtures, not proven against live tenants**.
 
-**The federal requirement.** BOD 25-01 makes ScubaGear's mandatory Entra ID policies required for in-scope tenants, with continuous reporting to CISA. Four of the checks produce evidence for those policies: Conditional Access settings (MS.AAD.1.1v1, 2.1v1, 2.3v1, 3.1v1 and 3.6v1), the Global Administrator count (MS.AAD.7.1v1), permanent active privileged assignments (MS.AAD.7.4v1) and phishing-resistant registration (toward MS.AAD.3.1v1 and 3.6v1). The application-credential check reads MS.AAD.5.5v1 to 5.7v1, and the stale-user check supports Book 02's account lifecycle. In NIST SP 800-53 terms that's account management (AC-2), least privilege for privileged accounts (AC-6(5)), multifactor authentication (IA-2(1), IA-2(2)) and continuous monitoring (CA-7). Don't restate them: which policies are mandatory, and the control mapping, are in [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines), and OMB M-22-09's phishing-resistant requirement is in its [M-22-09 section](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#omb-m-22-09).
+**The federal requirement.** BOD 25-01 makes ScubaGear's mandatory Entra ID policies required for in-scope tenants, with continuous reporting to CISA. Three of the checks produce evidence for those policies (four results): Conditional Access settings (MS.AAD.1.1v1, 2.1v1, 2.3v1, 3.1v1 and 3.6v1), the Global Administrator count (MS.AAD.7.1v1), permanent active privileged assignments (MS.AAD.7.4v1) and phishing-resistant registration (toward MS.AAD.3.1v1 and 3.6v1). The application-credential check reads MS.AAD.5.5v1 to 5.7v1, and the stale-user check supports Book 02's account lifecycle. In NIST SP 800-53 terms that's account management (AC-2), least privilege for privileged accounts (AC-6(5)), multifactor authentication (IA-2(1), IA-2(2)) and continuous monitoring (CA-7). Don't restate them: which policies are mandatory, and the control mapping, are in [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines), and OMB M-22-09's phishing-resistant requirement is in its [M-22-09 section](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#omb-m-22-09).
 
 ### Learning objectives
 
@@ -53,8 +53,8 @@ Every API below is generally available in Graph v1.0. Each one's reference page 
 | Question | Graph API (v1.0) | Least-privileged application permission | Book |
 |---|---|---|---|
 | Who is in the directory, and when did they last sign in? | `GET /users` with `$select=...,signInActivity` | `User.Read.All`, plus `AuditLog.Read.All` for `signInActivity`[^m2-userlist] | B02 Ch 10 |
-| What changed since the last run? | `GET /users/delta` | `User.Read.All`[^m2-userdelta] | B02 Ch 10 |
-| Who is in a group, including nested groups? | `GET /groups/{id}/transitiveMembers` | `GroupMember.ReadBasic.All`[^m2-transitive] | B04 Ch 07 |
+| What changed since the last run? | `GET /users/delta` | `User.Read.All`[^m2-userdelta] | Module 1 |
+| Who is in a group, including nested groups? | `GET /groups/{id}/transitiveMembers` | `GroupMember.ReadBasic.All`[^m2-transitive] | B04 Ch 10 |
 | What do the Conditional Access policies say? | `GET /identity/conditionalAccess/policies` and `/namedLocations` | `Policy.Read.All`[^m2-calist][^m2-nlist] | B04 Ch 07, 10 |
 | Create or change a Conditional Access policy | `POST /identity/conditionalAccess/policies` | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`[^m2-capost] | B04 Ch 10 |
 | Who is eligible for a privileged role? | `GET /roleManagement/directory/roleEligibilitySchedules` | `RoleEligibilitySchedule.Read.Directory`[^m2-elig] | B04 Ch 08 |
@@ -63,8 +63,8 @@ Every API below is generally available in Graph v1.0. Each one's reference page 
 | Which applications have passwords or certificates, and when do they expire? | `GET /applications` with `$select=...,passwordCredentials,keyCredentials` | `Application.Read.All`[^m2-applist] | B04 Ch 05 |
 | Who has been given an application's roles? | `GET /servicePrincipals/{id}/appRoleAssignedTo` | `Application.Read.All`[^m2-approle] | B04 Ch 05 |
 | Which delegated permissions have been consented? | `GET /oauth2PermissionGrants` | `Directory.Read.All`[^m2-oauth] | B04 Ch 05 |
-| What happened in the directory? | `GET /auditLogs/directoryAudits` | `AuditLog.Read.All`[^m2-audit] | B15 Ch 08 |
-| Who signed in, and which policies applied? | `GET /auditLogs/signIns` | `AuditLog.Read.All`[^m2-signins] | B15 Ch 08 |
+| What happened in the directory? | `GET /auditLogs/directoryAudits` | `AuditLog.Read.All`[^m2-audit] | B02 Ch 10 |
+| Who signed in, and which policies applied? | `GET /auditLogs/signIns` | `AuditLog.Read.All`[^m2-signins] | B02 Ch 10 |
 | Who has registered which authentication methods? | `GET /reports/authenticationMethods/userRegistrationDetails` | `AuditLog.Read.All`[^m2-regdetails] | B04 Ch 07 |
 | Which methods does the tenant allow? | `GET /policies/authenticationMethodsPolicy` | `Policy.Read.AuthenticationMethod`[^m2-ampolicy] | B02 Ch 10 |
 | Who does ID Protection consider risky? | `GET /identityProtection/riskyUsers` | `IdentityRiskyUser.Read.All`[^m2-risky] | B04 Ch 03 |
@@ -89,7 +89,7 @@ Use `transitiveMembers` when the question is who is effectively in a group, nest
 
 ### Conditional Access
 
-Reading needs only `Policy.Read.All`.[^m2-calist] Each policy's `state` is `enabled`, `disabled` or `enabledForReportingButNotEnforced`, the last being report-only.[^m2-caov] Book 04's rollout depends on knowing which policies are report-only. CA022, phishing-resistant MFA for everyone, starts that way.
+Reading needs only `Policy.Read.All`.[^m2-calist] Each policy's `state` is `enabled`, `disabled` or `enabledForReportingButNotEnforced`, the last being report-only.[^m2-caov] Book 04's rollout depends on knowing which policies are report-only. CA022, phishing-resistant MFA for every member, starts that way.
 
 Creating a policy needs `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`. Microsoft notes "a known permissions issue" that may need consent to more permissions. For a person signing in, the least-privileged roles are Conditional Access Administrator and Security Administrator.[^m2-capost] Book 04 Chapter 10 keeps the policies as code. Here that means a pipeline holds the write permission, and the evidence collector holds only the read *(design guidance)*.
 
@@ -123,7 +123,7 @@ An application object's `passwordCredentials` (secrets) and `keyCredentials` (ce
 - passwords valid for at most 180 days (MS.AAD.5.6v1);
 - certificates valid for at most 365 days (MS.AAD.5.7v1).
 
-Microsoft's [app management policies](../reference/graph-practice-crosswalk.md#entra-id) enforce the same limits going forward. The check finds what existed before they were turned on.
+Microsoft's [app management policies](../reference/graph-practice-crosswalk.md#entra-id) enforce limits going forward. ScubaGear's certificate limit is 365 days, but the program caps certificates at 180 days through those policies (Book 04, Chapter 05), and the check flags only ScubaGear's limit. The check finds what existed before they were turned on.
 
 Two related reads for consent review ([Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md)):
 
@@ -174,7 +174,7 @@ One Conditional Access difference matters for the export. Multifactor authentica
 
 **Interim paths** *(design guidance)*:
 
-- **Phishing-resistant MFA isn't enforced for everyone yet.** Run `mfa-registration` on a schedule and keep CA022 report-only until the counts say it's safe, as Book 04 rolls it out; Book 02's appendix covers the alternative MFA policy required in the meantime.
+- **Phishing-resistant MFA isn't enforced for everyone yet.** Run `mfa-registration` on a schedule and keep CA022 report-only until the counts say it's safe, as Book 04 rolls it out: it enforces CA022 by shrinking a time-bound not-ready exclusion group; Book 02's appendix covers the alternative MFA policy required in the meantime.
 - **Permanent privileged assignments remain.** `pim-report` lists them; move each one to eligible in PIM through the change process, and run the report again to show it.
 - **Applications still have secrets.** `app-credentials` lists them with their lifetimes; replace each with a certificate or federated credential ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)), then turn on app management policies.
 - **Logs aren't leaving Entra ID yet.** Treat that as the first fix: the retention window above is the evidence you lose each day.
@@ -312,7 +312,7 @@ You run each check against the kit's fictional tenant and read each finding agai
      }
    ```
 
-   CA022, phishing-resistant MFA for all users, shows `"reportOnly": true`. The folder `out/ca` now holds `named-locations.json`, `p-legacy.json`, `p-old.json` and `p-pr.json`: one sorted file per policy, ready to diff.
+   CA022, phishing-resistant MFA for every member, shows `"reportOnly": true`. The folder `out/ca` now holds `named-locations.json`, `p-legacy.json`, `p-old.json` and `p-pr.json`: one sorted file per policy, ready to diff.
 
 3. Report privileged assignments for Global Administrator and Privileged Role Administrator.
 
@@ -344,7 +344,7 @@ You run each check against the kit's fictional tenant and read each finding agai
    }
    ```
 
-   Global Administrator is always in the list; `--role` adds Privileged Role Administrator. Three Global Administrators is within two to eight, so 7.1 passes; two permanent active assignments fail 7.4.
+   Global Administrator is always in the list; `--role` adds Privileged Role Administrator. Three Global Administrators is within ScubaGear's range of two to eight, so 7.1 passes. (The program's own target, from Learn and Book 04, is fewer than five, so a tenant with six passes here and fails the Privileged Access path's PA-INV check.) Two permanent active assignments fail 7.4.
 
 4. Check application credentials.
 
@@ -352,7 +352,7 @@ You run each check against the kit's fictional tenant and read each finding agai
    python python/entra_tasks.py --from-json tests/fixtures/apps.json --as-of 2026-10-25T00:00:00Z app-credentials
    ```
 
-   Expected: five credentials, most urgent first. The first is `Legacy report`'s password `k4`, with `"lifetimeDays": 92`, `"daysLeft": -54` and the flags `MS.AAD.5.5v1` and `expired`. `HR connector`'s password `k1` (365 days) carries `MS.AAD.5.5v1` and `MS.AAD.5.6v1`. Two certificates carry `MS.AAD.5.7v1`: `k3` (374 days, also `expiring`) and `k5` (1,827 days). Only certificate `k2`, 365 days, has no flag.
+   Expected: five credentials, most urgent first. The first is `Legacy report`'s password `k4`, with `"lifetimeDays": 92`, `"daysLeft": -54` and the flags `MS.AAD.5.5v1` and `expired`. `HR connector`'s password `k1` (365 days) carries `MS.AAD.5.5v1` and `MS.AAD.5.6v1`. Two certificates carry `MS.AAD.5.7v1`: `k3` (374 days, also `expiring`) and `k5` (1,827 days). Only certificate `k2`, 365 days, has no flag (the check flags only ScubaGear's 365-day limit, not the program's 180-day cap).
 
 5. Check MFA registration.
 
@@ -445,7 +445,7 @@ rm -rf ca
 
 You run the same checks read-only against a test tenant and compare them with the Microsoft Entra admin center.
 
-- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional users; Microsoft Entra ID P1 or P2 for `signInActivity` as [Unit 3](#users-and-sign-in-activity) notes, and Microsoft Entra ID P2 or Microsoft Entra ID Governance for PIM data; a Privileged Role Administrator to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with the `azure-identity` package (step 3 installs it), or Microsoft Graph PowerShell.
+- **You need:** a test tenant in the worldwide or GCC cloud, never production, with fictional users; Microsoft Entra ID P1 or P2 for `signInActivity` as [Unit 3](#users-and-sign-in-activity) notes, and Microsoft Entra ID P2 or Microsoft Entra ID Governance for PIM data; a Privileged Role Administrator, in practice typically a Global Administrator, to grant admin consent ([Module 1](ms-automation-foundations.md#signing-in-as-a-workload)); Python with the `azure-identity` package (step 3 installs it), or Microsoft Graph PowerShell.
 - **You'll replace:** `<tenant-id>` (the test tenant's ID), `<app-id>` (the app's application (client) ID), `<thumbprint>` (its certificate's thumbprint, for PowerShell); `app.pem` is the PEM file with the certificate and its private key. Work in `examples/ms-automation`.
 
 1. **Register one app** in the tenant's own cloud, with a certificate credential and no secret.

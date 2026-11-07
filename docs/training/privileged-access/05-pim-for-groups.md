@@ -1,6 +1,6 @@
 ---
 title: "Module 5: PIM for Groups and the PRV groups"
-description: "Workbook Chapter 05 and the plan's A2.1 and A3.3: keep the PRV role-assignable groups as one reviewed file of who may be a member or owner, until when and on which ticket, read the tenant first, check it (PA-PG-01 to PA-PG-09), plan a diff and the exact requests, and apply only past guards G1 to G7, with least privilege per call. About 55 minutes, with a lab on fixtures and a test tenant lab."
+description: "Workbook Chapter 05 and the plan's A2.1 and A3.3: keep the PRV role-assignable groups as one reviewed file of who may be a member or owner, until when and on which ticket, read the tenant first, check it (PA-PG-01 to PA-PG-09), plan a diff and the exact requests, and apply only past guards PA-PG-G1 to PA-PG-G7, with least privilege per call. About 55 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -18,13 +18,13 @@ last-reviewed: 2026-11-03
 
 ## Introduction (3 minutes)
 
-Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>`, so the tier shows in every review, alert and audit record. Module 1 reads those groups. This module writes them.
+Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>[-<scope>]`, so the tier shows in every review, alert and audit record. Module 1 reads those groups. This module writes them.
 
 A PRV group's own state has to be governed: who is a member or owner, until when, on which ticket, and how membership is activated. In this module you keep that state in one reviewed file. The code reads the tenant first, reports what's wrong, plans the exact requests, and applies them only when you ask and only past its guards.
 
 ::: {.callout-important}
 ## The lockout check for this module
-The guards refuse a plan before anything is sent. Three of them keep people from losing access by mistake:
+The guards refuse a plan before anything is sent. Three of them stop an unsafe change by mistake:
 
 - **PA-PG-G4** refuses eligible owners with no active owner. Learn says the last active owner can't be removed, so an activated owner's deactivation fails.
 - **PA-PG-G6** refuses more removals than `-MaxRemovals` (default 5), the sign of a wrong or truncated file.
@@ -52,7 +52,7 @@ After this module, you'll be able to:
 - explain the two Microsoft features that meet in a PRV group, and the two ways Book 04 uses them together;
 - name what Learn says about role-assignable groups and PIM for Groups that shapes the code;
 - read the findings, PA-PG-01 to PA-PG-09, and a plan's diff;
-- name the guards G1 to G7, and say why the pipeline's app doesn't create the groups.
+- name the guards PA-PG-G1 to PA-PG-G7, and say why the pipeline's app doesn't create the groups.
 
 ## Prerequisites (1 minute)
 
