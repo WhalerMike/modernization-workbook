@@ -90,7 +90,7 @@ do that. A real agenda gives, for each item:
 | Field | Why |
 |---|---|
 | **Item, written as a question or outcome** | "Which three pilot sites go first?" focuses discussion better than "Pilot sites."[^m-chp] |
-| **Type** | Inform, discuss, or decide, so people know how to take part.[^m-18f] |
+| **Type** | Information sharing, problem solving, or decision making, so people know how to take part.[^m-18f] |
 | **Owner** | The person who leads that item. |
 | **Time** | Minutes allowed for the item. |
 | **Preparation** | What to read or bring beforehand. |
@@ -192,11 +192,11 @@ Notes kept at:          <link>
 Roles   Facilitator: <name>   Timekeeper: <name>   Note-taker: <name>
         Decision-maker(s): <name(s)>
 
-#  Item (as a question)                     Type      Owner   Min  Prep
-1  Review open action items                 Inform    <name>   5   Last notes
-2  <question>?                              Decide    <name>  15   <doc link>
-3  <question>?                              Discuss   <name>  10   -
-4  Close: decisions, actions, parking lot   -         Fac.     5   -
+#  Item (as a question)                     Type                 Owner   Min  Prep
+1  Review open action items                 Information sharing  <name>   5   Last notes
+2  <question>?                              Decision making      <name>  15   <doc link>
+3  <question>?                              Problem solving      <name>  10   -
+4  Close: decisions, actions, parking lot   -                    Fac.     5   -
 ```
 
 ### Notes and action items
