@@ -119,7 +119,7 @@ Take these to every candidate, in writing, before committing. Several were raise
 2. **Cloud integration limits.** What are the documented limits of each cloud integration, and do they affect private endpoint resolution or conditional forwarding for cloud-managed namespaces? The Azure DNS limits above answer the first half for one vendor; the second half is still a question.
 3. **Wildcards and namespace occupancy.** Does IPAM track wildcard records and subdomain occupancy, or only host-level A and AAAA records?
 4. **Source address under redirect-dns.** When the edge redirects a query, does the resolver see the workstation's address or the edge router's? The answer decides whether query logs attribute traffic to a device.
-5. **Sovereign-cloud telemetry.** Microsoft 365 informed network routing supports WW Commercial tenants but not GCC-Moderate, GCC High or DoD;[^c12-inr] ask the SD-WAN vendor and Microsoft whether any alternative telemetry is planned.
+5. **Sovereign-cloud telemetry.** Microsoft 365 informed network routing supports WW Commercial tenants but not GCC Moderate, GCC High or DoD;[^c12-inr] ask the SD-WAN vendor and Microsoft whether any alternative telemetry is planned.
 6. **AD DNS migration support.** Is there a published, supported path from AD-integrated DNS to the platform that preserves SRV resolution and secure dynamic updates during coexistence?
 
 ## Residual risk and limitations
@@ -131,7 +131,7 @@ The residual risks are real:
 - **Sync lag and sync failure** between the policy plane and per-cloud DNS or IPAM services become the new source of divergence. Vendors document their own sync limits, such as SOA changes that take several intervals to reach Azure,[^c12-ibx-azure] so monitor synchronization health and test resolution after every high-impact change.
 - **Control-plane concentration.** If the management plane is unavailable, changes cannot be made, but existing resolution should continue from local resolver state. Define the operational response and any local override procedures, and decide in advance who may invoke them ([Chapter 09](09-who-owns-dns.md)).
 - **Certification scope.** A Moderate certification does not cover High or DoD environments ([Applicability](appendix-c-applicability.md)).
-- **Commercial-only optimizations.** Microsoft 365 informed network routing is unavailable in GCC-Moderate, GCC High and DoD, and the only SD-WAN solution Microsoft lists for it is Cisco IOS XE SD-WAN 20.4/17.4 or later;[^c12-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
+- **Commercial-only optimizations.** Microsoft 365 informed network routing is unavailable in GCC Moderate, GCC High and DoD, and the only SD-WAN solution Microsoft lists for it is Cisco IOS XE SD-WAN 20.4/17.4 or later;[^c12-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
 - **Loopback endpoint agents.** A client-side DNS agent listening on loopback cannot be a redirect-dns target; a network-addressable resolver is required.
 - **Encrypted DNS bypass** remains possible where endpoint and network controls are incomplete.
 - **Open engineering questions** for very large branch estates, such as resolver and forwarding-proxy sizing and source-address behavior under redirect-dns, need vendor engagement and testing.

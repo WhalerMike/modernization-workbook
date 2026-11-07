@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this runbook
-How to keep proving the transformed posture. The instance audit runs on a schedule; `New-FMPClosureRecord` projects each run onto the per-instance closure record (the program calls it the CCM-BIR record); `Compare-FMPClosureRun` turns the difference between two runs into drift events. The behavioral evidence (who connected, how) stays in Entra ID, SQL Server and the hosts and is joined, not copied. The chapter ends with the six evidence sets that close the transformation and the correct reading of the 2027-04-01 date.
+How to keep proving the transformed posture. The instance audit runs on a schedule; `New-FMPClosureRecord` projects each run onto the per-instance compliance record of [Chapter 20](20-the-closure-condition.md) (this runbook's function names and headings call it the closure record; CCM-BIR is not another name for it, but the program's continuous-monitoring ingestion pipeline that carries it); `Compare-FMPClosureRun` turns the difference between two runs into drift events. The behavioral evidence (who connected, how) stays in Entra ID, SQL Server and the hosts and is joined, not copied. The chapter ends with the six evidence sets that close the transformation and the correct reading of the 2027-04-01 date.
 :::
 
 **Pairs with:** [Chapter 20 — The Closure Condition](20-the-closure-condition.md) and [Chapter 21 — What Done Looks Like](21-what-done-looks-like.md). Those chapters explain that a transformation achieves a *posture*, not a completion. This page is how you keep proving it. The audit that produces the evidence is read-only, and so are the two derivations over it. The MFA and connection-behavior fields are reported as **external joins** to Entra sign-in logs and host telemetry by design: the structural record points at that telemetry rather than duplicating it.
@@ -30,7 +30,7 @@ A migrated instance can be reconfigured to Mixed Mode by any administrator with 
 
 ## Step 1 — Run Spec3-D1.8 in continuous-monitoring mode (read-only)
 
-`Spec3-D1.8-Get-SQLServerAuthAudit.ps1` is both the discovery baseline and the closure-verification instrument; the program names it the producer of the per-instance posture record. Run its **deep** form (`-QueryInstances`) on a schedule against the **retain and target** estate from [Runbook R02](r02-estate-discovery-and-consolidation-gate.md), keeping every run's JSON under version control so successive runs can be compared.
+`Spec3-D1.8-Get-SQLServerAuthAudit.ps1` is both the discovery baseline and the closure-verification instrument; the program names it the producer of the per-instance compliance record. Run its **deep** form (`-QueryInstances`) on a schedule against the **retain and target** estate from [Runbook R02](r02-estate-discovery-and-consolidation-gate.md), keeping every run's JSON under version control so successive runs can be compared.
 
 ::: {.callout-warning}
 ## Illustrative, not tested against production
