@@ -244,7 +244,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 | Human decision | SailPoint certification decisions; ServiceNow approval or CAB | The decision record, then the gated lane |
 | Protocol-enforced | Neither product: certificates stay with the CLM platform ([Book 13](../b13-governance/appendix-b-ticket-to-machine-reference.md#certificates-and-the-clm-platform)) | None per event |
 | Declared exception | A Service Desk ticket for a disconnected application, a recorded session and an end date | The ticket and the exception register entry |
-| Emergency change | ServiceNow emergency change; a SailPoint workflow or a manual lifecycle-state change | Emergency change: goes straight to CAB authorization[^ttm-chg] |
+| Emergency class (not a sixth lane: Book 13 acts first, and the incident commander reviews afterward) | ServiceNow emergency change; a SailPoint workflow or a manual lifecycle-state change | ServiceNow's emergency change goes directly to CAB authorization;[^ttm-chg] the retrospective review follows the containment |
 
 : Book 13's lanes on ServiceNow and SailPoint (inference) {.striped .hover}
 
