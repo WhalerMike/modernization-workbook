@@ -118,7 +118,7 @@ Hybrid Identity Administrator and Application Administrator stay in Book 04's Ti
 
 ### Onboarding and offboarding technicians
 
-Onboarding is an access-package request for the technician's role groups, approved by the identity governance officer on the service desk supervisor's request, followed by PIM training before the first activation. The program reviews help desk role membership quarterly, as Book 04 sets for Tier 2, with the supervisor certifying each technician's continued need and removal on non-response.
+Onboarding is an access-package request for the technician's role groups, approved by the identity governance officer on the service desk supervisor's request. PIM training and the verification check come first and are on record before the access package is requested ([Book 16, Chapter 09](../b16-people/09-building-and-running-the-curriculum.md)), so no technician is made eligible, or activates a role, untrained. The program reviews help desk role membership quarterly, as Book 04 sets for Tier 2: the reviewers are the role owner (the administrative unit's department lead) and the security office, with removal on non-response. The supervisor's view of each technician's continued need is an input to that review, not the review itself.
 
 Offboarding is faster and needs no governance approval, because removing access never increases risk: the supervisor's request removes the technician from the role groups. If the technician has an active activation at the time, identity engineering removes the active assignment as well, then revokes the technician's sessions.
 

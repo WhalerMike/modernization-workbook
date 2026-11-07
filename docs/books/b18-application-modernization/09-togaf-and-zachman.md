@@ -114,7 +114,7 @@ The left column lists each chapter of this book and the main artifacts of the re
 | OpenAPI contract and contract test | C, G | Interface definition in the target application architecture; a conformance check run on every change |
 | Spring Boot service over PostgreSQL | C, D | A building block of the target application and technology architecture |
 | React front end | C | The user-facing application component |
-| DB2/Oracle to PostgreSQL migration tool | E, F, G | The transition mechanism for data, scheduled in a wave and governed by its validation |
+| Db2/Oracle to PostgreSQL migration tool | E, F, G | The transition mechanism for data, scheduled in a wave and governed by its validation |
 | Row-count, checksum and aggregate validation report | G | Proof that the implementation conforms to the target without loss |
 | Provider-neutral agent pattern with a stub model | C, Requirements Management | Target application pattern for AI, with its identity and approval requirements |
 | Wave plan and gate decisions ([Chapter 10](10-running-the-portfolio-in-waves.md)) | F, G | Implementation and migration plan; governance checkpoints |

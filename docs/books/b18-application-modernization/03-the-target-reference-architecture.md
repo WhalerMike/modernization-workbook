@@ -38,7 +38,7 @@ The technology choices below are the program's design, not a federal requirement
 | API contracts | OpenAPI, written before the code | OpenAPI Specification 3.2.1, dated September 10, 2026, a patch release of 3.2[^c03-oas] | A contract every team, tool and reviewer can read |
 | Packaging | OCI container images | OCI Image Specification 1.1.1 and Distribution Specification 1.1.1 (2025); Runtime Specification 1.3.0 (November 2025)[^c03-oci][^c03-oci-rel] | Vendor-neutral format every major registry and runtime supports |
 | Orchestration | Kubernetes, or a managed service built on it | Kubernetes 1.37 is the newest minor release; the project maintains the three most recent minor releases[^c03-k8s] | One deployment and scaling model across environments |
-| Data | PostgreSQL or SQL Server | See [Chapter 04](04-moving-the-data.md) | The two targets this book supports for data off DB2 and Oracle |
+| Data | PostgreSQL or SQL Server | See [Chapter 04](04-moving-the-data.md) | The two targets this book supports for data off Db2 and Oracle |
 
 Versions are a snapshot. The chief architect, through the architecture review board in [Chapter 07](07-who-governs-the-architecture.md), owns the approved list and its upgrade dates; this table is the starting point, not the standard itself.
 
@@ -158,7 +158,7 @@ The CSRC pages for SP 800-204 and SP 800-190 list no newer revision or draft as 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — Triaging the Portfolio](02-triaging-the-portfolio.md) · [Book index](index.md) · [Next: Chapter 04 — Moving the Data: DB2 and Oracle to PostgreSQL or SQL Server →](04-moving-the-data.md)
+[← Previous: Chapter 02 — Triaging the Portfolio](02-triaging-the-portfolio.md) · [Book index](index.md) · [Next: Chapter 04 — Moving the Data: Db2 and Oracle to PostgreSQL or SQL Server →](04-moving-the-data.md)
 :::
 
 [^c03-jdk]: OpenJDK, "JDK Project," list of releases and GA dates (JDK 25, September 16, 2025; JDK 26, March 17, 2026; JDK 27, September 15, 2026; JDK 28 in development), <https://openjdk.org/projects/jdk/> (accessed Oct 28, 2026).

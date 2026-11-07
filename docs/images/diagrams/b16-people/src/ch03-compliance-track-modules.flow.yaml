@@ -1,7 +1,7 @@
-# Book 16 Chapter 03 — the compliance track: orientation, eight evidence-area
+# Book 16 Chapter 03 — the compliance track: foundations, eight evidence-area
 # modules, the package and continuous-monitoring module, and the capstone,
 # each pointing to the book that teaches it. The eight areas are the
-# program's design. Slate = orientation, blue = evidence areas,
+# program's design. Slate = foundations, blue = evidence areas,
 # violet = package and monitoring, green = capstone.
 rankdir: TB
 graph: {nodesep: 0.2, ranksep: 0.45}
@@ -12,7 +12,7 @@ clusters:
     filled: false
     nodes: [m1, m2, m3, m4, m5, m6, m7, m8]
 nodes:
-  m0: {tone: slate, width: 420, tag: "Module 0", title: "Orientation", body: ["The Risk Management Framework; who owes which proof", "NIST Moderate baseline and FedRAMP classes as two facts", "The federal clock", "=Book 14 Ch 01 to 03; Book 10 Ch 03"], size: 11}
+  m0: {tone: slate, width: 420, tag: "Module 0", title: "Foundations", body: ["The Risk Management Framework; who owes which proof", "NIST Moderate baseline and FedRAMP classes as two facts", "The federal clock", "=Book 14 Ch 01 to 03; Book 10 Ch 03"], size: 11}
   m1: {tone: blue, width: 165, tag: "Module 1", title: "Identity", size: 11}
   m2: {tone: blue, width: 165, tag: "Module 2", title: "Addressing and inventory", size: 11}
   m3: {tone: blue, width: 165, tag: "Module 3", title: "Network", size: 11}

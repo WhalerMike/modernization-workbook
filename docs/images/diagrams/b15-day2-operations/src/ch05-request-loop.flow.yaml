@@ -7,7 +7,7 @@ rankdir: TB
 graph: {nodesep: 0.4, ranksep: 0.4}
 nodes:
   req: {tone: slate, width: 320, tag: "1", title: "Request", body: ["Typed item against the reconciled identity record", "Requester, target, justification"], size: 11}
-  app: {tone: amber, width: 320, tag: "2", title: "Approve", body: ["The gate the control requires: self-service, manager, identity team, owner or security approver", "Requester never approves"], size: 11}
+  app: {tone: amber, width: 320, tag: "2", title: "Approve", body: ["The gate the control requires: self-service, manager, identity operations, owner or security approver", "Requester never approves"], size: 11}
   exe: {tone: blue, width: 320, tag: "3", title: "Execute", body: ["Microsoft Graph through the in-boundary connector", "Scoped, logged identity; never standing tenant admin"], size: 11}
   evi: {tone: green, width: 320, tag: "4", title: "Evidence", body: ["Request, approval and result become one change record", "Reconciled to the inventory; feeds attestation"], size: 11}
   chk: {tone: violet, width: 320, title: "Closing check", body: ["=A read of the target confirms the change did exactly what was approved"], size: 11}

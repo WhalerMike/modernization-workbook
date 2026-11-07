@@ -62,7 +62,7 @@ The CIO also decides one thing the other roles can't: what happens to **shadow A
 
 ### The CISO
 
-The CISO sets the control requirements AI identities must meet, as for every other target surface ([Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what)): which credential types are allowed and which are findings, the Conditional Access baseline for workload and agent identities, the logging categories every AI identity must emit and how long they are kept, and the evidence standard a closed AI finding must meet. The CISO decides on continuous monitoring evidence and drift findings and approves bounded exceptions ([Book 13, Chapter 09](../b13-governance/09-who-governs.md#who-reviews-drift)). And because the authorization verdict for a SaaS service is a security decision ([Book 15, Chapter 06](../b15-day2-operations/06-saas-integration-governance.md)), the CISO's office decides whether a generative AI service may hold agency data before anyone sanctions it.
+The CISO sets the control requirements AI identities must meet, as for every other target surface ([Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md#who-decides-what)): which credential types are allowed and which are findings, the Conditional Access baseline for workload and agent identities, the logging categories every AI identity must emit and how long they are kept, and the evidence standard a closed AI finding must meet. The CISO decides on continuous monitoring evidence and drift findings and approves bounded exceptions ([Book 13, Chapter 09](../b13-governance/09-who-governs.md#who-reviews-drift)). And because the authorization verdict for a SaaS service is a security decision ([Book 15, Chapter 06](../b15-day2-operations/06-saas-integration-governance.md)), the security approver, in the CISO's office, decides whether a generative AI service may hold agency data before anyone sanctions it.
 
 ### The authorizing official
 
@@ -150,7 +150,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Federated credential added to an AI application | | | C | | | R | | D (IGO), R | C | | |
 | What data and tools an AI identity may reach | | | C | | | D | C | R | | C | |
 | Admin consent for an AI application or agent, outside the lowest tier | | | C (critical scopes) | | | R | C | D (IGO) | C | | |
-| Authorization verdict for a generative AI service | C | | D | | | C | | C | | C | |
+| Authorization verdict for a generative AI service | C | | D (security approver) | | | C | | C | | C | |
 | Detections, risky agent and workload identity triage | | | C | | | C | C | C | D, R | | |
 | Disable an AI identity during an incident | | | C | | | C | C | R | D | | |
 | Shadow AI found inside a system: accept into the boundary or remove | C | | C | | | D | C | R | R | | |
@@ -166,7 +166,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 
 Eight rows need comment.
 
-The **inventory link** row is the Chief AI Officer's decision because the inventory is the Chief AI Officer's under M-25-21. The identity team is consulted because it must be able to produce the identity record key the inventory entry points at. Without this one decision, the comparison in [Chapter 07](07-monitoring-drift-and-shadow-ai.md) has nothing to join on.
+The **inventory link** row is the Chief AI Officer's decision because the inventory is the Chief AI Officer's under M-25-21. The Chief AI Officer names an inventory coordinator, the role [Chapter 09](09-running-the-inventory-scan.md) routes the scan's findings to, who keeps the inventory current day to day and keeps owner and sponsor names out of the public file. The identity team is consulted because it must be able to produce the identity record key the inventory entry points at. Without this one decision, the comparison in [Chapter 07](07-monitoring-drift-and-shadow-ai.md) has nothing to join on.
 
 The **high-impact, waiver and pilot** rows follow M-25-21. An appropriate official documents a determination that a presumed high-impact use case isn't high-impact and the Chief AI Officer may revisit it; waivers are the Chief AI Officer's alone and can't be delegated; pilots need the Chief AI Officer's certification.[^c08-m2521] The authorizing official is consulted on waivers because a waived practice may leave a risk the authorization has to carry.
 
@@ -176,7 +176,7 @@ The **identity record** row gives the IGO the decision because creating a princi
 
 The **credential, federated credential and consent** rows are copied from [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#the-responsibility-matrix) so the books agree: the application owner (here the system owner) decides credential type and rotation, the IGO decides federated credentials and admin consent outside the lowest tier (Book 04 gives Tier 3 consent to the application owner, with the IGO informed), and the CISO concurs on critical-rated permissions.
 
-The **generative AI** rows split policy from verdict. M-25-21 asks agencies to develop a policy on acceptable use of generative AI;[^c08-m2521] the program gives that policy to the Chief AI Officer. Whether a particular service may hold agency data is the authorization verdict of [Book 15, Chapter 06](../b15-day2-operations/06-saas-integration-governance.md), which is the CISO's.
+The **generative AI** rows split policy from verdict. M-25-21 asks agencies to develop a policy on acceptable use of generative AI;[^c08-m2521] the program gives that policy to the Chief AI Officer. Whether a particular service may hold agency data is the authorization verdict of [Book 15, Chapter 06](../b15-day2-operations/06-saas-integration-governance.md), which is the security approver's, in the CISO's office.
 
 The **shadow AI** rows split by whether a system owner exists. Inside a system, the system owner decides, as for any shadow asset. With no owning system, only the CIO can assign it to one or order it removed. Security operations does the containment work in both, and the Chief AI Officer is consulted because a shadow AI system kept is a new inventory entry.
 

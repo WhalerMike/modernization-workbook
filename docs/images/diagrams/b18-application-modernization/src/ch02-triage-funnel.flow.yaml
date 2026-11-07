@@ -11,7 +11,7 @@ nodes:
   score: {tone: amber, width: 520, title: "Score from data", body: ["=Six criteria filled in from existing sources, each with a confidence flag"], size: 11}
   owner: {tone: amber, width: 520, title: "Owner review", body: ["=Mission owner and system owner confirm or contest the scores in a fixed window"], size: 11}
   prop: {tone: amber, width: 520, title: "Proposed disposition", body: ["=The decision table applied to the scores; first matching rule wins"], size: 11}
-  study: {tone: red, width: 240, title: "Deep study", body: ["=Contested, high-cost or high-impact applications only"], size: 11}
+  study: {tone: red, width: 240, title: "Deep study", body: ["=Contested or high-impact applications only"], size: 11}
   rec: {tone: green, width: 360, title: "Record the decision", body: ["=Disposition, scores, rule, owner's agreement, review date"], size: 11}
   feed: {tone: violet, width: 520, title: "Feed capital planning and the waves", body: ["=Enterprise architecture transition plan, budget requests, TMF proposals, Chapter 10"], size: 11}
 edges:

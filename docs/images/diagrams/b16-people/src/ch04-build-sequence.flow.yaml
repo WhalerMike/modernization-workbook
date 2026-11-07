@@ -2,7 +2,7 @@
 # DDI -> identity -> network -> data platform, certificates before network
 # access control enforces, and the parallel modules once identity exists
 # are the program's sequencing (from the source curriculum, extended to
-# devices, the cloud platform and day-two operations). Slate = orientation,
+# devices, the cloud platform and day-two operations). Slate = foundations,
 # blue = build modules, violet = parallel group, green = day two.
 rankdir: TB
 graph: {nodesep: 0.2, ranksep: 0.4}
@@ -13,7 +13,7 @@ clusters:
     filled: false
     nodes: [m5, m8, m9]
 nodes:
-  m0: {tone: slate, width: 360, tag: "Module 0", title: "Orientation", body: ["=The program, its gates and the compliance track's Module 0; Books 00 and 01"], size: 11}
+  m0: {tone: slate, width: 360, tag: "Module 0", title: "Foundations", body: ["=The program, its gates and the compliance track's Module 0; Books 00 and 01"], size: 11}
   m1: {tone: blue, width: 220, tag: "Module 1", title: "DNS, DHCP and IPAM", body: ["=Book 08"], size: 11}
   m2: {tone: blue, width: 220, tag: "Module 2", title: "Identity and lifecycle", body: ["=Books 02 and 03"], size: 11}
   m3: {tone: blue, width: 200, tag: "Module 3", title: "Certificates", body: ["=Book 07"], size: 11}

@@ -14,7 +14,7 @@ nodes:
   p1: {tone: blue, width: 300, tag: "Phase 1, Foundation · G1", title: "Build the factory", body: ["=Platform, patterns, pipelines, validation tooling"], size: 11}
   p2: {tone: amber, width: 300, tag: "Phase 2, Pilot · G2", title: "Pilot wave", body: ["=A few low-complexity applications, plus one representative hard one"], size: 11}
   p3: {tone: blue, width: 300, tag: "Phase 3, General rollout · G3", title: "Factory waves", body: ["=Move groups by shared data and owner; plan four to five waves ahead"], size: 11}
-  p4: {tone: red, width: 300, tag: "Phase 4, Legacy retirement · G4", title: "Decommission", body: ["=Retire replaced applications, DB2 and Oracle instances, licenses"], size: 11}
+  p4: {tone: red, width: 300, tag: "Phase 4, Legacy retirement · G4", title: "Decommission", body: ["=Retire replaced applications, Db2 and Oracle instances, licenses"], size: 11}
   p6: {tone: green, width: 300, tag: "Phase 6, Steady state", title: "Long tail and re-triage", body: ["=Retain with end dates; re-score on triggers"], size: 11}
   tri: {tone: violet, width: 230, title: "Re-triage triggers", body: ["End of support", "Incident or finding", "Cost or mission change"], size: 11}
 edges:
