@@ -64,7 +64,7 @@ Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · 
 
 ## Where this book sits in the workbook
 
-This is Book 13 of the [Federal Modernization Workbook](../index.md). The principles it puts into operation are in [Book 00, Chapter 04](../b00-orientation/04-the-principles.md); the transformation engine and its actuation ladder in [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md); the evidence contract and the security-operations side of continuous monitoring in [Book 12](../b12-security-operations/index.md); and the FedRAMP 2026 rules and the authorization boundary in [Book 10](../b10-cloud-boundary/index.md). The Federal Compliance [Governance Platform Integration Overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_X_Book_00_Governance_Substrate_Integration_Overview.md) remains in the repository for control-level depth.
+This is Book 13 of the [Federal Modernization Workbook](../index.md). The principles it puts into operation are in [Book 00, Chapter 04](../b00-orientation/04-the-principles.md); the transformation engine and its actuation ladder in [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md); the evidence contract and the security-operations side of continuous monitoring in [Book 12](../b12-security-operations/index.md); and the FedRAMP 2026 rules and the authorization boundary in [Book 10](../b10-cloud-boundary/index.md). The Federal Compliance [Governance Substrate Integration Overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_X_Book_00_Governance_Substrate_Integration_Overview.md) remains in the repository for control-level depth.
 
 ## Chapters
 
