@@ -74,16 +74,16 @@ Every application access group follows one naming convention, `APP-<AppShortName
 | `APP` | Fixed prefix for application access groups | `APP` |
 | `<AppShortName>` | The application's short name in the application registry (no spaces) | `PAYROLL`, `HRPORTAL` |
 | `<AccessRole>` | The role the group grants in the application | `USERS`, `ADMINS`, `READONLY` |
-| `<RiskTier>` | The application's risk tier ([Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain)) | `T1`, `T2`, `T3` |
+| `<RiskTier>` | The application's risk tier ([Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain)), written `R1`, `R2` or `R3` so it can't be read as a privilege tier | `R1`, `R2`, `R3` |
 
-So `APP-PAYROLL-ADMINS-T1` is the administrators of a Tier 1 payroll application. Names that don't follow the convention are flagged during reviews and corrected.
+So `APP-PAYROLL-ADMINS-R1` is the administrators of an R1 (highest application risk tier) payroll application. Names that don't follow the convention are flagged during reviews and corrected.
 
 Membership type follows the tier:
 
 | Membership type | Appropriate when | Not appropriate when | Tier rule |
 |---|---|---|---|
-| Dynamic (rule on user attributes) | Broad role-based access that matches attributes the HR feed keeps accurate | Each member needs individual approval, or the attributes aren't reliably maintained | Tier 3 preferred; Tier 2 only with governance-office approval; never Tier 1 |
-| Assigned (members added through approved requests or access packages) | Individual approval of each grant; small or specialized populations | Very large populations with reliable attributes | Required for Tier 1 and Tier 2; acceptable for Tier 3 |
+| Dynamic (rule on user attributes) | Broad role-based access that matches attributes the HR feed keeps accurate | Each member needs individual approval, or the attributes aren't reliably maintained | R3 preferred; R2 only with governance-office approval; never R1 |
+| Assigned (members added through approved requests or access packages) | Individual approval of each grant; small or specialized populations | Very large populations with reliable attributes | Required for R1 and R2; acceptable for R3 |
 
 A dynamic group is only as good as the attributes behind it. The attribute standard and the HR feed that maintains it are [Book 03](../b03-hr-identity/index.md)'s subject; here the rule is that the application owner validates the membership rule at every review, and a change to a rule is an access change that goes through change control ([Chapter 10](10-access-as-code-and-evidence.md)).
 
@@ -101,11 +101,11 @@ Who holds these roles, and how the decision rights are allocated, is [Chapter 06
 
 | Group class | Owner | Review cadence | Nesting | Changes need PIM |
 |---|---|---|---|---|
-| Assigned, Tier 1 application access | Application owner | Quarterly | No | Yes |
-| Assigned, Tier 2 application access | Application owner | Semiannual | No | Yes |
-| Assigned, Tier 3 application access | Application owner or department owner | Annual | No | Yes |
-| Dynamic, Tier 3, or Tier 2 with approval | Application owner | Annual (rule validation) | No | Yes, for rule changes |
-| PIM-governed privileged access group | Governance office or Privileged Role Administrator | Quarterly | No | Activation required |
+| Assigned, R1 application access | Application owner | Quarterly | No | Yes |
+| Assigned, R2 application access | Application owner | Semiannual | No | Yes |
+| Assigned, R3 application access | Application owner or department owner | Annual | No | Yes |
+| Dynamic, R3, or R2 with approval | Application owner | Annual (rule validation) | No | Yes, for rule changes |
+| Role-assignable privileged group (`PRV-*`) | Governance office or Privileged Role Administrator | Quarterly; `PRV-T0-*` monthly | No | An approved membership request; the member activates the role in PIM, not the group |
 
 ## Entitlement management
 
@@ -115,7 +115,7 @@ Entitlement management automates access requests, assignments, reviews, and expi
 
 A catalog is a container of resources and the access packages built from them. Catalogs are how the program delegates: an administrator can add any resource to any catalog, but a non-administrator catalog owner can add only resources they own, and a catalog owner can make others co-owners or access package managers.[^c09-em-overview] Access package managers can create packages and policies inside the catalog but can't add resources; catalog readers have view-only access; access package assignment managers can change assignments but not packages or policies.[^c09-delegate] An access package can't be moved to a different catalog after it is created, so choose the catalog first.[^c09-ap-create]
 
-The program creates one catalog per business domain that owns resources (for example, finance applications, HR applications, collaboration sites), with the domain's business owner as catalog owner and application owners as access package managers. Tier 1 resources go into catalogs whose owners are approved by the governance office. The `General` catalog, which entitlement management creates automatically, is not used for program resources.[^c09-catalog-resource]
+The program creates one catalog per business domain that owns resources (for example, finance applications, HR applications, collaboration sites), with the domain's business owner as catalog owner and application owners as access package managers. R1 resources go into catalogs whose owners are approved by the governance office. The `General` catalog, which entitlement management creates automatically, is not used for program resources.[^c09-catalog-resource]
 
 ### Access packages
 
@@ -138,13 +138,13 @@ Approval works like this as of October 2026:[^c09-approval]
 
 The program's approval chains follow the application's risk tier, which [Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain) defines along with the people behind each role. The chains below are design positions:
 
-| Tier | Stage 1 | Stage 2 | Decision deadline per stage | Justification |
+| Risk tier | Stage 1 | Stage 2 | Decision deadline per stage | Justification |
 |---|---|---|---|---|
-| Tier 3 | Department owner (the requestor's manager, with a fallback approver) | | 7 days | Requestor |
-| Tier 2 | Application owner (alternate: backup application owner) | | 5 days | Requestor and approver |
-| Tier 1 | Application owner (alternate: backup application owner) | Identity governance office | 5 days | Requestor and approvers |
+| R3 | Department owner (the requestor's manager, with a fallback approver) | | 7 days | Requestor |
+| R2 | Application owner (alternate: backup application owner) | | 5 days | Requestor and approver |
+| R1 | Application owner (alternate: backup application owner) | Identity governance office | 5 days | Requestor and approvers |
 
-The program's earlier request procedure only notified the governance office of Tier 1 grants. Making the office a second approval stage costs a few hours and leaves an approval record instead of an email. For resources more sensitive still, Microsoft describes a three-stage pattern: the manager confirms the business need, the resource owner confirms the access, and a security reviewer can reject on risk criteria the owner doesn't see.[^c09-approval]
+The program's earlier request procedure only notified the governance office of R1 grants. Making the office a second approval stage costs a few hours and leaves an approval record instead of an email. For resources more sensitive still, Microsoft describes a three-stage pattern: the manager confirms the business need, the resource owner confirms the access, and a security reviewer can reject on risk criteria the owner doesn't see.[^c09-approval]
 
 ### Expiration and extension
 
@@ -154,9 +154,9 @@ The program never uses "never." Its defaults, as design positions:
 
 | Package type | Expiry | Extension |
 |---|---|---|
-| Tier 1 application access | 90 days | Allowed, with approval |
-| Tier 2 application access | 180 days | Allowed, with approval |
-| Tier 3 application access and department packages | 365 days | Allowed without approval while in scope |
+| R1 application access | 90 days | Allowed, with approval |
+| R2 application access | 180 days | Allowed, with approval |
+| R3 application access and department packages | 365 days | Allowed without approval while in scope |
 | Project packages | On the project end date | Allowed, with approval, up to the end date |
 | Packages for external users | No more than 365 days | Allowed, with sponsor approval |
 
@@ -205,7 +205,7 @@ Reviews of privileged roles happen in PIM; the role settings that pair with them
 
 Reviewers can be group owners (for group reviews), selected users or groups, the users themselves (self-review), or the users' managers.[^c09-create-review] When the reviewer is a manager or a group owner, add a fallback reviewer: fallback reviewers are asked when a user has no manager in the directory or the group has no owner.[^c09-create-review] For reviews of PIM for Groups with owners as reviewers, a fallback reviewer is mandatory, and only active (not eligible) owners count as reviewers.[^c09-create-review] Owners are fixed when an instance starts; ownership changes take effect at the next recurrence.[^c09-create-review]
 
-A multi-stage review runs two or three sets of reviewers in sequence, each in its own stage duration, and you choose which reviewees go on to the next stage (approved, denied, not reviewed, marked "don't know," or all) and whether later stages see earlier decisions.[^c09-create-review] The program uses two stages for Tier 1 applications: the manager first, then the application owner for everyone the manager approved or marked "don't know." That replaces the manual "escalate to department owner" step in the program's older review procedure.
+A multi-stage review runs two or three sets of reviewers in sequence, each in its own stage duration, and you choose which reviewees go on to the next stage (approved, denied, not reviewed, marked "don't know," or all) and whether later stages see earlier decisions.[^c09-create-review] The program uses two stages for R1 applications: the manager first, then the application owner for everyone the manager approved or marked "don't know." That replaces the manual "escalate to department owner" step in the program's older review procedure.
 
 ### Cadence
 
@@ -215,17 +215,19 @@ The program's schedule, by target. It refines the review schedule in [Book 02, C
 
 | Review target | Cadence | Duration | Reviewers | Fallback | If reviewers don't respond | Auto-apply |
 |---|---|---|---|---|---|---|
-| PIM-eligible Tier 0 roles | Monthly | 14 days | `PIM-Approvers-T0` | Governance office | Remove access | Yes |
-| PIM-eligible Tier 1, Tier 2 and read-only roles, and Azure roles | Quarterly | 14 days | Role owner and the tier's approver group, or the security office ([Appendix B](appendix-b-pim-role-settings.md#review-cadence-by-tier)) | Governance office | Remove access | Yes |
-| `PRV-T0-*` privileged access groups | Monthly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
-| Other PIM-governed privileged access groups | Quarterly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
-| Tier 1 application access groups | Quarterly | 14 days (two stages of 7) | Manager, then application owner | Backup application owner | No change; escalate to the governance office | Yes |
-| Tier 2 application access groups | Semiannual (January and July) | 14 days | Application owner | Backup application owner | No change; escalate | Yes |
-| Tier 3 application access groups | Annual (January) | 21 days | Application or department owner | Department owner | No change | Yes |
+| PIM-eligible Tier 0 roles, including Tier 0 Azure roles | Monthly | 14 days | `PIM-Approvers-T0` | Governance office | Remove access | Yes |
+| PIM-eligible Tier 1, Tier 2 and read-only roles, and Azure roles below Tier 0 | Quarterly | 14 days | Role owner and the tier's approver group, or the security office ([Appendix B](appendix-b-pim-role-settings.md#review-cadence-by-tier)) | Governance office | Remove access | Yes |
+| `PRV-T0-*` role-assignable groups | Monthly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
+| Other `PRV-*` role-assignable groups | Quarterly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
+| R1 application access groups | Quarterly | 14 days (two stages of 7) | Manager, then application owner | Backup application owner | No change; escalate to the governance office | Yes |
+| R2 application access groups | Semiannual (January and July) | 14 days | Application owner | Backup application owner | No change; escalate | Yes |
+| R3 application access groups | Annual (January) | 21 days | Application or department owner | Department owner | No change | Yes |
 | Packages and groups with guests | Quarterly | 14 days | Sponsors | Governance office | Remove access | Yes |
 | Microsoft 365 group membership | Semiannual | 21 days | Group owners | Governance office | No change | No (recommendations only) |
 | `CA-Exclude-*` conditional access exclusion groups | Quarterly | 14 days | Group owner | Governance office | Remove access | Yes |
 | `PIM-Approvers-*` approver groups | Quarterly (`PIM-Approvers-T0` monthly, with the Tier 0 row) | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
+
+One exception to "Remove access" in the privileged rows: a review whose scope covers the emergency access accounts' permanent Global Administrator assignment uses **No change** when reviewers don't respond, and each unreviewed item is followed up as a finding. Removing access on silence there could remove the accounts kept for the day everything else fails ([Chapter 08](08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)). Every other privileged review removes access.
 
 ### Upon completion: auto-apply and the no-response default
 
@@ -276,11 +278,11 @@ Lifecycle Workflows run on a schedule when a user meets a workflow's execution c
 The program's access rules for each event, as design positions:
 
 - **Joiner.** Request the onboarding package and the department package. Never add a new hire directly to an application group.
-- **Mover.** A move is a re-derivation, not an additional grant. Remove the previous department's package assignments, request the new department's package, and send everything the person still holds outside packages to a review. Microsoft's built-in *Employee job profile change* template does the first two steps, and its *remove all access package assignments* task defaults to a scheduled removal 15 days after the trigger, a grace period for handover.[^c09-lcw-templates] The program keeps the grace period for standard access and sets it to zero for Tier 1 and privileged access.
+- **Mover.** A move is a re-derivation, not an additional grant. Remove the previous department's package assignments, request the new department's package, and send everything the person still holds outside packages to a review. Microsoft's built-in *Employee job profile change* template does the first two steps, and its *remove all access package assignments* task defaults to a scheduled removal 15 days after the trigger, a grace period for handover.[^c09-lcw-templates] The program keeps the grace period for standard access and sets it to zero for R1 and privileged access.
 - **Leaver.** Cancel pending requests, remove all package assignments, remove the user from all groups and teams, and revoke refresh tokens. The account disable and deletion steps are Book 03's.
 - **Inactivity.** The *Offboard inactive users* template keys on `lastSuccessfulSignInDateTime`; Microsoft's inactive-user templates default to 90 days of inactivity for the pre-offboarding workflow and 120 days for offboarding.[^c09-lcw-templates] The program uses it as a backstop for accounts whose HR record didn't produce a leaver event.
 
-A tenant can have up to 50 workflows and up to 100 custom task extensions.[^c09-licensing] Spend workflows on events, not on individual applications; per-application cleanup belongs in the packages that a single "remove all assignments" task clears.
+Learn gives two different tenant ceilings for workflows: the licensing page says up to 50 workflows, and the service limits page says 100 per tenant, with 25 tasks per workflow and up to 100 custom task extensions.[^c09-licensing][^c09-gov-limits] The program budgets to 50 until Microsoft reconciles the two pages. Spend workflows on events, not on individual applications; per-application cleanup belongs in the packages that a single "remove all assignments" task clears.
 
 ## Guest access governance
 
@@ -324,13 +326,13 @@ Detections that guard the governance process itself run in the SIEM; the detecti
 
 | Alert | Trigger | Priority |
 |---|---|---|
-| Access granted outside entitlement management | An app role assignment to a Tier 1 or Tier 2 application not made by entitlement management | High |
+| Access granted outside entitlement management | An app role assignment to an R1 or R2 application not made by entitlement management | High |
 | Review closed with unapplied denials | A review instance ended with "Deny" decisions not applied | High |
 | Bulk privileged decisions | One reviewer records many identical decisions in a privileged-role review within minutes | Medium |
 
 ### Exceptions
 
-Every deviation (a combined package that overrides separation of duties, a review schedule moved, a package without expiry) is recorded in the exception register with its approver, its justification, and an end date. Deviations from the Tier 3 review schedule need the governance office's approval; deviations for Tier 1 or Tier 2 also need the CISO's concurrence. The register is reviewed quarterly and is part of the evidence for each cycle.
+Every deviation (a combined package that overrides separation of duties, a review schedule moved, a package without expiry) is recorded in the exception register with its approver, its justification, and an end date. Deviations from the R3 review schedule need the governance office's approval; deviations for R1 or R2 also need the CISO's concurrence. The register is reviewed quarterly and is part of the evidence for each cycle.
 
 ## Privacy
 
@@ -387,4 +389,5 @@ External Partner Persons are guests by default and arrive through a package, so 
 [^c09-a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource*, July 28, 2016 (Appendix II §3, Fair Information Practice Principles, Minimization), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf> (accessed Nov 2, 2026).
 [^c09-sp80053-priv]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, Release 5.2.0 (controls PT-3, SI-12, SI-12(1) and SI-18), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; and SP 800-53B, *Control Baselines for Information Systems and Organizations* (the privacy baseline, "applied to systems irrespective of impact level"), <https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final>; control text and privacy-baseline membership read from NIST's OSCAL Release 5.2.0 catalog and privacy baseline profile, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Nov 2, 2026).
 [^c09-grs32]: National Archives, General Records Schedule 3.2, *Information Systems Security Records*, Transmittal 33, items 030 and 031 (system access records, including user profiles, log-in files and audit trails), <https://www.archives.gov/files/records-mgmt/grs/grs03-2.pdf> (accessed Nov 2, 2026).
+[^c09-gov-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," section "Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Nov 7, 2026).
 [^c09-em-questions]: Microsoft Learn, "Change approval and requestor information settings for an access package in entitlement management," section "Collect additional requestor information for approval," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-approval-policy> (accessed Nov 2, 2026).

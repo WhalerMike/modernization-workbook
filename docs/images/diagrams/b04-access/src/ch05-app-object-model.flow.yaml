@@ -10,7 +10,7 @@ nodes:
   sp: {tone: blue, width: 220, tag: "Enterprise applications", title: "Service principal", body: ["One per tenant that uses the app", "Consent grants and app role assignments", "User and group assignment", "Conditional Access target"], size: 12}
   mi: {tone: green, width: 210, tag: "Azure resource", title: "Managed identity", body: ["Service principal with no app object", "Azure manages the credential"], size: 12}
   ext: {tone: slate, width: 220, tag: "Other tenants", title: "Service principal per consenting tenant", body: ["=Created when an admin or user consents to a multitenant app"], size: 12}
-  gov: {tone: violet, width: 200, tag: "Governance", title: "Owners, policy and evidence", body: ["Owners: at least two humans", "App management policy on credentials", "Audit log: consent and credential events"], size: 12}
+  gov: {tone: violet, width: 200, tag: "Governance", title: "Owners, policy and evidence", body: ["Registry owner; Entra Owners: two technical people", "App management policy on credentials", "Audit log: consent and credential events"], size: 12}
 edges:
   - [app, sp, {label: "template for", tone: blue}]
   - [app, ext, {label: "multitenant only", style: dashed}]

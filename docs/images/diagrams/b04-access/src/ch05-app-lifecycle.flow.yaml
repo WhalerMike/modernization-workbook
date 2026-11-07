@@ -4,8 +4,8 @@
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.45}
 nodes:
-  req: {tone: amber, width: 220, tag: "1 · Request", title: "Owner and purpose", body: ["Two human owners", "Specific scopes named", "Risk tier assigned"], size: 12}
-  con: {tone: amber, width: 220, tag: "2 · Consent", title: "Scoped consent", body: ["Delegated before application", "Tiered approver", "No blanket grants"], size: 12}
+  req: {tone: amber, width: 220, tag: "1 · Request", title: "Owner and purpose", body: ["Registry owner; two technical owners", "Specific scopes named", "Risk tier assigned"], size: 12}
+  con: {tone: amber, width: 220, tag: "2 · Consent", title: "Scoped consent", body: ["Delegated before application", "Risk tier's approver", "No blanket grants"], size: 12}
   cred: {tone: blue, width: 220, tag: "3 · Credential", title: "No stored secret", body: ["Managed identity or federation", "Else certificate, short life", "Secrets blocked by policy"], size: 12}
   rot: {tone: blue, width: 220, tag: "4 · Rotate", title: "Before expiry", body: ["Raised automatically", "Owner approves"], size: 12}
   att: {tone: violet, width: 220, tag: "5 · Attest", title: "Review on a cadence", body: ["Owners still valid", "Permissions still needed", "Unused credentials removed"], size: 12}

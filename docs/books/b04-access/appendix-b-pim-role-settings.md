@@ -32,6 +32,7 @@ The values are the program's design. The ranges and behaviors they sit inside ar
 | `PIM-Approvers-T0` | Approvers for Tier 0 activations, drawn from the security office; no member is eligible for a Tier 0 role |
 | `PIM-Approvers-T1` | Approvers for Tier 1 activations, drawn from identity engineering leads and the security office; no member is eligible for any Tier 1 role |
 | `PIM-Approvers-T2` | Used only for a Tier 2 role whose risk acceptance has been withdrawn, so that it requires approval |
+| `PRV-<tier>-<role>[-<scope>]` | The name of the role-assignable group that holds a role ([Chapter 04](04-privileged-roles-and-tiers.md#role-assignable-groups)). The scope is left out for a tenant-wide role and is the administrative unit (`<AU>`) for a Tier 2 role |
 | SOC mailbox | The security operations distribution list that receives every activation alert |
 | Eligible to | The role-assignable group that holds the eligible assignment ([Chapter 04](04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)) |
 
@@ -127,6 +128,8 @@ An active assignment should never happen outside the documented exceptions, so e
 | Tier 2 | Quarterly | Role owner (the AU's department lead) and the security office | Remove access |
 | Read-only | Quarterly | Security office | Remove access |
 
+One exception to "Remove access" in the Tier 0 row: a review whose scope covers the emergency access accounts' permanent Global Administrator assignment uses **No change** when reviewers don't respond, and each unreviewed item is followed up as a finding. Removing access on silence there could remove the accounts kept for the day everything else fails ([Chapter 08](08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)). Every other review removes access.
+
 Each role review is paired with a membership review of its `PRV-*` group, because a review of a role held by a group shows the group, not its members ([Chapter 08](08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)).[^aB-review]
 
 ## Where this appendix tightens Book 02
@@ -139,6 +142,7 @@ Each role review is paired with a membership review of its `PRV-*` group, becaus
 | Conditional Access Administrator | 8 hours, no approval | 4 hours, approval by `PIM-Approvers-T0` | Can weaken the activation gate itself ([Chapter 04](04-privileged-roles-and-tiers.md#the-programs-privilege-tiers)) |
 | Exchange, SharePoint, Intune, Application and Compliance Administrator | No approval | Approval by `PIM-Approvers-T1` | Tier 1: service-wide control |
 | Teams, Cloud Application, Hybrid Identity and Authentication Policy Administrator | Not in Chapter 09's table | Eligible only; approval by `PIM-Approvers-T1`, 8 hours, ticket required (Tier 1 table above) | Tier 1: service-wide control, application credentials, the synchronization bridge to AD, or the tenant's authentication methods policy[^aB-roles-ref] |
+| Privileged Authentication Administrator (Tier 0); Helpdesk Administrator and Password Administrator (Tier 2); Reports Reader (read-only) | Not in Chapter 09's table | The values in this appendix's tier tables above | Book 02's table doesn't list these roles, so this appendix sets their values |
 | Ticket on activation | Global, Privileged Role and Exchange Administrator only | Every Tier 0, 1 and 2 role | Ticket correlation in the ITSM is how activations are reconciled to approved work |
 | Security Reader, Global Reader | 12 hours, no justification | 8 hours, justification required | Privileged-labeled read access gets a recorded reason |
 | Eligibility expiry | At most 12 months | 90, 180 or 365 days by tier | Within Book 02's ceiling |

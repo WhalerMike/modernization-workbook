@@ -34,10 +34,10 @@ Every access object the program governs has a file in the repository, one file p
 
 | Object class | Held as | Safety rule checked before merge |
 |---|---|---|
-| Conditional Access policies, named locations, authentication strengths | One JSON or HCL file per object | Every blocking or grant policy that has a user scope excludes the emergency access group, except CA090, which excludes nobody by design; policies that target only workload identities (CA015, CA037) have no user scope to exclude from ([Chapter 07](07-the-conditional-access-policy-library.md)); new and changed policies deploy as report-only |
+| Conditional Access policies, named locations, authentication strengths | One JSON or HCL file per object | Every blocking or grant policy that has a user scope excludes the emergency access group, except CA090, which excludes nobody by design; policies that target only workload identities (CA015, CA037) have no user scope to exclude from ([Chapter 07](07-the-conditional-access-policy-library.md)); new and changed policies deploy as report-only, except `PIM-Activation-c1` and `ProtectedActions-c2`, which must be On before their context is selected |
 | PIM role settings for Entra roles and PIM for Groups | One file per role policy (the role's rules) | Activation requires the authentication context `c1` and justification for every role, and approval by the tier's approver group for Tier 0 and Tier 1 roles; a Tier 2 role without approval cites its documented risk acceptance; no rule permits a permanent active assignment except the documented emergency accounts ([Chapter 08](08-pim-self-request-with-approval.md)) |
 | Eligible role assignments | One file per role, listing eligible groups | Eligibility goes to role-assignable groups, not individuals ([Chapter 04](04-privileged-roles-and-tiers.md)) |
-| Groups used for access | One file per group | Names follow the `APP-` convention; no nested members; dynamic rules only where the tier allows ([Chapter 09](09-access-governance.md#naming-and-membership-type)) |
+| Groups used for access | One file per group | Names follow the `APP-` convention; no nested members; dynamic rules only where the risk tier allows ([Chapter 09](09-access-governance.md#naming-and-membership-type)) |
 | Catalogs, access packages, assignment policies | One file per package with its policies | Expiry set (never "never"); approval chain matches the tier; incompatible packages listed both ways |
 | Access review definitions | One file per review series | Fallback reviewer present whenever reviewers are managers or owners; auto-apply and no-response default match the schedule in [Chapter 09](09-access-governance.md#cadence) (auto-apply is off for Microsoft 365 group membership) |
 | Lifecycle Workflows | One file per workflow | Leaver workflows include "remove all access package assignments" and "revoke all refresh tokens" |
@@ -239,7 +239,7 @@ Write-Output 'All Conditional Access policy files exclude the emergency access g
 
 ### An access review definition in Microsoft Graph PowerShell
 
-A quarterly review of a Tier 1 application access group, reviewed by the group's owners with a fallback reviewer, that removes denied members and, as the [Chapter 09](09-access-governance.md#cadence) schedule specifies for business applications, leaves unreviewed members unchanged. The shape follows Microsoft's examples for `New-MgIdentityGovernanceAccessReviewDefinition`, and the scope and reviewer queries follow Microsoft's security group tutorial and reviewer reference.[^c10-ar-cmdlet][^c10-ar-tutorial][^c10-ar-reviewers]
+A quarterly review of an R1 (highest application risk tier) application access group, reviewed by the group's owners with a fallback reviewer, that removes denied members and, as the [Chapter 09](09-access-governance.md#cadence) schedule specifies for business applications, leaves unreviewed members unchanged. The shape follows Microsoft's examples for `New-MgIdentityGovernanceAccessReviewDefinition`, and the scope and reviewer queries follow Microsoft's security group tutorial and reviewer reference.[^c10-ar-cmdlet][^c10-ar-tutorial][^c10-ar-reviewers]
 
 ```powershell
 #Requires -Modules Microsoft.Graph.Identity.Governance
@@ -249,8 +249,8 @@ $groupId    = '<application-access-group-object-id>'
 $fallbackId = '<backup-application-owner-object-id>'
 
 $params = @{
-    displayName          = 'Quarterly review - APP-PAYROLL-USERS-T1'
-    descriptionForAdmins = 'Tier 1 application access; schedule in Book 04, Chapter 09'
+    displayName          = 'Quarterly review - APP-PAYROLL-USERS-R1'
+    descriptionForAdmins = 'R1 application access; schedule in Book 04, Chapter 09'
     scope = @{
         '@odata.type' = '#microsoft.graph.accessReviewQueryScope'
         query         = "/groups/$groupId/transitiveMembers"
@@ -304,7 +304,7 @@ The repository is the only normal path to production. The rules below are design
 
 1. **Two people per change.** The author of a pull request can't approve it. Changes to Tier 0 objects (emergency access exclusions, PIM settings for Tier 0 roles, the pipeline's own permissions) need a second approver from the security team.
 2. **Checks before merge.** Schema validation, the emergency access exclusion check, the safety rules in the object table, and a plan or dry run whose output is attached to the pull request.
-3. **Report-only first.** New and changed Conditional Access policies deploy as report-only, run at least a week against the sign-in logs (the Conditional Access insights workbook in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#workbooks)), and are switched to enabled in a second pull request that cites the impact review.
+3. **Report-only first.** New and changed Conditional Access policies deploy as report-only, run at least a week against the sign-in logs (the Conditional Access insights workbook in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#workbooks)), and are switched to enabled in a second pull request that cites the impact review. The two authentication-context policies, `PIM-Activation-c1` and `ProtectedActions-c2`, are the exception: report-only doesn't count for them, so each is deployed On before its context is selected ([Chapter 08](08-pim-self-request-with-approval.md)).
 4. **A pipeline identity with no secret.** The pipeline signs in as a service principal with workload identity federation ([Chapter 05](05-applications-and-workload-identities.md#workload-identity-federation)) and holds only the Graph permissions its object classes need. That service principal can change every access policy in the tenant, so it is a Tier 0 asset: it has two owners, its permissions are reviewed monthly like every other Tier 0 asset, and a Conditional Access policy for workload identities restricts where it can sign in from.
 5. **Emergency changes.** During an incident, an administrator may change a policy in the portal under a PIM activation with a ticket number as justification. The change is back-ported to the repository within one business day. Until then the drift monitor reports it, which is the point: an emergency change that never reaches the repository stays visible.
 6. **Rollback is a revert.** Undoing a change means reverting its commit and redeploying, so the rollback has the same record as the change.
