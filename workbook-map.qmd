@@ -11,7 +11,7 @@ Use the contents on the right to jump between sections.
 
 | Date | What it means |
 |---|---|
-| Baseline | One date for everything, set by the baseline edition once the books have been checked against each other |
+| Baseline | One date for everything, set by the baseline edition (Release 2.0) once the books have been checked against each other |
 | Last updated | The last time the object itself changed. Edition numbers in links and review records don't count |
 | Last verified | The last time the page was reviewed, or its claims were checked against their sources |
 
