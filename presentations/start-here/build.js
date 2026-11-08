@@ -160,15 +160,16 @@ const S = "Start here";
   const s = content(S, "The clocks nobody can move");
   tag(s, "Why");
   img(s, "b00-orientation/ch01-external-clocks", "The external clocks: federal policy dates (M-22-09 actions, BOD 25-01 mandatory Microsoft 365 policies June 20, 2025, the M-26-14 logging plan, FedRAMP Consolidated Rules mandatory January 1, 2027, BOD 26-02 edge devices out February 5, 2027, no new FedRAMP Rev5 applications June 11, 2027) and vendor end-of-support dates (including Windows Server 2016 on January 12, 2027 and SQL Server 2017 on October 12, 2027), all landing on one estate and one governed program.", 0.6, 1.45, 8.2, 4.95);
-  panel(s, "Next", 9.0, 1.5, 3.75, 3.3, HEX.red, HEX.redTint, "THE NEXT DATES", "Still ahead", [
+  panel(s, "Next", 9.0, 1.5, 3.75, 4.3, HEX.red, HEX.redTint, "THE NEXT DATES", "Still ahead", [
     "Agency Logging Plan: November 18, 2026, by the program's count",
     "FedRAMP rules: mandatory January 1, 2027",
     "Windows Server 2016 gone by January 12, 2027; Server 2019 ends January 9, 2029",
+    "Public TLS certificates: 200 days now, 100 days from March 15, 2027, 47 days from March 15, 2029",
   ], 13);
-  sources(s, "Sources: Book 00, Ch 01 (external clocks; Microsoft lifecycle pages; CISA BOD 25-01 and 26-02; OMB M-26-14; FedRAMP).");
+  sources(s, "Sources: Book 00, Ch 01 (external clocks; Microsoft lifecycle pages; CISA BOD 25-01 and 26-02; OMB M-26-14; FedRAMP); Book 07, Ch 01 (CA/Browser Forum SC-081v3).");
   notes(s,
-`Book 00 Chapter 01's tables: OMB M-22-09 (Jan. 26, 2022); CISA BOD 25-01 (Dec. 17, 2024), mandatory SCuBA configurations for production cloud tenants; CISA BOD 26-02 (Feb. 5, 2026), end-of-support edge devices; OMB M-26-14 (May 22, 2026), which rescinds M-21-31 and sets risk-based logging; FedRAMP Consolidated Rules for 2026, launched June 25, 2026, mandatory January 1, 2027. End of support: Windows 10 and Exchange 2016/2019 passed October 14, 2025; SQL Server 2016 passed July 14, 2026; Windows Server 2012 ESU Year 3 passed October 13, 2026; Windows Server 2016 January 12, 2027; SQL Server 2017 October 12, 2027; Windows Server 2019 and MIM 2016 January 9, 2029. Book 00 Chapter 03: NPS uses the AD domain as its user account database when it's a domain member. The workbook's server standard is in Book 00 Chapter 01.`,
-  "Book 00, Chapter 01 (external clocks and end-of-support tables) and Chapter 03.");
+`Book 00 Chapter 01's tables: OMB M-22-09 (Jan. 26, 2022); CISA BOD 25-01 (Dec. 17, 2024), mandatory SCuBA configurations for production cloud tenants; CISA BOD 26-02 (Feb. 5, 2026), end-of-support edge devices; OMB M-26-14 (May 22, 2026), which rescinds M-21-31 and sets risk-based logging; FedRAMP Consolidated Rules for 2026, launched June 25, 2026, mandatory January 1, 2027. End of support: Windows 10 and Exchange 2016/2019 passed October 14, 2025; SQL Server 2016 passed July 14, 2026; Windows Server 2012 ESU Year 3 passed October 13, 2026; Windows Server 2016 January 12, 2027; SQL Server 2017 October 12, 2027; Windows Server 2019 and MIM 2016 January 9, 2029. Book 00 Chapter 03: NPS uses the AD domain as its user account database when it's a domain member. The workbook's server standard is in Book 00 Chapter 01. The certificate clock, Book 07 Chapter 01: the CA/Browser Forum's Ballot SC-081v3 sets the maximum validity of publicly trusted TLS certificates at 200 days today, 100 days from March 15, 2027 and 47 days from March 15, 2029; the chapter's arithmetic, assuming 250 working days and no renewal before the deadline, is about 7 renewals a working day for 1,000 certificates today, about 15 from March 2027 and about 31 from March 2029. "An estate tracked by spreadsheet and calendar reminder can't keep up even in principle" at 47 days.`,
+  "Book 00, Chapter 01 (external clocks and end-of-support tables) and Chapter 03; Book 07, Chapter 01 (the certificate clock).");
 }
 
 // ================================================================== 4 Identity first
@@ -177,8 +178,8 @@ const S = "Start here";
   tag(s, "What");
   img(s, "b01-transformation-arc/ch02-dependency-chain", "The dependency chain from Book 01: inventory, plan, identity, policy, network services, devices and servers, access plane, retire AD DS, prove steady state.", 0.6, 1.45, 2.75, 5.05);
   panel(s, "Order", 3.6, 1.5, 9.15, 2.55, HEX.navy, HEX.navyTint, "THE WORKBOOK'S ORDER", "Identity first; the estate next; assurance last", [
-    "Identity has to be authoritative before the decisions that depend on it can be trusted",
-    "Network services, addressing and certificates follow: they carry the names and trust everything relies on",
+    "Identity has to be authoritative before the decisions that depend on it can be trusted, and \"who or what\" includes service accounts, applications, devices and AI agents",
+    "Network services, addressing and certificates follow: they carry the names and trust everything relies on. DNS left AD-integrated means AD can never retire",
     "Telemetry and governance come last in the build and first in importance once running",
   ], 13);
   table(s, "Books", 4.25, [2.2, 6.95], ["Books", "Where they sit"], [
@@ -187,10 +188,10 @@ const S = "Start here";
     ["05–09", "Devices, data, certificates, DNS, network"],
     ["10–17", "Boundary, Zero Trust, operations, governance, compliance, people, AI"],
   ], { x: 3.6, fontSize: 12 });
-  sources(s, "Sources: Book 00, Ch 01 (sequencing) and Ch 02 (the numbering follows the dependency chain); Book 01, Ch 02.");
+  sources(s, "Sources: Book 00, Ch 01 (sequencing) and Ch 02; Book 01, Ch 02 and Ch 12 (DNS); OMB M-19-17 (non-person entities).");
   notes(s,
-`Book 00 Chapter 01: identity first because every later decision depends on it; network services, addressing and certificates follow because they carry the names and trust everything else relies on; telemetry and automated governance come last in the build and first in importance once running. Book 00 Chapter 02: "The numbering follows the dependency chain... Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after." Book 01 Chapter 02's dependency chain: inventory, plan, identity (Entra ID authoritative for people and delegation; HR drives lifecycle), policy, network services, devices and servers, access plane, retire AD DS, prove steady state.`,
-  "Book 00, Chapters 01 and 02; Book 01, Chapter 02.");
+`Book 00 Chapter 01: identity first because every later decision depends on it; network services, addressing and certificates follow because they carry the names and trust everything else relies on; telemetry and automated governance come last in the build and first in importance once running. Book 00 Chapter 02: "The numbering follows the dependency chain... Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after." Book 01 Chapter 02's dependency chain: inventory, plan, identity (Entra ID authoritative for people and delegation; HR drives lifecycle), policy, network services, devices and servers, access plane, retire AD DS, prove steady state. Machines count as identities: OMB M-19-17 (Architecture 3, devices, non-person entities, RPA and AI) asks that non-person entities be "distinguishable, auditable, and consistently managed"; the workbook's M-19-17 crosswalk maps this to its non-person identity guide. Book 01 Chapter 12 lists "DNS left for 'phase 2'" as a roadmap failure mode: identity moves, DNS stays AD-integrated, and AD can never retire; the mitigation is that DNS, DHCP and IPAM move together, with the locator zones last.`,
+  "Book 00, Chapters 01 and 02; Book 01, Chapters 02 and 12; OMB M-19-17 and the workbook's M-19-17 crosswalk.");
 }
 
 // ================================================================== 5 HR 2.0

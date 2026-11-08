@@ -192,6 +192,16 @@
   ],
   [
    28.625,
+   11.2,
+   "Three of those outputs each need a named owner: service accounts and their service principal names, certificates and the authorities that issue them, and the D N S zones that depend on the directory."
+  ],
+  [
+   39.825,
+   6.987,
+   "That's the charter's hidden-dependency risk: policy, addressing, service accounts, certificates and naming."
+  ],
+  [
+   46.812,
    3.025,
    "But a list only helps if you can prove where it came from."
   ]

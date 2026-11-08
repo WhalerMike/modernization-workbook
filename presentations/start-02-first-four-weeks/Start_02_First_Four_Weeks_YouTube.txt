@@ -12,11 +12,11 @@ Chapters
 1:39 The platform host: where every decision is written down
 2:11 Reading the estate without changing it
 2:48 What the assessment inventories
-3:23 Provenance, and seeding the repository
-4:02 Least privilege for the program's own access
-4:34 Owners named, findings classified
-5:08 Gate G0, Ready to Plan: the checklist
-5:43 What leadership sees at week four
+3:42 Provenance, and seeding the repository
+4:20 Least privilege for the program's own access
+4:52 Owners named, findings classified
+5:26 Gate G0, Ready to Plan: the checklist
+6:01 What leadership sees at week four
 
 From the workbook
 Book 01: Chapter 03 — The Platform Foundation: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html
