@@ -142,3 +142,12 @@ New subsection "Teams emergency calling constrains the path" under "SASE above S
 | T6 | Confirm source rewriting with the SASE vendor; record the gap in the architecture decision | Constraint 1 | restated-as-design | — |
 | T7 | Full-tunnel VPN with mapped pool returns the pool's location; leave pools unmapped | Constraint 2 | inference, labeled as such in the text | — |
 | T8 | Microsoft recommends routing Optimize endpoints, including Teams media, around the VPN tunnel | Constraint 2 | verified | c05-vpn-split |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| the boundary, flow and malware closures come from the services above it. | the boundary, flow and malware protections come from the services above it. | no source change |
+| A paper that credits the governor with closing controls owes the reader | A paper that credits the governor with providing controls owes the reader | no source change |

@@ -73,7 +73,7 @@ Consistency class
 : A grouping of data by how much synchronization it really needs: strong consistency inside a region, causal or eventual consistency across regions. See [Chapter 04](04-logical-centralization-and-token-security.md) and [Chapter 08](08-reference-architecture.md).
 
 CP-8 Telecommunications Services
-: The NIST SP 800-53 control for alternate telecommunications services. CP-8(2) (no shared single point of failure) is in the Moderate and High baselines; CP-8(3) (separation of primary and alternate providers) is in High only. It is the one control family transport selection closes.[^aC-sp80053b]
+: The NIST SP 800-53 control for alternate telecommunications services. CP-8(2) (no shared single point of failure) is in the Moderate and High baselines; CP-8(3) (separation of primary and alternate providers) is in High only. It is the one control family transport selection supports.[^aC-sp80053b]
 
 ## D–F
 
@@ -113,7 +113,7 @@ FIPS 140-3
 ## G–L
 
 Governor
-: The book's term for the control layer that governs pipes: the SD-WAN overlay plus the SASE stack above it. It closes protection controls that transport can't, and it is a high-value target that needs its own controls.
+: The book's term for the control layer that governs pipes: the SD-WAN overlay plus the SASE stack above it. It provides protection controls that transport can't, the agency and its assessor still own what is left, and it is a high-value target that needs its own controls.
 
 Governed-path transport
 : A proposed program direction in which transport decisions are bound to identity and tokens rather than to network location. It is a proposal, not ratified design; see [Chapter 05](05-sd-wan-sase-and-governed-transport.md).
@@ -134,7 +134,7 @@ KEV (Known Exploited Vulnerabilities) catalog
 : CISA's authoritative list of vulnerabilities exploited in the wild. KEV status is one of the four variables in BOD 26-04's remediation model.[^aC-kev]
 
 LEO (low-earth-orbit) satellite
-: Satellite internet service from constellations in low orbit, whose short path to the satellite gives far lower delay than geostationary service ([Chapter 02](02-transport-is-physics-control-is-compliance.md) gives the ITU planning values). It is a transport option and, like every pipe, closes no protection control; see [Chapter 02](02-transport-is-physics-control-is-compliance.md).
+: Satellite internet service from constellations in low orbit, whose short path to the satellite gives far lower delay than geostationary service ([Chapter 02](02-transport-is-physics-control-is-compliance.md) gives the ITU planning values). It is a transport option and, like every pipe, provides no protection control; see [Chapter 02](02-transport-is-physics-control-is-compliance.md).
 
 Local breakout
 : Sending a branch's internet- and cloud-bound traffic out through a local circuit instead of backhauling it. Bare local breakout, with nothing governing it, is a compliance regression with better latency.

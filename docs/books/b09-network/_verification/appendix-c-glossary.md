@@ -84,3 +84,12 @@ Added because Book 09 and its research pages now name civilian configuration bas
 | 5 | STIG: based on DoD policy and security controls; geared to a specific product and version (CNSSI 4009-2022) | STIG | verified (CSRC Glossary) | stig |
 | 6 | Some civilian agencies borrow a STIG where no other product checklist exists | STIG | design guidance / program position, not footnoted | — |
 
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| It is the one control family transport selection closes. | It is the one control family transport selection supports. | no source change |
+| It closes protection controls that transport can't, and it is a high-value target that needs its own controls. | It provides protection controls that transport can't, the agency and its assessor still own what is left, and it is a high-value target that needs its own controls. | no source change |
+| like every pipe, closes no protection control; | like every pipe, provides no protection control; | no source change |

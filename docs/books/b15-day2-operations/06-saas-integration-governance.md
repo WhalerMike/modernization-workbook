@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What happens when an administrator connects a third-party SaaS application to Entra ID, and why that moment closes or skips a whole set of controls at once. Why the gate has to be the agency's own: in GCC the full commercial application gallery is available, and certification travels with the service, not with the federation trust. The authorization check against FedRAMP Marketplace data, and why restricting consent doesn't replace it. OAuth application risk and app governance in the government clouds. How single sign-on and SCIM provisioning close account-management controls, and what they don't close. A seven-phase catalog from request to offboarding, the least-privilege Microsoft Graph surface it needs (with corrections to the source design), the tests that would prove it wrong, and the review that keeps every integration current.
+What happens when an administrator connects a third-party SaaS application to Entra ID, and why that moment puts a whole set of controls in place or skips them at once. Why the gate has to be the agency's own: in GCC the full commercial application gallery is available, and certification travels with the service, not with the federation trust. The authorization check against FedRAMP Marketplace data, and why restricting consent doesn't replace it. OAuth application risk and app governance in the government clouds. How single sign-on and SCIM provisioning support account-management controls, and what they leave to the agency. A seven-phase catalog from request to offboarding, the least-privilege Microsoft Graph surface it needs (with corrections to the source design), the tests that would prove it wrong, and the review that keeps every integration current.
 :::
 
 An administrator opens the Microsoft Entra admin center, searches the application gallery, follows the vendor's tutorial, and configures SAML single sign-on and SCIM provisioning to a third-party service. In about fifteen minutes, a continuously synchronized copy of part of the agency directory (names, work email addresses, employee identifiers, manager chains, organizational structure) lives in that vendor's cloud.
@@ -56,11 +56,11 @@ The same gap has an attacker's version. In an illicit consent grant, an attacker
 
 Microsoft Defender for Cloud Apps includes **app governance**, which tracks non-Microsoft applications that use OAuth to authenticate to Entra ID and adds detections and policies on their behavior beyond the basic OAuth app view.[^c06-appgov-faq] Microsoft announced app governance as available in the government clouds in May 2024.[^c06-mdca-archive] Its US Government documentation lists a set of predefined app policy alerts and threat detection alerts that are still on the roadmap for GCC, GCC High and DoD, including detections for dormant applications suddenly accessing new APIs and for suspicious reply URLs; agencies should read that list before relying on a detection.[^c06-mdca-gov] For GCC, Microsoft describes Defender for Cloud Apps as a commercial offering covered by the Azure Commercial FedRAMP High authorization that may not meet other GCC compliance attributes such as CJIS background screening, IRS 1075 or access to customer content only by screened US personnel.[^c06-ems-gov] Where an agency owns it, app governance is the native monitoring layer for consented applications, and the catalog in this chapter feeds it rather than duplicating it.
 
-## Federation closes controls, and what it doesn't close
+## Federation closes controls, and what it doesn't close <!-- claims-ok: heading kept as an anchor; body explains support, not satisfaction -->
 
 Configured through the gate, the Entra integration surface (single sign-on and provisioning) is the technical mechanism for a specific set of controls. The mapping is the program's reading of SP 800-53; the platform behavior behind each row is Microsoft's.
 
-| Control | How the integration closes it |
+| Control | How the integration supports it |
 |---|---|
 | AC-2, AC-2(1), AC-2(3) | The Entra provisioning service uses SCIM 2.0 to create and update accounts in the application and to disable them when a user is unassigned, goes out of scope or is disabled in the directory. It runs repeated incremental cycles and logs every read and write.[^c06-provisioning] Accounts that outlive the person are the gap auditors find first. |
 | AC-3, AC-6 | With single sign-on, access to the application is a directory assignment decision governed by Conditional Access, not a separate credential in each application. |
@@ -68,13 +68,13 @@ Configured through the gate, the Entra integration surface (single sign-on and p
 | SC-8 | With federation, Entra ID authenticates the user and passes identity information to the application through SAML 2.0 or OpenID Connect, so the application never handles the user's credentials.[^c06-sso] |
 | AU-2, AU-12 | Federated sign-ins and provisioning actions land in the central sign-in and provisioning logs, which feed the evidence store; a directly credentialed application logs to a place the agency doesn't read. |
 
-: What a governed integration closes. Control mapping is program design; platform behavior from Microsoft Learn. {.striped .hover}
+: What a governed integration supports. Control mapping is program design; platform behavior from Microsoft Learn. {.striped .hover}
 
 **SCIM is how identity changes propagate.** Every add, move, change, delete and reset executed against the directory ([Chapter 05](05-the-service-catalogs.md#five-verbs)) reaches each connected application through provisioning: one authorized operation, one closing check, the connected estate converged. The converse is the finding. **An integration without provisioning is a manual-closure island.** Its joiners and leavers are hand-worked tickets whose closures carry no automatic check, the kind of closure [Book 14, Chapter 04](../b14-compliance/04-closure-with-proof.md) declines to count. The catalog treats "single sign-on without provisioning" as a degraded state that has to be either fixed or recorded as an accepted, visible exception.
 
 Password-based single sign-on is a weaker variant. With it, Entra ID collects and stores each user's credentials for the application in encrypted form and supplies them at sign-in;[^c06-pwsso] the application still has its own passwords, and the agency is now storing them. The catalog permits it only by exception and treats it like a replica path for review purposes.
 
-**Configuration is not compliance.** The federation mechanics close technical controls. They don't write the policies (AC-1, IA-1), sign the agreements with external systems, or run the access reviews that SP 800-53 expects alongside them. The gate in this chapter closes the external-system direction (AC-20 and SA-9, the authorization verdict before configuration); the reviews are [Book 04, Chapter 09](../b04-access/09-access-governance.md)'s subject.
+**Configuration is not compliance.** The federation mechanics support technical controls; they don't satisfy them. They don't write the policies (AC-1, IA-1), sign the agreements with external systems, or run the access reviews that SP 800-53 expects alongside them, and the assessor decides whether each control is satisfied. The gate in this chapter supports the external-system direction (AC-20 and SA-9, the authorization verdict before configuration); the reviews are [Book 04, Chapter 09](../b04-access/09-access-governance.md)'s subject.
 
 ## The catalog: seven phases
 

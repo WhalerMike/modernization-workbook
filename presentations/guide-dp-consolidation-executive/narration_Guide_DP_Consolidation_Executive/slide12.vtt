@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.788
+The implementation runs in ten stages,
+
+2
+00:00:02.788 --> 00:00:06.125
+in order, and every stage
+cites Microsoft Learn.
+
+3
+00:00:06.125 --> 00:00:11.553
+Stage one analyzes the existing estate:
+list every distribution point, its boundary
+
+4
+00:00:11.553 --> 00:00:16.825
+groups and the clients it serves, and pull
+circuit cost and quality for each office.
+
+5
+00:00:16.825 --> 00:00:20.562
+Stage two sizes the result
+against Microsoft's limits.
+
+6
+00:00:20.562 --> 00:00:24.386
+Stage three is the funding
+gate, the exit from Phase zero,
+
+7
+00:00:24.386 --> 00:00:27.462
+where leadership funds
+the hub tier or stops.
+
+8
+00:00:27.462 --> 00:00:30.947
+Stage four builds the hubs
+with pull distribution points,
+
+9
+00:00:30.947 --> 00:00:32.762
+groups and prestaged content.
+
+10
+00:00:32.762 --> 00:00:34.988
+Stage five turns on peer caching.
+
+11
+00:00:34.988 --> 00:00:39.050
+The implementation guide and the
+scripts kit are linked on the slide.
