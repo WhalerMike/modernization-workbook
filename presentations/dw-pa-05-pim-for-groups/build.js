@@ -20,7 +20,7 @@ require("../_build/devwb.js")({
         { lead: "Whoever controls a PRV group's members, owners and policy controls the role it holds." },
         { cols: [[{ bullets: [
           "Book 04 never assigns a privileged role to a person, only to a role-assignable group",
-          "Named PRV-<tier>-<role>[-<scope>], e.g. PRV-T0-PrivRoleAdmin, PRV-T2-UserAdmin-AU-Finance",
+          "Named PRV-<tier>-<role>[-<scope>], e.g. PRV-T0-PrivRoleAdmin, PRV-T2-UserAdmin-Finance",
           "The tier shows in every review, alert and audit record",
         ], label: "The naming", color: "navy", pt: 14 }], [{ bullets: [
           "Chapter 01 reads the groups and flags a role held under any other name (PA-INV-03)",
@@ -31,7 +31,7 @@ require("../_build/devwb.js")({
       ],
       sources: "Sources: Learn, Create eligibilityScheduleRequest; Bring groups into PIM; Book 04, Ch 04. Chapter 05, “What the PRV groups have to hold.”",
       say: `Why does this matter? Because the program never hands a privileged role to a person directly. It hands it to a group with the tier in its name, so the tier shows up in every review and alert. That means the group itself is now the privilege: whoever adds a member, or changes the activation policy, has effectively changed who holds the role. Chapter 1 already reads these groups. This chapter writes them, from a reviewed file, and because people can still change membership around it, the code reads the tenant first and treats anything it didn't put there as drift.`,
-      detail: `Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named PRV-<tier>-<role>[-<scope>], such as PRV-T0-PrivRoleAdmin or PRV-T2-UserAdmin-AU-Finance, so that the tier shows in every review, alert and audit record (Book 04, Chapter 04). Chapter 01 reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them. Learn: administrators with group management roles, or group owners, can change membership through the groups API and override what PIM set. So the code reads the tenant before every plan, takes policy IDs from that read, and treats anything it didn't put there as drift.`,
+      detail: `Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named PRV-<tier>-<role>[-<scope>], such as PRV-T0-PrivRoleAdmin or PRV-T2-UserAdmin-Finance, so that the tier shows in every review, alert and audit record (Book 04, Chapter 04). Chapter 01 reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them. Learn: administrators with group management roles, or group owners, can change membership through the groups API and override what PIM set. So the code reads the tenant before every plan, takes policy IDs from that read, and treats anything it didn't put there as drift.`,
       cite: ["pa05-elig-req", "pa05-discover"],
       ref: "“What the PRV groups have to hold”",
     },

@@ -273,41 +273,41 @@
   ],
   [
    36.538,
-   5.112,
-   "Adoption is mandatory for everyone on January 1, 2027."
+   14.875,
+   "Adoption is mandatory for everyone on January 1, 2027, except that the Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules became mandatory earlier, on December 7, 2026."
   ],
   [
-   41.65,
+   51.413,
    13.363,
    "fed-ramp stops accepting new Rev5 certification requests on June 11, 2027, and says the end date for existing Rev5 certifications isn't final, but is likely no later than 2029."
   ],
   [
-   55.013,
+   64.775,
    4.6,
    "Plan against those words, not against a specific date someone repeats."
   ],
   [
-   59.612,
+   69.375,
    3.225,
    "So for years you'll hold two kinds of package at once."
   ],
   [
-   62.837,
+   72.6,
    3.5,
    "Rev5 packages describe a boundary the provider drew."
   ],
   [
-   66.338,
+   76.1,
    3.587,
    "Packages under the new rules describe scope, as data."
   ],
   [
-   69.925,
+   79.688,
    4.8,
    "Read each in its own terms, and don't force one vocabulary into the other."
   ],
   [
-   74.725,
+   84.487,
    2.625,
    "Next, what the word boundary now means."
   ]
@@ -494,51 +494,51 @@
   ],
   [
    17.8,
-   7.85,
-   "Several features are missing in G C C, G C C High and DoD alike, so moving up doesn't restore everything."
+   7.938,
+   "Several features are missing in G C C, G C C High and D O D alike, so moving up doesn't restore everything."
   ],
   [
-   25.65,
+   25.738,
    4.0,
    "The largest documented loss is the network connectivity layer."
   ],
   [
-   29.65,
+   29.738,
    14.575,
    "A commercial tenant gets, at no extra license cost, a daily network score for each location, a view of its egress and front doors, insights such as detecting TLS interception, and performance attributed to named network providers."
   ],
   [
-   44.225,
+   44.312,
    8.775,
    "An agency choosing between sassy or transport providers in a commercial tenant gets that comparative evidence from Microsoft, in its own admin center."
   ],
   [
-   53.0,
+   53.087,
    3.275,
    "The same agency in G C C gets none of it."
   ],
   [
-   56.275,
+   56.362,
    7.4,
    "Microsoft's connectivity test tool does run in G C C, and it closes part of the gap, but not the provider comparison."
   ],
   [
-   63.675,
+   63.763,
    2.25,
    "So this decision is a budget line."
   ],
   [
-   65.925,
+   66.013,
    6.037,
    "Fund the independent measurement that replaces that layer, before you pick a transport or sassy provider."
   ],
   [
-   71.963,
+   72.05,
    4.013,
    "That's the sponsor and C I O's call, because they fund the platform."
   ],
   [
-   75.975,
+   76.062,
    2.975,
    "Next, why a higher certification won't fix it."
   ]
@@ -1212,31 +1212,31 @@
   ],
   [
    59.612,
-   8.738,
-   "The rules become mandatory on January 1, 2027, and new Rev5 requests stop on June 11, 2027."
+   13.162,
+   "The rules become mandatory on January 1, 2027, two vulnerability rules having started on December 7, 2026, and new Rev5 requests stop on June 11, 2027."
   ],
   [
-   68.35,
+   72.775,
    2.462,
    "Neither date moves your own boundary."
   ],
   [
-   70.812,
+   75.237,
    3.587,
    "It's still yours to draw, to evidence and to sign."
   ],
   [
-   74.4,
+   78.825,
    4.0,
    "The license says what you bought; the boundary says what you may use."
   ],
   [
-   78.4,
+   82.825,
    5.225,
    "Cloud Boundary and Landing Zone has the detail, with every claim footnoted."
   ],
   [
-   83.625,
+   88.05,
    0.762,
    "Thank you."
   ]

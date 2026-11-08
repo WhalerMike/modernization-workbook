@@ -54,11 +54,11 @@ Gate 2 answers with one
 writer per attribute.
 
 12
-00:00:43.324 --> 00:00:47.137
-It also gives each change class
+00:00:43.324 --> 00:00:47.437
+It also gives each operation class
 a lane and a change-record type.
 
 13
-00:00:47.137 --> 00:00:50.040
+00:00:47.437 --> 00:00:50.350
 Every later gate builds
 what this one decides.

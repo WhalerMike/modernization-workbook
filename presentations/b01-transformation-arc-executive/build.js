@@ -647,7 +647,7 @@ So G5 is the sponsor's and the CIO's decision, made on evidence: no live product
   const s = D.content(S_HOW, "The clocks: FedRAMP's dates don't set the agency's");
   tag(s, "How");
   cards(s, "Clocks", [
-    ["FaCloud", "FedRAMP's clock", HEX.navy, HEX.navyTint, ["2026 rules mandatory January 1, 2027", "New Rev5 applications end June 11, 2027", "Certifies cloud services, not your estate"]],
+    ["FaCloud", "FedRAMP's clock", HEX.navy, HEX.navyTint, ["2026 rules mandatory January 1, 2027; two earlier, December 7, 2026", "New Rev5 applications end June 11, 2027", "Certifies cloud services, not your estate"]],
     ["FaLandmark", "The agency's own", HEX.red, HEX.redTint, ["M-26-14's logging plan and maturity levels", "BOD 25-01's secure baselines", "Each agency authorizes its own systems"]],
     ["FaServer", "End of support", HEX.amber, HEX.amberTint, ["Windows 10: October 14, 2025", "Server 2012 and 2012 R2 updates: October 13, 2026", "Windows Server 2016: January 12, 2027"]],
   ]);
@@ -657,7 +657,7 @@ So G5 is the sponsor's and the CIO's decision, made on evidence: no live product
   narrate(s,
 `Two external clocks bear on the schedule, and they're easy to conflate.
 
-FedRAMP's Consolidated Rules for 2026, announced on June 25, 2026, govern how cloud services are certified. They become mandatory for everyone on January 1, 2027, and FedRAMP stops accepting new Rev5 certification applications on June 11, 2027. None of that certifies the agency's own estate. FedRAMP is explicit that each agency still authorizes its own federal information systems, and should never create a standalone authorization for a cloud service. What the 2027 date changes is the evidence your providers publish and you inherit.
+FedRAMP's Consolidated Rules for 2026, announced on June 25, 2026, govern how cloud services are certified. They become mandatory for everyone on January 1, 2027, except that the Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules became mandatory earlier, on December 7, 2026, and FedRAMP stops accepting new Rev5 certification applications on June 11, 2027. None of that certifies the agency's own estate. FedRAMP is explicit that each agency still authorizes its own federal information systems, and should never create a standalone authorization for a cloud service. What the 2027 date changes is the evidence your providers publish and you inherit.
 
 The deadlines that bind the agency directly come from OMB and CISA: M-26-14's logging plan and maturity levels, and BOD 25-01's secure configuration baselines for in-scope Microsoft 365 tenants. The estate has its own dates too. Windows 10 reached end of support on October 14, 2025. Extended security updates for Windows Server 2012 and 2012 R2 ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027.
 

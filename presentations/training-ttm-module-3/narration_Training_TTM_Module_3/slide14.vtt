@@ -19,49 +19,49 @@ one approver system per class,
 and the requester never approves.
 
 5
-00:00:12.601 --> 00:00:15.390
+00:00:12.601 --> 00:00:15.378
 C M three, configuration change control:
 
 6
-00:00:15.390 --> 00:00:19.025
-each change class has a lane
-and a change-record type.
+00:00:15.378 --> 00:00:19.250
+each operation class has a
+lane and a change-record type.
 
 7
-00:00:19.025 --> 00:00:20.732
+00:00:19.250 --> 00:00:20.957
 A C two, account management:
 
 8
-00:00:20.732 --> 00:00:25.387
+00:00:20.957 --> 00:00:25.612
 one writer per attribute keeps account
 changes traceable to the source.
 
 9
-00:00:25.387 --> 00:00:28.456
+00:00:25.612 --> 00:00:28.682
 And the workbook's design
 requires the authorizing
 
 10
-00:00:28.456 --> 00:00:31.525
+00:00:28.682 --> 00:00:31.751
 official to accept any
 autonomous class in writing.
 
 11
-00:00:31.525 --> 00:00:36.176
+00:00:31.751 --> 00:00:36.401
 Chapter 08 maps the check to
 configuration settings, change control,
 
 12
-00:00:36.176 --> 00:00:40.500
+00:00:36.401 --> 00:00:40.725
 impact analysis, continuous
 monitoring and system monitoring.
 
 13
-00:00:40.500 --> 00:00:45.755
+00:00:40.725 --> 00:00:45.980
 The evidence an ISSO keeps: the attribute
 map with each writer, the approver
 
 14
-00:00:45.755 --> 00:00:50.980
+00:00:45.980 --> 00:00:51.220
 and lane tables, and the check's output
 with the data architect's decisions.

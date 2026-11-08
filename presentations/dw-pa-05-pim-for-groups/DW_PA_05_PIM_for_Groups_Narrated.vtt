@@ -169,605 +169,605 @@ eligible for the group itself.
 The file records which.
 
 36
-00:02:25.970 --> 00:02:28.995
+00:02:27.240 --> 00:02:30.265
 Here's where a group's
 privileged state actually lives.
 
 37
-00:02:28.995 --> 00:02:33.895
+00:02:30.265 --> 00:02:35.165
 Not in the members list: eligible members
 don't appear there until they activate.
 
 38
-00:02:33.895 --> 00:02:38.953
+00:02:35.165 --> 00:02:40.223
 Instead there are separate collections for
 eligible and active schedules, filtered
 
 39
-00:02:38.953 --> 00:02:43.370
+00:02:40.223 --> 00:02:44.640
 by group, and two policies per group
 whose IDs you only learn by reading them.
 
 40
-00:02:43.370 --> 00:02:46.008
+00:02:44.640 --> 00:02:47.278
 A few facts shape everything that follows.
 
 41
-00:02:46.008 --> 00:02:48.817
+00:02:47.278 --> 00:02:50.087
 A group joins PIM the
 first time you touch it,
 
 42
-00:02:48.817 --> 00:02:52.407
+00:02:50.087 --> 00:02:53.677
 its policy IDs change when it
 does, and it can never leave.
 
 43
-00:02:52.407 --> 00:02:54.955
+00:02:53.677 --> 00:02:56.225
 And access packages are deferred to later,
 
 44
-00:02:54.955 --> 00:02:58.520
+00:02:56.225 --> 00:02:59.790
 with one warning about expiry
 dates carried forward.
 
 45
-00:03:02.270 --> 00:03:07.145
+00:03:03.540 --> 00:03:08.415
 Microsoft doesn't publish an end-to-end
 tutorial for PIM for Groups in Graph.
 
 46
-00:03:07.145 --> 00:03:11.890
+00:03:08.415 --> 00:03:13.160
 What it does publish is a handful of
 single requests in the API reference,
 
 47
-00:03:11.890 --> 00:03:14.420
+00:03:13.160 --> 00:03:15.690
 plus a how-to for updating policy rules.
 
 48
-00:03:14.420 --> 00:03:19.514
+00:03:15.690 --> 00:03:20.784
 Those requests only exist inside web
 pages, so the repository pins the page
 
 49
-00:03:19.514 --> 00:03:24.608
+00:03:20.784 --> 00:03:25.878
 source unmodified, with hashes a test
 checks and a weekly watch for changes.
 
 50
-00:03:24.608 --> 00:03:28.747
+00:03:25.878 --> 00:03:30.017
 Then a small harness sends each
 request, exactly as published,
 
 51
-00:03:28.747 --> 00:03:32.644
+00:03:30.017 --> 00:03:33.914
 to a fake Graph that checks them
 the way Learn says PIM does.
 
 52
-00:03:32.644 --> 00:03:35.780
+00:03:33.914 --> 00:03:37.050
 Nothing signs in and
 nothing leaves the machine.
 
 53
-00:03:39.530 --> 00:03:41.292
+00:03:40.800 --> 00:03:42.562
 This is the heart of the chapter.
 
 54
-00:03:41.292 --> 00:03:45.092
+00:03:42.562 --> 00:03:46.362
 The request shapes are good, and
 the plan copies them exactly.
 
 55
-00:03:45.092 --> 00:03:49.204
+00:03:46.362 --> 00:03:50.474
 But run as published, the samples
 go wrong in instructive ways.
 
 56
-00:03:49.204 --> 00:03:53.918
+00:03:50.474 --> 00:03:55.188
 The first example is titled an ownership
 request and actually grants membership.
 
 57
-00:03:53.918 --> 00:03:56.484
+00:03:55.188 --> 00:03:57.754
 Its comment and its dates disagree,
 
 58
-00:03:56.484 --> 00:04:00.643
+00:03:57.754 --> 00:04:01.913
 and the dates are from 2023, so
 today the fake refuses them.
 
 59
-00:04:00.643 --> 00:04:04.705
+00:04:01.913 --> 00:04:05.975
 Nothing reads the tenant first,
 so a second run grants twice.
 
 60
-00:04:04.705 --> 00:04:08.755
+00:04:05.975 --> 00:04:10.025
 And one sample is a user's
 self-activation, not an admin's.
 
 61
-00:04:08.755 --> 00:04:13.790
+00:04:10.025 --> 00:04:15.060
 So the verdict: keep the shapes, take
 everything else from the reviewed file.
 
 62
-00:04:17.540 --> 00:04:18.478
+00:04:18.810 --> 00:04:19.748
 Now the code.
 
 63
-00:04:18.478 --> 00:04:22.129
+00:04:19.748 --> 00:04:23.399
 The chapter adds its own module,
 its own list of allowed calls,
 
 64
-00:04:22.129 --> 00:04:26.803
+00:04:23.399 --> 00:04:28.073
 and an entry script, and borrows nothing
 from Chapter 1 except the cloud table.
 
 65
-00:04:26.803 --> 00:04:31.594
+00:04:28.073 --> 00:04:32.864
 Everything is driven by one reviewed
 file: for each group, who may be a
 
 66
-00:04:31.594 --> 00:04:36.814
+00:04:32.864 --> 00:04:38.084
 member or owner, whether active or
 eligible, until when, and on which ticket.
 
 67
-00:04:36.814 --> 00:04:41.887
+00:04:38.084 --> 00:04:43.157
 A second file sets the activation policy
 per tier, and it's labeled design guidance:
 
 68
-00:04:41.887 --> 00:04:46.959
+00:04:43.157 --> 00:04:48.229
 shorter activation and approval for the
 top tiers, longer eligibility lower down,
 
 69
-00:04:46.959 --> 00:04:50.810
+00:04:48.229 --> 00:04:52.080
 and one-hour owner activation
 with approval everywhere.
 
 70
-00:04:54.560 --> 00:04:57.435
+00:04:55.830 --> 00:04:58.705
 Two details in the policy
 deserve a closer look.
 
 71
-00:04:57.435 --> 00:05:01.263
+00:04:58.705 --> 00:05:02.533
 Learn's pages disagree on how
 long an activation may last:
 
 72
-00:05:01.263 --> 00:05:05.172
+00:05:02.533 --> 00:05:06.442
 one says eight hours at most,
 another says up to twenty-four.
 
 73
-00:05:05.172 --> 00:05:09.047
+00:05:06.442 --> 00:05:10.317
 The code takes the stricter
 reading and flags anything longer.
 
 74
-00:05:09.047 --> 00:05:13.659
+00:05:10.317 --> 00:05:14.929
 Then there's the authentication context
 from Chapter 3, which isn't built yet.
 
 75
-00:05:13.659 --> 00:05:18.054
+00:05:14.929 --> 00:05:19.324
 When it arrives, it only forces a
 fresh sign-in on every activation
 
 76
-00:05:18.054 --> 00:05:22.123
+00:05:19.324 --> 00:05:23.393
 if its policy says so, and even
 then there's a ten-minute window.
 
 77
-00:05:22.123 --> 00:05:27.140
+00:05:23.393 --> 00:05:28.410
 Learn also disagrees on whether it's preview,
 so the chapter treats it as preview.
 
 78
-00:05:30.890 --> 00:05:32.591
+00:05:32.160 --> 00:05:33.861
 Before anything is planned,
 
 79
-00:05:32.591 --> 00:05:36.140
+00:05:33.861 --> 00:05:37.410
 the code reads the tenant and
 checks it against nine rules.
 
 80
-00:05:36.140 --> 00:05:40.723
+00:05:37.410 --> 00:05:41.993
 Some come straight from Learn: only
 role-assignable groups can hold a role, PIM
 
 81
-00:05:40.723 --> 00:05:43.373
+00:05:41.993 --> 00:05:44.643
 can't manage dynamic or
 synchronized groups,
 
 82
-00:05:43.373 --> 00:05:45.665
+00:05:44.643 --> 00:05:46.935
 and there's a hard limit of five hundred.
 
 83
-00:05:45.665 --> 00:05:50.768
+00:05:46.935 --> 00:05:52.038
 Others are the program's design, and
 they're labeled that way: no nesting at all,
 
 84
-00:05:50.768 --> 00:05:54.981
+00:05:52.038 --> 00:05:56.251
 every entry has an end and a ticket,
 no owners on tier zero groups,
 
 85
-00:05:54.981 --> 00:05:58.140
+00:05:56.251 --> 00:05:59.410
 and anything the file
 doesn't grant is a finding.
 
 86
-00:05:58.140 --> 00:06:01.752
+00:05:59.410 --> 00:06:03.022
 One subtle one is the owner
 trap, which we'll see in the lab.
 
 87
-00:06:01.752 --> 00:06:05.650
+00:06:03.022 --> 00:06:06.920
 Activations are ignored, since
 they aren't standing state.
 
 88
-00:06:09.400 --> 00:06:14.587
+00:06:10.670 --> 00:06:15.857
 Once the differences are known, the plan
 turns them into requests in a fixed order:
 
 89
-00:06:14.587 --> 00:06:18.535
+00:06:15.857 --> 00:06:19.805
 create any missing groups, then
 set the policy rules so they're
 
 90
-00:06:18.535 --> 00:06:22.638
+00:06:19.805 --> 00:06:23.908
 in force before anyone is granted,
 then grants, and removals last.
 
 91
-00:06:22.638 --> 00:06:26.962
+00:06:23.908 --> 00:06:28.232
 Each request carries its permission
 and a line of diff a reviewer can read.
 
 92
-00:06:26.962 --> 00:06:29.188
+00:06:28.232 --> 00:06:30.458
 Nothing is sent unless you ask for it.
 
 93
-00:06:29.188 --> 00:06:34.418
+00:06:30.458 --> 00:06:35.688
 And even then, seven guards can refuse the
 whole run: losing approval on a top tier,
 
 94
-00:06:34.418 --> 00:06:37.272
+00:06:35.688 --> 00:06:38.542
 a permanent grant, a
 group approving itself,
 
 95
-00:06:37.272 --> 00:06:43.030
+00:06:38.542 --> 00:06:44.300
 or suddenly removing more people than
 expected, which usually means a broken file.
 
 96
-00:06:46.780 --> 00:06:51.156
+00:06:48.050 --> 00:06:52.426
 Learn isn't always consistent with
 itself, and the chapter writes down
 
 97
-00:06:51.156 --> 00:06:55.230
+00:06:52.426 --> 00:06:56.500
 every place it isn't, so a later edit
 doesn't quietly loosen the code.
 
 98
-00:06:55.230 --> 00:06:57.243
+00:06:56.500 --> 00:06:58.513
 Activation length is one.
 
 99
-00:06:57.243 --> 00:07:02.231
+00:06:58.513 --> 00:07:03.501
 Whether PIM for Groups is generally
 available or still beta is another:
 
 100
-00:07:02.231 --> 00:07:05.529
+00:07:03.501 --> 00:07:06.799
 the API pages say one thing,
 a how-to says another.
 
 101
-00:07:05.529 --> 00:07:09.391
+00:07:06.799 --> 00:07:10.661
 The permissions for role-assignable
 groups differ between pages,
 
 102
-00:07:09.391 --> 00:07:11.567
+00:07:10.661 --> 00:07:12.837
 and the Lab 2 run is how you settle that.
 
 103
-00:07:11.567 --> 00:07:16.684
+00:07:12.837 --> 00:07:17.954
 Even the obvious PowerShell cmdlet
 disagrees with its own API page,
 
 104
-00:07:16.684 --> 00:07:19.600
+00:07:17.954 --> 00:07:20.870
 so the code calls the API directly.
 
 105
-00:07:23.350 --> 00:07:24.412
+00:07:24.620 --> 00:07:25.682
 Who is this for?
 
 106
-00:07:24.412 --> 00:07:29.527
+00:07:25.682 --> 00:07:30.797
 Developers building the write path, the
 identity engineers who own the groups
 
 107
-00:07:29.527 --> 00:07:33.776
+00:07:30.797 --> 00:07:35.046
 and the file, and the I S S O's who
 review each plan before it's applied.
 
 108
-00:07:33.776 --> 00:07:35.587
+00:07:35.046 --> 00:07:36.857
 Then, what the code may do.
 
 109
-00:07:35.587 --> 00:07:38.287
+00:07:36.857 --> 00:07:39.557
 Every call gets its
 least-privileged permission.
 
 110
-00:07:38.287 --> 00:07:41.701
+00:07:39.557 --> 00:07:42.971
 The read side needs four permissions
 and none of them can write.
 
 111
-00:07:41.701 --> 00:07:45.512
+00:07:42.971 --> 00:07:46.782
 The plan lists exactly the
 permissions its own changes need,
 
 112
-00:07:45.512 --> 00:07:48.562
+00:07:46.782 --> 00:07:49.832
 so the app that applies it
 holds those and no more.
 
 113
-00:07:48.562 --> 00:07:53.329
+00:07:49.832 --> 00:07:54.599
 And the one powerful permission, the
 one that can assign any directory role,
 
 114
-00:07:53.329 --> 00:07:57.610
+00:07:54.599 --> 00:07:58.880
 is kept off the pipeline entirely:
 create these groups by hand.
 
 115
-00:08:01.360 --> 00:08:07.260
+00:08:02.630 --> 00:08:08.530
 Lab 1 runs on a laptop: PowerShell 7
 and Pester, no tenant and no network.
 
 116
-00:08:07.260 --> 00:08:10.423
+00:08:08.530 --> 00:08:11.693
 First you send Microsoft's
 samples, as published,
 
 117
-00:08:10.423 --> 00:08:14.060
+00:08:11.693 --> 00:08:15.330
 to the fake, and the tests
 confirm each gap from the table.
 
 118
-00:08:14.060 --> 00:08:18.091
+00:08:15.330 --> 00:08:19.361
 Then you send the first example
 by hand and see it for yourself:
 
 119
-00:08:18.091 --> 00:08:21.016
+00:08:19.361 --> 00:08:22.286
 it's titled ownership,
 it asks for membership,
 
 120
-00:08:21.016 --> 00:08:24.810
+00:08:22.286 --> 00:08:26.080
 and the fake refuses it because
 its end date passed in 2023.
 
 121
-00:08:24.810 --> 00:08:28.735
+00:08:26.080 --> 00:08:30.005
 Next you list the read permissions,
 four and none that can write.
 
 122
-00:08:28.735 --> 00:08:32.535
+00:08:30.005 --> 00:08:33.805
 Finally you plan against a
 fictional tenant, as a dry run.
 
 123
-00:08:32.535 --> 00:08:34.250
+00:08:33.805 --> 00:08:35.520
 Let's read what it found.
 
 124
-00:08:38.000 --> 00:08:41.275
+00:08:39.270 --> 00:08:42.545
 Reading the results is where
 the rules become concrete.
 
 125
-00:08:41.275 --> 00:08:46.325
+00:08:42.545 --> 00:08:47.595
 On the tier zero group, someone holds
 permanent membership the file never granted,
 
 126
-00:08:46.325 --> 00:08:49.073
+00:08:47.595 --> 00:08:50.343
 and an owner is eligible
 with no active owner,
 
 127
-00:08:49.073 --> 00:08:52.638
+00:08:50.343 --> 00:08:53.908
 which is exactly the trap where
 activation can't be undone.
 
 128
-00:08:52.638 --> 00:08:55.262
+00:08:53.908 --> 00:08:56.532
 The policy also allows activation without
 
 129
-00:08:55.262 --> 00:08:57.813
+00:08:56.532 --> 00:08:59.083
 approval and for twice
 as long as it should.
 
 130
-00:08:57.813 --> 00:09:01.013
+00:08:59.083 --> 00:09:02.283
 On the Azure group, another
 group is nested inside.
 
 131
-00:09:01.013 --> 00:09:04.837
+00:09:02.283 --> 00:09:06.107
 The diff shows each change
 in a line, removals last.
 
 132
-00:09:04.837 --> 00:09:08.525
+00:09:06.107 --> 00:09:09.795
 Then set a tight removal limit
 and watch a guard refuse to run.
 
 133
-00:09:08.525 --> 00:09:12.190
+00:09:09.795 --> 00:09:13.460
 Finally apply to the fake,
 and run the full suite.
 
 134
-00:09:15.940 --> 00:09:20.121
+00:09:17.210 --> 00:09:21.391
 Lab 2 moves to a test tenant with
 fictional people, never production,
 
 135
-00:09:20.121 --> 00:09:24.452
+00:09:21.391 --> 00:09:25.722
 and because a group can never leave
 PIM, you make groups just for the lab.
 
 136
-00:09:24.452 --> 00:09:27.194
+00:09:25.722 --> 00:09:28.464
 Create them by hand, register two apps,
 
 137
-00:09:27.194 --> 00:09:30.290
+00:09:28.464 --> 00:09:31.560
 a reader and a writer,
 and plan as the reader.
 
 138
-00:09:30.290 --> 00:09:33.678
+00:09:31.560 --> 00:09:34.948
 Then apply as the writer and
 compare the portal with your file.
 
 139
-00:09:33.678 --> 00:09:38.596
+00:09:34.948 --> 00:09:39.866
 This lab also settles open questions:
 whether the narrower permissions are enough,
 
 140
-00:09:38.596 --> 00:09:41.090
+00:09:39.866 --> 00:09:42.360
 and whether the policy update really took.
 
 141
-00:09:41.090 --> 00:09:43.828
+00:09:42.360 --> 00:09:45.098
 Rerun to see zero
 changes, try one removal,
 
 142
-00:09:43.828 --> 00:09:49.090
+00:09:45.098 --> 00:09:50.360
 and then back everything out, because
 the output names privileged people.
 
 143
-00:09:52.840 --> 00:09:55.902
+00:09:54.110 --> 00:09:57.172
 Each of these dangers has
 a matching rule or guard.
 
 144
-00:09:55.902 --> 00:10:00.128
+00:09:57.172 --> 00:10:01.398
 The quietest is drift: someone
 changes membership in the portal,
 
 145
-00:10:00.128 --> 00:10:05.390
+00:10:01.398 --> 00:10:06.660
 and nobody ever reviews it, so every run
 reads first and flags what it didn't grant.
 
 146
-00:10:05.390 --> 00:10:08.515
+00:10:06.660 --> 00:10:09.785
 The sharpest is dropping
 approval on a top-tier group,
 
 147
-00:10:08.515 --> 00:10:13.202
+00:10:09.785 --> 00:10:14.472
 which Learn specifically warns lets a
 lesser admin act on someone else's behalf.
 
 148
-00:10:13.202 --> 00:10:17.178
+00:10:14.472 --> 00:10:18.448
 And the bluntest is a truncated
 file that would remove everyone,
 
 149
-00:10:17.178 --> 00:10:21.228
+00:10:18.448 --> 00:10:22.498
 which is why removals go last and
 a guard stops more than a handful.
 
 150
-00:10:21.228 --> 00:10:25.320
+00:10:22.498 --> 00:10:26.590
 Notice again: each guard is
 code that runs every time.
 
 151
-00:10:29.070 --> 00:10:30.420
+00:10:30.340 --> 00:10:31.690
 Here's what done looks like.
 
 152
-00:10:30.420 --> 00:10:33.708
+00:10:31.690 --> 00:10:34.978
 On the group side: a file
 that passes its own check,
 
 153
-00:10:33.708 --> 00:10:36.256
+00:10:34.978 --> 00:10:37.526
 with an end and a ticket on every entry;
 
 154
-00:10:36.256 --> 00:10:40.201
+00:10:37.526 --> 00:10:41.471
 role-assignable groups wherever
 a role is held; no nesting,
 
 155
-00:10:40.201 --> 00:10:45.133
+00:10:41.471 --> 00:10:46.403
 and no owners on tier zero; and policies
 that match the reviewed settings.
 
 156
-00:10:45.133 --> 00:10:48.567
+00:10:46.403 --> 00:10:49.837
 On the run side: approver groups
 with at least two people,
 
 157
-00:10:48.567 --> 00:10:53.494
+00:10:49.837 --> 00:10:54.764
 a plan reviewed by someone other than its
 author, a rerun that shows nothing left
 
 158
-00:10:53.494 --> 00:10:58.346
+00:10:54.764 --> 00:10:59.616
 to change, apps holding exactly what they
 need, and pinned pages still matching.
 
 159
-00:10:58.346 --> 00:11:02.182
+00:10:59.616 --> 00:11:03.452
 Next, Chapter 6 takes
 PIM to Azure resources.
 
 160
-00:11:02.182 --> 00:11:03.340
+00:11:03.452 --> 00:11:04.610
 Thanks for watching.

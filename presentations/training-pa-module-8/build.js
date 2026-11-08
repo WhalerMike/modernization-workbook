@@ -234,7 +234,7 @@ endModule(SC);
     "$ python python/pa_evidence.py compare --current $DAY1 --out out/day1",
     "{\"baseline\": true, \"counts\": {... \"incidents\": 0, \"new\": 26, \"resolved\": 0, \"unchanged\": 0, \"unverified\": 0}, \"drift\": true}",
     "$ python python/pa_evidence.py package --run $DAY1 --diff out/day1/pa-drift-report.json --out out/evidence",
-    "{\"evidence_manifest_sha256\": \"e10d8543ed3bfa05f4cf4fa7aa873242958be5ea0db463c2760f901fbe3c19b7\", \"package\": \"2026-10-29T0600Z-fixture\"}",
+    "{\"evidence_manifest_sha256\": \"122d0194f8be71d4ce1799abce87e9ea2185ffbde6e9be071a0dd08d4c757554\", \"package\": \"2026-10-29T0600Z-fixture\"}",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TABLE HEADER LEFT OUT; \"...\" MARKS CUT COUNTS)", pt: 10.5 });
   line(s, "Read", "The compare exits 2: a baseline with 26 new findings. The runs are the repository's copies of step 3's; a Pester test checks them.", c + 0.25, 0.75, 13);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 4 and 5; examples/drift-pipeline: python/pa_evidence.py, tests/fixtures/pa-runs (fictional).");
@@ -281,7 +281,7 @@ endModule(SC);
     "# Step 8: package and verify the second day, chained to the first",
     "$ python python/pa_evidence.py package --run $DAY2 --diff out/day2/pa-drift-report.json \\",
     "    --previous-manifest out/evidence/2026-10-29T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/evidence",
-    "{\"evidence_manifest_sha256\": \"763d4a1f11274ba77b1ed5d7d299143544a94d4d160d1113efb30c50930fc7a2\", \"package\": \"2026-10-30T0600Z-fixture\"}",
+    "{\"evidence_manifest_sha256\": \"f30cc4ad6097807f1433b69f0b1c02dd1b7d6471d2ca3464395b63335af79c7b\", \"package\": \"2026-10-30T0600Z-fixture\"}",
     "$ python python/pa_evidence.py verify out/evidence/2026-10-30T0600Z-fixture",
     "{\"evidence_manifest_sha256\": \"763d4a1f...30fc7a2\", \"files\": 15, \"run_id\": \"2026-10-30T0600Z-fixture\"}",
     "$ (cd out/evidence/2026-10-30T0600Z-fixture && sha256sum -c --quiet SHA256SUMS)",
@@ -289,7 +289,7 @@ endModule(SC);
   line(s, "Read", "grep prints 0 (and exits 1): no user principal name reaches the drafts. sha256sum prints nothing and exits 0.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 7 and 8; examples/drift-pipeline/python/pa_evidence.py.");
   notes(s,
-`Step seven drafts the findings for the issue tracker: seven to open, nine to close, none to comment on. Then search the drafts for the fictional domain, contoso. Zero matches, and grep exits with one: no user principal name reaches the drafts. Step eight packages the second day, chained to the first: you pass day one's evidence manifest as the previous manifest. The new package's hash starts seven six three d four a one f. Verify it: fifteen files, and the same hash. Then check it the way a reviewer would, with sha256sum alone, checking the sums file. It prints nothing and exits with zero. In the evidence manifest, the previous package's hash is day one's: that's the chain.`,
+`Step seven drafts the findings for the issue tracker: seven to open, nine to close, none to comment on. Then search the drafts for the fictional domain, contoso. Zero matches, and grep exits with one: no user principal name reaches the drafts. Step eight packages the second day, chained to the first: you pass day one's evidence manifest as the previous manifest. The new package's hash starts f three zero c c four a d. Verify it: fifteen files, and the same hash. Then check it the way a reviewer would, with sha256sum alone, checking the sums file. It prints nothing and exits with zero. In the evidence manifest, the previous package's hash is day one's: that's the chain.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 and 8.`);
 }
 

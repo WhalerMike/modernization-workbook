@@ -40,59 +40,59 @@ and their audit boundary.
 One act, five effects.
 
 9
-00:00:29.662 --> 00:00:35.075
+00:00:29.662 --> 00:00:35.301
 Entra ID has no OU tree, so each
 effect has to be rebuilt on purpose.
 
 10
-00:00:35.075 --> 00:00:40.062
+00:00:35.301 --> 00:00:40.287
 Most migration plans count users,
 computers, groups and Group Policy.
 
 11
-00:00:40.062 --> 00:00:45.853
+00:00:40.287 --> 00:00:46.079
 The program counts eleven categories,
 adding service accounts, DNS and DHCP,
 
 12
-00:00:45.853 --> 00:00:51.000
+00:00:46.079 --> 00:00:51.226
 certificate services, RADIUS,
 LDAP-bound applications and trusts.
 
 13
-00:00:51.000 --> 00:00:52.438
+00:00:51.226 --> 00:00:52.663
 Those fail silently.
 
 14
-00:00:52.438 --> 00:00:54.913
+00:00:52.663 --> 00:00:55.138
 No log line says governance has failed.
 
 15
-00:00:54.913 --> 00:00:58.011
+00:00:55.138 --> 00:00:58.236
 Microsoft hasn't deprecated
 Active Directory,
 
 16
-00:00:58.011 --> 00:01:02.301
+00:00:58.236 --> 00:01:02.526
 so there's no vendor deadline;
 retiring it is the agency's decision.
 
 17
-00:01:02.301 --> 00:01:05.748
+00:01:02.526 --> 00:01:05.973
 That makes scope a decision
 for the sponsor and the CIO,
 
 18
-00:01:05.748 --> 00:01:10.344
+00:01:05.973 --> 00:01:10.569
 when scope and funding are set: fund
 this as a governance transformation
 
 19
-00:01:10.344 --> 00:01:14.175
+00:01:10.569 --> 00:01:14.400
 across all eleven categories,
 not a users-and-groups project.
 
 20
-00:01:14.175 --> 00:01:17.350
+00:01:14.400 --> 00:01:17.590
 Next, what has to be true
 for the target to hold.

@@ -172,35 +172,35 @@ Module 1 starts with what
 policy actually says.
 
 37
-00:02:16.850 --> 00:02:19.771
+00:02:16.850 --> 00:02:19.763
 Module 1 is TIC 3.0 in practice.
 
 38
-00:02:19.771 --> 00:02:22.580
+00:02:19.763 --> 00:02:22.561
 Branch decisions get
 argued in policy terms,
 
 39
-00:02:22.580 --> 00:02:27.132
+00:02:22.561 --> 00:02:27.100
 and most of those arguments don't
 survive a careful read of the documents.
 
 40
-00:02:27.132 --> 00:02:29.596
+00:02:27.100 --> 00:02:29.555
 But the opposite mistake
 is just as common:
 
 41
-00:02:29.596 --> 00:02:32.761
+00:02:29.555 --> 00:02:32.712
 assuming technology-neutral
 means requirement-free.
 
 42
-00:02:32.761 --> 00:02:34.349
+00:02:32.712 --> 00:02:34.328
 We'll read what's really there,
 
 43
-00:02:34.349 --> 00:02:38.080
+00:02:34.328 --> 00:02:38.120
 and finish with how token security
 changes where data can live.
 

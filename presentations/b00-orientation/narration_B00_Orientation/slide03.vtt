@@ -25,48 +25,58 @@ and they're still in force.
 Others are close.
 
 6
-00:00:15.725 --> 00:00:21.387
+00:00:15.725 --> 00:00:20.573
 FedRAMP's Consolidated Rules become
-mandatory on January 1, 2027.
+mandatory on January 1, 2027,
 
 7
-00:00:21.387 --> 00:00:29.199
+00:00:20.573 --> 00:00:26.678
+except that two of them, vulnerability
+detection and response and vulnerability
+
+8
+00:00:26.678 --> 00:00:31.975
+evaluation and reporting, became
+mandatory earlier, on December 7, 2026.
+
+9
+00:00:31.975 --> 00:00:39.787
 BOD 26-02 wants listed end-of-support
 edge devices gone by February 5, 2027.
 
-8
-00:00:29.199 --> 00:00:34.404
+10
+00:00:39.787 --> 00:00:44.992
 And by the program's own count,
 not a date OMB published,
 
-9
-00:00:34.404 --> 00:00:40.200
+11
+00:00:44.992 --> 00:00:50.788
 the Agency Logging Plan under
 M-26-14 is due November 18, 2026.
 
-10
-00:00:40.200 --> 00:00:46.057
+12
+00:00:50.788 --> 00:00:56.645
 Vendors add their own clock: Windows
 Server 2016 ends support on January 12,
 
-11
-00:00:46.057 --> 00:00:51.063
+13
+00:00:56.645 --> 00:01:01.651
 2027, and this workbook plans on
 those servers being gone by then.
 
-12
-00:00:51.063 --> 00:00:52.737
+14
+00:01:01.651 --> 00:01:03.325
 The slide lists the rest.
 
-13
-00:00:52.737 --> 00:00:54.574
+15
+00:01:03.325 --> 00:01:05.162
 Nothing fails on a single date.
 
-14
-00:00:54.574 --> 00:00:58.933
+16
+00:01:05.162 --> 00:01:09.520
 But every one of these deadlines
 assumes the agency knows what it runs,
 
-15
-00:00:58.933 --> 00:01:00.860
+17
+00:01:09.520 --> 00:01:11.450
 who owns it, and what governs it.

@@ -519,21 +519,21 @@
   ],
   [
    24.65,
-   7.875,
-   "The new package's hash starts seven six three d four a one f. Verify it: fifteen files, and the same hash."
+   8.175,
+   "The new package's hash starts f three zero c c four a d. Verify it: fifteen files, and the same hash."
   ],
   [
-   32.525,
+   32.825,
    5.8,
    "Then check it the way a reviewer would, with sha256sum alone, checking the sums file."
   ],
   [
-   38.325,
+   38.625,
    2.525,
    "It prints nothing and exits with zero."
   ],
   [
-   40.85,
+   41.15,
    5.575,
    "In the evidence manifest, the previous package's hash is day one's: that's the chain."
   ]

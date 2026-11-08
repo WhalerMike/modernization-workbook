@@ -536,8 +536,8 @@ Detection runs on two clocks. On every proposed change to rules, mappings or reg
     ["Schema", { text: "Built", options: { color: HEX.teal, bold: true } }, { text: "Built", options: { color: HEX.teal, bold: true } }],
     ["Provenance", { text: "Built", options: { color: HEX.teal, bold: true } }, { text: "Built", options: { color: HEX.teal, bold: true } }],
     ["Semantic", "n/a", { text: "Partly built", options: { color: HEX.amber, bold: true } }],
-    ["Authorization", "n/a", { text: "Design only", options: { color: HEX.red, bold: true } }],
-    ["Identity", "n/a", { text: "Design only", options: { color: HEX.red, bold: true } }],
+    ["Authorization", "n/a", { text: "Design only today", options: { color: HEX.red, bold: true } }],
+    ["Identity", "n/a", { text: "Design only today", options: { color: HEX.red, bold: true } }],
   ], { x: 8.25, fontSize: 12, limit: 4.85 });
   callout(s, "Contention", 5.05, 0.95, "FaCodeBranch", HEX.red, "Contention, a write to a demoted copy: ",
     "an authorization finding, critical when the copy is in use, and the sign a second source of truth is growing back.");

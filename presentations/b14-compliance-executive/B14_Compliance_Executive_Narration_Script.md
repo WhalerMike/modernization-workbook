@@ -26,7 +26,7 @@ Most directive deadlines have passed, but their requirements haven't. BOD 26-04 
 
 ## Slide 7 — Two facts and one index: the baseline and the crosswalk
 
-“Is this required at Moderate?” sounds like one question. It's two: NIST's baseline for the agency's system, and FedRAMP's class for the provider's service. The series crosswalk indexes 149 controls, but it's a pointer to where each one is treated, not proof it's closed or inherited. It covers fewer than half the Moderate baseline, so it can't stand in for the security plan. The decision: fill the product inventory questionnaire against the estate as it is, verify each FedRAMP status on the day you record it, and decide every flag before the security plan is written. An uncertified service inside the boundary goes to the authorizing official. Next, when a control is closed.
+“Is this required at Moderate?” sounds like one question. It's two: NIST's baseline for the agency's system, and FedRAMP's class for the provider's service. The series crosswalk indexes 152 controls, but it's a pointer to where each one is treated, not proof it's closed or inherited. It covers fewer than half the Moderate baseline, so it can't stand in for the security plan. The decision: fill the product inventory questionnaire against the estate as it is, verify each FedRAMP status on the day you record it, and decide every flag before the security plan is written. An uncertified service inside the boundary goes to the authorizing official. Next, when a control is closed.
 
 ## Slide 8 — A control closes only with its proof
 

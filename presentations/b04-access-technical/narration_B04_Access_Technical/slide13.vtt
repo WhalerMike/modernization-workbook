@@ -1,66 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.448
+00:00:00.050 --> 00:00:03.484
 Every control that blocks
 an administrative path also
 
 2
-00:00:03.448 --> 00:00:06.625
+00:00:03.484 --> 00:00:06.696
 creates a way to lock the
 agency out of its own tenant.
 
 3
-00:00:06.625 --> 00:00:09.978
+00:00:06.696 --> 00:00:10.084
 Emergency access accounts,
 break-glass, are the answer,
 
 4
-00:00:09.978 --> 00:00:14.300
+00:00:10.084 --> 00:00:14.464
 and they're the only standing privilege
 the program accepts by design.
 
 5
-00:00:14.300 --> 00:00:18.711
-There are at least two, cloud-only,
-not tied to any one person, holding
+00:00:14.464 --> 00:00:19.084
+There are two, cloud-only, not tied
+to any one person, holding permanent
 
 6
-00:00:18.711 --> 00:00:23.925
-permanent Global Administrator, and
-signing in with a passkey or certificate.
+00:00:19.084 --> 00:00:23.624
+Global Administrator, and signing
+in with a passkey or certificate.
 
 7
-00:00:23.925 --> 00:00:27.245
+00:00:23.624 --> 00:00:26.961
 A password in a sealed
 envelope no longer works,
 
 8
-00:00:27.245 --> 00:00:32.013
+00:00:26.961 --> 00:00:31.779
 because Microsoft's mandatory MFA
 now applies to the admin portals.
 
 9
-00:00:32.013 --> 00:00:35.025
+00:00:31.779 --> 00:00:34.850
 They're excluded from
 every restrictive policy,
 
 10
-00:00:35.025 --> 00:00:38.488
+00:00:34.850 --> 00:00:38.350
 and every use is a critical
 incident until it's reviewed.
 
 11
-00:00:38.488 --> 00:00:43.205
+00:00:38.350 --> 00:00:43.126
 They're tested at least every ninety days,
 and because NIST expects such accounts
 
 12
-00:00:43.205 --> 00:00:47.712
+00:00:43.126 --> 00:00:47.681
 to disable automatically, the security
 plan records a documented deviation.
 
 13
-00:00:47.712 --> 00:00:50.810
+00:00:47.681 --> 00:00:50.810
 And they exist before any
 approval is switched on.

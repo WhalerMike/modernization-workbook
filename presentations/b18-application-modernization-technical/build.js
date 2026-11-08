@@ -251,9 +251,9 @@ Two rules in the callout. A heavily connected application may still be refactore
   tag(s, "What");
   const pic = img(s, "ch02-value-health-grid", 0.6, 1.5, 6.6, 3.9);
   const a = panel(s, "Axes", 7.45, 1.5, 5.3, null, HEX.navy, HEX.navyTint, "TWO AXES (PROGRAM DESIGN)", null, [
-    "Mission value: criticality, cost of the function if lost, number and kind of users",
-    "Technical health: condition, skills, data sensitivity as difficulty, dependencies",
-    "Each criterion 1 to 5; equal weights within an axis to start",
+    "Mission value: mission criticality and cost of the function if lost",
+    "Technical health: condition, skills, data sensitivity as difficulty",
+    "Each criterion 1 to 5; equal weights within an axis. Dependencies stay out and set the order",
   ], 13);
   const b = panel(s, "Flags", 7.45, a + 0.2, 5.3, null, HEX.amber, HEX.amberTint, "CONFIDENCE FLAG ON EVERY SCORE", null, [
     "Measured, from system data; attested, by the owner; assumed, no data",
@@ -263,7 +263,7 @@ Two rules in the callout. A heavily connected application may still be refactore
     "AWS suggests no inbound connection for 90 days, or very low CPU and memory use, to find applications nobody uses.");
   sources(s, "Sources: Book 18, Ch 02 (the axes, weights and flags are program design); FIPS 199; AWS Prescriptive Guidance, About the migration strategies. Book 18, Ch 02.");
   notes(s,
-`Each criterion is scored from 1 to 5, and the six combine into two axes. Mission value takes mission criticality, the cost of the function if it were lost, and the number and kind of users. Technical health takes technical condition, skills, data sensitivity read as migration difficulty, and dependencies. Weights are the agency's choice. The starting point is equal weights within each axis, adjusted after the pilot calibration.
+`Each criterion is scored from 1 to 5, and five of the six combine into two axes. Mission value takes mission criticality and the cost of the function if it were lost. Technical health takes technical condition, skills and data sensitivity read as migration difficulty. The sixth criterion, dependencies, stays out of both axes and is used for sequencing. Weights are the agency's choice. The starting point is equal weights within each axis, adjusted after the pilot calibration.
 
 The grid is where the two axes point. Low value and poor health: retire first, the cheapest modernization there is. High value and good health: retain with a review date, and rehost only if the platform is being exited. High value and poor health: replatform when the platform is the problem and the code is sound, refactor or rebuild when the code is the problem. And the note under the grid: dependencies decide the order, not the disposition.
 
@@ -1070,7 +1070,7 @@ Leadership approves the rubric, not each decision: the criteria, weights and rul
 Five things to start on Monday that need no new platform. Build the inventory: an owner and a proposed disposition for every application. Calibrate the rubric on thirty to fifty applications your architects already know. Publish the approved-technology list with supported versions and end-of-support dates, and fail the build on a retired one. Before any cut-over, ask for the three results, row counts, a checksum and a reconciliation of totals the business recognizes, with every mismatch explained. And make it a design standard that no agent writes to a system of record: agents read and propose, people approve, services apply.
 
 The book's argument in one line: decide application by application, build the changed ones on one architecture, prove the data moved, govern the AI, and let the gates write the evidence. Chapters 01 through 10 carry the detail, every claim footnoted and dated. Thank you.`,
-  "Book 18, Chapters 02, 03, 04, 05, 06, 07 and 10, \"What leadership should take from this\" and \"Key takeaways.\"");
+  "Book 18, Chapters 02, 03, 04, 05, 06, 07 and 10, \"What leadership should take from this.\"");
 }
 endModule("Module 4");
 
