@@ -53,3 +53,9 @@ Opened November 2, 2026: OMB M-24-08 PDF (text extracted locally), read at §III
 | A1 | M-24-08 encourages accessibility experts as authoritative decision-makers at development checkpoints | Board membership | verified | M-24-08 §III.C |
 | A2 | The Section 508 program manager's delegate sits on the board for user-facing designs | Board membership | restated-as-design | — |
 | A3 | Accessibility review at Gate 2, automated rules at Gate 3, manual results or a signed exception at Gate 4; the evidence row | Gates; evidence table | restated-as-design (follows M-24-08 §III.E's design, development and production release reviews) | — |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Heading "Key takeaways" | Heading "What leadership should take from this", matching Chapters 01 to 06 | Decision of Nov 8, 2026; nothing in docs links to the old #key-takeaways anchor |

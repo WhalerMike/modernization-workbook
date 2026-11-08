@@ -134,3 +134,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | Two properties of this scheme matter to an assessor. An exception surfaces ... And every expiry ... And an item closes | Three properties ... First ... Second ... Third (the paragraph listed three) | no source change |
 | ties a requirement to the mechanism that closes it | ties a requirement to the mechanism that supports it | no source change |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| 2026 rules "take mandatory effect on January 1, 2027" | Adds that the VDR and VER rules became mandatory earlier, on December 7, 2026, linking Chapter 02 | Decision of Nov 8, 2026; Book 14 Chapter 02 (FedRAMP NTC-0014: VDR and VER rules brought forward to December 7, 2026) |

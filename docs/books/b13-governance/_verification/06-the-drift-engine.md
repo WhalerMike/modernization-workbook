@@ -66,3 +66,9 @@ Full read of the page, top to bottom, after the first reader covered it by diff.
 | Before | After | Check |
 |---|---|---|
 | the per-check cadence is how the program meets both. | the per-check cadence is how the program supports both. | Claim language (CA-7 and CA-7(4)) |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| DRIFT-AUTHZ and DRIFT-IDENTITY detected "At runtime" | "At runtime (design only today)" | Decision of Nov 8, 2026; matches the page's own statement that runtime checks are design |

@@ -115,3 +115,9 @@ Checked October 21, 2026 by writer W4. Source: `docs/compliance/Vol_IV_Book_04_P
 | KSI Indirect Coverage; Note for Package Reviewers | Opening | Removed (#4); package placement linked to Chapter 11 |
 | Compliance Milestones | Before a system that processes PII goes live | Corrected (#62) |
 | End matter (previous/series links) | — | Replaced by Continue the book |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Chapter named PM-18, PM-19 and PM-5(1) as program controls in the privacy baseline | Adds the eight privacy-baseline PM controls that Chapter 05 covers: PM-4, PM-6, PM-7, PM-9, PM-10, PM-11, PM-14, PM-31 | Decision of Nov 8, 2026; NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json, version 5.2.0, last modified 2026-10-22, read Nov 8, 2026: all eight present, with pm-3, pm-5.1, pm-8, pm-13, pm-17 to pm-22 and others |

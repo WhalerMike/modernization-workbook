@@ -56,3 +56,9 @@ The front-matter description said a workbook book "closes" each requirement; it 
 | Before | After | Source |
 |---|---|---|
 | the workbook book that closes it | the workbook book that carries it | no source change |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| SR-3 and SR-6 row listed provider evidence only | Adds that Book 11 maps the provider's evidence for SR-3 and SR-6 while supplier assessment stays open in Book 14 Appendix A | Decision of Nov 8, 2026; Book 14 Appendix A rows SR-3 and SR-6 status Open |

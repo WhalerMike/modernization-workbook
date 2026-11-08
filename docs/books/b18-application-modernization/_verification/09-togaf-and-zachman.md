@@ -64,3 +64,9 @@ Ready for the editor to add TOGAF and Zachman rows to `docs/reference/federal-fr
   - Zachman International, "The Zachman Framework Evolution," <https://zachman-feac.com/the-zachman-framework-evolution> (accessed Oct 28, 2026).
 
 Suggested crosswalk status for both: **Current, voluntary.** What the workbook should cite for the requirement: A-130 §5.a(2) and SP 800-53 PM-7 (as for FEAF v2).
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Heading "Key takeaways" | Heading "What leadership should take from this", matching Chapters 01 to 06 | Decision of Nov 8, 2026; nothing in docs links to the old #key-takeaways anchor |

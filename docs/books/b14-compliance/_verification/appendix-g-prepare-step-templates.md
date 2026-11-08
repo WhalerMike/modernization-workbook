@@ -20,3 +20,9 @@ Written November 6, 2026. SP 800-37 Rev. 2 and SP 800-30 Rev. 1 PDFs opened from
 - SP 800-30 Appendix K layout vs the Template 2 outline.
 - Whether SP 800-37's mapping appendix (tasks to controls) should be cited for the "related controls" column.
 - Page numbers of SP 800-37 tasks not cited; add if the register needs them.
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Footnote ids aC-37, aC-39, aC-30, aC-53 | Renamed aG-37, aG-39, aG-30, aG-53, so ids are unique across the Book 14 Word bundle (Appendix C also uses aC-) | Decision of Nov 8, 2026; no text change |

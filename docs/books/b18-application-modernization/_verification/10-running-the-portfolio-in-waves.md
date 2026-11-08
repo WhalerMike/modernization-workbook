@@ -36,3 +36,9 @@ Manual checks: none. Note on the crosswalk: its TMF row quotes the 2026 call as 
 ## Notes
 
 - No agency, program or system names; no portfolio size attributable to any agency.
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Heading "Key takeaways" | Heading "What leadership should take from this", matching Chapters 01 to 06 | Decision of Nov 8, 2026; nothing in docs links to the old #key-takeaways anchor |

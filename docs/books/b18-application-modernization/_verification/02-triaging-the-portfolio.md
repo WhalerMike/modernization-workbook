@@ -56,3 +56,9 @@ Opened October 30, 2026: 5 U.S.C. §552a on the Legal Information Institute (sub
 | 28 | Entity and relationship types, basis labels, confidence flags, open questions, master-record ranking, computed dependency score | Evidence map | restated-as-design | Program design |
 
 The section is agency-neutral: its pattern was observed in a public, independent research site about one federal agency's systems, which is deliberately not named or linked. No facts, system names or counts from that site are used.
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Mission value axis inputs "mission criticality, cost of the function if lost, and the number and kind of users" | "Mission criticality and cost", two of the six criteria in the table above (so five of six combine into two axes: two for value, three for health) | Decision of Nov 8, 2026; matches the six-criteria table |

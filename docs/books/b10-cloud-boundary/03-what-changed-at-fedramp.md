@@ -42,6 +42,7 @@ The dates, as FedRAMP publishes them:
 |---|---|
 | July 4, 2026 | Optional early adoption of the Consolidated Rules for 2026 |
 | July 6, 2026 | Marketplace listings open for providers in the Initial Implementation phase |
+| December 7, 2026 | The Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules become mandatory, earlier than the rest ([Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md)) |
 | January 1, 2027 | Mandatory adoption for all stakeholders |
 | June 11, 2027 | FedRAMP stops accepting new Rev5 certification requests |
 
