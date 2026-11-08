@@ -22,7 +22,7 @@ The assessment reads the whole estate and changes nothing. That's enforced three
 
 ## Slide 6 — What the assessment inventories
 
-Here's what it reads: the directory's structure, every kind of account, every Group Policy Object, the network services that lean on the directory, the certificate authorities and their templates, and the applications that bind to the directory. For any application that might move away from its data, it measures how chatty it is. Out of this come risk findings, like unsafe delegation or a Windows Server 2016 host nobody expected, and every one gets a disposition. But a list only helps if you can prove where it came from.
+Here's what it reads: the directory's structure, every kind of account, every Group Policy Object, the network services that lean on the directory, the certificate authorities and their templates, and the applications that bind to the directory. For any application that might move away from its data, it measures how chatty it is. Out of this come risk findings, like unsafe delegation or a Windows Server 2016 host nobody expected, and every one gets a disposition. Three of those outputs each need a named owner: service accounts and their service principal names, certificates and the authorities that issue them, and the DNS zones that depend on the directory. That's the charter's hidden-dependency risk: policy, addressing, service accounts, certificates and naming. But a list only helps if you can prove where it came from.
 
 ## Slide 7 — Provenance, and seeding the repository
 

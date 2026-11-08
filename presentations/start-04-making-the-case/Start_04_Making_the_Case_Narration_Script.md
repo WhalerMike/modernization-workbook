@@ -10,7 +10,7 @@ The one-page ask has three parts. A short reminder of why now: deadlines set out
 
 ## Slide 3 — Four local numbers that make it real
 
-Four numbers do more than any slide. How many Windows Server 2019 servers you run, since support ends in January 2029, once you've confirmed no 2016 server remains. How many contractors sit outside the HR system, because HR 2.0 covers federal employees only. How long a departing person keeps access, from the day HR records the separation to the last account disabled. And your Federal HR 2.0 wave and dates, because the chance to design identity in closes when your HR connections go live. Each person at the table hears these differently.
+Four numbers do more than any slide. How many Windows Server 2019 servers you run, since support ends in January 2029, once you've confirmed no 2016 server remains. How many contractors sit outside the HR system, because HR 2.0 covers federal employees only. How long a departing person keeps access, from the day HR records the separation to the last account disabled. And your Federal HR 2.0 wave and dates, because the chance to design identity in closes when your HR connections go live. Once the pre-flight has run, you can add one more from the machine side: how many service accounts have no named owner, or how many certificates still renew by hand. Each person at the table hears these differently.
 
 ## Slide 4 — For the CIO: the clocks and the cost
 

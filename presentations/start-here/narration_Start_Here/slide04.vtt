@@ -6,39 +6,58 @@ You begin with identity, because
 everything else decides on it.
 
 2
-00:00:03.875 --> 00:00:07.195
-Access policy, devices,
-data, certificates:
+00:00:03.875 --> 00:00:09.731
+Access policy, devices, data, certificates:
+each one asks who or what is making the
 
 3
-00:00:07.195 --> 00:00:10.800
-each one asks who or what
-is making the request.
+00:00:09.731 --> 00:00:15.675
+request, and that includes service accounts,
+applications, devices and AI agents.
 
 4
-00:00:10.800 --> 00:00:13.529
+00:00:15.675 --> 00:00:21.457
+Federal identity guidance, OMB memorandum
+M-19-17, says those non-person
+
+5
+00:00:21.457 --> 00:00:26.275
+entities must be distinguishable,
+auditable, and consistently managed.
+
+6
+00:00:26.275 --> 00:00:29.004
 If the answer to that
 question isn't trustworthy,
 
-5
-00:00:13.529 --> 00:00:15.712
+7
+00:00:29.004 --> 00:00:31.187
 nothing built on top of it can be either.
 
-6
-00:00:15.712 --> 00:00:20.257
+8
+00:00:31.187 --> 00:00:35.732
 That's why the workbook numbers its
 books in this order, with identity first
 
-7
-00:00:20.257 --> 00:00:24.875
+9
+00:00:35.732 --> 00:00:40.350
 and infrastructure next, then the cloud
 boundary, assurance and operations.
 
-8
-00:00:24.875 --> 00:00:27.250
+10
+00:00:40.350 --> 00:00:43.187
+Infrastructure sits in the same chain:
+
+11
+00:00:43.187 --> 00:00:48.063
+if DNS stays integrated with Active
+Directory, AD can never retire.
+
+12
+00:00:48.063 --> 00:00:50.437
 Skipping ahead only moves the problem.
 
-9
-00:00:27.250 --> 00:00:31.340
+13
+00:00:50.437 --> 00:00:54.530
 And right now there's an unusual
 opportunity on the identity side.
