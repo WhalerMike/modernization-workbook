@@ -236,7 +236,7 @@ Before the agency funds a refresh of a distribution point in every office, it sh
 | Developer workbook (chapters built on the kit, each with a Lab 1 and a Lab 2) | Planned; the implementation guide's two labs come first |
 | Training path | Planned |
 
-: The four pieces of an implementation guide, and the plan {.striped}
+: The pieces of the guide set, and the plan {.striped}
 
 ::: {.callout-tip}
 ## Back to the books

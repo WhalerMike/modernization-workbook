@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide"
 subtitle: "Book 13's loop built on two named products, in seven gates: confirm the boundary, decide the writers and approvers, connect the sources, open the front door, actuate on the native surface, close only on a re-read, and operate the tempo"
-description: "Research draft: a gated implementation guide that builds Book 13's Ticket-to-Machine loop on ServiceNow (the front door and the record) and SailPoint Identity Security Cloud (identity governance), as an example rather than a recommendation. Seven gates, each with its steps, the federal requirement it meets and the evidence an ISSO keeps, the FedRAMP status of each product used and the Microsoft Entra features in GCC and GCC High, an interim path, a Validate step that names the integration kit's tests or says there is no automated check yet, and rollback."
+description: "Research draft: a gated implementation guide that builds Book 13's Ticket-to-Machine loop on ServiceNow (the front door and the record) and SailPoint Identity Security Cloud (identity governance), as an example rather than a recommendation. Seven gates, each with its steps, the federal requirement it supports and the evidence an ISSO keeps, the FedRAMP status of each product used and the Microsoft Entra features in GCC and GCC High, an interim path, a Validate step that names the integration kit's tests or says there is no automated check yet, and rollback."
 research-status: draft
 research-type: implementation guide
 research-book: "Books 13, 15"

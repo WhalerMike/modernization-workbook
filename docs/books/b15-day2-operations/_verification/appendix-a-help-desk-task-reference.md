@@ -83,3 +83,12 @@ At the user's request, every certificate-dependent book maps its certificates to
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Risk Tier 1 access: application owner, then the identity governance office as a second approval stage (replaces the earlier "IGO notified, four-business-hour hold window") | Groups and application access | corrected to match the published chapter | Book 04 Ch06, Risk tiers set the approval chain |
+| 2 | Routine credential tasks (session revocation, method deletion, re-registration, Temporary Access Pass, method registration, remembered-device reset, app-password deletion): approved by the supervisor or the requester's manager | Credentials and authentication methods | corrected to match Chapter 10 and Book 04 | Book 04 Ch06, authority split (A1); this book's Chapter 10 |

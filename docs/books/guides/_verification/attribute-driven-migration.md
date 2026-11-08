@@ -229,3 +229,4 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | The tiers are how the inventory meets CM-8, System Component Inventory, in the program's mapping: | The tiers are how the inventory supports CM-8, System Component Inventory, in the program's mapping: | no source change |
 | ## The federal requirements each track satisfies {#federal-requirements} | ## The federal requirements each track supports {#federal-requirements} | no source change |
+| Federal requirements table column header: "What satisfies it" | "What supports it" | no source change |

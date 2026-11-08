@@ -43,7 +43,7 @@ Four short executive briefings, about six minutes each (Episode 1 is about 7), w
 
 ## The case in brief
 
-1. **The clocks nobody can move.** Federal directives and vendor end-of-support dates are set outside the agency. The workbook plans on Windows Server 2016 being gone from production by its January 12, 2027 end of support, and the other dates keep coming after it ([Book 00, Chapter 01](books/b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard)).
+1. **The clocks nobody can move.** Federal directives and vendor end-of-support dates are set outside the agency. The workbook plans on Windows Server 2016 being gone from production by its January 12, 2027 end of support, with Windows Server 2019 as the minimum, and the other dates keep coming after it ([Book 00, Chapter 01](books/b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard)).
 2. **Everything decides on identity.** Access, devices, data and certificates all decide on who or what is asking, so identity has to be authoritative first ([Book 00, Chapter 01](books/b00-orientation/01-why-modernize-now.md); [Book 01, Chapter 02](books/b01-transformation-arc/02-the-problem.md)).
 3. **HR is being rebuilt anyway.** Federal HR 2.0 moves agencies onto one Core HCM platform through FY 2027; OPM rebuilds the HR side, and the identity connection is the agency's ([Book 03, Chapter 03](books/b03-hr-identity/03-federal-hr-2-0.md)).
 4. **The access risk is already on the books.** Account decisions live in tickets and spreadsheets, and quarterly reviews can't see a transition when it happens ([Book 03, Chapter 02](books/b03-hr-identity/02-why-hr-is-the-source-of-authority.md)).

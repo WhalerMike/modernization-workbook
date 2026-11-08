@@ -16,3 +16,4 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 1 | Before-you-buy evidence: the hardening guidance for the agency's CM-6 settings (CIS Benchmark, vendor hardening guide or NCP checklist); DISA STIG optional (High only) | What it covers | verified | ddireq-cm6, ddireq-ncp |
 | 2 | No CIS Benchmark for Infoblox NIOS, so its DISA STIGs are the only product-specific checklists there | What it covers | verified (absence on the CIS list) | ddireq-cis |
 | 3 | Deck slide 8 row "DISA STIG" replaced by "Hardening guide"; slide 9 row relabelled "DISA STIG (High only)" | Deck | reframed | — |
+| 4 | Intro: "capabilities a platform must deliver to meet them" narrowed to "to support them" (supports-not-satisfies claim language); no source change | Intro | reframed | — |
