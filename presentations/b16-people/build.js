@@ -235,7 +235,7 @@ Training comes after, by role, in four tracks: compliance, for people who eviden
   narrate(s,
 `The compliance track is for the people who read evidence rather than build it: I S S Os, compliance staff, control assessors and authorizing officials. It teaches one skill above the others, tracing. Given a control, name the mechanism that closes it, the book that built it, the record it emits and where that record sits in the authorization package. Given a record, work back to its control and say whether it's current.
 
-The orientation module carries four ideas: the Risk Management Framework's seven steps; who owes which proof, with only the authorizing official accepting residual risk; Moderate and FedRAMP's Class C as two facts, not one; and FedRAMP's forty-six key security indicators binding providers, not agencies.
+The foundations module, Module 0, carries four ideas: the Risk Management Framework's seven steps; who owes which proof, with only the authorizing official accepting residual risk; Moderate and FedRAMP's Class C as two facts, not one; and FedRAMP's forty-six key security indicators binding providers, not agencies.
 
 Eight modules then follow the program's evidence areas, from identity to training. Each one teaches a discipline: a policy screenshot can't show that a sign-in was phishing-resistant; only the sign-in record can. The capstone is a continuous-monitoring narrative for one system.`,
   "Book 16, Chapter 03 — The Compliance Track (Who the track is for; Module 0; Modules 1 to 8; The capstone).");
@@ -245,7 +245,7 @@ Eight modules then follow the program's evidence areas, from identity to trainin
 {
   const s = D.content("What the program teaches", "Implementation: done means the evidence landed");
   tag(s, "What");
-  steps(s, "Build", [["Orientation", "Books 00, 01"], ["DNS and IPAM", "Book 08"], ["Identity", "Books 02, 03"], ["Certificates, access", "Books 07, 04"], ["Network, then data", "Books 09, 06"], ["Day two", "Book 15, last"]],
+  steps(s, "Build", [["Foundations", "Books 00, 01"], ["DNS and IPAM", "Book 08"], ["Identity", "Books 02, 03"], ["Certificates, access", "Books 07, 04"], ["Network, then data", "Books 09, 06"], ["Day two", "Book 15, last"]],
     [HEX.grey, HEX.navyTint, HEX.navyTint, HEX.navyTint, HEX.navyTint, HEX.tealTint], ["0", "1", "2", "3–4", "6–7", "10"]);
   panels(s, [
     ["FaListCheck", "Three habits every lab teaches", HEX.navy, HEX.navyTint, ["Observe first: report-only, monitor and shadow modes", "Keep a way back in: emergency access accounts first", "Export the record, not a screenshot"]],

@@ -152,9 +152,9 @@ const P2 = "Part 2 — Governing and running";
   notes(s,
 `This is the technical deep dive for Book 18 of the Federal Modernization Workbook, Application Modernization. It's for enterprise and solution architects, application and data engineers, database administrators and ISSOs: the people who decide what each legacy application becomes, build the ones that change, move their data and prove the result.
 
-It runs in two parts and four modules you can watch separately. Part 1 is deciding and designing: the portfolio argument, the six dispositions and the scored triage, then the target reference architecture and moving data off DB2 and Oracle. Part 2 is governing and running: generative and agentic AI with guardrails, compliance by design, the review board and its four gates, then the reference implementation, the TOGAF and Zachman mapping, and the waves.
+It runs in two parts and four modules you can watch separately. Part 1 is deciding and designing: the portfolio argument, the six dispositions and the scored triage, then the target reference architecture and moving data off Db2 and Oracle. Part 2 is governing and running: generative and agentic AI with guardrails, compliance by design, the review board and its four gates, then the reference implementation, the TOGAF and Zachman mapping, and the waves.
 
-Three labels to listen for. Program design is marked as such: the rubric, the stack choices, the gates and the wave sizes are the book's design, not federal requirements. Product versions and support windows are as of October 28 and 29, 2026, and they move. And the reference implementation is illustrative: its tests pass against real PostgreSQL, but it hasn't been run against a real DB2 or Oracle database or in production. I'll describe the code rather than walk through it.`,
+Three labels to listen for. Program design is marked as such: the rubric, the stack choices, the gates and the wave sizes are the book's design, not federal requirements. Product versions and support windows are as of October 28 and 29, 2026, and they move. And the reference implementation is illustrative: its tests pass against real PostgreSQL, but it hasn't been run against a real Db2 or Oracle database or in production. I'll describe the code rather than walk through it.`,
   "Book 18, index; Chapters 01–10.");
 }
 
@@ -211,7 +211,7 @@ So: why the application is the unit of decision, and the six dispositions with t
     "replace is a form of retire, so \"could a product or shared service do this?\" is tested before refactor; relocate is a form of rehost.");
   sources(s, "Sources: AWS Prescriptive Guidance, migration strategies; Microsoft CAF and the 6 Rs of app modernization; OMB A-130 §5.a(3). The six names are program vocabulary. Book 18, Ch 01–02.");
   notes(s,
-`The unit of decision is the application. A program or mission area is too coarse: one area holds applications that should be retired next to ones that should be rebuilt. A platform, the mainframe or the Oracle estate, treats a hundred different applications as one, and can't be retired until every one has a decision. The application works, because it has a mission owner, a data set, a code base, dependencies and an authorization boundary.
+`The unit of decision is the application. A program or mission area is too coarse: one area holds applications that should be retired next to ones that should be rebuilt. A platform, the mainframe or the Oracle estate, treats a hundred different applications as one, and can't be retired until every one has a decision. The application works, because it has an application owner, a data set, a code base, dependencies and an authorization boundary.
 
 The table lists the six dispositions in rising order of cost and risk, and that order is the rubric's first rule: an application gets the cheapest disposition that meets its mission need, and every step down the table has to be justified by the scores. Retire and retain are decisions, not projects; they need an owner's agreement, and for retire a decommissioning checklist, but no engineering team.
 
@@ -284,7 +284,7 @@ And keep it honest by scoring what's measured before what's believed. Utilizatio
     ["4", "Code sound (condition and skills ≥ 3), but platform, runtime or database unsupported or costly", "Replatform", "Fix what is broken, keep what works"],
     ["5", "Mission value high, code hard to change or staff, and interceptable behind an interface", "Refactor", "Incremental replacement keeps the mission running"],
     ["6", "Mission value high, and the code can't be salvaged or requirements outgrew it", "Rebuild, in increments", "Only after rules 1–5 are ruled out"],
-    ["7", "Any high-impact system proposed for refactor or rebuild, or any contested result", "Deep study first", "Spend analysis where the stakes are"],
+    ["7", "High-impact refactor or rebuild; open dependency questions; a master record with many exchanges; any contested result", "Deep study first", "Spend analysis where the stakes are"],
   ], { fontSize: 12, limit: 5.7 });
   callout(s, "Scale", tb + 0.15, 0.85, "FaFilter", HEX.amber, "Rule 7 is what makes it scale: ",
     "most applications get a disposition from rules 1 to 4 for the cost of scoring; deep study goes to the dozens that need it.");
@@ -296,7 +296,7 @@ Rule 1: mission value 2 or below, or a commercial or shared service already prov
 
 Rule 5: mission value high, the code hard to change or staff, and the application can be intercepted behind an interface: refactor, because incremental replacement keeps the mission running. Rule 6: high value and the code can't be salvaged, or requirements have outgrown it: rebuild, still in increments, and only after rules 1 to 5 are ruled out.
 
-Rule 7 is the override. Any high-impact system whose proposed disposition is refactor or rebuild, or any application whose owner contests the result, gets a deep study before the decision. That's how a rubric covers thousands of applications without becoming careless. Most get a disposition from rules 1 to 4 at the cost of a scoring exercise, and the expensive analysis goes to the dozens that need it.
+Rule 7 is the override. Any high-impact system whose proposed disposition is refactor or rebuild, any high-impact system with open questions on its dependency map, any application that holds a master record with many outside exchanges, or any application whose owner contests the result, gets a deep study before the decision. That's how a rubric covers thousands of applications without becoming careless. Most get a disposition from rules 1 to 4 at the cost of a scoring exercise, and the expensive analysis goes to the dozens that need it.
 
 One more discipline: don't let the rubric pick the technology. The disposition says how much an application changes; the target architecture says what it changes into.`,
   "Book 18, Chapter 02 — \"Step 2: apply the decision table,\" \"Keeping it honest.\"");
@@ -320,9 +320,9 @@ One more discipline: don't let the rubric pick the technology. The disposition s
   ], 13);
   sources(s, "Sources: Book 18, Ch 02 (owner review, the record and calibration are program design); OMB A-130 §5.a(2); 40 U.S.C. §11312. Book 18, Ch 02, 07.");
   notes(s,
-`The funnel is the whole triage at scale. Most applications go straight to a recorded decision; only rule 7's contested, high-cost or high-impact cases detour through deep study. And the record feeds capital planning and the waves.
+`The funnel is the whole triage at scale. Most applications go straight to a recorded decision; only the cases rule 7 names, contested results and high-impact systems among them, detour through deep study. And the record feeds capital planning and the waves.
 
-Owner review works like this. The proposed disposition goes to the application's mission owner and system owner for a fixed window. They can agree, or contest with evidence, and a contested score is corrected, not argued around.
+Owner review works like this. The proposed disposition goes to the application owner for a fixed window; where the application is an authorized system, the system owner owns its compliance, and the two may be the same person. The application owner can agree, or contest with evidence, and a contested score is corrected, not argued around.
 
 The decision record holds the disposition, the six scores and their confidence flags, the rule that produced the disposition, the owner's agreement and a review date. It's the artifact the enterprise architecture's transition plan, the capital planning process and an auditor will all ask for, and Chapter 07 places it under the architecture review board as Gate 1.
 
@@ -341,7 +341,7 @@ endModule("Module 1");
 `Module 2: the target architecture and the data. If every refactor and rebuild picks its own stack, the agency ends the decade with as many stacks as it started with, only newer. The point of one reference architecture is to make the common choices once, so the platform team, the security team and the authorizing official review one pattern instead of hundreds.
 
 So: the layers and the choices, with versions and support windows as of October 28, 2026; contracts first, thin layers and configuration from outside; the strangler fig and the NIST security references; and then the hardest part of most refactors, the data: choosing the engine, converting the schema, proving nothing was lost, and cutting over without dual writes.`,
-  "Book 18, Chapter 03 — The Target Reference Architecture; Chapter 04 — Moving the Data: DB2 and Oracle to PostgreSQL or SQL Server.");
+  "Book 18, Chapter 03 — The Target Reference Architecture; Chapter 04 — Moving the Data: Db2 and Oracle to PostgreSQL or SQL Server.");
 }
 
 // ================================================================== 10 Layers
@@ -521,7 +521,7 @@ The table shows Oracle examples. Oracle DATE carries a time of day and PostgreSQ
 
 The sequence row has a cut-over consequence: advance every target sequence past the highest migrated key before the first new insert, or the new system issues keys that exist.
 
-PL/SQL and DB2 SQL PL convert with varying success, and packages are the hardest, because PostgreSQL has none. AWS's conversion turns members into schema-qualified functions named package dollar member, with package variables held in an extension-pack schema; Microsoft's assistant adds its own emulation schema. The program records every emulation call as debt and pays it down in the refactor.`,
+PL/SQL and Db2 SQL PL convert with varying success, and packages are the hardest, because PostgreSQL has none. AWS's conversion turns members into schema-qualified functions named package dollar member, with package variables held in an extension-pack schema; Microsoft's assistant adds its own emulation schema. The program records every emulation call as debt and pays it down in the refactor.`,
   "Book 18, Chapter 04 — \"Converting the schema,\" \"Type mapping: where meaning changes silently,\" \"Stored procedures and packages.\"");
 }
 
@@ -534,17 +534,17 @@ PL/SQL and DB2 SQL PL convert with varying success, and packages are the hardest
     ["AWS DMS Schema Conversion (managed)", "Oracle; Db2 LUW; Db2 for z/OS (API and CLI only); SQL Server; SAP ASE", "Aurora or RDS for PostgreSQL (some MySQL, Redshift)", "Generative AI conversion on PostgreSQL paths; no GovCloud (US) Region listed"],
     ["SSMA for Db2", "Db2 z/OS 9.0+, Db2 LUW 9.8+, Db2 for i 7.1+", "SQL Server 2019 to 2025; Azure SQL Database and Managed Instance", "Current release v10.6"],
     ["SSMA for Oracle", "Oracle", "Same targets", "v10.6; Copilot GA since v10.4; generated code must be reviewed"],
-    ["Ora2Pg (open source, GPL v3)", "Oracle; MySQL and MariaDB; SQL Server", "PostgreSQL", "25.0 (Apr. 20, 2025); cost assessment; no DB2 source"],
+    ["Ora2Pg (open source, GPL v3)", "Oracle; MySQL and MariaDB; SQL Server", "PostgreSQL", "25.0 (Apr. 20, 2025); cost assessment; no Db2 source"],
   ], { fontSize: 12, limit: 5.55 });
   callout(s, "Plan", tb + 0.2, 0.9, "FaTableList", HEX.navy, "Three planning facts: ",
-    "only AWS's tools convert DB2 to PostgreSQL; SSMA targets only SQL Server and Azure SQL; AI conversion puts the model endpoint in the boundary.");
+    "only AWS's tools convert Db2 to PostgreSQL; SSMA targets only SQL Server and Azure SQL; AI conversion puts the model endpoint in the boundary.");
   sources(s, "Sources: AWS SCT user guide; AWS DMS Schema Conversion; Microsoft Learn: SSMA, SSMA for Db2 and for Oracle, Copilot in SSMA; Ora2Pg features and releases. Book 18, Ch 04.");
   notes(s,
 `The tools as they stood in October 2026, named as examples of each category, not endorsements.
 
 AWS's desktop Schema Conversion Tool covers Oracle, both Db2 platforms and SQL Server, among others. AWS states it's FedRAMP compliant. AWS DMS Schema Conversion is the managed version, with Db2 for z/OS through the API and command line only. It offers generative AI conversion on the PostgreSQL paths from Oracle and both Db2 platforms, and its published Region table lists no AWS GovCloud Region.
 
-Microsoft's SQL Server Migration Assistant comes in Db2 and Oracle editions, both at version 10.6. The Oracle edition's AI-assisted conversion, Copilot, has been generally available since 10.4, using the agency's own Azure OpenAI resource or a Microsoft-managed endpoint with Entra ID sign-in, and Microsoft says generated code must be reviewed, validated and tested. Ora2Pg, open source under GPL version 3, is at 25.0 from April 2025 and has no DB2 source.
+Microsoft's SQL Server Migration Assistant comes in Db2 and Oracle editions, both at version 10.6. The Oracle edition's AI-assisted conversion, Copilot, has been generally available since 10.4, using the agency's own Azure OpenAI resource or a Microsoft-managed endpoint with Entra ID sign-in, and Microsoft says generated code must be reviewed, validated and tested. Ora2Pg, open source under GPL version 3, is at 25.0 from April 2025 and has no Db2 source.
 
 Three things shape the plan, and the callout has them. Note especially that AI-assisted options send source code to a model, which puts the endpoint, its region and its authorization inside the migration's boundary. The program treats AI-converted code as a draft a person reviews and validation tests.`,
   "Book 18, Chapter 04 — \"The conversion tools, October 2026,\" \"Honest limits,\" \"What leadership should take from this.\"");
@@ -576,7 +576,7 @@ Three things shape the plan, and the callout has them. Note especially that AI-a
 
 Row counts catch missing or duplicated rows. An order-independent checksum over canonicalized rows catches any changed value, but shares the transform's assumptions when it's computed after it. An independent aggregate reconciliation, totals and counts per status computed in each database's own SQL, catches business-level differences, but misses errors that cancel.
 
-The red panel is why the third exists. If the transform maps Oracle DATE to a date-only type, a checksum over the transformed rows agrees with the target perfectly, and both are wrong. An aggregate written directly against each database doesn't pass through the transform, so it catches what the checksum can't. Choose aggregates the business owner recognizes: a program office that knows its monthly totals can judge a reconciliation in a way it can't judge a hash.
+The red panel is why the third exists. If the transform maps Oracle DATE to a date-only type, a checksum over the transformed rows agrees with the target perfectly, and both are wrong. An aggregate written directly against each database doesn't pass through the transform, so it catches what the checksum can't. Choose aggregates the application owner recognizes: a program office that knows its monthly totals can judge a reconciliation in a way it can't judge a hash.
 
 Tools do part of the work. AWS DMS compares each source row with its target after the full load, validates changes during change data capture, writes mismatches to a control table, and offers validation-only tasks for the cut-over window. Its limits are a good checklist: a primary key or unique index on each table, no views or LONG columns, rows changing during validation can't be validated, outside writes spoil results, and it stops past 10,000 failures. It's strong evidence for the second check, not the third. Every run produces a report that the gates examine and the change record retains.`,
   "Book 18, Chapter 04 — \"Proving that nothing was lost.\"");
@@ -606,7 +606,7 @@ Tools do part of the work. AWS DMS compares each source row with its target afte
 
 Big-bang freezes writes, runs a final load, validates and switches everyone; rollback means reverting to the frozen source. Phased moves one domain or table set at a time, the data counterpart of the strangler fig. Parallel run keeps both live and reconciles outputs until they agree for an agreed period; it fits eligibility or payment calculations, and the program names the source as the system of record until the gate, so a disagreement always resolves one way. All three end at one gate: three validation results for the final state, and a rehearsed rollback plan.
 
-Phased and parallel need coexistence for weeks or months. Change data capture reads committed changes from the source log, so the target can lag but never receive a change the source rejected. AWS says its CDC doesn't provide real-time replication, with no latency SLA. And for Db2 for z/OS as a source, AWS DMS supports full load only, so a mainframe DB2 system that must coexist needs a separate change-capture product or periodic delta loads keyed on a reliable change timestamp; the reference implementation's since mode is the second approach.
+Phased and parallel need coexistence for weeks or months. Change data capture reads committed changes from the source log, so the target can lag but never receive a change the source rejected. AWS says its CDC doesn't provide real-time replication, with no latency SLA. And for Db2 for z/OS as a source, AWS DMS supports full load only, so a mainframe Db2 system that must coexist needs a separate change-capture product or periodic delta loads keyed on a reliable change timestamp; the reference implementation's since mode is the second approach.
 
 Dual writes fail in a specific way: the two writes don't share a transaction, so under retries and partial failures the stores drift invisibly. Hence the rules on the right: one writer per table, with authority moving table by table; write once and publish through a transactional outbox or CDC; reverse replication for fallback; and continuous validation.`,
   "Book 18, Chapter 04 — \"Cutting over,\" \"Coexistence without dual writes.\"");
@@ -770,7 +770,7 @@ Data and records. M-25-05 requires a comprehensive data inventory and makes chie
   ], 12.5);
   panel(s, "Tiers", 9.15, a + 0.2, 3.6, null, HEX.navy, HEX.navyTint, "THE TECHNOLOGY LIST", null, [
     "Adopt, trial, contain, retire",
-    "DB2 and Oracle: contain or retire",
+    "Db2 and Oracle: contain or retire",
     "Versions and end dates, for SA-22",
   ], 12.5);
   sources(s, "Sources: OMB A-130 §5.a(2); NIST SP 800-53 Rev. 5 (PM-7, PL-8, SA-17, CM-3, CM-3(4), CM-4, SA-22) and 800-53B; OMB M-26-10; Nygard (2011). Book 18, Ch 07.");
@@ -779,7 +779,7 @@ Data and records. M-25-05 requires a comprehensive data inventory and makes chie
 
 The board is the program's change control body for the target architecture. The table is its decision rights, and the rule is Book 13's: the board reviews, it doesn't vote, and every decision has one decider. The chief architect decides the technology list, the patterns, exceptions with end dates, and Gate 2 designs. The application owner decides the disposition. The CISO and privacy official set control requirements. The authorizing official alone accepts residual risk, and attends only as an observer, because that separation is something assessors check. The CIO approves contracts.
 
-The board governs through three versioned artifacts that change by pull request. The technology list has four tiers, adopt, trial, contain and retire, with DB2 and Oracle in contain or retire depending on triage, and it carries versions and end-of-support dates, because a list without versions is a brochure. Reference patterns are runnable starting points, so Gate 2 for a standard service is short. And architecture decision records, in Nygard's 2011 format, numbered and superseded rather than deleted, are the cheapest evidence the program has.`,
+The board governs through three versioned artifacts that change by pull request. The technology list has four tiers, adopt, trial, contain and retire, with Db2 and Oracle in contain or retire depending on triage, and it carries versions and end-of-support dates, because a list without versions is a brochure. Reference patterns are runnable starting points, so Gate 2 for a standard service is short. And architecture decision records, in Nygard's 2011 format, numbered and superseded rather than deleted, are the cheapest evidence the program has.`,
   "Book 18, Chapter 07 — Who Governs the Architecture, \"What federal policy asks for, and what it leaves open,\" \"The architecture review board,\" \"Standards and patterns.\"");
 }
 
@@ -789,7 +789,7 @@ The board governs through three versioned artifacts that change by pull request.
   tag(s, "How");
   img(s, "ch07-gates-and-evidence", 0.6, 1.5, 2.35, 4.95);
   const tb = table(s, "Gates", 1.5, [1.55, 4.3, 2.05, 1.9], ["Gate", "What passes it", "Who decides", "Evidences"], [
-    ["1  Disposition", "A scored triage record and a disposition the owner has signed", "Application owner, with the steward", "PM-5, CM-8, SA-22"],
+    ["1  Disposition", "A scored triage record and a disposition the owner has signed; for retire, the privacy check and the records officer consulted", "Application owner, with the steward", "PM-5, CM-8, SA-22"],
     ["2  Design review", "Decision records; the OpenAPI contract; data classification; threat model; privacy check", "Chief architect or delegate", "PL-8, SA-3, SA-8, SA-17 (High), CM-4"],
     ["3  Pull request and CI", "Independent review; unit, contract and integration tests; static and dependency scans; an SBOM", "Code owner", "CM-3, SA-10, SA-11, SA-15"],
     ["4  Release", "A signed build with provenance; impact analysis; a change record linking the pull requests", "Release owner", "CM-3, CM-4, SR-4"],
@@ -803,7 +803,7 @@ The board governs through three versioned artifacts that change by pull request.
   notes(s,
 `Every application the triage changes passes four gates; retire and retain pass only the first.
 
-Gate 1, disposition: once per application and at each re-triage, a scored triage record and a signed disposition, decided by the owner with the steward. It evidences the system and component inventories and unsupported components. Gate 2, design review: before build for replatform, refactor and rebuild, and for rehost only when the runtime changes. It needs a decision record for each departure from a pattern, the interface contract, a data classification, a threat model and the privacy check that decides whether a PIA is needed. Gate 2 also applies the authorizing official's threshold for a significant change and records the answer; the threshold itself is the official's to set. Gate 3, every change: a pull request reviewed by someone other than the author, passing unit, contract and integration tests, static analysis, dependency scans and an SBOM. Gate 4, every production deployment: a signed build with provenance, a recorded impact analysis and a change record linking its pull requests.
+Gate 1, disposition: once per application and at each re-triage, a scored triage record and a signed disposition, decided by the owner with the steward; for a retire disposition it also needs the privacy check on the records and personal data that go away, and the records officer's required consultation. It evidences the system and component inventories and unsupported components. Gate 2, design review: before build for replatform, refactor and rebuild, and for rehost only when the runtime changes. It needs a decision record for each departure from a pattern, the interface contract, a data classification, a threat model and the privacy check that decides whether a PIA is needed. Gate 2 also applies the authorizing official's threshold for a significant change and records the answer; the threshold itself is the official's to set. Gate 3, every change: a pull request reviewed by someone other than the author, passing unit, contract and integration tests, static analysis, dependency scans and an SBOM. Gate 4, every production deployment: a signed build with provenance, a recorded impact analysis and a change record linking its pull requests.
 
 Two gates are meetings and two are automation, deliberately. Gates 1 and 2 happen rarely and need judgment; 3 and 4 happen many times a day, and a program that runs Gate 3 as a meeting stalls or stops running it.
 
@@ -831,7 +831,7 @@ Then it places the work where enterprise architecture offices already file thing
   const tb = table(s, "Parts", 1.5, [1.5, 3.85, 0.6], ["Part", "What it shows", "Ch."], [
     ["REST service", "Spring Boot over PostgreSQL; Flyway owns the schema; a contract test; RFC 9457 errors", "03"],
     ["Front end", "React: case list, Run triage, approve or reject proposals", "03"],
-    ["Migration tool", "JDBC from DB2 or Oracle; transform, upsert, delta mode; three checks", "04"],
+    ["Migration tool", "JDBC from Db2 or Oracle; transform, upsert, delta mode; three checks", "04"],
     ["Agent", "ModelClient with a stub; identity, sponsor, allow-list, step limit, audit", "05"],
     ["Containers", "A compose file and two Dockerfiles", "03"],
   ], { x: 6.8, fontSize: 12, limit: 5.0 });
@@ -841,9 +841,9 @@ Then it places the work where enterprise architecture offices already file thing
   ], 12.5);
   sources(s, "Sources: examples/app-modernization; Maven Central (spring-boot); PostgreSQL versioning; npm registry (react); RFC 9457. Illustrative, synthetic data, no authentication. Book 18, Ch 08.");
   notes(s,
-`The reference implementation lives in the repository's examples, app-modernization folder. It's one mission application in miniature: a case-management service with a front end, a legacy database it was moved from, and an AI agent that helps triage cases. It's illustrative, not production code: synthetic data, no authentication, never run against a real DB2 or Oracle database or in production.
+`The reference implementation lives in the repository's examples, app-modernization folder. It's one mission application in miniature: a case-management service with a front end, a legacy database it was moved from, and an AI agent that helps triage cases. It's illustrative, not production code: synthetic data, no authentication, never run against a real Db2 or Oracle database or in production.
 
-The figure is its parts. The React front end calls the Spring Boot service. The service owns the PostgreSQL schema through one versioned Flyway migration, the V1 baseline, so nothing else creates tables, which is Chapter 03's rule that each service owns its data. It runs the triage agent, which writes only pending proposals a person decides, through a provider-neutral ModelClient with a stub by default. On the other side, a synthetic legacy DB2 or Oracle schema, with H2 as a stand-in in tests, feeds the migration tool, which loads into the same PostgreSQL schema and proves the load.
+The figure is its parts. The React front end calls the Spring Boot service. The service owns the PostgreSQL schema through one versioned Flyway migration, the V1 baseline, so nothing else creates tables, which is Chapter 03's rule that each service owns its data. It runs the triage agent, which writes only pending proposals a person decides, through a provider-neutral ModelClient with a stub by default. On the other side, a synthetic legacy Db2 or Oracle schema, with H2 as a stand-in in tests, feeds the migration tool, which loads into the same PostgreSQL schema and proves the load.
 
 The versions were current when it was built: Spring Boot 4.1.2, the latest on Maven Central on October 28 when 4.2 was at its first release candidate; PostgreSQL 18.6; React 19.3.1. Two choices differ from Chapter 03's target and should be read that way. It's compiled for Java 21, not 25, only because the build machine had a Java 21 kit, and it uses nothing Java 25 would reject. And the contract is OpenAPI 3.1, not 3.2; moving it is a header change and a test run.`,
   "Book 18, Chapter 08 — The Reference Implementation, opening section, \"What is in it.\"");
@@ -861,7 +861,7 @@ The versions were current when it was built: Spring Boot 4.1.2, the latest on Ma
     "Errors as problem details: 404, 400, 409",
   ], 12.5);
   const b = panel(s, "Migrate", 0.6 + W + 0.15, 1.5, W, null, HEX.amber, HEX.amberTint, "THE MIGRATION TOOL", null, [
-    "DB2-style legacy habits: padded CHAR, one-letter codes, a 0001-01-01 sentinel",
+    "Db2-style legacy habits: padded CHAR, one-letter codes, a 0001-01-01 sentinel",
     "Documented transforms; an unmappable value stops the run",
     "Delta mode can't see applicant changes or deletes",
     "Report: keys, counts and digests, never row contents",
@@ -894,7 +894,7 @@ The agent proposes flagging a case open over a year or a likely duplicate. Model
     ["The service works against real PostgreSQL", "Verified: 25 service tests pass against PostgreSQL 18.6 with the Flyway migration applied; one asserts the engine and version"],
     ["The contract matches the code", "Verified by the contract test, in both directions"],
     ["The migration tool's transforms and checks work", "Verified: 12 migration tests load into real PostgreSQL with the service's own schema"],
-    ["The migration works against real DB2 or Oracle", { text: "Not verified: H2's DB2 and Oracle compatibility modes stand in, and one difference has already shown up", options: { bold: true, color: HEX.red } }],
+    ["The migration works against real Db2 or Oracle", { text: "Not verified: H2's Db2 and Oracle compatibility modes stand in, and one difference has already shown up", options: { bold: true, color: HEX.red } }],
     ["The agent's guardrails hold", "Verified against the stub and scripted misbehaving replies; not run against a real model"],
     ["The front end works", "6 component tests pass with network calls mocked; no end-to-end browser test"],
     ["The containers start", { text: "Not verified: Docker wasn't available; the compose file was checked only as YAML", options: { bold: true, color: HEX.red } }],
@@ -909,7 +909,7 @@ Running it needs only Java 21 and Node.js 24. The Maven Wrapper downloads Maven,
 
 What's verified. 25 service tests pass against PostgreSQL 18.6 with the Flyway migration applied, and one asserts the engine and version. 12 migration tests pass, loading into real PostgreSQL with the service's own schema. The guardrails hold against the stub and the two scripted misbehaving modes, one asking for a tool it was never offered and one that never stops, but not against a real model. The front end's 6 component tests pass with network calls mocked; there's no end-to-end browser test.
 
-What isn't, in red. The migration hasn't run against real DB2 or Oracle. The tests use H2's compatibility modes as a stand-in, and H2 isn't either engine: fixed-width text comparison, date types and driver behavior differ, and one difference has already shown up. Run the tool against a copy of the real source before relying on it. And the containers weren't started; Docker wasn't available, so the compose file was only checked as YAML.
+What isn't, in red. The migration hasn't run against real Db2 or Oracle. The tests use H2's compatibility modes as a stand-in, and H2 isn't either engine: fixed-width text comparison, date types and driver behavior differ, and one difference has already shown up. Run the tool against a copy of the real source before relying on it. And the containers weren't started; Docker wasn't available, so the compose file was only checked as YAML.
 
 A production version adds what the example leaves out on purpose: authentication through the agency's identity provider, with the decider taken from the signed-in user rather than the request; a workload identity for the agent, per Book 17; secrets from a vault; and the pipeline evidence of Chapters 06 and 07, such as a software bill of materials and signed builds.`,
   "Book 18, Chapter 08 — \"Running it,\" \"What was verified, and what wasn't.\"");
@@ -990,12 +990,12 @@ File artifacts under their phase and cell; don't rewrite them. Answer PM-7 and P
     ["1 Foundation; G1", "Build the factory; stand up the review gates", "One test app moved end to end"],
     ["2 Pilot; G2", "Run the pilot wave", "Runbooks rewritten"],
     ["3 General rollout; G3", "Run the factory waves", "Apps modernized and authorized"],
-    ["4 Legacy retirement; G4", "Decommission servers, DB2 and Oracle instances, licenses", "Retirement records, signed off"],
+    ["4 Legacy retirement; G4", "Decommission servers, Db2 and Oracle instances, licenses", "Retirement records, signed off"],
     ["5 AD DS retirement; G5", "No production app may still authenticate against AD", "A dependency check for G5"],
     ["6 Steady state", "Work the long tail; re-triage on a cadence", "A portfolio that stays current"],
   ], { x: 3.6, fontSize: 11.5, limit: 5.4 });
   panel(s, "Kinds", 3.6, tb + 0.12, 9.15, null, HEX.amber, HEX.amberTint, "THREE KINDS OF WAVE (PROGRAM DESIGN)", null, [
-    "Pilot: three to five simple apps plus one hard case with DB2 or Oracle and a real contract",
+    "Pilot: three to five simple apps plus one hard case with Db2 or Oracle and a real contract",
     "Factory waves: move groups sized by measured throughput; long tail: owners and review dates",
   ], 12.5);
   sources(s, "Sources: Book 01, Ch 12 (phases, gates G0–G5 and authorities); AWS Prescriptive Guidance, wave planning; Microsoft CAF, migration wave planning. Book 18, Ch 10.");
@@ -1004,7 +1004,7 @@ File artifacts under their phase and cell; don't rewrite them. Answer PM-7 and P
 
 The portfolio doesn't need a second schedule. It runs inside Book 01's seven phases and gates G0 to G5. Phase 0 is the triage, leaving the record and a first wave plan. Phase 1 builds the factory: platform, patterns, pipelines, validation tooling and the gates, proven by one test application moved end to end. Phase 2 is the pilot wave, which leaves runbooks rewritten from what went wrong. Phase 3 runs the factory waves, for as long as the portfolio needs, reporting at the monthly gate review. Phase 4 decommissions what the waves replaced, with the records officer's sign-off. Phase 5 has no application work, but a hard dependency: no production application may still authenticate against Active Directory when G5 is decided. Phase 6 works the long tail and re-triages.
 
-The panel is the three kinds of wave. AWS and Microsoft both say start small and simple; Microsoft adds one or two complex, representative workloads to early waves. The program takes both: three to five simple applications plus one hard case with a DB2 or Oracle database and a real contract, exiting only when every application has passed all four gates and every migration validated. Factory waves are move groups ranked by score and sized by measured throughput. The long tail isn't a wave; it's a managed list, and a retained application reaching end of support goes back to triage automatically.`,
+The panel is the three kinds of wave. AWS and Microsoft both say start small and simple; Microsoft adds one or two complex, representative workloads to early waves. The program takes both: three to five simple applications plus one hard case with a Db2 or Oracle database and a real contract, exiting only when every application has passed all four gates and every migration validated. Factory waves are move groups ranked by score and sized by measured throughput. The long tail isn't a wave; it's a managed list, and a retained application reaching end of support goes back to triage automatically.`,
   "Book 18, Chapter 10 — Running the Portfolio in Waves, opening section, \"The portfolio on the program's phases,\" \"Planning waves,\" \"Three kinds of wave.\"");
 }
 
@@ -1015,7 +1015,7 @@ The panel is the three kinds of wave. AWS and Microsoft both say start small and
   const W = 3.95;
   const a = panel(s, "Plan", 0.6, 1.5, W, null, HEX.navy, HEX.navyTint, "PLANNING WAVES", null, [
     "A move group: apps that share a database or an owner move together",
-    "A shared DB2 or Oracle schema: one move group, or one app goes first behind an interface",
+    "A shared Db2 or Oracle schema: one move group, or one app goes first behind an interface",
     "Rank five waves deep; plan only the next in detail",
     "Re-score on triggers, and yearly with the budget",
   ], 12.5);
@@ -1033,7 +1033,7 @@ The panel is the three kinds of wave. AWS and Microsoft both say start small and
     "it's a forecast until the old system is actually switched off.");
   sources(s, "Sources: AWS Prescriptive Guidance; Microsoft CAF; DORA metrics; TMF fit, process and 2026 call; MGT Act §1077(b); 40 U.S.C. §11312; OMB M-26-10. Book 18, Ch 02, 10.");
   notes(s,
-`Planning the waves. AWS calls the unit a move group: applications and servers that must migrate together, such as those sharing a database or an owner. For applications the strongest rule is the database: applications sharing a DB2 or Oracle schema move together, or one goes first behind an interface the others call. AWS plans four to five waves ahead; Microsoft details only the next wave. Together: a ranked backlog five waves deep with only the next fully planned. And re-score on triggers, an end-of-support date within the horizon, an incident or finding, a material change in cost, users or mission, and at least yearly with the budget.
+`Planning the waves. AWS calls the unit a move group: applications and servers that must migrate together, such as those sharing a database or an owner. For applications the strongest rule is the database: applications sharing a Db2 or Oracle schema move together, or one goes first behind an interface the others call. AWS plans four to five waves ahead; Microsoft details only the next wave. Together: a ranked backlog five waves deep with only the next fully planned. And re-score on triggers, an end-of-support date within the horizon, an incident or finding, a material change in cost, users or mission, and at least yearly with the budget.
 
 The factory is the people, platform and procedures that make each wave routine, and the program's has five parts: the platform, the patterns, reusable pipelines for Gates 3 and 4, data tooling, and runbooks with a small portfolio team under the steward. Its own test: the fifth wave costs less per application than the first. The metrics are reported monthly from records, not plans: dispositioned, retired with infrastructure actually off, modernized, migrations validated on the first run, cost avoided, DORA's lead time and change fail rate, defects in the first 30 days, time from Gate 2 to authorization, and long-tail health.
 

@@ -469,7 +469,7 @@ The first is a funding decision. The sponsor and CIO treat these licenses as a c
   const s = content(S_WHAT, "Break-glass: the one governed exception");
   tag(s, "What");
   sideBox(s, "Built", "FaLock", HEX.navy, HEX.navyTint, "How the accounts are built", [
-    "Two or more cloud-only accounts",
+    "Two cloud-only accounts",
     "Permanent active Global Administrator",
     "Passkey or certificate, methods of their own",
     "Excluded only from blocking policies",
@@ -490,7 +490,7 @@ The first is a funding decision. The sponsor and CIO treat these licenses as a c
   narrate(s,
 `Every control that blocks an administrative path also creates a way to lock the agency out of its own tenant: federation down, every administrator's MFA device unavailable, a misconfigured policy, or every privileged role eligible with no approver able to act. Emergency access, or break-glass, accounts are the answer, and they're the only standing privilege the program accepts by design.
 
-Microsoft's current guidance changes older designs. Two or more cloud-only accounts on the tenant's own onmicrosoft domain, not tied to a person. Global Administrator as a permanent active assignment, because PIM may be what failed. Passwordless, phishing-resistant authentication with methods separate from the normal administrators', because mandatory MFA applies to these accounts too; a password alone no longer signs in to the admin portals. Excluded only from policies that block or restrict sign-in. Alerted on every use, and validated at least every 90 days.
+Microsoft's current guidance changes older designs. Two cloud-only accounts on the tenant's own onmicrosoft domain, not tied to a person. Global Administrator as a permanent active assignment, because PIM may be what failed. Passwordless, phishing-resistant authentication with methods separate from the normal administrators', because mandatory MFA applies to these accounts too; a password alone no longer signs in to the admin portals. Excluded only from policies that block or restrict sign-in. Alerted on every use, and validated at least every 90 days.
 
 Using them is strict. All three conditions hold: PIM isn't available, the incident can't wait, and two senior administrators know. They retrieve the credential together, do only what the emergency needs, end the session within four hours, and every action is reviewed within 24.
 
@@ -529,32 +529,32 @@ So the help desk works under a custom role that manages group-to-application ass
   const s = content(S_WHO, "Application risk tiers set the approval chain");
   tag(s, "Who");
   const tiers = [
-    ["Access approver", "App owner; IGO may hold", "App owner", "Business approver"],
+    ["Access approver", "App owner, then IGO", "App owner", "Business approver"],
     ["Admin consent", "IGO; CISO notified", "App owner and IGO", "App owner; IGO told"],
     ["Access review", "Quarterly", "Twice a year", "Annual"],
-    ["Owners", "Owner and backup", "Owner; backup advised", "Owner"],
+    ["Registry owners", "Owner and backup", "Owner; backup advised", "Owner"],
   ];
-  leftTable(s, ["", "Tier 1, high", "Tier 2, moderate", "Tier 3, low"],
+  leftTable(s, ["", "R1, high", "R2, moderate", "R3, low"],
     tiers.map((r) => [bold(r[0]), { text: r[1] }, { text: r[2] }, { text: r[3] }]),
     [1.65, 1.85, 1.75, 1.7], [0.42, 0.62, 0.62, 0.5, 0.62], 12.5);
   sideBox(s, "Gaps", "FaTriangleExclamation", HEX.red, HEX.redTint, "Rules that close the gaps", [
-    "Untiered or discovered apps are Tier 1",
-    "Any application permission: Tier 1",
+    "Untiered or discovered apps are R1",
+    "Any application permission: R1",
     "Critical scopes need the IGO and CISO",
     "Ownerless: 30 days, then suspended",
     "The grant is made by someone else",
   ]);
-  decision(s, "Assign a risk tier to every enterprise application before anyone gets access to it; an untiered or ownerless app is handled as Tier 1",
+  decision(s, "Assign a risk tier to every enterprise application before anyone gets access to it; an untiered or ownerless app is handled as R1",
     "Identity governance officer", "Before the first access grant");
-  sources(s, "Sources: Microsoft Learn — admin consent workflow; tenant-wide consent; app ownership. Book 04, Chapters 05, 06. Tiers, chains and cadences: program design.");
+  sources(s, "Sources: Microsoft Learn — admin consent workflow; tenant-wide consent; app ownership. Book 04, Chapters 05, 06. Risk tiers (R1 to R3), chains and cadences: program design.");
   narrate(s,
-`For applications, the approval chain follows risk. Every enterprise application gets a risk tier from the identity governance officer, the IGO, before anyone is given access to it. An app qualifies for Tier 1 if it meets any one high-risk criterion: any application permission; personal, health, financial, HR or tenant-wide data; an external or vendor operator, or no owner; all users; or internet exposure. It's Tier 3 only if it meets every low-risk criterion.
+`For applications, the approval chain follows risk. Every enterprise application gets a risk tier from the identity governance officer, the IGO, before anyone is given access to it. An app qualifies for R1, the highest application risk tier, if it meets any one high-risk criterion: any application permission; personal, health, financial, HR or tenant-wide data; an external or vendor operator, or no owner; all users; or internet exposure. It's R3 only if it meets every low-risk criterion. The program writes application risk tiers R1, R2 and R3, so they can't be confused with the privilege tiers, Tier 0 to Tier 2.
 
-The tier sets everything else, as the table shows. Access to a Tier 1 app is approved by its owner, with the IGO able to place a hold; Tier 3 by the business approver alone. Administrative consent for a Tier 1 app is the IGO's, with the CISO notified. Reviews run quarterly, twice a year or annually. These values are program design.
+The tier sets everything else, as the table shows. Access to an R1 app is approved by its owner and then by the identity governance office as a second approval stage; an R2 app by its owner; an R3 app by the business approver alone. Administrative consent for an R1 app is the IGO's, with the CISO notified. Reviews run quarterly, twice a year or annually. These values are program design.
 
-Administrative consent is the highest-risk request in the catalog, because a grant applies to the whole tenant immediately and stays until someone revokes it. So any application permission is handled as Tier 1 whatever the app's tier, and the scopes the program rates critical need the IGO and the CISO together. Even then, the person who grants the consent in Entra ID is never the person who approved it.
+Administrative consent is the highest-risk request in the catalog, because a grant applies to the whole tenant immediately and stays until someone revokes it. So any application permission is handled as R1 whatever the app's tier, and the scopes the program rates critical need the IGO and the CISO together. Even then, the person who grants the consent in Entra ID is never the person who approved it.
 
-Two rules catch what slips through. An app discovered without a tier, including the ones that appear on their own through user consent, is Tier 1 until classified. And an ownerless app goes to the IGO, who has 30 days to find an owner before it's suspended.`,
+Two rules catch what slips through. An app discovered without a tier, including the ones that appear on their own through user consent, is R1 until classified. And an ownerless app goes to the IGO, who has 30 days to find an owner before it's suspended.`,
   "Book 04, Chapter 06 — Who Decides Access (Risk tiers set the approval chain; Who approves admin consent; Ownership changes and orphaned apps); Chapter 05 — Applications and Workload Identities (Two objects for one application; Admin consent).");
 }
 
@@ -589,9 +589,9 @@ The CISO sets these rules; application owners decide each app's credential withi
   const owners = [
     ["Access control requirements and baseline", "CISO"],
     ["Privileged-role tiers and PIM settings", "CISO"],
-    ["App risk tier; consent above Tier 3", "Identity governance officer"],
-    ["Who gets access to a Tier 1 or 2 app", "Application owner"],
-    ["Business need; Tier 3 access", "Business approver"],
+    ["App risk tier; consent above R3", "Identity governance officer"],
+    ["Who gets access to an R1 or R2 app", "Application owner"],
+    ["Business need; R3 access", "Business approver"],
     ["Revoking consent during an incident", "Security operations"],
     ["Exceptions within policy", "Identity governance officer"],
     ["Residual risk; uncompensated exceptions", "Authorizing official"],
@@ -611,7 +611,7 @@ The CISO sets these rules; application owners decide each app's credential withi
   narrate(s,
 `Here's the responsibility model in one view, with one decider per row. Book 04 keeps the migration-era roles from Book 02 and adds the daily ones.
 
-The CISO decides the control requirements, the Conditional Access baseline, and the privileged-role mapping and PIM settings. The identity governance officer decides each application's risk tier, administrative consent above Tier 3, ownership assignments and exceptions within policy. The application owner decides who gets access to a Tier 1 or Tier 2 app; the business approver decides whether a requester has a business need, and Tier 3 access. Security operations decides incident-driven revocation, because speed matters more than the chain. The authorizing official decides residual risk. And the sponsor and CIO decide scope, funding and sequence.
+The CISO decides the control requirements, the Conditional Access baseline, and the privileged-role mapping and PIM settings. The identity governance officer decides each application's risk tier, administrative consent above R3, ownership assignments and exceptions within policy. The application owner decides who gets access to an R1 or R2 app; the business approver decides whether a requester has a business need, and R3 access. Security operations decides incident-driven revocation, because speed matters more than the chain. The authorizing official decides residual risk. And the sponsor and CIO decide scope, funding and sequence.
 
 Global Administrator isn't on the list. In the program's design it's held permanently only by the emergency accounts and used by nobody for routine work.
 
@@ -639,7 +639,7 @@ The decision: any exception that leaves a control unmet with no compensating con
   narrate(s,
 `Now the how. A well-configured tenant can still fail an account-management audit. Conditional Access decides whether a session proceeds, and PIM whether a role is active, but neither decides whether a person should still hold what they were given last year. AC-2 and AC-6(7) ask for exactly that.
 
-The program closes the gap with three mechanisms that run without anyone opening a ticket. Requests come through access packages: a bundle of access, named approvers, and an expiry from the moment it's granted. The program never uses "never": 90 days for Tier 1 application access, 180 for Tier 2, a year for Tier 3, and no more than a year for external users. Reviews run on a calendar set by risk: Tier 0 roles monthly, other roles quarterly, guests quarterly by their sponsors, with denied access removed automatically. And lifecycle events act on access: a mover loses the old department's packages and requests the new, and a leaver loses everything.
+The program closes the gap with three mechanisms that run without anyone opening a ticket. Requests come through access packages: a bundle of access, named approvers, and an expiry from the moment it's granted. The program never uses "never": 90 days for R1 application access, 180 for R2, a year for R3, and no more than a year for external users. Reviews run on a calendar set by risk: Tier 0 roles monthly, other roles quarterly, guests quarterly by their sponsors, with denied access removed automatically. And lifecycle events act on access: a mover loses the old department's packages and requests the new, and a leaver loses everything.
 
 One trap matters. Because access is assigned through groups, reviewing an application doesn't remove the members of its groups; they keep access. So the program reviews the groups.
 
@@ -654,7 +654,7 @@ The licensing is the executive call. As of October 2026, Microsoft licenses enti
   figure(s, "ch10-access-as-code-loop", 0.6, 2.3);
   sideBox(s, "Change", "FaCodeBranch", HEX.navy, HEX.navyTint, "Change control", [
     "Two people per change",
-    "Report-only first, a week at least",
+    "Report-only first, a week at least; the two context policies are On",
     "A pipeline with no stored secret",
     "Emergency edits back in code in a day",
   ], { x: 3.15, w: 4.65, minH: 2.95 });
@@ -670,7 +670,7 @@ The licensing is the executive call. As of October 2026, Microsoft licenses enti
   narrate(s,
 `The last how is about how these decisions are held. A Conditional Access estate nobody can compare against intent is a control no assessor can trace.
 
-The invariant: every access decision has a reviewable source of truth, a pipeline applies it, and a monitor checks the tenant against it. Conditional Access, PIM settings, groups, packages and reviews each have a file in a repository. A change is a pull request, and its author can't approve it; Tier 0 changes need a second approver from security. New and changed policies deploy as report-only for at least a week. The pipeline signs in with workload identity federation, no stored secret, and because it can change every access policy, it's a Tier 0 asset. In an incident, an administrator may change a policy in the portal under PIM, but the change is back in code within a business day, and until then the drift monitor reports it.
+The invariant: every access decision has a reviewable source of truth, a pipeline applies it, and a monitor checks the tenant against it. Conditional Access, PIM settings, groups, packages and reviews each have a file in a repository. A change is a pull request, and its author can't approve it; Tier 0 changes need a second approver from security. New and changed policies deploy as report-only for at least a week; the two authentication-context policies, the PIM activation policy and the protected-actions policy, are the exception, and are deployed On before their context is selected. The pipeline signs in with workload identity federation, no stored secret, and because it can change every access policy, it's a Tier 0 asset. In an incident, an administrator may change a policy in the portal under PIM, but the change is back in code within a business day, and until then the drift monitor reports it.
 
 Drift is closed at the source. Microsoft's configuration monitor checks the tenant every six hours, and drift on a Tier 0 object, such as a relaxed approval rule, is a security incident.
 
@@ -694,8 +694,8 @@ The CISO, who owns the monitoring evidence, makes the repository the only normal
     ["Build and test break-glass; record it as a deviation", "CISO; the AO", "Before roles convert"],
     ["Fund P2 and Governance for everyone, with no lapse", "Sponsor and CIO", "Each renewal"],
     ["Help desk: an assignments-only custom role", "IGO", "Before help desk work"],
-    ["Tier every app; untiered or ownerless is Tier 1", "IGO", "First access grant"],
-    ["No new secrets; 180-day certificates; two owners", "CISO; app owners", "New apps"],
+    ["Tier every app; untiered or ownerless is R1", "IGO", "First access grant"],
+    ["No new secrets; 180-day certificates; owner and two technical owners", "CISO; app owners", "New apps"],
     ["Uncompensated exceptions to the AO; six months at most", "Authorizing official", "Each request"],
     ["Repository the only path; stream logs from day one", "CISO", "First enforced policy"],
   ];
