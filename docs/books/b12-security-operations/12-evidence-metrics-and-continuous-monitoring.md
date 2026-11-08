@@ -48,7 +48,7 @@ The Risk Management Framework's Monitor step says who does each part. The system
 
 The program's pipeline has six stages. The first five come from the compliance volumes; the sixth is the part they assume.
 
-| Stage | What happens | What it closes | Where it's built |
+| Stage | What happens | Controls it supports | Where it's built |
 |---|---|---|---|
 | Emit | Each plane writes records on its own cadence: diagnostic settings, data collection rules, scanner and posture exports, ScubaGear runs | AU-2, AU-12 | Chapters [03](03-identity-telemetry.md), [04](04-platform-and-m365-telemetry.md), [06](06-vulnerability-management.md)–[09](09-data-protection-and-classification.md) |
 | Normalize | Records take the evidence-contract shape: asset ID, source, surface, control, measured state, verdict, time, disposition | AU-3 | [Chapter 02](02-the-evidence-contract.md) |
@@ -57,7 +57,7 @@ The program's pipeline has six stages. The first five come from the compliance v
 | Report | Metrics, posture reports and machine-readable assessment results and plans of action and milestones, produced on a schedule | CA-7 (reporting), PM-31 | This chapter; [Book 14, Chapter 11](../b14-compliance/11-the-authorization-package.md) |
 | Respond | Findings are remediated, accepted or escalated; nothing closes without re-test evidence | CA-7 (response actions), CA-5, RA-7 | This chapter; [Chapter 10](10-who-runs-security-operations.md) |
 
-The control text supports each mapping. AU-12(1) asks for audit records from organization-defined components compiled into a "system-wide (logical or physical) audit trail that is time-correlated" to within a defined tolerance; SI-4(16) asks for correlation of monitoring information; CA-5 asks for a plan of action and milestones updated from control assessments, audits and continuous monitoring.[^c12-sp80053] For the report stage, NIST's OSCAL provides machine-readable models for assessment results and for the plan of action and milestones, which [Book 11, Chapter 09](../b11-zero-trust/09-running-the-assessment.md#the-four-stage-pipeline) uses for ScubaGear evidence and [Book 14, Federal Compliance & Authorization](../b14-compliance/index.md), carries into the authorization package.
+The control text supports each mapping. AU-12(1) asks for audit records from organization-defined components compiled into a "system-wide (logical or physical) audit trail that is time-correlated" to within a defined tolerance; SI-4(16) asks for correlation of monitoring information; CA-5 asks for a plan of action and milestones updated from control assessments, audits and continuous monitoring.[^c12-sp80053] For the report stage, NIST's OSCAL provides machine-readable models for assessment results and for the plan of action and milestones, which [Book 11, Chapter 09](../b11-zero-trust/09-running-the-assessment.md#the-four-stage-pipeline) uses for ScubaGear evidence and [Book 14, Federal Compliance & Authorization](../b14-compliance/index.md) carries into the authorization package.
 
 Three limits from the compliance volumes hold for every stage, and they are worth stating plainly. The pipeline is only as complete as its emitters: a mechanism that deploys but emits no record is invisible. Correlation depends on the authoritative asset ID: where a record carries only a stack's local identifier, it can't be joined and the trail fragments. And the package reflects the evidence present: it can't attest a control whose mechanism emits nothing. The first metric in this chapter exists because of the first limit.
 

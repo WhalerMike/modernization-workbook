@@ -93,3 +93,11 @@ The sentence on BOD 25-01 reporting named two options; the page now matches Chap
 | Before | After | Source |
 |---|---|---|
 | BOD 25-01's reporting obligation can be met by continuous integration with CISA's monitoring or by quarterly manual reports. Either satisfies the directive. | The reporting obligation can be met by continuous integration or quarterly reporting, and the guidance offers three methods for doing so (Chapter 04). Any of them satisfies the directive. | Chapter 04 and its footnote c04-guidance |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| Any of them satisfies the directive. | Any of them is an accepted way to meet the directive's reporting requirement. | Supports-not-satisfies claim language; the three methods are unchanged |

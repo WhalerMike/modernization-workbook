@@ -60,3 +60,12 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 2 | CyberArk mechanism (acme) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-acme |
 | 3 | CyberArk mechanism (disc) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-disc |
 | 4 | Routine issuance 'protocol-enforced' via ACME | The certificate exception | clarified: engine-driven (Intune, autoenrollment, CLM drivers); ACME where supported | Book 07 Ch08 |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| Description and callout: "classes of change" | "operation classes" | Matches the heading rename and Chapter 10 |
+| Device certificates issued by "Cloud PKI" | "Cloud PKI, or AD CS through the Intune connector" | Book 07 Ch05 table row for user and device authentication; matches Book 11 Ch08 |
