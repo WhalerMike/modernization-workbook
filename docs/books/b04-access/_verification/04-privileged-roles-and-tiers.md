@@ -93,3 +93,9 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | H2 | HISG recommends cloud-only privileged accounts so lateral movement reaches only lower-privilege accounts | Same | verified (added) | c04-hisg, HISG §3.1.1 <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> |
 | H3 | MS.AAD.7.3v1 is a SCuBA mandatory policy under BOD 25-01 | Same | verified (added) | Book 02 Appendix A crosswalk row and BOD 25-01 Required Configurations |
 | H4 | Administrators keep a synchronized account for daily work and a separate cloud-only account for the role | Same | restated-as-design | program position |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-1 | Example group `PRV-T2-UserAdmin-AU-Finance` renamed `PRV-T2-UserAdmin-Finance` (and `PRV-T2-GroupsAdmin-AU-Finance` to `PRV-T2-GroupsAdmin-Finance`); the scope segment names the AU's department | Group naming paragraph (Book 02 comparison) | decision of Nov 8; design naming | Mike's decision of Nov 8, 2026, item 1 |

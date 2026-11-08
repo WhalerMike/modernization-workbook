@@ -79,3 +79,10 @@ Added an HR-track signpost after the *In this chapter* callout, a device-half no
 | 10 | Device slot values come from device provisioning, not HR | Signpost; device-slot paragraph | restated-as-design; links Book 05 Ch 08 #the-device-attribute-schema | — |
 
 Correction to the shared content (ATTRIBUTES.md): none beyond those already recorded in the brief. The brief's "strings up to 256 characters" is, on Learn, a truncation by the sync engine for synced values; the page text says so.
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-2 | Duty station row: the region code derived from duty station is carried, in `extensionAttribute4`; only the location code itself is not yet carried | Standard-attribute table; paragraph after it; crosswalk row `extensionAttribute4` | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 2 |
+| N8-3 | Personnel office input, supervisor group and location code labelled open items for after the baseline; added to Chapter 12's open verification register | Standard-attribute table; Chapter 12 register | decision of Nov 8; labelling only | Mike's decision of Nov 8, 2026, item 3 |

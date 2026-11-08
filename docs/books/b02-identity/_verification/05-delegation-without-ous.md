@@ -102,3 +102,9 @@ Added "What the limits mean for the design" (limit, implication, response) under
 | L4 | At most 100 restricted management AUs; their members can't be managed by PIM, entitlement management, lifecycle workflows or access reviews | Limits table | re-verified (carried; c05-rmau) | <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-restricted-management#limitations> |
 | L5 | Arc servers are delegated with Azure RBAC; non-person accountability is owner and sponsor | Tracks line | restated-as-design (links Book 05 Ch09 and the companion guide) | — |
 | L6 | Responses: flat AUs generated from one list; custom security attributes and application controls for confidentiality; unscoped roles central or behind PIM; automation job in GCC High or DoD; restrict only by decision, never a large HR population | Limits table | restated-as-design | series limits content |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-1 | Example group `PRV-T2-UserAdmin-AU-Finance` renamed `PRV-T2-UserAdmin-Finance` (and `PRV-T2-GroupsAdmin-AU-Finance` to `PRV-T2-GroupsAdmin-Finance`) to match the AU `AU-Department-Finance` | Role assignment matrix note (naming paragraph) | decision of Nov 8; design naming | Mike's decision of Nov 8, 2026, item 1 |

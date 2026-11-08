@@ -29,7 +29,7 @@
     { "id": "rasi-gina-sec", "principalId": "a0000000-0000-4000-8000-000000000006", "roleDefinitionId": "194ae4cb-b126-40b2-bd5b-6091b380977d", "directoryScopeId": "/", "startDateTime": "2026-10-30T14:00:00Z", "endDateTime": "2026-10-30T18:00:00Z", "assignmentType": "Activated", "memberType": "Direct",
       "principal": { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000006", "displayName": "Gina Lee", "userPrincipalName": "gina.lee@contoso.example" } },
     { "id": "rasi-prv-t2-ua", "principalId": "9e000000-0000-4000-8000-000000000008", "roleDefinitionId": "fe930be7-5e62-47db-91af-98c3a49a38b1", "directoryScopeId": "/administrativeUnits/7a000000-0000-4000-8000-000000000002", "startDateTime": null, "endDateTime": null, "assignmentType": "Assigned", "memberType": "Direct",
-      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000008", "displayName": "PRV-T2-UserAdmin-AU-Finance" } }
+      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000008", "displayName": "PRV-T2-UserAdmin-Finance" } }
   ],
   "roleEligibilitySchedules": [
     { "id": "res-prv-t0-pra", "principalId": "9e000000-0000-4000-8000-000000000002", "roleDefinitionId": "e8611ab8-c189-46e8-94e1-60213ab1f814", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
