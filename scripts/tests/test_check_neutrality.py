@@ -57,12 +57,12 @@ class Matching(unittest.TestCase):
 class Scope(unittest.TestCase):
     def test_in_scope(self):
         for p in ("docs/books/b02-identity/index.md", "docs/images/x/svg/a.svg", "examples/kit/run.ps1",
-                  "data/schemas/evidence-map.schema.json", "README.md", "_quarto.yml", "presentations/a/A.pptx",
+                  "data/schemas/evidence-map.schema.json", "README.md", "_quarto.yml", "presentations/a/A.pptx", "InBox/upload.docx", "assets/reference.docx",
                   "docs/images/a.png"):
             self.assertTrue(cn.in_scope(p), p)
 
     def test_out_of_scope(self):
-        for p in ("archive/b02/x.md", "InBox/notes.md", "presentations/hr-driven-identity-interview/notes.md",
+        for p in ("archive/b02/x.md", "presentations/hr-driven-identity-interview/notes.md",
                   "docs/books/b02-identity/_BRIEF.md", "data/neutrality-terms.txt", "LICENSE"):
             self.assertFalse(cn.in_scope(p), p)
 
