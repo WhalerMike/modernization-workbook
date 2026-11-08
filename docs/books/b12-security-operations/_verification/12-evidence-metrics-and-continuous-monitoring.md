@@ -46,7 +46,7 @@ Writer W6. Sources: `docs/compliance/Vol_III_Book_07_Multi_Cloud_Evidence_Fabric
 | 38 | Four tier design rules | Tiers | restated-as-design | — |
 | 39 | Source: AU-11 "3-year WORM Blob with legal hold ... meet NARA GRS 3.2 minimum" | Not carried as stated | corrected | GRS 3.2 items 035/036 cite M-21-31 and are under revision; retention is a records decision (Chapter 10) |
 | 40 | SCuBA mapping limited to FedRAMP High baseline controls | ScubaGear | verified | ScubaGear v1.8.0 mappings.md |
-| 41 | BOD 25-01 reporting: CISA-hosted ScubaConnect; self-hosted with CLAW/TALON at least quarterly; CyberScope quarterly | ScubaGear | verified | BOD 25-01 Implementation Guidance |
+| 41 | BOD 25-01 reporting: CISA lists three methods (CISA-hosted ScubaConnect; agency-hosted semi-automated, e.g. self-hosted with CLAW/TALON, at least quarterly; manual CyberScope upload quarterly) | ScubaGear | corrected Nov 8, 2026 (item 595): wording aligned to "three methods" | BOD 25-01 Implementation Guidance, "Methods of Compliance and Reporting," updated July 27, 2026 |
 | 42 | Interval evidence; drift to AO | ScubaGear | verified (link to Book 11 Ch09/Ch10) | Book 11 |
 | 43 | TIC: eliminates TIC FISMA metrics and manual TCV, replaced by automated metric collection via CDM, continuous vs point-in-time | TIC | verified | TIC 3.0 Guidebook v1.2 §4 ("Automated and Streamlined Verification") — note: the coordinator cited §9; the passage is in §4, while §9 carries the M-19-26 responsibility shift |
 | 44 | TIC doesn't replace telemetry requirements; information cycle; CLAW and C-CIRA | TIC | verified | TIC 3.0 Guidebook v1.2 §10, §10.1, §13 |

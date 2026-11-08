@@ -106,14 +106,13 @@ The Workspace assessor is ScubaGoggles. Version 1.0.0 (July 24, 2026) added a BO
 
 ## How agencies report
 
-The directive allows continuous integration with CISA's monitoring or quarterly manual reporting.[^c04-bod2501] The implementation guidance describes four ways to do it:[^c04-guidance]
+The directive allows continuous integration with CISA's monitoring or quarterly manual reporting.[^c04-bod2501] CISA's implementation guidance, updated July 27, 2026, lets agencies choose among three methods, the third with variants:[^c04-guidance]
 
 | Option | How it works |
 |---|---|
 | CISA-hosted ScubaConnect (Microsoft 365) | CISA manages reporting after initial setup; results feed the CDM dashboard |
-| Self-hosted ScubaConnect | The agency runs it and can keep local copies of the results |
-| Agency-hosted (CLAW or TALON) | Automated scans at least once a quarter; requires development work on the agency side |
-| Manual | Results uploaded to CyberScope quarterly, or more often, from the most recent version of the tool |
+| Agency-hosted (semi-automated) | The agency runs the tool and can keep local copies of the results. Runs and reports at least once a quarter, as self-hosted ScubaConnect reporting through CLAW or TALON, self-hosted ScubaConnect with a manual CyberScope upload, or manual ScubaGear runs reported through CLAW or TALON; the automated variants require development work on the agency side |
+| Manual (CyberScope) | Results uploaded to CyberScope quarterly, or more often, from the most recent version of the tool |
 
 ScubaConnect is CISA's cloud-native infrastructure for running the assessors centrally across many tenants, with GearConnect for ScubaGear and GogglesConnect for ScubaGoggles.[^c04-connect] Whatever the route, the reported artifact is the tool's JSON output file, named `ScubaResults_` plus a UUID, which agencies are told not to rename. A deviation that is operationally required appears in the output as "Omitted," with its rationale, and the guidance says omissions must be approved through the organization's security risk management process. CISA also provides a CSV template for tracking non-compliant policies, planned fixes and target dates, in effect a plan of action and milestones.[^c04-guidance]
 

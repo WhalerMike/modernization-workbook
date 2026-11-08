@@ -24,7 +24,7 @@ Writer W4. Sources: `docs/whitepapers/scubagear-integration-whitepaper.md` (v1.3
 | 16 | Output files incl. `ScubaResults_{UUID}.json`, `ScubaResults.csv`, `ActionPlan.csv` (failing SHALL only) | Outputs table | verified (source listed none of these) | v1.8.0 reports.md |
 | 17 | JSON carries ID, requirement, result, criticality, details, original result, comments | Outputs | verified | tooloutputschema.md (main) |
 | 18 | CyberScope: submit ScubaResults JSON without changing the file name | Outputs | verified | BOD 25-01 implementation guidance |
-| 19 | Reporting: CISA monitoring integration or quarterly machine-readable; three routes | Reporting | verified | BOD 25-01; implementation guidance |
+| 19 | Reporting: CISA monitoring integration or quarterly machine-readable; three methods (CyberScope, CISA-hosted ScubaConnect, agency-hosted with variants) | Reporting | corrected Nov 8, 2026 (item 595): text said four routes; aligned to CISA's three methods | BOD 25-01 "Required Actions"; CISA BOD 25-01 Implementation Guidance, "Methods of Compliance and Reporting," updated July 27, 2026, <https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services> |
 | 20 | ScubaConnect: cloud-native, Terraform, automates ScubaGear and ScubaGoggles across tenants | Reporting | verified | ScubaConnect README |
 | 21 | Source: GWS baselines carried BOD 25-01 Requirement indicators "since 10 July 2026" | Google Workspace | corrected | Required Configurations page lists 70 GWS policies, all due 12/01/2026; the July 10 date could not be confirmed and was dropped |
 | 22 | ScubaGoggles v1.0.0 July 24, 2026 | Google Workspace | verified | GitHub releases API |
