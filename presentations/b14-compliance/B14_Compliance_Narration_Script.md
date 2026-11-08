@@ -2,7 +2,7 @@
 
 ## Slide 1 — Can Your Authorization Prove Itself?
 
-Welcome. This briefing comes from Federal Compliance and Authorization, one of the books of the Federal Modernization Workbook. It's written for authorizing officials, information system security officers and CIOs. I'll take four questions. Why does every control need proof rather than a promise, and what is the federal clock asking for now? What do the baseline, the closure rule and the agency-level control families require? Who owns compliance? And how do you build the authorization package and keep it current? If you remember one thing, make it this: a control is closed when the thing that closes it is running, and the record shows it working. Everything else is a promise, and promises age. Let's start with who owes which proof.
+Welcome. This briefing comes from Federal Compliance and Authorization, one of the books of the Federal Modernization Workbook. It's written for authorizing officials, information system security officers and CIOs. I'll take four questions. Why does every control need proof rather than a promise, and what is the federal clock asking for now? What do the baseline, the closure rule and the agency-level control families require? Who owns compliance? And how do you build the authorization package and keep it current? If you remember one thing, make it this: a control is closed when the mechanism that supports it is running, and the record shows it working. Everything else is a promise, and promises age. Let's start with who owes which proof.
 
 ## Slide 2 — Who owes which proof
 

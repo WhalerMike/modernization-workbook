@@ -119,55 +119,55 @@ The next six slides take
 them one at a time.
 
 25
-00:01:37.640 --> 00:01:42.415
+00:01:37.640 --> 00:01:42.206
 The Command Reference lists every
 command in the example kits:
 
 26
-00:01:42.415 --> 00:01:44.802
-694 of them across sixteen kits.
+00:01:42.206 --> 00:01:44.665
+718 of them across seventeen kits.
 
 27
-00:01:44.802 --> 00:01:49.353
-That is 599 functions exported
+00:01:44.665 --> 00:01:49.172
+That is 615 functions exported
 by PowerShell modules,
 
 28
-00:01:49.353 --> 00:01:52.891
-47 PowerShell scripts and 48 Python tools.
+00:01:49.172 --> 00:01:52.677
+55 PowerShell scripts and 48 Python tools.
 
 29
-00:01:52.891 --> 00:01:55.215
+00:01:52.677 --> 00:01:55.003
 What makes it trustworthy
 is how it's made.
 
 30
-00:01:55.215 --> 00:02:00.165
+00:01:55.003 --> 00:01:59.953
 The page is generated from each command's
 own help text every time the site builds.
 
 31
-00:02:00.165 --> 00:02:04.660
+00:01:59.953 --> 00:02:04.448
 If the help changes, the page changes
 with it, so the two never drift apart,
 
 32
-00:02:04.660 --> 00:02:09.003
+00:02:04.448 --> 00:02:08.791
 and a public command without a synopsis
 or an example fails the check.
 
 33
-00:02:09.003 --> 00:02:13.746
+00:02:08.791 --> 00:02:13.533
 Each row also links back to the chapters
 and training modules that teach the
 
 34
-00:02:13.746 --> 00:02:16.908
+00:02:13.533 --> 00:02:16.695
 command, so an engineer can
 go from what does this do,
 
 35
-00:02:16.908 --> 00:02:19.290
+00:02:16.695 --> 00:02:19.100
 to where do I learn it, in one click.
 
 36
@@ -291,32 +291,32 @@ the evidence an assessor would
 read, and the kit that produces it.
 
 61
-00:04:04.749 --> 00:04:08.691
-The marks today: 25 covered, 13
+00:04:04.749 --> 00:04:08.661
+The marks today: 24 covered, 14
 partial, 9 partial by design,
 
 62
-00:04:08.691 --> 00:04:12.631
+00:04:08.661 --> 00:04:12.572
 where the workbook gives a
 template and a prompt because
 
 63
-00:04:12.631 --> 00:04:16.488
+00:04:12.572 --> 00:04:16.400
 the decision belongs to the
 agency, and none not covered.
 
 64
-00:04:16.488 --> 00:04:20.363
+00:04:16.400 --> 00:04:20.275
 It also corrects a common
 mistake: FISMA isn't a level.
 
 65
-00:04:20.363 --> 00:04:24.288
+00:04:20.275 --> 00:04:24.200
 FISMA Moderate is shorthand for
 a categorization and a baseline.
 
 66
-00:04:24.288 --> 00:04:29.090
+00:04:24.200 --> 00:04:28.990
 The page is in review, waiting for a
 reviewer who didn't write the marks.
 

@@ -95,26 +95,26 @@ of it before a call goes anywhere useful.
 That's the physics.
 
 21
-00:01:09.855 --> 00:01:12.268
+00:01:09.855 --> 00:01:12.206
 The compliance side is just as firm:
 
 22
-00:01:12.268 --> 00:01:17.592
-a circuit closes exactly one control
+00:01:12.206 --> 00:01:17.555
+a circuit supports exactly one control
 family, telecommunications diversity.
 
 23
-00:01:17.592 --> 00:01:20.792
+00:01:17.555 --> 00:01:20.755
 Everything else comes from the
 layer that governs the circuit.
 
 24
-00:01:20.792 --> 00:01:25.130
+00:01:20.755 --> 00:01:25.093
 So a bare local breakout fixes
 latency and loses the boundary.
 
 25
-00:01:25.130 --> 00:01:28.130
+00:01:25.093 --> 00:01:28.110
 Which brings us to the
 order you do things in.
 
@@ -510,993 +510,1001 @@ Module 2 is governed transport and
 the legacy protocols that ride on it.
 
 107
-00:07:07.543 --> 00:07:12.905
-First the governor itself: what SD-WAN and
-SASE each close, and how to protect them.
+00:07:07.543 --> 00:07:09.301
+First the governor itself:
 
 108
-00:07:12.905 --> 00:07:15.859
+00:07:09.301 --> 00:07:13.056
+what SD-WAN and SASE each
+provide, and how to protect them.
+
+109
+00:07:13.056 --> 00:07:16.009
 Then what actually breaks
 when you re-route a branch,
 
-109
-00:07:15.859 --> 00:07:20.620
+110
+00:07:16.009 --> 00:07:20.770
 which turns out to be a shorter, and
 different, list than the folklore suggests.
 
-110
+111
 00:07:24.370 --> 00:07:27.145
 Here's the honest version
 of what SD-WAN does.
 
-111
+112
 00:07:27.145 --> 00:07:32.089
 It can't beat the speed of light, but most
 real paths run well above that floor,
 
-112
+113
 00:07:32.089 --> 00:07:34.720
 and the gap is where
 SD-WAN earns its keep.
 
-113
+114
 00:07:34.720 --> 00:07:38.925
 It separates lean, latency-sensitive
 traffic from bulk transfers,
 
-114
+115
 00:07:38.925 --> 00:07:41.983
 and it recovers some of
 the detour in real routes.
 
-115
+116
 00:07:41.983 --> 00:07:43.983
 The underrated part is the tail.
 
-116
+117
 00:07:43.983 --> 00:07:48.419
 A quorum commit or a voice call is
 only as good as its unluckiest packet,
 
-117
+118
 00:07:48.419 --> 00:07:53.620
 and tools like forward error correction
 and packet duplication shrink that tail.
 
-118
+119
 00:07:53.620 --> 00:07:55.920
 What it never does is go below the floor.
 
-119
+120
 00:07:55.920 --> 00:07:58.170
 So what does SASE add on top?
 
-120
+121
 00:08:01.920 --> 00:08:05.495
 SD-WAN decides paths; it
 doesn't inspect anything.
 
-121
-00:08:05.495 --> 00:08:10.769
-Boundary protection, web policy, malware
-inspection and private-app access come from
-
 122
-00:08:10.769 --> 00:08:15.820
-the SASE services above it, and this table
-shows which layer closes which control.
+00:08:05.495 --> 00:08:07.441
+Boundary protection, web policy,
 
 123
-00:08:15.820 --> 00:08:17.332
-Two practical points.
+00:08:07.441 --> 00:08:12.270
+malware inspection and private-app access
+come from the SASE services above it,
 
 124
-00:08:17.332 --> 00:08:22.011
+00:08:12.270 --> 00:08:15.657
+and this table shows which
+layer provides which control.
+
+125
+00:08:15.657 --> 00:08:17.169
+Two practical points.
+
+126
+00:08:17.169 --> 00:08:21.848
 The enforcement point has a location,
 so a distant or poorly peered point
 
-125
-00:08:22.011 --> 00:08:26.533
+127
+00:08:21.848 --> 00:08:26.370
 of presence is just a hairpin with a
 new name; measure it before cutover.
 
-126
-00:08:26.533 --> 00:08:29.811
+128
+00:08:26.370 --> 00:08:29.648
 And FedRAMP status is per
 offering, not per vendor,
 
-127
-00:08:29.811 --> 00:08:33.808
+129
+00:08:29.648 --> 00:08:33.645
 and it covers the cloud service,
 not the boxes in your offices.
 
-128
-00:08:33.808 --> 00:08:38.000
+130
+00:08:33.645 --> 00:08:37.830
 Which raises the question nobody
 likes: who protects the governor?
 
-129
+131
 00:08:41.750 --> 00:08:44.455
 The governor deserves
 its own security program,
 
-130
+132
 00:08:44.455 --> 00:08:48.175
 because it becomes the most
 consequential network system you own.
 
-131
+133
 00:08:48.175 --> 00:08:51.624
 SD-WAN trades a few hardened
 egress points for hundreds of
 
-132
+134
 00:08:51.624 --> 00:08:55.863
 internet-facing edges and one
 controller that can reroute everything.
 
-133
+135
 00:08:55.863 --> 00:08:58.686
 This isn't hypothetical: in February 2026,
 
-134
+136
 00:08:58.686 --> 00:09:03.753
 CISA issued an emergency directive
 for one vendor's SD-WAN control plane,
 
-135
+137
 00:09:03.753 --> 00:09:07.325
 and its sequence makes a
 good drill whatever you run.
 
-136
+138
 00:09:07.325 --> 00:09:13.125
 Inventory, preserve the logs, patch,
 hunt, rebuild if needed, harden.
 
-137
+139
 00:09:13.125 --> 00:09:15.563
 The table is the minimum control set.
 
-138
+140
 00:09:15.563 --> 00:09:19.437
 Be able to run that drill before
 production traffic depends on it.
 
-139
+141
 00:09:19.437 --> 00:09:23.260
 Next, where the program would
 like to take the path itself.
 
-140
+142
 00:09:27.010 --> 00:09:29.935
 This slide is a proposal,
 and it's labeled that way.
 
-141
+143
 00:09:29.935 --> 00:09:34.018
 The idea: today identity is
 checked on every call to the data,
 
-142
+144
 00:09:34.018 --> 00:09:37.685
 but a network session is
 trusted once and then coasts.
 
-143
+145
 00:09:37.685 --> 00:09:42.723
 The proposed governed path treats the
 path itself like a token, leased for one
 
-144
+146
 00:09:42.723 --> 00:09:47.760
 purpose and expiring with it, so a flow
 with no token behind it shows up as drift.
 
-145
+147
 00:09:47.760 --> 00:09:52.380
 Whether or not that's adopted, one
 part applies now: SD-WAN and SASE
 
-146
+148
 00:09:52.380 --> 00:09:57.598
 decisions should land as records, with
 identity, policy and time attached.
 
-147
+149
 00:09:57.598 --> 00:09:59.022
 That's your evidence later.
 
-148
+150
 00:09:59.022 --> 00:10:01.650
 Now, what breaks when paths change.
 
-149
+151
 00:10:05.400 --> 00:10:10.413
 Re-routing a branch does break things,
 but for specific, documented reasons.
 
-150
+152
 00:10:10.413 --> 00:10:15.143
 Proxies time out idle connections,
 inspection breaks pinned certificates
 
-151
+153
 00:10:15.143 --> 00:10:19.574
 and mutual TLS, and some applications
 care about the client's IP address.
 
-152
+154
 00:10:19.574 --> 00:10:21.537
 That's the list to design around.
 
-153
+155
 00:10:21.537 --> 00:10:23.763
 Just as useful is what doesn't break.
 
-154
+156
 00:10:23.763 --> 00:10:28.280
 A path change doesn't scramble TCP;
 a changed source address does,
 
-155
+157
 00:10:28.280 --> 00:10:31.775
 so address continuity is
 the property to protect.
 
-156
+158
 00:10:31.775 --> 00:10:36.555
 And Kerberos doesn't check client
 addresses by default, doesn't need a domain
 
-157
+159
 00:10:36.555 --> 00:10:41.562
 controller within milliseconds, and no
 policy mandates short token lifetimes.
 
-158
+160
 00:10:41.562 --> 00:10:44.162
 Wrong mechanisms lead to wrong fixes.
 
-159
+161
 00:10:44.162 --> 00:10:47.460
 The real Kerberos dependency is next.
 
-160
+162
 00:10:51.210 --> 00:10:54.502
 This is the slide behind the
 classic help-desk report:
 
-161
+163
 00:10:54.502 --> 00:10:56.747
 everything works except signing in.
 
-162
+164
 00:10:56.747 --> 00:11:00.999
 A handful of operations still need
 a reachable domain controller,
 
-163
+165
 00:11:00.999 --> 00:11:04.323
 like first logon, Group
 Policy and password changes.
 
-164
+166
 00:11:04.323 --> 00:11:07.895
 A branch on local breakout
 reaches the internet just fine,
 
-165
+167
 00:11:07.895 --> 00:11:12.584
 but if nobody planned its path to a
 domain controller, those operations fail.
 
-166
+168
 00:11:12.584 --> 00:11:15.538
 Worse, Windows quietly falls back to NTLM,
 
-167
+169
 00:11:15.538 --> 00:11:19.360
 which is exactly what the
 program is trying to retire.
 
-168
+170
 00:11:19.360 --> 00:11:23.479
 So give every branch a defined
 path, through a private link,
 
-169
+171
 00:11:23.479 --> 00:11:28.198
 a connector or a KDC proxy, or remove
 the dependency with Entra join.
 
-170
+172
 00:11:28.198 --> 00:11:31.180
 Then, a reality check on performance.
 
-171
+173
 00:11:34.930 --> 00:11:36.593
 Two practical lessons here.
 
-172
+174
 00:11:36.593 --> 00:11:41.230
 First, for chatty applications,
 transport improvements help modestly,
 
-173
+175
 00:11:41.230 --> 00:11:46.104
 about a fifth, because a branch device
 only touches the first leg of the trip.
 
-174
+176
 00:11:46.104 --> 00:11:49.755
 Cutting thirty round trips down
 to three helps about tenfold.
 
-175
+177
 00:11:49.755 --> 00:11:54.730
 So the application change usually wins,
 and that belongs to the application owner.
 
-176
+178
 00:11:54.730 --> 00:11:56.833
 Second, for token-based access,
 
-177
+179
 00:11:56.833 --> 00:12:00.955
 the network matters through a
 stable, known egress address.
 
-178
+180
 00:12:00.955 --> 00:12:04.924
 Conditional Access and continuous
 access evaluation rely on
 
-179
+181
 00:12:04.924 --> 00:12:08.893
 seeing the same addresses for
 sign-in and for resource traffic.
 
-180
+182
 00:12:08.893 --> 00:12:13.531
 Unpredictable egress means false
 alarms and weaker location policy.
 
-181
+183
 00:12:13.531 --> 00:12:15.280
 That closes Part 1.
 
-182
+184
 00:12:19.030 --> 00:12:23.355
 Module 3 is network access
 control after Active Directory.
 
-183
+185
 00:12:23.355 --> 00:12:26.655
 Sign-in controls can't stop
 someone who simply plugs a
 
-184
+186
 00:12:26.655 --> 00:12:29.880
 laptop into a conference-room
 jack; only the port can.
 
-185
+187
 00:12:29.880 --> 00:12:33.081
 And the RADIUS server checking
 that port is usually the
 
-186
+188
 00:12:33.081 --> 00:12:36.630
 last piece of the network still
 standing on Active Directory.
 
-187
+189
 00:12:36.630 --> 00:12:41.740
 So this module is about proving devices,
 and retiring that dependency safely.
 
-188
+190
 00:12:45.490 --> 00:12:49.031
 Port admission has three
 players: software on the device,
 
-189
+191
 00:12:49.031 --> 00:12:53.627
 the switch or access point that relays,
 and the RADIUS server that decides.
 
-190
+192
 00:12:53.627 --> 00:12:57.659
 The method that matters is EAP-TLS,
 a certificate on each side,
 
-191
+193
 00:12:57.659 --> 00:13:02.415
 so neither the device nor the network
 can be faked without a private key.
 
-192
+194
 00:13:02.415 --> 00:13:04.890
 The urgency comes from Windows itself.
 
-193
+195
 00:13:04.890 --> 00:13:10.672
 Password-based methods like PEAP with
 MS-CHAPv2 are being cut off from single
 
-194
+196
 00:13:10.672 --> 00:13:16.003
 sign-on, first by Credential Guard
 and now by the October 2026 hardening.
 
-195
+197
 00:13:16.003 --> 00:13:20.664
 So agencies still on password-based
 Wi-Fi have a deadline they didn't choose.
 
-196
+198
 00:13:20.664 --> 00:13:23.320
 Next, the server doing the checking.
 
-197
+199
 00:13:27.070 --> 00:13:31.145
 Windows NPS works today because
 devices are hybrid-joined.
 
-198
+200
 00:13:31.145 --> 00:13:34.754
 The trouble is that it leans on
 Active Directory computer objects,
 
-199
+201
 00:13:34.754 --> 00:13:36.920
 and Entra-joined devices don't have them.
 
-200
+202
 00:13:36.920 --> 00:13:40.209
 Entra ID offers no RADIUS
 service of its own,
 
-201
+203
 00:13:40.209 --> 00:13:43.133
 and NPS has no way to read device health.
 
-202
+204
 00:13:43.133 --> 00:13:46.796
 So NPS gets less useful
 with every device you move.
 
-203
+205
 00:13:46.796 --> 00:13:51.852
 The options are an on-premises NAC platform,
 a cloud RADIUS service with the right
 
-204
+206
 00:13:51.852 --> 00:13:56.908
 FedRAMP status for that function, or taking
 RADIUS out of remote access entirely.
 
-205
+207
 00:13:56.908 --> 00:14:00.676
 The program's rule: tie the
 switch to the migration timeline,
 
-206
+208
 00:14:00.676 --> 00:14:02.907
 and authorize cloud devices first.
 
-207
+209
 00:14:02.907 --> 00:14:05.670
 Next, where the health signal comes from.
 
-208
+210
 00:14:09.420 --> 00:14:13.670
 The program doesn't add a separate
 posture probe; it reads Intune.
 
-209
+211
 00:14:13.670 --> 00:14:19.603
 A NAC product registers with Entra ID,
 the device certificate carries its Intune
 
-210
+212
 00:14:19.603 --> 00:14:25.182
 device ID, and on connect the NAC asks
 Intune whether the device is compliant.
 
-211
+213
 00:14:25.182 --> 00:14:27.269
 Two realities to plan for.
 
-212
+214
 00:14:27.269 --> 00:14:32.233
 Posture is only as fresh as Intune's
 last check-in, which can be hours old.
 
-213
+215
 00:14:32.233 --> 00:14:35.035
 And when a device falls out
 of compliance mid-shift,
 
-214
+216
 00:14:35.035 --> 00:14:38.571
 something has to move the port,
 which is Change of Authorization.
 
-215
+217
 00:14:38.571 --> 00:14:42.488
 NPS can't send it, and building
 your own is real engineering,
 
-216
+218
 00:14:42.488 --> 00:14:45.508
 which is a strong argument
 for a NAC platform.
 
-217
+219
 00:14:45.508 --> 00:14:47.610
 So where do devices land?
 
-218
+220
 00:14:51.360 --> 00:14:55.760
 Every device lands in one of five
 segments, and this flow shows how.
 
-219
+221
 00:14:55.760 --> 00:14:58.235
 No valid certificate means quarantine.
 
-220
+222
 00:14:58.235 --> 00:15:02.999
 A good certificate but failed compliance
 means remediation, where the device
 
-221
+223
 00:15:02.999 --> 00:15:07.323
 can fix itself and come back, and
 never drifts silently into production.
 
-222
+224
 00:15:07.323 --> 00:15:11.522
 Devices that can't run a supplicant,
 like badge readers and printers,
 
-223
+225
 00:15:11.522 --> 00:15:13.397
 are classified by MAC address,
 
-224
+226
 00:15:13.397 --> 00:15:17.747
 and the book is blunt that this is
 classification, not authentication.
 
-225
+227
 00:15:17.747 --> 00:15:21.985
 The eight-hour re-authentication is
 the backstop when nothing else fires.
 
-226
+228
 00:15:21.985 --> 00:15:24.710
 Next, hardening RADIUS itself.
 
-227
+229
 00:15:28.460 --> 00:15:30.672
 RADIUS has a weakness of its own.
 
-228
+230
 00:15:30.672 --> 00:15:34.622
 Over plain UDP it relies on
 MD5, and the 2024 Blast-RADIUS
 
-229
+231
 00:15:34.622 --> 00:15:39.173
 research showed an attacker in
 the middle could forge an accept.
 
-230
+232
 00:15:39.173 --> 00:15:42.239
 EAP is largely protected,
 but the fix is cheap:
 
-231
+233
 00:15:42.239 --> 00:15:47.462
 require the message authenticator
 everywhere, use strong rotated secrets,
 
-232
+234
 00:15:47.462 --> 00:15:51.110
 and move to RADIUS over TLS
 where the hardware allows.
 
-233
+235
 00:15:51.110 --> 00:15:55.571
 On the wire, one certificate
 serves wired and wireless,
 
-234
+236
 00:15:55.571 --> 00:15:58.347
 and WPA3-Enterprise is the target.
 
-235
+237
 00:15:58.347 --> 00:16:04.473
 And don't forget the server certificates:
 they renew through the lifecycle platform,
 
-236
+238
 00:16:04.473 --> 00:16:07.711
 and one, the NPS MFA
 extension's, is easy to miss.
 
-237
+239
 00:16:07.711 --> 00:16:10.610
 Now, rolling this out without an outage.
 
-238
+240
 00:16:14.360 --> 00:16:17.376
 The fastest way to cause an
 outage with access control
 
-239
+241
 00:16:17.376 --> 00:16:20.123
 is to enforce before you
 know what's on the network.
 
-240
+242
 00:16:20.123 --> 00:16:24.165
 So the rollout starts in monitor
 mode: everything authenticates,
 
-241
+243
 00:16:24.165 --> 00:16:27.159
 nothing is blocked, and
 the logs build a baseline.
 
-242
+244
 00:16:27.159 --> 00:16:31.842
 Then wired enforcement, then wireless,
 then tightening the device segments,
 
-243
+245
 00:16:31.842 --> 00:16:36.822
 finishing with a tabletop where someone
 plugs a rogue laptop into a meeting room.
 
-244
+246
 00:16:36.822 --> 00:16:41.510
 Done this way, it supports the
 device-authentication and inventory controls.
 
-245
+247
 00:16:41.510 --> 00:16:44.416
 One correction worth knowing:
 it doesn't close the
 
-246
+248
 00:16:44.416 --> 00:16:47.747
 external-connections control
 people often claim for it.
 
-247
+249
 00:16:47.747 --> 00:16:50.080
 That wraps up access control.
 
-248
-00:16:54.000 --> 00:16:58.223
+250
+00:16:53.830 --> 00:16:58.053
 Module 4 pulls everything together
 into a reference architecture,
 
-249
-00:16:58.223 --> 00:17:03.050
+251
+00:16:58.053 --> 00:17:02.880
 then answers the question behind most
 of the expensive mistakes: who decides.
 
-250
-00:17:03.050 --> 00:17:06.251
+252
+00:17:02.880 --> 00:17:06.081
 Circuits get bought before
 anyone owns the governor,
 
-251
-00:17:06.251 --> 00:17:09.962
+253
+00:17:06.081 --> 00:17:09.792
 and cutovers happen before anyone
 files the boundary change.
 
-252
-00:17:09.962 --> 00:17:13.910
+254
+00:17:09.792 --> 00:17:13.740
 Naming one decider per step
 costs less than any product.
 
-253
-00:17:17.660 --> 00:17:20.898
+255
+00:17:17.490 --> 00:17:20.728
 One rule ties the data and
 network layers together:
 
-254
-00:17:20.898 --> 00:17:25.060
+256
+00:17:20.728 --> 00:17:24.890
 match each flow's consistency needs
 to the transport built for it.
 
-255
-00:17:25.060 --> 00:17:28.283
+257
+00:17:24.890 --> 00:17:28.113
 Strongly consistent
 writes and their quorum
 
-256
-00:17:28.283 --> 00:17:30.998
+258
+00:17:28.113 --> 00:17:30.828
 stay inside one region, on the fast path.
 
-257
-00:17:30.998 --> 00:17:35.822
+259
+00:17:30.828 --> 00:17:35.652
 Everything that crosses regions is
 asynchronous and rides the bulk path.
 
-258
-00:17:35.822 --> 00:17:39.197
+260
+00:17:35.652 --> 00:17:39.027
 That's not a limitation; it's
 using physics on purpose.
 
-259
-00:17:39.197 --> 00:17:44.101
+261
+00:17:39.027 --> 00:17:43.931
 The program's own SaaS data plane is
 the worked example: one regional writer
 
-260
-00:17:44.101 --> 00:17:49.322
+262
+00:17:43.931 --> 00:17:49.152
 and tokens on both sides, so SD-WAN would
 matter only for background replication.
 
-261
-00:17:49.322 --> 00:17:51.490
+263
+00:17:49.152 --> 00:17:51.320
 Now the same rule at a branch.
 
-262
-00:17:55.240 --> 00:17:58.130
+264
+00:17:55.070 --> 00:17:57.960
 At a branch, the question
 is where traffic leaves
 
-263
-00:17:58.130 --> 00:18:01.165
+265
+00:17:57.960 --> 00:18:00.995
 the building and what
 enforces policy when it does.
 
-264
-00:18:01.165 --> 00:18:02.590
+266
+00:18:00.995 --> 00:18:02.420
 There are four patterns.
 
-265
-00:18:02.590 --> 00:18:04.765
+267
+00:18:02.420 --> 00:18:04.595
 The hairpin is assessed but slow.
 
-266
-00:18:04.765 --> 00:18:07.415
+268
+00:18:04.595 --> 00:18:07.245
 Bare breakout is fast, and a regression.
 
-267
-00:18:07.415 --> 00:18:09.959
+269
+00:18:07.245 --> 00:18:09.789
 Governed breakout, with
 an edge device and a
 
-268
-00:18:09.959 --> 00:18:12.928
+270
+00:18:09.789 --> 00:18:12.758
 nearby security service,
 is the reference pattern.
 
-269
-00:18:12.928 --> 00:18:16.271
+271
+00:18:12.758 --> 00:18:16.101
 And agent-based SASE suits
 small or roaming sites,
 
-270
-00:18:16.271 --> 00:18:19.853
+272
+00:18:16.101 --> 00:18:19.683
 as long as the nearest point
 of presence really is near.
 
-271
-00:18:19.853 --> 00:18:24.201
+273
+00:18:19.683 --> 00:18:24.031
 The guidance is to choose per site
 from measured latency and device mix,
 
-272
-00:18:24.201 --> 00:18:26.265
+274
+00:18:24.031 --> 00:18:26.095
 and never to choose bare breakout.
 
-273
-00:18:26.265 --> 00:18:28.990
+275
+00:18:26.095 --> 00:18:28.820
 Five decisions carry most of the risk.
 
-274
-00:18:32.740 --> 00:18:34.976
+276
+00:18:32.570 --> 00:18:34.806
 Most of the risk sits in five decisions,
 
-275
-00:18:34.976 --> 00:18:39.378
+277
+00:18:34.806 --> 00:18:39.208
 and what makes them dangerous is that
 skipping one breaks nothing on the day.
 
-276
-00:18:39.378 --> 00:18:41.066
+278
+00:18:39.208 --> 00:18:40.896
 Keep one writer per region.
 
-277
-00:18:41.066 --> 00:18:44.119
+279
+00:18:40.896 --> 00:18:43.949
 Write the path policy for
 every application class,
 
-278
-00:18:44.119 --> 00:18:47.828
+280
+00:18:43.949 --> 00:18:47.658
 which is also the traffic-flow
 policy an assessor will ask for.
 
-279
-00:18:47.828 --> 00:18:52.114
+281
+00:18:47.658 --> 00:18:51.944
 Pick the egress pattern per site,
 and file the boundary change first.
 
-280
-00:18:52.114 --> 00:18:55.427
+282
+00:18:51.944 --> 00:18:55.257
 Bring the governor under control
 before it carries traffic.
 
-281
-00:18:55.427 --> 00:18:57.540
+283
+00:18:55.257 --> 00:18:57.370
 And make the path itself evidence.
 
-282
-00:18:57.540 --> 00:19:01.053
+284
+00:18:57.370 --> 00:19:00.883
 Each one comes with a concrete
 check, so you can prove it was done.
 
-283
-00:19:01.053 --> 00:19:02.940
+285
+00:19:00.883 --> 00:19:02.770
 Next, who owns them.
 
-284
-00:19:06.690 --> 00:19:09.752
+286
+00:19:06.520 --> 00:19:09.582
 Here's the part of the book
 that's new: ownership.
 
-285
-00:19:09.752 --> 00:19:14.242
+287
+00:19:09.582 --> 00:19:14.072
 Many network decisions are really risk
 decisions dressed up as engineering
 
-286
-00:19:14.242 --> 00:19:18.240
+288
+00:19:14.072 --> 00:19:18.070
 or purchasing, so they have to reach
 the person who can accept the risk.
 
-287
-00:19:18.240 --> 00:19:20.678
+289
+00:19:18.070 --> 00:19:20.508
 This matrix gives one decider per row.
 
-288
-00:19:20.678 --> 00:19:22.127
+290
+00:19:20.508 --> 00:19:21.957
 A few are worth noticing.
 
-289
-00:19:22.127 --> 00:19:26.134
+291
+00:19:21.957 --> 00:19:25.964
 The authorizing official decides
 that the boundary may change,
 
-290
-00:19:26.134 --> 00:19:30.366
+292
+00:19:25.964 --> 00:19:30.196
 but the system owner decides, site
 by site, whether that site is ready.
 
-291
-00:19:30.366 --> 00:19:35.272
+293
+00:19:30.196 --> 00:19:35.102
 And a circuit ends only after security
 operations confirms CISA's telemetry,
 
-292
-00:19:35.272 --> 00:19:37.990
+294
+00:19:35.102 --> 00:19:37.820
 and only the contracting
 officer can end it.
 
-293
-00:19:37.990 --> 00:19:40.830
+295
+00:19:37.820 --> 00:19:40.660
 Next, a named gate for each step.
 
-294
-00:19:44.580 --> 00:19:48.185
+296
+00:19:44.410 --> 00:19:48.015
 Each step in the order of
 operations now has one decider,
 
-295
-00:19:48.185 --> 00:19:51.242
+297
+00:19:48.015 --> 00:19:51.072
 and the gate between steps
 is a person, not a date.
 
-296
-00:19:51.242 --> 00:19:54.133
+298
+00:19:51.072 --> 00:19:53.963
 The CISO signs off on
 the governor's security,
 
-297
-00:19:54.133 --> 00:19:56.719
+299
+00:19:53.963 --> 00:19:56.549
 the system owner on each site's readiness,
 
-298
-00:19:56.719 --> 00:20:02.118
+300
+00:19:56.549 --> 00:20:01.948
 and the authorizing official on the boundary
 change and the Microsoft 365 exception.
 
-299
-00:20:02.118 --> 00:20:07.096
+301
+00:20:01.948 --> 00:20:06.926
 The boundary change rides on evidence:
 the path policy, failover tests, path
 
-300
-00:20:07.096 --> 00:20:09.906
+302
+00:20:06.926 --> 00:20:09.736
 telemetry, exceptions, CLAW confirmation,
 
-301
-00:20:09.906 --> 00:20:12.717
+303
+00:20:09.736 --> 00:20:12.547
 and an honest list of
 what you can't show yet.
 
-302
-00:20:12.717 --> 00:20:15.910
+304
+00:20:12.547 --> 00:20:15.740
 Let's finish with what to
 decide, and what to start.
 
-303
-00:20:19.660 --> 00:20:23.507
+305
+00:20:19.490 --> 00:20:23.337
 To close: five decisions to put in
 front of the people who own them,
 
-304
-00:20:23.507 --> 00:20:26.628
+306
+00:20:23.337 --> 00:20:26.458
 from the governor platform
 and the NPS exit trigger
 
-305
-00:20:26.628 --> 00:20:29.822
+307
+00:20:26.458 --> 00:20:29.652
 to the boundary change and
 the rule for leaving MTIPS.
 
-306
-00:20:29.822 --> 00:20:33.223
+308
+00:20:29.652 --> 00:20:33.053
 And there's plenty you can start
 on Monday without a new contract.
 
-307
-00:20:33.223 --> 00:20:36.348
+309
+00:20:33.053 --> 00:20:36.178
 Verify where your DNS really goes.
 
-308
-00:20:36.348 --> 00:20:38.923
+310
+00:20:36.178 --> 00:20:38.753
 Inventory cleartext protocols.
 
-309
-00:20:38.923 --> 00:20:41.997
+311
+00:20:38.753 --> 00:20:41.827
 Check each branch's path
 to a domain controller.
 
-310
-00:20:41.997 --> 00:20:43.447
+312
+00:20:41.827 --> 00:20:43.277
 Write the path policy.
 
-311
-00:20:43.447 --> 00:20:46.372
+313
+00:20:43.277 --> 00:20:46.202
 Put the right attributes
 into every refresh.
 
-312
-00:20:46.372 --> 00:20:50.597
+314
+00:20:46.202 --> 00:20:50.427
 Start CLAW onboarding
 and 802.1X monitor mode.
 
-313
-00:20:50.597 --> 00:20:52.886
+315
+00:20:50.427 --> 00:20:52.716
 And measure a pair of
 branches before you buy.
 
-314
-00:20:52.886 --> 00:20:58.348
+316
+00:20:52.716 --> 00:20:58.178
 Governor before traffic, boundary before
 cutover, evidence before a circuit ends.
 
-315
-00:20:58.348 --> 00:20:59.160
+317
+00:20:58.178 --> 00:20:58.990
 Thank you.

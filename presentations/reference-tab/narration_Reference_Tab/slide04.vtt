@@ -1,53 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.825
+00:00:00.050 --> 00:00:04.616
 The Command Reference lists every
 command in the example kits:
 
 2
-00:00:04.825 --> 00:00:07.212
-694 of them across sixteen kits.
+00:00:04.616 --> 00:00:07.075
+718 of them across seventeen kits.
 
 3
-00:00:07.212 --> 00:00:11.762
-That is 599 functions exported
+00:00:07.075 --> 00:00:11.582
+That is 615 functions exported
 by PowerShell modules,
 
 4
-00:00:11.762 --> 00:00:15.301
-47 PowerShell scripts and 48 Python tools.
+00:00:11.582 --> 00:00:15.087
+55 PowerShell scripts and 48 Python tools.
 
 5
-00:00:15.301 --> 00:00:17.625
+00:00:15.087 --> 00:00:17.413
 What makes it trustworthy
 is how it's made.
 
 6
-00:00:17.625 --> 00:00:22.575
+00:00:17.413 --> 00:00:22.363
 The page is generated from each command's
 own help text every time the site builds.
 
 7
-00:00:22.575 --> 00:00:27.070
+00:00:22.363 --> 00:00:26.858
 If the help changes, the page changes
 with it, so the two never drift apart,
 
 8
-00:00:27.070 --> 00:00:31.413
+00:00:26.858 --> 00:00:31.201
 and a public command without a synopsis
 or an example fails the check.
 
 9
-00:00:31.413 --> 00:00:36.156
+00:00:31.201 --> 00:00:35.943
 Each row also links back to the chapters
 and training modules that teach the
 
 10
-00:00:36.156 --> 00:00:39.318
+00:00:35.943 --> 00:00:39.105
 command, so an engineer can
 go from what does this do,
 
 11
-00:00:39.318 --> 00:00:41.400
+00:00:39.105 --> 00:00:41.210
 to where do I learn it, in one click.

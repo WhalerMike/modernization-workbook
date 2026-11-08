@@ -6,16 +6,20 @@ Module 2 is governed transport and
 the legacy protocols that ride on it.
 
 2
-00:00:04.763 --> 00:00:10.125
-First the governor itself: what SD-WAN and
-SASE each close, and how to protect them.
+00:00:04.763 --> 00:00:06.521
+First the governor itself:
 
 3
-00:00:10.125 --> 00:00:13.079
+00:00:06.521 --> 00:00:10.276
+what SD-WAN and SASE each
+provide, and how to protect them.
+
+4
+00:00:10.276 --> 00:00:13.229
 Then what actually breaks
 when you re-route a branch,
 
-4
-00:00:13.079 --> 00:00:17.540
+5
+00:00:13.229 --> 00:00:17.690
 which turns out to be a shorter, and
 different, list than the folklore suggests.
