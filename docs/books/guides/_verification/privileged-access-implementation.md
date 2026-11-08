@@ -70,3 +70,9 @@ Facts carried from the chapters and books are cited by link and rely on those pa
 ## Neutrality
 
 Fictional data only (`contoso.example`). No agency named. No prohibited terms.
+
+## Consistency read, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Tier 0 and Tier 1 activation "at most eight hours" | Four hours for Tier 0 and eight for Tier 1 | Book 04 Appendix B role table; privileged-access workbook Ch 04 tier caps |

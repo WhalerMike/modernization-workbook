@@ -41,6 +41,7 @@ New guide, first pass of 2026-10-29. The guide is a step-by-step route over Book
 | No precedence between configuration policies; one owning policy per setting | Book 05 Ch 08, policy types |
 | Unassigned devices marked noncompliant by tenant setting | Book 05 Ch 10, tenant-wide compliance settings; Ch 08 schema |
 | Log Analytics exports up to 48 hours; Tier 0 polled from Graph | Book 05 Ch 10, what Log Analytics receives; alerts |
+| The Endpoint & Device Modernization plan is a 48-week network (corrected on 2026-11-08 from "44-week"; the plan's front matter says `plan-weeks: 48`; the 44 in the plan is a decision's duration in days) | Endpoint & Device Modernization project plan, duration |
 | CM-2, CM-6, CM-7, CM-8 evidence | Book 05 Ch 10, reporting and the evidence an assessor reads |
 | M-22-09 §III.A device-level signal; §III.B CDM inventory and EDR | Book 11 Appendix A, OMB M-22-09 objectives and actions |
 | Coverage matrix and four tiers | Companion guide, Intune coverage; what neither tool reaches |

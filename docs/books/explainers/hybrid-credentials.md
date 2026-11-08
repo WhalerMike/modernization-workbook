@@ -33,7 +33,7 @@ It builds on [Book 07 — PKI & Certificates](../b07-pki/index.md), which decide
 - **The clouds' key vaults are not coordinated by default; the program has to decide one renewer per certificate.** The CLM pushes certificates into Azure Key Vault (including Azure Government), into AWS Certificate Manager and to Google Cloud load balancers. Each cloud can also issue and renew its own certificates. Keys and secrets stay with each cloud's own key and secret services; the CLM manages certificates only.
 - **The PIV card doesn't change; AD's side of it disappears.** The card, its Federal PKI issuer and the card management system stay. What retires with AD is the NTAuth store, domain controller certificates, Kerberos smart card logon and AD's certificate mapping. Entra certificate-based authentication takes over, including Windows sign-in on Entra-joined devices, and the card-to-account binding moves to the `certificateUserIds` attribute.
 - **There's no Entra RADIUS.** NPS authorizes against AD, so it ends with AD. The switch's RADIUS questions move to a network access control (NAC) platform, such as Cisco ISE or Aruba ClearPass, that admits Intune devices by certificate and checks their compliance with Intune. No cloud RADIUS service was FedRAMP-authorized on October 23, 2026. Global Secure Access replaces the VPN's RADIUS for remote access, but not 802.1X on the campus network.
-- **This research changes five things in the books**, listed under [What this changed in the books](#what-this-changed-in-the-books).
+- **This research changes five chapters in the books**, listed under [What this changed in the books](#what-this-changed-in-the-books).
 
 ## Path 1: SQL Server with Entra ID
 

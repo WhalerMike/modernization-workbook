@@ -71,3 +71,11 @@ New chapter; no source pages. It extends [Chapter 11](../11-attestation-and-the-
 ## Footnotes
 
 19 definitions, all prefixed `c13-`; checked unique across the book (see the PR description for the bundle build).
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The comment paragraph after the added matrix covers five rows (assistants, coding standard, code review, commit, authorization); earlier text said four | Who writes, reviews, approves and operates | corrected count | This chapter's matrix |

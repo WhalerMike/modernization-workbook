@@ -49,3 +49,11 @@ Writer W5. New chapter; no source pages were assigned. Read first and kept consi
 | Source page § | Went to | Or why not carried |
 |---|---|---|
 | (none assigned) | — | New chapter. Role vocabulary drawn from the published Who chapters and this book's Chapters 03–07 and Appendix A; no source page content was carried |
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The comment paragraphs after the matrix cover nine groups of rows (earlier text said nine rows) | The responsibility matrix | corrected count | This chapter's matrix (32 rows) |
