@@ -1,6 +1,6 @@
 ---
 title: "Chapter 08 — Cloud-Native Posture"
-description: "Why host scanning misses the risks that live in the cloud control plane and the container layer, how cloud security posture management closes CM-6 for cloud resources, how the program chooses a posture tool per platform across a multi-cloud estate, what a cloud-native application protection platform's overlapping views add, how Kubernetes admission control and runtime detection close CM-7 and SI-3, and how posture findings reach the evidence contract and line up with FedRAMP's 2026 Key Security Indicators."
+description: "Why host scanning misses the risks that live in the cloud control plane and the container layer, how cloud security posture management supports CM-6 for cloud resources, how the program chooses a posture tool per platform across a multi-cloud estate, what a cloud-native application protection platform's overlapping views add, how Kubernetes admission control and runtime detection support CM-7 and SI-3, and how posture findings reach the evidence contract and line up with FedRAMP's 2026 Key Security Indicators."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b12-security-operations

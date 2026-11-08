@@ -29,6 +29,16 @@ on a branch and open a pull request.
     python scripts/cut_edition.py edition-2026.10 --summary "..." --decks
     python scripts/cut_edition.py --refresh-assets edition-2026.10
 
+The baseline edition is cut with --baseline. Merge the status change first (python
+scripts/set_baseline_status.py --apply, in its own pull request, so the tagged commit already
+says Baseline); the cut stops while any page would still flip. --baseline writes `baseline: true`
+and `release: "2.0"` on the edition's entry, and titles the Release "Federal Modernization
+Workbook, Release 2.0 (baseline edition <edition>)". The tag stays edition-YYYY.MM[.N]; never a
+vX.Y tag, which the kit releases use. generate_revisions.py then sets every book, guide and
+developer workbook to Version 2.0.
+
+    python scripts/cut_edition.py edition-2026.11 --summary "..." --baseline --decks --dry-run
+
 Needs git, the GitHub CLI (`gh`, signed in with rights to publish releases),
 Python 3.10+ and PyYAML. Never deletes or replaces a release asset: an upload
 whose name is already on the Release fails.
@@ -40,6 +50,7 @@ import argparse
 import datetime as dt
 import glob
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -50,6 +61,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import deck_assets as da  # noqa: E402
 import generate_revisions as gr  # noqa: E402
+import set_baseline_status as sbs  # noqa: E402
 
 ROOT = gr.ROOT
 REPO = gr.REPO
@@ -87,9 +99,22 @@ def draft_units(previous: str | None, commit: str, units: dict[str, gr.Unit]) ->
     return drafted
 
 
-def entry_text(eid: str, date: dt.date, commit: str, summary: str, drafted: dict[str, list[str]]) -> str:
+RELEASE_NAME = re.compile(r"Release (\d+\.\d+)")
+
+
+def release_title(eid: str, release_name: str | None = None) -> str:
+    """The GitHub Release's title; the baseline edition's carries its release name."""
+    if release_name:
+        return f"Federal Modernization Workbook, {release_name} (baseline edition {gr.edition_label(eid)})"
+    return f"Federal Modernization Workbook, edition {gr.edition_label(eid)}"
+
+
+def entry_text(eid: str, date: dt.date, commit: str, summary: str, drafted: dict[str, list[str]],
+               release_name: str | None = None) -> str:
     lines = [f"  - id: {eid}", f"    date: {date.isoformat()}", f"    commit: {commit}",
              f"    summary: {quote(summary)}"]
+    if release_name:
+        lines += ["    baseline: true", f"    release: {quote(RELEASE_NAME.fullmatch(release_name).group(1))}"]
     if drafted:
         lines.append("    units:")
         for uid, changes in drafted.items():
@@ -138,11 +163,15 @@ def expand(patterns: list[str]) -> list[Path]:
     return files
 
 
-def notes(eid: str, summary: str, drafted: dict[str, list[str]]) -> str:
+def notes(eid: str, summary: str, drafted: dict[str, list[str]], release_name: str | None = None) -> str:
     label = gr.edition_label(eid)
     site = "https://whalermike.github.io/modernization-workbook"
-    lines = [summary, "",
-             f"This Release keeps the files of edition {label} of the Federal Modernization Workbook: the Word "
+    lines = [summary, ""]
+    if release_name:
+        lines += [f"{release_name} is the baseline edition: every book, guide and developer workbook is complete, "
+                  "checked against every other book, and approved by the workbook's editor. It is not an "
+                  "independent peer review.", ""]
+    lines += [f"This Release keeps the files of edition {label} of the Federal Modernization Workbook: the Word "
              "editions of the books, the presentation decks, the narration audio and the videos, as built "
              f"from the tagged source. The site shows the current workbook; the [Archive]({site}/docs/about/archive.html) "
              "lists every edition and its files.", ""]
@@ -160,6 +189,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--asset", action="append", default=[], help="a file or glob to attach (repeatable)")
     ap.add_argument("--decks", action="store_true",
                     help="attach every deck and narration-audio zip (fetch them first: deck_assets.py fetch --all)")
+    ap.add_argument("--baseline", action="store_true",
+                    help="cut the baseline edition: mark it `baseline: true`, name the Release (see --release-name) "
+                         "and set every book, guide and workbook to Version 2.0")
+    ap.add_argument("--release-name", metavar="NAME", default=None,
+                    help='with --baseline, the Release name (default "Release 2.0"); the tag stays edition-YYYY.MM')
     ap.add_argument("--date", help="the edition's date (default: today)")
     ap.add_argument("--dry-run", action="store_true", help="print the entry and the plan; change nothing")
     ap.add_argument("--refresh-assets", metavar="EDITION", help="record an existing Release's file list and regenerate")
@@ -174,8 +208,25 @@ def main(argv: list[str] | None = None) -> int:
         ap.error(f"{eid}: an edition is edition-YYYY.MM or edition-YYYY.MM.N")
     if not args.summary:
         ap.error("--summary is required")
+    release_name = None
+    if args.release_name and not args.baseline:
+        ap.error("--release-name goes with --baseline")
+    if args.baseline:
+        release_name = args.release_name or "Release 2.0"
+        if not RELEASE_NAME.fullmatch(release_name):
+            ap.error('--release-name looks like "Release 2.0"')
     units = gr.units()
     editions, _ = gr.load(units)
+    if release_name and any(ed.get("baseline") is True for ed in editions):
+        raise SystemExit("cut_edition: an edition is already marked baseline")
+    if release_name:
+        todo = sbs.classify(ROOT)
+        left = len(todo["flip_chapters"]) + len(todo["flip_gated"])
+        if left and not args.dry_run:
+            raise SystemExit(f"cut_edition: {left} pages still say `status: draft` and are ready to flip. Merge "
+                             "`python scripts/set_baseline_status.py --apply` first, so the tagged commit says Baseline")
+        if left:
+            print(f"cut_edition: {left} pages would still flip; merge set_baseline_status.py --apply before the real cut")
     if any(ed["id"] == eid for ed in editions):
         raise SystemExit(f"cut_edition: {eid} is already in data/editions.yml")
     git("fetch", "--quiet", "--tags", "origin", "main")
@@ -196,19 +247,20 @@ def main(argv: list[str] | None = None) -> int:
             shutil.rmtree(staging)
         files += da.pack(staging)
         expand([str(f) for f in files])          # the same name and count guards over the lot
-    entry = entry_text(eid, date, commit, args.summary, drafted)
+    entry = entry_text(eid, date, commit, args.summary, drafted, release_name)
 
     print(f"cut_edition: {eid} on origin/main {commit[:12]}, since {previous or 'the start'}: "
           f"{len(drafted)} of {len(units)} books, guides and workbooks changed; {len(files)} files to attach "
           f"({gr.size(sum(f.stat().st_size for f in files))})")
     if args.dry_run:
+        print(f"cut_edition: Release title: {release_title(eid, release_name)}")
         print("\n" + entry)
         return 0
 
     with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8") as fh:
-        fh.write(notes(eid, args.summary, drafted))
+        fh.write(notes(eid, args.summary, drafted, release_name))
     run("gh", "release", "create", eid, "--repo", REPO, "--target", commit, "--latest=false",
-        "--title", f"Federal Modernization Workbook, edition {gr.edition_label(eid)}", "--notes-file", fh.name,
+        "--title", release_title(eid, release_name), "--notes-file", fh.name,
         capture=False)
     Path(fh.name).unlink()
     for i in range(0, len(files), UPLOAD_BATCH):

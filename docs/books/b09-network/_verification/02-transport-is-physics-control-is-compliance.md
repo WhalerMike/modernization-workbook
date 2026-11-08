@@ -119,3 +119,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | The governor closes encryption, separation and telemetry; SASE above it closes boundary, flow and malware; and the governor | The governor provides encryption, separation and telemetry; SASE above it provides boundary, flow and malware protection; the agency and its assessor still own what is left; and the governor | no source change |
 
 The figure source `docs/images/diagrams/b09-network/src/ch02-pipe-and-governor.flow.yaml` changed to match ("Protection controls closed: none" is now "Protection controls provided: none"; "The one family transport closes" is now "The one family transport supports"), and its SVG and PNG were regenerated with `scripts/diagrams/render.py`. The renamed heading keeps its old anchor, `#the-one-control-family-transport-closes`, as an explicit id. The book's landing page (`index.md`), which has no log of its own, was narrowed the same way: "pipes that close one control family ... closes the protection controls" is now "pipes that support one control family, telecommunications diversity (CP-8 and SC-47) ... provides the protection controls, leaves the agency and its assessor to own what is left".
+
+## Consistency read, November 8, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| Cross-reference link text "Book 08 Chapter 05 — Edge Interception and Bypass" | corrected to the chapter's current title, "Edge Interception, Encrypted DNS and Rogue DHCP"; no fact change | Book 08, Chapter 05 |

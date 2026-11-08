@@ -110,6 +110,17 @@ class Text(unittest.TestCase):
             record.write_text("editions:\n  - id: edition-2026.12\n    date: 2026-12-01\n    baseline: true\n", encoding="utf-8")
             self.assertEqual(wm.baseline(root), "2026-12-01")
 
+    def test_the_baseline_release_name_comes_from_the_marked_edition(self):
+        head = "editions:" + chr(10) + "  - id: edition-2026.12" + chr(10) + "    date: 2026-12-01" + chr(10)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "data").mkdir()
+            record = root / "data/editions.yml"
+            record.write_text(head + "    baseline: true" + chr(10), encoding="utf-8")
+            self.assertEqual(wm.baseline_release(root), "")
+            record.write_text(head + "    baseline: true" + chr(10) + '    release: "2.0"' + chr(10), encoding="utf-8")
+            self.assertEqual(wm.baseline_release(root), "Release 2.0")
+
 
 if __name__ == "__main__":
     unittest.main()

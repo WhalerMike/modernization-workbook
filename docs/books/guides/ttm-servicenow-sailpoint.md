@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide"
 subtitle: "Book 13's loop built on two named products, in seven gates: confirm the boundary, decide the writers and approvers, connect the sources, open the front door, actuate on the native surface, close only on a re-read, and operate the tempo"
-description: "Research draft: a gated implementation guide that builds Book 13's Ticket-to-Machine loop on ServiceNow (the front door and the record) and SailPoint Identity Security Cloud (identity governance), as an example rather than a recommendation. Seven gates, each with its steps, the federal requirement it meets and the evidence an ISSO keeps, the FedRAMP status of each product used and the Microsoft Entra features in GCC and GCC High, an interim path, a Validate step that names the integration kit's tests or says there is no automated check yet, and rollback."
+description: "Research draft: a gated implementation guide that builds Book 13's Ticket-to-Machine loop on ServiceNow (the front door and the record) and SailPoint Identity Security Cloud (identity governance), as an example rather than a recommendation. Seven gates, each with its steps, the federal requirement it supports and the evidence an ISSO keeps, the FedRAMP status of each product used and the Microsoft Entra features in GCC and GCC High, an interim path, a Validate step that names the integration kit's tests or says there is no automated check yet, and rollback."
 research-status: draft
 research-type: implementation guide
 research-book: "Books 13, 15"
@@ -9,8 +9,8 @@ date-modified: 2026-11-01
 aliases:
   - /docs/research/ttm-servicenow-sailpoint.html
 review-status: approved
-reviewed-sha256: 492c0e51bc1ea0b6f7c2d1efe61bbf37bcbd5c445b094d60ee167d8f34b30b38
-last-reviewed: 2026-11-07
+reviewed-sha256: f23f9b94f82f271e94dc893063810c98a622d5ab87871e99d5b747271bd5b50f
+last-reviewed: 2026-11-08
 ---
 # Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide {.unnumbered}
 
@@ -151,7 +151,7 @@ Items 1 and 2 are the two connections; items 3 to 5 are the seven the kit runs, 
 | Gate | Done when | Closes gap | Validate with |
 |---|---|---|---|
 | [G1 Boundary](#step-1-confirm-the-authorization-boundary) | Each product's FedRAMP status, the actions that run from a vendor cloud, and the integration identities are recorded and accepted | — | VK-NPI-02, VK-NPI-05; manual record |
-| [G2 Writers and approvers](#step-2-decide-the-writers-and-the-approvers) | One writer per attribute and one approver system per authority class are decided, and each change class has a lane | 2, 4 | `writer_check.py` flags any attribute with two writers; approvers and lanes are checked by hand |
+| [G2 Writers and approvers](#step-2-decide-the-writers-and-the-approvers) | One writer per attribute and one approver system per authority class are decided, and each operation class has a lane | 2, 4 | `writer_check.py` flags any attribute with two writers; approvers and lanes are checked by hand |
 | [G3 Sources and starting drift](#step-3-connect-the-sources-and-measure-the-starting-drift) | HR, Entra ID and AD are aggregated and correlated on `employeeId`; the starting drift is measured | — | Kit drift tests; VK-HR-01, VK-HR-04 |
 | [G4 Front door](#step-4-open-the-front-door) | Drift events, requests and disconnected-application work arrive in ServiceNow as typed, owned, clocked tasks | — | Kit contract and ServiceNow script tests |
 | [G5 Actuation](#step-5-actuate-on-the-native-surface) | Each lane actuates through a connector or a declared exception, under a service identity, with a change record where its class needs one | 3 | No automated check yet |
@@ -236,7 +236,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 
    Not both. Record each attribute's writer in the attribute map, and the [Oracle HCM to Entra guide](hcm-entra-implementation.md#the-two-decisions-to-make-first) for the first pattern's build.
 2. **Choose one approver system per authority class (gap 2).** For example *(design guidance)*: ServiceNow approves A0 and A1 through its Ask for Approval flow ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#routing-two-pipelines-and-an-escalation-lane)); SailPoint approves A2 and A3 through access-request approvals by owner, manager or governance group;[^ttm-appr] and the Service Catalog app only collects A2 and A3 requests. Set every approval's timeout outcome to reject or cancel, never approve.
-3. **Assign each change class a lane** on these products, from Appendix B's [lanes](../b13-governance/appendix-b-ticket-to-machine-reference.md#change-classes-and-their-lanes). The mapping below is the program's *(inference)*; the authorizing official accepts any class run autonomously.
+3. **Assign each operation class a lane** on these products, from Appendix B's [lanes](../b13-governance/appendix-b-ticket-to-machine-reference.md#change-classes-and-their-lanes). The mapping below is the program's *(inference)*; the authorizing official accepts any class run autonomously.
 
 | Lane (Book 13) | On these products | Change record in ServiceNow |
 |---|---|---|
@@ -256,7 +256,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 | Requirement | KSI | What this gate does | Evidence the ISSO keeps |
 |---|---|---|---|
 | SP 800-53 AC-5 Separation of Duties (Moderate) | KSI-IAM-JIT; KSI-PIY-RIS; KSI-PIY-RSD | One approver system per class; the requester never approves | The approver-per-class table, merged with its review |
-| SP 800-53 CM-3 Configuration Change Control (Moderate) | KSI-CMT-LMC; KSI-CMT-RVP | Each change class has a lane and a change-record type | The lane table |
+| SP 800-53 CM-3 Configuration Change Control (Moderate) | KSI-CMT-LMC; KSI-CMT-RVP | Each operation class has a lane and a change-record type | The lane table |
 | SP 800-53 AC-2 Account Management (Low, Moderate, High) | KSI-IAM-JIT; KSI-IAM-SUS | One writer per attribute keeps account changes traceable to the source | The attribute map with each attribute's writer |
 | Book 13's L4 acceptance | None: program design | Any autonomous class is accepted in writing by the authorizing official | The signed class acceptance |
 
@@ -269,7 +269,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 ::: {.callout-important}
 ## Validate (G2 Writers and approvers)
 - **Automated (read-only):** `writer_check.py` compares the Entra inbound provisioning mappings with SailPoint's provisioning policies and flags any attribute with two writers ([developer workbook, Chapter 08](../../project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md)). It reads exports; it doesn't check approver systems or lanes.
-- **Manual:** every HR-mastered attribute has exactly one writer in the attribute map; every authority class has exactly one approver system; every change class has a lane and a change-record type; the decisions are merged in the record.
+- **Manual:** every HR-mastered attribute has exactly one writer in the attribute map; every authority class has exactly one approver system; every operation class has a lane and a change-record type; the decisions are merged in the record.
 - **Rollback:** re-decide by a reviewed change; the record keeps the history.
 :::
 

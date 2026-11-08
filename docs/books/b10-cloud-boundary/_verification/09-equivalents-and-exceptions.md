@@ -52,3 +52,9 @@ Writer: W4. Verified 2026-10-21. Built from the *Boundary Impact Model* ("How FM
 | *What Changed at FedRAMP* — §4.4 buy the capability | "Buy the capability, not the badge" | "Since at least March 2026" removed |
 | *What Changed at FedRAMP* — §5 High package and "what it does not change" | "A higher class doesn't restore an excluded feature" | Full package table is Chapter 04's |
 | *What Changed at FedRAMP* — §1, §6, §7 | Not carried here | Chapters 03, 04, 11 and Appendix A |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Adoption of the 2026 rules mandatory January 1, 2027 | Adds the December 7, 2026 date for the VDR and VER rules, linking Book 14 Chapter 02 | Decision of Nov 8, 2026; Book 14 Chapter 02 (FedRAMP NTC-0014: VDR and VER rules brought forward to December 7, 2026) |

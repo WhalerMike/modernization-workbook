@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 6
 review-status: approved
-reviewed-sha256: cea897c46e6aeaacb846a6b5e0d4d440be10071288527a50333ce9c4f735bac4
-last-reviewed: 2026-11-07
+reviewed-sha256: eca61f44c95b88787d75b2237a626a4f88dcc13337b0a333b3a469f817caf778
+last-reviewed: 2026-11-08
 ---
 # Module 6: Time separations from the logs {.unnumbered}
 

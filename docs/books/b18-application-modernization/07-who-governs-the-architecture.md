@@ -167,7 +167,7 @@ Read it with [Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md
 4. **Evidence assembled after the fact.** A month before an assessment, someone collects screenshots. *Mitigation:* keep pipeline outputs as artifacts from the first wave, and treat a missing artifact as a failed gate.
 5. **The board accepting risk.** An exception granted by the chief architect is treated as a risk acceptance. *Mitigation:* exceptions that touch a control go to the authorizing official through the plan of action and milestones, and the decision record says so.
 
-## Key takeaways
+## What leadership should take from this
 
 1. **Give every architecture decision one owner.** The board reviews; the chief architect decides standards; the application owner decides dispositions; the authorizing official alone accepts risk; the CIO approves purchases.
 2. **Govern through artifacts, not meetings.** A versioned technology list, runnable patterns and decision records do most of the work, and they are evidence by construction.

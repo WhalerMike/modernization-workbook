@@ -144,3 +144,11 @@ Covers every section of the source. "App A" is `appendix-a-help-desk-task-refere
 | Audit — non-compliance reporting | App A Conditions a supervisor reports | — |
 | Document control — version history, review cycle, owner and approval, related documents | — | Document administration of the source; not workbook content |
 | ServiceNow automation alignment (Entra ID Spoke) | — | Chapter 03 (helpdesk-flow source, which repeats this callout) and Chapter 05 own ServiceNow automation |
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Risk Tier 1 access: application owner, then the identity governance office as a second approval stage (replaces the earlier "IGO notified, four-business-hour hold window") | The high-risk tasks table, enterprise-app row | corrected to match the published chapter | Book 04 Ch06, Risk tiers set the approval chain |

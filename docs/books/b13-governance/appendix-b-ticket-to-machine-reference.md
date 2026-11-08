@@ -1,6 +1,6 @@
 ---
 title: "Appendix B — Ticket-to-Machine Reference"
-description: "The reference tables and worked examples behind Chapter 10: the coordination loop and the five-clause request chain, which classes of change go to a machine, which stay with a human, which are handled by protocol and which become declared exceptions, the approval each class needs and the evidence each produces, the severity tempo, four illustrative worked examples, and the failure modes a reference implementation review found."
+description: "The reference tables and worked examples behind Chapter 10: the coordination loop and the five-clause request chain, which operation classes go to a machine, which stay with a human, which are handled by protocol and which become declared exceptions, the approval each class needs and the evidence each produces, the severity tempo, four illustrative worked examples, and the failure modes a reference implementation review found."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b13-governance
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-The tables that [Chapter 10](10-ticket-to-machine.md) relies on: the coordination loop and the five clauses every governed request passes through, the lanes that each class of change takes, the approval each lane needs and the evidence each lane leaves, and the severity tempo. Then four worked examples, the program's exception for certificates, the one-front-door rule for detection tools, and the failure modes a security review of a reference implementation found. The control-by-control mapping is in [Appendix A](appendix-a-requirements-mapping.md).
+The tables that [Chapter 10](10-ticket-to-machine.md) relies on: the coordination loop and the five clauses every governed request passes through, the lanes that each operation class takes, the approval each lane needs and the evidence each lane leaves, and the severity tempo. Then four worked examples, the program's exception for certificates, the one-front-door rule for detection tools, and the failure modes a security review of a reference implementation found. The control-by-control mapping is in [Appendix A](appendix-a-requirements-mapping.md).
 :::
 
 ::: {.callout-important}
@@ -219,7 +219,7 @@ The same review supports two kinds of automated check. Negative tests prove the 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
 | Routine server and public TLS renewals | Internal server TLS; public-facing TLS | Retained AD CS; public CA | CyberArk Certificate Manager | Drivers renew and install; ACME where the endpoint supports it |
-| Device certificates | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+| Device certificates | Device and user auth (Intune) | Cloud PKI, or AD CS through the Intune connector | Intune | Nothing |
 | Domain controller certificates | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches |
 | Unknown-issuer and out-of-policy certificates (the anomaly lane) | Internal server TLS | Any | CyberArk Certificate Manager | Network discovery finds them; placement and owners bring them under policy |
 | Evidence signing certificate | Not a Book 07 class | Agency CA | Platform-managed, or not X.509 | At most watches |

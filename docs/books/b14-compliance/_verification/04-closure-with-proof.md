@@ -83,3 +83,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | a necessity claim names the mechanism, says why nothing else closes the control, and shows | a necessity claim names the mechanism, says why no other mechanism can support the control, and shows | no source change |
 | If an alternative mechanism closes the control, the claim narrows; | If an alternative mechanism also supports the control, the claim narrows; | no source change |
 | A control is closed when the mechanism that closes it exists in the estate and its proof is recorded. | A control is closed when the mechanism that supports it exists in the estate and its proof is recorded. | no source change |
+
+## Consistency read, November 8, 2026
+
+Four remaining uses of "closes" for a mechanism and a control (the description, a section heading, the necessity-claim definition and the IA-3 example) now say "supports", matching the rest of the chapter. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| the mechanism that closes it has to exist | the mechanism that supports it has to exist | no source change |
+| Only port-based authentication closes IA-3 for unmanaged network ports | Only port-based authentication supports IA-3 for unmanaged network ports | no source change |

@@ -56,3 +56,11 @@ Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (b
 |---|---|---|---|---|
 | 1 | Operators: Fabric Administrator with Power BI or Fabric license if Power BI is assessed | Roles table | verified (added) | v2.0.0 interactive.md, User Permissions |
 | 2 | Annotate/Omit guidance unchanged at 2.0.0 | Footnote `c07-scuba-config` | verified | v1.8.0 vs v2.0.0 configuration.md diff |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| Six rows need comment. | Seven comments follow, one for each row or pair of rows. | Counted the bold comment paragraphs after the matrix: score, identity-plane, omission, priority, remediation, drift, native-tool |

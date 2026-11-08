@@ -1,6 +1,6 @@
 ---
 title: "Appendix A — Requirements Mapping: Pillars, Controls and Books"
-description: "A compliance-enabling map, not a compliance claim: CISA's Zero Trust Maturity Model pillars and cross-cutting capabilities, OMB M-22-09's objectives and actions, the adjacent binding instruments and the NIST SP 800-53 controls a Zero Trust program asserts, each with what it actually asks, where Book 11 addresses it, the workbook book that closes it and the evidence it calls for; then the requirements that are cited but don't exist, and the sources."
+description: "A compliance-enabling map, not a compliance claim: CISA's Zero Trust Maturity Model pillars and cross-cutting capabilities, OMB M-22-09's objectives and actions, the adjacent binding instruments and the NIST SP 800-53 controls a Zero Trust program asserts, each with what it actually asks, where Book 11 addresses it, the workbook book that carries it and the evidence it calls for; then the requirements that are cited but don't exist, and the sources."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b11-zero-trust
@@ -97,7 +97,7 @@ The program's design contract ([Chapter 03](03-what-the-mandates-require.md#the-
 | CA-2 Control Assessments; CA-5 Plan of Action and Milestones; CA-7 Continuous Monitoring | Planned assessments; a POA&M for weaknesses; a continuous monitoring strategy[^aA-53] | Ch 08, Ch 09, Ch 10 | Book 11; [Book 12](../b12-security-operations/index.md) | Assessment plan; POA&M entries traced to findings; continuous monitoring reports |
 | IR-4 Incident Handling | Preparation, detection and analysis, containment, eradication and recovery[^aA-53] | Ch 03 | [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md); the maturity model doesn't address incident response[^aA-ztmm] | Incident response plan and records |
 | PL-8 Security and Privacy Architectures; SA-8 Engineering Principles | Security architectures reviewed against the enterprise architecture; engineering principles the organization selects[^aA-53] | Ch 03, Ch 06 | [Book 01](../b01-transformation-arc/index.md) | Architecture documentation mapping each policy decision and enforcement point |
-| SA-9 External System Services; SR-3, SR-6 Supply Chain | Providers comply with organizational requirements, with defined oversight and ongoing monitoring of their compliance; supply chain controls and supplier reviews[^aA-53] | Ch 06 | [Book 10](../b10-cloud-boundary/index.md) | Provider certification evidence; the agency's configuration evidence for each service |
+| SA-9 External System Services; SR-3, SR-6 Supply Chain | Providers comply with organizational requirements, with defined oversight and ongoing monitoring of their compliance; supply chain controls and supplier reviews[^aA-53] | Ch 06 | [Book 10](../b10-cloud-boundary/index.md) | Provider certification evidence; the agency's configuration evidence for each service. Book 11 maps the provider's evidence for SR-3 and SR-6; supplier assessment remains open in [Book 14, Appendix A](../b14-compliance/appendix-a-control-crosswalk.md) |
 
 ## Requirements that are cited but don't exist
 

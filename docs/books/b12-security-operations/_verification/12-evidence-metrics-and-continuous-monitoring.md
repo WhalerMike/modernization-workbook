@@ -135,3 +135,18 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | a metric set that would satisfy KSI-MLA-OSM, RVL and LET for a provider | a metric set that would support KSI-MLA-OSM, RVL and LET for a provider | no source change |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| Pipeline table column "What it closes" (lists control IDs) | "Controls it supports" | Claim language: a stage supports a control, it does not close one |
+| ...[Book 14, Federal Compliance & Authorization](...), carries into the authorization package. | ...[Book 14, ...](...) carries into the authorization package. | Stray comma removed |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| "Three of CA-7's items are about metrics and three are about acting" (the list has seven) | Seven items named by group: three metrics, two assessing and analyzing, two acting | Decision of Nov 8, 2026; counted from the list in the same section (SP 800-53 CA-7 items a to g as the page lists them) |

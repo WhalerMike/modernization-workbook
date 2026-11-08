@@ -254,7 +254,7 @@ Describe 'Get-PaArPlan: the dry run' {
         (Get-Item1 $script:Plan 'PAR-PRV-T1-ExchangeAdmin-Quarterly').Action | Should -Be 'NoChange'
         (Get-Item1 $script:Plan 'PAR-AZ-T0-Owner-Platform-Monthly').Action | Should -Be 'Update'
         (Get-Item1 $script:Plan 'PAR-T0-SecurityAdministrator-Monthly').Action | Should -Be 'Unmanaged'
-        @($script:Plan.Items.Name) | Should -Not -Contain 'Quarterly review - APP-PAYROLL-USERS-T1'
+        @($script:Plan.Items.Name) | Should -Not -Contain 'Quarterly review - APP-PAYROLL-USERS-R1'
     }
     It 'reads only: every request is a GET' {
         @($script:Run.Fake.Calls.Method | Sort-Object -Unique) | Should -Be @('GET')

@@ -172,7 +172,7 @@ The *Application role assignment activity* workbook, with entitlement activity o
 
 ### Automatic assignment
 
-With Entra ID Governance, an automatic assignment policy assigns a package to everyone who matches a rule on user attributes (such as department or cost center) and removes the assignment when they stop matching.[^c09-em-overview][^c09-licensing] This is the mechanism for department packages, and it depends on the attributes the HR feed maintains ([Book 03](../b03-hr-identity/index.md)). Book 02 notes one time-sensitive caution: don't build automatic assignment rules on the preview `memberOf` operator ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#entitlement-management-and-access-packages)).
+With Entra ID Governance, an automatic assignment policy assigns a package to everyone who matches a rule on user attributes (such as department or cost center) and removes the assignment when they stop matching.[^c09-em-overview][^c09-licensing] This is the mechanism for department packages, and it depends on the attributes the HR feed maintains ([Book 03](../b03-hr-identity/index.md)). Book 02 notes one caution: don't build automatic assignment rules on the `memberOf` operator, whose preview Microsoft ended on November 3, 2026, so rules that still use it have stopped updating ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#entitlement-management-and-access-packages)).
 
 ### The request portal is covered by Section 508
 

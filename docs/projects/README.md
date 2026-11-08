@@ -15,6 +15,7 @@ The workbook supplies the principles, architecture, and governance framing. Thes
 | Privileged Access & Administrative Identity | [Charter](privileged-access-charter.md) | [Plan](privileged-access-plan.md) |
 | Data Platform Identity Transformation | [Charter](data-platform-charter.md) | [Plan](data-platform-plan.md) |
 | Supply Chain & Software Bill of Materials | [Charter](../books/b14-compliance/07-supply-chain-risk-management.md) | [Plan](../books/b14-compliance/07-supply-chain-risk-management.md) |
+| Content Delivery Modernization | [Charter](../books/b00-orientation/06-the-project-portfolio.md#content-delivery-modernization) | [Plan](../project-plans/content-delivery.md) |
 
 ## Suggested sequence
 
@@ -25,6 +26,7 @@ The workbook supplies the principles, architecture, and governance framing. Thes
 5. Privileged Access & Administrative Identity
 6. Data Platform Identity Transformation
 7. Supply Chain & Software Bill of Materials
+8. Content Delivery Modernization (runs alongside 2 and 3, and draws on both)
 
 ---
 

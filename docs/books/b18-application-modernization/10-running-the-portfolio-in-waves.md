@@ -130,7 +130,7 @@ The program's design for keeping the triage current:
 4. **The long tail as a hiding place.** Hard applications get dispositioned *retain* to make the numbers look good. *Mitigation:* review dates, end-of-support triggers and a long-tail health metric the sponsor reads.
 5. **A stale triage.** The first scoring drives five years of waves. *Mitigation:* the triggers and annual re-score above.
 
-## Key takeaways
+## What leadership should take from this
 
 1. **Run the portfolio on the program's phases and gates.** The application waves fill Phases 0 through 4 and 6 of [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md), and no application may still depend on Active Directory authentication when G5 is decided.
 2. **Learn small, then industrialize.** A pilot wave with one hard case, a factory that writes down what each wave teaches, and waves sized by measured throughput.

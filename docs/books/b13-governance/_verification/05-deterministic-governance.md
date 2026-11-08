@@ -67,3 +67,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | These reviews are how the program meets the configuration-change controls an assessor will look for. | These reviews are how the program supports, and produces evidence for, the configuration-change controls an... | no source change |
 | The mapping layer is where a rule meets a control. | The mapping layer is where a rule is tied to a control. | no source change |
 | A deterministic rule set is one way to satisfy these controls with evidence rather than narrative: | A deterministic rule set is one way to support these controls with evidence rather than narrative: | no source change |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| ("this control is satisfied," ...) | ("this control has current evidence," ...) | Claim language |
+| Both say how one component satisfies which controls (program table row) | Both say how one component supports which controls | Claim language; the quoted OSCAL description above the table is unchanged and marked claims-ok |

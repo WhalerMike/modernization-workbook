@@ -39,9 +39,9 @@ The kit applies this book's help-desk model: five Word documents (the intake and
 
 **15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-15) page.
 
-**Technical deep dive (about 50 minutes live, 19 narrated)**: intake and triage, help desk authority in Entra ID, catalogs and the CMDB, and control automation, in modules on the [Presentations](../../presentations/index.md#technical-b15) page.
+**Technical deep dive (about 50 minutes live, 20 narrated)**: intake and triage, help desk authority in Entra ID, catalogs and the CMDB, and control automation, in modules on the [Presentations](../../presentations/index.md#technical-b15) page.
 
-**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, service owner, help desk and operations leads and the CISO: the help desk as the risk point, one front door, executors who never decide, reconciled inventory, measuring day-two health and buying native compliance apps first, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b15) page.
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, service owner, help desk and operations leads and the CISO: the help desk as the risk point, one front door, executors who never decide, reconciled inventory, measuring day-two health and buying native compliance apps first, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b15) page.
 
 **In-house automation executive briefing (about 9 minutes narrated)**: for Chapter 13, building day-two automation in-house when there's no funding for new products, with a pilot to approve, on the [Presentations](../../presentations/index.md#executive-b15-inhouse) page.
 

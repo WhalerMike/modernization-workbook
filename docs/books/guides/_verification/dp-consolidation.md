@@ -60,3 +60,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | The federal requirements each step meets | The federal requirements each step supports | no source change |
 | Each step the project plan schedules meets a requirement. | Each step the project plan schedules supports a requirement and produces evidence for it; the organization still sets the control parameters and procedures, and the assessor decides whether each control is satisfied. | no source change |
+
+## Consistency read, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Table caption: "The four pieces of an implementation guide, and the plan" (the table lists six rows) | "The pieces of the guide set, and the plan" | the table itself; no source change |

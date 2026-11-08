@@ -68,3 +68,10 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | how a moderate-impact agency estate closes the NIST SP 800-53 controls in its baseline and proves it. | how a moderate-impact agency implements the NIST SP 800-53 controls in its baseline across its estate and proves it. | no source change |
 | Figure caption: What remains when the whole program is in place: closed controls are proven, and six kinds | Figure caption: What remains when the whole program is in place: controls are closed with recorded proof, and six kinds | no source change |
 | A satisfied control set doesn't measure any of them. | A control set that passes assessment doesn't measure any of them. | no source change |
+
+## Consistency read C3, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| when it specifies the mechanism that closes it and the evidence that proves it | when it specifies the mechanism that supports it and the evidence that proves it | no source change |
+| IA-9, SC-8 row: the control as a whole is closed in Book 06 | Appendix A lists IA-9 in Book 06 (partly closed) and SC-8 in Book 09 (closed) | Appendix A rows IA-9 and SC-8 |

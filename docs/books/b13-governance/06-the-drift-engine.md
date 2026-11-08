@@ -47,8 +47,8 @@ The program classifies every drift finding into exactly one of five classes. Fiv
 | `DRIFT-SCHEMA` | A claim's structure no longer matches the declared schema | Rules | On every change to the record, and at runtime |
 | `DRIFT-SEMANTIC` | The structure is valid, but the meaning is stale or inconsistent with the record | Between rules and runtime | At runtime |
 | `DRIFT-PROVENANCE` | The provenance envelope is missing, invalid or broken, or a reference no longer resolves | Mappings for dangling references; runtime for a change with no record | On every change to the record, and at runtime |
-| `DRIFT-AUTHZ` | A claim was written, transmitted or acted on outside its authorized envelope | Runtime | At runtime |
-| `DRIFT-IDENTITY` | An issuer or object can't be resolved to a verified object in the record | Runtime | At runtime |
+| `DRIFT-AUTHZ` | A claim was written, transmitted or acted on outside its authorized envelope | Runtime | At runtime (design only today) |
+| `DRIFT-IDENTITY` | An issuer or object can't be resolved to a verified object in the record | Runtime | At runtime (design only today) |
 
 : The five drift classes {.striped .hover}
 
@@ -120,7 +120,7 @@ Detection runs in two places, on different clocks.
 - **On every proposed change to the record.** Checks run in the change pipeline before a change to the rules, mappings or registries can land: declared paths and structures exist, and every referenced document resolves. These find schema and provenance drift in the record itself, before it reaches the estate. They use the same gates as [Chapter 04](04-change-control-and-provenance.md).
 - **Against the estate.** A scheduled comparison reads the platforms through their adapters and compares them with the record. Between comparisons, the engine can watch a platform's own change events where the platform provides them. [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#drift-detection) uses the Entra audit log this way for restricted administrative units.
 
-The program doesn't set one interval for everything. Each check's cadence is set by the book that owns it, matched to how fast the drift matters and how fast the platform can be read, and recorded as part of the check. SP 800-53's CA-7 requires the organization to establish frequencies for monitoring and for assessing control effectiveness, and CA-7(4) requires risk monitoring that includes effectiveness, compliance and change monitoring;[^c06-sp80053] the per-check cadence is how the program meets both. [Book 12, Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) carries the continuous-monitoring metrics and reporting rhythm, and this chapter doesn't repeat them.
+The program doesn't set one interval for everything. Each check's cadence is set by the book that owns it, matched to how fast the drift matters and how fast the platform can be read, and recorded as part of the check. SP 800-53's CA-7 requires the organization to establish frequencies for monitoring and for assessing control effectiveness, and CA-7(4) requires risk monitoring that includes effectiveness, compliance and change monitoring;[^c06-sp80053] the per-check cadence is how the program supports both. [Book 12, Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) carries the continuous-monitoring metrics and reporting rhythm, and this chapter doesn't repeat them.
 
 ## What the engine remediates, and what it doesn't
 

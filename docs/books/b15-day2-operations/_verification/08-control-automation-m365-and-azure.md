@@ -106,3 +106,11 @@ ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160).
 | 1 | ScubaGear queries M365 APIs with PowerShell, evaluates with OPA/Rego, outputs HTML, JSON, CSV (row 4) | ScubaGear | verified (unchanged) | ScubaGear README v2.0.0, Steps One to Three |
 | 2 | `-M365Environment` values commercial/gcc/gcchigh/dod; row 5's "required for GCC High/DoD and Power Platform" is now "required for GCC, GCC High or DoD tenants" (not with service principal authentication) | ScubaGear | corrected | ScubaGear parameters.md v2.0.0 |
 | 3 | Policy ID example `MS.AAD.1.1v1` "Legacy authentication SHALL be blocked" (row 8) | ScubaGear | verified (unchanged) | ScubaGear aad.md v2.0.0 |
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | BOD 25-01 reporting: the directive allows continuous reporting or quarterly submission; CISA's implementation guidance (updated July 27, 2026) names three methods: CISA-hosted ScubaConnect, agency-hosted semi-automated, manual CyberScope upload | ScubaGear and the secure configuration baselines | added, checked against the published chapter | Book 11 Ch04, How agencies report |

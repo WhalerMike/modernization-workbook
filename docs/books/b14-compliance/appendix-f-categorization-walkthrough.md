@@ -235,7 +235,7 @@ Check the output against the pasted standard text before using any of it. The as
 ## Honest limits
 
 - **The catalog is dated.** SP 800-60 Revision 1 is from August 2008 and refers to the 2007 Federal Enterprise Architecture reference models. Its type names are still the common vocabulary; check the NIST publication page for a later revision before relying on a level.
-- **Mapped by judgment.** Three of the four example types are chosen by function, and Personal Identity and Authentication and Record Retention each carry an explicit caveat above. A different agency could reasonably choose differently.
+- **Mapped by judgment.** Every example type is mapped by judgment; Personal Identity and Authentication and Record Retention each carry an explicit caveat above, in the Basis column of Step 2. A different agency could reasonably choose differently.
 - **The walk-through is not a baseline.** It ends at the categorization. Selecting and tailoring controls is the next RMF step and is covered in [Chapter 03](03-the-baseline-and-the-crosswalk.md) and [Appendix A](appendix-a-control-crosswalk.md).
 
 ::: {.callout-tip}

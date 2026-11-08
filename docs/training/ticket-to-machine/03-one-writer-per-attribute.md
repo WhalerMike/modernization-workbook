@@ -47,7 +47,7 @@ Used as shipped, the two products fall short of the loop in four places. Gate 2 
 
 - The guide's [four gaps](../../books/guides/ttm-servicenow-sailpoint.md#the-loop-at-a-glance), below the loop table.
 - The guide's [Gate 2](../../books/guides/ttm-servicenow-sailpoint.md#step-2-decide-the-writers-and-the-approvers): the two writer patterns, the approver-per-class example and the lane table.
-- [Book 13, Appendix B: change classes and their lanes](../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#change-classes-and-their-lanes), for the lanes the table maps onto the products.
+- [Book 13, Appendix B: operation classes and their lanes](../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#change-classes-and-their-lanes), for the lanes the table maps onto the products.
 
 ## Unit 3: Checking for two writers
 

@@ -85,3 +85,26 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | The order that satisfies the directive is architecture, | The order that serves the directive is architecture, | no source change |
+
+## Consistency read, November 8, 2026
+
+The sentence on BOD 25-01 reporting named two options; the page now matches Chapter 04 and CISA's implementation guidance, which lists three methods (manual CyberScope upload, CISA-hosted ScubaConnect, agency-hosted semi-automated). No source was re-opened; the figure comes from Chapter 04's check of the guidance updated July 27, 2026.
+
+| Before | After | Source |
+|---|---|---|
+| BOD 25-01's reporting obligation can be met by continuous integration with CISA's monitoring or by quarterly manual reports. Either satisfies the directive. | The reporting obligation can be met by continuous integration or quarterly reporting, and the guidance offers three methods for doing so (Chapter 04). Any of them satisfies the directive. | Chapter 04 and its footnote c04-guidance |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| Any of them satisfies the directive. | Any of them is an accepted way to meet the directive's reporting requirement. | Supports-not-satisfies claim language; the three methods are unchanged |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Link text "Vol VII Book 02 of the Federal Compliance series" | Link text is Book 15 Chapter 08's title; the old label stays in brackets | Decision of Nov 8, 2026; title read from b15-day2-operations/08-control-automation-m365-and-azure.md |
+| CA001 meets MS.AAD.1.1v1 after legacy clients move (claim 18) | CA001 addresses MS.AAD.1.1v1 after legacy clients move | Decision of Nov 8, 2026; claim language |

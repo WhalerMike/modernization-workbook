@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: decision guide
 research-book: "Book 09"
+review-status: approved
+reviewed-sha256: ddfe972c7f92925f0738a5fec1018a78d105432c36f7e3c903f8967927cfd526
 last-reviewed: 2026-11-08
-review-status: pending
 ---
 # Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh
 
@@ -236,7 +237,7 @@ Before the agency funds a refresh of a distribution point in every office, it sh
 | Developer workbook (chapters built on the kit, each with a Lab 1 and a Lab 2) | Planned; the implementation guide's two labs come first |
 | Training path | Planned |
 
-: The four pieces of an implementation guide, and the plan {.striped}
+: The pieces of the guide set, and the plan {.striped}
 
 ::: {.callout-tip}
 ## Back to the books

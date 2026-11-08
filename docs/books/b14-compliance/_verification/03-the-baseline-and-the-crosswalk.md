@@ -85,3 +85,10 @@ Method, all on October 21, 2026. The 149 crosswalk rows were parsed from the sou
 | Claim | Before | After | Source |
 |---|---|---|---|
 | PT controls in the privacy baseline | "PT-1 to PT-5 and PT-7" | All eight, PT-1 to PT-8, with PT-5(2), PT-6(1), PT-6(2), PT-7(1) and PT-7(2) | NIST OSCAL Release 5.2.0, `NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json`, read November 2, 2026 (found by the Book 03 Chapter 14 privacy pass) |
+
+## Decision of Nov 8, 2026
+
+| Claim | Before | After | Source |
+|---|---|---|---|
+| Identifiers checked (claim 15) | "All 149 identifiers and titles were checked" | All 152 checked, including AT-2(3) Social Engineering and Mining, PT-6 System of Records Notice and PT-8 Computer Matching Requirements: each exists in release 5.2.0, none withdrawn, titles match Appendix A apart from capitalization | `NIST_SP-800-53_rev5_catalog.json` (version 5.2.0, last modified 2026-10-22) from usnistgov/oscal-content, read November 8, 2026; every Appendix A control id matched to a catalog control and its `status` property |
+| Controls treated in exactly one book (claim 23) | "Ninety-four of the 152" | Ninety-four of the 149 archived-crosswalk controls (re-counted from distinct volume and book pairs); the three added since are in no series book, so 94 of 152 stands. From Appendix A's workbook-chapter column: 83 in exactly one of Books 00 to 13, 21 in two, 48 in none | `archive/b14-compliance/docs/compliance/Vol_0_Book_02_Control_Crosswalk.md` and `appendix-a-control-crosswalk.md`, counted November 8, 2026 |

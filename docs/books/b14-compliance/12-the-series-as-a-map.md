@@ -33,7 +33,7 @@ The two organizations differ for a reason. The series is arranged by layer: the 
 
 Three conventions apply to everything below.
 
-- **"Closes" means the series' claim, under this book's rule.** A volume claims a control closed when it specifies the mechanism that closes it and the evidence that proves it. Under [Chapter 04](04-closure-with-proof.md)'s rule, a control closes only when the mechanism exists in the estate and its proof is recorded. The map shows where each claim is made, not that the agency has met it.
+- **"Closes" means the series' claim, under this book's rule.** A volume claims a control closed when it specifies the mechanism that supports it and the evidence that proves it. Under [Chapter 04](04-closure-with-proof.md)'s rule, a control closes only when the mechanism exists in the estate and its proof is recorded. The map shows where each claim is made, not that the agency has met it.
 - **Families, not counts.** The volumes carried their own control counts, which were internal and dated. The map lists the control families each volume works in, with representative controls. The per-control index is [Appendix A](appendix-a-control-crosswalk.md).
 - **Two volumes are this book.** The executive summary, questionnaire and crosswalk volume, and the governance and assurance volume, are this book's sources. Their content is in Chapters 01 to 11 and the appendices; they aren't linked separately.
 
@@ -93,7 +93,7 @@ Before the program, the series expected an assessor to document a recognizable s
 | SC-20, SC-21: secure name resolution incomplete | Internal zones unsigned; no consistent validation across environments | Book [08](../b08-ddi/index.md) |
 | SC-7: no DNS-layer boundary control | Command-and-control and exfiltration domains resolvable through the standard resolver | Book [08](../b08-ddi/index.md) for the DNS-layer control; the control as a whole is closed in Books [09](../b09-network/index.md) and [12](../b12-security-operations/index.md) ([Appendix A](appendix-a-control-crosswalk.md)) |
 | AU-2, AU-12: naming and addressing events not in the SIEM | DNS and DHCP logs per environment, in different formats, or not collected | Books [08](../b08-ddi/index.md) and [12](../b12-security-operations/index.md) |
-| IA-9, SC-8: certificate-to-host binding undocumented | Workload certificates issued by hand and not tied to the inventory | Book [07](../b07-pki/index.md) for the certificate binding; the control as a whole is closed in Book [06](../b06-data-platform/index.md) ([Appendix A](appendix-a-control-crosswalk.md)) |
+| IA-9, SC-8: certificate-to-host binding undocumented | Workload certificates issued by hand and not tied to the inventory | Book [07](../b07-pki/index.md) for the certificate binding; Appendix A lists IA-9 in Book [06](../b06-data-platform/index.md), where it is partly closed, and SC-8 in Book [09](../b09-network/index.md), where it is closed ([Appendix A](appendix-a-control-crosswalk.md)) |
 | SC-8: no network-layer encryption on direct internet circuits | Confidentiality depends on each application negotiating TLS | Book [09](../b09-network/index.md) |
 | AC-4, SC-7, SI-3: no application-layer inspection on direct internet paths | Traffic controlled by address and port only | Book [09](../b09-network/index.md) |
 | AU-12: session records incomplete | Flow logs without user, device, application or action | Book [09](../b09-network/index.md) |

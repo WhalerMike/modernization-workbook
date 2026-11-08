@@ -98,7 +98,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Handling, retention and sharing of assessment outputs | | C | D | | | | | R | | C |
 | Cloud provider native-tool findings admitted as evidence | | D | C | | R | | | R | C | |
 
-Six rows need comment.
+Seven comments follow, one for each row or pair of rows.
 
 The **score** row gives the program lead the decision because the definition of "whole agency" is the thing every other role has an incentive to narrow. A pillar owner whose estate assesses badly would prefer it excluded; a cloud account team would prefer its own tool's score to stand in for the whole. The lead decides, the authorizing official and the assessors are consulted, and the exclusions are written down.
 

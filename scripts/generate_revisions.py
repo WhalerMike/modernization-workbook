@@ -22,6 +22,13 @@ A book's version is 1.0 in the first edition it appears in, and goes up by
 0.1 in each later edition that changes it. An edition's entry for a book can
 set `version: "2.0"` to start a new major version.
 
+The edition marked `baseline: true` in data/editions.yml is the exception: it
+sets every book, guide and developer workbook to version 2.0, whether or not
+the edition touched it, and a later edition that touches one goes 2.1, 2.2 and
+so on from there. The 2.0 row says "Release 2.0, the baseline: ..." and then lists any merged
+changes the edition carries for that item. Earlier rows are not touched.
+Without a baseline edition nothing changes.
+
     python scripts/generate_revisions.py           # write the sections
     python scripts/generate_revisions.py --check   # exit 1 if a section is stale or the record is wrong
 
@@ -132,6 +139,10 @@ def load(found: dict[str, Unit]) -> tuple[list[dict], list[dict]]:
             errors.append(str(e))
         if not ed.get("summary"):
             errors.append(f"{where}: needs a summary")
+        if "baseline" in ed and not isinstance(ed["baseline"], bool):
+            errors.append(f"{where}: baseline must be true or false")
+        if "release" in ed and not (isinstance(ed["release"], str) and re.fullmatch(r"\d+\.\d+", ed["release"])):
+            errors.append(f'{where}: release must be a quoted version such as "2.0"')
         for uid, entry in (ed.get("units") or {}).items():
             if uid not in found:
                 errors.append(f"{where}: no book, guide or developer workbook {uid!r}")
@@ -139,6 +150,8 @@ def load(found: dict[str, Unit]) -> tuple[list[dict], list[dict]]:
                 errors.append(f"{where}: {uid}: needs a `changes:` list")
             elif "version" in entry and not re.fullmatch(r"\d+\.\d+", str(entry["version"])):
                 errors.append(f"{where}: {uid}: version must look like 2.0")
+    if sum(1 for ed in editions if ed.get("baseline") is True) > 1:
+        errors.append("data/editions.yml: only one edition can be the baseline")
     for r in releases:
         where = f"data/editions.yml: release {r.get('tag', '?')}"
         for key in ("tag", "title", "date", "kind"):
@@ -174,11 +187,30 @@ def assets_of(eid: str) -> list[dict]:
 
 # --------------------------------------------------------------- the sections
 
+BASELINE_CHANGE = "Baseline: checked against every other book; Draft becomes Baseline"
+
+
+def release_name(ed: dict) -> str:
+    """"Release 2.0" for an edition whose entry has `release: "2.0"`, else an empty string."""
+    return f"Release {ed['release']}" if ed.get("release") else ""
+
+
+def baseline_change(ed: dict) -> str:
+    name = release_name(ed)
+    return f"{name}, the baseline: checked against every other book; Draft becomes Baseline" if name else BASELINE_CHANGE
+
+
 def versions(editions: list[dict], uid: str) -> list[tuple[str, dict, dict]]:
-    """(version, edition, the unit's entry) for each edition that changed the unit."""
+    """(version, edition, the unit's entry) for each edition that changed the unit.
+    The baseline edition (`baseline: true`) counts for every unit and sets it to 2.0."""
     rows, major, minor = [], 0, -1
     for ed in editions:
         entry = (ed.get("units") or {}).get(uid)
+        if ed.get("baseline") is True:
+            entry = {"changes": [baseline_change(ed)] + list((entry or {}).get("changes") or [])}
+            rows.append(("2.0", ed, entry))
+            major, minor = 2, 0
+            continue
         if not entry:
             continue
         if "version" in entry:
@@ -264,13 +296,15 @@ def archive_section(editions: list[dict], releases: list[dict], found: dict[str,
         for ed in reversed(editions):
             assets = assets_of(ed["id"])
             files = f"[{len(assets)} files]({GH}/releases/tag/{ed['id']})" if assets else f"[Release]({GH}/releases/tag/{ed['id']})"
-            lines.append(f"| [{edition_label(ed['id'])}](#{anchor(ed['id'])}) | {ed['date'].isoformat()} | "
+            named = f" ({release_name(ed)}, the baseline)" if release_name(ed) else ""
+            lines.append(f"| [{edition_label(ed['id'])}](#{anchor(ed['id'])}){named} | {ed['date'].isoformat()} | "
                          f"{cell(ed['summary'])} | {files} |")
         lines += ["", ": Every edition, newest first {.striped .hover}", ""]
         for ed in reversed(editions):
             label = edition_label(ed["id"])
             tag = f"{GH}/releases/tag/{ed['id']}"
-            lines += [f"### Edition {label} {{#{anchor(ed['id'])}}}", "",
+            named = f" ({release_name(ed)}, the baseline)" if release_name(ed) else ""
+            lines += [f"### Edition {label}{named} {{#{anchor(ed['id'])}}}", "",
                       f"{long_date(ed['date'])}. {cell(ed['summary'])}", "",
                       f"- **Release:** [{ed['id']}]({tag}) · [source at this edition]({GH}/tree/{ed['id']})"]
             changed = [found[u] for u in (ed.get("units") or {}) if u in found]
