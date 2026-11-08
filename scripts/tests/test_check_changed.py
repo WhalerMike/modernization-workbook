@@ -268,14 +268,21 @@ class NonSiteTasks(unittest.TestCase):
             self.assertIn("evidence-maps", cc.non_site_tasks(mods(path)), path)
         self.assertNotIn("evidence-maps", cc.non_site_tasks(mods("docs/books/b02-identity/index.md")))
 
-    def test_neutrality_checks_changed_text_files(self):
+    def test_neutrality_checks_changed_files_including_office_and_zip(self):
         t = cc.non_site_tasks(mods("docs/books/b02-identity/index.md", "docs/images/x/svg/a.svg",
-                                   "presentations/a/A.pptx", "archive/old.md"))
-        self.assertEqual(t["neutrality"], ["docs/books/b02-identity/index.md", "docs/images/x/svg/a.svg"])
+                                   "presentations/a/A.pptx", "docs/downloads/a.docx", "docs/downloads/a.zip",
+                                   "archive/old.md"))
+        self.assertEqual(t["neutrality"], ["docs/books/b02-identity/index.md", "docs/images/x/svg/a.svg",
+                                           "presentations/a/A.pptx", "docs/downloads/a.docx",
+                                           "docs/downloads/a.zip"])
 
     def test_neutrality_terms_change_checks_every_file(self):
-        for path in ("data/neutrality-terms.txt", "data/neutrality-baseline.txt", "scripts/check_neutrality.py"):
+        for path in ("data/neutrality-terms.txt", "data/neutrality-baseline.txt"):
             self.assertEqual(cc.non_site_tasks(mods(path))["neutrality"], ["*"], path)
+
+    def test_neutrality_checker_change_checks_changed_files_only(self):
+        self.assertEqual(cc.non_site_tasks(mods("scripts/check_neutrality.py"))["neutrality"],
+                         ["scripts/check_neutrality.py"])
 
     def test_neutrality_skips_deleted_files(self):
         self.assertNotIn("neutrality", cc.non_site_tasks([Change("D", "docs/books/b02-identity/old.md")]))
