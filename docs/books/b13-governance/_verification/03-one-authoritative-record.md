@@ -63,11 +63,3 @@ Checked October 21, 2026 by writer W2. Sources: `docs/architecture/single-source
 | reference-architecture § Who This Is For | — | Audience table not carried; the chapter's audience is set by the book. Its points appear in "What an authorizing official gets" |
 | reference-architecture § Navigation (entry points, explainers) | Links throughout to Book 02 Ch04/Ch05 and Book 05 | Navigation tables not carried |
 | reference-architecture § Source Files (monorepo path) | — | Internal path |
-
-## Consistency read, November 8, 2026
-
-The link to Book 01, Chapter 03 pointed at an anchor that does not exist; it now points at the heading "1. Canonical source of truth" (#1-canonical-source-of-truth). No claim changed.
-
-| Before | After | Source |
-|---|---|---|
-| 03-platform-foundation.md#canonical-source-of-truth | 03-platform-foundation.md#1-canonical-source-of-truth | the Book 01 Chapter 03 heading |

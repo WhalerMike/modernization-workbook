@@ -46,7 +46,7 @@ The idea matches how federal controls already describe configuration. SP 800-53'
 
 ## Where the record lives
 
-The program keeps its governance artifacts in a version-controlled repository. In the worked example the repository runs on the platform host that [Book 01, Chapter 03](../b01-transformation-arc/03-platform-foundation.md#1-canonical-source-of-truth) describes, with signed commits, a standby replica and off-site backup. The repository holds three kinds of artifact:
+The program keeps its governance artifacts in a version-controlled repository. In the worked example the repository runs on the platform host that [Book 01, Chapter 03](../b01-transformation-arc/03-platform-foundation.md#canonical-source-of-truth) describes, with signed commits, a standby replica and off-site backup. The repository holds three kinds of artifact:
 
 | Surface | What it holds | Example |
 |---|---|---|
