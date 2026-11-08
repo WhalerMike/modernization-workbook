@@ -6,7 +6,7 @@ audience: [Technical]
 family: dw-non-person-identity
 part: How
 series-order: 10
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

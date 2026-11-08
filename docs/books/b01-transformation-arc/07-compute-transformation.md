@@ -7,7 +7,7 @@ family: b01-transformation-arc
 book: B01
 part: What
 series-order: 7
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

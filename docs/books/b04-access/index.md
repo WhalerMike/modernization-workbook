@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 04 — Access & Privilege: Every Access Decision Is a Policy Decision {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book consolidates the workbook's access-plane pages (the Conditional Access policy library, PIM self-request with approval, the Conditional Access principles and their short companion pages) into one ordered book, and draws on the Federal Compliance books and the Help Desk guide for privileged access, application governance and access as code, which stay in place and are linked. Every external claim was checked against a primary source and carries a footnote with its access date. The consolidated pages are kept in the repository's [`archive/b04-access/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b04-access) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book consolidates the workbook's access-plane pages (the Conditional Access policy library, PIM self-request with approval, the Conditional Access principles and their short companion pages) into one ordered book, and draws on the Federal Compliance books and the Help Desk guide for privileged access, application governance and access as code, which stay in place and are linked. Every external claim was checked against a primary source and carries a footnote with its access date. The consolidated pages are kept in the repository's [`archive/b04-access/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b04-access) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

@@ -5,7 +5,7 @@ description: "A one-page brief for the chief human capital officer: why Federal 
 doc-type: workbook-guide
 audience: [Executive, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

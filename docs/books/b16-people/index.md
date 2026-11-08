@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 16 — People: Training & Education: People, Not Tools, Close the Gap {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book replaces the workbook's training and education pages, the end-user training guide, and the Federal Compliance series' training and certification volume (its overview, compliance track, implementation track, assessment and certification, and vendor training and lab environments). Every external claim was checked against a primary source, starting October 21, 2026, and carries a note with its date. The replaced pages are kept in the repository's [`archive/b16-people/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b16-people) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's training and education pages, the end-user training guide, and the Federal Compliance series' training and certification volume (its overview, compliance track, implementation track, assessment and certification, and vendor training and lab environments). Every external claim was checked against a primary source, starting October 21, 2026, and carries a note with its date. The replaced pages are kept in the repository's [`archive/b16-people/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b16-people) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

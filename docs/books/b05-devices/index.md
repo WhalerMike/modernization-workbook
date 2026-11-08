@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 05 — Devices & Endpoints: Group Policy to Intune and Azure Arc {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book consolidates the workbook's device and server modernization pages (the Group Policy sunset guides, the Intune policy migration guide, Intune-first onboarding, the Intune and Azure Arc path guides, the hybrid-join whitepaper and their short companion pages) into one ordered book. Every external claim was checked against a primary source between October 20 and October 30, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b05-devices/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b05-devices) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book consolidates the workbook's device and server modernization pages (the Group Policy sunset guides, the Intune policy migration guide, Intune-first onboarding, the Intune and Azure Arc path guides, the hybrid-join whitepaper and their short companion pages) into one ordered book. Every external claim was checked against a primary source between October 20 and October 30, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b05-devices/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b05-devices) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

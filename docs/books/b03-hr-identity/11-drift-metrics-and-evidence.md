@@ -7,7 +7,7 @@ family: b03-hr-identity
 book: B03
 part: How
 series-order: 11
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

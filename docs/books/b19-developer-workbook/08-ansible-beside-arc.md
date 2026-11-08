@@ -7,7 +7,7 @@ family: b19-developer-workbook
 book: B19
 part: How
 series-order: 8
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

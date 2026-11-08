@@ -4,7 +4,7 @@ description: "The step-by-step implementation of the companion guide's Azure Arc
 doc-type: workbook-guide
 audience: [Executive, Technical, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
