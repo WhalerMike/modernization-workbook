@@ -58,7 +58,7 @@ FedRAMP's Consolidated Rules for 2026 launched on June 25, 2026. FedRAMP publish
 | January 1, 2027 | The Consolidated Rules take mandatory effect for all stakeholders | Ahead |
 | June 11, 2027 | No new Rev5 certification applications accepted | Ahead |
 
-The December 7 date comes from a separate notice. FedRAMP brought the VDR and VER rules forward from a planned June 1, 2027 adoption to December 7, 2026, to line up with CISA's BOD 26-04. Providers that aren't yet following the rules can keep their certification under a corrective action plan through March 7, 2027; after that, FedRAMP says certification is revoked for offerings that don't follow them.[^c02-ntc0014] FedRAMP states that, based on confirmation with CISA, providers following the VDR and VER rules will meet or exceed BOD 26-04's expectations.[^c02-ntc0014]
+The December 7 date comes from a separate notice. FedRAMP brought the VDR and VER rules forward from a planned June 1, 2027 adoption to December 7, 2026, to line up with CISA's BOD 26-04. Providers that aren't yet following the rules can keep their certification under a corrective action plan through March 7, 2027; after that, FedRAMP says certification is revoked for offerings that don't follow them.[^c02-ntc0014] FedRAMP states that, based on confirmation with CISA, providers following the VDR and VER rules will meet or exceed BOD 26-04's expectations.[^c02-ntc0014] <!-- claims-ok: FedRAMP's statement, attributed -->
 
 Two corrections to how these dates are often quoted, including in the program's earlier sources:
 
@@ -121,7 +121,7 @@ Their deadlines passed years ago. Their requirements didn't, and a recurring req
 
 ## Emergency directives
 
-Emergency directives are shorter-lived, but they often leave ongoing actions behind. On January 8, 2026 CISA closed ten emergency directives issued between 2019 and 2024, including those on SolarWinds Orion, on-premises Exchange, Print Spooler and VMware. It explained that the vulnerability-specific ones were covered because "those vulnerabilities are now included in CISA's Known Exploited Vulnerabilities (KEV) catalog," and that the required actions were either implemented or covered by BOD 22-01, which BOD 26-04 has since replaced.[^c02-ed-retire] Three directives from the last year still carry obligations:
+Emergency directives are shorter-lived, but they often leave ongoing actions behind. On January 8, 2026 CISA closed ten emergency directives issued between 2019 and 2024, including those on SolarWinds Orion, on-premises Exchange, Print Spooler and VMware. It explained that the vulnerability-specific ones were covered because "those vulnerabilities are now included in CISA's Known Exploited Vulnerabilities (KEV) catalog," and that the required actions were either implemented or covered by BOD 22-01, which BOD 26-04 has since replaced.[^c02-ed-retire] Three directives from the last year still carry obligations: <!-- claims-ok: CISA retiring directives, not a claim -->
 
 | Directive | Issued | Products | What still applies |
 |---|---|---|---|

@@ -127,3 +127,11 @@ The workbook targets FedRAMP Moderate civilian agencies. Framing that read as Hi
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | SCuBA mapping limited to FedRAMP High baseline controls; the High baseline contains every Moderate control, so the mapping serves a Moderate system too | ScubaGear | verified fact unchanged; added sentence is inference (SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| a metric set that would satisfy KSI-MLA-OSM, RVL and LET for a provider | a metric set that would support KSI-MLA-OSM, RVL and LET for a provider | no source change |

@@ -157,3 +157,11 @@ Checked October 27, 2026; no personal data sent to any site.
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | K1 | Rolling it out: the inventory step can start from the Start Kit, which flags this chapter's rules (secret length and reuse, Message-Authenticator, PAP and MS-CHAP, KB5040268 mode from event 4421) | Rolling it out | added | examples/start-kit (PR in this change); tests/powershell, 152 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026; KB5040268 (events 4418 to 4421), opened Oct 27, 2026 |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| IA-3 is met at the access broker instead, as the next section explains. | IA-3 is supported at the access broker instead, as the next section explains. | no source change |

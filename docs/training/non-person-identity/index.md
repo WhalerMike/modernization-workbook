@@ -34,7 +34,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Active Directory engineer | The service accounts, MSAs, gMSAs and dMSAs, and the Kerberos accounts that stay on an island |
 | Developer | The code in `examples/non-person-identity`: what each script reads, the rules it applies, the plan it writes and the manifest it keeps |
 | AI governance staff | Agent identities, blueprints and sponsors, and the checks that hold them to the program's rule |
-| ISSO reviewer | The federal requirement each gate meets, the KSI it lines up with, and the evidence you keep |
+| ISSO reviewer | The federal requirements each gate supports, the KSI it lines up with, and the evidence you keep |
 
 **Level:** intermediate. **Products:** Microsoft Entra ID, Microsoft Entra Workload ID, Microsoft Entra Agent ID, Azure Key Vault and Active Directory Domain Services. **Scope:** a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC with commercial Azure, with an on-premises Active Directory, as the [workbook](../../project-plans/developer-workbooks/non-person-identity/index.md) assumes.
 
@@ -85,7 +85,7 @@ Work through them in order. They follow the guide's gates, G1 to G6, with the gu
 
 **If you're an ISSO reviewer,** read each module's introduction, its federal requirement table and its summary, and skip the labs. Modules 10 and 11 are yours in full. The workbook's [reading paths](../../project-plans/developer-workbooks/non-person-identity/index.md#reading-paths) suggest an order for each role.
 
-Each module follows the same units: an introduction with the federal requirement it meets, learning objectives, prerequisites, one to three concept units, Lab 1, Lab 2, a knowledge check and a summary.
+Each module follows the same units: an introduction with the federal requirements it supports, learning objectives, prerequisites, one to three concept units, Lab 1, Lab 2, a knowledge check and a summary.
 
 ## What you need for the labs
 

@@ -56,7 +56,7 @@ Each page keeps its status label (draft or in review) until it is reviewed and p
 
 ## Microsoft Automation learning path
 
-Three modules that teach you to script Microsoft Entra ID and Intune through Microsoft Graph in a federal tenant: which cloud's endpoints to call, how a script signs in without a secret, which least-privileged permissions each read needs, and how to turn the results into evidence. Each module is in Microsoft Learn's form: an introduction with the federal requirement it meets, objectives, concept units, **Where agencies are** with government-cloud availability, a lab on fixtures with no tenant, a lab in your own test tenant, a knowledge check and a summary. The code is [`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), in Python and PowerShell.
+Three modules that teach you to script Microsoft Entra ID and Intune through Microsoft Graph in a federal tenant: which cloud's endpoints to call, how a script signs in without a secret, which least-privileged permissions each read needs, and how to turn the results into evidence. Each module is in Microsoft Learn's form: an introduction with the federal requirements it supports, objectives, concept units, **Where agencies are** with government-cloud availability, a lab on fixtures with no tenant, a lab in your own test tenant, a knowledge check and a summary. The code is [`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), in Python and PowerShell.
 
 | | |
 |---|---|

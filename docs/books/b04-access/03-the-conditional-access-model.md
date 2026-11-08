@@ -99,7 +99,7 @@ Two conditions need more than a table row.
 | Password change | Only with a user-risk condition, all resources and no other controls; must be paired with MFA[^c03-grant][^c03-graph-grant] |
 | Require risk remediation | Only with user risk; automatically adds an authentication strength and sign-in frequency "every time"; handles password and passwordless users; not supported for guests and external users[^c03-grant][^c03-managed] |
 
-When more than one risk policy applies, precedence is fixed: block overrides everything, and risk remediation overrides password change.[^c03-managed] [Chapter 07](07-the-conditional-access-policy-library.md) uses that rule to meet the CISA requirement to block high-risk users.
+When more than one risk policy applies, precedence is fixed: block overrides everything, and risk remediation overrides password change.[^c03-managed] [Chapter 07](07-the-conditional-access-policy-library.md) uses that rule in the policy that carries out the CISA requirement to block high-risk users.
 
 ### Authentication strengths
 
@@ -176,7 +176,7 @@ Report-only is a policy state: the policy is evaluated at every sign-in, its res
 
 | Result | Meaning |
 |---|---|
-| Report-only: Success | Conditions matched and the controls were already satisfied (for example, an MFA claim was in the token) |
+| Report-only: Success | Conditions matched and the controls were already satisfied (for example, an MFA claim was in the token) <!-- claims-ok: Conditional Access grant controls, a product term --> |
 | Report-only: Failure | Conditions matched and a non-interactive control failed; this is what a block would do |
 | Report-only: User action required | Conditions matched and the user would have been prompted (MFA, terms of use) |
 | Report-only: Not applied | Conditions didn't match, for example because the user is excluded |

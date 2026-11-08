@@ -24,7 +24,7 @@ Consent creates service principals, and Microsoft's own services create more. So
 
 In this module you read every non-person identity into one register, with its type, owners, credentials, risk and candidate target. You decide nothing yet. Inventory first; decide later.
 
-**The federal requirement.** Gate G1 meets NIST SP 800-53 AC-2, IA-4 and CM-8. The guide's [Validate (G1 Inventory)](../../books/guides/non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#federal-requirements-and-evidence) table has a row for every lab step.
+**The federal requirement.** Gate G1 supports NIST SP 800-53 AC-2, IA-4 and CM-8. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The guide's [Validate (G1 Inventory)](../../books/guides/non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#federal-requirements-and-evidence) table has a row for every lab step.
 
 | Requirement | KSI | Evidence |
 |---|---|---|

@@ -123,3 +123,11 @@ Applied from the two research briefs behind the workbook's SD-WAN platform deep 
 | 1 | Cisco documents hybrid ML-KEM for IKEv2 on Catalyst 8000 edges only in autonomous mode, not SD-WAN mode | "BOD 26-02 pulls the refresh forward", new paragraph after the attribute list | added | `[^c10-ciscopqc]` |
 | 2 | SD-WAN controllers covered by active FIPS 140-3 module #4747; current Catalyst 8200/8300 letters cite library certificates (#5356, #5430) without naming SD-WAN mode; Catalyst 8300 platform certificate #4461 historical | Same paragraph | added | `[^c10-ciscofips]` |
 | 3 | M-26-15 requires PQC-capable key exchange on infrastructure terminating TLS or IPsec | Attribute list | confirmed (no change) | `[^c10-m2615]` |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| - a management plane that satisfies BOD 23-02, which requires | - a management plane built to BOD 23-02, which requires | no source change |

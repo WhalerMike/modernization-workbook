@@ -416,7 +416,7 @@ CP-3 asks for contingency training consistent with each person's role, "within" 
 
 ## More than one cloud
 
-The architecture above uses Microsoft's services. An agency with workloads elsewhere meets CP-6 to CP-10 with each platform's own services and produces each platform's own evidence. The services below are examples.
+The architecture above uses Microsoft's services. An agency with workloads elsewhere supports CP-6 to CP-10 with each platform's own services and produces each platform's own evidence. The services below are examples.
 
 | Platform | Backup and recovery services (examples) |
 |---|---|

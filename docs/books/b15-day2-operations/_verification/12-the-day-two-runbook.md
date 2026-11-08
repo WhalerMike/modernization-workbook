@@ -79,3 +79,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Web self-service support documentation to WCAG 2.0 A and AA; scan intranets at a set frequency; manual testing | Validation harnesses | verified (quoted) | 36 CFR 1194 App. C 602.3; M-24-08 §III.E, n.30 |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Did the infrastructure-as-code change actually close the control? | Did the infrastructure-as-code change actually make the control test pass? | no source change |

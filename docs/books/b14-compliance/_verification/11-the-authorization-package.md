@@ -118,3 +118,11 @@ Writer W6. Sources: `docs/compliance/Vol_IV_Book_06_Authorization_Package_ConMon
 | test-plans.md: catalog purpose and three entry rules | Test plans | — |
 | test-plans.md: what runs in CI | Test plans | — |
 | test-plans.md: companion pages | — | Not carried (links to archived pages) |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Continuous monitoring is how the agency meets that requirement continuously; | Continuous monitoring is how the agency carries out that requirement continuously; | no source change |

@@ -33,7 +33,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Identity engineer | The order of work in the tenant for each gate, and the checks that prove it |
 | Developer | The code in `examples/hr-lifecycle`: what each tool reads, the rules it applies and the output it writes |
 | HR systems analyst | Which HR and contractor facts drive each account change, and what goes wrong when they arrive late or wrong |
-| ISSO reviewer | The federal requirement each gate meets, and the evidence you keep to show it |
+| ISSO reviewer | The federal requirements each gate supports, and the evidence you keep for them |
 
 **Level:** intermediate. **Product:** Microsoft Entra ID, with Microsoft Entra ID Governance. **Scope:** a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC with commercial Azure, as the [workbook](../../project-plans/developer-workbooks/hr-driven-identity/index.md) assumes.
 
@@ -75,7 +75,7 @@ Work through them in order. Module 7 reads what Modules 1, 2, 3, 4 and 6 produce
 
 **Total time:** about 6 hours, with each module's Lab 1. Lab 2, in your own test tenant, isn't counted: how long it takes depends on your tenant and your approvals.
 
-Each module follows the same units: an introduction with the federal requirement it meets, learning objectives, prerequisites, one to three concept units, Lab 1, Lab 2, a knowledge check and a summary.
+Each module follows the same units: an introduction with the federal requirements it supports, learning objectives, prerequisites, one to three concept units, Lab 1, Lab 2, a knowledge check and a summary.
 
 ## What you need for the labs
 

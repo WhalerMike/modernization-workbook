@@ -66,3 +66,12 @@ Writer W1. Sources: `docs/compliance/Vol_VI_Book_00_Implementation_Overview.md` 
 | Runbook: Tasks 1–8 | Ch12 (W7) | Summarized only in Ch02's table; Ch01 uses Task 2's warning and the as-found shapes |
 | Runbook: What Changes, in One Table | Ch02 "What changes for everyday tasks" | Columns condensed; KSI language dropped |
 | Runbook: Cross-References | — | Internal references |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| What satisfies CM-3 and CA-7 is the operated contract, not the vendor. | What supports CM-3 and CA-7 is the operated contract, not the vendor. | no source change |
+| are the program's way of meeting the controls at day-two volume. | are the program's way of supporting the controls, and evidencing them, at day-two volume. | no source change |

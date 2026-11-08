@@ -77,3 +77,11 @@ Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (b
 | 1 | SPF policy failing non-approved senders; MS.EXO.2.2v3 accepts `~all` or `-all` (last modified Oct 2025); CISA list still MS.EXO.2.2v2 (hardfail only) | What the assessors can't do | verified (updated) | v2.0.0 `exo.md`; v2.0.0 release notes; Required Configurations page |
 | 2 | DMARC for every second-level domain, `p=reject` (MS.EXO.4.1v1, 4.2v1) unchanged at 2.0.0 | Same | verified | v2.0.0 `exo.md` |
 | 3 | No DNSSEC in any of the seven v2.0.0 baselines or removedpolicies.md; none at v1.8.0 either | Same | verified (re-run search) | v2.0.0 and v1.8.0 baselines |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The order that satisfies the directive is architecture, | The order that serves the directive is architecture, | no source change |

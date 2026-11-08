@@ -75,3 +75,11 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | Wiz Moderate for U.S. Government (FR2308034636, In Process) was removed from the Marketplace data on Oct 26, 2026; Wiz for U.S. Government (FR2308034636A) still Certified, Class D | bullet, step 3 and `c08-marketplace` updated |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| and it closes the cloud-resource half of CM-6. | and it supports, with evidence, the cloud-resource half of CM-6. | no source change |

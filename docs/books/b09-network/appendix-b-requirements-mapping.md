@@ -67,7 +67,7 @@ The book's sources, and much of what circulates about federal networking, cite r
 | TIC 3.0 or any federal instrument requires SD-WAN or SASE | The TIC documents are vendor and technology neutral; the Branch Office Use Case names SD-WAN only as an example of a conveyance whose paths need security parity.[^aB-guidebook][^aB-branch] M-22-09, M-26-14, M-26-15 and the Zero Trust Maturity Model don't mention either.[^aB-m2209][^aB-m2614][^aB-m2615][^aB-ztmm] |
 | A CISA "SASE Roadmap for Federal Civilian Agencies" (2023) | No document of that title appears in CISA's TIC guidance; the SASE document CISA has published is the June 2026 guidance.[^aB-core][^aB-sase] |
 | FedRAMP prohibits SD-WAN or requires hairpin routing | FedRAMP certifies services and sets no routing requirement.[^aB-fedramp-use] |
-| An encrypted WAN overlay is required where the payload is already TLS-protected | SC-8 can be met by physical or logical means; SC-8(3) and SC-8(4) are in no baseline.[^aB-53][^aB-53b] |
+| An encrypted WAN overlay is required where the payload is already TLS-protected | SC-8 can be met by physical or logical means; SC-8(3) and SC-8(4) are in no baseline.[^aB-53][^aB-53b] <!-- claims-ok: the control's own text --> |
 | M-22-09 mandates a 15-minute token refresh | M-22-09 sets no token lifetime; reauthentication intervals come from SP 800-63B-4.[^aB-m2209][^aB-63b] |
 | M-21-31 event-logging tiers EL0 to EL3 | Rescinded May 22, 2026, by M-26-14.[^aB-m2614] |
 | A citable FedRAMP Moderate control count | FedRAMP Notice 0013 removed most FedRAMP-assigned parameters and gives no new counts.[^aB-ntc0013] |

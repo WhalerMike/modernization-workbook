@@ -52,3 +52,13 @@ Checked October 21, 2026 by writer W1. Source: `docs/compliance/Vol_III_Book_00_
 | Book 00 § How This Volume Fits: "truth separated from enforcement"; truth plane vs enforcement planes | Ch01 "What the program adds" (actuation vs evidence) | Internal plane labels not carried |
 | Book 00 § Where This Volume's Evidence Lands — Volume X (optional governance-substrate binding) | — | Engine-specific optional binding; not carried, because the workbook names no engine. Book 13 may treat governance evidence in general terms |
 | Book brief requirements (warehouse vs detection, planes, silent gaps, federal drivers) | Ch01 sections on each | New content; claims 1–28 |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| An agency can satisfy AU-12 completely and still fail AU-6 and SI-4, | An agency can implement AU-12 completely and still fail AU-6 and SI-4, | no source change |
+| such a source may meet M-26-14's retention baseline while contributing nothing | such a source may count toward M-26-14's retention baseline while contributing nothing | no source change |
+| The reporting path is where BOD 25-01 meets this book. | The reporting path is where BOD 25-01 enters this book. | no source change |

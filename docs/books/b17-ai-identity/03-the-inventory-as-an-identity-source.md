@@ -101,7 +101,7 @@ These are the facts an identity record needs most, and none of them is in the in
 
 The risk-acceptor row needs a word. M-25-21's impact assessment must include "risk acceptance, supported by a signature from the individual accepting the risk," and the memo encourages agencies to give AI risk responsibilities to officials accountable for the mission outcome of the use case.[^c03-m2521] So the memo requires a named, accountable individual for every high-impact use case, and the inventory has no field for that person. The impact assessment is where the name lives; the identity record should point to it.
 
-SP 800-53 AC-2 asks an organization to define the types of accounts allowed, assign account managers, require approvals to create accounts, monitor account use and remove accounts when they're no longer needed; CM-8 asks for an inventory of system components at the granularity needed for tracking and accountability.[^c03-sp80053] An AI system's credentials are accounts and components in exactly that sense. The inventory describes the use; the controls are met in the directory.
+SP 800-53 AC-2 asks an organization to define the types of accounts allowed, assign account managers, require approvals to create accounts, monitor account use and remove accounts when they're no longer needed; CM-8 asks for an inventory of system components at the granularity needed for tracking and accountability.[^c03-sp80053] An AI system's credentials are accounts and components in exactly that sense. The inventory describes the use; the directory is where the controls are implemented and evidenced.
 
 ## A use case isn't an identity
 

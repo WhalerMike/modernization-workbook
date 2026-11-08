@@ -17,3 +17,11 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 3 | Vendor ask about FedRAMP High support applies only if a High system would use it | Ask Palo Alto | restated | pa-fr |
 
 Kept unchanged: the Marketplace class and level facts for each vendor (tier comparisons) and Cato's announcement of a FedRAMP High process.
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| which SD-WAN and SASE platforms meet the book's requirements today, | which SD-WAN and SASE platforms can do what the book requires today, | no source change |

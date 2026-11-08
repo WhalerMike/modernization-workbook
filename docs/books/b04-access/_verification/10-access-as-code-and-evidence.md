@@ -96,3 +96,11 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 |---|---|---|---|---|
 | SW1 | Microsoft365DSC resource modules cover the listed Entra/PIM/entitlement/access-review/Lifecycle Workflows classes | §tooling | re-verified; link fixed (branch `dev` → `Dev`, old URL 404) | https://github.com/Microsoft365DSC/Microsoft365DSC/tree/Dev/Modules/Microsoft365DSC/DscResources (opened Oct 21, 2026) |
 | SW2 | 2.x expects PowerShell 7.6+, Windows PowerShell only for compiling and applying configurations | §tooling | re-verified against the file's text; link fixed | https://github.com/Microsoft365DSC/Microsoft365DSC/blob/Dev/Modules/Microsoft365DSC/Show-PwshWarning.ps1 (opened Oct 21, 2026) |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| together they are how the program meets CM-3 and CM-5 for the identity plane and the FedRAMP 20x change-man... | together they are how the program supports, and produces evidence for, CM-3 and CM-5 for the identity plane... | no source change |

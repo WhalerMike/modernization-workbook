@@ -29,7 +29,7 @@ This chapter is a pattern. The agency, the numbers and the findings are represen
 
 ## The agency
 
-A federal civilian agency of about fifty thousand employees and several thousand active contractors, in Federal HR 2.0 Wave 2 — the agencies that transition to the Core HCM platform in FY 2027[^c13-hr20memo] — with a Microsoft 365 GCC tenant, which Microsoft documents as meeting FedRAMP Moderate and pairs with Entra ID in Azure's commercial cloud.[^c13-gcc-plan][^c13-gcc-pairing]
+A federal civilian agency of about fifty thousand employees and several thousand active contractors, in Federal HR 2.0 Wave 2 — the agencies that transition to the Core HCM platform in FY 2027[^c13-hr20memo] — with a Microsoft 365 GCC tenant, which Microsoft documents as meeting FedRAMP Moderate and pairs with Entra ID in Azure's commercial cloud.[^c13-gcc-plan][^c13-gcc-pairing] <!-- claims-ok: the vendor's statement, attributed -->
 
 Its HR data exchange today is typical:
 

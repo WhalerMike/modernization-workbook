@@ -280,6 +280,19 @@ class NonSiteTasks(unittest.TestCase):
     def test_neutrality_skips_deleted_files(self):
         self.assertNotIn("neutrality", cc.non_site_tasks([Change("D", "docs/books/b02-identity/old.md")]))
 
+    def test_claims_checks_changed_published_pages(self):
+        t = cc.non_site_tasks(mods("docs/books/b02-identity/index.md", "docs/books/b02-identity/_verification/01-x.md",
+                                   "examples/validation-kit/README.md", "docs/images/x/svg/a.svg", "STATUS.md"))
+        self.assertEqual(t["claims"], ["docs/books/b02-identity/index.md", "examples/validation-kit/README.md"])
+
+    def test_claims_checker_or_baseline_change_checks_every_page(self):
+        for path in ("data/claims-baseline.txt", "scripts/check_claims.py"):
+            self.assertEqual(cc.non_site_tasks(mods(path))["claims"], ["*"], path)
+        self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/check_claims.py")))
+
+    def test_claims_skips_deleted_files(self):
+        self.assertNotIn("claims", cc.non_site_tasks([Change("D", "docs/books/b02-identity/old.md")]))
+
 
 class RenderTargets(unittest.TestCase):
     def test_single_pages_stay_single(self):

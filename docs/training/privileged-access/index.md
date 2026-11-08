@@ -62,7 +62,7 @@ So Module 2 checks the emergency access accounts before any module changes a set
 | Developer | The code in `examples/privileged-access`: what each script reads, the rules it applies, the plan it writes and the guards that stop it |
 | Identity engineer | The order of work in the tenant, the least privilege each task needs, and the checks that prove it |
 | Platform engineer (Azure) | Module 1's Azure read and Module 6's PIM for Azure resources |
-| ISSO reviewer | The federal requirement each chapter meets, and the evidence you keep to show it |
+| ISSO reviewer | The federal requirements each chapter supports, and the evidence you keep for them |
 
 **Level:** intermediate. **Products:** Microsoft Entra ID with Privileged Identity Management, Microsoft Entra ID Governance, Azure Resource Manager and Azure Monitor. **Scope:** Microsoft 365 GCC (Moderate) with commercial Azure, as the [workbook](../../project-plans/developer-workbooks/privileged-access/index.md) assumes. GCC uses the worldwide endpoints; GCC High and DoD have separate hosts, and each chapter says so where an endpoint matters.
 
@@ -106,7 +106,7 @@ Work through them in order. The modules follow the workbook's chapters, which fo
 
 **Why eight modules.** There is one module per workbook chapter from 01 to 08 (Chapter 09 is the deployment runbook, for operators who deploy the kit). Each chapter builds a different skill, with its own PowerShell module, call list, findings and Lab 1, so no two fit in one module of under an hour. Modules 4, 5 and 6 all hold PIM settings as code, but they differ in what matters: Module 4 has the lockout guard and the rollout waves, Module 5 the group rules and the removal guard, and Module 6 goes through Azure Resource Manager, not Graph, with Azure roles instead of Graph permissions.
 
-Each module follows the same units: an introduction with the federal requirement it meets, learning objectives, prerequisites, one or two concept units, Lab 1, Lab 2, a knowledge check and a summary.
+Each module follows the same units: an introduction with the federal requirements it supports, learning objectives, prerequisites, one or two concept units, Lab 1, Lab 2, a knowledge check and a summary.
 
 **If you're an ISSO reviewer,** read each module's introduction, its federal requirement and its summary, and skip the labs. Module 8 is yours in full. The workbook's checklists at the end of each chapter are what you check before the code ships.
 

@@ -104,3 +104,11 @@ Asked: do the standards incorporate WCAG 2.0 or a later version? Answer: 2.0. 70
 - No percentage of failures that automated tools catch is given: no primary source opened on November 2, 2026 states one, so the chapter says only that tools find part of them, in M-24-08's terms.
 - The Trusted Tester program's own site wasn't opened; the chapter names the process only as M-24-08 does.
 - Microsoft's current ACR for Entra sign-in wasn't read (the reports are on microsoft.com, outside Learn), so the chapter makes no claim about its contents or WCAG version.
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| A control an application inherits from the platform is satisfied only if the platform's implementation is a... | A control an application inherits from the platform rests on the platform's implementation, so it holds onl... | no source change |
