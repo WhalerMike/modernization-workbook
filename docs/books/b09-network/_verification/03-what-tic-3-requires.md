@@ -164,3 +164,12 @@ Applied from the two research briefs behind the workbook's SD-WAN platform deep 
 |---|---|---|---|---|
 | 1 | ED 26-03 issued February 25, 2026, actions superseded by V1 on March 11, 2026; required SD-WAN syslog to CISA through CLAW | Policy-currency table, ED 26-03 row | confirmed (no change) | `[^c03-ed2603]` |
 | 2 | Nine Cisco Catalyst SD-WAN CVEs added to KEV during 2026, newest September 30, 2026; the directive's sequence is a standing posture | Policy-currency table, ED 26-03 row | added | `[^c03-kev2026]` (KEV JSON, catalog 2026.10.23) |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Two corrections to the way the sources stated control closures. First, a field-office design that pairs local internet with a physically diverse cellular path closes CP-8(2) at the Moderate baseline, | Two corrections to the control claims the sources made. First, a field-office design that pairs local internet with a physically diverse cellular path supports CP-8(2) at the Moderate baseline, | no source change |
+| Which enforcement layer closes which control (overlay, SASE, firewall) | Which enforcement layer supports which control (overlay, SASE, firewall) | no source change |

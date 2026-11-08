@@ -108,3 +108,16 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | 3 | Nearest Entra counterpart to AD unconstrained delegation; differs in being limited to its scopes | The Help Desk Kit audit | restated-as-design (comparison; AD mechanism sourced in Book 02 Ch08) | c06-oauth2-grant; Book 02 Ch08 c08-sensitive |
 | 4 | The script's checks, columns, exclusions and output file | The Help Desk Kit audit | verified against the kit v1.6.2 (`Get-EnterpriseAppInventory.ps1`, Pester 37/37) | kit release helpdesk-entra-kit-v1.6.2 |
 | 5 | Tiers, who acts, A3 routing, drift to the governance officer and security operations | The Help Desk Kit audit | restated-as-design (program policy) | — |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| and why that moment closes or skips a whole set of controls at once. | and why that moment puts a whole set of controls in place or skips them at once. | no source change |
+| How single sign-on and SCIM provisioning close account-management controls, and what they don't close. | How single sign-on and SCIM provisioning support account-management controls, and what they leave to the agency. | no source change |
+| Heading: Federation closes controls, and what it doesn't close | Kept as written, with a `claims-ok` marker (heading kept as an anchor; body explains support, not satisfaction) | no source change |
+| Table header: Control / How the integration closes it | Table header: Control / How the integration supports it | no source change |
+| Table caption: What a governed integration closes. Control mapping is program design; | Table caption: What a governed integration supports. Control mapping is program design; | no source change |
+| The federation mechanics close technical controls. They don't write the policies (AC-1, IA-1), sign the agreements with external systems, or run the access reviews that SP 800-53 expects alongside them. The gate in this chapter closes the external-system direction | The federation mechanics support technical controls; they don't satisfy them. They don't write the policies (AC-1, IA-1), sign the agreements with external systems, or run the access reviews that SP 800-53 expects alongside them, and the assessor decides whether each control is satisfied. The gate in this chapter supports the external-system direction | no source change |

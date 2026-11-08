@@ -173,7 +173,7 @@ const S_WHY = "Why proof, not a promise", S_WHAT = "What a control needs", S_WHO
   narrate(s,
 `This is the executive briefing for Book 14 of the Federal Modernization Workbook, Federal Compliance and Authorization. It runs about thirty minutes, for the people who sign for a system or answer for it: authorizing officials, the CISO and the CIO, ISSOs, the senior agency official for privacy, and the program managers who own systems.
 
-The argument fits in three sentences. A control that is described in a plan but can't be shown working is a promise, and an authorization built on promises decays the day after the assessment. The cloud provider proves its service, the agency proves its own system, and the authorizing official alone decides whether the residual risk is acceptable. And a control closes only when the mechanism that closes it exists and its proof is recorded.
+The argument fits in three sentences. A control that is described in a plan but can't be shown working is a promise, and an authorization built on promises decays the day after the assessment. The cloud provider proves its service, the agency proves its own system, and the authorizing official alone decides whether the residual risk is acceptable. And a control closes only when the mechanism that supports it exists and its proof is recorded.
 
 I'll take four questions: why every control needs proof and what the federal clock asks for; what the baseline, the closure rule and the agency-level control families require; who owns compliance; and how to build the package and keep it current. Every decision slide names the decision, its owner and when it's needed; where the owner or timing is the program's own recommendation, the notes say so. Every date was checked against its source on October 21, 2026.`,
   "Book 14, index; Chapter 01 — Proof, Not a Promise; Chapter 10 — Who Owns Compliance.");
@@ -424,9 +424,9 @@ The decision, from the chapter: each mission owner signs the downtime row for th
   const s = content(S_WHAT, "Supply chain: know what you run; contract for the rest");
   tag(s, "What");
   img(s, "ch07-federal-position", 0.6, 1.5, 6.3, 3.6);
-  sideBox(s, "SR", "FaCubes", HEX.teal, HEX.tealTint, "It closes on governance", [
+  sideBox(s, "SR", "FaCubes", HEX.teal, HEX.tealTint, "It rests on governance", [
     "SR-1, -2, -3, -5 and -8 sit in every NIST baseline",
-    "Closing artifacts: plans, contracts, supplier records, SBOMs",
+    "Supporting artifacts: plans, contracts, supplier records, SBOMs",
     "CISA's 2026 SBOM minimum elements: July 29, 2026",
     "Residual supply chain risk: the AO, and no one else",
   ], 13.5, 7.1, 5.65);

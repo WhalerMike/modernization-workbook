@@ -66,3 +66,20 @@ At the user's request, every certificate-dependent book maps its certificates to
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Certificate source of truth = 'The PKI's issuance ledger' | Sources of truth | corrected: the CLM inventory reconciled with issuance records | Book 07 Ch08 |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| It is closed when the thing that closes it is running and the record shows it working.* | It is closed when the mechanism that supports it is running and the record shows it working.* | no source change |
+| What "closed" means in this book, as two tests: the mechanism that closes the control exists, and its proof is recorded. | What "closed" means in this book, as two tests: the mechanism that supports the control exists, and its proof is recorded. | no source change |
+| Figure caption: A control counts as closed only when it passes two tests: the mechanism that closes it exists, and its proof is recorded. | Figure caption: A control counts as closed only when it passes two tests: the mechanism that supports it exists, and its proof is recorded. | no source change |
+| **The mechanism exists.** The thing that closes the control is deployed and operating in the estate. | **The mechanism exists.** The mechanism that supports the control is deployed and operating in the estate. | no source change |
+| Table header: Mechanism class / Controls the program says it closes | Table header: Mechanism class / Controls the program says it supports | no source change |
+| Validated TLS closes SC-8 for the flow that negotiates it; a network-layer overlay closes it for every flow on the circuit at once, | Validated TLS provides SC-8's transmission protection for the flow that negotiates it; a network-layer overlay provides it for every flow on the circuit at once, | no source change |
+| local breakout solves a latency problem, closes none of the protection controls by itself, | local breakout solves a latency problem, provides none of the protection controls by itself, | no source change |
+| a necessity claim names the mechanism, says why nothing else closes the control, and shows | a necessity claim names the mechanism, says why no other mechanism can support the control, and shows | no source change |
+| If an alternative mechanism closes the control, the claim narrows; | If an alternative mechanism also supports the control, the claim narrows; | no source change |
+| A control is closed when the mechanism that closes it exists in the estate and its proof is recorded. | A control is closed when the mechanism that supports it exists in the estate and its proof is recorded. | no source change |
