@@ -5,60 +5,70 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:05.976
-Gate 2 meets NIST special
+00:00:01.437 --> 00:00:06.240
+Gate 2 supports NIST special
 publication eight hundred fifty-three
 
 3
-00:00:05.976 --> 00:00:09.926
+00:00:06.240 --> 00:00:10.200
 A C two and I A five, and the
 module's table maps the evidence.
 
 4
-00:00:09.926 --> 00:00:13.538
+00:00:10.200 --> 00:00:14.375
+Your organization still sets the
+organization-defined parameters,
+
+5
+00:00:14.375 --> 00:00:17.525
+and the assessor decides
+whether each is satisfied.
+
+6
+00:00:17.525 --> 00:00:21.138
 For account and authenticator
 management, the proposals,
 
-5
-00:00:13.538 --> 00:00:16.700
+7
+00:00:21.138 --> 00:00:24.300
 the reviewed matrix file
 and the owners' decisions.
 
-6
-00:00:16.700 --> 00:00:20.650
+8
+00:00:24.300 --> 00:00:28.250
 For privileged accounts, with
 high-risk first, the findings.
 
-7
-00:00:20.650 --> 00:00:24.663
+9
+00:00:28.250 --> 00:00:32.263
 For configuration change control,
 the waves and their rollback.
 
-8
-00:00:24.663 --> 00:00:28.625
+10
+00:00:32.263 --> 00:00:36.225
 For access enforcement, the
 Workload I D Premium scope.
 
-9
-00:00:28.625 --> 00:00:32.100
+11
+00:00:36.225 --> 00:00:39.700
 And for continuous monitoring,
 the gate's own status file.
 
-10
-00:00:32.100 --> 00:00:36.738
+12
+00:00:39.700 --> 00:00:44.338
 K S I's are FedRAMP twenty X indicators
 for cloud service providers.
 
-11
-00:00:36.738 --> 00:00:41.177
+13
+00:00:44.338 --> 00:00:48.777
 The agency lines its evidence up
 with what its providers report;
 
-12
-00:00:41.177 --> 00:00:43.187
+14
+00:00:48.777 --> 00:00:50.787
 it doesn't report K S I's itself.
 
-13
-00:00:43.187 --> 00:00:46.490
+15
+00:00:50.787 --> 00:00:54.100
 Which file supports which
 indicator is the program's mapping.

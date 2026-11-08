@@ -31,20 +31,20 @@ finishing with a tabletop where someone
 plugs a rogue laptop into a meeting room.
 
 7
-00:00:22.512 --> 00:00:27.362
-Done this way, it closes real
+00:00:22.512 --> 00:00:27.200
+Done this way, it supports the
 device-authentication and inventory controls.
 
 8
-00:00:27.362 --> 00:00:30.269
+00:00:27.200 --> 00:00:30.106
 One correction worth knowing:
 it doesn't close the
 
 9
-00:00:30.269 --> 00:00:33.600
+00:00:30.106 --> 00:00:33.437
 external-connections control
 people often claim for it.
 
 10
-00:00:33.600 --> 00:00:35.640
+00:00:33.437 --> 00:00:35.470
 That wraps up access control.

@@ -840,184 +840,194 @@ The authors haven't run Lab 2.
 The federal requirement.
 
 177
-00:11:25.887 --> 00:11:30.254
+00:11:25.887 --> 00:11:30.224
 In NIST special publication
 eight hundred fifty-three terms,
 
 178
-00:11:30.254 --> 00:11:35.819
-this gate meets C A seven, continuous
+00:11:30.224 --> 00:11:36.006
+this gate supports C A seven, continuous
 monitoring with system-level metrics, and
 
 179
-00:11:35.819 --> 00:11:41.213
+00:11:36.006 --> 00:11:41.363
 A U six and A U eleven with S I twelve:
 the review and retention of audit records.
 
 180
-00:11:41.213 --> 00:11:45.574
-It also meets BOD 25-01's
+00:11:41.363 --> 00:11:45.975
+It also supports BOD 25-01's
 continuous reporting.
 
 181
-00:11:45.574 --> 00:11:50.304
+00:11:45.975 --> 00:11:50.150
+Your organization still sets the
+organization-defined parameters,
+
+182
+00:11:50.150 --> 00:11:53.300
+and the assessor decides
+whether each is satisfied.
+
+183
+00:11:53.300 --> 00:11:58.029
 The evidence an ISSO keeps for
 Gate 7: every period's manifest,
 
-182
-00:11:50.304 --> 00:11:54.750
+184
+00:11:58.029 --> 00:12:02.475
 summary and checksum file,
 with the approved thresholds.
 
-183
-00:11:54.750 --> 00:11:59.525
+185
+00:12:02.475 --> 00:12:07.250
 The packages, with each unauthorized-write
 finding's closure at the source.
 
-184
-00:11:59.525 --> 00:12:03.252
+186
+00:12:07.250 --> 00:12:10.977
 The storage container's retention
 and immutability settings,
 
-185
-00:12:03.252 --> 00:12:04.900
+187
+00:12:10.977 --> 00:12:12.625
 set to the records schedule.
 
-186
-00:12:04.900 --> 00:12:07.525
+188
+00:12:12.625 --> 00:12:15.250
 And the ScubaGear results
 beside the period.
 
-187
-00:12:07.525 --> 00:12:13.300
+189
+00:12:15.250 --> 00:12:21.030
 The guide's Evidence section gathers all
 seven gates into one file per population.
 
-188
-00:12:17.050 --> 00:12:20.550
+190
+00:12:24.780 --> 00:12:28.280
 Check yourself with two questions
 from the module's knowledge check.
 
-189
-00:12:20.550 --> 00:12:23.712
+191
+00:12:28.280 --> 00:12:31.442
 First: Module 4's mover
 review is still open,
 
-190
-00:12:23.712 --> 00:12:26.513
+192
+00:12:31.442 --> 00:12:34.243
 so there's no transfer-to-review value.
 
-191
-00:12:26.513 --> 00:12:28.000
+193
+00:12:34.243 --> 00:12:35.730
 How does the run report it?
 
-192
-00:12:28.000 --> 00:12:33.438
+194
+00:12:35.730 --> 00:12:41.168
 The answer is c: as not measured,
 rule L D eight, never as zero.
 
-193
-00:12:33.438 --> 00:12:37.438
+195
+00:12:41.168 --> 00:12:45.168
 A zero would look like the best
 possible result, and it would be false.
 
-194
-00:12:37.438 --> 00:12:40.682
+196
+00:12:45.168 --> 00:12:48.412
 Second: the period
 reports zero chain breaks
 
-195
-00:12:40.682 --> 00:12:43.925
+197
+00:12:48.412 --> 00:12:51.655
 and zero coverage gaps,
 but complete is false.
 
-196
-00:12:43.925 --> 00:12:44.613
+198
+00:12:51.655 --> 00:12:52.343
 Why?
 
-197
-00:12:44.613 --> 00:12:45.653
+199
+00:12:52.343 --> 00:12:53.383
 The answer is a.
 
-198
-00:12:45.653 --> 00:12:51.201
+200
+00:12:53.383 --> 00:12:58.931
 Drift is still open and metrics are out of
 bounds, so Gate 7's criteria aren't met.
 
-199
-00:12:51.201 --> 00:12:53.261
+201
+00:12:58.931 --> 00:13:00.991
 The period scores the criteria,
 
-200
-00:12:53.261 --> 00:12:56.987
+202
+00:13:00.991 --> 00:13:04.717
 and an unbroken chain meets
 only the evidence criterion.
 
-201
-00:12:56.987 --> 00:12:59.420
+203
+00:13:04.717 --> 00:13:07.150
 The module page has three more questions,
 
-202
-00:12:59.420 --> 00:13:02.280
+204
+00:13:07.150 --> 00:13:10.010
 each linked to the
 section that teaches it.
 
-203
-00:13:06.030 --> 00:13:06.855
+205
+00:13:13.760 --> 00:13:14.585
 To sum up.
 
-204
-00:13:06.855 --> 00:13:09.495
+206
+00:13:14.585 --> 00:13:17.225
 You rebuilt the earlier modules' outputs,
 
-205
-00:13:09.495 --> 00:13:13.842
+207
+00:13:17.225 --> 00:13:21.572
 and wrote two daily runs of the
 lifecycle drift classes and metrics.
 
-206
-00:13:13.842 --> 00:13:16.164
+208
+00:13:21.572 --> 00:13:23.894
 You packaged them with a hash chain,
 
-207
-00:13:16.164 --> 00:13:21.047
+209
+00:13:23.894 --> 00:13:28.777
 verified a package with the kit and
 with sha256sum, and assembled a period
 
-208
-00:13:21.047 --> 00:13:25.530
+210
+00:13:28.777 --> 00:13:33.260
 that shows exactly which of Gate 7's
 criteria are met, and which aren't.
 
-209
-00:13:25.530 --> 00:13:29.830
+211
+00:13:33.260 --> 00:13:37.560
 And with that, you've finished the
 HR-Driven Identity learning path.
 
-210
-00:13:29.830 --> 00:13:34.063
+212
+00:13:37.560 --> 00:13:41.793
 Across seven modules you named one
 writer for every account state,
 
-211
-00:13:34.063 --> 00:13:38.989
+213
+00:13:41.793 --> 00:13:46.719
 ran contractors from their own source,
 made joiners ready on day one, assigned
 
-212
-00:13:38.989 --> 00:13:41.836
+214
+00:13:46.719 --> 00:13:49.566
 access from attributes,
 checked card sign-in,
 
-213
-00:13:41.836 --> 00:13:44.530
+215
+00:13:49.566 --> 00:13:52.260
 timed separations, and filed the evidence.
 
-214
-00:13:44.530 --> 00:13:46.115
+216
+00:13:52.260 --> 00:13:53.845
 Go back to the learning path,
 
-215
-00:13:46.115 --> 00:13:49.680
+217
+00:13:53.845 --> 00:13:57.410
 or check your agency's progress
 against the guide's checklist.

@@ -5,69 +5,79 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:06.885
-Gate 4 meets NIST special publication
+00:00:01.437 --> 00:00:07.067
+Gate 4 supports NIST special publication
 eight hundred fifty-three A C six,
 
 3
-00:00:06.885 --> 00:00:09.563
+00:00:07.067 --> 00:00:09.700
 A C six enhancement five, and I A nine.
 
 4
-00:00:09.563 --> 00:00:12.962
+00:00:09.700 --> 00:00:13.875
+Your organization still sets the
+organization-defined parameters,
+
+5
+00:00:13.875 --> 00:00:17.025
+and the assessor decides
+whether each is satisfied.
+
+6
+00:00:17.025 --> 00:00:20.425
 The module's table maps each
 control to its evidence.
 
-5
-00:00:12.962 --> 00:00:16.251
+7
+00:00:20.425 --> 00:00:23.713
 For least privilege, it's
 the sweep and the findings.
 
-6
-00:00:16.251 --> 00:00:18.975
+8
+00:00:23.713 --> 00:00:26.437
 For privileged accounts,
 the hand-off file.
 
-7
-00:00:18.975 --> 00:00:22.825
+9
+00:00:26.437 --> 00:00:30.288
 For review of privileges, the
 owner review and its status.
 
-8
-00:00:22.825 --> 00:00:25.580
+10
+00:00:30.288 --> 00:00:33.043
 For change control, the plan and its hash,
 
-9
-00:00:25.580 --> 00:00:29.588
+11
+00:00:33.043 --> 00:00:37.051
 and the results and manifest
 from the dry run and the apply.
 
-10
-00:00:29.588 --> 00:00:33.975
+12
+00:00:37.051 --> 00:00:41.438
 For separation of duties, the plan's
 hash approved by a second person.
 
-11
-00:00:33.975 --> 00:00:38.012
+13
+00:00:41.438 --> 00:00:45.475
 And for the run's integrity, the
 manifest in each output folder.
 
-12
-00:00:38.012 --> 00:00:42.651
+14
+00:00:45.475 --> 00:00:50.113
 K S I's are FedRAMP twenty X indicators
 for cloud service providers.
 
-13
-00:00:42.651 --> 00:00:46.335
+15
+00:00:50.113 --> 00:00:53.797
 The agency lines its evidence
 up with what its providers
 
-14
-00:00:46.335 --> 00:00:49.550
+16
+00:00:53.797 --> 00:00:57.012
 report against them; it
 doesn't report K S I's itself.
 
-15
-00:00:49.550 --> 00:00:52.850
+17
+00:00:57.012 --> 00:01:00.310
 Which file supports which
 indicator is the program's mapping.

@@ -598,51 +598,56 @@
   ],
   [
    1.438,
-   6.862,
-   "Gate 5 meets nist special publication eight hundred fifty-three I A five, I A nine and A U two."
+   7.037,
+   "Gate 5 supports nist special publication eight hundred fifty-three I A five, I A nine and A U two."
   ],
   [
-   8.3,
+   8.475,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   15.8,
    3.4,
    "The module's table maps each control to its evidence."
   ],
   [
-   11.7,
+   19.2,
    6.412,
    "Authenticator management and service identification: the conversion file, the plan and the findings."
   ],
   [
-   18.113,
+   25.613,
    3.325,
    "Verification of controls: the exchange tests."
   ],
   [
-   21.438,
+   28.938,
    6.662,
    "Account management and disabling accounts: the conversion records, the cutover log and the apply's results."
   ],
   [
-   28.1,
+   35.6,
    4.875,
    "Least privilege and access restrictions for change: the two tasks' permissions."
   ],
   [
-   32.975,
+   40.475,
    4.588,
    "Change control: the plan's hash, and the dry-run and apply folders."
   ],
   [
-   37.562,
+   45.062,
    5.388,
    "Audit events: Lab 2's sign-in entry that shows a federated credential was used."
   ],
   [
-   42.95,
+   50.45,
    3.85,
    "And the run's integrity: the manifest in each output folder."
   ],
   [
-   46.8,
+   54.3,
    7.987,
    "K S I's are fed-ramp twenty X indicators for cloud service providers; which file supports which indicator is the program's mapping."
   ]

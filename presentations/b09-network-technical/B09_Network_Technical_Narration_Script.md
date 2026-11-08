@@ -98,7 +98,7 @@ RADIUS has a weakness of its own. Over plain UDP it relies on MD5, and the 2024 
 
 ## Slide 25 — Rollout in four phases, and the controls it closes
 
-The fastest way to cause an outage with access control is to enforce before you know what's on the network. So the rollout starts in monitor mode: everything authenticates, nothing is blocked, and the logs build a baseline. Then wired enforcement, then wireless, then tightening the device segments, finishing with a tabletop where someone plugs a rogue laptop into a meeting room. Done this way, it closes real device-authentication and inventory controls. One correction worth knowing: it doesn't close the external-connections control people often claim for it. That wraps up access control.
+The fastest way to cause an outage with access control is to enforce before you know what's on the network. So the rollout starts in monitor mode: everything authenticates, nothing is blocked, and the logs build a baseline. Then wired enforcement, then wireless, then tightening the device segments, finishing with a tabletop where someone plugs a rogue laptop into a meeting room. Done this way, it supports the device-authentication and inventory controls. One correction worth knowing: it doesn't close the external-connections control people often claim for it. That wraps up access control.
 
 ## Slide 26 — Module 4: Reference architecture and ownership
 

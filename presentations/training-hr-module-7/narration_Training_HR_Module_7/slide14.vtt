@@ -5,55 +5,65 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:05.804
+00:00:01.437 --> 00:00:05.774
 In NIST special publication
 eight hundred fifty-three terms,
 
 3
-00:00:05.804 --> 00:00:11.369
-this gate meets C A seven, continuous
+00:00:05.774 --> 00:00:11.556
+this gate supports C A seven, continuous
 monitoring with system-level metrics, and
 
 4
-00:00:11.369 --> 00:00:16.763
+00:00:11.556 --> 00:00:16.913
 A U six and A U eleven with S I twelve:
 the review and retention of audit records.
 
 5
-00:00:16.763 --> 00:00:21.124
-It also meets BOD 25-01's
+00:00:16.913 --> 00:00:21.525
+It also supports BOD 25-01's
 continuous reporting.
 
 6
-00:00:21.124 --> 00:00:25.854
+00:00:21.525 --> 00:00:25.700
+Your organization still sets the
+organization-defined parameters,
+
+7
+00:00:25.700 --> 00:00:28.850
+and the assessor decides
+whether each is satisfied.
+
+8
+00:00:28.850 --> 00:00:33.579
 The evidence an ISSO keeps for
 Gate 7: every period's manifest,
 
-7
-00:00:25.854 --> 00:00:30.300
+9
+00:00:33.579 --> 00:00:38.025
 summary and checksum file,
 with the approved thresholds.
 
-8
-00:00:30.300 --> 00:00:35.075
+10
+00:00:38.025 --> 00:00:42.800
 The packages, with each unauthorized-write
 finding's closure at the source.
 
-9
-00:00:35.075 --> 00:00:38.802
+11
+00:00:42.800 --> 00:00:46.527
 The storage container's retention
 and immutability settings,
 
-10
-00:00:38.802 --> 00:00:40.450
+12
+00:00:46.527 --> 00:00:48.175
 set to the records schedule.
 
-11
-00:00:40.450 --> 00:00:43.075
+13
+00:00:48.175 --> 00:00:50.800
 And the ScubaGear results
 beside the period.
 
-12
-00:00:43.075 --> 00:00:48.550
+14
+00:00:50.800 --> 00:00:56.280
 The guide's Evidence section gathers all
 seven gates into one file per population.

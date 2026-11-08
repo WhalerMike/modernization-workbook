@@ -934,196 +934,206 @@ The authors haven't run Lab 2.
 The federal requirement.
 
 195
-00:12:18.857 --> 00:12:24.305
-Gate 4 meets NIST special publication
+00:12:18.857 --> 00:12:24.487
+Gate 4 supports NIST special publication
 eight hundred fifty-three A C six,
 
 196
-00:12:24.305 --> 00:12:26.983
+00:12:24.487 --> 00:12:27.120
 A C six enhancement five, and I A nine.
 
 197
-00:12:26.983 --> 00:12:30.382
+00:12:27.120 --> 00:12:31.295
+Your organization still sets the
+organization-defined parameters,
+
+198
+00:12:31.295 --> 00:12:34.445
+and the assessor decides
+whether each is satisfied.
+
+199
+00:12:34.445 --> 00:12:37.845
 The module's table maps each
 control to its evidence.
 
-198
-00:12:30.382 --> 00:12:33.671
+200
+00:12:37.845 --> 00:12:41.133
 For least privilege, it's
 the sweep and the findings.
 
-199
-00:12:33.671 --> 00:12:36.395
+201
+00:12:41.133 --> 00:12:43.857
 For privileged accounts,
 the hand-off file.
 
-200
-00:12:36.395 --> 00:12:40.245
+202
+00:12:43.857 --> 00:12:47.708
 For review of privileges, the
 owner review and its status.
 
-201
-00:12:40.245 --> 00:12:43.000
+203
+00:12:47.708 --> 00:12:50.463
 For change control, the plan and its hash,
 
-202
-00:12:43.000 --> 00:12:47.008
+204
+00:12:50.463 --> 00:12:54.471
 and the results and manifest
 from the dry run and the apply.
 
-203
-00:12:47.008 --> 00:12:51.395
+205
+00:12:54.471 --> 00:12:58.858
 For separation of duties, the plan's
 hash approved by a second person.
 
-204
-00:12:51.395 --> 00:12:55.432
+206
+00:12:58.858 --> 00:13:02.895
 And for the run's integrity, the
 manifest in each output folder.
 
-205
-00:12:55.432 --> 00:13:00.071
+207
+00:13:02.895 --> 00:13:07.533
 K S I's are FedRAMP twenty X indicators
 for cloud service providers.
 
-206
-00:13:00.071 --> 00:13:03.755
+208
+00:13:07.533 --> 00:13:11.217
 The agency lines its evidence
 up with what its providers
 
-207
-00:13:03.755 --> 00:13:06.970
+209
+00:13:11.217 --> 00:13:14.432
 report against them; it
 doesn't report K S I's itself.
 
-208
-00:13:06.970 --> 00:13:10.570
+210
+00:13:14.432 --> 00:13:18.030
 Which file supports which
 indicator is the program's mapping.
 
-209
-00:13:14.320 --> 00:13:16.295
+211
+00:13:21.780 --> 00:13:23.755
 Check yourself with two questions.
 
-210
-00:13:16.295 --> 00:13:20.707
+212
+00:13:23.755 --> 00:13:28.167
 First: Deploy Bot holds application
 read-write and a directory role.
 
-211
-00:13:20.707 --> 00:13:22.270
+213
+00:13:28.167 --> 00:13:29.730
 What does the sweep do with it?
 
-212
-00:13:22.270 --> 00:13:23.495
+214
+00:13:29.730 --> 00:13:30.955
 The answer is b.
 
-213
-00:13:23.495 --> 00:13:26.753
+215
+00:13:30.955 --> 00:13:34.213
 It hands it whole to the
 Privileged Access plan,
 
-214
-00:13:26.753 --> 00:13:30.345
+216
+00:13:34.213 --> 00:13:37.805
 as N P L P oh eight, and leaves
 it out of the owner review.
 
-215
-00:13:30.345 --> 00:13:35.332
+217
+00:13:37.805 --> 00:13:42.792
 A directory role or an escalation permission
 is enough to hand an identity off.
 
-216
-00:13:35.332 --> 00:13:38.794
+218
+00:13:42.792 --> 00:13:46.254
 Second: who sends the plan's
 writes in a live run?
 
-217
-00:13:38.794 --> 00:13:40.371
+219
+00:13:46.254 --> 00:13:47.831
 The answer is b: a person,
 
-218
-00:13:40.371 --> 00:13:45.183
+220
+00:13:47.831 --> 00:13:52.643
 signed in with Privileged Role
 Administrator, in a delegated session.
 
-219
-00:13:45.183 --> 00:13:49.584
+221
+00:13:52.643 --> 00:13:57.044
 The Microsoft Graph permissions reference
 cautions that the write permissions can
 
-220
-00:13:49.584 --> 00:13:51.320
+222
+00:13:57.044 --> 00:13:58.780
 grant authorization themselves,
 
-221
-00:13:51.320 --> 00:13:54.233
+223
+00:13:58.780 --> 00:14:01.693
 so they're never an unattended
 app's standing permission.
 
-222
-00:13:54.233 --> 00:13:56.659
+224
+00:14:01.693 --> 00:14:04.119
 The module page has three more questions,
 
-223
-00:13:56.659 --> 00:13:59.520
+225
+00:14:04.119 --> 00:14:06.980
 each linked to the
 section that answers it.
 
-224
-00:14:03.270 --> 00:14:04.095
+226
+00:14:10.730 --> 00:14:11.555
 To sum up.
 
-225
-00:14:04.095 --> 00:14:07.274
+227
+00:14:11.555 --> 00:14:14.734
 You swept eleven service
 principals and twenty grants,
 
-226
-00:14:07.274 --> 00:14:10.108
+228
+00:14:14.734 --> 00:14:17.568
 found the broad grants
 with no current exception,
 
-227
-00:14:10.108 --> 00:14:14.670
+229
+00:14:17.568 --> 00:14:22.130
 and handed three privileged service
 principals to the Privileged Access plan.
 
-228
-00:14:14.670 --> 00:14:19.269
+230
+00:14:22.130 --> 00:14:26.729
 You read the open rows of the quarter's
 owner review, applied three approved
 
-229
-00:14:19.269 --> 00:14:23.645
+231
+00:14:26.729 --> 00:14:31.105
 changes to the fake, and saw the write
 path refuse a plan nobody reviewed.
 
-230
-00:14:23.645 --> 00:14:29.062
+232
+00:14:31.105 --> 00:14:36.522
 The evidence an ISSO keeps for Gate 4 from
 this module is the sweep, the findings,
 
-231
-00:14:29.062 --> 00:14:34.228
+233
+00:14:36.522 --> 00:14:41.688
 the hand-off, the owner review and its
 status, the plan with its approved hash,
 
-232
-00:14:34.228 --> 00:14:37.895
+234
+00:14:41.688 --> 00:14:45.355
 and the apply folder's results
 and manifest, all dated.
 
-233
-00:14:37.895 --> 00:14:40.970
+235
+00:14:45.355 --> 00:14:48.430
 Before you ship, work through
 the chapter's checklist.
 
-234
-00:14:40.970 --> 00:14:45.642
+236
+00:14:48.430 --> 00:14:53.102
 Next is Module 6: Conditional
 Access for workload identities,
 
-235
-00:14:45.642 --> 00:14:47.450
+237
+00:14:53.102 --> 00:14:54.910
 the other half of Gate 4.

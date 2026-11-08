@@ -174,7 +174,7 @@ Then choose the weakest consistency each flow tolerates. Azure Cosmos DB, as one
   icon(s, "FaShieldHalved", 7.35, 1.75, 0.72, HEX.teal);
   txt(s, "SASE head", [
     { text: "WHAT SITS ABOVE IT", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
-    { text: "SASE closes the boundary controls", options: { bold: true, color: HEX.teal, fontSize: 18, fontFace: "Cambria" } },
+    { text: "SASE supports the boundary controls", options: { bold: true, color: HEX.teal, fontSize: 18, fontFace: "Cambria" } },
   ], { x: 8.25, y: 1.72, w: 4.4, h: 0.9, valign: "middle" });
   txt(s, "SASE list", bullets([
     "Web gateway, CASB, firewall and ZTNA",

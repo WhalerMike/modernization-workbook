@@ -74,7 +74,7 @@ Here are the risks the book names, in three groups. Scope: instances found late,
 
 ## Slide 19 — The platform question comes after, per data domain
 
-Once authentication has moved, a different question opens up: which platform should each data domain live on? That choice isn't forced, so it comes after, one domain at a time. Stay on SQL Server, or move to PostgreSQL or Oracle; each can meet the identity requirement. The book scores them on ten dimensions with evidence, from migration effort and skills to licensing and exit cost, and two domains reaching different answers is normal. The goal is fewer authoritative platforms, not one vendor. So the decision for the CIO and data leadership: choose per domain, after closure, as its own funded decision, with the same parallel-run discipline. Let's pull the decisions together.
+Once authentication has moved, a different question opens up: which platform should each data domain live on? That choice isn't forced, so it comes after, one domain at a time. Stay on SQL Server, or move to PostgreSQL or Oracle; each can support the identity requirement. The book scores them on ten dimensions with evidence, from migration effort and skills to licensing and exit cost, and two domains reaching different answers is normal. The goal is fewer authoritative platforms, not one vendor. So the decision for the CIO and data leadership: choose per domain, after closure, as its own funded decision, with the same parallel-run discipline. Let's pull the decisions together.
 
 ## Slide 20 — Decisions to make, owners and timing
 

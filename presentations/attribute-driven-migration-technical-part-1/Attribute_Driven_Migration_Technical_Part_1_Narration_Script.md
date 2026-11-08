@@ -24,7 +24,7 @@ This slide is the map for both parts of the deep dive, because one O U tree hold
 
 Here's what the whole migration is for. Every person, device, server and workload is governed by attributes that are true, owned by exactly one source, and read by policy. Joining, moving and leaving change access with no ticket, every non-person identity has an owner and a managed credential, and AD can finally be retired. The table is how you know you're there, track by track: every account traced to HR, every device and server targeted by its own attributes, every service account owned, and a clean drift report. That's design guidance on the books' own gates, and the last column names the federal rule each one serves. So, which rules?
 
-## Slide 7 — Federal requirements each track satisfies
+## Slide 7 — Federal requirements each track supports
 
 Each track supports federal rules the agency already has to meet, in the program's mapping. The HR track carries account management, personnel termination and transfer, and identifier management in NIST 800-53, plus M-19-17 and the Federal HR 2.0 memo. PIV sign-in serves M-22-09 and FIPS 201. Intune and Arc carry the configuration and inventory controls, the non-person track carries privileged accounts and authenticators, and every track feeds monitoring under M-26-14. Your authorizing official decides; the architecture supplies the evidence. Next, a primer on attributes.
 

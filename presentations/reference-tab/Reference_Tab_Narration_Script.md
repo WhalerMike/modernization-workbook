@@ -6,7 +6,7 @@ The Reference tab of the Federal Modernization Workbook holds six pages that nob
 
 ## Slide 2 — Why a Reference tab
 
-Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work satisfies, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
+Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work supports, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
 
 ## Slide 3 — Six pages at a glance
 

@@ -195,744 +195,754 @@ Lab 1 needs Python and
 pytest, and no tenant.
 
 41
-00:02:30.860 --> 00:02:35.897
+00:02:32.110 --> 00:02:37.147
 Unit 1 starts in the guide's Step
 5, bind credentials to HR events.
 
 42
-00:02:35.897 --> 00:02:40.224
+00:02:37.147 --> 00:02:41.474
 Its first step gives the revocation
 list limits for each cloud,
 
 43
-00:02:40.224 --> 00:02:45.798
+00:02:41.474 --> 00:02:47.048
 and its later steps tie card issuance and
 revocation to HR and contractor events.
 
 44
-00:02:45.798 --> 00:02:51.360
+00:02:47.048 --> 00:02:52.610
 Chapter 09 of the HR-Driven Identity book
 explains why revocation checking matters,
 
 45
-00:02:51.360 --> 00:02:54.299
+00:02:52.610 --> 00:02:55.549
 and that a reissued card
 changes the binding
 
 46
-00:02:54.299 --> 00:02:57.398
+00:02:55.549 --> 00:02:58.648
 between the PIV certificate
 and the Entra user.
 
 47
-00:02:57.398 --> 00:02:59.597
+00:02:58.648 --> 00:03:00.847
 Notice what this module doesn't cover.
 
 48
-00:02:59.597 --> 00:03:05.204
+00:03:00.847 --> 00:03:06.454
 Binding coverage and affinity for each
 user belong to the validation kit's check,
 
 49
-00:03:05.204 --> 00:03:09.723
+00:03:06.454 --> 00:03:10.973
 V K PIV oh one, and to Gate 6 of the
 attribute-driven migration guide.
 
 50
-00:03:09.723 --> 00:03:12.095
+00:03:10.973 --> 00:03:13.345
 This module checks the tenant's settings:
 
 51
-00:03:12.095 --> 00:03:14.886
+00:03:13.345 --> 00:03:16.136
 the certificate authorities
 in the trust store,
 
 52
-00:03:14.886 --> 00:03:19.282
+00:03:16.136 --> 00:03:20.532
 the X dot five-oh-nine certificate
 method, the authentication strengths and
 
 53
-00:03:19.282 --> 00:03:24.100
+00:03:20.532 --> 00:03:25.350
 the Conditional Access policies, plus
 a measurement of each revocation list.
 
 54
-00:03:26.650 --> 00:03:29.800
+00:03:29.100 --> 00:03:32.250
 Here are the limits the
 check holds each cloud to.
 
 55
-00:03:29.800 --> 00:03:32.015
+00:03:32.250 --> 00:03:34.465
 GCC uses the commercial service,
 
 56
-00:03:32.015 --> 00:03:37.100
+00:03:34.465 --> 00:03:39.550
 so its interactive sign-in limit for
 a revocation list is twenty megabytes.
 
 57
-00:03:37.100 --> 00:03:41.249
+00:03:39.550 --> 00:03:43.699
 GCC High is Azure Government,
 at forty-five megabytes,
 
 58
-00:03:41.249 --> 00:03:43.700
+00:03:43.699 --> 00:03:46.150
 and the kit holds DoD to the same.
 
 59
-00:03:43.700 --> 00:03:47.275
+00:03:46.150 --> 00:03:49.725
 In every cloud a list must
 download within ten seconds.
 
 60
-00:03:47.275 --> 00:03:52.196
+00:03:49.725 --> 00:03:54.646
 Learn gives those limits in megabytes;
 the kit reads them as decimal megabytes,
 
 61
-00:03:52.196 --> 00:03:55.375
+00:03:54.646 --> 00:03:57.825
 a million bytes each, which
 is the stricter reading.
 
 62
-00:03:55.375 --> 00:03:59.522
+00:03:57.825 --> 00:04:01.972
 There's no default cloud in the
 kit: you name it every time,
 
 63
-00:03:59.522 --> 00:04:03.850
+00:04:01.972 --> 00:04:06.300
 so a GCC High check can't silently
 run against GCC's numbers.
 
 64
-00:04:03.850 --> 00:04:07.370
+00:04:06.300 --> 00:04:09.820
 Two thresholds are the program's
 design guidance, not Learn's:
 
 65
-00:04:07.370 --> 00:04:10.468
+00:04:09.820 --> 00:04:12.918
 a warning at eighty percent
 of the interactive limit,
 
 66
-00:04:10.468 --> 00:04:15.120
+00:04:12.918 --> 00:04:17.570
 and a warning when an authority's
 certificate expires within ninety days.
 
 67
-00:04:18.870 --> 00:04:22.457
+00:04:21.320 --> 00:04:24.907
 Unit 2 has two parts, the
 measurement and the check.
 
 68
-00:04:22.457 --> 00:04:27.619
+00:04:24.907 --> 00:04:30.069
 The measurement downloads each revocation
 list once and records its size in bytes,
 
 69
-00:04:27.619 --> 00:04:31.433
+00:04:30.069 --> 00:04:33.883
 the seconds it took and any error,
 with the time it was measured.
 
 70
-00:04:31.433 --> 00:04:35.115
+00:04:33.883 --> 00:04:37.565
 An unreachable list isn't an
 exception that stops the run:
 
 71
-00:04:35.115 --> 00:04:39.345
+00:04:37.565 --> 00:04:41.795
 it's recorded, because the failure
 is exactly the finding you want.
 
 72
-00:04:39.345 --> 00:04:42.240
+00:04:41.795 --> 00:04:44.690
 For the lab, a local
 path is read as a file,
 
 73
-00:04:42.240 --> 00:04:45.858
+00:04:44.690 --> 00:04:48.308
 which is how Lab 1 runs on
 a laptop with no network.
 
 74
-00:04:45.858 --> 00:04:50.095
+00:04:48.308 --> 00:04:52.545
 In Lab 2 you measure the real lists
 from outside the agency network.
 
 75
-00:04:50.095 --> 00:04:52.258
+00:04:52.545 --> 00:04:54.708
 And the check insists on the measurement.
 
 76
-00:04:52.258 --> 00:04:55.574
+00:04:54.708 --> 00:04:58.024
 A configured list with no
 measurement row is C B six,
 
 77
-00:04:55.574 --> 00:04:59.870
+00:04:58.024 --> 00:05:02.320
 a Finding, so you can't pass the
 check by skipping the download.
 
 78
-00:05:03.620 --> 00:05:07.670
+00:05:06.070 --> 00:05:10.120
 The check runs thirteen rules,
 C B one to C B thirteen.
 
 79
-00:05:07.670 --> 00:05:10.358
+00:05:10.120 --> 00:05:12.808
 Eight of them look at the
 trust store and the lists.
 
 80
-00:05:10.358 --> 00:05:15.820
+00:05:12.808 --> 00:05:18.270
 C B twelve: an issuing authority the card
 program uses isn't in the trust store.
 
 81
-00:05:15.820 --> 00:05:19.722
+00:05:18.270 --> 00:05:22.172
 C B one: an authority has no
 revocation list configured,
 
 82
-00:05:19.722 --> 00:05:22.583
+00:05:22.172 --> 00:05:25.033
 so Entra doesn't check revocation for it.
 
 83
-00:05:22.583 --> 00:05:25.559
+00:05:25.033 --> 00:05:28.009
 A root with no list is
 only a warning to confirm,
 
 84
-00:05:25.559 --> 00:05:30.182
+00:05:28.009 --> 00:05:32.632
 since a root that issues only authority
 certificates may publish none.
 
 85
-00:05:30.182 --> 00:05:36.196
+00:05:32.632 --> 00:05:38.646
 C B two: the list's endpoint isn't
 plain H T T P, which Learn recommends.
 
 86
-00:05:36.196 --> 00:05:38.470
+00:05:38.646 --> 00:05:40.920
 C B six: no measurement.
 
 87
-00:05:38.470 --> 00:05:43.408
+00:05:40.920 --> 00:05:45.858
 C B four: the list couldn't be downloaded,
 or took longer than ten seconds.
 
 88
-00:05:43.408 --> 00:05:47.432
+00:05:45.858 --> 00:05:49.882
 C B three: the list is over
 the cloud's interactive limit.
 
 89
-00:05:47.432 --> 00:05:50.032
+00:05:49.882 --> 00:05:52.482
 C B five warns at eighty percent of it.
 
 90
-00:05:50.032 --> 00:05:55.370
+00:05:52.482 --> 00:05:57.820
 And C B eleven warns when an authority's
 certificate expires within ninety days.
 
 91
-00:05:59.120 --> 00:06:02.207
+00:06:01.570 --> 00:06:04.657
 The other five rules look at
 the method and the policy.
 
 92
-00:06:02.207 --> 00:06:07.146
+00:06:04.657 --> 00:06:09.596
 C B seven: the X dot five-oh-nine
 certificate method isn't enabled.
 
 93
-00:06:07.146 --> 00:06:12.675
+00:06:09.596 --> 00:06:15.125
 C B eight warns when revocation list
 validation isn't required of every authority,
 
 94
-00:06:12.675 --> 00:06:15.358
+00:06:15.125 --> 00:06:17.808
 or when an authority is exempted from it.
 
 95
-00:06:15.358 --> 00:06:18.418
+00:06:17.808 --> 00:06:20.868
 An exemption is allowed
 only while that authority's
 
 96
-00:06:18.418 --> 00:06:20.696
+00:06:20.868 --> 00:06:23.146
 list is being fixed, and with an end date.
 
 97
-00:06:20.696 --> 00:06:25.951
+00:06:23.146 --> 00:06:28.401
 C B nine: a PIV policy O I D isn't
 mapped to multifactor, and the default
 
 98
-00:06:25.951 --> 00:06:31.207
+00:06:28.401 --> 00:06:33.657
 mode is single-factor, so a card
 sign-in may not count as multifactor.
 
 99
-00:06:31.207 --> 00:06:35.283
+00:06:33.657 --> 00:06:37.733
 C B thirteen warns about
 low-affinity username bindings.
 
 100
-00:06:35.283 --> 00:06:39.753
+00:06:37.733 --> 00:06:42.203
 And C B ten is the SCuBA rule: no
 enabled Conditional Access policy
 
 101
-00:06:39.753 --> 00:06:44.720
+00:06:42.203 --> 00:06:47.170
 for all users and all resources
 requires a phishing-resistant strength.
 
 102
-00:06:44.720 --> 00:06:48.964
+00:06:47.170 --> 00:06:51.414
 A strength counts only if every
 combination it allows is FIDO2,
 
 103
-00:06:48.964 --> 00:06:53.010
+00:06:51.414 --> 00:06:55.460
 Windows Hello for Business,
 or multifactor certificate.
 
 104
-00:06:56.760 --> 00:06:57.485
+00:06:59.210 --> 00:06:59.935
 Try it.
 
 105
-00:06:57.485 --> 00:07:01.217
+00:06:59.935 --> 00:07:03.667
 Lab 1 runs in the h r
 lifecycle examples folder,
 
 106
-00:07:01.217 --> 00:07:04.360
+00:07:03.667 --> 00:07:06.810
 against a fictional P K I, with no tenant.
 
 107
-00:07:04.360 --> 00:07:06.672
+00:07:06.810 --> 00:07:09.122
 Step one lists what the reader will call.
 
 108
-00:07:06.672 --> 00:07:10.267
+00:07:09.122 --> 00:07:12.717
 The task asks for three permissions,
 Policy dot Read dot All,
 
 109
-00:07:10.267 --> 00:07:14.814
+00:07:12.717 --> 00:07:17.264
 Policy dot Read dot Authentication
 Method, and Public Key Infrastructure
 
 110
-00:07:14.814 --> 00:07:18.335
+00:07:17.264 --> 00:07:20.785
 dot Read dot All, for five calls,
 and every one of them is a GET.
 
 111
-00:07:18.335 --> 00:07:20.172
+00:07:20.785 --> 00:07:22.622
 Nothing here can change the tenant.
 
 112
-00:07:20.172 --> 00:07:23.322
+00:07:22.622 --> 00:07:25.772
 Step two measures the
 fixture revocation lists.
 
 113
-00:07:23.322 --> 00:07:26.236
+00:07:25.772 --> 00:07:28.686
 Two files measure at four
 and eight kilobytes.
 
 114
-00:07:26.236 --> 00:07:29.523
+00:07:28.686 --> 00:07:31.973
 The third doesn't exist, and
 the tool records it as zero
 
 115
-00:07:29.523 --> 00:07:32.885
+00:07:31.973 --> 00:07:35.335
 bytes with a file-not-found
 error, rather than stopping.
 
 116
-00:07:32.885 --> 00:07:35.535
+00:07:35.335 --> 00:07:37.985
 That row is what becomes
 a finding in the check.
 
 117
-00:07:35.535 --> 00:07:37.861
+00:07:37.985 --> 00:07:40.311
 Your times may differ from the slide;
 
 118
-00:07:37.861 --> 00:07:42.010
+00:07:40.311 --> 00:07:44.460
 the fixtures are local files,
 so they read almost instantly.
 
 119
-00:07:45.760 --> 00:07:49.510
+00:07:48.210 --> 00:07:51.960
 Step three checks the
 fictional tenant for GCC.
 
 120
-00:07:49.510 --> 00:07:54.672
+00:07:51.960 --> 00:07:57.122
 The first line names the limits it's using:
 twenty million bytes, and ten seconds.
 
 121
-00:07:54.672 --> 00:07:59.210
+00:07:57.122 --> 00:08:01.660
 Then the count: five Findings,
 seven Warns, and exit code two.
 
 122
-00:07:59.210 --> 00:08:01.260
+00:08:01.660 --> 00:08:03.710
 The lab asks you to find four of them.
 
 123
-00:08:01.260 --> 00:08:06.272
+00:08:03.710 --> 00:08:08.722
 C B four: one authority's list took
 eleven point four seconds to download,
 
 124
-00:08:06.272 --> 00:08:11.285
+00:08:08.722 --> 00:08:13.735
 over the ten-second limit, so in real
 life sign-in would fail for its cards.
 
 125
-00:08:11.285 --> 00:08:15.485
+00:08:13.735 --> 00:08:17.935
 C B five: that same list is
 eighteen and a half million bytes,
 
 126
-00:08:15.485 --> 00:08:18.460
+00:08:17.935 --> 00:08:20.910
 more than eighty percent of the GCC limit.
 
 127
-00:08:18.460 --> 00:08:23.648
+00:08:20.910 --> 00:08:26.098
 C B nine: the PIV policy O I
 D isn't mapped to multifactor.
 
 128
-00:08:23.648 --> 00:08:28.623
+00:08:26.098 --> 00:08:31.073
 And C B ten: no enabled policy requires
 a phishing-resistant strength.
 
 129
-00:08:28.623 --> 00:08:32.060
+00:08:31.073 --> 00:08:34.510
 You'll also see a legacy
 intermediate with no list at all,
 
 130
-00:08:32.060 --> 00:08:35.790
+00:08:34.510 --> 00:08:38.240
 and an issuing authority
 missing from the trust store.
 
 131
-00:08:39.540 --> 00:08:40.953
+00:08:41.990 --> 00:08:43.403
 What differs by cloud?
 
 132
-00:08:40.953 --> 00:08:46.352
+00:08:43.403 --> 00:08:48.802
 Step four runs the same check on the
 same tenant, naming GCC High instead.
 
 133
-00:08:46.352 --> 00:08:49.630
+00:08:48.802 --> 00:08:52.080
 The limit line now says
 forty-five million bytes,
 
 134
-00:08:49.630 --> 00:08:52.990
+00:08:52.080 --> 00:08:55.440
 and the count drops to five
 Findings and six Warns.
 
 135
-00:08:52.990 --> 00:08:55.665
+00:08:55.440 --> 00:08:58.115
 One warning went away: C B five.
 
 136
-00:08:55.665 --> 00:09:00.965
+00:08:58.115 --> 00:09:03.415
 The eighteen and a half million byte list
 was over eighty percent of GCC's twenty
 
 137
-00:09:00.965 --> 00:09:04.820
+00:09:03.415 --> 00:09:07.270
 megabytes, but it's well under
 eighty percent of forty-five,
 
 138
-00:09:04.820 --> 00:09:06.265
+00:09:07.270 --> 00:09:08.715
 so in GCC High it's fine.
 
 139
-00:09:06.265 --> 00:09:08.027
+00:09:08.715 --> 00:09:10.477
 The download time is different.
 
 140
-00:09:08.027 --> 00:09:10.792
+00:09:10.477 --> 00:09:13.242
 The ten-second limit
 applies in every cloud,
 
 141
-00:09:10.792 --> 00:09:14.553
+00:09:13.242 --> 00:09:17.003
 so the eleven point four second
 download is still a Finding.
 
 142
-00:09:14.553 --> 00:09:18.745
+00:09:17.003 --> 00:09:21.195
 That's the lesson of this step: the
 same list can be a warning in one cloud
 
 143
-00:09:18.745 --> 00:09:23.300
+00:09:21.195 --> 00:09:25.750
 and not in another, which is why the
 check always takes the cloud by name.
 
 144
-00:09:27.050 --> 00:09:30.097
+00:09:29.500 --> 00:09:32.547
 Lab 2 moves to your own test
 tenant, never production,
 
 145
-00:09:30.097 --> 00:09:35.200
+00:09:32.547 --> 00:09:37.650
 with certificate-based authentication
 configured for a test certificate authority.
 
 146
-00:09:35.200 --> 00:09:38.722
+00:09:37.650 --> 00:09:41.172
 You create a reader app with a
 certificate that holds only the
 
 147
-00:09:38.722 --> 00:09:42.175
+00:09:41.172 --> 00:09:44.625
 three permissions you listed in
 step one, with admin consent.
 
 148
-00:09:42.175 --> 00:09:47.608
+00:09:44.625 --> 00:09:50.058
 You export the configuration, measure the
 real revocation lists from outside the
 
 149
-00:09:47.608 --> 00:09:50.405
+00:09:50.058 --> 00:09:52.855
 agency network, and
 run the check with your
 
 150
-00:09:50.405 --> 00:09:52.962
+00:09:52.855 --> 00:09:55.412
 test P K I's thumbprints
 and policy O I Ds.
 
 151
-00:09:52.962 --> 00:09:55.530
+00:09:55.412 --> 00:09:57.980
 Then the proof: revoke a test certificate,
 
 152
-00:09:55.530 --> 00:10:00.137
+00:09:57.980 --> 00:10:02.587
 and confirm Entra refuses it after
 the next revocation list is published.
 
 153
-00:10:00.137 --> 00:10:04.948
+00:10:02.587 --> 00:10:07.398
 To back it out, remove the permissions,
 delete the reader app and its certificate,
 
 154
-00:10:04.948 --> 00:10:07.935
+00:10:07.398 --> 00:10:10.385
 reissue the test user's
 certificate if you need it,
 
 155
-00:10:07.935 --> 00:10:10.413
+00:10:10.385 --> 00:10:12.863
 and delete the export and output folders.
 
 156
-00:10:10.413 --> 00:10:12.920
+00:10:12.863 --> 00:10:15.370
 The authors haven't run Lab 2.
 
 157
-00:10:16.670 --> 00:10:18.057
+00:10:19.120 --> 00:10:20.507
 The federal requirement.
 
 158
-00:10:18.057 --> 00:10:23.945
-This gate meets two controls in NIST special
-publication eight hundred fifty-three:
+00:10:20.507 --> 00:10:25.764
+This gate supports two controls in
+NIST special publication eight hundred
 
 159
-00:10:23.945 --> 00:10:27.982
-I A two, enhancement twelve,
-acceptance of PIV credentials,
+00:10:25.764 --> 00:10:30.603
+fifty-three: I A two, enhancement
+twelve, acceptance of PIV credentials,
 
 160
-00:10:27.982 --> 00:10:32.271
+00:10:30.603 --> 00:10:34.858
 and I A five, enhancement two,
 public key-based authentication.
 
 161
-00:10:32.271 --> 00:10:36.716
-It meets SCuBA's two phishing-resistant
-multifactor policies,
+00:10:34.858 --> 00:10:39.532
+It supports SCuBA's two
+phishing-resistant multifactor policies,
 
 162
-00:10:36.716 --> 00:10:41.845
+00:10:39.532 --> 00:10:44.632
 three point one and three point
 six, which BOD 25-01 requires.
 
 163
-00:10:41.845 --> 00:10:46.599
-And it meets FIPS two oh one dash
+00:10:44.632 --> 00:10:49.590
+And it supports FIPS two oh one dash
 three's issuance and termination rules,
 
 164
-00:10:46.599 --> 00:10:50.708
+00:10:49.590 --> 00:10:53.669
 and special publication eight
 hundred sixty-three dash four.
 
 165
-00:10:50.708 --> 00:10:55.642
+00:10:53.669 --> 00:10:57.845
+Your organization still sets the
+organization-defined parameters,
+
+166
+00:10:57.845 --> 00:11:00.995
+and the assessor decides
+whether each is satisfied.
+
+167
+00:11:00.995 --> 00:11:05.930
 The evidence an ISSO keeps for Gate
 5: the configuration export and
 
-166
-00:10:55.642 --> 00:11:00.757
+168
+00:11:05.930 --> 00:11:11.045
 the check's findings and manifest,
 dated, with each list's measurement.
 
-167
-00:11:00.757 --> 00:11:05.258
+169
+00:11:11.045 --> 00:11:15.545
 The C B nine and C B ten rows,
 beside the ScubaGear report.
 
-168
-00:11:05.258 --> 00:11:10.646
+170
+00:11:15.545 --> 00:11:20.933
 Lab 2's refused sign-in, with the revocation
 record and the list that published it.
 
-169
-00:11:10.646 --> 00:11:13.030
+171
+00:11:20.933 --> 00:11:23.330
 And the mode rules in the export.
 
-170
-00:11:16.780 --> 00:11:20.280
+172
+00:11:27.080 --> 00:11:30.580
 Check yourself with two questions
 from the module's knowledge check.
 
-171
-00:11:20.280 --> 00:11:23.850
+173
+00:11:30.580 --> 00:11:34.150
 First: what happens when an
 issuing certificate authority
 
-172
-00:11:23.850 --> 00:11:27.055
+174
+00:11:34.150 --> 00:11:37.355
 in the trust store has no
 revocation list configured?
 
-173
-00:11:27.055 --> 00:11:28.018
+175
+00:11:37.355 --> 00:11:38.318
 The answer is b.
 
-174
-00:11:28.018 --> 00:11:30.667
+176
+00:11:38.318 --> 00:11:40.967
 Entra doesn't check revocation for that
 
-175
-00:11:30.667 --> 00:11:33.717
+177
+00:11:40.967 --> 00:11:44.017
 authority's certificates,
 which is rule C B one.
 
-176
-00:11:33.717 --> 00:11:37.624
+178
+00:11:44.017 --> 00:11:47.924
 Second: an eighteen and
 a half million byte list
 
-177
-00:11:37.624 --> 00:11:41.030
+179
+00:11:47.924 --> 00:11:51.330
 raises C B five for GCC
 but not for GCC High.
 
-178
-00:11:41.030 --> 00:11:41.718
+180
+00:11:51.330 --> 00:11:52.018
 Why?
 
-179
-00:11:41.718 --> 00:11:42.727
+181
+00:11:52.018 --> 00:11:53.027
 The answer is b.
 
-180
-00:11:42.727 --> 00:11:47.183
+182
+00:11:53.027 --> 00:11:57.483
 C B five warns at eighty percent
 of the cloud's interactive limit,
 
-181
-00:11:47.183 --> 00:11:52.480
+183
+00:11:57.483 --> 00:12:02.780
 and GCC High's limit is forty-five megabytes,
 so the same size is under the line.
 
-182
-00:11:52.480 --> 00:11:57.710
+184
+00:12:02.780 --> 00:12:08.010
 The module page has two more questions,
 each linked to the section that teaches it.
 
-183
-00:12:01.460 --> 00:12:02.285
+185
+00:12:11.760 --> 00:12:12.585
 To sum up.
 
-184
-00:12:02.285 --> 00:12:07.584
+186
+00:12:12.585 --> 00:12:17.884
 You learned the interactive revocation
 list limits, twenty megabytes for
 
-185
-00:12:07.584 --> 00:12:12.797
+187
+00:12:17.884 --> 00:12:23.097
 GCC and forty-five for GCC High, with
 ten seconds to download in every cloud.
 
-186
-00:12:12.797 --> 00:12:14.354
+188
+00:12:23.097 --> 00:12:24.654
 You measured three lists,
 
-187
-00:12:14.354 --> 00:12:18.284
+189
+00:12:24.654 --> 00:12:28.584
 and the missing one became a
 recorded finding instead of a crash.
 
-188
-00:12:18.284 --> 00:12:21.975
+190
+00:12:28.584 --> 00:12:32.275
 You checked a fictional tenant
 for GCC and then for GCC High,
 
-189
-00:12:21.975 --> 00:12:27.097
+191
+00:12:32.275 --> 00:12:37.397
 and saw how the cloud's limit changes the
 findings while the download limit doesn't.
 
-190
-00:12:27.097 --> 00:12:30.193
+192
+00:12:37.397 --> 00:12:40.493
 Keep the measurement and
 the check running every day,
 
-191
-00:12:30.193 --> 00:12:33.710
+193
+00:12:40.493 --> 00:12:44.010
 because a list that fits today
 can cross the limit next month.
 
-192
-00:12:33.710 --> 00:12:37.056
+194
+00:12:44.010 --> 00:12:47.356
 Next is Module 6, time
 separations from the logs:
 
-193
-00:12:37.056 --> 00:12:41.860
+195
+00:12:47.356 --> 00:12:52.160
 separation-to-block and
 separation-to-revocation for every leaver.
 
-194
-00:12:41.860 --> 00:12:44.897
+196
+00:12:52.160 --> 00:12:55.197
 It builds on this module,
 because a card's revocation
 
-195
-00:12:44.897 --> 00:12:47.560
+197
+00:12:55.197 --> 00:12:57.860
 reaches sign-in through
 the revocation list.

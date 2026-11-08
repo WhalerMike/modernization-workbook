@@ -57,7 +57,7 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
     { x: 0.6, y: 1.5, w: 12.15, h: 0.6, fontSize: 18, color: HEX.ink, align: "center" });
   const cols = [
     ["FaListCheck", "Run it", HEX.amber, HEX.amberTint, "Which command does the job, and which chapter teaches it?"],
-    ["FaClipboardCheck", "Prove it", HEX.navy, HEX.navyTint, "Which federal requirement does this meet, and what evidence shows it?"],
+    ["FaClipboardCheck", "Prove it", HEX.navy, HEX.navyTint, "Which federal requirement does this support, and what evidence shows it?"],
     ["FaShieldHalved", "Trust it", HEX.teal, HEX.tealTint, "Is the source still current, and has anyone checked it lately?"],
   ];
   cols.forEach((c, i) => card(s, `Job ${i + 1}`, 0.6 + i * 4.1, 2.3, 3.95, 2.75, c[0], c[2], c[3], c[1], c[4], 17));

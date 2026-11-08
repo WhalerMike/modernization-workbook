@@ -840,16 +840,16 @@
   ],
   [
    22.512,
-   4.85,
-   "Done this way, it closes real device-authentication and inventory controls."
+   4.688,
+   "Done this way, it supports the device-authentication and inventory controls."
   ],
   [
-   27.363,
+   27.2,
    6.237,
    "One correction worth knowing: it doesn't close the external-connections control people often claim for it."
   ],
   [
-   33.6,
+   33.438,
    1.975,
    "That wraps up access control."
   ]

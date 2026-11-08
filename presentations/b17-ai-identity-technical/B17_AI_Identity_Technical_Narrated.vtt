@@ -60,1494 +60,1494 @@ October 2026, and they move fast.
 Let's begin with why.
 
 14
-00:00:44.780 --> 00:00:46.167
+00:00:44.560 --> 00:00:45.947
 Here's why this matters.
 
 15
-00:00:46.167 --> 00:00:50.318
+00:00:45.947 --> 00:00:50.098
 A chat assistant drafts something and
 a person decides what to do with it.
 
 16
-00:00:50.318 --> 00:00:51.793
+00:00:50.098 --> 00:00:51.573
 An agent doesn't wait.
 
 17
-00:00:51.793 --> 00:00:55.513
+00:00:51.573 --> 00:00:55.293
 It reads the mailbox, sends the
 reply and closes the ticket,
 
 18
-00:00:55.513 --> 00:00:59.079
+00:00:55.293 --> 00:00:58.859
 under an identity that signed
 in and holds permissions.
 
 19
-00:00:59.079 --> 00:01:02.280
+00:00:58.859 --> 00:01:02.060
 Only a small share of
 federal AI is agentic today,
 
 20
-00:01:02.280 --> 00:01:04.680
+00:01:02.060 --> 00:01:04.460
 but it's the share that grows fastest.
 
 21
-00:01:04.680 --> 00:01:09.118
+00:01:04.460 --> 00:01:08.898
 Notice the red path: an API key
 skips the identity provider,
 
 22
-00:01:09.118 --> 00:01:11.430
+00:01:08.898 --> 00:01:11.210
 so no policy ever sees the call.
 
 23
-00:01:11.430 --> 00:01:13.568
+00:01:11.210 --> 00:01:13.348
 And the risk is identity-shaped.
 
 24
-00:01:13.568 --> 00:01:16.317
+00:01:13.348 --> 00:01:16.097
 A manipulated chatbot gives a bad answer.
 
 25
-00:01:16.317 --> 00:01:18.546
+00:01:16.097 --> 00:01:18.326
 A manipulated agent takes an action,
 
 26
-00:01:18.546 --> 00:01:21.592
+00:01:18.326 --> 00:01:21.372
 and the damage is whatever
 its identity can reach.
 
 27
-00:01:21.592 --> 00:01:23.260
+00:01:21.372 --> 00:01:23.040
 So, Module 1.
 
 28
-00:01:27.010 --> 00:01:28.923
+00:01:26.790 --> 00:01:28.703
 Module 1 sets the ground.
 
 29
-00:01:28.923 --> 00:01:33.461
+00:01:28.703 --> 00:01:33.241
 We'll look at how AI got into agencies
 without the identity program noticing,
 
 30
-00:01:33.461 --> 00:01:35.983
+00:01:33.241 --> 00:01:35.763
 why the controls you
 already have cover it,
 
 31
-00:01:35.983 --> 00:01:40.738
+00:01:35.763 --> 00:01:40.518
 the seven things every AI identity needs,
 and what the federal AI rules actually
 
 32
-00:01:40.738 --> 00:01:46.080
+00:01:40.518 --> 00:01:45.860
 ask of you, including the one thing people
 most often get wrong about authorization.
 
 33
-00:01:49.830 --> 00:01:51.880
+00:01:49.610 --> 00:01:51.535
 Most AI didn't come
 through the front door.
 
 34
-00:01:51.880 --> 00:01:54.805
+00:01:51.535 --> 00:01:54.460
 It came as a vendor pilot,
 a key in a config file,
 
 35
-00:01:54.805 --> 00:01:58.205
+00:01:54.460 --> 00:01:57.860
 or a feature switched on in
 software you already had.
 
 36
-00:01:58.205 --> 00:02:03.101
+00:01:57.860 --> 00:02:02.756
 So it arrived without what an employee's
 account gets automatically: an owner,
 
 37
-00:02:03.101 --> 00:02:07.767
+00:02:02.756 --> 00:02:07.422
 a place in the organization, a governed
 credential, reviews and an end date.
 
 38
-00:02:07.767 --> 00:02:10.243
+00:02:07.422 --> 00:02:09.898
 The good news is you
 don't need new controls.
 
 39
-00:02:10.243 --> 00:02:13.815
+00:02:09.898 --> 00:02:13.503
 The account, identifier,
 authenticator and least-privilege
 
 40
-00:02:13.815 --> 00:02:17.317
-controls you already meet apply
-to non-person accounts too.
+00:02:13.503 --> 00:02:17.397
+controls you already implement
+apply to non-person accounts too.
 
 41
-00:02:17.317 --> 00:02:19.193
+00:02:17.397 --> 00:02:19.272
 The real gap is coverage.
 
 42
-00:02:19.193 --> 00:02:24.093
+00:02:19.272 --> 00:02:23.972
 The AI's account just isn't in the
 inventory those controls are tested against.
 
 43
-00:02:24.093 --> 00:02:26.560
+00:02:23.972 --> 00:02:26.440
 Here's what closing that gap looks like.
 
 44
-00:02:30.310 --> 00:02:35.057
+00:02:30.090 --> 00:02:34.818
 The program's answer is seven things
 every AI identity needs: one record,
 
 45
-00:02:35.057 --> 00:02:40.045
+00:02:34.818 --> 00:02:39.786
 a named human owner, a place in the
 organization, credentials with no stored
 
 46
-00:02:40.045 --> 00:02:42.860
+00:02:39.786 --> 00:02:42.590
 secrets, monitoring,
 a lifecycle that ends,
 
 47
-00:02:42.860 --> 00:02:45.998
+00:02:42.590 --> 00:02:45.715
 and evidence the authorizing
 official can use.
 
 48
-00:02:45.998 --> 00:02:49.960
-Each one maps to a chapter, and
-to controls you already meet.
+00:02:45.715 --> 00:02:49.915
+Each one maps to a chapter, and to
+controls you already implement.
 
 49
-00:02:49.960 --> 00:02:54.035
+00:02:49.915 --> 00:02:53.990
 Be clear that this is the program's
 design, not a new federal rule.
 
 50
-00:02:54.035 --> 00:02:55.773
+00:02:53.990 --> 00:02:55.728
 And keep the order practical.
 
 51
-00:02:55.773 --> 00:02:59.771
+00:02:55.728 --> 00:02:59.727
 Start with agents, the systems that
 can act, because that's where the
 
 52
-00:02:59.771 --> 00:03:03.697
+00:02:59.727 --> 00:03:03.653
 damage would be, then work outward
 to the systems that only answer.
 
 53
-00:03:03.697 --> 00:03:06.610
+00:03:03.653 --> 00:03:06.580
 Now, what do the federal
 rules actually say?
 
 54
-00:03:10.360 --> 00:03:14.879
+00:03:10.140 --> 00:03:14.659
 Federal AI rules changed a lot in two
 years, and one order even changed the
 
 55
-00:03:14.879 --> 00:03:19.548
+00:03:14.659 --> 00:03:19.328
 vocabulary to super intelligence, though
 the legal definition didn't move.
 
 56
-00:03:19.548 --> 00:03:23.336
+00:03:19.328 --> 00:03:23.116
 On the left are the documents that
 bind you, on the right the guidance.
 
 57
-00:03:23.336 --> 00:03:27.550
+00:03:23.116 --> 00:03:27.330
 The main memo gives you a Chief
 AI Officer, an annual inventory,
 
 58
-00:03:27.550 --> 00:03:31.435
+00:03:27.330 --> 00:03:31.215
 compliance plans and seven
 practices for high-impact AI.
 
 59
-00:03:31.435 --> 00:03:34.198
+00:03:31.215 --> 00:03:33.978
 For engineers, what it
 leaves out matters more.
 
 60
-00:03:34.198 --> 00:03:36.320
+00:03:33.978 --> 00:03:36.100
 It creates no AI authorization,
 
 61
-00:03:36.320 --> 00:03:40.647
+00:03:36.100 --> 00:03:40.427
 and it says nothing about accounts,
 credentials or permissions.
 
 62
-00:03:40.647 --> 00:03:44.247
+00:03:40.427 --> 00:03:44.027
 Those stay with the controls
 of the system the AI runs in.
 
 63
-00:03:44.247 --> 00:03:47.485
+00:03:44.027 --> 00:03:47.265
 And NIST's AI overlays
 aren't even drafted yet.
 
 64
-00:03:47.485 --> 00:03:49.270
+00:03:47.265 --> 00:03:49.050
 So, authorization.
 
 65
-00:03:53.020 --> 00:03:56.058
+00:03:52.800 --> 00:03:55.838
 There's no AI-specific
 authorization to operate.
 
 66
-00:03:56.058 --> 00:04:01.094
+00:03:55.838 --> 00:04:00.874
 An AI system goes through your agency's
 existing process, before it's deployed.
 
 67
-00:04:01.094 --> 00:04:04.742
+00:04:00.874 --> 00:04:04.522
 What high-impact AI adds is
 a second, separate signature:
 
 68
-00:04:04.742 --> 00:04:09.420
+00:04:04.522 --> 00:04:09.200
 someone accepts the risk of the AI
 use case after an independent review.
 
 69
-00:04:09.420 --> 00:04:12.849
+00:04:09.200 --> 00:04:12.629
 That's two decisions, possibly
 by two different people,
 
 70
-00:04:12.849 --> 00:04:15.058
+00:04:12.629 --> 00:04:14.838
 and neither one replaces the other.
 
 71
-00:04:15.058 --> 00:04:17.859
+00:04:14.838 --> 00:04:17.639
 The program ties both
 to one identity record,
 
 72
-00:04:17.859 --> 00:04:22.782
+00:04:17.639 --> 00:04:22.562
 so both people read the same facts about
 what the system is and what it can reach.
 
 73
-00:04:22.782 --> 00:04:26.460
+00:04:22.562 --> 00:04:26.240
 And if the inventory says a deployed
 system has no authorization,
 
 74
-00:04:26.460 --> 00:04:28.707
+00:04:26.240 --> 00:04:28.487
 that's a finding against your own policy.
 
 75
-00:04:28.707 --> 00:04:30.880
+00:04:28.487 --> 00:04:30.660
 That brings us to the inventory.
 
 76
-00:04:34.630 --> 00:04:37.255
+00:04:34.410 --> 00:04:37.035
 Module 2 is about knowing what you have.
 
 77
-00:04:37.255 --> 00:04:40.837
+00:04:37.035 --> 00:04:40.617
 We'll read the AI use-case
 inventory as identity data,
 
 78
-00:04:40.837 --> 00:04:45.503
+00:04:40.617 --> 00:04:45.283
 see why a use case isn't an identity,
 sort AI by whose token it presents,
 
 79
-00:04:45.503 --> 00:04:50.418
+00:04:45.283 --> 00:04:50.198
 look inside Agent ID, check what each
 government cloud really has today,
 
 80
-00:04:50.418 --> 00:04:53.290
+00:04:50.198 --> 00:04:53.070
 and end with six kinds of AI identity.
 
 81
-00:04:57.040 --> 00:05:01.011
+00:04:56.820 --> 00:05:00.791
 The inventory is the only
 government-wide list of federal AI,
 
 82
-00:05:01.011 --> 00:05:04.665
+00:05:00.791 --> 00:05:04.445
 but it was built to inform the
 public, not to run identity.
 
 83
-00:05:04.665 --> 00:05:09.202
+00:05:04.445 --> 00:05:08.982
 Read it with an identity team's eyes
 and its fields sort three ways.
 
 84
-00:05:09.202 --> 00:05:11.879
+00:05:08.982 --> 00:05:11.659
 A few are anchors you can key a record on,
 
 85
-00:05:11.879 --> 00:05:15.391
+00:05:11.659 --> 00:05:15.171
 like a stable ID, the bureau
 and the lifecycle stage.
 
 86
-00:05:15.391 --> 00:05:19.978
+00:05:15.171 --> 00:05:19.758
 Some are leads you have to verify, like
 the contact and the authorization answer.
 
 87
-00:05:19.978 --> 00:05:23.678
+00:05:19.758 --> 00:05:23.458
 And everything that decides what an
 AI can touch simply isn't there.
 
 88
-00:05:23.678 --> 00:05:27.428
+00:05:23.458 --> 00:05:27.208
 Even the contact often names a
 shared mailbox, not an owner.
 
 89
-00:05:27.428 --> 00:05:30.530
+00:05:27.208 --> 00:05:30.310
 And the unit is wrong,
 which is the next slide.
 
 90
-00:05:34.280 --> 00:05:38.005
+00:05:34.060 --> 00:05:37.785
 A use case is a scenario,
 and scenarios don't sign in.
 
 91
-00:05:38.005 --> 00:05:41.079
+00:05:37.785 --> 00:05:40.859
 One assistant can run on
 four different identities,
 
 92
-00:05:41.079 --> 00:05:45.655
+00:05:40.859 --> 00:05:45.435
 and one shared platform can serve dozens
 of use cases under a single identity.
 
 93
-00:05:45.655 --> 00:05:49.568
+00:05:45.435 --> 00:05:49.348
 The public file doesn't even
 have a stable key on every row.
 
 94
-00:05:49.568 --> 00:05:52.581
+00:05:49.348 --> 00:05:52.361
 So the program puts the
 join on the identity side.
 
 95
-00:05:52.581 --> 00:05:56.356
+00:05:52.361 --> 00:05:56.136
 Each AI system's identity record
 carries the inventory ID,
 
 96
-00:05:56.356 --> 00:06:00.367
+00:05:56.136 --> 00:06:00.147
 and every directory object it
 uses points back to that record.
 
 97
-00:06:00.367 --> 00:06:02.780
+00:06:00.147 --> 00:06:02.560
 That same tag can later drive policy.
 
 98
-00:06:02.780 --> 00:06:06.655
+00:06:02.560 --> 00:06:06.435
 Join against your agency's own
 submission, not the public file.
 
 99
-00:06:06.655 --> 00:06:11.130
+00:06:06.435 --> 00:06:10.910
 Next, what the inventory can say
 about the high-impact practices.
 
 100
-00:06:14.880 --> 00:06:19.917
+00:06:14.660 --> 00:06:19.697
 The inventory now has a field for every
 one of the seven high-impact practices.
 
 101
-00:06:19.917 --> 00:06:22.668
+00:06:19.697 --> 00:06:22.448
 But those fields hold answers, not proof.
 
 102
-00:06:22.668 --> 00:06:27.443
+00:06:22.448 --> 00:06:27.223
 A yes for monitoring tells you the agency
 believes it monitors, not what it found.
 
 103
-00:06:27.443 --> 00:06:31.604
+00:06:27.223 --> 00:06:31.384
 In the published data, many high-impact
 systems answered nothing, and in
 
 104
-00:06:31.604 --> 00:06:36.330
+00:06:31.384 --> 00:06:36.110
 progress outnumbers yes everywhere, which
 fits agencies still part way through.
 
 105
-00:06:36.330 --> 00:06:38.217
+00:06:36.110 --> 00:06:37.997
 Here's the useful part for this room.
 
 106
-00:06:38.217 --> 00:06:42.340
+00:06:37.997 --> 00:06:42.120
 Three practices are ones the identity
 program proves as a by-product:
 
 107
-00:06:42.340 --> 00:06:46.245
+00:06:42.120 --> 00:06:46.025
 monitoring from the system's own
 logs, operator training checked
 
 108
-00:06:46.245 --> 00:06:49.717
+00:06:46.025 --> 00:06:49.497
 against a real group, and a
 fail-safe that's a tested disable.
 
 109
-00:06:49.717 --> 00:06:52.500
+00:06:49.497 --> 00:06:52.280
 Now let's sort the identities themselves.
 
 110
-00:06:56.250 --> 00:06:59.859
+00:06:56.030 --> 00:06:59.639
 What kind of identity an AI
 has comes down to one question:
 
 111
-00:06:59.859 --> 00:07:01.625
+00:06:59.639 --> 00:07:01.405
 whose token does it present?
 
 112
-00:07:01.625 --> 00:07:05.966
+00:07:01.405 --> 00:07:05.746
 If it acts for a signed-in user, the
 user's policies and consent apply,
 
 113
-00:07:05.966 --> 00:07:08.412
+00:07:05.746 --> 00:07:08.192
 and it can do everything that user can.
 
 114
-00:07:08.412 --> 00:07:12.025
+00:07:08.192 --> 00:07:11.805
 If it acts as itself, its
 policy surface is thin.
 
 115
-00:07:12.025 --> 00:07:15.825
+00:07:11.805 --> 00:07:15.605
 All you can do is block it, so
 least privilege does the real work.
 
 116
-00:07:15.825 --> 00:07:18.445
+00:07:15.605 --> 00:07:18.225
 If it has its own user
 account, be careful,
 
 117
-00:07:18.445 --> 00:07:21.463
+00:07:18.225 --> 00:07:21.243
 because your all-users
 policies don't reach it.
 
 118
-00:07:21.463 --> 00:07:25.475
+00:07:21.243 --> 00:07:25.255
 That's why Microsoft says to write
 a policy for each token subject.
 
 119
-00:07:25.475 --> 00:07:30.537
+00:07:25.255 --> 00:07:30.317
 And the red path again, a key outside
 the identity provider, is invisible.
 
 120
-00:07:30.537 --> 00:07:32.740
+00:07:30.317 --> 00:07:32.520
 Let's look inside Agent ID.
 
 121
-00:07:36.490 --> 00:07:39.190
+00:07:36.270 --> 00:07:38.970
 Agent ID adds a small object model.
 
 122
-00:07:39.190 --> 00:07:42.490
+00:07:38.970 --> 00:07:42.270
 The blueprint is the template,
 and it holds the credential.
 
 123
-00:07:42.490 --> 00:07:44.948
+00:07:42.270 --> 00:07:44.728
 The agent identities created from it hold
 
 124
-00:07:44.948 --> 00:07:47.477
+00:07:44.728 --> 00:07:47.257
 permissions but no
 credential of their own.
 
 125
-00:07:47.477 --> 00:07:51.339
+00:07:47.257 --> 00:07:51.119
 The big consequence is that the
 blueprint is a credential boundary.
 
 126
-00:07:51.339 --> 00:07:54.270
+00:07:51.119 --> 00:07:54.050
 One credential serves
 every agent of that kind,
 
 127
-00:07:54.270 --> 00:07:58.853
+00:07:54.050 --> 00:07:58.633
 and one action on the blueprint reaches
 all of them, including future ones.
 
 128
-00:07:58.853 --> 00:08:03.491
+00:07:58.633 --> 00:08:03.271
 Second, what a blueprint declares
 isn't granted until someone consents,
 
 129
-00:08:03.491 --> 00:08:05.928
+00:08:03.271 --> 00:08:05.708
 so real access is a sum you have to read.
 
 130
-00:08:05.928 --> 00:08:09.553
+00:08:05.708 --> 00:08:09.333
 Third, every agent gets a
 human sponsor at creation.
 
 131
-00:08:09.553 --> 00:08:12.020
+00:08:09.333 --> 00:08:11.800
 Now, which clouds actually have this?
 
 132
-00:08:15.770 --> 00:08:19.645
+00:08:15.550 --> 00:08:19.425
 Your cloud decides what you can use,
 and this picture changes monthly.
 
 133
-00:08:19.645 --> 00:08:21.895
+00:08:19.425 --> 00:08:21.675
 The platform is generally available.
 
 134
-00:08:21.895 --> 00:08:26.566
+00:08:21.675 --> 00:08:26.346
 GCC has a documented subset: you can
 govern agent identity and access,
 
 135
-00:08:26.566 --> 00:08:31.483
+00:08:26.346 --> 00:08:31.263
 but not yet get Microsoft's audit and
 data protection for agent activity.
 
 136
-00:08:31.483 --> 00:08:35.795
+00:08:31.263 --> 00:08:35.575
 GCC High and DoD have nothing
 published, so treat agent identities
 
 137
-00:08:35.795 --> 00:08:39.794
+00:08:35.575 --> 00:08:39.574
 as unavailable there until
 Microsoft confirms it in writing.
 
 138
-00:08:39.794 --> 00:08:44.733
+00:08:39.574 --> 00:08:44.513
 Licensing is its own trap, and the FedRAMP
 High authorization is still pending.
 
 139
-00:08:44.733 --> 00:08:49.187
+00:08:44.513 --> 00:08:48.967
 The program's rule is to build on what's
 generally available in your own cloud,
 
 140
-00:08:49.187 --> 00:08:51.732
+00:08:48.967 --> 00:08:51.512
 and to treat preview as
 something you watch.
 
 141
-00:08:51.732 --> 00:08:54.060
+00:08:51.512 --> 00:08:53.840
 So how do we classify all this?
 
 142
-00:08:57.810 --> 00:09:03.340
+00:08:57.590 --> 00:09:03.120
 Putting it together, the program sorts
 every AI system into six kinds of identity:
 
 143
-00:09:03.340 --> 00:09:07.633
+00:09:03.120 --> 00:09:07.413
 a delegated assistant,
 workload-identity AI, an agent identity,
 
 144
-00:09:07.633 --> 00:09:12.998
+00:09:07.413 --> 00:09:12.778
 an agent with its own user account, a
 vendor-hosted service, and an unmanaged key.
 
 145
-00:09:12.998 --> 00:09:16.763
+00:09:12.778 --> 00:09:16.543
 Each kind tells you who owns
 it, how it should authenticate,
 
 146
-00:09:16.763 --> 00:09:19.273
+00:09:16.543 --> 00:09:19.053
 what policy can reach it, and how it ends.
 
 147
-00:09:19.273 --> 00:09:21.572
+00:09:19.053 --> 00:09:21.352
 Most of the risk sits in the last two.
 
 148
-00:09:21.572 --> 00:09:25.547
+00:09:21.352 --> 00:09:25.327
 A vendor's service is visible
 but outside your workload policy.
 
 149
-00:09:25.547 --> 00:09:28.025
+00:09:25.327 --> 00:09:27.805
 A raw key isn't in the directory at all,
 
 150
-00:09:28.025 --> 00:09:30.998
+00:09:27.805 --> 00:09:30.778
 so it has no owner and no
 end until you find it.
 
 151
-00:09:30.998 --> 00:09:35.210
+00:09:30.778 --> 00:09:34.990
 Everything else can be governed,
 and Part 2 does exactly that.
 
 152
-00:09:38.960 --> 00:09:41.373
+00:09:38.740 --> 00:09:41.153
 Module 3 makes governance real.
 
 153
-00:09:41.373 --> 00:09:44.421
+00:09:41.153 --> 00:09:44.201
 We'll attach every agent
 to accountable people,
 
 154
-00:09:44.421 --> 00:09:47.627
+00:09:44.201 --> 00:09:47.407
 run its lifecycle from the
 sponsor's own HR events,
 
 155
-00:09:47.627 --> 00:09:52.240
+00:09:47.407 --> 00:09:52.020
 give it credentials with no stored
 secrets and only the access it needs,
 
 156
-00:09:52.240 --> 00:09:57.380
+00:09:52.020 --> 00:09:57.160
 and then bound what it can call, through
 policy, tool registration and data.
 
 157
-00:10:01.130 --> 00:10:06.117
+00:10:00.910 --> 00:10:05.897
 An agent has no hire date, so its lifecycle
 has to hang from a person who does.
 
 158
-00:10:06.117 --> 00:10:08.429
+00:10:05.897 --> 00:10:08.209
 Agent ID gives you three roles.
 
 159
-00:10:08.429 --> 00:10:10.667
+00:10:08.209 --> 00:10:10.447
 The owner holds the technical keys.
 
 160
-00:10:10.667 --> 00:10:13.262
+00:10:10.447 --> 00:10:13.042
 The sponsor answers for
 why the agent exists,
 
 161
-00:10:13.262 --> 00:10:16.768
+00:10:13.042 --> 00:10:16.548
 and can switch it off but
 deliberately can't switch it back on.
 
 162
-00:10:16.768 --> 00:10:20.593
+00:10:16.548 --> 00:10:20.373
 The manager places an agent's
 user account in the organization.
 
 163
-00:10:20.593 --> 00:10:23.032
+00:10:20.373 --> 00:10:22.812
 The catch is the defaults: left alone,
 
 164
-00:10:23.032 --> 00:10:26.855
+00:10:22.812 --> 00:10:26.635
 whoever built the agent ends
 up sponsoring and owning it.
 
 165
-00:10:26.855 --> 00:10:29.092
+00:10:26.635 --> 00:10:28.872
 So the program sets it on purpose.
 
 166
-00:10:29.092 --> 00:10:33.167
+00:10:28.872 --> 00:10:32.947
 An HR-mastered federal sponsor, a
 small group of stewards as backup,
 
 167
-00:10:33.167 --> 00:10:37.167
+00:10:32.947 --> 00:10:36.947
 a separate technical owner, and
 administrators sponsor nothing.
 
 168
-00:10:37.167 --> 00:10:39.590
+00:10:36.947 --> 00:10:39.370
 Here's how that drives the lifecycle.
 
 169
-00:10:43.340 --> 00:10:45.440
+00:10:43.120 --> 00:10:45.220
 The lifecycle mirrors a person's.
 
 170
-00:10:45.440 --> 00:10:49.965
+00:10:45.220 --> 00:10:49.745
 Nothing goes to production without an
 approved inventory entry and a handshake.
 
 171
-00:10:49.965 --> 00:10:54.790
+00:10:49.745 --> 00:10:54.570
 The event that matters most is the sponsor
 leaving, because the agent never does.
 
 172
-00:10:54.790 --> 00:10:59.696
+00:10:54.570 --> 00:10:59.476
 Lifecycle workflows can hand sponsorship
 to the manager, and the program hangs
 
 173
-00:10:59.696 --> 00:11:04.602
+00:10:59.476 --> 00:11:04.382
 that off HR's own events and gives the
 manager a short window to actually confirm.
 
 174
-00:11:04.602 --> 00:11:06.152
+00:11:04.382 --> 00:11:05.932
 Then there's a neat inversion.
 
 175
-00:11:06.152 --> 00:11:08.849
+00:11:05.932 --> 00:11:08.629
 Access comes in packages with end dates,
 
 176
-00:11:08.849 --> 00:11:13.178
+00:11:08.629 --> 00:11:12.958
 so if the sponsor ignores the
 renewal, the access simply expires.
 
 177
-00:11:13.178 --> 00:11:16.777
+00:11:12.958 --> 00:11:16.557
 Ignoring the review removes
 access instead of keeping it.
 
 178
-00:11:16.777 --> 00:11:19.090
+00:11:16.557 --> 00:11:18.870
 Now, how an agent ends.
 
 179
-00:11:22.840 --> 00:11:25.037
+00:11:22.620 --> 00:11:24.817
 Ending an agent takes two steps,
 
 180
-00:11:25.037 --> 00:11:29.178
+00:11:24.817 --> 00:11:28.958
 and the program keeps them apart:
 disable first, then delete.
 
 181
-00:11:29.178 --> 00:11:34.585
+00:11:28.958 --> 00:11:34.365
 Deleting a blueprint cascades to all
 its agents, slowly, and restores only
 
 182
-00:11:34.585 --> 00:11:39.903
+00:11:34.365 --> 00:11:39.683
 work for thirty days, so disable, record
 the decision, wait, and then delete.
 
 183
-00:11:39.903 --> 00:11:45.329
+00:11:39.683 --> 00:11:45.109
 An agent is orphaned when any of its
 anchors fails: no confirmed sponsor,
 
 184
-00:11:45.329 --> 00:11:50.203
+00:11:45.109 --> 00:11:49.983
 no owner, no activity, no inventory
 record, or a deleted blueprint.
 
 185
-00:11:50.203 --> 00:11:55.478
+00:11:49.983 --> 00:11:55.258
 A person disables it, never automation,
 and the office gets thirty days to decide.
 
 186
-00:11:55.478 --> 00:11:57.759
+00:11:55.258 --> 00:11:57.539
 Where agent features aren't available,
 
 187
-00:11:57.759 --> 00:12:02.465
+00:11:57.539 --> 00:12:02.245
 run the same lifecycle on application
 objects, and say honestly that it's weaker.
 
 188
-00:12:02.465 --> 00:12:04.350
+00:12:02.245 --> 00:12:04.130
 Next, credentials.
 
 189
-00:12:08.100 --> 00:12:10.851
+00:12:07.880 --> 00:12:10.631
 An agent can't do
 multifactor authentication,
 
 190
-00:12:10.851 --> 00:12:13.675
+00:12:10.631 --> 00:12:13.455
 so its credential has to
 be right from the start.
 
 191
-00:12:13.675 --> 00:12:18.087
+00:12:13.455 --> 00:12:17.867
 Because the blueprint holds the
 credential for every agent made from it,
 
 192
-00:12:18.087 --> 00:12:20.735
+00:12:17.867 --> 00:12:20.515
 the order matters: a
 managed identity first,
 
 193
-00:12:20.735 --> 00:12:24.632
+00:12:20.515 --> 00:12:24.412
 federation from the agent's own
 platform next, a certificate in a
 
 194
-00:12:24.632 --> 00:12:28.750
+00:12:24.412 --> 00:12:28.530
 vault only if neither works, and a
 client secret never in production.
 
 195
-00:12:28.750 --> 00:12:32.340
+00:12:28.530 --> 00:12:32.120
 The program enforces that with
 an app management policy that
 
 196
-00:12:32.340 --> 00:12:36.000
+00:12:32.120 --> 00:12:35.780
 already covers blueprints, so a
 production secret is a finding.
 
 197
-00:12:36.000 --> 00:12:38.925
+00:12:35.780 --> 00:12:38.705
 And watch the keys an
 agent uses for its tools.
 
 198
-00:12:38.925 --> 00:12:43.325
+00:12:38.705 --> 00:12:43.105
 An unavoidable key needs a vault,
 an owner and a rotation date.
 
 199
-00:12:43.325 --> 00:12:44.900
+00:12:43.105 --> 00:12:44.680
 Now, privilege.
 
 200
-00:12:48.650 --> 00:12:52.171
+00:12:48.430 --> 00:12:51.951
 Least privilege starts with
 choosing how the agent acts:
 
 201
-00:12:52.171 --> 00:12:56.367
+00:12:51.951 --> 00:12:56.147
 for a user when someone's present, as
 itself only when there's a reason,
 
 202
-00:12:56.367 --> 00:13:00.263
+00:12:56.147 --> 00:13:00.043
 and with its own user account only
 when it truly needs a mailbox.
 
 203
-00:13:00.263 --> 00:13:04.728
+00:13:00.043 --> 00:13:04.508
 Microsoft blocks the most dangerous
 roles and permissions for agents,
 
 204
-00:13:04.728 --> 00:13:07.074
+00:13:04.508 --> 00:13:06.854
 but that's a floor, not least privilege.
 
 205
-00:13:07.074 --> 00:13:10.588
+00:13:06.854 --> 00:13:10.368
 Agents can still hold roles that
 are privileged in your tenant,
 
 206
-00:13:10.588 --> 00:13:12.750
+00:13:10.368 --> 00:13:12.530
 so apply your own risk classification.
 
 207
-00:13:12.750 --> 00:13:16.344
+00:13:12.530 --> 00:13:16.124
 Keep inherited permissions
 narrow, because one broad
 
 208
-00:13:16.344 --> 00:13:20.338
+00:13:16.124 --> 00:13:20.118
 setting turns every future grant
 into a grant to every agent.
 
 209
-00:13:20.338 --> 00:13:23.026
+00:13:20.118 --> 00:13:22.806
 And no agent holds a
 standing privileged role.
 
 210
-00:13:23.026 --> 00:13:26.762
+00:13:22.806 --> 00:13:26.542
 If it seems to need one permanently,
 that's a design defect.
 
 211
-00:13:26.762 --> 00:13:28.380
+00:13:26.542 --> 00:13:28.160
 Next, policy.
 
 212
-00:13:32.130 --> 00:13:35.180
+00:13:31.910 --> 00:13:34.960
 Conditional Access follows
 the token's subject,
 
 213
-00:13:35.180 --> 00:13:37.468
+00:13:34.960 --> 00:13:37.248
 so one policy rarely covers an agent.
 
 214
-00:13:37.468 --> 00:13:41.130
+00:13:37.248 --> 00:13:40.910
 For autonomous agents, the
 recommended pattern is simple:
 
 215
-00:13:41.130 --> 00:13:44.868
+00:13:40.910 --> 00:13:44.648
 block every agent identity
 except the ones you've approved.
 
 216
-00:13:44.868 --> 00:13:49.174
+00:13:44.648 --> 00:13:48.954
 The program builds that in report-only
 mode and sets the approval tag only
 
 217
-00:13:49.174 --> 00:13:53.904
+00:13:48.954 --> 00:13:53.684
 during the production handshake, so the
 report shows every agent that skipped it.
 
 218
-00:13:53.904 --> 00:13:58.767
+00:13:53.684 --> 00:13:58.547
 It stays in report-only until the agent
 targets leave preview in your cloud.
 
 219
-00:13:58.767 --> 00:14:03.456
+00:13:58.547 --> 00:14:03.236
 Plan around the known gaps, like the
 token exchange step that policy can't see.
 
 220
-00:14:03.456 --> 00:14:06.894
+00:14:03.236 --> 00:14:06.674
 And when risk detection flags
 an agent, tell its sponsor too,
 
 221
-00:14:06.894 --> 00:14:09.280
+00:14:06.674 --> 00:14:09.060
 because they know what normal looks like.
 
 222
-00:14:09.280 --> 00:14:11.330
+00:14:09.060 --> 00:14:11.110
 Now, tools and data.
 
 223
-00:14:15.080 --> 00:14:18.066
+00:14:14.860 --> 00:14:17.846
 An agent's reach is the sum
 of the tools it can call,
 
 224
-00:14:18.066 --> 00:14:20.455
+00:14:17.846 --> 00:14:20.235
 so the program draws three boundaries.
 
 225
-00:14:20.455 --> 00:14:23.968
+00:14:20.235 --> 00:14:23.748
 First, identity: what the
 agent can get a token for.
 
 226
-00:14:23.968 --> 00:14:28.046
+00:14:23.748 --> 00:14:27.826
 But the protocol many agent tools
 use makes authorization optional,
 
 227
-00:14:28.046 --> 00:14:30.193
+00:14:27.826 --> 00:14:29.973
 so some tools sit outside that layer.
 
 228
-00:14:30.193 --> 00:14:35.780
+00:14:29.973 --> 00:14:35.560
 Second, a registry of approved tools, so
 a call to anything unregistered is drift.
 
 229
-00:14:35.780 --> 00:14:40.721
+00:14:35.560 --> 00:14:40.501
 Third, data protection, which isn't
 available for agents in GCC yet, so there
 
 230
-00:14:40.721 --> 00:14:45.905
+00:14:40.501 --> 00:14:45.685
 your only data boundary is narrow
 permissions, and you should record that gap.
 
 231
-00:14:45.905 --> 00:14:50.605
+00:14:45.685 --> 00:14:50.385
 Anything outside all three, like
 a raw key, becomes a finding.
 
 232
-00:14:50.605 --> 00:14:52.550
+00:14:50.385 --> 00:14:52.330
 That takes us to monitoring.
 
 233
-00:14:56.300 --> 00:14:59.137
+00:14:56.080 --> 00:14:58.917
 Module 4 is about watching and proving.
 
 234
-00:14:59.137 --> 00:15:03.932
+00:14:58.917 --> 00:15:03.712
 We'll find where AI shows up in the
 logs, hunt shadow AI on four surfaces,
 
 235
-00:15:03.932 --> 00:15:07.212
+00:15:03.712 --> 00:15:06.992
 turn gaps into findings,
 run the inventory scan,
 
 236
-00:15:07.212 --> 00:15:12.200
+00:15:06.992 --> 00:15:11.980
 and package the evidence an
 authorizing official actually needs.
 
 237
-00:15:15.950 --> 00:15:19.426
+00:15:15.730 --> 00:15:19.206
 Monitoring starts with knowing
 where AI shows up in the logs,
 
 238
-00:15:19.426 --> 00:15:21.650
+00:15:19.206 --> 00:15:21.430
 and that's less obvious than you'd think.
 
 239
-00:15:21.650 --> 00:15:24.312
+00:15:21.430 --> 00:15:24.092
 An AI built on an ordinary app or managed
 
 240
-00:15:24.312 --> 00:15:27.538
+00:15:24.092 --> 00:15:27.318
 identity looks exactly
 like any other workload.
 
 241
-00:15:27.538 --> 00:15:30.762
+00:15:27.318 --> 00:15:30.542
 Nothing in the log says
 it's AI or who sponsors it.
 
 242
-00:15:30.762 --> 00:15:32.713
+00:15:30.542 --> 00:15:32.493
 Only your identity record can.
 
 243
-00:15:32.713 --> 00:15:37.150
+00:15:32.493 --> 00:15:36.930
 Agent ID objects are easier to spot,
 but some logs still don't separate
 
 244
-00:15:37.150 --> 00:15:41.900
+00:15:36.930 --> 00:15:41.680
 agents from apps, so your detections
 belong on the sign-in and audit tables.
 
 245
-00:15:41.900 --> 00:15:46.875
+00:15:41.680 --> 00:15:46.655
 Alert on things that happen outside your
 pipeline, like new credentials or grants.
 
 246
-00:15:46.875 --> 00:15:51.662
+00:15:46.655 --> 00:15:51.442
 And export everything on day one,
 because history starts when export does.
 
 247
-00:15:51.662 --> 00:15:54.000
+00:15:51.442 --> 00:15:53.780
 Next, what nobody declared.
 
 248
-00:15:57.750 --> 00:16:00.924
+00:15:57.530 --> 00:16:00.704
 For AI, a lot of what
 matters was never declared,
 
 249
-00:16:00.924 --> 00:16:04.600
+00:16:00.704 --> 00:16:04.380
 so discovery has to be standing,
 not a one-time cleanup.
 
 250
-00:16:04.600 --> 00:16:08.578
+00:16:04.380 --> 00:16:08.358
 Shadow AI shows up in four
 places: services people use,
 
 251
-00:16:08.578 --> 00:16:14.725
+00:16:08.358 --> 00:16:14.505
 apps holding consented access, agents on
 endpoints, and AI built in your own clouds.
 
 252
-00:16:14.725 --> 00:16:17.812
+00:16:14.505 --> 00:16:17.592
 Each needs a different tool,
 and none sees everything.
 
 253
-00:16:17.812 --> 00:16:22.151
+00:16:17.592 --> 00:16:21.931
 The test is the same everywhere:
 does this match an identity record?
 
 254
-00:16:22.151 --> 00:16:25.375
+00:16:21.931 --> 00:16:25.155
 Match on the record's key,
 never on a display name.
 
 255
-00:16:25.375 --> 00:16:27.012
+00:16:25.155 --> 00:16:26.792
 And remember the blind spot.
 
 256
-00:16:27.012 --> 00:16:30.605
+00:16:26.792 --> 00:16:30.385
 An agent using a raw key produces
 no identity signal at all,
 
 257
-00:16:30.605 --> 00:16:34.049
+00:16:30.385 --> 00:16:33.829
 which is why endpoint and
 network views aren't optional.
 
 258
-00:16:34.049 --> 00:16:35.780
+00:16:33.829 --> 00:16:35.560
 Now, the findings.
 
 259
-00:16:39.530 --> 00:16:43.905
+00:16:39.310 --> 00:16:43.685
 Every gap becomes a finding with
 a class, a severity and an owner.
 
 260
-00:16:43.905 --> 00:16:46.736
+00:16:43.685 --> 00:16:46.516
 The top one is the
 reason this book exists:
 
 261
-00:16:46.736 --> 00:16:49.817
+00:16:46.516 --> 00:16:49.597
 an agentic system with
 no governed identity.
 
 262
-00:16:49.817 --> 00:16:53.534
+00:16:49.597 --> 00:16:53.314
 It's the highest priority, and
 it's never fixed automatically,
 
 263
-00:16:53.534 --> 00:16:56.877
+00:16:53.314 --> 00:16:56.657
 because the right answer
 might be issuing an identity,
 
 264
-00:16:56.877 --> 00:17:00.593
+00:16:56.657 --> 00:17:00.373
 disabling the agent, or fixing
 a mislabeled inventory entry.
 
 265
-00:17:00.593 --> 00:17:02.856
+00:17:00.373 --> 00:17:02.636
 That's a decision, not a repair.
 
 266
-00:17:02.856 --> 00:17:07.110
+00:17:02.636 --> 00:17:06.890
 A missing authorization starts lower
 because the inventory can be wrong,
 
 267
-00:17:07.110 --> 00:17:09.342
+00:17:06.890 --> 00:17:09.122
 then rises once the records confirm it.
 
 268
-00:17:09.342 --> 00:17:13.885
+00:17:09.122 --> 00:17:13.665
 Each finding becomes one evidence
 record, keyed on the identity record,
 
 269
-00:17:13.885 --> 00:17:17.118
+00:17:13.665 --> 00:17:16.898
 and it closes only when a
 later look shows it's fixed.
 
 270
-00:17:17.118 --> 00:17:18.950
+00:17:16.898 --> 00:17:18.730
 Next, the scan.
 
 271
-00:17:22.700 --> 00:17:26.537
+00:17:22.480 --> 00:17:26.317
 The scan is cheap because it reads
 answers agencies already gave.
 
 272
-00:17:26.537 --> 00:17:29.007
+00:17:26.317 --> 00:17:28.787
 Load one year's inventory
 as a fixed input,
 
 273
-00:17:29.007 --> 00:17:32.275
+00:17:28.787 --> 00:17:32.055
 and report rows you can't read
 instead of skipping them.
 
 274
-00:17:32.275 --> 00:17:35.907
+00:17:32.055 --> 00:17:35.687
 Then run two kinds of checks:
 some on inventory answers alone,
 
 275
-00:17:35.907 --> 00:17:38.812
+00:17:35.687 --> 00:17:38.592
 and the important ones
 that need your directory.
 
 276
-00:17:38.812 --> 00:17:42.776
+00:17:38.592 --> 00:17:42.556
 On the public file, most live
 entries trip at least one check,
 
 277
-00:17:42.776 --> 00:17:47.063
+00:17:42.556 --> 00:17:46.843
 but those are answers to reconcile,
 not findings and not systems.
 
 278
-00:17:47.063 --> 00:17:51.322
+00:17:46.843 --> 00:17:51.102
 Prioritize agentic first, route
 every row to a named person,
 
 279
-00:17:51.322 --> 00:17:54.538
+00:17:51.102 --> 00:17:54.318
 and close only when a
 later look shows the fix.
 
 280
-00:17:54.538 --> 00:17:57.325
+00:17:54.318 --> 00:17:57.105
 Then each year, compare the two vintages.
 
 281
-00:17:57.325 --> 00:17:59.120
+00:17:57.105 --> 00:17:58.900
 Could this run centrally?
 
 282
-00:18:02.870 --> 00:18:07.795
+00:18:02.650 --> 00:18:07.575
 In principle, one operator could run the
 answer checks for every agency at once.
 
 283
-00:18:07.795 --> 00:18:11.907
+00:18:07.575 --> 00:18:11.687
 People call that CDM for AI,
 but CDM works differently.
 
 284
-00:18:11.907 --> 00:18:15.808
+00:18:11.687 --> 00:18:15.588
 Its tools run inside each
 agency and summaries flow up.
 
 285
-00:18:15.808 --> 00:18:18.232
+00:18:15.588 --> 00:18:18.012
 What carries over is the split between who
 
 286
-00:18:18.232 --> 00:18:20.933
+00:18:18.012 --> 00:18:20.713
 sees across agencies and
 who fixes inside them.
 
 287
-00:18:20.933 --> 00:18:25.254
+00:18:20.713 --> 00:18:25.034
 A central scan sees only what was
 published, so it can't tell whether a
 
 288
-00:18:25.254 --> 00:18:29.883
+00:18:25.034 --> 00:18:29.663
 credential exists, rotated or was revoked,
 and it can't see shadow AI at all.
 
 289
-00:18:29.883 --> 00:18:34.632
+00:18:29.663 --> 00:18:34.412
 That last tier, governing the credential
 itself, belongs to each agency.
 
 290
-00:18:34.632 --> 00:18:37.132
+00:18:34.412 --> 00:18:36.912
 A central scan starts the conversation.
 
 291
-00:18:37.132 --> 00:18:38.432
+00:18:36.912 --> 00:18:38.212
 It doesn't finish it.
 
 292
-00:18:38.432 --> 00:18:40.060
+00:18:38.212 --> 00:18:39.840
 Now, the package.
 
 293
-00:18:43.810 --> 00:18:47.531
+00:18:43.590 --> 00:18:47.311
 Everything ends in the authorization
 package, because that's what
 
 294
-00:18:47.531 --> 00:18:51.185
+00:18:47.311 --> 00:18:50.965
 the authorizing official reads,
 and only they can accept the risk.
 
 295
-00:18:51.185 --> 00:18:55.114
+00:18:50.965 --> 00:18:54.894
 First ask where the AI runs:
 inside an existing system,
 
 296
-00:18:55.114 --> 00:18:58.597
+00:18:54.894 --> 00:18:58.377
 as a new one, or on a
 provider's certified service.
 
 297
-00:18:58.597 --> 00:19:02.936
+00:18:58.377 --> 00:19:02.716
 Even then, the identities that service
 creates in your tenant are yours.
 
 298
-00:19:02.936 --> 00:19:06.642
+00:19:02.716 --> 00:19:06.422
 Then the package should answer
 five questions: who owns it,
 
 299
-00:19:06.642 --> 00:19:11.585
+00:19:06.422 --> 00:19:11.365
 how it authenticates, what it can reach,
 who's watching, and when its access ends.
 
 300
-00:19:11.585 --> 00:19:14.010
+00:19:11.365 --> 00:19:13.790
 One control deserves special attention.
 
 301
-00:19:14.010 --> 00:19:16.999
+00:19:13.790 --> 00:19:16.779
 Service authentication
 isn't in any baseline,
 
 302
-00:19:16.999 --> 00:19:20.460
+00:19:16.779 --> 00:19:20.240
 so a plan built only from
 the baseline never checks it.
 
 303
-00:19:20.460 --> 00:19:21.385
+00:19:20.240 --> 00:19:21.165
 Tailor it in.
 
 304
-00:19:21.385 --> 00:19:23.800
+00:19:21.165 --> 00:19:23.580
 Next, format and clocks.
 
 305
-00:19:27.550 --> 00:19:29.794
+00:19:27.330 --> 00:19:29.574
 The package should be machine-readable,
 
 306
-00:19:29.794 --> 00:19:33.125
+00:19:29.574 --> 00:19:32.905
 and the current version of
 OSCAL needs nothing AI-specific.
 
 307
-00:19:33.125 --> 00:19:38.574
+00:19:32.905 --> 00:19:38.354
 The AI system is a component, each identity
 it uses is a user with its privileges,
 
 308
-00:19:38.574 --> 00:19:41.425
+00:19:38.354 --> 00:19:41.205
 and the sponsor and owner are named roles.
 
 309
-00:19:41.425 --> 00:19:44.880
+00:19:41.205 --> 00:19:44.660
 Just remember that privileges
 in the plan are a description;
 
 310
-00:19:44.880 --> 00:19:47.575
+00:19:44.660 --> 00:19:47.355
 the proof is an observation
 from the directory.
 
 311
-00:19:47.575 --> 00:19:52.313
+00:19:47.355 --> 00:19:52.093
 AI adds a few clocks beside annual
 security testing: the yearly inventory,
 
 312
-00:19:52.313 --> 00:19:56.663
+00:19:52.093 --> 00:19:56.443
 a compliance plan every two years,
 and annual waiver certification.
 
 313
-00:19:56.663 --> 00:20:00.438
+00:19:56.443 --> 00:20:00.218
 And NIST's AI overlays aren't
 drafted yet, so don't wait.
 
 314
-00:20:00.438 --> 00:20:03.750
+00:20:00.218 --> 00:20:03.530
 Tailor your baseline now and
 compare when they arrive.
 
 315
-00:20:03.750 --> 00:20:05.820
+00:20:03.530 --> 00:20:05.600
 Let's close with decisions.
 
 316
-00:20:09.570 --> 00:20:11.899
+00:20:09.350 --> 00:20:11.679
 Every decision here has one owner.
 
 317
-00:20:11.899 --> 00:20:14.493
+00:20:11.679 --> 00:20:14.273
 The Chief AI Officer requires every live
 
 318
-00:20:14.493 --> 00:20:17.481
+00:20:14.273 --> 00:20:17.261
 inventory entry to link
 to an identity record.
 
 319
-00:20:17.481 --> 00:20:20.109
+00:20:17.261 --> 00:20:19.889
 The identity governance officer makes sure
 
 320
-00:20:20.109 --> 00:20:22.872
+00:20:19.889 --> 00:20:22.652
 that record exists before
 any credential does.
 
 321
-00:20:22.872 --> 00:20:26.330
+00:20:22.652 --> 00:20:26.110
 The CISO sets the credential,
 policy and logging rules,
 
 322
-00:20:26.330 --> 00:20:29.113
+00:20:26.110 --> 00:20:28.893
 the system owner decides
 what an AI may reach,
 
 323
-00:20:29.113 --> 00:20:33.852
+00:20:28.893 --> 00:20:33.632
 and the authorizing official decides
 when a change needs reauthorization.
 
 324
-00:20:33.852 --> 00:20:39.037
+00:20:33.632 --> 00:20:38.817
 And you can start Monday without buying
 anything: list your agents and their owners,
 
 325
-00:20:39.037 --> 00:20:42.869
+00:20:38.817 --> 00:20:42.649
 scan your own inventory, build
 the block policy in report-only,
 
 326
-00:20:42.869 --> 00:20:46.325
+00:20:42.649 --> 00:20:46.105
 export your logs, and tailor
 service authentication in.
 
 327
-00:20:46.325 --> 00:20:48.503
+00:20:46.105 --> 00:20:48.283
 An agent that acts is an account.
 
 328
-00:20:48.503 --> 00:20:50.281
+00:20:48.283 --> 00:20:50.061
 Give it an owner and an end.
 
 329
-00:20:50.281 --> 00:20:51.110
+00:20:50.061 --> 00:20:50.890
 Thank you.
