@@ -1,6 +1,6 @@
 ---
 title: "Chapter 04 — Closure: A Control Closes Only With Its Proof"
-description: "The program's rules for when a control counts as closed: the mechanism that closes it has to exist, and its proof has to be recorded; a closure without its proof doesn't count; a vendor roadmap is not a commitment; every operation travels the authorized path; and necessity claims are about mechanisms, not products. With the controls these rules help an agency show and the corrections made to the source claims."
+description: "The program's rules for when a control counts as closed: the mechanism that supports it has to exist, and its proof has to be recorded; a closure without its proof doesn't count; a vendor roadmap is not a commitment; every operation travels the authorized path; and necessity claims are about mechanisms, not products. With the controls these rules help an agency show and the corrections made to the source claims."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b14-compliance
@@ -37,9 +37,9 @@ The program's answer is two tests, applied in order. Both are program design.
 
 A control that fails the first test is open, and it belongs in the plan of action with a milestone. A control that passes the first test but fails the second is something worse than open: it looks closed and can't be shown to be. The rest of this chapter is the rules that keep each test honest.
 
-## A control closes only when the mechanism that closes it exists
+## A control closes only when the mechanism that supports it exists
 
-The series states some of its closures as *necessity claims*: for a named set of controls, a named class of mechanism is the only way to close them. The claim is stronger than a recommendation, and it is meant to be falsifiable. Every "required" in it has to pair with the control text, the protocol behavior or the physics that rules the alternatives out, never with an adjective.
+The series states some of its closures as *necessity claims*: for a named set of controls, a named class of mechanism is the only way to support them. The claim is stronger than a recommendation, and it is meant to be falsifiable. Every "required" in it has to pair with the control text, the protocol behavior or the physics that rules the alternatives out, never with an adjective.
 
 The series states three such anchors. Each is the program's own argument, not a federal requirement; the corrections below come from checking the controls it names.
 
@@ -55,7 +55,7 @@ The transport argument behind the second and third rows is [Book 09, Chapter 02]
 
 ### Mechanism, not product
 
-"No alternate closure path" is a claim about mechanism classes, never about vendors. "Only port-based authentication closes IA-3 for unmanaged network ports" names a protocol behavior. It doesn't name a product. Every product the series names is a deployed example of its mechanism, and for each layer there are certified alternatives that implement the same mechanism.
+"No alternate closure path" is a claim about mechanism classes, never about vendors. "Only port-based authentication supports IA-3 for unmanaged network ports" names a protocol behavior. It doesn't name a product. Every product the series names is a deployed example of its mechanism, and for each layer there are certified alternatives that implement the same mechanism.
 
 The program's design follows from that: **many compliant paths exist before the agency chooses, and exactly one exists after.** The agency selects one implementation per layer, and once chosen it becomes the governed path. Two implementations of the same truth plane (two IPAM systems, two inventories, two identity sources) recreate the fragmented-truth problem the program exists to end ([Book 13, Chapter 03](../b13-governance/03-one-authoritative-record.md)). The choice is a decision with an owner ([Chapter 10](10-who-owns-compliance.md)), not a default that drifts.
 

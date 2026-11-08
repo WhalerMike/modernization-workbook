@@ -89,3 +89,9 @@ The body now states the guidance directly. These were the earlier positions it u
 |---|---|---|
 | Device preparation has no registration, so it has no carrier | qualified: device association (added Aug 27, 2026) binds a device to the tenant before enrollment, marks it corporate-owned and enables device-targeted policy and naming; it starts from device-exported data uploaded one device per CSV, so it is an admin-side binding, not a vendor carrier. Recommendation unchanged. | Microsoft Learn: device association overview; device preparation What's new |
 | Device preparation naming | added: Apply device name template, up to 63 characters, associated devices only | Microsoft Learn: device preparation policy, Configuration settings |
+
+## Consistency read, November 8, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| Path D step 3 listed "a named owner, a written justification" twice | corrected: the duplicated phrase removed; no fact change | This page |
