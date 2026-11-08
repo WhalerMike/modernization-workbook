@@ -74,3 +74,9 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 |---|---|---|---|---|
 | CR2-1 | Linked-server Entra option on SQL Server 2022 restated as an access token for an Entra application, generated from the application's client secret, a documented exception under Chapter 11's rule (was "an Entra identity in the provider string"); new note `[^c14-linked-token]`. The existing advice to avoid the deprecated password option stands, and Runbook R06 now matches it | line 97; note line 138 | factual | <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server> |
 | CR2-2 | `[^c14-kb]` title updated to the KB's current title and applies-to list; events 4024 and 4025 re-checked; accessed date Oct 21, 2026. The October 2026 scope in this chapter (24H2 through 26H2, and Windows Server 2025) was verified correct | note line 121 | factual (citation corrected; scope verified) | <https://support.microsoft.com/help/5066470>; <https://learn.microsoft.com/windows/release-health/windows-message-center> |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-9 | Removed the past date "2026-Q3" from the prose and the figure alt text; the program sets a target date for blocking NTLMv1. Figures `book-06-ch01-ntlmv1-vs-ntlmv2` and `book-06-ntlm-elimination-phases` re-rendered from edited sources | NTLMv1 section; both figures | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 9 |
