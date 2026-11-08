@@ -29,7 +29,7 @@ access-review mechanics are Chapter 09's.
 | 17 | Unclassified apps treated as Tier 1 | Risk tiers | restated-as-design | Source callout |
 | 18 | Source example scopes `Mail.ReadWrite.All (App)` | Risk tiers | corrected | Learn, Graph permissions reference: application permission is `Mail.ReadWrite` |
 | 19 | Mandatory request fields, catalog items, SLAs, escalation | Request | restated-as-design | Source ServiceNow model, generalized to "the ITSM tool" |
-| 20 | Access approval chain and 3-business-day SLA; Tier 1 four-hour IGO hold window | Approval | restated-as-design | Source Workflow A |
+| 20 | Access approval chain and 3-business-day SLA; R1 access: application owner, then the identity governance office as a second approval stage (no hold window) | Approval | restated-as-design | Source Workflow A |
 | 21 | Admin consent chain by tier and escalation rules | Who approves admin consent | restated-as-design | Source Workflow B and escalation table |
 | 22 | Source critical trigger: "\*.All at application level" | Who approves admin consent | corrected | Learn, Graph permissions reference: `Mail.ReadWrite` and `Mail.Send` application permissions have no `.All` suffix; trigger changed to the program's risk level |
 | 23 | Who executes grants: PRA for Graph app permissions; Cloud App Admin otherwise | Who approves admin consent | verified | Learn, Grant tenant-wide admin consent |

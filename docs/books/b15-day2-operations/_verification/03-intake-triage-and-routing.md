@@ -72,7 +72,7 @@ Internal vocabulary translated: "SAM (Systems Access Management)" → "the ident
 | 62 | Help desk log access read-only within a ticket; non-compliance reporting list, one business day | Same | restated-as-design | Source |
 | 63 | SLA table | Service levels | restated-as-design | Source "SAM-originated RITM SLA requirements", generalized |
 | 64 | Flow definition row and create/modify steps | Describing request types | restated-as-design | Source, with verification, evidence and due-date fields added |
-| 65 | Worked example (payroll app, A2) | Same | restated-as-design | Source example; Tier 1 approver and hold window aligned with Book 04 Ch06 |
+| 65 | Worked example (payroll app, A2) | Same | restated-as-design | Source example; R1 second approval by the identity governance office, aligned with Book 04 Ch06 (no hold window) |
 
 ## Carry-forward ledger
 

@@ -129,11 +129,11 @@ Nothing in Pass 1 needs write access to Entra ID, Active Directory or ISC. Micro
 
 ## How it's tested, and what must still be proven
 
-| Test | What it covers | Result on October 24, 2026 |
+| Test | What it covers | Result at first publication (October 24, 2026); on November 8, 2026 |
 |---|---|---|
-| pytest, mocked HTTP | Config and secret refusal, endpoints per cloud, token requests, Retry-After, every paging style, the drift classes against fixtures, the re-read outcomes (verified, mismatch, pending, not found, skipped), the workflow file's shape and its fields against the ServiceNow script | 45 passed |
-| Pester 5, mocked `Invoke-RestMethod` | The same behaviors in PowerShell, including the same finding IDs as the Python client on the same fixtures | 40 passed |
-| node:test, stubbed Glide APIs | Validation, severity to priority and due date, de-duplication, closure signals, and every branch of the business rule | 13 passed |
+| pytest, mocked HTTP | Config and secret refusal, endpoints per cloud, token requests, Retry-After, every paging style, the drift classes against fixtures, the re-read outcomes (verified, mismatch, pending, not found, skipped), the workflow file's shape and its fields against the ServiceNow script | 45 passed; 139 passed |
+| Pester 5, mocked `Invoke-RestMethod` | The same behaviors in PowerShell, including the same finding IDs as the Python client on the same fixtures | 40 passed; 40 passed |
+| node:test, stubbed Glide APIs | Validation, severity to priority and due date, de-duplication, closure signals, and every branch of the business rule | 13 passed; 15 passed |
 | PSScriptAnalyzer, default rules | The PowerShell module, scripts and tests | No findings |
 | `node --check`, `python -m json.tool` | Syntax of the ServiceNow scripts and the workflow JSON | Pass |
 
