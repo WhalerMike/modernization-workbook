@@ -58,3 +58,11 @@ Book 01 Ch04 (drift categories) and Ch11 (actuation ladder), Book 02 Ch05 (drift
 | D2 | App B provenance and authorization lanes: P1 halt only when the claim is in active use, P3 when dormant (Ch06) | design consistency |
 | D3 | App B clock rule aligned to Ch10: the external clock governs when shorter or different in kind | design consistency |
 | D4 | Ch12 runtime-detection maturity aligned to Ch06's table (semantic partly built; authorization and identity design only) | design consistency |
+
+## Consistency read C2, Nov 8, 2026
+
+Full read of the page, top to bottom, after the first reader covered it by diff. No source was re-opened; each change aligns the page with itself or with the page it links to.
+
+| Before | After | Check |
+|---|---|---|
+| the per-check cadence is how the program meets both. | the per-check cadence is how the program supports both. | Claim language (CA-7 and CA-7(4)) |
