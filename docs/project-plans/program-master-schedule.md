@@ -183,6 +183,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | P3.7  Every server Arc-connected or excepted | wk 17–28 | [Endpoint & Device Modernization](endpoint-device.md) (X-P37) | Must finish EG4 by it | 5 d margin |
 | P3.5  GPO links off migrated OUs after 7 clean days (M-036) | wk 33–34 | [Endpoint & Device Modernization](endpoint-device.md) (X-P35) | Must finish E3.8 by it | 18 d margin |
 | G3 — Rollout Complete | end of wk 36 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G3) | Waits for it | 0 |
+| G3 — Rollout Complete | end of wk 36 | [Content Delivery Modernization](content-delivery.md) (X-G3) | Reference only | — |
 | G3 — Rollout Complete | end of wk 36 | [Endpoint & Device Modernization](endpoint-device.md) (X-G3) | Waits for it | 37 d |
 | G3 — Rollout Complete | end of wk 36 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G3) | Waits for it | 0 |
 | P4.2  OU-based security groups retired | wk 38 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P42) | Waits for it | 0 |

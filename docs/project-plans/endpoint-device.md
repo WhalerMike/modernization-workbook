@@ -131,7 +131,10 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 |---|---|---|---|---|
 | EG0  Gate 0 — Observation signed off | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-EG0) | Must finish A0.4 by it | 8 d margin |
 | E4.2  Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed | wk 5 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E42) | Must finish A5.3 by it | 6 d margin |
+| E1.4  Co-management on for the pilot collection; MDMWinsOverGP decided per population | wk 4–5 | [Content Delivery Modernization](content-delivery.md) (X-E14) | Waits for it | 63 d |
+| E1.5  Intune-first intake: procurement fields, Autopilot registration with group tags, enrollment restrictions | wk 5–6 | [Content Delivery Modernization](content-delivery.md) (X-E15) | Waits for it | 193 d |
 | start of E1.2  Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags | wk 5–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E12) | Must finish A5.2 by it | 4 d margin |
+| EG3  Gate 3 — Workloads cut over | end of wk 30 | [Content Delivery Modernization](content-delivery.md) (X-EG3) | Waits for it | 88 d |
 
 : Plans that take a date from this one {.striped .hover}
 

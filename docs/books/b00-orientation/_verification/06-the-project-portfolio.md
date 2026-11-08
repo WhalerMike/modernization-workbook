@@ -65,3 +65,14 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 |---|---|---|---|---|
 | 1 | A charter is the natural unit for a TMF proposal | What the charters leave to the agency | restated-as-design | Appendix C; TMF FPP Appendix A |
 | 2 | The program's pilot (M-026) goes further than the privileged-access project's one-role-class criterion | Privileged Access success at pilot scale | added Oct 25, 2026; aligned with Ch09 | Internal |
+
+## Additions, November 8, 2026 (Content Delivery Modernization)
+
+An eighth project was added, at the end of the list so that projects 1 to 7 and their anchors keep their numbers. The figure still shows the seven chartered projects; the chapter says the eighth has no charter yet.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | An eighth project, Content Delivery Modernization, draws on the endpoint and network projects; no charter yet | In this chapter; At a glance row 8; Why this order (8); §8 | restated-as-design | The decision guide, the implementation guide and the Content Delivery Modernization plan |
+| 2 | Published limit of 4,000 clients per distribution point; most of a per-office estate exists because of the circuits | §8 The problem | verified (carried) | Book 09 Ch 11, published capacity limits, citing Learn "Size and scale numbers" |
+| 3 | No Configuration Manager infrastructure for new assets | §8 Principles | verified (source-internal) | Book 05 Ch 04, pillar 4 |
+| 4 | Enclaves keep local distribution points; circuits are the network project's; other workloads are the endpoint project's | §8 Out of scope | verified (source-internal) | Book 09 Ch 11 Scope; the plans' links |

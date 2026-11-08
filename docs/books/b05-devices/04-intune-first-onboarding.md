@@ -61,6 +61,8 @@ These are the program's doctrine, not Microsoft requirements.
 | 4 | One management plane per asset; no co-management for new assets | Intune for endpoints. Azure Arc with Azure Policy machine configuration for servers. No greenfield Configuration Manager, no greenfield Group Policy, no greenfield hybrid join. |
 | 5 | Quarantine on failure; never silently degrade | An onboarding failure produces a quarantine entry and a governance ticket, never a production device running in a degraded state. |
 
+Pillar 4 also governs the existing Configuration Manager footprint: it gets no new infrastructure for new assets, so a distribution point refresh shrinks the content tier rather than renewing it. The [Distribution Point Consolidation decision guide](../guides/dp-consolidation.md) sets out the questions to answer before funding one, the [implementation guide](../guides/dp-consolidation-implementation.md) runs the consolidation alongside the co-management workload shifts, and the [Content Delivery Modernization plan](../../project-plans/content-delivery.md) schedules it.
+
 Pillar 4 keeps servers out of the Intune Settings Catalog. Intune's supported platforms don't include Windows Server,[^c04-platforms] so the Settings Catalog doesn't reach a server. Server configuration is set by Azure Policy machine configuration, and Intune endpoint security policies reach servers only through Defender for Endpoint security settings management ([Chapter 09](09-servers-under-azure-arc.md)).[^c04-mde-ssm]
 
 ## Where the organizational assignment comes from
