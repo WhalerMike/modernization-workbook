@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>content-delivery.xml</Name>
+  <Title>Content Delivery Modernization: Distribution Point Consolidation</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Analysis of the existing estate</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>C0.1 Validated endpoint count: Configuration Manager clients reconciled with Intune and the asset record, duplicates and stale records removed</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-0-3</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>C0.2 Distribution point inventory: every DP with its site, office, OS version, hardware age and warranty, PXE and Connected Cache roles, and content library size</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-0-3</Notes>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>C0.3 Circuit data per office: bandwidth, peak use, monthly cost and renewal date, from telecom contract records</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-0-1</Notes>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>C0.4 Packaging inventory: every application and package, its installer type, install count, active deployments and last change</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Packaging team</Contact>
+      <Notes>Owner or approver: Packaging team
+Source: ../books/guides/dp-consolidation-implementation.md#step-0-3</Notes>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>C0.5 Funding ask decomposed: acquisition or five-year total cost of ownership, and every item beyond the distribution point itemized</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Budget officer</Contact>
+      <Notes>Owner or approver: Budget officer
+Source: ../books/guides/dp-consolidation-implementation.md#step-2</Notes>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>C0.7 Content library measured on one DP; sizing run against 4,000 clients per DP with a draft hub design and office wave order</Name>
+      <OutlineNumber>1.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-01-27T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-1-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>D-C1 Target distribution point count when co-management completes, and the fiscal year</Name>
+      <OutlineNumber>1.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T17:00:00</Start>
+      <Finish>2027-01-27T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: A dated target count from the validated endpoint count and Microsoft's 4,000-clients-per-DP limit (about 24 in the worked case); keep the current count (then say why the office count, not the client count, sizes it)
+If decided late: No refresh or consolidation can be sized, and the decision on the funding ask waits
+Source: ../books/guides/dp-consolidation-implementation.md#step-1-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>C0.6 Assessment worksheet completed from agency data, reviewed by the endpoint lead, ISSO and budget officer, and kept inside the boundary</Name>
+      <OutlineNumber>1.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-28T08:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Content delivery project lead</Contact>
+      <Notes>Owner or approver: Content delivery project lead
+Source: ../books/guides/dp-consolidation-implementation.md#step-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>CG0 Gate 0 — Inventory and decomposition complete</Name>
+      <OutlineNumber>1.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-03T17:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Content delivery project lead and ISSO</Contact>
+      <Notes>Owner or approver: Content delivery project lead and ISSO
+Criteria: Endpoint count validated and dated; every distribution point in the inventory and the system component inventory; circuit cost and renewal date recorded per office; packaging inventory complete; the ask stated as acquisition or five-year cost with scope itemized; a dated target DP count; the worksheet reviewed and stored inside the boundary
+Source: ../books/guides/dp-consolidation-implementation.md#step-0-4</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>Phase 1 — Decision on the funding ask, and Stage 1 in a test hierarchy</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-04T08:00:00</Start>
+      <Finish>2027-03-03T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>D-C2 Decision on the funding ask</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-03T17:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Refresh in place; consolidate to a hub tier (the guide's recommendation where the circuits allow); cloud-first with Connected Cache, keeping a hub tier only until the five gates close
+If decided late: Refresh money is committed by default, or the hub build can't start
+Source: ../books/guides/dp-consolidation-implementation.md#step-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>C1.1 Budget submission revised to the chosen option, the worked case's planning assumptions replaced by Phase 0 data, and its consistency with Intune-first stated</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-04T08:00:00</Start>
+      <Finish>2027-02-10T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Budget officer</Contact>
+      <Notes>Owner or approver: Budget officer
+Source: ../books/guides/dp-consolidation-implementation.md#step-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>CG1 Gate 1 — Funding decision recorded</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-10T17:00:00</Start>
+      <Finish>2027-02-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Criteria: Option chosen with the decision table and worksheet as its evidence; budget submission revised; target DP count and fiscal year recorded; the decision filed in the program's decision register
+Source: ../books/guides/dp-consolidation-implementation.md#step-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>C1.2 Stage 1: Lab 2 run end to end in a test hierarchy, every change applied and then backed out from its plan.csv</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-11T08:00:00</Start>
+      <Finish>2027-03-03T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#lab-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>D-C10 Stage 1 to Stage 2: go/no-go for production</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-03T17:00:00</Start>
+      <Finish>2027-03-03T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Content delivery project lead and ISSO</Contact>
+      <Notes>Owner or approver: Content delivery project lead and ISSO
+Options: Go when Lab 2 ran end to end with its back-out, every cmdlet ran on the agency's Configuration Manager version, the inventory matched the console and the change board approved the production plan; no-go repeats Stage 1
+If decided late: No production change can start, and the hub build waits
+Source: ../books/guides/dp-consolidation-implementation.md#go-no-go</Notes>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>Phase 2 — Hub content tier</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-11T08:00:00</Start>
+      <Finish>2027-05-05T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>D-C3 Hub sites and distribution points per hub</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-10T17:00:00</Start>
+      <Finish>2027-02-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead and network engineering lead</Contact>
+      <Notes>Owner or approver: Endpoint lead and network engineering lead
+Options: Existing regional facilities inside the current boundary, two pull DPs each, with source DPs at the two data centers (the worked case: 12 sites, 24 DPs); more hubs where latency or headcount needs them
+If decided late: Hub servers can't be ordered or built
+Source: ../books/guides/dp-consolidation-implementation.md#step-1-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>C2.1 Hub DP servers built on Windows Server 2019 or later: IIS, BITS and Remote Differential Compression; CM-6 baseline applied and scanned; HTTPS with a PKI certificate; added to the inventory and the SSP</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-11T08:00:00</Start>
+      <Finish>2027-03-24T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-3-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>C2.2 Pull DPs added at each hub, sourcing from the data center DPs; one distribution point group per hub (New-DpcHubTier.ps1 -Apply)</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-25T08:00:00</Start>
+      <Finish>2027-04-14T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-3-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>C2.3 Content distributed to each hub group; distribution status clean; content validation run; inventory rerun</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-15T08:00:00</Start>
+      <Finish>2027-05-05T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-3-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>CG2 Gate 2 — Hub tier serving content</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-05T17:00:00</Start>
+      <Finish>2027-05-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Configuration Manager lead and ISSO</Contact>
+      <Notes>Owner or approver: Configuration Manager lead and ISSO
+Criteria: Every hub DP in production, baselined, scanned and in the SSP; every package distributed to its region's group with no failures; load per DP under 3,200 clients (80% of the published 4,000); change records for every server
+Source: ../books/guides/dp-consolidation-implementation.md#step-3-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>Phase 3 — Peer caching and boundary groups</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-04T08:00:00</Start>
+      <Finish>2027-06-16T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>C3.1 Boundary groups for the pilot wave: hub DPs added, peer options set, the other hubs as timed fallback, never to the default site group (Set-DpcBoundaryGroups.ps1 -Apply)</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-15T08:00:00</Start>
+      <Finish>2027-05-05T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-4-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>D-C4 Client-to-client traffic on branch segments: TCP 8003, UDP 8004 and TCP 7680</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-03T17:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Allow within each office's subnet only; allow for named peer cache sources only; block, and size circuits for hub pulls
+If decided late: Peer cache and Delivery Optimization peering can't be configured, and the pilot measures nothing
+Source: ../books/guides/dp-consolidation-implementation.md#step-5</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>X-E14 Co-management on for the pilot collection (Endpoint plan E1.4)</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-05T17:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint &amp; Device project</Contact>
+      <Notes>Owner or approver: Endpoint &amp; Device project
+If decided late: Pilot devices have no Intune channel for Delivery Optimization policy
+Source: endpoint-device.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-05T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>C3.2 Peer cache sources chosen per pilot office (desktop chassis, disk, always on); client settings deployed; partial download on; BranchCache enabled</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-06T08:00:00</Start>
+      <Finish>2027-05-19T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-5-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>C3.3 Delivery Optimization through Intune: Group download mode with a group ID per office, or subnet restriction, for the pilot devices</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-02-19T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-5-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>C3.4 Pilot measurement at the pilot offices: bytes from peers, from the hub and from the office DP, for a month of deployments</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-20T08:00:00</Start>
+      <Finish>2027-06-16T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-5-4</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>CG3 Gate 3 — Pilot offices served from hubs and peers</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-16T17:00:00</Start>
+      <Finish>2027-06-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Criteria: Pilot offices' content served by the hub and peers, with the office DP in read-only fallback and serving under a threshold the endpoint lead sets; no deployment failure traced to content location; measurement report filed
+Source: ../books/guides/dp-consolidation-implementation.md#go-no-go</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>Phase 4 — Office waves</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-06-02T08:00:00</Start>
+      <Finish>2027-12-22T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>X-NG3 Pilot sites governed and evidenced on new transport (Network plan Gate 3)</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-01T17:00:00</Start>
+      <Finish>2027-06-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Network &amp; Access project</Contact>
+      <Notes>Owner or approver: Network &amp; Access project
+If decided late: The pilot offices are still on their old circuits, and the first wave of DP retirements waits
+Source: network-access.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-06-01T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>C4.1 Pilot wave: each office DP checked, drained, watched 30 days, removed with its site system; disks sanitized; inventory and SSP updated</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-17T08:00:00</Start>
+      <Finish>2027-07-07T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-6</Notes>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>D-C5 Wave plan: offices ordered by circuit readiness and renewal date</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-16T17:00:00</Start>
+      <Finish>2027-06-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Content delivery project lead</Contact>
+      <Notes>Owner or approver: Content delivery project lead
+Options: By circuit readiness and renewal (the guide's order); by region (simpler, but waits on the slowest circuit in each)
+If decided late: Wave 2 can't be scheduled, and offices keep DPs they no longer need
+Source: ../books/guides/dp-consolidation-implementation.md#step-1-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>C4.2 Wave 2, about 25% of offices: boundary groups moved, peers enabled, office DPs read-only, then retired after 30 clean days</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-08T08:00:00</Start>
+      <Finish>2027-09-01T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-6</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>C4.3 Wave 3, about 60% of offices cumulative</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-02T08:00:00</Start>
+      <Finish>2027-10-27T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-6</Notes>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>C4.4 Wave 4, every remaining office, or a dated exception with its reason</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-28T08:00:00</Start>
+      <Finish>2027-12-22T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-6</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>CG4 Gate 4 — No branch distribution point left</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-12-22T17:00:00</Start>
+      <Finish>2027-12-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Criteria: Every office DP retired or in the exception register with a date and reason; every retired server's media sanitized and its inventory and SSP entries closed; hub load per DP still under 80% of the published limit
+Source: ../books/guides/dp-consolidation-implementation.md#step-6-5</Notes>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>Phase 5 — Packaging on one standard</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-06-04T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>D-C6 Packaging standard</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-22T17:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Options: PSAppDeployToolkit as the standard wrapper, version pinned, for every app that isn't a clean MSI; vendor installers with Intune's PowerShell script installer only; a mix by app class
+If decided late: Repackaging can't start, and the client apps workload waits
+Source: ../books/guides/dp-consolidation-implementation.md#step-7</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>C5.1 Standard template: pinned toolkit version, signed scripts, one log path, exit codes mapped, detection rule pattern; held under change control</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Packaging team</Contact>
+      <Notes>Owner or approver: Packaging team
+Source: ../books/guides/dp-consolidation-implementation.md#step-7-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>C5.2 Catalog rationalized: apps nobody installs retired, duplicate versions removed, an owner for every app kept</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Packaging team</Contact>
+      <Notes>Owner or approver: Packaging team
+Source: ../books/guides/dp-consolidation-implementation.md#step-7-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>C5.3 Most-installed apps repackaged on the template; each tested from Configuration Manager and as an .intunewin from Intune</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Packaging team</Contact>
+      <Notes>Owner or approver: Packaging team
+Source: ../books/guides/dp-consolidation-implementation.md#step-7-5</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>C5.4 Rest of the catalog repackaged or retired</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-06-04T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Packaging team</Contact>
+      <Notes>Owner or approver: Packaging team
+Source: ../books/guides/dp-consolidation-implementation.md#step-7-5</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>CG5 Gate 5 — Catalog on the standard wrapper</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-04T17:00:00</Start>
+      <Finish>2027-06-04T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Criteria: Every kept app has an owner, a package on the template, a tested detection rule and a change record; the same package installs from either tool; retired apps removed from both
+Source: ../books/guides/dp-consolidation-implementation.md#step-7-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>Phase 6 — Content workloads to Intune</Name>
+      <OutlineNumber>7</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-08-20T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>C6.1 Client apps and Office Click-to-Run apps workloads: Pilot Intune, then Intune; apps published as Win32 apps from the standard packages</Name>
+      <OutlineNumber>7.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-8-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>C6.2 Configuration Manager required and available deployments withdrawn as each app moves; the count reported weekly</Name>
+      <OutlineNumber>7.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-07T08:00:00</Start>
+      <Finish>2027-07-16T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-8-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>X-EG3 Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)</Name>
+      <OutlineNumber>7.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-30T17:00:00</Start>
+      <Finish>2027-07-30T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint &amp; Device project</Contact>
+      <Notes>Owner or approver: Endpoint &amp; Device project
+If decided late: Update content still comes from Configuration Manager, and retirement gate 2 can't close
+Source: endpoint-device.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-07-30T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>50</UID>
+      <ID>50</ID>
+      <Name>C6.3 Configuration Manager software-update client setting turned off for every device on the Windows Update workload</Name>
+      <OutlineNumber>7.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-02T08:00:00</Start>
+      <Finish>2027-08-06T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-8-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>51</UID>
+      <ID>51</ID>
+      <Name>X-E15 Intune-first intake with Autopilot registration (Endpoint plan E1.5)</Name>
+      <OutlineNumber>7.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint &amp; Device project</Contact>
+      <Notes>Owner or approver: Endpoint &amp; Device project
+If decided late: There's no Autopilot path to move bare-metal provisioning onto
+Source: endpoint-device.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-12T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>52</UID>
+      <ID>52</ID>
+      <Name>D-C7 OS provisioning for existing devices</Name>
+      <OutlineNumber>7.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Options: Windows Autopilot for every rebuild, with reset where it applies; keep task sequences for a named exception class on a hub DP until it can move
+If decided late: Imaging keeps a PXE distribution point alive, and retirement gate 3 stays open
+Source: ../books/guides/dp-consolidation-implementation.md#step-8-4</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>53</UID>
+      <ID>53</ID>
+      <Name>C6.4 Bare-metal provisioning moved from task sequences to Autopilot; PXE turned off on every DP</Name>
+      <OutlineNumber>7.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-03-26T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-8-4</Notes>
+      <PredecessorLink>
+        <PredecessorUID>52</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>54</UID>
+      <ID>54</ID>
+      <Name>C6.5 Compliance and Endpoint Protection evidence sourced from Intune and Defender, not the Configuration Manager site database; ISSO confirms</Name>
+      <OutlineNumber>7.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-02T08:00:00</Start>
+      <Finish>2027-08-20T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/guides/dp-consolidation-implementation.md#step-8-5</Notes>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>55</UID>
+      <ID>55</ID>
+      <Name>Phase 7 — Connected Cache at the hubs</Name>
+      <OutlineNumber>8</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-05-06T08:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>56</UID>
+      <ID>56</ID>
+      <Name>D-C8 Connected Cache form and placement</Name>
+      <OutlineNumber>8.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-05T17:00:00</Start>
+      <Finish>2027-05-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead and ISSO</Contact>
+      <Notes>Owner or approver: Endpoint lead and ISSO
+Options: Connected Cache for Enterprise and Education on its own host at each hub, its Azure resource placed in the boundary analysis; the Configuration Manager-integrated cache on a hub DP with no other roles (then retirement gate 4 binds it); none, where measured circuits carry cloud content
+If decided late: Cloud content keeps crossing every hub circuit, and gate 4 has no plan
+Source: ../books/guides/dp-consolidation-implementation.md#step-9</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>57</UID>
+      <ID>57</ID>
+      <Name>C7.1 Cache hosts built at the hubs on a supported OS, nothing else on port 80; Delivery Optimization pointed at each office's hub cache</Name>
+      <OutlineNumber>8.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-10T08:00:00</Start>
+      <Finish>2027-06-11T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-9-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>56</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>58</UID>
+      <ID>58</ID>
+      <Name>C7.2 Cache hit rate measured; Win32 app, update and Microsoft 365 Apps content confirmed served from the hubs</Name>
+      <OutlineNumber>8.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-14T08:00:00</Start>
+      <Finish>2027-06-25T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/guides/dp-consolidation-implementation.md#step-9-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>57</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>59</UID>
+      <ID>59</ID>
+      <Name>C7.3 Connected Cache turned off on any DP hardware once the hub cache serves that office</Name>
+      <OutlineNumber>8.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-28T08:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-9-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>58</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>60</UID>
+      <ID>60</ID>
+      <Name>Phase 8 — The five retirement gates</Name>
+      <OutlineNumber>9</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-29T08:00:00</Start>
+      <Finish>2028-01-19T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>61</UID>
+      <ID>61</ID>
+      <Name>RG1 Retirement gate 1 — App content</Name>
+      <OutlineNumber>9.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-16T17:00:00</Start>
+      <Finish>2027-07-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Criteria: Client apps and Office Click-to-Run workloads on Intune for the whole validated population, and no required or available deployment still published from Configuration Manager
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>62</UID>
+      <ID>62</ID>
+      <Name>RG2 Retirement gate 2 — Update content</Name>
+      <OutlineNumber>9.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-06T17:00:00</Start>
+      <Finish>2027-08-06T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Criteria: Windows Update policies and device configuration workloads on Intune, and Configuration Manager's software-update client setting off for those devices
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>50</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>63</UID>
+      <ID>63</ID>
+      <Name>RG3 Retirement gate 3 — OS provisioning</Name>
+      <OutlineNumber>9.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-26T17:00:00</Start>
+      <Finish>2027-03-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead</Contact>
+      <Notes>Owner or approver: Endpoint lead
+Criteria: Bare-metal provisioning on Autopilot; no task sequence or PXE service still in use
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>53</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>64</UID>
+      <ID>64</ID>
+      <Name>RG4 Retirement gate 4 — Caching role</Name>
+      <OutlineNumber>9.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-02T17:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint lead and ISSO</Contact>
+      <Notes>Owner or approver: Endpoint lead and ISSO
+Criteria: No Connected Cache instance runs on distribution-point hardware, or none is needed on the measured circuits
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>59</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>65</UID>
+      <ID>65</ID>
+      <Name>RG5 Retirement gate 5 — Compliance evidence</Name>
+      <OutlineNumber>9.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-20T17:00:00</Start>
+      <Finish>2027-08-20T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Compliance and Endpoint Protection reporting no longer cite the Configuration Manager site database as their evidence source
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>54</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>66</UID>
+      <ID>66</ID>
+      <Name>D-C9 Retire the hub distribution point tier</Name>
+      <OutlineNumber>9.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-12-22T17:00:00</Start>
+      <Finish>2027-12-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Retire it in the week the last gate closes; keep it while any gate is open. Never on a date alone
+If decided late: Twenty-odd servers stay in the boundary to be patched, scanned and accredited for no workload
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>61</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>62</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>63</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>64</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>65</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>45</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>67</UID>
+      <ID>67</ID>
+      <Name>C8.1 Hub and source DPs drained and removed with their site systems (Invoke-DpcOfficeRetirement.ps1 -GatesPath); media sanitized; inventory and SSP entries closed</Name>
+      <OutlineNumber>9.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-12-23T08:00:00</Start>
+      <Finish>2028-01-12T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-2</Notes>
+      <PredecessorLink>
+        <PredecessorUID>66</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>68</UID>
+      <ID>68</ID>
+      <Name>C8.2 Cleanup: distribution point groups removed, boundary group site-system references cleared, peer cache client settings and deployments retired; no DP role left in the hierarchy</Name>
+      <OutlineNumber>9.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2028-01-13T08:00:00</Start>
+      <Finish>2028-01-19T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Configuration Manager team</Contact>
+      <Notes>Owner or approver: Configuration Manager team
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>67</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>69</UID>
+      <ID>69</ID>
+      <Name>CG8 Gate 8 — Last distribution point retired, site roles cleaned up, evidence complete</Name>
+      <OutlineNumber>9.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2028-01-19T17:00:00</Start>
+      <Finish>2028-01-19T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: All five retirement gates closed in a gates run; no distribution point role left in Get-CMSiteRole; every DP's decommission record, sanitization record and SSP change filed; the content delivery evidence set in the guide's requirements table complete
+Source: ../books/guides/dp-consolidation-implementation.md#step-10-3</Notes>
+      <PredecessorLink>
+        <PredecessorUID>68</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>70</UID>
+      <ID>70</ID>
+      <Name>X-G3 Program G3 — Rollout Complete</Name>
+      <OutlineNumber>9.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and steering committee</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-09-10T17:00:00</ConstraintDate>
+    </Task>
+  </Tasks>
+</Project>

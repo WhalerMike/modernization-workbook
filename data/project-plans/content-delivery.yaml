@@ -1,0 +1,244 @@
+# Sample project plan: Content Delivery Modernization (DRAFT).
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The plan runs from week 1,
+# alongside the program's Phase 0. It is the content half of Book 09
+# Chapter 11's case: inventory and decomposition, a decision on the funding
+# ask, a hub content tier, peer caching, office waves that retire branch
+# distribution points, standard packaging, the content workloads that move to
+# Intune, Connected Cache at the hubs, and the five gates that decide when the
+# last distribution point retires. It takes three dates from the Endpoint &
+# Device plan (co-management for the pilot, Intune-first intake, the workloads
+# cut over) and one from the Network & Access plan (the pilot sites governed).
+
+slug: content-delivery
+title: "Content Delivery Modernization: Distribution Point Consolidation"
+short_title: "Content Delivery Modernization"
+subtitle: "A sample project plan for the decision and implementation guides and Book 09, Chapter 11: decide the funding ask on evidence, consolidate to a hub content tier, keep content local with peers, standardize packaging, and retire the last distribution point through five gates"
+description: "A sample PMP-style project plan for the Content Delivery Modernization project, built from the Distribution Point Consolidation decision and implementation guides and Book 09, Chapter 11: Phase 0 analysis of the existing estate and decomposition of the funding ask, Stage 1 in a test hierarchy, a decision gate before money moves, a hub tier of pull distribution points, peer cache and boundary groups, office waves that retire branch distribution points, packaging on one standard wrapper, the content workloads moved to Intune, Connected Cache at the hubs, the five retirement gates and the cleanup of the last site roles, with owners and decide-by weeks for every decision and each task linked to its implementation step."
+plan_type: "Project"
+covers: "From the analysis of the existing estate to the last distribution point retired and its site roles cleaned up, through the five retirement gates"
+books: "Book 09, Chapter 11; Book 05"
+sponsor: "Executive sponsor and CIO"
+manager: "Content delivery project lead, with the endpoint lead, the Configuration Manager lead, the packaging lead and the network engineering lead"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan builds the [Content Delivery Modernization](../books/b00-orientation/06-the-project-portfolio.md#content-delivery-modernization) project from the [Distribution Point Consolidation decision guide](../books/guides/dp-consolidation.md), its [implementation guide](../books/guides/dp-consolidation-implementation.md) (every task links to the step that carries it out, and each step names the Microsoft Learn page it relies on), the [scripts kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dp-consolidation), and the worked case in [Book 09, Chapter 11](../books/b09-network/11-field-office-wan-transformation.md). It starts where any distribution point refresh should start: a validated endpoint count, a distribution point inventory, circuit data and a packaging inventory, then a recorded decision on the funding ask. Then it consolidates the existing Configuration Manager footprint to a small hub tier, keeps content local with peer cache, BranchCache and Delivery Optimization, retires branch distribution points in waves as offices are ready, and puts every application on one standard wrapper so the same package works from Configuration Manager or Intune. The last distribution point retires only when the guide's [five gates](../books/guides/dp-consolidation.md#retirement-gates) have closed. The plan doesn't add Configuration Manager infrastructure for new assets: [Book 05, Chapter 04](../books/b05-devices/04-intune-first-onboarding.md#the-five-pillars) allows none. It takes three dates from the [Endpoint & Device Modernization](endpoint-device.md) plan and one from the [Network & Access Modernization](network-access.md) plan, and it runs inside the [program master schedule](program-master-schedule.md).
+
+critical_path_note: |
+  The computed path runs through the office waves. Phase 0 and the funding decision come first and are short: the circuit data is the longest Phase 0 input, and the decision on the ask can be made at the end of week 5, once the inventory, the sizing and the decomposition are in. The hub tier then takes about twelve weeks to build, distribute and validate; Stage 1, the full run in a test hierarchy, fits inside the time the hub servers take to build, and its go/no-go must come before the first production change. Peer caching is then proved at the pilot offices on top of the hub tier. The first wave of branch retirements waits for two things: the hub tier and peers serving the pilot offices (this plan's Gate 3), and the Network & Access plan's Gate 3, which puts the ten pilot sites on governed transport. That gate is the input with the least room; a slip there moves the first wave, and every wave after it, week for week. The three later waves follow circuit readiness, so their dates are placeholders until the agency's own circuit renewal dates replace them.
+
+  Packaging and the content workloads carry float against the office waves but bind the retirement gates. The client apps and Office Click-to-Run workloads can't move until the most-installed applications are on the standard wrapper, and Configuration Manager deployments can't be withdrawn until the rest of the catalog is repackaged or retired. Connected Cache at the hubs waits for the decision on its form and for the first Intune Win32 apps. The five retirement gates are milestones, not dates: this sample shows where they land on its own durations, and the last distribution point retires in the week they have all closed, whatever week that turns out to be.
+
+assumptions:
+  - "The estate has a Configuration Manager hierarchy with a distribution point in most offices, as in [Book 09, Chapter 11](../books/b09-network/11-field-office-wan-transformation.md#scope). The case's figures, about 70,000 endpoints, about 1,500 offices and 24 hub distribution points, are its planning assumptions; Phase 0 replaces them with the agency's own."
+  - "Hub distribution points and any Connected Cache host run Windows Server 2019 or later, the workbook's minimum server standard (a planning assumption). Microsoft supports the distribution point role on Windows Server 2019, 2022 and 2025; Connected Cache for Enterprise and Education needs Windows Server 2022 or later, Windows 11 or Ubuntu 24.04 ([decision guide](../books/guides/dp-consolidation.md#target-architecture))."
+  - "Office waves follow circuit readiness. The Network & Access plan covers the ten-site pilot only; the circuit waves for the remaining offices, keyed to renewal dates over months 18 to 48 in Book 09, Chapter 11, aren't in any sample plan. Each wave here assumes its offices are on circuits sized to pull from a hub, or that measured peer traffic shows they don't need to."
+  - "Air-gapped and separately accredited enclaves keep Configuration Manager and local distribution points, as in Book 09, Chapter 11, and are outside this plan."
+  - "The tenant is GCC (Moderate), which uses the commercial Intune service; Connected Cache for Enterprise and Education is listed as unavailable only in GCC High and DoD."
+  - "Durations are illustrative, including the four office waves and the packaging work, which scale with office count and catalog size."
+
+risks:
+  - risk: "The funding ask can't be decomposed: acquisition and five-year cost stay blended"
+    impact: "No option can be compared fairly, and the decision on the ask (D-C2) slips"
+    response: "Make decomposition a Gate 0 criterion; the budget officer owns it from week 1 (decision guide, question 1)"
+  - risk: "Branch segmentation blocks client-to-client traffic"
+    impact: "Peer cache, BranchCache and Delivery Optimization peering don't work; every client pulls from the hub"
+    response: "Decide the ports in D-C4; peering is an optimization, so size the waves on circuits that can carry hub pulls without it (Book 09, Chapter 11)"
+  - risk: "Bare-metal imaging still needs a local distribution point"
+    impact: "Retirement gate 3 stays open, and a 'just in case' distribution point survives everything else"
+    response: "Decide the Autopilot path in D-C7 and measure PXE use per office in Phase 0"
+  - risk: "Apps are moved to Intune but their Configuration Manager deployments are left in place"
+    impact: "Clients keep downloading from distribution points; retirement gate 1 never closes"
+    response: "Withdraw each Configuration Manager deployment as its app moves (C6.2), and report the count weekly"
+  - risk: "Packaging capacity is too small for the catalog"
+    impact: "The client apps workload waits, and so does gate 1"
+    response: "Rationalize the catalog first (C5.2); repackage by install count; retire what nobody installs"
+  - risk: "Network circuit waves slip"
+    impact: "Office waves 2 to 4 slip with them"
+    response: "Order the waves by circuit readiness (D-C5), not geography; an office on an adequate circuit can go early"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — inventory and decomposition
+  - {id: C0.1, phase: 0, name: "Validated endpoint count: Configuration Manager clients reconciled with Intune and the asset record, duplicates and stale records removed", dur: 10, owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-0-3"}
+  - {id: C0.2, phase: 0, name: "Distribution point inventory: every DP with its site, office, OS version, hardware age and warranty, PXE and Connected Cache roles, and content library size", dur: 10, owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-0-3"}
+  - {id: C0.3, phase: 0, name: "Circuit data per office: bandwidth, peak use, monthly cost and renewal date, from telecom contract records", dur: 15, owner: "Network engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-0-1"}
+  - {id: C0.4, phase: 0, name: "Packaging inventory: every application and package, its installer type, install count, active deployments and last change", dur: 15, owner: "Packaging team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-0-3"}
+  - {id: C0.5, phase: 0, name: "Funding ask decomposed: acquisition or five-year total cost of ownership, and every item beyond the distribution point itemized", dur: 5, owner: "Budget officer",
+     source: "../books/guides/dp-consolidation-implementation.md#step-2"}
+  - {id: C0.7, phase: 0, name: "Content library measured on one DP; sizing run against 4,000 clients per DP with a draft hub design and office wave order", dur: 3, after: [C0.1, C0.2, C0.3], owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-1-2"}
+  - {id: D-C1, kind: decision, phase: 0, name: "Target distribution point count when co-management completes, and the fiscal year", after: [C0.7], owner: "Executive sponsor and CIO",
+     options: "A dated target count from the validated endpoint count and Microsoft's 4,000-clients-per-DP limit (about 24 in the worked case); keep the current count (then say why the office count, not the client count, sizes it)",
+     late: "No refresh or consolidation can be sized, and the decision on the funding ask waits",
+     source: "../books/guides/dp-consolidation-implementation.md#step-1-2"}
+  - {id: C0.6, phase: 0, name: "Assessment worksheet completed from agency data, reviewed by the endpoint lead, ISSO and budget officer, and kept inside the boundary", dur: 5, after: [C0.4, C0.5, C0.7], owner: "Content delivery project lead",
+     source: "../books/guides/dp-consolidation-implementation.md#step-2"}
+  - {id: CG0, kind: gate, phase: 0, name: "Gate 0 — Inventory and decomposition complete", after: [C0.6, D-C1], owner: "Content delivery project lead and ISSO",
+     criteria: "Endpoint count validated and dated; every distribution point in the inventory and the system component inventory; circuit cost and renewal date recorded per office; packaging inventory complete; the ask stated as acquisition or five-year cost with scope itemized; a dated target DP count; the worksheet reviewed and stored inside the boundary",
+     source: "../books/guides/dp-consolidation-implementation.md#step-0-4"}
+  # ------------------------------------------------- Phase 1 — decision on the funding ask
+  - {id: D-C2, kind: decision, phase: 1, name: "Decision on the funding ask", after: [CG0], owner: "Executive sponsor and CIO",
+     options: "Refresh in place; consolidate to a hub tier (the guide's recommendation where the circuits allow); cloud-first with Connected Cache, keeping a hub tier only until the five gates close",
+     late: "Refresh money is committed by default, or the hub build can't start",
+     source: "../books/guides/dp-consolidation-implementation.md#step-2"}
+  - {id: C1.1, phase: 1, name: "Budget submission revised to the chosen option, the worked case's planning assumptions replaced by Phase 0 data, and its consistency with Intune-first stated", dur: 5, after: [D-C2], owner: "Budget officer",
+     source: "../books/guides/dp-consolidation-implementation.md#step-2"}
+  - {id: CG1, kind: gate, phase: 1, name: "Gate 1 — Funding decision recorded", after: [C1.1], owner: "Executive sponsor and CIO",
+     criteria: "Option chosen with the decision table and worksheet as its evidence; budget submission revised; target DP count and fiscal year recorded; the decision filed in the program's decision register",
+     source: "../books/guides/dp-consolidation-implementation.md#step-2"}
+  # ------------------------------------------------- Stage 1: the test hierarchy
+  - {id: C1.2, phase: 1, name: "Stage 1: Lab 2 run end to end in a test hierarchy, every change applied and then backed out from its plan.csv", dur: 15, after: [CG1], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#lab-2"}
+  - {id: D-C10, kind: decision, phase: 1, name: "Stage 1 to Stage 2: go/no-go for production", after: [C1.2], owner: "Content delivery project lead and ISSO",
+     options: "Go when Lab 2 ran end to end with its back-out, every cmdlet ran on the agency's Configuration Manager version, the inventory matched the console and the change board approved the production plan; no-go repeats Stage 1",
+     late: "No production change can start, and the hub build waits",
+     source: "../books/guides/dp-consolidation-implementation.md#go-no-go"}
+  # ------------------------------------------------- Phase 2 — hub content tier
+  - {id: D-C3, kind: decision, phase: 2, name: "Hub sites and distribution points per hub", after: [CG1, C0.3], owner: "Endpoint lead and network engineering lead",
+     options: "Existing regional facilities inside the current boundary, two pull DPs each, with source DPs at the two data centers (the worked case: 12 sites, 24 DPs); more hubs where latency or headcount needs them",
+     late: "Hub servers can't be ordered or built",
+     source: "../books/guides/dp-consolidation-implementation.md#step-1-1"}
+  - {id: C2.1, phase: 2, name: "Hub DP servers built on Windows Server 2019 or later: IIS, BITS and Remote Differential Compression; CM-6 baseline applied and scanned; HTTPS with a PKI certificate; added to the inventory and the SSP", dur: 30, after: [D-C3], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-3-1"}
+  - {id: C2.2, phase: 2, name: "Pull DPs added at each hub, sourcing from the data center DPs; one distribution point group per hub (New-DpcHubTier.ps1 -Apply)", dur: 15, after: [C2.1, D-C10], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-3-2"}
+  - {id: C2.3, phase: 2, name: "Content distributed to each hub group; distribution status clean; content validation run; inventory rerun", dur: 15, after: [C2.2], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-3-3"}
+  - {id: CG2, kind: gate, phase: 2, name: "Gate 2 — Hub tier serving content", after: [C2.3], owner: "Configuration Manager lead and ISSO",
+     criteria: "Every hub DP in production, baselined, scanned and in the SSP; every package distributed to its region's group with no failures; load per DP under 3,200 clients (80% of the published 4,000); change records for every server",
+     source: "../books/guides/dp-consolidation-implementation.md#step-3-3"}
+  # ------------------------------------------------- Phase 3 — peer caching and boundary groups
+  - {id: C3.1, phase: 3, name: "Boundary groups for the pilot wave: hub DPs added, peer options set, the other hubs as timed fallback, never to the default site group (Set-DpcBoundaryGroups.ps1 -Apply)", dur: 15, after: [C2.2], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-4-2"}
+  - {id: D-C4, kind: decision, phase: 3, name: "Client-to-client traffic on branch segments: TCP 8003, UDP 8004 and TCP 7680", after: [CG0], owner: "CISO",
+     options: "Allow within each office's subnet only; allow for named peer cache sources only; block, and size circuits for hub pulls",
+     late: "Peer cache and Delivery Optimization peering can't be configured, and the pilot measures nothing",
+     source: "../books/guides/dp-consolidation-implementation.md#step-5"}
+  - {id: X-E14, kind: external, phase: 3, name: "Co-management on for the pilot collection (Endpoint plan E1.4)", ref: "endpoint-device:E1.4", owner: "Endpoint & Device project",
+     late: "Pilot devices have no Intune channel for Delivery Optimization policy",
+     source: "endpoint-device.md"}
+  - {id: C3.2, phase: 3, name: "Peer cache sources chosen per pilot office (desktop chassis, disk, always on); client settings deployed; partial download on; BranchCache enabled", dur: 10, after: [C3.1, D-C4], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-5-2"}
+  - {id: C3.3, phase: 3, name: "Delivery Optimization through Intune: Group download mode with a group ID per office, or subnet restriction, for the pilot devices", dur: 10, after: [D-C4, X-E14], owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-5-3"}
+  - {id: C3.4, phase: 3, name: "Pilot measurement at the pilot offices: bytes from peers, from the hub and from the office DP, for a month of deployments", dur: 20, after: [C3.2, C3.3, CG2], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-5-4"}
+  - {id: CG3, kind: gate, phase: 3, name: "Gate 3 — Pilot offices served from hubs and peers", after: [C3.4], owner: "Endpoint lead",
+     criteria: "Pilot offices' content served by the hub and peers, with the office DP in read-only fallback and serving under a threshold the endpoint lead sets; no deployment failure traced to content location; measurement report filed",
+     source: "../books/guides/dp-consolidation-implementation.md#go-no-go"}
+  # ------------------------------------------------- Phase 4 — office waves
+  - {id: X-NG3, kind: external, phase: 4, name: "Pilot sites governed and evidenced on new transport (Network plan Gate 3)", ref: "network-access:NG3", owner: "Network & Access project",
+     late: "The pilot offices are still on their old circuits, and the first wave of DP retirements waits",
+     source: "network-access.md"}
+  - {id: C4.1, phase: 4, name: "Pilot wave: each office DP checked, drained, watched 30 days, removed with its site system; disks sanitized; inventory and SSP updated", dur: 15, after: [CG3, X-NG3], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-6"}
+  - {id: D-C5, kind: decision, phase: 4, name: "Wave plan: offices ordered by circuit readiness and renewal date", after: [CG3, C0.3], owner: "Content delivery project lead",
+     options: "By circuit readiness and renewal (the guide's order); by region (simpler, but waits on the slowest circuit in each)",
+     late: "Wave 2 can't be scheduled, and offices keep DPs they no longer need",
+     source: "../books/guides/dp-consolidation-implementation.md#step-1-2"}
+  - {id: C4.2, phase: 4, name: "Wave 2, about 25% of offices: boundary groups moved, peers enabled, office DPs read-only, then retired after 30 clean days", dur: 40, after: [C4.1, D-C5], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-6"}
+  - {id: C4.3, phase: 4, name: "Wave 3, about 60% of offices cumulative", dur: 40, after: [C4.2], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-6"}
+  - {id: C4.4, phase: 4, name: "Wave 4, every remaining office, or a dated exception with its reason", dur: 40, after: [C4.3], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-6"}
+  - {id: CG4, kind: gate, phase: 4, name: "Gate 4 — No branch distribution point left", after: [C4.4], owner: "Executive sponsor and CIO",
+     criteria: "Every office DP retired or in the exception register with a date and reason; every retired server's media sanitized and its inventory and SSP entries closed; hub load per DP still under 80% of the published limit",
+     source: "../books/guides/dp-consolidation-implementation.md#step-6-5"}
+  # ------------------------------------------------- Phase 5 — packaging on one standard
+  - {id: D-C6, kind: decision, phase: 5, name: "Packaging standard", after: [C0.4], owner: "Endpoint lead",
+     options: "PSAppDeployToolkit as the standard wrapper, version pinned, for every app that isn't a clean MSI; vendor installers with Intune's PowerShell script installer only; a mix by app class",
+     late: "Repackaging can't start, and the client apps workload waits",
+     source: "../books/guides/dp-consolidation-implementation.md#step-7"}
+  - {id: C5.1, phase: 5, name: "Standard template: pinned toolkit version, signed scripts, one log path, exit codes mapped, detection rule pattern; held under change control", dur: 10, after: [D-C6], owner: "Packaging team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-7-2"}
+  - {id: C5.2, phase: 5, name: "Catalog rationalized: apps nobody installs retired, duplicate versions removed, an owner for every app kept", dur: 15, after: [C0.4], owner: "Packaging team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-7-1"}
+  - {id: C5.3, phase: 5, name: "Most-installed apps repackaged on the template; each tested from Configuration Manager and as an .intunewin from Intune", dur: 40, after: [C5.1, C5.2], owner: "Packaging team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-7-5"}
+  - {id: C5.4, phase: 5, name: "Rest of the catalog repackaged or retired", dur: 40, after: [C5.3], owner: "Packaging team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-7-5"}
+  - {id: CG5, kind: gate, phase: 5, name: "Gate 5 — Catalog on the standard wrapper", after: [C5.4], owner: "Endpoint lead",
+     criteria: "Every kept app has an owner, a package on the template, a tested detection rule and a change record; the same package installs from either tool; retired apps removed from both",
+     source: "../books/guides/dp-consolidation-implementation.md#step-7-1"}
+  # ------------------------------------------------- Phase 6 — content workloads to Intune
+  - {id: C6.1, phase: 6, name: "Client apps and Office Click-to-Run apps workloads: Pilot Intune, then Intune; apps published as Win32 apps from the standard packages", dur: 20, after: [C5.3, X-E14], owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-8-1"}
+  - {id: C6.2, phase: 6, name: "Configuration Manager required and available deployments withdrawn as each app moves; the count reported weekly", dur: 30, after: [C6.1, C5.4], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-8-2"}
+  - {id: X-EG3, kind: external, phase: 6, name: "Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)", ref: "endpoint-device:EG3", owner: "Endpoint & Device project",
+     late: "Update content still comes from Configuration Manager, and retirement gate 2 can't close",
+     source: "endpoint-device.md"}
+  - {id: C6.3, phase: 6, name: "Configuration Manager software-update client setting turned off for every device on the Windows Update workload", dur: 5, after: [X-EG3], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-8-3"}
+  - {id: X-E15, kind: external, phase: 6, name: "Intune-first intake with Autopilot registration (Endpoint plan E1.5)", ref: "endpoint-device:E1.5", owner: "Endpoint & Device project",
+     late: "There's no Autopilot path to move bare-metal provisioning onto",
+     source: "endpoint-device.md"}
+  - {id: D-C7, kind: decision, phase: 6, name: "OS provisioning for existing devices", after: [X-E15, C0.2], owner: "Endpoint lead",
+     options: "Windows Autopilot for every rebuild, with reset where it applies; keep task sequences for a named exception class on a hub DP until it can move",
+     late: "Imaging keeps a PXE distribution point alive, and retirement gate 3 stays open",
+     source: "../books/guides/dp-consolidation-implementation.md#step-8-4"}
+  - {id: C6.4, phase: 6, name: "Bare-metal provisioning moved from task sequences to Autopilot; PXE turned off on every DP", dur: 30, after: [D-C7], owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-8-4"}
+  - {id: C6.5, phase: 6, name: "Compliance and Endpoint Protection evidence sourced from Intune and Defender, not the Configuration Manager site database; ISSO confirms", dur: 15, after: [X-EG3], owner: "ISSO",
+     source: "../books/guides/dp-consolidation-implementation.md#step-8-5"}
+  # ------------------------------------------------- Phase 7 — Connected Cache at the hubs
+  - {id: D-C8, kind: decision, phase: 7, name: "Connected Cache form and placement", after: [CG2], owner: "Endpoint lead and ISSO",
+     options: "Connected Cache for Enterprise and Education on its own host at each hub, its Azure resource placed in the boundary analysis; the Configuration Manager-integrated cache on a hub DP with no other roles (then retirement gate 4 binds it); none, where measured circuits carry cloud content",
+     late: "Cloud content keeps crossing every hub circuit, and gate 4 has no plan",
+     source: "../books/guides/dp-consolidation-implementation.md#step-9"}
+  - {id: C7.1, phase: 7, name: "Cache hosts built at the hubs on a supported OS, nothing else on port 80; Delivery Optimization pointed at each office's hub cache", dur: 25, after: [D-C8, C6.1], owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-9-1"}
+  - {id: C7.2, phase: 7, name: "Cache hit rate measured; Win32 app, update and Microsoft 365 Apps content confirmed served from the hubs", dur: 10, after: [C7.1], owner: "Endpoint engineering",
+     source: "../books/guides/dp-consolidation-implementation.md#step-9-2"}
+  - {id: C7.3, phase: 7, name: "Connected Cache turned off on any DP hardware once the hub cache serves that office", dur: 5, after: [C7.2], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-9-3"}
+  # ------------------------------------------------- Phase 8 — the five retirement gates
+  - {id: RG1, kind: gate, phase: 8, name: "Retirement gate 1 — App content", after: [C6.2], owner: "Endpoint lead",
+     criteria: "Client apps and Office Click-to-Run workloads on Intune for the whole validated population, and no required or available deployment still published from Configuration Manager",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-1"}
+  - {id: RG2, kind: gate, phase: 8, name: "Retirement gate 2 — Update content", after: [C6.3], owner: "Endpoint lead",
+     criteria: "Windows Update policies and device configuration workloads on Intune, and Configuration Manager's software-update client setting off for those devices",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-1"}
+  - {id: RG3, kind: gate, phase: 8, name: "Retirement gate 3 — OS provisioning", after: [C6.4], owner: "Endpoint lead",
+     criteria: "Bare-metal provisioning on Autopilot; no task sequence or PXE service still in use",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-1"}
+  - {id: RG4, kind: gate, phase: 8, name: "Retirement gate 4 — Caching role", after: [C7.3], owner: "Endpoint lead and ISSO",
+     criteria: "No Connected Cache instance runs on distribution-point hardware, or none is needed on the measured circuits",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-1"}
+  - {id: RG5, kind: gate, phase: 8, name: "Retirement gate 5 — Compliance evidence", after: [C6.5], owner: "ISSO",
+     criteria: "Compliance and Endpoint Protection reporting no longer cite the Configuration Manager site database as their evidence source",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-1"}
+  - {id: D-C9, kind: decision, phase: 8, name: "Retire the hub distribution point tier", after: [RG1, RG2, RG3, RG4, RG5, CG4, CG5], owner: "Executive sponsor and CIO",
+     options: "Retire it in the week the last gate closes; keep it while any gate is open. Never on a date alone",
+     late: "Twenty-odd servers stay in the boundary to be patched, scanned and accredited for no workload",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-1"}
+  - {id: C8.1, phase: 8, name: "Hub and source DPs drained and removed with their site systems (Invoke-DpcOfficeRetirement.ps1 -GatesPath); media sanitized; inventory and SSP entries closed", dur: 15, after: [D-C9], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-2"}
+  - {id: C8.2, phase: 8, name: "Cleanup: distribution point groups removed, boundary group site-system references cleared, peer cache client settings and deployments retired; no DP role left in the hierarchy", dur: 5, after: [C8.1], owner: "Configuration Manager team",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-3"}
+  - {id: CG8, kind: gate, phase: 8, name: "Gate 8 — Last distribution point retired, site roles cleaned up, evidence complete", after: [C8.2], owner: "CISO and ISSO",
+     criteria: "All five retirement gates closed in a gates run; no distribution point role left in Get-CMSiteRole; every DP's decommission record, sanitization record and SSP change filed; the content delivery evidence set in the guide's requirements table complete",
+     source: "../books/guides/dp-consolidation-implementation.md#step-10-3"}
+  # ------------------------------------------------- reference
+  - {id: X-G3, kind: external, phase: 8, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3", owner: "Executive sponsor and steering committee",
+     source: "program-master-schedule.md"}
+
+phases:
+  0: "Phase 0 — Analysis of the existing estate"
+  1: "Phase 1 — Decision on the funding ask, and Stage 1 in a test hierarchy"
+  2: "Phase 2 — Hub content tier"
+  3: "Phase 3 — Peer caching and boundary groups"
+  4: "Phase 4 — Office waves"
+  5: "Phase 5 — Packaging on one standard"
+  6: "Phase 6 — Content workloads to Intune"
+  7: "Phase 7 — Connected Cache at the hubs"
+  8: "Phase 8 — The five retirement gates"

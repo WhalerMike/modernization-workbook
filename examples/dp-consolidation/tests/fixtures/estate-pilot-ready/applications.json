@@ -1,0 +1,72 @@
+[
+  {
+    "Name": "Lab Viewer 5.2",
+    "SourceFolder": "LabViewer",
+    "Deployments": 3,
+    "InstallCount": 6400,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Field Forms 2.0",
+    "SourceFolder": "FieldForms",
+    "Deployments": 2,
+    "InstallCount": 5100,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Case Notes Client 11",
+    "SourceFolder": "CaseNotes",
+    "Deployments": 4,
+    "InstallCount": 8800,
+    "Technology": "MSI"
+  },
+  {
+    "Name": "PDF Reader 24",
+    "SourceFolder": "PdfReader",
+    "Deployments": 1,
+    "InstallCount": 9100,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Statistics Desktop 9",
+    "SourceFolder": "StatsDesktop",
+    "Deployments": 1,
+    "InstallCount": 420,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Legacy Scheduler 3.1",
+    "SourceFolder": "LegacyScheduler",
+    "Deployments": 0,
+    "InstallCount": 0,
+    "Technology": "MSI"
+  },
+  {
+    "Name": "Map Tool 7",
+    "SourceFolder": "MapTool",
+    "Deployments": 1,
+    "InstallCount": 1300,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Old Imaging Viewer 2",
+    "SourceFolder": "OldImaging",
+    "Deployments": 0,
+    "InstallCount": 12,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Badge Printer Driver",
+    "SourceFolder": "BadgePrinter",
+    "Deployments": 1,
+    "InstallCount": 260,
+    "Technology": "Script"
+  },
+  {
+    "Name": "Translation Helper 4",
+    "SourceFolder": "Translation",
+    "Deployments": 2,
+    "InstallCount": 2700,
+    "Technology": "MSI"
+  }
+]

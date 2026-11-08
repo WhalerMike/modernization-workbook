@@ -1,0 +1,232 @@
+[
+  {
+    "Server": "off01-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off01-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off02-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off02-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off03-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off03-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off04-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off04-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off05-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off05-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off06-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off06-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off06-dp.lab.example",
+    "RoleName": "SMS Software Update Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off07-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off07-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off08-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off08-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off09-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off09-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off10-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off10-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off11-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off11-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off12-dp.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "off12-dp.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "dc1-dp01.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "dc1-dp01.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "dc2-dp01.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "dc2-dp01.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "cm01.lab.example",
+    "RoleName": "SMS Site Server",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "cm01.lab.example",
+    "RoleName": "SMS Management Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "cm01.lab.example",
+    "RoleName": "SMS Provider",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "cm01.lab.example",
+    "RoleName": "SMS Software Update Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "cm01.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "east-dp01.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "east-dp01.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "east-dp02.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "east-dp02.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "central-dp01.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "central-dp01.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "central-dp02.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "central-dp02.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "west-dp01.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "west-dp01.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "west-dp02.lab.example",
+    "RoleName": "SMS Distribution Point",
+    "SiteCode": "LAB"
+  },
+  {
+    "Server": "west-dp02.lab.example",
+    "RoleName": "SMS Site System",
+    "SiteCode": "LAB"
+  }
+]

@@ -76,6 +76,16 @@ bundles:
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [non-person-identity-implementation.md]
+  - output: dp-consolidation-guide.docx
+    title: "Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh"
+    subtitle: "A decision guide — Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [dp-consolidation.md]
+  - output: dp-consolidation-implementation-guide.docx
+    title: "Distribution Point Consolidation: An Implementation Guide"
+    subtitle: "An implementation guide — Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [dp-consolidation-implementation.md]
   # ---------------------------------------------------------------------
   # Reference pages: one Word edition each, and the Reference Set with all six.
   - output: reference-set.docx

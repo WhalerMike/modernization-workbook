@@ -1,0 +1,13 @@
+Office,Region,BoundaryGroup,OfficeDP,CircuitMbps,PeakUtilPct,MonthlyCost,RenewalDate
+OFF01,East,BG-OFF01,off01-dp.lab.example,500,38,1450,2027-09-30
+OFF02,East,BG-OFF02,off02-dp.lab.example,300,61,1200,2027-03-31
+OFF03,East,BG-OFF03,off03-dp.lab.example,200,72,1100,2028-01-31
+OFF04,East,BG-OFF04,off04-dp.lab.example,100,55,980,2027-06-30
+OFF05,East,BG-OFF05,off05-dp.lab.example,500,41,1500,2027-12-31
+OFF06,Central,BG-OFF06,off06-dp.lab.example,1000,30,1650,2027-04-30
+OFF07,Central,BG-OFF07,off07-dp.lab.example,300,66,1150,2027-08-31
+OFF08,Central,BG-OFF08,off08-dp.lab.example,200,48,1050,2027-02-28
+OFF09,Central,BG-OFF09,off09-dp.lab.example,50,83,900,2028-03-31
+OFF10,West,BG-OFF10,off10-dp.lab.example,1000,35,1700,2027-05-31
+OFF11,West,BG-OFF11,off11-dp.lab.example,300,52,1180,2027-10-31
+OFF12,West,BG-OFF12,off12-dp.lab.example,200,44,1020,2027-11-30

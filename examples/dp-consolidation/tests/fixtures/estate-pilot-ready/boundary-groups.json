@@ -1,0 +1,206 @@
+[
+  {
+    "Name": "BG-DC",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.0.1.0"
+      },
+      {
+        "BoundaryType": 0,
+        "Value": "10.0.2.0"
+      }
+    ],
+    "SiteSystems": [
+      "dc1-dp01.lab.example",
+      "dc2-dp01.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF01",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.21.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off01-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF02",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.22.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off02-dp.lab.example",
+      "east-dp01.lab.example",
+      "east-dp02.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF03",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.23.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off03-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF04",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.24.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off04-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF05",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.25.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off05-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF06",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.26.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off06-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF07",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.27.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off07-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF08",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.28.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off08-dp.lab.example",
+      "central-dp01.lab.example",
+      "central-dp02.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF09",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.29.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off09-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF10",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.30.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off10-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF11",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.31.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off11-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-OFF12",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.32.1.0/24"
+      }
+    ],
+    "SiteSystems": [
+      "off12-dp.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-HUB-EAST",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.10.1.0"
+      }
+    ],
+    "SiteSystems": [
+      "east-dp01.lab.example",
+      "east-dp02.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-HUB-CENTRAL",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.11.1.0"
+      }
+    ],
+    "SiteSystems": [
+      "central-dp01.lab.example",
+      "central-dp02.lab.example"
+    ]
+  },
+  {
+    "Name": "BG-HUB-WEST",
+    "Boundaries": [
+      {
+        "BoundaryType": 0,
+        "Value": "10.12.1.0"
+      }
+    ],
+    "SiteSystems": [
+      "west-dp01.lab.example",
+      "west-dp02.lab.example"
+    ]
+  }
+]

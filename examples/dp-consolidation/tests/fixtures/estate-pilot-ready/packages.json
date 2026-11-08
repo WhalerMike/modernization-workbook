@@ -1,0 +1,26 @@
+[
+  {
+    "PackageID": "LAB00012",
+    "Name": "Configuration Manager Client Package",
+    "PkgSourcePath": "\\cm01.lab.example\\Client",
+    "Deployments": 0
+  },
+  {
+    "PackageID": "LAB00031",
+    "Name": "Font Pack 2019",
+    "PkgSourcePath": "\\cm01.lab.example\\Sources\\FontPack",
+    "Deployments": 1
+  },
+  {
+    "PackageID": "LAB00044",
+    "Name": "Printer Mapping Script",
+    "PkgSourcePath": "\\cm01.lab.example\\Sources\\PrinterMap",
+    "Deployments": 1
+  },
+  {
+    "PackageID": "LAB00052",
+    "Name": "Windows 11 Upgrade Media",
+    "PkgSourcePath": "\\cm01.lab.example\\Sources\\W11Media",
+    "Deployments": 0
+  }
+]

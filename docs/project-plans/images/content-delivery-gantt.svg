@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1264" viewBox="0 0 980 1264" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Content Delivery Modernization: schedule</title>
+<desc id="d">Gantt chart of 61 tasks over 55 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="1264" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="403.6" y1="28" x2="403.6" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="405.6" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="447.3" y1="28" x2="447.3" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="449.3" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="490.9" y1="28" x2="490.9" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="492.9" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="534.5" y1="28" x2="534.5" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="536.5" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="578.2" y1="28" x2="578.2" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="580.2" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="621.8" y1="28" x2="621.8" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="623.8" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="665.5" y1="28" x2="665.5" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="667.5" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="709.1" y1="28" x2="709.1" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="711.1" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="752.7" y1="28" x2="752.7" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="754.7" y="22" font-size="10" fill="#64748b">wk 37</text>
+<line x1="796.4" y1="28" x2="796.4" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="798.4" y="22" font-size="10" fill="#64748b">wk 41</text>
+<line x1="840.0" y1="28" x2="840.0" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="842.0" y="22" font-size="10" fill="#64748b">wk 45</text>
+<line x1="883.6" y1="28" x2="883.6" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="885.6" y="22" font-size="10" fill="#64748b">wk 49</text>
+<line x1="927.3" y1="28" x2="927.3" y2="1224" stroke="#e2e8f0" stroke-width="1"/>
+<text x="929.3" y="22" font-size="10" fill="#64748b">wk 53</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Analysis of the existing estate</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">C0.1  Validated endpoint count: Configuration Manager cl…</text>
+<line x1="381.8" y1="59.5" x2="392.7" y2="59.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="55" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">C0.2  Distribution point inventory: every DP with its si…</text>
+<line x1="381.8" y1="76.5" x2="392.7" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="72" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#1e293b">C0.3  Circuit data per office: bandwidth, peak use, mont…</text>
+<rect x="360.0" y="89" width="32.7" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">C0.4  Packaging inventory: every application and package…</text>
+<line x1="392.7" y1="110.5" x2="399.3" y2="110.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="106" width="32.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">C0.5  Funding ask decomposed: acquisition or five-year t…</text>
+<line x1="370.9" y1="127.5" x2="399.3" y2="127.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="123" width="10.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="148" font-size="10.5" fill="#1e293b">C0.7  Content library measured on one DP; sizing run aga…</text>
+<rect x="392.7" y="140" width="6.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="165" font-size="10.5" fill="#64748b">D-C1  Target distribution point count when co-management…</text>
+<path d="M399.3 156.0 L404.8 161.5 L399.3 167.0 L393.8 161.5 Z" fill="#D97706"/>
+<text x="14" y="182" font-size="10.5" fill="#1e293b">C0.6  Assessment worksheet completed from agency data, r…</text>
+<rect x="399.3" y="174" width="10.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="199" font-size="10.5" fill="#1e293b">CG0  Gate 0 — Inventory and decomposition complete</text>
+<path d="M410.2 190.0 L415.7 195.5 L410.2 201.0 L404.7 195.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="204" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="216.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Decision on the funding ask, and Stage 1 in a test hierarchy</text>
+<text x="14" y="233" font-size="10.5" fill="#1e293b">D-C2  Decision on the funding ask</text>
+<path d="M410.2 224.0 L415.7 229.5 L410.2 235.0 L404.7 229.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="250" font-size="10.5" fill="#1e293b">C1.1  Budget submission revised to the chosen option, th…</text>
+<rect x="410.2" y="242" width="10.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="267" font-size="10.5" fill="#1e293b">CG1  Gate 1 — Funding decision recorded</text>
+<path d="M421.1 258.0 L426.6 263.5 L421.1 269.0 L415.6 263.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">C1.2  Stage 1: Lab 2 run end to end in a test hierarchy,…</text>
+<line x1="453.8" y1="280.5" x2="486.5" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="421.1" y="276" width="32.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">D-C10  Stage 1 to Stage 2: go/no-go for production</text>
+<path d="M453.8 292.0 L459.3 297.5 L453.8 303.0 L448.3 297.5 Z" fill="#D97706"/>
+<rect x="0" y="306" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="318.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Hub content tier</text>
+<text x="14" y="335" font-size="10.5" fill="#1e293b">D-C3  Hub sites and distribution points per hub</text>
+<path d="M421.1 326.0 L426.6 331.5 L421.1 337.0 L415.6 331.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="352" font-size="10.5" fill="#1e293b">C2.1  Hub DP servers built on Windows Server 2019 or lat…</text>
+<rect x="421.1" y="344" width="65.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="369" font-size="10.5" fill="#1e293b">C2.2  Pull DPs added at each hub, sourcing from the data…</text>
+<rect x="486.5" y="361" width="32.7" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="386" font-size="10.5" fill="#64748b">C2.3  Content distributed to each hub group; distributio…</text>
+<line x1="552.0" y1="382.5" x2="573.8" y2="382.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="519.3" y="378" width="32.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="403" font-size="10.5" fill="#64748b">CG2  Gate 2 — Hub tier serving content</text>
+<path d="M552.0 394.0 L557.5 399.5 L552.0 405.0 L546.5 399.5 Z" fill="#7C3AED"/>
+<rect x="0" y="408" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="420.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Peer caching and boundary groups</text>
+<text x="14" y="437" font-size="10.5" fill="#1e293b">C3.1  Boundary groups for the pilot wave: hub DPs added,…</text>
+<rect x="519.3" y="429" width="32.7" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">D-C4  Client-to-client traffic on branch segments: TCP 8…</text>
+<path d="M410.2 445.0 L415.7 450.5 L410.2 456.0 L404.7 450.5 Z" fill="#D97706"/>
+<text x="14" y="471" font-size="10.5" fill="#64748b">X-E14  Co-management on for the pilot collection (Endpoi…</text>
+<path d="M414.5 462.0 L420.0 467.5 L414.5 473.0 L409.0 467.5 Z" fill="#059669"/>
+<text x="14" y="488" font-size="10.5" fill="#1e293b">C3.2  Peer cache sources chosen per pilot office (deskto…</text>
+<rect x="552.0" y="480" width="21.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">C3.3  Delivery Optimization through Intune: Group downlo…</text>
+<line x1="436.4" y1="501.5" x2="573.8" y2="501.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="414.5" y="497" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="522" font-size="10.5" fill="#1e293b">C3.4  Pilot measurement at the pilot offices: bytes from…</text>
+<rect x="573.8" y="514" width="43.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="539" font-size="10.5" fill="#1e293b">CG3  Gate 3 — Pilot offices served from hubs and peers</text>
+<path d="M617.5 530.0 L623.0 535.5 L617.5 541.0 L612.0 535.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="544" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="556.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Office waves</text>
+<text x="14" y="573" font-size="10.5" fill="#64748b">X-NG3  Pilot sites governed and evidenced on new transpo…</text>
+<path d="M593.5 564.0 L599.0 569.5 L593.5 575.0 L588.0 569.5 Z" fill="#059669"/>
+<text x="14" y="590" font-size="10.5" fill="#1e293b">C4.1  Pilot wave: each office DP checked, drained, watch…</text>
+<rect x="617.5" y="582" width="32.7" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">D-C5  Wave plan: offices ordered by circuit readiness an…</text>
+<path d="M617.5 598.0 L623.0 603.5 L617.5 609.0 L612.0 603.5 Z" fill="#D97706"/>
+<text x="14" y="624" font-size="10.5" fill="#1e293b">C4.2  Wave 2, about 25% of offices: boundary groups move…</text>
+<rect x="650.2" y="616" width="87.3" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="641" font-size="10.5" fill="#1e293b">C4.3  Wave 3, about 60% of offices cumulative</text>
+<rect x="737.5" y="633" width="87.3" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="658" font-size="10.5" fill="#1e293b">C4.4  Wave 4, every remaining office, or a dated excepti…</text>
+<rect x="824.7" y="650" width="87.3" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="675" font-size="10.5" fill="#1e293b">CG4  Gate 4 — No branch distribution point left</text>
+<path d="M912.0 666.0 L917.5 671.5 L912.0 677.0 L906.5 671.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="680" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="692.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — Packaging on one standard</text>
+<text x="14" y="709" font-size="10.5" fill="#64748b">D-C6  Packaging standard</text>
+<path d="M392.7 700.0 L398.2 705.5 L392.7 711.0 L387.2 705.5 Z" fill="#D97706"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">C5.1  Standard template: pinned toolkit version, signed…</text>
+<line x1="414.5" y1="722.5" x2="672.0" y2="722.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="392.7" y="718" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="743" font-size="10.5" fill="#64748b">C5.2  Catalog rationalized: apps nobody installs retired…</text>
+<line x1="425.5" y1="739.5" x2="672.0" y2="739.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="392.7" y="735" width="32.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="760" font-size="10.5" fill="#64748b">C5.3  Most-installed apps repackaged on the template; ea…</text>
+<line x1="512.7" y1="756.5" x2="759.3" y2="756.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="425.5" y="752" width="87.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="777" font-size="10.5" fill="#64748b">C5.4  Rest of the catalog repackaged or retired</text>
+<line x1="600.0" y1="773.5" x2="846.5" y2="773.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="512.7" y="769" width="87.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="794" font-size="10.5" fill="#64748b">CG5  Gate 5 — Catalog on the standard wrapper</text>
+<path d="M600.0 785.0 L605.5 790.5 L600.0 796.0 L594.5 790.5 Z" fill="#7C3AED"/>
+<rect x="0" y="799" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="811.5" font-size="11" font-weight="600" fill="#1e293b">Phase 6 — Content workloads to Intune</text>
+<text x="14" y="828" font-size="10.5" fill="#64748b">C6.1  Client apps and Office Click-to-Run apps workloads…</text>
+<line x1="556.4" y1="824.5" x2="824.7" y2="824.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="512.7" y="820" width="43.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="845" font-size="10.5" fill="#64748b">C6.2  Configuration Manager required and available deplo…</text>
+<line x1="665.5" y1="841.5" x2="912.0" y2="841.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="600.0" y="837" width="65.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="862" font-size="10.5" fill="#64748b">X-EG3  Workloads cut over, including Windows Update poli…</text>
+<path d="M687.3 853.0 L692.8 858.5 L687.3 864.0 L681.8 858.5 Z" fill="#059669"/>
+<text x="14" y="879" font-size="10.5" fill="#64748b">C6.3  Configuration Manager software-update client setti…</text>
+<line x1="698.2" y1="875.5" x2="912.0" y2="875.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="687.3" y="871" width="10.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="896" font-size="10.5" fill="#64748b">X-E15  Intune-first intake with Autopilot registration (…</text>
+<path d="M425.5 887.0 L431.0 892.5 L425.5 898.0 L420.0 892.5 Z" fill="#059669"/>
+<text x="14" y="913" font-size="10.5" fill="#64748b">D-C7  OS provisioning for existing devices</text>
+<path d="M425.5 904.0 L431.0 909.5 L425.5 915.0 L420.0 909.5 Z" fill="#D97706"/>
+<text x="14" y="930" font-size="10.5" fill="#64748b">C6.4  Bare-metal provisioning moved from task sequences…</text>
+<line x1="490.9" y1="926.5" x2="912.0" y2="926.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="425.5" y="922" width="65.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="947" font-size="10.5" fill="#64748b">C6.5  Compliance and Endpoint Protection evidence source…</text>
+<line x1="720.0" y1="943.5" x2="912.0" y2="943.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="687.3" y="939" width="32.7" height="9" rx="2" fill="#2563EB"/>
+<rect x="0" y="952" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="964.5" font-size="11" font-weight="600" fill="#1e293b">Phase 7 — Connected Cache at the hubs</text>
+<text x="14" y="981" font-size="10.5" fill="#64748b">D-C8  Connected Cache form and placement</text>
+<path d="M552.0 972.0 L557.5 977.5 L552.0 983.0 L546.5 977.5 Z" fill="#D97706"/>
+<text x="14" y="998" font-size="10.5" fill="#64748b">C7.1  Cache hosts built at the hubs on a supported OS, n…</text>
+<line x1="610.9" y1="994.5" x2="879.3" y2="994.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="556.4" y="990" width="54.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1015" font-size="10.5" fill="#64748b">C7.2  Cache hit rate measured; Win32 app, update and Mic…</text>
+<line x1="632.7" y1="1011.5" x2="901.1" y2="1011.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="610.9" y="1007" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1032" font-size="10.5" fill="#64748b">C7.3  Connected Cache turned off on any DP hardware once…</text>
+<line x1="643.6" y1="1028.5" x2="912.0" y2="1028.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="632.7" y="1024" width="10.9" height="9" rx="2" fill="#2563EB"/>
+<rect x="0" y="1037" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="1049.5" font-size="11" font-weight="600" fill="#1e293b">Phase 8 — The five retirement gates</text>
+<text x="14" y="1066" font-size="10.5" fill="#64748b">RG1  Retirement gate 1 — App content</text>
+<path d="M665.5 1057.0 L671.0 1062.5 L665.5 1068.0 L660.0 1062.5 Z" fill="#7C3AED"/>
+<text x="14" y="1083" font-size="10.5" fill="#64748b">RG2  Retirement gate 2 — Update content</text>
+<path d="M698.2 1074.0 L703.7 1079.5 L698.2 1085.0 L692.7 1079.5 Z" fill="#7C3AED"/>
+<text x="14" y="1100" font-size="10.5" fill="#64748b">RG3  Retirement gate 3 — OS provisioning</text>
+<path d="M490.9 1091.0 L496.4 1096.5 L490.9 1102.0 L485.4 1096.5 Z" fill="#7C3AED"/>
+<text x="14" y="1117" font-size="10.5" fill="#64748b">RG4  Retirement gate 4 — Caching role</text>
+<path d="M643.6 1108.0 L649.1 1113.5 L643.6 1119.0 L638.1 1113.5 Z" fill="#7C3AED"/>
+<text x="14" y="1134" font-size="10.5" fill="#64748b">RG5  Retirement gate 5 — Compliance evidence</text>
+<path d="M720.0 1125.0 L725.5 1130.5 L720.0 1136.0 L714.5 1130.5 Z" fill="#7C3AED"/>
+<text x="14" y="1151" font-size="10.5" fill="#1e293b">D-C9  Retire the hub distribution point tier</text>
+<path d="M912.0 1142.0 L917.5 1147.5 L912.0 1153.0 L906.5 1147.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="1168" font-size="10.5" fill="#1e293b">C8.1  Hub and source DPs drained and removed with their…</text>
+<rect x="912.0" y="1160" width="32.7" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1185" font-size="10.5" fill="#1e293b">C8.2  Cleanup: distribution point groups removed, bounda…</text>
+<rect x="944.7" y="1177" width="10.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1202" font-size="10.5" fill="#1e293b">CG8  Gate 8 — Last distribution point retired, site role…</text>
+<path d="M955.6 1193.0 L961.1 1198.5 L955.6 1204.0 L950.1 1198.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="1219" font-size="10.5" fill="#64748b">X-G3  Program G3 — Rollout Complete</text>
+<path d="M752.7 1210.0 L758.2 1215.5 L752.7 1221.0 L747.2 1215.5 Z" fill="#059669"/>
+<rect x="14" y="1237" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="1246" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="1237" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="1246" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="1241.5" x2="266.6" y2="1241.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="1246" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 1236 L340.1 1241.5 L334.6 1247 L329.1 1241.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="1246" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 1236 L410.90000000000003 1241.5 L405.40000000000003 1247 L399.90000000000003 1241.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="1246" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 1236 L506.5 1241.5 L501.0 1247 L495.5 1241.5 Z" fill="#059669"/>
+<text x="516.0" y="1246" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="1246" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>
