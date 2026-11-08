@@ -31,12 +31,17 @@ class Overclaims(unittest.TestCase):
                      "The policy meets the requirement for phishing-resistant MFA.",
                      "The dashboard closes KSI-IAM-MFA.",
                      "The design meets TIC 3.0.",
-                     "The monitoring satisfies RMF task S-4."):
+                     "The monitoring satisfies RMF task S-4.",
+                     "CA001 meets MS.AAD.1.1v1 after legacy clients move.",
+                     "The policy satisfies MS.EXO.5.1v1.",
+                     "Enabling it fulfills MS.AAD.3.6v1 for privileged roles."):
             self.assertEqual(flagged(line), [1], line)
 
     def test_supports_and_evidence_are_fine(self):
         for line in ("The kit supports AC-2 and provides evidence for IA-4.",
                      "The gate contributes to M-22-09's phishing-resistant MFA goal.",
+                     "CA001 addresses MS.AAD.1.1v1 after legacy clients move.",
+                     "The policy does not satisfy MS.EXO.5.1v1.",
                      "The pipeline meets the January 12 date.",
                      "The team will meet on Tuesday to review the controls.",
                      "SI-2 closes flaws.",

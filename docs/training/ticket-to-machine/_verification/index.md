@@ -19,3 +19,9 @@ Method:
 | 4 | Unit and path times | Each module; the path index | design (estimates) | — |
 
 *For project use.*
+
+## Decision of Nov 8, 2026
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| 5 | The link text "change classes and their lanes" now reads "operation classes and their lanes", matching Book 13 Appendix B; the anchor is unchanged | Module 3, resources list | wording only, no source change | Book 13 Appendix B |

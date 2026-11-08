@@ -372,7 +372,7 @@
       "settings": {
         "instanceDurationInDays": 14
       },
-      "displayName": "Quarterly review - APP-PAYROLL-USERS-T1",
+      "displayName": "Quarterly review - APP-PAYROLL-USERS-R1",
       "fallbackReviewers": [],
       "scope": {
         "queryType": "MicrosoftGraph",

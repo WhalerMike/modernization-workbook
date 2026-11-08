@@ -132,3 +132,9 @@ Re-checked Microsoft Learn, "Least privileged roles by task in Microsoft Entra I
 |---|---|---|---|---|
 | 1 | Admin consent, role table, Privileged Role Administrator row | "Any permission, for any API" | "Any permission, for any API, Microsoft Graph application permissions included; in practice a Global Administrator is typically required for those (see below)" | corrected (states both) |
 | 2 | The admin consent workflow, last paragraph | "Requests for Microsoft Graph application permissions that arrive through the workflow need a Global Administrator to approve them there, so the program grants those through the Enterprise applications pane, as Privileged Role Administrator activated through PIM (Chapter 08), once the ticket is approved." | "Requests for Microsoft Graph application permissions that arrive through the workflow need a Global Administrator to approve them there. Outside the workflow, Microsoft lists Privileged Role Administrator as the least privileged role for consenting to Microsoft Graph application permissions, but notes that in practice this typically requires Global Administrator, and that Privileged Role Administrator may not be enough depending on the tenant's consent policies, the permission scopes or Graph protection requirements. So the program plans for both: it grants those permissions once the ticket is approved, through the Enterprise applications pane, as Privileged Role Administrator activated through PIM (Chapter 08), with a PIM-activated Global Administrator as the fallback. Test the path in the pilot." | corrected (states both; the fallback and the pilot test are design guidance) |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| "allows an agency to meet MS.AAD.5.2v1" | "allows an agency to address MS.AAD.5.2v1" | Decision of Nov 8, 2026; claim language. Claim SC1 above keeps its original wording as the logged claim |
