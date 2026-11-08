@@ -114,3 +114,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 |---|---|---|---|---|
 | 1 | A-130 §5.a(2): EA with baseline, target, transition plan aligned to IRM Strategic Plan | PM-11, PM-7 | verified (quoted) | OMB Circular A-130 §5.a(2) |
 | 2 | Program's assessment, target and phase plan are the EA's three parts | PM-11, PM-7 | restated-as-design | B00 App. C |
+
+## Consistency read C3, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| PM-7, PM-9, PM-11 and PM-14 are in the privacy baseline (twice) | PM-4, PM-6, PM-7, PM-9, PM-10, PM-11, PM-14 and PM-31 are in the privacy baseline; read from the release 5.2.0 OSCAL privacy baseline profile on Nov 8, 2026, which also lists PM-3, PM-5(1) and others outside this chapter's thirteen | NIST SP 800-53B OSCAL privacy baseline profile |
+| The authorizing official approves the POA&M and accepts residual risk, and the system owner decides on it | The system owner keeps the POA&M and decides how findings are fixed; the authorizing official approves it and accepts what can't be fixed in time (matches Chapter 10) | Chapter 10, plan of action rows; SP 800-37 Task A-6 |
+| FedRAMP's vulnerability detection and response rules become mandatory the same day | Names both the Vulnerability Detection and Response and the Vulnerability Evaluation and Reporting rules, as Chapter 11 does (mandatory Dec 7, 2026) | FedRAMP NTC-0014 |
