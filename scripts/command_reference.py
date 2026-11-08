@@ -294,7 +294,10 @@ def link_chapters(cmds: list[Command], docs: Path = DOCS, root: Path = ROOT, lim
 # ------------------------------------------------------------------ the page
 
 def cell(s: str) -> str:
-    return s.replace("|", "\\|").replace("\n", " ").strip()
+    s = s.replace("|", "\\|").replace("\n", " ").strip()
+    # A literal $ outside code starts TeX math in Pandoc, which fails the Word bundles.
+    parts = s.split("`")
+    return "`".join(p if i % 2 else p.replace("$", "\\$") for i, p in enumerate(parts))
 
 
 def relpath(target: str, frm: str = "docs/reference/commands.md") -> str:
@@ -354,9 +357,15 @@ def render(cmds: list[Command]) -> str:
         for c in cs:
             if c.kind == "function":
                 mods[c.path].append(c)
+        ids: set[str] = set()
         for path, fs in sorted(mods.items()):
+            # A module split over several files (ValidationKit's Checks/*.ps1) gets one id per file.
+            anchor = f"mod-{kit}-{fs[0].module.lower()}"
+            if anchor in ids:
+                anchor += "-" + re.sub(r"[^a-z0-9]+", "-", Path(path).stem.lower()).strip("-")
+            ids.add(anchor)
             w("")
-            w(f"### Module {fs[0].module} {{#mod-{kit}-{fs[0].module.lower()}}}")
+            w(f"### Module {fs[0].module} {{#{anchor}}}")
             w("")
             w(f"[`{path.split('/', 2)[2]}`]({REPO_URL}/blob/main/{path})")
             w("")

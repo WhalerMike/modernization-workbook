@@ -78,6 +78,20 @@ Each book downloads as one Word document with its chapters in reading order, its
 | [Azure Arc Track: Implementation Guide](books/guides/arc-track-implementation.md) | [arc-track-implementation-guide.docx](../downloads/arc-track-implementation-guide.docx) |
 | [Non-Person Identity: An Implementation Guide](books/guides/non-person-identity-implementation.md) | [non-person-identity-implementation-guide.docx](../downloads/non-person-identity-implementation-guide.docx) |
 
+## Reference pages as Word documents
+
+The [reference pages](reference/index.md), one Word document each, and all six together in the Reference Set.
+
+| Reference page | Word edition |
+|---|---|
+| Reference Set: all six pages below | [reference-set.docx](../downloads/reference-set.docx) |
+| [Command Reference](reference/commands.md) | [reference-commands.docx](../downloads/reference-commands.docx) |
+| [Federal Framework Crosswalk](reference/federal-framework-crosswalk.md) | [reference-federal-framework-crosswalk.docx](../downloads/reference-federal-framework-crosswalk.docx) |
+| [Source Register](reference/source-register.md) | [reference-source-register.docx](../downloads/reference-source-register.docx) |
+| [RMF Map](reference/rmf-map.md) | [reference-rmf-map.docx](../downloads/reference-rmf-map.docx) |
+| [M-19-17 and FICAM Crosswalk](reference/m-19-17-ficam-crosswalk.md) | [reference-m-19-17-ficam-crosswalk.docx](../downloads/reference-m-19-17-ficam-crosswalk.docx) |
+| [Microsoft Practice Crosswalk](reference/graph-practice-crosswalk.md) | [reference-graph-practice-crosswalk.docx](../downloads/reference-graph-practice-crosswalk.docx) |
+
 ## Developer workbooks as Word documents
 
 Draft, held for review page by page; see [Developer Workbooks](project-plans/developer-workbooks/index.md).
