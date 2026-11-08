@@ -1,0 +1,62 @@
+[
+  {
+    "slide": 1,
+    "title": "External Partner Identity: the executive briefing",
+    "say": "Welcome. This is the executive briefing on external partner identity, from the HR-Driven Identity book of the Federal Modernization Workbook, with its partner access profile in Access and Privilege. It's for the people who make the calls: the CIO and CISO, the business owners of programs shared with partners, the privacy officer and the authorizing official. Many people who sign in to agency systems work for someone else. The workbook now treats them as their own identity class. I'll take four questions: why the class exists, what it is, who decides, and how a partner goes live. The last slide gathers the decisions."
+  },
+  {
+    "slide": 2,
+    "title": "Many who sign in work for someone else",
+    "say": "Every earlier chapter of HR-Driven Identity rests on one rule: the agency's own authoritative source says who works here, and access follows. Employees come from HR; contractors from the source the agency designates. But think of a state benefits examiner, a tribal health officer, an analyst at another agency, or a compliance officer at a regulated bank. Each of them is employed, proofed and credentialed by someone else. When that state examiner leaves the state government, the state's HR system knows first, and possibly only. The agency can't key, correct or even see that record, except through what the partner sends. So a partner's account proves that another organization vouches for a person. It doesn't prove that the agency has decided to let that person in."
+  },
+  {
+    "slide": 3,
+    "title": "Authority splits in two",
+    "say": "The split of authority is the definition of the class. The partner is authoritative for the person's affiliation, who works there and in what role, and for the lifecycle of the credential it issues. The agency is authoritative for everything that touches its systems: whether it trusts the partner's identity service at all, which partner persons are eligible, what they may reach, what assurance each transaction needs, and when access is suspended or ended. One rule follows. No partner account gets access just because it exists or synchronizes. An account in the tenant is a fact about the partner's directory. Access is an agency decision, with an approver, a sponsor, an expiry and evidence."
+  },
+  {
+    "slide": 4,
+    "title": "One class, with clear borders",
+    "say": "The External Partner Person is a person whose employment or affiliation record, and primary credential, are held by another organization: a state, a tribal government, another federal agency, a financial institution, or an academic or nonprofit partner. The class covers people; the organization is the partner. The workbook's other populations already have homes, so the chapter draws borders rather than redefining them. Partner is not public: a member of the public applying for a benefit isn't a workforce guest, even if a partner delivers the benefit. Partner is not contractor: if the agency holds the contract and the sponsor, and the person works on agency business, that person is a contractor. Privilege and break-glass are overlays, and emergency access accounts are always the agency's own. And an AI agent acting for a partner is a non-person identity with its own sponsor."
+  },
+  {
+    "slide": 5,
+    "title": "Guest by default; Member only by exception",
+    "say": "The workbook uses three words for populations, and each is a view of the one above it. The class says who is authoritative and who owns access. Worker type is the HR attribute for the agency's own workers, and a partner person has none, because there's no agency HR record. The persona is how Conditional Access targets people, and for partners that's the Externals persona, which must match the class one to one. The user type is where those views can quietly diverge. The workbook's member baselines, such as the compliant-device policies, exclude guests, so a partner created as a member would fall into the internal baselines and out of the partner ones. So partner persons are guests by default. A member partner person needs an exception record, with a reason, an approver and a review date."
+  },
+  {
+    "slide": 6,
+    "title": "A short standard in nine control areas",
+    "say": "The standard is short on purpose. It says what has to be true for any partner, on any platform, in nine areas: partner qualification, trust establishment, population scope, assurance, authorization, lifecycle, data protection, operations and evidence. Each area becomes a section of the partner identity record. Three points matter most to leadership. Authorization is separate from authentication: a valid sign-in at the state proves the examiner signed in there; only an agency assignment opens the case system. Partner exit is a lifecycle event: when an agreement ends, the accounts are removed, not left disabled. And statements are not controls: a partner saying it requires MFA is input to the agreement, while a policy the agency enforces and tests is the control."
+  },
+  {
+    "slide": 7,
+    "title": "One decider per row: the business owner",
+    "say": "Who decides? The partner and the agency each carry part of every activity, from affiliation and proofing to lifecycle, incident response and evidence. On the agency side there is one decider per row: the agency business owner, the official accountable for the program the partner persons serve. The title is provisional, and the record names a person, not a title. The sponsor, usually the program manager who works with the partner, vouches for its people, reviews their access and requests suspensions, but never approves their own requests. The identity governance officer owns the list of approved partner organizations. Two rows need comment. In a live incident, security operations contains first and the business owner is told after. And going to production has one decider with a required consult: the authorizing official's input must be on record. A consult isn't a second approval, but an objection the business owner overrides becomes a risk acceptance, and that is the authorizing official's decision."
+  },
+  {
+    "slide": 8,
+    "title": "Assurance is chosen per transaction",
+    "say": "NIST SP 800-63-4 measures digital identity on three scales: identity proofing, authentication, and federation. For a partner person, the partner usually performs the first two, and the agency decides whether that's enough for each transaction. The levels come from an impact assessment, and partner persons are their own user group in it. A bank officer submitting a financial filing and a state examiner reading a case summary can land at different levels on the same system, so the record holds one row per protected transaction, not one level per partner. Two federal rules shape this. M-22-09 requires phishing-resistant MFA for agency staff, contractors and partners, but leaves each agency to define the partner category, so the agency writes its definition into the record. And FIPS 201-3 covers federal employees and contractors only, so never call a partner credential PIV-equivalent unless a policy the agency can cite says so."
+  },
+  {
+    "slide": 9,
+    "title": "The route in: a request, an approval, an expiry",
+    "say": "The route into the tenant is the same in principle on any platform. First, the partner is qualified: the record exists, the agreement is signed, and the partner's identity service is trusted only through a setting scoped to that partner. Second, each person arrives through an approved request naming the sponsor, the approver and an expiry. Third, the account is a guest. Fourth, access ends with the last assignment, and the account is blocked and then removed. Automatic provisioning from a partner's directory is an exception, because it hands the eligibility decision to whoever controls the partner's groups and copies personal data across organizations on a schedule. In Microsoft Entra, the default is entitlement management with B2B collaboration guests. Microsoft Learn says cross-tenant synchronization is intended for use within an organization, and points to entitlement management for inviting users across organizations."
+  },
+  {
+    "slide": 10,
+    "title": "Privacy, records and redress before go-live",
+    "say": "Four obligations come before the first partner goes live. Privacy: a directory of partner persons, their access decisions and their sign-in logs is retrieved by name and identifier, so whether an existing system-of-records notice covers it is the privacy office's determination, made before go-live. Minimization: the agency receives only the attributes its decisions read, usually a name, a work email, an immutable identifier, the partner organization and, where needed, a role. Records: NARA's General Records Schedule 3.2 covers system access records, but the schedules for partner agreements and access reviews haven't been verified, so the agency records officer names them. And redress: a wrong name is corrected at the partner's source, while an agency decision, such as a suspension, is disputed through the agency's own process. The request and redress workflows are covered by Section 508, too."
+  },
+  {
+    "slide": 11,
+    "title": "Eleven readiness checks before production",
+    "say": "Eleven readiness checks stand between a qualified partner and production. They aren't the program's phase gates; they're specific to each relationship. They confirm the class and the partner's authoritative source; record which requirements apply; review the agreement, privacy, records and the authorization boundary; select assurance per transaction; name owners and test the escalation contacts; reconcile the expected population against the accounts; minimize the attributes; test create, update, disable, removal, emergency suspension and rollback; test access, including denials; and confirm that monitoring, reviews, drift detection and runbooks are operating. The eleventh is production enablement itself. Each check has one decider, the business owner, and the checks repeat at every review. A partner that adds a new application reruns four of them."
+  },
+  {
+    "slide": 12,
+    "title": "The decisions to make",
+    "say": "Here are the decisions, with their owners and timing. Before the first partner goes live, the privacy office determines whether an existing system-of-records notice covers partner persons, and the records officer names the records schedule items. For each partner, the business owner decides five things. Qualifying the partner and approving the agreement, before any trust is configured. Which requirements apply, including the agency's own definition of partners under M-22-09. The assurance for each protected transaction, with the ISSO and the application owner consulted. Any automatic synchronization, which is an exception on a written record, with the sponsor named. And production enablement, with the authorizing official's consult on record. A member user type is an exception too, with its own record, approver and review date. The chapter, the partner identity record and the Entra profile carry the detail, every claim footnoted. Thank you."
+  }
+]

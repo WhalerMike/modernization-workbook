@@ -1,0 +1,288 @@
+[
+ {
+  "slide": 2,
+  "title": "Access because someone asked, never because it exists",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Three assurance scales, applied to partners",
+  "links": [
+   {
+    "text": "NIST SP 800-63-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-63-4"
+   },
+   {
+    "text": "SP 800-63C-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-63c-4"
+   },
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Assurance by transaction risk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#assurance-by-transaction-risk"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The default route: an access package per use case",
+  "links": [
+   {
+    "text": "Manage connected organizations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-em-connected-organizations"
+   },
+   {
+    "text": "Govern access for external users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-em-external-users"
+   },
+   {
+    "text": "entitlementManagementSettings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-entitlementmanagementsettings"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Cross-tenant access settings, one partner at a time",
+  "links": [
+   {
+    "text": "Cross-tenant access overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-access-overview"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Book 02, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html"
+   },
+   {
+    "text": "Book 07, Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/09-federal-workforce-credentials.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Conditional Access: one partner list, five policies",
+  "links": [
+   {
+    "text": "Conditional Access for External ID",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-external-id-conditional-access"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Conditional Access linkage",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#conditional-access-linkage"
+   },
+   {
+    "text": "Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-a-conditional-access-templates.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Cross-tenant sync: an exception with conditions",
+  "links": [
+   {
+    "text": "cross-tenant synchronization overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-overview"
+   },
+   {
+    "text": "Configure cross-tenant synchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-configure"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "The exception profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#the-exception-profile-cross-tenant-synchronization"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "When a sync relationship ends",
+  "links": [
+   {
+    "text": "cross-tenant synchronization overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-overview"
+   },
+   {
+    "text": "Update crossTenantIdentitySyncPolicyPartner",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-policy-update"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Who does the work",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Book 04, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#monitoring"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The partner identity record",
+  "links": [
+   {
+    "text": "Book 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/index.html"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "The profile record",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#the-profile-record"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Ten validation tests, T0 to T10",
+  "links": [
+   {
+    "text": "View, add, and remove assignments for an access package",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-em-access-package-assignments"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Validation tests",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#validation-tests"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Monitoring and drift",
+  "links": [
+   {
+    "text": "Configure cross-tenant synchronization",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-configure"
+   },
+   {
+    "text": "signIn resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-signin-resource-type"
+   },
+   {
+    "text": "Cross-tenant access overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-access-overview"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#monitoring"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Requirements, KSIs and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Using a FedRAMP Certified Cloud Service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#using-a-fedramp-certified-cloud-service"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Government clouds, and what isn't verified",
+  "links": [
+   {
+    "text": "Microsoft Entra feature availability",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+   },
+   {
+    "text": "cross-tenant synchronization overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-overview"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.525
+Cross-tenant synchronization
+pushes the partner's
+
+2
+00:00:03.525 --> 00:00:07.162
+internal members into the
+agency tenant as B2B users.
+
+3
+00:00:07.162 --> 00:00:11.985
+Allow it only when every condition holds
+and is written in the exception record:
+
+4
+00:00:11.985 --> 00:00:15.639
+the partner's people are internal
+members of an Entra tenant,
+
+5
+00:00:15.639 --> 00:00:19.951
+the population is too large or changes
+too fast for per-person requests,
+
+6
+00:00:19.951 --> 00:00:23.385
+the agreement covers privacy,
+consent and minimization,
+
+7
+00:00:23.385 --> 00:00:26.674
+and the business owner decides,
+with the sponsor named.
+
+8
+00:00:26.674 --> 00:00:29.061
+The agency doesn't own the mappings,
+
+9
+00:00:29.061 --> 00:00:32.188
+so it states them as terms
+and tests the result.
+
+10
+00:00:32.188 --> 00:00:34.902
+The user type mapping defaults to member;
+
+11
+00:00:34.902 --> 00:00:37.776
+the profile requires
+guest, applied always.
+
+12
+00:00:37.776 --> 00:00:42.238
+Matching uses the alternative security
+identifier and can't be changed.
+
+13
+00:00:42.238 --> 00:00:47.974
+The deletion threshold defaults to 500,
+so set it below the expected population.
+
+14
+00:00:47.974 --> 00:00:50.225
+A failing job goes into quarantine.
+
+15
+00:00:50.225 --> 00:00:54.837
+Scope only assigned users and
+groups; nested groups don't cascade.
+
+16
+00:00:54.837 --> 00:01:00.350
+And cycles run every 40 minutes, so
+emergency suspension can't wait for one.
+
+17
+00:01:00.350 --> 00:01:04.850
+Sync creates the account; access
+still comes from an access package.

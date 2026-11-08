@@ -1,0 +1,1122 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.720
+This is the technical deep dive
+on external partner identity,
+
+3
+00:00:04.720 --> 00:00:09.376
+from the HR-Driven Identity book of
+the Federal Modernization Workbook,
+
+4
+00:00:09.376 --> 00:00:13.024
+and its Microsoft Entra profile
+in Access and Privilege.
+
+5
+00:00:13.024 --> 00:00:16.829
+It's for identity engineers,
+Conditional Access owners,
+
+6
+00:00:16.829 --> 00:00:19.062
+ISSOs and the governance office.
+
+7
+00:00:19.062 --> 00:00:23.537
+After the rule the whole profile
+enforces, it runs in three modules.
+
+8
+00:00:23.537 --> 00:00:27.476
+Module 1 is assurance and the
+default route into the tenant.
+
+9
+00:00:27.476 --> 00:00:32.738
+Module 2 is cross-tenant synchronization
+as an exception, and who does the work.
+
+10
+00:00:32.738 --> 00:00:37.382
+Module 3 is proof: the partner
+identity record, ten validation tests,
+
+11
+00:00:37.382 --> 00:00:42.524
+monitoring, the requirements and
+evidence, and the government-cloud check.
+
+12
+00:00:42.524 --> 00:00:47.800
+Every Microsoft setting here comes from
+Microsoft Learn, as the profile cites it.
+
+13
+00:00:51.550 --> 00:00:54.500
+Start with the rule the
+whole profile enforces.
+
+14
+00:00:54.500 --> 00:00:57.896
+A partner account gets access
+because a sponsor asked,
+
+15
+00:00:57.896 --> 00:01:02.725
+an approver agreed and a date was set,
+never because it exists or synchronized.
+
+16
+00:01:02.725 --> 00:01:05.178
+The partner is authoritative
+for the person's
+
+17
+00:01:05.178 --> 00:01:07.438
+affiliation and the credential it issues.
+
+18
+00:01:07.438 --> 00:01:11.944
+The agency is authoritative for
+federation trust, eligibility,
+
+19
+00:01:11.944 --> 00:01:16.450
+authorization, monitoring, review,
+suspension and termination.
+
+20
+00:01:16.450 --> 00:01:19.919
+So engineering has four things
+to prove for every partner:
+
+21
+00:01:19.919 --> 00:01:22.449
+that trust is scoped
+to that partner alone,
+
+22
+00:01:22.449 --> 00:01:26.279
+that every account traces to an
+approved request with an expiry,
+
+23
+00:01:26.279 --> 00:01:31.121
+that every partner account is a guest
+unless an exception record says otherwise,
+
+24
+00:01:31.121 --> 00:01:35.313
+and that access really ends at the
+last assignment and at partner exit.
+
+25
+00:01:35.313 --> 00:01:37.500
+The rest of this deck is how.
+
+26
+00:01:41.250 --> 00:01:44.112
+Module 1 is assurance
+and the default route.
+
+27
+00:01:44.112 --> 00:01:47.679
+First, how much assurance each
+partner transaction needs,
+
+28
+00:01:47.679 --> 00:01:49.313
+and who performs each part.
+
+29
+00:01:49.313 --> 00:01:52.759
+Then how a partner person gets
+into the tenant the normal way:
+
+30
+00:01:52.759 --> 00:01:57.033
+through a connected organization and
+an access package, with cross-tenant
+
+31
+00:01:57.033 --> 00:02:01.730
+trust scoped to that one partner, and
+one partner list in Conditional Access.
+
+32
+00:02:05.480 --> 00:02:15.267
+NIST SP 800-63-4, final since July
+31, 2025, separates three scales.
+
+33
+00:02:15.267 --> 00:02:19.768
+Identity proofing is usually done by
+the partner, under its own practice.
+
+34
+00:02:19.768 --> 00:02:23.330
+Authentication is done by the
+partner's identity service.
+
+35
+00:02:23.330 --> 00:02:29.080
+Federation assurance is set by the agency,
+as relying party, for each application.
+
+36
+00:02:29.080 --> 00:02:35.718
+SP 800-63C-4 says what each
+federation level demands.
+
+37
+00:02:35.718 --> 00:02:39.101
+At level one, the identity
+provider signs the assertion,
+
+38
+00:02:39.101 --> 00:02:42.779
+and the relying party validates
+it against the expected key,
+
+39
+00:02:42.779 --> 00:02:47.118
+with the assertion audience-restricted
+and protected against replay.
+
+40
+00:02:47.118 --> 00:02:51.955
+Level two adds injection protection, a
+transaction the relying party starts,
+
+41
+00:02:51.955 --> 00:02:57.094
+an assertion for a single relying party,
+a trust agreement established in advance,
+
+42
+00:02:57.094 --> 00:03:00.268
+and identifiers without
+plaintext personal data.
+
+43
+00:03:00.268 --> 00:03:03.967
+Level three adds holder-of-key
+or a bound authenticator.
+
+44
+00:03:03.967 --> 00:03:09.075
+Selection follows NIST's steps: assess
+impact per user group, take the initial
+
+45
+00:03:09.075 --> 00:03:14.581
+levels, tailor, and document the result in
+a Digital Identity Acceptance Statement.
+
+46
+00:03:14.581 --> 00:03:17.155
+The chapter didn't read the October 6,
+
+47
+00:03:17.155 --> 00:03:25.340
+2026 planning note on SP 800-63C-4
+in full, so check it first.
+
+48
+00:03:29.090 --> 00:03:32.368
+For partners outside the
+agency's own organization,
+
+49
+00:03:32.368 --> 00:03:36.790
+the route is entitlement management
+with B2B collaboration guests.
+
+50
+00:03:36.790 --> 00:03:41.580
+Create one connected organization per
+partner, configured, never proposed:
+
+51
+00:03:41.580 --> 00:03:46.978
+a policy open to all users creates proposed
+connected organizations automatically,
+
+52
+00:03:46.978 --> 00:03:51.539
+so each partner policy targets
+specific connected organizations only,
+
+53
+00:03:51.539 --> 00:03:53.440
+and a proposed one is a finding.
+
+54
+00:03:53.440 --> 00:03:58.003
+Create one access package per partner
+use case, in a catalog enabled
+
+55
+00:03:58.003 --> 00:04:02.403
+for external users, hidden so only
+people with the link can find it.
+
+56
+00:04:02.403 --> 00:04:06.990
+Approval has two stages: the
+agency sponsor, then the resource
+
+57
+00:04:06.990 --> 00:04:12.027
+owner for the higher-risk applications,
+with expiry at most 365 days.
+
+58
+00:04:12.027 --> 00:04:13.977
+The sponsor reviews quarterly.
+
+59
+00:04:13.977 --> 00:04:16.478
+When a guest loses the last assignment,
+
+60
+00:04:16.478 --> 00:04:20.228
+sign-in is blocked and the
+account is deleted after 30 days.
+
+61
+00:04:20.228 --> 00:04:22.428
+And guests can't invite other guests.
+
+62
+00:04:22.428 --> 00:04:27.391
+One caution from Microsoft Learn: Conditional
+Access that affects guests can block
+
+63
+00:04:27.391 --> 00:04:32.290
+My Access, so test that a partner can
+still request before you add an exclusion.
+
+64
+00:04:36.040 --> 00:04:38.542
+Every partner on Entra ID gets its own
+
+65
+00:04:38.542 --> 00:04:42.740
+organization-specific entry in
+cross-tenant access settings.
+
+66
+00:04:42.740 --> 00:04:45.220
+Those settings override the defaults,
+
+67
+00:04:45.220 --> 00:04:49.715
+and MFA and device claims from other
+tenants aren't trusted by default.
+
+68
+00:04:49.715 --> 00:04:53.983
+Inbound B2B collaboration is
+allowed for the partner tenant only,
+
+69
+00:04:53.983 --> 00:04:56.803
+scoped to the access
+package's applications.
+
+70
+00:04:56.803 --> 00:04:59.164
+B2B direct connect is blocked.
+
+71
+00:04:59.164 --> 00:05:04.278
+Trusting the partner's MFA is turned on
+only where the agreement says the partner
+
+72
+00:05:04.278 --> 00:05:08.857
+enforces it at home, and Conditional
+Access still requires the strength;
+
+73
+00:05:08.857 --> 00:05:11.528
+trusting MFA only skips the second prompt.
+
+74
+00:05:11.528 --> 00:05:14.700
+Trust in compliant or
+hybrid-joined devices stays off,
+
+75
+00:05:14.700 --> 00:05:18.366
+unless the agreement names the
+partner's compliance standard.
+
+76
+00:05:18.366 --> 00:05:21.490
+Automatic redemption stays
+off on the default route.
+
+77
+00:05:21.490 --> 00:05:26.274
+The record holds the partner's immutable
+tenant ID and the names it resolves to,
+
+78
+00:05:26.274 --> 00:05:30.690
+and a partner domain that resolves to
+another tenant is a stop condition.
+
+79
+00:05:30.690 --> 00:05:36.285
+For a partner on SAML or WS-Fed federation,
+Conditional Access can require only
+
+80
+00:05:36.285 --> 00:05:42.310
+the MFA grant, so the agreement must say
+whether the method is phishing-resistant.
+
+81
+00:05:46.060 --> 00:05:48.810
+No new Conditional
+Access policy is needed.
+
+82
+00:05:48.810 --> 00:05:53.585
+Five policies in the workbook's library
+already carry the partner tenant list.
+
+83
+00:05:53.585 --> 00:06:01.135
+CA009, for MFA, and CA010, for
+terms of use, include partner users.
+
+84
+00:06:01.135 --> 00:06:09.335
+CA011, CA012 and CA038 apply guest limits
+to everyone except the partner tenants.
+
+85
+00:06:09.335 --> 00:06:12.042
+The list must be identical in all five;
+
+86
+00:06:12.042 --> 00:06:15.798
+a partner in one and not the
+others is a drift finding.
+
+87
+00:06:15.798 --> 00:06:18.213
+The identity governance officer owns it,
+
+88
+00:06:18.213 --> 00:06:21.835
+and a partner enters it only when
+its access package goes live.
+
+89
+00:06:21.835 --> 00:06:24.460
+The user type decides
+which policies apply.
+
+90
+00:06:24.460 --> 00:06:29.741
+CA011, CA012 and CA038 match
+only guest-type external users,
+
+91
+00:06:29.741 --> 00:06:35.022
+so an external member from an
+unlisted tenant escapes them.
+
+92
+00:06:35.022 --> 00:06:38.360
+A member also gets member-level
+directory permissions,
+
+93
+00:06:38.360 --> 00:06:42.060
+and falls outside persona rules
+and reviews scoped to guests.
+
+94
+00:06:42.060 --> 00:06:44.735
+That's why partner persons
+are guests by default.
+
+95
+00:06:44.735 --> 00:06:48.589
+A read-only Graph check compares
+the list across the five policies
+
+96
+00:06:48.589 --> 00:06:52.740
+and against the partner entries
+in cross-tenant access settings.
+
+97
+00:06:56.490 --> 00:07:00.415
+Module 2 is the exception:
+cross-tenant synchronization.
+
+98
+00:07:00.415 --> 00:07:04.428
+It covers the conditions that must
+all hold before sync is allowed,
+
+99
+00:07:04.428 --> 00:07:08.004
+the terms the agency states and
+then tests in its own tenant,
+
+100
+00:07:08.004 --> 00:07:12.090
+and how to end a sync relationship
+without leaving accounts behind.
+
+101
+00:07:12.090 --> 00:07:17.090
+It closes with who does the work, on
+the partner's side and the agency's.
+
+102
+00:07:20.840 --> 00:07:24.315
+Cross-tenant synchronization
+pushes the partner's
+
+103
+00:07:24.315 --> 00:07:27.952
+internal members into the
+agency tenant as B2B users.
+
+104
+00:07:27.952 --> 00:07:32.775
+Allow it only when every condition holds
+and is written in the exception record:
+
+105
+00:07:32.775 --> 00:07:36.429
+the partner's people are internal
+members of an Entra tenant,
+
+106
+00:07:36.429 --> 00:07:40.741
+the population is too large or changes
+too fast for per-person requests,
+
+107
+00:07:40.741 --> 00:07:44.175
+the agreement covers privacy,
+consent and minimization,
+
+108
+00:07:44.175 --> 00:07:47.464
+and the business owner decides,
+with the sponsor named.
+
+109
+00:07:47.464 --> 00:07:49.851
+The agency doesn't own the mappings,
+
+110
+00:07:49.851 --> 00:07:52.978
+so it states them as terms
+and tests the result.
+
+111
+00:07:52.978 --> 00:07:55.692
+The user type mapping defaults to member;
+
+112
+00:07:55.692 --> 00:07:58.566
+the profile requires
+guest, applied always.
+
+113
+00:07:58.566 --> 00:08:03.028
+Matching uses the alternative security
+identifier and can't be changed.
+
+114
+00:08:03.028 --> 00:08:08.764
+The deletion threshold defaults to 500,
+so set it below the expected population.
+
+115
+00:08:08.764 --> 00:08:11.015
+A failing job goes into quarantine.
+
+116
+00:08:11.015 --> 00:08:15.627
+Scope only assigned users and
+groups; nested groups don't cascade.
+
+117
+00:08:15.627 --> 00:08:21.140
+And cycles run every 40 minutes, so
+emergency suspension can't wait for one.
+
+118
+00:08:21.140 --> 00:08:25.940
+Sync creates the account; access
+still comes from an access package.
+
+119
+00:08:29.690 --> 00:08:31.765
+Deprovisioning follows the source.
+
+120
+00:08:31.765 --> 00:08:34.769
+When the partner deletes
+or unassigns a user,
+
+121
+00:08:34.769 --> 00:08:39.802
+the user is soft-deleted in the agency
+tenant and can be restored for 30 days.
+
+122
+00:08:39.802 --> 00:08:43.346
+A sign-in block set on the
+agency side lasts only until the
+
+123
+00:08:43.346 --> 00:08:46.890
+source user changes, and then
+sync re-enables the account.
+
+124
+00:08:46.890 --> 00:08:49.439
+So an agency suspension of a synced user
+
+125
+00:08:49.439 --> 00:08:52.452
+also removes their access
+package assignment.
+
+126
+00:08:52.452 --> 00:08:55.426
+A severed relationship
+leaves accounts behind:
+
+127
+00:08:55.426 --> 00:08:59.142
+deleting the sync policy doesn't
+remove the users it created,
+
+128
+00:08:59.142 --> 00:09:03.677
+and turning off inbound sync has no
+effect on users already synchronized.
+
+129
+00:09:03.677 --> 00:09:08.589
+To end cleanly, the partner unassigns
+everyone while the agency keeps
+
+130
+00:09:08.589 --> 00:09:13.416
+inbound sync on, then the agency
+turns it off and deletes what remains.
+
+131
+00:09:13.416 --> 00:09:18.753
+On licensing, each synced user needs
+Entra ID P1 in the source tenant.
+
+132
+00:09:18.753 --> 00:09:23.643
+Cross-cloud sync carries users only,
+and manager isn't synced across clouds,
+
+133
+00:09:23.643 --> 00:09:27.230
+so no approval rule may
+depend on a synced manager.
+
+134
+00:09:30.980 --> 00:09:34.655
+The chapter's responsibility
+table has one decider per row,
+
+135
+00:09:34.655 --> 00:09:37.955
+the agency business owner,
+and names who does the work.
+
+136
+00:09:37.955 --> 00:09:43.280
+Identity engineering builds and runs the
+credential checks, the attribute mappings,
+
+137
+00:09:43.280 --> 00:09:46.430
+the authentication validation
+and the lifecycle,
+
+138
+00:09:46.430 --> 00:09:48.980
+including disables and reconciliation.
+
+139
+00:09:48.980 --> 00:09:51.463
+The sponsor does the work on eligibility,
+
+140
+00:09:51.463 --> 00:09:55.042
+authorization and the evidence,
+and requests suspensions.
+
+141
+00:09:55.042 --> 00:10:00.018
+Security operations contains incidents
+first and tells the business owner after.
+
+142
+00:10:00.018 --> 00:10:03.364
+The ISSO is consulted on
+proofing, credentials,
+
+143
+00:10:03.364 --> 00:10:07.742
+incidents and evidence, and the
+privacy office on attributes.
+
+144
+00:10:07.742 --> 00:10:11.067
+The identity governance
+officer owns the partner tenant
+
+145
+00:10:11.067 --> 00:10:14.392
+list and is alerted to any
+change in cross-tenant settings.
+
+146
+00:10:14.392 --> 00:10:18.671
+On the partner's side, the partner
+keeps its affiliation record accurate,
+
+147
+00:10:18.671 --> 00:10:22.451
+issues and revokes credentials,
+sends mover and leaver notices,
+
+148
+00:10:22.451 --> 00:10:25.660
+and coordinates incidents
+under the agreement.
+
+149
+00:10:29.410 --> 00:10:31.260
+Module 3 is proof.
+
+150
+00:10:31.260 --> 00:10:36.321
+The partner identity record that holds
+every decision, the ten validation tests,
+
+151
+00:10:36.321 --> 00:10:41.156
+the monitoring and drift checks, the
+requirements and evidence an ISSO keeps,
+
+152
+00:10:41.156 --> 00:10:43.649
+and finally the government-cloud check,
+
+153
+00:10:43.649 --> 00:10:47.320
+with the things the profile
+honestly hasn't verified.
+
+154
+00:10:51.070 --> 00:10:53.806
+Every partner relationship has one record,
+
+155
+00:10:53.806 --> 00:10:57.607
+written before access is granted
+and kept as evidence after.
+
+156
+00:10:57.607 --> 00:11:01.622
+It lives in the repository beside
+the configuration it describes,
+
+157
+00:11:01.622 --> 00:11:04.833
+so a change to either arrives
+in the same pull request.
+
+158
+00:11:04.833 --> 00:11:10.726
+It has six sections: authority and purpose,
+owners, risk, agreement and assurance,
+
+159
+00:11:10.726 --> 00:11:15.994
+route and user type, lifecycle and
+operations, and the readiness checks.
+
+160
+00:11:15.994 --> 00:11:18.357
+Three rules apply to every field.
+
+161
+00:11:18.357 --> 00:11:22.529
+Reference, don't copy: the
+agreement, the privacy determination
+
+162
+00:11:22.529 --> 00:11:26.219
+and the records schedule go
+in as identifiers and dates.
+
+163
+00:11:26.219 --> 00:11:30.104
+One decider: each readiness
+check names the business owner,
+
+164
+00:11:30.104 --> 00:11:33.670
+and the authorizing official
+is consulted on the last.
+
+165
+00:11:33.670 --> 00:11:38.470
+And a blank is a finding: write none
+or not applicable, with a reason.
+
+166
+00:11:38.470 --> 00:11:43.639
+The Entra profile adds the values the
+record asks for: tenant relationship,
+
+167
+00:11:43.639 --> 00:11:47.223
+cross-tenant settings,
+configuration IDs, mappings,
+
+168
+00:11:47.223 --> 00:11:51.058
+access governance, validation
+results and monitoring.
+
+169
+00:11:51.058 --> 00:11:56.820
+The record holds no personal data about
+individual partner persons, and no secrets.
+
+170
+00:12:00.570 --> 00:12:05.770
+The profile ships its validation tests as
+copy-paste Microsoft Graph PowerShell.
+
+171
+00:12:05.770 --> 00:12:09.817
+Run them in a test tenant with a test
+partner tenant first; they were checked
+
+172
+00:12:09.817 --> 00:12:13.995
+against the Graph PowerShell reference
+but haven't been run against a tenant.
+
+173
+00:12:13.995 --> 00:12:17.607
+Test zero confirms the tenant
+ID resolves to the partner
+
+174
+00:12:17.607 --> 00:12:21.295
+and that the trust and redemption
+values match the record.
+
+175
+00:12:21.295 --> 00:12:25.903
+Test one creates a guest through an
+access package request, and checks
+
+176
+00:12:25.903 --> 00:12:30.670
+the user type is guest and that My
+Access still loads under the MFA policy.
+
+177
+00:12:30.670 --> 00:12:34.407
+Test two finds any partner
+account that isn't a guest.
+
+178
+00:12:34.407 --> 00:12:38.593
+Three is emergency suspension,
+four removes the assignment,
+
+179
+00:12:38.593 --> 00:12:42.191
+five finds duplicates and
+unredeemed invitations,
+
+180
+00:12:42.191 --> 00:12:47.296
+six proves denial for a user with no
+assignment and for an unlisted tenant,
+
+181
+00:12:47.296 --> 00:12:51.230
+seven shows the MFA policy
+applied, eight covers devices,
+
+182
+00:12:51.230 --> 00:12:53.908
+nine rolls back, and ten is partner exit.
+
+183
+00:12:53.908 --> 00:13:00.390
+Tests one, three, four, nine and ten
+write, and each says how to undo it.
+
+184
+00:13:04.140 --> 00:13:08.050
+Native sign-in and audit
+retention in Entra is 30 days,
+
+185
+00:13:08.050 --> 00:13:10.627
+so the logs stream to the workspace.
+
+186
+00:13:10.627 --> 00:13:12.102
+Six signals matter.
+
+187
+00:13:12.102 --> 00:13:15.282
+Provisioning logs for sync
+live in the partner's tenant,
+
+188
+00:13:15.282 --> 00:13:17.402
+so the agreement has to deliver them.
+
+189
+00:13:17.402 --> 00:13:20.208
+On the agency side,
+sync changes show up in
+
+190
+00:13:20.208 --> 00:13:23.014
+the audit log under the sync fabric actor.
+
+191
+00:13:23.014 --> 00:13:28.190
+Entitlement management records requests,
+approvals, expiries and removals.
+
+192
+00:13:28.190 --> 00:13:30.853
+The sign-in log shows the MFA policy's
+
+193
+00:13:30.853 --> 00:13:34.403
+failures and any denied
+attempts after removal.
+
+194
+00:13:34.403 --> 00:13:37.019
+Cross-tenant settings
+changes are audited and
+
+195
+00:13:37.019 --> 00:13:39.502
+alerted to the identity
+governance officer.
+
+196
+00:13:39.502 --> 00:13:44.071
+And drift compares the repository with
+the tenant: a partner list mismatch,
+
+197
+00:13:44.071 --> 00:13:48.565
+any non-guest without a record, or trust
+values that differ from the record.
+
+198
+00:13:48.565 --> 00:13:53.389
+The profile suggests four alerts: a
+member partner account with no record,
+
+199
+00:13:53.389 --> 00:13:57.896
+a sync cycle deleting more than
+expected, and a partner list mismatch,
+
+200
+00:13:57.896 --> 00:14:02.760
+all high; and a cross-tenant change
+made outside a pull request, medium.
+
+201
+00:14:06.510 --> 00:14:13.925
+Each step maps to NIST SP 800-53 controls,
+to FedRAMP Key Security Indicators
+
+202
+00:14:13.925 --> 00:14:18.560
+where the workbook already pairs them,
+and to the evidence the ISSO keeps.
+
+203
+00:14:18.560 --> 00:14:24.149
+The partner entry and its trust
+settings support AC-3, AC-20 and IA-8,
+
+204
+00:14:24.149 --> 00:14:30.360
+with test zero's output and the
+agreement clause behind each trust value.
+
+205
+00:14:30.360 --> 00:14:34.509
+The access package, its approval
+and expiry support AC-2,
+
+206
+00:14:34.509 --> 00:14:37.535
+with the policy export and review history.
+
+207
+00:14:37.535 --> 00:14:41.723
+Suspension, removal and exit
+support automated account disabling,
+
+208
+00:14:41.723 --> 00:14:46.360
+and stand in for the agency's own
+personnel controls through the agreement.
+
+209
+00:14:46.360 --> 00:14:51.548
+Denial and MFA tests
+support IA-8 and IA-2.
+
+210
+00:14:51.548 --> 00:14:56.472
+Monitoring supports AU-6,
+and drift supports CA-7.
+
+211
+00:14:56.472 --> 00:15:00.992
+Key Security Indicators describe
+what cloud service providers report,
+
+212
+00:15:00.992 --> 00:15:05.360
+so the agency doesn't report them; it
+lines its own evidence up with them.
+
+213
+00:15:05.360 --> 00:15:09.649
+And the cloud services involved
+must sit inside a FedRAMP-certified
+
+214
+00:15:09.649 --> 00:15:13.480
+offering that the agency's
+own authorization relies on.
+
+215
+00:15:17.230 --> 00:15:21.147
+Last, the government-cloud
+check, read on November 6,
+
+216
+00:15:21.147 --> 00:15:24.505
+2026 and rechecked
+before each new partner.
+
+217
+00:15:24.505 --> 00:15:26.460
+For an agency tenant in GCC,
+
+218
+00:15:26.460 --> 00:15:31.614
+entitlement management and connected
+organizations are available,
+
+219
+00:15:31.614 --> 00:15:36.591
+and a partner in GCC High or DoD
+connects as Entra ID in another cloud,
+
+220
+00:15:36.591 --> 00:15:39.968
+with both tenants enabling
+each other's cloud.
+
+221
+00:15:39.968 --> 00:15:45.048
+B2B direct connect isn't supported across
+clouds, and Teams doesn't support external
+
+222
+00:15:45.048 --> 00:15:50.056
+members across clouds, so check each
+application's government service description.
+
+223
+00:15:50.056 --> 00:15:52.542
+Cross-cloud sync carries users only.
+
+224
+00:15:52.542 --> 00:15:55.604
+Several things are honestly
+marked not verified.
+
+225
+00:15:55.604 --> 00:15:58.948
+Whether cross-cloud sync
+is generally available:
+
+226
+00:15:58.948 --> 00:16:02.943
+one Microsoft page called it
+public preview in August 2025.
+
+227
+00:16:02.943 --> 00:16:05.993
+The FedRAMP boundary rules
+for each feature used.
+
+228
+00:16:05.993 --> 00:16:09.117
+The records schedules for
+agreements and reviews.
+
+229
+00:16:09.117 --> 00:16:14.631
+And the SP 800-63C-4 planning note.
+
+230
+00:16:14.631 --> 00:16:17.018
+Confirm each before you rely on it.
+
+231
+00:16:17.018 --> 00:16:22.217
+The chapter, the record and the Entra
+profile carry every command and footnote.
+
+232
+00:16:22.217 --> 00:16:23.040
+Thank you.

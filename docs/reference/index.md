@@ -18,4 +18,6 @@ These pages are looked up rather than read in order. Each one also downloads as 
 | [M-19-17 and FICAM Crosswalk](m-19-17-ficam-crosswalk.md) | OMB M-19-17 and the FICAM Architecture mapped to the books, guides and kits (under review) | [reference-m-19-17-ficam-crosswalk.docx](../../downloads/reference-m-19-17-ficam-crosswalk.docx) |
 | [Microsoft Practice Crosswalk](graph-practice-crosswalk.md) | Entra ID, Intune, national-cloud, Azure Arc and SQL practices mapped to Microsoft Learn, ScubaGear and Azure Policy (draft) | [reference-graph-practice-crosswalk.docx](../../downloads/reference-graph-practice-crosswalk.docx) |
 
+A narrated presentation, *The Reference Tab*, walks through why each page matters, how the six fit together and where to start by role. It's listed, with its script, on the [Presentations](../presentations/index.md#reference-tab) page; the deck and the video are coming.
+
 Pages marked under review or draft keep that status in the Word edition. Every other page on the site also has its own Word file, under **Other Formats** on the page.

@@ -9091,7 +9091,9 @@
    "url": "https://www.idmanagement.gov/arch/",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "FICAM Architecture"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9106,7 +9108,9 @@
    "url": "https://pages.nist.gov/800-63-4/sp800-63.html",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "NIST SP 800-63-4"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9136,7 +9140,9 @@
    "url": "https://pages.nist.gov/800-63-4/sp800-63c.html",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "SP 800-63C-4"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9181,7 +9187,9 @@
    "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "Section 508"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9196,7 +9204,9 @@
    "url": "https://www.cisa.gov/zero-trust-maturity-model",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "CISA Zero Trust Maturity Model"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9211,7 +9221,9 @@
    "url": "https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "cross-tenant synchronization overview"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9226,7 +9238,9 @@
    "url": "https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "Configure cross-tenant synchronization"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9241,7 +9255,9 @@
    "url": "https://learn.microsoft.com/entra/id-governance/entitlement-management-external-users",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "Govern access for external users"
+   ],
    "history": [
     {
      "date": "2026-11-06",
@@ -9256,11 +9272,166 @@
    "url": "https://learn.microsoft.com/entra/id-governance/entitlement-management-organization",
    "status": "active",
    "added": "2026-11-06",
-   "labels": [],
+   "labels": [
+    "Manage connected organizations"
+   ],
    "history": [
     {
      "date": "2026-11-06",
      "change": "Added: cited in the External Partner Identity chapter and profile (WD-143)"
+    }
+   ]
+  },
+  {
+   "id": "learn-cross-tenant-access-overview",
+   "title": "Microsoft Learn: Overview: Cross-tenant access with Microsoft Entra External ID",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/external-id/cross-tenant-access-overview",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "Cross-tenant access overview"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-external-id-conditional-access",
+   "title": "Microsoft Learn: Authentication and Conditional Access for External ID",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/external-id/authentication-conditional-access",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "Conditional Access for External ID"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-entitlementmanagementsettings",
+   "title": "Microsoft Learn: entitlementManagementSettings resource type (Microsoft Graph v1.0)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/entitlementmanagementsettings?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "entitlementManagementSettings"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-accesspackageassignmentpolicy",
+   "title": "Microsoft Learn: accessPackageAssignmentPolicy resource type (Microsoft Graph v1.0)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "accessPackageAssignmentPolicy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-em-access-package-assignments",
+   "title": "Microsoft Learn: View, add, and remove assignments for an access package in entitlement management",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-assignments",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "View, add, and remove assignments for an access package"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-b2b-user-properties",
+   "title": "Microsoft Learn: Understand and manage the properties of B2B guest users",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/external-id/user-properties",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "properties of B2B guest users"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-signin-resource-type",
+   "title": "Microsoft Learn: signIn resource type (Microsoft Graph v1.0)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/signin?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "signIn resource type"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-m365-cross-cloud-collaboration",
+   "title": "Microsoft Learn: Cross-cloud collaboration with Microsoft 365",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/microsoft-365/enterprise/cross-cloud-collaboration",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "Cross-cloud collaboration with Microsoft 365"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
+    }
+   ]
+  },
+  {
+   "id": "learn-cross-tenant-sync-policy-update",
+   "title": "Microsoft Learn: Update crossTenantIdentitySyncPolicyPartner (Microsoft Graph v1.0)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-08",
+   "labels": [
+    "Update crossTenantIdentitySyncPolicyPartner"
+   ],
+   "history": [
+    {
+     "date": "2026-11-08",
+     "change": "Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote)"
     }
    ]
   }
@@ -9328,6 +9499,14 @@
   "Presentations page": "https://whalermike.github.io/modernization-workbook/docs/presentations/index.html",
   "the Start Here page": "https://whalermike.github.io/modernization-workbook/docs/start-here.html",
   "whalermike.github.io/modernization-workbook": "https://whalermike.github.io/modernization-workbook/",
-  "whalermike.github.io/modernization-workbook/docs/books/b00-orientation/": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+  "whalermike.github.io/modernization-workbook/docs/books/b00-orientation/": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html",
+  "Command Reference": "https://whalermike.github.io/modernization-workbook/docs/reference/commands.html",
+  "Federal Framework Crosswalk": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html",
+  "RMF Map": "https://whalermike.github.io/modernization-workbook/docs/reference/rmf-map.html",
+  "M-19-17 and FICAM Crosswalk": "https://whalermike.github.io/modernization-workbook/docs/reference/m-19-17-ficam-crosswalk.html",
+  "Microsoft Practice Crosswalk": "https://whalermike.github.io/modernization-workbook/docs/reference/graph-practice-crosswalk.html",
+  "Source Register": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html",
+  "Reference tab landing page": "https://whalermike.github.io/modernization-workbook/docs/reference/index.html",
+  "Downloads page": "https://whalermike.github.io/modernization-workbook/docs/downloads.html"
  }
 }

@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.552
+Every partner on Entra ID gets its own
+
+2
+00:00:02.552 --> 00:00:06.750
+organization-specific entry in
+cross-tenant access settings.
+
+3
+00:00:06.750 --> 00:00:09.230
+Those settings override the defaults,
+
+4
+00:00:09.230 --> 00:00:13.725
+and MFA and device claims from other
+tenants aren't trusted by default.
+
+5
+00:00:13.725 --> 00:00:17.993
+Inbound B2B collaboration is
+allowed for the partner tenant only,
+
+6
+00:00:17.993 --> 00:00:20.813
+scoped to the access
+package's applications.
+
+7
+00:00:20.813 --> 00:00:23.174
+B2B direct connect is blocked.
+
+8
+00:00:23.174 --> 00:00:28.288
+Trusting the partner's MFA is turned on
+only where the agreement says the partner
+
+9
+00:00:28.288 --> 00:00:32.867
+enforces it at home, and Conditional
+Access still requires the strength;
+
+10
+00:00:32.867 --> 00:00:35.538
+trusting MFA only skips the second prompt.
+
+11
+00:00:35.538 --> 00:00:38.710
+Trust in compliant or
+hybrid-joined devices stays off,
+
+12
+00:00:38.710 --> 00:00:42.376
+unless the agreement names the
+partner's compliance standard.
+
+13
+00:00:42.376 --> 00:00:45.500
+Automatic redemption stays
+off on the default route.
+
+14
+00:00:45.500 --> 00:00:50.284
+The record holds the partner's immutable
+tenant ID and the names it resolves to,
+
+15
+00:00:50.284 --> 00:00:54.700
+and a partner domain that resolves to
+another tenant is a stop condition.
+
+16
+00:00:54.700 --> 00:01:00.295
+For a partner on SAML or WS-Fed federation,
+Conditional Access can require only
+
+17
+00:01:00.295 --> 00:01:06.020
+the MFA grant, so the agreement must say
+whether the method is phishing-resistant.

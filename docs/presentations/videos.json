@@ -1433,6 +1433,156 @@
   "sources": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated_sources.json"
  },
  {
+  "id": "B03_External_Partner_Executive_Narrated",
+  "title": "Book 03 — External Partner Identity: executive briefing",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B03_External_Partner_Executive_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/b03-external-partner-executive/B03_External_Partner_Executive_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-external-partner-executive/B03_External_Partner_Executive_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/15-external-partner-identity.html",
+  "source": "docs/books/b03-hr-identity/15-external-partner-identity.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "External Partner Identity: the executive briefing"
+   ],
+   [
+    43,
+    "Many who sign in work for someone else"
+   ],
+   [
+    95,
+    "Authority splits in two"
+   ],
+   [
+    141,
+    "One class, with clear borders"
+   ],
+   [
+    201,
+    "Guest by default; Member only by exception"
+   ],
+   [
+    253,
+    "A short standard in nine control areas"
+   ],
+   [
+    308,
+    "One decider per row: the business owner"
+   ],
+   [
+    374,
+    "Assurance is chosen per transaction"
+   ],
+   [
+    440,
+    "The route in: a request, an approval, an expiry"
+   ],
+   [
+    501,
+    "Privacy, records and redress before go-live"
+   ],
+   [
+    563,
+    "Eleven readiness checks before production"
+   ],
+   [
+    623,
+    "The decisions to make"
+   ]
+  ],
+  "sources": "presentations/b03-external-partner-executive/B03_External_Partner_Executive_Narrated_sources.json"
+ },
+ {
+  "id": "B03_External_Partner_Technical_Narrated",
+  "title": "Book 03 — External Partner Identity: technical deep dive",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B03_External_Partner_Technical_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/b03-external-partner-technical/B03_External_Partner_Technical_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-external-partner-technical/B03_External_Partner_Technical_Narration_Script.md",
+  "page": "docs/books/b03-hr-identity/15-external-partner-identity.html",
+  "source": "docs/books/b03-hr-identity/15-external-partner-identity.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "External Partner Identity: the technical deep dive"
+   ],
+   [
+    51,
+    "Access because someone asked, never because it exists"
+   ],
+   [
+    101,
+    "Module 1: Assurance and the default route"
+   ],
+   [
+    125,
+    "Three assurance scales, applied to partners"
+   ],
+   [
+    209,
+    "The default route: an access package per use case"
+   ],
+   [
+    275,
+    "Cross-tenant access settings, one partner at a time"
+   ],
+   [
+    346,
+    "Conditional Access: one partner list, five policies"
+   ],
+   [
+    416,
+    "Module 2: The sync exception and the roles"
+   ],
+   [
+    440,
+    "Cross-tenant sync: an exception with conditions"
+   ],
+   [
+    509,
+    "When a sync relationship ends"
+   ],
+   [
+    570,
+    "Who does the work"
+   ],
+   [
+    629,
+    "Module 3: Proving it"
+   ],
+   [
+    651,
+    "The partner identity record"
+   ],
+   [
+    720,
+    "Ten validation tests, T0 to T10"
+   ],
+   [
+    784,
+    "Monitoring and drift"
+   ],
+   [
+    846,
+    "Requirements, KSIs and the evidence"
+   ],
+   [
+    917,
+    "Government clouds, and what isn't verified"
+   ]
+  ],
+  "sources": "presentations/b03-external-partner-technical/B03_External_Partner_Technical_Narrated_sources.json"
+ },
+ {
   "id": "B03_HR_Identity_Executive_Narrated",
   "title": "Book 03 — HR-Driven Identity: executive briefing",
   "group": "book",
@@ -7206,6 +7356,71 @@
    ]
   ],
   "sources": "presentations/non-person-identity-implementation-part-2/Non_Person_Identity_Implementation_Part_2_Narrated_sources.json"
+ },
+ {
+  "id": "Reference_Tab_Narrated",
+  "title": "The Reference Tab: presentation",
+  "group": "book",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Reference_Tab_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/reference-tab/Reference_Tab_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/reference-tab/Reference_Tab_Narration_Script.md",
+  "page": "docs/reference/index.html",
+  "source": "docs/reference/index.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "The Reference Tab"
+   ],
+   [
+    33,
+    "Why a Reference tab"
+   ],
+   [
+    70,
+    "Six pages at a glance"
+   ],
+   [
+    97,
+    "Run it: the Command Reference"
+   ],
+   [
+    143,
+    "Prove it: the Federal Framework Crosswalk"
+   ],
+   [
+    212,
+    "Prove it: the RMF Map"
+   ],
+   [
+    272,
+    "Prove it: the M-19-17 and FICAM Crosswalk"
+   ],
+   [
+    337,
+    "Prove it: the Microsoft Practice Crosswalk"
+   ],
+   [
+    401,
+    "Trust it: the Source Register"
+   ],
+   [
+    457,
+    "How the six pages fit together"
+   ],
+   [
+    506,
+    "Where to start, by role"
+   ],
+   [
+    538,
+    "How the pages stay honest"
+   ]
+  ],
+  "sources": "presentations/reference-tab/Reference_Tab_Narrated_sources.json"
  },
  {
   "id": "TTM_ServiceNow_SailPoint_Implementation_Part_1_Narrated",

@@ -1,0 +1,192 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a Reference tab",
+  "links": [
+   {
+    "text": "Reference tab landing page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/index.html"
+   },
+   {
+    "text": "Books 00",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Six pages at a glance",
+  "links": [
+   {
+    "text": "Reference tab landing page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Run it: the Command Reference",
+  "links": [
+   {
+    "text": "Command Reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/commands.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Prove it: the Federal Framework Crosswalk",
+  "links": [
+   {
+    "text": "Federal Framework Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html"
+   },
+   {
+    "text": "OMB M-26-05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-05"
+   },
+   {
+    "text": "OMB M-26-10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-10"
+   },
+   {
+    "text": "Executive Order 14028",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#eo-14028"
+   },
+   {
+    "text": "OMB Circular A-130",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#omb-a-130"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Prove it: the RMF Map",
+  "links": [
+   {
+    "text": "RMF Map",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/rmf-map.html"
+   },
+   {
+    "text": "NIST SP 800-37 Rev. 2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-37"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Prove it: the M-19-17 and FICAM Crosswalk",
+  "links": [
+   {
+    "text": "M-19-17 and FICAM Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/m-19-17-ficam-crosswalk.html"
+   },
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
+   },
+   {
+    "text": "FICAM Architecture",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ficam-architecture"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Prove it: the Microsoft Practice Crosswalk",
+  "links": [
+   {
+    "text": "Microsoft Practice Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/graph-practice-crosswalk.html"
+   },
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Trust it: the Source Register",
+  "links": [
+   {
+    "text": "Source Register",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "How the six pages fit together",
+  "links": [
+   {
+    "text": "Federal Framework Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html"
+   },
+   {
+    "text": "RMF Map",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/rmf-map.html"
+   },
+   {
+    "text": "RMF Map",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/rmf-map.html"
+   },
+   {
+    "text": "Source Register",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Where to start, by role",
+  "links": [
+   {
+    "text": "RMF Map",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/rmf-map.html"
+   },
+   {
+    "text": "M-19-17 and FICAM Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/m-19-17-ficam-crosswalk.html"
+   },
+   {
+    "text": "Federal Framework Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html"
+   },
+   {
+    "text": "Microsoft Practice Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/graph-practice-crosswalk.html"
+   },
+   {
+    "text": "Command Reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/commands.html"
+   },
+   {
+    "text": "Source Register",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "How the pages stay honest",
+  "links": [
+   {
+    "text": "Microsoft Practice Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/graph-practice-crosswalk.html"
+   },
+   {
+    "text": "Federal Framework Crosswalk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/federal-framework-crosswalk.html"
+   },
+   {
+    "text": "Reference tab landing page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/index.html"
+   },
+   {
+    "text": "Downloads page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/downloads.html"
+   }
+  ]
+ }
+]
