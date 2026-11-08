@@ -1798,7 +1798,7 @@
     "Break-glass: the one governed exception"
    ],
    [
-    594,
+    593,
     "Deciding isn't doing: rules Entra doesn't enforce"
    ],
    [
@@ -1806,23 +1806,23 @@
     "Application risk tiers set the approval chain"
    ],
    [
-    690,
+    691,
     "Applications are identities, with owners and an end"
    ],
    [
-    738,
+    739,
     "Who decides what for access"
    ],
    [
-    787,
+    788,
     "Govern access with packages, reviews and expiry"
    ],
    [
-    835,
+    836,
     "Access as code, and the evidence it leaves"
    ],
    [
-    882,
+    883,
     "Decisions to make, owners and timing"
    ]
   ],
@@ -1984,31 +1984,31 @@
     "Access packages: who requests, who approves, how long"
    ],
    [
-    1019,
+    1026,
     "Reviews on a calendar, removals by default"
    ],
    [
-    1074,
+    1081,
     "Lifecycle events and guest access"
    ],
    [
-    1131,
+    1138,
     "Module 5 — Access as code, and the evidence"
    ],
    [
-    1151,
+    1158,
     "One file per object, one writer per class"
    ],
    [
-    1204,
+    1211,
     "Change control, and closing drift at the source"
    ],
    [
-    1258,
+    1265,
     "What the assessor reads"
    ],
    [
-    1312,
+    1320,
     "Taking it back to the tenant"
    ]
   ],
@@ -5693,15 +5693,15 @@
     "The compliance track teaches tracing"
    ],
    [
-    314,
+    315,
     "Implementation: done means the evidence landed"
    ],
    [
-    371,
+    372,
     "Certify what people can show"
    ],
    [
-    429,
+    430,
     "Vendor training, and labs that can't hurt production"
    ],
    [
@@ -5709,19 +5709,19 @@
     "Every user signs in differently"
    ],
    [
-    536,
+    537,
     "One decider per row; the reporter doesn't decide"
    ],
    [
-    588,
+    589,
     "Run training on the roadmap's calendar"
    ],
    [
-    641,
+    642,
     "Measure readiness, not attendance"
    ],
    [
-    696,
+    697,
     "Decisions to make, and next steps"
    ]
   ],
@@ -6099,7 +6099,7 @@
     "AI with an owner: agents read and propose"
    ],
    [
-    464,
+    465,
     "Compliance carried by the platform, not each app"
    ],
    [
@@ -6111,7 +6111,7 @@
     "One decider for every architecture decision"
    ],
    [
-    593,
+    594,
     "Four gates, and each one leaves proof"
    ],
    [
@@ -6261,111 +6261,111 @@
     "The decision table: seven rules, first match wins"
    ],
    [
-    262,
+    269,
     "Owner review, the decision record and calibration"
    ],
    [
-    301,
+    307,
     "Module 2: The target architecture and the data"
    ],
    [
-    327,
+    333,
     "One target: the layers and the program's choices"
    ],
    [
-    366,
+    371,
     "Support windows: build the upgrade cadence in"
    ],
    [
-    404,
+    410,
     "Contracts first, thin layers, configuration from outside"
    ],
    [
-    442,
+    448,
     "The strangler fig, and the NIST security references"
    ],
    [
-    480,
+    486,
     "Moving the data: convert, move, prove, then cut over"
    ],
    [
-    516,
+    522,
     "Schema conversion: the dangerous conversions succeed"
    ],
    [
-    553,
+    559,
     "The conversion tools as of October 2026"
    ],
    [
-    591,
+    597,
     "Proving nothing was lost: three checks, three blind spots"
    ],
    [
-    628,
+    634,
     "Cut-over and coexistence: one writer per table"
    ],
    [
-    665,
+    671,
     "Module 3: AI, compliance and governance"
    ],
    [
-    687,
+    693,
     "Where AI fits, behind one provider-neutral interface"
    ],
    [
-    725,
+    731,
     "Agent guardrails: read, propose, never write"
    ],
    [
-    764,
+    770,
     "Compliance by design: controls across the life cycle"
    ],
    [
-    804,
+    809,
     "Secure development, privacy, data and records"
    ],
    [
-    841,
+    847,
     "The architecture review board: one decider each"
    ],
    [
-    880,
+    886,
     "Four gates, and the evidence each one leaves"
    ],
    [
-    917,
+    923,
     "Module 4: Reference implementation, frameworks, waves"
    ],
    [
-    941,
+    946,
     "The reference implementation: one application in miniature"
    ],
    [
-    979,
+    985,
     "What the code shows: contract, three checks, guardrails"
    ],
    [
-    1015,
+    1021,
     "What was verified on October 28, 2026, and what wasn't"
    ],
    [
-    1054,
+    1060,
     "TOGAF: the ADM phases, and the chapters that do them"
    ],
    [
-    1093,
+    1099,
     "Zachman: the cells filled, and the gaps that show"
    ],
    [
-    1128,
+    1134,
     "The waves on the program's phases and gates"
    ],
    [
-    1166,
+    1171,
     "Move groups, the factory, metrics and funding"
    ],
    [
-    1204,
+    1210,
     "Decisions, owners, and what to start on Monday"
    ]
   ],

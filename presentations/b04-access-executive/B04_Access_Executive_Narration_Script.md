@@ -46,7 +46,7 @@ A good gate can be undone quietly, in four ways. If your premium licenses lapse,
 
 ## Slide 12 — Break-glass: the one governed exception
 
-Every control that blocks an admin path also creates a way to lock yourself out. So there's one standing exception: emergency access, or break-glass, accounts. Two or more cloud-only accounts, permanently Global Administrator, with phishing-resistant sign-in of their own, excluded only from blocking policies, and alerted on every use. Using them is strict: two senior administrators together, only when PIM is down and the problem can't wait, out within four hours, reviewed within a day, and tested every ninety days. Two decisions. Build and test them before any role goes eligible. And be honest in the security plan: NIST expects emergency accounts to expire, so record these as a deviation. The CISO builds; the authorizing official accepts. Now, who decides.
+Every control that blocks an admin path also creates a way to lock yourself out. So there's one standing exception: emergency access, or break-glass, accounts. Two cloud-only accounts, permanently Global Administrator, with phishing-resistant sign-in of their own, excluded only from blocking policies, and alerted on every use. Using them is strict: two senior administrators together, only when PIM is down and the problem can't wait, out within four hours, reviewed within a day, and tested every ninety days. Two decisions. Build and test them before any role goes eligible. And be honest in the security plan: NIST expects emergency accounts to expire, so record these as a deviation. The CISO builds; the authorizing official accepts. Now, who decides.
 
 ## Slide 13 — Deciding isn't doing: rules Entra doesn't enforce
 
@@ -54,7 +54,7 @@ The principle is that deciding isn't doing. Approvers don't make changes, the pe
 
 ## Slide 14 — Application risk tiers set the approval chain
 
-For applications, risk sets the chain. Every app gets a risk tier from the identity governance officer before anyone gets access, and one high-risk trait is enough to make it Tier 1: an application permission, sensitive data, an outside operator, or no owner. The tier then decides who approves access, who approves consent, and how often it's reviewed. Consent is the riskiest request you'll see, because a grant covers the whole tenant at once and never expires. So any application permission gets Tier 1 handling, and critical scopes need the governance officer and the CISO together. The decision: tier every app before the first grant, and treat anything untiered or ownerless as Tier 1. Next, apps as identities.
+For applications, risk sets the chain. Every app gets a risk tier from the identity governance officer before anyone gets access, and one high-risk trait is enough to make it R1, the highest application risk tier: an application permission, sensitive data, an outside operator, or no owner. The tier then decides who approves access, who approves consent, and how often it's reviewed. Consent is the riskiest request you'll see, because a grant covers the whole tenant at once and never expires. So any application permission gets R1 handling, and critical scopes need the governance officer and the CISO together. The decision: tier every app before the first grant, and treat anything untiered or ownerless as R1. Next, apps as identities.
 
 ## Slide 15 — Applications are identities, with owners and an end
 

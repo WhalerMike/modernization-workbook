@@ -51,11 +51,21 @@ and nested groups are prohibited,
 because only direct members get access.
 
 11
-00:00:43.163 --> 00:00:48.088
+00:00:43.163 --> 00:00:46.719
+Group names end in the
+risk tier, written R1,
+
+12
+00:00:46.719 --> 00:00:50.376
+R2 or R3 so it can't be
+read as a privilege tier.
+
+13
+00:00:50.376 --> 00:00:55.300
 And privileged roles arrive through PIM
 eligibility, never through a package.
 
-12
-00:00:48.088 --> 00:00:51.140
+14
+00:00:55.300 --> 00:00:58.340
 Next, keeping those
 grants honest over time.

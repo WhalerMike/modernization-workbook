@@ -38,7 +38,7 @@ Code can move a piece at a time, but data moves once, and data errors hide. A da
 
 ## Slide 10 — Coexist without dual writes; settle the engine early
 
-Old and new often run side by side for months, and there's a tempting shortcut: have the application write to both databases. Don't. The two writes don't share a transaction, so under load the copies drift, quietly. Instead, keep one writer per table and replicate from it. One more thing: the target engine decides which conversion tools you can use, and for DB2 the options are narrow. So forbid dual writes as a standard, and settle the engine before the wave plan commits to dates. Now, the newest part of the architecture: AI.
+Old and new often run side by side for months, and there's a tempting shortcut: have the application write to both databases. Don't. The two writes don't share a transaction, so under load the copies drift, quietly. Instead, keep one writer per table and replicate from it. One more thing: the target engine decides which conversion tools you can use, and for Db2 the options are narrow. So forbid dual writes as a standard, and settle the engine before the wave plan commits to dates. Now, the newest part of the architecture: AI.
 
 ## Slide 11 — AI with an owner: agents read and propose
 
@@ -62,7 +62,7 @@ Every application that changes passes four gates: its disposition, a design revi
 
 ## Slide 16 — A reference implementation that states its limits
 
-The book ships a small, runnable reference implementation: a case service with a contract test, a front end, a migration tool with all three checks, and an agent that can only propose. Its tests prove the checks by breaking things on purpose. Change one amount, and two checks fail. Truncate one name, and only the checksum catches it. Just as important, it says what it doesn't prove. It has never run against a real DB2 or Oracle database, a real model, or production, and it has no sign-in. So copy the pattern, not the claim. Next, the frameworks your architects already use.
+The book ships a small, runnable reference implementation: a case service with a contract test, a front end, a migration tool with all three checks, and an agent that can only propose. Its tests prove the checks by breaking things on purpose. Change one amount, and two checks fail. Truncate one name, and only the checksum catches it. Just as important, it says what it doesn't prove. It has never run against a real Db2 or Oracle database, a real model, or production, and it has no sign-in. So copy the pattern, not the claim. Next, the frameworks your architects already use.
 
 ## Slide 17 — TOGAF is the order; Zachman is the checklist
 

@@ -25,30 +25,30 @@ model, though not a real one.
 But two things are unproven.
 
 6
-00:00:14.575 --> 00:00:18.914
+00:00:14.575 --> 00:00:18.935
 The migration has never run against
-a real DB2 or Oracle database,
+a real Db2 or Oracle database,
 
 7
-00:00:18.914 --> 00:00:22.450
+00:00:18.935 --> 00:00:22.487
 only a stand-in, and the
 containers were never started.
 
 8
-00:00:22.450 --> 00:00:26.262
+00:00:22.487 --> 00:00:26.300
 So test against a copy of your
 real source before relying on it.
 
 9
-00:00:26.262 --> 00:00:29.235
+00:00:26.300 --> 00:00:29.273
 A production version
 would add real sign-in,
 
 10
-00:00:29.235 --> 00:00:32.787
+00:00:29.273 --> 00:00:32.825
 an agent identity, a secrets
 vault and signed builds.
 
 11
-00:00:32.787 --> 00:00:34.610
+00:00:32.825 --> 00:00:34.660
 Next, the frameworks.
