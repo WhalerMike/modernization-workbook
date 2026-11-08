@@ -106,6 +106,14 @@ A gate opens the work that names it as a predecessor, which is usually the next 
 - **X-P27, Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7),** is P2.7 in the [Program master schedule](program-master-schedule.md) plan (Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)), end of wk 14. This plan waits for it; it can slip 47 d before it moves this plan. Monitor mode has no device certificates to authenticate, and the NAC rollout waits.
 - **X-P43, AD-integrated zones moved, except the domain's own (program P4.3),** is P4.3 in the [Program master schedule](program-master-schedule.md) plan (AD-integrated DNS zones moved, except the domain's own zones), end of wk 39. This plan waits for it; it can slip 0 before it moves this plan. The 30-day SRV hold and the decommission gates can't start.
 
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| NG3  Gate 3 — Pilot governed and evidenced | end of wk 22 | [Content Delivery Modernization](content-delivery.md) (X-NG3) | Waits for it | 11 d |
+
+: Plans that take a date from this one {.striped .hover}
+
 ## Work breakdown and schedule
 
 Every row, by phase. *Float* is total float in working days; **bold** rows are on the critical path. Each row links to the chapter it comes from.

@@ -1,0 +1,10 @@
+Setting,State,RecordedFrom
+CompliancePolicies,Intune,Console: Cloud Attach > Co-management properties > Workloads
+WindowsUpdatePolicies,PilotIntune,Console: Cloud Attach > Co-management properties > Workloads
+ResourceAccessPolicies,Intune,Console: Cloud Attach > Co-management properties > Workloads
+EndpointProtection,PilotIntune,Console: Cloud Attach > Co-management properties > Workloads
+DeviceConfiguration,ConfigurationManager,Console: Cloud Attach > Co-management properties > Workloads
+OfficeClickToRun,ConfigurationManager,Console: Cloud Attach > Co-management properties > Workloads
+ClientApps,PilotIntune,Console: Cloud Attach > Co-management properties > Workloads
+SoftwareUpdatesClientSetting,Enabled,Console: Cloud Attach > Co-management properties > Workloads
+ConnectedCacheOnDP,Yes,Console: Cloud Attach > Co-management properties > Workloads

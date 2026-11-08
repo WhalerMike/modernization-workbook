@@ -1,0 +1,222 @@
+[
+  {
+    "ServerName": "dc1-dp01.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 1480,
+    "ConnectedCache": false,
+    "Location": "DC1",
+    "HardwareSupportEnds": "2029-06-30"
+  },
+  {
+    "ServerName": "dc2-dp01.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 1475,
+    "ConnectedCache": false,
+    "Location": "DC2",
+    "HardwareSupportEnds": "2028-03-31"
+  },
+  {
+    "ServerName": "off01-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 910,
+    "ConnectedCache": false,
+    "Location": "OFF01",
+    "HardwareSupportEnds": "2026-12-31"
+  },
+  {
+    "ServerName": "off02-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": true,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "OFF02",
+    "HardwareSupportEnds": "2027-06-30"
+  },
+  {
+    "ServerName": "off03-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 860,
+    "ConnectedCache": false,
+    "Location": "OFF03",
+    "HardwareSupportEnds": "2026-09-30"
+  },
+  {
+    "ServerName": "off04-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 14393,
+    "ContentLibraryGB": 700,
+    "ConnectedCache": false,
+    "Location": "OFF04",
+    "HardwareSupportEnds": "2026-03-31"
+  },
+  {
+    "ServerName": "off05-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 905,
+    "ConnectedCache": true,
+    "Location": "OFF05",
+    "HardwareSupportEnds": "2027-03-31"
+  },
+  {
+    "ServerName": "off06-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 930,
+    "ConnectedCache": false,
+    "Location": "OFF06",
+    "HardwareSupportEnds": "2028-06-30"
+  },
+  {
+    "ServerName": "off07-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": true,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 890,
+    "ConnectedCache": false,
+    "Location": "OFF07",
+    "HardwareSupportEnds": "2026-12-31"
+  },
+  {
+    "ServerName": "off08-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 640,
+    "ConnectedCache": false,
+    "Location": "OFF08",
+    "HardwareSupportEnds": "2027-09-30"
+  },
+  {
+    "ServerName": "off09-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 9600,
+    "ContentLibraryGB": 410,
+    "ConnectedCache": false,
+    "Location": "OFF09",
+    "HardwareSupportEnds": "2025-06-30"
+  },
+  {
+    "ServerName": "off10-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 950,
+    "ConnectedCache": false,
+    "Location": "OFF10",
+    "HardwareSupportEnds": "2028-06-30"
+  },
+  {
+    "ServerName": "off11-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 820,
+    "ConnectedCache": false,
+    "Location": "OFF11",
+    "HardwareSupportEnds": "2027-01-31"
+  },
+  {
+    "ServerName": "off12-dp.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": false,
+    "IsPXE": false,
+    "OperatingSystemBuild": 17763,
+    "ContentLibraryGB": 700,
+    "ConnectedCache": false,
+    "Location": "OFF12",
+    "HardwareSupportEnds": "2027-05-31"
+  },
+  {
+    "ServerName": "east-dp01.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": true,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "HUB-EAST",
+    "HardwareSupportEnds": "2031-06-30"
+  },
+  {
+    "ServerName": "east-dp02.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": true,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "HUB-EAST",
+    "HardwareSupportEnds": "2031-06-30"
+  },
+  {
+    "ServerName": "central-dp01.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": true,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "HUB-CENTRAL",
+    "HardwareSupportEnds": "2031-06-30"
+  },
+  {
+    "ServerName": "central-dp02.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": true,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "HUB-CENTRAL",
+    "HardwareSupportEnds": "2031-06-30"
+  },
+  {
+    "ServerName": "west-dp01.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": true,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "HUB-WEST",
+    "HardwareSupportEnds": "2031-06-30"
+  },
+  {
+    "ServerName": "west-dp02.lab.example",
+    "SiteCode": "LAB",
+    "IsPullDP": true,
+    "IsPXE": false,
+    "OperatingSystemBuild": 20348,
+    "ContentLibraryGB": 880,
+    "ConnectedCache": false,
+    "Location": "HUB-WEST",
+    "HardwareSupportEnds": "2031-06-30"
+  }
+]

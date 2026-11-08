@@ -22,6 +22,11 @@ lifecycle_review: 2027-04-01
 A worked case: a large field-office estate is asked to fund a refresh of a Configuration Manager distribution point at every office. The chapter tests that request against Microsoft's published capacity limits, shows why the office count, not the client count, drives it, and sets out the alternative: SD-WAN over direct internet access with a 5G continuity path, and a consolidated content tier at 12 hub sites. It carries the author's cost model with every input labeled as an assumption, the roadmap, the five gates that decide when the last distribution point can retire, and the risks.
 :::
 
+::: {.callout-tip}
+## Run this case as a project
+The case now has a project of its own, [Content Delivery Modernization](../b00-orientation/06-the-project-portfolio.md#content-delivery-modernization). The [decision guide](../guides/dp-consolidation.md) turns this chapter into the questions to answer before a refresh is funded, with a worksheet; the [implementation guide](../guides/dp-consolidation-implementation.md) runs the consolidation step by step with Configuration Manager commands and a scripts kit; and the [project plan](../../project-plans/content-delivery.md) schedules it.
+:::
+
 The case is a framing pattern, not a real engagement. The numbers describe an estate that many civilian agencies will recognize: about 1,500 field offices, about 70,000 managed Windows endpoints, branch traffic carried over MPLS to a central gateway, and a Configuration Manager distribution point in nearly every office because the circuit to that office was once too slow to do anything else. A proposal asks for about \$50 million to refresh those distribution points. This chapter is the analysis a program would put in front of the budget authority before that money is committed.
 
 The argument runs in three steps. First, the unit cost doesn't reconcile to a distribution point, and the timing directs capital at a tier the endpoint strategy is already shrinking. Second, Configuration Manager's own limits say the estate needs about 24 distribution points, not 1,500; the other 1,476 exist only because of the branch circuits. Third, fixing the circuits is cheaper, may pay for itself, and is a prerequisite for the Intune migration, which [Book 05](../b05-devices/index.md) covers.
