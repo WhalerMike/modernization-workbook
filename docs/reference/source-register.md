@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-06
+date-modified: 2026-11-08
 review-status: approved
 reviewed-sha256: 7a827b877ca65e6ce544b54e9dc3b135dbab976cb97fab4a4eabcebec92288d9
 last-reviewed: 2026-11-07
@@ -14,7 +14,7 @@ last-reviewed: 2026-11-07
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 531 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 540 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -321,9 +321,18 @@ This register lists 531 sources. A slide or a video description links to a sourc
 | [Microsoft Identity Manager 2016 news and updates](https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016){#microsoft-identity-manager-2016-news-and} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-identity-manager-2016-news-and"} |
 | [Microsoft identity platform and the OAuth 2.0 client credentials flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-client-creds-grant-flow){#microsoft-identity-platform-and-the-oauth-2} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-identity-platform-and-the-oauth-2"} |
 | [Microsoft Intune for US Government GCC High and DoD service description](https://learn.microsoft.com/intune/fundamentals/government-service){#microsoft-intune-for-us-government-gcc-high} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-intune-for-us-government-gcc-high"} |
+| [Microsoft Learn: accessPackageAssignmentPolicy resource type (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0){#learn-accesspackageassignmentpolicy} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-accesspackageassignmentpolicy"} |
+| [Microsoft Learn: Authentication and Conditional Access for External ID](https://learn.microsoft.com/entra/external-id/authentication-conditional-access){#learn-external-id-conditional-access} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-external-id-conditional-access"} |
 | [Microsoft Learn: Configure cross-tenant synchronization](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure){#learn-cross-tenant-sync-configure} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-cross-tenant-sync-configure"} |
+| [Microsoft Learn: Cross-cloud collaboration with Microsoft 365](https://learn.microsoft.com/microsoft-365/enterprise/cross-cloud-collaboration){#learn-m365-cross-cloud-collaboration} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-m365-cross-cloud-collaboration"} |
+| [Microsoft Learn: entitlementManagementSettings resource type (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/resources/entitlementmanagementsettings?view=graph-rest-1.0){#learn-entitlementmanagementsettings} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-entitlementmanagementsettings"} |
 | [Microsoft Learn: Govern access for external users in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-external-users){#learn-em-external-users} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-em-external-users"} |
 | [Microsoft Learn: Manage connected organizations in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-organization){#learn-em-connected-organizations} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-em-connected-organizations"} |
+| [Microsoft Learn: Overview: Cross-tenant access with Microsoft Entra External ID](https://learn.microsoft.com/entra/external-id/cross-tenant-access-overview){#learn-cross-tenant-access-overview} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-cross-tenant-access-overview"} |
+| [Microsoft Learn: signIn resource type (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/resources/signin?view=graph-rest-1.0){#learn-signin-resource-type} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-signin-resource-type"} |
+| [Microsoft Learn: Understand and manage the properties of B2B guest users](https://learn.microsoft.com/entra/external-id/user-properties){#learn-b2b-user-properties} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-b2b-user-properties"} |
+| [Microsoft Learn: Update crossTenantIdentitySyncPolicyPartner (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0){#learn-cross-tenant-sync-policy-update} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-cross-tenant-sync-policy-update"} |
+| [Microsoft Learn: View, add, and remove assignments for an access package in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-assignments){#learn-em-access-package-assignments} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-em-access-package-assignments"} |
 | [Microsoft Learn: What is cross-tenant synchronization?](https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview){#learn-cross-tenant-sync-overview} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="learn-cross-tenant-sync-overview"} |
 | [Microsoft Sentinel in the Microsoft Defender portal](https://learn.microsoft.com/azure/sentinel/microsoft-sentinel-defender-portal){#microsoft-sentinel-in-the-microsoft-defender} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-sentinel-in-the-microsoft-defender"} |
 | [Migrate from federation to cloud authentication](https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication){#migrate-from-federation-to-cloud} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="migrate-from-federation-to-cloud"} |
@@ -664,6 +673,7 @@ This register lists 531 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
 | November 5, 2026 | 449 sources | Added: cited on the narrated deck slides |
 | November 5, 2026 | 70 sources | Added: cited on the Start series and Book 00 slides |

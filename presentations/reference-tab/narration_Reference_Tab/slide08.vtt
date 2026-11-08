@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.850
+The books recommend Microsoft
+practices chapter by chapter:
+
+2
+00:00:03.850 --> 00:00:07.725
+block legacy authentication,
+require phishing-resistant MFA,
+
+3
+00:00:07.725 --> 00:00:11.600
+put privileged roles behind
+Privileged Identity Management,
+
+4
+00:00:11.600 --> 00:00:14.283
+use device compliance
+as the access signal,
+
+5
+00:00:14.283 --> 00:00:19.425
+connect servers through Azure Arc, and
+move SQL Server to Entra authentication.
+
+6
+00:00:19.425 --> 00:00:23.688
+This crosswalk puts 33 of
+those practices in one table.
+
+7
+00:00:23.688 --> 00:00:26.479
+Each row gives the
+practice and its chapter,
+
+8
+00:00:26.479 --> 00:00:31.519
+the Microsoft Learn page that defines
+it, the automated check that confirms it,
+
+9
+00:00:31.519 --> 00:00:35.473
+either a CISA ScubaGear policy
+ID or an Azure Policy built-in,
+
+10
+00:00:35.473 --> 00:00:37.876
+and the date the row was last reviewed.
+
+11
+00:00:37.876 --> 00:00:41.950
+Seeing them side by side surfaced
+things no single chapter shows.
+
+12
+00:00:41.950 --> 00:00:48.750
+One policy carries two version numbers
+between ScubaGear and the BOD 25-01 list.
+
+13
+00:00:48.750 --> 00:00:51.212
+Intune has no ScubaGear coverage.
+
+14
+00:00:51.212 --> 00:00:54.512
+And Arc-enabled SQL Server
+has no built-in policy
+
+15
+00:00:54.512 --> 00:00:57.812
+for Entra authentication,
+so it needs a custom check.
+
+16
+00:00:57.812 --> 00:00:59.330
+The page is a draft.

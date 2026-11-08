@@ -1,0 +1,461 @@
+{
+ "1": [
+  [
+   0.05,
+   6.075,
+   "The Reference tab of the Federal Modernization Workbook holds six pages that nobody reads front to back."
+  ],
+  [
+   6.125,
+   9.412,
+   "You open them when you need an answer: which command does this, which framework applies, where the Risk Management Framework is covered, whether a source is still current."
+  ],
+  [
+   15.537,
+   6.525,
+   "This briefing walks through each page, the question it answers, and why the workbook would be weaker without it."
+  ],
+  [
+   22.062,
+   6.975,
+   "Then it shows how the pages fit together, who should open which one first, and how each page tells you how far to trust it."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.65,
+   "Each book answers one question in depth, in reading order."
+  ],
+  [
+   3.7,
+   7.963,
+   "But an engineer, an I S S O or an authorizing official usually arrives with a question that cuts across all twenty books."
+  ],
+  [
+   11.662,
+   4.525,
+   "The Reference tab exists for those questions, and they fall into three kinds."
+  ],
+  [
+   16.188,
+   4.25,
+   "Run it: which command does the job, and which chapter teaches it."
+  ],
+  [
+   20.438,
+   6.037,
+   "Prove it: which federal requirement a piece of work satisfies, and what evidence an assessor would read."
+  ],
+  [
+   26.475,
+   3.888,
+   "Trust it: whether the sources behind all of this are still current."
+  ],
+  [
+   30.363,
+   2.975,
+   "Every page on the tab answers one of those three."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.325,
+   "Here are the six pages, with the job each one does."
+  ],
+  [
+   3.375,
+   3.275,
+   "One page helps you run the kits: the Command Reference."
+  ],
+  [
+   6.65,
+   10.3,
+   "Four help you prove compliance: the Federal Framework Crosswalk, the RMF Map, the M nineteen seventeen and fye-cam Crosswalk, and the Microsoft Practice Crosswalk."
+  ],
+  [
+   16.95,
+   3.575,
+   "And one keeps everything trustworthy: the Source Register."
+  ],
+  [
+   20.525,
+   2.612,
+   "The next six slides take them one at a time."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.162,
+   "The Command Reference lists every command in the example kits: 694 of them across sixteen kits."
+  ],
+  [
+   7.213,
+   8.088,
+   "That is 599 functions exported by PowerShell modules, 47 PowerShell scripts and 48 Python tools."
+  ],
+  [
+   15.3,
+   2.325,
+   "What makes it trustworthy is how it's made."
+  ],
+  [
+   17.625,
+   4.95,
+   "The page is generated from each command's own help text every time the site builds."
+  ],
+  [
+   22.575,
+   8.838,
+   "If the help changes, the page changes with it, so the two never drift apart, and a public command without a synopsis or an example fails the check."
+  ],
+  [
+   31.413,
+   9.938,
+   "Each row also links back to the chapters and training modules that teach the command, so an engineer can go from what does this do, to where do I learn it, in one click."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.888,
+   "The Federal Framework Crosswalk scores every book against the frameworks a federal modernization program answers to."
+  ],
+  [
+   6.938,
+   12.225,
+   "That goes well beyond security controls: how IT investments are chosen and funded, how enterprise architecture is kept, how digital services are delivered, and how privacy and records are handled."
+  ],
+  [
+   19.163,
+   10.8,
+   "Each book gets a score from zero, not addressed, to three, evidence-backed, for each framework, and the scores come from reading the chapters, not from counting keywords."
+  ],
+  [
+   29.962,
+   5.55,
+   "Just as important, the page checks each framework's current status at its primary source."
+  ],
+  [
+   35.513,
+   16.738,
+   "It found that O M B M twenty-two eighteen was rescinded by M twenty-six oh-five, the Federal Data Strategy is being retired, and the Federal Enterprise Architecture Framework survives only as history, while Circular A-130 still requires an enterprise architecture."
+  ],
+  [
+   52.25,
+   7.75,
+   "Executive Order 14028 is in force as amended, and FITARA has a new memo, M twenty-six ten."
+  ],
+  [
+   60.0,
+   4.037,
+   "Without that check, the books would cite frameworks that no longer apply."
+  ],
+  [
+   64.037,
+   1.613,
+   "The page is in review."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.2,
+   "The RMF Map is for the people who sign off: the I S S O, the control assessor and the authorizing official."
+  ],
+  [
+   7.25,
+   5.725,
+   "Their question is where the Risk Management Framework is in the workbook, and what each step leaves behind."
+  ],
+  [
+   12.975,
+   4.775,
+   "The books answer it chapter by chapter; this page puts the answer in one place."
+  ],
+  [
+   17.75,
+   7.562,
+   "It walks all seven steps of nist special publication eight hundred thirty-seven Revision 2 and their 47 tasks."
+  ],
+  [
+   25.312,
+   6.737,
+   "For each task it gives where the workbook treats it, the evidence an assessor would read, and the kit that produces it."
+  ],
+  [
+   32.05,
+   11.738,
+   "The marks today: 25 covered, 13 partial, 9 partial by design, where the workbook gives a template and a prompt because the decision belongs to the agency, and none not covered."
+  ],
+  [
+   43.788,
+   3.875,
+   "It also corrects a common mistake: FISMA isn't a level."
+  ],
+  [
+   47.663,
+   3.925,
+   "FISMA Moderate is shorthand for a categorization and a baseline."
+  ],
+  [
+   51.587,
+   4.438,
+   "The page is in review, waiting for a reviewer who didn't write the marks."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.6,
+   "O M B M nineteen seventeen is the federal policy for identity, credential and access management."
+  ],
+  [
+   6.65,
+   11.137,
+   "It tells agencies to run identity as one program, to manage devices and automated technologies as well as people, to use piv and derived piv, and to federate."
+  ],
+  [
+   17.788,
+   3.95,
+   "The fye-cam Architecture breaks the same ground into services."
+  ],
+  [
+   21.738,
+   4.388,
+   "This crosswalk maps both to the workbook's books, guides and kits."
+  ],
+  [
+   26.125,
+   8.0,
+   "It starts with nine identity areas, from workforce and non-person identity to federation, governance and public identity."
+  ],
+  [
+   34.125,
+   5.375,
+   "Then it checks M nineteen seventeen section by section and the fye-cam services one by one."
+  ],
+  [
+   39.5,
+   9.4,
+   "Across those forty-two rows, the marks are 15 strong, 20 partial, 5 gaps, and 2 deliberately out of scope, with the reason stated."
+  ],
+  [
+   48.9,
+   2.875,
+   "Every mark comes from reading the linked pages."
+  ],
+  [
+   51.775,
+   7.35,
+   "Identity is where most of this program's work lands, so naming the gaps plainly matters as much as showing the strengths."
+  ],
+  [
+   59.125,
+   1.613,
+   "The page is in review."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   19.375,
+   "The books recommend Microsoft practices chapter by chapter: block legacy authentication, require phishing-resistant M F A, put privileged roles behind Privileged Identity Management, use device compliance as the access signal, connect servers through Azure Arc, and move sequel Server to Entra authentication."
+  ],
+  [
+   19.425,
+   4.263,
+   "This crosswalk puts 33 of those practices in one table."
+  ],
+  [
+   23.688,
+   14.188,
+   "Each row gives the practice and its chapter, the Microsoft Learn page that defines it, the automated check that confirms it, either a sis-uh ScubaGear policy I D or an Azure Policy built-in, and the date the row was last reviewed."
+  ],
+  [
+   37.875,
+   4.075,
+   "Seeing them side by side surfaced things no single chapter shows."
+  ],
+  [
+   41.95,
+   6.8,
+   "One policy carries two version numbers between ScubaGear and the B O D twenty-five oh-one list."
+  ],
+  [
+   48.75,
+   2.462,
+   "Intune has no ScubaGear coverage."
+  ],
+  [
+   51.212,
+   6.6,
+   "And Arc-enabled sequel Server has no built-in policy for Entra authentication, so it needs a custom check."
+  ],
+  [
+   57.812,
+   1.462,
+   "The page is a draft."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.425,
+   "The Source Register is the foundation under everything else."
+  ],
+  [
+   3.475,
+   4.537,
+   "A slide or a video description doesn't link straight to a publisher's page."
+  ],
+  [
+   8.012,
+   4.725,
+   "It links to the source's row in this register, and the row links to the original."
+  ],
+  [
+   12.738,
+   6.062,
+   "That matters because a released deck or video can't change, but publishers move pages all the time."
+  ],
+  [
+   18.8,
+   6.213,
+   "With the register in between, a link in a released deck stays right: only the row has to change."
+  ],
+  [
+   25.012,
+   4.675,
+   "The register holds 540 sources today, under three rules."
+  ],
+  [
+   29.688,
+   5.8,
+   "A source's address is permanent: a row can be retired, but never deleted or renamed."
+  ],
+  [
+   35.487,
+   7.963,
+   "Every change goes through a reviewed pull request, adds to the revision history, and sends the page back to its owner for approval."
+  ],
+  [
+   43.45,
+   8.613,
+   "And the weekly source watch reads every row, shows the result in the Last scan column, and proposes fixes, but never edits on its own."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.625,
+   "The pages aren't six separate lists; they build on each other."
+  ],
+  [
+   3.675,
+   5.525,
+   "The Federal Framework Crosswalk is the wide view, every book against every framework."
+  ],
+  [
+   9.2,
+   10.662,
+   "The RMF Map takes its Risk Management Framework row and goes task by task; where the two disagree, the map wins, and the crosswalk's RMF score is derived from it."
+  ],
+  [
+   19.863,
+   5.775,
+   "The M nineteen seventeen and fye-cam Crosswalk does the same deep dive for identity policy."
+  ],
+  [
+   25.637,
+   10.95,
+   "The Microsoft Practice Crosswalk shows the specific practices behind the evidence, each tied to an automated check, and the Command Reference lists the kit commands that produce that evidence."
+  ],
+  [
+   36.587,
+   8.463,
+   "Underneath all of them sits the Source Register, so every source the slides and videos cite has a permanent address that is checked every week."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.087,
+   "So who should open which page first?"
+  ],
+  [
+   2.138,
+   3.362,
+   "An engineer running the kits opens the Command Reference."
+  ],
+  [
+   5.5,
+   4.213,
+   "An I S S O or a control assessor opens the RMF Map."
+  ],
+  [
+   9.713,
+   6.287,
+   "An authorizing official reads the RMF Map, then the M nineteen seventeen and fye-cam Crosswalk."
+  ],
+  [
+   16.0,
+   4.588,
+   "A C I O or program lead starts with the Federal Framework Crosswalk."
+  ],
+  [
+   20.587,
+   4.787,
+   "An identity or cloud architect opens the Microsoft Practice Crosswalk."
+  ],
+  [
+   25.375,
+   3.2,
+   "And anyone citing a source uses the Source Register."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.838,
+   "Finally, a reference page is only useful if you know how far to trust it, so each one tells you."
+  ],
+  [
+   5.888,
+   7.825,
+   "The marks come from reading the chapters, not counting keywords: every hit is opened in context, and false matches are dropped."
+  ],
+  [
+   13.713,
+   6.638,
+   "Each page shows its status, draft, in review or approved, and the date someone last reviewed it."
+  ],
+  [
+   20.35,
+   7.812,
+   "A page left unreviewed for more than 90 days is flagged on the page and in the weekly source-watch issue until someone reviews it."
+  ],
+  [
+   28.163,
+   1.863,
+   "And the gaps stay on the page."
+  ],
+  [
+   30.025,
+   9.05,
+   "Partial rows, gaps and out-of-scope items are listed with their reasons, and where no automated check exists, the row says so rather than inventing one."
+  ],
+  [
+   39.075,
+   8.725,
+   "Every page also downloads as a Word document, and the Reference Set puts all six in one file, from the Reference tab or the Downloads page."
+  ],
+  [
+   47.8,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

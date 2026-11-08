@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:07.465
+Each step maps to NIST SP 800-53 controls,
+to FedRAMP Key Security Indicators
+
+2
+00:00:07.465 --> 00:00:12.100
+where the workbook already pairs them,
+and to the evidence the ISSO keeps.
+
+3
+00:00:12.100 --> 00:00:17.689
+The partner entry and its trust
+settings support AC-3, AC-20 and IA-8,
+
+4
+00:00:17.689 --> 00:00:23.900
+with test zero's output and the
+agreement clause behind each trust value.
+
+5
+00:00:23.900 --> 00:00:28.049
+The access package, its approval
+and expiry support AC-2,
+
+6
+00:00:28.049 --> 00:00:31.075
+with the policy export and review history.
+
+7
+00:00:31.075 --> 00:00:35.263
+Suspension, removal and exit
+support automated account disabling,
+
+8
+00:00:35.263 --> 00:00:39.900
+and stand in for the agency's own
+personnel controls through the agreement.
+
+9
+00:00:39.900 --> 00:00:45.088
+Denial and MFA tests
+support IA-8 and IA-2.
+
+10
+00:00:45.088 --> 00:00:50.012
+Monitoring supports AU-6,
+and drift supports CA-7.
+
+11
+00:00:50.012 --> 00:00:54.532
+Key Security Indicators describe
+what cloud service providers report,
+
+12
+00:00:54.532 --> 00:00:58.900
+so the agency doesn't report them; it
+lines its own evidence up with them.
+
+13
+00:00:58.900 --> 00:01:03.189
+And the cloud services involved
+must sit inside a FedRAMP-certified
+
+14
+00:01:03.189 --> 00:01:06.720
+offering that the agency's
+own authorization relies on.

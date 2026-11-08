@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+Deprovisioning follows the source.
+
+2
+00:00:02.125 --> 00:00:05.129
+When the partner deletes
+or unassigns a user,
+
+3
+00:00:05.129 --> 00:00:10.162
+the user is soft-deleted in the agency
+tenant and can be restored for 30 days.
+
+4
+00:00:10.162 --> 00:00:13.706
+A sign-in block set on the
+agency side lasts only until the
+
+5
+00:00:13.706 --> 00:00:17.250
+source user changes, and then
+sync re-enables the account.
+
+6
+00:00:17.250 --> 00:00:19.799
+So an agency suspension of a synced user
+
+7
+00:00:19.799 --> 00:00:22.812
+also removes their access
+package assignment.
+
+8
+00:00:22.812 --> 00:00:25.786
+A severed relationship
+leaves accounts behind:
+
+9
+00:00:25.786 --> 00:00:29.502
+deleting the sync policy doesn't
+remove the users it created,
+
+10
+00:00:29.502 --> 00:00:34.037
+and turning off inbound sync has no
+effect on users already synchronized.
+
+11
+00:00:34.037 --> 00:00:38.949
+To end cleanly, the partner unassigns
+everyone while the agency keeps
+
+12
+00:00:38.949 --> 00:00:43.776
+inbound sync on, then the agency
+turns it off and deletes what remains.
+
+13
+00:00:43.776 --> 00:00:49.113
+On licensing, each synced user needs
+Entra ID P1 in the source tenant.
+
+14
+00:00:49.113 --> 00:00:54.003
+Cross-cloud sync carries users only,
+and manager isn't synced across clouds,
+
+15
+00:00:54.003 --> 00:00:57.290
+so no approval rule may
+depend on a synced manager.

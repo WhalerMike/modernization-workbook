@@ -1,0 +1,686 @@
+{
+ "2": [
+  [
+   0.05,
+   2.95,
+   "Start with the rule the whole profile enforces."
+  ],
+  [
+   3.0,
+   8.225,
+   "A partner account gets access because a sponsor asked, an approver agreed and a date was set, never because it exists or synchronized."
+  ],
+  [
+   11.225,
+   4.713,
+   "The partner is authoritative for the person's affiliation and the credential it issues."
+  ],
+  [
+   15.938,
+   9.012,
+   "The agency is authoritative for federation trust, eligibility, authorization, monitoring, review, suspension and termination."
+  ],
+  [
+   24.95,
+   18.863,
+   "So engineering has four things to prove for every partner: that trust is scoped to that partner alone, that every account traces to an approved request with an expiry, that every partner account is a guest unless an exception record says otherwise, and that access really ends at the last assignment and at partner exit."
+  ],
+  [
+   43.812,
+   1.812,
+   "The rest of this deck is how."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.787,
+   "nist special publication eight hundred sixty-three, revision four, final since July 31, 2025, separates three scales."
+  ],
+  [
+   9.838,
+   4.5,
+   "Identity proofing is usually done by the partner, under its own practice."
+  ],
+  [
+   14.338,
+   3.562,
+   "Authentication is done by the partner's identity service."
+  ],
+  [
+   17.9,
+   5.75,
+   "Federation assurance is set by the agency, as relying party, for each application."
+  ],
+  [
+   23.65,
+   6.638,
+   "special publication eight hundred sixty-three C, revision four says what each federation level demands."
+  ],
+  [
+   30.288,
+   11.4,
+   "At level one, the identity provider signs the assertion, and the relying party validates it against the expected key, with the assertion audience-restricted and protected against replay."
+  ],
+  [
+   41.688,
+   13.15,
+   "Level two adds injection protection, a transaction the relying party starts, an assertion for a single relying party, a trust agreement established in advance, and identifiers without plaintext personal data."
+  ],
+  [
+   54.837,
+   3.7,
+   "Level three adds holder-of-key or a bound authenticator."
+  ],
+  [
+   58.538,
+   10.613,
+   "Selection follows nist's steps: assess impact per user group, take the initial levels, tailor, and document the result in a Digital Identity Acceptance Statement."
+  ],
+  [
+   69.15,
+   10.387,
+   "The chapter didn't read the October 6, 2026 planning note on special publication eight hundred sixty-three C, revision four in full, so check it first."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.7,
+   "For partners outside the agency's own organization, the route is entitlement management with B to B collaboration guests."
+  ],
+  [
+   7.75,
+   16.65,
+   "Create one connected organization per partner, configured, never proposed: a policy open to all users creates proposed connected organizations automatically, so each partner policy targets specific connected organizations only, and a proposed one is a finding."
+  ],
+  [
+   24.4,
+   8.963,
+   "Create one access package per partner use case, in a catalog enabled for external users, hidden so only people with the link can find it."
+  ],
+  [
+   33.362,
+   9.625,
+   "Approval has two stages: the agency sponsor, then the resource owner for the higher-risk applications, with expiry at most 365 days."
+  ],
+  [
+   42.987,
+   1.95,
+   "The sponsor reviews quarterly."
+  ],
+  [
+   44.938,
+   6.25,
+   "When a guest loses the last assignment, sign-in is blocked and the account is deleted after 30 days."
+  ],
+  [
+   51.188,
+   2.2,
+   "And guests can't invite other guests."
+  ],
+  [
+   53.388,
+   9.5,
+   "One caution from Microsoft Learn: Conditional Access that affects guests can block My Access, so test that a partner can still request before you add an exclusion."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.7,
+   "Every partner on Entra I D gets its own organization-specific entry in cross-tenant access settings."
+  ],
+  [
+   6.75,
+   6.975,
+   "Those settings override the defaults, and M F A and device claims from other tenants aren't trusted by default."
+  ],
+  [
+   13.725,
+   7.088,
+   "Inbound B to B collaboration is allowed for the partner tenant only, scoped to the access package's applications."
+  ],
+  [
+   20.812,
+   2.362,
+   "B to B direct connect is blocked."
+  ],
+  [
+   23.175,
+   12.363,
+   "Trusting the partner's M F A is turned on only where the agreement says the partner enforces it at home, and Conditional Access still requires the strength; trusting M F A only skips the second prompt."
+  ],
+  [
+   35.538,
+   6.838,
+   "Trust in compliant or hybrid-joined devices stays off, unless the agreement names the partner's compliance standard."
+  ],
+  [
+   42.375,
+   3.125,
+   "Automatic redemption stays off on the default route."
+  ],
+  [
+   45.5,
+   9.2,
+   "The record holds the partner's immutable tenant I D and the names it resolves to, and a partner domain that resolves to another tenant is a stop condition."
+  ],
+  [
+   54.7,
+   11.275,
+   "For a partner on sam-ul or WS-Fed federation, Conditional Access can require only the M F A grant, so the agreement must say whether the method is phishing-resistant."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.75,
+   "No new Conditional Access policy is needed."
+  ],
+  [
+   2.8,
+   4.775,
+   "Five policies in the workbook's library already carry the partner tenant list."
+  ],
+  [
+   7.575,
+   7.55,
+   "CA009, for M F A, and CA010, for terms of use, include partner users."
+  ],
+  [
+   15.125,
+   8.2,
+   "CA011, CA012 and CA038 apply guest limits to everyone except the partner tenants."
+  ],
+  [
+   23.325,
+   6.463,
+   "The list must be identical in all five; a partner in one and not the others is a drift finding."
+  ],
+  [
+   29.788,
+   6.037,
+   "The identity governance officer owns it, and a partner enters it only when its access package goes lyve."
+  ],
+  [
+   35.825,
+   2.625,
+   "The user type decides which policies apply."
+  ],
+  [
+   38.45,
+   10.562,
+   "CA011, CA012 and CA038 match only guest-type external users, so an external member from an unlisted tenant escapes them."
+  ],
+  [
+   49.013,
+   7.037,
+   "A member also gets member-level directory permissions, and falls outside persona rules and reviews scoped to guests."
+  ],
+  [
+   56.05,
+   2.675,
+   "That's why partner persons are guests by default."
+  ],
+  [
+   58.725,
+   7.638,
+   "A read-only Graph check compares the list across the five policies and against the partner entries in cross-tenant access settings."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.112,
+   "Cross-tenant synchronization pushes the partner's internal members into the agency tenant as B to B users."
+  ],
+  [
+   7.162,
+   19.512,
+   "Allow it only when every condition holds and is written in the exception record: the partner's people are internal members of an Entra tenant, the population is too large or changes too fast for per-person requests, the agreement covers privacy, consent and minimization, and the business owner decides, with the sponsor named."
+  ],
+  [
+   26.675,
+   5.513,
+   "The agency doesn't own the mappings, so it states them as terms and tests the result."
+  ],
+  [
+   32.188,
+   5.588,
+   "The user type mapping defaults to member; the profile requires guest, applied always."
+  ],
+  [
+   37.775,
+   4.463,
+   "Matching uses the alternative security identifier and can't be changed."
+  ],
+  [
+   42.237,
+   5.737,
+   "The deletion threshold defaults to 500, so set it below the expected population."
+  ],
+  [
+   47.975,
+   2.25,
+   "A failing job goes into quarantine."
+  ],
+  [
+   50.225,
+   4.612,
+   "Scope only assigned users and groups; nested groups don't cascade."
+  ],
+  [
+   54.837,
+   5.513,
+   "And cycles run every 40 minutes, so emergency suspension can't wait for one."
+  ],
+  [
+   60.35,
+   4.45,
+   "Sync creates the account; access still comes from an access package."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.075,
+   "Deprovisioning follows the source."
+  ],
+  [
+   2.125,
+   8.037,
+   "When the partner deletes or unassigns a user, the user is soft-deleted in the agency tenant and can be restored for 30 days."
+  ],
+  [
+   10.162,
+   7.088,
+   "A sign-in block set on the agency side lasts only until the source user changes, and then sync re-enables the account."
+  ],
+  [
+   17.25,
+   5.562,
+   "So an agency suspension of a synced user also removes their access package assignment."
+  ],
+  [
+   22.812,
+   11.225,
+   "A severed relationship leaves accounts behind: deleting the sync policy doesn't remove the users it created, and turning off inbound sync has no effect on users already synchronized."
+  ],
+  [
+   34.038,
+   9.738,
+   "To end cleanly, the partner unassigns everyone while the agency keeps inbound sync on, then the agency turns it off and deletes what remains."
+  ],
+  [
+   43.775,
+   5.338,
+   "On licensing, each synced user needs Entra I D P1 in the source tenant."
+  ],
+  [
+   49.112,
+   8.125,
+   "Cross-cloud sync carries users only, and manager isn't synced across clouds, so no approval rule may depend on a synced manager."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.975,
+   "The chapter's responsibility table has one decider per row, the agency business owner, and names who does the work."
+  ],
+  [
+   7.025,
+   11.025,
+   "Identity engineering builds and runs the credential checks, the attribute mappings, the authentication validation and the lifecycle, including disables and reconciliation."
+  ],
+  [
+   18.05,
+   6.062,
+   "The sponsor does the work on eligibility, authorization and the evidence, and requests suspensions."
+  ],
+  [
+   24.113,
+   4.975,
+   "Security operations contains incidents first and tells the business owner after."
+  ],
+  [
+   29.087,
+   7.725,
+   "The I S S O is consulted on proofing, credentials, incidents and evidence, and the privacy office on attributes."
+  ],
+  [
+   36.812,
+   6.65,
+   "The identity governance officer owns the partner tenant list and is alerted to any change in cross-tenant settings."
+  ],
+  [
+   43.462,
+   10.912,
+   "On the partner's side, the partner keeps its affiliation record accurate, issues and revokes credentials, sends mover and leaver notices, and coordinates incidents under the agreement."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.537,
+   "Every partner relationship has one record, written before access is granted and kept as evidence after."
+  ],
+  [
+   6.588,
+   7.225,
+   "It lives in the repository beside the configuration it describes, so a change to either arrives in the same pull request."
+  ],
+  [
+   13.812,
+   11.162,
+   "It has six sections: authority and purpose, owners, risk, agreement and assurance, route and user type, lifecycle and operations, and the readiness checks."
+  ],
+  [
+   24.975,
+   2.362,
+   "Three rules apply to every field."
+  ],
+  [
+   27.337,
+   7.862,
+   "Reference, don't copy: the agreement, the privacy determination and the records schedule go in as identifiers and dates."
+  ],
+  [
+   35.2,
+   7.45,
+   "One decider: each readiness check names the business owner, and the authorizing official is consulted on the last."
+  ],
+  [
+   42.65,
+   4.8,
+   "And a blank is a finding: write none or not applicable, with a reason."
+  ],
+  [
+   47.45,
+   12.588,
+   "The Entra profile adds the values the record asks for: tenant relationship, cross-tenant settings, configuration I D's, mappings, access governance, validation results and monitoring."
+  ],
+  [
+   60.038,
+   5.388,
+   "The record holds no personal data about individual partner persons, and no secrets."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.2,
+   "The profile ships its validation tests as copy-paste Microsoft Graph PowerShell."
+  ],
+  [
+   5.25,
+   8.225,
+   "Run them in a test tenant with a test partner tenant first; they were checked against the Graph PowerShell reference but haven't been run against a tenant."
+  ],
+  [
+   13.475,
+   7.3,
+   "Test zero confirms the tenant I D resolves to the partner and that the trust and redemption values match the record."
+  ],
+  [
+   20.775,
+   9.375,
+   "Test one creates a guest through an access package request, and checks the user type is guest and that My Access still loads under the M F A policy."
+  ],
+  [
+   30.15,
+   3.737,
+   "Test two finds any partner account that isn't a guest."
+  ],
+  [
+   33.888,
+   19.5,
+   "Three is emergency suspension, four removes the assignment, five finds duplicates and unredeemed invitations, six proves denial for a user with no assignment and for an unlisted tenant, seven shows the M F A policy applied, eight covers devices, nine rolls back, and ten is partner exit."
+  ],
+  [
+   53.388,
+   6.112,
+   "Tests one, three, four, nine and ten write, and each says how to undo it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.487,
+   "Native sign-in and audit retention in Entra is 30 days, so the logs stream to the workspace."
+  ],
+  [
+   6.537,
+   1.475,
+   "Six signals matter."
+  ],
+  [
+   8.012,
+   5.3,
+   "Provisioning logs for sync liv in the partner's tenant, so the agreement has to deliver them."
+  ],
+  [
+   13.312,
+   5.612,
+   "On the agency side, sync changes show up in the audit log under the sync fabric actor."
+  ],
+  [
+   18.925,
+   5.175,
+   "Entitlement management records requests, approvals, expiries and removals."
+  ],
+  [
+   24.1,
+   6.213,
+   "The sign-in log shows the M F A policy's failures and any denied attempts after removal."
+  ],
+  [
+   30.312,
+   5.1,
+   "Cross-tenant settings changes are audited and alerted to the identity governance officer."
+  ],
+  [
+   35.413,
+   9.062,
+   "And drift compares the repository with the tenant: a partner list mismatch, any non-guest without a record, or trust values that differ from the record."
+  ],
+  [
+   44.475,
+   13.838,
+   "The profile suggests four alerts: a member partner account with no record, a sync cycle deleting more than expected, and a partner list mismatch, all high; and a cross-tenant change made outside a pull request, medium."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   12.05,
+   "Each step maps to nist special publication eight hundred fifty-three controls, to fed-ramp Key Security Indicators where the workbook already pairs them, and to the evidence the I S S O keeps."
+  ],
+  [
+   12.1,
+   11.8,
+   "The partner entry and its trust settings support AC-3, AC-20 and IA-8, with test zero's output and the agreement clause behind each trust value."
+  ],
+  [
+   23.9,
+   7.175,
+   "The access package, its approval and expiry support A C two, with the policy export and review history."
+  ],
+  [
+   31.075,
+   8.825,
+   "Suspension, removal and exit support automated account disabling, and stand in for the agency's own personnel controls through the agreement."
+  ],
+  [
+   39.9,
+   5.188,
+   "Denial and M F A tests support IA-8 and IA-2."
+  ],
+  [
+   45.087,
+   4.925,
+   "Monitoring supports AU-6, and drift supports CA-7."
+  ],
+  [
+   50.013,
+   8.887,
+   "Key Security Indicators describe what cloud service providers report, so the agency doesn't report them; it lines its own evidence up with them."
+  ],
+  [
+   58.9,
+   7.75,
+   "And the cloud services involved must sit inside a fed-ramp-certified offering that the agency's own authorization relies on."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   7.275,
+   "Last, the government-cloud check, read on November 6, 2026 and rechecked before each new partner."
+  ],
+  [
+   7.325,
+   15.463,
+   "For an agency tenant in G C C, entitlement management and connected organizations are available, and a partner in G C C High or D O D connects as Entra I D in another cloud, with both tenants enabling each other's cloud."
+  ],
+  [
+   22.788,
+   10.088,
+   "B to B direct connect isn't supported across clouds, and Teams doesn't support external members across clouds, so check each application's government service description."
+  ],
+  [
+   32.875,
+   2.487,
+   "Cross-cloud sync carries users only."
+  ],
+  [
+   35.362,
+   3.062,
+   "Several things are honestly marked not verified."
+  ],
+  [
+   38.425,
+   7.338,
+   "Whether cross-cloud sync is generally available: one Microsoft page called it public preview in August 2025."
+  ],
+  [
+   45.763,
+   3.05,
+   "The fed-ramp boundary rules for each feature used."
+  ],
+  [
+   48.812,
+   3.125,
+   "The records schedules for agreements and reviews."
+  ],
+  [
+   51.938,
+   5.513,
+   "And the special publication eight hundred sixty-three C, revision four planning note."
+  ],
+  [
+   57.45,
+   2.388,
+   "Confirm each before you rely on it."
+  ],
+  [
+   59.837,
+   5.2,
+   "The chapter, the record and the Entra profile carry every command and footnote."
+  ],
+  [
+   65.037,
+   0.762,
+   "Thank you."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   12.262,
+   "This is the technical deep dive on external partner identity, from the H R-Driven Identity book of the Federal Modernization Workbook, and its Microsoft Entra profile in Access and Privilege."
+  ],
+  [
+   13.025,
+   6.037,
+   "It's for identity engineers, Conditional Access owners, I S S O's and the governance office."
+  ],
+  [
+   19.062,
+   4.475,
+   "After the rule the whole profile enforces, it runs in three modules."
+  ],
+  [
+   23.538,
+   3.938,
+   "Module 1 is assurance and the default route into the tenant."
+  ],
+  [
+   27.475,
+   5.263,
+   "Module 2 is cross-tenant synchronization as an exception, and who does the work."
+  ],
+  [
+   32.737,
+   9.787,
+   "Module 3 is proof: the partner identity record, ten validation tests, monitoring, the requirements and evidence, and the government-cloud check."
+  ],
+  [
+   42.525,
+   4.912,
+   "Every Microsoft setting here comes from Microsoft Learn, as the profile cites it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.862,
+   "Module 1 is assurance and the default route."
+  ],
+  [
+   2.913,
+   5.2,
+   "First, how much assurance each partner transaction needs, and who performs each part."
+  ],
+  [
+   8.113,
+   12.062,
+   "Then how a partner person gets into the tenant the normal way: through a connected organization and an access package, with cross-tenant trust scoped to that one partner, and one partner list in Conditional Access."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.925,
+   "Module 2 is the exception: cross-tenant synchronization."
+  ],
+  [
+   3.975,
+   11.675,
+   "It covers the conditions that must all hold before sync is allowed, the terms the agency states and then tests in its own tenant, and how to end a sync relationship without leaving accounts behind."
+  ],
+  [
+   15.65,
+   4.65,
+   "It closes with who does the work, on the partner's side and the agency's."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.85,
+   "Module 3 is proof."
+  ],
+  [
+   1.9,
+   15.713,
+   "The partner identity record that holds every decision, the ten validation tests, the monitoring and drift checks, the requirements and evidence an I S S O keeps, and finally the government-cloud check, with the things the profile honestly hasn't verified."
+  ]
+ ]
+}

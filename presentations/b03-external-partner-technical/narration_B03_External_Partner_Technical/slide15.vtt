@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.960
+Native sign-in and audit
+retention in Entra is 30 days,
+
+2
+00:00:03.960 --> 00:00:06.537
+so the logs stream to the workspace.
+
+3
+00:00:06.537 --> 00:00:08.012
+Six signals matter.
+
+4
+00:00:08.012 --> 00:00:11.192
+Provisioning logs for sync
+live in the partner's tenant,
+
+5
+00:00:11.192 --> 00:00:13.312
+so the agreement has to deliver them.
+
+6
+00:00:13.312 --> 00:00:16.118
+On the agency side,
+sync changes show up in
+
+7
+00:00:16.118 --> 00:00:18.924
+the audit log under the sync fabric actor.
+
+8
+00:00:18.924 --> 00:00:24.100
+Entitlement management records requests,
+approvals, expiries and removals.
+
+9
+00:00:24.100 --> 00:00:26.763
+The sign-in log shows the MFA policy's
+
+10
+00:00:26.763 --> 00:00:30.313
+failures and any denied
+attempts after removal.
+
+11
+00:00:30.313 --> 00:00:32.929
+Cross-tenant settings
+changes are audited and
+
+12
+00:00:32.929 --> 00:00:35.412
+alerted to the identity
+governance officer.
+
+13
+00:00:35.412 --> 00:00:39.981
+And drift compares the repository with
+the tenant: a partner list mismatch,
+
+14
+00:00:39.981 --> 00:00:44.475
+any non-guest without a record, or trust
+values that differ from the record.
+
+15
+00:00:44.475 --> 00:00:49.299
+The profile suggests four alerts: a
+member partner account with no record,
+
+16
+00:00:49.299 --> 00:00:53.806
+a sync cycle deleting more than
+expected, and a partner list mismatch,
+
+17
+00:00:53.806 --> 00:00:58.370
+all high; and a cross-tenant change
+made outside a pull request, medium.

@@ -64,6 +64,13 @@ PHON = [
     (r"\bJSON\b", "jay-son"), (r"\bDoD\b", "D O D"), (r"\bREADME\b", "read me"), (r"\bHR\b", "H R"),
     (r"\bSDKs\b", "S D K's"), (r"\bSDK\b", "S D K"), (r"\bSQL\b", "sequel"), (r"\bANDed\b", "and-ed"),
     (r"\bISSOs\b", "I S S O's"), (r"\bPRV\b", "P R V"), (r"\bIPv6\b", "I P version six"), (r"\bAI\b", "A I"), (r"\bKQL\b", "K Q L"), (r"\bCSV\b", "C S V"),
+    # Added for the Reference Tab and External Partner Identity decks.
+    (r"\bSP 800-37\b", "special publication eight hundred thirty-seven"),
+    (r"\bSP 800-63C-4\b", "special publication eight hundred sixty-three C, revision four"),
+    (r"\bSP 800-63-4\b", "special publication eight hundred sixty-three, revision four"),
+    (r"\bFIPS 201-3\b", "fips two-oh-one-three"), (r"\bM-22-18\b", "M twenty-two eighteen"),
+    (r"\bM-26-05\b", "M twenty-six oh-five"), (r"\bM-26-10\b", "M twenty-six ten"), (r"\bFICAM\b", "fye-cam"),
+    (r"\bFAL\b", "F A L"), (r"\bKSIs\b", "K S I's"), (r"\bKSI\b", "K S I"), (r"\bGRS 3\.2\b", "G R S three point two"),
     (r"—", ", "),
 ]
 

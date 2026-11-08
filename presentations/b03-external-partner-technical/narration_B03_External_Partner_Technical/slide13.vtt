@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.786
+Every partner relationship has one record,
+
+2
+00:00:02.786 --> 00:00:06.587
+written before access is granted
+and kept as evidence after.
+
+3
+00:00:06.587 --> 00:00:10.602
+It lives in the repository beside
+the configuration it describes,
+
+4
+00:00:10.602 --> 00:00:13.813
+so a change to either arrives
+in the same pull request.
+
+5
+00:00:13.813 --> 00:00:19.706
+It has six sections: authority and purpose,
+owners, risk, agreement and assurance,
+
+6
+00:00:19.706 --> 00:00:24.974
+route and user type, lifecycle and
+operations, and the readiness checks.
+
+7
+00:00:24.974 --> 00:00:27.337
+Three rules apply to every field.
+
+8
+00:00:27.337 --> 00:00:31.509
+Reference, don't copy: the
+agreement, the privacy determination
+
+9
+00:00:31.509 --> 00:00:35.199
+and the records schedule go
+in as identifiers and dates.
+
+10
+00:00:35.199 --> 00:00:39.084
+One decider: each readiness
+check names the business owner,
+
+11
+00:00:39.084 --> 00:00:42.650
+and the authorizing official
+is consulted on the last.
+
+12
+00:00:42.650 --> 00:00:47.450
+And a blank is a finding: write none
+or not applicable, with a reason.
+
+13
+00:00:47.450 --> 00:00:52.619
+The Entra profile adds the values the
+record asks for: tenant relationship,
+
+14
+00:00:52.619 --> 00:00:56.203
+cross-tenant settings,
+configuration IDs, mappings,
+
+15
+00:00:56.203 --> 00:01:00.038
+access governance, validation
+results and monitoring.
+
+16
+00:01:00.038 --> 00:01:05.500
+The record holds no personal data about
+individual partner persons, and no secrets.

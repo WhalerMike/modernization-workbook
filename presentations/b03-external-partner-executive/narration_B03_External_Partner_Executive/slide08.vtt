@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:07.197
+NIST SP 800-63-4 measures
+digital identity on three scales:
+
+2
+00:00:07.197 --> 00:00:10.538
+identity proofing,
+authentication, and federation.
+
+3
+00:00:10.538 --> 00:00:14.334
+For a partner person, the partner
+usually performs the first two,
+
+4
+00:00:14.334 --> 00:00:18.274
+and the agency decides whether
+that's enough for each transaction.
+
+5
+00:00:18.274 --> 00:00:20.647
+The levels come from an impact assessment,
+
+6
+00:00:20.647 --> 00:00:23.425
+and partner persons are
+their own user group in it.
+
+7
+00:00:23.425 --> 00:00:28.197
+A bank officer submitting a financial
+filing and a state examiner reading a case
+
+8
+00:00:28.197 --> 00:00:31.474
+summary can land at different
+levels on the same system,
+
+9
+00:00:31.474 --> 00:00:36.175
+so the record holds one row per protected
+transaction, not one level per partner.
+
+10
+00:00:36.175 --> 00:00:37.987
+Two federal rules shape this.
+
+11
+00:00:37.987 --> 00:00:44.421
+M-22-09 requires phishing-resistant MFA
+for agency staff, contractors and partners,
+
+12
+00:00:44.421 --> 00:00:48.041
+but leaves each agency to
+define the partner category,
+
+13
+00:00:48.041 --> 00:00:51.499
+so the agency writes its
+definition into the record.
+
+14
+00:00:51.499 --> 00:00:56.795
+And FIPS 201-3 covers federal employees
+and contractors only, so never call a
+
+15
+00:00:56.795 --> 00:01:01.630
+partner credential PIV-equivalent unless
+a policy the agency can cite says so.
