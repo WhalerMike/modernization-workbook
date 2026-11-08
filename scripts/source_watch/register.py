@@ -257,7 +257,7 @@ def check_deck_links(register: dict) -> list[str]:
                 if not base.startswith(SITE):
                     problems.append(f"{where}: goes straight to {base}; it should go through a register row")
                 elif base == PAGE_URL:
-                    if anchor not in ids:
+                    if anchor and anchor not in ids:   # no anchor: a link to the register page itself
                         problems.append(f"{where}: no register row {anchor}")
                 else:
                     rel = base[len(SITE):] or "index.html"
