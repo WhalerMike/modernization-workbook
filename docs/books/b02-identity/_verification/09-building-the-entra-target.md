@@ -211,3 +211,4 @@ Track signposts added (HR track: user objects, groups, OUs; non-person identity 
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | Access review cadence for app owners follows the application's risk tier, written R1 (quarterly) and R2 (semi-annually) | §Applications and service principals, Reviews | corrected (Old: "risk Tier 1" and "Tier 2". New: R1 and R2, the notation Book 04 now uses so a risk tier can't be read as a privilege tier) | Book 04 Chapter 04 §Three different tiers; Chapter 06 §Risk tiers set the approval chain; Chapter 09 §Cadence |
+| C2 | App ownership: registry owner (with backup by tier) plus two technical people on the Entra Owners list | §Governing service principals | corrected (Old: "at least two human owners") | Book 04 Chapter 05 §Ownership; Chapter 06 §Risk tiers |

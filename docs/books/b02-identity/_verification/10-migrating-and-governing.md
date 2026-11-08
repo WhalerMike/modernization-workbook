@@ -197,3 +197,4 @@ Lifecycle Workflows: the one-sentence limits list was replaced with a pointer to
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | Access review table rows for application assignments use the risk-tier notation R1 (quarterly, two stages) and R2 (semi-annually) | §Access reviews | corrected (Old: "application risk Tier 1" and "Tier 2". New: R1 and R2) | Book 04 Chapter 04 §Three different tiers; Chapter 09 §Cadence |
+| C2 | Lifecycle Workflows tenant ceiling: service limits page says 100, licensing page says 50; the program budgets to 50 | §Limits, guardrails and design at scale | corrected (Old: 100 only) | Book 03 Chapter 08 §Tenant ceilings; Book 04 Chapter 09 |

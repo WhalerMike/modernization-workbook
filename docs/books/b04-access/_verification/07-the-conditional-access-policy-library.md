@@ -196,3 +196,9 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | New conventions bullet: authentication-context policies (`PIM-Activation-c1`, `ProtectedActions-c2`) aren't numbered, are named for their context, defined in Ch08, held as code with the library, and turned On before their context is selected instead of following the report-only waves | Conventions used in every policy | design-consistency (Ch08 Steps 2 and 6; Ch03 naming) | — |
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Emergency access exclusion applies to enforced policies that have a user scope | §Conventions used in every policy | corrected (Old: every enforced policy. New: CA015 and CA037 target only workload identities and have nothing to exclude) | Chapter 10 §What goes in the repository; Appendix A |

@@ -99,3 +99,9 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Purchases need CIO approval under FITARA; M-26-10 vendor utilization and pricing requests and disclosure provisions after Mar 31, 2026 | Licenses | verified | OMB M-26-10 §1 (40 U.S.C. §11319(b)(1)(C)), §2 |
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Gate G0 conditions in the master-plan mapping row | §Mapping the master plan onto the gates | corrected (Old: assessment committed and no open priority-one findings. New: all five Book 01 conditions) | Book 01 Chapter 12 §Gate G0 |

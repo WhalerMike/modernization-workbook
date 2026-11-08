@@ -565,7 +565,7 @@ Conditional Access can target service principals, which lets you block a workloa
 
 Every application registration and service principal gets the same controls:
 
-- **Ownership.** At least two human owners, never service accounts.
+- **Ownership.** A named registry owner (with a backup where the risk tier requires one) and two technical people on the Entra Owners list, never service accounts ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)).
 - **Credentials.** Prefer federated credentials and managed identities. Where certificates remain, rotate them on a schedule (program standard: annually) through Key Vault or the CI/CD pipeline. Don't use client secrets for production workloads.
 - **Reviews.** Recurring reviews of delegated and application permissions by app owners, on the application's risk-tier cadence (quarterly for risk tier R1, semi-annually for R2; [Book 04, Chapter 09](../b04-access/09-access-governance.md)), plus the identity governance officer's annual review of every admin consent grant ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md)).
 - **Least privilege.** Use application-specific roles and scopes; avoid broad permissions such as `Directory.ReadWrite.All`.

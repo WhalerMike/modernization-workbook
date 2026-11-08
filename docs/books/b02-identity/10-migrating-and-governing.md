@@ -119,7 +119,7 @@ Lifecycle Workflows has these limits as of October 29, 2026:[^c10-lcw-limits][^c
 
 | Limit | Value |
 |---|---|
-| Workflows | 100 per tenant |
+| Workflows | 100 per tenant on the service limits page; the licensing page says up to 50, and the program budgets to 50 until Microsoft reconciles the two (see [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md) and [Book 04, Chapter 09](../b04-access/09-access-governance.md#lifecycle-workflows-at-the-access-level)) |
 | Tasks | 25 per workflow |
 | Custom task extensions | 100 per tenant |
 | Trigger offset (`offsetInDays`) | -180 to +180 days (negative is before the date, positive after) |
@@ -138,7 +138,7 @@ Five behaviors matter as much as the numbers:
 
 The program's design response *(design guidance)*, with the full risk table in the [companion guide](../guides/attribute-driven-migration.md#lifecycle-workflows-at-scale):
 
-- **A small set of general workflows.** Pre-hire, joiner, mover, leaver, rehire and conversion, each branching on coded attributes through its scope rule. Never one workflow per organization, tree or worker type: twelve trees times joiner, mover and leaver times three worker types is already 108 workflows. Keep a workflow budget in change control.
+- **A small set of general workflows.** Pre-hire, joiner, mover, leaver, rehire and conversion, each branching on coded attributes through its scope rule. Never one workflow per organization, tree or worker type: twelve trees times joiner, mover and leaver times three worker types is already 108 workflows. Keep a workflow budget in change control, held to 50.
 - **Parameterized extensions.** One Logic App per integration (card management, Intune retire, ticketing, HR write-back), taking the component or code as input, and an extension count kept per tenant, test and production.
 - **Long leavers split.** Group steps inside one Logic App, or chain a leaver and a post-leaver workflow, to stay under 25 tasks.
 - **On-demand treated as a change.** Lifecycle Workflows Administrator is a PIM-eligible role with approval; an on-demand run gets a second-person check and a log entry, because it bypasses both the scope and the quarantine.
