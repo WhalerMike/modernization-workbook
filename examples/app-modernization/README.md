@@ -1,7 +1,7 @@
 # Application modernization: reference implementation
 
 > **Status: illustrative. Tested against fixtures, not proven in production.**
-> This is a small, runnable slice of the target reference architecture in [Book 18](../../docs/books/b18-application-modernization/index.md): a Java and Spring Boot REST service over PostgreSQL with an API-first contract, a React front end, a DB2/Oracle-to-PostgreSQL migration tool that proves what it moved, and an AI agent that can only propose changes for a person to approve. All data is synthetic. It isn't an endorsement of any product by any agency, and no agency has adopted it. [Chapter 08](../../docs/books/b18-application-modernization/08-the-reference-implementation.md) walks through it.
+> This is a small, runnable slice of the target reference architecture in [Book 18](../../docs/books/b18-application-modernization/index.md): a Java and Spring Boot REST service over PostgreSQL with an API-first contract, a React front end, a Db2/Oracle-to-PostgreSQL migration tool that proves what it moved, and an AI agent that can only propose changes for a person to approve. All data is synthetic. It isn't an endorsement of any product by any agency, and no agency has adopted it. [Chapter 08](../../docs/books/b18-application-modernization/08-the-reference-implementation.md) walks through it.
 
 **Download:** [app-modernization.zip](https://whalermike.github.io/modernization-workbook/downloads/app-modernization.zip), rebuilt from this folder on every site deploy. It also holds a plain-text copy of every source and configuration file, named with `.txt` added (`pom.xml.txt`, `Dockerfile.txt`), for Microsoft 365 Copilot and other tools that refuse code files. Build and run from the originals.
 
@@ -11,7 +11,7 @@
 |---|---|---|
 | `service/` | Spring Boot REST service over PostgreSQL. Flyway owns the schema. Hand-written OpenAPI 3.1 contract, checked against the code by a test. Errors are RFC 9457 problem details. | [Chapter 03, target architecture](../../docs/books/b18-application-modernization/03-the-target-reference-architecture.md) |
 | `service/.../ai/` | A provider-neutral agent loop: model interface, agent identity with a sponsor and a tool allow-list, step limit, argument validation, audit of every tool call, and a human approval step before anything changes. | [Chapter 05, generative and agentic AI](../../docs/books/b18-application-modernization/05-generative-and-agentic-ai.md) |
-| `migration/` | Command-line tool that reads a legacy DB2 or Oracle schema over JDBC, transforms it, upserts it into PostgreSQL in batches, supports a delta mode for the coexistence period, and validates the result three ways. | [Chapter 04, moving the data](../../docs/books/b18-application-modernization/04-moving-the-data.md) |
+| `migration/` | Command-line tool that reads a legacy Db2 or Oracle schema over JDBC, transforms it, upserts it into PostgreSQL in batches, supports a delta mode for the coexistence period, and validates the result three ways. | [Chapter 04, moving the data](../../docs/books/b18-application-modernization/04-moving-the-data.md) |
 | `web/` | React front end: case list with a status filter, case detail, **Run triage**, and a pending-proposals panel with **Approve** and **Reject**. | [Chapter 03](../../docs/books/b18-application-modernization/03-the-target-reference-architecture.md) |
 | `docker-compose.yml` | PostgreSQL, the API and the web front end (nginx) as containers. | [Chapter 03](../../docs/books/b18-application-modernization/03-the-target-reference-architecture.md) |
 
@@ -46,7 +46,7 @@ cd web && npm ci && npm test && npm run build
 | Part | Tests | Against |
 |---|---|---|
 | `service` | 25: list, filter, get, 404 and 400 problem details, health, contract-versus-code, triage creates a PENDING proposal and leaves the case alone, re-triage doesn't duplicate, approval applies, rejection doesn't, a proposal is decided once, the agent can't approve its own proposal, a disallowed tool is denied and audited, a known tool left off the allow-list is neither offered nor run, the step limit stops a looping model, invalid arguments are rejected | Real PostgreSQL 18 (embedded), schema applied by Flyway at startup |
-| `migration` | 12: full load through the CLI passes and writes the report, edge cases (padding, sentinel date, non-ASCII names, amounts), source time zone, a changed amount, a deleted row and a truncated name each fail the right checks, non-zero exit on mismatch, delta mode, idempotent re-run, Oracle-dialect stand-in, canonical form | Source: H2 in DB2 or Oracle mode. Target: real PostgreSQL 18 (embedded) with the service's own `V1__baseline.sql` |
+| `migration` | 12: full load through the CLI passes and writes the report, edge cases (padding, sentinel date, non-ASCII names, amounts), source time zone, a changed amount, a deleted row and a truncated name each fail the right checks, non-zero exit on mismatch, delta mode, idempotent re-run, Oracle-dialect stand-in, canonical form | Source: H2 in Db2 or Oracle mode. Target: real PostgreSQL 18 (embedded) with the service's own `V1__baseline.sql` |
 | `web` | 6: renders the list, filters by status, shows a not-found message, runs triage and shows the proposal, approve and reject post the right body | jsdom, with `fetch` mocked |
 
 The migration tests apply the service's Flyway folder (`service/src/main/resources/db/migration`) directly, so the target schema exists in exactly one file.
@@ -104,7 +104,7 @@ The adapter needs no trust: the agent loop still filters the tools, validates ev
 
 The legacy schema is synthetic: `migration/src/main/resources/legacy/db2-schema.sql`, with the same tables in Oracle syntax in `oracle-schema.sql` and about 50 seeded cases in `seed.sql`.
 
-| Legacy (DB2) | Target (PostgreSQL) | Transform |
+| Legacy (Db2) | Target (PostgreSQL) | Transform |
 |---|---|---|
 | `APPLICANT.APPL_ID INTEGER` | `applicant.id bigint` | none |
 | `LAST_NM CHAR(30)`, `FIRST_NM CHAR(20)`, `ST_CD CHAR(2)` | `last_name varchar(30)`, `first_name varchar(20)`, `state_code char(2)` | trailing CHAR padding removed (leading spaces are data and kept) |
@@ -118,7 +118,7 @@ All of the rules live in `Transform.java`. Dates are read as `LocalDate`, not th
 
 ### Running it
 
-Build it with `./mvnw -pl migration package`, then put the PostgreSQL driver and your source database's JDBC driver on the class path. The DB2 (`com.ibm.db2:jcc`) and Oracle (`com.oracle.database.jdbc:ojdbc11`) drivers aren't included: get them under your own license terms.
+Build it with `./mvnw -pl migration package`, then put the PostgreSQL driver and your source database's JDBC driver on the class path. The Db2 (`com.ibm.db2:jcc`) and Oracle (`com.oracle.database.jdbc:ojdbc11`) drivers aren't included: get them under your own license terms.
 
 ```sh
 export SOURCE_DB_PASSWORD=...   # passwords only from the environment, never arguments
@@ -216,7 +216,7 @@ The web front end is on `http://localhost:8081`; nginx serves the built React ap
 |---|---|
 | The service runs against real PostgreSQL | Verified: every service test runs on PostgreSQL 18.6 (embedded binaries), with the Flyway migration applied, and one test asserts the engine version |
 | The target schema is the one the service owns | Verified: the migration tests apply the service's Flyway folder, not a copy |
-| The migration works against DB2 or Oracle | **Not verified.** The tests use H2 in DB2 and Oracle compatibility modes as a stand-in. H2 isn't DB2 or Oracle: CHAR comparison, date types, the Oracle `DATE` time part and driver behavior all differ. Run the tool against a copy of the real source before relying on it |
+| The migration works against Db2 or Oracle | **Not verified.** The tests use H2 in Db2 and Oracle compatibility modes as a stand-in. H2 isn't Db2 or Oracle: CHAR comparison, date types, the Oracle `DATE` time part and driver behavior all differ. Run the tool against a copy of the real source before relying on it |
 | The containers start | **Not verified** (see above) |
 | The agent works with a real model | **Not verified.** Only the deterministic stub runs. The guard tests use the stub and scripted replies |
 | The web front end works against the real API | Unit-tested with a mocked `fetch` only; the request shapes match the OpenAPI contract, but no end-to-end browser test runs |
