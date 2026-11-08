@@ -83,6 +83,8 @@ New work doesn't start in a book. It starts as a guide, an explainer, an evaluat
 3. **Proved:** reviewed, and validated in practice, for example in a lab, a pilot or a test tenant, with the evidence recorded on the page.
 4. **Published:** its findings are taken into the books. The page stays as the record of its sources, review and evidence.
 
+**Baseline** is a separate label, for the books, guides and developer workbooks at the baseline edition. A page marked Baseline is complete, checked against every other book, and approved by the workbook's editor. Changes to it are tracked against the baseline edition's date. Baseline does not claim independent peer review; a later "Peer reviewed" step is possible. It does not replace the four research statuses: a page with a `research-status` keeps its own steps. A gated page becomes Baseline only when the editor has approved it and it has not changed since; until then it stays Draft.
+
 Until it is published, every such page carries its status in a banner at the top, so it can't be mistaken for production guidance. Each page's **Status and review** section says what would move it to Proved.
 
 Until research is Proved, a book takes it only as a link: a line pointing the reader to the research page, with no new claims in the book. Where a book already carries design that rests on research still in review, the book says so. The contractor PIV path in Books 03, 04 and 07 is the current example: each place it appears carries a **Pending proof** note pointing to the research page's Proved criteria.

@@ -62,6 +62,65 @@ class Sections(unittest.TestCase):
         self.assertIn("has not been published in an edition yet", gr.revisions_section(UNIT, []))
 
 
+class Baseline(unittest.TestCase):
+    """The edition marked `baseline: true` sets every item to 2.0; later edits step from there."""
+    BASE = dict(EDITIONS[0])
+    EDS = [
+        edition("edition-2026.10", "2026-10-31", {"b02-identity": {"changes": ["First edition"]},
+                                                  "b04-access": {"changes": ["First edition"]}}),
+        edition("edition-2026.11", "2026-11-30", {"b04-access": {"changes": ["Rewritten (#1)"]}}),
+    ]
+    BASELINE = {**edition("edition-2026.12", "2026-12-31", {"b04-access": {"changes": ["Last fix (#2)"]}}),
+                "baseline": True, "release": "2.0"}
+    AFTER = edition("edition-2027.01", "2027-01-31", {"b02-identity": {"changes": ["Later (#3)"]}})
+
+    def versions(self, uid, eds=None):
+        return [(v, ed["id"]) for v, ed, _ in gr.versions(eds or self.EDS + [self.BASELINE, self.AFTER], uid)]
+
+    def test_an_item_the_baseline_edition_did_not_touch_still_gets_2_0(self):
+        self.assertEqual(self.versions("b05-devices")[0], ("2.0", "edition-2026.12"))
+        self.assertEqual(self.versions("guides/some-guide"), [("2.0", "edition-2026.12")])
+
+    def test_an_item_touched_afterwards_gets_2_1(self):
+        self.assertEqual(self.versions("b02-identity"),
+                         [("1.0", "edition-2026.10"), ("2.0", "edition-2026.12"), ("2.1", "edition-2027.01")])
+
+    def test_1_x_rows_are_unchanged(self):
+        with_base = gr.versions(self.EDS + [self.BASELINE], "b04-access")
+        plain = gr.versions(self.EDS, "b04-access")
+        self.assertEqual([(v, ed["id"], e) for v, ed, e in with_base[:2]], [(v, ed["id"], e) for v, ed, e in plain])
+        self.assertEqual([v for v, _, _ in with_base], ["1.0", "1.1", "2.0"])
+
+    def test_2_0_row_says_release_2_0_the_baseline_and_keeps_merged_changes(self):
+        unit = gr.Unit("b04-access", "book", gr.ROOT / "docs/books/b04-access/index.md", ["docs/books/b04-access"])
+        text = gr.revisions_section(unit, self.EDS + [self.BASELINE])
+        row = [line for line in text.splitlines() if line.startswith("| 2.0 |")][0]
+        self.assertIn("Release 2.0, the baseline: checked against every other book; Draft becomes Baseline", row)
+        self.assertIn("Last fix", row)
+        self.assertIn("**Version 2.0**", text)
+        self.assertEqual(len([line for line in text.splitlines() if line.startswith("| 1.")]), 2)
+
+    def test_without_a_release_name_the_row_still_says_baseline(self):
+        plain = {k: v for k, v in self.BASELINE.items() if k != "release"}
+        v = gr.versions(self.EDS + [plain], "b05-devices")
+        self.assertEqual(v[0][2]["changes"], [gr.BASELINE_CHANGE])
+
+    def test_nothing_changes_while_no_edition_is_marked_baseline(self):
+        for uid in ("b02-identity", "b04-access", "b05-devices"):
+            plain = [(v, ed["id"]) for v, ed, _ in gr.versions(self.EDS + [self.AFTER], uid)]
+            flagged = [(v, ed["id"]) for v, ed, _ in gr.versions(
+                [dict(e, baseline=False) for e in self.EDS + [self.AFTER]], uid)]
+            self.assertEqual(plain, flagged)
+            self.assertNotIn("2.0", [v for v, _ in plain])
+        self.assertEqual(gr.versions(self.EDS, "b05-devices"), [])
+
+    def test_archive_names_the_release(self):
+        text = gr.archive_section(self.EDS + [self.BASELINE], [], {})
+        self.assertIn("(Release 2.0, the baseline)", text)
+        self.assertIn("### Edition 2026.12 (Release 2.0, the baseline)", text)
+        self.assertNotIn("the baseline", gr.archive_section(self.EDS, [], {}))
+
+
 class Place(unittest.TestCase):
     SECTION = "<!-- revisions:start x -->\nNEW\n<!-- revisions:end -->\n"
 

@@ -262,6 +262,18 @@ def baseline(root: Path = ROOT) -> str:
     return ""
 
 
+def baseline_release(root: Path = ROOT) -> str:
+    """"Release 2.0" when the baseline edition's entry has `release: "2.0"`, else an empty string."""
+    record = root / "data/editions.yml"
+    if not record.exists():
+        return ""
+    for entry in re.split(r"^  - id: ", record.read_text(encoding="utf-8"), flags=re.M)[1:]:
+        if re.search(r"^    baseline: true\s*$", entry, re.M):
+            rel = re.search(r"^    release: [\"']?(\d+\.\d+)[\"']?\s*$", entry, re.M)
+            return f"Release {rel.group(1)}" if rel else ""
+    return ""
+
+
 def page_row(rel: str, changed: dict, verified: dict, gate: dict, root: Path = ROOT) -> tuple[str, str, str, str, str]:
     text = (root / rel).read_text(encoding="utf-8", errors="replace")
     meta, _ = front(text)
@@ -372,7 +384,8 @@ def build(pages: list[str], root: Path = ROOT) -> str:
         "",
         f"**{len(pages)} pages, {n_decks} narrated decks with their videos and {len(kits)} kits.**",
         "",
-        f"**Baseline:** {base if base else 'not set yet. The baseline edition sets one date for everything.'}",
+        "**Baseline:** " + (f"{baseline_release(root) + ', the baseline edition, ' if baseline_release(root) else ''}{base}"
+                            if base else "not set yet. The baseline edition sets one date for everything."),
         "",
         f"**Last verified:** {len(pages) - unverified} pages carry a verification date, and {unverified} don't. "
         f"{stale} pages changed after their last verification date.",
