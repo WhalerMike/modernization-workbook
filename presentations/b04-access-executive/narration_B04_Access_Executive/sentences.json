@@ -519,36 +519,36 @@
   ],
   [
    10.113,
-   11.475,
-   "Two or more cloud-only accounts, permanently Global Administrator, with phishing-resistant sign-in of their own, excluded only from blocking policies, and alerted on every use."
+   10.738,
+   "Two cloud-only accounts, permanently Global Administrator, with phishing-resistant sign-in of their own, excluded only from blocking policies, and alerted on every use."
   ],
   [
-   21.587,
+   20.85,
    11.787,
    "Using them is strict: two senior administrators together, only when pim is down and the problem can't wait, out within four hours, reviewed within a day, and tested every ninety days."
   ],
   [
-   33.375,
+   32.638,
    1.225,
    "Two decisions."
   ],
   [
-   34.6,
+   33.862,
    3.1,
    "Build and test them before any role goes eligible."
   ],
   [
-   37.7,
+   36.962,
    7.487,
    "And be honest in the security plan: nist expects emergency accounts to expire, so record these as a deviation."
   ],
   [
-   45.188,
+   44.45,
    3.575,
    "The see-so builds; the authorizing official accepts."
   ],
   [
-   48.763,
+   48.025,
    1.387,
    "Now, who decides."
   ]
@@ -608,31 +608,31 @@
   ],
   [
    2.65,
-   13.338,
-   "Every app gets a risk tier from the identity governance officer before anyone gets access, and one high-risk trait is enough to make it Tier 1: an application permission, sensitive data, an outside operator, or no owner."
+   15.338,
+   "Every app gets a risk tier from the identity governance officer before anyone gets access, and one high-risk trait is enough to make it R1, the highest application risk tier: an application permission, sensitive data, an outside operator, or no owner."
   ],
   [
-   15.988,
+   17.988,
    5.787,
    "The tier then decides who approves access, who approves consent, and how often it's reviewed."
   ],
   [
-   21.775,
+   23.775,
    7.0,
    "Consent is the riskiest request you'll see, because a grant covers the whole tenant at once and never expires."
   ],
   [
-   28.775,
-   7.25,
-   "So any application permission gets Tier 1 handling, and critical scopes need the governance officer and the see-so together."
+   30.775,
+   7.112,
+   "So any application permission gets R1 handling, and critical scopes need the governance officer and the see-so together."
   ],
   [
-   36.025,
-   7.188,
-   "The decision: tier every app before the first grant, and treat anything untiered or ownerless as Tier 1."
+   37.888,
+   7.037,
+   "The decision: tier every app before the first grant, and treat anything untiered or ownerless as R1."
   ],
   [
-   43.212,
+   44.925,
    2.175,
    "Next, apps as identities."
   ]

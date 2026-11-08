@@ -360,18 +360,18 @@
   ],
   [
    17.113,
-   6.625,
-   "One more thing: the target engine decides which conversion tools you can use, and for DB2 the options are narrow."
+   6.65,
+   "One more thing: the target engine decides which conversion tools you can use, and for Db2 the options are narrow."
   ],
   [
-   23.738,
+   23.762,
    5.9,
    "So forbid dual writes as a standard, and settle the engine before the wave plan commits to dates."
   ],
   [
-   29.637,
-   3.25,
-   "Now, the newest part of the architecture: AI."
+   29.663,
+   3.35,
+   "Now, the newest part of the architecture: A I."
   ]
  ],
  "11": [
@@ -597,16 +597,16 @@
   ],
   [
    23.738,
-   7.825,
-   "It has never run against a real DB2 or Oracle database, a real model, or production, and it has no sign-in."
+   7.85,
+   "It has never run against a real Db2 or Oracle database, a real model, or production, and it has no sign-in."
   ],
   [
-   31.562,
+   31.587,
    2.362,
    "So copy the pattern, not the claim."
   ],
   [
-   33.925,
+   33.95,
    3.388,
    "Next, the frameworks your architects already use."
   ]

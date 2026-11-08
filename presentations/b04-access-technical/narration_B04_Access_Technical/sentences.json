@@ -782,11 +782,16 @@
   ],
   [
    43.163,
+   7.213,
+   "Group names end in the risk tier, written R1, R2 or R3 so it can't be read as a privilege tier."
+  ],
+  [
+   50.375,
    4.925,
    "And privileged roles arrive through pim eligibility, never through a package."
   ],
   [
-   48.087,
+   55.3,
    2.987,
    "Next, keeping those grants honest over time."
   ]

@@ -254,21 +254,21 @@
   ],
   [
    18.163,
-   5.7,
-   "High-impact systems headed for a rewrite, and anything an owner disputes, get a deep study."
+   12.575,
+   "High-impact systems headed for a rewrite, high-impact systems with open dependency questions, applications that hold a master record with many outside exchanges, and anything an owner disputes, get a deep study."
   ],
   [
-   23.863,
+   30.738,
    2.987,
    "Everything else gets a decision for the cost of scoring."
   ],
   [
-   26.85,
+   33.725,
    5.263,
    "So thousands of applications get decided, and the real analysis goes where it counts."
   ],
   [
-   32.112,
+   38.987,
    2.188,
    "Next, the people who confirm it."
   ]
@@ -281,31 +281,31 @@
   ],
   [
    2.737,
-   9.575,
-   "Each application's mission owner and system owner get a fixed window to agree, or to contest with evidence, and a bad score gets corrected, not argued around."
+   8.338,
+   "Each application's owner gets a fixed window to agree, or to contest with evidence, and a bad score gets corrected, not argued around."
   ],
   [
-   12.312,
+   11.075,
    8.175,
    "What comes out is a decision record: the disposition, the scores, the rule that fired, the owner's agreement and a review date."
   ],
   [
-   20.488,
+   19.25,
    4.787,
    "That one record serves the architecture plan, capital planning and the auditor."
   ],
   [
-   25.275,
+   24.038,
    6.675,
    "And before you run it across the portfolio, calibrate it on a few dozen applications your architects already know well."
   ],
   [
-   31.95,
+   30.712,
    1.312,
    "That's Module 1."
   ],
   [
-   33.263,
+   32.025,
    1.188,
    "Now, the target."
   ]
@@ -588,30 +588,30 @@
   [
    7.487,
    4.412,
-   "Only A W S tools convert DB2 to PostgreSQL."
+   "Only A W S tools convert Db2 to PostgreSQL."
   ],
   [
    11.9,
    4.388,
-   "Microsoft's assistant targets only SQL Server and Azure SQL."
+   "Microsoft's assistant targets only sequel Server and Azure sequel."
   ],
   [
    16.288,
-   8.037,
-   "And the newer AI-assisted conversion sends your source code to a model, which puts that model's endpoint inside your migration's boundary."
+   8.162,
+   "And the newer A I-assisted conversion sends your source code to a model, which puts that model's endpoint inside your migration's boundary."
   ],
   [
-   24.325,
+   24.45,
    5.338,
    "Treat whatever it produces as a draft that a person reviews and the validation tests."
   ],
   [
-   29.663,
+   29.788,
    2.438,
    "So pick the engine with these limits in view."
   ],
   [
-   32.1,
+   32.225,
    1.725,
    "Next, proving the move."
   ]
@@ -1013,21 +1013,21 @@
   ],
   [
    14.575,
-   7.875,
-   "The migration has never run against a real DB2 or Oracle database, only a stand-in, and the containers were never started."
+   7.912,
+   "The migration has never run against a real Db2 or Oracle database, only a stand-in, and the containers were never started."
   ],
   [
-   22.45,
+   22.488,
    3.812,
    "So test against a copy of your real source before relying on it."
   ],
   [
-   26.262,
+   26.3,
    6.525,
    "A production version would add real sign-in, an agent identity, a secrets vault and signed builds."
   ],
   [
-   32.788,
+   32.825,
    1.762,
    "Next, the frameworks."
   ]

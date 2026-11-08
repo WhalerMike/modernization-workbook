@@ -26,11 +26,11 @@ The six criteria roll up into two axes: how much the mission needs the applicati
 
 ## Slide 7 — The decision table: seven rules, first match wins
 
-This is where scores become a proposed decision. Seven rules run in order, and the first match wins, which keeps the cheapest answer on top. Retire, retain, rehost and replatform come first, and only then refactor and rebuild. The seventh rule is what makes this work at scale. High-impact systems headed for a rewrite, and anything an owner disputes, get a deep study. Everything else gets a decision for the cost of scoring. So thousands of applications get decided, and the real analysis goes where it counts. Next, the people who confirm it.
+This is where scores become a proposed decision. Seven rules run in order, and the first match wins, which keeps the cheapest answer on top. Retire, retain, rehost and replatform come first, and only then refactor and rebuild. The seventh rule is what makes this work at scale. High-impact systems headed for a rewrite, high-impact systems with open dependency questions, applications that hold a master record with many outside exchanges, and anything an owner disputes, get a deep study. Everything else gets a decision for the cost of scoring. So thousands of applications get decided, and the real analysis goes where it counts. Next, the people who confirm it.
 
 ## Slide 8 — Owner review, the decision record and calibration
 
-The rubric proposes; owners confirm. Each application's mission owner and system owner get a fixed window to agree, or to contest with evidence, and a bad score gets corrected, not argued around. What comes out is a decision record: the disposition, the scores, the rule that fired, the owner's agreement and a review date. That one record serves the architecture plan, capital planning and the auditor. And before you run it across the portfolio, calibrate it on a few dozen applications your architects already know well. That's Module 1. Now, the target.
+The rubric proposes; owners confirm. Each application's owner gets a fixed window to agree, or to contest with evidence, and a bad score gets corrected, not argued around. What comes out is a decision record: the disposition, the scores, the rule that fired, the owner's agreement and a review date. That one record serves the architecture plan, capital planning and the auditor. And before you run it across the portfolio, calibrate it on a few dozen applications your architects already know well. That's Module 1. Now, the target.
 
 ## Slide 9 — Module 2: The target architecture and the data
 
@@ -62,7 +62,7 @@ Conversion tools do most of the work, but the dangerous conversions are the ones
 
 ## Slide 16 — The conversion tools as of October 2026
 
-Here are the conversion tools as of October 2026, as examples, not endorsements. Three facts shape your plan. Only A W S tools convert DB2 to PostgreSQL. Microsoft's assistant targets only SQL Server and Azure SQL. And the newer AI-assisted conversion sends your source code to a model, which puts that model's endpoint inside your migration's boundary. Treat whatever it produces as a draft that a person reviews and the validation tests. So pick the engine with these limits in view. Next, proving the move.
+Here are the conversion tools as of October 2026, as examples, not endorsements. Three facts shape your plan. Only A W S tools convert Db2 to PostgreSQL. Microsoft's assistant targets only SQL Server and Azure SQL. And the newer AI-assisted conversion sends your source code to a model, which puts that model's endpoint inside your migration's boundary. Treat whatever it produces as a draft that a person reviews and the validation tests. So pick the engine with these limits in view. Next, proving the move.
 
 ## Slide 17 — Proving nothing was lost: three checks, three blind spots
 
@@ -114,7 +114,7 @@ Three parts show the patterns most directly. The service's contract is checked a
 
 ## Slide 29 — What was verified on October 28, 2026, and what wasn't
 
-Here's what was actually verified, and what wasn't. The service, the contract and the migration checks all pass against a real PostgreSQL engine. The guardrails hold against a scripted model, though not a real one. But two things are unproven. The migration has never run against a real DB2 or Oracle database, only a stand-in, and the containers were never started. So test against a copy of your real source before relying on it. A production version would add real sign-in, an agent identity, a secrets vault and signed builds. Next, the frameworks.
+Here's what was actually verified, and what wasn't. The service, the contract and the migration checks all pass against a real PostgreSQL engine. The guardrails hold against a scripted model, though not a real one. But two things are unproven. The migration has never run against a real Db2 or Oracle database, only a stand-in, and the containers were never started. So test against a copy of your real source before relying on it. A production version would add real sign-in, an agent identity, a secrets vault and signed builds. Next, the frameworks.
 
 ## Slide 30 — TOGAF: the ADM phases, and the chapters that do them
 

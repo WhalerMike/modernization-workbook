@@ -25,24 +25,24 @@ Instead, keep one writer per
 table and replicate from it.
 
 6
-00:00:17.113 --> 00:00:21.700
+00:00:17.113 --> 00:00:21.717
 One more thing: the target engine decides
 which conversion tools you can use,
 
 7
-00:00:21.700 --> 00:00:23.738
-and for DB2 the options are narrow.
+00:00:21.717 --> 00:00:23.763
+and for Db2 the options are narrow.
 
 8
-00:00:23.738 --> 00:00:25.932
+00:00:23.763 --> 00:00:25.956
 So forbid dual writes as a standard,
 
 9
-00:00:25.932 --> 00:00:29.638
+00:00:25.956 --> 00:00:29.662
 and settle the engine before
 the wave plan commits to dates.
 
 10
-00:00:29.638 --> 00:00:32.950
+00:00:29.662 --> 00:00:33.070
 Now, the newest part of
 the architecture: AI.

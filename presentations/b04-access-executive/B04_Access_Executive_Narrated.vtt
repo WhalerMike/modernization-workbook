@@ -63,1125 +63,1128 @@ its owner and when it's needed.
 Let's start with how access gets decided.
 
 14
-00:00:44.950 --> 00:00:46.988
+00:00:44.510 --> 00:00:46.548
 Access used to be settled once.
 
 15
-00:00:46.988 --> 00:00:49.942
+00:00:46.548 --> 00:00:49.502
 You joined a group, your
 desk sat inside the network,
 
 16
-00:00:49.942 --> 00:00:53.037
+00:00:49.502 --> 00:00:52.597
 and every request after that
 was approved by default.
 
 17
-00:00:53.037 --> 00:00:55.912
+00:00:52.597 --> 00:00:55.472
 Federal policy doesn't
 accept that any more.
 
 18
-00:00:55.912 --> 00:00:59.626
+00:00:55.472 --> 00:00:59.186
 M-22-09 says every request gets evaluated,
 
 19
-00:00:59.626 --> 00:01:02.350
+00:00:59.186 --> 00:01:01.910
 and the network earns no trust on its own.
 
 20
-00:01:02.350 --> 00:01:06.575
+00:01:01.910 --> 00:01:06.135
 In Entra ID, the thing that
 evaluates is Conditional Access.
 
 21
-00:01:06.575 --> 00:01:07.900
+00:01:06.135 --> 00:01:07.460
 Its rules are simple.
 
 22
-00:01:07.900 --> 00:01:10.500
+00:01:07.460 --> 00:01:10.060
 Every policy that applies has to be met.
 
 23
-00:01:10.500 --> 00:01:12.188
+00:01:10.060 --> 00:01:11.748
 A block always wins.
 
 24
-00:01:12.188 --> 00:01:14.775
+00:01:11.748 --> 00:01:14.335
 And an exclusion overrides everything.
 
 25
-00:01:14.775 --> 00:01:19.687
+00:01:14.335 --> 00:01:19.247
 That last one is the dangerous rule,
 because each exclusion is a standing hole.
 
 26
-00:01:19.687 --> 00:01:23.666
+00:01:19.247 --> 00:01:23.226
 Only the emergency access
 accounts are excluded by design;
 
 27
-00:01:23.666 --> 00:01:27.238
+00:01:23.226 --> 00:01:26.798
 everything else needs an
 owner, a reason and an expiry.
 
 28
-00:01:27.238 --> 00:01:30.100
+00:01:26.798 --> 00:01:29.660
 Next, why the old habits survive.
 
 29
-00:01:33.850 --> 00:01:36.763
+00:01:33.410 --> 00:01:36.323
 Two habits survive almost every migration.
 
 30
-00:01:36.763 --> 00:01:38.962
+00:01:36.323 --> 00:01:38.522
 Inside the network means trusted.
 
 31
-00:01:38.962 --> 00:01:41.449
+00:01:38.522 --> 00:01:41.009
 And in the group means allowed, forever.
 
 32
-00:01:41.449 --> 00:01:45.287
+00:01:41.009 --> 00:01:44.847
 Policy replaces both, but it
 leans hard on directory data.
 
 33
-00:01:45.287 --> 00:01:49.453
+00:01:44.847 --> 00:01:49.013
 The program targets policies at
 groups built from attributes,
 
 34
-00:01:49.453 --> 00:01:53.538
+00:01:49.013 --> 00:01:53.098
 the way Group Policy once targeted
 organizational units (OUs).
 
 35
-00:01:53.538 --> 00:01:57.896
+00:01:53.098 --> 00:01:57.456
 So a user with an empty attribute
 simply falls outside the policy:
 
 36
-00:01:57.896 --> 00:01:59.913
+00:01:57.456 --> 00:01:59.473
 an exclusion nobody approved.
 
 37
-00:01:59.913 --> 00:02:02.435
+00:01:59.473 --> 00:02:01.995
 And group changes can
 take more than a day,
 
 38
-00:02:02.435 --> 00:02:06.738
+00:02:01.995 --> 00:02:06.298
 so urgent removals mean disabling
 the account and revoking sessions.
 
 39
-00:02:06.738 --> 00:02:12.378
+00:02:06.298 --> 00:02:11.938
 The decision for the CISO: baseline policies
 cover all users and exclude narrowly,
 
 40
-00:02:12.378 --> 00:02:17.038
+00:02:11.938 --> 00:02:16.598
 and no attribute-based policy is
 enforced until its data is verified.
 
 41
-00:02:17.038 --> 00:02:18.900
+00:02:16.598 --> 00:02:18.460
 HR owns those attributes.
 
 42
-00:02:18.900 --> 00:02:21.120
+00:02:18.460 --> 00:02:20.680
 Next, administrators.
 
 43
-00:02:24.870 --> 00:02:26.520
+00:02:24.430 --> 00:02:26.080
 Here's where it matters most.
 
 44
-00:02:26.520 --> 00:02:31.158
+00:02:26.080 --> 00:02:30.718
 A Global Administrator can rewrite the
 policies that protect everyone else.
 
 45
-00:02:31.158 --> 00:02:37.183
+00:02:30.718 --> 00:02:36.743
 If that role is always on, it's
 exposed all 8,760 hours of the year.
 
 46
-00:02:37.183 --> 00:02:40.698
+00:02:36.743 --> 00:02:40.258
 NSA and CISA rank weak
 separation of admin privilege
 
 47
-00:02:40.698 --> 00:02:43.745
+00:02:40.258 --> 00:02:43.305
 second among the
 misconfigurations they find.
 
 48
-00:02:43.745 --> 00:02:47.336
+00:02:43.305 --> 00:02:46.896
 And it's not only people; Midnight
 Blizzard used a forgotten
 
 49
-00:02:47.336 --> 00:02:50.633
+00:02:46.896 --> 00:02:50.193
 application with standing
 access to reach mailboxes.
 
 50
-00:02:50.633 --> 00:02:52.932
+00:02:50.193 --> 00:02:52.492
 A FIDO2 key proves who you are.
 
 51
-00:02:52.932 --> 00:02:55.858
+00:02:52.492 --> 00:02:55.418
 It doesn't limit what you
 can do, or for how long.
 
 52
-00:02:55.858 --> 00:02:58.517
+00:02:55.418 --> 00:02:58.077
 So the decision: every human admin role is
 
 53
-00:02:58.517 --> 00:03:01.645
+00:02:58.077 --> 00:03:01.205
 eligible and activated
 just in time through PIM.
 
 54
-00:03:01.645 --> 00:03:03.119
+00:03:01.205 --> 00:03:02.679
 The CISO sets that model,
 
 55
-00:03:03.119 --> 00:03:07.120
+00:03:02.679 --> 00:03:06.680
 and the authorizing official accepts
 whatever has to stay standing.
 
 56
-00:03:07.120 --> 00:03:09.210
+00:03:06.680 --> 00:03:08.770
 Next, what the rules ask.
 
 57
-00:03:12.960 --> 00:03:18.138
+00:03:12.520 --> 00:03:17.698
 NIST's AC-6 asks for only the access
 a task needs, with privileges reviewed
 
 58
-00:03:18.138 --> 00:03:23.747
+00:03:17.698 --> 00:03:23.307
 on a schedule and every privileged action
 logged, all in the Moderate baseline.
 
 59
-00:03:23.747 --> 00:03:27.950
+00:03:23.307 --> 00:03:27.510
 M-22-09 doesn't actually
 mandate time-bound privilege,
 
 60
-00:03:27.950 --> 00:03:29.936
+00:03:27.510 --> 00:03:29.496
 and it's often quoted as if it did.
 
 61
-00:03:29.936 --> 00:03:34.708
+00:03:29.496 --> 00:03:34.268
 CISA's maturity model is the clearest:
 it runs from permanent access
 
 62
-00:03:34.708 --> 00:03:39.398
+00:03:34.268 --> 00:03:38.958
 with a periodic review, to automated
 just-in-time, just-enough access.
 
 63
-00:03:39.398 --> 00:03:43.460
+00:03:38.958 --> 00:03:43.020
 Most estates with standing administrators
 are still at the first stage.
 
 64
-00:03:43.460 --> 00:03:48.098
+00:03:43.020 --> 00:03:47.658
 Microsoft's numbers are short: fewer
 than five Global Administrators.
 
 65
-00:03:48.098 --> 00:03:52.461
+00:03:47.658 --> 00:03:52.021
 The takeaway is that time is the
 dimension most estates never limited,
 
 66
-00:03:52.461 --> 00:03:56.673
+00:03:52.021 --> 00:03:56.233
 and limiting it gives you the review
 and log evidence as a by-product.
 
 67
-00:03:56.673 --> 00:03:58.950
+00:03:56.233 --> 00:03:58.510
 Now, the baseline itself.
 
 68
-00:04:02.700 --> 00:04:08.303
+00:04:02.260 --> 00:04:07.863
 The book's policy library is built to
 CISA's Binding Operational Directive 25-01,
 
 69
-00:04:08.303 --> 00:04:13.487
+00:04:07.863 --> 00:04:13.047
 which made a set of cloud configurations
 mandatory for civilian agencies.
 
 70
-00:04:13.487 --> 00:04:18.363
+00:04:13.047 --> 00:04:17.923
 Each required Entra item maps to a
 named policy: block legacy sign-in,
 
 71
-00:04:18.363 --> 00:04:20.800
+00:04:17.923 --> 00:04:20.360
 block high-risk users and sign-ins,
 
 72
-00:04:20.800 --> 00:04:25.588
+00:04:20.360 --> 00:04:25.148
 and phishing-resistant MFA for
 everyone and for privileged roles.
 
 73
-00:04:25.588 --> 00:04:27.400
+00:04:25.148 --> 00:04:26.960
 One choice needs your attention.
 
 74
-00:04:27.400 --> 00:04:33.025
+00:04:26.960 --> 00:04:32.585
 Microsoft recommends asking high-risk users
 to fix their own risk; CISA says block.
 
 75
-00:04:33.025 --> 00:04:37.250
+00:04:32.585 --> 00:04:36.810
 They can't both win, so in a
 directive-scoped tenant the program blocks,
 
 76
-00:04:37.250 --> 00:04:39.400
+00:04:36.810 --> 00:04:38.960
 and the help desk handles recovery.
 
 77
-00:04:39.400 --> 00:04:44.613
+00:04:38.960 --> 00:04:44.173
 The policies roll out in five gated waves,
 each clean for a week before the next.
 
 78
-00:04:44.613 --> 00:04:46.479
+00:04:44.173 --> 00:04:46.039
 The decision for the CISO:
 
 79
-00:04:46.479 --> 00:04:50.637
+00:04:46.039 --> 00:04:50.197
 adopt the library and its waves
 before wave one is enforced.
 
 80
-00:04:50.637 --> 00:04:52.650
+00:04:50.197 --> 00:04:52.210
 Next, the end state.
 
 81
-00:04:56.400 --> 00:04:59.986
+00:04:55.960 --> 00:04:59.546
 The end state is phishing-resistant
 MFA for everyone,
 
 82
-00:04:59.986 --> 00:05:02.512
+00:04:59.546 --> 00:05:02.072
 and the directive makes it mandatory.
 
 83
-00:05:02.512 --> 00:05:05.349
+00:05:02.072 --> 00:05:04.909
 Ordinary MFA is allowed only until then,
 
 84
-00:05:05.349 --> 00:05:08.787
+00:05:04.909 --> 00:05:08.347
 so every policy that
 accepts it is transitional.
 
 85
-00:05:08.787 --> 00:05:13.879
+00:05:08.347 --> 00:05:13.439
 The phishing-resistant methods are Windows
 Hello, FIDO2 passkeys and certificates,
 
 86
-00:05:13.879 --> 00:05:17.626
+00:05:13.439 --> 00:05:17.186
 and administrators get a stricter
 version on a separate device.
 
 87
-00:05:17.626 --> 00:05:21.416
+00:05:17.186 --> 00:05:20.976
 The end-state policy goes in on
 day one in report-only mode,
 
 88
-00:05:21.416 --> 00:05:24.400
+00:05:20.976 --> 00:05:23.960
 so the logs build a history
 of who'd be blocked.
 
 89
-00:05:24.400 --> 00:05:27.300
+00:05:23.960 --> 00:05:26.860
 Then enforcement follows
 measured readiness:
 
 90
-00:05:27.300 --> 00:05:31.538
+00:05:26.860 --> 00:05:31.098
 the program's gates are 95 percent
 of users registered and 90 percent
 
 91
-00:05:31.538 --> 00:05:35.850
+00:05:31.098 --> 00:05:35.410
 of devices compliant, and every
 not-ready exception carries an expiry.
 
 92
-00:05:35.850 --> 00:05:37.713
+00:05:35.410 --> 00:05:37.273
 The CISO owns that schedule.
 
 93
-00:05:37.713 --> 00:05:41.290
+00:05:37.273 --> 00:05:40.850
 Next, two platform behaviors
 that surprise people.
 
 94
-00:05:45.040 --> 00:05:48.504
+00:05:44.600 --> 00:05:48.064
 First, a policy that says
 Finance must use strong
 
 95
-00:05:48.504 --> 00:05:52.228
+00:05:48.064 --> 00:05:51.788
 MFA to reach payroll says
 nothing about anyone else.
 
 96
-00:05:52.228 --> 00:05:55.702
+00:05:51.788 --> 00:05:55.262
 If no policy applies, the
 platform issues a token.
 
 97
-00:05:55.702 --> 00:05:57.870
+00:05:55.262 --> 00:05:57.430
 So restricting an app takes a pair:
 
 98
-00:05:57.870 --> 00:06:02.591
+00:05:57.430 --> 00:06:02.151
 one policy that grants with conditions,
 and one that blocks everyone else.
 
 99
-00:06:02.591 --> 00:06:06.577
+00:06:02.151 --> 00:06:06.137
 Second, Microsoft creates some
 policies in your tenant itself.
 
 100
-00:06:06.577 --> 00:06:09.363
+00:06:06.137 --> 00:06:08.923
 They arrive in report-only
 mode and switch on at
 
 101
-00:06:09.363 --> 00:06:12.577
+00:06:08.923 --> 00:06:12.137
 least thirty days later,
 unless someone turns them off.
 
 102
-00:06:12.577 --> 00:06:14.865
+00:06:12.137 --> 00:06:14.425
 That's a change the agency didn't make.
 
 103
-00:06:14.865 --> 00:06:18.625
+00:06:14.425 --> 00:06:18.185
 So the decision: the identity
 team records, for each one,
 
 104
-00:06:18.625 --> 00:06:22.551
+00:06:18.185 --> 00:06:22.111
 whether to adopt it or supersede
 it with a library policy,
 
 105
-00:06:22.551 --> 00:06:26.478
+00:06:22.111 --> 00:06:26.038
 inside that thirty-day window,
 under the CISO's baseline.
 
 106
-00:06:26.478 --> 00:06:28.950
+00:06:26.038 --> 00:06:28.510
 Next, how privilege is tiered.
 
 107
-00:06:32.700 --> 00:06:35.850
+00:06:32.260 --> 00:06:35.410
 Privileged roles are tiered by
 what their holder could take over.
 
 108
-00:06:35.850 --> 00:06:41.371
+00:06:35.410 --> 00:06:40.931
 Tier 0 is the control plane: Global
 Administrator and the roles that grant roles,
 
 109
-00:06:41.371 --> 00:06:44.800
+00:06:40.931 --> 00:06:44.360
 reset admin credentials
 or change sign-in policy.
 
 110
-00:06:44.800 --> 00:06:48.700
+00:06:44.360 --> 00:06:48.260
 Tier 1 runs a whole service,
 like Exchange or Intune.
 
 111
-00:06:48.700 --> 00:06:54.788
+00:06:48.260 --> 00:06:54.348
 Tier 2 works inside a bounded population,
 scoped to administrative units (AUs).
 
 112
-00:06:54.788 --> 00:06:57.726
+00:06:54.348 --> 00:06:57.286
 Conditional Access
 Administrator is Tier 0,
 
 113
-00:06:57.726 --> 00:07:01.062
+00:06:57.286 --> 00:07:00.622
 because it can weaken the
 gate on elevation itself.
 
 114
-00:07:01.062 --> 00:07:06.076
+00:07:00.622 --> 00:07:05.636
 Exchange Administrator isn't labeled
 privileged, yet it can reach every mailbox.
 
 115
-00:07:06.076 --> 00:07:10.788
+00:07:05.636 --> 00:07:10.348
 And readers are tiered, because the
 security setup is a map for an attacker.
 
 116
-00:07:10.788 --> 00:07:14.804
+00:07:10.348 --> 00:07:14.364
 The decision for the CISO:
 approve each role's tier and gate,
 
 117
-00:07:14.804 --> 00:07:19.476
+00:07:14.364 --> 00:07:19.036
 and keep Global Administrators under
 five, before any role converts.
 
 118
-00:07:19.476 --> 00:07:21.090
+00:07:19.036 --> 00:07:20.650
 Next, the gate.
 
 119
-00:07:24.840 --> 00:07:28.400
+00:07:24.400 --> 00:07:27.960
 An eligible administrator asks
 for the role, gives a reason,
 
 120
-00:07:28.400 --> 00:07:33.340
+00:07:27.960 --> 00:07:32.900
 proves who they are again with a phishing-resistant
 sign-in, and waits for approval.
 
 121
-00:07:33.340 --> 00:07:38.652
+00:07:32.900 --> 00:07:38.212
 The role then lasts only the window:
 four hours at Tier 0, eight at Tier 1.
 
 122
-00:07:38.652 --> 00:07:43.328
+00:07:38.212 --> 00:07:42.888
 Eligibility itself expires too,
 so it has to be re-authorized.
 
 123
-00:07:43.328 --> 00:07:45.241
+00:07:42.888 --> 00:07:44.801
 The platform stops self-approval,
 
 124
-00:07:45.241 --> 00:07:49.478
+00:07:44.801 --> 00:07:49.038
 but it won't stop you making the approvers
 and the requesters the same group.
 
 125
-00:07:49.478 --> 00:07:52.570
+00:07:49.038 --> 00:07:52.130
 So approvers sit outside
 the tier they approve,
 
 126
-00:07:52.570 --> 00:07:55.028
+00:07:52.130 --> 00:07:54.588
 and Tier 0's sit in the security office.
 
 127
-00:07:55.028 --> 00:07:57.828
+00:07:54.588 --> 00:07:57.388
 And approvers have
 twenty-four hours, fixed.
 
 128
-00:07:57.828 --> 00:08:02.837
+00:07:57.388 --> 00:08:02.397
 The decision for the CISO: staff each
 approver group from outside its tier,
 
 129
-00:08:02.837 --> 00:08:05.503
+00:08:02.397 --> 00:08:05.063
 at least two people, sized for real hours.
 
 130
-00:08:05.503 --> 00:08:08.720
+00:08:05.063 --> 00:08:08.280
 Next, what can quietly undo all this.
 
 131
-00:08:12.470 --> 00:08:15.895
+00:08:12.030 --> 00:08:15.455
 A good gate can be undone
 quietly, in four ways.
 
 132
-00:08:15.895 --> 00:08:17.901
+00:08:15.455 --> 00:08:17.461
 If your premium licenses lapse,
 
 133
-00:08:17.901 --> 00:08:22.145
+00:08:17.461 --> 00:08:21.705
 eligible roles are removed and
 expiring grants become permanent.
 
 134
-00:08:22.145 --> 00:08:25.868
+00:08:21.705 --> 00:08:25.428
 Whoever can edit Conditional
 Access can weaken the gate,
 
 135
-00:08:25.868 --> 00:08:30.620
+00:08:25.428 --> 00:08:30.180
 so those roles sit in Tier 0, and policy
 changes need a fresh strong sign-in.
 
 136
-00:08:30.620 --> 00:08:34.575
+00:08:30.180 --> 00:08:34.135
 If approval is on but nobody's
 named, the default approvers are the
 
 137
-00:08:34.575 --> 00:08:38.970
+00:08:34.135 --> 00:08:38.530
 very admins you made eligible, and
 Microsoft documents that as a lockout.
 
 138
-00:08:38.970 --> 00:08:44.075
+00:08:38.530 --> 00:08:43.635
 And Microsoft retires the older
 PIM interface on October 28,
 
 139
-00:08:44.075 --> 00:08:46.832
+00:08:43.635 --> 00:08:46.392
 2026, so old scripts simply break.
 
 140
-00:08:46.832 --> 00:08:48.883
+00:08:46.392 --> 00:08:48.443
 The first one is a funding call.
 
 141
-00:08:48.883 --> 00:08:51.944
+00:08:48.443 --> 00:08:51.505
 The sponsor and CIO
 treat these licenses as
 
 142
-00:08:51.944 --> 00:08:55.007
+00:08:51.505 --> 00:08:54.567
 a control dependency,
 renewed without a gap.
 
 143
-00:08:55.007 --> 00:08:57.140
+00:08:54.567 --> 00:08:56.700
 Next, the one exception.
 
 144
-00:09:00.890 --> 00:09:05.565
+00:09:00.450 --> 00:09:05.125
 Every control that blocks an admin path
 also creates a way to lock yourself out.
 
 145
-00:09:05.565 --> 00:09:10.953
+00:09:05.125 --> 00:09:10.513
 So there's one standing exception:
 emergency access, or break-glass, accounts.
 
 146
-00:09:10.953 --> 00:09:15.385
-Two or more cloud-only accounts,
-permanently Global Administrator,
+00:09:10.513 --> 00:09:15.998
+Two cloud-only accounts, permanently Global
+Administrator, with phishing-resistant
 
 147
-00:09:15.385 --> 00:09:18.313
-with phishing-resistant
-sign-in of their own,
+00:09:15.998 --> 00:09:19.706
+sign-in of their own, excluded
+only from blocking policies,
 
 148
-00:09:18.313 --> 00:09:22.428
-excluded only from blocking
-policies, and alerted on every use.
+00:09:19.706 --> 00:09:21.251
+and alerted on every use.
 
 149
-00:09:22.428 --> 00:09:26.302
+00:09:21.251 --> 00:09:25.125
 Using them is strict: two
 senior administrators together,
 
 150
-00:09:26.302 --> 00:09:30.823
+00:09:25.125 --> 00:09:29.646
 only when PIM is down and the problem
 can't wait, out within four hours,
 
 151
-00:09:30.823 --> 00:09:34.214
+00:09:29.646 --> 00:09:33.037
 reviewed within a day, and
 tested every ninety days.
 
 152
-00:09:34.214 --> 00:09:35.440
+00:09:33.037 --> 00:09:34.263
 Two decisions.
 
 153
-00:09:35.440 --> 00:09:38.540
+00:09:34.263 --> 00:09:37.362
 Build and test them before
 any role goes eligible.
 
 154
-00:09:38.540 --> 00:09:40.895
+00:09:37.362 --> 00:09:39.717
 And be honest in the security plan:
 
 155
-00:09:40.895 --> 00:09:46.027
+00:09:39.717 --> 00:09:44.849
 NIST expects emergency accounts to
 expire, so record these as a deviation.
 
 156
-00:09:46.027 --> 00:09:49.603
+00:09:44.849 --> 00:09:48.425
 The CISO builds; the
 authorizing official accepts.
 
 157
-00:09:49.603 --> 00:09:51.350
+00:09:48.425 --> 00:09:50.160
 Now, who decides.
 
 158
-00:09:55.100 --> 00:09:57.562
+00:09:53.910 --> 00:09:56.372
 The principle is that
 deciding isn't doing.
 
 159
-00:09:57.562 --> 00:10:01.759
+00:09:56.372 --> 00:10:00.569
 Approvers don't make changes, the
 people who make changes don't approve,
 
 160
-00:10:01.759 --> 00:10:04.001
+00:10:00.569 --> 00:10:02.811
 and nobody approves their own access.
 
 161
-00:10:04.001 --> 00:10:07.225
+00:10:02.811 --> 00:10:06.035
 Here's the catch: Entra
 doesn't enforce any of that.
 
 162
-00:10:07.225 --> 00:10:10.102
+00:10:06.035 --> 00:10:08.912
 Application Administrator can grant most
 
 163
-00:10:10.102 --> 00:10:12.900
+00:10:08.912 --> 00:10:11.710
 kinds of consent and
 can even act as any app.
 
 164
-00:10:12.900 --> 00:10:15.081
+00:10:11.710 --> 00:10:13.891
 So if the help desk holds that role,
 
 165
-00:10:15.081 --> 00:10:18.975
+00:10:13.891 --> 00:10:17.785
 the rule that it never approves
 consent exists only on paper.
 
 166
-00:10:18.975 --> 00:10:20.312
+00:10:17.785 --> 00:10:19.122
 The fix is design.
 
 167
-00:10:20.312 --> 00:10:23.457
+00:10:19.122 --> 00:10:22.267
 Every request is triaged
 by the authority it needs,
 
 168
-00:10:23.457 --> 00:10:28.550
+00:10:22.267 --> 00:10:27.360
 and the help desk gets a custom role that
 manages app assignments and nothing else.
 
 169
-00:10:28.550 --> 00:10:31.459
+00:10:27.360 --> 00:10:30.269
 The decision for the
 identity governance officer:
 
 170
-00:10:31.459 --> 00:10:35.337
+00:10:30.269 --> 00:10:34.147
 narrow that role before the help
 desk takes its first access ticket.
 
 171
-00:10:35.337 --> 00:10:37.610
+00:10:34.147 --> 00:10:36.420
 Next, how apps are tiered.
 
 172
-00:10:41.360 --> 00:10:43.960
+00:10:40.170 --> 00:10:42.770
 For applications, risk sets the chain.
 
 173
-00:10:43.960 --> 00:10:49.160
+00:10:42.770 --> 00:10:47.983
 Every app gets a risk tier from the identity
 governance officer before anyone gets
 
 174
-00:10:49.160 --> 00:10:52.626
-access, and one high-risk trait
-is enough to make it Tier 1:
+00:10:47.983 --> 00:10:52.819
+access, and one high-risk trait is enough
+to make it R1, the highest application
 
 175
-00:10:52.626 --> 00:10:57.298
-an application permission, sensitive
-data, an outside operator, or no owner.
+00:10:52.819 --> 00:10:55.161
+risk tier: an application permission,
 
 176
-00:10:57.298 --> 00:10:59.999
-The tier then decides who approves access,
+00:10:55.161 --> 00:10:58.108
+sensitive data, an outside
+operator, or no owner.
 
 177
-00:10:59.999 --> 00:11:03.085
+00:10:58.108 --> 00:11:00.809
+The tier then decides who approves access,
+
+178
+00:11:00.809 --> 00:11:03.895
 who approves consent, and
 how often it's reviewed.
 
-178
-00:11:03.085 --> 00:11:05.838
+179
+00:11:03.895 --> 00:11:06.648
 Consent is the riskiest
 request you'll see,
 
-179
-00:11:05.838 --> 00:11:10.085
+180
+00:11:06.648 --> 00:11:10.895
 because a grant covers the whole
 tenant at once and never expires.
 
-180
-00:11:10.085 --> 00:11:13.112
-So any application permission
-gets Tier 1 handling,
-
 181
-00:11:13.112 --> 00:11:17.335
+00:11:10.895 --> 00:11:13.740
+So any application
+permission gets R1 handling,
+
+182
+00:11:13.740 --> 00:11:18.007
 and critical scopes need the governance
 officer and the CISO together.
 
-182
-00:11:17.335 --> 00:11:20.929
+183
+00:11:18.007 --> 00:11:21.657
 The decision: tier every
 app before the first grant,
 
-183
-00:11:20.929 --> 00:11:24.523
-and treat anything untiered
-or ownerless as Tier 1.
-
 184
-00:11:24.523 --> 00:11:27.070
-Next, apps as identities.
+00:11:21.657 --> 00:11:25.045
+and treat anything untiered
+or ownerless as R1.
 
 185
-00:11:30.820 --> 00:11:35.095
+00:11:25.045 --> 00:11:27.580
+Next, apps as identities.
+
+186
+00:11:31.330 --> 00:11:35.605
 Applications need the same lifecycle
 people get, including an end.
 
-186
-00:11:35.095 --> 00:11:36.420
+187
+00:11:35.605 --> 00:11:36.930
 Three facts drive it.
 
-187
-00:11:36.420 --> 00:11:38.271
+188
+00:11:36.930 --> 00:11:38.781
 Consent grants don't expire,
 
-188
-00:11:38.271 --> 00:11:42.133
+189
+00:11:38.781 --> 00:11:42.643
 and revoking one doesn't cancel
 the tokens already issued.
 
-189
-00:11:42.133 --> 00:11:46.767
+190
+00:11:42.643 --> 00:11:47.277
 Owners aren't just contacts: an owner
 can add a credential and become the app,
 
-190
-00:11:46.767 --> 00:11:49.533
+191
+00:11:47.277 --> 00:11:50.043
 so the list holds two
 named technical people.
 
-191
-00:11:49.533 --> 00:11:54.134
+192
+00:11:50.043 --> 00:11:54.644
 And stored secrets are the weak spot,
 so the order is a managed identity,
 
-192
-00:11:54.134 --> 00:11:57.307
+193
+00:11:54.644 --> 00:11:57.817
 then federation, then a
 short-lived certificate.
 
-193
-00:11:57.307 --> 00:12:03.245
+194
+00:11:57.817 --> 00:12:03.755
 Microsoft's recommended policy blocks new
 secrets and caps certificates at 180 days,
 
-194
-00:12:03.245 --> 00:12:06.171
+195
+00:12:03.755 --> 00:12:06.681
 and the program adopts
 it for every new app.
 
-195
-00:12:06.171 --> 00:12:09.101
+196
+00:12:06.681 --> 00:12:09.611
 The CISO sets that rule,
 and any exception for a
 
-196
-00:12:09.101 --> 00:12:12.258
+197
+00:12:09.611 --> 00:12:12.768
 secret needs the governance
 officer and the CISO.
 
-197
-00:12:12.258 --> 00:12:15.250
+198
+00:12:12.768 --> 00:12:15.760
 Next, the whole map of who decides.
 
-198
-00:12:19.000 --> 00:12:20.325
+199
+00:12:19.510 --> 00:12:20.835
 One decider per row.
 
-199
-00:12:20.325 --> 00:12:24.088
+200
+00:12:20.835 --> 00:12:24.598
 The CISO sets the access baseline
 and the privilege model.
 
-200
-00:12:24.088 --> 00:12:27.434
+201
+00:12:24.598 --> 00:12:27.944
 The identity governance
 officer tiers applications,
 
-201
-00:12:27.434 --> 00:12:31.301
+202
+00:12:27.944 --> 00:12:31.811
 decides consent above the lowest
 tier, and rules on exceptions.
 
-202
-00:12:31.301 --> 00:12:34.475
+203
+00:12:31.811 --> 00:12:34.985
 Application owners decide
 who gets into their apps.
 
-203
-00:12:34.475 --> 00:12:36.638
+204
+00:12:34.985 --> 00:12:37.148
 Business approvers confirm the need.
 
-204
-00:12:36.638 --> 00:12:40.088
+205
+00:12:37.148 --> 00:12:40.598
 Security operations can pull
 consent during an incident.
 
-205
-00:12:40.088 --> 00:12:42.187
+206
+00:12:40.598 --> 00:12:42.697
 The sponsor and CIO fund it.
 
-206
-00:12:42.187 --> 00:12:45.300
+207
+00:12:42.697 --> 00:12:45.810
 And the authorizing official
 owns residual risk.
 
-207
-00:12:45.300 --> 00:12:50.048
+208
+00:12:45.810 --> 00:12:50.558
 Exceptions run on a clock: six months
 at most, never renewed automatically,
 
-208
-00:12:50.048 --> 00:12:55.263
+209
+00:12:50.558 --> 00:12:55.773
 and one renewed more than twice goes up
 to the CISO and the authorizing official.
 
-209
-00:12:55.263 --> 00:12:58.629
+210
+00:12:55.773 --> 00:12:59.139
 The decision: any exception
 that leaves a control unmet
 
-210
-00:12:58.629 --> 00:13:02.362
+211
+00:12:59.139 --> 00:13:02.872
 with nothing compensating goes
 to the authorizing official.
 
-211
-00:13:02.362 --> 00:13:03.940
+212
+00:13:02.872 --> 00:13:04.450
 Now, how to run it.
 
-212
-00:13:07.690 --> 00:13:10.306
+213
+00:13:08.200 --> 00:13:10.816
 Policy decides whether
 a session goes ahead,
 
-213
-00:13:10.306 --> 00:13:13.628
+214
+00:13:10.816 --> 00:13:14.138
 not whether someone should
 still hold last year's access.
 
-214
-00:13:13.628 --> 00:13:14.790
+215
+00:13:14.138 --> 00:13:15.300
 That's governance.
 
-215
-00:13:14.790 --> 00:13:17.474
+216
+00:13:15.300 --> 00:13:17.984
 People request access through packages,
 
-216
-00:13:17.474 --> 00:13:22.527
+217
+00:13:17.984 --> 00:13:23.037
 with named approvers and an end date from
 day one; the program never uses never.
 
-217
-00:13:22.527 --> 00:13:26.712
+218
+00:13:23.037 --> 00:13:27.222
 Reviews run on a calendar set by
 risk: monthly for Tier 0 roles,
 
-218
-00:13:26.712 --> 00:13:31.064
+219
+00:13:27.222 --> 00:13:31.574
 quarterly for the rest, and guests
 quarterly by their sponsors.
 
-219
-00:13:31.064 --> 00:13:34.890
+220
+00:13:31.574 --> 00:13:35.400
 A mover loses the old access,
 and a leaver loses it all.
 
-220
-00:13:34.890 --> 00:13:37.736
+221
+00:13:35.400 --> 00:13:38.246
 One trap: reviewing an
 app doesn't remove the
 
-221
-00:13:37.736 --> 00:13:40.502
+222
+00:13:38.246 --> 00:13:41.012
 members of its groups,
 so review the groups.
 
-222
-00:13:40.502 --> 00:13:42.677
+223
+00:13:41.012 --> 00:13:43.187
 The executive call is licensing.
 
-223
-00:13:42.677 --> 00:13:46.561
+224
+00:13:43.187 --> 00:13:47.071
 Partial licensing governs some
 people and leaves the rest alone,
 
-224
-00:13:46.561 --> 00:13:50.516
+225
+00:13:47.071 --> 00:13:51.026
 so the sponsor and CIO license
 governance for the whole workforce.
 
-225
-00:13:50.516 --> 00:13:52.240
+226
+00:13:51.026 --> 00:13:52.750
 Next, evidence.
 
-226
-00:13:55.990 --> 00:13:58.140
+227
+00:13:56.500 --> 00:13:58.650
 Finally, how decisions are held.
 
-227
-00:13:58.140 --> 00:14:02.090
+228
+00:13:58.650 --> 00:14:02.600
 Every policy and setting lives
 as a file in a repository.
 
-228
-00:14:02.090 --> 00:14:05.790
+229
+00:14:02.600 --> 00:14:06.300
 A change is a reviewed request,
 and its author can't approve it.
 
-229
-00:14:05.790 --> 00:14:09.215
+230
+00:14:06.300 --> 00:14:09.725
 New policies run in report-only
 for at least a week.
 
-230
-00:14:09.215 --> 00:14:13.577
+231
+00:14:09.725 --> 00:14:14.087
 The pipeline has no stored secret,
 and it's treated as Tier 0.
 
-231
-00:14:13.577 --> 00:14:18.273
+232
+00:14:14.087 --> 00:14:18.783
 Emergency edits in the portal are allowed,
 but they're back in code within a day,
 
-232
-00:14:18.273 --> 00:14:22.602
+233
+00:14:18.783 --> 00:14:23.112
 and a monitor checks the tenant
 against the repository every six hours.
 
-233
-00:14:22.602 --> 00:14:24.065
+234
+00:14:23.112 --> 00:14:24.575
 Then keep the evidence.
 
-234
-00:14:24.065 --> 00:14:26.923
+235
+00:14:24.575 --> 00:14:27.433
 Entra holds its logs for only thirty days,
 
-235
-00:14:26.923 --> 00:14:31.377
+236
+00:14:27.433 --> 00:14:31.887
 so the program keeps a year, and
 three for consent and break-glass.
 
-236
-00:14:31.377 --> 00:14:33.169
+237
+00:14:31.887 --> 00:14:33.679
 The decision for the CISO:
 
-237
-00:14:33.169 --> 00:14:37.403
+238
+00:14:33.679 --> 00:14:37.913
 make the repository the only normal
 path, from the first policy.
 
-238
-00:14:37.403 --> 00:14:39.030
+239
+00:14:37.913 --> 00:14:39.540
 Let's pull it together.
 
-239
-00:14:42.780 --> 00:14:44.355
+240
+00:14:43.290 --> 00:14:44.865
 So, the decisions.
 
-240
-00:14:44.355 --> 00:14:47.590
+241
+00:14:44.865 --> 00:14:48.100
 The CISO sets the baseline:
 all users covered,
 
-241
-00:14:47.590 --> 00:14:53.549
+242
+00:14:48.100 --> 00:14:54.059
 attribute-based policies only on verified
 data, the library adopted before wave one,
 
-242
-00:14:53.549 --> 00:14:57.380
+243
+00:14:54.059 --> 00:14:57.890
 and phishing-resistant MFA
 in report-only from day one.
 
-243
-00:14:57.380 --> 00:15:02.456
+244
+00:14:57.890 --> 00:15:02.966
 The CISO also owns the privilege model:
 every admin role eligible, tiers approved,
 
-244
-00:15:02.456 --> 00:15:06.861
+245
+00:15:02.966 --> 00:15:07.371
 approvers from outside the tier, and
 break-glass built and tested first,
 
-245
-00:15:06.861 --> 00:15:10.743
+246
+00:15:07.371 --> 00:15:11.253
 with the authorizing official
 accepting what stays standing.
 
-246
-00:15:10.743 --> 00:15:14.655
+247
+00:15:11.253 --> 00:15:15.165
 The sponsor and CIO fund
 the licenses, without a gap.
 
-247
-00:15:14.655 --> 00:15:19.655
+248
+00:15:15.165 --> 00:15:20.165
 The identity governance officer narrows
 the help desk role and tiers every app.
 
-248
-00:15:19.655 --> 00:15:23.305
+249
+00:15:20.165 --> 00:15:23.815
 Uncompensated exceptions go
 to the authorizing official.
 
-249
-00:15:23.305 --> 00:15:26.180
+250
+00:15:23.815 --> 00:15:26.690
 And the repository becomes the only path.
 
-250
-00:15:26.180 --> 00:15:29.330
+251
+00:15:26.690 --> 00:15:29.840
 Write the policy down,
 test it, prove it ran.
 
-251
-00:15:29.330 --> 00:15:33.380
+252
+00:15:29.840 --> 00:15:33.890
 Access and Privilege has the
 detail, every claim footnoted.
 
-252
-00:15:33.380 --> 00:15:34.210
+253
+00:15:33.890 --> 00:15:34.720
 Thank you.
