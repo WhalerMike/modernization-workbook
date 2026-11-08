@@ -241,7 +241,7 @@ Two lessons. The gap is planning, not technology: GAO's key elements are milesto
       "A-130: a disposition for every system in the EA",
     ] });
   callout(s, "Unit", 5.35, 1.15, "FaCubes", HEX.red, "The unit of decision is the application: ",
-    "it has a mission owner, a data set, a code base, dependencies and an authorization boundary. A program is too coarse, and a platform treats a hundred applications as one.");
+    "it has an application owner, a data set, a code base, dependencies and an authorization boundary. A program is too coarse, and a platform treats a hundred applications as one.");
   sources(s, "Sources: GAO-25-107795; Martin Fowler, “Strangler Fig” (2024); OMB Circular A-130 §5.a and §5.d; FAR 48 CFR 39.103 (FAC 2026-01). Book 18, Chapter 01.");
   narrate(s,
 `The intuitive answer to an aging portfolio is a replacement program: design the new system, build it, switch over. GAO's work keeps finding such efforts running for years, restarted or abandoned, some taking more than a decade partly because they weren't split into manageable segments.
@@ -446,7 +446,7 @@ There are four gates: disposition, design review, the pull request, and release.
       "A contract test checks the OpenAPI file both ways",
       "Migration tests break one value; the checks catch it",
       "Agent guardrails hold against a misbehaving stub",
-      "Not verified: real DB2 or Oracle, a real model, containers",
+      "Not verified: real Db2 or Oracle, a real model, containers",
     ] });
   callout(s, "Illus", 5.3, 1.2, "FaLightbulb", HEX.amber, "Illustrative, not production: ",
     "synthetic data and no authentication. It runs Spring Boot 4.1.2 and React 19.3.1, but compiles for Java 21 and uses OpenAPI 3.1, short of the Chapter 03 targets.");

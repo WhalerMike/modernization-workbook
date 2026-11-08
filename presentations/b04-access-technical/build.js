@@ -392,7 +392,7 @@ The opposite failure is quieter. A policy that includes a dynamic group misses e
   const s = D.content("Module 2 — Rollout and exceptions", "Break-glass: the one standing exception");
   tag(s, "Who");
   panel(s, "Standard", 0.6, 1.5, 6.0, 3.8, HEX.tealTint, HEX.teal, "The standard", [
-    "Two or more cloud-only accounts on *.onmicrosoft.com; not synced, federated or tied to a person",
+    "Two cloud-only accounts on *.onmicrosoft.com; not synced, federated or tied to a person",
     "Permanent active Global Administrator: with service principals that can't activate, the only standing assignments",
     "Phishing-resistant: a FIDO2 passkey or certificate-based authentication, unlike normal admins' methods",
     "Excluded from blocking and restricting policies through one group",
@@ -410,7 +410,7 @@ The opposite failure is quieter. A policy that includes a dynamic group misses e
   sources(s, "Sources: Microsoft Learn — emergency access accounts, mandatory MFA; NIST SP 800-53 AC-2(2). Book 04, Ch. 02, 04, 07 and 08.");
   notes(s, `Every control that blocks an administrative path also creates a way to lock the agency out of its own tenant: federation down, every administrator's MFA device unavailable, a misconfigured policy, or every privileged role eligible with no approver able to act. Emergency access accounts, break-glass, are the answer, and they're the only standing privilege the program accepts by design.
 
-The standard is on the left. Two or more cloud-only accounts on the tenant's onmicrosoft dot com domain, neither synchronized nor federated, and not tied to one person or an employee's phone. Permanent active Global Administrator; together with service principals that can't perform an activation, they're the only standing active assignments in the tenant. Phishing-resistant authentication, a FIDO2 passkey or certificate-based authentication, using methods different from the normal administrator accounts. The older pattern of a password in sealed envelopes is superseded, because a password alone can no longer reach the admin portals where Microsoft's mandatory MFA applies. Excluded from every policy that blocks or restricts sign-in, through one dedicated group. Validated at least every ninety days by signing in and performing an administrative task.
+The standard is on the left. Two cloud-only accounts on the tenant's onmicrosoft dot com domain, neither synchronized nor federated, and not tied to one person or an employee's phone. Permanent active Global Administrator; together with service principals that can't perform an activation, they're the only standing active assignments in the tenant. Phishing-resistant authentication, a FIDO2 passkey or certificate-based authentication, using methods different from the normal administrator accounts. The older pattern of a password in sealed envelopes is superseded, because a password alone can no longer reach the admin portals where Microsoft's mandatory MFA applies. Excluded from every policy that blocks or restricts sign-in, through one dedicated group. Validated at least every ninety days by signing in and performing an administrative task.
 
 On the right is how the build watches them. Report-only policies don't need the exclusion, so CA090 is the one policy that records their sign-ins. Alerts match the accounts' object IDs, because their names deliberately don't reveal their purpose. Every use is a critical incident until a post-use review closes it. And because NIST's AC-2(2) expects emergency accounts to be disabled automatically after a defined period, the system security plan records these as a documented deviation, with monitoring, post-use review and the ninety-day validation as compensating controls.
 
@@ -602,10 +602,10 @@ Conditional Access decides whether a session may proceed, and PIM decides whethe
 {
   const s = D.content("Module 4 — Governance", "Access packages: who requests, who approves, how long");
   tag(s, "What");
-  table(s, ["Tier", "Approval stages", "Deadline", "Expiry", "Extension"], [
-    [k("Tier 1", HEX.red), c("Application owner (alternate: backup owner), then the identity governance office"), c("5 days"), c("90 days"), c("With approval")],
-    [k("Tier 2"), c("Application owner (alternate: backup owner)"), c("5 days"), c("180 days"), c("With approval")],
-    [k("Tier 3", HEX.teal), c("Department owner: the requestor's manager, with a fallback approver"), c("7 days"), c("365 days"), c("No approval, while in scope")],
+  table(s, ["Risk tier", "Approval stages", "Deadline", "Expiry", "Extension"], [
+    [k("R1", HEX.red), c("Application owner (alternate: backup owner), then the identity governance office"), c("5 days"), c("90 days"), c("With approval")],
+    [k("R2"), c("Application owner (alternate: backup owner)"), c("5 days"), c("180 days"), c("With approval")],
+    [k("R3", HEX.teal), c("Department owner: the requestor's manager, with a fallback approver"), c("7 days"), c("365 days"), c("No approval, while in scope")],
     [k("External", HEX.amber), c("A separate, stricter policy for partner users"), c("—"), c("365 days at most"), c("Sponsor approval")],
   ], [1.1, 3.25, 1.0, 1.15, 1.35], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.62, 0.5, 0.62, 0.5] });
   txt(s, "Platform", "Platform: one to three stages; one approver decides each stage; a denial or timeout ends the request; no one approves their own; a package can't change catalogs.",
@@ -613,17 +613,17 @@ Conditional Access decides whether a session may proceed, and PIM decides whethe
   panel(s, "Substrate", 8.7, 1.5, 4.05, 3.55, HEX.navyTint, HEX.navy, "The group substrate", [
     "Apps are assigned to groups, never to users",
     "No nesting: assignment ignores it, and reviews see but can't remove it",
-    "APP-<App>-<Role>-<Tier>, e.g. APP-PAYROLL-ADMINS-T1",
-    "Dynamic only for Tier 3, Tier 2 with office approval, never Tier 1",
+    "APP-<AppShortName>-<AccessRole>-<RiskTier>, e.g. APP-PAYROLL-ADMINS-R1",
+    "Dynamic only for R3, R2 with office approval, never R1",
   ], 12);
   callout(s, "SoD", 5.3, 1.15, "FaPeopleArrows", HEX.teal, "Separation of duties: ",
     "incompatible packages must list each other, because the check is one-way. An exception becomes a combined package with a shorter expiry, more reviews and an exception-register entry.");
   sources(s, "Sources: Microsoft Learn — entitlement management, approval and lifecycle settings, separation of duties, group assignment, external access. Book 04, Ch. 09.");
   notes(s, `Entitlement management automates access requests, assignments, reviews and expiration for groups, applications and SharePoint sites, for internal and external users. It has three building blocks. A catalog is the container and the unit of delegation; the program creates one per business domain, with the domain's business owner as catalog owner, and doesn't use the automatic General catalog. An access package bundles resource roles. And a policy says who may request, who approves, and when the assignment ends.
 
-The approval chains follow the application's risk tier, as design positions. Tier 3: the department owner, which is the requestor's manager with a fallback approver for anyone with no manager in the directory, seven days to decide, and a one-year expiry that extends without approval while the user is still in scope. Tier 2: the application owner, with the backup owner as alternate, five days, a hundred and eighty days. Tier 1 adds a second stage, the identity governance office, and expires in ninety days. The earlier procedure only notified the office of Tier 1 grants; a second stage costs a few hours and leaves an approval record instead of an email. External users get a separate, stricter policy and at most a year. The program never uses "never."
+The approval chains follow the application's risk tier, as design positions. R3: the department owner, which is the requestor's manager with a fallback approver for anyone with no manager in the directory, seven days to decide, and a one-year expiry that extends without approval while the user is still in scope. R2: the application owner, with the backup owner as alternate, five days, a hundred and eighty days. R1 adds a second stage, the identity governance office, and expires in ninety days. The earlier procedure only notified the office of R1 grants; a second stage costs a few hours and leaves an approval record instead of an email. External users get a separate, stricter policy and at most a year. The program never uses "never."
 
-Underneath is the group substrate. Applications are assigned to groups, never to users directly. Nested groups are prohibited, because group assignment to an application gives access only to direct members, and a group review shows nested users but can only remove direct members. And names follow one convention, so a group's purpose and tier can be read from it.
+Underneath is the group substrate. Applications are assigned to groups, never to users directly. Nested groups are prohibited, because group assignment to an application gives access only to direct members, and a group review shows nested users but can only remove direct members. And names follow one convention, application, access role and risk tier, with the risk tier written R1, R2 or R3 so it can't be read as a privilege tier. A group's purpose and risk tier can be read from its name.
 
 Separation of duties: a package can list incompatible packages and groups, but the check is one-way, so each package must list the other. A legitimate exception becomes its own combined package with a shorter expiry and more frequent reviews. And privileged access arrives through PIM eligibility, never through a package that grants an active role.`, "Chapter 09 — Access Governance: Packages, Reviews and Lifecycle.");
 }
@@ -635,9 +635,9 @@ Separation of duties: a package can list incompatible packages and groups, but t
   table(s, ["Review target", "Cadence", "Reviewers", "No response", "Auto-apply"], [
     [k("PIM roles, Tier 0", HEX.red), c("Monthly"), c("PIM-Approvers-T0"), c("Remove access"), yes("Yes")],
     [k("PIM roles, other tiers"), c("Quarterly"), c("Role owner with approvers or security office"), c("Remove access"), yes("Yes")],
-    [k("Tier 1 app groups"), c("Quarterly; two stages of 7 days"), c("Manager, then app owner"), c("No change; escalate"), yes("Yes")],
-    [k("Tier 2 app groups"), c("Semiannual"), c("Application owner"), c("No change; escalate"), yes("Yes")],
-    [k("Tier 3 app groups"), c("Annual"), c("App or department owner"), c("No change"), yes("Yes")],
+    [k("R1 app groups"), c("Quarterly; two stages of 7 days"), c("Manager, then app owner"), c("No change; escalate"), yes("Yes")],
+    [k("R2 app groups"), c("Semiannual"), c("Application owner"), c("No change; escalate"), yes("Yes")],
+    [k("R3 app groups"), c("Annual"), c("App or department owner"), c("No change"), yes("Yes")],
     [k("Guests", HEX.amber), c("Quarterly"), c("Sponsors"), c("Remove access"), yes("Yes")],
   ], [2.15, 1.65, 2.0, 1.45, 0.9], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.45, 0.55, 0.55, 0.45, 0.45, 0.45] });
   panel(s, "Bite", 8.4, 1.5, 4.35, 3.4, HEX.amberTint, HEX.amber, "Rules that make reviews bite", [
@@ -651,7 +651,7 @@ Separation of duties: a package can list incompatible packages and groups, but t
   sources(s, "Sources: Microsoft Learn — create and complete access reviews, review history, access reviews FAQ, PIM role reviews. Book 04, Ch. 08 and 09; App. B.");
   notes(s, `Access reviews are recurring attestation that each person still needs what they hold. Each instance captures a snapshot of access when it starts, and changes during a review show up in the next cycle.
 
-The schedule is set by risk. Privileged roles are reviewed in PIM, monthly for Tier 0 by the Tier 0 approver group, and quarterly for the other tiers, with removal if nobody responds. Tier 1 application groups are reviewed quarterly in two stages of seven days: the manager first, then the application owner for everyone the manager approved or marked don't know. That replaces the old manual escalation step. Tier 2 groups are semiannual and Tier 3 annual, by the application or department owner. Guests are reviewed quarterly by their sponsors, and denied guests are blocked and then removed.
+The schedule is set by risk. Privileged roles are reviewed in PIM, monthly for Tier 0 by the Tier 0 approver group, and quarterly for the other tiers, with removal if nobody responds. R1 application groups are reviewed quarterly in two stages of seven days: the manager first, then the application owner for everyone the manager approved or marked don't know. That replaces the old manual escalation step. R2 groups are semiannual and R3 annual, by the application or department owner. Guests are reviewed quarterly by their sponsors, and denied guests are blocked and then removed.
 
 Four rules make reviews bite. First, review the groups, not the applications. Microsoft notes that reviewing an application that uses group assignment doesn't remove the members of those groups; they keep their access through the group. Second, whenever reviewers are managers or group owners, add a fallback reviewer for users with no manager and groups with no owner. Third, choose the no-response default deliberately. Microsoft warns that combining remove access with auto-apply can revoke all access to a resource if reviewers don't respond. So the program sets remove only where an unreviewed grant is riskier than a lost one, privileged roles and guests, and no change with escalation for business applications, where a mass removal would stop work. Fourth, justification on every decision, and no bulk decisions on privileged reviews. The service can't prevent a bulk action, so the history is checked for one reviewer recording many identical decisions within minutes.
 
@@ -664,7 +664,7 @@ The records: results download as a CSV, and review history reports stay download
   tag(s, "How");
   table(s, ["Event", "Access tasks in Lifecycle Workflows"], [
     [k("Joiner"), c("Request the onboarding and department packages; never add a new hire directly to an application group")],
-    [k("Mover", HEX.amber), c("Remove the old department's packages, request the new one, send the rest to review; 15-day default grace, zero for Tier 1 and privileged")],
+    [k("Mover", HEX.amber), c("Remove the old department's packages, request the new one, send the rest to review; 15-day default grace, zero for R1 and privileged")],
     [k("Leaver", HEX.red), c("Cancel pending requests, remove all package assignments, remove from all groups and teams, revoke refresh tokens")],
     [k("Inactivity", HEX.slate), c("Offboard inactive users as a backstop; Microsoft's templates default to 90 days, then 120 to offboard")],
   ], [1.35, 5.35], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.6, 0.6, 0.6, 0.6] });
@@ -681,7 +681,7 @@ The records: results download as a CSV, and review history reports stay download
   sources(s, "Sources: Microsoft Learn — Lifecycle Workflows tasks, templates and conditions; external users; guest lifecycle; ID Governance licensing. Book 04, Ch. 09.");
   notes(s, `The third mechanism is lifecycle events. The HR-driven lifecycle itself, from attributes to joiner, mover and leaver design, belongs to Book 03. This chapter covers only the Lifecycle Workflows tasks that change access, because those tasks are where mover and leaver problems turn into access decisions.
 
-A joiner gets the onboarding package and the department package, never a direct add to an application group. A move is a re-derivation, not an additional grant: remove the previous department's packages, request the new department's package, and send everything the person still holds outside packages to a review. Microsoft's built-in job profile change template does the first two steps, and its remove-all-assignments task defaults to fifteen days after the trigger, a grace period for handover. The program keeps that grace for standard access and sets it to zero for Tier 1 and privileged access. A leaver's workflow cancels pending requests, removes every package assignment, removes the user from all groups and teams, and revokes refresh tokens. And an inactivity workflow is the backstop for accounts whose HR record never produced a leaver event. A tenant can have fifty workflows, so spend them on events, not on applications.
+A joiner gets the onboarding package and the department package, never a direct add to an application group. A move is a re-derivation, not an additional grant: remove the previous department's packages, request the new department's package, and send everything the person still holds outside packages to a review. Microsoft's built-in job profile change template does the first two steps, and its remove-all-assignments task defaults to fifteen days after the trigger, a grace period for handover. The program keeps that grace for standard access and sets it to zero for R1 and privileged access. A leaver's workflow cancels pending requests, removes every package assignment, removes the user from all groups and teams, and revokes refresh tokens. And an inactivity workflow is the backstop for accounts whose HR record never produced a leaver event. A tenant can have fifty workflows, so spend them on events, not on applications.
 
 Guests are where unreviewed access piles up fastest, because nobody's HR record ends when a partner project does. Four layers. Invite through a package, so every guest arrives with an approver, a sponsor and an expiry. When a governed guest loses their last assignment, they're blocked and, by default, removed after thirty days; ungoverned guests stay in the tenant indefinitely, so the program marks existing guests with assignments as governed. Sponsors review guests quarterly. And guest lifecycle policies, still in preview, will be adopted when they're generally available.
 
@@ -740,7 +740,7 @@ The program's reference choice minimizes write paths while keeping drift detecti
   txt(s, "Rules", [
     "Two people per change; Tier 0 objects need a second approver from security",
     "Checks before merge: schema, emergency exclusion, safety rules, plan output attached",
-    "Report-only first; enable in a second pull request citing the impact review",
+    "Report-only first, except c1 and c2, which deploy On; enable in a second pull request citing the impact review",
     "The pipeline signs in by workload identity federation, no secret: a Tier 0 asset",
     "Emergency portal change under PIM, back-ported within one business day",
     "Rollback is a revert, with the same record as the change",
@@ -759,7 +759,7 @@ The program's reference choice minimizes write paths while keeping drift detecti
   sources(s, "Sources: Microsoft Learn — Tenant Governance configuration management, APIs, licensing, FAQ; FedRAMP 20x change management KSIs. Book 04, Ch. 10.");
   notes(s, `The repository is the only normal path to production. Six change-control rules, which together are how the program meets CM-3 and CM-5 for the identity plane and FedRAMP 20x's change-management indicators.
 
-One, two people per change: the author of a pull request can't approve it, and Tier 0 objects, such as emergency exclusions and Tier 0 PIM settings, need a second approver from the security team. Two, checks before merge: schema validation, the emergency exclusion check, the safety rules, and a plan or dry run attached to the pull request. Three, report-only first; a policy runs at least a week against the sign-in logs and is enabled in a second pull request that cites the impact review. Four, the pipeline signs in as a service principal with workload identity federation, no secret. It can change every access policy in the tenant, so it's a Tier 0 asset, with two owners, quarterly permission reviews and a workload identity policy restricting where it signs in from. Five, emergency changes in the portal happen under a PIM activation with a ticket, and are back-ported within one business day; until then the drift monitor reports them, which is the point. Six, rollback is a revert, so it has the same record as the change.
+One, two people per change: the author of a pull request can't approve it, and Tier 0 objects, such as emergency exclusions and Tier 0 PIM settings, need a second approver from the security team. Two, checks before merge: schema validation, the emergency exclusion check, the safety rules, and a plan or dry run attached to the pull request. Three, report-only first; a policy runs at least a week against the sign-in logs and is enabled in a second pull request that cites the impact review. The exception is the two authentication-context policies, PIM-Activation-c1 and ProtectedActions-c2: report-only doesn't count for them, so each is deployed On before its context is selected. Four, the pipeline signs in as a service principal with workload identity federation, no secret. It can change every access policy in the tenant, so it's a Tier 0 asset, with two owners, quarterly permission reviews and a workload identity policy restricting where it signs in from. Five, emergency changes in the portal happen under a PIM activation with a ticket, and are back-ported within one business day; until then the drift monitor reports them, which is the point. Six, rollback is a revert, so it has the same record as the change.
 
 Drift detection catches what code can't stop, because a Global Administrator can still change the tenant directly. The tenant monitor's limits shape how it's used. It runs every six hours, fixed. Snapshots expire after seven days, resolved drifts are deleted thirty days after they're resolved, and updating a baseline deletes that monitor's earlier results. Those are evidence rules in disguise: export every result before changing a baseline.
 
