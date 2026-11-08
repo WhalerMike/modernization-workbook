@@ -9,13 +9,13 @@ Chapters
 0:00 Start Here: Where Modernization Begins
 0:31 Four reasons to start now
 1:00 The clocks nobody can move
-1:41 Everything decides on identity
-2:16 HR is being rebuilt anyway
-3:02 The access risk agencies already carry
-3:39 The first ask: four weeks, no vendor decision
-4:14 The finish line: Gate G1, Foundation Complete
-4:50 Who decides, and what to bring
-5:30 Where to go next
+2:09 Everything decides on identity
+3:08 HR is being rebuilt anyway
+3:53 The access risk agencies already carry
+4:30 The first ask: four weeks, no vendor decision
+5:06 The finish line: Gate G1, Foundation Complete
+5:41 Who decides, and what to bring
+6:22 Where to go next
 
 From the workbook
 Book 00: Chapter 01 — Why Modernize, and Why Now: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html

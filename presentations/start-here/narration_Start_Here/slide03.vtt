@@ -41,5 +41,34 @@ and Windows Server 2019's date
 is already set for January 2029.
 
 9
-00:00:34.337 --> 00:00:36.820
+00:00:34.337 --> 00:00:36.287
+Certificates have their own clock.
+
+10
+00:00:36.287 --> 00:00:43.252
+The CA/Browser Forum's Ballot SC-081v3
+cuts the maximum life of a public web
+
+11
+00:00:43.252 --> 00:00:49.417
+certificate from 200 days today
+to 100 days from March fifteenth,
+
+12
+00:00:49.417 --> 00:00:53.413
+2027, and 47 days from
+March fifteenth, 2029.
+
+13
+00:00:53.413 --> 00:00:58.175
+By the workbook's arithmetic, that's
+about fifteen renewals every working day
+
+14
+00:00:58.175 --> 00:01:02.863
+for each thousand certificates from
+2027, more than a spreadsheet can track.
+
+15
+00:01:02.863 --> 00:01:05.350
 So with time short, where do you begin?

@@ -40,6 +40,31 @@ Server 2016 host nobody expected,
 and every one gets a disposition.
 
 9
-00:00:28.626 --> 00:00:31.700
+00:00:28.626 --> 00:00:31.252
+Three of those outputs
+each need a named owner:
+
+10
+00:00:31.252 --> 00:00:35.539
+service accounts and their service
+principal names, certificates and the
+
+11
+00:00:35.539 --> 00:00:39.825
+authorities that issue them, and the
+DNS zones that depend on the directory.
+
+12
+00:00:39.825 --> 00:00:43.160
+That's the charter's
+hidden-dependency risk: policy,
+
+13
+00:00:43.160 --> 00:00:46.812
+addressing, service accounts,
+certificates and naming.
+
+14
+00:00:46.812 --> 00:00:49.900
 But a list only helps if you
 can prove where it came from.

@@ -43,6 +43,16 @@ because the chance to design identity in
 closes when your HR connections go live.
 
 10
-00:00:34.075 --> 00:00:36.700
+00:00:34.075 --> 00:00:38.686
+Once the pre-flight has run, you can add
+one more from the machine side: how many
+
+11
+00:00:38.686 --> 00:00:43.663
+service accounts have no named owner, or
+how many certificates still renew by hand.
+
+12
+00:00:43.663 --> 00:00:46.300
 Each person at the table
 hears these differently.

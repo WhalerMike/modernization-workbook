@@ -3,7 +3,7 @@
   "id": "Start_Here_Narrated",
   "title": "Start Here: Where Modernization Begins",
   "group": "start",
-  "minutes": 6,
+  "minutes": 7,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_Here_Narrated.mp4",
   "youtube": "5KhJcX8kgRU",
   "vtt": "presentations/start-here/Start_Here_Narrated.vtt",
@@ -26,31 +26,31 @@
     "The clocks nobody can move"
    ],
    [
-    101,
+    129,
     "Everything decides on identity"
    ],
    [
-    136,
+    188,
     "HR is being rebuilt anyway"
    ],
    [
-    182,
+    233,
     "The access risk agencies already carry"
    ],
    [
-    219,
+    270,
     "The first ask: four weeks, no vendor decision"
    ],
    [
-    254,
+    306,
     "The finish line: Gate G1, Foundation Complete"
    ],
    [
-    290,
+    341,
     "Who decides, and what to bring"
    ],
    [
-    330,
+    382,
     "Where to go next"
    ]
   ],
@@ -60,7 +60,7 @@
   "id": "Start_02_First_Four_Weeks_Narrated",
   "title": "Start series, Episode 2 — The First Four Weeks",
   "group": "start",
-  "minutes": 6,
+  "minutes": 7,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_02_First_Four_Weeks_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.vtt",
@@ -95,23 +95,23 @@
     "What the assessment inventories"
    ],
    [
-    203,
+    222,
     "Provenance, and seeding the repository"
    ],
    [
-    242,
+    260,
     "Least privilege for the program's own access"
    ],
    [
-    274,
+    292,
     "Owners named, findings classified"
    ],
    [
-    308,
+    326,
     "Gate G0, Ready to Plan: the checklist"
    ],
    [
-    343,
+    361,
     "What leadership sees at week four"
    ]
   ],
@@ -201,31 +201,31 @@
     "Four local numbers that make it real"
    ],
    [
-    106,
+    116,
     "For the CIO: the clocks and the cost"
    ],
    [
-    143,
+    153,
     "For the CISO: leavers and account findings"
    ],
    [
-    179,
+    189,
     "For the CHCO: HR 2.0 and the contractor source"
    ],
    [
-    219,
+    229,
     "For the authorizing official: evidence over attestation"
    ],
    [
-    256,
+    265,
     "The decision: an owner, a date and a first gate"
    ],
    [
-    291,
+    300,
     "Charter roles: who signs what"
    ],
    [
-    329,
+    339,
     "What to bring to the meeting"
    ]
   ],
