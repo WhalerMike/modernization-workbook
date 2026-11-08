@@ -1,6 +1,6 @@
 ---
 title: "Appendix A — Requirements Mapping: Pillars, Controls and Books"
-description: "A compliance-enabling map, not a compliance claim: CISA's Zero Trust Maturity Model pillars and cross-cutting capabilities, OMB M-22-09's objectives and actions, the adjacent binding instruments and the NIST SP 800-53 controls a Zero Trust program asserts, each with what it actually asks, where Book 11 addresses it, the workbook book that closes it and the evidence it calls for; then the requirements that are cited but don't exist, and the sources."
+description: "A compliance-enabling map, not a compliance claim: CISA's Zero Trust Maturity Model pillars and cross-cutting capabilities, OMB M-22-09's objectives and actions, the adjacent binding instruments and the NIST SP 800-53 controls a Zero Trust program asserts, each with what it actually asks, where Book 11 addresses it, the workbook book that carries it and the evidence it calls for; then the requirements that are cited but don't exist, and the sources."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b11-zero-trust

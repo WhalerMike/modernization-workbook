@@ -24,7 +24,7 @@ What "deterministic" means for governance, and why it is a stronger property tha
 
 ## The same inputs, the same evidence
 
-[Chapter 03](03-one-authoritative-record.md) gave the program one authoritative record, and [Chapter 04](04-change-control-and-provenance.md) put every change to that record under control. Neither one answers the next question: when the program turns that record into a statement about the estate ("this control is satisfied," "this account is compliant," "this setting has drifted"), how does anyone know the statement is right?
+[Chapter 03](03-one-authoritative-record.md) gave the program one authoritative record, and [Chapter 04](04-change-control-and-provenance.md) put every change to that record under control. Neither one answers the next question: when the program turns that record into a statement about the estate ("this control has current evidence," "this account is compliant," "this setting has drifted"), how does anyone know the statement is right?
 
 The usual answer is trust. An engineer ran a script, a tool produced a report, a reviewer signed it. That is attestation, and [Chapter 01](01-why-governance-decays.md) explained why it decays. The program's answer is determinism: **given the same version of the authoritative record and the same collected inputs, the governance platform produces the same evidence, byte for byte.** If that holds, an assessor doesn't have to trust the run. They can repeat it and compare.
 
@@ -193,7 +193,7 @@ The authorization package also has a machine-readable form to map into. NIST's O
 | Program artifact | Closest OSCAL model | Why |
 |---|---|---|
 | The controls the rules support | Catalog, selected and tailored by a profile | The program doesn't restate controls; it points at a published catalog and baseline |
-| Policy mappings for one adapter | Component definition | Both say how one component satisfies which controls |
+| Policy mappings for one adapter | Component definition | Both say how one component supports which controls |
 | All mappings in force for a system | System security plan, implementation statements | The plan imports what the components declare |
 | Runtime findings for an assessment window | Assessment results | Evidence and findings from a set of assessment activities |
 | Open findings with remediation dates | Plan of action and milestones | Findings the system owner still has to address |

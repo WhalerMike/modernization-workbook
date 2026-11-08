@@ -127,3 +127,10 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | Continuous monitoring is how the agency meets that requirement continuously; | Continuous monitoring is how the agency carries out that requirement continuously; | no source change |
 | Next: Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control → | Kept as written, with a `claims-ok` marker (the chapter title, kept as written so links and navigation hold; the chapter explains support, not satisfaction) | no source change |
+
+## Consistency read C3, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Two properties of this scheme matter to an assessor. An exception surfaces ... And every expiry ... And an item closes | Three properties ... First ... Second ... Third (the paragraph listed three) | no source change |
+| ties a requirement to the mechanism that closes it | ties a requirement to the mechanism that supports it | no source change |
