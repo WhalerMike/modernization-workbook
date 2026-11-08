@@ -24,7 +24,7 @@ Writer W4. New chapter (no direct source page); built on the pattern of Book 09 
 | 16 | Common control provider responsibilities incl. POA&Ms for deficient common controls | Pillar owners | verified | SP 800-37r2 App. D |
 | 17 | M-26-14 rescinded M-21-31; logs readily available to top-level SOC; logs identify identity used and privilege-level changes | SecOps; roles note | verified | M-26-14 body and App. B items 2, 5(a), 5(d) |
 | 18 | BOD 25-01: deploy SCuBA tools; report continuously or quarterly in machine-readable format | Assessment operators | verified | BOD 25-01 required action 2 |
-| 19 | Three reporting routes: CyberScope quarterly, CISA-hosted ScubaConnect, agency-hosted ScubaConnect at least quarterly | Assessment operators | verified | BOD 25-01 implementation guidance |
+| 19 | Three reporting methods: manual CyberScope upload quarterly, CISA-hosted ScubaConnect, agency-hosted (semi-automated) at least quarterly, including self-hosted ScubaConnect via CLAW/TALON | Assessment operators | corrected Nov 8, 2026 (item 595): text said four routes; aligned to CISA's three methods | CISA BOD 25-01 Implementation Guidance, "Methods of Compliance and Reporting," updated July 27, 2026, <https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services> |
 | 20 | Control assessor role definition | Assessors | verified | SP 800-37r2 App. D |
 | 21 | SP 800-53 CA-2(1), CA-7(1) independent assessors | Assessors | verified | SP 800-53r5 OSCAL catalog 5.2.0 |
 | 22 | ZTA outputs may contain tenant configuration and personal information | Privacy/records | verified | ZTA PowerShell guide, Prerequisites |
