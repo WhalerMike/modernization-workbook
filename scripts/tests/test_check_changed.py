@@ -167,7 +167,7 @@ class NoneTier(unittest.TestCase):
         plan = decide(mods("docs/books/b07-pki/_verification/03-x.md", "InBox/draft.md", "STATUS.md"))
         self.assertEqual(plan.tier, "NONE")
         # The repository is public, so unpublished notes still get the neutrality check; the inbox doesn't.
-        self.assertEqual(plan.tasks, {"neutrality": ["docs/books/b07-pki/_verification/03-x.md", "STATUS.md"]})
+        self.assertEqual(plan.tasks, {"neutrality": ["docs/books/b07-pki/_verification/03-x.md", "InBox/draft.md", "STATUS.md"]})
 
     def test_deleted_unpublished_file_is_not_full(self):
         plan = decide([Change("D", "presentations/old/Old.pptx")])
