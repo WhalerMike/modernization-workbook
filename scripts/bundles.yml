@@ -76,6 +76,45 @@ bundles:
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [non-person-identity-implementation.md]
+  # ---------------------------------------------------------------------
+  # Reference pages: one Word edition each, and the Reference Set with all six.
+  - output: reference-set.docx
+    title: "Reference Set"
+    subtitle: "Commands, crosswalks, the RMF Map and the Source Register — Federal Modernization Workbook reference"
+    root: docs/reference
+    warn_unlisted: ["*.md"]
+    exclude: [index.md]
+    pages: [commands.md, federal-framework-crosswalk.md, source-register.md, rmf-map.md, m-19-17-ficam-crosswalk.md, graph-practice-crosswalk.md]
+  - output: reference-commands.docx
+    title: "Command Reference"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [commands.md]
+  - output: reference-federal-framework-crosswalk.docx
+    title: "Federal Framework Crosswalk"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [federal-framework-crosswalk.md]
+  - output: reference-source-register.docx
+    title: "Source Register"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [source-register.md]
+  - output: reference-rmf-map.docx
+    title: "RMF Map"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [rmf-map.md]
+  - output: reference-m-19-17-ficam-crosswalk.docx
+    title: "M-19-17 and FICAM Crosswalk"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [m-19-17-ficam-crosswalk.md]
+  - output: reference-graph-practice-crosswalk.docx
+    title: "Microsoft Practice Crosswalk: Entra, Intune, National Clouds, Arc and SQL"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [graph-practice-crosswalk.md]
   - output: b19-developer-workbook-bundle.docx
     aliases: [building-the-attribute-driven-migration-bundle.docx]
     title: "Book 19 — Building the Attribute-Driven Migration"

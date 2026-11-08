@@ -185,11 +185,13 @@ website:
         text: "Downloads"
       - text: "Reference"
         menu:
+          - href: docs/reference/index.md
+            text: "Overview"
           - href: docs/reference/commands.md
             text: "Commands"
           - href: docs/reference/federal-framework-crosswalk.md
           - href: docs/reference/source-register.md
-            text: "Federal Framework Crosswalk"
+            text: "Source Register"
           - href: docs/reference/rmf-map.md
             text: "RMF Map"
           - href: docs/reference/m-19-17-ficam-crosswalk.md
@@ -296,6 +298,7 @@ website:
       title: "Reference"
       style: docked
       contents:
+        - docs/reference/index.md
         - docs/reference/commands.md
         - docs/reference/federal-framework-crosswalk.md
         - docs/reference/source-register.md
