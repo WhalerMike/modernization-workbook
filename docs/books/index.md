@@ -36,7 +36,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 190 | 2026-11-08 |
 | **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 215 | 2026-11-08 |
 | **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Baseline** | 10 | 150 | 2026-11-08 |
-| **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Draft** | 10 | 395 | 2026-11-08 |
+| **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Baseline** | 10 | 395 | 2026-11-08 |
 :::
 
 **Chapters** counts each book's chapters and appendices. **Pages** is the estimated page count of its Word edition, worked out from its words, tables and diagrams and checked against Word's own count (within about 7%). **Last updated** is the date of the book's latest change. All three are recalculated on every site build. **Status** reads Baseline once every chapter and appendix of a book is in the Release 2.0 baseline: complete, checked against every other book and approved by the workbook's editor, with later changes tracked against Release 2.0. Baseline is not a claim of independent peer review. A book with a page still waiting for re-approval reads Draft ([Status labels](../about/sources-and-verification.md#status-labels)).
