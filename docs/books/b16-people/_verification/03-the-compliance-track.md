@@ -78,3 +78,11 @@ Writer W2. Source: `docs/compliance/Vol_V_Book_01_Compliance_Track.md` (all sect
 | Closing italic colophon | Callout and corrections section | Internal KSI decomposition statement dropped |
 | (new) Module 9 — package, POA&M, ConMon | Module 9 | Added: source spread this across A0 checkpoint and capstone; brief asks for POA&M and continuous monitoring explicitly |
 | (new) Outside learning; What changed | Two sections | Added per brief (external courses as examples; corrections) |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| one who can trace it from the mechanism that closes it to the record that proves it has. | one who can trace it from the mechanism that implements it to the record that proves it has. | no source change |

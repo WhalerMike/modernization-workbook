@@ -137,3 +137,11 @@ Checked 2026-10-20 against Microsoft Learn (Entra national-cloud endpoints, AADS
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | CP-1 | Signed zones move during Chapter 10 Phase 3 and must validate before the Phase 5 gate (was: Phase 6 relies on the sequence) | Moving signed zones | aligned with Chapter 10 (program design) | Chapter 10 Phase 3, Phase 5 gate 1 and Phase 6 as revised in this pass |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| and SC-21 is met by someone else's system, if at all. | and SC-21 rests on someone else's system, if it is supported at all. | no source change |

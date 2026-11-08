@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — draft book
-This book replaces the workbook's Zero Trust whitepapers (whole-agency unification, governance principles and governance model, the ScubaGear integration, the SCuBA and Zero Trust Assessment relationship, and closing BOD 25-01 before assessing), the Zero Trust executive brief, the assessment guide and the Zero Trust spec. Every external claim was checked against a primary source between October 21 and October 31, 2026 (each footnote gives its access date) and carries a footnote. The earlier pages are kept in the repository's [`archive/b11-zero-trust/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b11-zero-trust) folder, and their old addresses forward to the chapters that replaced them.
+This book replaces the workbook's Zero Trust whitepapers (whole-agency unification, governance principles and governance model, the ScubaGear integration, the SCuBA and Zero Trust Assessment relationship, and closing BOD 25-01 before assessing), the Zero Trust executive brief, the assessment guide and the Zero Trust spec. Every external claim was checked against a primary source between October 21 and October 31, 2026 (each footnote gives its access date) and carries a footnote. The earlier pages are kept in the repository's [`archive/b11-zero-trust/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b11-zero-trust) folder, and their old addresses forward to the chapters that replaced them. <!-- claims-ok: closing findings, a whitepaper's subject -->
 :::
 
 ::: {.callout-tip}

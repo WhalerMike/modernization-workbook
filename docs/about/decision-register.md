@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded. Below them are the **80** decision points the sample project plans leave to the agency that adopts them.
+There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -2523,6 +2523,25 @@ Defined in [the plan's decision points](../project-plans/attribute-driven-migrat
 | D-A8 | Drift severity and response times | CISO | *HR-Driven Identity*'s classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, *Governance, Drift and Evidence*'s five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots | [Source chapter](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) | Left to the agency |
 
 : Attribute-Driven Migration: decision points {.striped .hover}
+
+### Content Delivery Modernization {#plan-content-delivery}
+
+Defined in [the plan's decision points](../project-plans/content-delivery.md#decision-points) and [`data/project-plans/content-delivery.yaml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/content-delivery.yaml).
+
+| ID | Decision | Decides | Options | Basis | Workbook decision |
+|---|---|---|---|---|---|
+| D-C1 | Target distribution point count when co-management completes, and the fiscal year | Executive sponsor and CIO | A dated target count from the validated endpoint count and Microsoft's 4,000-clients-per-DP limit (about 24 in the worked case); keep the current count (then say why the office count, not the client count, sizes it) | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-1-2) | Left to the agency |
+| D-C2 | Decision on the funding ask | Executive sponsor and CIO | Refresh in place; consolidate to a hub tier (the guide's recommendation where the circuits allow); cloud-first with Connected Cache, keeping a hub tier only until the five gates close | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-2) | Left to the agency |
+| D-C10 | Stage 1 to Stage 2: go/no-go for production | Content delivery project lead and ISSO | Go when Lab 2 ran end to end with its back-out, every cmdlet ran on the agency's Configuration Manager version, the inventory matched the console and the change board approved the production plan; no-go repeats Stage 1 | [Source chapter](../books/guides/dp-consolidation-implementation.md#go-no-go) | Left to the agency |
+| D-C3 | Hub sites and distribution points per hub | Endpoint lead and network engineering lead | Existing regional facilities inside the current boundary, two pull DPs each, with source DPs at the two data centers (the worked case: 12 sites, 24 DPs); more hubs where latency or headcount needs them | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-1-1) | Left to the agency |
+| D-C4 | Client-to-client traffic on branch segments: TCP 8003, UDP 8004 and TCP 7680 | CISO | Allow within each office's subnet only; allow for named peer cache sources only; block, and size circuits for hub pulls | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-5) | Left to the agency |
+| D-C5 | Wave plan: offices ordered by circuit readiness and renewal date | Content delivery project lead | By circuit readiness and renewal (the guide's order); by region (simpler, but waits on the slowest circuit in each) | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-1-2) | Left to the agency |
+| D-C6 | Packaging standard | Endpoint lead | PSAppDeployToolkit as the standard wrapper, version pinned, for every app that isn't a clean MSI; vendor installers with Intune's PowerShell script installer only; a mix by app class | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-7) | Left to the agency |
+| D-C7 | OS provisioning for existing devices | Endpoint lead | Windows Autopilot for every rebuild, with reset where it applies; keep task sequences for a named exception class on a hub DP until it can move | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-8-4) | Left to the agency |
+| D-C8 | Connected Cache form and placement | Endpoint lead and ISSO | Connected Cache for Enterprise and Education on its own host at each hub, its Azure resource placed in the boundary analysis; the Configuration Manager-integrated cache on a hub DP with no other roles (then retirement gate 4 binds it); none, where measured circuits carry cloud content | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-9) | Left to the agency |
+| D-C9 | Retire the hub distribution point tier | Executive sponsor and CIO | Retire it in the week the last gate closes; keep it while any gate is open. Never on a date alone | [Source chapter](../books/guides/dp-consolidation-implementation.md#step-10-1) | Left to the agency |
+
+: Content Delivery Modernization: decision points {.striped .hover}
 
 ### Continuous Monitoring & Evidence Fabric {#plan-continuous-monitoring}
 

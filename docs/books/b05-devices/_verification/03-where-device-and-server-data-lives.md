@@ -86,3 +86,11 @@ New sections "Three stores that policy reads," "Which end-user devices Intune co
 | D16 | Printers, network gear, IoT/OT aren't Intune platforms | Coverage table | verified by absence from Microsoft's supported list. A thin client running a supported Windows edition (for example IoT Enterprise) is covered as Windows (guide matrix) | c03-intune-platforms |
 | D17 | Four-tier strategy, CMDB as the single source of truth outside Intune and Arc, tie to CM-8 | What Intune and Arc don't reach | restated-as-design. CM-8 carried by link to Ch10's evidence table (no new federal footnote); CDM and BOD 23-01 by link to Book 12 Ch01; network devices to Book 09 Ch09; NAC records to Book 09 Ch07; mainframe to Book 01 Ch04 | Ch10; Books 01, 09, 12 |
 | D18 | Link to the guide's `#attributes` | Three stores | open: the anchor didn't exist in the guide when this was written; the guide's owner is adding it | guide |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The coverage tiers are how the inventory meets CM-8: | The coverage tiers are how the inventory supports CM-8: | no source change |

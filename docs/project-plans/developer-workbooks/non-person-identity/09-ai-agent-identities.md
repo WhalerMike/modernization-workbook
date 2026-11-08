@@ -54,7 +54,7 @@ Agent ID gives AI agents their own identities: an **agent identity blueprint** h
 | Agent Conditional Access properties in Graph | Beta only[^np09-graph-whatsnew] | — | — |
 | Sponsor tasks in Lifecycle Workflows | GA (May 2026, [Book 17, Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#release-stage-and-government-cloud-availability)); Agent 365 or Microsoft 365 E7[^np09-sponsor-tasks] | Listed as available[^np09-a365-sd] | Not published (Lifecycle Workflows exist there; the agent tasks need Agent 365)[^np09-licensing] |
 
-Agent 365's service description says it meets all FedRAMP High controls its assessor reviewed and that final authorization is pending; its feature table heads the agent features' plan column "Requires Microsoft 365 E7 / G7 or Agent 365".[^np09-a365-sd] GCC uses the worldwide endpoints, `graph.microsoft.com` and `login.microsoftonline.com`; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np09-deployments]
+Agent 365's service description says it meets all FedRAMP High controls its assessor reviewed and that final authorization is pending; its feature table heads the agent features' plan column "Requires Microsoft 365 E7 / G7 or Agent 365".[^np09-a365-sd] GCC uses the worldwide endpoints, `graph.microsoft.com` and `login.microsoftonline.com`; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np09-deployments] <!-- claims-ok: the vendor's statement, attributed, with authorization pending -->
 
 ### Decision D-N6 as data
 

@@ -22,7 +22,7 @@ The first six gates each produce a result. This gate keeps them true over time a
 
 In this module you write one read-only run of the lifecycle drift classes and the six metrics, package it with a hash chain, verify it, and assemble a reporting period.
 
-**The federal requirement.** This gate meets NIST SP 800-53 CA-7 (continuous monitoring: system-level metrics), AU-6 and AU-11 with SI-12 (review and retention of audit records), and BOD 25-01 continuous reporting. The requirements and evidence are in the [Gate 7 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-7-keep-the-record-true-and-file-the-evidence) (under **Federal requirements and evidence** in Step 7) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md#federal-requirements-and-evidence).
+**The federal requirement.** This gate supports NIST SP 800-53 CA-7 (continuous monitoring: system-level metrics), AU-6 and AU-11 with SI-12 (review and retention of audit records), and BOD 25-01 continuous reporting. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The requirements and evidence are in the [Gate 7 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-7-keep-the-record-true-and-file-the-evidence) (under **Federal requirements and evidence** in Step 7) and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md#federal-requirements-and-evidence).
 
 | Requirement | KSI | Evidence |
 |---|---|---|

@@ -25,7 +25,7 @@ Checked October 21, 2026 by writer W1. Source: `docs/compliance/Vol_III_Book_00_
 | 17 | 2023 Exchange Online intrusion. First detected by a federal victim's in-house alert on mailbox-access logs that were then available only with Purview Audit (Premium). Microsoft used MailItemsAccessed to identify victims, then expanded the logs to E3/G3 and above and raised Audit Standard retention from 90 to 180 days | Silent gaps | verified (new) | CISA playbook background and FAQ. The playbook names the agencies involved. The chapter deliberately leaves them out, per the no-agency rule |
 | 18 | M-26-14 directs agencies to use CDM, HWAM and SWAM data to determine log coverage. The inventory element starts at 70% at Level 1 | Silent gaps; decision makers | verified | M-26-14 App. B item 4; App. C |
 | 19 | BOD 25-01 (Dec 17, 2024): tenant inventory, deploy SCuBA tools, mandatory policies by June 20, 2025. Report via "CISA's continuous monitoring solution" or by quarterly manual submission in a machine-readable format | Drivers | verified | BOD 25-01 page. BOD 25-01 doesn't mention CLAW or logging (confirmed) |
-| 20 | BOD 25-01 automated reporting has two routes: CISA-hosted ScubaConnect (results via the CDM dashboard), or agency-hosted ScubaConnect with CLAW/TALON integration, run at least quarterly | Drivers; decision makers | verified (new) | CISA BOD 25-01 Implementation Guidance, updated July 27, 2026 |
+| 20 | BOD 25-01 reporting: agencies choose among three methods (manual CyberScope upload quarterly; CISA-hosted ScubaConnect, results via the CDM dashboard; agency-hosted semi-automated, e.g. self-hosted ScubaConnect with CLAW/TALON, at least quarterly) | Drivers; decision makers | corrected Nov 8, 2026 (item 595): text said two automated routes and omitted the manual method | CISA BOD 25-01 Implementation Guidance, "Methods of Compliance and Reporting," updated July 27, 2026, <https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services> |
 | 21 | CLAW definition. Deployed because cloud traffic no longer passes the EINSTEIN sensors. C-CIRA (formerly NCIRA) gives the telemetry guidance | Drivers | verified | TIC 3.0 Program Guidebook v1.2 §13, App. C |
 | 22 | TIC "does not replace or negate" telemetry requirements, including sharing with CISA. The Catalog doesn't detail the telemetry owed to CISA. Information cycle step 3: agencies provide telemetry to CISA | Drivers | verified | Guidebook §10, §10.1 (source supplied by the coordinator; opened and read) |
 | 23 | The Guidebook's July 2025 revision changed "Cloud" to "Comprehensive" for CLAW | Drivers | verified | Guidebook revision history; consistent with Book 09 Ch03 |
@@ -52,3 +52,13 @@ Checked October 21, 2026 by writer W1. Source: `docs/compliance/Vol_III_Book_00_
 | Book 00 § How This Volume Fits: "truth separated from enforcement"; truth plane vs enforcement planes | Ch01 "What the program adds" (actuation vs evidence) | Internal plane labels not carried |
 | Book 00 § Where This Volume's Evidence Lands — Volume X (optional governance-substrate binding) | — | Engine-specific optional binding; not carried, because the workbook names no engine. Book 13 may treat governance evidence in general terms |
 | Book brief requirements (warehouse vs detection, planes, silent gaps, federal drivers) | Ch01 sections on each | New content; claims 1–28 |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| An agency can satisfy AU-12 completely and still fail AU-6 and SI-4, | An agency can implement AU-12 completely and still fail AU-6 and SI-4, | no source change |
+| such a source may meet M-26-14's retention baseline while contributing nothing | such a source may count toward M-26-14's retention baseline while contributing nothing | no source change |
+| The reporting path is where BOD 25-01 meets this book. | The reporting path is where BOD 25-01 enters this book. | no source change |

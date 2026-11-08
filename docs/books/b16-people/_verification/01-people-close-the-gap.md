@@ -60,3 +60,11 @@ Writer W1. Sources: `docs/compliance/Vol_V_Book_00_Training_Certification_Overvi
 | training.md — One program, two tracks (contributor, operator) and shared core | Ch01 "Education before training", translated as two audiences | "Consumer rule", "topology" are internal vocabulary; not carried |
 | training.md — Assessment ("not a certification — a path to doing the real work") | — (Ch05) | W3 reconciles with Vol V Book 03 certification |
 | training.md — Companion pages | — | Archived links |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Training by role also does more than satisfy a control. | Training by role also does more than support a control. | no source change |

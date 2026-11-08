@@ -1,0 +1,86 @@
+[
+  {
+    "Name": "dc2-dp01.lab.example",
+    "NumberInstalled": 214,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "dc1-dp01.lab.example",
+    "NumberInstalled": 214,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off01-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off02-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off03-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 1
+  },
+  {
+    "Name": "off04-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off05-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off06-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off07-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off08-dp.lab.example",
+    "NumberInstalled": 209,
+    "NumberErrors": 3,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off09-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off10-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off11-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  },
+  {
+    "Name": "off12-dp.lab.example",
+    "NumberInstalled": 212,
+    "NumberErrors": 0,
+    "NumberInProgress": 0
+  }
+]

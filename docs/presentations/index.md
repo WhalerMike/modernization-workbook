@@ -24,7 +24,7 @@ The decks download from the current edition's [GitHub Release](https://github.co
 Every narrated deck is also available as a 1080p MP4 video, with its matching `.vtt` caption file, in the [narrated presentation videos release](https://github.com/WhalerMike/modernization-workbook/releases/tag/videos-2026-10-23) on GitHub: the Start series, the nineteen book briefings, the executive briefings, the technical deep dives, the research presentations and the HR-driven identity interview set. Download a video and its caption file and play them together in any player that loads WebVTT captions.
 :::
 
-New here? Start with the six-minute narrated executive briefing on the [Start Here](../start-here.md) page: why modernization begins with identity, and the first step leadership can approve.
+New here? Start with the narrated executive briefing of about 7 minutes on the [Start Here](../start-here.md) page: why modernization begins with identity, and the first step leadership can approve.
 
 Presentations for pages that are still under review, such as product evaluations, are on those pages in [Evaluations](../evaluations/index.md), [Explainers](../books/explainers/index.md) and the [companion guides](../books/index.md#companion-guides), not here.
 

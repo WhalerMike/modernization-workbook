@@ -24,7 +24,7 @@ A workload can use its access faster and more widely than any person. An applica
 
 In this module you sweep every service principal for what it holds, flag the broad grants that have no current exception, and hand the privileged ones to the Privileged Access plan. Then you turn the owners' decisions into a plan. Nothing is removed until a second person approves the plan's SHA-256, and the code removes a grant, never an app.
 
-**The federal requirement.** Gate G4 meets NIST SP 800-53 AC-6, AC-6(5) and IA-9. The guide's [Validate (G4 Least privilege)](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md#federal-requirements-and-evidence) table has a row for every lab step.
+**The federal requirement.** Gate G4 supports NIST SP 800-53 AC-6, AC-6(5) and IA-9. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The guide's [Validate (G4 Least privilege)](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md#federal-requirements-and-evidence) table has a row for every lab step.
 
 | Requirement | KSI | Evidence |
 |---|---|---|

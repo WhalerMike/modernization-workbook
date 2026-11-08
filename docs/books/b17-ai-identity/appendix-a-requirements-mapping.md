@@ -30,7 +30,7 @@ This appendix helps an agency use the book's design in its own AI governance, se
 ## How to read the tables
 
 - **Requirement** is summarized from the cited document, with its section number. Where a requirement uses "must," the summary does too; where it uses "should" or "encouraged," so does the summary.
-- **Identity control** is what the program does to meet or evidence the requirement for an AI system's identity. It is design.
+- **Identity control** is what the program does to support or evidence the requirement for an AI system's identity. It is design.
 - **Carried in** names the Book 17 chapters that design or evidence it, by file name. **Other books** names workbook books that build part of it.
 - **NIST SP 800-53B** gives the NIST baselines that include a control (L, M, H), read from NIST's OSCAL baseline profiles, with P where the control is also in the privacy baseline.[^aA-53b] **FedRAMP 2026** gives the FedRAMP Rev5 classes whose baselines include it (B, C, D), read from the "FedRAMP Rev5 Baselines" line on each control in FedRAMP's 2026 control reference.[^aA-fedramp-controls] The two are separate facts and don't always agree: AC-2(12) is NIST High only but FedRAMP Classes C and D; CM-8(4) is NIST High only and FedRAMP Class D only. "Required at Moderate" means nothing until it says which: an agency system categorized Moderate uses the NIST baseline its categorization selects, and a FedRAMP Class C service uses FedRAMP's. FedRAMP's classes bind cloud service providers, not agencies ([Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md)).
 - Control identifiers, titles and statements are from SP 800-53 Rev. 5, release 5.2.0.[^aA-53]

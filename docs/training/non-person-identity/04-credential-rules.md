@@ -24,7 +24,7 @@ The program's credential rules are short: no long-lived secrets; managed identit
 
 The rest needs code. Key Vault can renew a certificate, but Entra ID renews nothing on the app registration. In this module you compare the policy with the tenant, and you plan a rotation from renewal to removal, each write approved by its hash.
 
-**The federal requirement.** Gate G3 meets NIST SP 800-53 IA-5(2), SC-12 and SC-17, and CISA SCuBA MS.AAD.5.5v1 to 5.7v1. Those three SCuBA policies are SHOULD policies, not BOD 25-01 required configurations. The guide's [Validate (G3 Credential rules)](../../books/guides/non-person-identity-implementation.md#step-3-set-the-credential-rules) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md#federal-requirements-and-evidence) table has a row for every lab step.
+**The federal requirement.** Gate G3 supports NIST SP 800-53 IA-5(2), SC-12 and SC-17, and CISA SCuBA MS.AAD.5.5v1 to 5.7v1. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. Those three SCuBA policies are SHOULD policies, not BOD 25-01 required configurations. The guide's [Validate (G3 Credential rules)](../../books/guides/non-person-identity-implementation.md#step-3-set-the-credential-rules) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md#federal-requirements-and-evidence) table has a row for every lab step.
 
 | Requirement | KSI | Evidence |
 |---|---|---|

@@ -5,8 +5,8 @@ description: "Research under review: a crosswalk of the Federal Modernization Wo
 research-status: in review
 research-type: reference
 research-book: "Books 00–19"
-date-modified: 2026-11-06
-last-reviewed: 2026-11-06
+date-modified: 2026-11-08
+last-reviewed: 2026-11-08
 aliases:
   - /docs/research/federal-framework-crosswalk.html
 ---
@@ -26,7 +26,7 @@ Each cell scores a book's best treatment of a framework:
 | 2 | Actionable guidance: the reader is told what to do, who decides, or how to sequence it |
 | 3 | Evidence-backed: the requirement is mapped to concrete controls, evidence artifacts or gates, usually in the book's requirements-mapping appendix |
 
-The NIST RMF row is derived, not scored separately: it's the best mark each book has in the [RMF Map](rmf-map.md), and where the two disagree the map wins. A book scores 3 if the map links it from a Covered task other than I-1 and the book ties that treatment to a control and an artifact, in a requirements-mapping appendix or an evidence table. It scores 2 if it has any Covered task, including I-1, which lists the technical books as a whole. It scores 1 if it has only Partial or Partial by design tasks, or cites the RMF with no task, and 0 if neither. A book can therefore score on the RMF without naming it, because the map credits the work it does. Reconciled with the map on November 6, 2026.
+The NIST RMF row is derived, not scored separately: it's the best mark each book has in the [RMF Map](rmf-map.md), and where the two disagree the map wins. A book scores 3 if the map links it from a Covered task other than I-1 and the book ties that treatment to a control and an artifact, in a requirements-mapping appendix or an evidence table. It scores 2 if it has any Covered task, including I-1, which lists the technical books as a whole. It scores 1 if it has only Partial or Partial by design tasks, or cites the RMF with no task, and 0 if neither. A book can therefore score on the RMF without naming it, because the map credits the work it does. Reconciled with the map on November 8, 2026, when S-4 moved from Covered to Partial and Books 08 and 09 dropped from 3 to 2.
 
 Scores come from reading the chapters, not from keyword counts alone. Each book was searched for the framework's names and identifiers, every hit was opened in context, and false matches were dropped (for example, "A-11" inside the control IDs SA-11 and IA-11). Verification ledgers and writing briefs weren't counted.
 
@@ -81,7 +81,7 @@ The frameworks the workbook relies on most are not on the usual modernization li
 |--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 | FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 | 1 | 3 |
-| NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 2 | 2 | 3 | 2 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 2 | 3 | 2 | 3 |
+| NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 2 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | 3 | 3 | 3 | 2 | 2 | 3 | 2 | 3 |
 | EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 3 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 | 0 | 3 |
 | CISA ZTMM 2.0 | 1 | 3 | 1 | 1 | 1 | 0 | 3 | 0 | 3 | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
 | PIV, HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 | 0 | 1 |

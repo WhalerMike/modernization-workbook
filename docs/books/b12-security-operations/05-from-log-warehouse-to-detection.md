@@ -284,7 +284,7 @@ Detection needs recent data at hand; investigation needs older data retrievable.
 | SI-4, SI-4(2) | Scheduled and NRT rules, UEBA anomalies, Defender XDR detections | Rule inventory with cadence; alert history |
 | SI-4(4) | DNS and SASE telemetry read through `_Im_Dns` and session parsers | DNS and egress rules and their firings |
 | SI-4(5) | Incidents routed to named personnel with severity | Assignment and notification records |
-| AU-11 (in part) | Per-table retention meeting M-26-14's floor | Retention configuration export ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md)) |
+| AU-11 (in part) | Per-table retention at or above M-26-14's floor | Retention configuration export ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md)) |
 
 The control-by-control treatment, including the incident-response controls, is in the Federal Compliance volume [Vol III Book 06, SIEM, XDR, and Detection Engineering](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md). [Chapter 11](11-detection-engineering-and-response.md) builds the rule library and the response that these connectors feed.
 

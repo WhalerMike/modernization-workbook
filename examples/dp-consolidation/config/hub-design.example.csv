@@ -1,0 +1,4 @@
+Hub,Region,HubBoundaryGroup,HubDPs,SourceDPs
+HUB-EAST,East,BG-HUB-EAST,east-dp01.lab.example;east-dp02.lab.example,dc1-dp01.lab.example;dc2-dp01.lab.example
+HUB-CENTRAL,Central,BG-HUB-CENTRAL,central-dp01.lab.example;central-dp02.lab.example,dc1-dp01.lab.example;dc2-dp01.lab.example
+HUB-WEST,West,BG-HUB-WEST,west-dp01.lab.example;west-dp02.lab.example,dc2-dp01.lab.example;dc1-dp01.lab.example

@@ -107,3 +107,11 @@ At the user's request, every certificate-dependent book maps its certificates to
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (syslog) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-syslog |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Per-table retention meeting M-26-14's floor | Per-table retention at or above M-26-14's floor | no source change |

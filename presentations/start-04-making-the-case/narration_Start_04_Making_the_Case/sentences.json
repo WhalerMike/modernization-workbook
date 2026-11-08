@@ -101,11 +101,11 @@
   ],
   [
    34.075,
-   9.588,
-   "Once the pre-flight has run, you can add one more from the machine side: how many service accounts have no named owner, or how many certificates still renew by hand."
+   6.85,
+   "Once the pre-flight has run, you can add one more from the machine side: how many service accounts have no named owner."
   ],
   [
-   43.663,
+   40.925,
    2.562,
    "Each person at the table hears these differently."
   ]

@@ -63,7 +63,7 @@ The control baseline is explicit. AC-6, Least Privilege, requires the organizati
 
 Source: NIST SP 800-53 Rev. 5.[^c02-sp80053] All six of these enhancements are in the NIST moderate baseline, along with AC-5, Separation of Duties, and AC-2(2), which requires temporary and emergency accounts to be removed or disabled automatically after a defined period.[^c02-sp80053b] AC-5 requires the organization to identify and document the duties that must be separated and to define access authorizations that support that separation.[^c02-sp80053]
 
-None of these enhancements says "just in time" in so many words. AC-6 is satisfied by any mechanism that keeps privilege at what the task requires. The program's position is that for cloud administrative roles, time is the dimension most estates have never limited, and just-in-time activation is the practical way to limit it while also producing the review and logging evidence AC-6(7) and AC-6(9) ask for.
+None of these enhancements says "just in time" in so many words. AC-6 doesn't prescribe a mechanism: any mechanism that keeps privilege at what the task requires can support it. The program's position is that for cloud administrative roles, time is the dimension most estates have never limited, and just-in-time activation is the practical way to limit it while also producing the review and logging evidence AC-6(7) and AC-6(9) ask for.
 
 ### What federal Zero Trust policy says, precisely
 

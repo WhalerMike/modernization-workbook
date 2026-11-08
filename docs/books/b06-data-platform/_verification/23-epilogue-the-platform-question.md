@@ -39,3 +39,11 @@ Checked October 20, 2026. Source: the existing page (former Book_11 epilogue), v
 
 - `book-11-three-destinations.flow.yaml` — source edited: "(Books 04–05)" → "(Chapters 09–12)". Needs re-rendering.
 - `book-11-decision-sequence.flow.yaml` — source edited: "(Books 02–03)" → "(Chapters 03–08)". Needs re-rendering.
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Each can satisfy the forced requirement, | Each can support the forced requirement, | no source change |

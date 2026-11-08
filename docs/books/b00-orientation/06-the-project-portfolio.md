@@ -1,6 +1,6 @@
 ---
 title: "Chapter 06 — The Complementary Projects"
-description: "The seven chartered projects that turn the program's largest gaps into executable work: what each one delivers, the order in which to start them and why, how they fit the program's workstreams and gates, and which book of the Federal Modernization Workbook carries each in depth."
+description: "The seven chartered projects that turn the program's largest gaps into executable work, and an eighth, Content Delivery Modernization, that draws on two of them: what each one delivers, the order in which to start them and why, how they fit the program's workstreams and gates, and which book of the Federal Modernization Workbook carries each in depth."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b00-orientation
@@ -19,20 +19,20 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What a complementary project is and the shape every project charter shares. The seven projects in their suggested order, why that order holds and where it bends, and how the projects sit inside the program's workstreams and gates. For each project: what it delivers, how its success is judged at pilot scale, what it leaves out, and which book carries it in depth.
+What a complementary project is and the shape every project charter shares. The seven chartered projects in their suggested order, why that order holds and where it bends, and an eighth project, Content Delivery Modernization, that draws on the endpoint and network projects, and how the projects sit inside the program's workstreams and gates. For each project: what it delivers, how its success is judged at pilot scale, what it leaves out, and which book carries it in depth.
 :::
 
 ## Why the program has projects
 
 The Federal Modernization Workbook supplies the principles, the architecture and the governance framing. A program that stopped there would be a reading list. The complementary projects take the gaps the program finds most often and charter each one as executable work, with its own sponsor, lead, domain leads, pilot scope and success criteria.
 
-Each project has two documents. The **charter** states the purpose, the problem, the objectives, what is in and out of scope, the guiding principles, the success criteria, a high-level approach, the risks and assumptions, governance and next steps. The **plan** sequences that approach into work. Both are written to be adopted as they stand: they carry no internal decision-record numbers, and every named role is "to be named" until the adopting agency fills it. The charters link to their plans, and this chapter links to the charters in the [workbook's repository](https://github.com/WhalerMike/modernization-workbook/tree/main/docs/projects). Projects 4 and 7 have no charter file of their own; their charters are carried in [Book 13, Chapter 12](../b13-governance/12-governance-at-scale.md) and [Book 14, Chapter 07](../b14-compliance/07-supply-chain-risk-management.md), and the table below links to those chapters. The site also publishes a sample plan for each project on the [project plans](../../project-plans/index.md) page.
+Each project has two documents. The **charter** states the purpose, the problem, the objectives, what is in and out of scope, the guiding principles, the success criteria, a high-level approach, the risks and assumptions, governance and next steps. The **plan** sequences that approach into work. Both are written to be adopted as they stand: they carry no internal decision-record numbers, and every named role is "to be named" until the adopting agency fills it. The charters link to their plans, and this chapter links to the charters in the [workbook's repository](https://github.com/WhalerMike/modernization-workbook/tree/main/docs/projects). Projects 4 and 7 have no charter file of their own; their charters are carried in [Book 13, Chapter 12](../b13-governance/12-governance-at-scale.md) and [Book 14, Chapter 07](../b14-compliance/07-supply-chain-risk-management.md), and the table below links to those chapters. Project 8, Content Delivery Modernization, has no charter yet: its scope is set by its [decision guide](../guides/dp-consolidation.md) and its plan, and an adopting agency charters it once it decides to proceed. The site also publishes a sample plan for each project on the [project plans](../../project-plans/index.md) page.
 
 All seven projects share one change path, the one the identity project states as five clauses: a change **originates** from an authoritative source, carries an **authorization**, **executes under least privilege**, **closes with provenance**, and **emits evidence**. They also share a deliberately modest definition of success. Every charter asks for a working pilot, not a finished estate: one engine migrated, one role class under just-in-time elevation, one object class under drift detection. The program's rollout phase is where pilots become coverage.
 
 ![The seven complementary projects in their suggested starting order, with the book that carries each.](../../images/diagrams/b00-orientation/svg/ch06-project-portfolio.svg){#fig-ch06-project-portfolio fig-alt="Seven numbered project cards in a top-to-bottom sequence. One, Identity Lifecycle and Provisioning, blue, carried by Books 02, 03 and 04. Two, Endpoint and Device Modernization, blue, Book 05. Three, Network and Access Modernization, blue, Books 08, 09 and 04. Four, Continuous Monitoring and Evidence Fabric, violet, Books 11 and 13. Five, Privileged Access and Administrative Identity, amber, Book 04, with a dashed amber arrow back to project one labeled starts early for Tier 0. Six, Data Platform Identity Transformation, blue, Book 06. Seven, Supply Chain and Software Bill of Materials, violet, Book 14. The arrow from project one to project two is labeled attributes and owners."}
 
-## The seven projects at a glance
+## The projects at a glance {#the-seven-projects-at-a-glance}
 
 | # | Project | What it delivers | Program workstream | Carried in depth by |
 |---|---|---|---|---|
@@ -43,6 +43,7 @@ All seven projects share one change path, the one the identity project states as
 | 5 | [Privileged Access & Administrative Identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md) | Standing privilege inventoried and reduced; just-in-time elevation; governed break-glass; separation of duties | Access | [Book 04](../b04-access/index.md) |
 | 6 | [Data Platform Identity Transformation](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/data-platform-charter.md) | Token-based or managed-identity database authentication; NTLM eliminated after audit; continuous authentication evidence | Compute | [Book 06](../b06-data-platform/index.md) |
 | 7 | [Supply Chain & Software Bill of Materials](../b14-compliance/07-supply-chain-risk-management.md) | Software bill of materials pipeline; risk-based remediation; cloud-service certification status as a provisioning gate | Cross-cutting | [Book 14](../b14-compliance/index.md); [Book 10](../b10-cloud-boundary/index.md) for cloud certification |
+| 8 | [Content Delivery Modernization](../guides/dp-consolidation.md) | A distribution point refresh decided on evidence; a hub content tier sized to client count; peer caching; branch distribution points retired in waves; standard packaging; the last distribution point retired through five gates | Compute, Services | [Book 09, Chapter 11](../b09-network/11-field-office-wan-transformation.md); [Book 05](../b05-devices/index.md) |
 
 ## Why this order
 
@@ -55,6 +56,7 @@ The suggested sequence is a starting order, not a waterfall. Projects overlap, a
 5. **Privileged access fifth** as a chartered project, but not fifth in practice. The identity project already introduces just-in-time elevation for one privileged role class, and the program's Foundation gate requires emergency access accounts vaulted and tested, and Phase 1 opens phishing-resistant sign-in registration (FIDO2 security keys and passkeys) to Tier 0 administrators ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md)). The fifth slot is where the remaining standing privilege, non-human privileged identities and separation of duties are taken on as a program of their own.
 6. **Data platform sixth**, because database authentication depends on cloud identity, managed identities and the network path to the data, and because its NTLM audit needs the endpoint project's observation work.
 7. **Supply chain last**, because it is the most independent of the identity chain and draws on the evidence fabric to report component and remediation status.
+8. **Content delivery alongside two and three**, not after them. It is listed last because it was added last, and because it draws on both: its office waves follow the network project's circuits, and its last distribution point waits on the endpoint project's workload moves. Its first step, an inventory and a decision on any distribution point refresh, should start as soon as such a refresh is proposed, so the money isn't committed before the questions are answered.
 
 ## How the projects fit the program
 
@@ -154,6 +156,20 @@ Two rules keep the portfolio coherent. First, a project never designates a secon
 
 **Where it lives.** [Book 14, Chapter 07](../b14-compliance/07-supply-chain-risk-management.md) carries it in depth; [Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md) covers the FedRAMP changes.
 
+### 8. Content Delivery Modernization
+
+**Purpose.** Retire the model of a Configuration Manager distribution point in every office: decide any refresh on evidence, consolidate to a small hub content tier sized to client count, keep content in the office with peers, deliver from the cloud as workloads move to Intune, and retire the last distribution point when five gates close.
+
+**The problem.** Distribution points went into offices because the circuits were too slow to do anything else. Microsoft's published limit is 4,000 clients per distribution point, so most of a per-office estate exists because of the circuits, not because Configuration Manager needs it ([Book 09, Chapter 11](../b09-network/11-field-office-wan-transformation.md#published-capacity-limits)). A refresh at that scale buys servers whose useful life the endpoint strategy is already shortening, and each one is a component to baseline, patch and carry in the system security plan.
+
+**The principles that make it work.** Size the content tier to clients, not offices. Fix the transport problem at the transport layer. Treat peer caching and Connected Cache as optimizations, never dependencies. Add no Configuration Manager infrastructure for new assets, in line with the Intune-first doctrine ([Book 05, Chapter 04](../b05-devices/04-intune-first-onboarding.md#the-five-pillars)). Package every application once, in one standard wrapper, so it behaves the same from either tool. And retire the last distribution point on a gate, not a date.
+
+**Success at pilot scale.** A validated endpoint count and distribution point inventory; a recorded decision on any refresh, with the ask decomposed; one hub built and serving content; the pilot offices served from the hub and their peers, their distribution points drained and removed with evidence; the most-installed applications on the standard wrapper; and the five retirement gates tracked.
+
+**Out of scope at first.** Air-gapped and separately accredited enclaves, which keep local distribution points; the circuits themselves, which the network project owns; and the co-management workloads other than the app workloads, which the endpoint project moves.
+
+**Where it lives.** [Book 09, Chapter 11](../b09-network/11-field-office-wan-transformation.md) carries the worked case; the [decision guide](../guides/dp-consolidation.md) the questions before money moves; the [implementation guide](../guides/dp-consolidation-implementation.md) the steps; the [Content Delivery Modernization plan](../../project-plans/content-delivery.md) the schedule; and [Book 05](../b05-devices/index.md) the Intune side.
+
 ## What the charters leave to the agency
 
 Every charter ends the same way: a sponsor and a lead "to be named," four domain leads by function, and five next steps that begin with an inventory. That is deliberate. The charters define the method and the contract, and the adopting agency supplies the people, the source systems and the risk decisions. Only the identity charter states decision rights, giving source-of-truth designation and the attribute model to the project lead and sponsor. In the program's model the meaning of those attributes is HR's decision and the flow is identity engineering's ([Chapter 07](07-who-runs-the-program.md)). Filling in the names is the first act of each project, and Chapter 07 says who they answer to.
@@ -167,6 +183,7 @@ A charter is also the natural unit for funding. [Appendix C](appendix-c-funding-
 3. Projects run inside the program's phases and feed its gates; they never create a second authoritative source.
 4. Two source claims have moved: OMB's attestation mandate is rescinded, so SBOMs are an agency choice; and FedRAMP certifies services while the agency authorizes its own systems.
 5. "Zero permanent Global Administrators" must exempt the emergency access accounts by name.
+6. An eighth project, Content Delivery Modernization, runs alongside the endpoint and network projects and draws on both. Its first act is a decision on any distribution point refresh, made on evidence before money moves.
 
 ::: {.callout-tip}
 ## Continue the book

@@ -65,3 +65,11 @@ Writer W5, October 21, 2026. Method: M-25-21 and M-25-22 PDFs from whitehouse.go
 | whitepaper — "inventory's `hi_*` fields can't evidence all seven" | Ch10 high-impact section, in corrected form | Stale: 2025 dictionary has fields for all seven; the point survives as status-not-evidence |
 | whitepaper — companion memoranda (M-25-22, M-26-04) | Ch10 (M-25-22 §4(e)(i)); Appendix A | — |
 | whitepaper — coverage ledger, strengths, gaps, three moves, bottom line | — | Competitive and solicitation framing; dropped per brief |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The plan states how the agency meets the memo; | The plan states how the agency intends to comply with the memo; | no source change |

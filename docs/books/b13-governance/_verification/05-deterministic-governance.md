@@ -57,3 +57,13 @@ Writer W3, 2026-10-21. Sources: `docs/architecture/three-layer-rule-model.md`, i
 | ch04: Honest limits | Honest limits | — |
 | ch04: Key takeaways | Key takeaways | Rewritten |
 | ch04: Continue the series / Related documents | — | Replaced by book navigation; source pages not linked (being archived) |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| These reviews are how the program meets the configuration-change controls an assessor will look for. | These reviews are how the program supports, and produces evidence for, the configuration-change controls an... | no source change |
+| The mapping layer is where a rule meets a control. | The mapping layer is where a rule is tied to a control. | no source change |
+| A deterministic rule set is one way to satisfy these controls with evidence rather than narrative: | A deterministic rule set is one way to support these controls with evidence rather than narrative: | no source change |

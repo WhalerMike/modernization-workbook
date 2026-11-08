@@ -1,0 +1,5 @@
+Control,Evidence,Source
+CM-8,Device inventory,Intune
+CM-6,Configuration compliance,ConfigMgrSiteDatabase
+SI-3,Endpoint Protection status,ConfigMgrSiteDatabase
+SI-2,Update compliance,Intune

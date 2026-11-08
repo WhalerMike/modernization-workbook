@@ -161,7 +161,7 @@ The full control-level treatment, including the per-platform rationale, is in th
 
 ## What to take from this chapter
 
-1. Cloud misconfiguration, exposure and excess entitlement are invisible to a host scanner. CSPM is the sensor for them, and it closes the cloud-resource half of CM-6.
+1. Cloud misconfiguration, exposure and excess entitlement are invisible to a host scanner. CSPM is the sensor for them, and it supports, with evidence, the cloud-resource half of CM-6.
 2. Choose posture tools platform by platform. An owned native tool is primary for its own platform; a coordinating tool earns that role only where it actually reaches.
 3. Check every mechanism on the FedRAMP Marketplace, not from memory. AWS Config and Security Hub CSPM are listed at Moderate and High, Prisma Cloud at Moderate and High, and Wiz at High.
 4. Defender for Cloud doesn't cover Oracle Cloud, and its AWS connector isn't available in Azure Government. Plan the gap before an assessor finds it.

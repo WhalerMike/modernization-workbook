@@ -54,7 +54,7 @@ class Case(unittest.TestCase):
         self.assertTrue(any("P-16 is marked Not covered" in e for e in errs))
 
     def test_tally_must_match_marks(self):
-        errs = self._page(lambda t: t.replace("25 Covered, 13 Partial", "26 Covered, 12 Partial", 1))
+        errs = self._page(lambda t: t.replace("24 Covered, 14 Partial", "25 Covered, 13 Partial", 1))
         self.assertTrue(any("tally" in e for e in errs))
 
     def test_partial_by_design_needs_a_template_link(self):
