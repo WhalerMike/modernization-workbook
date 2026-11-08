@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.000
+Start with the rule the
+whole profile enforces.
+
+2
+00:00:03.000 --> 00:00:06.396
+A partner account gets access
+because a sponsor asked,
+
+3
+00:00:06.396 --> 00:00:11.225
+an approver agreed and a date was set,
+never because it exists or synchronized.
+
+4
+00:00:11.225 --> 00:00:13.678
+The partner is authoritative
+for the person's
+
+5
+00:00:13.678 --> 00:00:15.938
+affiliation and the credential it issues.
+
+6
+00:00:15.938 --> 00:00:20.444
+The agency is authoritative for
+federation trust, eligibility,
+
+7
+00:00:20.444 --> 00:00:24.950
+authorization, monitoring, review,
+suspension and termination.
+
+8
+00:00:24.950 --> 00:00:28.419
+So engineering has four things
+to prove for every partner:
+
+9
+00:00:28.419 --> 00:00:30.949
+that trust is scoped
+to that partner alone,
+
+10
+00:00:30.949 --> 00:00:34.779
+that every account traces to an
+approved request with an expiry,
+
+11
+00:00:34.779 --> 00:00:39.621
+that every partner account is a guest
+unless an exception record says otherwise,
+
+12
+00:00:39.621 --> 00:00:43.813
+and that access really ends at the
+last assignment and at partner exit.
+
+13
+00:00:43.813 --> 00:00:45.700
+The rest of this deck is how.

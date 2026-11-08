@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.328
+For partners outside the
+agency's own organization,
+
+2
+00:00:03.328 --> 00:00:07.750
+the route is entitlement management
+with B2B collaboration guests.
+
+3
+00:00:07.750 --> 00:00:12.540
+Create one connected organization per
+partner, configured, never proposed:
+
+4
+00:00:12.540 --> 00:00:17.938
+a policy open to all users creates proposed
+connected organizations automatically,
+
+5
+00:00:17.938 --> 00:00:22.499
+so each partner policy targets
+specific connected organizations only,
+
+6
+00:00:22.499 --> 00:00:24.400
+and a proposed one is a finding.
+
+7
+00:00:24.400 --> 00:00:28.963
+Create one access package per partner
+use case, in a catalog enabled
+
+8
+00:00:28.963 --> 00:00:33.363
+for external users, hidden so only
+people with the link can find it.
+
+9
+00:00:33.363 --> 00:00:37.950
+Approval has two stages: the
+agency sponsor, then the resource
+
+10
+00:00:37.950 --> 00:00:42.987
+owner for the higher-risk applications,
+with expiry at most 365 days.
+
+11
+00:00:42.987 --> 00:00:44.937
+The sponsor reviews quarterly.
+
+12
+00:00:44.937 --> 00:00:47.438
+When a guest loses the last assignment,
+
+13
+00:00:47.438 --> 00:00:51.188
+sign-in is blocked and the
+account is deleted after 30 days.
+
+14
+00:00:51.188 --> 00:00:53.388
+And guests can't invite other guests.
+
+15
+00:00:53.388 --> 00:00:58.351
+One caution from Microsoft Learn: Conditional
+Access that affects guests can block
+
+16
+00:00:58.351 --> 00:01:02.950
+My Access, so test that a partner can
+still request before you add an exclusion.

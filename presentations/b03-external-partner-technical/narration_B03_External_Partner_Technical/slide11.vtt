@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+The chapter's responsibility
+table has one decider per row,
+
+2
+00:00:03.725 --> 00:00:07.025
+the agency business owner,
+and names who does the work.
+
+3
+00:00:07.025 --> 00:00:12.350
+Identity engineering builds and runs the
+credential checks, the attribute mappings,
+
+4
+00:00:12.350 --> 00:00:15.500
+the authentication validation
+and the lifecycle,
+
+5
+00:00:15.500 --> 00:00:18.050
+including disables and reconciliation.
+
+6
+00:00:18.050 --> 00:00:20.533
+The sponsor does the work on eligibility,
+
+7
+00:00:20.533 --> 00:00:24.112
+authorization and the evidence,
+and requests suspensions.
+
+8
+00:00:24.112 --> 00:00:29.088
+Security operations contains incidents
+first and tells the business owner after.
+
+9
+00:00:29.088 --> 00:00:32.434
+The ISSO is consulted on
+proofing, credentials,
+
+10
+00:00:32.434 --> 00:00:36.812
+incidents and evidence, and the
+privacy office on attributes.
+
+11
+00:00:36.812 --> 00:00:40.137
+The identity governance
+officer owns the partner tenant
+
+12
+00:00:40.137 --> 00:00:43.462
+list and is alerted to any
+change in cross-tenant settings.
+
+13
+00:00:43.462 --> 00:00:47.741
+On the partner's side, the partner
+keeps its affiliation record accurate,
+
+14
+00:00:47.741 --> 00:00:51.521
+issues and revokes credentials,
+sends mover and leaver notices,
+
+15
+00:00:51.521 --> 00:00:54.430
+and coordinates incidents
+under the agreement.

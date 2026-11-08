@@ -1,0 +1,276 @@
+[
+ {
+  "slide": 2,
+  "title": "Many who sign in work for someone else",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Why a partner is not an employee or a contractor",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#why-a-partner-is-not-an-employee-or-a-contractor"
+   },
+   {
+    "text": "Chapters 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html"
+   },
+   {
+    "text": "06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Authority splits in two",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Book 04, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/01-access-is-a-policy-decision.html"
+   },
+   {
+    "text": "FICAM Architecture",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ficam-architecture"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "One class, with clear borders",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "The class and its boundary to the other classes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#the-class-and-its-boundary-to-the-other-classes"
+   },
+   {
+    "text": "Book 04, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Book 17, Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/04-kinds-of-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Guest by default; Member only by exception",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "worker type and persona",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#class-worker-type-and-persona"
+   },
+   {
+    "text": "Book 04, Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/03-the-conditional-access-model.html"
+   },
+   {
+    "text": "Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Conditional Access linkage",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#conditional-access-linkage"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "A short standard in nine control areas",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "The standard",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#the-standard-in-nine-control-areas"
+   },
+   {
+    "text": "in nine control areas",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#the-standard-in-nine-control-areas"
+   },
+   {
+    "text": "CISA Zero Trust Maturity Model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-zero-trust-maturity-model"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "One decider per row: the business owner",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Who does what: partner and agency",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#who-does-what-partner-and-agency"
+   },
+   {
+    "text": "Book 04, Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html"
+   },
+   {
+    "text": "the responsibility matrix",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#the-responsibility-matrix"
+   },
+   {
+    "text": "exceptions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#exceptions"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Assurance is chosen per transaction",
+  "links": [
+   {
+    "text": "NIST SP 800-63-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-63-4"
+   },
+   {
+    "text": "SP 800-63C-4",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-63c-4"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "FIPS 201-3",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-201-3"
+   },
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Assurance by transaction risk",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#assurance-by-transaction-risk"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The route in: a request, an approval, an expiry",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "The route into the tenant",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#the-route-into-the-tenant"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html"
+   },
+   {
+    "text": "cross-tenant synchronization overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cross-tenant-sync-overview"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Privacy, records and redress before go-live",
+  "links": [
+   {
+    "text": "Privacy Act of 1974",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-5-552a"
+   },
+   {
+    "text": "NARA GRS 3.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nara-grs-3-2"
+   },
+   {
+    "text": "Section 508",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-29-794d-govinfo"
+   },
+   {
+    "text": "Book 03, Chapters 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/14-privacy-for-workforce-identity.html"
+   },
+   {
+    "text": "15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Privacy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#privacy-records-and-redress"
+   },
+   {
+    "text": "records and redress",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#privacy-records-and-redress"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Eleven readiness checks before production",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Readiness checks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#readiness-checks"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The decisions to make",
+  "links": [
+   {
+    "text": "Book 03, Chapter 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html"
+   },
+   {
+    "text": "Who does what",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#who-does-what-partner-and-agency"
+   },
+   {
+    "text": "Privacy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#privacy-records-and-redress"
+   },
+   {
+    "text": "records and redress",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#privacy-records-and-redress"
+   },
+   {
+    "text": "Readiness checks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/15-external-partner-identity.html#readiness-checks"
+   },
+   {
+    "text": "Book 04, Appendix C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   },
+   {
+    "text": "The exception profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html#the-exception-profile-cross-tenant-synchronization"
+   }
+  ]
+ }
+]

@@ -1,0 +1,491 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   12.037,
+   "This is the executive briefing on external partner identity, from the H R-Driven Identity book of the Federal Modernization Workbook, with its partner access profile in Access and Privilege."
+  ],
+  [
+   12.8,
+   9.95,
+   "It's for the people who make the calls: the C I O and see-so, the business owners of programs shared with partners, the privacy officer and the authorizing official."
+  ],
+  [
+   22.75,
+   3.875,
+   "Many people who sign in to agency systems work for someone else."
+  ],
+  [
+   26.625,
+   3.6,
+   "The workbook now treats them as their own identity class."
+  ],
+  [
+   30.225,
+   6.513,
+   "I'll take four questions: why the class exists, what it is, who decides, and how a partner goes lyve."
+  ],
+  [
+   36.737,
+   2.487,
+   "The last slide gathers the decisions."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   9.562,
+   "Every earlier chapter of H R-Driven Identity rests on one rule: the agency's own authoritative source says who works here, and access follows."
+  ],
+  [
+   9.613,
+   5.088,
+   "Employees come from H R; contractors from the source the agency designates."
+  ],
+  [
+   14.7,
+   8.575,
+   "But think of a state benefits examiner, a tribal health officer, an analyst at another agency, or a compliance officer at a regulated bank."
+  ],
+  [
+   23.275,
+   3.825,
+   "Each of them is employed, proofed and credentialed by someone else."
+  ],
+  [
+   27.1,
+   6.9,
+   "When that state examiner leaves the state government, the state's H R system knows first, and possibly only."
+  ],
+  [
+   34.0,
+   6.35,
+   "The agency can't key, correct or even see that record, except through what the partner sends."
+  ],
+  [
+   40.35,
+   4.188,
+   "So a partner's account proves that another organization vouches for a person."
+  ],
+  [
+   44.538,
+   3.763,
+   "It doesn't prove that the agency has decided to let that person in."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.163,
+   "The split of authority is the definition of the class."
+  ],
+  [
+   3.212,
+   7.875,
+   "The partner is authoritative for the person's affiliation, who works there and in what role, and for the lifecycle of the credential it issues."
+  ],
+  [
+   11.088,
+   15.35,
+   "The agency is authoritative for everything that touches its systems: whether it trusts the partner's identity service at all, which partner persons are eligible, what they may reach, what assurance each transaction needs, and when access is suspended or ended."
+  ],
+  [
+   26.438,
+   1.363,
+   "One rule follows."
+  ],
+  [
+   27.8,
+   4.438,
+   "No partner account gets access just because it exists or synchronizes."
+  ],
+  [
+   32.237,
+   3.638,
+   "An account in the tenant is a fact about the partner's directory."
+  ],
+  [
+   35.875,
+   6.225,
+   "Access is an agency decision, with an approver, a sponsor, an expiry and evidence."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   16.238,
+   "The External Partner Person is a person whose employment or affiliation record, and primary credential, are held by another organization: a state, a tribal government, another federal agency, a financial institution, or an academic or nonprofit partner."
+  ],
+  [
+   16.288,
+   3.663,
+   "The class covers people; the organization is the partner."
+  ],
+  [
+   19.95,
+   6.487,
+   "The workbook's other populations already have homes, so the chapter draws borders rather than redefining them."
+  ],
+  [
+   26.438,
+   8.175,
+   "Partner is not public: a member of the public applying for a benefit isn't a workforce guest, even if a partner delivers the benefit."
+  ],
+  [
+   34.612,
+   9.425,
+   "Partner is not contractor: if the agency holds the contract and the sponsor, and the person works on agency business, that person is a contractor."
+  ],
+  [
+   44.038,
+   6.45,
+   "Privilege and break-glass are overlays, and emergency access accounts are always the agency's own."
+  ],
+  [
+   50.487,
+   5.463,
+   "And an A I agent acting for a partner is a non-person identity with its own sponsor."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.225,
+   "The workbook uses three words for populations, and each is a view of the one above it."
+  ],
+  [
+   5.275,
+   3.375,
+   "The class says who is authoritative and who owns access."
+  ],
+  [
+   8.65,
+   8.075,
+   "Worker type is the H R attribute for the agency's own workers, and a partner person has none, because there's no agency H R record."
+  ],
+  [
+   16.725,
+   8.162,
+   "The persona is how Conditional Access targets people, and for partners that's the Externals persona, which must match the class one to one."
+  ],
+  [
+   24.887,
+   3.475,
+   "The user type is where those views can quietly diverge."
+  ],
+  [
+   28.363,
+   11.175,
+   "The workbook's member baselines, such as the compliant-device policies, exclude guests, so a partner created as a member would fall into the internal baselines and out of the partner ones."
+  ],
+  [
+   39.538,
+   2.45,
+   "So partner persons are guests by default."
+  ],
+  [
+   41.987,
+   5.925,
+   "A member partner person needs an exception record, with a reason, an approver and a review date."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.0,
+   "The standard is short on purpose."
+  ],
+  [
+   2.05,
+   15.588,
+   "It says what has to be true for any partner, on any platform, in nine areas: partner qualification, trust establishment, population scope, assurance, authorization, lifecycle, data protection, operations and evidence."
+  ],
+  [
+   17.637,
+   3.587,
+   "Each area becomes a section of the partner identity record."
+  ],
+  [
+   21.225,
+   2.375,
+   "Three points matter most to leadership."
+  ],
+  [
+   23.6,
+   9.738,
+   "Authorization is separate from authentication: a valid sign-in at the state proves the examiner signed in there; only an agency assignment opens the case system."
+  ],
+  [
+   33.337,
+   7.025,
+   "Partner exit is a lifecycle event: when an agreement ends, the accounts are removed, not left disabled."
+  ],
+  [
+   40.362,
+   10.537,
+   "And statements are not controls: a partner saying it requires M F A is input to the agreement, while a policy the agency enforces and tests is the control."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.025,
+   "Who decides?"
+  ],
+  [
+   1.075,
+   9.088,
+   "The partner and the agency each carry part of every activity, from affiliation and proofing to lifecycle, incident response and evidence."
+  ],
+  [
+   10.162,
+   8.625,
+   "On the agency side there is one decider per row: the agency business owner, the official accountable for the program the partner persons serve."
+  ],
+  [
+   18.788,
+   4.537,
+   "The title is provisional, and the record names a person, not a title."
+  ],
+  [
+   23.325,
+   10.7,
+   "The sponsor, usually the program manager who works with the partner, vouches for its people, reviews their access and requests suspensions, but never approves their own requests."
+  ],
+  [
+   34.025,
+   4.725,
+   "The identity governance officer owns the list of approved partner organizations."
+  ],
+  [
+   38.75,
+   1.538,
+   "Two rows need comment."
+  ],
+  [
+   40.288,
+   5.65,
+   "In a live incident, security operations contains first and the business owner is told after."
+  ],
+  [
+   45.938,
+   6.875,
+   "And going to production has one decider with a required consult: the authorizing official's input must be on record."
+  ],
+  [
+   52.812,
+   9.0,
+   "A consult isn't a second approval, but an objection the business owner overrides becomes a risk acceptance, and that is the authorizing official's decision."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   10.488,
+   "nist special publication eight hundred sixty-three, revision four measures digital identity on three scales: identity proofing, authentication, and federation."
+  ],
+  [
+   10.537,
+   7.737,
+   "For a partner person, the partner usually performs the first two, and the agency decides whether that's enough for each transaction."
+  ],
+  [
+   18.275,
+   5.15,
+   "The levels come from an impact assessment, and partner persons are their own user group in it."
+  ],
+  [
+   23.425,
+   12.75,
+   "A bank officer submitting a financial filing and a state examiner reading a case summary can land at different levels on the same system, so the record holds one row per protected transaction, not one level per partner."
+  ],
+  [
+   36.175,
+   1.812,
+   "Two federal rules shape this."
+  ],
+  [
+   37.987,
+   13.512,
+   "M twenty-two oh-nine requires phishing-resistant M F A for agency staff, contractors and partners, but leaves each agency to define the partner category, so the agency writes its definition into the record."
+  ],
+  [
+   51.5,
+   10.075,
+   "And fips two-oh-one-three covers federal employees and contractors only, so never call a partner credential piv-equivalent unless a policy the agency can cite says so."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.938,
+   "The route into the tenant is the same in principle on any platform."
+  ],
+  [
+   3.987,
+   10.425,
+   "First, the partner is qualified: the record exists, the agreement is signed, and the partner's identity service is trusted only through a setting scoped to that partner."
+  ],
+  [
+   14.412,
+   6.638,
+   "Second, each person arrives through an approved request naming the sponsor, the approver and an expiry."
+  ],
+  [
+   21.05,
+   2.225,
+   "Third, the account is a guest."
+  ],
+  [
+   23.275,
+   5.625,
+   "Fourth, access ends with the last assignment, and the account is blocked and then removed."
+  ],
+  [
+   28.9,
+   12.4,
+   "Automatic provisioning from a partner's directory is an exception, because it hands the eligibility decision to whoever controls the partner's groups and copies personal data across organizations on a schedule."
+  ],
+  [
+   41.3,
+   6.088,
+   "In Microsoft Entra, the default is entitlement management with B to B collaboration guests."
+  ],
+  [
+   47.388,
+   10.25,
+   "Microsoft Learn says cross-tenant synchronization is intended for use within an organization, and points to entitlement management for inviting users across organizations."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.2,
+   "Four obligations come before the first partner goes lyve."
+  ],
+  [
+   3.25,
+   14.762,
+   "Privacy: a directory of partner persons, their access decisions and their sign-in logs is retrieved by name and identifier, so whether an existing system-of-records notice covers it is the privacy office's determination, made before go-lyve."
+  ],
+  [
+   18.012,
+   12.4,
+   "Minimization: the agency receives only the attributes its decisions read, usually a name, a work email, an immutable identifier, the partner organization and, where needed, a role."
+  ],
+  [
+   30.413,
+   12.613,
+   "Records: NARA's General Records Schedule 3.2 covers system access records, but the schedules for partner agreements and access reviews haven't been verified, so the agency records officer names them."
+  ],
+  [
+   43.025,
+   9.812,
+   "And redress: a wrong name is corrected at the partner's source, while an agency decision, such as a suspension, is disputed through the agency's own process."
+  ],
+  [
+   52.837,
+   5.1,
+   "The request and redress workflows are covered by Section 508, too."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.588,
+   "Eleven readiness checks stand between a qualified partner and production."
+  ],
+  [
+   4.638,
+   4.5,
+   "They aren't the program's phase gates; they're specific to each relationship."
+  ],
+  [
+   9.137,
+   33.038,
+   "They confirm the class and the partner's authoritative source; record which requirements apply; review the agreement, privacy, records and the authorization boundary; select assurance per transaction; name owners and test the escalation contacts; reconcile the expected population against the accounts; minimize the attributes; test create, update, disable, removal, emergency suspension and rollback; test access, including denials; and confirm that monitoring, reviews, drift detection and"
+  ],
+  [
+   42.175,
+   1.363,
+   "runbooks are operating."
+  ],
+  [
+   43.538,
+   2.987,
+   "The eleventh is production enablement itself."
+  ],
+  [
+   46.525,
+   5.4,
+   "Each check has one decider, the business owner, and the checks repeat at every review."
+  ],
+  [
+   51.925,
+   3.425,
+   "A partner that adds a new application reruns four of them."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.0,
+   "Here are the decisions, with their owners and timing."
+  ],
+  [
+   3.05,
+   11.2,
+   "Before the first partner goes lyve, the privacy office determines whether an existing system-of-records notice covers partner persons, and the records officer names the records schedule items."
+  ],
+  [
+   14.25,
+   3.45,
+   "For each partner, the business owner decides five things."
+  ],
+  [
+   17.7,
+   5.25,
+   "Qualifying the partner and approving the agreement, before any trust is configured."
+  ],
+  [
+   22.95,
+   6.45,
+   "Which requirements apply, including the agency's own definition of partners under M twenty-two oh-nine."
+  ],
+  [
+   29.4,
+   6.55,
+   "The assurance for each protected transaction, with the I S S O and the application owner consulted."
+  ],
+  [
+   35.95,
+   5.6,
+   "Any automatic synchronization, which is an exception on a written record, with the sponsor named."
+  ],
+  [
+   41.55,
+   4.5,
+   "And production enablement, with the authorizing official's consult on record."
+  ],
+  [
+   46.05,
+   5.713,
+   "A member user type is an exception too, with its own record, approver and review date."
+  ],
+  [
+   51.763,
+   6.525,
+   "The chapter, the partner identity record and the Entra profile carry the detail, every claim footnoted."
+  ],
+  [
+   58.288,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

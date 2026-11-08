@@ -1,0 +1,49 @@
+# Reference — The Reference Tab — narration script (practice copy)
+
+## Slide 1 — The Reference Tab
+
+The Reference tab of the Federal Modernization Workbook holds six pages that nobody reads front to back. You open them when you need an answer: which command does this, which framework applies, where the Risk Management Framework is covered, whether a source is still current. This briefing walks through each page, the question it answers, and why the workbook would be weaker without it. Then it shows how the pages fit together, who should open which one first, and how each page tells you how far to trust it.
+
+## Slide 2 — Why a Reference tab
+
+Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work satisfies, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
+
+## Slide 3 — Six pages at a glance
+
+Here are the six pages, with the job each one does. One page helps you run the kits: the Command Reference. Four help you prove compliance: the Federal Framework Crosswalk, the RMF Map, the M-19-17 and FICAM Crosswalk, and the Microsoft Practice Crosswalk. And one keeps everything trustworthy: the Source Register. The next six slides take them one at a time.
+
+## Slide 4 — Run it: the Command Reference
+
+The Command Reference lists every command in the example kits: 694 of them across sixteen kits. That is 599 functions exported by PowerShell modules, 47 PowerShell scripts and 48 Python tools. What makes it trustworthy is how it's made. The page is generated from each command's own help text every time the site builds. If the help changes, the page changes with it, so the two never drift apart, and a public command without a synopsis or an example fails the check. Each row also links back to the chapters and training modules that teach the command, so an engineer can go from what does this do, to where do I learn it, in one click.
+
+## Slide 5 — Prove it: the Federal Framework Crosswalk
+
+The Federal Framework Crosswalk scores every book against the frameworks a federal modernization program answers to. That goes well beyond security controls: how IT investments are chosen and funded, how enterprise architecture is kept, how digital services are delivered, and how privacy and records are handled. Each book gets a score from zero, not addressed, to three, evidence-backed, for each framework, and the scores come from reading the chapters, not from counting keywords. Just as important, the page checks each framework's current status at its primary source. It found that OMB M-22-18 was rescinded by M-26-05, the Federal Data Strategy is being retired, and the Federal Enterprise Architecture Framework survives only as history, while Circular A-130 still requires an enterprise architecture. Executive Order 14028 is in force as amended, and FITARA has a new memo, M-26-10. Without that check, the books would cite frameworks that no longer apply. The page is in review.
+
+## Slide 6 — Prove it: the RMF Map
+
+The RMF Map is for the people who sign off: the ISSO, the control assessor and the authorizing official. Their question is where the Risk Management Framework is in the workbook, and what each step leaves behind. The books answer it chapter by chapter; this page puts the answer in one place. It walks all seven steps of NIST SP 800-37 Revision 2 and their 47 tasks. For each task it gives where the workbook treats it, the evidence an assessor would read, and the kit that produces it. The marks today: 25 covered, 13 partial, 9 partial by design, where the workbook gives a template and a prompt because the decision belongs to the agency, and none not covered. It also corrects a common mistake: FISMA isn't a level. FISMA Moderate is shorthand for a categorization and a baseline. The page is in review, waiting for a reviewer who didn't write the marks.
+
+## Slide 7 — Prove it: the M-19-17 and FICAM Crosswalk
+
+OMB M-19-17 is the federal policy for identity, credential and access management. It tells agencies to run identity as one program, to manage devices and automated technologies as well as people, to use PIV and derived PIV, and to federate. The FICAM Architecture breaks the same ground into services. This crosswalk maps both to the workbook's books, guides and kits. It starts with nine identity areas, from workforce and non-person identity to federation, governance and public identity. Then it checks M-19-17 section by section and the FICAM services one by one. Across those forty-two rows, the marks are 15 strong, 20 partial, 5 gaps, and 2 deliberately out of scope, with the reason stated. Every mark comes from reading the linked pages. Identity is where most of this program's work lands, so naming the gaps plainly matters as much as showing the strengths. The page is in review.
+
+## Slide 8 — Prove it: the Microsoft Practice Crosswalk
+
+The books recommend Microsoft practices chapter by chapter: block legacy authentication, require phishing-resistant MFA, put privileged roles behind Privileged Identity Management, use device compliance as the access signal, connect servers through Azure Arc, and move SQL Server to Entra authentication. This crosswalk puts 33 of those practices in one table. Each row gives the practice and its chapter, the Microsoft Learn page that defines it, the automated check that confirms it, either a CISA ScubaGear policy ID or an Azure Policy built-in, and the date the row was last reviewed. Seeing them side by side surfaced things no single chapter shows. One policy carries two version numbers between ScubaGear and the BOD 25-01 list. Intune has no ScubaGear coverage. And Arc-enabled SQL Server has no built-in policy for Entra authentication, so it needs a custom check. The page is a draft.
+
+## Slide 9 — Trust it: the Source Register
+
+The Source Register is the foundation under everything else. A slide or a video description doesn't link straight to a publisher's page. It links to the source's row in this register, and the row links to the original. That matters because a released deck or video can't change, but publishers move pages all the time. With the register in between, a link in a released deck stays right: only the row has to change. The register holds 540 sources today, under three rules. A source's address is permanent: a row can be retired, but never deleted or renamed. Every change goes through a reviewed pull request, adds to the revision history, and sends the page back to its owner for approval. And the weekly source watch reads every row, shows the result in the Last scan column, and proposes fixes, but never edits on its own.
+
+## Slide 10 — How the six pages fit together
+
+The pages aren't six separate lists; they build on each other. The Federal Framework Crosswalk is the wide view, every book against every framework. The RMF Map takes its Risk Management Framework row and goes task by task; where the two disagree, the map wins, and the crosswalk's RMF score is derived from it. The M-19-17 and FICAM Crosswalk does the same deep dive for identity policy. The Microsoft Practice Crosswalk shows the specific practices behind the evidence, each tied to an automated check, and the Command Reference lists the kit commands that produce that evidence. Underneath all of them sits the Source Register, so every source the slides and videos cite has a permanent address that is checked every week.
+
+## Slide 11 — Where to start, by role
+
+So who should open which page first? An engineer running the kits opens the Command Reference. An ISSO or a control assessor opens the RMF Map. An authorizing official reads the RMF Map, then the M-19-17 and FICAM Crosswalk. A CIO or program lead starts with the Federal Framework Crosswalk. An identity or cloud architect opens the Microsoft Practice Crosswalk. And anyone citing a source uses the Source Register.
+
+## Slide 12 — How the pages stay honest
+
+Finally, a reference page is only useful if you know how far to trust it, so each one tells you. The marks come from reading the chapters, not counting keywords: every hit is opened in context, and false matches are dropped. Each page shows its status, draft, in review or approved, and the date someone last reviewed it. A page left unreviewed for more than 90 days is flagged on the page and in the weekly source-watch issue until someone reviews it. And the gaps stay on the page. Partial rows, gaps and out-of-scope items are listed with their reasons, and where no automated check exists, the row says so rather than inventing one. Every page also downloads as a Word document, and the Reference Set puts all six in one file, from the Reference tab or the Downloads page. Thank you.
