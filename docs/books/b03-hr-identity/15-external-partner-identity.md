@@ -82,7 +82,7 @@ The workbook now has three words for populations. They don't compete; each is a 
 | Term | What it is | Where it lives | Partner persons |
 |---|---|---|---|
 | **Class** | The parent term: who is authoritative for the person and who owns access | This chapter | External Partner Person |
-| **Worker type** | The HR attribute that classifies the agency's own workers: employee, contractor, intern, volunteer | [Chapter 04](04-attribute-authority.md#the-worker-type-boundary), [Chapter 06](06-canonical-attribute-schema.md#program-attribute-map) | None from HR. A partner person has no agency HR record, so the class is carried by the partner identity record and the account's user type |
+| **Worker type** | The HR attribute that classifies the agency's own workers: employee, contractor, intern, volunteer, vendor, external | [Chapter 04](04-attribute-authority.md#the-worker-type-boundary), [Chapter 06](06-canonical-attribute-schema.md#program-attribute-map) | None from HR. A partner person has no agency HR record, so the class is carried by the partner identity record and the account's user type |
 | **Persona** | The Conditional Access targeting unit | [Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md#personas) | The **Externals** persona, which CA009 and the other partner policies target through the `{tenant:partners}` list ([Book 04, Appendix A](../b04-access/appendix-a-conditional-access-templates.md)) |
 
 : Class, worker type and persona {.striped .hover}

@@ -73,3 +73,9 @@ Done for the chapter and profile drafts (Book 03 chapter 15, Book 04 Appendix C,
 2. FedRAMP Consolidated Rules for 2026 boundary rulesets and significant-change tiers (primary rulesets not opened). The chapter makes no claim about them.
 3. The 63C-4 assertion-expiry rules and the planning note dated 10/06/2026; the rest of the section 3.4 tailoring text.
 4. The cross-cloud sync support level in the portal on the day a team builds it.
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Worker type values: employee, contractor, intern, volunteer, vendor, external | §Class, worker type and persona | corrected (Old list omitted vendor and external) | Chapter 04 §The worker-type boundary; Chapter 06 crosswalk |

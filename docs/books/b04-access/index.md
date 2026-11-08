@@ -60,7 +60,7 @@ Appendices: [A — Conditional Access policy templates](appendix-a-conditional-a
 
 - **Executives (20 minutes):** Chapters 01, 02 and 06, or the 15-minute presentation.
 - **Architects:** Chapters 01–06, then 10.
-- **Identity engineers:** Chapters 03–05, then 07–09 with both appendices at hand.
+- **Identity engineers:** Chapters 03–05, then 07–09 with the three appendices at hand.
 
 ## Where this book sits in the workbook
 
