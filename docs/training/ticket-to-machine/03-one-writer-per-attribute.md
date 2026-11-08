@@ -8,8 +8,8 @@ research-book: "Books 13, 15"
 series-order: 3
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: d4fda25eabbc0089627b0d9d6a227a20b7956dfc11ff70a6388e558bc47cddd7
-last-reviewed: 2026-11-07
+reviewed-sha256: 4e4cac7b0ef806e5c8ceebc2fb0d67c666bade867fa00c011d98da3cd4b9d5a6
+last-reviewed: 2026-11-08
 ---
 # Ticket-to-Machine, Module 3: One Writer per Attribute {.unnumbered}
 
