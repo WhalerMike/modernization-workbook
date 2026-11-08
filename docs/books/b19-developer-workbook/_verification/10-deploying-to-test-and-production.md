@@ -84,3 +84,11 @@ These appear in the runbook's commands. Each is a standard parameter or cmdlet, 
 | Chapter 09, test-tenant steps | Step 8; first-week monitoring; evidence package | Signing the evidence package stays open (research-gaps.md row 22) |
 | Index outline | The chapter; the index's chapter table gains row 10 | — |
 | The owner's requirement (November 2, 2026): requirements and KSIs per step, evidence produced, promotion on a passing evidence check | `deploy/requirements.json`, `deploy/evidence.py`, a table per step, step 12, promotion criterion 0 | The guide itself has no per-gate requirement tables; its companion guide's federal requirements table and Book 13, Appendix A supplied the controls |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| a requirements table: the requirement it meets, | a requirements table: the requirement it supports, | no source change |

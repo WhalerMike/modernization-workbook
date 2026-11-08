@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 03 — The Compliance Track
 
-*A compliance professional who can recite that a control is satisfied hasn't learned the job; one who can trace it from the mechanism that closes it to the record that proves it has.*
+*A compliance professional who can recite that a control is satisfied hasn't learned the job; one who can trace it from the mechanism that implements it to the record that proves it has.* <!-- claims-ok: describes a recited claim, not a claim -->
 
 ::: {.callout-note}
 ## In this chapter

@@ -242,7 +242,7 @@ Every device and server needs exactly one record of its attributes, whichever to
    The CMDB record exists even though no tool manages the device.
 4. **Segmented and isolated, or retired.** Out-of-support systems, and anything that can't be inventoried with confidence, go behind segmentation with a recorded risk acceptance and a retirement date. [Chapter 09](09-servers-under-azure-arc.md#extended-security-updates) requires this for Windows Server 2012.
 
-The coverage tiers are how the inventory meets CM-8: it includes every component and counts none twice ([Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)). A device that belongs to no coverage tier is a finding.
+The coverage tiers are how the inventory supports CM-8: it includes every component and counts none twice ([Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)). A device that belongs to no coverage tier is a finding.
 
 ## What this chapter establishes
 

@@ -143,3 +143,11 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | `c06-oci`: the Oracle page moved; same title ("Overview of Disaster Recovery Plans") and the same DR-plan-as-automated-runbook statement at the new address | URL updated |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| An agency with workloads elsewhere meets CP-6 to CP-10 with each platform's own services | An agency with workloads elsewhere supports CP-6 to CP-10 with each platform's own services | no source change |

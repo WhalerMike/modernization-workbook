@@ -220,3 +220,12 @@ Added at the author's request during the independent verification pass (`docs/ab
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | PKI binding, after the "Contractors" paragraph | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The tiers are how the inventory meets CM-8, System Component Inventory, in the program's mapping: | The tiers are how the inventory supports CM-8, System Component Inventory, in the program's mapping: | no source change |
+| ## The federal requirements each track satisfies {#federal-requirements} | ## The federal requirements each track supports {#federal-requirements} | no source change |

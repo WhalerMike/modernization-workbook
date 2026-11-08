@@ -75,3 +75,11 @@ All sources opened on October 20, 2026. SP 800-53 control text and the moderate 
 | Vol III — Break-glass design, alert, quarterly testing | Ch02 §Break-glass (summary, corrected) | Procedure stays in Vol III; linked |
 | Vol III — JIT server access, PAW baseline, session management, code | Not carried | Beyond the Why chapter's opening/argument scope; Vol III linked for depth |
 | `docs/libraries/conditional-access-principles.md` — Break-glass procedure | Ch02 §Break-glass (corrected #30, #31) | Remaining sections logged in the Chapter 01 verification file |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| AC-6 is satisfied by any mechanism that keeps privilege at what the task requires. | AC-6 doesn't prescribe a mechanism: any mechanism that keeps privilege at what the task requires can suppor... | no source change |

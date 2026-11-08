@@ -199,7 +199,7 @@ Each control above should leave a record the system produces as it runs: a pipel
 
 ## Honest limits
 
-- **Inheritance is only as good as the platform's own authorization.** A control an application inherits from the platform is satisfied only if the platform's implementation is assessed and current. Inheritance moves the work; it doesn't remove it.
+- **Inheritance is only as good as the platform's own authorization.** A control an application inherits from the platform rests on the platform's implementation, so it holds only if that implementation is assessed and current. Inheritance moves the work; it doesn't remove it.
 - **The control table is a starting set.** It names the controls application work touches most, not every control that applies. Baseline and tailoring decide the full set.
 - **The SSDF is changing.** Version 1.2 is still a draft. When it is final, re-map the pipeline to its practices.
 - **Accessibility can't be fully automated either.** Automated rules find only part of the failures; the manual test with assistive technology is what shows a flow works. And the hosted sign-in pages belong to the vendor: the agency can test them and validate the vendor's report, not fix them.

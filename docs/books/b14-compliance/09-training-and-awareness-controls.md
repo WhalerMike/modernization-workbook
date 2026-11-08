@@ -70,7 +70,7 @@ Sources: control text from NIST SP 800-53 Rev. 5, release 5.2.0;[^c09-sp80053] N
 
 Three corrections to the source material follow from the table.
 
-- **Two enhancements it claimed to close aren't in any NIST or FedRAMP baseline.** AT-2(1) and AT-3(3), the practical-exercise enhancements, are optional. Phishing simulation and hands-on labs are good practice, and SP 800-50 Rev. 1 recommends experiential learning,[^c09-sp80050] but an agency that adopts them is tailoring them in, not meeting a Moderate requirement.
+- **Two enhancements it claimed to close aren't in any NIST or FedRAMP baseline.** AT-2(1) and AT-3(3), the practical-exercise enhancements, are optional. Phishing simulation and hands-on labs are good practice, and SP 800-50 Rev. 1 recommends experiential learning,[^c09-sp80050] but an agency that adopts them is tailoring them in, not meeting a Moderate requirement. <!-- claims-ok: describes a claim the chapter corrects -->
 - **AT-3(5) is a privacy-baseline control, not a Moderate one.** It applies because the system processes PII and the privacy baseline is selected, which is [Chapter 08](08-privacy-pii-processing.md)'s ground.
 - **AT-2(3) was missing.** Social engineering and mining is in NIST's Moderate baseline and FedRAMP Classes C and D. The source's awareness content covered phishing and social engineering but never claimed the control, so the control-closure table omitted one of the Moderate requirements it actually met.
 

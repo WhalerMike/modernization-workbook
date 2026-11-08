@@ -22,7 +22,7 @@ Your agency's HR feed sets an account's `active` value. A Lifecycle Workflows le
 
 In this module you fix that before any other gate: you name one writer, and a backstop, for every account-state transition and HR-mastered value, and you test the directory audit log against that list.
 
-**The federal requirement.** This gate meets NIST SP 800-53 AC-2 and IA-4 for the register, and AU-6 for reviewing writes outside the named writer. The requirements and the evidence are in the [Gate 1 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-1-name-one-writer-for-every-state-and-attribute) (under **Federal requirements and evidence** in Step 1) and in the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md#federal-requirements-and-evidence).
+**The federal requirement.** This gate supports NIST SP 800-53 AC-2 and IA-4 for the register, and AU-6 for reviewing writes outside the named writer. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The requirements and the evidence are in the [Gate 1 requirements table](../../books/guides/hr-driven-identity-implementation.md#step-1-name-one-writer-for-every-state-and-attribute) (under **Federal requirements and evidence** in Step 1) and in the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md#federal-requirements-and-evidence).
 
 | Requirement | KSI | Evidence |
 |---|---|---|

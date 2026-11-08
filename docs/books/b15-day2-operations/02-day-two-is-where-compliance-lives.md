@@ -99,7 +99,7 @@ The program's sources build the contract on ServiceNow, because many agencies al
 - **Another authorized workflow and configuration-database platform,** re-targeting the catalog and the control mappings as data rather than redesigning the loop. Atlassian Government Cloud, for example, is listed on the FedRAMP Marketplace as FedRAMP Certified at Class C (Moderate).[^c02-fr]
 - **A composed pipeline on tooling already inside the boundary,** such as work items in an authorized source-control or DevOps service, routing through workflow automation, and security-monitoring automation rules that turn drift into tasks. This is acceptable if all four properties and the guardrail demonstrably hold, and it trades an integrated CMDB and compliance surface for assembly effort.
 
-Substituting the platform changes none of the control claims. What satisfies CM-3 and CA-7 is the operated contract, not the vendor.
+Substituting the platform changes none of the control claims. What supports CM-3 and CA-7 is the operated contract, not the vendor.
 
 ### The boundary question
 
@@ -172,7 +172,7 @@ The model rests on decisions other books have already made. [Book 13, Chapter 10
 
 ## Honest limits
 
-- **This is program design, not a federal requirement.** The three layers, the coordination contract and the operating rules are the program's way of meeting the controls at day-two volume. The controls themselves are the requirement; other designs can meet them.
+- **This is program design, not a federal requirement.** The three layers, the coordination contract and the operating rules are the program's way of supporting the controls, and evidencing them, at day-two volume. The controls themselves are the requirement; other designs can meet them.
 - **Automation doesn't remove judgment.** Verification of a caller, approval of an exception and acceptance of residual risk stay with people. Automation removes the steps that don't need judgment and records the ones that do.
 - **Some surfaces stay manual for a long time.** Where no integration action or connector can reach a system, the work is a declared, approved, recorded session, as [Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md#when-no-machine-can-reach-the-surface) describes. That makes the gap visible and bounded, not cheap.
 - **The platform's own products move.** ServiceNow's applications, certification status and integration actions change by release. Treat every product statement in this book as a dated observation and check it before it informs a plan.

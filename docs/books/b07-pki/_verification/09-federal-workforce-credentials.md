@@ -92,3 +92,11 @@ their text extracted to check section numbers and wording.
 
 `docs/images/diagrams/b07-pki/src/ch09-piv-under-cloud.flow.yaml`, rendered in WSL with `scripts/diagrams/render.py --only
 ch09-piv-under-cloud` to `svg/` and `png/` (under 800 px wide).
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| So the requirement and the configuration meet in one place: | So the requirement and the configuration come together in one place: | no source change |

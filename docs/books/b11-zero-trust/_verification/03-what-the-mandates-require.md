@@ -79,3 +79,11 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | OMB memoranda index now runs to M-27-01 (Oct 23, 2026, not related to this chapter) | `c03-omb-index` updated |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The contract is meant to close controls rather than describe intent: | The contract is meant to support controls with evidence rather than describe intent: | no source change |

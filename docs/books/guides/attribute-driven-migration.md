@@ -511,7 +511,7 @@ Arc isn't limited to Microsoft platforms either: it manages Linux servers, VMwar
 
 : Tiers for devices and servers outside Intune and Arc (design guidance) {.striped .hover}
 
-The tiers are how the inventory meets CM-8, System Component Inventory, in the program's mapping: it includes every component and counts none twice ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads); [federal requirements](#federal-requirements)). A device in no tier is a finding.
+The tiers are how the inventory supports CM-8, System Component Inventory, in the program's mapping: it includes every component and counts none twice ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads); [federal requirements](#federal-requirements)). A device in no tier is a finding.
 
 ### Non-person identity track {#non-person-identity-track}
 
@@ -721,7 +721,7 @@ The same dependencies, as retirement prerequisites, are in [Book 02, Chapter 10]
 - **Keep emergency-access accounts excluded** from every Conditional Access policy, and dependent on none of this machinery ([Book 03, Chapter 10](../b03-hr-identity/10-from-attributes-to-access.md#where-dynamic-membership-stops)).
 - **Know how to pause processing** before a bulk change, and check afterwards that no rule stayed paused.[^adm-dyn-processing]
 
-## The federal requirements each track satisfies {#federal-requirements}
+## The federal requirements each track supports {#federal-requirements}
 
 The tracks and their end state aren't only good practice: each one supports controls and mandates an agency already has to meet. The table maps each track, and the stages and success criteria in it, to those requirements. It reuses only mappings the books already make and verified; the control identifiers and titles are SP 800-53 Rev. 5 (Release 5.2.0),[^adm-sp80053] and the mapping itself is the program's reading, as it is in every book: the architecture contributes mechanisms and evidence to a control, and the agency's authorizing official and assessors decide whether the control is satisfied ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping)). The evidence column names the record the program produces; the read-only [validation kit](../../../downloads/validation-kit.zip) collects much of it, and each track's implementation guide names the check behind each record.
 

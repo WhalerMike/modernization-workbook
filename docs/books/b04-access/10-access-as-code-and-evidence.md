@@ -300,7 +300,7 @@ With `defaultDecisionEnabled` set to `$false`, members nobody reviewed keep thei
 
 ## Change control
 
-The repository is the only normal path to production. The rules below are design positions; together they are how the program meets CM-3 and CM-5 for the identity plane and the FedRAMP 20x change-management indicators, which ask that changes be logged and monitored, that machine-based resources be changed by redeploying version-controlled definitions rather than by editing in place where reasonable, and that testing and validation during deployment be automated.[^c10-ksi-cmt]
+The repository is the only normal path to production. The rules below are design positions; together they are how the program supports, and produces evidence for, CM-3 and CM-5 for the identity plane and the FedRAMP 20x change-management indicators, which ask that changes be logged and monitored, that machine-based resources be changed by redeploying version-controlled definitions rather than by editing in place where reasonable, and that testing and validation during deployment be automated.[^c10-ksi-cmt]
 
 1. **Two people per change.** The author of a pull request can't approve it. Changes to Tier 0 objects (emergency access exclusions, PIM settings for Tier 0 roles, the pipeline's own permissions) need a second approver from the security team.
 2. **Checks before merge.** Schema validation, the emergency access exclusion check, the safety rules in the object table, and a plan or dry run whose output is attached to the pull request.

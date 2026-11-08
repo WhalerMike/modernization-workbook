@@ -1,0 +1,38 @@
+# Lines excused by scripts/check_claims.py because they predate it: one
+# '<file> <line hash>' each (SHA-256 of the stripped line), so only that exact
+# line text passes. This list only shrinks; a full run fails on an entry that
+# no longer matches a hit. Rewrite a line by meaning ("supports", "provides
+# evidence for", with the residual responsibilities) and remove its entry.
+#
+# Follow-up batches, November 2026:
+#   docs/about/decision-register.md   generated from data/decisions.yml; past decisions as recorded
+#   docs/books/b09-network            "transport closes one control family": the book's framing, with its figures and deck
+#   docs/books/b14-compliance         "closure with proof": the book's vocabulary, chapter titles and navigation
+#   docs/books/b15-day2-operations    "federation closes controls" and the closure stages
+docs/about/decision-register.md 74ae80aac32f1a9a428f34106e140f36be66b8a2eb786b799d80fb7a75cd0977
+docs/about/decision-register.md f61c84612a313c90982bec7cec2cfd5c4e65f781c6510803555f07f5d9819a1c
+docs/about/decision-register.md 4e08505bda978eb0a095fff6bad7dd4f3ac714dbee4ea7a3e2a9f5edf942788c
+docs/books/b09-network/02-transport-is-physics-control-is-compliance.md 9b4b08d6c458932371f4f2871a3d84551b126dea3139a3f884bd9724d5cf7828
+docs/books/b09-network/02-transport-is-physics-control-is-compliance.md c453f681cb5bf3134cb048dca2c06cff035b4d189390e7af22d89e71077cb800
+docs/books/b09-network/02-transport-is-physics-control-is-compliance.md d7f7c232f006256bcb77a84a32cceed0c669c8b4340638625099b741ab458a18
+docs/books/b09-network/02-transport-is-physics-control-is-compliance.md 5730888d7e51f3b5a1e69e541f089aa31466435b1178f585f9c30ec7744de002
+docs/books/b09-network/02-transport-is-physics-control-is-compliance.md 72a1f6a854e8afdf14ade180166dfba50d701d0a548353d50801d4bb91ff85ba
+docs/books/b09-network/03-what-tic-3-requires.md 623ee5fa92d2b8677dd0caa6f5e69916f59f31c9ca5f9b09aeb80d27054b000a
+docs/books/b09-network/appendix-c-glossary.md aee375bd9c7185f9f8faa33c914156d26237edb3c9d480cc009b17e2a5f744e8
+docs/books/b09-network/index.md dabd5353aa974a192b724177c72a45b614af06072e83eb5c1f03490cfbc27737
+docs/books/b14-compliance/01-proof-not-a-promise.md 91920ca81e446db063b090e093700b65662b4a124d46e23abc6939aaa6471a82
+docs/books/b14-compliance/04-closure-with-proof.md e4a7d4b0bd2d56e5a8f1da0b74532155b29618974f4021a7a77f6e1cfcc4155d
+docs/books/b14-compliance/04-closure-with-proof.md 1af57c6c1eaad30544b9fbe543c89335f65b3d15ab3f7181c470a5bf1e8ff6af
+docs/books/b14-compliance/04-closure-with-proof.md 5b70ec20c612aa6e6e969cdbe33e3d8d6b086da5875830b184eace8f1b63bf25
+docs/books/b14-compliance/04-closure-with-proof.md 5ae6100ef587c5fbdc84e7db2bee7056b6e745ffcc4c9e25e937d4c78198f436
+docs/books/b14-compliance/04-closure-with-proof.md f4df0c06b681c95d51aec9f6f2e98f87ce412fce6bb9337ba901fff73d41ec4c
+docs/books/b14-compliance/07-supply-chain-risk-management.md 072b42b912bdf019cd2bef5125e84615a894474006a9bd1e79114a734dc2132a
+docs/books/b14-compliance/11-the-authorization-package.md 08f6f5f561ba15b082d30cbf0022dafe5244d636ec251bf75d9f261502b7c20e
+docs/books/b14-compliance/12-the-series-as-a-map.md aeb9a8dca0cbeb6542d967de710e58087c234c4e699212c21d11cf64c0473c77
+docs/books/b14-compliance/12-the-series-as-a-map.md 88dc082ec38980d8a2ed07e9eff26d1409d98c92b470d0dbf65c090456612d93
+docs/books/b14-compliance/12-the-series-as-a-map.md 9734493c9c54e288d6fde740ec2e758657e2b5c029fc0790bd185b19dbc0de9b
+docs/books/b14-compliance/12-the-series-as-a-map.md 8f8b4a2bae62f3c632cf33058a7e4804c1ee6b63697cf5d45c67111457c50a9c
+docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.md 316b6bec31c100a4d96abeaae3ebc6c18ab7a528ae2c49f5878993790205932f
+docs/books/b15-day2-operations/06-saas-integration-governance.md 48f4dcd0d79253a59155ccf5216fcf33f0718f6e64f1652903f0f90d9f6e45a5
+docs/books/b15-day2-operations/06-saas-integration-governance.md a4f08487f0e5084a9a30452266c7dc71f0e3916572493f9fc22fcab2ffa4708f
+docs/books/b15-day2-operations/06-saas-integration-governance.md dfeb25325ba865312e231fc7aa05b6c3c7bdcadec7475cd825ee7d367d943bbb

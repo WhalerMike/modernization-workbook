@@ -302,9 +302,11 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
                                                              "scripts/check_evidence_maps.py"):
             add("evidence-maps", p)
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
+                 "scripts/check_claims.py",
                  "scripts/generate_revisions.py", "scripts/deck_assets.py", "scripts/command_reference.py",
                  "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
+    import check_claims
     import check_neutrality
     import run_example_tests
 
@@ -321,6 +323,11 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
     if any(p in ("data/neutrality-terms.txt", "data/neutrality-baseline.txt") for p in every):
         tasks["neutrality"] = ["*"]                 # the terms or the baseline changed: every file
     # A change to the checker itself runs on the changed files only (and its unit tests); the weekly run covers main.
+    for p in live:
+        if check_claims.in_scope(p):
+            add("claims", p)
+    if any(p in ("scripts/check_claims.py", "data/claims-baseline.txt") for p in every):
+        tasks["claims"] = ["*"]                     # the checker or the baseline changed: every page
     return tasks
 
 
@@ -1119,6 +1126,10 @@ class Checker:
             every_file = t["neutrality"] == ["*"]
             steps.append(("Agency neutrality" + (" (every file)" if every_file else f" ({len(t['neutrality'])} file(s))"),
                           self.simple([PY, "scripts/check_neutrality.py"] + ([] if every_file else t["neutrality"]))))
+        if "claims" in t:
+            every_page = t["claims"] == ["*"]
+            steps.append(("Claim language: supports, not satisfies" + (" (every page)" if every_page else f" ({len(t['claims'])} page(s))"),
+                          self.simple([PY, "scripts/check_claims.py", "--check"] + ([] if every_page else t["claims"]))))
         if "example-tests" in t:
             every_kit = t["example-tests"] == ["*"]
             steps.append(("Example kit tests" + (" (every kit)" if every_kit else f" ({', '.join(t['example-tests'])})"),

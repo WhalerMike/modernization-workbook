@@ -77,3 +77,10 @@ The lane-to-product mapping (G2), the approver-per-class example, the one-writer
 
 Each gate's federal requirements table gained a KSI column; one sentence under Gate 1's table says what the column means and that the agency doesn't report KSIs itself (Book 00, Appendix B). FedRAMP's Key Security Indicators page was read on November 2, 2026 (footnote `ttm-ksi`). Every KSI named is an indicator whose "Related SP 800-53 Controls" include the row's control: KSI-SCR-MIT, KSI-SCR-MON, KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS, KSI-PIY-RIS, KSI-PIY-RSD, KSI-CMT-LMC, KSI-CMT-RVP, KSI-CMT-RMV, KSI-CMT-VTD, KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-RVL and KSI-PIY-GIV. All were already cited in Book 13, Appendix A or Book 14, Chapter 03. RA-7, CA-5 and AU-14 are cited by no indicator, NIST SP 800-63B-4 isn't an SP 800-53 control, and FedRAMP authorization and Book 13's L4 acceptance are the agency's own decisions, so those rows say "None". CM-8 for identities stays *(inference)*.
 
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Each gate carries the federal requirement it meets and the evidence an ISSO keeps, | Each gate carries the federal requirements it supports and the evidence an ISSO keeps, | no source change |

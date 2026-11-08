@@ -73,3 +73,15 @@ Checked October 21, 2026 by writer W1. Sources: `docs/compliance/Vol_III_Book_07
 | Telemetry spec: control mapping (CA, AU, SI families; regenerable, hash-verifiable evidence) | Ch02 "Controls this chapter closes"; M-26-14 hashing note | Ch12 (W6) may carry the regeneration detail further |
 | Telemetry spec: closing "cleaned extraction" note | — | Editorial note; not carried |
 | (New) Coverage query | Ch02 "Checking coverage against the inventory" | Implements Ch01's coverage check; illustrative |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The contract's fields and how they meet AU-3. | The contract's fields and how they support AU-3. | no source change |
+| the controls this chapter closes and where they sit | the controls this chapter supports and where they sit | no source change |
+| The controls it closes, and the federal requirements | The controls it supports, and the federal requirements | no source change |
+| ## Controls this chapter closes | ## Controls this chapter supports {#controls-this-chapter-closes} | no source change |
+| An inventory that meets CM-8 across stacks is the naming plane. | An inventory that does what CM-8 asks across stacks is the naming plane. | no source change |

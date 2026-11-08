@@ -56,3 +56,11 @@ Writer W5. Source material: the completion criteria and "training effectiveness 
 | training-index: Completion criteria (Track A and Track B) | Ch10, readiness per role (competence column); Chapter 05 | Engine commands and slot walks not carried |
 | training-index: Expansion roadmap, "post-implementation KPIs" mention | Ch10, readiness per role and per gate | The KPIs page itself was not a source; measures here are new design |
 | Vol V Book 00: training-effectiveness record as the training evidence | Ch10, training records as evidence | Reframed against Book 14 Ch09's AT-4 record |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Federal requirements are mostly satisfied by completion: | Federal training requirements mostly ask for completion: | no source change |

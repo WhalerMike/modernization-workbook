@@ -229,7 +229,7 @@ Everything above depends on automation: log sources, detection rules, deployment
 |---|---|---|---|
 | Telemetry completeness | Is every expected source still sending? | A source's newest record is older than its freshness limit | CA-7; SI-4 |
 | Detection efficacy | Do the detection rules still catch what they should? | A replayed known-bad event doesn't raise its rule | CA-2; SI-4 |
-| Deployment smoke tests | Did the infrastructure-as-code change actually close the control? | A post-deployment assertion fails | CA-2 |
+| Deployment smoke tests | Did the infrastructure-as-code change actually make the control test pass? | A post-deployment assertion fails | CA-2 |
 | Accessibility checks | Do the self-service pages, forms and help articles still meet Section 508? | A scheduled scan, or a manual check after a change, finds a WCAG 2.0 AA failure | Section 508 (M-24-08)[^c12-508] |
 | Baseline conformance re-check | Does configuration still match the intended baseline after reconciliation? | Drift survives a reconciliation cycle | CM-6 |
 | Workflow tests | Do the ITSM flows still route, approve, escalate and close as designed? | A test in the non-production instance fails | CA-2; CM-3 |

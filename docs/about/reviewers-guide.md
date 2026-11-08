@@ -53,6 +53,7 @@ Every external fact carries an endnote to a primary source: Microsoft Learn or a
 - the sentence says what the source says, no more, with its conditions kept;
 - the source is the original, not a summary of it;
 - the source is still current, and its link still goes where it should.
+- the sentence claims no more for a mechanism than it can deliver: a technology, kit or page **supports** a control or requirement, or provides evidence for it, and never by itself satisfies, meets or closes one. Only an assessor or authorizing official decides that a control is satisfied ([supports, not satisfies](sources-and-verification.md#claim-language)). <!-- claims-ok: states the rule itself -->
 
 Each chapter's claims log, in the `_verification` folder beside it on GitHub, lists the chapter's external claims with a verdict for each. A claim marked *verified* that you think is wrong is exactly what we want to hear about. [How This Workbook Knows What It Says](sources-and-verification.md) explains the method and where it stops.
 
