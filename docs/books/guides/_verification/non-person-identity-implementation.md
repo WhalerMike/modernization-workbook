@@ -62,6 +62,7 @@ New guide, first pass of 2026-10-29. The guide is a step-by-step layer over Book
 | 49 | Control mapping AC-2, AC-6(5), IA-4, IA-5, IA-9 (no baseline), AU | Evidence | B17 App A; B02 App A; companion guide |
 | 50 | SCuBA MS.AAD.5.1v1–5.3v1 BOD 25-01 required | Evidence | B02 App A; B17 Ch06 |
 | 51 | P4.6 in the program master schedule | Path on one page | `docs/project-plans/program-master-schedule.md` (via data-platform plan's reference) |
+| 52 | Stage of access reviews of service principals in privileged roles: PIM review page (create-roles-and-resource-roles-review) carries no preview label, but Learn's "Securing service principals," Challenges and mitigations, says "This functionality is in preview"; the license-table row now carries the stage | Licenses | corrected Nov 8, 2026 (item 1558): stage added to match the non-person identity developer workbook, Chapter 07 | <https://learn.microsoft.com/entra/architecture/service-accounts-principal>; <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> |
 
 ## Design guidance introduced here (labeled in the guide)
 
