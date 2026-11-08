@@ -6900,7 +6900,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-dp-consolidation-executive/Guide_DP_Consolidation_Executive_Narration_Script.md",
   "page": "docs/books/b09-network/11-field-office-wan-transformation.html",
   "source": "docs/books/b09-network/11-field-office-wan-transformation.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "dp-consolidation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dp-consolidation",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
