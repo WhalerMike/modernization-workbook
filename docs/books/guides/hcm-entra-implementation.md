@@ -311,7 +311,7 @@ The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr
 | Holds the run when disables exceed a threshold | Appendix B pause switch |
 | With `--apply` only: posts with a bearer token from the environment, to an allow-listed Graph `/bulkUpload` URL, paced under the documented limit, honoring `Retry-After`, stopping at the first failure | Chapter 05 |
 
-On the fixture extract (19 fictional rows) both clients produce 9 operations, 9 quarantined records and 1 superseded record, with identical payload hashes. The tests ran 45 pytest cases and 40 Pester 5 cases, all passing. They prove the code does what its README says against the fixtures, not that a tenant or an Oracle extract behaves the same way. The clients don't read Atom feeds, hold future-dated events, write provenance or read the provisioning logs back; those are the rest of the middleware.
+On the fixture extract (19 fictional rows) both clients produce 9 operations, 9 quarantined records and 1 superseded record, with identical payload hashes. The tests ran 70 pytest cases and 62 Pester 5 cases on November 8, 2026 (45 and 40 at first publication), all passing. They prove the code does what its README says against the fixtures, not that a tenant or an Oracle extract behaves the same way. The clients don't read Atom feeds, hold future-dated events, write provenance or read the provisioning logs back; those are the rest of the middleware.
 
 ## Risks
 

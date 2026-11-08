@@ -72,7 +72,7 @@ Internal vocabulary translated: "SAM (Systems Access Management)" → "the ident
 | 62 | Help desk log access read-only within a ticket; non-compliance reporting list, one business day | Same | restated-as-design | Source |
 | 63 | SLA table | Service levels | restated-as-design | Source "SAM-originated RITM SLA requirements", generalized |
 | 64 | Flow definition row and create/modify steps | Describing request types | restated-as-design | Source, with verification, evidence and due-date fields added |
-| 65 | Worked example (payroll app, A2) | Same | restated-as-design | Source example; Tier 1 approver and hold window aligned with Book 04 Ch06 |
+| 65 | Worked example (payroll app, A2) | Same | restated-as-design | Source example; R1 second approval by the identity governance office, aligned with Book 04 Ch06 (no hold window) |
 
 ## Carry-forward ledger
 
@@ -139,3 +139,12 @@ Opened November 2, 2026: OMB M-24-08 PDF (text extracted locally), read at §III
 | 4 | M-24-08: the accessibility statement includes "Instructions on the use of the telecommunications relay service" | Verification ladder | verified (quote) | OMB M-24-08 §III.A |
 | 5 | A one-time TAP used to register a passwordless method must be used within 10 minutes of sign-in; the limit doesn't apply to a multi-use TAP | Verification ladder | verified | Learn TAP, Limitations |
 | 6 | Captioning or interpreter on video calls; relay calls accepted; help desk stays on the session; the CISO's ladder sets when a multi-use pass may be an accommodation | Verification ladder | restated-as-design | — |
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Risk Tier 1 access: application owner, then the identity governance office as a second approval stage (replaces the earlier "IGO notified, four-business-hour hold window") | The IGA pipeline; A worked example | corrected to match the published chapter | Book 04 Ch06, Risk tiers set the approval chain |
+| 2 | A3 approvers: the IGO approves an ImmutableID repair and, above the lowest risk tier, admin consent, and reviews every consent request (replaces "always including the IGO") | Triage by required authority | corrected to match the published chapter | Book 04 Ch06, Who approves admin consent |

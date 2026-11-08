@@ -1,6 +1,6 @@
 ---
 title: "Privileged Access: An Implementation Guide"
-description: "A gated guide for making privileged access just-in-time in Microsoft Entra ID and Azure: inventory every privileged assignment by tier; build and test the emergency access accounts first, so nobody is locked out; put the administrators behind Conditional Access, report-only then enforced, with the PIM activation gate; hold PIM role settings for Microsoft Entra roles as code and convert standing assignments; govern the PRV role-assignable groups with PIM for Groups; bring Azure Owner, Contributor and User Access Administrator under PIM; run access reviews of every privileged role and group; and keep evidence and drift on a schedule for the ISSO. Each gate states the federal requirement it meets with its KSI, the evidence an ISSO keeps, availability in GCC and GCC High, an interim path, and the read-only check in the privileged access kit that proves it."
+description: "A gated guide for making privileged access just-in-time in Microsoft Entra ID and Azure: inventory every privileged assignment by tier; build and test the emergency access accounts first, so nobody is locked out; put the administrators behind Conditional Access, report-only then enforced, with the PIM activation gate; hold PIM role settings for Microsoft Entra roles as code and convert standing assignments; govern the PRV role-assignable groups with PIM for Groups; bring Azure Owner, Contributor and User Access Administrator under PIM; run access reviews of every privileged role and group; and keep evidence and drift on a schedule for the ISSO. Each gate states the federal requirement it supports with its KSI, the evidence an ISSO keeps, availability in GCC and GCC High, an interim path, and the read-only check in the privileged access kit that proves it."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -340,7 +340,7 @@ Two Microsoft features meet in a PRV group. Only a group created role-assignable
 2. **Hold `prv-groups.json` as the reviewed file**: each group, its tier, what it holds, and its members and owners, each active or eligible, with an end date and a ticket.
 3. **No group in a PRV group, and no eligible service principal.** An eligible group hides its people from the review; service principals can't activate.
 4. **No owners on a Tier 0 group,** because owners manage membership. Elsewhere, never eligible owners without an active owner: Learn says the last active owner can't be removed, so the activation can't be ended.[^pag-pim-groups]
-5. **Approval for Tier 0 and Tier 1 activation**, by the tier's group, at most eight hours *(design guidance, from Appendix B)*.
+5. **Approval for Tier 0 and Tier 1 activation**, by the tier's group, at most four hours for Tier 0 and eight for Tier 1 *(design guidance, from Appendix B)*.
 6. **Plan, review, apply.** Rules go first, then grants, then removals. The apply refuses more than five removals by default, the sign of a truncated file.
 7. **Defer access packages for PRV membership** (plan task A3.3). When they come, an access package's expiration must not exceed the group's own eligibility expiry ([Chapter 05](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#what-the-prv-groups-have-to-hold)).
 

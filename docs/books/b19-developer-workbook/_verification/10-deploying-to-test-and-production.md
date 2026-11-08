@@ -92,3 +92,10 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | a requirements table: the requirement it meets, | a requirements table: the requirement it supports, | no source change |
+
+## Consistency read, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Workflows per tenant: up to 100 | 100 on the limits page, 50 on the licensing page; the program plans for 50 | Chapter 05 limits table and footnotes |
+| Member map source: Chapter 04 step 3 | Same, naming the `$memberIds` table in that step | Chapter 04 Lab 2 step 3 |

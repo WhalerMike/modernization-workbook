@@ -14,7 +14,7 @@ aliases:
 
 # What a Federal DDI Platform Must Do {.unnumbered}
 
-A companion briefing to [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md), for CIOs, CISOs, network and DDI leads, and acquisition teams. It turns the book's argument into a buyer's and an operator's view: which federal requirements land on DNS, DHCP and IPAM, the capabilities a platform must deliver to meet them, the evidence to check before buying any product, and how an agency's divisions can manage their own DNS, DHCP and IPAM without breaking central governance. It recommends no product; vendors appear only as examples.
+A companion briefing to [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md), for CIOs, CISOs, network and DDI leads, and acquisition teams. It turns the book's argument into a buyer's and an operator's view: which federal requirements land on DNS, DHCP and IPAM, the capabilities a platform must deliver to support them, the evidence to check before buying any product, and how an agency's divisions can manage their own DNS, DHCP and IPAM without breaking central governance. It recommends no product; vendors appear only as examples.
 
 ## Watch or download
 

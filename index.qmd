@@ -363,7 +363,7 @@ format:
         <div class="book-links"><a href="docs/books/b02-identity/index.html">Read</a><a href="downloads/b02-identity-bundle.docx">Word</a><a href="docs/presentations/index.html#book-02">Deck</a></div>
       </div>
       <div class="book-card">
-        <div class="book-num">Book 03 · 14 chapters</div>
+        <div class="book-num">Book 03 · 15 chapters</div>
         <div class="book-title"><a href="docs/books/b03-hr-identity/index.html">HR-Driven Identity</a></div>
         <div class="book-q">Why should HR, not IT, decide who exists?</div>
         <div class="book-desc">Federal HR 2.0 and the Entra ID migration as one opportunity: the HR record as the source of identity.</div>
@@ -485,7 +485,7 @@ format:
     <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
     <div class="arc-grid">
       <div class="arc-phase"><div class="phase-num">19</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to application modernization</div></div>
-      <div class="arc-phase"><div class="phase-num">235</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty-seven appendices of checklists, matrices, mappings and templates</div></div>
+      <div class="arc-phase"><div class="phase-num">236</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus forty-four appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
       <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>

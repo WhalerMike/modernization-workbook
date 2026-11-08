@@ -99,3 +99,9 @@ The guide's "Where the kits stop" table states what no validation kit check read
 |---|---|---|
 | Gate 7 example: the analyst "stays in the same division unit" | The record carries a new division code, so the analyst leaves the old division unit and joins the new one | Companion guide, worked example, steps 1 and 3 |
 | Gate 7 Validate and the gate table: VK-HR-05 shows the mover's workflow record | VK-HR-05 reads hire and leave triggers only; the mover proof uses the workflow's own run history, now listed under "Where the kits stop" | `examples/validation-kit/powershell/ValidationKit/Checks/HR.ps1` (VK-HR-05) |
+
+## Consistency read, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| The `memberOf` preview ends on November 3, 2026 | The preview ended on November 3, 2026 | Companion guide, Limits; Book 02 Ch 09 |

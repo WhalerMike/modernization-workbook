@@ -45,7 +45,7 @@ The slot numbering is Book 05's device attribute schema: region in `extensionAtt
 
 : The Intune track's gates and the checks that prove them {.striped .hover}
 
-The [Endpoint & Device Modernization project plan](../../project-plans/endpoint-device.md) schedules the same work as a 44-week network with its own gates; use its dates and this guide's checks together.
+The [Endpoint & Device Modernization project plan](../../project-plans/endpoint-device.md) schedules the same work as a 48-week network with its own gates; use its dates and this guide's checks together.
 
 ## Gate 0: prerequisites
 

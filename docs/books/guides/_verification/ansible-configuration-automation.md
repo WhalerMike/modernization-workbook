@@ -145,3 +145,9 @@ The guide was reframed for FedRAMP Moderate civilian agencies. "STIG content" be
 | Claim | Where | Verdict |
 |---|---|---|
 | Rule 5: one patch owner per server (`patch_owner`, mirrored to the Arc `PatchOwner` tag); Update Manager assesses only where Ansible patches | One owning tool per setting | design guidance (the rule list is labeled); links Book 05 Ch 09 |
+
+## Consistency read, November 8, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Footnote ans-80053 listed IA-5 | IA-5 dropped; the evidence table has no IA-5 row | NIST SP 800-53 Rev. 5 (no source change) |

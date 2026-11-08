@@ -121,3 +121,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Table header: Control / How the integration closes it | Table header: Control / How the integration supports it | no source change |
 | Table caption: What a governed integration closes. Control mapping is program design; | Table caption: What a governed integration supports. Control mapping is program design; | no source change |
 | The federation mechanics close technical controls. They don't write the policies (AC-1, IA-1), sign the agreements with external systems, or run the access reviews that SP 800-53 expects alongside them. The gate in this chapter closes the external-system direction | The federation mechanics support technical controls; they don't satisfy them. They don't write the policies (AC-1, IA-1), sign the agreements with external systems, or run the access reviews that SP 800-53 expects alongside them, and the assessor decides whether each control is satisfied. The gate in this chapter supports the external-system direction | no source change |
+
+## Consistency read, November 8, 2026
+
+A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own chapters. No external source was re-opened.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Wording: onboarding is the densest control-supporting moment; the chapter supports the controls it names; consent restriction doesn't answer SA-9; a verdict addresses it (earlier wording said the design closes or doesn't close controls) | Opening; Consent restriction answers who, not whether | claim language narrowed; no fact change | CONTRIBUTING.md, Claim language |

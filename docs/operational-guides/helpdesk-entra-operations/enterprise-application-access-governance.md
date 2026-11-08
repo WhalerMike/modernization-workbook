@@ -92,7 +92,7 @@ The following are explicitly excluded from this governance model:
 
 The **Identity Governance Officer (IGO)**, operating under the authority of the
 Chief Information Security Officer (CISO), is the governing authority for this
-policy. The IGO holds final approval authority for all Tier 1 application
+policy. The IGO holds final approval authority for all R1 application
 actions, all Admin Consent grants, all policy exceptions, and all governance
 model updates. In the absence of the IGO, authority is delegated to the Deputy
 IGO or, in emergency circumstances only, to the Privileged Role Administrator
@@ -131,8 +131,8 @@ enterprise application governance must be familiar with these definitions.
 | **ImmutableID** | An attribute used to link an on-premises Active Directory user object to its corresponding Entra ID user account in hybrid identity environments. Critical for federated authentication scenarios. |
 | **Group-Based Access** | The practice of assigning security groups (rather than individual users) to Enterprise Applications for access control. Group-based access is the mandatory pattern in this agency for all application assignments. |
 | **Application Owner** | A named individual (not a group) assigned as the accountable party for an Enterprise Application. Application Owners are responsible for access reviews, consent approvals (within their authority), and maintaining accurate application registration metadata. |
-| **Identity Governance Officer (IGO)** | The senior authority responsible for this governance model. The IGO holds final approval authority for Tier 1 actions, all Admin Consent grants, and policy exceptions. |
-| **Risk Tier** | A classification (Tier 1 / High, Tier 2 / Moderate, Tier 3 / Low) assigned to each Enterprise Application based on the sensitivity of data accessed, permission types granted, and exposure profile. Risk Tier drives the approval chain depth and review frequency. |
+| **Identity Governance Officer (IGO)** | The senior authority responsible for this governance model. The IGO holds final approval authority for R1 actions, all Admin Consent grants, and policy exceptions. |
+| **Risk Tier** | A classification (R1 / High, R2 / Moderate, R3 / Low) assigned to each Enterprise Application based on the sensitivity of data accessed, permission types granted, and exposure profile. Risk Tier drives the approval chain depth and review frequency. |
 | **ServiceNow RITM** | A "Requested Item" ticket in the ServiceNow ITSM platform. All access requests, consent approvals, and governance actions must be initiated, approved, and closed via a ServiceNow RITM, which serves as the system of record. |
 | **Break-Glass Account** | An emergency access account held outside the normal PIM governance model, used only when standard administrative access is unavailable. Break-glass activation triggers mandatory notification and post-incident review. |
 | **Ownership Hierarchy** | The three-layer organizational ownership model: Layer 1 = IGO (tenant-wide authority), Layer 2 = Departmental Owner (department-level accountability), Layer 3 = Application Owner (application-specific accountability). |
@@ -151,11 +151,11 @@ group, key responsibilities, and approval authority level.
 
 | Role name | Entra role / group | Key responsibilities | Approval authority level |
 |---|---|---|---|
-| **Identity Governance Officer (IGO)** | Privileged Role Administrator; Global Reader; member of IGO-Approvers security group | Final authority on all Tier 1 application actions; approves all Admin Consent grants; approves policy exceptions and waivers; conducts annual governance review; maintains Application Registry; assigns Risk Tiers to all Enterprise Applications; receives all break-glass activation alerts | **Level 1 (highest)** — can approve all actions |
+| **Identity Governance Officer (IGO)** | Privileged Role Administrator; Global Reader; member of IGO-Approvers security group | Final authority on all R1 application actions; approves all Admin Consent grants; approves policy exceptions and waivers; conducts annual governance review; maintains Application Registry; assigns Risk Tiers to all Enterprise Applications; receives all break-glass activation alerts | **Level 1 (highest)** — can approve all actions |
 | **Global Administrator** | Global Administrator (Entra ID built-in) | Emergency and break-glass use only; shall not be used for routine operations; must be activated via break-glass procedure; every use is automatically alerted to IGO and CISO | **Break-glass only** — not for routine use |
 | **Privileged Role Administrator** | Privileged Role Administrator (Entra ID built-in, via PIM) | Manages PIM policies and activation settings; assigns eligible role memberships; reviews PIM activation logs; manages Privileged Access Group configurations | **Level 2** — PIM and role management actions |
-| **Application Owner (Ownership Layer 3)** | Named in Enterprise App → Owners tab; member of App-Owners security group | First line of governance accountability for assigned application; approves or denies access requests for their application; conducts quarterly access reviews (Tier 1) or semi-annual (Tier 2); submits Admin Consent requests with business justification; maintains accuracy of application metadata in Registry; notifies IGO of any material change in application scope | **Level 3** — application-level access approvals |
-| **Departmental Owner (Ownership Layer 2)** | Member of Dept-Owners-[DeptCode] security group | Validates business justification for access requests; approves Tier 3 application access requests; confirms staffing changes that affect application access; escalates unresolved access requests to Application Owner; reviews department-level group memberships semi-annually | **Level 4** — departmental access validation |
+| **Application Owner (Ownership Layer 3)** | Named in Enterprise App → Owners tab; member of App-Owners security group | First line of governance accountability for assigned application; approves or denies access requests for their application; conducts quarterly access reviews (R1) or semi-annual (R2); submits Admin Consent requests with business justification; maintains accuracy of application metadata in Registry; notifies IGO of any material change in application scope | **Level 3** — application-level access approvals |
+| **Departmental Owner (Ownership Layer 2)** | Member of Dept-Owners-[DeptCode] security group | Validates business justification for access requests; approves R3 application access requests; confirms staffing changes that affect application access; escalates unresolved access requests to Application Owner; reviews department-level group memberships semi-annually | **Level 4** — departmental access validation |
 | **Help Desk Operator** | Entra-HelpDesk-Operators PAG (grants Application Administrator + Hybrid Identity Administrator via PIM activation) | Executes approved access changes in Entra ID (group assignments, app assignments); must activate role via PIM before performing any Entra action; closes ServiceNow RITM with execution confirmation; does not approve access — execution only; triages Microsoft Security notification emails per the Microsoft Security notification section; escalates anomalous consent or permission events to IGO | **Execution only** — no approval authority |
 | **End User / Requester** | Standard user account (no elevated role) | Submits access requests via ServiceNow catalog; provides business justification for access needs; acknowledges acceptable use requirements upon access grant; reports unauthorized access or anomalous application behavior | **None** — requestor only |
 | **ServiceNow Workflow Automation** | ServiceNow Integration Service Account (Entra ID service account, no interactive sign-in) | Routes RITM tickets to approvers based on risk tier; sends automated notifications at each workflow stage; logs all approval actions to RITM audit trail; enforces SLA timers and escalation triggers | **System actor** — no human approval authority |
@@ -178,9 +178,9 @@ assignments. All activations must be logged and subject to quarterly review.
 |---|---|---|---|---|---|---|
 | Enterprise App Registration (new app) | A | R | C | R | I | I |
 | Risk Tier Classification | A/R | C | C | I | — | I |
-| Admin Consent Approval (Tier 1) | A/R | C | I | I | I | I |
-| Admin Consent Approval (Tier 2) | A | R | C | I | I | I |
-| Admin Consent Approval (Tier 3) | I | A/R | C | I | I | I |
+| Admin Consent Approval (R1) | A/R | C | I | I | I | I |
+| Admin Consent Approval (R2) | A | R | C | I | I | I |
+| Admin Consent Approval (R3) | I | A/R | C | I | I | I |
 | Group Assignment to Enterprise App | I | A | C | R | I | I |
 | Standard Access Request (end user) | I | A | R | R | R | — |
 | Quarterly Access Review | A | R | C | I | I | I |
@@ -202,13 +202,13 @@ population.
 ::: {.callout-important title="Classification is a governance obligation"}
 Every Enterprise Application must have an assigned Risk Tier before access may be
 granted to any user or group. Applications discovered without a Risk Tier
-classification are treated as **Tier 1 (High Risk)** until formally classified by
+classification are treated as **R1 (High Risk)** until formally classified by
 the IGO. No exceptions are permitted.
 :::
 
-### Tier 1 — high risk
+### R1 — high risk
 
-An application is classified Tier 1 if it meets **one or more** of the following
+An application is classified R1 if it meets **one or more** of the following
 criteria:
 
 - Uses **Application Permissions** (not Delegated Permissions) — i.e., acts
@@ -222,10 +222,10 @@ criteria:
 - Has been granted one or more **highly privileged Microsoft Graph permissions**
   (e.g., Mail.ReadWrite.All, User.ReadWrite.All, Files.ReadWrite.All at
   application level)
-- Has no named Application Owner (orphaned — automatic Tier 1 classification
+- Has no named Application Owner (orphaned — automatic R1 classification
   applies)
 
-**Tier 1 governance requirements:**
+**R1 governance requirements:**
 
 - IGO approval required for all Admin Consent grants
 - Executive sign-off (CISO or Deputy CISO) required for initial provisioning
@@ -236,10 +236,10 @@ criteria:
 - SIEM alerting enabled for all permission changes
 - Named Backup/Delegate Application Owner required
 
-### Tier 2 — moderate risk
+### R2 — moderate risk
 
-An application is classified Tier 2 if it meets the following criteria (and does
-not qualify for Tier 1):
+An application is classified R2 if it meets the following criteria (and does
+not qualify for R1):
 
 - Uses **Delegated Permissions with broad scope** (e.g., Files.ReadWrite,
   Mail.Read on behalf of user)
@@ -250,7 +250,7 @@ not qualify for Tier 1):
   project data)
 - Is operated and maintained by an internal team with defined ownership
 
-**Tier 2 governance requirements:**
+**R2 governance requirements:**
 
 - Application Owner approval required for Admin Consent; IGO review required
   before grant
@@ -258,9 +258,9 @@ not qualify for Tier 1):
 - Semi-annual access review
 - Consent grants logged in ServiceNow
 
-### Tier 3 — low risk
+### R3 — low risk
 
-An application is classified Tier 3 if it meets all of the following criteria:
+An application is classified R3 if it meets all of the following criteria:
 
 - Requests only **minimal delegated permissions** (e.g., User.Read, openid,
   profile, email)
@@ -269,7 +269,7 @@ An application is classified Tier 3 if it meets all of the following criteria:
 - User population is defined and limited (e.g., a single team or department)
 - Is operated by an internal team with defined ownership
 
-**Tier 3 governance requirements:**
+**R3 governance requirements:**
 
 - Departmental Owner approval sufficient for access requests
 - Application Owner approval required for any Admin Consent
@@ -281,7 +281,7 @@ An application is classified Tier 3 if it meets all of the following criteria:
 The following matrix provides detailed classification guidance, including
 permission scope examples and the required approval chains for each tier.
 
-| Classification criterion | Tier 1 — high risk | Tier 2 — moderate risk | Tier 3 — low risk |
+| Classification criterion | R1 — high risk | R2 — moderate risk | R3 — low risk |
 |---|---|---|---|
 | **Permission Type** | Application Permissions (any) | Delegated — broad scope | Delegated — minimal scope |
 | **Data Sensitivity** | PII, PHI, financial, HR, tenant-wide | Business-sensitive, department-level | Non-sensitive, user profile only |
@@ -303,7 +303,7 @@ application's requested permission scope, (2) a change in the data the
 application accesses, (3) a change in the application's operator or ownership, or
 (4) a security incident involving the application. Reclassification requests must
 be submitted to the IGO via ServiceNow RITM. Downgrade reclassification (e.g.,
-Tier 1 to Tier 2) requires IGO approval with documented justification.
+R1 to R2) requires IGO approval with documented justification.
 :::
 
 ## Application ownership model
@@ -324,8 +324,8 @@ The Application Owner must:
    purpose, data classification, user population)
 2. Approve or deny all access requests submitted through ServiceNow within the
    applicable SLA
-3. Conduct scheduled access reviews (quarterly for Tier 1, semi-annual for Tier
-   2, annual for Tier 3) and certify or revoke user group memberships
+3. Conduct scheduled access reviews (quarterly for R1, semi-annual for R2,
+   annual for R3) and certify or revoke user group memberships
 4. Submit formal Admin Consent requests to the IGO with documented business
    justification and least-privilege analysis for every new or modified
    permission scope
@@ -342,8 +342,8 @@ The Application Owner must:
 
 ### Backup / delegate owner requirement
 
-All Tier 1 applications must have a named Backup/Delegate Application Owner. Tier
-2 applications are strongly recommended to designate a Backup Owner. The Backup
+All R1 applications must have a named Backup/Delegate Application Owner. R2
+applications are strongly recommended to designate a Backup Owner. The Backup
 Owner must have sufficient knowledge of the application to conduct access reviews
 and respond to Admin Consent requests in the primary owner's absence. The Backup
 Owner is recorded in the Application Registry and named in the Entra ID
@@ -363,7 +363,7 @@ fields for each application:
 | Application Owner (Primary) | Named individual with contact info | Application Owner / IGO |
 | Application Owner (Backup) | Named individual with contact info | Application Owner / IGO |
 | Departmental Owner | Named individual with department | Departmental Owner / IGO |
-| Risk Tier | Tier 1 / 2 / 3 | IGO |
+| Risk Tier | R1 / R2 / R3 | IGO |
 | Data Classification | Sensitivity of data accessed | Application Owner + IGO |
 | Admin Consent Status | Granted / Pending / Not Required | IGO |
 | Permission Scopes Granted | List of all consented permissions | IGO |
@@ -421,7 +421,7 @@ An application is considered **orphaned** if it has no named Application Owner o
 record in the Application Registry or in the Entra ID Owners tab. The following
 mandatory policy applies to all orphaned applications:
 
-1. Orphaned applications are **automatically reclassified as Tier 1 (High Risk)**
+1. Orphaned applications are **automatically reclassified as R1 (High Risk)**
    pending owner assignment
 2. The IGO assumes interim ownership responsibility
 3. A ServiceNow RITM is automatically generated and assigned to the IGO office
@@ -454,7 +454,7 @@ not permitted.
 | **1** | User submits access request via ServiceNow catalog item. Must include: application name, business justification, manager name, and required access role/group. | End User / Requester | ServiceNow (self-service portal) | Immediate (user action) | RITM created; routed to Departmental Owner |
 | **2** | Departmental Owner reviews business justification. Confirms requester's role legitimacy and department membership. Approves or denies the request. | Departmental Owner | ServiceNow (approval task) | 1 business day | RITM routed to App Owner (if approved) or closed denied |
 | **3** | Application Owner reviews the approved request against application access policy. Confirms the requested group is appropriate. Approves or denies with documented reason. | Application Owner | ServiceNow (approval task) | 2 business days | RITM routed to Help Desk for execution (if approved) or closed denied |
-| **4** | IGO is notified of all Tier 1 access approvals before execution. IGO may intervene and escalate review within 4 business hours of notification. | IGO (notification only for Tier 2/3) | ServiceNow (automated notification) | IGO review window: 4 hours (Tier 1 only) | IGO acknowledgement logged; execution proceeds if no hold placed |
+| **4** | IGO is notified of all R1 access approvals before execution. IGO may intervene and escalate review within 4 business hours of notification. | IGO (notification only for R2/3) | ServiceNow (automated notification) | IGO review window: 4 hours (R1 only) | IGO acknowledgement logged; execution proceeds if no hold placed |
 | **5** | Help Desk Operator activates Application Administrator role via PIM (Entra-HelpDesk-Operators PAG). Records PIM activation time in RITM work notes. | Help Desk Operator | Entra ID PIM portal | Same day as RITM assignment | PIM activation logged in Entra audit log |
 | **6** | Help Desk Operator executes group membership addition: adds the approved user to the designated access security group in Entra ID. Confirms assignment in Entra portal and records object IDs in RITM. | Help Desk Operator | Microsoft Entra admin center → Groups | Within PIM activation window | User added to group; group-based access to Enterprise App propagates |
 | **7** | Help Desk Operator closes RITM with full execution log: timestamp, operator UPN, group name, group Object ID, user UPN added, Entra audit log reference. | Help Desk Operator | ServiceNow | Within 1 hour of execution | RITM resolved and closed; audit trail complete |
@@ -498,11 +498,11 @@ a security-critical action requiring rigorous review.
 
 | Application risk tier | Approval chain | Minimum approvers | Total SLA |
 |---|---|---|---|
-| **Tier 1 — High Risk** | Application Owner submits → Security Review (IGO analyst) → **IGO final approval** → CISO notification | IGO (mandatory); CISO notified | 5 business days |
-| **Tier 2 — Moderate Risk** | Application Owner submits → Security Review (IGO analyst) → Application Owner confirms → **IGO review and approval** | Application Owner + IGO | 5 business days |
-| **Tier 3 — Low Risk** | Application Owner submits → Security Review (IGO analyst) → **Application Owner approval** → IGO notified | Application Owner; IGO informed | 3 business days |
-| **Any Tier — Application Permission Type** | Regardless of tier: **IGO approval is mandatory** for any Application Permission (non-delegated). Automatic escalation to Tier 1 treatment. | IGO (mandatory); CISO notified | 5 business days |
-| **Any Tier — Critical Scope** | If permission includes \*.All at application level (e.g., Mail.ReadWrite.All): automatic escalation to IGO + CISO dual review regardless of tier. | IGO + CISO (dual review) | 5 business days |
+| **R1 — High Risk** | Application Owner submits → Security Review (IGO analyst) → **IGO final approval** → CISO notification | IGO (mandatory); CISO notified | 5 business days |
+| **R2 — Moderate Risk** | Application Owner submits → Security Review (IGO analyst) → Application Owner confirms → **IGO review and approval** | Application Owner + IGO | 5 business days |
+| **R3 — Low Risk** | Application Owner submits → Security Review (IGO analyst) → **Application Owner approval** → IGO notified | Application Owner; IGO informed | 3 business days |
+| **Any risk tier — Application Permission Type** | Regardless of tier: **IGO approval is mandatory** for any Application Permission (non-delegated). Automatic escalation to R1 treatment. | IGO (mandatory); CISO notified | 5 business days |
+| **Any risk tier — Critical Scope** | If permission includes \*.All at application level (e.g., Mail.ReadWrite.All): automatic escalation to IGO + CISO dual review regardless of tier. | IGO + CISO (dual review) | 5 business days |
 
 ### Workflow C — emergency / break-glass access
 
@@ -583,10 +583,10 @@ during quarterly reviews and must be renamed by the Help Desk.
 
 **Complete naming examples:**
 
-- APP-PAYROLL-USERS-T1 — Standard users of the Payroll system (Tier 1)
-- APP-PAYROLL-ADMINS-T1 — Administrators of the Payroll system (Tier 1)
-- APP-HRPORTAL-READONLY-T2 — Read-only access to the HR Portal (Tier 2)
-- APP-PROJMGR-USERS-T3 — Users of the Project Manager tool (Tier 3)
+- APP-PAYROLL-USERS-T1 — Standard users of the Payroll system (R1)
+- APP-PAYROLL-ADMINS-T1 — Administrators of the Payroll system (R1)
+- APP-HRPORTAL-READONLY-T2 — Read-only access to the HR Portal (R2)
+- APP-PROJMGR-USERS-T3 — Users of the Project Manager tool (R3)
 
 ### Group lifecycle management
 
@@ -635,8 +635,8 @@ immediately.
 
 | Group type | Use case | When appropriate | When not appropriate | Risk Tier applicability |
 |---|---|---|---|---|
-| **Dynamic Membership Group** | Membership automatically managed by Entra ID based on user attribute rules (e.g., department = "Finance", jobTitle = "Analyst") | Broad role-based access that aligns cleanly with maintained user attributes; large user populations with consistent attribute profiles | Sensitive applications requiring individual approval of each member; when user attributes are not reliably maintained in Entra ID | Tier 3 preferred; Tier 2 with IGO approval; **not permitted for Tier 1** |
-| **Assigned Membership Group** | Membership manually managed by adding/removing individual users via approved RITM process | All Tier 1 and Tier 2 applications; any application requiring individual approval of each access grant; applications with small or specialized user populations | Very large user populations where manual management is impractical and attributes are reliable | Mandatory for Tier 1; required for Tier 2; acceptable for Tier 3 |
+| **Dynamic Membership Group** | Membership automatically managed by Entra ID based on user attribute rules (e.g., department = "Finance", jobTitle = "Analyst") | Broad role-based access that aligns cleanly with maintained user attributes; large user populations with consistent attribute profiles | Sensitive applications requiring individual approval of each member; when user attributes are not reliably maintained in Entra ID | R3 preferred; R2 with IGO approval; **not permitted for R1** |
+| **Assigned Membership Group** | Membership manually managed by adding/removing individual users via approved RITM process | All R1 and R2 applications; any application requiring individual approval of each access grant; applications with small or specialized user populations | Very large user populations where manual management is impractical and attributes are reliable | Mandatory for R1; required for R2; acceptable for R3 |
 
 ::: {.callout-note title="Dynamic group attribute governance"}
 When dynamic groups are used, the accuracy of the membership rule is the
@@ -661,10 +661,10 @@ To prevent unauthorized access escalation, the following Separation of Duties
 
 | Group type | Use case | Owner | Review frequency | Nesting allowed | PIM required for changes |
 |---|---|---|---|---|---|
-| Assigned — Tier 1 App Access | Access to High Risk enterprise apps | Application Owner | Quarterly | **No** | Yes — always |
-| Assigned — Tier 2 App Access | Access to Moderate Risk enterprise apps | Application Owner | Semi-annual | **No** | Yes — always |
-| Assigned — Tier 3 App Access | Access to Low Risk enterprise apps | Application Owner or Dept Owner | Annual | **No** | Yes — always |
-| Dynamic — Tier 3 Only | Broad access to low-risk tools by attribute | Application Owner | Annual (rule validation) | **No** | Yes — rule changes |
+| Assigned — R1 App Access | Access to High Risk enterprise apps | Application Owner | Quarterly | **No** | Yes — always |
+| Assigned — R2 App Access | Access to Moderate Risk enterprise apps | Application Owner | Semi-annual | **No** | Yes — always |
+| Assigned — R3 App Access | Access to Low Risk enterprise apps | Application Owner or Dept Owner | Annual | **No** | Yes — always |
+| Dynamic — R3 Only | Broad access to low-risk tools by attribute | Application Owner | Annual (rule validation) | **No** | Yes — rule changes |
 | Privileged Access Group (PAG) | PIM-governed elevated role access (e.g., Help Desk PAG) | IGO / Privileged Role Admin | Quarterly | **No** | PIM activation required |
 
 ## Admin Consent governance
@@ -814,13 +814,13 @@ This requirement serves two critical governance functions:
 
 | Request type | ServiceNow catalog item name | Approval chain | SLA | Risk Tier routing |
 |---|---|---|---|---|
-| Standard Application Access Request | Enterprise App Access Request | Dept Owner → App Owner → Help Desk Execution | 3 business days | All tiers; Tier 1 adds IGO notification step |
-| Admin Consent Request (Tier 1) | Admin Consent Grant Request — High Risk | App Owner → Security Review → IGO → CISO Notification → Help Desk Execution | 5 business days | Tier 1 only; auto-routed for Application Permission type |
-| Admin Consent Request (Tier 2) | Admin Consent Grant Request — Moderate Risk | App Owner → Security Review → App Owner Confirm → IGO Review → Help Desk Execution | 5 business days | Tier 2 only |
-| Admin Consent Request (Tier 3) | Admin Consent Grant Request — Low Risk | App Owner → Security Review → App Owner Approval → IGO Notification → Help Desk Execution | 3 business days | Tier 3 only |
+| Standard Application Access Request | Enterprise App Access Request | Dept Owner → App Owner → Help Desk Execution | 3 business days | All tiers; R1 adds IGO notification step |
+| Admin Consent Request (R1) | Admin Consent Grant Request — High Risk | App Owner → Security Review → IGO → CISO Notification → Help Desk Execution | 5 business days | R1 only; auto-routed for Application Permission type |
+| Admin Consent Request (R2) | Admin Consent Grant Request — Moderate Risk | App Owner → Security Review → App Owner Confirm → IGO Review → Help Desk Execution | 5 business days | R2 only |
+| Admin Consent Request (R3) | Admin Consent Grant Request — Low Risk | App Owner → Security Review → App Owner Approval → IGO Notification → Help Desk Execution | 3 business days | R3 only |
 | Admin Consent Revocation | Admin Consent Revocation Request | Requestor → App Owner Notification → IGO Authorization → Help Desk Execution | 1 business day | All tiers |
 | Application Owner Assignment / Transfer | Application Owner Assignment | Dept Owner → IGO Approval → Help Desk Execution | 3 business days | All tiers |
-| New Application Registration | Enterprise Application Registration Request | App Owner → IGO Risk Classification → CISO Sign-Off (Tier 1) → Help Desk Execution | 5 business days (Tier 1); 3 business days (Tier 2/3) | All tiers |
+| New Application Registration | Enterprise Application Registration Request | App Owner → IGO Risk Classification → CISO Sign-Off (R1) → Help Desk Execution | 5 business days (R1); 3 business days (R2/3) | All tiers |
 | Application Decommissioning | Enterprise Application Decommission Request | App Owner → Dept Owner → IGO Approval → Help Desk Execution | 5 business days | All tiers |
 | Risk Tier Reclassification | Application Risk Tier Change Request | App Owner → IGO Review and Approval | 5 business days | All tiers |
 | Access Group Creation | Entra ID Access Group Creation | App Owner → IGO Notification → Help Desk Execution | 2 business days | All tiers |
@@ -857,7 +857,7 @@ requestor before entering the approval queue.
 | Admin Consent Revocation | 1 business day | RITM creation | Auto-escalate to IGO immediately on breach |
 | Emergency Access (Break-Glass) | 2 hours | P1 incident creation | CISO paged immediately on breach |
 | Application Owner Assignment | 3 business days | RITM creation | Auto-escalate to IGO at day 4 |
-| New Application Registration | 5 business days (Tier 1); 3 days (Tier 2/3) | RITM creation | Auto-escalate to IGO at SLA + 1 day |
+| New Application Registration | 5 business days (R1); 3 days (R2/3) | RITM creation | Auto-escalate to IGO at SLA + 1 day |
 | Orphaned Application Resolution | 30 calendar days | Orphan detection | Application access suspended at day 31; CISO notified |
 | Post Break-Glass Incident Review | 24 hours | Break-glass deactivation | CISO escalation immediately on breach |
 
@@ -872,7 +872,7 @@ RITM type and approval chain.
 | RITM Created | Requestor, first approver in chain | RITM submission |
 | Approval Requested | Current approver in chain | RITM routed to approver |
 | Approved — Moving to Next Step | Requestor, next approver | Each approval completion |
-| Denied | Requestor, App Owner, IGO (Tier 1) | Any denial action |
+| Denied | Requestor, App Owner, IGO (R1) | Any denial action |
 | Assigned to Help Desk for Execution | Help Desk queue, App Owner | Final approval complete |
 | Access Granted / Action Completed | Requestor, App Owner, Dept Owner | RITM closure |
 | SLA Breach Warning (75% elapsed) | Current approver, supervisor | 75% of SLA elapsed |
@@ -920,15 +920,15 @@ are non-negotiable audit requirements — no exemptions apply:
 
 ### Scheduled access reviews
 
-#### Quarterly access review (Tier 1 applications)
+#### Quarterly access review (R1 applications)
 
-Application Owners of Tier 1 applications must conduct a formal access review
+Application Owners of R1 applications must conduct a formal access review
 every quarter. The review scope includes all security groups assigned to the
 Enterprise Application and all members of those groups.
 
 **Quarterly review process:**
 
-1. IGO generates and distributes the access review package to all Tier 1
+1. IGO generates and distributes the access review package to all R1
    Application Owners on the first business day of each quarter
 2. Application Owner reviews the current group membership report for their
    application(s)
@@ -942,15 +942,15 @@ Enterprise Application and all members of those groups.
 6. Application Owner confirms removals are completed; IGO archives the completed
    review
 
-#### Semi-annual access review (Tier 2 applications)
+#### Semi-annual access review (R2 applications)
 
-Application Owners of Tier 2 applications conduct reviews every six months
+Application Owners of R2 applications conduct reviews every six months
 following the same process as the quarterly review. Reviews are conducted in
 January and July of each calendar year.
 
-#### Annual access review (Tier 3 applications)
+#### Annual access review (R3 applications)
 
-Application Owners of Tier 3 applications conduct reviews annually in January of
+Application Owners of R3 applications conduct reviews annually in January of
 each calendar year following the same certification process.
 
 #### Admin Consent review (all tiers — annual)
@@ -1058,9 +1058,9 @@ Requests for exceptions to this governance model must follow the procedure below
 
 | Exception type | Minimum approval authority | Additional notification required |
 |---|---|---|
-| Access review schedule deviation (Tier 3 only) | IGO | None |
+| Access review schedule deviation (R3 only) | IGO | None |
 | Naming convention deviation | IGO | None |
-| Access review schedule deviation (Tier 1 or 2) | IGO + CISO concurrence | CISO |
+| Access review schedule deviation (R1 or 2) | IGO + CISO concurrence | CISO |
 | Admin Consent approval chain modification | IGO + CISO approval | CISO; legal if applicable |
 | Audit log retention reduction below minimum | IGO + CISO + Agency CIO approval | CISO, CIO; potentially IG |
 | Group-based access mandate waiver | IGO + CISO approval | CISO |

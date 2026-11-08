@@ -25,7 +25,7 @@ set `version: "2.0"` to start a new major version.
 The edition marked `baseline: true` in data/editions.yml is the exception: it
 sets every book, guide and developer workbook to version 2.0, whether or not
 the edition touched it, and a later edition that touches one goes 2.1, 2.2 and
-so on from there. The 2.0 row says "Baseline: ..." and then lists any merged
+so on from there. The 2.0 row says "Release 2.0, the baseline: ..." and then lists any merged
 changes the edition carries for that item. Earlier rows are not touched.
 Without a baseline edition nothing changes.
 
