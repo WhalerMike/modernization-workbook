@@ -104,7 +104,7 @@ Emergency access ("break-glass") accounts are the answer, and they are the only 
 
 | Earlier practice | Current guidance |
 |---|---|
-| Long, unique passwords kept in a safe | Two or more cloud-only accounts in the `onmicrosoft.com` domain, using passwordless, phishing-resistant authentication (a FIDO2 passkey, recommended, or certificate-based authentication), because mandatory MFA applies to them too |
+| Long, unique passwords kept in a safe | Microsoft recommends two or more cloud-only accounts in the `onmicrosoft.com` domain, using passwordless, phishing-resistant authentication (a FIDO2 passkey, recommended, or certificate-based authentication), because mandatory MFA applies to them too; the program standard is two |
 | Exclude the break-glass group from every Conditional Access policy | Exclude a dedicated group from every policy that blocks or restricts sign-in; report-only policies don't need the exclusion |
 | Global Administrator assignment, type unstated | Global Administrator as a permanent active assignment in PIM, not eligible, because PIM may be what has failed |
 | Test periodically | Validate sign-in and an administrative task at least every 90 days, and after staff changes |

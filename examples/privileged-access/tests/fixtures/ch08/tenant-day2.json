@@ -174,7 +174,7 @@
       "principal": {
         "@odata.type": "#microsoft.graph.group",
         "id": "9e000000-0000-4000-8000-000000000008",
-        "displayName": "PRV-T2-UserAdmin-AU-Finance"
+        "displayName": "PRV-T2-UserAdmin-Finance"
       }
     },
     {

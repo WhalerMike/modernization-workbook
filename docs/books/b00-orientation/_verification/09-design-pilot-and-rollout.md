@@ -91,3 +91,9 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | Dynamic group rules: `memberOf` operator preview ended November 3, 2026; rules that use it stopped updating | Chapter 09 §Dynamic groups (M-015) | corrected (Old: `memberOf` listed among slower operators kept out of wave groups. New: rules don't use it at all) | Microsoft Learn, "Configure dynamic membership groups with the memberOf operator in the Entra Admin Center (preview)" and Book 02 Chapter 09 (Book 02 note c09-memberof) |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-7 | Emergency access accounts: "at least two" attributed to Microsoft's guidance; the program standard is two | Conditional Access (M-017) paragraph | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 7 |
