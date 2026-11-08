@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+There's a follow-on that makes consolidation
+safer: standard application packaging.
+
+2
+00:00:04.763 --> 00:00:07.780
+Intune Win32 apps must install silently,
+
+3
+00:00:07.780 --> 00:00:12.838
+and Gate one only closes when the app
+catalog moves, not just a setting.
+
+4
+00:00:12.838 --> 00:00:17.138
+If each app is packaged twice,
+the two paths behave differently.
+
+5
+00:00:17.138 --> 00:00:22.256
+P S App Deploy Toolkit is a PowerShell
+framework that standardizes deployment to
+
+6
+00:00:22.256 --> 00:00:27.300
+Windows at scale, with first-class support
+for Intune and Configuration Manager,
+
+7
+00:00:27.300 --> 00:00:30.462
+and phases for before, during
+and after the install.
+
+8
+00:00:30.462 --> 00:00:32.762
+Package once, deliver from either.
+
+9
+00:00:32.762 --> 00:00:34.504
+That's program design guidance,
+
+10
+00:00:34.504 --> 00:00:37.700
+and it follows the decision
+rather than conditioning it.

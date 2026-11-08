@@ -6739,6 +6739,87 @@
   "sources": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated_sources.json"
  },
  {
+  "id": "Guide_DP_Consolidation_Executive_Narrated",
+  "title": "Content Delivery Modernization (DP Consolidation): executive decision deck",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_DP_Consolidation_Executive_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/guide-dp-consolidation-executive/Guide_DP_Consolidation_Executive_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-dp-consolidation-executive/Guide_DP_Consolidation_Executive_Narration_Script.md",
+  "page": "docs/books/b09-network/11-field-office-wan-transformation.html",
+  "source": "docs/books/b09-network/11-field-office-wan-transformation.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "Content Delivery Modernization (DP Consolidation)"
+   ],
+   [
+    36,
+    "The decision: refresh 1,500 servers, or consolidate?"
+   ],
+   [
+    76,
+    "Questions to answer before any money moves"
+   ],
+   [
+    112,
+    "Capacity and timing: 24 needed, and a shrinking tier"
+   ],
+   [
+    154,
+    "Three options compared: refresh, consolidate, retire"
+   ],
+   [
+    194,
+    "The target: 12 hubs and 24 distribution points"
+   ],
+   [
+    233,
+    "Keeping content local without a branch server"
+   ],
+   [
+    276,
+    "A gate, not a date: retiring the last server"
+   ],
+   [
+    318,
+    "What it costs: about $10 million in Year 1"
+   ],
+   [
+    361,
+    "Five years out, and the one number that decides it"
+   ],
+   [
+    400,
+    "The roadmap: hubs first, offices at renewal"
+   ],
+   [
+    446,
+    "Implementation 1 to 5: analyze, size, fund, build, peer"
+   ],
+   [
+    489,
+    "Implementation 6 to 10: migrate, package, shift, retire"
+   ],
+   [
+    532,
+    "Risks, and the assumptions to check first"
+   ],
+   [
+    574,
+    "Next: one standard package for ConfigMgr and Intune"
+   ],
+   [
+    615,
+    "The ask: defer, decompose, validate, fund Phase 0"
+   ]
+  ],
+  "sources": null
+ },
+ {
   "id": "HR_Driven_Identity_Implementation_Part_1_Narrated",
   "title": "HR-Driven Identity — implementation, Part 1: writers, sources and joiners",
   "group": "book",

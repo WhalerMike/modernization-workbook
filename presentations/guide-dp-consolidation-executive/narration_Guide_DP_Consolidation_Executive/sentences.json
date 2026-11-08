@@ -1,0 +1,559 @@
+{
+ "1": [
+  [
+   0.05,
+   5.375,
+   "This is a decision briefing for a C I O, a budget officer and an endpoint lead."
+  ],
+  [
+   5.425,
+   6.162,
+   "An agency weighing a refresh is being asked to fund a distribution point at every field office."
+  ],
+  [
+   11.588,
+   6.787,
+   "The question is whether that is the right way to deliver content, or whether fewer servers and a better network do the job."
+  ],
+  [
+   18.375,
+   7.8,
+   "The numbers come from the worked case in the Network and Transport book, a framing pattern with every cost labeled as a planning estimate."
+  ],
+  [
+   26.175,
+   6.075,
+   "We'll cover the decision, the questions to answer first, the options, the plan, and the ask."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   6.987,
+   "The request is about fifty million dollars to refresh distribution point hardware across about fifteen hundred offices."
+  ],
+  [
+   7.037,
+   7.312,
+   "That's thirty-three thousand dollars per office, nearly twice the cost of a fully loaded server at the program's planning prices."
+  ],
+  [
+   14.35,
+   7.025,
+   "Configuration Manager's own limits say the estate needs about twenty-four distribution points, not fifteen hundred."
+  ],
+  [
+   21.375,
+   10.562,
+   "So the position is simple: defer the refresh, pending a network modernization assessment, because the same problem can be solved for about ten million dollars in first-year capital."
+  ],
+  [
+   31.938,
+   3.9,
+   "The next slide lists what has to be answered before any money moves."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.738,
+   "Five questions come first."
+  ],
+  [
+   1.788,
+   7.513,
+   "Is the fifty million an equipment price or five-year total cost of ownership, and what is bundled beyond the distribution point?"
+  ],
+  [
+   9.3,
+   5.425,
+   "What will the distribution point count be when co-management completes, and in which fiscal year?"
+  ],
+  [
+   14.725,
+   2.263,
+   "What does each office's circuit cost today?"
+  ],
+  [
+   16.988,
+   3.837,
+   "That one number decides whether the alternative pays for itself."
+  ],
+  [
+   20.825,
+   3.925,
+   "How many managed endpoints are there, since that sets the server count?"
+  ],
+  [
+   24.75,
+   4.4,
+   "And do branch security rules allow devices to share content with each other?"
+  ],
+  [
+   29.15,
+   3.575,
+   "Each answer comes from records the agency already holds."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.925,
+   "Microsoft's size and scale page sets four thousand clients per distribution point."
+  ],
+  [
+   4.975,
+   5.0,
+   "Seventy thousand endpoints need eighteen at the ceiling, and twenty-four with headroom."
+  ],
+  [
+   9.975,
+   6.862,
+   "The other fourteen hundred seventy-six compensate for slow branch circuits, and content has since moved to the cloud."
+  ],
+  [
+   16.837,
+   1.3,
+   "Timing matters too."
+  ],
+  [
+   18.137,
+   7.4,
+   "Microsoft has moved Configuration Manager to an annual release cadence and says new device management work happens in Intune."
+  ],
+  [
+   25.538,
+   7.513,
+   "Hardware bought this fiscal year depreciates through fiscal 2031, so a refresh can outlive the platform it serves."
+  ],
+  [
+   33.05,
+   1.587,
+   "The role isn't obsolete."
+  ],
+  [
+   34.638,
+   2.688,
+   "The distribution point at every office is."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.887,
+   "Three options sit on one line."
+  ],
+  [
+   1.938,
+   12.475,
+   "Refresh keeps fifteen hundred servers, about fifty million dollars, and another capital event every five years, with every server to baseline, scan, patch and carry in the system security plan."
+  ],
+  [
+   14.412,
+   10.137,
+   "Consolidate puts twenty-four distribution points in twelve hubs for about ten million dollars in first-year capital, which also funds the transport that cloud workloads need."
+  ],
+  [
+   24.55,
+   5.3,
+   "Retire is the end state: no distribution points at all, once five gates close."
+  ],
+  [
+   29.85,
+   6.55,
+   "Consolidation is the interim step, so it fits an estate whose management platform is already shrinking."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.95,
+   "The target uses facilities the agency already has: the primary data center, the recovery site, and ten regional hubs."
+  ],
+  [
+   8.0,
+   9.7,
+   "Two distribution points per hub gives twenty-four, with capacity for ninety-six thousand clients, which is seventy-three percent used at seventy thousand endpoints."
+  ],
+  [
+   17.7,
+   6.638,
+   "Regional servers pull from the two data centers, so the fan-out is two to twenty instead of one to fifteen hundred."
+  ],
+  [
+   24.337,
+   6.862,
+   "Each field office gets a sized internet circuit, a five-G backup for continuity only, and no local server."
+  ],
+  [
+   31.2,
+   3.725,
+   "The design adds two servers per eight thousand new endpoints."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.987,
+   "Without a branch server, three mechanisms keep most bytes off the wide area network."
+  ],
+  [
+   5.037,
+   6.088,
+   "Configuration Manager peer cache lets designated clients share content inside a boundary group."
+  ],
+  [
+   11.125,
+   2.675,
+   "BranchCache does the same where enabled."
+  ],
+  [
+   13.8,
+   8.85,
+   "Delivery Optimization peers cloud content, and for hub-and-spoke networks Microsoft recommends Group mode so offices don't all share one address."
+  ],
+  [
+   22.65,
+   3.237,
+   "All three are optimizations, not dependencies."
+  ],
+  [
+   25.887,
+   3.138,
+   "Connected Cache is the later step for cloud content."
+  ],
+  [
+   29.025,
+   7.287,
+   "In the government community cloud the stand-alone form isn't excluded, but it needs its own host and a boundary decision."
+  ],
+  [
+   36.312,
+   2.375,
+   "Nothing before Phase three depends on it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.3,
+   "The twenty-four distribution point tier is interim, not a new floor, and five gates decide when the last one retires."
+  ],
+  [
+   7.35,
+   6.013,
+   "First, app content: client apps on Intune and nothing still deployed from Configuration Manager."
+  ],
+  [
+   13.363,
+   4.6,
+   "Second, update content moved, and the old update setting turned off."
+  ],
+  [
+   17.962,
+   4.612,
+   "Third, imaging moved from task sequences to Windows Autopilot."
+  ],
+  [
+   22.575,
+   3.95,
+   "Fourth, no Connected Cache running on distribution point hardware."
+  ],
+  [
+   26.525,
+   3.95,
+   "Fifth, no compliance evidence sourced from the site database."
+  ],
+  [
+   30.475,
+   3.625,
+   "Close all five in month thirty and retire in month thirty."
+  ],
+  [
+   34.1,
+   1.65,
+   "Still open at month sixty?"
+  ],
+  [
+   35.75,
+   2.5,
+   "Keep the tier rather than force a cutover."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.05,
+   "First-year capital is about ten million dollars."
+  ],
+  [
+   3.1,
+   7.7,
+   "Branch equipment is five million, hub equipment about one million, and the control plane and services nearly four million."
+  ],
+  [
+   10.8,
+   8.025,
+   "Steady-state recurring cost is about fifteen point seven million a year, mostly internet circuits and the security service edge."
+  ],
+  [
+   18.825,
+   9.838,
+   "Against that, retiring the old circuits at twelve hundred dollars an office a month removes twenty-one point six million, a net saving of about five point nine million a year."
+  ],
+  [
+   28.663,
+   5.088,
+   "These are planning estimates, not quotes, with hardware at a forty percent discount."
+  ],
+  [
+   33.75,
+   4.588,
+   "Replace every figure with the estate's own data before a budget submission."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   11.35,
+   "Savings ramp as offices move at circuit contract renewal, so year one is a net cost of ten million and the program turns positive in year five, at about three point three million."
+  ],
+  [
+   11.4,
+   8.062,
+   "The refresh is minus fifty million in year one and recurs at the next cycle, so the five-year difference is about fifty-three million."
+  ],
+  [
+   19.462,
+   4.9,
+   "One number decides the financial case: current circuit cost per office per month."
+  ],
+  [
+   24.363,
+   3.087,
+   "Break-even is eight hundred seventy-three dollars."
+  ],
+  [
+   27.45,
+   2.475,
+   "Above it, the program funds itself."
+  ],
+  [
+   29.925,
+   5.412,
+   "Below it, it's still cheaper than the refresh, but justify it on capability and mission."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.5,
+   "Phase zero, the first six months, costs about one point eight million."
+  ],
+  [
+   4.55,
+   11.1,
+   "It covers design, the security accreditation package, the control plane, and a ten-site pilot, and it exits on authorization, thirty stable days, and validated costs."
+  ],
+  [
+   15.65,
+   4.275,
+   "Phase one builds the twelve hubs and the twenty-four distribution points."
+  ],
+  [
+   19.925,
+   10.613,
+   "Phase two moves offices in waves, timed to circuit renewals so each wave helps fund the next, and no old circuit retires until its replacement telemetry is confirmed."
+  ],
+  [
+   30.538,
+   7.8,
+   "Phase three adds Microsoft 365 optimization and caching, and retires servers only as the gates close."
+  ],
+  [
+   38.337,
+   3.825,
+   "Accreditation, not procurement, is the critical path."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.075,
+   "The implementation runs in ten stages, in order, and every stage cites Microsoft Learn."
+  ],
+  [
+   6.125,
+   10.7,
+   "Stage one analyzes the existing estate: list every distribution point, its boundary groups and the clients it serves, and pull circuit cost and quality for each office."
+  ],
+  [
+   16.825,
+   3.737,
+   "Stage two sizes the result against Microsoft's limits."
+  ],
+  [
+   20.562,
+   6.9,
+   "Stage three is the funding gate, the exit from Phase zero, where leadership funds the hub tier or stops."
+  ],
+  [
+   27.462,
+   5.3,
+   "Stage four builds the hubs with pull distribution points, groups and prestaged content."
+  ],
+  [
+   32.763,
+   2.225,
+   "Stage five turns on peer caching."
+  ],
+  [
+   34.987,
+   4.013,
+   "The implementation guide and the scripts kit are linked on the slide."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   10.375,
+   "Stage six moves offices in waves at circuit renewal: each office's boundary joins its hub's boundary group, then the office server goes read-only and retires."
+  ],
+  [
+   10.425,
+   8.3,
+   "Stage seven packages applications once with P S App Deploy Toolkit, so Configuration Manager and Intune behave the same."
+  ],
+  [
+   18.725,
+   5.388,
+   "Stage eight shifts co-management workloads to Intune, starting with apps and updates."
+  ],
+  [
+   24.113,
+   3.95,
+   "Stage nine adds Connected Cache at the hubs for cloud content."
+  ],
+  [
+   28.062,
+   5.75,
+   "Stage ten closes the five gates, and only then retires the last distribution point."
+  ],
+  [
+   33.812,
+   4.362,
+   "The guide and the scripts kit are linked here too, for the people who will do the work."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.438,
+   "Three risks rate high."
+  ],
+  [
+   1.488,
+   11.675,
+   "Accreditation slips: start the package in Phase zero, and a twelve-month slip still leaves the case better than the refresh, by about forty-seven million, though break-even moves past year five."
+  ],
+  [
+   13.162,
+   4.525,
+   "Circuit cost comes in below the assumption: validate it before submission."
+  ],
+  [
+   17.688,
+   6.675,
+   "And replacement telemetry lags a cutover: begin coordination in Phase zero and gate each office on it."
+  ],
+  [
+   24.363,
+   3.025,
+   "Ten assumptions in all are ordered by impact."
+  ],
+  [
+   27.387,
+   4.487,
+   "Check circuit cost, endpoint count and terrestrial availability first."
+  ],
+  [
+   31.875,
+   5.987,
+   "The architectural conclusion holds across the range; the financial one depends on the circuit number."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.713,
+   "There's a follow-on that makes consolidation safer: standard application packaging."
+  ],
+  [
+   4.763,
+   8.075,
+   "Intune Win32 apps must install silently, and Gate one only closes when the app catalog moves, not just a setting."
+  ],
+  [
+   12.838,
+   4.3,
+   "If each app is packaged twice, the two paths behave differently."
+  ],
+  [
+   17.137,
+   13.325,
+   "P S App Deploy Toolkit is a PowerShell framework that standardizes deployment to Windows at scale, with first-class support for Intune and Configuration Manager, and phases for before, during and after the install."
+  ],
+  [
+   30.462,
+   2.3,
+   "Package once, deliver from either."
+  ],
+  [
+   32.763,
+   4.888,
+   "That's program design guidance, and it follows the decision rather than conditioning it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.15,
+   "Here is the ask."
+  ],
+  [
+   1.2,
+   4.963,
+   "Defer the fifty million dollar refresh pending a network modernization assessment."
+  ],
+  [
+   6.162,
+   5.338,
+   "Have the sponsor state whether it is acquisition or five-year cost, and itemize the scope."
+  ],
+  [
+   11.5,
+   4.763,
+   "Validate the ten assumptions, starting with circuit cost and endpoint count."
+  ],
+  [
+   16.262,
+   4.188,
+   "Fund Phase zero, about one point eight million over six months."
+  ],
+  [
+   20.45,
+   3.663,
+   "Track the five gates, not a date, for the last server."
+  ],
+  [
+   24.113,
+   5.487,
+   "The owner is the sponsor with the C I O, and the timing is before refresh money is committed."
+  ],
+  [
+   29.6,
+   5.463,
+   "The decision guide and the project plan carry the detail, and both are linked on this slide."
+  ]
+ ]
+}

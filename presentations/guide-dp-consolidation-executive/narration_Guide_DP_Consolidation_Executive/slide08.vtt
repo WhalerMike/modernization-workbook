@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.389
+The twenty-four distribution
+point tier is interim,
+
+2
+00:00:03.389 --> 00:00:07.350
+not a new floor, and five gates
+decide when the last one retires.
+
+3
+00:00:07.350 --> 00:00:10.056
+First, app content:
+client apps on Intune and
+
+4
+00:00:10.056 --> 00:00:13.363
+nothing still deployed from
+Configuration Manager.
+
+5
+00:00:13.363 --> 00:00:17.963
+Second, update content moved, and
+the old update setting turned off.
+
+6
+00:00:17.963 --> 00:00:22.574
+Third, imaging moved from task
+sequences to Windows Autopilot.
+
+7
+00:00:22.574 --> 00:00:26.525
+Fourth, no Connected Cache running
+on distribution point hardware.
+
+8
+00:00:26.525 --> 00:00:30.475
+Fifth, no compliance evidence
+sourced from the site database.
+
+9
+00:00:30.475 --> 00:00:34.100
+Close all five in month thirty
+and retire in month thirty.
+
+10
+00:00:34.100 --> 00:00:35.750
+Still open at month sixty?
+
+11
+00:00:35.750 --> 00:00:38.300
+Keep the tier rather than force a cutover.
