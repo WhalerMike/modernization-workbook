@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 01 — Proof, Not a Promise
 
-*A control is satisfied when the evidence for it exists and anyone can check it again, not when a document says it will be.*
+*A control is proven when the evidence for it exists and anyone can check it again, not when a document says it will be.*
 
 ::: {.callout-note}
 ## In this chapter

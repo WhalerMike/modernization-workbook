@@ -15,11 +15,11 @@ lifecycle_review: 2027-04-01
 
 # Chapter 04 — Closure: A Control Closes Only With Its Proof
 
-*A control isn't closed because someone planned it, bought it or ticked a box. It is closed when the thing that closes it is running and the record shows it working.*
+*A control isn't closed because someone planned it, bought it or ticked a box. It is closed when the mechanism that supports it is running and the record shows it working.*
 
 ::: {.callout-note}
 ## In this chapter
-What "closed" means in this book, as two tests: the mechanism that closes the control exists, and its proof is recorded. Why the program states some closures as necessity claims, and why those claims are about mechanism classes, never products. The rule that no closure counts without its proof, the rule that a vendor roadmap is not a commitment, and the rule that every operation travels the authorized path, each stated plainly and linked to the Book 13 chapters that carry them in full. Then the federal controls these rules help an agency show, and where they stop.
+What "closed" means in this book, as two tests: the mechanism that supports the control exists, and its proof is recorded. Why the program states some closures as necessity claims, and why those claims are about mechanism classes, never products. The rule that no closure counts without its proof, the rule that a vendor roadmap is not a commitment, and the rule that every operation travels the authorized path, each stated plainly and linked to the Book 13 chapters that carry them in full. Then the federal controls these rules help an agency show, and where they stop.
 :::
 
 ## What "closed" has to mean
@@ -30,9 +30,9 @@ Federal assessment asks something harder. SP 800-53 has the assessor determine "
 
 The program's answer is two tests, applied in order. Both are program design.
 
-![A control counts as closed only when it passes two tests: the mechanism that closes it exists, and its proof is recorded.](../../images/diagrams/b14-compliance/svg/ch04-when-a-control-closes.svg){#fig-ch04-when-a-control-closes fig-alt="A vertical flow. A slate card, a control claimed closed, one the system's baseline selects, leads to an amber card, test 1: does the mechanism exist, deployed and operating in the estate, not announced or planned. A dashed red arrow labeled no, or roadmap only leads to a red card: not closed, open, a plan-of-action item with a milestone. A green arrow labeled yes leads to a second amber card, test 2: is its proof recorded, meaning a verification payload, a time and the identity of the checking mechanism. A dashed amber arrow labeled no leads to an amber card: not counted, attested only, a flagged exception counted separately. A green arrow labeled yes leads to a green card: closed, counts, feeding control tests, monitoring and reports."}
+![A control counts as closed only when it passes two tests: the mechanism that supports it exists, and its proof is recorded.](../../images/diagrams/b14-compliance/svg/ch04-when-a-control-closes.svg){#fig-ch04-when-a-control-closes fig-alt="A vertical flow. A slate card, a control claimed closed, one the system's baseline selects, leads to an amber card, test 1: does the mechanism exist, deployed and operating in the estate, not announced or planned. A dashed red arrow labeled no, or roadmap only leads to a red card: not closed, open, a plan-of-action item with a milestone. A green arrow labeled yes leads to a second amber card, test 2: is its proof recorded, meaning a verification payload, a time and the identity of the checking mechanism. A dashed amber arrow labeled no leads to an amber card: not counted, attested only, a flagged exception counted separately. A green arrow labeled yes leads to a green card: closed, counts, feeding control tests, monitoring and reports."}
 
-1. **The mechanism exists.** The thing that closes the control is deployed and operating in the estate. A purchase order, a pilot that ended, or a feature on a roadmap fails this test. So does a mechanism that exists but can't reach the part of the estate the control covers.
+1. **The mechanism exists.** The mechanism that supports the control is deployed and operating in the estate. A purchase order, a pilot that ended, or a feature on a roadmap fails this test. So does a mechanism that exists but can't reach the part of the estate the control covers.
 2. **Its proof is recorded.** The closure carries a machine-readable verification, a time and the identity of what checked it. A closure without that payload is an assertion, however honest.
 
 A control that fails the first test is open, and it belongs in the plan of action with a milestone. A control that passes the first test but fails the second is something worse than open: it looks closed and can't be shown to be. The rest of this chapter is the rules that keep each test honest.
@@ -43,15 +43,15 @@ The series states some of its closures as *necessity claims*: for a named set of
 
 The series states three such anchors. Each is the program's own argument, not a federal requirement; the corrections below come from checking the controls it names.
 
-| Mechanism class | Controls the program says it closes | Why the program says there is no alternative | Checked against the control text |
+| Mechanism class | Controls the program says it supports | Why the program says there is no alternative | Checked against the control text |
 |---|---|---|---|
 | An authoritative naming and addressing plane (IPAM and DDI) | SC-20, SC-21, SC-22; CM-8, CM-8(1); IA-9 | You can't attest authoritative name resolution without an authoritative resolver, and you can't inventory what you can't enumerate. A scanner measures drift from a source of truth; it can't create one | SC-20 asks the system to return data origin and integrity artifacts with its authoritative answers; CM-8 asks for an inventory that accurately reflects the system and includes every component. The source also cited SC-20(1), which NIST has withdrawn and folded into SC-20. IA-9 is in no NIST baseline and FedRAMP lists no class for it, so it is a design choice, not a baseline obligation[^c04-sp80053][^c04-fr-controls] |
-| An encrypted, application-aware transport overlay (SD-WAN) | SC-8, SC-8(1) on direct internet circuits; SC-5; SI-4 | A circuit has no encryption, path intelligence or telemetry of its own. Validated TLS closes SC-8 for the flow that negotiates it; a network-layer overlay closes it for every flow on the circuit at once, including the DNS queries and legacy protocols TLS doesn't reach | SC-8(1) asks for cryptographic mechanisms and names no protocol, so TLS per flow and an overlay per circuit are both valid mechanisms. The claim is about completeness, not exclusivity, and other overlays (plain IPsec, zero-trust tunnels) also encrypt every flow. SC-5 is denial-of-service protection; treating traffic-class separation as part of it is the program's reading[^c04-sp80053] |
+| An encrypted, application-aware transport overlay (SD-WAN) | SC-8, SC-8(1) on direct internet circuits; SC-5; SI-4 | A circuit has no encryption, path intelligence or telemetry of its own. Validated TLS provides SC-8's transmission protection for the flow that negotiates it; a network-layer overlay provides it for every flow on the circuit at once, including the DNS queries and legacy protocols TLS doesn't reach | SC-8(1) asks for cryptographic mechanisms and names no protocol, so TLS per flow and an overlay per circuit are both valid mechanisms. The claim is about completeness, not exclusivity, and other overlays (plain IPsec, zero-trust tunnels) also encrypt every flow. SC-5 is denial-of-service protection; treating traffic-class separation as part of it is the program's reading[^c04-sp80053] |
 | Distributed policy enforcement for local breakout (TIC 3.0 enforcement points) | SC-7, SC-7(7); AC-4 | Breaking out locally removes the old central access point; an ungoverned local circuit is a boundary finding, not a modernization | SC-7(7) asks that split tunneling be prevented unless securely provisioned with defined safeguards; AC-4 asks for information flow enforcement. [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md) carries what TIC 3.0 asks of the branch edge[^c04-sp80053] |
 
 : The program's three necessity anchors, with the corrections made in checking them {.striped .hover}
 
-The transport argument behind the second and third rows is [Book 09, Chapter 02](../b09-network/02-transport-is-physics-control-is-compliance.md): local breakout solves a latency problem, closes none of the protection controls by itself, and without a governed edge it loses the boundary protection the old hairpin provided. The naming argument behind the first row is [Book 08](../b08-ddi/index.md). This chapter needs only the shape of the argument: a necessity claim names the mechanism, says why nothing else closes the control, and shows the control text that makes it so.
+The transport argument behind the second and third rows is [Book 09, Chapter 02](../b09-network/02-transport-is-physics-control-is-compliance.md): local breakout solves a latency problem, provides none of the protection controls by itself, and without a governed edge it loses the boundary protection the old hairpin provided. The naming argument behind the first row is [Book 08](../b08-ddi/index.md). This chapter needs only the shape of the argument: a necessity claim names the mechanism, says why no other mechanism can support the control, and shows the control text that makes it so.
 
 ### Mechanism, not product
 
@@ -148,13 +148,13 @@ The CA-5 row repeats the anomaly [Chapter 03](03-the-baseline-and-the-crosswalk.
 ## Honest limits
 
 - **Proof is only as good as the probe.** A closure that carries a payload from a weak check proves little. Checks are reviewed like any other rule ([Book 13, Chapter 05](../b13-governance/05-deterministic-governance.md)).
-- **A necessity claim can be wrong.** It is written to be falsifiable, so test it. If an alternative mechanism closes the control, the claim narrows; the SC-8 row above already has.
+- **A necessity claim can be wrong.** It is written to be falsifiable, so test it. If an alternative mechanism also supports the control, the claim narrows; the SC-8 row above already has.
 - **Dated claims still need someone to re-date them.** The vendor rule works only if a named owner re-verifies before each decision ([Chapter 10](10-who-owns-compliance.md)).
 - **The authorizing official still decides.** Closure with proof makes residual risk visible. It doesn't accept it; only the authorizing official does ([Book 13, Chapter 09](../b13-governance/09-who-governs.md)).
 
 ## Key takeaways
 
-- A control is closed when the mechanism that closes it exists in the estate and its proof is recorded. Otherwise it is open, or attested only.
+- A control is closed when the mechanism that supports it exists in the estate and its proof is recorded. Otherwise it is open, or attested only.
 - Necessity claims name mechanism classes and show the control text behind them. Products are examples.
 - No closure counts without its proof, and reports are derived from closure records, never compiled.
 - A vendor roadmap is not a commitment. Date every claim and confirm it before a plan or contract rests on it.

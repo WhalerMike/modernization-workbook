@@ -98,7 +98,7 @@ const columns = (s, list) => list.forEach((c, i) => {
 
 I'll take four questions: why every control needs proof rather than a promise, and what the federal clock now asks for; what the baseline, the closure rule and the agency-level control families require; who owns compliance; and how to build the authorization package and keep it current.
 
-The short version: a control is closed when the thing that closes it is running and the record shows it working. Everything else is a promise, and promises age.`,
+The short version: a control is closed when the mechanism that supports it is running and the record shows it working. Everything else is a promise, and promises age.`,
   "Book 14, index; Chapter 01 — Proof, Not a Promise.");
 }
 
@@ -202,7 +202,7 @@ So cite the two separately. A Moderate system built on a Class C service inherit
   narrate(s,
 `Is a control closed? A program that can't answer precisely answers loosely: the product was bought, the vendor announced the feature, the ticket was marked complete. None of those is the control operating.
 
-The book applies two tests, in order. First, the mechanism exists: the thing that closes the control is deployed, running, and reaches the part of the estate the control covers. A purchase order, an ended pilot or a roadmap fails. Second, its proof is recorded: the closure carries a machine-readable verification, a time, and the identity of what checked it.
+The book applies two tests, in order. First, the mechanism exists: the mechanism that supports the control is deployed, running, and reaches the part of the estate the control covers. A purchase order, an ended pilot or a roadmap fails. Second, its proof is recorded: the closure carries a machine-readable verification, a time, and the identity of what checked it.
 
 A control that fails the first test is open, and belongs in the plan of action with a milestone. One that passes the first but fails the second is worse: it looks closed and can't be shown to be. A person clicking complete is an exception, flagged and counted separately, and reports are derived from closure records, never compiled.
 

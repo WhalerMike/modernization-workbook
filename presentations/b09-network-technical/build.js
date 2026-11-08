@@ -152,7 +152,7 @@ The slides show tables, flows and decision matrices. The configuration examples 
     ["A floor", "New York to London: 28 ms one way, 56 ms round trip, before any route is longer than a straight line"],
   ], { fontSize: 12.5 });
   subhead(s, "Control head", "TRANSPORT IS PHYSICS; CONTROL IS COMPLIANCE", 6.85, 1.5, 5.9);
-  table(s, "Control", 1.85, [2.05, 3.85], ["Layer", "What it closes"], [
+  table(s, "Control", 1.85, [2.05, 3.85], ["Layer", "What it provides"], [
     ["The pipe (DIA, MPLS, LEO, 5G)", "One control family: telecommunications diversity (CP-8); each new pipe adds an SC-7(4) interface"],
     ["The governor (SD-WAN)", "Encryption across circuits, path selection, per-application telemetry"],
     ["The SASE layer above", "Boundary, flow, malware and monitoring: SC-7, AC-4, SI-3, SI-4"],
@@ -165,7 +165,7 @@ The slides show tables, flows and decision matrices. The configuration examples 
 
 The first is physics. ITU-T G.114 plans light in fiber at five microseconds per kilometer, about a millisecond for every two hundred kilometers, one way. The often-quoted 150 milliseconds for voice is mouth-to-ear: G.114's own voice-over-IP examples give the terminals fifty to eighty milliseconds, which leaves the network roughly seventy to a hundred. The book's worked hairpin, a Seattle office routed through northern Virginia to reach a Pacific Northwest cloud region, comes to about sixty milliseconds one way. So a hairpin spends most of the network budget before the call goes anywhere.
 
-The second is compliance. Every transport is a pipe, and the pipe closes exactly one control family: telecommunications diversity, CP-8. Every new circuit also adds a managed interface that SC-7(4) expects to carry its own traffic-flow policy. Encryption across circuits, path selection and per-application telemetry come from the governor, usually SD-WAN. Boundary protection, flow enforcement, malware inspection and monitoring come from the SASE layer above it.
+The second is compliance. Every transport is a pipe, and the pipe supports exactly one control family: telecommunications diversity, CP-8 and SC-47. Every new circuit also adds a managed interface that SC-7(4) expects to carry its own traffic-flow policy. Encryption across circuits, path selection and per-application telemetry come from the governor, usually SD-WAN. Boundary protection, flow enforcement, malware inspection and monitoring come from the SASE layer above it.
 
 So bare local breakout, a direct internet circuit with nothing governing it, fixes latency and loses the assessed boundary. The book calls that a compliance regression with better latency.`,
   "Book 09, Chapter 01 — Why Physics Decides the Architecture; Chapter 02 — Transport Is Physics, Control Is Compliance.");
@@ -185,7 +185,7 @@ So bare local breakout, a direct internet circuit with nothing governing it, fix
   ], 11.5);
   table(s, "Map", 3.8, [3.2, 1.9, 7.05], ["Module", "Chapters", "What a practitioner leaves with"], [
     ["1 TIC 3.0 in practice", "03–04", "The obligations a branch must evidence; DNS, logging and telemetry after MTIPS; token security"],
-    ["2 Governed transport", "05–06", "What SD-WAN and SASE close; securing the governor; Kerberos, round trips and egress on new paths"],
+    ["2 Governed transport", "05–06", "What SD-WAN and SASE provide; securing the governor; Kerberos, round trips and egress on new paths"],
     ["3 Network access control", "07", "EAP-TLS, the NPS exit, Intune compliance retrieval, CoA, tiers, RADIUS hardening, rollout"],
     ["4 Architecture and ownership", "08–09, 13", "Four branch patterns, five design decisions, one decider per row and the evidence per gate"],
   ], { fontSize: 12.5 });
@@ -300,7 +300,7 @@ One date sits on the same equipment: on September 22, 2026, FIPS 140-2 certifica
   notes(s,
 `The obligations that bite hardest are often the ones the agency wrote into its own packages. Where a branch breaks out locally, it is an external boundary, and the system security plan asserts controls about it.
 
-None of this says an agency is out of compliance for lacking SD-WAN. It says an agency with an ungoverned branch edge will struggle to produce the evidence its assertions promise: what is monitored and controlled at that boundary, by what, under which traffic-flow policy, and where the record is. The gap surfaces at assessment, not deployment. It's an evidence argument, not a mandate argument. One correction: a diverse cellular path closes CP-8(2) at Moderate, but CP-8(3), provider separation, is High only.
+None of this says an agency is out of compliance for lacking SD-WAN. It says an agency with an ungoverned branch edge will struggle to produce the evidence its assertions promise: what is monitored and controlled at that boundary, by what, under which traffic-flow policy, and where the record is. The gap surfaces at assessment, not deployment. It's an evidence argument, not a mandate argument. One correction: a diverse cellular path supports CP-8(2) at Moderate, but CP-8(3), provider separation, is High only.
 
 On encryption. SC-8 can be met by physical or logical means. SC-8(1)'s discussion names TLS and IPsec as alternatives. The controls that would require protecting headers and routing information, SC-8(3), or concealing traffic patterns, SC-8(4), aren't in any baseline. So a branch whose traffic is TLS-protected end to end with validated modules, whose DNS reaches Protective DNS, with an SC-7(4) policy per external service, has a defensible implementation with no overlay. TLS versions are two requirements: SP 800-52 Revision 2 required TLS 1.3 support by January 1, 2024; EO 14306's January 2, 2030 date is post-quantum readiness, not a relaxation.
 
@@ -414,7 +414,7 @@ endModule("Module 1");
 // ================================================================== 11 Module 2 divider
 {
   const s = divider(P1, "Module 2: Governed transport and legacy protocols", "Part 1 — Policy and transport  ·  Chapters 05–06",
-    ["SD-WAN path classes and tail tools; what SASE above it closes", "Securing the controller and edges; the proposed governed path", "Kerberos, round trips and egress on re-routed paths"], 14);
+    ["SD-WAN path classes and tail tools; what SASE above it provides", "Securing the controller and edges; the proposed governed path", "Kerberos, round trips and egress on re-routed paths"], 14);
   notes(s,
 `Module 2: governed transport and legacy protocols. Chapter 02 separated the pipe from the governor. This module is about the governor in three layers: SD-WAN decides which traffic takes which path and measures it; SASE decides whether a flow is allowed and inspects it at a policy enforcement point; and the governed path, still a proposal in the program, decides whether the path itself was authorized for this caller and intent. Over all three sits the question the sources answered only briefly: who protects the governor?
 
@@ -457,7 +457,7 @@ The ceiling doesn't move: New York to London is 56 milliseconds round trip at 20
 
 // ================================================================== 13 SASE above SD-WAN
 {
-  const s = content(P1, "SASE above SD-WAN: who closes which control");
+  const s = content(P1, "SASE above SD-WAN: who provides which control");
   tag(s, "Who");
   table(s, "Functions", 1.5, [3.25, 2.4, 2.0], ["Function", "Provided by", "Supports"], [
     ["Path selection, class separation, failover", "SD-WAN overlay", "Availability; SC-7(4)"],
@@ -480,7 +480,7 @@ The ceiling doesn't move: New York to London is 56 milliseconds round trip at 20
   notes(s,
 `SD-WAN governs paths. It doesn't inspect content, enforce web or cloud-application policy, or broker access to private applications; those belong to the security services above it.
 
-CISA's June 2026 guide defines SASE as networking tools, with SD-WAN, routing and bandwidth optimization as examples, combined with a secure web gateway, cloud access security broker, zero trust network access and next-generation firewall. CISA lists SD-WAN among SASE's networking tools, but "for example" isn't "required." SD-WAN alone doesn't satisfy the Branch Office use case; the boundary, flow and malware closures come from above.
+CISA's June 2026 guide defines SASE as networking tools, with SD-WAN, routing and bandwidth optimization as examples, combined with a secure web gateway, cloud access security broker, zero trust network access and next-generation firewall. CISA lists SD-WAN among SASE's networking tools, but "for example" isn't "required." SD-WAN alone doesn't satisfy the Branch Office use case; the boundary, flow and malware protections come from above.
 
 The PEP has a location. Microsoft's connectivity guidance says routing through a cloud security provider can hurt if the provider isn't well peered, and to evaluate the number and location of PoPs relative to branches and to Microsoft's peering points. Treat a distant PoP as a hairpin with a different name.
 
@@ -509,7 +509,7 @@ Authorization status isn't uniform. As of October 21, 2026, for example: Palo Al
   ], { fontSize: 11.5 });
   sources(s, "Sources: CISA ED 26-03 and V1 (Feb. 25 and Mar. 11, 2026); CISA BOD 26-02, BOD 26-04; NIST SP 800-53 Rev. 5 (release 5.2.0). Book 09, Ch 05, 08.");
   notes(s,
-`A paper that credits the governor with closing controls owes the reader the controls that protect it. SD-WAN replaces a few hardened egress points with a fleet of internet-facing edges, one per office, and adds a control plane with authority over routing and policy for the whole estate.
+`A paper that credits the governor with providing controls owes the reader the controls that protect it. SD-WAN replaces a few hardened egress points with a fleet of internet-facing edges, one per office, and adds a control plane with authority over routing and policy for the whole estate.
 
 The risk isn't hypothetical. On February 25, 2026, CISA issued Emergency Directive 26-03 for Cisco Catalyst SD-WAN Manager: an authentication bypass giving an unauthenticated remote attacker administrative privileges, CVE-2026-20127, and a privilege escalation, CVE-2022-20775. The directive's sequence is a template for any SD-WAN control plane, and the flow on the slide is that sequence: inventory every in-scope system; collect logs and forensic images and store logs off the device; patch; hunt; rebuild the management plane from patched images if root compromise is found, then migrate the edges; harden to the vendor's guide; and send SD-WAN syslog to CISA through CLAW. The point isn't one vendor: be able to run that sequence before you're ordered to.
 

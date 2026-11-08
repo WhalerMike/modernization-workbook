@@ -94,3 +94,28 @@ Applied from the two research briefs behind the workbook's SD-WAN platform deep 
 | 1 | ED 26-03 issued February 25, 2026; V1 of March 11, 2026 added SD-WAN syslog delivery to CISA through CLAW | "The governor is itself attack surface" | confirmed (no change) | `[^c02-ed2603]`; CISA V1 ED 26-03 page |
 | 2 | Cisco added the validator to the scope of the CVE-2026-20127 advisory (v2.0, June 16, 2026) | Same paragraph, after "The controller and manager are the components named" | added | `[^c02-ciscorpa]` |
 | 3 | KEV lists nine Cisco Catalyst SD-WAN CVEs added in 2026, the newest September 30 with a three-day due date (October 3) | Same paragraph | added | `[^c02-kev2026]` (KEV JSON, catalog 2026.10.23) |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| the transport menu and the one control family transport closes, what the governing | the transport menu and the one control family transport supports, what the governing | no source change |
+| The transport menu, and the one control family that transport selection does close. | The transport menu, and the one control family that transport selection does support. | no source change |
+| the governing layer and the security service edge above it are what close the protection controls. | the governing layer and the security service edge above it are what provide the protection controls, and the agency and its assessor still own what is left. | no source change |
+| knowing it closes exactly one control family (telecommunications diversity). | knowing it supports exactly one control family (telecommunications diversity, CP-8 and SC-47). | no source change |
+| Figure caption: Transport is a physics decision and closes one control family; control is a compliance decision and closes the protection controls. | Figure caption: Transport is a physics decision and supports one control family; control is a compliance decision and provides the protection controls. | no source change |
+| which close no protection controls. A green arrow labeled more than one pipe leads from transport to a green card: the one family transport closes, telecommunications diversity (CP-8, SC-47). | which provide no protection controls. A green arrow labeled more than one pipe leads from transport to a green card: the one family transport supports, telecommunications diversity (CP-8, SC-47). | no source change |
+| **Transport closes one control family: telecommunications diversity.** | **Transport supports one control family: telecommunications diversity (CP-8 and SC-47).** | no source change |
+| The controls an agency asserts for the traffic crossing it are satisfied by whatever governs the pipe: | The controls an agency asserts for the traffic crossing it are provided by whatever governs the pipe, and the agency still owns their parameters, policy and assessment: | no source change |
+| Table header: Satisfied by the pipe? / Where it is actually satisfied | Table header: Provided by the pipe? / Where it is actually provided | no source change |
+| Heading: The one control family transport closes | Heading: The one control family transport supports | no source change |
+| Transport selection does close something: diversity of telecommunications services. | Transport selection does support something: diversity of telecommunications services. | no source change |
+| Diversity closes one family and enlarges another; | Diversity supports one family and enlarges another; | no source change |
+| The boundary, flow and malware closures come from the security service edge above it: | The boundary, flow and malware protections come from the security service edge above it: | no source change |
+| A paper that credits the governor with closing controls owes the reader | A paper that credits the governor with providing controls owes the reader | no source change |
+| Transport closes exactly one control family, telecommunications diversity, and each new pipe | Transport supports exactly one control family, telecommunications diversity (CP-8 and SC-47), and each new pipe | no source change |
+| The governor closes encryption, separation and telemetry; SASE above it closes boundary, flow and malware; and the governor | The governor provides encryption, separation and telemetry; SASE above it provides boundary, flow and malware protection; the agency and its assessor still own what is left; and the governor | no source change |
+
+The figure source `docs/images/diagrams/b09-network/src/ch02-pipe-and-governor.flow.yaml` changed to match ("Protection controls closed: none" is now "Protection controls provided: none"; "The one family transport closes" is now "The one family transport supports"), and its SVG and PNG were regenerated with `scripts/diagrams/render.py`. The renamed heading keeps its old anchor, `#the-one-control-family-transport-closes`, as an explicit id. The book's landing page (`index.md`), which has no log of its own, was narrowed the same way: "pipes that close one control family ... closes the protection controls" is now "pipes that support one control family, telecommunications diversity (CP-8 and SC-47) ... provides the protection controls, leaves the agency and its assessor to own what is left".

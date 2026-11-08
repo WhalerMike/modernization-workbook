@@ -382,7 +382,7 @@ Both are useful to operators. Neither is the assessment. A score measures progre
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 10 — Who Owns Compliance](10-who-owns-compliance.md) · [Book index](index.md) · [Next: Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control →](12-the-series-as-a-map.md)
+[← Previous: Chapter 10 — Who Owns Compliance](10-who-owns-compliance.md) · [Book index](index.md) · [Next: Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control →](12-the-series-as-a-map.md) <!-- claims-ok: the chapter title, kept as written so links and navigation hold; the chapter explains support, not satisfaction -->
 :::
 
 [^c11-fr-agu]: FedRAMP, "Agency Use" rules, *FedRAMP Consolidated Rules for 2026*, rules AGU-USE-ABU, AGU-USE-ROR, AGU-USE-DSO, AGU-USE-NFC and AGU-AGC-GRC, <https://www.fedramp.gov/2026/agencies/rules/agency-use/> (accessed Oct 21, 2026).

@@ -59,7 +59,7 @@ The first is that most of the family isn't about software at all. SR-9 through S
 
 The second is that SR-1, SR-2, SR-3, SR-5 and SR-8 are in every NIST baseline. Even a Low system needs a policy, a plan, a named team, acquisition language and notification agreements.
 
-The third is that the closing artifacts are governance artifacts. A software bill of materials, a vulnerability report, an exploitability decision, a contract clause and a supplier notification agreement close these controls. No network technology produces any of them. The program says a technology is required only when the control text, physics or protocol behavior makes it the only way to close a control, and saying plainly that supply chain risk isn't such a case is part of what makes that claim credible elsewhere ([Chapter 04](04-closure-with-proof.md)).
+The third is that the supporting artifacts are governance artifacts. A software bill of materials, a vulnerability report, an exploitability decision, a contract clause and a supplier notification agreement are what support these controls. No network technology produces any of them. The program says a technology is required only when the control text, physics or protocol behavior makes it the only way to support a control, and saying plainly that supply chain risk isn't such a case is part of what makes that claim credible elsewhere ([Chapter 04](04-closure-with-proof.md)).
 
 ## How SP 800-161 Rev. 1 frames the work
 

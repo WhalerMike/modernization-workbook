@@ -103,7 +103,7 @@ Two corrections follow from reading the primary documents rather than earlier su
 | Telemetry to CISA | SASE solution, per CISA's guide | CISA telemetry obligations ([Chapter 03](03-what-tic-3-requires.md)) |
 | Telecommunications diversity | The pipes themselves | CP-8 ([Chapter 02](02-transport-is-physics-control-is-compliance.md)) |
 
-SD-WAN alone doesn't satisfy the Branch Office Use Case's security capabilities; the boundary, flow and malware closures come from the services above it.
+SD-WAN alone doesn't satisfy the Branch Office Use Case's security capabilities; the boundary, flow and malware protections come from the services above it.
 
 ### The enforcement point has a location
 
@@ -232,7 +232,7 @@ The specifications are candid about limits. Vendor maturity inside government cl
 
 ## Securing the controller and the edges
 
-A paper that credits the governor with closing controls owes the reader the controls that protect the governor. An SD-WAN deployment replaces a few hardened egress points with a fleet of internet-facing edges, one per office, and adds a management, orchestration and control plane with authority over routing and policy for the whole estate. CISA's definition of an edge device, any device on the boundary of an agency network that is reachable from the public internet, covers every one of those branch edges.[^c05-bod2602] <!-- claims-ok: critiques a claim -->
+A paper that credits the governor with providing controls owes the reader the controls that protect the governor. An SD-WAN deployment replaces a few hardened egress points with a fleet of internet-facing edges, one per office, and adds a management, orchestration and control plane with authority over routing and policy for the whole estate. CISA's definition of an edge device, any device on the boundary of an agency network that is reachable from the public internet, covers every one of those branch edges.[^c05-bod2602] <!-- claims-ok: critiques a claim -->
 
 ![The governor's own exposure: an estate-wide control plane, internet-facing edges, and the controls they need.](../../images/diagrams/b09-network/svg/ch05-governor-attack-surface.svg){#fig-ch05-governor-attack-surface fig-alt="A dashed red cluster labeled control and management plane with estate-wide authority holds three slate cards: a manager that configures and provisions every edge, a validator that authenticates and onboards edges, and a controller that distributes routes and policy. Dashed red arrows run from the manager and controller to an amber card for internet-facing edges, one per office, replacing a few hardened egress points. That leads to a green card of controls owed to the governor: MFA for privileged access and logging of privileged functions, hardened configuration and component inventory, flaw remediation on BOD 26-04 windows, end-of-support replacement under BOD 26-02, and management-plane logs held off-box. A red card notes ED 26-03 in 2026, an actively exploited authentication bypass in a widely used SD-WAN manager and controller."}
 

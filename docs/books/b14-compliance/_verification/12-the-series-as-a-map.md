@@ -57,3 +57,14 @@ Writer W6. Sources: `docs/compliance/federal-compliance-series-moderate/` (READM
 | Executive Summary: combined closure summary and count comparison | — | Not carried (internal counts) |
 | Executive Summary: "what closed means under FedRAMP 20x" | — | Chapter 04 and Chapter 11 |
 | Vol IV Book 06 §7.2 residual risks outside KSI scope | Residual risk item 5 | PE claim corrected |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Heading: Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control | Kept as written, with a `claims-ok` marker (the chapter title, kept as written so links and navigation hold; the chapter explains support, not satisfaction) | no source change |
+| how a moderate-impact agency estate closes the NIST SP 800-53 controls in its baseline and proves it. | how a moderate-impact agency implements the NIST SP 800-53 controls in its baseline across its estate and proves it. | no source change |
+| Figure caption: What remains when the whole program is in place: closed controls are proven, and six kinds | Figure caption: What remains when the whole program is in place: controls are closed with recorded proof, and six kinds | no source change |
+| A satisfied control set doesn't measure any of them. | A control set that passes assessment doesn't measure any of them. | no source change |

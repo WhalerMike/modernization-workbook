@@ -88,9 +88,9 @@ A synchronous commit pays a round trip every time, and no bandwidth changes that
     ["SC-8, SC-8(1)", "Protect transmitted information", "Encryption at the edge or endpoint"],
     ["AC-4, SI-3", "Flow enforcement; malicious code", "The policy enforcement point"],
     ["SI-4", "Detect attacks and unauthorized links", "Governor and PEP telemetry"],
-    ["CP-8, SC-47", "Alternate telecommunications paths", "The pipes: the one family they close"],
+    ["CP-8, SC-47", "Alternate telecommunications paths", "The pipes: the one family they support"],
   ];
-  s.addTable([head(["Control", "What it asks for", "Satisfied by"]), ...rows.map((r, i) => [{ text: r[0], options: { bold: true, color: i === 5 ? HEX.teal : HEX.navy } }, { text: r[1] }, { text: r[2], options: { bold: i === 5, color: i === 5 ? HEX.teal : HEX.ink } }])],
+  s.addTable([head(["Control", "What it asks for", "Provided by"]), ...rows.map((r, i) => [{ text: r[0], options: { bold: true, color: i === 5 ? HEX.teal : HEX.navy } }, { text: r[1] }, { text: r[2], options: { bold: i === 5, color: i === 5 ? HEX.teal : HEX.ink } }])],
     tableOpts([1.5, 2.75, 2.65], { y: 1.5, fontSize: 12, rowH: [0.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] }));
   box(s, "Governor box", 7.75, 1.5, 5.0, 3.45, HEX.redTint);
   icon(s, "FaTriangleExclamation", 8.0, 1.68, 0.6, HEX.red);
@@ -106,7 +106,7 @@ A synchronous commit pays a round trip every time, and no bandwidth changes that
   narrate(s,
 `Chapter 02 pulls apart two decisions that programs keep merging. Choosing a pipe, whether fiber, MPLS, low earth orbit, 5G or direct internet access, is a physics decision. Choosing what governs the pipe is a compliance decision.
 
-Direct internet access solves one problem, the geographic hairpin. It satisfies none of the protection controls: boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer. Transport closes exactly one control family, telecommunications diversity. So a branch moved from a governed hairpin to bare local breakout is a compliance regression with better latency.
+Direct internet access solves one problem, the geographic hairpin. It satisfies none of the protection controls: boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer. Transport supports exactly one control family, telecommunications diversity, CP-8 and SC-47. So a branch moved from a governed hairpin to bare local breakout is a compliance regression with better latency.
 
 And the governor is itself attack surface. BOD 26-02 targets end-of-support edge devices on the agency boundary. On February 25, 2026, Emergency Directive 26-03 ordered action on Cisco SD-WAN systems after actors were found compromising them and keeping long-term persistence. Protect the controller and every edge before they carry traffic.`,
   "Book 09, Chapter 02 — Transport Is Physics, Control Is Compliance; Chapter 03 (BOD 26-02 dates).");
@@ -174,7 +174,7 @@ Then choose the weakest consistency each flow tolerates. Azure Cosmos DB, as one
   icon(s, "FaShieldHalved", 7.35, 1.75, 0.72, HEX.teal);
   txt(s, "SASE head", [
     { text: "WHAT SITS ABOVE IT", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
-    { text: "SASE closes the boundary controls", options: { bold: true, color: HEX.teal, fontSize: 18, fontFace: "Cambria" } },
+    { text: "SASE provides boundary controls", options: { bold: true, color: HEX.teal, fontSize: 18, fontFace: "Cambria" } },
   ], { x: 8.25, y: 1.72, w: 4.4, h: 0.9, valign: "middle" });
   txt(s, "SASE list", bullets([
     "Web gateway, CASB, firewall and ZTNA",
