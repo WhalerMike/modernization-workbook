@@ -245,7 +245,7 @@ The decision sits with the CIO, who under FITARA, restated in OMB M-26-10, must 
     "Steward runs it; sponsor and CIO read it", "Phase 0, before gate G0");
   sources(s, "Sources: OMB Circular A-130 §5.a(1)–(3); GAO-25-107795 (key plan elements); AWS and Microsoft migration strategy guidance. Book 18, Chapters 01 and 10.");
   narrate(s,
-`A portfolio program still has to decide what happens to each thing in it. The program or mission area is too coarse: it holds applications that should be retired next to ones that should be rebuilt. The platform can't be retired until every application on it has a decision. The application works: it has a mission owner, a data set, a code base, dependencies and an authorization boundary.
+`A portfolio program still has to decide what happens to each thing in it. The program or mission area is too coarse: it holds applications that should be retired next to ones that should be rebuilt. The platform can't be retired until every application on it has a decision. The application works: it has an application owner, a data set, a code base, dependencies and an authorization boundary.
 
 Federal policy is organized that way already. A-130 requires an inventory of major systems and an enterprise architecture with a baseline, a target and a transition plan that covers disposition of systems, and wants unsupported systems phased out as rapidly as possible. GAO's third key plan element is a disposition for each legacy system.
 
@@ -314,7 +314,7 @@ The decision: fund decisions as well as projects, including decommissioning, thr
 
 Six criteria are scored 1 to 5: mission criticality, technical condition, data sensitivity, cost, skills and dependencies. FIPS 199 does much of the first pass: every federal system already has a categorization, and its availability and integrity impact stand in for mission criticality, confidentiality for data sensitivity. Dependencies decide sequence, not disposition.
 
-The criteria combine into two axes, mission value and technical health, and each score carries a confidence flag: measured, attested or assumed. The decision table applies in order and the first match wins, from retire for low value to rebuild only after cheaper options are ruled out. Rule 7 sends any high-impact refactor or rebuild, and any contested result, to deep study. That's how a rubric covers thousands without becoming careless.
+The criteria combine into two axes, mission value and technical health, and each score carries a confidence flag: measured, attested or assumed. The decision table applies in order and the first match wins, from retire for low value to rebuild only after cheaper options are ruled out. Rule 7 sends any high-impact refactor or rebuild, any high-impact system with open questions on its dependency map, any application that holds a master record with many outside exchanges, and any contested result, to deep study. That's how a rubric covers thousands without becoming careless.
 
 Owners get a fixed review window; a contested score is corrected, not argued around. Calibrate first on thirty to fifty applications experienced architects know, changing the weights, not their judgment, and again after the first wave.
 
@@ -410,7 +410,7 @@ The cut-over choice belongs to the application owner and the authorizing officia
   tag(s, "What");
   figure(s, "ch04-cutover-options", 0.6, 6.6);
   sideBox(s, "Engine", "FaDatabase", HEX.amber, HEX.amberTint, "The engine picks the tools", [
-    "Only AWS's tools convert DB2 to PostgreSQL",
+    "Only AWS's tools convert Db2 to PostgreSQL",
     "Microsoft's assistant targets only SQL Server",
     "DMS can't capture changes from Db2 for z/OS",
     "PostgreSQL 14 leaves support November 12, 2026",
@@ -424,7 +424,7 @@ The cut-over choice belongs to the application owner and the authorizing officia
 
 Only one way of staying in step is safe by default. Change data capture reads committed changes from the source's log, so the target can lag but never receives a change the source rejected. Dual writes, where the application writes to both databases, fail because the two writes don't share a transaction; under load the stores drift, invisibly. The program's rule: one system of record per table at a time, no application dual writes, fallback by reverse replication, and validation on a schedule.
 
-Two cautions. AWS's change data capture has no latency guarantee, and for Db2 for z/OS as a source DMS supports only full loads, so a mainframe DB2 system that must coexist needs a separate change-capture product or delta loads. And the engine chooses the tools: only AWS's tools convert DB2 to PostgreSQL, Microsoft's assistant targets only SQL Server and Azure SQL, and PostgreSQL 14 leaves community support on November 12, 2026.
+Two cautions. AWS's change data capture has no latency guarantee, and for Db2 for z/OS as a source DMS supports only full loads, so a mainframe Db2 system that must coexist needs a separate change-capture product or delta loads. And the engine chooses the tools: only AWS's tools convert Db2 to PostgreSQL, Microsoft's assistant targets only SQL Server and Azure SQL, and PostgreSQL 14 leaves community support on November 12, 2026.
 
 The decisions: forbid dual writes as a standard, and settle the engine before the wave plan commits dates.`,
   "Book 18, Chapter 04 (Choosing the target engine; The conversion tools, October 2026; Cutting over; Coexistence without dual writes; What leadership should take from this, items 2 and 3); Chapter 07 (Standards and patterns).");
@@ -584,7 +584,7 @@ The CIO charters the board in Phase 1, when the gates stand up.`,
   narrate(s,
 `The board governs through three artifacts kept in a repository and changed by pull request: an approved-technology list with tiers and supported versions, since SA-22 asks for unsupported components to be replaced; runnable reference patterns; and architecture decision records. A list without versions is a brochure. Teams that start from a pattern inherit the review it already passed, so Gate 2 for a standard service is short.
 
-Every application the triage changes passes four gates; retire and retain pass only the first. Gate 1: a scored triage record the owner signed. Gate 2, before build: decision records, the interface contract, a data classification, a threat model and the privacy check. Gate 3, every change: a pull request reviewed by someone other than its author, passing tests and scans, and an SBOM. Gate 4, every release: a signed build with provenance, an impact analysis and a change record.
+Every application the triage changes passes four gates; retire and retain pass only the first. Gate 1: a scored triage record the owner signed; for a retire, also the privacy check on the records that go away and the records officer's required consultation. Gate 2, before build: decision records, the interface contract, a data classification, a threat model and the privacy check. Gate 3, every change: a pull request reviewed by someone other than its author, passing tests and scans, and an SBOM. Gate 4, every release: a signed build with provenance, an impact analysis and a change record.
 
 Two are meetings and two are automation, deliberately. Gates 3 and 4 run many times a day on protected branches; bind administrators too, because a rule they can skip is a standing exception. The gates belong in the definition of done, so agile delivery doesn't conflict.
 
@@ -601,18 +601,18 @@ No closure counts unless it carries its proof. And only the authorizing official
     "Verified: service and migration on real PostgreSQL",
     "Verified: the contract matches the code, both ways",
     "Verified: guardrails hold against a scripted stub",
-    "Not verified: real DB2 or Oracle, or a real model",
+    "Not verified: real Db2 or Oracle, or a real model",
     "Not verified: the containers; it has no sign-in",
   ], { x: 5.75, w: 7.0 });
   takeaway(s, "FaLightbulb", HEX.amber, "Illustrative, not production.  ",
-    "Teams that start from a pattern inherit its review, but this one has never run against a real DB2 or Oracle database, a real model, or production.");
+    "Teams that start from a pattern inherit its review, but this one has never run against a real Db2 or Oracle database, a real model, or production.");
   sources(s, "Sources: Maven Central (Spring Boot 4.1.2); PostgreSQL versioning (18.6); npm registry (React 19.3.1); RFC 9457; Zonky embedded-postgres. Book 18, Chapter 08.");
   narrate(s,
 `Arguments about architecture are cheap; code that runs isn't. The workbook ships a small reference implementation beside the book: a case-management service with a front end, a legacy database it was moved from, and an AI agent that helps triage cases.
 
-It shows each pattern in code. A Spring Boot service over PostgreSQL that owns its schema, with an OpenAPI contract a test checks against the code in both directions. A React front end with pending proposals to approve or reject. A migration tool that reads a synthetic DB2-style or Oracle schema, stops on any value it can't map rather than guessing, and validates with row counts, a checksum and independent aggregates. Its tests break things on purpose: change one amount and two checks fail; truncate a name and only the checksum catches it. And an agent with an identity and sponsor the service won't start without, a tool allow-list, a five-step limit and one write path: pending proposals.
+It shows each pattern in code. A Spring Boot service over PostgreSQL that owns its schema, with an OpenAPI contract a test checks against the code in both directions. A React front end with pending proposals to approve or reject. A migration tool that reads a synthetic Db2-style or Oracle schema, stops on any value it can't map rather than guessing, and validates with row counts, a checksum and independent aggregates. Its tests break things on purpose: change one amount and two checks fail; truncate a name and only the checksum catches it. And an agent with an identity and sponsor the service won't start without, a tool allow-list, a five-step limit and one write path: pending proposals.
 
-Verified on October 28, 2026: the service and migration tests pass against real PostgreSQL 18.6, the contract test passes, and the guardrails hold against the stub and scripted misbehaving replies. Not verified: real DB2 or Oracle, since H2's compatibility modes stood in; a real model; the containers. It has no authentication and only synthetic data.
+Verified on October 28, 2026: the service and migration tests pass against real PostgreSQL 18.6, the contract test passes, and the guardrails hold against the stub and scripted misbehaving replies. Not verified: real Db2 or Oracle, since H2's compatibility modes stood in; a real model; the containers. It has no authentication and only synthetic data.
 
 Copy the pattern, not the claim.`,
   "Book 18, Chapter 08 — The Reference Implementation (What is in it; The service and its contract; The migration tool and its three checks; The agent and its guardrails; What was verified, and what wasn't); Chapter 07 (Standards and patterns: reference patterns).");
@@ -674,9 +674,9 @@ File the artifacts, don't redo them; treat an empty cell as a question; and don'
   narrate(s,
 `A disposition for every application is a list, not a plan. Waves solve both: each batch moves through the same steps and leaves the next a little cheaper.
 
-The portfolio runs inside the program's existing phases and gates, G0 to G5. Phase 0: inventory and triage. Phase 1: build the factory and stand up the gates. Phase 2: the pilot. Phase 3: factory waves, extended as long as the portfolio needs. Phase 4: decommission what the waves replaced, including DB2 and Oracle instances and licenses. Before G5, no production application may still authenticate against Active Directory. Phase 6: the long tail and re-triage. Gate authorities don't change; the evidence each gate reads does.
+The portfolio runs inside the program's existing phases and gates, G0 to G5. Phase 0: inventory and triage. Phase 1: build the factory and stand up the gates. Phase 2: the pilot. Phase 3: factory waves, extended as long as the portfolio needs. Phase 4: decommission what the waves replaced, including Db2 and Oracle instances and licenses. Before G5, no production application may still authenticate against Active Directory. Phase 6: the long tail and re-triage. Gate authorities don't change; the evidence each gate reads does.
 
-AWS and Microsoft agree: start small and fail fast, but put one or two complex, representative workloads in early waves. So the pilot is three to five simple applications plus one hard case with a DB2 or Oracle database and a real interface contract. Group by what must move together, above all a shared database. Plan four to five waves ahead, only the next in detail.
+AWS and Microsoft agree: start small and fail fast, but put one or two complex, representative workloads in early waves. So the pilot is three to five simple applications plus one hard case with a Db2 or Oracle database and a real interface contract. Group by what must move together, above all a shared database. Plan four to five waves ahead, only the next in detail.
 
 The factory is the platform, patterns, pipelines, data tooling, runbooks and a small portfolio team; it works if the fifth wave costs less per application than the first. The classic failures: a pilot that's too easy, waves sized by the schedule, and nothing actually retired.
 
