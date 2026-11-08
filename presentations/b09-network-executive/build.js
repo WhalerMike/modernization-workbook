@@ -131,10 +131,10 @@ The thread running through all seven: policy names no product, but it isn't requ
     "Voice: 150 ms is mouth to ear; the network gets about 70 to 100 ms",
     "Seattle hairpin through northern Virginia: about 60 ms one way, worked arithmetic",
   ], 14);
-  panel(s, "Compliance", 6.8, 1.55, 5.95, 3.6, "FaShieldHalved", HEX.navy, HEX.navyTint, "The pipe closes one control family", [
+  panel(s, "Compliance", 6.8, 1.55, 5.95, 3.6, "FaShieldHalved", HEX.navy, HEX.navyTint, "The pipe supports one control family", [
     "Direct internet access fixes the hairpin",
     "It satisfies none of the protection controls",
-    "Transport closes telecommunications diversity only",
+    "Transport supports telecommunications diversity only",
     "Boundary, flow, encryption, malware and monitoring come from the control layer",
   ], 14);
   callout(s, "Regression", 5.35, 1.15, "FaDoorOpen", HEX.red, "Bare local breakout is a regression: ",
@@ -145,7 +145,7 @@ The thread running through all seven: policy names no product, but it isn't requ
 
 Choosing a pipe is a physics decision. Light in fiber covers about one kilometer every five microseconds. New York to London has a round-trip floor of 56 milliseconds before any equipment touches a packet. The well-known 150-millisecond voice budget is mouth to ear, and the phones themselves take a large share, which leaves the network roughly 70 to 100. On the book's worked arithmetic, a Seattle office hairpinning through northern Virginia spends about 60 milliseconds one way on geography. That's most of the allowance, gone before the call reaches anything useful. No product moves that floor. Local breakout fixes the geographic part and nothing else.
 
-Choosing what governs the pipe is a compliance decision. Direct internet access solves the hairpin, and it satisfies none of the protection controls. Boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer. Transport selection closes exactly one control family: telecommunications diversity.
+Choosing what governs the pipe is a compliance decision. Direct internet access solves the hairpin, and it satisfies none of the protection controls. Boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer. Transport selection supports exactly one control family: telecommunications diversity, CP-8 and SC-47.
 
 So here's the risk an executive should watch for. A branch moved from a governed hairpin to bare local breakout has lost assessed boundary protection relative to where it started. The book's phrase for that is a compliance regression with better latency. It looks like modernization on a dashboard, and it reads as a finding in an assessment.
 

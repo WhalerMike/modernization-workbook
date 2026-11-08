@@ -84,3 +84,11 @@ Writer W1. Sources: `docs/whitepapers/federal-compliance-for-moderate-agencies.m
 | Book 00: The Coverage Arithmetic — 10 of 29 | Not carried (numbers); the principle ("measures drift, can't author") in Ch01 | Internal counts |
 | Book 00: Residual Compliance Risk table and FedRAMP 20x note | Ch01 "What a promise looks like at assessment" (condensed) | Full table is Ch12's (residual risk); product names generalized; 20x note removed (#32) |
 | Book 00: What "Closed" Means Under FedRAMP 20x | Ch01 "What the program counts as proof" | Restated as design (#28); Ch04 carries closure in depth |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| *A control is satisfied when the evidence for it exists and anyone can check it again, not when a document says it will be.* | *A control is proven when the evidence for it exists and anyone can check it again, not when a document says it will be.* | no source change |

@@ -69,3 +69,11 @@ Applied from the verified review findings (critique claims re-checked against pr
 | RF-1 | Sequence table gains step 0, "Secure the governor first": the CISO / ISSO decides, network engineering does the work, security architecture and security operations are consulted, following the matrix row "Controller and edge hardening; administrative access to the governor" | An owner for each step (line 118) | restated-as-design (program sequence) | — |
 
 **Diagram follow-up for the editor:** the `ch09-sequence-owners` figure and its fig-alt still show five steps. Add a step 0 card (violet, as in `ch13-decision-sequence`) to the source under `docs/images/diagrams/b09-network/src/` and update the fig-alt; both were outside this pass's edit scope.
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| is the one control family that transport selection itself closes, so | is the one control family that transport selection itself supports, so | no source change |

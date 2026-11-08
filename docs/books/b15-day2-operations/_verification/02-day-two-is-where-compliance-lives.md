@@ -75,3 +75,5 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | What satisfies CM-3 and CA-7 is the operated contract, not the vendor. | What supports CM-3 and CA-7 is the operated contract, not the vendor. | no source change |
 | are the program's way of meeting the controls at day-two volume. | are the program's way of supporting the controls, and evidencing them, at day-two volume. | no source change |
+| **Designed.** An architecture shows that a mechanism is sufficient to close the control, and the system security plan | **Designed.** An architecture shows that a mechanism can implement the control, and the system security plan | no source change |
+| so the continuous-monitoring pipeline can bind it to the control it closes. | so the continuous-monitoring pipeline can bind it to the control it supports. | no source change |

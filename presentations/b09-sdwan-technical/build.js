@@ -181,11 +181,11 @@ The book labels its figures, and so do the slides: design guidance for program p
   notes(s,
 `Why this matters. The governor is three layers, and each answers a different question, which is the frame for the whole session.
 
-SD-WAN decides which traffic takes which path and measures how each path is doing. SASE decides whether a flow is allowed and inspects it at a policy enforcement point, which is where boundary protection, flow enforcement and malware inspection come from. The governed path, still a proposal in the program, asks whether the path itself was authorized for this caller and this intent, and records the answer. And the pipes underneath close exactly one control family, telecommunications diversity.
+SD-WAN decides which traffic takes which path and measures how each path is doing. SASE decides whether a flow is allowed and inspects it at a policy enforcement point, which is where boundary protection, flow enforcement and malware inspection come from. The governed path, still a proposal in the program, asks whether the path itself was authorized for this caller and this intent, and records the answer. And the pipes underneath support exactly one control family, telecommunications diversity.
 
 Sitting over all three is the question the book says its sources answered only briefly: who protects the governor? An SD-WAN deployment replaces a few hardened egress points with a fleet of internet-facing edges, one per office, and adds a management and control plane with authority over routing and policy for the whole estate.
 
-So the honest claim is narrow. SD-WAN can take a path down to the floor physics sets and tighten its tail. It never goes below the floor, and it doesn't inspect content; the closures that matter most at a branch come from the layer above it.`,
+So the honest claim is narrow. SD-WAN can take a path down to the floor physics sets and tighten its tail. It never goes below the floor, and it doesn't inspect content; the protections that matter most at a branch come from the layer above it.`,
   "Book 09, Chapter 05 — SD-WAN, SASE and Governed-Path Transport (introduction); Chapter 02, \"The governor: what the control layer contributes.\"");
 }
 
@@ -223,11 +223,11 @@ endModule("Orientation");
 // ================================================================== 4 Module 1 divider
 {
   const s = divider(P1, "Module 1: Transport physics, and what SD-WAN can fix", "Part 1 — Transport and the branch edge  ·  Chapters 01, 02, 05",
-    ["The propagation floor, the addressable gap, and route inflation", "Lean and bulk path classes, and the tools that shrink the tail", "The transport menu, and the one control family a pipe closes"], 9);
+    ["The propagation floor, the addressable gap, and route inflation", "Lean and bulk path classes, and the tools that shrink the tail", "The transport menu, and the one control family a pipe supports"], 9);
   notes(s,
 `Module 1: transport physics, and what SD-WAN can and can't fix.
 
-Most SD-WAN claims fail in one of two directions. Some promise the impossible, a long path made faster than light in fiber allows. Others undersell the real benefit, which is mostly in the latency tail rather than the average. This module separates the floor, which nothing moves, from the gap above it, where SD-WAN does its work. It sets out how much of that gap path selection can actually recover, maps the lean and bulk path classes onto the data layer's consistency decision, goes through the tail tools and what each one costs, and ends with the transport menu: every underlay is a pipe, and a pipe closes one control family.`,
+Most SD-WAN claims fail in one of two directions. Some promise the impossible, a long path made faster than light in fiber allows. Others undersell the real benefit, which is mostly in the latency tail rather than the average. This module separates the floor, which nothing moves, from the gap above it, where SD-WAN does its work. It sets out how much of that gap path selection can actually recover, maps the lean and bulk path classes onto the data layer's consistency decision, goes through the tail tools and what each one costs, and ends with the transport menu: every underlay is a pipe, and a pipe supports one control family.`,
   "Book 09, Chapter 01 — Why Physics Decides the Architecture; Chapter 02; Chapter 05, \"SD-WAN as differentiated transport.\"");
 }
 
@@ -355,8 +355,8 @@ And class separation keeps bulk off the commit path. A re-sync or backup can sat
     ["5G and LTE", "Radio plus carrier core; contention by cell and hour", "4 ms or 1 ms one way, radio only, unloaded"],
     ["Commodity broadband", "Shared access; asymmetric; contention varies", "Measure per site"],
   ], { fontSize: 11.5 });
-  panel(s, "Closes", 8.75, 1.5, 4.0, null, HEX.navy, HEX.navyTint, "WHAT TRANSPORT CLOSES", "One family, CP-8", [
-    "Diverse cellular plus local internet closes CP-8(2) at Moderate",
+  panel(s, "Closes", 8.75, 1.5, 4.0, null, HEX.navy, HEX.navyTint, "WHAT TRANSPORT SUPPORTS", "One family, CP-8", [
+    "Diverse cellular plus local internet supports CP-8(2) at Moderate",
     "CP-8(3) provider separation is a High-baseline control",
     "Each new pipe is another SC-7(4) managed interface",
     "Treat vendor satellite or cellular latency as an assumption until measured",
@@ -367,8 +367,8 @@ And class separation keeps bulk off the commit path. A re-sync or backup can sat
 
 Terrestrial fiber propagates at about five microseconds a kilometer plus route length, the lowest latency for a given distance. Carrier MPLS rides the same fiber, but its latency is set by the carrier's topology, not geography, so it has to be measured per circuit. And it's separation, not encryption: the MPLS VPN standard says the architecture doesn't by itself encrypt data or detect tampering in transit. G.114's planning values make the satellite point without vendor figures: twelve milliseconds between earth stations for a 400-kilometer orbit, 110 for medium orbit, 260 for geostationary, which alone exceeds the network's share of the voice budget. The 5G and LTE figures, four milliseconds for broadband and one for low-latency, are IMT-2020 minimum requirements for the radio interface alone, unloaded, with a single user. They say nothing about the end-to-end path through a carrier core to a cloud region.
 
-What transport does close is diversity. CP-8 asks for alternate telecommunications services; CP-8(2) asks that they not share a single point of failure with the primary, and a field office with local internet plus a physically diverse cellular path closes it at Moderate. CP-8(3), provider separation, is a High-baseline control and isn't asserted in a Moderate package. And every additional circuit is another managed interface that SC-7(4) expects to have its own traffic-flow policy. Diversity closes one family and enlarges another; the governor keeps the second manageable.`,
-  "Book 09, Chapter 02, \"The transport menu\" and \"The one control family transport closes\"; Chapter 03, control assertions table.");
+What transport does support is diversity. CP-8 asks for alternate telecommunications services; CP-8(2) asks that they not share a single point of failure with the primary, and a field office with local internet plus a physically diverse cellular path supports it at Moderate. CP-8(3), provider separation, is a High-baseline control and isn't asserted in a Moderate package. And every additional circuit is another managed interface that SC-7(4) expects to have its own traffic-flow policy. Diversity supports one family and enlarges another; the governor keeps the second manageable.`,
+  "Book 09, Chapter 02, \"The transport menu\" and \"The one control family transport supports\"; Chapter 03, control assertions table.");
 }
 endModule("Module 1");
 
@@ -477,7 +477,7 @@ The amber panel is the planning consequence. Local breakout is gated on an autho
   ];
   const pb = Math.max(...cols.map((c, i) => panel(s, c[0], 0.6 + i * 4.1, 1.5, 3.95, 3.05, c[1], c[2], c[3], null, c[4], 12.5)));
   note(s, "Alone", pb + 0.2, 1.05, "FaShieldHalved", HEX.navy, "SD-WAN alone doesn't satisfy the use case: ",
-    "the boundary, flow and malware closures come from the services above it.");
+    "the boundary, flow and malware protections come from the services above it.");
   sources(s, "Sources: CISA SASE guide v1.0 (Sec. 4–5, App. C); Microsoft 365 connectivity principles; FedRAMP Marketplace (Oct. 21, 2026); GSA, TIC and EIS pages. Book 09, Ch 05, 10.");
   notes(s,
 `Where does SASE sit relative to the SD-WAN, and what do you check before naming one in a requirement?
@@ -596,7 +596,7 @@ endModule("Module 2");
   notes(s,
 `Module 3: securing and governing the fabric.
 
-A paper that credits the governor with closing controls owes the reader the controls that protect it. That's how the book puts it, and this module takes it seriously. It walks the governor's attack surface component by component, against the 2026 directives that describe exactly this class of system, and turns step zero into a checkable control set. Then it looks forward, to the proposed governed path, and back to what applies today: the decision records and declarations every adapter on the fabric should produce. It ends with the obligations that run the other way, what the fabric owes the legacy and modern applications that ride on it.`,
+A paper that credits the governor with providing controls owes the reader the controls that protect it. That's how the book puts it, and this module takes it seriously. It walks the governor's attack surface component by component, against the 2026 directives that describe exactly this class of system, and turns step zero into a checkable control set. Then it looks forward, to the proposed governed path, and back to what applies today: the decision records and declarations every adapter on the fabric should produce. It ends with the obligations that run the other way, what the fabric owes the legacy and modern applications that ride on it.`,
   "Book 09, Chapter 05, \"Securing the controller and the edges,\" \"The governed path,\" \"The evidence the fabric must emit\"; Chapter 06.");
 }
 

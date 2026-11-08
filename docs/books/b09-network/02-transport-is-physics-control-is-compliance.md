@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02 — Transport Is Physics, Control Is Compliance"
-description: "Why \"SD-WAN versus DIA\" is a false choice: what direct internet access solves and what it leaves undone, the transport menu and the one control family transport closes, what the governing control layer contributes, why that governor is itself attack surface, and the order of operations that keeps modernization from becoming a compliance regression."
+description: "Why \"SD-WAN versus DIA\" is a false choice: what direct internet access solves and what it leaves undone, the transport menu and the one control family transport supports, what the governing control layer contributes, why that governor is itself attack surface, and the order of operations that keeps modernization from becoming a compliance regression."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b09-network
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Why "SD-WAN versus DIA" answers two different questions as if they were one. What direct internet access solves (the hairpin), what it satisfies (none of the protection controls), and what bare local breakout breaks (the assessed boundary). What a branch with DIA and a SASE service still lacks. The transport menu, and the one control family that transport selection does close. What the governing layer contributes, why it is itself attack surface, and the order of operations.
+Why "SD-WAN versus DIA" answers two different questions as if they were one. What direct internet access solves (the hairpin), what it satisfies (none of the protection controls), and what bare local breakout breaks (the assessed boundary). What a branch with DIA and a SASE service still lacks. The transport menu, and the one control family that transport selection does support. What the governing layer contributes, why it is itself attack surface, and the order of operations.
 :::
 
 ## The false versus
@@ -28,25 +28,25 @@ Federal network programs keep framing a procurement as "SD-WAN or DIA," as if a 
 
 The acronym causes its own confusion. In this book DIA always means direct internet access. It is not a Defense Information Systems Agency circuit (DISA is that agency, and its transport network is the Defense Information Systems Network, DISN)[^c02-disn], and it is not the Defense Intelligence Agency, which is what the letters DIA name in a defense context. An earlier version of one of this book's source papers made exactly that error, and every finding built on it fell.
 
-Chapter 01 established why latency has a physical floor. This chapter applies it. Transport is a physics decision: fiber, MPLS, low earth orbit (LEO) satellite and 5G differ enormously in latency, loss and capacity. Control is a compliance decision: the governing layer and the security service edge above it are what close the protection controls. TIC 3.0 is why an agency can't stop at the pipe.
+Chapter 01 established why latency has a physical floor. This chapter applies it. Transport is a physics decision: fiber, MPLS, low earth orbit (LEO) satellite and 5G differ enormously in latency, loss and capacity. Control is a compliance decision: the governing layer and the security service edge above it are what provide the protection controls, and the agency and its assessor still own what is left. TIC 3.0 is why an agency can't stop at the pipe.
 
 ::: {.callout-important}
 ## The case in one paragraph
 **Problem.** Programs treat transport and control as competing options. A branch that moves from a governed hairpin to bare local breakout gains latency and loses assessed boundary protection, and a branch with DIA and a cloud security service but no branch-edge layer has inspection applied to traffic nobody governs or measures before it leaves the building.
 
-**Solution.** Buy transport on measured physics, knowing it closes exactly one control family (telecommunications diversity). Get the protection controls from the control layer: a branch-edge governor for path selection, encryption and telemetry, and policy enforcement points above it for boundary, flow, malware and monitoring. Protect that governor as the high-value, internet-facing system it is.
+**Solution.** Buy transport on measured physics, knowing it supports exactly one control family (telecommunications diversity, CP-8 and SC-47). Get the protection controls from the control layer: a branch-edge governor for path selection, encryption and telemetry, and policy enforcement points above it for boundary, flow, malware and monitoring. Protect that governor as the high-value, internet-facing system it is.
 
 **Ask.** Before the next transport or SD-WAN procurement, run the decision sequence at the end of this chapter against the current portfolio, file the authorization-boundary change and have it decided before cutover rather than after, and name an owner for each step ([Chapter 09 — Who Owns the Network and Its Transport](09-who-owns-the-network.md)).
 :::
 
-![Transport is a physics decision and closes one control family; control is a compliance decision and closes the protection controls.](../../images/diagrams/b09-network/svg/ch02-pipe-and-governor.svg){#fig-ch02-pipe-and-governor fig-alt="Three stacked layers. At the top a violet card, the security service edge: SASE policy enforcement points providing boundary and flow enforcement (SC-7, AC-4), malware and web inspection (SI-3), and monitoring and telemetry to CISA (SI-4, AU). It rides on a blue card, the transport governor: an SD-WAN or equivalent branch edge providing encryption across every circuit (SC-8), traffic-class separation and path selection, and per-application path telemetry. That governs a slate card, transport: fiber DIA, MPLS, LEO, 5G and broadband, whose latency, loss and capacity differ enormously and which close no protection controls. A green arrow labeled more than one pipe leads from transport to a green card: the one family transport closes, telecommunications diversity (CP-8, SC-47)."}
+![Transport is a physics decision and supports one control family; control is a compliance decision and provides the protection controls.](../../images/diagrams/b09-network/svg/ch02-pipe-and-governor.svg){#fig-ch02-pipe-and-governor fig-alt="Three stacked layers. At the top a violet card, the security service edge: SASE policy enforcement points providing boundary and flow enforcement (SC-7, AC-4), malware and web inspection (SI-3), and monitoring and telemetry to CISA (SI-4, AU). It rides on a blue card, the transport governor: an SD-WAN or equivalent branch edge providing encryption across every circuit (SC-8), traffic-class separation and path selection, and per-application path telemetry. That governs a slate card, transport: fiber DIA, MPLS, LEO, 5G and broadband, whose latency, loss and capacity differ enormously and which provide no protection controls. A green arrow labeled more than one pipe leads from transport to a green card: the one family transport supports, telecommunications diversity (CP-8, SC-47)."}
 
 ## For decision makers
 
 - **DIA solves one problem, the geographic hairpin.** It is the only fix for that problem; no security product shortens a fiber path (Chapter 01).
 - **DIA satisfies none of the protection controls claimed near it.** Boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring come from the control layer, never from the pipe.
 - **Bare local breakout is a compliance regression with better latency.** With local breakout the branch becomes an external boundary, and the agency has to be able to say what monitors and controls it.
-- **Transport closes one control family: telecommunications diversity.** That is an argument for more than one pipe, not an argument that any pipe protects anything.
+- **Transport supports one control family: telecommunications diversity (CP-8 and SC-47).** That is an argument for more than one pipe, not an argument that any pipe protects anything.
 - **The governor is itself attack surface.** A controller with agency-wide routing authority and a fleet of internet-facing edges are exactly the kind of system CISA's 2026 directives target.
 - **Order decides the outcome.** Deploy the governor before production traffic, and treat the boundary change as the significant change it is.
 
@@ -58,9 +58,9 @@ What it removes is the detour. Moving egress near the user deletes the propagati
 
 ## What it satisfies: none of the protection controls
 
-Every transport is a pipe. The controls an agency asserts for the traffic crossing it are satisfied by whatever governs the pipe:
+Every transport is a pipe. The controls an agency asserts for the traffic crossing it are provided by whatever governs the pipe, and the agency still owns their parameters, policy and assessment:
 
-| Control (NIST SP 800-53 Rev. 5) | What it asks for | Satisfied by the pipe? | Where it is actually satisfied |
+| Control (NIST SP 800-53 Rev. 5) | What it asks for | Provided by the pipe? | Where it is actually provided |
 |---|---|---|---|
 | SC-7 Boundary Protection | Monitor and control communications at external managed interfaces | No | Policy enforcement point at the boundary |
 | SC-7(4) External Telecommunications Services | A managed interface and a traffic flow policy for each external telecommunication service, with documented exceptions | No; each new pipe adds an interface to manage | The governing layer, per circuit |
@@ -119,11 +119,11 @@ Every transport is a pipe. Their physics differs enormously; their contribution 
 
 Two cautions apply to the table. First, the cellular figures are minimum requirements for the radio interface alone, under unloaded conditions with a single user;[^c02-m2410] they say nothing about end-to-end latency through a carrier core to a cloud region, which has to be measured. Second, LEO operators publish median latency figures that change as constellations and ground infrastructure are built out, and none could be retrieved for this book from a primary source with its method stated. Treat any vendor latency claim for satellite or cellular service as a starting assumption and replace it with a measurement from the agency's own sites. G.114's planning values make the structural point without vendor figures: geostationary capacity, at 260 ms of space propagation alone, can't carry conversational voice inside the transparent-interactivity target, while low orbit can.[^c02-g114]
 
-## The one control family transport closes
+## The one control family transport supports {#the-one-control-family-transport-closes}
 
-Transport selection does close something: diversity of telecommunications services. SP 800-53's CP-8 family asks for alternate telecommunications services that let essential functions resume when primary services are unavailable; its enhancements ask that the alternate not share a single point of failure with the primary (CP-8(2)) and that it come from a provider separated from the primary provider to reduce susceptibility to the same threats (CP-8(3)). SC-47 asks for alternate communications paths for system operations and organizational command and control.[^c02-sp80053]
+Transport selection does support something: diversity of telecommunications services. SP 800-53's CP-8 family asks for alternate telecommunications services that let essential functions resume when primary services are unavailable; its enhancements ask that the alternate not share a single point of failure with the primary (CP-8(2)) and that it come from a provider separated from the primary provider to reduce susceptibility to the same threats (CP-8(3)). SC-47 asks for alternate communications paths for system operations and organizational command and control.[^c02-sp80053]
 
-That is an argument for multiple pipes from separated providers over physically diverse routes, and a branch with fiber DIA and a cellular or LEO second path can evidence it. It is not an argument that any single pipe provides protection controls. And every additional external telecommunications service adds a managed interface that SC-7(4) expects to have its own traffic flow policy, confidentiality and integrity protection, and documented exceptions.[^c02-sp80053] Diversity closes one family and enlarges another; the governing layer is what keeps the second one manageable.
+That is an argument for multiple pipes from separated providers over physically diverse routes, and a branch with fiber DIA and a cellular or LEO second path can evidence it. It is not an argument that any single pipe provides protection controls. And every additional external telecommunications service adds a managed interface that SC-7(4) expects to have its own traffic flow policy, confidentiality and integrity protection, and documented exceptions.[^c02-sp80053] Diversity supports one family and enlarges another; the governing layer is what keeps the second one manageable.
 
 ## The governor: what the control layer contributes
 
@@ -133,13 +133,13 @@ The branch-edge layer, usually SD-WAN, is the transport governor. CISA's SASE gu
 - **Traffic-class separation and path selection.** Application-aware steering, quality of service at the point of entry to the constrained link, and active-active use of more than one circuit with failover driven by measured path health.
 - **Application-layer path telemetry.** Per-application, per-path latency, loss and jitter, exportable to the agency's logging pipeline. This is what makes transport claims in an authorization package evidence rather than assertion.
 
-The boundary, flow and malware closures come from the security service edge above it: the secure web gateway, cloud access security broker, firewall and zero trust network access functions CISA groups under SASE.[^c02-sase] SD-WAN alone does not satisfy the Branch Office use case; the use case is a set of security capabilities, and SD-WAN appears in it only as an example of how multiple means of conveyance can be governed with parity.[^c02-bo] Chapter 05 develops the governor in depth: differentiated transport, what it can and can't do at the propagation floor, SASE above SD-WAN, and how to secure the controller and edges ([Chapter 05 — SD-WAN, SASE and Governed-Path Transport](05-sd-wan-sase-and-governed-transport.md)).
+The boundary, flow and malware protections come from the security service edge above it: the secure web gateway, cloud access security broker, firewall and zero trust network access functions CISA groups under SASE.[^c02-sase] SD-WAN alone does not satisfy the Branch Office use case; the use case is a set of security capabilities, and SD-WAN appears in it only as an example of how multiple means of conveyance can be governed with parity.[^c02-bo] Chapter 05 develops the governor in depth: differentiated transport, what it can and can't do at the propagation floor, SASE above SD-WAN, and how to secure the controller and edges ([Chapter 05 — SD-WAN, SASE and Governed-Path Transport](05-sd-wan-sase-and-governed-transport.md)).
 
 The governor is also available to buy. CISA notes that GSA's Enterprise Infrastructure Solutions (EIS) vehicle provides SD-WAN networking and connectivity options to and from agency networks, cloud services and the internet.[^c02-ticfaq] CISA's FAQ also says agencies must consider FedRAMP authorization when selecting service providers, and the cloud-delivered parts of candidate products don't all sit at the same level: listings for SD-WAN controllers and security service edges range from Moderate to High, and a listing covers the cloud service offering, not the edge appliances an agency installs in its own offices.[^c02-fedramp] [Chapter 05](05-sd-wan-sase-and-governed-transport.md) lists current examples and how to read them before a requirement names a service.
 
 ## The governor is itself attack surface
 
-A paper that credits the governor with closing controls owes the reader the controls that protect the governor. The exposure is consequential and new in two ways. The controller holds agency-wide routing and policy authority: whoever controls it decides where every branch's traffic goes, including where DNS queries are redirected ([Book 08 Chapter 05 — Edge Interception and Bypass](../b08-ddi/05-edge-interception-and-bypass.md)). And a fleet of internet-facing branch edges replaces a small number of hardened, centrally staffed egress points. <!-- claims-ok: critiques a claim -->
+A paper that credits the governor with providing controls owes the reader the controls that protect the governor. The exposure is consequential and new in two ways. The controller holds agency-wide routing and policy authority: whoever controls it decides where every branch's traffic goes, including where DNS queries are redirected ([Book 08 Chapter 05 — Edge Interception and Bypass](../b08-ddi/05-edge-interception-and-bypass.md)). And a fleet of internet-facing branch edges replaces a small number of hardened, centrally staffed egress points. <!-- claims-ok: critiques a claim -->
 
 CISA's 2026 directives describe exactly this class of system. BOD 26-02 defines edge devices as technology that resides on the boundary of an agency's network and is accessible from the public internet, says CISA is aware of widespread exploitation campaigns by advanced threat actors targeting end-of-support edge devices, and notes that edge devices are attractive targets because of their extensive reach into an organization's network.[^c02-bod2602] Three weeks later, on February 25, 2026, CISA issued Emergency Directive 26-03 for Cisco SD-WAN systems, after CISA, NSA and four international partners reported actors globally compromising those systems through an authentication bypass and a privilege escalation and establishing long-term persistence; the revised directive of March 11, 2026 also required agencies to deliver Cisco SD-WAN syslog to CISA through CISA's Comprehensive Log Aggregation Warehouse (CLAW).[^c02-ed2603] The controller and manager are the components named. The exploitation didn't stop with the directive: Cisco has since added the validator to the scope of the CVE-2026-20127 advisory, and CISA's Known Exploited Vulnerabilities (KEV) catalog lists nine Cisco Catalyst SD-WAN CVEs added during 2026, the newest on September 30 with a three-day due date.[^c02-ciscorpa][^c02-kev2026]
 
@@ -169,8 +169,8 @@ Doing these out of order, and above all lighting up fast connections before the 
 1. Transport is a physics decision and control is a compliance decision; "SD-WAN versus DIA" sets them against each other when they answer different questions.
 2. DIA solves the geographic hairpin and satisfies none of the protection controls; bare local breakout turns the branch into an external boundary nobody governs, a compliance regression with better latency.
 3. A branch with DIA and SASE but no branch-edge layer has inspection without transport governance: no path selection, application awareness, queue management, multi-circuit use or per-application telemetry.
-4. Transport closes exactly one control family, telecommunications diversity, and each new pipe adds a managed interface to govern.
-5. The governor closes encryption, separation and telemetry; SASE above it closes boundary, flow and malware; and the governor is itself a high-value, internet-facing target that needs its own controls.
+4. Transport supports exactly one control family, telecommunications diversity (CP-8 and SC-47), and each new pipe adds a managed interface to govern.
+5. The governor provides encryption, separation and telemetry; SASE above it provides boundary, flow and malware protection; the agency and its assessor still own what is left; and the governor is itself a high-value, internet-facing target that needs its own controls.
 6. Order of operations decides the outcome: governor before traffic, boundary change before cutover.
 :::
 

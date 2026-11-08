@@ -93,7 +93,7 @@ callout on Chapter 01 links back to `index.md`; Appendix C has no Next link.
 Who covers what, in brief (so you don't overlap):
 - **Ch01**: the pendulum and the three forces; the speed-of-light floor and the 150 ms budget; "need less global sync";
   why no product shortens a fiber path. **Ch02**: the false "SD-WAN vs DIA" versus; what DIA solves and doesn't; the
-  transport menu (fiber, MPLS, LEO, 5G) and the one control family transport closes (telecom diversity); the governor is
+  transport menu (fiber, MPLS, LEO, 5G) and the one control family transport supports (telecom diversity); the governor is
   itself attack surface.
 - **Ch03**: TIC 3.0 use cases and the Security Capabilities Catalog stated precisely; policy currency; FedRAMP doesn't
   constrain routing; the encryption requirement that is and isn't there; M-21-31 telemetry; CLAW and Protective DNS
