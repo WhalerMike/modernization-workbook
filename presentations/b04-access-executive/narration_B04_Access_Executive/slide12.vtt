@@ -11,58 +11,57 @@ So there's one standing exception:
 emergency access, or break-glass, accounts.
 
 3
-00:00:10.113 --> 00:00:14.545
-Two or more cloud-only accounts,
-permanently Global Administrator,
+00:00:10.113 --> 00:00:15.598
+Two cloud-only accounts, permanently Global
+Administrator, with phishing-resistant
 
 4
-00:00:14.545 --> 00:00:17.473
-with phishing-resistant
-sign-in of their own,
+00:00:15.598 --> 00:00:19.306
+sign-in of their own, excluded
+only from blocking policies,
 
 5
-00:00:17.473 --> 00:00:21.588
-excluded only from blocking
-policies, and alerted on every use.
+00:00:19.306 --> 00:00:20.851
+and alerted on every use.
 
 6
-00:00:21.588 --> 00:00:25.462
+00:00:20.851 --> 00:00:24.725
 Using them is strict: two
 senior administrators together,
 
 7
-00:00:25.462 --> 00:00:29.983
+00:00:24.725 --> 00:00:29.246
 only when PIM is down and the problem
 can't wait, out within four hours,
 
 8
-00:00:29.983 --> 00:00:33.374
+00:00:29.246 --> 00:00:32.637
 reviewed within a day, and
 tested every ninety days.
 
 9
-00:00:33.374 --> 00:00:34.600
+00:00:32.637 --> 00:00:33.863
 Two decisions.
 
 10
-00:00:34.600 --> 00:00:37.700
+00:00:33.863 --> 00:00:36.962
 Build and test them before
 any role goes eligible.
 
 11
-00:00:37.700 --> 00:00:40.055
+00:00:36.962 --> 00:00:39.317
 And be honest in the security plan:
 
 12
-00:00:40.055 --> 00:00:45.187
+00:00:39.317 --> 00:00:44.449
 NIST expects emergency accounts to
 expire, so record these as a deviation.
 
 13
-00:00:45.187 --> 00:00:48.763
+00:00:44.449 --> 00:00:48.025
 The CISO builds; the
 authorizing official accepts.
 
 14
-00:00:48.763 --> 00:00:50.210
+00:00:48.025 --> 00:00:49.460
 Now, who decides.
