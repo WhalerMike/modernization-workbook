@@ -121,3 +121,9 @@ The body now states the guidance directly. These were the earlier positions it u
 - The source policy defined the critical-scope trigger as any `.All` application permission (misses `Mail.ReadWrite` and `Mail.Send`).
 - The tier table was carried from the source governance model; the AO rows and the credential alert were additions to it.
 - The source governance model assumed 30 and 90 days of Entra log retention.
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | A2 access changes are approved by the owner the task names; application access follows the app's risk tier | §The help desk and cloud services authority split | corrected (Old: "the application owner approves", which contradicted R3 business-approver and R1 two-stage chains) | Chapter 06 §Risk tiers set the approval chain; Chapter 09 §Policies |

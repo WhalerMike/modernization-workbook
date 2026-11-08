@@ -205,3 +205,10 @@ Track signposts added (HR track: user objects, groups, OUs; non-person identity 
 | H3 | HISG primary recommendation: cloud-based passwordless via PKI/PIV/CAC or FIDO2/WebAuthn; move from on-premises federation to cloud primary | Same | verified (added) | HISG §1.4 |
 | H4 | HISG warns a hash-function mismatch could leave a weaker algorithm in use | Same | verified (added) | HISG §3.1.3 security considerations |
 | H5 | PHS salts the AD hash per user and runs PBKDF2 with 1,000 iterations of HMAC-SHA256; the stored hash can't be used for on-premises pass-the-hash | Same | verified (added) | c09-phs-hash <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-password-hash-synchronization> |
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Access review cadence for app owners follows the application's risk tier, written R1 (quarterly) and R2 (semi-annually) | §Applications and service principals, Reviews | corrected (Old: "risk Tier 1" and "Tier 2". New: R1 and R2, the notation Book 04 now uses so a risk tier can't be read as a privilege tier) | Book 04 Chapter 04 §Three different tiers; Chapter 06 §Risk tiers set the approval chain; Chapter 09 §Cadence |
+| C2 | App ownership: registry owner (with backup by tier) plus two technical people on the Entra Owners list | §Governing service principals | corrected (Old: "at least two human owners") | Book 04 Chapter 05 §Ownership; Chapter 06 §Risk tiers |

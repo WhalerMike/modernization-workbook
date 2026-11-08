@@ -228,7 +228,7 @@ Everything above describes who approves. The authority split decides which pipel
 |---|---|---|
 | A0 | Low-impact support with no access change, such as a cloud-only password reset or retrieving a sign-in log | ITSM pipeline |
 | A1 | Changes to the requester's own account and entitlements, such as an MFA method reset, license change or profile update | ITSM pipeline; the requester's manager or the service desk supervisor approves |
-| A2 | Access changes governed by an owner, such as application access, group creation and owner management, or a certification revocation | IGA pipeline; the application owner approves |
+| A2 | Access changes governed by an owner, such as application access, group creation and owner management, or a certification revocation | IGA pipeline; the owner the task names approves (for application access, the approver the app's risk tier sets, as in the table below) |
 | A3 | Governance actions, such as admin consent or an ImmutableID hard-match repair | IGA pipeline; the approvers are the task's own chain, set in the table below (admin consent: the IGO for R1 and the owner for R3, per [the consent chain](#who-approves-admin-consent); ImmutableID repair: the identity engineering lead and the IGO); never automated |
 | Out of scope | Conditional Access, directory roles, service principals | Escalated to security or identity engineering |
 

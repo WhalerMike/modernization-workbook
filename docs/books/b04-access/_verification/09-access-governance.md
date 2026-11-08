@@ -169,3 +169,9 @@ Opened November 2, 2026: Microsoft Learn, "Change approval and requestor informa
 | 5 | Access package policies can ask requestor questions: short text, long text or multiple choice; required or optional; optional regex pattern check on text answers | Request portal and 508 | verified | Learn, requestor information settings |
 | 6 | Each question states the expected answer and its format | Request portal and 508 | restated-as-design | — |
 | 7 | Book 18 Ch 06 sets the test method and the form rules | Request portal and 508 | cross-reference; sources logged in Book 18's Chapter 06 verification file | — |
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | memberOf operator preview ended Nov 3, 2026; rules that use it stopped updating | §Automatic assignment | corrected (Old: "time-sensitive caution ... preview". New: past tense) | Book 02 Chapter 09 §Dynamic group rule syntax; Microsoft Learn memberOf page |
