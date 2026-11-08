@@ -83,3 +83,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | and it closes the cloud-resource half of CM-6. | and it supports, with evidence, the cloud-resource half of CM-6. | no source change |
+
+## Consistency read, November 8, 2026
+
+The description still said posture management and admission control "close" CM-6, CM-7 and SI-3; it now says "support", matching the body. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| how cloud security posture management closes CM-6 | how cloud security posture management supports CM-6 | no source change |

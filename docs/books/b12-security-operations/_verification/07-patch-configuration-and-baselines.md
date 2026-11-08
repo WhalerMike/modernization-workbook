@@ -124,3 +124,11 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_III_Book_03
 | Honest Limits | "Honest limits" | — |
 | Cross-References (Vol III, VI-07, VI-08) | Chapter 02, Chapter 12 links | Volume numbers dropped; test-harness book not linked |
 | Provenance | Warning callout and the "program's own format" statement | — |
+
+## Consistency read, November 8, 2026
+
+One sentence said no single console "closes SI-2"; it now says none is enough to support SI-2. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| closes SI-2 on a multi-platform estate | is enough to support SI-2 on a multi-platform estate | no source change |

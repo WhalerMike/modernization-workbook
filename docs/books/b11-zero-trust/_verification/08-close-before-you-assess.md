@@ -85,3 +85,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | The order that satisfies the directive is architecture, | The order that serves the directive is architecture, | no source change |
+
+## Consistency read, November 8, 2026
+
+The sentence on BOD 25-01 reporting named two options; the page now matches Chapter 04 and CISA's implementation guidance, which lists three methods (manual CyberScope upload, CISA-hosted ScubaConnect, agency-hosted semi-automated). No source was re-opened; the figure comes from Chapter 04's check of the guidance updated July 27, 2026.
+
+| Before | After | Source |
+|---|---|---|
+| BOD 25-01's reporting obligation can be met by continuous integration with CISA's monitoring or by quarterly manual reports. Either satisfies the directive. | The reporting obligation can be met by continuous integration or quarterly reporting, and the guidance offers three methods for doing so (Chapter 04). Any of them satisfies the directive. | Chapter 04 and its footnote c04-guidance |
