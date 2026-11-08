@@ -75,3 +75,9 @@ Microsoft sources opened through the Microsoft Learn MCP tools on October 21, 20
 | Whitepaper Principle 3 / Framework table, BOD 25-01 SCuBA and modern authentication | §Prefer require | Narrowed to the verified SCuBA block policies |
 | Whitepaper Framework table, "Device compliance as input to access decisions (M-22-09 §3)" | Not carried | Belongs to Chapter 08 (access plane, W4); compliance-to-CA mechanics kept in §Config profiles |
 | Whitepaper images `rId*.png` | Not carried | None depict policy; diagrams are house-style sources |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-7 | Emergency access accounts: "two or more" attributed to Microsoft's recommendation; the program standard is two | Emergency access paragraph | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 7 |

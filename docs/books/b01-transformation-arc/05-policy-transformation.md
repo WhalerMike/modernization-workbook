@@ -150,7 +150,7 @@ Conditional Access has no layers to lean on. Every policy that applies to a sign
 
 ## Emergency access exclusions and testing
 
-Every library excludes the emergency access accounts (commonly called break-glass accounts). Microsoft recommends two or more cloud-only emergency accounts, protected by a phishing-resistant method, excluded from every Conditional Access policy that blocks or restricts sign-in, and tested on a schedule (for example, every quarter). Report-only policies don't block and don't need the exclusion.[^c05-emergency] The program puts the accounts in one group, `CA-Exclude-EmergencyAccess`, which every enforced policy excludes ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md)). The accounts are vaulted, used only in documented emergencies, and every use opens an incident ticket.
+Every library excludes the emergency access accounts (commonly called break-glass accounts). Microsoft recommends two or more cloud-only emergency accounts; the program standard is two. They are protected by a phishing-resistant method, excluded from every Conditional Access policy that blocks or restricts sign-in, and tested on a schedule (for example, every quarter). Report-only policies don't block and don't need the exclusion.[^c05-emergency] The program puts the accounts in one group, `CA-Exclude-EmergencyAccess`, which every enforced policy excludes ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md)). The accounts are vaulted, used only in documented emergencies, and every use opens an incident ticket.
 
 Every policy change passes four stages, and the pipeline rejects any change that skips one:
 

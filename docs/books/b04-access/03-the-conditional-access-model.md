@@ -198,6 +198,11 @@ Microsoft recommends excluding two kinds of account from policies: emergency acc
 
 The opposite failure is quieter. A policy that *includes* a dynamic group misses every user whose attribute is empty, so incomplete attributes are an exclusion nobody approved. The program's baseline policies include all users and exclude narrowly for that reason, and attribute completeness is checked before any attribute-scoped policy is enforced ([Chapter 01](01-access-is-a-policy-decision.md); [Book 03](../b03-hr-identity/index.md)).
 
+::: {.callout-note}
+## Open items in this chapter
+- **The Microsoft Entra Connect Sync account.** The library has no exclusion for it, and how the program handles that account is not yet specified. It stays open until the program specifies the handling.
+:::
+
 ## The program's baseline principles
 
 These are the program's design rules. Each policy in [Chapter 07](07-the-conditional-access-policy-library.md) is checked against them.

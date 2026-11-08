@@ -68,3 +68,9 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 ## Server standard, November 5, 2026
 
 Tense only; date carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-9 | Removed the past date "targeted for 2026-Q3"; the program sets a target date for blocking NTLMv1. No statement is made about whether any estate reached it | Driver one paragraph | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 9 |

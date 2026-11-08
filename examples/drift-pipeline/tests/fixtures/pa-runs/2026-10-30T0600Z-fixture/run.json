@@ -31,7 +31,7 @@
     "inventory": {
       "folder": "inventory",
       "status": "OK",
-      "manifestSha256": "94488ad47cf1496347be7ffc6030a847f2b7d7f82483ddc63c86f0da63b10995"
+      "manifestSha256": "7bb42380a223badeecbed7b08d2cb9dfe287f2bf541feca4c28f6070609f1b34"
     },
     "emergency-access": {
       "folder": "emergency",

@@ -142,7 +142,7 @@ Division AUs read the division code the HR feed supplies. The program carries it
 | Password Administrator | `IT-CyberOps-Admins` | `AU-IT-CyberOps` | 3 |
 | Authentication Administrator | `IT-InfraOps-Admins` | `AU-IT-InfraOps` | 3 |
 
-The `*-Admins` names are the descriptive form used in this chapter. [Book 04](../b04-access/04-privileged-roles-and-tiers.md) names the same role-holding groups with the program's privileged-group pattern, for example `PRV-T2-UserAdmin-<AU>` for the User Administrator rows, so the privilege tier shows in every review and alert. Book 04's names govern in the tenant, and Book 04 holds one group per role: where this table gives one group two roles, as with `Finance-Admins`, the tenant has one group for each, such as `PRV-T2-UserAdmin-AU-Finance` and `PRV-T2-GroupsAdmin-AU-Finance`.
+The `*-Admins` names are the descriptive form used in this chapter. [Book 04](../b04-access/04-privileged-roles-and-tiers.md) names the same role-holding groups with the program's privileged-group pattern, for example `PRV-T2-UserAdmin-<AU>` for the User Administrator rows, so the privilege tier shows in every review and alert. Book 04's names govern in the tenant, and Book 04 holds one group per role: where this table gives one group two roles, as with `Finance-Admins`, the tenant has one group for each, such as `PRV-T2-UserAdmin-Finance` and `PRV-T2-GroupsAdmin-Finance`.
 
 Two corrections to the principals in this table:
 
