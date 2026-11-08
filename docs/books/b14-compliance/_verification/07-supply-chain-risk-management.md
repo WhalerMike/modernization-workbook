@@ -115,3 +115,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 |---|---|---|---|---|
 | 1 | M-26-10 §2: request vendor utilization and pricing; disclosure provisions in solicitations and contracts after Mar 31, 2026; vendors include resellers | Supplier disclosure | verified (quoted, page images) | OMB M-26-10 §2, n.8 |
 | 2 | M-26-10 gives no clause wording | Supplier disclosure | verified (absence in memo) | OMB M-26-10 p.4 |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| covers how these rules meet BOD 26-04. | covers how these rules line up with BOD 26-04. | no source change |

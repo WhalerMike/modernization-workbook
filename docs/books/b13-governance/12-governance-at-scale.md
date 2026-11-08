@@ -182,7 +182,7 @@ The program's gap treatment has five steps: record the gap in the register; assi
 | Decision | What it means | Federal mechanism |
 |---|---|---|
 | Close by configuration | Change the platform so the control is covered | A plan of action and milestones entry, which CA-5 asks the organization to develop and update from assessments, audits and continuous monitoring, until the change is verified[^c12-sp80053] |
-| Close by compensating control | Meet the control's intent another way, with evidence labeled as coming from the substitute | Mitigation, one of SP 800-137's responses to findings;[^c12-sp800137] the narrative pattern is in [Book 10, Chapter 11](../b10-cloud-boundary/11-the-authorization-package.md) |
+| Close by compensating control | Meet the control's intent another way, with evidence labeled as coming from the substitute | Mitigation, one of SP 800-137's responses to findings;[^c12-sp800137] the narrative pattern is in [Book 10, Chapter 11](../b10-cloud-boundary/11-the-authorization-package.md) <!-- claims-ok: a POA&M disposition, not a claim --> |
 | Accept | Leave the gap open, with a documented rationale and a review date | Risk acceptance by the authorizing official, which SP 800-37 says "cannot be delegated"[^c12-sp80037] |
 
 SP 800-137 lists the full set of responses as mitigation, acceptance, transference or sharing, and avoidance or rejection.[^c12-sp800137] The program's three outcomes cover the first two directly. Transference and avoidance (moving the workload to a provider who covers the control, or not doing the thing at all) show up in the register as a planned action under "close by configuration," because they also end in a changed estate that has to be verified.

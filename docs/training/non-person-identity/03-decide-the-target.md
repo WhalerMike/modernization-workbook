@@ -24,7 +24,7 @@ Each identity ends in one of five places: retire it, move it to a gMSA or dMSA, 
 
 Three things are easy to blur, and the code keeps them apart. The matrix *proposes* a target. The application owner *decides* the disposition. The ISSO checks the *gate*. In this module you run all three on the fixtures and read why Gate 2 isn't met yet.
 
-**The federal requirement.** Gate G2 meets NIST SP 800-53 AC-2 and IA-5. The guide's [Validate (G2 Decision)](../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#federal-requirements-and-evidence) table has a row for every lab step.
+**The federal requirement.** Gate G2 supports NIST SP 800-53 AC-2 and IA-5. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The guide's [Validate (G2 Decision)](../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#federal-requirements-and-evidence) table has a row for every lab step.
 
 | Requirement | KSI | Evidence |
 |---|---|---|

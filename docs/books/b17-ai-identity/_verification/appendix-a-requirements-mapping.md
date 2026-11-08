@@ -60,3 +60,11 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | OMB memoranda index now runs to M-27-01; nothing later replaces M-25-21 | sentence and `aA-omb-memos` updated |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| is what the program does to meet or evidence the requirement | is what the program does to support or evidence the requirement | no source change |

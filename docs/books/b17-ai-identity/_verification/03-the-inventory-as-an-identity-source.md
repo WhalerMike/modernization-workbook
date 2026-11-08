@@ -113,3 +113,11 @@ A short "Privacy: AI identities and the inventory" section was added (additive; 
 | 4 | M-25-21: AI impact assessment before deploying high-impact AI, should reference PIAs; privacy on CFO Act agencies' AI governance boards | verified | M-25-21 §3(a)(ii)(B), §4(b)(ii)(C) and note 30 |
 | 5 | RA-8, PT-3 in the privacy baseline | verified | OSCAL privacy profile 5.2.0 |
 | 6 | `has_pii` as a privacy gate; sponsor records stay out of the public file; obligations table | restated-as-design | - |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The inventory describes the use; the controls are met in the directory. | The inventory describes the use; the directory is where the controls are implemented and evidenced. | no source change |

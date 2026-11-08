@@ -40,3 +40,11 @@ Checked October 21, 2026 by writer W2. No source page; the appendix is new, mode
 | Source page § | Went to | Or why not carried |
 |---|---|---|
 | (none) | — | The appendix has no source page. Requirements were drawn from the primary documents; the format follows `docs/books/b09-network/appendix-b-requirements-mapping.md`, with a "Closed by" column added because the brief asks for the books that close each requirement. The controls the Chapter 03 source spec names (access control, continuous monitoring, incident response) are carried into the controls table. |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| is meant to close access control, continuous monitoring and incident response controls. | is meant to support, and produce evidence for, access control, continuous monitoring and incident response... | no source change |

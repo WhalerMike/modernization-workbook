@@ -69,3 +69,11 @@ This chapter is new; the brief assigns it no source page. Material drawn from th
 | Vol VI Book 04, response ladder (gated actions) | Acting-playbook row; gated actuation reference | Ladder detail belongs to Chapter 11 |
 | Vol VI Book 08, telemetry-completeness harness | Separation 2; Chapter 12 metric | Harness KQL belongs to Chapters 05/12 |
 | Vol III Book 07, "Realizations" (Sentinel/Splunk dual SIEM, ServiceNow hub) | Not carried | Vendor selection is agency-specific; the chapter is tool-neutral on SIEM count |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Security engineering decides how a requirement is met in the platform. | Security engineering decides how a requirement is implemented in the platform. | no source change |

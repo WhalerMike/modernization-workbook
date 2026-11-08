@@ -24,7 +24,7 @@ A federated credential tells Microsoft Entra ID to trust tokens from an outside 
 
 In this module you plan conversions in the program's order: a managed identity for an Azure-hosted workload, a federated credential where the host has an issuer, and a certificate only where neither applies. Each federated credential is checked against the claims the workload will present and tested against a fake token endpoint before it is created. Then the old and new credentials run side by side for 30 days, and the legacy account is disabled, never deleted.
 
-**The federal requirement.** Gate G5 meets NIST SP 800-53 IA-5, IA-9 and AU-2. The guide's [Validate (G5 Conversion)](../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md#federal-requirements-and-evidence) table has a row for every lab step.
+**The federal requirement.** Gate G5 supports NIST SP 800-53 IA-5, IA-9 and AU-2. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The guide's [Validate (G5 Conversion)](../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) step names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md#federal-requirements-and-evidence) table has a row for every lab step.
 
 | Requirement | KSI | Evidence |
 |---|---|---|

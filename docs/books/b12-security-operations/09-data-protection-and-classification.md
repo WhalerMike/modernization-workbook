@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 09 — Data Protection and Classification
 
-*Every control in the pipe can be satisfied while the payload leaves, because nothing upstream ever said what the payload was.*
+*Every control in the pipe can be satisfied while the payload leaves, because nothing upstream ever said what the payload was.* <!-- claims-ok: argues that satisfied controls aren't enough -->
 
 ::: {.callout-note}
 ## In this chapter
@@ -344,7 +344,7 @@ Key custody is per platform. Each provider runs its own key management service, 
 
 ## Non-repudiation is a separate question
 
-The program's earlier drafts argued that Purview Audit (Premium) satisfies AU-10's irrefutability standard through signed records in storage tenant administrators can't reach. Microsoft doesn't describe the product that way. It documents Audit (Premium) as audit log retention policies, longer retention (one year by default for some workloads, up to ten years with an add-on), intelligent insights such as `MailItemsAccessed` and search events, and higher bandwidth to the Management Activity API.[^c09-audit] None of those is a non-repudiation mechanism, and the claim has been removed.
+The program's earlier drafts argued that Purview Audit (Premium) satisfies AU-10's irrefutability standard through signed records in storage tenant administrators can't reach. Microsoft doesn't describe the product that way. It documents Audit (Premium) as audit log retention policies, longer retention (one year by default for some workloads, up to ten years with an add-on), intelligent insights such as `MailItemsAccessed` and search events, and higher bandwidth to the Management Activity API.[^c09-audit] None of those is a non-repudiation mechanism, and the claim has been removed. <!-- claims-ok: describes a claim the chapter withdraws -->
 
 AU-10 is in the NIST SP 800-53B High baseline and not the Moderate baseline.[^c09-baselines] An agency that adopts it above the Moderate floor needs a design for it: exporting the high-value events this chapter and [Chapter 04](04-platform-and-m365-telemetry.md) name into write-once storage that tenant administrators can't alter, with the export itself evidenced. That is program design. Chapter 04 carries audit retention and the license that decides it.
 

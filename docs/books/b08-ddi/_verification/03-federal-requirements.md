@@ -81,3 +81,12 @@ The workbook targets FedRAMP Moderate civilian agencies. Configuration authority
 | MS-5 | DISA DDI STIGs (e.g., Infoblox NIOS 9.x) are optional cross-checks, not requirements (High only) | Configuration baselines; High only line added | framing per brief; STIG existence carried from the Research guide's Oct 22-23 check | Research: Implementing Book 08 on Infoblox NIOS |
 | MS-6 | Control mapping: hardening of DDI servers and appliances → CM-2, CM-6, CM-7 | Control mapping table | mapping (illustrative, as the table states) | c03-cm6 |
 | MS-7 | EO 14144 section 4(c) (Jan 16, 2025): encrypt DNS in transit; CISA template contract language for DNS resolvers to the FAR Council; FCEB agencies enable encrypted DNS wherever existing clients and servers support it within 180 days. EO 14306 (Jun 6, 2025) amends EO 14144 sections 2, 3, 4(b), 4(b)(iv), 4(d)(ii)-(iii), 4(f), 5, 7 and 8 and does not touch 4(c), so 4(c) is current | What the mandates say (bullet added) | verified Nov 8, 2026 (item 1388) | EO 14144 text, Federal Register public inspection copy of document 2025-01470; EO 14306 amendment instructions, whitehouse.gov |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Explains how agencies meet M-22-09 while keeping Protective DNS upstream, | Explains how agencies can work toward M-22-09 while keeping Protective DNS upstream, | no source change |
+| Which log sources meet these requirements, DNS resolvers included, is set in that plan. | Which log sources count toward these requirements, DNS resolvers included, is set in that plan. | no source change |

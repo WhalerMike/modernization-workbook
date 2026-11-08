@@ -95,3 +95,11 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | OMB memoranda index now runs to M-27-01 (Oct 23, 2026); still no other AI memorandum | sentence and `c02-memos` updated |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| Each is guidance agencies can use to meet the requirements above | Each is guidance agencies can use in working toward the requirements above | no source change |

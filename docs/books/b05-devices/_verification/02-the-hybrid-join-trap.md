@@ -58,3 +58,11 @@ All Microsoft sources opened (fetch or search excerpt) through the Microsoft Lea
 | — §5 "The governed path" (seven steps, L0–L4 table) | Ch02 §The governed path (eight steps, ladder table) | Step 8 added; detail deferred to Ch05 |
 | — "Call to Action" | Ch02 §What to do first | — |
 | Assignment item: Microsoft's current join recommendation | Ch02 §What Microsoft recommends now | New section; not in sources |
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| so the control is satisfied for its real population and not only for the Windows slice. | so the control covers its real population and not only the Windows slice. | no source change |

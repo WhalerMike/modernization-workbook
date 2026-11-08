@@ -169,7 +169,7 @@ The program's design for a completion record:
 |---|---|
 | Person identifier | The same identifier the role roster uses, so completions join to the roster without matching names |
 | Course identifier and version | Which content was taken; the version is what the currency process above depends on |
-| Population or role it satisfies | Which requirement the course meets, set in the catalog, not chosen by the learner |
+| Population or role it satisfies | Which requirement the course supports, set in the catalog, not chosen by the learner |
 | Assigned, due and completed dates | Whether training happened before access and before the wave, not only whether it happened |
 | Assessment result | Pass, fail or score for modules that assess, so [Chapter 10](10-measuring-readiness.md) can separate completion from demonstrated competence |
 | Delivery mode and instructor | Self-paced, instructor-led or lab; the instructor for instructor-led sessions, for the evaluation above |

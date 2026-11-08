@@ -50,6 +50,18 @@ Two labels mark statements that aren't external fact:
 
 A design position needs no endnote, but it must never read as external fact. When a sentence is labelled once, the same claim shouldn't appear unlabelled elsewhere; checking that is part of each verification pass.
 
+## Supports, not satisfies: how the workbook words compliance claims {#claim-language}
+
+A technology, a kit, a configuration or a page in this workbook never by itself satisfies a control or requirement. Whether a NIST SP 800-53 control, an RMF task, an OMB memorandum, a CISA directive, a FedRAMP Key Security Indicator or TIC 3.0 is satisfied is decided by an assessor or an authorizing official, for a particular system, against that organization's own parameters, policy and procedures. So the workbook says what a mechanism **supports**, **contributes to** or **provides evidence for**, and names what is left to the organization: the organization-defined parameters, the policy and procedures, and assessment and authorization. It doesn't say a mechanism satisfies, meets, closes, fulfills, achieves compliance with or ensures compliance with a control. <!-- claims-ok: states the rule itself -->
+
+Some sentences keep those verbs because they aren't the workbook's claim: a source quoted in its own words, what an assessor or authorizing official decides, a requirement described as a requirement ("the memo requires agencies to meet..."), a sentence saying that something does *not* satisfy a control, and the program's own dates and plans ("meets the January 12 date").
+
+| Before | After |
+|---|---|
+| This gate meets NIST SP 800-53 AC-2 and IA-4. | This gate supports NIST SP 800-53 AC-2 and IA-4. Its output is evidence for them; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. <!-- claims-ok: the rule's before-and-after example --> |
+
+A check on every pull request flags a published sentence that pairs one of those verbs with a control or requirement. Older wording that hasn't been rewritten yet is listed, line by line, in the repository's [`data/claims-baseline.txt`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/claims-baseline.txt), and that list only shrinks. The full rule is in [CONTRIBUTING.md](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#claim-language-supports-not-satisfies).
+
 ## What couldn't be verified
 
 Most research pages end with a section called **What couldn't be verified**. It lists what the authors looked for and didn't find: a contract that isn't public, a page that refused automated access, a number that appears only in press coverage, a product behavior no documentation describes. Saying so is the honest alternative to a guess, and it tells a reader what to confirm before relying on the page.

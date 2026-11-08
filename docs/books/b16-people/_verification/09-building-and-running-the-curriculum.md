@@ -113,3 +113,11 @@ All opened November 2, 2026: U.S. Access Board, "Information and Communication T
 
 - The exported MP4 files weren't opened, so whether any also carries an embedded caption stream wasn't checked; the chapter says only that the captions ship as a separate file.
 - Keyboard and screen-reader operation of the video page wasn't tested.
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language): the page now says what the mechanism supports or provides evidence for, not that it satisfies a control or requirement. No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| / Which requirement the course meets, set in the catalog, | / Which requirement the course supports, set in the catalog, | no source change |

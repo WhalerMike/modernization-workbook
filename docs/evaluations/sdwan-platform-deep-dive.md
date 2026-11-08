@@ -13,7 +13,7 @@ aliases:
 
 # SD-WAN and SASE Platforms Against Book 09's Requirements {.unnumbered}
 
-[Book 09 — Network & Transport](../books/b09-network/index.md) tells an agency what its branch network has to do. It doesn't name products. This page asks the product question: which SD-WAN and SASE platforms meet the book's requirements today, and what does the federal record say about each? It ends with the program's recommendation.
+[Book 09 — Network & Transport](../books/b09-network/index.md) tells an agency what its branch network has to do. It doesn't name products. This page asks the product question: which SD-WAN and SASE platforms can do what the book requires today, and what does the federal record say about each? It ends with the program's recommendation.
 
 The answer in one paragraph: **the program builds on Cisco Catalyst SD-WAN, its existing platform, and it attaches conditions to that choice.** Cisco meets more of Book 09's criteria outright than any other platform, and the book's field-office design is already sized and costed on it. It is also the platform with the worst controller security record of 2026: a CISA emergency directive and nine actively exploited controller vulnerabilities. It also has no documented post-quantum key exchange in SD-WAN mode, and no current platform-level FIPS 140-3 certificate was found for its branch routers. Palo Alto Prisma SD-WAN with Prisma Access is the strongest alternative. The conditions, and the events that would reopen the decision, are below.
 
