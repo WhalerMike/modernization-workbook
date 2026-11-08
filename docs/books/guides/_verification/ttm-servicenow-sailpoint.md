@@ -84,3 +84,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | Each gate carries the federal requirement it meets and the evidence an ISSO keeps, | Each gate carries the federal requirements it supports and the evidence an ISSO keeps, | no source change |
+
+## Decision of Nov 8, 2026
+
+Wording aligned with Book 13 Appendix B, whose heading is "Operation classes and their lanes" (the anchor `#change-classes-and-their-lanes` is kept as an explicit id there). No source changed.
+
+| Before | After | Source |
+|---|---|---|
+| "Assign each change class a lane"; "each change class has a lane" (gate G2, requirements table, manual check) | "operation class" in the same four places; ServiceNow "change record" and "standard/normal change" are unchanged | Book 13 Appendix B |

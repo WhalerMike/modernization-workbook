@@ -13,7 +13,7 @@ docs/about/sources-and-verification.md.
 This check flags a line of a published page where a satisfy-family verb sits
 within a few words of a control or requirement: an SP 800-53 control (AC-2,
 SC-7(3)), an RMF task (S-4), an OMB memo (M-22-09), a CISA directive
-(BOD 22-01, ED 21-02), a FedRAMP KSI, TIC, FedRAMP, CMMC, FISMA, NIST, or the
+(BOD 22-01, ED 21-02), a ScubaGear baseline policy (MS.AAD.1.1v1), a FedRAMP KSI, TIC, FedRAMP, CMMC, FISMA, NIST, or the
 words control, requirement, mandate, directive or memo.
 
     python scripts/check_claims.py                   # every published page; exit 1 on a new hit
@@ -79,13 +79,14 @@ TARGET = re.compile(
     r"|\bM-\d{2}-\d{2}\b"                                                    # OMB memo
     r"|\b(?:BOD|ED)[ -]?\d{2}-\d{2}\b"                                       # CISA directive
     r"|\bKSI(?:-[A-Z]+(?:-\d+)?)?s?\b"                                       # FedRAMP KSI
+    r"|\bMS\.[A-Z]+\.\d+(?:\.\d+)*(?:v\d+)?"                                 # ScubaGear baseline policy (MS.AAD.1.1v1)
     r"|\bTIC\b|\bFedRAMP\b|\bCMMC\b|\bFISMA\b|\bNIST\b|\bSP\s?800-\d+"
     r"|\b(?:controls?|requirements?|mandates?|directives?|memos?|memorand(?:um|a))\b",
     re.I)
 # The identifiers are matched case-sensitively; only the plain words ignore case.
 ID_CASE = re.compile(
     r"\b(?:" + CONTROL_FAMILIES + r")-\d|\b[PCSIARM]-\d|\bM-\d\d-|\b(?:BOD|ED)[ -]?\d|\bKSI|\bTIC\b|\bFedRAMP\b|"
-    r"\bCMMC\b|\bFISMA\b|\bNIST\b|\bSP\s?800")
+    r"\bCMMC\b|\bFISMA\b|\bNIST\b|\bSP\s?800|\bMS\.[A-Z]+\.\d")
 WINDOW = 60                     # characters between the verb and the target, within one sentence
 
 NEGATION = re.compile(r"\b(?:not|never|no|cannot|neither|nor|without|isn't|doesn't|don't|won't|can't|"

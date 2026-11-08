@@ -77,3 +77,9 @@ New guide, first pass of 2026-10-29. The guide is a step-by-step layer over Book
 - **D1. Who consents to Graph application permissions.** Book 04 Ch05/Ch06 and the research Module 1 say Privileged Role Administrator, which is what Microsoft's "Grant tenant-wide admin consent" page states. Microsoft's "Least privileged roles by task" page now adds a note that in practice Global Administrator is typically required and PRA may not be sufficient, depending on consent policies, permission scopes or Graph protection requirements. The guide reports both and tells the reader to test the path in the pilot. Not changed in the books; flag to the Book 04 owner.
 - **D2. VK-NPI-09 is proposed, not in the canonical CHECKS list.** It reads a preview/beta API. Parent session to confirm or drop.
 - **D3.** Validation kit location isn't linked from the guide; the parent session wires it.
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| The 180-day certificate cap "meets MS.AAD.5.7v1" | "addresses MS.AAD.5.7v1" | Decision of Nov 8, 2026; claim language |

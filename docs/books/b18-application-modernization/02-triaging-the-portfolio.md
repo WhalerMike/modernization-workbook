@@ -142,7 +142,7 @@ Each criterion is scored from 1 to 5, with 5 the best outcome on every criterion
 
 | Axis | Criteria | How it reads |
 |---|---|---|
-| **Mission value** | Mission criticality, cost of the function if lost, and the number and kind of users | High: the agency needs this function, in this form or another |
+| **Mission value** | Mission criticality and cost | High: the agency needs this function, in this form or another |
 | **Technical health** | Technical condition, skills and data sensitivity (as migration difficulty) | High: the application can be run and changed safely as it is |
 
 Weights are the agency's choice; the program's starting point is equal weights within each axis, adjusted after the calibration set below. Each score also carries a confidence flag: *measured* (from system data), *attested* (from the owner) or *assumed* (no data). An application with mostly assumed scores can't get a final disposition; it goes to owner review first.

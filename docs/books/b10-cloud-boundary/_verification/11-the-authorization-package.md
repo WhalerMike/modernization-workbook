@@ -49,3 +49,9 @@ Writer: W4. Verified 2026-10-21. Built from the *Boundary Impact Model* ("What t
 | *What Changed at FedRAMP* — §6 "Rev 5 and 20x coexist" | "Two models at once" | "Valid to at least 2028-12-31" removed (claim 26) |
 | *What Changed at FedRAMP* — §6 other paragraphs (Moderate/High naming, AD not forced, synchronized users) | Not carried | Chapters 03/04; identity facts belong to Book 02 |
 | *What Changed at FedRAMP* — §2–§5, §7 | Not carried here | Chapters 04, 09 and Appendix A |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Adoption of the 2026 rules mandatory January 1, 2027 | Adds the December 7, 2026 date for the VDR and VER rules, linking Book 14 Chapter 02 | Decision of Nov 8, 2026; Book 14 Chapter 02 (FedRAMP NTC-0014: VDR and VER rules brought forward to December 7, 2026) |

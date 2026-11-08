@@ -144,3 +144,9 @@ Full read of the page, top to bottom, after the first reader covered it by diff.
 |---|---|---|
 | Pipeline table column "What it closes" (lists control IDs) | "Controls it supports" | Claim language: a stage supports a control, it does not close one |
 | ...[Book 14, Federal Compliance & Authorization](...), carries into the authorization package. | ...[Book 14, ...](...) carries into the authorization package. | Stray comma removed |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| "Three of CA-7's items are about metrics and three are about acting" (the list has seven) | Seven items named by group: three metrics, two assessing and analyzing, two acting | Decision of Nov 8, 2026; counted from the list in the same section (SP 800-53 CA-7 items a to g as the page lists them) |
