@@ -19,9 +19,9 @@ and the check still catches it.
     python scripts/check_neutrality.py docs/x.md a.svg  # just these files
     python scripts/check_neutrality.py --add            # read a term on stdin, add its hash
 
-Scope: tracked files under docs/, examples/, data/, presentations/ and
-scripts/, and the top-level pages, except the paths in EXCLUDE (the archive,
-the inbox, the deliberately agency-specific interview decks, and the writer
+Scope: tracked files under docs/, examples/, data/, presentations/,
+scripts/, assets/ and InBox/ (where web uploads land), and the top-level pages,
+except the paths in EXCLUDE (the archive, the deliberately agency-specific interview decks, and the writer
 briefs that have to say what not to write). Quarto profile attributes
 (unless-profile="..." and when-profile="...") are build switches, not text,
 and are ignored.
@@ -63,12 +63,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 TERMS = REPO / "data" / "neutrality-terms.txt"
 BASELINE = REPO / "data" / "neutrality-baseline.txt"
-ROOTS = ("docs/", "examples/", "data/", "presentations/", "scripts/")
+ROOTS = ("docs/", "examples/", "data/", "presentations/", "scripts/", "assets/", "InBox/")
 TOP_LEVEL = ("README.md", "index.qmd", "404.qmd", "workbook-map.qmd", "PROJECT-CHARTER.md", "PROJECT-PLAN.md",
              "STATUS.md", "CONTRIBUTING.md", "_quarto.yml")
 EXCLUDE = (
     "archive/",
-    "InBox/",
     "presentations/hr-driven-identity-interview/",   # the agency edition of the interview decks, kept on purpose
     "data/neutrality-terms.txt",
     "data/neutrality-baseline.txt",
