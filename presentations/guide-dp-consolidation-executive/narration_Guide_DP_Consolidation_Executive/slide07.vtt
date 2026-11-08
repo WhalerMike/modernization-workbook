@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.037
+Without a branch server, three mechanisms
+keep most bytes off the wide area network.
+
+2
+00:00:05.037 --> 00:00:08.229
+Configuration Manager peer
+cache lets designated
+
+3
+00:00:08.229 --> 00:00:11.125
+clients share content
+inside a boundary group.
+
+4
+00:00:11.125 --> 00:00:13.800
+BranchCache does the same where enabled.
+
+5
+00:00:13.800 --> 00:00:18.335
+Delivery Optimization peers cloud
+content, and for hub-and-spoke networks
+
+6
+00:00:18.335 --> 00:00:22.650
+Microsoft recommends Group mode so
+offices don't all share one address.
+
+7
+00:00:22.650 --> 00:00:25.887
+All three are optimizations,
+not dependencies.
+
+8
+00:00:25.887 --> 00:00:29.025
+Connected Cache is the later
+step for cloud content.
+
+9
+00:00:29.025 --> 00:00:33.338
+In the government community cloud
+the stand-alone form isn't excluded,
+
+10
+00:00:33.338 --> 00:00:36.312
+but it needs its own host
+and a boundary decision.
+
+11
+00:00:36.312 --> 00:00:38.740
+Nothing before Phase three depends on it.

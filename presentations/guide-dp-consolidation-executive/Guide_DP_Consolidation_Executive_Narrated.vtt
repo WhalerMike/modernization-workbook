@@ -1,0 +1,794 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.425
+This is a decision briefing for a CIO,
+a budget officer and an endpoint lead.
+
+2
+00:00:05.425 --> 00:00:08.427
+An agency weighing a
+refresh is being asked to
+
+3
+00:00:08.427 --> 00:00:11.587
+fund a distribution point
+at every field office.
+
+4
+00:00:11.587 --> 00:00:15.221
+The question is whether that is
+the right way to deliver content,
+
+5
+00:00:15.221 --> 00:00:18.375
+or whether fewer servers and
+a better network do the job.
+
+6
+00:00:18.375 --> 00:00:22.448
+The numbers come from the worked case
+in the Network and Transport book,
+
+7
+00:00:22.448 --> 00:00:26.175
+a framing pattern with every cost
+labeled as a planning estimate.
+
+8
+00:00:26.175 --> 00:00:30.025
+We'll cover the decision, the
+questions to answer first,
+
+9
+00:00:30.025 --> 00:00:32.600
+the options, the plan, and the ask.
+
+10
+00:00:36.350 --> 00:00:39.432
+The request is about fifty
+million dollars to refresh
+
+11
+00:00:39.432 --> 00:00:43.337
+distribution point hardware across
+about fifteen hundred offices.
+
+12
+00:00:43.337 --> 00:00:46.123
+That's thirty-three thousand
+dollars per office,
+
+13
+00:00:46.123 --> 00:00:50.649
+nearly twice the cost of a fully loaded
+server at the program's planning prices.
+
+14
+00:00:50.649 --> 00:00:54.054
+Configuration Manager's own
+limits say the estate needs
+
+15
+00:00:54.054 --> 00:00:57.675
+about twenty-four distribution
+points, not fifteen hundred.
+
+16
+00:00:57.675 --> 00:01:00.227
+So the position is
+simple: defer the refresh,
+
+17
+00:01:00.227 --> 00:01:04.409
+pending a network modernization
+assessment, because the same problem
+
+18
+00:01:04.409 --> 00:01:08.237
+can be solved for about ten million
+dollars in first-year capital.
+
+19
+00:01:08.237 --> 00:01:12.500
+The next slide lists what has to be
+answered before any money moves.
+
+20
+00:01:16.250 --> 00:01:17.988
+Five questions come first.
+
+21
+00:01:17.988 --> 00:01:22.496
+Is the fifty million an equipment price
+or five-year total cost of ownership,
+
+22
+00:01:22.496 --> 00:01:25.501
+and what is bundled beyond
+the distribution point?
+
+23
+00:01:25.501 --> 00:01:28.145
+What will the distribution
+point count be when
+
+24
+00:01:28.145 --> 00:01:30.925
+co-management completes,
+and in which fiscal year?
+
+25
+00:01:30.925 --> 00:01:33.188
+What does each office's
+circuit cost today?
+
+26
+00:01:33.188 --> 00:01:37.025
+That one number decides whether
+the alternative pays for itself.
+
+27
+00:01:37.025 --> 00:01:40.950
+How many managed endpoints are there,
+since that sets the server count?
+
+28
+00:01:40.950 --> 00:01:45.350
+And do branch security rules allow
+devices to share content with each other?
+
+29
+00:01:45.350 --> 00:01:49.280
+Each answer comes from records
+the agency already holds.
+
+30
+00:01:53.030 --> 00:01:57.955
+Microsoft's size and scale page sets four
+thousand clients per distribution point.
+
+31
+00:01:57.955 --> 00:02:01.243
+Seventy thousand endpoints
+need eighteen at the ceiling,
+
+32
+00:02:01.243 --> 00:02:02.955
+and twenty-four with headroom.
+
+33
+00:02:02.955 --> 00:02:07.483
+The other fourteen hundred seventy-six
+compensate for slow branch circuits,
+
+34
+00:02:07.483 --> 00:02:09.817
+and content has since moved to the cloud.
+
+35
+00:02:09.817 --> 00:02:11.117
+Timing matters too.
+
+36
+00:02:11.117 --> 00:02:14.887
+Microsoft has moved Configuration
+Manager to an annual release
+
+37
+00:02:14.887 --> 00:02:18.517
+cadence and says new device
+management work happens in Intune.
+
+38
+00:02:18.517 --> 00:02:22.947
+Hardware bought this fiscal year
+depreciates through fiscal 2031,
+
+39
+00:02:22.947 --> 00:02:26.031
+so a refresh can outlive
+the platform it serves.
+
+40
+00:02:26.031 --> 00:02:27.617
+The role isn't obsolete.
+
+41
+00:02:27.617 --> 00:02:30.670
+The distribution point at every office is.
+
+42
+00:02:34.420 --> 00:02:36.307
+Three options sit on one line.
+
+43
+00:02:36.307 --> 00:02:40.808
+Refresh keeps fifteen hundred
+servers, about fifty million dollars,
+
+44
+00:02:40.808 --> 00:02:45.625
+and another capital event every five
+years, with every server to baseline,
+
+45
+00:02:45.625 --> 00:02:48.783
+scan, patch and carry in
+the system security plan.
+
+46
+00:02:48.783 --> 00:02:53.364
+Consolidate puts twenty-four distribution
+points in twelve hubs for about ten
+
+47
+00:02:53.364 --> 00:02:55.586
+million dollars in first-year capital,
+
+48
+00:02:55.586 --> 00:02:58.919
+which also funds the transport
+that cloud workloads need.
+
+49
+00:02:58.919 --> 00:03:04.220
+Retire is the end state: no distribution
+points at all, once five gates close.
+
+50
+00:03:04.220 --> 00:03:06.429
+Consolidation is the interim step,
+
+51
+00:03:06.429 --> 00:03:11.130
+so it fits an estate whose management
+platform is already shrinking.
+
+52
+00:03:14.880 --> 00:03:18.395
+The target uses facilities
+the agency already has:
+
+53
+00:03:18.395 --> 00:03:22.830
+the primary data center, the recovery
+site, and ten regional hubs.
+
+54
+00:03:22.830 --> 00:03:27.503
+Two distribution points per hub gives
+twenty-four, with capacity for ninety-six
+
+55
+00:03:27.503 --> 00:03:32.530
+thousand clients, which is seventy-three
+percent used at seventy thousand endpoints.
+
+56
+00:03:32.530 --> 00:03:35.416
+Regional servers pull from
+the two data centers,
+
+57
+00:03:35.416 --> 00:03:39.168
+so the fan-out is two to twenty
+instead of one to fifteen hundred.
+
+58
+00:03:39.168 --> 00:03:42.396
+Each field office gets a
+sized internet circuit,
+
+59
+00:03:42.396 --> 00:03:46.029
+a five-G backup for continuity
+only, and no local server.
+
+60
+00:03:46.029 --> 00:03:50.120
+The design adds two servers per
+eight thousand new endpoints.
+
+61
+00:03:53.870 --> 00:03:58.857
+Without a branch server, three mechanisms
+keep most bytes off the wide area network.
+
+62
+00:03:58.857 --> 00:04:02.049
+Configuration Manager peer
+cache lets designated
+
+63
+00:04:02.049 --> 00:04:04.945
+clients share content
+inside a boundary group.
+
+64
+00:04:04.945 --> 00:04:07.620
+BranchCache does the same where enabled.
+
+65
+00:04:07.620 --> 00:04:12.155
+Delivery Optimization peers cloud
+content, and for hub-and-spoke networks
+
+66
+00:04:12.155 --> 00:04:16.470
+Microsoft recommends Group mode so
+offices don't all share one address.
+
+67
+00:04:16.470 --> 00:04:19.707
+All three are optimizations,
+not dependencies.
+
+68
+00:04:19.707 --> 00:04:22.845
+Connected Cache is the later
+step for cloud content.
+
+69
+00:04:22.845 --> 00:04:27.158
+In the government community cloud
+the stand-alone form isn't excluded,
+
+70
+00:04:27.158 --> 00:04:30.132
+but it needs its own host
+and a boundary decision.
+
+71
+00:04:30.132 --> 00:04:32.860
+Nothing before Phase three depends on it.
+
+72
+00:04:36.610 --> 00:04:39.949
+The twenty-four distribution
+point tier is interim,
+
+73
+00:04:39.949 --> 00:04:43.910
+not a new floor, and five gates
+decide when the last one retires.
+
+74
+00:04:43.910 --> 00:04:46.616
+First, app content:
+client apps on Intune and
+
+75
+00:04:46.616 --> 00:04:49.923
+nothing still deployed from
+Configuration Manager.
+
+76
+00:04:49.923 --> 00:04:54.523
+Second, update content moved, and
+the old update setting turned off.
+
+77
+00:04:54.523 --> 00:04:59.134
+Third, imaging moved from task
+sequences to Windows Autopilot.
+
+78
+00:04:59.134 --> 00:05:03.085
+Fourth, no Connected Cache running
+on distribution point hardware.
+
+79
+00:05:03.085 --> 00:05:07.035
+Fifth, no compliance evidence
+sourced from the site database.
+
+80
+00:05:07.035 --> 00:05:10.660
+Close all five in month thirty
+and retire in month thirty.
+
+81
+00:05:10.660 --> 00:05:12.310
+Still open at month sixty?
+
+82
+00:05:12.310 --> 00:05:15.160
+Keep the tier rather than force a cutover.
+
+83
+00:05:18.910 --> 00:05:21.960
+First-year capital is
+about ten million dollars.
+
+84
+00:05:21.960 --> 00:05:26.153
+Branch equipment is five million,
+hub equipment about one million,
+
+85
+00:05:26.153 --> 00:05:29.660
+and the control plane and
+services nearly four million.
+
+86
+00:05:29.660 --> 00:05:34.160
+Steady-state recurring cost is about
+fifteen point seven million a year,
+
+87
+00:05:34.160 --> 00:05:37.685
+mostly internet circuits and
+the security service edge.
+
+88
+00:05:37.685 --> 00:05:42.465
+Against that, retiring the old circuits at
+twelve hundred dollars an office a month
+
+89
+00:05:42.465 --> 00:05:44.613
+removes twenty-one point six million,
+
+90
+00:05:44.613 --> 00:05:47.523
+a net saving of about five
+point nine million a year.
+
+91
+00:05:47.523 --> 00:05:52.611
+These are planning estimates, not quotes,
+with hardware at a forty percent discount.
+
+92
+00:05:52.611 --> 00:05:57.560
+Replace every figure with the estate's
+own data before a budget submission.
+
+93
+00:06:01.310 --> 00:06:05.093
+Savings ramp as offices move
+at circuit contract renewal,
+
+94
+00:06:05.093 --> 00:06:08.955
+so year one is a net cost of ten
+million and the program turns
+
+95
+00:06:08.955 --> 00:06:12.660
+positive in year five, at about
+three point three million.
+
+96
+00:06:12.660 --> 00:06:17.214
+The refresh is minus fifty million in
+year one and recurs at the next cycle,
+
+97
+00:06:17.214 --> 00:06:20.722
+so the five-year difference
+is about fifty-three million.
+
+98
+00:06:20.722 --> 00:06:25.622
+One number decides the financial case:
+current circuit cost per office per month.
+
+99
+00:06:25.622 --> 00:06:28.710
+Break-even is eight hundred
+seventy-three dollars.
+
+100
+00:06:28.710 --> 00:06:31.185
+Above it, the program funds itself.
+
+101
+00:06:31.185 --> 00:06:33.968
+Below it, it's still
+cheaper than the refresh,
+
+102
+00:06:33.968 --> 00:06:36.960
+but justify it on capability and mission.
+
+103
+00:06:40.710 --> 00:06:45.210
+Phase zero, the first six months,
+costs about one point eight million.
+
+104
+00:06:45.210 --> 00:06:50.511
+It covers design, the security accreditation
+package, the control plane, and a
+
+105
+00:06:50.511 --> 00:06:53.576
+ten-site pilot, and it
+exits on authorization,
+
+106
+00:06:53.576 --> 00:06:56.310
+thirty stable days, and validated costs.
+
+107
+00:06:56.310 --> 00:07:00.585
+Phase one builds the twelve hubs and
+the twenty-four distribution points.
+
+108
+00:07:00.585 --> 00:07:05.891
+Phase two moves offices in waves, timed to
+circuit renewals so each wave helps fund
+
+109
+00:07:05.891 --> 00:07:11.198
+the next, and no old circuit retires until
+its replacement telemetry is confirmed.
+
+110
+00:07:11.198 --> 00:07:15.655
+Phase three adds Microsoft
+365 optimization and caching,
+
+111
+00:07:15.655 --> 00:07:18.998
+and retires servers only
+as the gates close.
+
+112
+00:07:18.998 --> 00:07:23.180
+Accreditation, not procurement,
+is the critical path.
+
+113
+00:07:26.930 --> 00:07:29.668
+The implementation runs in ten stages,
+
+114
+00:07:29.668 --> 00:07:33.005
+in order, and every stage
+cites Microsoft Learn.
+
+115
+00:07:33.005 --> 00:07:38.433
+Stage one analyzes the existing estate:
+list every distribution point, its boundary
+
+116
+00:07:38.433 --> 00:07:43.705
+groups and the clients it serves, and pull
+circuit cost and quality for each office.
+
+117
+00:07:43.705 --> 00:07:47.442
+Stage two sizes the result
+against Microsoft's limits.
+
+118
+00:07:47.442 --> 00:07:51.266
+Stage three is the funding
+gate, the exit from Phase zero,
+
+119
+00:07:51.266 --> 00:07:54.342
+where leadership funds
+the hub tier or stops.
+
+120
+00:07:54.342 --> 00:07:57.827
+Stage four builds the hubs
+with pull distribution points,
+
+121
+00:07:57.827 --> 00:07:59.642
+groups and prestaged content.
+
+122
+00:07:59.642 --> 00:08:01.868
+Stage five turns on peer caching.
+
+123
+00:08:01.868 --> 00:08:06.230
+The implementation guide and the
+scripts kit are linked on the slide.
+
+124
+00:08:09.980 --> 00:08:15.005
+Stage six moves offices in waves at
+circuit renewal: each office's boundary
+
+125
+00:08:15.005 --> 00:08:20.355
+joins its hub's boundary group, then the
+office server goes read-only and retires.
+
+126
+00:08:20.355 --> 00:08:25.003
+Stage seven packages applications
+once with P S App Deploy Toolkit,
+
+127
+00:08:25.003 --> 00:08:28.655
+so Configuration Manager
+and Intune behave the same.
+
+128
+00:08:28.655 --> 00:08:32.070
+Stage eight shifts co-management
+workloads to Intune,
+
+129
+00:08:32.070 --> 00:08:34.043
+starting with apps and updates.
+
+130
+00:08:34.043 --> 00:08:37.993
+Stage nine adds Connected Cache
+at the hubs for cloud content.
+
+131
+00:08:37.993 --> 00:08:43.742
+Stage ten closes the five gates, and only
+then retires the last distribution point.
+
+132
+00:08:43.742 --> 00:08:46.308
+The guide and the scripts
+kit are linked here too,
+
+133
+00:08:46.308 --> 00:08:48.460
+for the people who will do the work.
+
+134
+00:08:52.210 --> 00:08:53.648
+Three risks rate high.
+
+135
+00:08:53.648 --> 00:08:56.920
+Accreditation slips: start
+the package in Phase zero,
+
+136
+00:08:56.920 --> 00:09:01.159
+and a twelve-month slip still leaves
+the case better than the refresh,
+
+137
+00:09:01.159 --> 00:09:05.323
+by about forty-seven million, though
+break-even moves past year five.
+
+138
+00:09:05.323 --> 00:09:09.847
+Circuit cost comes in below the
+assumption: validate it before submission.
+
+139
+00:09:09.847 --> 00:09:12.629
+And replacement telemetry lags a cutover:
+
+140
+00:09:12.629 --> 00:09:16.523
+begin coordination in Phase zero
+and gate each office on it.
+
+141
+00:09:16.523 --> 00:09:19.548
+Ten assumptions in all
+are ordered by impact.
+
+142
+00:09:19.548 --> 00:09:24.034
+Check circuit cost, endpoint count
+and terrestrial availability first.
+
+143
+00:09:24.034 --> 00:09:27.205
+The architectural conclusion
+holds across the range;
+
+144
+00:09:27.205 --> 00:09:30.380
+the financial one depends
+on the circuit number.
+
+145
+00:09:34.130 --> 00:09:38.843
+There's a follow-on that makes consolidation
+safer: standard application packaging.
+
+146
+00:09:38.843 --> 00:09:41.860
+Intune Win32 apps must install silently,
+
+147
+00:09:41.860 --> 00:09:46.918
+and Gate one only closes when the app
+catalog moves, not just a setting.
+
+148
+00:09:46.918 --> 00:09:51.218
+If each app is packaged twice,
+the two paths behave differently.
+
+149
+00:09:51.218 --> 00:09:56.336
+P S App Deploy Toolkit is a PowerShell
+framework that standardizes deployment to
+
+150
+00:09:56.336 --> 00:10:01.380
+Windows at scale, with first-class support
+for Intune and Configuration Manager,
+
+151
+00:10:01.380 --> 00:10:04.542
+and phases for before, during
+and after the install.
+
+152
+00:10:04.542 --> 00:10:06.842
+Package once, deliver from either.
+
+153
+00:10:06.842 --> 00:10:08.584
+That's program design guidance,
+
+154
+00:10:08.584 --> 00:10:12.080
+and it follows the decision
+rather than conditioning it.
+
+155
+00:10:15.830 --> 00:10:16.980
+Here is the ask.
+
+156
+00:10:16.980 --> 00:10:21.943
+Defer the fifty million dollar refresh
+pending a network modernization assessment.
+
+157
+00:10:21.943 --> 00:10:24.940
+Have the sponsor state
+whether it is acquisition
+
+158
+00:10:24.940 --> 00:10:27.280
+or five-year cost, and itemize the scope.
+
+159
+00:10:27.280 --> 00:10:32.043
+Validate the ten assumptions, starting
+with circuit cost and endpoint count.
+
+160
+00:10:32.043 --> 00:10:36.230
+Fund Phase zero, about one point
+eight million over six months.
+
+161
+00:10:36.230 --> 00:10:39.893
+Track the five gates, not a
+date, for the last server.
+
+162
+00:10:39.893 --> 00:10:42.148
+The owner is the sponsor with the CIO,
+
+163
+00:10:42.148 --> 00:10:45.380
+and the timing is before
+refresh money is committed.
+
+164
+00:10:45.380 --> 00:10:48.850
+The decision guide and the
+project plan carry the detail,
+
+165
+00:10:48.850 --> 00:10:50.890
+and both are linked on this slide.

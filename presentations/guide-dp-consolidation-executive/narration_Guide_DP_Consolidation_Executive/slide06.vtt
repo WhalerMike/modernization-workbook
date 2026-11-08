@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.565
+The target uses facilities
+the agency already has:
+
+2
+00:00:03.565 --> 00:00:08.000
+the primary data center, the recovery
+site, and ten regional hubs.
+
+3
+00:00:08.000 --> 00:00:12.673
+Two distribution points per hub gives
+twenty-four, with capacity for ninety-six
+
+4
+00:00:12.673 --> 00:00:17.700
+thousand clients, which is seventy-three
+percent used at seventy thousand endpoints.
+
+5
+00:00:17.700 --> 00:00:20.586
+Regional servers pull from
+the two data centers,
+
+6
+00:00:20.586 --> 00:00:24.338
+so the fan-out is two to twenty
+instead of one to fifteen hundred.
+
+7
+00:00:24.338 --> 00:00:27.566
+Each field office gets a
+sized internet circuit,
+
+8
+00:00:27.566 --> 00:00:31.199
+a five-G backup for continuity
+only, and no local server.
+
+9
+00:00:31.199 --> 00:00:34.990
+The design adds two servers per
+eight thousand new endpoints.

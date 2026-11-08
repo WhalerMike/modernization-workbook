@@ -51,3 +51,12 @@ The recommendation (hub tier now, cloud-first as the end state); the five standa
 
 - Which PSAppDeployToolkit release is "current stable" on any given day; the guide says to pin a released version.
 - Any agency's numbers: the worksheet is blank by design.
+
+## Claim language, November 8, 2026
+
+The claim language was narrowed under the workbook's supports-not-satisfies rule (CONTRIBUTING.md, Claim language). No source changed and no source was re-opened.
+
+| Before | After | Source |
+|---|---|---|
+| The federal requirements each step meets | The federal requirements each step supports | no source change |
+| Each step the project plan schedules meets a requirement. | Each step the project plan schedules supports a requirement and produces evidence for it; the organization still sets the control parameters and procedures, and the assessor decides whether each control is satisfied. | no source change |
