@@ -282,7 +282,7 @@ The assessment side stays in [Chapter 06](06-vulnerability-management.md). Amazo
 
 ## Closure necessity: remediation has no substitute
 
-No conformance scan, policy document or single-vendor console closes SI-2 on a multi-platform estate. The flaw is closed only when the platform-native stack applies the fix on its own platform, and the estate is provably closed only when each stack emits a remediation record keyed to authoritative asset identity and a later assessment confirms it. Remove the actuation and SI-2 is open. Remove the join key and SI-2 is unprovable. The same holds for configuration: an unenforced baseline closes nothing, and a scanner with no authored baseline has nothing to measure against.
+No conformance scan, policy document or single-vendor console is enough to support SI-2 on a multi-platform estate. The flaw is closed only when the platform-native stack applies the fix on its own platform, and the estate is provably closed only when each stack emits a remediation record keyed to authoritative asset identity and a later assessment confirms it. Remove the actuation and SI-2 is open. Remove the join key and SI-2 is unprovable. The same holds for configuration: an unenforced baseline closes nothing, and a scanner with no authored baseline has nothing to measure against.
 
 ## Controls and indicators
 
