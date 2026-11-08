@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 09"
+review-status: approved
+reviewed-sha256: 91394eb65be72aa9cdb3eb9c83133c96e6d9cdea808e46fa44aaf6c2d7ead0a6
 last-reviewed: 2026-11-08
-review-status: pending
 ---
 # Distribution Point Consolidation: An Implementation Guide
 
