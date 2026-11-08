@@ -170,7 +170,7 @@ Two federal requirements already name people the program should use rather than 
 
 ## The complementary projects
 
-Each of the seven projects in [Chapter 06](06-the-project-portfolio.md) has its own sponsor, project lead and four domain leads, all "to be named." They don't form a second governance structure. Each project lead reports to the steward, each project's milestones sit in the program's schedule, and each project's risks enter the program's register. Project decisions follow the same table as program decisions: the identity project's charter, for example, gives source-of-truth designation and the attribute model to its lead and sponsor, while the meaning of each attribute stays with HR and the way it flows stays with identity engineering ([Book 03, Chapter 07](../b03-hr-identity/07-who-owns-workforce-identity.md)).
+Each of the seven chartered projects in [Chapter 06](06-the-project-portfolio.md) has its own sponsor, project lead and four domain leads, all "to be named." They don't form a second governance structure. Each project lead reports to the steward, each project's milestones sit in the program's schedule, and each project's risks enter the program's register. Project decisions follow the same table as program decisions: the identity project's charter, for example, gives source-of-truth designation and the attribute model to its lead and sponsor, while the meaning of each attribute stays with HR and the way it flows stays with identity engineering ([Book 03, Chapter 07](../b03-hr-identity/07-who-owns-workforce-identity.md)).
 
 ## Key takeaways
 

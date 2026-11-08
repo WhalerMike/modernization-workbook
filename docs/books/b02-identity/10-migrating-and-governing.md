@@ -38,8 +38,8 @@ Access reviews are periodic attestation that people still need the access they h
 |---|---|---|---|---|
 | PIM-eligible role assignments | Monthly for privilege Tier 0 (T0) roles, quarterly for all other privileged roles ([Chapter 05](05-delegation-without-ous.md#delegation-principles)) | The security team, never the assignees alone: with Microsoft's **Members (self)** option, role-assignable groups aren't part of the review[^c10-pim-review] | Yes; remove if denied | Remove access |
 | Sensitive security group memberships | Quarterly | Group owners | Yes; remove if denied | Remove access |
-| Application assignments (application risk Tier 1) | Quarterly | Two stages: the manager, then the application owner | Yes; remove if denied | No change; escalate |
-| Application assignments (application risk Tier 2) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
+| Application assignments (application risk tier R1) | Quarterly | Two stages: the manager, then the application owner | Yes; remove if denied | No change; escalate |
+| Application assignments (application risk tier R2) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
 | Guest access | Quarterly | Sponsors | Yes; denied guests are blocked from sign-in, then removed from the tenant after 30 days | Remove access |
 | Microsoft 365 group memberships | Semi-annually | Group owners | No (recommendations only) | No change |
 

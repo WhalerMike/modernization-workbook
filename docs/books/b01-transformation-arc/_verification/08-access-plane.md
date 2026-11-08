@@ -85,3 +85,9 @@ Editor W4. Verified October 21, 2026. Sources: the series chapter as copied in (
 | Whitepaper §Federal Framework Alignment — access rows (separate truth from enforcement; app-aware networking; phishing-resistant MFA/CBA; eliminate NTLM; device compliance; SASE/ZTNA; mainframe bridge) | Federal anchors for the access plane (rebuilt, verified) | Non-access rows (DNS, IPAM, audit, FedRAMP 20x, round-trip) are W3/W5 and Appendix A territory |
 | Whitepaper §Act 4 intro (structural move: directory vs in-path enforcer) | Not carried here | Owned by W5 (journey) / Chapter 02; Chapter 08 references the consequence only |
 | Whitepaper §Principles 1, 4, 5; FedRAMP 20x section; Acts 1–3; Prologue; Exec Summary; Appendix | Not carried here | Owned by W1 (why/problem) and W5 (journey, phases, roadmap); Principle 4's authorizing-official note went to Chapter 09 |
+
+## Revision 2026-11-08 — consistency read before the baseline edition
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Emergency access accounts: the program standard is two accounts | §Privileged access (two mechanisms and two special populations) | corrected (Old: "at least two". New: "two", matching the standard in Book 04 Chapter 04 and Book 02 Chapter 09; "at least two" remains Microsoft's wording where Book 01 attributes it to Microsoft) | Book 04 Chapter 04 §Emergency access accounts; Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID" |
