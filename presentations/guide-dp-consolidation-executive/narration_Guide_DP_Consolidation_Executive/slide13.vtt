@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.075
+Stage six moves offices in waves at
+circuit renewal: each office's boundary
+
+2
+00:00:05.075 --> 00:00:10.425
+joins its hub's boundary group, then the
+office server goes read-only and retires.
+
+3
+00:00:10.425 --> 00:00:15.073
+Stage seven packages applications
+once with P S App Deploy Toolkit,
+
+4
+00:00:15.073 --> 00:00:18.725
+so Configuration Manager
+and Intune behave the same.
+
+5
+00:00:18.725 --> 00:00:22.140
+Stage eight shifts co-management
+workloads to Intune,
+
+6
+00:00:22.140 --> 00:00:24.113
+starting with apps and updates.
+
+7
+00:00:24.113 --> 00:00:28.063
+Stage nine adds Connected Cache
+at the hubs for cloud content.
+
+8
+00:00:28.063 --> 00:00:33.812
+Stage ten closes the five gates, and only
+then retires the last distribution point.
+
+9
+00:00:33.812 --> 00:00:36.378
+The guide and the scripts
+kit are linked here too,
+
+10
+00:00:36.378 --> 00:00:38.230
+for the people who will do the work.
