@@ -19,5 +19,5 @@ Editor. Sources opened October 28, 2026: Maven Central metadata for `org.springf
 | 11 | Agent guardrails (identity and sponsor required at startup, allow-list, argument validation, step limit default 5, only PENDING proposals, self-approval refused) | The agent | verified | `CaseTriageAgent.java`, `AgentIdentity.java`, `ProposalService.java`; `AgentGuardrailTest`, `TriageAndApprovalTest` pass |
 | 12 | Zonky downloads real PostgreSQL binaries from Maven Central and runs them in-process | Running it | verified | Zonky README; test log shows PostgreSQL 18.6 started |
 | 13 | Test counts 25 / 12 / 6 | Verified table | verified | Local runs, October 28, 2026 |
-| 14 | H2 differs from DB2/Oracle in CHAR comparison; one difference already found (a test uses RTRIM) | Verified table | verified | `MigrationTest.java`; example README |
+| 14 | H2 differs from Db2/Oracle in CHAR comparison; one difference already found (a test uses RTRIM) | Verified table | verified | `MigrationTest.java`; example README |
 | 15 | Docker compose not run | Verified table | verified (Docker not installed on the build machine) | — |

@@ -1,4 +1,4 @@
-# Verification — Chapter 04, Moving the Data: DB2 and Oracle to PostgreSQL or SQL Server
+# Verification — Chapter 04, Moving the Data: Db2 and Oracle to PostgreSQL or SQL Server
 
 ## Sources opened
 
@@ -30,8 +30,8 @@ All opened October 28, 2026: PostgreSQL versioning policy page and postgresql.or
 | 20 | DMS SC Region table lists no AWS GovCloud (US) Region | Tools table | verified (Region table read in full) | DMS Schema Conversion page |
 | 21 | SSMA for Db2 sources: z/OS 9.0+, LUW 9.8+, Db2 for i 7.1+; current v10.6 | Tools table | verified | SSMA Db2 install; What's new |
 | 22 | SSMA for Oracle v10.6; Copilot GA from v10.4; BYOK Azure OpenAI or Microsoft-managed endpoint with Entra ID (GA in 10.6); generated code must be reviewed, validated, tested | Tools table | verified | SSMA Oracle What's new; Copilot overview |
-| 23 | Ora2Pg: GPL v3; Oracle, MySQL/MariaDB, SQL Server → PostgreSQL; v25.0 April 20, 2025; cost assessment; diff "for test purposes"; no DB2 | Tools table | verified | Ora2Pg site, Features; GitHub releases |
-| 24 | Only AWS's tools (of those listed) convert DB2 to PostgreSQL | Tools discussion | verified by comparison of the table's sources | Rows 17–23 |
+| 23 | Ora2Pg: GPL v3; Oracle, MySQL/MariaDB, SQL Server → PostgreSQL; v25.0 April 20, 2025; cost assessment; diff "for test purposes"; no Db2 | Tools table | verified | Ora2Pg site, Features; GitHub releases |
+| 24 | Only AWS's tools (of those listed) convert Db2 to PostgreSQL | Tools discussion | verified by comparison of the table's sources | Rows 17–23 |
 | 25 | AI-assisted conversion puts the model endpoint in the migration boundary | Tools discussion | restated-as-design | — |
 | 26 | Three checks and their blind spots | Proving | restated-as-design | — |
 | 27 | Reference implementation: per-table counts, order-independent SHA-256 after transform, independent SUM/COUNT-per-status reconciliation, `--since` delta mode | Proving; coexistence | restated as the reference implementation's behavior (per editor's brief), linked to Ch08 | — |
