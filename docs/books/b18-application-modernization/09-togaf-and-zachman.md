@@ -159,7 +159,7 @@ The program's design for using the two frameworks is short.
 4. **Use the ADM's Phase H for re-triage.** The portfolio changes; vendors end support, missions change, incidents reveal risk. [Chapter 10](10-running-the-portfolio-in-waves.md) sets the triggers. In TOGAF terms they start the next cycle.
 5. **Don't buy compliance with a framework.** No federal rule requires TOGAF or Zachman, and claiming conformance to either says nothing about whether the systems meet their controls.
 
-## Key takeaways
+## What leadership should take from this
 
 1. **The requirement is the architecture, not the framework.** A-130 §5.a(2) and PM-7 ask for a baseline, a target and a transition plan with security and privacy built in. FEAF v2 is historical.
 2. **TOGAF is the order; Zachman is the checklist.** The ADM's phases match the book's sequence from vision to waves; Zachman's cells show what the book describes in detail and where it leaves work to other books or to each application.

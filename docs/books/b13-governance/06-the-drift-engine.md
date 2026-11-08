@@ -47,8 +47,8 @@ The program classifies every drift finding into exactly one of five classes. Fiv
 | `DRIFT-SCHEMA` | A claim's structure no longer matches the declared schema | Rules | On every change to the record, and at runtime |
 | `DRIFT-SEMANTIC` | The structure is valid, but the meaning is stale or inconsistent with the record | Between rules and runtime | At runtime |
 | `DRIFT-PROVENANCE` | The provenance envelope is missing, invalid or broken, or a reference no longer resolves | Mappings for dangling references; runtime for a change with no record | On every change to the record, and at runtime |
-| `DRIFT-AUTHZ` | A claim was written, transmitted or acted on outside its authorized envelope | Runtime | At runtime |
-| `DRIFT-IDENTITY` | An issuer or object can't be resolved to a verified object in the record | Runtime | At runtime |
+| `DRIFT-AUTHZ` | A claim was written, transmitted or acted on outside its authorized envelope | Runtime | At runtime (design only today) |
+| `DRIFT-IDENTITY` | An issuer or object can't be resolved to a verified object in the record | Runtime | At runtime (design only today) |
 
 : The five drift classes {.striped .hover}
 

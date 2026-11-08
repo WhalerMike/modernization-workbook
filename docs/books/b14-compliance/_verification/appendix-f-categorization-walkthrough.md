@@ -19,3 +19,9 @@ Opened and text-extracted on November 6, 2026: NIST SP 800-37 Rev. 2, SP 800-60 
 | 11 | Whether retained logs are an official record under Record Retention | assumption, flagged in text | judgment |
 | 12 | All adjustments (Information Security availability to Moderate; Record Retention confidentiality to Moderate) | illustration, labelled | invented |
 | 13 | SP 800-60 Rev. 1 is August 2008 and refers to 2007 FEA models; a later revision could exist | verified for the dates; "check for a later revision" stated, not checked beyond the publication used | v1, v2 text |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| "Three of the four example types are chosen by function" | "Every example type is mapped by judgment"; the two caveated types are Personal Identity and Authentication and Record Retention | Decision of Nov 8, 2026; read against the Basis column in Step 2 (the two caveats appear there, in bold) |

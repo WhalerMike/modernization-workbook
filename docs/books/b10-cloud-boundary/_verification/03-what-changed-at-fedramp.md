@@ -78,3 +78,9 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md` (*What 
 ## Additions, October 30, 2026
 
 A one-line link was added at the end of "What changes for the agency". It points to the research page `docs/books/explainers/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/books/explainers/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Date table had no December 7, 2026 row | Adds a December 7, 2026 row for the VDR and VER rules, linking Book 14 Chapter 02 | Decision of Nov 8, 2026; Book 14 Chapter 02 (FedRAMP NTC-0014: VDR and VER rules brought forward to December 7, 2026) |

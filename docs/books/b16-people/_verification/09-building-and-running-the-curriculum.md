@@ -121,3 +121,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | / Which requirement the course meets, set in the catalog, | / Which requirement the course supports, set in the catalog, | no source change |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| "all 147 videos" (dated Nov 2) | Adds "(the library has grown since)"; the Nov 2 count is unchanged | Decision of Nov 8, 2026 |

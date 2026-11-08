@@ -202,3 +202,9 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | Emergency access exclusion applies to enforced policies that have a user scope | §Conventions used in every policy | corrected (Old: every enforced policy. New: CA015 and CA037 target only workload identities and have nothing to exclude) | Chapter 10 §What goes in the repository; Appendix A |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| CA001 "meets MS.AAD.1.1"; the custom strength "still meets MS.AAD.3.6" | "addresses" in both places | Decision of Nov 8, 2026; claim language: a policy supports a baseline policy, the assessor decides whether it is met |

@@ -88,3 +88,9 @@ The workbook targets FedRAMP Moderate civilian agencies. Framing that read as Hi
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |
+
+## Decision of Nov 8, 2026
+
+| Before | After | Check |
+|---|---|---|
+| Link text "Vol VII Book 02 of the Federal Compliance series" | Link text is Book 15 Chapter 08's title; the old label stays in brackets | Decision of Nov 8, 2026; title read from b15-day2-operations/08-control-automation-m365-and-azure.md |

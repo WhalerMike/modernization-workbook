@@ -138,3 +138,7 @@ Re-checked Microsoft Learn, "Least privileged roles by task in Microsoft Entra I
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-5 | CA authority for app-registration certificates: Book 07, Chapter 04 (target PKI) is the authority; Vol I Book 03 kept as a secondary reference (credentials section and certificate-lifecycle section) | Credentials section; certificates and the CLM platform section | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 5 |
+
+| Before | After | Check |
+|---|---|---|
+| "allows an agency to meet MS.AAD.5.2v1" | "allows an agency to address MS.AAD.5.2v1" | Decision of Nov 8, 2026; claim language. Claim SC1 above keeps its original wording as the logged claim |

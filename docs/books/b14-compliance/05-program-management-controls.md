@@ -104,7 +104,7 @@ The strategy is what every later risk decision cites. When the authorizing offic
 
 SP 800-39, the NIST guide the earlier material built on, describes risk management as four components (frame, assess, respond and monitor) applied at three tiers: the organization, the mission and business process, and the information system.[^c05-sp80039] The earlier template mapped the tiers to the components ("Tier 2: risk assessment"; "Tier 3: risk response"). That is corrected: every tier frames, assesses, responds to and monitors risk, at its own level. SP 800-39 also lists five risk responses, not four: accepting, avoiding, mitigating, sharing and transferring.[^c05-sp80039]
 
-The center of the strategy is the risk tolerance statement, signed by the head of agency or the senior accountable official for risk management, with the authorizing official and the senior agency information security officer consulted ([Chapter 10](10-who-owns-compliance.md)). The program's template expresses tolerance per category; the values are an example of the form, which each agency sets for itself.
+The center of the strategy is the risk tolerance statement, signed by the head of agency; the senior accountable official for risk management signs only where the agency delegates it (SP 800-37 Task P-2, [Appendix G](appendix-g-prepare-step-templates.md#template-1-risk-management-strategy-and-risk-tolerance-p-2)), with the authorizing official and the senior agency information security officer consulted ([Chapter 10](10-who-owns-compliance.md)). The program's template expresses tolerance per category; the values are an example of the form, which each agency sets for itself.
 
 | Risk category | Example tolerance | Rationale to record |
 |---|---|---|
