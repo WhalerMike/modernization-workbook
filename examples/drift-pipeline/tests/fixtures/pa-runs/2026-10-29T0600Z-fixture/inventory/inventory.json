@@ -84,7 +84,7 @@
     "EndDateTime": null,
     "PrincipalId": "9e000000-0000-4000-8000-000000000008",
     "PrincipalType": "group",
-    "PrincipalName": "PRV-T2-UserAdmin-AU-Finance",
+    "PrincipalName": "PRV-T2-UserAdmin-Finance",
     "UserPrincipalName": null,
     "Via": "Direct",
     "ViaGroupId": null

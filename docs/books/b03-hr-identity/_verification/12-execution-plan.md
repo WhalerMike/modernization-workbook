@@ -57,3 +57,9 @@ Added at the author's request during the independent verification pass (`docs/ab
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Workstream bullet "Decide the contractor PIV path", appended sentence | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-3 | Open verification register: added the carriers for the personnel office input, supervisor group and location code as an open item for after the baseline | Open verification register | decision of Nov 8; labelling only | Mike's decision of Nov 8, 2026, item 3 |

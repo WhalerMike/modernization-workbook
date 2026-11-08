@@ -94,3 +94,9 @@ W5 owns the journey, phases and roadmap parts. Other parts are listed with their
 ## Server standard, November 5, 2026
 
 Tense only; dates carried from row 19. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-6 | Phase 1: Cloud PKI and Azure DNS Private Resolver are licensed and designed in Phase 1 and built in Phase 2 (Book 00 Ch 05's license table lists Phase 1 as the licensing phase) | Phase 1, Licensing and design bullet | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 6 |

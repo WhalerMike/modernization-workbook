@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 7a93c3a332e52ecdab2afd57f8e0e5585a3b19e314087c5d0a9a232aec3462cf
-last-reviewed: 2026-11-07
+reviewed-sha256: 2bfee6057e3e3fd88d6860b0822b78658bb29b0465e7cdee04adbce0be0c1eb1
+last-reviewed: 2026-11-08
 ---
 # Chapter 05 — PIM for Groups and the PRV Groups
 
@@ -42,7 +42,7 @@ The groups behind the plan's task A2.1, "PRV role-assignable groups hold the eli
 
 ## What the PRV groups have to hold
 
-Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>[-<scope>]`, such as `PRV-T0-PrivRoleAdmin` or `PRV-T2-UserAdmin-AU-Finance`, so that the tier shows in every review, alert and audit record ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#role-assignable-groups)). [Chapter 01](01-privileged-inventory-as-code.md) reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them.
+Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>[-<scope>]`, such as `PRV-T0-PrivRoleAdmin` or `PRV-T2-UserAdmin-Finance`, so that the tier shows in every review, alert and audit record ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#role-assignable-groups)). [Chapter 01](01-privileged-inventory-as-code.md) reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them.
 
 Two Microsoft features meet in a PRV group, and they are independent of each other.[^pa05-concept]
 

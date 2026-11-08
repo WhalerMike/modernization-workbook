@@ -65,3 +65,9 @@ From the research explainer *Certificates, Tokens and Keys Across the Hybrid Est
 |---|---|---|---|---|
 | 1 | Renewer of the 2022 app-registration certificate is Key Vault and the Arc extension when service-managed, else the app's owner; Entra ID renews nothing | Certificates section table | corrected (was "Entra ID or the app's owner") | Rotate certificates, note c22-sqlrot |
 | 2 | SQL Server needs KeySpec AT_KEYEXCHANGE; KSP keys aren't compatible; the CAPI driver doesn't document CSP vs KSP, so a test gate | Certificates section | added; test gate is design guidance | Certificate requirements (Mar. 3, 2026), note hc-keyspec; CAPI object settings, note clm-capi |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-8 | Opening, description and status reworded to Book 07 Ch 04's decision (issuer per class of subject; retained AD CS for internal server certificates); the "Not Yet Defined" history kept in the "Book 07 has since made the decision" callout | Description; In this chapter; status callout; history callout; two body paragraphs | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 8 |
