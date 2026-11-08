@@ -452,19 +452,21 @@ not permitted.
 | Step | Action | Actor | Tool / system | SLA | Outcome |
 |---|---|---|---|---|---|
 | **1** | User submits access request via ServiceNow catalog item. Must include: application name, business justification, manager name, and required access role/group. | End User / Requester | ServiceNow (self-service portal) | Immediate (user action) | RITM created; routed to Departmental Owner |
-| **2** | Departmental Owner reviews business justification. Confirms requester's role legitimacy and department membership. Approves or denies the request. | Departmental Owner | ServiceNow (approval task) | 1 business day | RITM routed to App Owner (if approved) or closed denied |
-| **3** | Application Owner reviews the approved request against application access policy. Confirms the requested group is appropriate. Approves or denies with documented reason. | Application Owner | ServiceNow (approval task) | 2 business days | RITM routed to Help Desk for execution (R2 and R3), or to the IGO for second approval (R1), if approved; closed denied otherwise |
-| **4** | R1 only: after the Application Owner approves, the request goes to the identity governance office as a second approval stage, as in Book 04's approval chain. The IGO approves or denies with a documented reason, which leaves an approval record in place of a notice. R2 and R3 requests skip this step. A request not decided by the stage's deadline is denied and the requester asks again. | IGO (second approval, R1 only) | ServiceNow (approval task) | Decision deadline set by the Book 04 chain for the R1 second stage | IGO approval or denial logged; RITM routed to Help Desk for execution only after approval |
+| **2** | Departmental Owner reviews business justification. Confirms requester's role legitimacy and department membership. Approves or denies the request. | Departmental Owner | ServiceNow (approval task) | R3: 7 days decision deadline (Book 04); R1 and R2: no separate deadline, counted in the Application Owner's stage | RITM routed to App Owner (if approved) or closed denied |
+| **3** | Application Owner reviews the approved request against application access policy. Confirms the requested group is appropriate. Approves or denies with documented reason. | Application Owner | ServiceNow (approval task) | R1 and R2: 5 days decision deadline (Book 04); R3: no separate deadline | RITM routed to Help Desk for execution (R2 and R3), or to the IGO for second approval (R1), if approved; closed denied otherwise |
+| **4** | R1 only: after the Application Owner approves, the request goes to the identity governance office as a second approval stage, as in Book 04's approval chain. The IGO approves or denies with a documented reason, which leaves an approval record in place of a notice. R2 and R3 requests skip this step. A request not decided by the stage's deadline is denied and the requester asks again. | IGO (second approval, R1 only) | ServiceNow (approval task) | R1: 5 days decision deadline for this second stage (Book 04) | IGO approval or denial logged; RITM routed to Help Desk for execution only after approval |
 | **5** | Help Desk Operator activates Application Administrator role via PIM (Entra-HelpDesk-Operators PAG). Records PIM activation time in RITM work notes. | Help Desk Operator | Entra ID PIM portal | Same day as RITM assignment | PIM activation logged in Entra audit log |
 | **6** | Help Desk Operator executes group membership addition: adds the approved user to the designated access security group in Entra ID. Confirms assignment in Entra portal and records object IDs in RITM. | Help Desk Operator | Microsoft Entra admin center → Groups | Within PIM activation window | User added to group; group-based access to Enterprise App propagates |
 | **7** | Help Desk Operator closes RITM with full execution log: timestamp, operator UPN, group name, group Object ID, user UPN added, Entra audit log reference. | Help Desk Operator | ServiceNow | Within 1 hour of execution | RITM resolved and closed; audit trail complete |
 | **8** | End user receives automated notification confirming access grant. Notification includes application name, effective date, and acceptable use acknowledgement requirement. | ServiceNow Automation | ServiceNow (email notification) | Automated on RITM close | User notified and access confirmed |
 
 ::: {.callout-note title="Total SLA — standard access request"}
-The end-to-end SLA for a standard group-based access request is **3 business
-days** from RITM creation to access grant. This SLA applies to all tiers.
-Failures to meet SLA at any step are escalated automatically by ServiceNow to the
-next approval level. SLA breaches are reported in the monthly governance
+A standard group-based access request has a decision deadline for each approval
+stage, set by risk tier as in Book 04: **R1, 5 days per stage** (Application
+Owner, then IGO); **R2, 5 days**; **R3, 7 days**. The end-to-end time is the sum
+of the stages the tier requires. Failures to meet the deadline at any stage are
+escalated automatically by ServiceNow to the next approval level, and a request
+not decided in time is denied and the requester asks again. SLA breaches are reported in the monthly governance
 dashboard to the IGO.
 :::
 
@@ -814,7 +816,7 @@ This requirement serves two critical governance functions:
 
 | Request type | ServiceNow catalog item name | Approval chain | SLA | Risk Tier routing |
 |---|---|---|---|---|
-| Standard Application Access Request | Enterprise App Access Request | Dept Owner → App Owner → Help Desk Execution | 3 business days | All tiers; R1 adds an IGO second approval stage |
+| Standard Application Access Request | Enterprise App Access Request | Dept Owner → App Owner → Help Desk Execution | Decision deadline per stage: R1 5 days per stage, R2 5 days, R3 7 days | All tiers; R1 adds an IGO second approval stage |
 | Admin Consent Request (R1) | Admin Consent Grant Request — High Risk | App Owner → Security Review → IGO → CISO Notification → Help Desk Execution | 5 business days | R1 only; auto-routed for Application Permission type |
 | Admin Consent Request (R2) | Admin Consent Grant Request — Moderate Risk | App Owner → Security Review → App Owner Confirm → IGO Review → Help Desk Execution | 5 business days | R2 only |
 | Admin Consent Request (R3) | Admin Consent Grant Request — Low Risk | App Owner → Security Review → App Owner Approval → IGO Notification → Help Desk Execution | 3 business days | R3 only |
@@ -852,7 +854,7 @@ requestor before entering the approval queue.
 
 | Request type | SLA | SLA start point | Escalation on breach |
 |---|---|---|---|
-| Standard Application Access Request | 3 business days | RITM creation | Auto-escalate to App Owner's supervisor; IGO notified at day 4 |
+| Standard Application Access Request | Decision deadline per stage: R1 5 days per stage, R2 5 days, R3 7 days | RITM creation (each stage starts when the previous stage approves) | Auto-escalate to App Owner's supervisor at the stage deadline; IGO notified 1 day after the stage deadline |
 | Admin Consent Request (any tier) | 5 business days | RITM creation | Auto-escalate to IGO at day 3; CISO notified at day 6 |
 | Admin Consent Revocation | 1 business day | RITM creation | Auto-escalate to IGO immediately on breach |
 | Emergency Access (Break-Glass) | 2 hours | P1 incident creation | CISO paged immediately on breach |
