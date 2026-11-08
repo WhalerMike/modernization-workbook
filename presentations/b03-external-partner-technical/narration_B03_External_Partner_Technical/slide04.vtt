@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:09.837
+NIST SP 800-63-4, final since July
+31, 2025, separates three scales.
+
+2
+00:00:09.837 --> 00:00:14.338
+Identity proofing is usually done by
+the partner, under its own practice.
+
+3
+00:00:14.338 --> 00:00:17.900
+Authentication is done by the
+partner's identity service.
+
+4
+00:00:17.900 --> 00:00:23.650
+Federation assurance is set by the agency,
+as relying party, for each application.
+
+5
+00:00:23.650 --> 00:00:30.288
+SP 800-63C-4 says what each
+federation level demands.
+
+6
+00:00:30.288 --> 00:00:33.671
+At level one, the identity
+provider signs the assertion,
+
+7
+00:00:33.671 --> 00:00:37.349
+and the relying party validates
+it against the expected key,
+
+8
+00:00:37.349 --> 00:00:41.688
+with the assertion audience-restricted
+and protected against replay.
+
+9
+00:00:41.688 --> 00:00:46.525
+Level two adds injection protection, a
+transaction the relying party starts,
+
+10
+00:00:46.525 --> 00:00:51.664
+an assertion for a single relying party,
+a trust agreement established in advance,
+
+11
+00:00:51.664 --> 00:00:54.838
+and identifiers without
+plaintext personal data.
+
+12
+00:00:54.838 --> 00:00:58.537
+Level three adds holder-of-key
+or a bound authenticator.
+
+13
+00:00:58.537 --> 00:01:03.645
+Selection follows NIST's steps: assess
+impact per user group, take the initial
+
+14
+00:01:03.645 --> 00:01:09.151
+levels, tailor, and document the result in
+a Digital Identity Acceptance Statement.
+
+15
+00:01:09.151 --> 00:01:11.725
+The chapter didn't read the October 6,
+
+16
+00:01:11.725 --> 00:01:19.610
+2026 planning note on SP 800-63C-4
+in full, so check it first.

@@ -1,0 +1,26 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.975
+Module 2 is the exception:
+cross-tenant synchronization.
+
+2
+00:00:03.975 --> 00:00:07.988
+It covers the conditions that must
+all hold before sync is allowed,
+
+3
+00:00:07.988 --> 00:00:11.564
+the terms the agency states and
+then tests in its own tenant,
+
+4
+00:00:11.564 --> 00:00:15.650
+and how to end a sync relationship
+without leaving accounts behind.
+
+5
+00:00:15.650 --> 00:00:20.350
+It closes with who does the work, on
+the partner's side and the agency's.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.475
+The Source Register is the
+foundation under everything else.
+
+2
+00:00:03.475 --> 00:00:08.012
+A slide or a video description doesn't
+link straight to a publisher's page.
+
+3
+00:00:08.012 --> 00:00:12.737
+It links to the source's row in this
+register, and the row links to the original.
+
+4
+00:00:12.737 --> 00:00:16.375
+That matters because a released
+deck or video can't change,
+
+5
+00:00:16.375 --> 00:00:18.800
+but publishers move pages all the time.
+
+6
+00:00:18.800 --> 00:00:20.788
+With the register in between,
+
+7
+00:00:20.788 --> 00:00:25.013
+a link in a released deck stays
+right: only the row has to change.
+
+8
+00:00:25.013 --> 00:00:29.687
+The register holds 540 sources
+today, under three rules.
+
+9
+00:00:29.687 --> 00:00:35.488
+A source's address is permanent: a row can
+be retired, but never deleted or renamed.
+
+10
+00:00:35.488 --> 00:00:38.642
+Every change goes through
+a reviewed pull request,
+
+11
+00:00:38.642 --> 00:00:43.450
+adds to the revision history, and sends
+the page back to its owner for approval.
+
+12
+00:00:43.450 --> 00:00:47.675
+And the weekly source watch reads
+every row, shows the result in
+
+13
+00:00:47.675 --> 00:00:52.130
+the Last scan column, and proposes
+fixes, but never edits on its own.

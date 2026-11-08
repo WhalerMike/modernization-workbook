@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.250
+The profile ships its validation tests as
+copy-paste Microsoft Graph PowerShell.
+
+2
+00:00:05.250 --> 00:00:09.297
+Run them in a test tenant with a test
+partner tenant first; they were checked
+
+3
+00:00:09.297 --> 00:00:13.475
+against the Graph PowerShell reference
+but haven't been run against a tenant.
+
+4
+00:00:13.475 --> 00:00:17.087
+Test zero confirms the tenant
+ID resolves to the partner
+
+5
+00:00:17.087 --> 00:00:20.775
+and that the trust and redemption
+values match the record.
+
+6
+00:00:20.775 --> 00:00:25.383
+Test one creates a guest through an
+access package request, and checks
+
+7
+00:00:25.383 --> 00:00:30.150
+the user type is guest and that My
+Access still loads under the MFA policy.
+
+8
+00:00:30.150 --> 00:00:33.887
+Test two finds any partner
+account that isn't a guest.
+
+9
+00:00:33.887 --> 00:00:38.073
+Three is emergency suspension,
+four removes the assignment,
+
+10
+00:00:38.073 --> 00:00:41.671
+five finds duplicates and
+unredeemed invitations,
+
+11
+00:00:41.671 --> 00:00:46.776
+six proves denial for a user with no
+assignment and for an unlisted tenant,
+
+12
+00:00:46.776 --> 00:00:50.710
+seven shows the MFA policy
+applied, eight covers devices,
+
+13
+00:00:50.710 --> 00:00:53.388
+nine rolls back, and ten is partner exit.
+
+14
+00:00:53.388 --> 00:00:59.570
+Tests one, three, four, nine and ten
+write, and each says how to undo it.

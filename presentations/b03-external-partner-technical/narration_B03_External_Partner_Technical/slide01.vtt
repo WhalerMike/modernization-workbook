@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.720
+This is the technical deep dive
+on external partner identity,
+
+3
+00:00:04.720 --> 00:00:09.376
+from the HR-Driven Identity book of
+the Federal Modernization Workbook,
+
+4
+00:00:09.376 --> 00:00:13.024
+and its Microsoft Entra profile
+in Access and Privilege.
+
+5
+00:00:13.024 --> 00:00:16.829
+It's for identity engineers,
+Conditional Access owners,
+
+6
+00:00:16.829 --> 00:00:19.062
+ISSOs and the governance office.
+
+7
+00:00:19.062 --> 00:00:23.537
+After the rule the whole profile
+enforces, it runs in three modules.
+
+8
+00:00:23.537 --> 00:00:27.476
+Module 1 is assurance and the
+default route into the tenant.
+
+9
+00:00:27.476 --> 00:00:32.738
+Module 2 is cross-tenant synchronization
+as an exception, and who does the work.
+
+10
+00:00:32.738 --> 00:00:37.382
+Module 3 is proof: the partner
+identity record, ten validation tests,
+
+11
+00:00:37.382 --> 00:00:42.524
+monitoring, the requirements and
+evidence, and the government-cloud check.
+
+12
+00:00:42.524 --> 00:00:47.500
+Every Microsoft setting here comes from
+Microsoft Learn, as the profile cites it.

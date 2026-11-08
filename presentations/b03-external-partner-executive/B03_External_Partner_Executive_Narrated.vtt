@@ -1,0 +1,821 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.647
+This is the executive briefing
+on external partner identity,
+
+3
+00:00:04.647 --> 00:00:09.218
+from the HR-Driven Identity book of
+the Federal Modernization Workbook,
+
+4
+00:00:09.218 --> 00:00:12.799
+with its partner access profile
+in Access and Privilege.
+
+5
+00:00:12.799 --> 00:00:17.585
+It's for the people who make the calls:
+the CIO and CISO, the business owners of
+
+6
+00:00:17.585 --> 00:00:22.750
+programs shared with partners, the privacy
+officer and the authorizing official.
+
+7
+00:00:22.750 --> 00:00:26.625
+Many people who sign in to agency
+systems work for someone else.
+
+8
+00:00:26.625 --> 00:00:30.225
+The workbook now treats them
+as their own identity class.
+
+9
+00:00:30.225 --> 00:00:33.355
+I'll take four questions:
+why the class exists,
+
+10
+00:00:33.355 --> 00:00:36.738
+what it is, who decides,
+and how a partner goes live.
+
+11
+00:00:36.738 --> 00:00:39.590
+The last slide gathers the decisions.
+
+12
+00:00:43.340 --> 00:00:47.581
+Every earlier chapter of HR-Driven
+Identity rests on one rule:
+
+13
+00:00:47.581 --> 00:00:52.902
+the agency's own authoritative source
+says who works here, and access follows.
+
+14
+00:00:52.902 --> 00:00:57.991
+Employees come from HR; contractors
+from the source the agency designates.
+
+15
+00:00:57.991 --> 00:01:01.971
+But think of a state benefits
+examiner, a tribal health officer,
+
+16
+00:01:01.971 --> 00:01:06.565
+an analyst at another agency, or a
+compliance officer at a regulated bank.
+
+17
+00:01:06.565 --> 00:01:10.390
+Each of them is employed, proofed
+and credentialed by someone else.
+
+18
+00:01:10.390 --> 00:01:13.959
+When that state examiner
+leaves the state government,
+
+19
+00:01:13.959 --> 00:01:17.290
+the state's HR system knows
+first, and possibly only.
+
+20
+00:01:17.290 --> 00:01:20.894
+The agency can't key, correct
+or even see that record,
+
+21
+00:01:20.894 --> 00:01:23.640
+except through what the partner sends.
+
+22
+00:01:23.640 --> 00:01:27.828
+So a partner's account proves that
+another organization vouches for a person.
+
+23
+00:01:27.828 --> 00:01:31.950
+It doesn't prove that the agency
+has decided to let that person in.
+
+24
+00:01:35.700 --> 00:01:38.863
+The split of authority is
+the definition of the class.
+
+25
+00:01:38.863 --> 00:01:42.189
+The partner is authoritative
+for the person's affiliation,
+
+26
+00:01:42.189 --> 00:01:46.737
+who works there and in what role, and for
+the lifecycle of the credential it issues.
+
+27
+00:01:46.737 --> 00:01:50.898
+The agency is authoritative for
+everything that touches its systems:
+
+28
+00:01:50.898 --> 00:01:54.198
+whether it trusts the partner's
+identity service at all,
+
+29
+00:01:54.198 --> 00:01:57.497
+which partner persons are
+eligible, what they may reach,
+
+30
+00:01:57.497 --> 00:02:02.088
+what assurance each transaction needs,
+and when access is suspended or ended.
+
+31
+00:02:02.088 --> 00:02:03.451
+One rule follows.
+
+32
+00:02:03.451 --> 00:02:07.888
+No partner account gets access just
+because it exists or synchronizes.
+
+33
+00:02:07.888 --> 00:02:11.525
+An account in the tenant is a fact
+about the partner's directory.
+
+34
+00:02:11.525 --> 00:02:18.120
+Access is an agency decision, with an
+approver, a sponsor, an expiry and evidence.
+
+35
+00:02:21.870 --> 00:02:27.075
+The External Partner Person is a person
+whose employment or affiliation record,
+
+36
+00:02:27.075 --> 00:02:31.271
+and primary credential, are held
+by another organization: a state,
+
+37
+00:02:31.271 --> 00:02:34.146
+a tribal government,
+another federal agency,
+
+38
+00:02:34.146 --> 00:02:38.108
+a financial institution, or an
+academic or nonprofit partner.
+
+39
+00:02:38.108 --> 00:02:41.771
+The class covers people; the
+organization is the partner.
+
+40
+00:02:41.771 --> 00:02:44.872
+The workbook's other
+populations already have homes,
+
+41
+00:02:44.872 --> 00:02:48.257
+so the chapter draws borders
+rather than redefining them.
+
+42
+00:02:48.257 --> 00:02:52.500
+Partner is not public: a member of
+the public applying for a benefit
+
+43
+00:02:52.500 --> 00:02:56.433
+isn't a workforce guest, even if
+a partner delivers the benefit.
+
+44
+00:02:56.433 --> 00:03:01.384
+Partner is not contractor: if the agency
+holds the contract and the sponsor,
+
+45
+00:03:01.384 --> 00:03:05.857
+and the person works on agency
+business, that person is a contractor.
+
+46
+00:03:05.857 --> 00:03:08.486
+Privilege and break-glass are overlays,
+
+47
+00:03:08.486 --> 00:03:12.308
+and emergency access accounts
+are always the agency's own.
+
+48
+00:03:12.308 --> 00:03:18.140
+And an AI agent acting for a partner is a
+non-person identity with its own sponsor.
+
+49
+00:03:21.890 --> 00:03:24.887
+The workbook uses three
+words for populations,
+
+50
+00:03:24.887 --> 00:03:27.115
+and each is a view of the one above it.
+
+51
+00:03:27.115 --> 00:03:30.490
+The class says who is
+authoritative and who owns access.
+
+52
+00:03:30.490 --> 00:03:34.369
+Worker type is the HR attribute
+for the agency's own workers,
+
+53
+00:03:34.369 --> 00:03:38.565
+and a partner person has none,
+because there's no agency HR record.
+
+54
+00:03:38.565 --> 00:03:42.827
+The persona is how Conditional Access
+targets people, and for partners
+
+55
+00:03:42.827 --> 00:03:46.727
+that's the Externals persona, which
+must match the class one to one.
+
+56
+00:03:46.727 --> 00:03:50.202
+The user type is where those
+views can quietly diverge.
+
+57
+00:03:50.202 --> 00:03:54.512
+The workbook's member baselines, such
+as the compliant-device policies,
+
+58
+00:03:54.512 --> 00:03:58.018
+exclude guests, so a partner
+created as a member would fall
+
+59
+00:03:58.018 --> 00:04:01.378
+into the internal baselines
+and out of the partner ones.
+
+60
+00:04:01.378 --> 00:04:03.828
+So partner persons are guests by default.
+
+61
+00:04:03.828 --> 00:04:07.059
+A member partner person
+needs an exception record,
+
+62
+00:04:07.059 --> 00:04:10.120
+with a reason, an approver
+and a review date.
+
+63
+00:04:13.870 --> 00:04:15.870
+The standard is short on purpose.
+
+64
+00:04:15.870 --> 00:04:20.978
+It says what has to be true for any
+partner, on any platform, in nine areas:
+
+65
+00:04:20.978 --> 00:04:26.438
+partner qualification, trust establishment,
+population scope, assurance,
+
+66
+00:04:26.438 --> 00:04:31.458
+authorization, lifecycle, data
+protection, operations and evidence.
+
+67
+00:04:31.458 --> 00:04:35.044
+Each area becomes a section of
+the partner identity record.
+
+68
+00:04:35.044 --> 00:04:37.420
+Three points matter most to leadership.
+
+69
+00:04:37.420 --> 00:04:42.472
+Authorization is separate from authentication:
+a valid sign-in at the state proves
+
+70
+00:04:42.472 --> 00:04:47.158
+the examiner signed in there; only an
+agency assignment opens the case system.
+
+71
+00:04:47.158 --> 00:04:51.135
+Partner exit is a lifecycle
+event: when an agreement ends,
+
+72
+00:04:51.135 --> 00:04:54.182
+the accounts are removed,
+not left disabled.
+
+73
+00:04:54.182 --> 00:04:59.366
+And statements are not controls: a
+partner saying it requires MFA is input
+
+74
+00:04:59.366 --> 00:05:05.070
+to the agreement, while a policy the
+agency enforces and tests is the control.
+
+75
+00:05:08.820 --> 00:05:09.845
+Who decides?
+
+76
+00:05:09.845 --> 00:05:13.831
+The partner and the agency each
+carry part of every activity,
+
+77
+00:05:13.831 --> 00:05:18.933
+from affiliation and proofing to
+lifecycle, incident response and evidence.
+
+78
+00:05:18.933 --> 00:05:23.355
+On the agency side there is one decider
+per row: the agency business owner,
+
+79
+00:05:23.355 --> 00:05:27.557
+the official accountable for the
+program the partner persons serve.
+
+80
+00:05:27.557 --> 00:05:32.095
+The title is provisional, and the
+record names a person, not a title.
+
+81
+00:05:32.095 --> 00:05:36.171
+The sponsor, usually the program
+manager who works with the partner,
+
+82
+00:05:36.171 --> 00:05:40.466
+vouches for its people, reviews their
+access and requests suspensions,
+
+83
+00:05:40.466 --> 00:05:42.795
+but never approves their own requests.
+
+84
+00:05:42.795 --> 00:05:47.520
+The identity governance officer owns the
+list of approved partner organizations.
+
+85
+00:05:47.520 --> 00:05:49.058
+Two rows need comment.
+
+86
+00:05:49.058 --> 00:05:52.106
+In a live incident, security
+operations contains
+
+87
+00:05:52.106 --> 00:05:54.708
+first and the business
+owner is told after.
+
+88
+00:05:54.708 --> 00:05:58.544
+And going to production has one
+decider with a required consult:
+
+89
+00:05:58.544 --> 00:06:01.583
+the authorizing official's
+input must be on record.
+
+90
+00:06:01.583 --> 00:06:06.223
+A consult isn't a second approval, but an
+objection the business owner overrides
+
+91
+00:06:06.223 --> 00:06:10.940
+becomes a risk acceptance, and that is
+the authorizing official's decision.
+
+92
+00:06:14.690 --> 00:06:21.837
+NIST SP 800-63-4 measures
+digital identity on three scales:
+
+93
+00:06:21.837 --> 00:06:25.178
+identity proofing,
+authentication, and federation.
+
+94
+00:06:25.178 --> 00:06:28.974
+For a partner person, the partner
+usually performs the first two,
+
+95
+00:06:28.974 --> 00:06:32.914
+and the agency decides whether
+that's enough for each transaction.
+
+96
+00:06:32.914 --> 00:06:35.287
+The levels come from an impact assessment,
+
+97
+00:06:35.287 --> 00:06:38.065
+and partner persons are
+their own user group in it.
+
+98
+00:06:38.065 --> 00:06:42.837
+A bank officer submitting a financial
+filing and a state examiner reading a case
+
+99
+00:06:42.837 --> 00:06:46.114
+summary can land at different
+levels on the same system,
+
+100
+00:06:46.114 --> 00:06:50.815
+so the record holds one row per protected
+transaction, not one level per partner.
+
+101
+00:06:50.815 --> 00:06:52.627
+Two federal rules shape this.
+
+102
+00:06:52.627 --> 00:06:59.061
+M-22-09 requires phishing-resistant MFA
+for agency staff, contractors and partners,
+
+103
+00:06:59.061 --> 00:07:02.681
+but leaves each agency to
+define the partner category,
+
+104
+00:07:02.681 --> 00:07:06.139
+so the agency writes its
+definition into the record.
+
+105
+00:07:06.139 --> 00:07:11.435
+And FIPS 201-3 covers federal employees
+and contractors only, so never call a
+
+106
+00:07:11.435 --> 00:07:16.570
+partner credential PIV-equivalent unless
+a policy the agency can cite says so.
+
+107
+00:07:20.320 --> 00:07:24.258
+The route into the tenant is the
+same in principle on any platform.
+
+108
+00:07:24.258 --> 00:07:28.899
+First, the partner is qualified: the
+record exists, the agreement is signed,
+
+109
+00:07:28.899 --> 00:07:31.790
+and the partner's identity
+service is trusted
+
+110
+00:07:31.790 --> 00:07:34.682
+only through a setting
+scoped to that partner.
+
+111
+00:07:34.682 --> 00:07:37.806
+Second, each person
+arrives through an approved
+
+112
+00:07:37.806 --> 00:07:41.320
+request naming the sponsor,
+the approver and an expiry.
+
+113
+00:07:41.320 --> 00:07:43.545
+Third, the account is a guest.
+
+114
+00:07:43.545 --> 00:07:46.396
+Fourth, access ends with
+the last assignment,
+
+115
+00:07:46.396 --> 00:07:49.170
+and the account is
+blocked and then removed.
+
+116
+00:07:49.170 --> 00:07:53.093
+Automatic provisioning from a
+partner's directory is an exception,
+
+117
+00:07:53.093 --> 00:07:57.577
+because it hands the eligibility decision
+to whoever controls the partner's
+
+118
+00:07:57.577 --> 00:08:01.570
+groups and copies personal data
+across organizations on a schedule.
+
+119
+00:08:01.570 --> 00:08:04.694
+In Microsoft Entra, the
+default is entitlement
+
+120
+00:08:04.694 --> 00:08:07.658
+management with B2B collaboration guests.
+
+121
+00:08:07.658 --> 00:08:12.399
+Microsoft Learn says cross-tenant
+synchronization is intended for use within an
+
+122
+00:08:12.399 --> 00:08:14.770
+organization, and points to entitlement
+
+123
+00:08:14.770 --> 00:08:18.270
+management for inviting
+users across organizations.
+
+124
+00:08:22.020 --> 00:08:25.220
+Four obligations come before
+the first partner goes live.
+
+125
+00:08:25.220 --> 00:08:27.693
+Privacy: a directory of partner persons,
+
+126
+00:08:27.693 --> 00:08:32.788
+their access decisions and their sign-in
+logs is retrieved by name and identifier,
+
+127
+00:08:32.788 --> 00:08:36.385
+so whether an existing
+system-of-records notice covers it
+
+128
+00:08:36.385 --> 00:08:39.982
+is the privacy office's
+determination, made before go-live.
+
+129
+00:08:39.982 --> 00:08:45.248
+Minimization: the agency receives only
+the attributes its decisions read,
+
+130
+00:08:45.248 --> 00:08:48.900
+usually a name, a work email,
+an immutable identifier,
+
+131
+00:08:48.900 --> 00:08:52.382
+the partner organization
+and, where needed, a role.
+
+132
+00:08:52.382 --> 00:08:57.074
+Records: NARA's General Records Schedule
+3.2 covers system access records,
+
+133
+00:08:57.074 --> 00:09:02.381
+but the schedules for partner agreements
+and access reviews haven't been verified,
+
+134
+00:09:02.381 --> 00:09:04.996
+so the agency records officer names them.
+
+135
+00:09:04.996 --> 00:09:09.940
+And redress: a wrong name is corrected
+at the partner's source, while an agency
+
+136
+00:09:09.940 --> 00:09:14.807
+decision, such as a suspension, is
+disputed through the agency's own process.
+
+137
+00:09:14.807 --> 00:09:20.280
+The request and redress workflows
+are covered by Section 508, too.
+
+138
+00:09:24.030 --> 00:09:28.618
+Eleven readiness checks stand between
+a qualified partner and production.
+
+139
+00:09:28.618 --> 00:09:33.118
+They aren't the program's phase gates;
+they're specific to each relationship.
+
+140
+00:09:33.118 --> 00:09:37.317
+They confirm the class and the
+partner's authoritative source;
+
+141
+00:09:37.317 --> 00:09:41.599
+record which requirements apply;
+review the agreement, privacy,
+
+142
+00:09:41.599 --> 00:09:46.688
+records and the authorization boundary;
+select assurance per transaction;
+
+143
+00:09:46.688 --> 00:09:49.757
+name owners and test
+the escalation contacts;
+
+144
+00:09:49.757 --> 00:09:55.331
+reconcile the expected population against
+the accounts; minimize the attributes;
+
+145
+00:09:55.331 --> 00:10:00.177
+test create, update, disable, removal,
+emergency suspension and rollback;
+
+146
+00:10:00.177 --> 00:10:04.216
+test access, including denials;
+and confirm that monitoring,
+
+147
+00:10:04.216 --> 00:10:07.518
+reviews, drift detection
+and runbooks are operating.
+
+148
+00:10:07.518 --> 00:10:10.505
+The eleventh is production
+enablement itself.
+
+149
+00:10:10.505 --> 00:10:13.479
+Each check has one decider,
+the business owner,
+
+150
+00:10:13.479 --> 00:10:15.905
+and the checks repeat at every review.
+
+151
+00:10:15.905 --> 00:10:19.700
+A partner that adds a new
+application reruns four of them.
+
+152
+00:10:23.450 --> 00:10:26.450
+Here are the decisions, with
+their owners and timing.
+
+153
+00:10:26.450 --> 00:10:28.467
+Before the first partner goes live,
+
+154
+00:10:28.467 --> 00:10:32.920
+the privacy office determines whether
+an existing system-of-records notice
+
+155
+00:10:32.920 --> 00:10:37.650
+covers partner persons, and the records
+officer names the records schedule items.
+
+156
+00:10:37.650 --> 00:10:41.100
+For each partner, the business
+owner decides five things.
+
+157
+00:10:41.100 --> 00:10:46.350
+Qualifying the partner and approving the
+agreement, before any trust is configured.
+
+158
+00:10:46.350 --> 00:10:48.019
+Which requirements apply,
+
+159
+00:10:48.019 --> 00:10:52.800
+including the agency's own definition
+of partners under M-22-09.
+
+160
+00:10:52.800 --> 00:10:55.954
+The assurance for each
+protected transaction,
+
+161
+00:10:55.954 --> 00:10:59.350
+with the ISSO and the
+application owner consulted.
+
+162
+00:10:59.350 --> 00:11:01.240
+Any automatic synchronization,
+
+163
+00:11:01.240 --> 00:11:04.950
+which is an exception on a written
+record, with the sponsor named.
+
+164
+00:11:04.950 --> 00:11:09.450
+And production enablement, with the
+authorizing official's consult on record.
+
+165
+00:11:09.450 --> 00:11:12.054
+A member user type is an exception too,
+
+166
+00:11:12.054 --> 00:11:15.163
+with its own record,
+approver and review date.
+
+167
+00:11:15.163 --> 00:11:18.234
+The chapter, the partner
+identity record and the
+
+168
+00:11:18.234 --> 00:11:21.688
+Entra profile carry the
+detail, every claim footnoted.
+
+169
+00:11:21.688 --> 00:11:22.510
+Thank you.

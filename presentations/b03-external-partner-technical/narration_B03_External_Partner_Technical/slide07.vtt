@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+No new Conditional
+Access policy is needed.
+
+2
+00:00:02.800 --> 00:00:07.575
+Five policies in the workbook's library
+already carry the partner tenant list.
+
+3
+00:00:07.575 --> 00:00:15.125
+CA009, for MFA, and CA010, for
+terms of use, include partner users.
+
+4
+00:00:15.125 --> 00:00:23.325
+CA011, CA012 and CA038 apply guest limits
+to everyone except the partner tenants.
+
+5
+00:00:23.325 --> 00:00:26.032
+The list must be identical in all five;
+
+6
+00:00:26.032 --> 00:00:29.788
+a partner in one and not the
+others is a drift finding.
+
+7
+00:00:29.788 --> 00:00:32.203
+The identity governance officer owns it,
+
+8
+00:00:32.203 --> 00:00:35.825
+and a partner enters it only when
+its access package goes live.
+
+9
+00:00:35.825 --> 00:00:38.450
+The user type decides
+which policies apply.
+
+10
+00:00:38.450 --> 00:00:43.731
+CA011, CA012 and CA038 match
+only guest-type external users,
+
+11
+00:00:43.731 --> 00:00:49.012
+so an external member from an
+unlisted tenant escapes them.
+
+12
+00:00:49.012 --> 00:00:52.350
+A member also gets member-level
+directory permissions,
+
+13
+00:00:52.350 --> 00:00:56.050
+and falls outside persona rules
+and reviews scoped to guests.
+
+14
+00:00:56.050 --> 00:00:58.725
+That's why partner persons
+are guests by default.
+
+15
+00:00:58.725 --> 00:01:02.579
+A read-only Graph check compares
+the list across the five policies
+
+16
+00:01:02.579 --> 00:01:06.430
+and against the partner entries
+in cross-tenant access settings.

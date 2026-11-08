@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.988
+The route into the tenant is the
+same in principle on any platform.
+
+2
+00:00:03.988 --> 00:00:08.629
+First, the partner is qualified: the
+record exists, the agreement is signed,
+
+3
+00:00:08.629 --> 00:00:11.520
+and the partner's identity
+service is trusted
+
+4
+00:00:11.520 --> 00:00:14.412
+only through a setting
+scoped to that partner.
+
+5
+00:00:14.412 --> 00:00:17.536
+Second, each person
+arrives through an approved
+
+6
+00:00:17.536 --> 00:00:21.050
+request naming the sponsor,
+the approver and an expiry.
+
+7
+00:00:21.050 --> 00:00:23.275
+Third, the account is a guest.
+
+8
+00:00:23.275 --> 00:00:26.126
+Fourth, access ends with
+the last assignment,
+
+9
+00:00:26.126 --> 00:00:28.900
+and the account is
+blocked and then removed.
+
+10
+00:00:28.900 --> 00:00:32.823
+Automatic provisioning from a
+partner's directory is an exception,
+
+11
+00:00:32.823 --> 00:00:37.307
+because it hands the eligibility decision
+to whoever controls the partner's
+
+12
+00:00:37.307 --> 00:00:41.300
+groups and copies personal data
+across organizations on a schedule.
+
+13
+00:00:41.300 --> 00:00:44.424
+In Microsoft Entra, the
+default is entitlement
+
+14
+00:00:44.424 --> 00:00:47.388
+management with B2B collaboration guests.
+
+15
+00:00:47.388 --> 00:00:52.129
+Microsoft Learn says cross-tenant
+synchronization is intended for use within an
+
+16
+00:00:52.129 --> 00:00:54.500
+organization, and points to entitlement
+
+17
+00:00:54.500 --> 00:00:57.700
+management for inviting
+users across organizations.

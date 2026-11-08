@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+The split of authority is
+the definition of the class.
+
+2
+00:00:03.213 --> 00:00:06.539
+The partner is authoritative
+for the person's affiliation,
+
+3
+00:00:06.539 --> 00:00:11.087
+who works there and in what role, and for
+the lifecycle of the credential it issues.
+
+4
+00:00:11.087 --> 00:00:15.248
+The agency is authoritative for
+everything that touches its systems:
+
+5
+00:00:15.248 --> 00:00:18.548
+whether it trusts the partner's
+identity service at all,
+
+6
+00:00:18.548 --> 00:00:21.847
+which partner persons are
+eligible, what they may reach,
+
+7
+00:00:21.847 --> 00:00:26.438
+what assurance each transaction needs,
+and when access is suspended or ended.
+
+8
+00:00:26.438 --> 00:00:27.801
+One rule follows.
+
+9
+00:00:27.801 --> 00:00:32.238
+No partner account gets access just
+because it exists or synchronizes.
+
+10
+00:00:32.238 --> 00:00:35.875
+An account in the tenant is a fact
+about the partner's directory.
+
+11
+00:00:35.875 --> 00:00:42.170
+Access is an agency decision, with an
+approver, a sponsor, an expiry and evidence.
