@@ -471,8 +471,8 @@ format:
         <div class="book-num">Book 18 · 10 chapters</div>
         <div class="book-title"><a href="docs/books/b18-application-modernization/index.html">Application Modernization</a></div>
         <div class="book-q">Why is application modernization a portfolio decision, not a rewrite?</div>
-        <div class="book-desc">Triage thousands of legacy applications, the Java, Spring Boot and React target, DB2 and Oracle data moves with proof, agentic AI with owners, architecture governance, TOGAF and Zachman.</div>
-        <div class="book-links"><a href="docs/books/b18-application-modernization/index.html">Read</a><a href="downloads/b18-application-modernization-bundle.docx">Word</a><a href="https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization" title="Reference implementation: Spring Boot over PostgreSQL, React, a DB2/Oracle to PostgreSQL migration with validation, and an agent pattern">Code</a></div>
+        <div class="book-desc">Triage thousands of legacy applications, the Java, Spring Boot and React target, Db2 and Oracle data moves with proof, agentic AI with owners, architecture governance, TOGAF and Zachman.</div>
+        <div class="book-links"><a href="docs/books/b18-application-modernization/index.html">Read</a><a href="downloads/b18-application-modernization-bundle.docx">Word</a><a href="https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization" title="Reference implementation: Spring Boot over PostgreSQL, React, a Db2/Oracle to PostgreSQL migration with validation, and an agent pattern">Code</a></div>
       </div>
     </div>
   </div>

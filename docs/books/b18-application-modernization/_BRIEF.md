@@ -41,7 +41,7 @@ Book 18 answers **"Why is application modernization a portfolio decision, not a 
 thousands of legacy mission applications cannot rewrite them; it must decide, application by application, what to
 retire, retain, rehost, replatform, refactor or rebuild, and then build the ones it changes on one target reference
 architecture (Java/Spring Boot services, React front ends, Node.js where it fits, API-first contracts, containers),
-move their data off DB2 and Oracle with proof that nothing was lost, add generative and agentic AI only with an
+move their data off Db2 and Oracle with proof that nothing was lost, add generative and agentic AI only with an
 identity and an owner for every agent, and govern the whole portfolio through standards, patterns and review gates that
 produce the evidence federal compliance needs. The book closes by mapping the work to TOGAF ADM phases and Zachman cells,
 and by running the portfolio in waves. A small runnable reference implementation ships with the book in
@@ -56,7 +56,7 @@ and by running the portfolio in waves. A small runnable reference implementation
 | `01-a-portfolio-not-a-rewrite.md` | Why | Chapter 01 — A Portfolio, Not a Rewrite |
 | `02-triaging-the-portfolio.md` | What | Chapter 02 — Triaging the Portfolio |
 | `03-the-target-reference-architecture.md` | What | Chapter 03 — The Target Reference Architecture |
-| `04-moving-the-data.md` | What | Chapter 04 — Moving the Data: DB2 and Oracle to PostgreSQL or SQL Server |
+| `04-moving-the-data.md` | What | Chapter 04 — Moving the Data: Db2 and Oracle to PostgreSQL or SQL Server |
 | `05-generative-and-agentic-ai.md` | What | Chapter 05 — Generative and Agentic AI in the Architecture |
 | `06-compliance-by-design.md` | What | Chapter 06 — Compliance by Design |
 | `07-who-governs-the-architecture.md` | Who | Chapter 07 — Who Governs the Architecture |
@@ -86,9 +86,9 @@ No appendices.
   orchestration; the strangler-fig pattern for incremental replacement (cite Martin Fowler's article or the Microsoft
   Azure Architecture Center pattern page); twelve-factor-style configuration; NIST SP 800-204 (microservices security) and
   SP 800-190 (container security) as the federal security references. 1–2 diagrams.
-- **04 (What):** moving the data off DB2 and Oracle to PostgreSQL or SQL Server — schema conversion (type mapping,
+- **04 (What):** moving the data off Db2 and Oracle to PostgreSQL or SQL Server — schema conversion (type mapping,
   stored procedures, sequences, packages; tools such as AWS Schema Conversion Tool / DMS Schema Conversion and
-  Microsoft SQL Server Migration Assistant for DB2 and for Oracle, Ora2Pg — check each tool's current status and
+  Microsoft SQL Server Migration Assistant for Db2 and for Oracle, Ora2Pg — check each tool's current status and
   supported sources/targets), data validation (row counts, checksums/hashes, aggregate reconciliation; AWS DMS data
   validation is a citable example), cut-over strategies (big-bang, phased, parallel run) and coexistence (change data
   capture, dual-write risks). **Link Book 06 rather than repeating it:** Book 06 is the SQL Server *identity* book
