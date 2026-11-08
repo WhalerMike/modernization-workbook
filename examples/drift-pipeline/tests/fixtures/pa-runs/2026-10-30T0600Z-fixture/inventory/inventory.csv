@@ -4,7 +4,7 @@
 "Entra","62e90394-69f5-4237-9190-012177145e10","Global Administrator","T0","/","ActivePermanent",,"a0000000-0000-4000-8000-000000000001","user","Alex Kim","alex.kim@contoso.example","Direct",
 "Entra","29232cdf-9323-42fd-ade2-1d097af3e4de","Exchange Administrator","T1","/","ActivePermanent",,"5e000000-0000-4000-8000-000000000001","servicePrincipal","Contoso-Mail-Automation",,"Direct",
 "Entra","194ae4cb-b126-40b2-bd5b-6091b380977d","Security Administrator","T0","/","Activated","10/30/2026 6:00:00 PM","a0000000-0000-4000-8000-000000000006","user","Gina Lee","gina.lee@contoso.example","Direct",
-"Entra","fe930be7-5e62-47db-91af-98c3a49a38b1","User Administrator","T2","/administrativeUnits/7a000000-0000-4000-8000-000000000002","ActivePermanent",,"9e000000-0000-4000-8000-000000000008","group","PRV-T2-UserAdmin-AU-Finance",,"Direct",
+"Entra","fe930be7-5e62-47db-91af-98c3a49a38b1","User Administrator","T2","/administrativeUnits/7a000000-0000-4000-8000-000000000002","ActivePermanent",,"9e000000-0000-4000-8000-000000000008","group","PRV-T2-UserAdmin-Finance",,"Direct",
 "Entra","fe930be7-5e62-47db-91af-98c3a49a38b1","User Administrator","T2","/administrativeUnits/7a000000-0000-4000-8000-000000000002","ActivePermanent",,"a0000000-0000-4000-8000-000000000002","user","Bo Chen","bo.chen@contoso.example","Group","9e000000-0000-4000-8000-000000000008"
 "Entra","e8611ab8-c189-46e8-94e1-60213ab1f814","Privileged Role Administrator","T0","/","ActivePermanent",,"a0000000-0000-4000-8000-000000000020","user","Hank Soto","hank.soto@contoso.example","Direct",
 "Entra","e8611ab8-c189-46e8-94e1-60213ab1f814","Privileged Role Administrator","T0","/","Eligible","1/28/2027 12:00:00 AM","9e000000-0000-4000-8000-000000000002","group","PRV-T0-PrivRoleAdmin",,"Direct",

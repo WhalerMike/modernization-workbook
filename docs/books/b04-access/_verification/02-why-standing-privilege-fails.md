@@ -83,3 +83,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | AC-6 is satisfied by any mechanism that keeps privilege at what the task requires. | AC-6 doesn't prescribe a mechanism: any mechanism that keeps privilege at what the task requires can suppor... | no source change |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-7 | Emergency access accounts: "two or more" attributed to Microsoft's recommendation; the program standard is two | Earlier practice / current guidance table, emergency access row | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 7 |

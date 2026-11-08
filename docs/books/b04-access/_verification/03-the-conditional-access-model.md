@@ -150,3 +150,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | uses that rule to meet the CISA requirement to block high-risk users. | uses that rule in the policy that carries out the CISA requirement to block high-risk users. | no source change |
+
+## Decision of Nov 8, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N8-4 | Entra Connect Sync account handling stays "not yet specified" and is now listed in an "Open items in this chapter" callout | Exclusions section | decision of Nov 8; labelling only | Mike's decision of Nov 8, 2026, item 4 |

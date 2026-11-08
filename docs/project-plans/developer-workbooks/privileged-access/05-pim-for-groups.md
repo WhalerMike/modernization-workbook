@@ -42,7 +42,7 @@ The groups behind the plan's task A2.1, "PRV role-assignable groups hold the eli
 
 ## What the PRV groups have to hold
 
-Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>[-<scope>]`, such as `PRV-T0-PrivRoleAdmin` or `PRV-T2-UserAdmin-AU-Finance`, so that the tier shows in every review, alert and audit record ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#role-assignable-groups)). [Chapter 01](01-privileged-inventory-as-code.md) reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them.
+Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>[-<scope>]`, such as `PRV-T0-PrivRoleAdmin` or `PRV-T2-UserAdmin-Finance`, so that the tier shows in every review, alert and audit record ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#role-assignable-groups)). [Chapter 01](01-privileged-inventory-as-code.md) reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them.
 
 Two Microsoft features meet in a PRV group, and they are independent of each other.[^pa05-concept]
 

@@ -33,16 +33,16 @@ The schema below names Oracle fields because Oracle Fusion Cloud HCM is the Core
 | OPM standard data element | Identity use | Lands as (crosswalk below) |
 |---|---|---|
 | Agency / subelement | Legal employer and component scope | `companyName`; organization code |
-| Personnel office identifier | Servicing HR office; delegated administration scope | Administrative-unit rule input (not yet carried) |
-| Duty station | Location of record; location-based scoping; physical-access integration | Location code (not yet carried) |
+| Personnel office identifier | Servicing HR office; delegated administration scope | Administrative-unit rule input (not yet carried; open item for after the baseline) |
+| Duty station | Location of record; location-based scoping; physical-access integration | Region code, carried in `extensionAttribute4` (crosswalk below); the location code itself is not yet carried and is an open item for after the baseline |
 | Occupational series, pay plan, grade | Position category for role-eligible access packages | Position category code |
-| Supervisory status | Approver and reviewer eligibility; manager-chain integrity | Supervisor group (not yet carried); `manager` checks |
+| Supervisory status | Approver and reviewer eligibility; manager-chain integrity | Supervisor group (not yet carried; open item for after the baseline); `manager` checks |
 | Tenure, type of appointment, work schedule | Worker type and its lifecycle profile (pre-hire window, license, retention) | `employeeType`; worker-type code |
 | Nature of action + effective date | Lifecycle trigger: joiner, mover, conversion, leave, return, leaver, correction | Hire and leave dates; account state |
 
 : OPM standard data elements and what identity does with them {.striped .hover}
 
-The three entries marked "not yet carried" (the personnel office input, the supervisor group and the location code) have no row in the crosswalk below, and which carriers hold them is not yet specified. Until it is, an access decision that needs one (supervisory status decides privileged eligibility, [Chapter 10](10-from-attributes-to-access.md)) has no attribute to read.
+The three inputs marked "not yet carried" (the personnel office input, the supervisor group and the location code itself) are open items for after the baseline, listed in the [open verification register](12-execution-plan.md#open-verification-register). The region code derived from duty station is carried, in `extensionAttribute4`. The three inputs have no row in the crosswalk below, and which carriers hold them is not yet specified. Until it is, an access decision that needs one (supervisory status decides privileged eligibility, [Chapter 10](10-from-attributes-to-access.md)) has no attribute to read.
 
 Confirm each element's current name, values and how Core HCM exposes it against OPM's current standards at engagement time (Chapter 12, verification register). OPM requires that the coded blocks of the SF-50 use only codes listed in the EHRI Data Standards,[^c06-gppa] which is what makes them dependable as access inputs. Where an access decision needs a code that a standard element supplies, the code is the standard's — not a locally invented list.
 
