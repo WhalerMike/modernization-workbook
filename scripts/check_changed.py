@@ -318,9 +318,9 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
     for p in live:
         if check_neutrality.in_scope(p):
             add("neutrality", p)
-    if any(p in ("scripts/check_neutrality.py", "data/neutrality-terms.txt", "data/neutrality-baseline.txt")
-           for p in every):
-        tasks["neutrality"] = ["*"]                 # the terms or the checker changed: every file
+    if any(p in ("data/neutrality-terms.txt", "data/neutrality-baseline.txt") for p in every):
+        tasks["neutrality"] = ["*"]                 # the terms or the baseline changed: every file
+    # A change to the checker itself runs on the changed files only (and its unit tests); the weekly run covers main.
     return tasks
 
 
