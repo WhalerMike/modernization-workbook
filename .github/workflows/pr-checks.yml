@@ -65,13 +65,11 @@ jobs:
       - name: Copy reference doc to docs directory
         # As the deploy does, for the FULL tier's per-page DOCX render.
         run: |
-          mkdir -p docs/assets docs/compliance/assets docs/compliance/day2-kit/assets
+          mkdir -p docs/assets docs/compliance/assets
           cp assets/reference-mslearn.docx docs/reference-mslearn.docx
           cp assets/reference-mslearn.docx docs/assets/reference-mslearn.docx
           cp assets/reference-mslearn.docx docs/compliance/reference-mslearn.docx
           cp assets/reference-mslearn.docx docs/compliance/assets/reference-mslearn.docx
-          cp assets/reference-mslearn.docx docs/compliance/day2-kit/reference-mslearn.docx
-          cp assets/reference-mslearn.docx docs/compliance/day2-kit/assets/reference-mslearn.docx
 
       - name: Check the Source Register
         run: python3 scripts/source_watch/register.py --check
