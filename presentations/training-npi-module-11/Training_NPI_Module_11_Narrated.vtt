@@ -265,801 +265,801 @@ it deploys the controls
 that let each gate pass.
 
 56
-00:03:25.420 --> 00:03:27.958
+00:03:25.320 --> 00:03:27.858
 Before you start, three
 things are in place.
 
 57
-00:03:27.958 --> 00:03:32.146
+00:03:27.858 --> 00:03:32.046
 Roles: every write in the runbook is
 a named person's delegated sign-in,
 
 58
-00:03:32.146 --> 00:03:37.364
+00:03:32.046 --> 00:03:37.264
 with a role activated through Privileged
 Identity Management for the change window,
 
 59
-00:03:37.364 --> 00:03:41.332
+00:03:37.264 --> 00:03:41.232
 which Microsoft Learn's P I M
 documentation shows how to activate.
 
 60
-00:03:41.332 --> 00:03:45.645
+00:03:41.232 --> 00:03:45.545
 The scheduled and read steps sign
 in as an app with a certificate.
 
 61
-00:03:45.645 --> 00:03:47.595
+00:03:45.545 --> 00:03:47.495
 Nothing signs in with a secret.
 
 62
-00:03:47.595 --> 00:03:51.970
+00:03:47.495 --> 00:03:51.870
 That rule is this workbook's design
 guidance, from the kit's write paths.
 
 63
-00:03:51.970 --> 00:03:55.749
+00:03:51.870 --> 00:03:55.649
 Approvals: the change advisory
 board approves the change record,
 
 64
-00:03:55.749 --> 00:03:59.318
+00:03:55.649 --> 00:03:59.218
 the identity governance officer
 approves the settings file,
 
 65
-00:03:59.318 --> 00:04:02.677
+00:03:59.218 --> 00:04:02.577
 a reviewer who isn't the operator
 approves each plan's hash,
 
 66
-00:04:02.677 --> 00:04:07.295
+00:04:02.577 --> 00:04:07.195
 and the ISSO and the change advisory
 board approve the promotion to production.
 
 67
-00:04:07.295 --> 00:04:09.308
+00:04:07.195 --> 00:04:09.208
 And one change record per stage.
 
 68
-00:04:09.308 --> 00:04:11.528
+00:04:09.208 --> 00:04:11.428
 Its number goes into the settings file,
 
 69
-00:04:11.528 --> 00:04:15.090
+00:04:11.428 --> 00:04:14.990
 and every manifest the deploy
 scripts write repeats it.
 
 70
-00:04:18.840 --> 00:04:22.115
+00:04:18.740 --> 00:04:22.015
 The settings file is
 one JSON file per stage.
 
 71
-00:04:22.115 --> 00:04:27.615
+00:04:22.015 --> 00:04:27.515
 It holds every value the commands need:
 the tenant, the cloud, the identities,
 
 72
-00:04:27.615 --> 00:04:33.027
+00:04:27.515 --> 00:04:32.927
 the operators, the pilot, the synthetic
 objects, the policies and the rings.
 
 73
-00:04:33.027 --> 00:04:35.556
+00:04:32.927 --> 00:04:35.456
 The kit checks it before any command runs,
 
 74
-00:04:35.556 --> 00:04:38.753
+00:04:35.456 --> 00:04:38.653
 against four rules, which
 are this workbook's design.
 
 75
-00:04:38.753 --> 00:04:42.043
+00:04:38.653 --> 00:04:41.943
 No secrets: a field whose
 name looks like a secret,
 
 76
-00:04:42.043 --> 00:04:46.814
+00:04:41.943 --> 00:04:46.714
 or a value that looks like a client
 secret or a private key, stops the run.
 
 77
-00:04:46.814 --> 00:04:50.694
+00:04:46.714 --> 00:04:50.594
 The identities are named by client
 I D and certificate thumbprint,
 
 78
-00:04:50.694 --> 00:04:54.290
+00:04:50.594 --> 00:04:54.190
 and the private key stays in the
 operator's certificate store.
 
 79
-00:04:54.290 --> 00:04:57.184
+00:04:54.190 --> 00:04:57.084
 No placeholders: a value still shaped like
 
 80
-00:04:57.184 --> 00:05:00.077
+00:04:57.084 --> 00:04:59.977
 an angle-bracketed tenant
 I D stops the run.
 
 81
-00:05:00.077 --> 00:05:02.677
+00:04:59.977 --> 00:05:02.577
 The stage it says it is:
 the file's environment
 
 82
-00:05:02.677 --> 00:05:05.416
+00:05:02.577 --> 00:05:05.316
 must match the stage you
 tell the command to run.
 
 83
-00:05:05.416 --> 00:05:07.704
+00:05:05.316 --> 00:05:07.604
 And the same commands for both stages:
 
 84
-00:05:07.704 --> 00:05:12.060
+00:05:07.604 --> 00:05:11.960
 moving from test to production
 changes the file, and nothing else.
 
 85
-00:05:15.740 --> 00:05:19.665
+00:05:15.710 --> 00:05:19.635
 The runbook adds five scripts, each
 with a fixture mode that serves
 
 86
-00:05:19.665 --> 00:05:23.590
+00:05:19.635 --> 00:05:23.560
 Graph and Active Directory from a
 file and sends nothing anywhere.
 
 87
-00:05:23.590 --> 00:05:26.428
+00:05:23.560 --> 00:05:26.398
 The preflight runs checks
 P F oh one to eleven,
 
 88
-00:05:26.428 --> 00:05:31.415
+00:05:26.398 --> 00:05:31.385
 writes a snapshot that the rollback
 restores, and writes nothing to the tenant.
 
 89
-00:05:31.415 --> 00:05:34.449
+00:05:31.385 --> 00:05:34.419
 The smoke test runs checks
 S T oh one to oh seven
 
 90
-00:05:34.449 --> 00:05:38.440
+00:05:34.419 --> 00:05:38.410
 against a synthetic service
 principal and service account.
 
 91
-00:05:38.440 --> 00:05:41.941
+00:05:38.410 --> 00:05:41.911
 Its one write is a probe
 that's expected to be refused:
 
 92
-00:05:41.941 --> 00:05:44.140
+00:05:41.911 --> 00:05:44.110
 a new secret on the synthetic app.
 
 93
-00:05:44.140 --> 00:05:45.952
+00:05:44.110 --> 00:05:45.922
 The rollback has two modes.
 
 94
-00:05:45.952 --> 00:05:48.564
+00:05:45.922 --> 00:05:48.534
 Plan writes the plan and prints its hash.
 
 95
-00:05:48.564 --> 00:05:52.711
+00:05:48.534 --> 00:05:52.681
 Apply checks the approved hash,
 the tenant and a seven-day age,
 
 96
-00:05:52.711 --> 00:05:56.028
+00:05:52.681 --> 00:05:55.998
 then dry-runs, or sends
 only with the apply switch.
 
 97
-00:05:56.028 --> 00:06:01.152
+00:05:55.998 --> 00:06:01.122
 It patches policies and enables or
 disables accounts, and it never deletes.
 
 98
-00:06:01.152 --> 00:06:05.302
+00:06:01.122 --> 00:06:05.272
 The evidence writer records a step
 that ran an earlier chapter's script.
 
 99
-00:06:05.302 --> 00:06:08.330
+00:06:05.272 --> 00:06:08.300
 And the evidence check is the go or no-go.
 
 100
-00:06:12.080 --> 00:06:13.993
+00:06:12.050 --> 00:06:13.963
 Unit 2 is the stages.
 
 101
-00:06:13.993 --> 00:06:17.794
+00:06:13.963 --> 00:06:17.764
 The live test stage
 prepares synthetic objects,
 
 102
-00:06:17.794 --> 00:06:22.642
+00:06:17.764 --> 00:06:22.612
 runs the preflight, and deploys in
 the safe order, Steps 1.1 to 1.5.
 
 103
-00:06:22.642 --> 00:06:25.873
+00:06:22.612 --> 00:06:25.843
 Then it runs the smoke
 test, captures the evidence,
 
 104
-00:06:25.873 --> 00:06:28.630
+00:06:25.843 --> 00:06:28.600
 rehearses the rollback, and deploys again.
 
 105
-00:06:28.630 --> 00:06:32.794
+00:06:28.600 --> 00:06:32.764
 Production starts only when every
 go or no-go criterion is signed,
 
 106
-00:06:32.794 --> 00:06:37.806
+00:06:32.764 --> 00:06:37.776
 nine rows of them, and its preflight adds
 one check that runs only in production:
 
 107
-00:06:37.806 --> 00:06:40.582
+00:06:37.776 --> 00:06:40.552
 P F eleven, which needs
 the test stage's smoke
 
 108
-00:06:40.582 --> 00:06:43.743
+00:06:40.552 --> 00:06:43.713
 test to have passed every
 check, in another tenant.
 
 109
-00:06:43.743 --> 00:06:46.494
+00:06:43.713 --> 00:06:46.464
 Then production enables Conditional Access
 
 110
-00:06:46.494 --> 00:06:49.029
+00:06:46.464 --> 00:06:48.999
 for workload identities
 one ring at a time.
 
 111
-00:06:49.029 --> 00:06:53.416
+00:06:48.999 --> 00:06:53.386
 Remember the status: nobody has run
 these stages against a live tenant,
 
 112
-00:06:53.416 --> 00:06:56.517
+00:06:53.386 --> 00:06:56.487
 and every live result in
 them is labeled Expected.
 
 113
-00:06:56.517 --> 00:06:59.830
+00:06:56.487 --> 00:06:59.800
 That's why Lab 1 runs only the dry run.
 
 114
-00:07:03.480 --> 00:07:04.205
+00:07:03.550 --> 00:07:04.275
 Try it.
 
 115
-00:07:04.205 --> 00:07:08.942
+00:07:04.275 --> 00:07:09.012
 Lab 1 runs in the non-person
 identity folder, in PowerShell 7.
 
 116
-00:07:08.942 --> 00:07:13.052
+00:07:09.012 --> 00:07:13.122
 The test and production tenants
 are fictional and served by a fake,
 
 117
-00:07:13.052 --> 00:07:15.443
+00:07:13.122 --> 00:07:15.513
 so nothing signs in and nothing is sent.
 
 118
-00:07:15.443 --> 00:07:19.035
+00:07:15.513 --> 00:07:19.105
 Step one loads the deploy
 module and checks the template,
 
 119
-00:07:19.035 --> 00:07:20.717
+00:07:19.105 --> 00:07:20.787
 and it's refused on purpose.
 
 120
-00:07:20.717 --> 00:07:23.084
+00:07:20.787 --> 00:07:23.154
 You get an error, then
 every problem at once,
 
 121
-00:07:23.084 --> 00:07:27.005
+00:07:23.154 --> 00:07:27.075
 starting with the environment
 placeholder that hasn't been replaced.
 
 122
-00:07:27.005 --> 00:07:29.567
+00:07:27.075 --> 00:07:29.637
 A filled-in file prints one line instead.
 
 123
-00:07:29.567 --> 00:07:32.379
+00:07:29.637 --> 00:07:32.449
 Step two runs the test stage's preflight.
 
 124
-00:07:32.379 --> 00:07:35.068
+00:07:32.449 --> 00:07:35.138
 It prints twelve passes and one warning.
 
 125
-00:07:35.068 --> 00:07:40.361
+00:07:35.138 --> 00:07:40.431
 The warning is P F oh six: the fixture's
 Conditional Access administrator holds a
 
 126
-00:07:40.361 --> 00:07:44.132
+00:07:40.431 --> 00:07:44.202
 standing assignment, not one
 that's eligible through P I M,
 
 127
-00:07:44.132 --> 00:07:47.180
+00:07:44.202 --> 00:07:47.250
 and the preflight reports
 it but doesn't block.
 
 128
-00:07:47.180 --> 00:07:52.330
+00:07:47.250 --> 00:07:52.400
 It writes two evidence records, and
 its last line says go for this stage.
 
 129
-00:07:56.080 --> 00:07:58.603
+00:07:56.150 --> 00:07:58.673
 Step three runs the smoke test against the
 
 130
-00:07:58.603 --> 00:08:01.630
+00:07:58.673 --> 00:08:01.700
 synthetic service principal
 and service account.
 
 131
-00:08:01.630 --> 00:08:05.621
+00:08:01.700 --> 00:08:05.691
 It prints eight passes, for
 checks S T oh one to oh seven,
 
 132
-00:08:05.621 --> 00:08:09.068
+00:08:05.691 --> 00:08:09.138
 with oh five run once
 for each workload policy.
 
 133
-00:08:09.068 --> 00:08:13.167
+00:08:09.138 --> 00:08:13.237
 The synthetic app is in the register
 with two owners and no secret.
 
 134
-00:08:13.167 --> 00:08:16.330
+00:08:13.237 --> 00:08:16.400
 The synthetic service account
 is found and rated high.
 
 135
-00:08:16.330 --> 00:08:20.718
+00:08:16.400 --> 00:08:20.788
 The app management policy refuses
 a new secret on the synthetic app.
 
 136
-00:08:20.718 --> 00:08:24.168
+00:08:20.788 --> 00:08:24.238
 The federated credential
 matches the settings exactly.
 
 137
-00:08:24.168 --> 00:08:28.255
+00:08:24.238 --> 00:08:28.325
 Each workload policy assigns the
 synthetic service principal directly.
 
 138
-00:08:28.255 --> 00:08:31.280
+00:08:28.325 --> 00:08:31.350
 The synthetic sign-ins
 show the policies' result.
 
 139
-00:08:31.280 --> 00:08:34.918
+00:08:31.350 --> 00:08:34.988
 And the test host can retrieve the
 group managed account's password.
 
 140
-00:08:34.918 --> 00:08:37.543
+00:08:34.988 --> 00:08:37.613
 Read S T oh three closely.
 
 141
-00:08:37.543 --> 00:08:42.269
+00:08:37.613 --> 00:08:42.339
 It says the fixture's refusal is real
 code unverified, because Microsoft
 
 142
-00:08:42.269 --> 00:08:47.040
+00:08:42.339 --> 00:08:47.110
 Learn doesn't give the exact error
 an app management policy returns.
 
 143
-00:08:50.790 --> 00:08:52.852
+00:08:50.860 --> 00:08:52.922
 Steps four to six are the rollback.
 
 144
-00:08:52.852 --> 00:08:55.645
+00:08:52.922 --> 00:08:55.715
 Step four plans it from
 the preflight's snapshot,
 
 145
-00:08:55.645 --> 00:08:57.740
+00:08:55.715 --> 00:08:57.810
 with the synthetic objects' cleanup.
 
 146
-00:08:57.740 --> 00:09:00.968
+00:08:57.810 --> 00:09:01.038
 Seven actions: turn the
 two workload policies off,
 
 147
-00:09:00.968 --> 00:09:06.006
+00:09:01.038 --> 00:09:06.076
 restore the tenant's default app management
 policy, turn the pilot policy off,
 
 148
-00:09:06.006 --> 00:09:10.415
+00:09:06.076 --> 00:09:10.485
 re-enable the legacy account, and
 disable the two synthetic objects.
 
 149
-00:09:10.415 --> 00:09:12.040
+00:09:10.485 --> 00:09:12.110
 No action is a delete.
 
 150
-00:09:12.040 --> 00:09:14.453
+00:09:12.110 --> 00:09:14.523
 The plan prints its hash for the reviewer.
 
 151
-00:09:14.453 --> 00:09:18.861
+00:09:14.523 --> 00:09:18.931
 Step five applies the plan with a
 hash nobody approved, all zeros,
 
 152
-00:09:18.861 --> 00:09:23.602
+00:09:18.931 --> 00:09:23.672
 and it stops: the plan's hash isn't
 the approved one, and nothing was sent.
 
 153
-00:09:23.602 --> 00:09:28.168
+00:09:23.672 --> 00:09:28.238
 Step six applies it with the plan's
 own hash, but without the apply switch,
 
 154
-00:09:28.168 --> 00:09:30.800
+00:09:28.238 --> 00:09:30.870
 so it's a dry run: seven
 would-apply actions,
 
 155
-00:09:30.800 --> 00:09:34.902
+00:09:30.870 --> 00:09:34.972
 with both workload policies going
 from report-only to disabled.
 
 156
-00:09:34.902 --> 00:09:40.070
+00:09:34.972 --> 00:09:40.140
 In a real stage, a reviewer who isn't
 the operator passes you that hash.
 
 157
-00:09:43.820 --> 00:09:46.336
+00:09:43.890 --> 00:09:46.406
 Step seven runs production's preflight,
 
 158
-00:09:46.336 --> 00:09:49.995
+00:09:46.406 --> 00:09:50.065
 with the test stage's smoke
 test as its promotion evidence.
 
 159
-00:09:49.995 --> 00:09:54.624
+00:09:50.065 --> 00:09:54.694
 Fourteen passes, including P F
 eleven, which runs in production only:
 
 160
-00:09:54.624 --> 00:09:59.170
+00:09:54.694 --> 00:09:59.240
 the test stage's smoke test passed,
 eight of eight, in another tenant.
 
 161
-00:09:59.170 --> 00:10:02.920
+00:09:59.240 --> 00:10:02.990
 Step eight checks the test stage's
 evidence, and it says no-go.
 
 162
-00:10:02.920 --> 00:10:06.020
+00:10:02.990 --> 00:10:06.090
 Four of nine requirement rows
 are present and passing.
 
 163
-00:10:06.020 --> 00:10:08.811
+00:10:06.090 --> 00:10:08.881
 Steps 1.1, 1.2, 1.3 and 1.5 are missing,
 
 164
-00:10:08.811 --> 00:10:15.145
+00:10:08.881 --> 00:10:15.215
 because they record their evidence
 only when they run against a tenant.
 
 165
-00:10:15.145 --> 00:10:20.070
+00:10:15.215 --> 00:10:20.140
 And the rollback row fails on dry run,
 which the go or no-go doesn't accept.
 
 166
-00:10:20.070 --> 00:10:23.608
+00:10:20.140 --> 00:10:23.678
 The exit code is one, and
 that's right for a dry run.
 
 167
-00:10:23.608 --> 00:10:28.870
+00:10:23.678 --> 00:10:28.940
 Step nine lists the four evidence
 records and the K S I's each names.
 
 168
-00:10:28.870 --> 00:10:32.910
+00:10:28.940 --> 00:10:32.980
 Step ten runs the deploy
 scripts' fifty-five tests.
 
 169
-00:10:36.660 --> 00:10:40.260
+00:10:36.730 --> 00:10:40.330
 Lab 2 is the live test
 stage, and then production.
 
 170
-00:10:40.260 --> 00:10:41.748
+00:10:40.330 --> 00:10:41.818
 Nobody has run it yet.
 
 171
-00:10:41.748 --> 00:10:46.896
+00:10:41.818 --> 00:10:46.966
 You need an Entra test tenant with
 Workload ID Premium and Entra ID P1 or P2,
 
 172
-00:10:46.896 --> 00:10:52.635
+00:10:46.966 --> 00:10:52.705
 an Azure test subscription and an Active
 Directory test forest, never production.
 
 173
-00:10:52.635 --> 00:10:58.697
+00:10:52.705 --> 00:10:58.767
 You also need an approved change record,
 the reader app and the deployment identity,
 
 174
-00:10:58.697 --> 00:11:03.969
+00:10:58.767 --> 00:11:04.039
 each with a certificate, operators
 eligible for their roles through P I M,
 
 175
-00:11:03.969 --> 00:11:07.835
+00:11:04.039 --> 00:11:07.905
 and the second labs of Chapters
 1, 4, 5, 6 and 8 already run.
 
 176
-00:11:07.835 --> 00:11:12.579
+00:11:07.905 --> 00:11:12.649
 Fill in and check the settings
 file, create the synthetic objects
 
 177
-00:11:12.579 --> 00:11:17.147
+00:11:12.649 --> 00:11:17.217
 and the pilot policy, run the
 preflight, and deploy Steps 1.1 to 1.5.
 
 178
-00:11:17.147 --> 00:11:20.058
+00:11:17.217 --> 00:11:20.128
 Then run the smoke test,
 capture the evidence,
 
 179
-00:11:20.058 --> 00:11:23.911
+00:11:20.128 --> 00:11:23.981
 rehearse the rollback, deploy
 again, and check the evidence.
 
 180
-00:11:23.911 --> 00:11:26.673
+00:11:23.981 --> 00:11:26.743
 To back it out, Step
 1.8 applies the approved
 
 181
-00:11:26.673 --> 00:11:30.147
+00:11:26.743 --> 00:11:30.217
 rollback and checks the
 tenant against the baseline.
 
 182
-00:11:30.147 --> 00:11:31.748
+00:11:30.217 --> 00:11:31.818
 The kit never deletes.
 
 183
-00:11:31.748 --> 00:11:36.410
+00:11:31.818 --> 00:11:36.480
 Production comes only when every
 go or no-go criterion is signed.
 
 184
-00:11:40.160 --> 00:11:41.547
+00:11:40.230 --> 00:11:41.617
 The federal requirement.
 
 185
-00:11:41.547 --> 00:11:44.540
+00:11:41.617 --> 00:11:44.610
 Every runbook step ends
 with a requirements table,
 
 186
-00:11:44.540 --> 00:11:47.460
+00:11:44.610 --> 00:11:47.530
 and the kit writes an
 evidence record for each row.
 
 187
-00:11:47.460 --> 00:11:52.018
+00:11:47.530 --> 00:11:52.088
 The change record and the settings
 file's hash cover NIST special
 
 188
-00:11:52.018 --> 00:11:56.660
+00:11:52.088 --> 00:11:56.730
 publication eight hundred fifty-three
 C M three, C M five and A C five.
 
 189
-00:11:56.660 --> 00:12:01.027
+00:11:56.730 --> 00:12:01.097
 The preflight's checks on the
 deployment identity and the reader app
 
 190
-00:12:01.027 --> 00:12:05.547
+00:12:01.097 --> 00:12:05.617
 cover authenticator management and
 least privilege, I A five and A C six.
 
 191
-00:12:05.547 --> 00:12:10.598
+00:12:05.617 --> 00:12:10.668
 Its baseline and policy-state checks cover
 continuous monitoring and change testing.
 
 192
-00:12:10.598 --> 00:12:16.548
+00:12:10.668 --> 00:12:16.618
 The smoke test covers account, inventory,
 identifier, access and audit controls.
 
 193
-00:12:16.548 --> 00:12:20.698
+00:12:16.618 --> 00:12:20.768
 The SHA256SUMS file covers A U nine.
 
 194
-00:12:20.698 --> 00:12:25.826
+00:12:20.768 --> 00:12:25.896
 And the rollback record covers C M
 three and C P ten, system recovery,
 
 195
-00:12:25.826 --> 00:12:30.209
+00:12:25.896 --> 00:12:30.279
 but only from an applied rollback;
 a dry run isn't accepted.
 
 196
-00:12:30.209 --> 00:12:34.121
+00:12:30.279 --> 00:12:34.191
 K S I's are FedRAMP twenty X
 indicators for cloud providers,
 
 197
-00:12:34.121 --> 00:12:37.135
+00:12:34.191 --> 00:12:37.205
 and every alignment is
 the program's reading.
 
 198
-00:12:37.135 --> 00:12:41.470
+00:12:37.205 --> 00:12:41.540
 The assessor and the authorizing
 official decide each control.
 
 199
-00:12:45.220 --> 00:12:47.195
+00:12:45.290 --> 00:12:47.265
 Check yourself with two questions.
 
 200
-00:12:47.195 --> 00:12:51.482
+00:12:47.265 --> 00:12:51.552
 First: the rollback's plan hash
 isn't the one the reviewer approved.
 
 201
-00:12:51.482 --> 00:12:52.957
+00:12:51.552 --> 00:12:53.027
 What does apply mode do?
 
 202
-00:12:52.957 --> 00:12:54.182
+00:12:53.027 --> 00:12:54.252
 The answer is b.
 
 203
-00:12:54.182 --> 00:12:57.832
+00:12:54.252 --> 00:12:57.902
 It stops before it sends anything,
 and says nothing was sent.
 
 204
-00:12:57.832 --> 00:12:59.382
+00:12:57.902 --> 00:12:59.452
 You saw it in step five.
 
 205
-00:12:59.382 --> 00:13:03.708
+00:12:59.452 --> 00:13:03.778
 Second: in the dry run, why does
 the evidence check end no-go?
 
 206
-00:13:03.708 --> 00:13:04.806
+00:13:03.778 --> 00:13:04.876
 The answer is b.
 
 207
-00:13:04.806 --> 00:13:10.207
+00:13:04.876 --> 00:13:10.277
 Steps 1.1 to 1.5 record their evidence
 only when they run against a tenant,
 
 208
-00:13:10.207 --> 00:13:15.608
+00:13:10.277 --> 00:13:15.678
 and a dry-run rollback records dry run,
 which the go or no-go doesn't accept.
 
 209
-00:13:15.608 --> 00:13:19.920
+00:13:15.678 --> 00:13:19.990
 So a fixture stage can never pass the
 evidence check, and that's by design.
 
 210
-00:13:19.920 --> 00:13:22.347
+00:13:19.990 --> 00:13:22.417
 The module page has three more questions,
 
 211
-00:13:22.347 --> 00:13:25.210
+00:13:22.417 --> 00:13:25.280
 each linked to the
 section that answers it.
 
 212
-00:13:28.960 --> 00:13:29.785
+00:13:29.030 --> 00:13:29.855
 To sum up.
 
 213
-00:13:29.785 --> 00:13:34.786
+00:13:29.855 --> 00:13:34.856
 You dry-ran the runbook's own scripts: a
 settings file refused for its placeholders,
 
 214
-00:13:34.786 --> 00:13:39.346
+00:13:34.856 --> 00:13:39.416
 a preflight that says go with one warning,
 a smoke test on synthetic objects,
 
 215
-00:13:39.346 --> 00:13:43.538
+00:13:39.416 --> 00:13:43.608
 a rollback plan refused without its
 approved hash and dry-run with it,
 
 216
-00:13:43.538 --> 00:13:47.362
+00:13:43.608 --> 00:13:47.432
 a production preflight that checks
 the test stage's smoke test,
 
 217
-00:13:47.362 --> 00:13:50.672
+00:13:47.432 --> 00:13:50.742
 and an evidence check that
 says no-go on a fixture stage.
 
 218
-00:13:50.672 --> 00:13:55.798
+00:13:50.742 --> 00:13:55.868
 The evidence an ISSO keeps for
 each stage is the evidence folder,
 
 219
-00:13:55.798 --> 00:14:01.988
+00:13:55.868 --> 00:14:02.058
 with one record per requirement row, the
 run folders they cover, the operator's
 
 220
-00:14:01.988 --> 00:14:08.372
+00:14:02.058 --> 00:14:08.442
 input files, and the SHA256SUMS file, which
 the ISSO checks with sha256sum dash c.
 
 221
-00:14:08.372 --> 00:14:11.834
+00:14:08.442 --> 00:14:11.904
 Before you run a stage, work
 through the chapter's checklist.
 
 222
-00:14:11.834 --> 00:14:13.610
+00:14:11.904 --> 00:14:13.680
 And that's the end of the path.
 
 223
-00:14:13.610 --> 00:14:18.590
+00:14:13.680 --> 00:14:18.660
 Go back to the learning path, or to the
 Labs page for every lab in the workbook.

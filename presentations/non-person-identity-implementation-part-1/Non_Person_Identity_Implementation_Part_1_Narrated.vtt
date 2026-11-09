@@ -960,329 +960,329 @@ New ones start under the cap, which
 addresses the SCuBA certificate policy.
 
 202
-00:12:22.970 --> 00:12:26.082
+00:12:23.140 --> 00:12:26.252
 The rest of the third gate is
 about where credentials live.
 
 203
-00:12:26.082 --> 00:12:31.221
+00:12:26.252 --> 00:12:31.391
 Keep private keys in Azure Key Vault or
 a hardware module, never on a file share.
 
 204
-00:12:31.221 --> 00:12:35.747
+00:12:31.391 --> 00:12:35.917
 Key Vault renews a certificate
 automatically only when it's self-signed,
 
 205
-00:12:35.747 --> 00:12:39.520
+00:12:35.917 --> 00:12:39.690
 or comes from a partnered
 authority, DigiCert or GlobalSign.
 
 206
-00:12:39.520 --> 00:12:43.047
+00:12:39.690 --> 00:12:43.217
 Certificates from an agency's
 own authority aren't renewed,
 
 207
-00:12:43.047 --> 00:12:45.783
+00:12:43.217 --> 00:12:45.953
 though the vault can
 email before they expire.
 
 208
-00:12:45.783 --> 00:12:47.932
+00:12:45.953 --> 00:12:48.102
 And a renewed certificate in the vault
 
 209
-00:12:47.932 --> 00:12:50.483
+00:12:48.102 --> 00:12:50.653
 doesn't change the app
 registration by itself.
 
 210
-00:12:50.483 --> 00:12:53.619
+00:12:50.653 --> 00:12:53.789
 Microsoft's own procedure
 for SQL Server on Arc
 
 211
-00:12:53.619 --> 00:12:56.532
+00:12:53.789 --> 00:12:56.702
 uploads the new certificate
 as a separate step.
 
 212
-00:12:56.532 --> 00:13:00.870
+00:12:56.702 --> 00:13:01.040
 So automate that upload, or make it
 a named owner's task with a date.
 
 213
-00:13:00.870 --> 00:13:03.133
+00:13:01.040 --> 00:13:03.303
 A client secret is an exception.
 
 214
-00:13:03.133 --> 00:13:05.951
+00:13:03.303 --> 00:13:06.121
 The governance office
 and the CISO approve it,
 
 215
-00:13:05.951 --> 00:13:09.782
+00:13:06.121 --> 00:13:09.952
 it lasts at most six months, and
 it's never renewed automatically.
 
 216
-00:13:09.782 --> 00:13:12.864
+00:13:09.952 --> 00:13:13.034
 A traditional account that
 has to stay gets a long
 
 217
-00:13:12.864 --> 00:13:15.795
+00:13:13.034 --> 00:13:15.965
 random password in the
 vault, an owner and a date.
 
 218
-00:13:15.795 --> 00:13:19.200
+00:13:15.965 --> 00:13:19.370
 And a new federated credential
 is a credential change,
 
 219
-00:13:19.200 --> 00:13:21.900
+00:13:19.370 --> 00:13:22.070
 approved and recorded like any other.
 
 220
-00:13:25.650 --> 00:13:29.404
+00:13:25.820 --> 00:13:29.574
 The workbook's fourth chapter holds
 the policy as a reviewed file,
 
 221
-00:13:29.404 --> 00:13:32.462
+00:13:29.574 --> 00:13:32.632
 compares it with the tenant,
 and plans the difference.
 
 222
-00:13:32.462 --> 00:13:37.012
+00:13:32.632 --> 00:13:37.182
 Against the fictional tenant, the
 diff has six adds and one change.
 
 223
-00:13:37.012 --> 00:13:39.934
+00:13:37.182 --> 00:13:40.104
 The plan has eight writes:
 the default policy,
 
 224
-00:13:39.934 --> 00:13:45.225
+00:13:40.104 --> 00:13:45.395
 one dated exception policy and its assignment,
 and the property lock on five apps.
 
 225
-00:13:45.225 --> 00:13:49.400
+00:13:45.395 --> 00:13:49.570
 Nothing is sent, and the write path
 can't loosen or drop a restriction.
 
 226
-00:13:49.400 --> 00:13:53.387
+00:13:49.570 --> 00:13:53.557
 Then the rotation plan joins Key
 Vault to the app registrations.
 
 227
-00:13:53.387 --> 00:13:58.175
+00:13:53.557 --> 00:13:58.345
 A rotation is raised sixty days before
 expiry, and an owner approves it.
 
 228
-00:13:58.175 --> 00:13:59.975
+00:13:58.345 --> 00:14:00.145
 The vault makes the next version.
 
 229
-00:13:59.975 --> 00:14:02.725
+00:14:00.145 --> 00:14:02.895
 The new certificate goes
 on beside the old one.
 
 230
-00:14:02.725 --> 00:14:05.739
+00:14:02.895 --> 00:14:05.909
 The owner confirms the
 workload signs in with it,
 
 231
-00:14:05.739 --> 00:14:08.300
+00:14:05.909 --> 00:14:08.470
 and seven days later
 the old one comes off.
 
 232
-00:14:08.300 --> 00:14:13.750
+00:14:08.470 --> 00:14:13.920
 Here, one certificate renews in the vault,
 one is attached, and one is removed.
 
 233
-00:14:13.750 --> 00:14:18.500
+00:14:13.920 --> 00:14:18.670
 One app's certificate isn't in the vault
 at all, and three apps still hold secrets.
 
 234
-00:14:18.500 --> 00:14:21.320
+00:14:18.670 --> 00:14:21.490
 Secrets are replaced, not rotated.
 
 235
-00:14:25.070 --> 00:14:29.220
+00:14:25.240 --> 00:14:29.390
 On the federal side, authenticator
 management is the main requirement.
 
 236
-00:14:29.220 --> 00:14:31.449
+00:14:29.390 --> 00:14:31.619
 The evidence is the policy export,
 
 237
-00:14:31.449 --> 00:14:35.908
+00:14:31.619 --> 00:14:36.078
 the kit runs for credentials and
 secrets, and the rotation calendar.
 
 238
-00:14:35.908 --> 00:14:39.167
+00:14:36.078 --> 00:14:39.337
 The policy also addresses
 three SCuBA policies:
 
 239
-00:14:39.167 --> 00:14:43.569
+00:14:39.337 --> 00:14:43.739
 no app passwords, and capped
 password and certificate lifetimes.
 
 240
-00:14:43.569 --> 00:14:47.650
+00:14:43.739 --> 00:14:47.820
 They're SHOULD policies in ScubaGear,
 not required configurations,
 
 241
-00:14:47.650 --> 00:14:49.982
+00:14:47.820 --> 00:14:50.152
 and their report is filed with the gate.
 
 242
-00:14:49.982 --> 00:14:52.652
+00:14:50.152 --> 00:14:52.822
 Audit requirements cover
 credential changes,
 
 243
-00:14:52.652 --> 00:14:56.144
+00:14:52.822 --> 00:14:56.314
 so the entries for added
 credentials are logged and reviewed.
 
 244
-00:14:56.144 --> 00:14:59.292
+00:14:56.314 --> 00:14:59.462
 To validate, the credential
 check shows nothing issued
 
 245
-00:14:59.292 --> 00:15:02.370
+00:14:59.462 --> 00:15:02.540
 after the effective date that
 runs longer than the cap.
 
 246
-00:15:02.370 --> 00:15:07.432
+00:15:02.540 --> 00:15:07.602
 Every credential that expires within sixty
 days has an owner and a renewal date.
 
 247
-00:15:07.432 --> 00:15:12.051
+00:15:07.602 --> 00:15:12.221
 The secrets check shows each app still
 on a secret is in a conversion wave,
 
 248
-00:15:12.051 --> 00:15:14.283
+00:15:12.221 --> 00:15:14.453
 or has an exception with an end date.
 
 249
-00:15:14.283 --> 00:15:16.260
+00:15:14.453 --> 00:15:16.430
 App management policies are free,
 
 250
-00:15:16.260 --> 00:15:19.721
+00:15:16.430 --> 00:15:19.891
 and Microsoft lists their calls
 for the government clouds.
 
 251
-00:15:19.721 --> 00:15:22.561
+00:15:19.891 --> 00:15:22.731
 To roll back, give one
 application a policy
 
 252
-00:15:22.561 --> 00:15:26.500
+00:15:22.731 --> 00:15:26.670
 exception with an end date,
 in the exception register.
 
 253
-00:15:30.150 --> 00:15:35.050
+00:15:30.420 --> 00:15:35.320
 To close Part 1, here's what each gate
 leaves behind, and where Part 2 picks it up.
 
 254
-00:15:35.050 --> 00:15:37.986
+00:15:35.320 --> 00:15:38.256
 The first gate leaves
 the record, with owners,
 
 255
-00:15:37.986 --> 00:15:42.350
+00:15:38.256 --> 00:15:42.620
 sponsors and risk, plus the register
 and the SQL Server hand-off.
 
 256
-00:15:42.350 --> 00:15:46.162
+00:15:42.620 --> 00:15:46.432
 Gate four restores a removed
 grant only from that export.
 
 257
-00:15:46.162 --> 00:15:48.387
+00:15:46.432 --> 00:15:48.657
 Gate six runs the orphan rule.
 
 258
-00:15:48.387 --> 00:15:51.673
+00:15:48.657 --> 00:15:51.943
 The second gate leaves a target
 and a date for every row,
 
 259
-00:15:51.673 --> 00:15:55.250
+00:15:51.943 --> 00:15:55.520
 the waves and their rollback,
 and the premium license scope.
 
 260
-00:15:55.250 --> 00:15:58.064
+00:15:55.520 --> 00:15:58.334
 Gate four puts the most
 important single-tenant
 
 261
-00:15:58.064 --> 00:16:00.737
+00:15:58.334 --> 00:16:01.007
 service principals
 under workload policies.
 
 262
-00:16:00.737 --> 00:16:05.200
+00:16:01.007 --> 00:16:05.470
 Gate five converts wave by wave,
 with a thirty-day parallel run.
 
 263
-00:16:05.200 --> 00:16:08.726
+00:16:05.470 --> 00:16:08.996
 The third gate leaves the
 policy, the rotation calendar,
 
 264
-00:16:08.726 --> 00:16:11.025
+00:16:08.996 --> 00:16:11.295
 the exceptions and the SCuBA result.
 
 265
-00:16:11.025 --> 00:16:15.774
+00:16:11.295 --> 00:16:16.044
 Gate five drops a secret only after the
 new credential carries real traffic,
 
 266
-00:16:15.774 --> 00:16:18.488
+00:16:16.044 --> 00:16:18.758
 and gate six checks
 credentials every week.
 
 267
-00:16:18.488 --> 00:16:21.842
+00:16:18.758 --> 00:16:22.112
 To build Part 1's code,
 use the developer workbook,
 
 268
-00:16:21.842 --> 00:16:25.363
+00:16:22.112 --> 00:16:25.633
 Building Non-Person Identity,
 chapters one to four.
 
 269
-00:16:25.363 --> 00:16:28.040
+00:16:25.633 --> 00:16:28.310
 Each has its labs and a narrated tour.
