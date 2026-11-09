@@ -473,7 +473,7 @@ One more: if a server disconnects, its guest assignments are kept locally for 14
 {
   const s = content(M2, "RHEL on AWS under Ansible: one owner per setting");
   tag(s, "Who");
-  const tb = table(s, "Owners", 1.45, [2.0, 5.2], ["Rule (design guidance)", "What it means"], [
+  const tb = table(s, "Owners", 1.45, [2.0, 4.65], ["Rule (design guidance)", "What it means"], [
     ["1  Owner is an attribute", "CMDB config_owner: Intune, Arc machine configuration, Configuration Manager, Ansible or the platform"],
     ["2  Write only what you own", "Changing playbooks target only config_owner Ansible: inventory group plus an assertion"],
     ["3  Onboarding isn't owning", "After the Arc agent connects, Ansible doesn't set what machine configuration sets"],
