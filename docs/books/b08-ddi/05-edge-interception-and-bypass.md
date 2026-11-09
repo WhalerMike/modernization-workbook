@@ -107,7 +107,7 @@ In production, set the Edge and Chrome policies through Group Policy or Intune r
 
 ### Alert on resolution-path anomalies
 
-Prevention is never complete, so the program also watches for its failure: hosts that make outbound connections but whose queries never appear in the governed resolver logs, any use of a fallback public resolver, TCP 853 or UDP 853 attempts to unapproved destinations, and DoH connections to known public DoH endpoints. [Chapter 11](11-operating-the-control-plane.md) turns these into monitored evidence.
+Prevention is never complete, so the program also watches for its failure: hosts that make outbound connections but whose queries never appear in the governed resolver logs, any use of a fallback public resolver, TCP 853 or UDP 853 attempts to unapproved destinations, and DoH connections to known public DoH endpoints. [Chapter 11](11-operating-the-control-plane.md#resolution-path-anomalies) turns these into monitored evidence.
 
 ## DHCP option 6 and rogue DHCP
 

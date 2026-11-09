@@ -149,3 +149,13 @@ At the user's request, every certificate-dependent book maps its certificates to
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+Item 19 of the Nov 7 sort: Book 00's R-018 and Chapter 08 say the drift reporter checks the mirror's last sync and alerts if it is stale for more than 24 hours; D.3 had no such check. Gitea facts from the API definition (`https://gitea.com/swagger.v1.json`, version 29.0.0+dev-160-g55186ca39b, accessed Nov 9, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Drift reporter checks the upstream pull mirror's last sync; a hook can't, because mirror syncs don't pass through receive hooks | D.3 | verified (mechanism, settled) | git-scm githooks; F.1 (#47, #66, #79) |
+| 2 | `GET /api/v1/repos/{owner}/{repo}` returns `mirror_updated` and `mirror_last_sync_at` date-time fields | D.3 | verified (new) | Gitea API definition, `Repository` definition, [^aB-gitea-mirror-sync]. The definition gives no description of either field; text asks to confirm which one moves on **Synchronize Now** |
+| 3 | 24-hour stale threshold | D.3 | restated-as-design | Program threshold, Book 00 Appendix A R-018 and Ch08 repository conventions |

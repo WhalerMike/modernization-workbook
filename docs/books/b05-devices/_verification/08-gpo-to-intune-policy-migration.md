@@ -184,3 +184,14 @@ Pages read on 2026-10-30 through the Microsoft Learn documentation service; no p
 | U3 | Migrate is best effort: alternate settings, failures listed in Notifications; Migrate disabled for AppLocker and firewall rule settings, which go to Endpoint security | Phase 3; adopt table; supports the existing firewall-rules statement | verified (section "What you need to know"); footnote access date moved to Oct 30, 2026 | `c08-gpa-migrate` |
 | U4 | Graph beta `groupPolicyMigrationReports`: list needs DeviceManagementConfiguration.Read.All (delegated or application); create needs ReadWrite; `migrationReadiness` none/partial/complete/error/notApplicable and supported-setting counts; national cloud table lists global, US Gov L4 and L5 | Adopt table | verified. GCC reading inferred from the GCC boundary fact (Book 14, Ch 03) | `c08-gpa-graph` |
 | U5 | Intune security baselines: same Microsoft team as the GPO baselines; settings specific to on-premises domain controllers excluded | Adopt table | verified | `c08-baselines` |
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+Item 263 of the Nov 7 sort: Appendix A row 37 named a setting ES-001 didn't have, so its ID had been cleared to "Not yet specified." ES-001 now sets it and the ID is restored.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | `AllowIntrusionPreventionSystem` is deprecated in the Policy CSP, defaults to 1 (Allowed), and changes aren't applied with tamper protection on | ES-001 table, footnote c08-ips | verified (new) | Learn, Policy CSP - Defender, AllowIntrusionPreventionSystem (accessed Nov 9, 2026) |
+| H2 | Intune's Defender Antivirus policy exposes "Allow Intrusion Prevention System" (Not configured / No / Yes) | ES-001 table, footnote c08-ips | verified (new) | Learn, Settings for Microsoft Defender Antivirus policy for tenant attached devices, Real-time protection (accessed Nov 9, 2026) |
+| H3 | ES-001 sets network inspection to On | ES-001 table, footnote c08-ips | restated-as-design | Program decision (Nov 7 sort, item 263); value equals the default |
+
