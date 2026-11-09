@@ -148,6 +148,19 @@ foreach ($n in $names) {
 
 `Resolve-DnsName` and its `-Type`, `-DnsOnly` and `-Server` parameters are from the DnsClient module.[^c11-resolve] Add the site-specific locator records (`_ldap._tcp.<site>._sites.dc._msdcs.<domain>`) for every AD site, because a missing site record sends clients to remote domain controllers rather than failing outright.
 
+### Resolution-path anomalies
+
+[Chapter 05](05-edge-interception-and-bypass.md#alert-on-resolution-path-anomalies) blocks the routes around the governed resolver; prevention is never complete, so four detections watch for the traffic that gets through. Each runs in the SIEM against logs it already receives, and each finding opens a ticket. The rules are the program's starting points; tune them like the metric thresholds above.
+
+| Anomaly | What it means | Logs it joins | Program alert rule |
+|---|---|---|---|
+| Missing query logs | A device makes outbound connections but its queries never reach the governed resolver: a hard-coded resolver, an encrypted DNS client the policy missed, or a resolver that has stopped logging | Firewall or flow logs by source address, the governed resolver's query log, and the DHCP lease history to name the device | A device with outbound connections and no governed-resolver queries for a full day |
+| Fallback resolver use | A resolver forwarded to a public fallback resolver instead of Protective DNS. CISA allows fallback resolvers only while Protective DNS is unavailable, and expects an alert when they're used ([Chapter 05](05-edge-interception-and-bypass.md)) | The resolvers' forwarding logs, and firewall logs of port 53 traffic from the resolvers to any address outside the forwarding list | Any use |
+| Port 853 attempts | DNS over TLS (TCP 853) or DNS over QUIC (UDP 853) to a destination other than an approved resolver; the edge blocks both, so each attempt is a client set up to bypass the governed path | Firewall deny logs for TCP and UDP 853, with the DHCP lease history | Any attempt from an agency device |
+| Public DoH connections | DNS over HTTPS to a known public DoH service, which redirect-dns can't see ([Chapter 05](05-edge-interception-and-bypass.md)) | Response-policy hits on known DoH server names, and firewall or proxy logs of connections to public DoH addresses | Any connection |
+
+: Resolution-path anomalies and how each is detected {.striped .hover}
+
 ### Drift detection
 
 During the hybrid period the same zone exists in two places, and the copies diverge: a record added on one side by hand, a dynamic registration that reached only the old server, an import that skipped a type. Drift detection compares them on a schedule and opens a ticket when they differ. The method is simple: export both sides, normalize each record to a name, type and data tuple (excluding SOA and NS, which each platform manages itself), and report what exists only on one side. After migration the same job compares the policy plane, as the source of truth, with every consumer it synchronizes to, which is how the "sync lag and sync failure" risk in [Chapter 12](12-selection-cost-and-residual-risk.md) is caught.
@@ -193,6 +206,7 @@ The policy plane should produce the continuous telemetry and audit trail that Fe
 - Governed-resolver coverage: the percentage of queries answered by the governed resolver. (Resolution-path consistency, the success measure in [Chapter 12](12-selection-cost-and-residual-risk.md), is a different measure: the percentage of tested names that return the intended answer from every governed origin.)
 - Stale record and dangling CNAME rates for hygiene reporting.
 - Drift reports and SRV check history for the migration period.
+- Resolution-path anomaly reports: the daily counts for the four detections in [Resolution-path anomalies](#resolution-path-anomalies) (missing query logs, fallback resolver use, port 853 attempts and public DoH connections), with the tickets each one opened.
 
 These artifacts support the control mapping in [Chapter 03](03-federal-requirements.md), continuous monitoring, FedRAMP evidence packages and Zero Trust maturity assessments.
 

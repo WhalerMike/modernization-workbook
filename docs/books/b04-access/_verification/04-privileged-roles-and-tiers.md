@@ -99,3 +99,16 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-1 | Example group `PRV-T2-UserAdmin-AU-Finance` renamed `PRV-T2-UserAdmin-Finance` (and `PRV-T2-GroupsAdmin-AU-Finance` to `PRV-T2-GroupsAdmin-Finance`); the scope segment names the AU's department | Group naming paragraph (Book 02 comparison) | decision of Nov 8; design naming | Mike's decision of Nov 8, 2026, item 1 |
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+Item 204 of the Nov 7 sort: the tiers table said "three places with three meanings," but AD Tier 0 (this chapter), the Tier 1 server policy (Chapter 07, CA026) and the device security tier (Book 05 Ch08; Book 03 Ch06) are further meanings. Book 05 Ch03's coverage tiers are one more meaning, added so the count (seven) is complete. Heading renamed; its old anchor kept for Chapter 06's link.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| T1 | AD DS tier model: Tier 0 identity control plane (DCs, AD FS, AD CS, Entra Connect, Tier 0 admins), Tier 1 member servers and enterprise applications, Tier 2 end-user devices and accounts | Tiers table, Active Directory tier row | verified (new) | c04-ad-tier <https://learn.microsoft.com/windows-server/identity/ad-ds/tier-model> |
+| T2 | AD tier model puts member servers and server administrator roles in Tier 1 | Server tier row | verified (new) | c04-ad-tier |
+| T3 | Server tier is used only as Tier 1 (CA026, mapped from CA-011 "Tier 1 servers") | Server tier row | restated (internal) | Chapter 07 policy table and numbering map |
+| T4 | Device `extensionAttribute11` values `Tier0`, `Tier1`, `Tier2`, `UNPOSITIONED`; `Tier0` is PAWs, `Tier2` standard workstations | Device security tier row | restated (internal) | Book 05 Ch08 device attribute schema, CP-002, CP-003 |
+| T5 | Four coverage tiers, managed to isolated or retired | Coverage tier row | restated (internal) | Book 05 Ch03, What Intune and Arc don't reach |
+| T6 | The AD tier model requires a PAW of the same tier for each tier | Paragraph after the table | verified (new) | c04-ad-tier, section "Privileged access workstations (PAWs) required for each tier" |

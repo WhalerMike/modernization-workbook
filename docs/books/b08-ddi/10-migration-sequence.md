@@ -31,7 +31,7 @@ This is the book's canonical sequence (Inventory → Coexist → Migrate authori
 - **Phase 1 — Inventory and baseline.** Export every AD DNS zone, SRV record, conditional forwarder and DHCP scope. Document current resolution paths, including SD-WAN redirect-dns targets, and the OCSP and CRL endpoints in use.
 - **Phase 2 — Deploy coexistence.** Stand up the DDI platform's resolvers and its Microsoft DNS and DHCP synchronization. Establish conditional forwarding so that both systems can answer during the transition. Every new resolver forwards its egress resolution through Protective DNS from the day it is deployed.
 - **Phase 3 — Migrate authority.** Move authoritative zones and DHCP scopes to the DDI platform, zone by zone, and move clients onto the governed resolvers in waves. Retarget SD-WAN redirect-dns to network-addressable agency resolvers ([Chapter 08](08-reference-architecture.md), Decision 1).
-- **Phase 4 — Cloud federation.** Enable cloud discovery and IPAM federation with AWS, Azure and Google Cloud, and VMware where it applies. Validate private endpoint resolution end to end from every origin.
+- **Phase 4 — Cloud federation.** Enable cloud discovery and IPAM federation with AWS, Azure and Google Cloud, and VMware where it applies. Validate private endpoint resolution end to end from every origin, including Oracle Cloud Infrastructure private endpoints (such as `<prefix>.adb.<region>.oraclecloud.com`) where the agency holds its own Oracle tenancy and VCN ([Chapter 07](07-cloud-private-endpoints-and-ipam.md#what-this-means-for-the-agencys-estate)).
 - **Phase 5 — Decommission AD DNS and DHCP.** Only after full inventory reconciliation and successful failover testing. Preserve the SRV and `_msdcs` records that remaining domain controllers and domain-joined systems still need.
 - **Phase 6 — Policy and compliance hardening.** Check that Protective DNS forwarding holds on every resolver, and enable encrypted DNS, DNSSEC signing and validation where required, and continuous monitoring dashboards, and assemble the evidence in [Chapter 11](11-operating-the-control-plane.md).
 
@@ -39,21 +39,21 @@ Each phase ends with a rollback point and a resolution-path consistency test (th
 
 ## How the operational playbook maps to the six phases
 
-The program's operational DNS playbook breaks the same work into eleven smaller steps, written for the common case of an Azure-heavy estate. The table maps them onto the six phases so that a team working from the playbook and a program office tracking the phases see the same progress. The durations are the program's planning estimates for a single forest and a hub-and-spoke Azure footprint; they are not commitments, and the gates, not the estimates, decide when a step ends. The step numbers are the playbook's own labels, not the execution order: the phase column sets the order, and a step in a later phase doesn't start before the earlier phase is finished.
+The program's operational DNS playbook breaks the same work into eleven smaller steps, written for the common case of an Azure-heavy estate. The table maps them onto the six phases so that a team working from the playbook and a program office tracking the phases see the same progress. It also maps each step onto the six canon phases every adapter reports against (Discover, Normalize, Map, Migrate, Validate and Decommission, in [Book 02, Chapter 04](../b02-identity/04-the-hidden-migration-surface.md#canon-phase-mapping)), so a DNS migration can be read on the same scale as the other adapters. Most steps fall in canon Migrate, because that is where the DNS-specific execution happens; the playbook's own mapping assigns no step to Normalize. The durations are the program's planning estimates for a single forest and a hub-and-spoke Azure footprint; they are not commitments, and the gates, not the estimates, decide when a step ends. The step numbers are the playbook's own labels, not the execution order: the phase column sets the order, and a step in a later phase doesn't start before the earlier phase is finished.
 
-| Playbook step | Book phase | Validation that closes it | Planning estimate |
-|---|---|---|---|
-| 0 — Assessment | 1 Inventory | Every DNS server queried without error; complete zone, forwarder and SRV inventory; health findings reviewed | 1–2 days |
-| 1 — Deploy cloud private resolver | 2 Coexist | Resolver provisioned; inbound endpoint address recorded; outbound endpoint and ruleset in place | 1 day |
-| 2 — Create private zones; import non-AD zones | 3 Migrate authority | Record counts match source and target; answers correct from cloud workloads | 2–3 days |
-| 3 — Configure forwarding rulesets | 2 Coexist | Resolution works in both directions: cloud to on-premises and on-premises to cloud | 1–2 days |
-| 4 — Migrate conditional forwarders | 3 Migrate authority | Every previously forwarded namespace resolves from the cloud | 1 day |
-| 5 — Migrate GlobalNames zone | 3 Migrate authority | Single-label names resolve through the DNS suffix search list | 1 day |
-| 6 — Private endpoint DNS zones | 4 Federate clouds | Private endpoint names resolve to private addresses from on-premises and every cloud | 2 days |
-| 7 — Migrate reverse lookup zones | 3 Migrate authority | Reverse lookups return the right names; zones align with IPAM | 1–2 days |
-| 8 — Move clients in waves | 3 Migrate authority | No resolution, authentication or application failures in each wave | 1–2 weeks |
-| 9 — SRV validation and monitoring | 5 Decommission (gate) | Every critical SRV record resolves from every location for 30 consecutive days | 30 days |
-| 10 — Decommission legacy DNS servers | 5 Decommission | No client impact after a 7-day burn-in; no queries reach the old servers | 1–2 weeks |
+| Playbook step | Book phase | Canon phase ([Book 02](../b02-identity/04-the-hidden-migration-surface.md#canon-phase-mapping)) | Validation that closes it | Planning estimate |
+|---|---|---|---|---|
+| 0 — Assessment | 1 Inventory | 1 Discover | Every DNS server queried without error; complete zone, forwarder and SRV inventory; health findings reviewed | 1–2 days |
+| 1 — Deploy cloud private resolver | 2 Coexist | 4 Migrate (infrastructure prerequisite) | Resolver provisioned; inbound endpoint address recorded; outbound endpoint and ruleset in place | 1 day |
+| 2 — Create private zones; import non-AD zones | 3 Migrate authority | 3 Map, 4 Migrate | Record counts match source and target; answers correct from cloud workloads | 2–3 days |
+| 3 — Configure forwarding rulesets | 2 Coexist | 3 Map, 4 Migrate | Resolution works in both directions: cloud to on-premises and on-premises to cloud | 1–2 days |
+| 4 — Migrate conditional forwarders | 3 Migrate authority | 4 Migrate | Every previously forwarded namespace resolves from the cloud | 1 day |
+| 5 — Migrate GlobalNames zone | 3 Migrate authority | 4 Migrate | Single-label names resolve through the DNS suffix search list | 1 day |
+| 6 — Private endpoint DNS zones | 4 Federate clouds | 4 Migrate | Private endpoint names resolve to private addresses from on-premises and every cloud | 2 days |
+| 7 — Migrate reverse lookup zones | 3 Migrate authority | 4 Migrate | Reverse lookups return the right names; zones align with IPAM | 1–2 days |
+| 8 — Move clients in waves | 3 Migrate authority | 4 Migrate, 5 Validate | No resolution, authentication or application failures in each wave | 1–2 weeks |
+| 9 — SRV validation and monitoring | 5 Decommission (gate) | 5 Validate | Every critical SRV record resolves from every location for 30 consecutive days | 30 days |
+| 10 — Decommission legacy DNS servers | 5 Decommission | 6 Decommission | No client impact after a 7-day burn-in; no queries reach the old servers | 1–2 weeks |
 
 Phase 6 (harden and evidence) has no playbook step of its own because its work runs through every step: logging is enabled in step 1, evidence is filed at the close of each step, and the hardening controls in [Chapter 05](05-edge-interception-and-bypass.md) and [Chapter 06](06-dns-identity-and-dnssec.md) are switched on once authority has moved, except Protective DNS forwarding, which every new resolver has from Phase 2 and which Phase 6 checks.
 

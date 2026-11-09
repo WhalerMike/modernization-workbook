@@ -134,3 +134,14 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (acme) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-acme |
 | 3 | ACME clients named (Posh-ACME, lego) aren't CyberArk-tested; non-FIPS ACME servers | Certificate automation; new section | added: CyberArk tested certbot, win-acme, acme.sh; ACME servers not in FIPS mode | CyberArk 26.1 ACME; Deploying on Windows Server |
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+Item 407 of the Nov 7 sort: Chapter 05 said Chapter 11 turns four resolution-path anomalies into monitored evidence, and Chapter 11 had none of them.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | Four detections: missing query logs, fallback resolver use, port 853 attempts, public DoH connections; logs joined; alert rules | Resolution-path anomalies (new subsection) | restated-as-design (program starting points) | Chapter 05, Alert on resolution-path anomalies |
+| H2 | CISA allows public fallback resolvers only when Protective DNS is unavailable, with alerting when used | Same, fallback row | verified (settled in Chapter 05) | c05-cisaedns, CISA Encrypted DNS Implementation Guidance §3.3 |
+| H3 | DoT uses TCP 853 and DoQ UDP 853; both blockable by port except to approved resolvers; DoH needs RPZ on known DoH names plus firewall rules against public DoH addresses | Same, port 853 and DoH rows | verified (settled in Chapter 05) | c05-nist81, c05-cisaedns |
+| H4 | Daily counts of the four detections, with tickets, added to the compliance evidence list | Compliance evidence | restated-as-design | Program |
