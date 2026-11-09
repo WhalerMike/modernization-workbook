@@ -148,6 +148,8 @@ This chapter is the operating model. The [Provider Notices implementation guide]
 | Write and test the routing rules | The guide, [Gate 6](../guides/provider-notices-implementation.md#step-6-route-notices-to-owners) |
 | Schedule the weekly run, send the digest and check the evidence | The guide, [Gate 7](../guides/provider-notices-implementation.md#step-7-digest-and-evidence) |
 | Try the whole loop without a tenant | The kit's fixtures, from the guide's *Try it* boxes |
+| Learn the gates in order, with a lab on fixtures and a knowledge check for each | The [Provider Notices learning path](../../training/provider-notices/index.md) |
+| Build or change the code behind the kit | The developer workbook, [*Building Provider Notices*](../../project-plans/developer-workbooks/provider-notices/index.md) |
 
 : Where each part lives {.striped .hover}
 

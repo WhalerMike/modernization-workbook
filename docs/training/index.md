@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -36,6 +36,7 @@ listing:
       - "!privileged-access/**"
       - "!attribute-driven-migration/**"
       - "!non-person-identity/**"
+      - "!provider-notices/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -119,6 +120,10 @@ Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../
 ## Non-Person Identity learning path
 
 Eleven modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, drift and evidence, and the deployment to test, then production. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
+
+## Provider Notices learning path
+
+Nine modules on the notices cloud providers send about the agency's own estate, in the order of the seven gates of the [provider notices implementation guide](../books/guides/provider-notices-implementation.md): why notices go unread and the one record every notice becomes; Azure Service Health with Service Health alerts; the Microsoft 365 Message center; Oracle Cloud Infrastructure announcements; AWS Health and its support plan; Google Cloud incidents and the maintenance gap; routing notices to owners as Ticket-to-Machine tasks; and the weekly digest, evidence and go/no-go. A ninth, optional module dry-runs the deployment to test, then production. Each module runs a chapter's Lab 1 from the developer workbook [*Building Provider Notices*](../project-plans/developer-workbooks/provider-notices/index.md) on fixtures, points to its Lab 2 in a test environment, and ends with a knowledge check. Start at the [learning path](provider-notices/index.md).
 
 ## External learning paths
 
