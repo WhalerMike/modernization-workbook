@@ -51,3 +51,11 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | CR2-1 | Service-principal paragraph restated with Chapter 11's credential rule: prefer a certificate through `AccessTokenCallback`; the secret-based connection-string mode is a documented exception, secret in Key Vault, injected at runtime, rotated. New notes `[^c19-sp-cert]`, `[^c19-sp-secret]` | line 44; notes lines 101-102 | design-consistency with factual support | <https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication>; <https://learn.microsoft.com/sql/connect/ado-net/sql/application-security-scenarios-sql-server> |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Cloud Adoption Framework "Identity and access management for Azure Arc-enabled servers" retired; its address now serves a shorter Arc page without the "Configure managed identities" section | gone, replaced: the group-membership sentence now cites the Connected Machine agent overview (group members can request Entra tokens for the managed identity) and Managed identity and access control (add an application's account only to authorize it); the "limit it" advice is now stated as the book's own |

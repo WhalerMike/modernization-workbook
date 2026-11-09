@@ -165,3 +165,11 @@ Pages read on 2026-10-30 through the Microsoft Learn documentation service; no p
 ## Server standard, November 5, 2026
 
 ESU guidance reworded as the exception path; dates carried from row 44. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Cloud Adoption Framework articles "Identity and access management for Azure Arc-enabled servers" and "Automation disciplines for Azure Arc-enabled servers" retired; their addresses now serve the Arc pages "Identity and access management with Azure Arc-enabled servers" (no role or extension warning) and "Plan and deploy Azure Arc-enabled servers" | gone, replaced: the CAF warning on Contributor, Owner and Azure Connected Machine Resource Administrator restated from Arc docs (that role includes extension-deployment permissions, manage-vm-extensions; extension manager runs as Local System or root, security-overview); dedicated resource group footnote now cites Plan and deploy, Phase 1 |

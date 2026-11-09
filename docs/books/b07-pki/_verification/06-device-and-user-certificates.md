@@ -167,3 +167,11 @@ From the research explainer *Certificates, Tokens and Keys Across the Hybrid Est
 | 2 | Government name-based strong mapping policy (September 2024 update; issuer thumbprint plus policy OID; Federal PKI OID example) | Strong mapping | added | Microsoft Public Sector Blog, note hc-govmap |
 | 3 | IDManagement.gov recommends altSecurityIdentities over UPN mapping for smart card logon | Strong mapping | added | IDManagement.gov, note hc-idmscl |
 | 4 | IDManagement.gov's CBA guide v2.0 says select low affinity; the program follows Microsoft's high-affinity advice | Username bindings and affinity | added (the departure is design guidance) | IDManagement.gov CBA guide, note hc-idmcba; note c06-cba-howto |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Certificate Connector overview, section "Connector status" (rewritten; page updated Oct 26, 2026): statuses are now Active, Warning (can issue, issue needs attention) and Action required (can't issue, or disconnected), with health messages for CA connectivity, disconnection, issuing and revocation permissions and template configuration; the page no longer describes Warning and Error statuses for deprecated versions | updated: alert on Warning or Action required (was Warning or Error); version, lifecycle and instance claims unchanged |

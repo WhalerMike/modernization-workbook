@@ -95,3 +95,11 @@ The body now states the guidance directly. These were the earlier positions it u
 | Claim | Result | Source |
 |---|---|---|
 | Path D step 3 listed "a named owner, a written justification" twice | corrected: the duplicated phrase removed; no fact change | This page |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Device preparation app limit is 25 managed apps (raised January 30, 2026), scripts still 10; the overview no longer gives the numbers (Microsoft Learn: Compare Windows Autopilot device preparation and Windows Autopilot; device preparation What's new) | corrected: "up to 10 of each" now "up to 25 apps and 10 PowerShell scripts", cited to the comparison page; comparison table row now "More than 25 apps or 10 PowerShell scripts" |

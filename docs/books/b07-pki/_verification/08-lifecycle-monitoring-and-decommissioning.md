@@ -114,3 +114,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | GRS 3.2 items 060–062 cover PKI records incl. terminating a PKI; 7y6m to 20y6m by CA level | Decommissioning AD CS, step 9 | verified | GRS 3.2 (Transmittal 33) |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Certificate Connector overview, section "Connector status" (rewritten; page updated Oct 26, 2026): statuses are now Active, Warning (can issue, issue needs attention) and Action required (can't issue, or disconnected), with health messages for CA connectivity, disconnection, issuing and revocation permissions and template configuration; the page no longer describes Warning and Error statuses for deprecated versions | updated: the connector log row now describes the three statuses and health messages; the unsupported-connector indicator now compares the installed version with the supported releases; the troubleshooting row lists the health-message causes and points to the details pane |

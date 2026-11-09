@@ -46,3 +46,11 @@ New appendix, written October 23, 2026, closing the investment, enterprise archi
 | TMF AI and permitting priority tracks; EO 14409 | Not needed; EO not verified |
 | OMB M-26-12 (commercial products) | Related, out of scope for this appendix |
 | IT Dashboard content today | Not on a reachable primary source this session |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| TMF fit page no longer says competitive projects "take no more than three years to implement"; it now says they "are typically less than $25M and use a five year repayment timeline, though the Board may consider outliers," and asks for measurable outcomes "ideally within 12 months of the project start date" (tmf.cio.gov/fit/) | quotation replaced; outcomes sentence extended; claim 18 superseded |

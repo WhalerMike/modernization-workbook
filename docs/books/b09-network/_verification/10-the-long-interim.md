@@ -131,3 +131,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | - a management plane that satisfies BOD 23-02, which requires | - a management plane built to BOD 23-02, which requires | no source change |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Microsoft 365 endpoint web service, Worldwide: data version 2026103000 (October 30, 2026) removed endpoint set 27 (Skype, Default) and some URLs from sets 56, 70 and 125; 62 sets, 10 ExpressRoute, 52 not; enterpriseregistration.windows.net (set 59), crl.microsoft.com (84) and the CRL and OCSP set (125) still Default, required, not ExpressRoute | updated: counts and data version refreshed (was 10 of 63 and 53, version 2026081400); claim 18 superseded; argument unchanged |
