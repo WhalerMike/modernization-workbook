@@ -33,25 +33,25 @@ of it before a call goes anywhere useful.
 That's the physics.
 
 8
-00:00:19.775 --> 00:00:22.188
+00:00:19.775 --> 00:00:22.126
 The compliance side is just as firm:
 
 9
-00:00:22.188 --> 00:00:27.512
-a circuit closes exactly one control
+00:00:22.126 --> 00:00:27.475
+a circuit supports exactly one control
 family, telecommunications diversity.
 
 10
-00:00:27.512 --> 00:00:30.712
+00:00:27.475 --> 00:00:30.675
 Everything else comes from the
 layer that governs the circuit.
 
 11
-00:00:30.712 --> 00:00:35.050
+00:00:30.675 --> 00:00:35.013
 So a bare local breakout fixes
 latency and loses the boundary.
 
 12
-00:00:35.050 --> 00:00:37.750
+00:00:35.013 --> 00:00:37.730
 Which brings us to the
 order you do things in.

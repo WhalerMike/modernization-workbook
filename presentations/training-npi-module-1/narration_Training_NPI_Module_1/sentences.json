@@ -576,51 +576,56 @@
   ],
   [
    1.438,
-   7.175,
-   "Gate 1 meets nist special publication eight hundred fifty-three A C two, I A four and C M eight."
+   7.375,
+   "Gate 1 supports nist special publication eight hundred fifty-three A C two, I A four and C M eight."
   ],
   [
-   8.613,
+   8.812,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   16.137,
    3.237,
    "The module's table maps each one to its evidence."
   ],
   [
-   11.85,
+   19.375,
    8.3,
    "For C M eight, system component inventory, it's the register, as jay-son and as a spreadsheet file, and the Data Platform hand-off."
   ],
   [
-   20.15,
+   27.675,
    6.062,
    "For account and identifier management, it's the register's identity, type and owner columns."
   ],
   [
-   26.212,
+   33.737,
    4.55,
    "For privileged accounts and authenticator management, the high-risk findings."
   ],
   [
-   30.762,
+   38.288,
    5.213,
    "For least privilege of the reading process itself, the permission list and the call list."
   ],
   [
-   35.975,
+   43.5,
    7.075,
    "And for the run's integrity, the manifest, which holds the tenant, every request, and a hash of every file."
   ],
   [
-   43.05,
+   50.575,
    4.638,
    "K S I's are fed-ramp twenty X indicators for cloud service providers."
   ],
   [
-   47.688,
+   55.212,
    6.45,
    "The agency lines its evidence up with what its providers report; it doesn't report K S I's itself."
   ],
   [
-   54.138,
+   61.663,
    3.25,
    "Which file supports which indicator is the program's mapping."
   ]

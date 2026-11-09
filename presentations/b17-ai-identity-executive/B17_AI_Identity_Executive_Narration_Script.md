@@ -14,7 +14,7 @@ People join through a pipeline: an HR record, an account, access from their posi
 
 ## Slide 4 — The controls already apply; coverage is the gap
 
-No new control family is needed. The security control catalog already covers system and service accounts, identifiers and credentials for services, least privilege for processes, and services that authenticate before they talk. NIST's AI framework adds inventory, decommissioning and clear roles. So the gap isn't the catalog. It's coverage: the AI system's account is often simply missing from the account inventory those controls are tested against. The book's model gives every AI identity seven things, from an identity record and a named owner to a lifecycle that ends and evidence the authorizing official can use. That model is program design, built on controls you already meet. Now, what the federal rules actually say.
+No new control family is needed. The security control catalog already covers system and service accounts, identifiers and credentials for services, least privilege for processes, and services that authenticate before they talk. NIST's AI framework adds inventory, decommissioning and clear roles. So the gap isn't the catalog. It's coverage: the AI system's account is often simply missing from the account inventory those controls are tested against. The book's model gives every AI identity seven things, from an identity record and a named owner to a lifecycle that ends and evidence the authorizing official can use. That model is program design, built on controls you already implement. Now, what the federal rules actually say.
 
 ## Slide 5 — What federal AI rules require, and what they don't
 

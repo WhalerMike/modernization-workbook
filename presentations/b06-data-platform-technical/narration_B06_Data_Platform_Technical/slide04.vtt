@@ -1,63 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.388
+00:00:00.050 --> 00:00:02.400
 Three drivers end the inheritance.
 
 2
-00:00:02.388 --> 00:00:05.102
+00:00:02.400 --> 00:00:05.137
 The first is NTLM itself.
 
 3
-00:00:05.102 --> 00:00:09.063
+00:00:05.137 --> 00:00:09.109
 Microsoft deprecated every
 version in June 2024,
 
 4
-00:00:09.063 --> 00:00:15.035
+00:00:09.109 --> 00:00:15.113
 version 1 is already removed from current
 Windows, and network NTLM is next.
 
 5
-00:00:15.035 --> 00:00:19.428
+00:00:15.113 --> 00:00:19.548
 So the program set its
 own backstop: on April 1,
 
 6
-00:00:19.428 --> 00:00:23.123
+00:00:19.548 --> 00:00:23.263
 2027, it blocks NTLM across the estate.
 
 7
-00:00:23.123 --> 00:00:28.156
+00:00:23.263 --> 00:00:28.289
 The second driver is zero trust:
 Conditional Access only acts on an
 
 8
-00:00:28.156 --> 00:00:33.066
+00:00:28.289 --> 00:00:33.225
 Entra token request, and a Kerberos
 or NTLM exchange never asks it.
 
 9
-00:00:33.066 --> 00:00:36.887
+00:00:33.225 --> 00:00:37.030
 The third is the engine's own
 identity, which needs an Entra anchor,
 
 10
-00:00:36.887 --> 00:00:39.480
+00:00:37.030 --> 00:00:39.637
 and on premises that
 comes through Azure Arc.
 
 11
-00:00:39.480 --> 00:00:43.358
+00:00:39.637 --> 00:00:43.448
 The dates that are really due
 in 2027 are lifecycle dates for
 
 12
-00:00:43.358 --> 00:00:47.641
+00:00:43.448 --> 00:00:47.638
 older Windows and SQL Server
 versions, and the slide lists them.
 
 13
-00:00:47.641 --> 00:00:50.690
+00:00:47.638 --> 00:00:50.690
 Those versions become
 consolidation candidates.

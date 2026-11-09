@@ -262,689 +262,699 @@ the pipeline's active value enables
 the account at hire, not a workflow.
 
 55
-00:03:28.550 --> 00:03:33.188
+00:03:29.470 --> 00:03:34.108
 Here are the six workflow files, as
 reviewed version one point oh bodies.
 
 56
-00:03:33.188 --> 00:03:34.438
+00:03:34.108 --> 00:03:35.358
 Two are joiners.
 
 57
-00:03:34.438 --> 00:03:37.965
+00:03:35.358 --> 00:03:38.885
 The pre-hire workflow runs
 seven days before the hire date
 
 58
-00:03:37.965 --> 00:03:41.713
+00:03:38.885 --> 00:03:42.633
 and generates the Temporary Access
 Pass and sends it by email.
 
 59
-00:03:41.713 --> 00:03:44.305
+00:03:42.633 --> 00:03:45.225
 The day-one workflow runs on the hire date
 
 60
-00:03:44.305 --> 00:03:47.125
+00:03:45.225 --> 00:03:48.045
 and requests the
 onboarding access package.
 
 61
-00:03:47.125 --> 00:03:50.227
+00:03:48.045 --> 00:03:51.147
 One is the mover, triggered
 by an attribute change:
 
 62
-00:03:50.227 --> 00:03:54.388
+00:03:51.147 --> 00:03:55.308
 it notifies the manager and removes
 an access package assignment.
 
 63
-00:03:54.388 --> 00:03:55.949
+00:03:55.308 --> 00:03:56.869
 And three are leavers.
 
 64
-00:03:55.949 --> 00:04:00.814
+00:03:56.869 --> 00:04:01.734
 On the leave date, employees are disabled,
 their refresh tokens revoked and their
 
 65
-00:04:00.814 --> 00:04:05.750
+00:04:01.734 --> 00:04:06.670
 package assignments removed; contractors
 are disabled and their tokens revoked.
 
 66
-00:04:05.750 --> 00:04:07.761
+00:04:06.670 --> 00:04:08.681
 Thirty days after the leave date,
 
 67
-00:04:07.761 --> 00:04:11.112
+00:04:08.681 --> 00:04:12.032
 a separate post-separation
 workflow deletes the user.
 
 68
-00:04:11.112 --> 00:04:12.400
+00:04:12.032 --> 00:04:13.320
 Notice the scopes.
 
 69
-00:04:12.400 --> 00:04:16.501
+00:04:13.320 --> 00:04:17.421
 Every one reads the worker type
 and a coded slot, never a name,
 
 70
-00:04:16.501 --> 00:04:20.710
+00:04:17.421 --> 00:04:21.630
 so renaming an organization
 can't silently drop anyone.
 
 71
-00:04:24.460 --> 00:04:26.978
+00:04:25.380 --> 00:04:27.898
 The lint, rules J W oh one to fifteen,
 
 72
-00:04:26.978 --> 00:04:30.935
+00:04:27.898 --> 00:04:31.855
 checks the files before
 anything reaches the tenant.
 
 73
-00:04:30.935 --> 00:04:31.910
+00:04:31.855 --> 00:04:32.830
 A few to know.
 
 74
-00:04:31.910 --> 00:04:35.730
+00:04:32.830 --> 00:04:36.650
 J W oh two warns when a scope
 uses no coded attribute,
 
 75
-00:04:35.730 --> 00:04:38.822
+00:04:36.650 --> 00:04:39.742
 or reads a display value like department.
 
 76
-00:04:38.822 --> 00:04:44.238
+00:04:39.742 --> 00:04:45.158
 J W oh three and oh six catch an offset
 beyond a hundred eighty days either way,
 
 77
-00:04:44.238 --> 00:04:47.935
+00:04:45.158 --> 00:04:48.855
 and more than Learn's
 twenty-five tasks in a workflow.
 
 78
-00:04:47.935 --> 00:04:53.833
+00:04:48.855 --> 00:04:54.753
 J W oh five is the pass: a lifetime outside
 ten minutes to thirty days is a finding,
 
 79
-00:04:53.833 --> 00:04:58.097
+00:04:54.753 --> 00:04:59.017
 and over twenty-four hours, or
 not one-time use, is a warning.
 
 80
-00:04:58.097 --> 00:05:00.698
+00:04:59.017 --> 00:05:01.618
 J W oh seven is over budget.
 
 81
-00:05:00.698 --> 00:05:06.198
+00:05:01.618 --> 00:05:07.118
 J W oh eight is a scheduled workflow
 with no execution limit recorded; Learn
 
 82
-00:05:06.198 --> 00:05:11.610
+00:05:07.118 --> 00:05:12.530
 says the limit isn't in the API, so you
 set it in the admin center and record it.
 
 83
-00:05:11.610 --> 00:05:14.472
+00:05:12.530 --> 00:05:15.392
 J W oh nine is a direct group add.
 
 84
-00:05:14.472 --> 00:05:17.735
+00:05:15.392 --> 00:05:18.655
 J W eleven is delete and disable together.
 
 85
-00:05:17.735 --> 00:05:21.450
+00:05:18.655 --> 00:05:22.370
 Some rules come from Learn,
 and some are design guidance.
 
 86
-00:05:25.200 --> 00:05:26.388
+00:05:26.120 --> 00:05:27.308
 Two more ideas.
 
 87
-00:05:26.388 --> 00:05:30.346
+00:05:27.308 --> 00:05:31.266
 The plan compares the files with an
 export of the tenant's workflows,
 
 88
-00:05:30.346 --> 00:05:32.113
+00:05:31.266 --> 00:05:33.033
 matching them by display name.
 
 89
-00:05:32.113 --> 00:05:34.563
+00:05:33.033 --> 00:05:35.483
 A file with no match becomes a create.
 
 90
-00:05:34.563 --> 00:05:37.832
+00:05:35.483 --> 00:05:38.752
 A file that changed becomes a
 body for create new version,
 
 91
-00:05:37.832 --> 00:05:40.962
+00:05:38.752 --> 00:05:41.882
 because Learn makes a definition
 change a new version.
 
 92
-00:05:40.962 --> 00:05:43.462
+00:05:41.882 --> 00:05:44.382
 An unchanged file is left alone.
 
 93
-00:05:43.462 --> 00:05:48.600
+00:05:44.382 --> 00:05:49.520
 A workflow in the tenant that no file
 defines gets the J W fifteen warning.
 
 94
-00:05:48.600 --> 00:05:52.538
+00:05:49.520 --> 00:05:53.458
 And the plan refuses to run on
 files that still have lint findings.
 
 95
-00:05:52.538 --> 00:05:53.674
+00:05:53.458 --> 00:05:54.594
 Then readiness.
 
 96
-00:05:53.674 --> 00:05:58.592
+00:05:54.594 --> 00:05:59.512
 A hire is ready on day one only with
 all four: an account that exists and is
 
 97
-00:05:58.592 --> 00:06:04.175
+00:05:59.512 --> 00:06:05.095
 enabled, a license, the onboarding package
 delivered, and a completed pre-hire run.
 
 98
-00:06:04.175 --> 00:06:08.453
+00:06:05.095 --> 00:06:09.373
 The readiness rate is ready hires
 over hires for each start date,
 
 99
-00:06:08.453 --> 00:06:12.130
+00:06:09.373 --> 00:06:13.050
 and it's saved in a summary
 file that Module 7 reads.
 
 100
-00:06:15.880 --> 00:06:16.605
+00:06:16.800 --> 00:06:17.525
 Try it.
 
 101
-00:06:16.605 --> 00:06:22.167
+00:06:17.525 --> 00:06:23.087
 Lab 1 runs in the hr-lifecycle folder,
 and nothing signs in or sends a request.
 
 102
-00:06:22.167 --> 00:06:24.730
+00:06:23.087 --> 00:06:25.650
 Step one lists two tasks' reads.
 
 103
-00:06:24.730 --> 00:06:26.990
+00:06:25.650 --> 00:06:27.910
 The plan needs only one permission,
 
 104
-00:06:26.990 --> 00:06:31.355
+00:06:27.910 --> 00:06:32.275
 the Lifecycle Workflows workflow
 read, for one GET on the workflows.
 
 105
-00:06:31.355 --> 00:06:35.596
+00:06:32.275 --> 00:06:36.516
 Readiness needs four permissions,
 for three GET calls: the users,
 
 106
-00:06:35.596 --> 00:06:40.718
+00:06:36.516 --> 00:06:41.638
 each workflow's user processing results,
 and the access package assignments.
 
 107
-00:06:40.718 --> 00:06:45.579
+00:06:41.638 --> 00:06:46.499
 Step two lints the program's own six
 workflow files with a budget of fifty.
 
 108
-00:06:45.579 --> 00:06:49.730
+00:06:46.499 --> 00:06:50.650
 Zero findings, zero warnings,
 zero information items.
 
 109
-00:06:49.730 --> 00:06:54.413
+00:06:50.650 --> 00:06:55.333
 That's the clean run an ISSO keeps:
 it shows a one-time pass of at most
 
 110
-00:06:54.413 --> 00:06:59.810
+00:06:55.333 --> 00:07:00.730
 twenty-four hours, and an execution
 limit on every scheduled workflow.
 
 111
-00:07:03.560 --> 00:07:06.533
+00:07:04.480 --> 00:07:07.453
 Step three lints three broken copies,
 
 112
-00:07:06.533 --> 00:07:09.985
+00:07:07.453 --> 00:07:10.905
 with a budget of two so
 you can see J W oh seven.
 
 113
-00:07:09.985 --> 00:07:13.722
+00:07:10.905 --> 00:07:14.642
 Seven findings and four warnings,
 and an exit code of two.
 
 114
-00:07:13.722 --> 00:07:14.610
+00:07:14.642 --> 00:07:15.530
 Read a few.
 
 115
-00:07:14.610 --> 00:07:17.873
+00:07:15.530 --> 00:07:18.793
 One offset is two hundred
 days, beyond the limit.
 
 116
-00:07:17.873 --> 00:07:20.073
+00:07:18.793 --> 00:07:20.993
 A leaver is triggered on the hire date.
 
 117
-00:07:20.073 --> 00:07:22.650
+00:07:20.993 --> 00:07:23.570
 Three workflows are
 over the budget of two,
 
 118
-00:07:22.650 --> 00:07:25.522
+00:07:23.570 --> 00:07:26.442
 and the message quotes
 both of Learn's ceilings.
 
 119
-00:07:25.522 --> 00:07:29.072
+00:07:26.442 --> 00:07:29.992
 A scheduled workflow has no
 execution limit recorded.
 
 120
-00:07:29.072 --> 00:07:31.764
+00:07:29.992 --> 00:07:32.684
 A joiner adds the user to groups directly,
 
 121
-00:07:31.764 --> 00:07:34.772
+00:07:32.684 --> 00:07:35.692
 instead of giving baseline
 access by package.
 
 122
-00:07:34.772 --> 00:07:36.422
+00:07:35.692 --> 00:07:37.342
 The slide trims a few more.
 
 123
-00:07:36.422 --> 00:07:41.923
+00:07:37.342 --> 00:07:42.843
 Now find the two J W oh five warnings,
 the ones this module cares most about.
 
 124
-00:07:41.923 --> 00:07:46.486
+00:07:42.843 --> 00:07:47.406
 One pass lasts four thousand three hundred
 twenty minutes, which is three days,
 
 125
-00:07:46.486 --> 00:07:50.136
+00:07:47.406 --> 00:07:51.056
 well over the twenty-four hours
 Learn recommends for a new hire.
 
 126
-00:07:50.136 --> 00:07:52.790
+00:07:51.056 --> 00:07:53.710
 The other pass isn't one-time use.
 
 127
-00:07:56.540 --> 00:08:01.440
+00:07:57.460 --> 00:08:02.360
 Step four plans the program's files against
 an export of the tenant's workflows.
 
 128
-00:08:01.440 --> 00:08:04.728
+00:08:02.360 --> 00:08:05.648
 The day-one workflow changed,
 so it gets a new version.
 
 129
-00:08:04.728 --> 00:08:09.066
+00:08:05.648 --> 00:08:09.986
 The employee last-day leaver isn't
 in the tenant yet, so it's a create.
 
 130
-00:08:09.066 --> 00:08:11.703
+00:08:09.986 --> 00:08:12.623
 The other four are
 unchanged and left alone.
 
 131
-00:08:11.703 --> 00:08:16.666
+00:08:12.623 --> 00:08:17.586
 There's one warning, J W fifteen, for
 a workflow called Onboard Marketing,
 
 132
-00:08:16.666 --> 00:08:20.703
+00:08:17.586 --> 00:08:21.623
 legacy: someone made it in the
 portal, and no file defines it.
 
 133
-00:08:20.703 --> 00:08:24.027
+00:08:21.623 --> 00:08:24.947
 The plan is written to a
 file, and nothing is sent.
 
 134
-00:08:24.027 --> 00:08:26.090
+00:08:24.947 --> 00:08:27.010
 Now try planning the broken folder.
 
 135
-00:08:26.090 --> 00:08:30.803
+00:08:27.010 --> 00:08:31.723
 It stops with an error: the files have
 lint findings, fix them before planning.
 
 136
-00:08:30.803 --> 00:08:32.514
+00:08:31.723 --> 00:08:33.434
 So the order is enforced.
 
 137
-00:08:32.514 --> 00:08:36.320
+00:08:33.434 --> 00:08:37.240
 Lint first, then plan,
 then a reviewed send.
 
 138
-00:08:40.070 --> 00:08:41.957
+00:08:40.990 --> 00:08:42.877
 Step five measures day one.
 
 139
-00:08:41.957 --> 00:08:46.944
+00:08:42.877 --> 00:08:47.864
 You give it the HR hires, the hire
 accounts, the pre-hire workflow's results,
 
 140
-00:08:46.944 --> 00:08:51.930
+00:08:47.864 --> 00:08:52.850
 the access package assignments, the
 workflow files, a moment, eight in the
 
 141
-00:08:51.930 --> 00:08:56.583
+00:08:52.850 --> 00:08:57.503
 morning U T C on the second of November,
 the cloud, and an output folder.
 
 142
-00:08:56.583 --> 00:08:59.694
+00:08:57.503 --> 00:09:00.614
 One of four hires was
 ready: twenty-five percent.
 
 143
-00:08:59.694 --> 00:09:01.982
+00:09:00.614 --> 00:09:02.902
 Three hires get a readiness warning,
 
 144
-00:09:01.982 --> 00:09:06.633
+00:09:02.902 --> 00:09:07.553
 because each one is missing at least
 one of the four things a ready hire has.
 
 145
-00:09:06.633 --> 00:09:10.203
+00:09:07.553 --> 00:09:11.123
 The summary file holds the
 rate, zero point two five,
 
 146
-00:09:10.203 --> 00:09:13.858
+00:09:11.123 --> 00:09:14.778
 and Module 7 reads it as one
 of the lifecycle metrics.
 
 147
-00:09:13.858 --> 00:09:16.641
+00:09:14.778 --> 00:09:17.561
 Step six runs the tests, fifty-seven pass,
 
 148
-00:09:16.641 --> 00:09:19.940
+00:09:17.561 --> 00:09:20.860
 and you delete the
 chapter's output folder.
 
 149
-00:09:23.690 --> 00:09:29.711
+00:09:24.610 --> 00:09:30.631
 Lab 2 runs one change in your own test
 tenant: worldwide or G C C, never production,
 
 150
-00:09:29.711 --> 00:09:33.416
+00:09:30.631 --> 00:09:34.336
 with Entra ID Governance
 trial or test licenses,
 
 151
-00:09:33.416 --> 00:09:37.028
+00:09:34.336 --> 00:09:37.948
 and test users whose hire
 date is a few days away.
 
 152
-00:09:37.028 --> 00:09:39.953
+00:09:37.948 --> 00:09:40.873
 Export the tenant's
 workflows, plan one change,
 
 153
-00:09:39.953 --> 00:09:44.727
+00:09:40.873 --> 00:09:45.647
 and send it with Graph PowerShell as
 a Lifecycle Workflows Administrator.
 
 154
-00:09:44.727 --> 00:09:49.207
+00:09:45.647 --> 00:09:50.127
 Set the execution limit in the admin
 center, since it isn't in the API.
 
 155
-00:09:49.207 --> 00:09:51.977
+00:09:50.127 --> 00:09:52.897
 Check that the manager receives the pass.
 
 156
-00:09:51.977 --> 00:09:54.427
+00:09:52.897 --> 00:09:55.347
 And on the start date, measure readiness.
 
 157
-00:09:54.427 --> 00:09:58.628
+00:09:55.347 --> 00:09:59.548
 The reader app needs a certificate
 and one permission, the workflow read.
 
 158
-00:09:58.628 --> 00:10:02.933
+00:09:59.548 --> 00:10:03.853
 To back it out, delete a workflow the
 lab created, which can be restored
 
 159
-00:10:02.933 --> 00:10:07.164
+00:10:03.853 --> 00:10:08.084
 for thirty days, or send the previous
 file's body as a further version.
 
 160
-00:10:07.164 --> 00:10:10.912
+00:10:08.084 --> 00:10:11.832
 Then remove the reader app,
 its permission and certificate,
 
 161
-00:10:10.912 --> 00:10:12.977
+00:10:11.832 --> 00:10:13.897
 and delete the export and output.
 
 162
-00:10:12.977 --> 00:10:15.490
+00:10:13.897 --> 00:10:16.410
 The authors haven't run Lab 2.
 
 163
-00:10:19.240 --> 00:10:20.627
+00:10:20.160 --> 00:10:21.547
 The federal requirement.
 
 164
-00:10:20.627 --> 00:10:25.450
-This gate meets NIST special publication
+00:10:21.547 --> 00:10:26.489
+This gate supports NIST special publication
 eight hundred fifty-three A C two,
 
 165
-00:10:25.450 --> 00:10:29.028
+00:10:26.489 --> 00:10:29.986
 enhancement one, automated
 system account management.
 
 166
-00:10:29.028 --> 00:10:33.719
-It meets I A five: the initial
+00:10:29.986 --> 00:10:34.840
+It supports I A five: the initial
 authenticator is time-limited, and goes to
 
 167
-00:10:33.719 --> 00:10:38.491
+00:10:34.840 --> 00:10:39.535
 an accountable person; that's the short,
 one-time pass sent to the manager.
 
 168
-00:10:38.491 --> 00:10:44.264
-And it meets O M B M-22-09's
+00:10:39.535 --> 00:10:45.547
+And it supports O M B M-22-09's
 phishing-resistant multifactor authentication,
 
 169
-00:10:44.264 --> 00:10:48.915
+00:10:45.547 --> 00:10:50.197
 which the Temporary Access Pass
 bridges to until the PIV card is bound.
 
 170
-00:10:48.915 --> 00:10:53.800
+00:10:50.197 --> 00:10:54.372
+Your organization still sets the
+organization-defined parameters,
+
+171
+00:10:54.372 --> 00:10:57.522
+and the assessor decides
+whether each is satisfied.
+
+172
+00:10:57.522 --> 00:11:02.408
 The evidence an ISSO keeps for Gate
 3: the reviewed workflow files,
 
-171
-00:10:53.800 --> 00:10:58.052
+173
+00:11:02.408 --> 00:11:06.660
 and the plan that changed each
 version, with its manifest.
 
-172
-00:10:58.052 --> 00:11:01.426
+174
+00:11:06.660 --> 00:11:10.034
 The lint's clean run, showing
 a one-time pass of at most
 
-173
-00:11:01.426 --> 00:11:05.977
+175
+00:11:10.034 --> 00:11:14.585
 twenty-four hours and an execution
 limit on every scheduled workflow.
 
-174
-00:11:05.977 --> 00:11:08.465
+176
+00:11:14.585 --> 00:11:17.072
 The readiness summary for each start date.
 
-175
-00:11:08.465 --> 00:11:13.470
+177
+00:11:17.072 --> 00:11:22.070
 And the workflows' run history,
 exported past Entra's thirty-day view.
 
-176
-00:11:17.220 --> 00:11:19.195
+178
+00:11:25.820 --> 00:11:27.795
 Check yourself with two questions.
 
-177
-00:11:19.195 --> 00:11:23.195
+179
+00:11:27.795 --> 00:11:31.795
 First: you change the pre-hire
 workflow's offset in its file.
 
-178
-00:11:23.195 --> 00:11:24.920
+180
+00:11:31.795 --> 00:11:33.520
 What does the plan produce for it?
 
-179
-00:11:24.920 --> 00:11:27.781
+181
+00:11:33.520 --> 00:11:36.381
 The answer is a: a body
 for create new version,
 
-180
-00:11:27.781 --> 00:11:31.358
+182
+00:11:36.381 --> 00:11:39.958
 because Learn makes a definition
 change a new version.
 
-181
-00:11:31.358 --> 00:11:33.096
+183
+00:11:39.958 --> 00:11:41.696
 There's no in-place update.
 
-182
-00:11:33.096 --> 00:11:36.320
+184
+00:11:41.696 --> 00:11:44.920
 A file with no match in the
 tenant would become a create.
 
-183
-00:11:36.320 --> 00:11:39.370
+185
+00:11:44.920 --> 00:11:47.970
 Second: which hire counts
 as ready on day one?
 
-184
-00:11:39.370 --> 00:11:44.082
+186
+00:11:47.970 --> 00:11:52.683
 The answer is c: one whose account
 exists and is enabled, holds a license,
 
-185
-00:11:44.082 --> 00:11:48.795
+187
+00:11:52.683 --> 00:11:57.395
 has the onboarding package delivered,
 and has a completed pre-hire run.
 
-186
-00:11:48.795 --> 00:11:49.758
+188
+00:11:57.395 --> 00:11:58.358
 All four.
 
-187
-00:11:49.758 --> 00:11:52.876
+189
+00:11:58.358 --> 00:12:01.476
 An account that exists but
 is disabled isn't ready,
 
-188
-00:11:52.876 --> 00:11:55.919
+190
+00:12:01.476 --> 00:12:04.519
 and neither is a pre-hire
 run that didn't complete.
 
-189
-00:11:55.919 --> 00:12:01.170
+191
+00:12:04.519 --> 00:12:09.770
 The module page has two more questions,
 each linked to the section that answers it.
 
-190
-00:12:04.920 --> 00:12:05.745
+192
+00:12:13.520 --> 00:12:14.345
 To sum up.
 
-191
-00:12:05.745 --> 00:12:10.008
+193
+00:12:14.345 --> 00:12:18.608
 You linted the program's six workflow
 files and three broken ones.
 
-192
-00:12:10.008 --> 00:12:13.595
+194
+00:12:18.608 --> 00:12:22.195
 You planned a create and a new
 version against a tenant export,
 
-193
-00:12:13.595 --> 00:12:15.846
+195
+00:12:22.195 --> 00:12:24.446
 and saw a portal-made workflow flagged.
 
-194
-00:12:15.846 --> 00:12:19.420
+196
+00:12:24.446 --> 00:12:28.020
 And you measured a day-one readiness
 rate of twenty-five percent.
 
-195
-00:12:19.420 --> 00:12:24.209
+197
+00:12:28.020 --> 00:12:32.809
 Carry one thing forward: the day-one
 workflow requests the onboarding package,
 
-196
-00:12:24.209 --> 00:12:27.082
+198
+00:12:32.809 --> 00:12:35.682
 but department access
 comes from the next gate.
 
-197
-00:12:27.082 --> 00:12:32.507
+199
+00:12:35.682 --> 00:12:41.107
 Next is Module 4: assign access from
 attributes and review what a move leaves.
 
-198
-00:12:32.507 --> 00:12:36.812
+200
+00:12:41.107 --> 00:12:45.412
 You'll lint access package assignment
 policies before they reach the tenant,
 
-199
-00:12:36.812 --> 00:12:39.772
+201
+00:12:45.412 --> 00:12:48.372
 scan the tenant's policies
 for the member-of operator,
 
-200
-00:12:39.772 --> 00:12:43.680
+202
+00:12:48.372 --> 00:12:52.280
 and list what a move leaves behind
 for the manager of record to review.

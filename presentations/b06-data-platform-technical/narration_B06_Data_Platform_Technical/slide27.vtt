@@ -16,61 +16,70 @@ someone has to find out
 what it still signs.
 
 4
-00:00:09.588 --> 00:00:13.865
-The program hasn't decided yet on
-moving from AD CS to a cloud PKI,
+00:00:09.588 --> 00:00:15.212
+The PKI and Certificates book has made
+the decision: a retained AD CS hierarchy
 
 5
-00:00:13.865 --> 00:00:17.813
-so this runbook gathers the
-evidence that decision needs.
+00:00:15.212 --> 00:00:20.663
+for internal server certificates, and
+Cloud PKI for Intune-managed devices.
 
 6
-00:00:17.813 --> 00:00:21.932
+00:00:20.663 --> 00:00:23.444
+So this runbook gathers
+the evidence for how
+
+7
+00:00:23.444 --> 00:00:26.301
+it applies to each SQL Server certificate.
+
+8
+00:00:26.301 --> 00:00:30.420
 A read-only audit records the
 issuing CA on every certificate,
 
-7
-00:00:21.932 --> 00:00:24.275
+9
+00:00:30.420 --> 00:00:32.763
 with a few checks inside the engine.
 
-8
-00:00:24.275 --> 00:00:26.013
+10
+00:00:32.763 --> 00:00:34.501
 Then three dependencies.
 
-9
-00:00:26.013 --> 00:00:28.675
+11
+00:00:34.501 --> 00:00:37.163
 The engine's TLS certificate matters most,
 
-10
-00:00:28.675 --> 00:00:32.100
+12
+00:00:37.163 --> 00:00:40.588
 because every Entra connection
 requires encryption.
 
-11
-00:00:32.100 --> 00:00:36.000
+13
+00:00:40.588 --> 00:00:44.487
 Certificate-mapped logins carry
 less risk than the source claimed.
 
-12
-00:00:36.000 --> 00:00:38.105
+14
+00:00:44.487 --> 00:00:46.592
 And certificate-based sign-in,
 
-13
-00:00:38.105 --> 00:00:42.987
+15
+00:00:46.592 --> 00:00:51.474
 the interim answer for the NTLM long
 tail, needs a replacement CA first.
 
-14
-00:00:42.987 --> 00:00:45.502
+16
+00:00:51.474 --> 00:00:53.990
 The finding comes down to one question:
 
-15
-00:00:45.502 --> 00:00:48.724
+17
+00:00:53.990 --> 00:00:57.212
 does AD CS retire before
 its replacement is ready?
 
-16
-00:00:48.724 --> 00:00:52.580
+18
+00:00:57.212 --> 00:01:01.080
 If so, the interim posture is
 lost exactly when it's needed.

@@ -102,36 +102,36 @@ with deciding kept
 separate from enforcing.
 
 22
-00:01:18.193 --> 00:01:20.654
+00:01:18.193 --> 00:01:20.356
 The program maps that onto Entra ID.
 
 23
-00:01:20.654 --> 00:01:25.447
+00:01:20.356 --> 00:01:25.430
 Conditional Access is the policy engine,
 token issuance carries the decision out,
 
 24
-00:01:25.447 --> 00:01:28.899
+00:01:25.430 --> 00:01:29.086
 the applications and gateways
 are the enforcement points,
 
 25
-00:01:28.899 --> 00:01:32.493
+00:01:29.086 --> 00:01:32.892
 and Continuous Access Evaluation
 covers the active session.
 
 26
-00:01:32.493 --> 00:01:37.792
+00:01:32.892 --> 00:01:38.192
 That mapping is the program's interpretation,
 not one Microsoft or NIST publishes.
 
 27
-00:01:37.792 --> 00:01:40.533
+00:01:38.192 --> 00:01:40.934
 But it's why this session
 treats a Conditional
 
 28
-00:01:40.533 --> 00:01:43.490
+00:01:40.934 --> 00:01:43.900
 Access policy as the
 unit of access control.
 
@@ -706,67 +706,67 @@ drops someone out of a dynamic
 group nobody meant to exclude.
 
 147
-00:10:02.460 --> 00:10:05.858
+00:10:02.460 --> 00:10:05.894
 Every control that blocks
 an administrative path also
 
 148
-00:10:05.858 --> 00:10:09.035
+00:10:05.894 --> 00:10:09.106
 creates a way to lock the
 agency out of its own tenant.
 
 149
-00:10:09.035 --> 00:10:12.388
+00:10:09.106 --> 00:10:12.494
 Emergency access accounts,
 break-glass, are the answer,
 
 150
-00:10:12.388 --> 00:10:16.710
+00:10:12.494 --> 00:10:16.874
 and they're the only standing privilege
 the program accepts by design.
 
 151
-00:10:16.710 --> 00:10:21.121
-There are at least two, cloud-only,
-not tied to any one person, holding
+00:10:16.874 --> 00:10:21.494
+There are two, cloud-only, not tied
+to any one person, holding permanent
 
 152
-00:10:21.121 --> 00:10:26.335
-permanent Global Administrator, and
-signing in with a passkey or certificate.
+00:10:21.494 --> 00:10:26.034
+Global Administrator, and signing
+in with a passkey or certificate.
 
 153
-00:10:26.335 --> 00:10:29.655
+00:10:26.034 --> 00:10:29.371
 A password in a sealed
 envelope no longer works,
 
 154
-00:10:29.655 --> 00:10:34.423
+00:10:29.371 --> 00:10:34.189
 because Microsoft's mandatory MFA
 now applies to the admin portals.
 
 155
-00:10:34.423 --> 00:10:37.435
+00:10:34.189 --> 00:10:37.260
 They're excluded from
 every restrictive policy,
 
 156
-00:10:37.435 --> 00:10:40.898
+00:10:37.260 --> 00:10:40.760
 and every use is a critical
 incident until it's reviewed.
 
 157
-00:10:40.898 --> 00:10:45.615
+00:10:40.760 --> 00:10:45.536
 They're tested at least every ninety days,
 and because NIST expects such accounts
 
 158
-00:10:45.615 --> 00:10:50.122
+00:10:45.536 --> 00:10:50.091
 to disable automatically, the security
 plan records a documented deviation.
 
 159
-00:10:50.122 --> 00:10:53.520
+00:10:50.091 --> 00:10:53.520
 And they exist before any
 approval is switched on.
 
@@ -1204,425 +1204,425 @@ And privileged roles arrive through PIM
 eligibility, never through a package.
 
 250
-00:16:59.590 --> 00:17:02.930
+00:16:59.590 --> 00:16:59.480
 Next, keeping those
 grants honest over time.
 
 251
-00:17:06.680 --> 00:17:11.738
+00:16:59.480 --> 00:17:04.538
 Access reviews are recurring proof that
 each person still needs what they hold,
 
 252
-00:17:11.738 --> 00:17:15.570
+00:17:04.538 --> 00:17:08.370
 on a schedule set by risk:
 privileged roles monthly for Tier 0,
 
 253
-00:17:15.570 --> 00:17:19.095
+00:17:08.370 --> 00:17:11.895
 sensitive application groups
 quarterly in two stages,
 
 254
-00:17:19.095 --> 00:17:23.080
+00:17:11.895 --> 00:17:15.880
 lower tiers less often, and guests
 quarterly by their sponsors.
 
 255
-00:17:23.080 --> 00:17:24.880
+00:17:15.880 --> 00:17:17.680
 Four rules make reviews bite.
 
 256
-00:17:24.880 --> 00:17:28.556
+00:17:17.680 --> 00:17:21.356
 Review the groups, not the
 applications, because reviewing an
 
 257
-00:17:28.556 --> 00:17:32.880
+00:17:21.356 --> 00:17:25.680
 application doesn't remove the people
 who get access through its groups.
 
 258
-00:17:32.880 --> 00:17:35.955
+00:17:25.680 --> 00:17:28.755
 Add a fallback reviewer
 for users with no manager.
 
 259
-00:17:35.955 --> 00:17:38.587
+00:17:28.755 --> 00:17:31.387
 Choose the no-response default on purpose:
 
 260
-00:17:38.587 --> 00:17:42.272
+00:17:31.387 --> 00:17:35.072
 remove access where an unreviewed
 grant is the bigger risk,
 
 261
-00:17:42.272 --> 00:17:45.957
+00:17:35.072 --> 00:17:38.757
 like privileged roles and
 guests, and escalate instead for
 
 262
-00:17:45.957 --> 00:17:49.717
+00:17:38.757 --> 00:17:42.517
 business applications, where a
 mass removal would stop work.
 
 263
-00:17:49.717 --> 00:17:52.842
+00:17:42.517 --> 00:17:45.642
 And require a justification
 on every decision.
 
 264
-00:17:52.842 --> 00:17:58.190
+00:17:45.642 --> 00:17:50.990
 Review history only stays downloadable for
 thirty days, so export it straight away.
 
 265
-00:18:01.940 --> 00:18:04.603
+00:17:54.740 --> 00:17:57.403
 The third mechanism is lifecycle events.
 
 266
-00:18:04.603 --> 00:18:08.887
+00:17:57.403 --> 00:18:01.687
 The HR-driven lifecycle itself
 belongs to HR-Driven Identity;
 
 267
-00:18:08.887 --> 00:18:13.340
+00:18:01.687 --> 00:18:06.140
 this chapter covers only the
 workflow tasks that change access.
 
 268
-00:18:13.340 --> 00:18:17.052
+00:18:06.140 --> 00:18:09.852
 A joiner gets access through
 packages, never a direct add.
 
 269
-00:18:17.052 --> 00:18:22.291
+00:18:09.852 --> 00:18:15.091
 A move is a re-derivation, not an extra
 grant: the old department's access goes,
 
 270
-00:18:22.291 --> 00:18:26.939
+00:18:15.091 --> 00:18:19.739
 the new department's arrives, and
 anything left over goes to review.
 
 271
-00:18:26.939 --> 00:18:31.727
+00:18:19.739 --> 00:18:24.527
 A leaver loses every package, every
 group, and their refresh tokens.
 
 272
-00:18:31.727 --> 00:18:34.490
+00:18:24.527 --> 00:18:27.290
 An inactivity workflow catches accounts
 
 273
-00:18:34.490 --> 00:18:37.490
+00:18:27.290 --> 00:18:30.290
 whose HR record never
 produced a leaver event.
 
 274
-00:18:37.490 --> 00:18:40.896
+00:18:30.290 --> 00:18:33.696
 Guests are where unreviewed
 access piles up fastest,
 
 275
-00:18:40.896 --> 00:18:44.690
+00:18:33.696 --> 00:18:37.490
 because nobody's HR record ends
 when a partner project does.
 
 276
-00:18:44.690 --> 00:18:48.465
+00:18:37.490 --> 00:18:41.265
 So guests arrive through a package
 with a sponsor and an expiry.
 
 277
-00:18:48.465 --> 00:18:52.791
+00:18:41.265 --> 00:18:45.591
 All of this needs Entra ID Governance
 licensing for the whole workforce,
 
 278
-00:18:52.791 --> 00:18:55.010
+00:18:45.591 --> 00:18:47.810
 or some people stay ungoverned.
 
 279
-00:18:58.760 --> 00:19:02.922
+00:18:51.560 --> 00:18:55.722
 Module five is access as code,
 and the evidence it produces.
 
 280
-00:19:02.922 --> 00:19:06.958
+00:18:55.722 --> 00:18:59.758
 A policy that exists only as
 portal clicks can't be diffed,
 
 281
-00:19:06.958 --> 00:19:10.048
+00:18:59.758 --> 00:19:02.848
 reviewed or replayed, so
 it can't be assessed.
 
 282
-00:19:10.048 --> 00:19:14.900
+00:19:02.848 --> 00:19:07.700
 So every decision gets a source of
 truth, a pipeline, and a monitor.
 
 283
-00:19:18.650 --> 00:19:22.986
+00:19:11.450 --> 00:19:15.786
 Every access object the program
 governs has a file in the repository,
 
 284
-00:19:22.986 --> 00:19:26.562
+00:19:15.786 --> 00:19:19.362
 one per object, and the safety
 rules travel with the files.
 
 285
-00:19:26.562 --> 00:19:29.436
+00:19:19.362 --> 00:19:22.236
 Every policy excludes the emergency group,
 
 286
-00:19:29.436 --> 00:19:34.225
+00:19:22.236 --> 00:19:27.025
 every package has an expiry, and leaver
 workflows revoke refresh tokens.
 
 287
-00:19:34.225 --> 00:19:39.037
+00:19:27.025 --> 00:19:31.837
 Several tools can manage those objects,
 and they all end in Microsoft Graph.
 
 288
-00:19:39.037 --> 00:19:42.363
+00:19:31.837 --> 00:19:35.163
 They differ in coverage, and
 the slide shows the gaps.
 
 289
-00:19:42.363 --> 00:19:47.125
+00:19:35.163 --> 00:19:39.925
 The program's reference choice is
 Microsoft365DSC as the writer,
 
 290
-00:19:47.125 --> 00:19:51.712
+00:19:39.925 --> 00:19:44.512
 because it's the only declarative
 tool that covers every class.
 
 291
-00:19:51.712 --> 00:19:55.925
+00:19:44.512 --> 00:19:48.725
 It's a community project, so pin its
 version and read the release notes.
 
 292
-00:19:55.925 --> 00:19:59.787
+00:19:48.725 --> 00:19:52.587
 A team already invested in Terraform
 can use it where it covers.
 
 293
-00:19:59.787 --> 00:20:03.002
+00:19:52.587 --> 00:19:55.802
 The rule that matters is
 one writer per object class,
 
 294
-00:20:03.002 --> 00:20:07.760
+00:19:55.802 --> 00:20:00.560
 recorded in the repository, with
 drift detection running alongside it.
 
 295
-00:20:11.510 --> 00:20:14.824
+00:20:04.310 --> 00:20:07.624
 The repository is the only
 normal path to production,
 
 296
-00:20:14.824 --> 00:20:17.535
+00:20:07.624 --> 00:20:10.335
 and six change-control
 rules make that true.
 
 297
-00:20:17.535 --> 00:20:22.035
+00:20:10.335 --> 00:20:14.835
 Two people per change, with a
 security approver for Tier 0 objects.
 
 298
-00:20:22.035 --> 00:20:24.010
+00:20:14.835 --> 00:20:16.810
 Automated checks before merge.
 
 299
-00:20:24.010 --> 00:20:29.210
+00:20:16.810 --> 00:20:22.010
 Report-only first, then enabled in a second
 change that cites the impact review.
 
 300
-00:20:29.210 --> 00:20:32.882
+00:20:22.010 --> 00:20:25.682
 A pipeline identity with no
 secret, treated as Tier 0,
 
 301
-00:20:32.882 --> 00:20:36.298
+00:20:25.682 --> 00:20:29.098
 because it can change
 every policy in the tenant.
 
 302
-00:20:36.298 --> 00:20:40.122
+00:20:29.098 --> 00:20:32.922
 Emergency portal changes
 back-ported within one business day.
 
 303
-00:20:40.122 --> 00:20:43.710
+00:20:32.922 --> 00:20:36.510
 And rollback as a revert, so
 it leaves the same record.
 
 304
-00:20:43.710 --> 00:20:46.266
+00:20:36.510 --> 00:20:39.066
 Drift detection catches
 what code can't stop,
 
 305
-00:20:46.266 --> 00:20:50.135
+00:20:39.066 --> 00:20:42.935
 since a Global Administrator can
 still change the tenant directly.
 
 306
-00:20:50.135 --> 00:20:54.747
+00:20:42.935 --> 00:20:47.547
 The monitor's results expire, so export
 them before changing a baseline.
 
 307
-00:20:54.747 --> 00:20:58.155
+00:20:47.547 --> 00:20:50.955
 Every drift is either
 redeployed or back-ported,
 
 308
-00:20:58.155 --> 00:21:02.020
+00:20:50.955 --> 00:20:54.820
 and drift on a Tier 0 object
 is a security incident.
 
 309
-00:21:05.770 --> 00:21:08.908
+00:20:58.570 --> 00:21:01.708
 Configuration evidence
 proves a setting existed.
 
 310
-00:21:08.908 --> 00:21:11.633
+00:21:01.708 --> 00:21:04.433
 Operational evidence
 proves it did its job.
 
 311
-00:21:11.633 --> 00:21:15.032
+00:21:04.433 --> 00:21:07.832
 An assessor needs both, for
 the whole assessment period,
 
 312
-00:21:15.032 --> 00:21:16.732
+00:21:07.832 --> 00:21:09.532
 not just the day of the visit.
 
 313
-00:21:16.732 --> 00:21:21.132
+00:21:09.532 --> 00:21:13.932
 The table maps each control family
 to what meets it and what proves it.
 
 314
-00:21:21.132 --> 00:21:25.977
+00:21:13.932 --> 00:21:18.777
 Account management, for example, is
 met by packages, reviews and workflows,
 
 315
-00:21:25.977 --> 00:21:30.107
+00:21:18.777 --> 00:21:22.907
 and proven by their run history,
 not by the configuration alone.
 
 316
-00:21:30.107 --> 00:21:32.529
+00:21:22.907 --> 00:21:25.329
 Retention is only met by the export,
 
 317
-00:21:32.529 --> 00:21:37.207
+00:21:25.329 --> 00:21:30.007
 and the test is an activation still
 queryable after thirty-one days.
 
 318
-00:21:37.207 --> 00:21:40.195
+00:21:30.007 --> 00:21:32.995
 Under FedRAMP 20x, the
 same records support
 
 319
-00:21:40.195 --> 00:21:43.183
+00:21:32.995 --> 00:21:35.983
 the identity and
 change-management indicators.
 
 320
-00:21:43.183 --> 00:21:48.047
+00:21:35.983 --> 00:21:40.847
 And the honest limits: a correct policy
 file says nothing about whether reviewers
 
 321
-00:21:48.047 --> 00:21:52.482
+00:21:40.847 --> 00:21:45.282
 read what they approved, native retention
 is short, and tool coverage moves.
 
 322
-00:21:52.482 --> 00:21:56.420
+00:21:45.282 --> 00:21:49.220
 This is a design-intent mapping,
 not an assessment result.
 
 323
-00:22:00.170 --> 00:22:02.933
+00:21:52.970 --> 00:21:55.733
 To close, here's what to
 take back to the tenant.
 
 324
-00:22:02.933 --> 00:22:07.201
+00:21:55.733 --> 00:22:00.001
 Build the prerequisites before the
 first policy, measure readiness,
 
 325
-00:22:07.201 --> 00:22:11.170
+00:22:00.001 --> 00:22:03.970
 create everything in report-only,
 and enforce the waves in order.
 
 326
-00:22:11.170 --> 00:22:15.241
+00:22:03.970 --> 00:22:08.041
 Make every exclusion a governed
 group with an owner and an expiry,
 
 327
-00:22:15.241 --> 00:22:18.482
+00:22:08.041 --> 00:22:11.282
 and test the break-glass
 accounts every ninety days.
 
 328
-00:22:18.482 --> 00:22:20.828
+00:22:11.282 --> 00:22:13.628
 For PIM: emergency accounts first,
 
 329
-00:22:20.828 --> 00:22:25.183
+00:22:13.628 --> 00:22:17.983
 then the authentication context
 policy, then named approvers.
 
 330
-00:22:25.183 --> 00:22:30.182
+00:22:17.983 --> 00:22:22.982
 Make packages that always expire,
 and review groups, not applications.
 
 331
-00:22:30.182 --> 00:22:33.932
+00:22:22.982 --> 00:22:26.732
 Keep one writer per object
 class and two people per change.
 
 332
-00:22:33.932 --> 00:22:38.370
+00:22:26.732 --> 00:22:31.170
 And export the evidence before
 Microsoft's thirty-day window closes.
 
 333
-00:22:38.370 --> 00:22:43.455
+00:22:31.170 --> 00:22:36.255
 In Zero Trust, every access decision is
 a policy decision, and this session has
 
 334
-00:22:43.455 --> 00:22:48.620
+00:22:36.255 --> 00:22:41.420
 been about making those policies explicit,
 testing them, and keeping the proof.
 
 335
-00:22:48.620 --> 00:22:53.720
+00:22:41.420 --> 00:22:46.520
 Devices and Endpoints covers the device
 compliance that Conditional Access reads.
 
 336
-00:22:53.720 --> 00:22:54.550
+00:22:46.520 --> 00:22:47.350
 Thank you.

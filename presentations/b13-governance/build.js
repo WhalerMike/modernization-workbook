@@ -214,7 +214,7 @@ The identity that decides never acts, and the one that acts never decides. And n
     "the same record version and archived inputs give a byte-identical bundle. No silent drops, append-only, ordered, idempotent; a hash that differs is a finding.");
   sources(s, "Sources: RFC 8785 (JSON Canonicalization Scheme); CISA ScubaGear; Open Policy Agent; NIST SP 800-53 Rev. 5 and SP 800-53B; NIST OSCAL layers and models. Book 13, Chapters 01 and 05.");
   narrate(s,
-`When the program says a control is satisfied, how does anyone know it's right? The usual answer is trust. The program's answer is determinism: given the same version of the record and the same collected inputs, the platform produces the same evidence, byte for byte. Then an assessor doesn't have to trust the run. They repeat it and compare the hashes.
+`When the program reports on a control, how does anyone know the report is right? The usual answer is trust. The program's answer is determinism: given the same version of the record and the same collected inputs, the platform produces the same evidence, byte for byte. Then an assessor doesn't have to trust the run. They repeat it and compare the hashes.
 
 Automation isn't the same thing. Automation makes the answer arrive faster; determinism makes it the same answer no matter who asks.
 

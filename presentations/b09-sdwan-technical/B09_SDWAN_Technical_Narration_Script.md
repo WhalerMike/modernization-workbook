@@ -6,7 +6,7 @@ Welcome. This is the SD-WAN deep dive for Network and Transport, one of the book
 
 ## Slide 2 — Why this matters: three layers and one question
 
-Here's the frame for everything that follows. People say SD-WAN when they mean three different things. SD-WAN decides which path traffic takes and measures how each path is doing. SASE, above it, decides whether a flow is allowed and inspects it. And the governed path, which is still a proposal, asks whether the path itself was authorized. The pipes underneath close almost nothing. Then there's the question most sources skip: who protects the governor, now that one controller can steer every branch? So the honest claim is narrow. Let's see how everything fits in order.
+Here's the frame for everything that follows. People say SD-WAN when they mean three different things. SD-WAN decides which path traffic takes and measures how each path is doing. SASE, above it, decides whether a flow is allowed and inspects it. And the governed path, which is still a proposal, asks whether the path itself was authorized. The pipes underneath support just one control family. Then there's the question most sources skip: who protects the governor, now that one controller can steer every branch? So the honest claim is narrow. Let's see how everything fits in order.
 
 ## Slide 3 — Four modules hung on one sequence
 
@@ -14,7 +14,7 @@ The book's practical rule is an order of operations, and each module hangs off o
 
 ## Slide 4 — Module 1: Transport physics, and what SD-WAN can fix
 
-Module 1 is transport physics. SD-WAN claims tend to fail in one of two ways: promising the impossible, or underselling what's real, which is mostly in the latency tail. We'll separate the floor nothing moves from the gap where SD-WAN does its work, and finish with what a pipe closes on its own, which turns out to be just one thing.
+Module 1 is transport physics. SD-WAN claims tend to fail in one of two ways: promising the impossible, or underselling what's real, which is mostly in the latency tail. We'll separate the floor nothing moves from the gap where SD-WAN does its work, and finish with what a pipe supports on its own, which turns out to be just one thing.
 
 ## Slide 5 — The floor and the gap: what engineering can reach
 
@@ -34,7 +34,7 @@ This is where SD-WAN quietly earns its keep. A quorum commit or a voice call is 
 
 ## Slide 9 — The transport menu: every underlay is a pipe
 
-Every underlay, fiber, MPLS, satellite, cellular or broadband, is a pipe. Their physics differ enormously, and the table makes that concrete: a geostationary satellite path alone blows the voice budget, while low orbit doesn't. But their contribution to the security controls is the same, which is nothing. MPLS is separation, not encryption. What a second pipe does give you is diversity, and a branch with local internet plus diverse cellular can show it. Just remember each new circuit is another interface to govern. So diversity closes one family and quietly enlarges another. That wraps up Module 1.
+Every underlay, fiber, MPLS, satellite, cellular or broadband, is a pipe. Their physics differ enormously, and the table makes that concrete: a geostationary satellite path alone blows the voice budget, while low orbit doesn't. But their contribution to the security controls is the same, which is nothing. MPLS is separation, not encryption. What a second pipe does give you is diversity, and a branch with local internet plus diverse cellular can show it. Just remember each new circuit is another interface to govern. So diversity supports one family and quietly enlarges another. That wraps up Module 1.
 
 ## Slide 10 — Module 2: The branch edge and TIC 3.0
 
@@ -66,7 +66,7 @@ The attack an assessor will try is moving agency data to some other tenant over 
 
 ## Slide 17 — Module 3: Securing and governing the fabric
 
-Module 3 turns to the governor itself. If we credit SD-WAN with closing controls, we owe the controls that protect it. We'll walk its attack surface, make step zero checkable, look ahead to the governed path, pin down the evidence it has to emit, and end with what the fabric owes the applications that ride on it.
+Module 3 turns to the governor itself. If we credit SD-WAN with providing controls, we owe the controls that protect it. We'll walk its attack surface, make step zero checkable, look ahead to the governed path, pin down the evidence it has to emit, and end with what the fabric owes the applications that ride on it.
 
 ## Slide 18 — The governor's attack surface, piece by piece
 

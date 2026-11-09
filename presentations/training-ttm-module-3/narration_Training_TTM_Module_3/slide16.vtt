@@ -5,54 +5,54 @@ WEBVTT
 To sum up.
 
 2
-00:00:00.875 --> 00:00:05.682
+00:00:00.875 --> 00:00:05.649
 You learned Gate 2's decisions: one
 writer per attribute, one approver system
 
 3
-00:00:05.682 --> 00:00:10.412
+00:00:05.649 --> 00:00:10.575
 per authority class, and a lane and
-change-record type for each change class.
+change-record type for each operation class.
 
 4
-00:00:10.412 --> 00:00:15.487
+00:00:10.575 --> 00:00:15.650
 You checked two provisioning configurations
 for attributes with two writers,
 
 5
-00:00:15.487 --> 00:00:18.024
+00:00:15.650 --> 00:00:18.187
 and read each Finding, Warn and Info line.
 
 6
-00:00:18.024 --> 00:00:20.950
+00:00:18.187 --> 00:00:21.113
 And you saw why the alias
 list and the directory
 
 7
-00:00:20.950 --> 00:00:23.500
+00:00:21.113 --> 00:00:23.663
 name are inputs a reviewer has to confirm.
 
 8
-00:00:23.500 --> 00:00:26.714
+00:00:23.663 --> 00:00:26.877
 Before you ship, work through
 the Chapter 08 checklist,
 
 9
-00:00:26.714 --> 00:00:31.000
+00:00:26.877 --> 00:00:31.163
 and run the check whenever either
 provisioning configuration changes.
 
 10
-00:00:31.000 --> 00:00:35.568
+00:00:31.163 --> 00:00:35.730
 Next is Module 4, sources and the
 starting drift: Gate 3 connects HR,
 
 11
-00:00:35.568 --> 00:00:40.812
+00:00:35.730 --> 00:00:40.975
 Entra ID and SailPoint on one key, and
 you'll measure how far the directory is
 
 12
-00:00:40.812 --> 00:00:46.300
+00:00:40.975 --> 00:00:46.440
 from HR over two days, and compare the
 runs without hiding what wasn't measured.

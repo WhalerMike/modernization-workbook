@@ -89,10 +89,10 @@ endModule(SI);
     ["3 No change-request tickets", "ISC's Service Desk integration raises only Service Request and Incident tickets", "Gate 5"],
     [{ text: "4 Two doors into the directory", options: { color: HEX.red } }, "SailPoint can provision Entra ID and AD; Book 03 makes Entra inbound provisioning the one writer", { text: "Gate 2: one writer per attribute", options: { bold: true } }],
   ], { fontSize: 12.5, limit: 5.0 });
-  line(s, "Lanes", "Gate 2 also gives each change class a lane and a change-record type, and builds nothing: every later gate builds what it decides.", b + 0.25, 0.7, 13.5);
+  line(s, "Lanes", "Gate 2 also gives each operation class a lane and a change-record type, and builds nothing: every later gate builds what it decides.", b + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 3, Unit 2; the guide's \"The loop at a glance\" (the four gaps) and \"Step 2: Decide the writers and the approvers.\"");
   notes(s,
-`Used as shipped, the two products fall short of the loop in four places, and Gate 2 closes two of them on paper. Gap two: with SailPoint's Service Catalog app, requests follow the approval process defined in ServiceNow, while the Federal Modernization Workbook's design decides owner-governed access, classes A two and A three, in the identity governance platform. Gate 2 answers with one approver system per authority class. Gap four: two doors into the directory. SailPoint can provision Entra ID and Active Directory, while the workbook's design makes Entra inbound provisioning the one writer of HR-mastered attributes. Gate 2 answers with one writer per attribute. It also gives each change class a lane and a change-record type. Every later gate builds what this one decides.`,
+`Used as shipped, the two products fall short of the loop in four places, and Gate 2 closes two of them on paper. Gap two: with SailPoint's Service Catalog app, requests follow the approval process defined in ServiceNow, while the Federal Modernization Workbook's design decides owner-governed access, classes A two and A three, in the identity governance platform. Gate 2 answers with one approver system per authority class. Gap four: two doors into the directory. SailPoint can provision Entra ID and Active Directory, while the workbook's design makes Entra inbound provisioning the one writer of HR-mastered attributes. Gate 2 answers with one writer per attribute. It also gives each operation class a lane and a change-record type. Every later gate builds what this one decides.`,
   `${M} — Unit 2 "The writers and the approvers"; the guide — "The loop at a glance," four gaps; "Step 2: Decide the writers and the approvers."`);
 }
 
@@ -130,10 +130,10 @@ endModule(SI);
   ], { fontSize: 12, limit: 4.9 });
   callout(s, "Appr", b + 0.25, 1.15, "FaUserCheck", HEX.navy, "Approvers, for example (design guidance): ",
     "ServiceNow approves A0 and A1; SailPoint approves A2 and A3; the catalog app only collects. Every timeout rejects or cancels, never approves.");
-  sources(s, "Sources: Module 3, Unit 2; the guide's Gate 2, steps 2 to 4 and its lane table (inference); Book 13, Appendix B, \"Change classes and their lanes.\"");
+  sources(s, "Sources: Module 3, Unit 2; the guide's Gate 2, steps 2 to 4 and its lane table (inference); Book 13, Appendix B, \"Operation classes and their lanes.\"");
   notes(s,
-`Step two chooses one approver system per authority class. The guide's example, design guidance: ServiceNow approves A zero and A one through its Ask for Approval flow. SailPoint approves A two and A three, through access-request approvals by an owner, a manager or a governance group. The Service Catalog app only collects A two and A three requests. And every approval's timeout outcome is reject or cancel, never approve. Step three gives each change class a lane, following the workbook's design. The mapping onto these products is the program's inference. An autonomous class runs as a standard change, and the authorizing official accepts any class run that way. A gated class is an access request with approval. Step four writes the decisions to the record as a reviewed change.`,
-  `${M} — Unit 2 "The writers and the approvers"; the guide — "Step 2," steps 2 to 4; Book 13, Appendix B — "Change classes and their lanes."`);
+`Step two chooses one approver system per authority class. The guide's example, design guidance: ServiceNow approves A zero and A one through its Ask for Approval flow. SailPoint approves A two and A three, through access-request approvals by an owner, a manager or a governance group. The Service Catalog app only collects A two and A three requests. And every approval's timeout outcome is reject or cancel, never approve. Step three gives each operation class a lane, following the workbook's design. The mapping onto these products is the program's inference. An autonomous class runs as a standard change, and the authorizing official accepts any class run that way. A gated class is an access request with approval. Step four writes the decisions to the record as a reviewed change.`,
+  `${M} — Unit 2 "The writers and the approvers"; the guide — "Step 2," steps 2 to 4; Book 13, Appendix B — "Operation classes and their lanes."`);
 }
 
 // ================================================================== 7 writer_check reads two exports
@@ -302,7 +302,7 @@ endModule(SA);
   tag(s, "Who");
   const b = table(s, "Req", 1.45, [4.0, 8.15], ["Requirement", "What Gate 2 and the check show"], [
     ["SP 800-53 AC-5 Separation of Duties", "One approver system per class; the requester never approves"],
-    ["CM-3; AC-2", "Each change class has a lane and a record type; one writer keeps account changes traceable"],
+    ["CM-3; AC-2", "Each operation class has a lane and a record type; one writer keeps account changes traceable"],
     ["Book 13's L4 acceptance", "Any autonomous class is accepted in writing by the authorizing official"],
     ["CM-6, CM-3, CM-4, CA-7, SI-4", "Each attribute has one writer, or the overlap is named; drift traced to its cause; checked before a change lands"],
   ], { fontSize: 12.5, limit: 4.5 });
@@ -312,7 +312,7 @@ endModule(SA);
   ], 12.5);
   sources(s, "Sources: Module 3, Unit 1 \"The federal requirement\"; Unit 7 \"Summary\"; the guide's Gate 2 requirements; workbook Chapter 08, \"Federal requirements.\"");
   notes(s,
-`The federal requirement. The guide maps Gate 2 to NIST special publication eight hundred fifty-three. A C five, separation of duties: one approver system per class, and the requester never approves. C M three, configuration change control: each change class has a lane and a change-record type. A C two, account management: one writer per attribute keeps account changes traceable to the source. And the workbook's design requires the authorizing official to accept any autonomous class in writing. Chapter 08 maps the check to configuration settings, change control, impact analysis, continuous monitoring and system monitoring. The evidence an ISSO keeps: the attribute map with each writer, the approver and lane tables, and the check's output with the data architect's decisions.`,
+`The federal requirement. The guide maps Gate 2 to NIST special publication eight hundred fifty-three. A C five, separation of duties: one approver system per class, and the requester never approves. C M three, configuration change control: each operation class has a lane and a change-record type. A C two, account management: one writer per attribute keeps account changes traceable to the source. And the workbook's design requires the authorizing official to accept any autonomous class in writing. Chapter 08 maps the check to configuration settings, change control, impact analysis, continuous monitoring and system monitoring. The evidence an ISSO keeps: the attribute map with each writer, the approver and lane tables, and the check's output with the data architect's decisions.`,
   `${M} — Unit 1 "The federal requirement"; Unit 7 "Summary"; the guide — Gate 2 requirements and evidence; workbook Chapter 08 — "Federal requirements and evidence."`);
 }
 
@@ -333,7 +333,7 @@ endModule(SA);
   const s = content(SS, "Summary, and next: Module 4, the starting drift");
   tag(s, "How");
   const l = panel(s, "Did", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "IN THIS MODULE YOU", null, [
-    "Learned Gate 2's decisions: one writer per attribute, one approver system per class, a lane per change class",
+    "Learned Gate 2's decisions: one writer per attribute, one approver system per class, a lane per operation class",
     "Checked two provisioning configurations for attributes with two writers",
     "Saw why the alias list and the directory name are inputs a reviewer confirms",
   ], 13.5);
@@ -345,7 +345,7 @@ endModule(SA);
     "work through the Chapter 08 checklist, and run the check whenever either provisioning configuration changes.");
   sources(s, "Sources: Module 3, Unit 7 \"Summary\"; Module 4, Unit 1; workbook Chapter 08, \"Checklist,\" \"Federal requirements and evidence.\"");
   notes(s,
-`To sum up. You learned Gate 2's decisions: one writer per attribute, one approver system per authority class, and a lane and change-record type for each change class. You checked two provisioning configurations for attributes with two writers, and read each Finding, Warn and Info line. And you saw why the alias list and the directory name are inputs a reviewer has to confirm. Before you ship, work through the Chapter 08 checklist, and run the check whenever either provisioning configuration changes. Next is Module 4, sources and the starting drift: Gate 3 connects HR, Entra ID and SailPoint on one key, and you'll measure how far the directory is from HR over two days, and compare the runs without hiding what wasn't measured.`,
+`To sum up. You learned Gate 2's decisions: one writer per attribute, one approver system per authority class, and a lane and change-record type for each operation class. You checked two provisioning configurations for attributes with two writers, and read each Finding, Warn and Info line. And you saw why the alias list and the directory name are inputs a reviewer has to confirm. Before you ship, work through the Chapter 08 checklist, and run the check whenever either provisioning configuration changes. Next is Module 4, sources and the starting drift: Gate 3 connects HR, Entra ID and SailPoint on one key, and you'll measure how far the directory is from HR over two days, and compare the runs without hiding what wasn't measured.`,
   `${M} — Unit 7 "Summary"; workbook Chapter 08 — "Checklist," "Federal requirements and evidence"; Module 4, Unit 1.`);
 }
 endModule(SS);
@@ -354,7 +354,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 3 deck", [
   "Module page: docs/training/ticket-to-machine/03-one-writer-per-attribute.md (Ticket-to-Machine learning path, Module 3), Units 1 to 7, and the path's index. Its verification log (docs/training/ticket-to-machine/_verification) says every fact is on a page the module links; the deck uses only those pages.",
-  "Pages the module sends you to: the example guide, \"The loop at a glance\" (the four gaps), \"Step 2: Decide the writers and the approvers\" (the two writer patterns, the approver-per-class example, the lane table, Gate 2 requirements and evidence, availability read November 1, 2026, interim path), \"Validate (G2)\" and \"Where agencies start\"; Book 13, Appendix B, \"Change classes and their lanes.\"",
+  "Pages the module sends you to: the example guide, \"The loop at a glance\" (the four gaps), \"Step 2: Decide the writers and the approvers\" (the two writer patterns, the approver-per-class example, the lane table, Gate 2 requirements and evidence, availability read November 1, 2026, interim path), \"Validate (G2)\" and \"Where agencies start\"; Book 13, Appendix B, \"Operation classes and their lanes.\"",
   "Developer workbook Chapter 08 (why this is a build, what exists, what this chapter adds, Lab 1, Lab 2, federal requirements, dangers, checklist). NIST SP 800-53 Rev. 5 controls as the guide and Chapter 08 map them: AC-5, CM-3, AC-2, CM-6, CM-4, CA-7, SI-4.",
   "Lab output: a copy of examples/servicenow-sailpoint (writer_check.py, kit_calls.py, tests/fixtures/writers), run November 2, 2026 with Python 3.14.3, exactly as the module's Lab 1 gives the commands; the Try it output is trimmed where the slides say so. Lab 2 not run by the authors. Design guidance and inferences are labeled.",
 ]);

@@ -5,59 +5,69 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:06.537
-This gate meets NIST special publication
+00:00:01.437 --> 00:00:06.744
+This gate supports NIST special publication
 eight hundred fifty-three A C two,
 
 3
-00:00:06.537 --> 00:00:10.813
+00:00:06.744 --> 00:00:10.988
 account management, and P S seven,
 external personnel security.
 
 4
-00:00:10.813 --> 00:00:13.276
-It meets I A four, enhancement four,
+00:00:10.988 --> 00:00:13.686
+It supports I A four, enhancement four,
 
 5
-00:00:13.276 --> 00:00:17.587
+00:00:13.686 --> 00:00:17.951
 which identifies each person
 by status, such as contractor.
 
 6
-00:00:17.587 --> 00:00:23.879
-And it meets O M B M-22-09's expectation
+00:00:17.951 --> 00:00:24.462
+And it supports O M B M-22-09's expectation
 that enterprise identity draws on HR,
 
 7
-00:00:23.879 --> 00:00:27.200
+00:00:24.462 --> 00:00:27.762
 contract management
 and personnel security.
 
 8
-00:00:27.200 --> 00:00:33.513
+00:00:27.762 --> 00:00:31.937
+Your organization still sets the
+organization-defined parameters,
+
+9
+00:00:31.937 --> 00:00:35.087
+and the assessor decides
+whether each is satisfied.
+
+10
+00:00:35.087 --> 00:00:41.400
 The evidence an ISSO keeps for Gate 2 starts
 with both reconciliation output folders
 
-9
-00:00:33.513 --> 00:00:38.226
+11
+00:00:41.400 --> 00:00:46.113
 and their manifests: one run before
 the contractor leaver ships,
 
-10
-00:00:38.226 --> 00:00:40.538
+12
+00:00:46.113 --> 00:00:48.425
 and one after, with zero C R oh one.
 
-11
-00:00:40.538 --> 00:00:43.850
+13
+00:00:48.425 --> 00:00:51.737
 Then the extract and the
 middleware's provenance manifest.
 
-12
-00:00:43.850 --> 00:00:47.575
+14
+00:00:51.737 --> 00:00:55.462
 The authority-per-fact table,
 signed by the governance body.
 
-13
-00:00:47.575 --> 00:00:51.910
+15
+00:00:55.462 --> 00:00:59.810
 And the privacy office's determination
 for the register and the card system.

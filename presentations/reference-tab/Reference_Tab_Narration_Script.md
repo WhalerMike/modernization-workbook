@@ -6,7 +6,7 @@ The Reference tab of the Federal Modernization Workbook holds six pages that nob
 
 ## Slide 2 — Why a Reference tab
 
-Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work satisfies, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
+Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work supports, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
 
 ## Slide 3 — Six pages at a glance
 
@@ -14,7 +14,7 @@ Here are the six pages, with the job each one does. One page helps you run the k
 
 ## Slide 4 — Run it: the Command Reference
 
-The Command Reference lists every command in the example kits: 694 of them across sixteen kits. That is 599 functions exported by PowerShell modules, 47 PowerShell scripts and 48 Python tools. What makes it trustworthy is how it's made. The page is generated from each command's own help text every time the site builds. If the help changes, the page changes with it, so the two never drift apart, and a public command without a synopsis or an example fails the check. Each row also links back to the chapters and training modules that teach the command, so an engineer can go from what does this do, to where do I learn it, in one click.
+The Command Reference lists every command in the example kits: 718 of them across seventeen kits. That is 615 functions exported by PowerShell modules, 55 PowerShell scripts and 48 Python tools. What makes it trustworthy is how it's made. The page is generated from each command's own help text every time the site builds. If the help changes, the page changes with it, so the two never drift apart, and a public command without a synopsis or an example fails the check. Each row also links back to the chapters and training modules that teach the command, so an engineer can go from what does this do, to where do I learn it, in one click.
 
 ## Slide 5 — Prove it: the Federal Framework Crosswalk
 
@@ -22,7 +22,7 @@ The Federal Framework Crosswalk scores every book against the frameworks a feder
 
 ## Slide 6 — Prove it: the RMF Map
 
-The RMF Map is for the people who sign off: the ISSO, the control assessor and the authorizing official. Their question is where the Risk Management Framework is in the workbook, and what each step leaves behind. The books answer it chapter by chapter; this page puts the answer in one place. It walks all seven steps of NIST SP 800-37 Revision 2 and their 47 tasks. For each task it gives where the workbook treats it, the evidence an assessor would read, and the kit that produces it. The marks today: 25 covered, 13 partial, 9 partial by design, where the workbook gives a template and a prompt because the decision belongs to the agency, and none not covered. It also corrects a common mistake: FISMA isn't a level. FISMA Moderate is shorthand for a categorization and a baseline. The page is in review, waiting for a reviewer who didn't write the marks.
+The RMF Map is for the people who sign off: the ISSO, the control assessor and the authorizing official. Their question is where the Risk Management Framework is in the workbook, and what each step leaves behind. The books answer it chapter by chapter; this page puts the answer in one place. It walks all seven steps of NIST SP 800-37 Revision 2 and their 47 tasks. For each task it gives where the workbook treats it, the evidence an assessor would read, and the kit that produces it. The marks today: 24 covered, 14 partial, 9 partial by design, where the workbook gives a template and a prompt because the decision belongs to the agency, and none not covered. It also corrects a common mistake: FISMA isn't a level. FISMA Moderate is shorthand for a categorization and a baseline. The page is in review, waiting for a reviewer who didn't write the marks.
 
 ## Slide 7 — Prove it: the M-19-17 and FICAM Crosswalk
 

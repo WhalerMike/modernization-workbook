@@ -220,7 +220,7 @@ So the takeaway: none of these gaps can be found by looking at what arrived. M-2
   narrate(s,
 `The distinction this book rests on is between two things that are easy to buy as one: a place where logs are kept, and a capability that looks at them.
 
-NIST keeps them in separate controls. AU-12 requires the system to generate audit records. AU-6 is a different obligation: review and analyze those records for signs of unusual activity, report what's found, and adjust when risk changes. SI-4 adds monitoring for attacks. An agency can satisfy AU-12 completely and still fail AU-6 and SI-4, if nothing that would notice an attack ever reads the records.
+NIST keeps them in separate controls. AU-12 requires the system to generate audit records. AU-6 is a different obligation: review and analyze those records for signs of unusual activity, report what's found, and adjust when risk changes. SI-4 adds monitoring for attacks. An agency can implement AU-12 completely and still fail AU-6 and SI-4, if nothing that would notice an attack ever reads the records.
 
 M-26-14 makes the same distinction in federal policy. Logs must be actively searchable for six months, meaning detections can run on them without preparation, and retrievable for a year. Its last required activity is generating appropriate automated alerts for all of the others. And its maturity model scores collection by alerting: at the first level, actionable alerts cover less than half of the minimum baseline; at Level 3, at least 70 percent; at Level 4, at least 95.
 
@@ -284,7 +284,7 @@ The book's ask: the CISO owns the Agency Logging Plan, and it's funded as the vi
   narrate(s,
 `A multi-cloud agency runs several management stacks, and each reports in its own schema against its own inventory. Five stacks, five inventories, five log formats. When an assessor asks whether a vulnerability is remediated across the whole estate, and to prove it, five partial views that don't reconcile can't answer.
 
-The program's answer is an evidence contract: one record shape that every source emits, with its fields fixed in advance, correlated on one authoritative asset identity and on time, and delivered to the consumers the agency owes, CISA's continuous diagnostics program first among them. The contract is program design; the controls it closes are NIST's.
+The program's answer is an evidence contract: one record shape that every source emits, with its fields fixed in advance, correlated on one authoritative asset identity and on time, and delivered to the consumers the agency owes, CISA's continuous diagnostics program first among them. The contract is program design; the controls it supports are NIST's.
 
 The join key is the point. Two records describe the same asset only if they carry the same identifier, and every stack has its own idea of what that is. So the key comes from the naming plane, the authoritative name or address from IPAM and DDI, not any stack's local ID. A service-management CMDB reconciles to it; it doesn't replace it. And M-26-14 requires timestamps synchronized to a traceable time source, which is the other half of the key.
 

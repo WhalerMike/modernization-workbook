@@ -258,718 +258,728 @@ with the Oracle contingent
 worker as a later source swap.
 
 55
-00:03:25.450 --> 00:03:28.350
+00:03:26.340 --> 00:03:29.240
 Here's the heart of the
 gate: the earliest end.
 
 56
-00:03:28.350 --> 00:03:31.775
+00:03:29.240 --> 00:03:32.665
 A contractor can stop needing
 access for several reasons,
 
 57
-00:03:31.775 --> 00:03:33.488
+00:03:32.665 --> 00:03:34.378
 and the rules file lists them.
 
 58
-00:03:33.488 --> 00:03:34.963
+00:03:34.378 --> 00:03:35.853
 The contract ends.
 
 59
-00:03:34.963 --> 00:03:38.112
+00:03:35.853 --> 00:03:39.002
 The completion date comes
 earlier than the contract end.
 
 60
-00:03:38.112 --> 00:03:40.075
+00:03:39.002 --> 00:03:40.965
 Suitability is withdrawn.
 
 61
-00:03:40.075 --> 00:03:43.275
+00:03:40.965 --> 00:03:44.165
 The card is terminated,
 revoked or expired.
 
 62
-00:03:43.275 --> 00:03:48.250
+00:03:44.165 --> 00:03:49.140
 The sponsor separates, plus a grace
 period, thirty days in the program's file.
 
 63
-00:03:48.250 --> 00:03:53.200
+00:03:49.140 --> 00:03:54.090
 Or the sponsor misses a recertification,
 every hundred eighty days in the file.
 
 64
-00:03:53.200 --> 00:03:56.212
+00:03:54.090 --> 00:03:57.102
 The extract computes every
 condition that applies
 
 65
-00:03:56.212 --> 00:03:58.663
+00:03:57.102 --> 00:03:59.553
 to each contractor and
 takes the first one.
 
 66
-00:03:58.663 --> 00:04:02.176
+00:03:59.553 --> 00:04:03.066
 That's the earliest end, and
 it becomes the leave date.
 
 67
-00:04:02.176 --> 00:04:06.480
+00:04:03.066 --> 00:04:07.370
 A missing contract end isn't treated
 as no end; the record doesn't go
 
 68
-00:04:06.480 --> 00:04:11.025
+00:04:07.370 --> 00:04:11.915
 through at all, because a contractor
 is never provisioned open-ended.
 
 69
-00:04:11.025 --> 00:04:16.680
+00:04:11.915 --> 00:04:17.570
 The grace and recertification periods are
 design guidance: your agency sets them.
 
 70
-00:04:20.430 --> 00:04:21.742
+00:04:21.320 --> 00:04:22.632
 Two sets of rules.
 
 71
-00:04:21.742 --> 00:04:26.131
+00:04:22.632 --> 00:04:27.021
 The extract's source checks, C
 S, look at each register record.
 
 72
-00:04:26.131 --> 00:04:31.055
+00:04:27.021 --> 00:04:31.945
 No contract end is C S oh one,
 and the record is quarantined.
 
 73
-00:04:31.055 --> 00:04:37.417
+00:04:31.945 --> 00:04:38.307
 A sponsor who isn't in the HR export is
 C S oh two: no manager, so no account.
 
 74
-00:04:37.417 --> 00:04:41.016
+00:04:38.307 --> 00:04:41.906
 A sponsor who has separated
 is a C S oh three warning:
 
 75
-00:04:41.016 --> 00:04:46.156
+00:04:41.906 --> 00:04:47.046
 access ends after the grace period
 unless someone records a new sponsor.
 
 76
-00:04:46.156 --> 00:04:48.579
+00:04:47.046 --> 00:04:49.469
 Then the reconciliation's rules, C R,
 
 77
-00:04:48.579 --> 00:04:52.005
+00:04:49.469 --> 00:04:52.895
 compare the register, the
 cards and the directory.
 
 78
-00:04:52.005 --> 00:04:55.742
+00:04:52.895 --> 00:04:56.632
 C R oh one is an enabled
 account past its earliest end.
 
 79
-00:04:55.742 --> 00:05:01.005
+00:04:56.632 --> 00:05:01.895
 C R oh two is an orphan, an enabled
 contractor account with no register record.
 
 80
-00:05:01.005 --> 00:05:04.543
+00:05:01.895 --> 00:05:05.433
 C R oh three is an active
 card the source doesn't hold.
 
 81
-00:05:04.543 --> 00:05:07.293
+00:05:05.433 --> 00:05:08.183
 C R oh four is a record with no account.
 
 82
-00:05:07.293 --> 00:05:10.929
+00:05:08.183 --> 00:05:11.819
 And C R oh five is a leave date
 that isn't the earliest end,
 
 83
-00:05:10.929 --> 00:05:14.270
+00:05:11.819 --> 00:05:15.160
 so the leaver workflow
 fires on the wrong day.
 
 84
-00:05:18.020 --> 00:05:19.170
+00:05:18.910 --> 00:05:20.060
 Two more pieces.
 
 85
-00:05:19.170 --> 00:05:21.920
+00:05:20.060 --> 00:05:22.810
 First, the extract doesn't send anything.
 
 86
-00:05:21.920 --> 00:05:26.034
+00:05:22.810 --> 00:05:26.924
 It writes a file in the HR middleware's
 layout, and the middleware from
 
 87
-00:05:26.034 --> 00:05:30.870
+00:05:26.924 --> 00:05:31.760
 Chapter 01 of Building the Attribute-Driven
 Migration builds the skim requests.
 
 88
-00:05:30.870 --> 00:05:35.870
+00:05:31.760 --> 00:05:36.760
 Its dry run is its default, so nothing
 reaches a tenant unless you ask it to.
 
 89
-00:05:35.870 --> 00:05:40.076
+00:05:36.760 --> 00:05:40.966
 And in Module 1's register, inbound
 provisioning already names both
 
 90
-00:05:40.076 --> 00:05:44.432
+00:05:40.966 --> 00:05:45.322
 the HR app and the contractor-source
 app, through that same middleware.
 
 91
-00:05:44.432 --> 00:05:46.394
+00:05:45.322 --> 00:05:47.284
 Second, the sponsor review.
 
 92
-00:05:46.394 --> 00:05:50.020
+00:05:47.284 --> 00:05:50.910
 It goes on the contractor access
 package's assignment policy.
 
 93
-00:05:50.020 --> 00:05:51.470
+00:05:50.910 --> 00:05:52.360
 It runs twice a year.
 
 94
-00:05:51.470 --> 00:05:56.358
+00:05:52.360 --> 00:05:57.248
 The manager, who is the sponsor,
 reviews, with a named fallback reviewer.
 
 95
-00:05:56.358 --> 00:05:59.621
+00:05:57.248 --> 00:06:00.511
 And when nobody responds,
 access is removed.
 
 96
-00:05:59.621 --> 00:06:04.196
+00:06:00.511 --> 00:06:05.086
 One caution from the kit: using the
 requestor's manager as a reviewer
 
 97
-00:06:04.196 --> 00:06:08.650
+00:06:05.086 --> 00:06:09.540
 is among the things it lists as
 unconfirmed, so Lab 2 checks it.
 
 98
-00:06:11.100 --> 00:06:11.825
+00:06:13.290 --> 00:06:14.015
 Try it.
 
 99
-00:06:11.825 --> 00:06:16.687
+00:06:14.015 --> 00:06:18.877
 Lab 1 runs in the hr-lifecycle
 folder, on fictional contractors.
 
 100
-00:06:16.687 --> 00:06:20.906
+00:06:18.877 --> 00:06:23.096
 Step one lists the reconciliation's
 only read: one GET on users,
 
 101
-00:06:20.906 --> 00:06:26.613
+00:06:23.096 --> 00:06:28.803
 with two read permissions, the lifecycle
 information read and User dot Read dot All.
 
 102
-00:06:26.613 --> 00:06:29.387
+00:06:28.803 --> 00:06:31.577
 Step two computes the earliest ends.
 
 103
-00:06:29.387 --> 00:06:34.385
+00:06:31.577 --> 00:06:36.575
 You give the extract the contractor
 register, the card records, the sponsors
 
 104
-00:06:34.385 --> 00:06:38.987
+00:06:36.575 --> 00:06:41.177
 from the HR export, the rules file, and
 an as-of date, the first of November.
 
 105
-00:06:38.987 --> 00:06:40.776
+00:06:41.177 --> 00:06:42.966
 It finds nine contractors.
 
 106
-00:06:40.776 --> 00:06:41.975
+00:06:42.966 --> 00:06:44.165
 Three are active.
 
 107
-00:06:41.975 --> 00:06:45.462
+00:06:44.165 --> 00:06:47.652
 Four are inactive, already
 past their earliest end.
 
 108
-00:06:45.462 --> 00:06:48.976
+00:06:47.652 --> 00:06:51.166
 And two are quarantined, so they
 won't be provisioned at all.
 
 109
-00:06:48.976 --> 00:06:51.492
+00:06:51.166 --> 00:06:53.682
 The source checks report two findings,
 
 110
-00:06:51.492 --> 00:06:55.425
+00:06:53.682 --> 00:06:57.615
 one warning and one information
 item, and the exit code is two.
 
 111
-00:06:55.425 --> 00:07:00.150
+00:06:57.615 --> 00:07:02.340
 The last line tells you the next step:
 build the skim requests with the middleware.
 
 112
-00:07:00.150 --> 00:07:02.930
+00:07:02.340 --> 00:07:05.120
 The output is wrapped and trimmed to fit.
 
 113
-00:07:06.680 --> 00:07:09.554
+00:07:08.870 --> 00:07:11.744
 Step three prints the nine decisions:
 
 114
-00:07:09.554 --> 00:07:13.355
+00:07:11.744 --> 00:07:15.545
 each contractor's action,
 earliest end and reason.
 
 115
-00:07:13.355 --> 00:07:15.280
+00:07:15.545 --> 00:07:17.470
 Look at the four inactive ones.
 
 116
-00:07:15.280 --> 00:07:20.317
+00:07:17.470 --> 00:07:22.507
 Each is inactive for a different reason:
 a completion date, suitability withdrawn,
 
 117
-00:07:20.317 --> 00:07:25.280
+00:07:22.507 --> 00:07:27.470
 a sponsor gone past the grace period, and
 a sponsor recertification that came due.
 
 118
-00:07:25.280 --> 00:07:27.863
+00:07:27.470 --> 00:07:30.053
 The last one is the knowledge-check case:
 
 119
-00:07:27.863 --> 00:07:31.543
+00:07:30.053 --> 00:07:33.733
 whatever the contract says,
 the earliest condition wins.
 
 120
-00:07:31.543 --> 00:07:36.301
+00:07:33.733 --> 00:07:38.491
 The two quarantined records are nine
 hundred thousand and seven, which has no
 
 121
-00:07:36.301 --> 00:07:39.350
+00:07:38.491 --> 00:07:41.540
 contract end, and nine
 hundred thousand and eight,
 
 122
-00:07:39.350 --> 00:07:41.506
+00:07:41.540 --> 00:07:43.696
 whose sponsor isn't in the HR export.
 
 123
-00:07:41.506 --> 00:07:44.380
+00:07:43.696 --> 00:07:46.570
 Step four hands the
 extract to the middleware.
 
 124
-00:07:44.380 --> 00:07:47.284
+00:07:46.570 --> 00:07:49.474
 It reports seven records
 ready, in one batch,
 
 125
-00:07:47.284 --> 00:07:51.318
+00:07:49.474 --> 00:07:53.508
 and four of them are disables,
 the four inactive contractors.
 
 126
-00:07:51.318 --> 00:07:56.610
+00:07:53.508 --> 00:07:58.800
 Nothing is held, and nothing is sent:
 the middleware only builds the requests.
 
 127
-00:08:00.360 --> 00:08:02.023
+00:08:02.550 --> 00:08:04.213
 Step five reconciles.
 
 128
-00:08:02.023 --> 00:08:06.742
+00:08:04.213 --> 00:08:08.932
 You give it the same register, cards,
 sponsors and rules, plus an export of the
 
 129
-00:08:06.742 --> 00:08:12.072
+00:08:08.932 --> 00:08:14.262
 contractor accounts in the directory, and
 it reports seven findings and one warning.
 
 130
-00:08:12.072 --> 00:08:16.697
+00:08:14.262 --> 00:08:18.887
 Four are C R oh one: accounts still
 enabled past their earliest end.
 
 131
-00:08:16.697 --> 00:08:21.209
+00:08:18.887 --> 00:08:23.399
 Those four are exactly the four disables
 the middleware built in step four,
 
 132
-00:08:21.209 --> 00:08:25.285
+00:08:23.399 --> 00:08:27.475
 so once those disables are sent,
 the next reconciliation shows none.
 
 133
-00:08:25.285 --> 00:08:27.210
+00:08:27.475 --> 00:08:29.400
 There's one orphan, C R oh two,
 
 134
-00:08:27.210 --> 00:08:31.235
+00:08:29.400 --> 00:08:33.425
 an enabled contractor account
 with no register record.
 
 135
-00:08:31.235 --> 00:08:35.710
+00:08:33.425 --> 00:08:37.900
 One C R oh three, an active card
 for someone the source doesn't hold.
 
 136
-00:08:35.710 --> 00:08:39.370
+00:08:37.900 --> 00:08:41.560
 One C R oh five, a leave date
 that isn't the earliest end,
 
 137
-00:08:39.370 --> 00:08:42.860
+00:08:41.560 --> 00:08:45.050
 so the leaver workflow
 would fire on the wrong day.
 
 138
-00:08:42.860 --> 00:08:47.448
+00:08:45.050 --> 00:08:49.638
 And one warning, C R oh four, a
 register record with no account.
 
 139
-00:08:47.448 --> 00:08:51.390
+00:08:49.638 --> 00:08:53.580
 The reconciliation changes
 nothing; it only reports.
 
 140
-00:08:55.140 --> 00:08:58.765
+00:08:57.330 --> 00:09:00.955
 Step six writes the sponsor
 review settings, for review.
 
 141
-00:08:58.765 --> 00:09:01.377
+00:09:00.955 --> 00:09:03.567
 The tool says so: nothing was sent.
 
 142
-00:09:01.377 --> 00:09:03.915
+00:09:03.567 --> 00:09:06.105
 Print the file and read four values.
 
 143
-00:09:03.915 --> 00:09:06.747
+00:09:06.105 --> 00:09:08.937
 The expiration behavior is remove access,
 
 144
-00:09:06.747 --> 00:09:11.765
+00:09:08.937 --> 00:09:13.955
 so a missed recertification ends access,
 just as the earliest-end rule says.
 
 145
-00:09:11.765 --> 00:09:14.952
+00:09:13.955 --> 00:09:17.142
 The primary reviewer is
 the requestor's manager,
 
 146
-00:09:14.952 --> 00:09:18.377
+00:09:17.142 --> 00:09:20.567
 at level one, with a single
 named user as the fallback.
 
 147
-00:09:18.377 --> 00:09:22.461
+00:09:20.567 --> 00:09:24.651
 The recurrence is absolute
 monthly with an interval of six,
 
 148
-00:09:22.461 --> 00:09:24.878
+00:09:24.651 --> 00:09:27.068
 so the review runs every six months.
 
 149
-00:09:24.878 --> 00:09:27.528
+00:09:27.068 --> 00:09:29.718
 And reviewers have
 fourteen days to answer.
 
 150
-00:09:27.528 --> 00:09:29.316
+00:09:29.718 --> 00:09:31.506
 The file also names its target:
 
 151
-00:09:29.316 --> 00:09:33.536
+00:09:31.506 --> 00:09:35.726
 merge these settings into the
 contractor package's assignment policy,
 
 152
-00:09:33.536 --> 00:09:37.828
+00:09:35.726 --> 00:09:40.018
 and send the whole policy with the
 Graph PowerShell cmdlet after review.
 
 153
-00:09:37.828 --> 00:09:41.327
+00:09:40.018 --> 00:09:43.517
 Step seven runs the tests,
 and fifty-seven pass.
 
 154
-00:09:41.327 --> 00:09:43.164
+00:09:43.517 --> 00:09:45.354
 Then delete the output folder.
 
 155
-00:09:43.164 --> 00:09:46.530
+00:09:45.354 --> 00:09:48.720
 The output on the slide
 is trimmed and reflowed.
 
 156
-00:09:50.280 --> 00:09:56.543
+00:09:52.470 --> 00:09:58.733
 Lab 2 runs the gate in your own test tenant,
 worldwide or G C C, never production.
 
 157
-00:09:56.543 --> 00:09:58.867
+00:09:58.733 --> 00:10:01.057
 Set up a contractor provisioning app.
 
 158
-00:09:58.867 --> 00:10:02.486
+00:10:01.057 --> 00:10:04.676
 Send two test contractors through
 the middleware's apply path,
 
 159
-00:10:02.486 --> 00:10:04.505
+00:10:04.676 --> 00:10:06.695
 then reconcile against the tenant.
 
 160
-00:10:04.505 --> 00:10:07.972
+00:10:06.695 --> 00:10:10.162
 And apply the review settings
 to a test contractor package;
 
 161
-00:10:07.972 --> 00:10:12.005
+00:10:10.162 --> 00:10:14.195
 the chapter names the cmdlet and
 permission for updating the policy.
 
 162
-00:10:12.005 --> 00:10:16.012
+00:10:14.195 --> 00:10:18.202
 The middleware's identity holds
 one permission, the synchronization
 
 163
-00:10:16.012 --> 00:10:19.880
+00:10:18.202 --> 00:10:22.070
 upload permission, scoped to the
 contractor provisioning app only.
 
 164
-00:10:19.880 --> 00:10:24.818
+00:10:22.070 --> 00:10:27.008
 The reader app holds User dot Read dot
 All and the lifecycle information read.
 
 165
-00:10:24.818 --> 00:10:29.646
+00:10:27.008 --> 00:10:31.836
 To back it out, restore the policy's previous
 review settings from your read-back,
 
 166
-00:10:29.646 --> 00:10:34.403
+00:10:31.836 --> 00:10:36.593
 pause the provisioning job, which keeps
 its state, delete the test contractors,
 
 167
-00:10:34.403 --> 00:10:38.354
+00:10:36.593 --> 00:10:40.544
 remove the permissions, and delete
 the export and output folders.
 
 168
-00:10:38.354 --> 00:10:40.860
+00:10:40.544 --> 00:10:43.050
 The authors haven't run Lab 2.
 
 169
-00:10:44.610 --> 00:10:45.997
+00:10:46.800 --> 00:10:48.187
 The federal requirement.
 
 170
-00:10:45.997 --> 00:10:51.097
-This gate meets NIST special publication
+00:10:48.187 --> 00:10:53.494
+This gate supports NIST special publication
 eight hundred fifty-three A C two,
 
 171
-00:10:51.097 --> 00:10:55.373
+00:10:53.494 --> 00:10:57.738
 account management, and P S seven,
 external personnel security.
 
 172
-00:10:55.373 --> 00:10:57.836
-It meets I A four, enhancement four,
+00:10:57.738 --> 00:11:00.436
+It supports I A four, enhancement four,
 
 173
-00:10:57.836 --> 00:11:02.147
+00:11:00.436 --> 00:11:04.701
 which identifies each person
 by status, such as contractor.
 
 174
-00:11:02.147 --> 00:11:08.439
-And it meets O M B M-22-09's expectation
+00:11:04.701 --> 00:11:11.212
+And it supports O M B M-22-09's expectation
 that enterprise identity draws on HR,
 
 175
-00:11:08.439 --> 00:11:11.760
+00:11:11.212 --> 00:11:14.512
 contract management
 and personnel security.
 
 176
-00:11:11.760 --> 00:11:18.073
+00:11:14.512 --> 00:11:18.687
+Your organization still sets the
+organization-defined parameters,
+
+177
+00:11:18.687 --> 00:11:21.837
+and the assessor decides
+whether each is satisfied.
+
+178
+00:11:21.837 --> 00:11:28.150
 The evidence an ISSO keeps for Gate 2 starts
 with both reconciliation output folders
 
-177
-00:11:18.073 --> 00:11:22.786
+179
+00:11:28.150 --> 00:11:32.863
 and their manifests: one run before
 the contractor leaver ships,
 
-178
-00:11:22.786 --> 00:11:25.098
+180
+00:11:32.863 --> 00:11:35.175
 and one after, with zero C R oh one.
 
-179
-00:11:25.098 --> 00:11:28.410
+181
+00:11:35.175 --> 00:11:38.487
 Then the extract and the
 middleware's provenance manifest.
 
-180
-00:11:28.410 --> 00:11:32.135
+182
+00:11:38.487 --> 00:11:42.212
 The authority-per-fact table,
 signed by the governance body.
 
-181
-00:11:32.135 --> 00:11:36.770
+183
+00:11:42.212 --> 00:11:46.860
 And the privacy office's determination
 for the register and the card system.
 
-182
-00:11:40.520 --> 00:11:42.495
+184
+00:11:50.610 --> 00:11:52.585
 Check yourself with two questions.
 
-183
-00:11:42.495 --> 00:11:45.751
+185
+00:11:52.585 --> 00:11:55.841
 First: a contractor's
 contract runs to January,
 
-184
-00:11:45.751 --> 00:11:49.607
+186
+00:11:55.841 --> 00:11:59.697
 but their sponsor recertification
 was due in October.
 
-185
-00:11:49.607 --> 00:11:51.432
+187
+00:11:59.697 --> 00:12:01.522
 Which end does the extract use?
 
-186
-00:11:51.432 --> 00:11:56.883
+188
+00:12:01.522 --> 00:12:06.973
 The answer is b: the earliest condition
 that applies, the recertification due date.
 
-187
-00:11:56.883 --> 00:12:00.783
+189
+00:12:06.973 --> 00:12:10.873
 The extract computes every end
 condition and takes the first.
 
-188
-00:12:00.783 --> 00:12:04.257
+190
+00:12:10.873 --> 00:12:14.347
 Second: what does a C
 R oh one finding mean?
 
-189
-00:12:04.257 --> 00:12:08.233
+191
+00:12:14.347 --> 00:12:18.323
 The answer is a: an enabled
 account past its earliest end.
 
-190
-00:12:08.233 --> 00:12:11.870
+192
+00:12:18.323 --> 00:12:21.959
 An account with no register
 record is the orphan,
 
-191
-00:12:11.870 --> 00:12:15.507
+193
+00:12:21.959 --> 00:12:25.597
 C R oh two, and a record with
 no account is C R oh four.
 
-192
-00:12:15.507 --> 00:12:20.620
+194
+00:12:25.597 --> 00:12:30.710
 Once the disables are sent, the next
 reconciliation shows no C R oh one.
 
-193
-00:12:20.620 --> 00:12:25.890
+195
+00:12:30.710 --> 00:12:35.980
 The module page has two more questions,
 each linked to the section that answers it.
 
-194
-00:12:29.640 --> 00:12:30.465
+196
+00:12:39.730 --> 00:12:40.555
 To sum up.
 
-195
-00:12:30.465 --> 00:12:33.615
+197
+00:12:40.555 --> 00:12:43.705
 You computed nine
 contractors' earliest ends.
 
-196
-00:12:33.615 --> 00:12:38.265
+198
+00:12:43.705 --> 00:12:48.355
 You built the skim requests that disable
 four of them, without sending anything.
 
-197
-00:12:38.265 --> 00:12:43.068
+199
+00:12:48.355 --> 00:12:53.158
 You reconciled the register, the cards
 and the directory, and found the four
 
-198
-00:12:43.068 --> 00:12:45.392
+200
+00:12:53.158 --> 00:12:55.482
 accounts those disables will close,
 
-199
-00:12:45.392 --> 00:12:48.490
+201
+00:12:55.482 --> 00:12:58.580
 plus an orphan, a stray card
 and a wrong leave date.
 
-200
-00:12:48.490 --> 00:12:52.753
+202
+00:12:58.580 --> 00:13:02.843
 And you wrote the sponsor review that
 removes access when nobody responds.
 
-201
-00:12:52.753 --> 00:12:56.578
+203
+00:13:02.843 --> 00:13:06.668
 Next is Module 3: make
 joiners ready on day one.
 
-202
-00:12:56.578 --> 00:13:00.853
+204
+00:13:06.668 --> 00:13:10.943
 Its workflow files include the contractor
 leaver workflow from this gate.
 
-203
-00:13:00.853 --> 00:13:04.483
+205
+00:13:10.943 --> 00:13:14.573
 You'll keep Lifecycle Workflows
 definitions as reviewed files,
 
-204
-00:13:04.483 --> 00:13:09.005
+206
+00:13:14.573 --> 00:13:19.095
 lint them before they reach the tenant,
 plan each change against what the tenant
 
-205
-00:13:09.005 --> 00:13:13.580
+207
+00:13:19.095 --> 00:13:23.670
 holds, and measure how many new hires were
 actually ready on their first morning.

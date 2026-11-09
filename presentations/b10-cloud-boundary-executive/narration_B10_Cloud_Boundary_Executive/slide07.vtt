@@ -25,83 +25,83 @@ environment begins at GCC High.
 And that list isn't a ladder.
 
 6
-00:00:17.800 --> 00:00:22.452
+00:00:17.800 --> 00:00:22.504
 Several features are missing in
 GCC, GCC High and DoD alike,
 
 7
-00:00:22.452 --> 00:00:25.650
+00:00:22.504 --> 00:00:25.738
 so moving up doesn't restore everything.
 
 8
-00:00:25.650 --> 00:00:29.650
+00:00:25.738 --> 00:00:29.738
 The largest documented loss is
 the network connectivity layer.
 
 9
-00:00:29.650 --> 00:00:32.829
+00:00:29.738 --> 00:00:32.917
 A commercial tenant gets,
 at no extra license cost,
 
 10
-00:00:32.829 --> 00:00:37.635
+00:00:32.917 --> 00:00:37.723
 a daily network score for each location,
 a view of its egress and front doors,
 
 11
-00:00:37.635 --> 00:00:40.581
+00:00:37.723 --> 00:00:40.669
 insights such as detecting
 TLS interception,
 
 12
-00:00:40.581 --> 00:00:44.225
+00:00:40.669 --> 00:00:44.313
 and performance attributed
 to named network providers.
 
 13
-00:00:44.225 --> 00:00:48.473
+00:00:44.313 --> 00:00:48.560
 An agency choosing between SASE or
 transport providers in a commercial
 
 14
-00:00:48.473 --> 00:00:53.000
+00:00:48.560 --> 00:00:53.087
 tenant gets that comparative evidence
 from Microsoft, in its own admin center.
 
 15
-00:00:53.000 --> 00:00:56.275
+00:00:53.087 --> 00:00:56.362
 The same agency in GCC gets none of it.
 
 16
-00:00:56.275 --> 00:00:59.653
+00:00:56.362 --> 00:00:59.740
 Microsoft's connectivity
 test tool does run in GCC,
 
 17
-00:00:59.653 --> 00:01:03.675
+00:00:59.740 --> 00:01:03.762
 and it closes part of the gap,
 but not the provider comparison.
 
 18
-00:01:03.675 --> 00:01:05.925
+00:01:03.762 --> 00:01:06.013
 So this decision is a budget line.
 
 19
-00:01:05.925 --> 00:01:09.355
+00:01:06.013 --> 00:01:09.443
 Fund the independent measurement
 that replaces that layer,
 
 20
-00:01:09.355 --> 00:01:11.962
+00:01:09.443 --> 00:01:12.050
 before you pick a
 transport or SASE provider.
 
 21
-00:01:11.962 --> 00:01:15.976
+00:01:12.050 --> 00:01:16.063
 That's the sponsor and CIO's call,
 because they fund the platform.
 
 22
-00:01:15.976 --> 00:01:19.010
+00:01:16.063 --> 00:01:19.100
 Next, why a higher
 certification won't fix it.

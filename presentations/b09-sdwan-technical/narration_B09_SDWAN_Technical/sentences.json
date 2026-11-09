@@ -59,21 +59,21 @@
   ],
   [
    21.45,
-   2.75,
-   "The pipes underneath close almost nothing."
+   3.263,
+   "The pipes underneath support just one control family."
   ],
   [
-   24.2,
+   24.712,
    6.875,
    "Then there's the question most sources skip: who protects the governor, now that one controller can steer every branch?"
   ],
   [
-   31.075,
+   31.587,
    2.05,
    "So the honest claim is narrow."
   ],
   [
-   33.125,
+   33.638,
    2.1,
    "Let's see how everything fits in order."
   ]
@@ -138,8 +138,8 @@
   ],
   [
    11.225,
-   9.312,
-   "We'll separate the floor nothing moves from the gap where SD-WAN does its work, and finish with what a pipe closes on its own, which turns out to be just one thing."
+   9.162,
+   "We'll separate the floor nothing moves from the gap where SD-WAN does its work, and finish with what a pipe supports on its own, which turns out to be just one thing."
   ]
  ],
  "5": [
@@ -343,11 +343,11 @@
   ],
   [
    34.15,
-   4.575,
-   "So diversity closes one family and quietly enlarges another."
+   4.5,
+   "So diversity supports one family and quietly enlarges another."
   ],
   [
-   38.725,
+   38.65,
    1.663,
    "That wraps up Module 1."
   ]
@@ -594,11 +594,11 @@
   ],
   [
    3.013,
-   5.037,
-   "If we credit SD-WAN with closing controls, we owe the controls that protect it."
+   5.025,
+   "If we credit SD-WAN with providing controls, we owe the controls that protect it."
   ],
   [
-   8.05,
+   8.037,
    11.738,
    "We'll walk its attack surface, make step zero checkable, look ahead to the governed path, pin down the evidence it has to emit, and end with what the fabric owes the applications that ride on it."
   ]

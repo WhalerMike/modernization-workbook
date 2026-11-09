@@ -322,7 +322,7 @@ So the decision for the authorizing official: a component kept past its end-of-s
   tag(s, "What");
   img(s, "ch03-two-facts-one-index", 0.6, 1.5, 6.3, 3.6);
   sideBox(s, "Index", "FaTableList", HEX.navy, HEX.navyTint, "An index, not a decision", [
-    "149 controls; it indexes 121 of the 287 in NIST Moderate",
+    "152 controls; it indexes 122 of the 287 in NIST Moderate",
     "A pointer to where a control is treated, never an inheritance claim",
     "The security plan still covers every control the baseline selects",
     "FedRAMP's 46 indicators bind providers, not agencies",
@@ -333,9 +333,9 @@ So the decision for the authorizing official: a component kept past its end-of-s
   narrate(s,
 `"Is this control required at Moderate?" is two questions. NIST's baseline says what an agency system implements: 287 at Moderate. FedRAMP's 2026 control reference says how a provider's service was certified: 322 for Class C. The program management and PII processing families sit outside both. Cite them separately.
 
-The series crosswalk is a reverse index of 149 controls in 18 families: for each, where in the series it is treated. A row is a coverage pointer, not an inheritance claim; inheritance depends on the boundary and the assessor. It indexes 121 of the 287 Moderate controls and 122 of the 322 for Class C. Policy controls, the physical and maintenance families and 75 uncited enhancements have no row, so it can't stand in for the security plan.
+The series crosswalk is a reverse index of 152 controls in 18 families: for each, where in the series it is treated. A row is a coverage pointer, not an inheritance claim; inheritance depends on the boundary and the assessor. It indexes 122 of the 287 Moderate controls and 123 of the 322 for Class C. Policy controls, the physical and maintenance families and 75 uncited enhancements have no row, so it can't stand in for the security plan.
 
-FedRAMP's 46 Key Security Indicators, in ten themes, cite 118 of the 149, but they bind providers. Agencies complete their own authorization, keep tools that produce and ingest OSCAL JSON, and review each provider's quarterly report.
+FedRAMP's 46 Key Security Indicators, in ten themes, cite 118 of the 149 controls the crosswalk indexed before three were added, but they bind providers. Agencies complete their own authorization, keep tools that produce and ingest OSCAL JSON, and review each provider's quarterly report.
 
 The questionnaire starts from the estate: whether each product is in use, the specific offering, its Marketplace status and class read that day, and where it runs. Certified only at a higher class is usable; not certified is a flag, and the program sends an uncertified in-boundary dependency to the authorizing official. The order is design: inventory, decide the flags, look up the controls, write what the index can't.`,
   "Book 14, Chapter 03 — The Control Baseline and the Crosswalk (Two facts, not one; A pointer, not an inheritance claim; What the index doesn't cover; The indicators bind providers; The product inventory questionnaire; How an agency uses the two together); Appendices A and B.");
@@ -387,7 +387,7 @@ Each control closes on an artifact a named official approved and the agency stil
 
 Every later risk decision cites the strategy: an accepted residual risk, a plan-of-action due date, a supply chain finding carried rather than fixed. The program's template centers on a signed risk tolerance statement per category, with example values each agency sets; its scoring matrix and 90, 30 and 15 day windows are design. Where a federal timeline applies, such as KEV remediation under BOD 26-04, it governs.
 
-The decision: the head of agency, or the senior accountable official for risk, approves the strategy and tolerance before the next acceptance cites it.`,
+The decision: the head of agency approves the strategy and tolerance before the next acceptance cites it; the senior accountable official for risk management signs only where the head of agency has delegated it (SP 800-37 Task P-2).`,
   "Book 14, Chapter 05 — Program Management Controls (The controls at a glance; PM-1; PM-2 and PM-10; PM-9; PM-4; PM-5; What is requirement and what is design); Chapter 10 (The head of agency and the risk executive; responsibility matrix: P-2).");
 }
 
@@ -669,7 +669,7 @@ The decision, in the program's design: from its next update, the system owner's 
 
 The authorizing official authorizes the agency's own system that uses each certified service, approves each categorization before controls are selected, selects the assessor and sets its independence, decides whether each unsupported component is retired or explicitly accepted, and asks what the assessment didn't look at.
 
-The head of agency, or the senior accountable official for risk, approves the risk strategy and tolerance, and with the CIO signs named appointments. The CIO and executive sponsor fund the mechanisms that produce records before the tools that measure them. The CISO sets the training threshold and names the federal senior official who reviews provider reports, before January 1, 2027.
+The head of agency approves and signs the risk strategy and tolerance, unless the agency delegates the signature to the senior accountable official for risk management (SP 800-37 Task P-2), and with the CIO signs named appointments. The CIO and executive sponsor fund the mechanisms that produce records before the tools that measure them. The CISO sets the training threshold and names the federal senior official who reviews provider reports, before January 1, 2027.
 
 Mission owners sign their maximum tolerable downtime. Counsel and the privacy official start each system of records notice at least sixty days before its first collection. The contracting officer decides, acquisition by acquisition, whether to require an SBOM on request. The boundary and procurement owner fills the inventory questionnaire and decides every flag before the security plan is written. The program office keeps one dated register. And the system owner's package lists what's proven, asserted, inherited and accepted.
 

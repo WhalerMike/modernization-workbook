@@ -798,208 +798,218 @@ has the exact commands.
 The federal requirement.
 
 167
-00:11:09.927 --> 00:11:13.468
-Gate 1 meets NIST
+00:11:09.927 --> 00:11:13.710
+Gate 1 supports NIST
 special publication eight
 
 168
-00:11:13.468 --> 00:11:17.103
+00:11:13.710 --> 00:11:17.303
 hundred fifty-three A C two,
 I A four and C M eight.
 
 169
-00:11:17.103 --> 00:11:20.340
+00:11:17.303 --> 00:11:21.477
+Your organization still sets the
+organization-defined parameters,
+
+170
+00:11:21.477 --> 00:11:24.627
+and the assessor decides
+whether each is satisfied.
+
+171
+00:11:24.627 --> 00:11:27.864
 The module's table maps
 each one to its evidence.
 
-170
-00:11:20.340 --> 00:11:24.246
+172
+00:11:27.864 --> 00:11:31.771
 For C M eight, system component
 inventory, it's the register,
 
-171
-00:11:24.246 --> 00:11:28.640
+173
+00:11:31.771 --> 00:11:36.165
 as JSON and as a spreadsheet file,
 and the Data Platform hand-off.
 
-172
-00:11:28.640 --> 00:11:31.307
+174
+00:11:36.165 --> 00:11:38.832
 For account and identifier management,
 
-173
-00:11:31.307 --> 00:11:34.702
+175
+00:11:38.832 --> 00:11:42.227
 it's the register's identity,
 type and owner columns.
 
-174
-00:11:34.702 --> 00:11:39.252
+176
+00:11:42.227 --> 00:11:46.777
 For privileged accounts and authenticator
 management, the high-risk findings.
 
-175
-00:11:39.252 --> 00:11:42.251
+177
+00:11:46.777 --> 00:11:49.777
 For least privilege of the
 reading process itself,
 
-176
-00:11:42.251 --> 00:11:44.465
+178
+00:11:49.777 --> 00:11:51.991
 the permission list and the call list.
 
-177
-00:11:44.465 --> 00:11:47.278
+179
+00:11:51.991 --> 00:11:54.803
 And for the run's integrity, the manifest,
 
-178
-00:11:47.278 --> 00:11:51.540
+180
+00:11:54.803 --> 00:11:59.065
 which holds the tenant, every
 request, and a hash of every file.
 
-179
-00:11:51.540 --> 00:11:56.178
+181
+00:11:59.065 --> 00:12:03.703
 K S I's are FedRAMP twenty X indicators
 for cloud service providers.
 
-180
-00:11:56.178 --> 00:12:00.618
+182
+00:12:03.703 --> 00:12:08.142
 The agency lines its evidence up
 with what its providers report;
 
-181
-00:12:00.618 --> 00:12:02.628
+183
+00:12:08.142 --> 00:12:10.152
 it doesn't report K S I's itself.
 
-182
-00:12:02.628 --> 00:12:06.250
+184
+00:12:10.152 --> 00:12:13.760
 Which file supports which
 indicator is the program's mapping.
 
-183
-00:12:10.000 --> 00:12:11.975
+185
+00:12:17.510 --> 00:12:19.485
 Check yourself with two questions.
 
-184
-00:12:11.975 --> 00:12:17.075
+186
+00:12:19.485 --> 00:12:24.585
 First: an enabled Active Directory
 account has had no logon for ninety days.
 
-185
-00:12:17.075 --> 00:12:18.337
+187
+00:12:24.585 --> 00:12:25.847
 What does the code do?
 
-186
-00:12:18.337 --> 00:12:19.562
+188
+00:12:25.847 --> 00:12:27.072
 The answer is b.
 
-187
-00:12:19.562 --> 00:12:24.048
+189
+00:12:27.072 --> 00:12:31.558
 It raises a stale lead, N P I I N
 V oh two, to confirm against the
 
-188
-00:12:24.048 --> 00:12:29.001
+190
+00:12:31.558 --> 00:12:36.511
 domain controller and Entra sign-in
 logs, and it changes nothing.
 
-189
-00:12:29.001 --> 00:12:31.109
+191
+00:12:36.511 --> 00:12:38.619
 A stale account is only a lead,
 
-190
-00:12:31.109 --> 00:12:35.062
+192
+00:12:38.619 --> 00:12:42.572
 and the code never disables,
 moves or deletes anything.
 
-191
-00:12:35.062 --> 00:12:41.100
+193
+00:12:42.572 --> 00:12:48.610
 Second: j doe is high risk, and
 also carries N P I I N V oh eight.
 
-192
-00:12:41.100 --> 00:12:42.288
+194
+00:12:48.610 --> 00:12:49.798
 Why does that matter?
 
-193
-00:12:42.288 --> 00:12:43.424
+195
+00:12:49.798 --> 00:12:50.934
 The answer is a.
 
-194
-00:12:43.424 --> 00:12:46.732
+196
+00:12:50.934 --> 00:12:54.242
 It was found only by a
 password that never expires,
 
-195
-00:12:46.732 --> 00:12:49.475
+197
+00:12:54.242 --> 00:12:56.985
 so it may be a person,
 not a service account.
 
-196
-00:12:49.475 --> 00:12:51.515
+198
+00:12:56.985 --> 00:12:59.025
 Learn's criteria can find people too,
 
-197
-00:12:51.515 --> 00:12:55.663
+199
+00:12:59.025 --> 00:13:03.173
 so someone confirms it before the next
 module applies the ownership rule.
 
-198
-00:12:55.663 --> 00:12:58.089
+200
+00:13:03.173 --> 00:13:05.599
 The module page has three more questions,
 
-199
-00:12:58.089 --> 00:13:00.940
+201
+00:13:05.599 --> 00:13:08.450
 each linked to the
 section that answers it.
 
-200
-00:13:04.690 --> 00:13:05.515
+202
+00:13:12.200 --> 00:13:13.025
 To sum up.
 
-201
-00:13:05.515 --> 00:13:10.124
+203
+00:13:13.025 --> 00:13:17.634
 You read a fictional estate of
 thirty-five identities into one register,
 
-202
-00:13:10.124 --> 00:13:14.656
+204
+00:13:17.634 --> 00:13:22.166
 found the eight high-risk ones, saw
 the reader refuse an undeclared call,
 
-203
-00:13:14.656 --> 00:13:19.802
+205
+00:13:22.166 --> 00:13:27.312
 and handed three SQL Server and LDAP-bind
 accounts to the Data Platform plan.
 
-204
-00:13:19.802 --> 00:13:24.456
+206
+00:13:27.312 --> 00:13:31.966
 The evidence an ISSO keeps for Gate
 1 from this module is the register,
 
-205
-00:13:24.456 --> 00:13:28.456
+207
+00:13:31.966 --> 00:13:35.966
 the findings, the hand-off and
 the manifest that hashes them,
 
-206
-00:13:28.456 --> 00:13:32.702
+208
+00:13:35.966 --> 00:13:40.212
 all dated; the permission list from
 step two; and the test result.
 
-207
-00:13:32.702 --> 00:13:35.777
+209
+00:13:40.212 --> 00:13:43.287
 Before you ship, work through
 the chapter's checklist.
 
-208
-00:13:35.777 --> 00:13:40.290
+210
+00:13:43.287 --> 00:13:47.800
 Next is Module 2: owners,
 sponsors and the orphan rule.
 
-209
-00:13:40.290 --> 00:13:44.553
+211
+00:13:47.800 --> 00:13:52.063
 Every identity in this register
 needs two human owners and a sponsor,
 
-210
-00:13:44.553 --> 00:13:49.090
+212
+00:13:52.063 --> 00:13:56.600
 and Module 2 checks who they are and
 what happens when there's nobody left.

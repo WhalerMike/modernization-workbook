@@ -292,7 +292,7 @@ The right-hand column names the federal requirement each track's end state suppo
 
   // Federal requirements (new)
   SL.federal = () => {
-  const s = content(SEC, "Federal requirements each track satisfies");
+  const s = content(SEC, "Federal requirements each track supports");
   tag(s, "Why");
   table(s, "Federal", 1.45, [2.0, 5.3, 4.85], ["Track", "Requirement", "What satisfies it"], [
     ["HR", "SP 800-53 AC-2, AC-2(1), AC-2(3); PS-4, PS-5; IA-4, IA-4(4)", "Accounts trace to worker records; joiner, mover and leaver by workflow, not ticket; one person key"],
@@ -325,7 +325,7 @@ The non-person track: AC-2 and privileged accounts, AC-6(5), with every workload
 All tracks, at Stage 8: AU-2, AU-6, AU-12, SI-4 and continuous monitoring, CA-7, and OMB M-26-14 on agency logging, which rescinded M-21-31. And the GCC boundary: Microsoft 365 GCC is offered at FedRAMP Moderate, and the NIST baseline and the FedRAMP class are separate facts, Book 14 Chapter 03.
 
 The guide leaves out what the books don't support: PS-7, external personnel security; AC-2(13), which the books map to incident response; IA-8 for contractors, which the books map to guests and agents acting for the public; and M-21-31, rescinded. The full citations are in the backup section.`,
-  `${G}, "The federal requirements each track satisfies"; Book 02, Appendix A — "NIST SP 800-53 Rev. 5 control mapping," "The crosswalk: identity controls"; Book 03, Chapters 02, 03, 08, 09, 11; Book 05, Chapters 04, 10; Book 06, Appendix A; Book 01, 11, 12, 14 and 17, Appendix A or as named.`);
+  `${G}, "The federal requirements each track supports"; Book 02, Appendix A — "NIST SP 800-53 Rev. 5 control mapping," "The crosswalk: identity controls"; Book 03, Chapters 02, 03, 08, 09, 11; Book 05, Chapters 04, 10; Book 06, Appendix A; Book 01, 11, 12, 14 and 17, Appendix A or as named.`);
 };
 
   // Attributes primer 1 (new): the model
@@ -951,7 +951,7 @@ Tier 3 is discovered and monitored only: printers, cameras, badge readers, OT eq
 
 Tier 4 is segmented and isolated, or retired: out-of-support systems and anything that can't be inventoried with confidence, behind segmentation, with a recorded risk acceptance and a retirement date, Book 05 Chapter 09.
 
-The tiers are how the inventory meets NIST SP 800-53 Rev. 5 control CM-8, System Component Inventory, in the program's mapping: it includes every component and counts none twice, Book 05 Chapter 10. A device in no tier is a finding.`,
+The tiers are how the inventory supports NIST SP 800-53 Rev. 5 control CM-8, System Component Inventory, in the program's mapping: it includes every component and counts none twice, Book 05 Chapter 10. A device in no tier is a finding.`,
   `${G}, "What neither tool reaches: a tiered strategy" (design guidance); Book 05, Chapter 03 — "Which system owns which fact"; Chapter 09 — "Extended Security Updates"; Chapter 10 — "Reporting and the evidence an assessor reads"; Book 09, Chapters 07 and 09; Book 12, Chapter 01; Book 01, Chapter 04; NIST SP 800-53 Rev. 5, CM-8.`);
 };
 

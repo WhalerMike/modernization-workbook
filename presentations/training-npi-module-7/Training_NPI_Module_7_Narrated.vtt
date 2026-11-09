@@ -891,209 +891,219 @@ The authors haven't run Lab 2.
 The federal requirement.
 
 186
-00:12:11.047 --> 00:12:14.479
-Gate 5 meets NIST
+00:12:11.047 --> 00:12:14.704
+Gate 5 supports NIST
 special publication eight
 
 187
-00:12:14.479 --> 00:12:17.910
+00:12:14.704 --> 00:12:18.085
 hundred fifty-three I A
 five, I A nine and A U two.
 
 188
-00:12:17.910 --> 00:12:21.310
+00:12:18.085 --> 00:12:22.260
+Your organization still sets the
+organization-defined parameters,
+
+189
+00:12:22.260 --> 00:12:25.410
+and the assessor decides
+whether each is satisfied.
+
+190
+00:12:25.410 --> 00:12:28.810
 The module's table maps each
 control to its evidence.
 
-189
-00:12:21.310 --> 00:12:24.855
+191
+00:12:28.810 --> 00:12:32.355
 Authenticator management
 and service identification:
 
-190
-00:12:24.855 --> 00:12:27.722
+192
+00:12:32.355 --> 00:12:35.222
 the conversion file, the
 plan and the findings.
 
-191
-00:12:27.722 --> 00:12:31.048
+193
+00:12:35.222 --> 00:12:38.548
 Verification of controls:
 the exchange tests.
 
-192
-00:12:31.048 --> 00:12:33.818
+194
+00:12:38.548 --> 00:12:41.318
 Account management and disabling accounts:
 
-193
-00:12:33.818 --> 00:12:37.710
+195
+00:12:41.318 --> 00:12:45.210
 the conversion records, the cutover
 log and the apply's results.
 
-194
-00:12:37.710 --> 00:12:42.585
+196
+00:12:45.210 --> 00:12:50.085
 Least privilege and access restrictions
 for change: the two tasks' permissions.
 
-195
-00:12:42.585 --> 00:12:47.173
+197
+00:12:50.085 --> 00:12:54.673
 Change control: the plan's hash,
 and the dry-run and apply folders.
 
-196
-00:12:47.173 --> 00:12:52.560
+198
+00:12:54.673 --> 00:13:00.060
 Audit events: Lab 2's sign-in entry that
 shows a federated credential was used.
 
-197
-00:12:52.560 --> 00:12:56.410
+199
+00:13:00.060 --> 00:13:03.910
 And the run's integrity: the
 manifest in each output folder.
 
-198
-00:12:56.410 --> 00:13:00.554
+200
+00:13:03.910 --> 00:13:08.054
 K S I's are FedRAMP twenty X indicators
 for cloud service providers;
 
-199
-00:13:00.554 --> 00:13:04.750
+201
+00:13:08.054 --> 00:13:12.260
 which file supports which
 indicator is the program's mapping.
 
-200
-00:13:08.500 --> 00:13:10.475
+202
+00:13:16.010 --> 00:13:17.985
 Check yourself with two questions.
 
-201
-00:13:10.475 --> 00:13:14.042
+203
+00:13:17.985 --> 00:13:21.552
 First: a credential's subject
 has Production, capital P,
 
-202
-00:13:14.042 --> 00:13:17.450
+204
+00:13:21.552 --> 00:13:24.960
 where the workflow presents
 production, lower case.
 
-203
-00:13:17.450 --> 00:13:20.213
+205
+00:13:24.960 --> 00:13:27.723
 What happens when it's
 created in Entra I D?
 
-204
-00:13:20.213 --> 00:13:21.437
+206
+00:13:27.723 --> 00:13:28.947
 The answer is b.
 
-205
-00:13:21.437 --> 00:13:25.188
+207
+00:13:28.947 --> 00:13:32.698
 It's created without error, and
 the token exchange fails later.
 
-206
-00:13:25.188 --> 00:13:28.230
+208
+00:13:32.698 --> 00:13:35.740
 Microsoft Learn's workload
 identity federation
 
-207
-00:13:28.230 --> 00:13:32.013
+209
+00:13:35.740 --> 00:13:39.523
 documentation says a wrong
 subject is created successfully.
 
-208
-00:13:32.013 --> 00:13:36.237
+210
+00:13:39.523 --> 00:13:43.747
 The check flags it first,
 as N P W I F oh two.
 
-209
-00:13:36.237 --> 00:13:39.208
+211
+00:13:43.747 --> 00:13:46.718
 Second: conversion one
 ran forty days with no
 
-210
-00:13:39.208 --> 00:13:42.338
+212
+00:13:46.718 --> 00:13:49.848
 logon by the old account,
 and the owner approved.
 
-211
-00:13:42.338 --> 00:13:44.738
+213
+00:13:49.848 --> 00:13:52.248
 What does the plan do
 with the legacy account?
 
-212
-00:13:44.738 --> 00:13:45.963
+214
+00:13:52.248 --> 00:13:53.473
 The answer is b.
 
-213
-00:13:45.963 --> 00:13:49.738
+215
+00:13:53.473 --> 00:13:57.248
 It disables it with Disable
 A D Account, after review.
 
-214
-00:13:49.738 --> 00:13:54.926
+216
+00:13:57.248 --> 00:14:02.436
 This code never deletes it, so the
 rollback, enabling it again, stays possible.
 
-215
-00:13:54.926 --> 00:13:57.352
+217
+00:14:02.436 --> 00:14:04.862
 The module page has three more questions,
 
-216
-00:13:57.352 --> 00:14:00.210
+218
+00:14:04.862 --> 00:14:07.720
 each linked to the
 section that answers it.
 
-217
-00:14:03.960 --> 00:14:04.785
+219
+00:14:11.470 --> 00:14:12.295
 To sum up.
 
-218
-00:14:04.785 --> 00:14:08.973
+220
+00:14:12.295 --> 00:14:16.483
 You planned eight conversions in two
 waves, and caught a trailing slash,
 
-219
-00:14:08.973 --> 00:14:13.160
+221
+00:14:16.483 --> 00:14:20.670
 a wrong case and a stray space before
 any credential reached the tenant.
 
-220
-00:14:13.160 --> 00:14:18.251
+222
+00:14:20.670 --> 00:14:25.761
 You read each conversion's parallel run,
 applied four approved writes to the fake,
 
-221
-00:14:18.251 --> 00:14:20.455
+223
+00:14:25.761 --> 00:14:27.965
 an identity before its credential,
 
-222
-00:14:20.455 --> 00:14:23.722
+224
+00:14:27.965 --> 00:14:31.232
 and saw the write path refuse
 a plan nobody reviewed.
 
-223
-00:14:23.722 --> 00:14:28.880
+225
+00:14:31.232 --> 00:14:36.390
 The evidence an ISSO keeps for Gate 5
 from this module is the conversion file,
 
-224
-00:14:28.880 --> 00:14:34.283
+226
+00:14:36.390 --> 00:14:41.793
 the cutover log, the plan with its approved
 hash, the findings, the exchange tests,
 
-225
-00:14:34.283 --> 00:14:39.522
+227
+00:14:41.793 --> 00:14:47.032
 the conversion records, and the apply
 folder's results and manifest, all dated.
 
-226
-00:14:39.522 --> 00:14:42.597
+228
+00:14:47.032 --> 00:14:50.107
 Before you ship, work through
 the chapter's checklist.
 
-227
-00:14:42.597 --> 00:14:45.668
+229
+00:14:50.107 --> 00:14:53.178
 Next is Module 8: convert
 Kerberos accounts to
 
-228
-00:14:45.668 --> 00:14:49.440
+230
+00:14:53.178 --> 00:14:56.950
 group managed and delegated
 managed service accounts.
