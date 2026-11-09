@@ -82,3 +82,7 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 ## Review gate
 
 `review-status: pending`. The guide waits for the owner's review; it isn't approved here.
+
+## AWS support plan wording, November 9, 2026
+
+AWS's pages name the plans the Health API needs differently. The CLI reference names Business, Enterprise On-Ramp or Enterprise Support; the AWS Health User Guide's "Concepts for AWS Health" (read Nov 9, 2026) names Business Support+, Enterprise Support or Unified Operations; the GovCloud (US) guide names Business or Enterprise. The guide now says "a qualifying AWS Support plan" and cites all three, as Book 15 Chapter 14 does. Footnote `pn-aws-plan-ug` added.
