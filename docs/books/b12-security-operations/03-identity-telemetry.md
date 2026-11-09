@@ -42,7 +42,7 @@ The mechanism that fixes this is the Entra *diagnostic setting*: a tenant-level 
 
 The category name you tick in the diagnostic setting is not always the table name you query. Microsoft says so directly in the ID Protection export guidance: the names in diagnostic settings "are not the same as the table names" used in KQL, and most of the tables carry an `AAD` prefix.[^c03-risk-export] The mapping isn't mechanical (`SignInLogs` lands in `SigninLogs`, with a lowercase *i*), so detection rules and retention settings must name the table, not the category.
 
-The tier column is the program's design: **Core** categories carry the event-logging, record-content and record-generation evidence (NIST SP 800-53 AU-2, AU-3 and AU-12)[^c03-nist] for every tenant regardless of which features it uses; **High value** categories need ID Protection licensing; **Conditional** categories produce data only when a feature is deployed.
+The tier column is the program's design: **Core** categories carry the event-logging, record-content and record-generation evidence (NIST SP 800-53 AU-2, AU-3 and AU-12)[^c03-nist] for every tenant regardless of which features it uses; **High value** categories need ID Protection licensing; **Conditional** categories produce data only when a feature is deployed. Where a system's baseline selects AU-3(1), Additional Audit Information, which asks for audit records that carry additional information the organization defines,[^c03-nist] the program names the High value and Conditional categories it enables as that additional information for the identity plane.
 
 | Category (diagnostic setting) | Log Analytics table | Tier | What it captures |
 |---|---|---|---|
@@ -278,13 +278,15 @@ let expected = datatable(TableName: string) [
     "SigninLogs", "AADNonInteractiveUserSignInLogs",
     "AADServicePrincipalSignInLogs", "AADManagedIdentitySignInLogs",
     "AuditLogs", "AADProvisioningLogs", "MicrosoftGraphActivityLogs",
-    "AADRiskyUsers", "AADUserRiskEvents"
+    "AADRiskyUsers", "AADUserRiskEvents",
+    "AADRiskyServicePrincipals", "AADServicePrincipalRiskEvents"
 ];
 let observed = union isfuzzy=true withsource=TableName
     SigninLogs, AADNonInteractiveUserSignInLogs,
     AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs,
     AuditLogs, AADProvisioningLogs, MicrosoftGraphActivityLogs,
-    AADRiskyUsers, AADUserRiskEvents
+    AADRiskyUsers, AADUserRiskEvents,
+    AADRiskyServicePrincipals, AADServicePrincipalRiskEvents
     | where TimeGenerated > ago(7d)
     | summarize RecordCount = count(), LastRecord = max(TimeGenerated) by TableName;
 expected
@@ -296,7 +298,7 @@ expected
 | order by Status asc, TableName asc
 ```
 
-`MISSING` means the category was never enabled, was enabled against a different workspace, or (for the risk tables) has had nothing to report; check the GET output from Path C before concluding anything. `STALE` is the more dangerous result: emission worked and then stopped, and any query over a wide time range will keep returning the old data and hide the gap. Some tenants legitimately produce no provisioning or risk events in a quiet week, so the program records an expected-quiet exception for those tables rather than lowering the bar for the sign-in tables.
+`MISSING` means the category was never enabled, was enabled against a different workspace, or (for the risk tables) has had nothing to report; check the GET output from Path C before concluding anything. `STALE` is the more dangerous result: emission worked and then stopped, and any query over a wide time range will keep returning the old data and hide the gap. Some tenants legitimately produce no provisioning or risk events in a quiet week, so the program records an expected-quiet exception for those tables rather than lowering the bar for the sign-in tables. The query checks all eleven categories the setting deploys. The two workload-identity tables, `AADRiskyServicePrincipals` and `AADServicePrincipalRiskEvents`, receive records only when ID Protection flags a service principal or detects risk against one, and managed identities aren't in scope for those detections, so a tenant with no risky workload identities shows them as `MISSING` and they carry the same expected-quiet exception.[^c03-risk-export] [^c03-wid-risk] Tenants without Workload Identities Premium still receive the detections, with limited reporting detail.[^c03-wid-risk]
 
 Where the workspace is Microsoft Sentinel, its **Microsoft Entra ID** data connector writes these same categories to these same tables, and needs read and write permission on the Entra diagnostic settings to show its status.[^c03-sentinel-entra] The program still treats the tenant diagnostic setting, deployed from code, as the control of record, and checks for duplicate settings sending the same categories to the same workspace. How the tables become detections is [Chapter 05](05-from-log-warehouse-to-detection.md), and the control-level detail is in the compliance volume [Vol III Book 06, SIEM, XDR, and Detection Engineering](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
 
@@ -332,7 +334,8 @@ Entra diagnostic settings emit identity events. They don't emit Azure control-pl
 [^c03-graph-activity]: Microsoft Learn, "Access Microsoft Graph activity logs," sections "Prerequisites," "Cost planning estimates," "Cost reduction for Log Analytics" and "Limitations," and the national cloud availability table, <https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview> (accessed Oct 21, 2026).
 [^c03-sentinel-entra]: Microsoft Learn, "Send data to Microsoft Sentinel using the Microsoft Entra ID data connector," sections "Prerequisites" and "Microsoft Entra ID data connector data types," <https://learn.microsoft.com/azure/sentinel/connect-azure-active-directory> (accessed Oct 21, 2026).
 [^c03-risk-export]: Microsoft Learn, "How To: Export risk data," sections "Diagnostic settings" and "Log Analytics" (category-to-table mapping), <https://learn.microsoft.com/entra/id-protection/howto-export-risk-data> (accessed Oct 21, 2026).
-[^c03-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls AC-2, AC-6, AU-2, AU-3, AU-11 and AU-12 (OSCAL catalog release 5.2.0), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> and <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 21, 2026).
+[^c03-wid-risk]: Microsoft Learn, "Securing workload identities," introduction and sections "Workload identity risk detections" and "Export risk data," <https://learn.microsoft.com/entra/id-protection/concept-workload-identity-risk> (accessed Nov 9, 2026).
+[^c03-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls AC-2, AC-6, AU-2, AU-3, AU-11 and AU-12 (OSCAL catalog release 5.2.0), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> and <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 21, 2026); AU-3(1) from the same catalog (accessed Nov 9, 2026).
 [^c03-csa-table]: Microsoft Learn, Azure Monitor Logs table reference, "AADCustomSecurityAttributeAuditLogs," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadcustomsecurityattributeauditlogs> (accessed Oct 21, 2026).
 [^c03-csa-manage]: Microsoft Learn, "Manage access to custom security attributes in Microsoft Entra ID," section "Custom security attribute audit logs," <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-manage> (accessed Oct 21, 2026).
 [^c03-ksi-mla]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, Key Security Indicators, "Monitoring, Logging, and Auditing" (KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM, KSI-MLA-RVL), <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/monitoring-logging-and-auditing/> (accessed Oct 21, 2026).

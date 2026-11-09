@@ -85,3 +85,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | The controls it closes, and the federal requirements | The controls it supports, and the federal requirements | no source change |
 | ## Controls this chapter closes | ## Controls this chapter supports {#controls-this-chapter-closes} | no source change |
 | An inventory that meets CM-8 across stacks is the naming plane. | An inventory that does what CM-8 asks across stacks is the naming plane. | no source change |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | AU-3(1) asks for audit records with organization-defined additional information; AU-6(5) asks to integrate audit analysis with vulnerability scanning, performance, monitoring or other information (item 599) | The contract; controls table | verified (control text); restated-as-design (the program's definitions) | NIST OSCAL SP 800-53 Rev. 5 catalog |
+| 2 | AU-3(1) in the FedRAMP Moderate baseline; AU-6(5) High only | Controls table | verified | This book's Appendix A baseline columns (NIST OSCAL profiles, FedRAMP Rev5 classes) |

@@ -185,6 +185,8 @@ The program implements PM-7 as review gates in the system life cycle. A system p
 4. **Deploy.** The authorization decision, or for a system that uses a consumed cloud service, the authorization of the agency's system that uses it, before production.
 5. **Operate.** Continuous monitoring, the annual assessment, POA&M management and the next review of the architecture.
 
+An application modernized inside a system passes four application gates of its own (disposition, design review, pull request and release), which run inside these five; [Book 18, Chapter 07](../b18-application-modernization/07-who-governs-the-architecture.md#four-gates-and-five-life-cycle-gates) maps one set onto the other.
+
 FedRAMP's KSI-PIY-RSD, which asks providers to review how well they build security and privacy into the software life cycle, lists PM-7 among its related controls.[^c05-fr-ksi] For a provider, that indicator is the evidence. For an agency, the gate records are.
 
 ## Measures of performance and the continuous monitoring strategy (PM-6, PM-31)

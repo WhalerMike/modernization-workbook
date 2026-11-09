@@ -127,3 +127,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Check |
 |---|---|---|
 | "all 147 videos" (dated Nov 2) | Adds "(the library has grown since)"; the Nov 2 count is unchanged | Decision of Nov 8, 2026 |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Books 17, 18 and 19 named as the latest books; their modules enter at the next currency review (item 796) | Keeping the curriculum current | restated-as-design | Book 17, 18 and 19 indexes |
