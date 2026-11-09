@@ -58,6 +58,7 @@ Writer W1. Sources: `docs/compliance/Vol_0_Book_00_Executive_Summary.md` section
 | 50 | Microsoft end-of-support dates (Windows Server 2016 Jan 12, 2027; 2019 in 2029) | Vendor end of support | verified via Book 00 Ch01 (settled; linked, not duplicated) | Book 00 Ch01 |
 | 51 | Register of dated requirements re-verified at gates | How the program keeps the clock | restated-as-design (source's "federal-compliance-authority-deadlines.yml" and "ConMon Gap Roadmap" internal names dropped) | Exec brief; Book 00 |
 | 52 | Source: "The compliance timeline is not advisory … January 1, 2027 is a regulatory requirement" (for the agency) | — | corrected in substance: Jan 1, 2027 binds providers; agency obligation is to review provider evidence (Book 00 Ch01 makes the same correction) | FedRAMP use page |
+| 53 | NIST IR 8547 (final, Oct 27, 2026): quantum-vulnerable signature algorithms (RSA, ECDSA, EdDSA) deprecated after 2030, disallowed under NIST standards and guidelines after 2035; for high value assets, high impact systems and other systems prioritized under M-26-15, continued use is constrained by the earlier deadlines. Added Nov 9, 2026 as a dates-ahead row marked guidance, beside the M-26-15 rows; closes the open note in #41 | Dates ahead | verified (csrc page published 2026-10-27; final PDF re-read Nov 9, 2026: §4 introduction, §4.1.1 and Table 2) | csrc IR 8547 final page; IR 8547 final PDF |
 
 ## Carry-forward ledger
 
