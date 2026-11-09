@@ -489,942 +489,942 @@ Where a vendor controller exists,
 it owns the configuration.
 
 105
-00:06:24.430 --> 00:06:27.364
+00:06:24.940 --> 00:06:27.874
 The remaining targets
 all follow one pattern:
 
 106
-00:06:27.364 --> 00:06:32.305
+00:06:27.874 --> 00:06:32.815
 find the tool that already owns the setting,
 and let Ansible do only what's left.
 
 107
-00:06:32.305 --> 00:06:35.269
+00:06:32.815 --> 00:06:35.779
 On VMware, the virtual
 machines can go to Arc,
 
 108
-00:06:35.269 --> 00:06:40.292
+00:06:35.779 --> 00:06:40.802
 while the hypervisor and appliances,
 which can't run an agent, are Ansible's.
 
 109
-00:06:40.292 --> 00:06:43.296
+00:06:40.802 --> 00:06:43.806
 On Infoblox, Ansible
 works through the A P I,
 
 110
-00:06:43.296 --> 00:06:46.730
+00:06:43.806 --> 00:06:47.240
 with an account scoped to
 the objects it manages.
 
 111
-00:06:46.730 --> 00:06:50.339
+00:06:47.240 --> 00:06:50.849
 On a Windows server under Arc,
 the operating system belongs
 
 112
-00:06:50.339 --> 00:06:54.168
+00:06:50.849 --> 00:06:54.678
 to machine configuration, but
 the application can be Ansible's.
 
 113
-00:06:54.168 --> 00:06:57.392
+00:06:54.678 --> 00:06:57.902
 And in the cloud, the
 provider's inventory is for
 
 114
-00:06:57.392 --> 00:07:00.368
+00:06:57.902 --> 00:07:00.878
 checking against the C
 M D B, not replacing it.
 
 115
-00:07:00.368 --> 00:07:02.580
+00:07:00.878 --> 00:07:03.090
 Next, running the platform.
 
 116
-00:07:06.330 --> 00:07:09.013
+00:07:06.840 --> 00:07:09.523
 The second module is about
 running the Automation
 
 117
-00:07:09.013 --> 00:07:12.080
+00:07:09.523 --> 00:07:12.590
 Platform somewhere a federal
 assessor will look closely.
 
 118
-00:07:12.080 --> 00:07:17.805
+00:07:12.590 --> 00:07:18.315
 The key fact is that, in almost every
 option, it's software the agency runs itself.
 
 119
-00:07:17.805 --> 00:07:20.345
+00:07:18.315 --> 00:07:20.855
 We'll cover what's
 authorized and what isn't,
 
 120
-00:07:20.345 --> 00:07:23.900
+00:07:20.855 --> 00:07:24.410
 the cryptography and hardening
 questions, where to host it,
 
 121
-00:07:23.900 --> 00:07:28.970
+00:07:24.410 --> 00:07:29.480
 the controls to switch on, and why the
 controller is an identity in its own right.
 
 122
-00:07:32.720 --> 00:07:34.395
+00:07:33.230 --> 00:07:34.905
 Start with what you're authorizing.
 
 123
-00:07:34.395 --> 00:07:39.638
+00:07:34.905 --> 00:07:40.148
 The current release has full support
 into 2027, with maintenance after that,
 
 124
-00:07:39.638 --> 00:07:43.133
+00:07:40.148 --> 00:07:43.643
 and it installs only as
 containers or on OpenShift.
 
 125
-00:07:43.133 --> 00:07:45.858
+00:07:43.643 --> 00:07:46.368
 On authorization, be careful with words.
 
 126
-00:07:45.858 --> 00:07:48.634
+00:07:46.368 --> 00:07:49.144
 The self-managed platform
 isn't a cloud service,
 
 127
-00:07:48.634 --> 00:07:53.333
+00:07:49.144 --> 00:07:53.843
 so it isn't on the FedRAMP Marketplace,
 and nobody publishes a statement about it.
 
 128
-00:07:53.333 --> 00:07:55.908
+00:07:53.843 --> 00:07:56.418
 Neither managed offering is listed either,
 
 129
-00:07:55.908 --> 00:07:58.983
+00:07:56.418 --> 00:07:59.493
 and Azure Government
 availability isn't published.
 
 130
-00:07:58.983 --> 00:08:03.230
+00:07:59.493 --> 00:08:03.740
 So the program's default, which is
 design guidance, is to run it yourself,
 
 131
-00:08:03.230 --> 00:08:07.332
+00:08:03.740 --> 00:08:07.842
 inside your own boundary, and
 authorize it like any other component.
 
 132
-00:08:07.332 --> 00:08:10.720
+00:08:07.842 --> 00:08:11.230
 Then come the two questions
 every assessor asks.
 
 133
-00:08:14.470 --> 00:08:17.532
+00:08:14.980 --> 00:08:18.042
 F I P S and baseline
 content come up first,
 
 134
-00:08:17.532 --> 00:08:20.595
+00:08:18.042 --> 00:08:21.105
 and on F I P S the honest
 answer is partial.
 
 135
-00:08:20.595 --> 00:08:25.967
+00:08:21.105 --> 00:08:26.477
 Red Hat's F I P S certificates cover the
 operating system, but the current platform
 
 136
-00:08:25.967 --> 00:08:30.857
+00:08:26.477 --> 00:08:31.367
 documentation doesn't say whether the
 platform is supported in F I P S mode.
 
 137
-00:08:30.857 --> 00:08:35.558
+00:08:31.367 --> 00:08:36.068
 So treat that as unverified: ask
 Red Hat in writing, and test it.
 
 138
-00:08:35.558 --> 00:08:40.371
+00:08:36.068 --> 00:08:40.881
 Where your agency needs validated
 cryptography, the controller's host
 
 139
-00:08:40.371 --> 00:08:44.369
+00:08:40.881 --> 00:08:44.879
 runs in F I P S mode, so that
 support is what you have to confirm.
 
 140
-00:08:44.369 --> 00:08:46.999
+00:08:44.879 --> 00:08:47.509
 For the baseline, start from the C I S
 
 141
-00:08:46.999 --> 00:08:50.445
+00:08:47.509 --> 00:08:50.955
 Benchmarks and your agency's
 own C M 6 settings.
 
 142
-00:08:50.445 --> 00:08:55.022
+00:08:50.955 --> 00:08:55.532
 Red Hat ships C I S profiles with
 an Ansible playbook to apply them,
 
 143
-00:08:55.022 --> 00:08:59.683
+00:08:55.532 --> 00:09:00.193
 and community C I S roles exist too,
 as long as you review and pin them.
 
 144
-00:08:59.683 --> 00:09:02.871
+00:09:00.193 --> 00:09:03.381
 The controller's host is
 hardened like any other server.
 
 145
-00:09:02.871 --> 00:09:08.357
+00:09:03.381 --> 00:09:08.867
 A S T I G for the controller exists, but
 that's High only, an optional reference.
 
 146
-00:09:08.357 --> 00:09:09.990
+00:09:08.867 --> 00:09:10.500
 Next, hosting.
 
 147
-00:09:13.740 --> 00:09:16.690
+00:09:14.250 --> 00:09:17.200
 Where the controller runs
 decides what it inherits.
 
 148
-00:09:16.690 --> 00:09:19.552
+00:09:17.200 --> 00:09:20.062
 On premises puts it
 closest to the targets.
 
 149
-00:09:19.552 --> 00:09:24.108
+00:09:20.062 --> 00:09:24.618
 Self-managed on cloud virtual machines
 inherits that cloud's authorization,
 
 150
-00:09:24.108 --> 00:09:26.956
+00:09:24.618 --> 00:09:27.466
 checked service by service
 and region by region,
 
 151
-00:09:26.956 --> 00:09:30.515
+00:09:27.466 --> 00:09:31.025
 and on an Azure virtual machine
 it can use a managed identity.
 
 152
-00:09:30.515 --> 00:09:33.884
+00:09:31.025 --> 00:09:34.394
 The two managed offerings aren't
 FedRAMP-listed, and that,
 
 153
-00:09:33.884 --> 00:09:37.827
+00:09:34.394 --> 00:09:38.337
 not their commercial regions, is
 what keeps them out of the default.
 
 154
-00:09:37.827 --> 00:09:40.779
+00:09:38.337 --> 00:09:41.289
 One of them also erases
 job logs after thirty days,
 
 155
-00:09:40.779 --> 00:09:43.802
+00:09:41.289 --> 00:09:44.312
 so you'd have to export them
 to keep your audit trail.
 
 156
-00:09:43.802 --> 00:09:47.985
+00:09:44.312 --> 00:09:48.495
 And wherever it runs, the traffic
 to its targets crosses a boundary,
 
 157
-00:09:47.985 --> 00:09:51.103
+00:09:48.495 --> 00:09:51.613
 so record each channel as
 an external connection.
 
 158
-00:09:51.103 --> 00:09:53.540
+00:09:51.613 --> 00:09:54.050
 Now, the settings to switch on.
 
 159
-00:09:57.290 --> 00:10:01.152
+00:09:57.800 --> 00:10:01.662
 Three groups of settings decide
 whether the controller is auditable.
 
 160
-00:10:01.152 --> 00:10:02.516
+00:10:01.662 --> 00:10:03.026
 First, sign-in.
 
 161
-00:10:02.516 --> 00:10:06.451
+00:10:03.026 --> 00:10:06.961
 Federate it to your identity provider,
 so your conditional access and
 
 162
-00:10:06.451 --> 00:10:10.590
+00:10:06.961 --> 00:10:11.100
 phishing-resistant sign-in apply, and
 keep local accounts for break-glass.
 
 163
-00:10:10.590 --> 00:10:13.560
+00:10:11.100 --> 00:10:14.070
 The default lifetime used
 to be a thousand years,
 
 164
-00:10:13.560 --> 00:10:16.827
+00:10:14.070 --> 00:10:17.337
 and old tokens keep it, so
 revoke them when you upgrade.
 
 165
-00:10:16.827 --> 00:10:18.252
+00:10:17.337 --> 00:10:18.762
 Second, logging.
 
 166
-00:10:18.252 --> 00:10:22.940
+00:10:18.762 --> 00:10:23.450
 Send everything to your SIEM, and set
 the cleanup jobs to match your retention.
 
 167
-00:10:22.940 --> 00:10:24.490
+00:10:23.450 --> 00:10:25.000
 Third, content.
 
 168
-00:10:24.490 --> 00:10:27.390
+00:10:25.000 --> 00:10:27.900
 Hub signing is off by
 default, so turn it on.
 
 169
-00:10:27.390 --> 00:10:29.715
+00:10:27.900 --> 00:10:30.225
 And project signing is the quiet hero,
 
 170
-00:10:29.715 --> 00:10:32.940
+00:10:30.225 --> 00:10:33.450
 because a project that fails
 its signature won't run.
 
 171
-00:10:32.940 --> 00:10:36.277
+00:10:33.450 --> 00:10:36.787
 That links the reviewed change
 to what actually executes.
 
 172
-00:10:36.277 --> 00:10:38.960
+00:10:36.787 --> 00:10:39.470
 Which brings us to the controller itself.
 
 173
-00:10:42.710 --> 00:10:46.997
+00:10:43.220 --> 00:10:47.507
 Think about what a controller holds:
 the keys to every host it manages.
 
 174
-00:10:46.997 --> 00:10:51.399
+00:10:47.507 --> 00:10:51.909
 That's more reach than almost any
 administrator, so the program treats
 
 175
-00:10:51.399 --> 00:10:55.573
+00:10:51.909 --> 00:10:56.083
 it as a privileged non-person
 identity, and this is design guidance.
 
 176
-00:10:55.573 --> 00:10:57.784
+00:10:56.083 --> 00:10:58.294
 It gets two named human owners.
 
 177
-00:10:57.784 --> 00:11:02.072
+00:10:58.294 --> 00:11:02.582
 Each credential does one job,
 in one scope, and expires.
 
 178
-00:11:02.072 --> 00:11:06.108
+00:11:02.582 --> 00:11:06.618
 Where you can avoid it, no secret
 is stored in the controller at all:
 
 179
-00:11:06.108 --> 00:11:09.097
+00:11:06.618 --> 00:11:09.607
 use a managed identity
 first, then certificates,
 
 180
-00:11:09.097 --> 00:11:12.235
+00:11:09.607 --> 00:11:12.745
 and fetch anything left from
 your vault at run time.
 
 181
-00:11:12.235 --> 00:11:16.123
+00:11:12.745 --> 00:11:16.633
 Launching a job that changes
 production is a privileged action,
 
 182
-00:11:16.123 --> 00:11:18.910
+00:11:16.633 --> 00:11:19.420
 logged to a person and
 reviewed every quarter.
 
 183
-00:11:18.910 --> 00:11:20.500
+00:11:19.420 --> 00:11:21.010
 That's the platform.
 
 184
-00:11:24.250 --> 00:11:26.312
+00:11:24.760 --> 00:11:26.822
 The third module is about proof.
 
 185
-00:11:26.312 --> 00:11:31.453
+00:11:26.822 --> 00:11:31.963
 Used properly, Ansible produces evidence
 as a side effect: the playbook is a
 
 186
-00:11:31.453 --> 00:11:36.262
+00:11:31.963 --> 00:11:36.772
 file in Git, the change is a pull request,
 and the run is a job with a result.
 
 187
-00:11:36.262 --> 00:11:40.287
+00:11:36.772 --> 00:11:40.797
 We'll map that to the controls assessors
 test, show where the results land,
 
 188
-00:11:40.287 --> 00:11:43.390
+00:11:40.797 --> 00:11:43.900
 and then walk through the
 seven ways it goes wrong.
 
 189
-00:11:47.140 --> 00:11:50.578
+00:11:47.650 --> 00:11:51.088
 Assessors want five things
 from configuration management,
 
 190
-00:11:50.578 --> 00:11:53.328
+00:11:51.088 --> 00:11:53.838
 and Ansible can show each
 one without extra work.
 
 191
-00:11:53.328 --> 00:11:57.677
+00:11:53.838 --> 00:11:58.187
 The baseline is simply the playbook
 version, by Git commit and tag.
 
 192
-00:11:57.677 --> 00:12:01.353
+00:11:58.187 --> 00:12:01.863
 Change control is the pull
 request with a required reviewer.
 
 193
-00:12:01.353 --> 00:12:05.774
+00:12:01.863 --> 00:12:06.284
 The same playbook that applies settings
 can run in check mode to report drift,
 
 194
-00:12:05.774 --> 00:12:08.952
+00:12:06.284 --> 00:12:09.462
 so implementation and monitoring
 come from one source.
 
 195
-00:12:08.952 --> 00:12:12.528
+00:12:09.462 --> 00:12:13.038
 Removing packages you don't
 need shows least functionality.
 
 196
-00:12:12.528 --> 00:12:17.452
+00:12:13.038 --> 00:12:17.962
 And because the inventory comes from the
 C M D B, Ansible never invents a host,
 
 197
-00:12:17.452 --> 00:12:21.741
+00:12:17.962 --> 00:12:22.251
 and anything it couldn't reach says
 so instead of passing quietly.
 
 198
-00:12:21.741 --> 00:12:24.130
+00:12:22.251 --> 00:12:24.640
 Here's where all that evidence goes.
 
 199
-00:12:27.880 --> 00:12:31.930
+00:12:28.390 --> 00:12:32.440
 The rest of the evidence covers audit,
 privilege and the supply chain.
 
 200
-00:12:31.930 --> 00:12:35.155
+00:12:32.440 --> 00:12:35.665
 Job records and the activity
 stream go to the SIEM.
 
 201
-00:12:35.155 --> 00:12:39.118
+00:12:35.665 --> 00:12:39.628
 Least privilege comes from the
 per-purpose credentials we just covered,
 
 202
-00:12:39.118 --> 00:12:42.817
+00:12:39.628 --> 00:12:43.327
 and supply chain evidence comes
 from pinned, verified collections.
 
 203
-00:12:42.817 --> 00:12:44.193
+00:12:43.327 --> 00:12:44.703
 Then comes the payoff.
 
 204
-00:12:44.193 --> 00:12:49.265
+00:12:44.703 --> 00:12:49.775
 Every job result goes to the program's
 evidence store in the same shape every other
 
 205
-00:12:49.265 --> 00:12:53.368
+00:12:49.775 --> 00:12:53.878
 tool uses, and because the inventory
 came from the C M D B, each result
 
 206
-00:12:53.368 --> 00:12:57.993
+00:12:53.878 --> 00:12:58.503
 already carries the configuration item
 number that joins it all together.
 
 207
-00:12:57.993 --> 00:12:59.910
+00:12:58.503 --> 00:13:00.420
 Now, the dangers.
 
 208
-00:13:03.660 --> 00:13:06.747
+00:13:04.170 --> 00:13:07.257
 Most Ansible disasters
 come from three failures.
 
 209
-00:13:06.747 --> 00:13:08.534
+00:13:07.257 --> 00:13:09.044
 The first is blast radius,
 
 210
-00:13:08.534 --> 00:13:12.785
+00:13:09.044 --> 00:13:13.295
 where one playbook aimed too
 wide changes every host at once.
 
 211
-00:13:12.785 --> 00:13:17.437
+00:13:13.295 --> 00:13:17.947
 So run in check mode first, target
 narrowly, and change in small batches,
 
 212
-00:13:17.437 --> 00:13:21.447
+00:13:17.947 --> 00:13:21.957
 where the first batch is a canary
 and a failure stops the rest.
 
 213
-00:13:21.447 --> 00:13:27.147
+00:13:21.957 --> 00:13:27.657
 The second is inventory drift, where a
 hand-kept host list disagrees with reality.
 
 214
-00:13:27.147 --> 00:13:30.824
+00:13:27.657 --> 00:13:31.334
 Generate the inventory from
 the C M D B on every run,
 
 215
-00:13:30.824 --> 00:13:33.873
+00:13:31.334 --> 00:13:34.383
 and fail on a bad record
 rather than guess.
 
 216
-00:13:33.873 --> 00:13:35.847
+00:13:34.383 --> 00:13:36.357
 The third is credential sprawl.
 
 217
-00:13:35.847 --> 00:13:39.997
+00:13:36.357 --> 00:13:40.507
 Keep credentials in one controller,
 and keep secrets out of the output.
 
 218
-00:13:39.997 --> 00:13:44.673
+00:13:40.507 --> 00:13:45.183
 A strict lint profile on every pull
 request makes much of this automatic.
 
 219
-00:13:44.673 --> 00:13:46.030
+00:13:45.183 --> 00:13:46.540
 Four more to go.
 
 220
-00:13:49.780 --> 00:13:51.117
+00:13:50.290 --> 00:13:51.627
 These four are quieter.
 
 221
-00:13:51.117 --> 00:13:55.431
+00:13:51.627 --> 00:13:55.941
 Two tools on one setting flip it back
 and forth while both report success,
 
 222
-00:13:55.431 --> 00:13:59.817
+00:13:55.941 --> 00:14:00.327
 and the fix is the ownership rule,
 checked inside every changing playbook.
 
 223
-00:13:59.817 --> 00:14:03.197
+00:14:00.327 --> 00:14:03.707
 Public Galaxy content can
 change under you between runs,
 
 224
-00:14:03.197 --> 00:14:06.936
+00:14:03.707 --> 00:14:07.446
 so pull collections from a reviewed
 source, pin exact versions,
 
 225
-00:14:06.936 --> 00:14:10.818
+00:14:07.446 --> 00:14:11.328
 verify them, and keep that list as
 your software bill of materials.
 
 226
-00:14:10.818 --> 00:14:14.597
+00:14:11.328 --> 00:14:15.107
 Running everything as root gives
 every mistake root's reach,
 
 227
-00:14:14.597 --> 00:14:17.167
+00:14:15.107 --> 00:14:17.677
 so escalate only on
 the tasks that need it.
 
 228
-00:14:17.167 --> 00:14:22.030
+00:14:17.677 --> 00:14:22.540
 And commands that report a change every
 time turn drift reports into noise.
 
 229
-00:14:22.030 --> 00:14:26.630
+00:14:22.540 --> 00:14:27.140
 Run each playbook twice in test, and
 the second run should change nothing.
 
 230
-00:14:26.630 --> 00:14:29.250
+00:14:27.140 --> 00:14:29.760
 Now, how to adopt all of this.
 
 231
-00:14:33.000 --> 00:14:36.100
+00:14:33.510 --> 00:14:36.610
 The last module turns
 all of this into a path.
 
 232
-00:14:36.100 --> 00:14:41.438
+00:14:36.610 --> 00:14:41.948
 It starts read-only and earns its way to
 enforcement, with a gate at each step.
 
 233
-00:14:41.438 --> 00:14:45.818
+00:14:41.948 --> 00:14:46.328
 Then we'll open the example folder:
 the inventory every playbook reads,
 
 234
-00:14:45.818 --> 00:14:48.536
+00:14:46.328 --> 00:14:49.046
 the four playbooks and
 what each one proves,
 
 235
-00:14:48.536 --> 00:14:52.830
+00:14:49.046 --> 00:14:53.340
 how they're tested, and finally
 the checklist and the decisions.
 
 236
-00:14:56.580 --> 00:15:00.070
+00:14:57.090 --> 00:15:00.580
 The adoption path is design
 guidance, and its point is that
 
 237
-00:15:00.070 --> 00:15:03.705
+00:15:00.580 --> 00:15:04.215
 nothing gets write access until
 the read-only evidence is in.
 
 238
-00:15:03.705 --> 00:15:08.491
+00:15:04.215 --> 00:15:09.001
 Phase zero is just facts, from an
 inventory built off the C M D B.
 
 239
-00:15:08.491 --> 00:15:11.842
+00:15:09.001 --> 00:15:12.352
 Phase one onboards
 servers to Arc in waves.
 
 240
-00:15:11.842 --> 00:15:15.363
+00:15:12.352 --> 00:15:15.873
 Phase two writes baselines
 for the tier two platforms,
 
 241
-00:15:15.363 --> 00:15:18.492
+00:15:15.873 --> 00:15:19.002
 but runs them in check mode
 only, reporting drift.
 
 242
-00:15:18.492 --> 00:15:23.110
+00:15:19.002 --> 00:15:23.620
 Only in phase three does anything
 get enforced, by pull request,
 
 243
-00:15:23.110 --> 00:15:27.817
+00:15:23.620 --> 00:15:28.327
 canary first, on hosts Ansible
 owns, and only after two clean runs.
 
 244
-00:15:27.817 --> 00:15:33.831
+00:15:28.327 --> 00:15:34.341
 And phase zero can start this week, with
 a small control node and a C M D B export.
 
 245
-00:15:33.831 --> 00:15:35.830
+00:15:34.341 --> 00:15:36.340
 Now, that inventory.
 
 246
-00:15:39.580 --> 00:15:43.136
+00:15:40.090 --> 00:15:43.646
 Every pattern in the examples
 depends on one file:
 
 247
-00:15:43.136 --> 00:15:46.605
+00:15:43.646 --> 00:15:47.115
 the inventory script that
 reads the C M D B export.
 
 248
-00:15:46.605 --> 00:15:52.002
+00:15:47.115 --> 00:15:52.512
 It turns each record's attributes into
 groups, by tier, by platform, by environment,
 
 249
-00:15:52.002 --> 00:15:55.063
+00:15:52.512 --> 00:15:55.573
 and most importantly by
 configuration owner,
 
 250
-00:15:55.063 --> 00:15:58.930
+00:15:55.573 --> 00:15:59.440
 so the baseline check can only
 ever see hosts Ansible owns.
 
 251
-00:15:58.930 --> 00:16:04.405
+00:15:59.440 --> 00:16:04.915
 A server with no owner isn't a target at
 all; it's a finding to fix in the C M D B.
 
 252
-00:16:04.405 --> 00:16:07.346
+00:16:04.915 --> 00:16:07.856
 And if the export has a
 duplicate or a missing column,
 
 253
-00:16:07.346 --> 00:16:10.630
+00:16:07.856 --> 00:16:11.140
 the script stops rather than
 hand you a partial inventory.
 
 254
-00:16:10.630 --> 00:16:13.967
+00:16:11.140 --> 00:16:14.477
 In production, you'd use an
 inventory plugin instead.
 
 255
-00:16:13.967 --> 00:16:16.170
+00:16:14.477 --> 00:16:16.680
 Now, the playbooks themselves.
 
 256
-00:16:19.920 --> 00:16:24.558
+00:16:20.430 --> 00:16:25.068
 There are four small playbooks, and each
 one proves a single idea from the guide.
 
 257
-00:16:24.558 --> 00:16:28.887
+00:16:25.068 --> 00:16:29.397
 The first is the inventory feed:
 what each server actually is,
 
 258
-00:16:28.887 --> 00:16:33.996
+00:16:29.397 --> 00:16:34.506
 beside what the C M D B says, with
 unreached hosts marked as not collected.
 
 259
-00:16:33.996 --> 00:16:38.008
+00:16:34.506 --> 00:16:38.518
 The second is the only one that
 changes anything, and it's gated.
 
 260
-00:16:38.008 --> 00:16:42.535
+00:16:38.518 --> 00:16:43.045
 Without an explicit confirmation it
 only simulates, and when it does run,
 
 261
-00:16:42.535 --> 00:16:46.007
+00:16:43.045 --> 00:16:46.517
 it starts with one canary and
 stops at the first failure.
 
 262
-00:16:46.007 --> 00:16:49.169
+00:16:46.517 --> 00:16:49.679
 The third is a drift check
 locked into check mode,
 
 263
-00:16:49.169 --> 00:16:51.619
+00:16:49.679 --> 00:16:52.129
 so a change result simply means drift.
 
 264
-00:16:51.619 --> 00:16:55.620
+00:16:52.129 --> 00:16:56.130
 And the fourth reads network and
 Infoblox facts without any agent.
 
 265
-00:16:55.620 --> 00:16:57.660
+00:16:56.130 --> 00:16:58.170
 Next, how they're tested.
 
 266
-00:17:01.410 --> 00:17:03.735
+00:17:01.920 --> 00:17:04.245
 The tests matter as much as the playbooks.
 
 267
-00:17:03.735 --> 00:17:08.022
+00:17:04.245 --> 00:17:08.532
 Everything passes the strictest
 lint profile and a syntax check.
 
 268
-00:17:08.022 --> 00:17:10.915
+00:17:08.532 --> 00:17:11.425
 A read-only checker fails
 on any ungated write,
 
 269
-00:17:10.915 --> 00:17:13.960
+00:17:11.425 --> 00:17:14.470
 and its own negative tests
 prove it catches them.
 
 270
-00:17:13.960 --> 00:17:17.085
+00:17:14.470 --> 00:17:17.595
 The inventory tests prove
 that bad records fail.
 
 271
-00:17:17.085 --> 00:17:18.860
+00:17:17.595 --> 00:17:19.370
 But be clear about the limits.
 
 272
-00:17:18.860 --> 00:17:21.298
+00:17:19.370 --> 00:17:21.808
 The tests ran on a control node only.
 
 273
-00:17:21.298 --> 00:17:24.862
+00:17:21.808 --> 00:17:25.372
 The Arc, Windows, Cisco and
 Infoblox paths pass lint,
 
 274
-00:17:24.862 --> 00:17:27.748
+00:17:25.372 --> 00:17:28.258
 but they haven't touched those platforms.
 
 275
-00:17:27.748 --> 00:17:33.159
+00:17:28.258 --> 00:17:33.669
 And the baseline is a handful of example
 settings, not a C I S Benchmark profile.
 
 276
-00:17:33.159 --> 00:17:35.047
+00:17:33.669 --> 00:17:35.557
 Treat them as illustrations.
 
 277
-00:17:35.047 --> 00:17:37.060
+00:17:35.557 --> 00:17:37.570
 Next, the checklist.
 
 278
-00:17:40.810 --> 00:17:43.488
+00:17:41.320 --> 00:17:43.998
 If you take one thing
 away, take the checklist,
 
 279
-00:17:43.488 --> 00:17:47.035
+00:17:43.998 --> 00:17:47.545
 because it turns the whole guide
 into things you can verify.
 
 280
-00:17:47.035 --> 00:17:50.736
+00:17:47.545 --> 00:17:51.246
 It runs across eight areas,
 from ownership and inventory,
 
 281
-00:17:50.736 --> 00:17:55.697
+00:17:51.246 --> 00:17:56.207
 through change safety and credentials,
 to evidence and the platform itself.
 
 282
-00:17:55.697 --> 00:17:57.827
+00:17:56.207 --> 00:17:58.337
 Each item is phrased as done when,
 
 283
-00:17:57.827 --> 00:18:01.060
+00:17:58.337 --> 00:18:01.570
 so it works as a review gate
 rather than a reminder.
 
 284
-00:18:01.060 --> 00:18:02.585
+00:18:01.570 --> 00:18:03.095
 You've seen most of it today.
 
 285
-00:18:02.585 --> 00:18:07.529
+00:18:03.095 --> 00:18:08.039
 The items teams skip are the quiet ones:
 requiring a second run with no changes,
 
 286
-00:18:07.529 --> 00:18:10.773
+00:18:08.039 --> 00:18:11.283
 and never counting an
 unreached host as compliant.
 
 287
-00:18:10.773 --> 00:18:12.930
+00:18:11.283 --> 00:18:13.440
 Let's finish with the decisions.
 
 288
-00:18:16.680 --> 00:18:20.967
+00:18:17.190 --> 00:18:21.477
 Every decision here has one owner,
 and this is design guidance.
 
 289
-00:18:20.967 --> 00:18:24.068
+00:18:21.477 --> 00:18:24.578
 The C M D B owner, working
 with the platform teams,
 
 290
-00:18:24.068 --> 00:18:28.043
+00:18:24.578 --> 00:18:28.553
 decides the attributes and the
 configuration owner values.
 
 291
-00:18:28.043 --> 00:18:32.317
+00:18:28.553 --> 00:18:32.827
 Server infrastructure picks the
 onboarding identity and the waves.
 
 292
-00:18:32.317 --> 00:18:36.355
+00:18:32.827 --> 00:18:36.865
 The CISO's configuration authority
 picks the baseline content.
 
 293
-00:18:36.355 --> 00:18:41.017
+00:18:36.865 --> 00:18:41.527
 Platform owners decide when enforcement
 goes live, through change control.
 
 294
-00:18:41.017 --> 00:18:44.271
+00:18:41.527 --> 00:18:44.781
 And the system owner and the
 authorizing official decide
 
 295
-00:18:44.271 --> 00:18:47.254
+00:18:44.781 --> 00:18:47.764
 where the platform runs and
 how it holds credentials.
 
 296
-00:18:47.254 --> 00:18:50.345
+00:18:47.764 --> 00:18:50.855
 You can start this week:
 add the owner attribute,
 
 297
-00:18:50.345 --> 00:18:52.880
+00:18:50.855 --> 00:18:53.390
 build groups from it, and run facts only.
 
 298
-00:18:52.880 --> 00:18:55.142
+00:18:53.390 --> 00:18:55.652
 Ansible can reach almost anything,
 
 299
-00:18:55.142 --> 00:18:58.730
+00:18:55.652 --> 00:18:59.240
 so decide where it may write,
 and let the evidence follow.
 
 300
-00:18:58.730 --> 00:18:59.540
+00:18:59.240 --> 00:19:00.050
 Thank you.
