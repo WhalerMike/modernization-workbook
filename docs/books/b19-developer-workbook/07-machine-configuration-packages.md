@@ -32,7 +32,7 @@ How a server setting becomes Azure Machine Configuration content: a DSC configur
 ## Narrated tour
 {{< fmw-video DW_ADM_07_Machine_Configuration_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_ADM_07_Machine_Configuration.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_ADM_07_Machine_Configuration_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_ADM_07_Machine_Configuration.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_ADM_07_Machine_Configuration_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
@@ -384,6 +384,10 @@ foreach ($p in 'TLS 1.0', 'TLS 1.1') { $k = "HKLM:\SYSTEM\CurrentControlSet\Cont
 Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip
 
 # Step 2: Sign in to the right cloud
+Connect-AzAccount -Environment AzureCloud
+
+# Step 2: Sign in to the right cloud
+# Only for a test subscription in Azure Government
 Connect-AzAccount -Environment AzureUSGovernment
 
 # Step 3: Publish the exact bytes
@@ -416,13 +420,22 @@ New-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Policy ./out/
    ```
 
    Expect `True`. This is the step that shows the agent accepts the cleaned MOF.
-2. **Sign in to the right cloud.** In Azure Government:
+2. **Sign in to the right cloud.** The program's estate is a Microsoft 365 GCC tenant, whose Azure subscriptions are in commercial Azure: Learn says Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there.[^c07-govident] So the lab's default is the commercial cloud, `AzureCloud`:[^c07-connect]
 
    ```powershell
+   Connect-AzAccount -Environment AzureCloud
+   ```
+
+   Check the server can reach the cloud's machine configuration endpoints. For commercial Azure, Learn lists `*.guestconfiguration.azure.com` for Arc-enabled servers,[^c07-arcnet] [^c07-network] and for each region `agentserviceapi.guestconfiguration.azure.com` and a regional endpoint, such as `eastus-gas.guestconfiguration.azure.com` and `eus-gas.guestconfiguration.azure.com` for East US, with package storage in that region's `oaasguestconfig*.blob.core.windows.net` accounts.[^c07-network]
+
+   If the test subscription is in Azure Government instead, the alternative for a GCC High or DoD estate, sign in to that cloud:
+
+   ```powershell
+   # Only for a test subscription in Azure Government
    Connect-AzAccount -Environment AzureUSGovernment
    ```
 
-   Check the server can reach the cloud's machine configuration endpoints. For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
+   For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
 3. **Publish the exact bytes.** Create a storage account and container in the test subscription with anonymous blob access disabled, and upload the package Lab 1 built with Learn's `Set-AzStorageBlobContent` step.[^c07-publish] Don't rebuild it. Download it back and compare its SHA-256 with `package.sha256` in `provenance.json`. From `examples/machine-configuration`:
 
    ```powershell
@@ -464,6 +477,7 @@ To try an enforcing version, rebuild with the registry mode set to `ApplyAndMoni
 | Package access | System-assigned identity works for Arc-enabled servers; user-assigned identity doesn't, and needs `-ExcludeArcMachines`; either needs Storage Blob Data Reader and anonymous blob access disabled | [^c07-policy] [^c07-access] |
 | Signing | `Protect-GuestConfigurationPackage`; public key in Trusted Publishers (Windows) or `/usr/local/share/ca-certificates/gc` (Linux); tag `GuestConfigPolicyCertificateValidation` = `enabled` on machines that must require it | [^c07-sign] |
 | Turning off remediation of custom content on one machine | Tag `CustomGuestConfigurationSetPolicy` = `disable` | [^c07-remediation] |
+| Commercial Azure (the GCC estate) | `Connect-AzAccount -Environment AzureCloud`; Arc-enabled servers need `*.guestconfiguration.azure.com`; each region has `agentserviceapi.guestconfiguration.azure.com` and a regional endpoint, such as `eastus-gas.guestconfiguration.azure.com` | [^c07-govident] [^c07-connect] [^c07-arcnet] [^c07-network] |
 | Azure Government | Arc-enabled servers need `*.guestconfiguration.azure.us`; machine configuration endpoints are listed for US Gov Arizona, Texas and Virginia | [^c07-arcnet] [^c07-network] |
 | Cost on Arc | Included at no extra cost for Arc-enabled Windows servers with Software Assurance or a subscription license once attested, or enrolled in Windows Server pay-as-you-go; otherwise purchased separately. Activation isn't available in US Gov Virginia or US Gov Arizona (Learn lists those and three China regions as the exceptions), so in those regions plan to buy it | [^c07-billing] |
 
@@ -543,6 +557,8 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c07-policy]: Microsoft Learn, "How to create custom machine configuration policy definitions," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/create-policy-definition> (accessed Oct 30, 2026).
 [^c07-network]: Microsoft Learn, "Azure Machine Configuration network requirements," <https://learn.microsoft.com/azure/governance/machine-configuration/overview/03-network-requirements> (accessed Oct 30, 2026).
 [^c07-arcnet]: Microsoft Learn, "Connected Machine agent network requirements," <https://learn.microsoft.com/azure/azure-arc/servers/network-requirements> (accessed Oct 30, 2026).
+[^c07-govident]: Microsoft Learn, "Planning identity for Azure Government applications," <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity> (accessed Nov 9, 2026).
+[^c07-connect]: Microsoft Learn, "Connect-AzAccount" (Az.Accounts), parameter `-Environment` and examples showing the `AzureCloud` environment, <https://learn.microsoft.com/powershell/module/az.accounts/connect-azaccount> (accessed Nov 9, 2026).
 [^c07-billing]: Microsoft Learn, "Windows Server Management enabled by Azure Arc," <https://learn.microsoft.com/azure/azure-arc/servers/windows-server-management-overview>, section "Requirements" (accessed Oct 31, 2026).
 [^c07-samples-code]: Microsoft, Azure Policy samples, Azure/azure-policy, `samples/GuestConfiguration/package-samples` at commit `ca85d6182e5a855bcdd1462421d5a1305c14c1df` (August 4, 2021), MIT License, <https://github.com/Azure/azure-policy/tree/ca85d6182e5a855bcdd1462421d5a1305c14c1df/samples/GuestConfiguration/package-samples> (accessed Oct 30, 2026); pinned copy in `examples/third_party/guest-configuration-samples`.
 [^c07-gcrole]: Microsoft, Azure/Azure-Sentinel, `Sample Data/Feeds/AzureBuiltInRole.csv` at commit `16a027b6208ceb97869df85ea2e1ce4d0cad3408` (August 28, 2026), row "Guest Configuration Resource Contributor", and MicrosoftDocs/entra-docs, `.docutune/dictionaries/known-guids.json` at commit `4ed6827815ecbf4e021fc736d75fdda6a2fd6272` (October 28, 2026), both mapping the name to `088ab73d-1256-47ae-bea9-9de8e7131f31`, read with `gh api` (accessed Oct 30, 2026). Not Learn pages: Learn's "Azure built-in roles" and its Management and governance page don't list the ID (searched Oct 30, 2026).

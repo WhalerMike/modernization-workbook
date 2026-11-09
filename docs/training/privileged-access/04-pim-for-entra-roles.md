@@ -1,6 +1,6 @@
 ---
 title: "Module 4: PIM for Microsoft Entra roles as code"
-description: "Workbook Chapter 04 and the plan's A1.6, A2.1, A2.2 and A3.1: hold Book 04, Appendix B's role settings as one reviewed file per role, check them against Learn's bounds and the tier caps, refuse the documented lockout (PA-PIM-01 and PA-PIM-02), dry-run one rollout wave, apply it with separate read and write permissions, prove it from a read-back, and convert standing assignments only after a confirmed activation. About 55 minutes, with a lab on fixtures and a test tenant lab."
+description: "Workbook Chapter 04 and the plan's A1.6, A2.1, A2.2 and A3.1: hold Book 04, Appendix B's role settings as one reviewed file per role, check them against Learn's bounds and the tier caps, refuse the documented lockout (PA-PIM-01 and PA-PIM-02), dry-run one rollout wave, apply it with separate read and write permissions, prove it from a read-back, convert standing assignments only after a confirmed activation, and run the read-only alert check (PA-PIM-10 to PA-PIM-13). About 55 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -14,7 +14,7 @@ last-reviewed: 2026-11-07
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 1, task A1.6; Phase 2, tasks A2.1 and A2.2; Phase 3, task A3.1. Workbook [Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_4.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_4_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_PA_Module_4.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_4_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-4/Training_PA_Module_4_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -33,7 +33,7 @@ This chapter writes the settings that cause the documented lockout, so it refuse
 Any Finding blocks `-Apply`. Converting standing assignments goes eligible first, activation confirmed, active removed, and PIM won't remove the last active Global Administrator.
 :::
 
-**The federal requirement.** The role files, the plan and the read-back are the evidence for the plan's tasks A1.6, A2.1 and A2.2. They support NIST SP 800-53 AC-6 (least privilege in time), AC-2 and AC-3 (approval before activation), AC-5 (separation of duties), AC-6(5), and BOD 25-01's MS.AAD.7.4v1, 7.5v1 and 7.6v1. The full table is the chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#federal-requirements-and-evidence).
+**The federal requirement.** The role files, the plan and the read-back are the evidence for the plan's tasks A1.6, A2.1 and A2.2. They support NIST SP 800-53 AC-6 (least privilege in time), AC-2 and AC-3 (approval before activation), AC-5 (separation of duties), AC-6(5), and BOD 25-01's MS.AAD.7.4v1, 7.5v1 and 7.6v1. The alert check's findings support AU-6 (audit record review) and MS.AAD.7.7v1 and 7.8v1. The full table is the chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#federal-requirements-and-evidence).
 
 | Requirement | KSI | Evidence |
 |---|---|---|
@@ -41,6 +41,7 @@ Any Finding blocks `-Apply`. Converting standing assignments goes eligible first
 | AC-2 and AC-3; MS.AAD.7.6v1, approval to activate Global Administrator | KSI-IAM-JIT | `global-administrator.json` and its rows in `diff.csv` |
 | AC-5 and AC-2: no approval without an approver, the emergency accounts kept, no approver group that is also the eligible group | KSI-IAM-JIT | PA-PIM-01, 02 and 03 in `findings.json` |
 | AC-6(5); MS.AAD.7.4v1 and 7.5v1, no standing assignment, provisioning only through PIM | KSI-IAM-JIT | PA-PIM-09 and PA-PIM-08 in `findings.json` |
+| AU-6; MS.AAD.7.7v1 and 7.8v1, alerts on highly privileged assignments and Global Administrator activation, for the roles and for the groups that hold them | KSI-MLA-RVL | PA-PIM-10 to PA-PIM-13 in `out/pim-alerts/findings.json` from `Invoke-PaPimAlertCheck.ps1`, with no Finding |
 | CM-3 and CM-4(2), reviewed before and verified after | KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD | `plan.json`, `diff.csv` and `before.json`; then `verify.csv` and the SHA-256 of each body in `manifest.json` |
 | AC-6, least privilege for each identity | KSI-IAM-ELP | Three read permissions to plan; apply and convert each add only their own write permission |
 
@@ -53,6 +54,7 @@ After this module, you'll be able to:
 - explain the documented lockout's two halves and the check that refuses each;
 - name the seven activation and assignment rules the code manages, and where their bounds come from;
 - read a role's diff and the plan's findings, PA-PIM-01 to PA-PIM-09;
+- explain what the read-only alert check, PA-PIM-10 to PA-PIM-13, looks for and where each finding is fixed;
 - explain the rollout waves, and why a later wave waits for an earlier one;
 - explain the order for converting a standing assignment.
 
@@ -70,12 +72,13 @@ Read the chapter's [The context the code depends on](../../project-plans/develop
 - **The authentication context needs its policy first.** That's Module 3's gate.
 - **The plan's order is fixed.** The owner chose Tier 1 as the pilot class. The waves are Tier 1, then Tier 0, Tier 2 and read-only. *Design guidance* for the order after the first.
 
-## Unit 2: The files, the checks and the conversion (10 minutes)
+## Unit 2: The files, the checks, the alert check and the conversion (10 minutes)
 
-Read four sections of the chapter:
+Read five sections of the chapter:
 
 - [The role files](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-role-files): 22 files, approvers named by alias, and `tiers.json` with Learn's bounds and Appendix B's caps. The code follows the stricter of two Learn pages: activation of at most eight hours. Active assignments are capped at 15 days.
 - [The checks](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-checks): PA-PIM-01 to PA-PIM-09.
+- [The alert check](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check): CISA's MS.AAD.7.7v1 and 7.8v1 ask for an alert on every eligible or active assignment to the eight highly privileged roles, and on every Global Administrator activation. The role files don't set these, so `Invoke-PaPimAlertCheck.ps1` reads them under its own read-only task, `pim-alerts`, and changes nothing. PA-PIM-10 and PA-PIM-11 check each role's notification settings; PA-PIM-12 and PA-PIM-13 check the PIM for Groups member policy of each group that holds one of those roles. Each is a Finding until an additional recipient, the security monitoring mailbox, is set: under the role's **Role settings** > **Notifications**, or the group's PIM for Groups **Settings** > **Member** > **Notifications**. PIM's default recipients don't count. On the fictional tenant all 11 are Findings. Its tests are a separate suite, `baseline/tests`.
 - [The calls and their permissions](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-calls-and-their-permissions): reads and writes are different tasks, with different permissions. The code follows the API reference pages, which name narrower permissions than Learn's how-to guides.
 - [Converting standing assignments](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#converting-standing-assignments): `WaitingForEligibility`, `WaitingForConfirmedActivation`, `Confirmed`. Only `-Apply -Convert` removes, and only for `Confirmed` rows ([Book 04, Chapter 08's Step 5](../../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible)).
 

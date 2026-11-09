@@ -66,3 +66,11 @@ Sources: `docs/operational-guides/pki-modernization.md` §1 (and front matter), 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | Q1 | M-26-15 (June 24, 2026): PQC migration plan to OMB and ONCD no later than 120 days (Oct 22, 2026 by count); TLS 1.3 not later than Jan 2, 2030; mitigate as much quantum risk as feasible by Dec 31, 2030; full migration phase 2035 | §post-quantum | verified (added) | https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf (PDF text extracted and read Oct 21, 2026) |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| NIST IR 8547 final published October 27, 2026 (the initial public draft is marked obsoleted). Table 2 now deprecates all quantum-vulnerable signatures (RSA, ECDSA, EdDSA at 112 and 128 bits) after 2030 and disallows them after 2035; §4 adds that systems prioritized under OMB M-26-15 must adopt PQC signatures by December 31, 2031; 10 to 20 years (§1) and PKI-before-applications (§2.2) unchanged | updated: paragraph now cites the final, states the broader 2030 deprecation and the 2031 deadline for prioritized systems; claim 20 superseded; footnote points to csrc.nist.gov/pubs/ir/8547/final and the DOI (PDF read) |

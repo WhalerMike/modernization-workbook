@@ -68,7 +68,7 @@ Where the agency already holds an enterprise agreement, that vendor's product is
 
 ## Recording FedRAMP status
 
-Check each cloud service on the FedRAMP Marketplace.[^aB-marketplace] The same data is published in machine-readable form, and the fields to copy into the questionnaire are the service's FedRAMP ID, its status, its certification class and its impact level as listed.[^aB-products] Statuses on the Marketplace on October 21, 2026 were FedRAMP Certified, Initial Implementation, FedRAMP In Process, Agency Authorization In Process and Legacy FedRAMP Ready; only the first is a certification.[^aB-products] Record the date you checked, because the answer changes.
+Check each cloud service on the FedRAMP Marketplace.[^aB-marketplace] The same data is published in machine-readable form, and the fields to copy into the questionnaire are the service's FedRAMP ID, its status, its certification class and its impact level as listed.[^aB-products] On November 9, 2026 the impact-level field read "Unknown" for every listing; where it still does, record the class and take the impact level from the provider's package.[^aB-products] Statuses on the Marketplace on October 21, 2026 were FedRAMP Certified, Initial Implementation, FedRAMP In Process, Agency Authorization In Process and Legacy FedRAMP Ready; only the first is a certification.[^aB-products] Record the date you checked, because the answer changes.
 
 ## The discovery tables
 
@@ -152,4 +152,4 @@ Roll up everything that failed the scope rule, and every category with no produc
 [^aB-cmvp]: National Institute of Standards and Technology, Cryptographic Module Validation Program, project page ("FIPS 140-3 validations are currently being accepted"; FIPS 140-2 validated modules accepted through September 21, 2026, then moved to the Historical list), <https://csrc.nist.gov/projects/cryptographic-module-validation-program> (accessed Oct 21, 2026).
 [^aB-agu]: FedRAMP, "Agency Use of FedRAMP Certified Cloud Services," *FedRAMP Consolidated Rules for 2026*, rules AGU-USE-ABU, AGU-AGC-NAA and AGU-AGC-GRC, <https://www.fedramp.gov/2026/reference/agency-use/> (accessed Oct 21, 2026).
 [^aB-marketplace]: FedRAMP Marketplace, products, <https://www.fedramp.gov/marketplace/products/> (accessed Oct 21, 2026).
-[^aB-products]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, produced by the General Services Administration, dataset last changed October 21, 2026; fields `fedramp_id`, `status`, `cert_class` and `impact_level` (accessed Oct 21, 2026).
+[^aB-products]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, produced by the General Services Administration, dataset last changed October 21, 2026; fields `fedramp_id`, `status`, `cert_class` and `impact_level` (accessed Oct 21, 2026); re-read Nov 9, 2026 (`last_change` 2026-11-09): the same five statuses, and `impact_level` "Unknown" on every listing.

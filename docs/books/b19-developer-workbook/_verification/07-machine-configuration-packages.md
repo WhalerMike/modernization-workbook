@@ -70,3 +70,12 @@ New section before Dangers: 17 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Office 365 GCC uses Microsoft Entra Public; an Azure Government subscription can't be associated with a directory there, so Lab 2 defaults to `AzureCloud` (item 927) | Lab 2, step 2 | verified | Learn, Planning identity for Azure Government applications |
+| 2 | `Connect-AzAccount -Environment`; examples show `AzureCloud` | Lab 2, step 2 | verified | Learn, Connect-AzAccount |
+| 3 | Commercial endpoints: `*.guestconfiguration.azure.com` for Arc; `agentserviceapi.guestconfiguration.azure.com` and regional endpoints such as `eastus-gas` and `eus-gas`; `oaasguestconfig*.blob.core.windows.net` storage | Lab 2, step 2; Verified facts | verified | Learn, Azure Machine Configuration network requirements; Connected Machine agent network requirements |

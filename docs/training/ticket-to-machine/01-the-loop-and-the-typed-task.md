@@ -15,7 +15,7 @@ last-reviewed: 2026-11-07
 
 **Learning path:** [Ticket-to-Machine on ServiceNow and SailPoint](index.md) · Module 1 of 7 · 50 minutes · Guide [Gate 4](../../books/guides/ttm-servicenow-sailpoint.md#step-4-open-the-front-door) · Workbook [Chapter 01](../../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md)
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_TTM_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_TTM_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_TTM_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_TTM_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_TTM_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ttm-module-1/Training_TTM_Module_1_Narrated.vtt).
 
 ## Unit 1: Introduction
 
@@ -102,7 +102,7 @@ You check payloads the way the Scripted REST resource would, then check every pa
    python -m pytest tests/python/test_finding_contract.py -q
    ```
 
-   Expected: `22 passed`.
+   Expected: `26 passed`.
 
 2. Check five sample payloads.
 

@@ -29,7 +29,7 @@ How the kit's clients authenticate to SailPoint Identity Security Cloud (ISC) an
 ## Narrated tour
 {{< fmw-video DW_TTM_03_SailPoint_Scopes_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_TTM_03_SailPoint_Scopes.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_TTM_03_SailPoint_Scopes_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_TTM_03_SailPoint_Scopes.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_TTM_03_SailPoint_Scopes_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-03-sailpoint-scopes/DW_TTM_03_SailPoint_Scopes_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
@@ -298,7 +298,7 @@ unset SAILPOINT_ACCESS_TOKEN
 | Search indices | `accessprofiles`, `accountactivities`, `entitlements`, `events`, `identities`, `roles`, `workflowsummaries`; no `accounts` index | [^ttm03-index] |
 | List accounts | `GET /v3/accounts`, `idn:accounts:read` or `idn:accounts:manage`; `uncorrelated` filter with `eq`; `limit` default and maximum 250 | [^ttm03-accounts] [^ttm03-limit] |
 | Get an account | `GET /v3/accounts/{id}`, `idn:accounts:read` or `idn:accounts:manage`; user levels `ORG_ADMIN`, `SOURCE_ADMIN`, `SOURCE_SUBADMIN`, `HELPDESK` | [^ttm03-account] |
-| Workflows | Create needs `sp:workflow:manage`; list accepts `sp:workflow:read` or `sp:workflow:manage` | [^ttm03-workflows] |
+| Workflows | Create needs `sp:workflow:manage`; list accepts `sp:workflow:read` or `sp:workflow:manage`; both name user level `ORG_ADMIN` | [^ttm03-workflows] |
 | Graph: list users, get a user | `User.Read.All` (application), the least privileged for both; Get a user is available in US Government L4 and L5 | [^ttm03-users] [^ttm03-user-get] |
 | Graph: list directory audits | `AuditLog.Read.All` (application), least privileged; available in US Government L4 and L5 | [^ttm03-audit] |
 | Graph: list manager | Application permissions not supported on `GET /users/{id}/manager`; `GET /users?$expand=manager` documented as a way to get the chain | [^ttm03-manager] |
@@ -364,7 +364,7 @@ The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 80
 [^ttm03-accounts]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `listAccounts` (scopes, user levels, filters), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/accounts.yaml> (read November 1, 2026).
 [^ttm03-account]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `getAccount` (scopes, user levels), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/account.yaml> (read November 1, 2026).
 [^ttm03-limit]: SailPoint, Identity Security Cloud OpenAPI specification, v3, `limit` parameter (default 250, maximum 250), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/parameters/limit.yaml> (read November 1, 2026).
-[^ttm03-workflows]: SailPoint, Identity Security Cloud OpenAPI specification, v2025, `createWorkflow` and `listWorkflows`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/paths/workflows/workflows.yaml> (read November 1, 2026).
+[^ttm03-workflows]: SailPoint, Identity Security Cloud OpenAPI specification, v2025, `createWorkflow` and `listWorkflows` (scopes; user level `ORG_ADMIN`, added at commit `2a1f293`), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/paths/workflows/workflows.yaml> (read November 1, 2026; re-read November 9, 2026).
 [^ttm03-users]: Microsoft Learn, "List users," permissions, <https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0> (read November 1, 2026).
 [^ttm03-user-get]: Microsoft Learn, "Get a user," national cloud availability and permissions, <https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0> (read November 1, 2026).
 [^ttm03-audit]: Microsoft Learn, "List directoryAudits," national cloud availability and permissions, <https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0> (read November 1, 2026).

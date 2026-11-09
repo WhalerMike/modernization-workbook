@@ -14,7 +14,7 @@ last-reviewed: 2026-11-07
 
 *Part of the [Non-Person Identity learning path](index.md). Gates G1 Inventory and G6 Lifecycle. Workbook [Chapter 02](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md). About 60 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_NPI_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_2_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-2/Training_NPI_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-2/Training_NPI_Module_2_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_NPI_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_2_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-2/Training_NPI_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-2/Training_NPI_Module_2_Narrated.vtt).
 
 **Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_02_Ownership_Orphan_Rule_Narrated).
 
@@ -22,7 +22,7 @@ last-reviewed: 2026-11-07
 
 An owner can add a credential and act as the app. So owners are a control, not a contact list. The program wants two human owners on every app registration and service principal, a record in the system inventory, and an application owner for every Active Directory account, found before the account is touched.
 
-An identity with no owner is an orphan. The plan's decision D-N2 says what happens to it: disable it once the identity governance officer confirms the finding, then allow 30 days for someone to claim it or retire it. Never delete.
+An identity with no owner is an orphan. The plan's decision D-NP2 says what happens to it: disable it once the identity governance officer confirms the finding, then allow 30 days for someone to claim it or retire it. Never delete.
 
 In this module you check ownership as code and build the orphan rule as a plan that a reviewer approves by its hash before anything changes.
 
@@ -43,7 +43,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines th
 After this module, you'll be able to:
 
 - state the program's ownership rule, and which owners the code counts as valid;
-- explain D-N2, the orphan rule the program settled on, and how it differs from *Access & Privilege*'s own policy;
+- explain D-NP2, the orphan rule the program settled on, and how it differs from *Access & Privilege*'s own policy;
 - run the ownership check and read its findings and its orphan plan;
 - show that the write path dry-runs without `-Apply` and refuses a plan whose hash nobody approved.
 
@@ -60,7 +60,7 @@ Read the guide's Step 1f, under [Step 1](../../books/guides/non-person-identity-
 
 Read the workbook chapter in this order:
 
-- [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds): Learn's two-owner advice, the program's stricter rule *(design guidance)*, D-N2, and "disable, never delete."
+- [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds): Learn's two-owner advice, the program's stricter rule *(design guidance)*, D-NP2, and "disable, never delete."
 - [The check](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-check): NPI-OWN-01 to -09, and the AI sponsor fields recorded for Module 9.
 - [The orphan rule as a plan](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-orphan-rule-as-a-plan): each action, and which ones write.
 - [The separate write path](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-separate-write-path): the approved hash, the seven-day limit, the allowed bodies, and why a person, not an app, runs it.
@@ -238,7 +238,7 @@ Remove-Item -Recurse -Force out
     b. Users who are members and enabled
     c. Users and service principals
     d. Guests with a sponsor
-2. Under D-N2, as the plan states it, what happens to a confirmed orphan?
+2. Under D-NP2, as the plan states it, what happens to a confirmed orphan?
     a. It's deleted after 30 days
     b. It's disabled once the identity governance officer confirms it, then there are 30 days to claim it or retire it
     c. Nothing until day 31
@@ -262,7 +262,7 @@ Remove-Item -Recurse -Force out
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** Only enabled members count; guests and service principals raise warnings. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds) and [The check](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-check).
-2. **b.** The program settled on D-N2's order, the stricter: disable first, then the 30-day claim window. The guide and the code follow it; *Access & Privilege*, Chapter 06 runs the other way round. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds).
+2. **b.** The program settled on D-NP2's order, the stricter: disable first, then the 30-day claim window. The guide and the code follow it; *Access & Privilege*, Chapter 06 runs the other way round. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds).
 3. **c.** Learn's deactivation procedure is on beta, so the code uses the v1.0 switch. Taught in [The rule the code holds](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-rule-the-code-holds).
 4. **b.** Taught in [The separate write path](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-separate-write-path) and shown in Lab 1, step 8.
 5. **a.** Taught in [The separate write path](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#the-separate-write-path).

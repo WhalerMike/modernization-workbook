@@ -452,8 +452,8 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-eac
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward</Contact>
-      <Notes>Owner or approver: Steward
+      <Contact>Steward (program)</Contact>
+      <Notes>Owner or approver: Steward (program)
 If decided late: The pilot can't start: groups, AUs and the Conditional Access baseline aren't in place
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -486,8 +486,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Program office</Contact>
-      <Notes>Owner or approver: Program office
+      <Contact>Program office (program)</Contact>
+      <Notes>Owner or approver: Program office (program)
 If decided late: Pilot devices can't move, and this plan's pilot waits
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -717,8 +717,8 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-eac
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward and executive sponsor</Contact>
-      <Notes>Owner or approver: Steward and executive sponsor
+      <Contact>Steward and executive sponsor (co-signed; program)</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor (co-signed; program)
 If decided late: The workload waves can't start
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -974,8 +974,8 @@ Source: ../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-eac
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Executive sponsor and steering committee</Contact>
-      <Notes>Owner or approver: Executive sponsor and steering committee
+      <Contact>Executive sponsor and steering committee (program)</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee (program)
 If decided late: Formal retirement and NTLM stage 3 can't close
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1128,7 +1128,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline<
     <Task>
       <UID>48</UID>
       <ID>48</ID>
-      <Name>E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist</Name>
+      <Name>E4.6 Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist; each with a signed risk acceptance and a retirement date</Name>
       <OutlineNumber>5.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-04T08:00:00</Start>
@@ -1342,7 +1342,7 @@ Source: ../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server
       <Milestone>1</Milestone>
       <Contact>CISO / ISSO</Contact>
       <Notes>Owner or approver: CISO / ISSO
-Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed
+Criteria: Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage, a signed risk acceptance and a retirement date; rollback rehearsed
 Source: ../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes</Notes>
       <PredecessorLink>
         <PredecessorUID>53</PredecessorUID>
@@ -1420,8 +1420,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Authorizing official</Contact>
-      <Notes>Owner or approver: Authorizing official
+      <Contact>Authorizing official (program)</Contact>
+      <Notes>Owner or approver: Authorizing official (program)
 If decided late: NTLM stage 3 has no date for application owners to plan against
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>

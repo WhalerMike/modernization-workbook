@@ -102,3 +102,11 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 
 - Pages for `managedDeviceEncryptionState` and the device encryption report weren't read, so the page names the `TpmAttestationStatus` export only by its report name.
 - No DISA STIG content is used. The Intune government page's STIG link isn't cited.
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a new commit in the ScubaGear baselines folder. Checked November 9, 2026.
+
+| Finding | Change |
+|---|---|
+| ScubaGear baselines folder now also holds `si.md`, "CISA M365 Secure Configuration Baseline for Super Intelligence (SI) / SI Agents capabilities", added November 4, 2026 (commit `8c954fc`) as a shell: description, assumptions and policies marked TBD. Still no Intune baseline | The baseline list and footnote `m3-scubalist` name the placeholder; "ScubaGear has no Intune baseline" unchanged |

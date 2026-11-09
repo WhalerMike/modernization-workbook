@@ -189,3 +189,10 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | DNS/DHCP logs GRS 3.2 item 036 (30 months); configuration records GRS 3.1 item 030 | Phase 5 | verified | GRS 3.2, GRS 3.1 |
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | Item 413: each playbook step mapped onto Book 02's six canon phases (Discover, Normalize, Map, Migrate, Validate, Decommission); no step maps to Normalize | Playbook mapping table, new canon-phase column | restated (internal) | The source guide's own Canon Phase Mapping table (archive/b08-ddi/docs/operational-guides/network-transformation/dns-modernization.md), carried unchanged; Book 02 Ch04 canon phase mapping |
+| H2 | Item 420 remainder: Phase 4 validates Oracle Cloud Infrastructure private endpoint resolution where the agency holds its own tenancy and VCN | Phase 4 | restated (internal) | Chapter 07, What this means for the agency's estate and Checking which resolver answers (c07-ociadb, c07-ocifusion). Oracle discovery and IPAM federation not added: no chapter supports them |

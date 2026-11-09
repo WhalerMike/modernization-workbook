@@ -93,6 +93,15 @@ The goal across all four is set out in the guide's [What this migration accompli
 
 Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Security and privacy assessment](appendix-b-security-and-privacy.md) · [C — Acceptance and cutover](appendix-c-acceptance-and-cutover.md) · [D — Partner identity record](appendix-d-partner-identity-record.md)
 
+## Reading paths
+
+- **Executives and sponsors:** Chapters 01, 02 and 07, or the 15-minute presentation or the executive briefing.
+- **HR and identity data owners:** Chapters 01 to 03, then 04 and 07; then [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) for who owns the migration.
+- **Architects:** Chapters 01 to 06, then 10 and 11.
+- **Identity engineers:** Chapters 04 to 06 for the model, then 08 to 13 with Appendices A and C at hand.
+- **Privacy officers, ISSOs and assessors:** Chapters 11 and 14, with Appendix B.
+- **Sponsors of external partners:** Chapter 15, with Appendix D.
+
 ## Chapters
 
 ::: {#chapters}
@@ -111,10 +120,11 @@ Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Sec
 
 ## Version and revision history {#version-history}
 
-**Version 1.5**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b03-hr-identity).
+**Version 2.0**, in [edition 2026.11.5](../../about/archive.md#edition-2026-11-5) (November 8, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b03-hr-identity).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 2.0 | [2026.11.5](../../about/archive.md#edition-2026-11-5) | 2026-11-08 | Release 2.0, the baseline: checked against every other book; Draft becomes Baseline; Edition 2026.11.4: record the edition and point deck links at it ([#362](https://github.com/WhalerMike/modernization-workbook/pull/362)); Book 03: fix confirmed crosswalk errors ([#371](https://github.com/WhalerMike/modernization-workbook/pull/371)); Add source-check note for External Partner Person (WD-139) ([#397](https://github.com/WhalerMike/modernization-workbook/pull/397)); Record WD-140 to WD-143 and the second source pass for the partner chapter ([#402](https://github.com/WhalerMike/modernization-workbook/pull/402)); Add External Partner Person chapter, Entra profile and record (Book 03 ch15, Book 04 App C, Book 03 App D) ([#417](https://github.com/WhalerMike/modernization-workbook/pull/417)); External Partner Person: light edits to existing pages, held findings, links (E0 to E9) ([#419](https://github.com/WhalerMike/modernization-workbook/pull/419)); External Partner follow-up: ch10 stages and TAP lifetime, guest-invitation decider, control-support wording ([#420](https://github.com/WhalerMike/modernization-workbook/pull/420)); and 6 more ([all changes](https://github.com/WhalerMike/modernization-workbook/compare/edition-2026.11.4...edition-2026.11.5)) |
 | 1.5 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Sweep stale wording, and link sources on every deck ([#361](https://github.com/WhalerMike/modernization-workbook/pull/361)) |
 | 1.4 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Book decks: narration names the book or the original source, and 68 videos re-exported ([#344](https://github.com/WhalerMike/modernization-workbook/pull/344)) |
 | 1.3 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Privacy for workforce identity: Book 03 Chapter 14, and privacy sections in six books ([#317](https://github.com/WhalerMike/modernization-workbook/pull/317)) |

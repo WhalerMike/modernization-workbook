@@ -14,7 +14,7 @@ last-reviewed: 2026-11-07
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 0, task A0.4, and Phase 1, task A1.1. Workbook [Chapter 02](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_PA_Module_2.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_2_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -173,9 +173,9 @@ Remove-Item -Recurse -Force out
     PA-EA-06 Finding  ea02@contoso.example
     PA-EA-07 Finding  ea02@contoso.example
     PA-EA-09 Finding  ea02@contoso.example
-    PA-EA-08 Finding  CA001-All-Block-legacy-authentication
-    PA-EA-08 Finding  CA004-Admins-Require-compliant-device
-    PA-EA-08 Info     CA090-Emergency-accounts-Report-sign-ins
+    PA-EA-08 Finding  CA001-AllUsers-BlockLegacyAuth
+    PA-EA-08 Finding  CA004-Admins-RequireCompliantDevice
+    PA-EA-08 Info     CA090-AllUsers-ReportOnly-CoverageProbe
     PA-EA-08 Finding  PIM-Activation-c1
     PA-EA-10 Finding  carl.ops@contoso.example
     ```

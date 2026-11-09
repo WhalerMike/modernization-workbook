@@ -118,3 +118,14 @@ Writer W3. Sources: `docs/compliance/Vol_VI_Book_03_Detection_Engineering.md`, `
 | Vol III-06 Seven IR artifacts | Ch11 The incident response plan | Claim 58 |
 | Vol III-06 CISA Reporting Threshold | Ch11 The incident response plan | Claims 60–61 |
 | Vol III-06 FedRAMP 20x KSI-INR | Ch11 IR plan | Claim 59 |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | New rows FMP-DET-22 (tenant auditing turned off, `OfficeActivity`) and FMP-DET-23 (diagnostic setting deleted, `AzureActivity`) (item 584) | What the library holds | restated-as-design (rows); verified (sources below) | - |
+| 2 | Microsoft's "Exchange AuditLog Disabled" template queries `OfficeActivity` for `Set-AdminAuditLogConfig` by an admin with auditing `False`; tagged defense evasion | Library note | verified | Azure-Sentinel repository, `exchange_auditlogdisabled.yaml` |
+| 3 | Activity log records create, update and delete operations; exported to Log Analytics it lands in `AzureActivity`; `OperationNameValue` names the operation; compare case-insensitively | Library note | verified | Learn, Activity log in Azure Monitor; AzureActivity table reference |
+| 4 | `Microsoft.Insights/DiagnosticSettings/Delete` is the operation that deletes a resource diagnostic setting | Library note | verified | Learn, Azure permissions for Monitor |

@@ -14,7 +14,7 @@ last-reviewed: 2026-11-08
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G1 Inventory. Workbook [Chapter 01](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_NPI_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_NPI_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-1/Training_NPI_Module_1_Narrated.vtt).
 
 **Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_01_Inventory_as_Code_Narrated).
 
@@ -228,7 +228,7 @@ Remove-Item -Recurse -Force out
 1. **b.** It's the broadest read the inventory holds, and the only reason it holds it. Taught in [The reader](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#the-reader).
 2. **c.** A stale account is a lead only, and the code never disables, moves or deletes anything. Taught in [Risk, targets, stale leads and the hand-off](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#risk-targets-stale-leads-and-the-hand-off).
 3. **a.** Learn's criteria can find people too. Taught in [The findings](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#the-findings) and the chapter's [Dangers](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#dangers).
-4. **b.** The plan's task N0.4. Taught in [Risk, targets, stale leads and the hand-off](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#risk-targets-stale-leads-and-the-hand-off).
+4. **b.** The plan's task NP0.4. Taught in [Risk, targets, stale leads and the hand-off](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#risk-targets-stale-leads-and-the-hand-off).
 5. **b.** Taught in the guide's [Evidence](../../books/guides/non-person-identity-implementation.md#evidence) table.
 :::
 

@@ -87,6 +87,7 @@ def test_severity_differs_from_class_default_needs_a_note():
 
 @pytest.mark.parametrize("drift", sorted(fc.HUMAN_DECISION_CLASSES))
 def test_human_decision_classes_cannot_go_to_a_machine_lane(drift):
+    assert "orphan_account" in fc.HUMAN_DECISION_CLASSES
     row = _good_row(**{"Drift class": drift, "Severity": fc.DEFAULT_SEVERITY[drift]})
     for lane in cs.MACHINE_LANES:
         assert "human_to_machine" in _flags({**row, "Lane": lane})

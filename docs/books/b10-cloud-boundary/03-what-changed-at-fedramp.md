@@ -50,8 +50,9 @@ The timeline page lists June 11, 2027 as its only Rev5 end date.[^c03-timeline] 
 
 ## The rules have no provider authorization boundary
 
-The Consolidated Rules are published as a single machine-readable ruleset, so their vocabulary can be counted rather than characterized. In version 2026.10.13.01, the current release, the phrase "authorization boundary" occurs zero times. The word "boundary" occurs eight times:[^c03-crjson]
+The Consolidated Rules are published as a single machine-readable ruleset, so their vocabulary can be counted rather than characterized. In version 2026.11.02.01, the current release, the phrase "authorization boundary" occurs zero times. The word "boundary" occurs nine times:[^c03-crjson]
 
+- **Once** in the definition of Minimum Assessment Scope, added in that release: "the boundary of the assessment and FedRAMP Certification for the cloud service offering," which "effectively defines the cloud service offering itself."
 - **Three** times in agency rules that describe the agency's own system: Authorizations to Operate for "the federal information system that includes the cloud service offering in its boundary" (rules AGU-USE-ROR, CCM-AGM-ROR and CCM-AGM-CSC).
 - **Four** times as a classification tag on rule families.
 - **Once** in inherited supply-chain guidance under control SR-03, about devices "being introduced to the boundary."
@@ -174,7 +175,7 @@ The program draws five working conclusions from the rules. They are the program'
 [^c03-use]: FedRAMP, "Using a FedRAMP Certified Cloud Service," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/agencies/use/> (accessed Oct 21, 2026).
 [^c03-timeline]: FedRAMP, "Important Dates," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/timeline/> (accessed Oct 21, 2026).
 [^c03-ntc0013]: FedRAMP, Notice NTC-0013, *Initial Outcome of Rev5 Baseline RFCs (RFC-0026 through RFC-0030)*, June 16, 2026, <https://www.fedramp.gov/notices/0013/> (accessed Oct 21, 2026).
-[^c03-crjson]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, machine-readable ruleset `fedramp-consolidated-rules.json`, version 2026.10.13.01 (last updated October 13, 2026), <https://github.com/FedRAMP/rules> (accessed Oct 21, 2026). Occurrences of "authorization boundary" and "boundary" counted across the whole file; rule-family tags and applicability read from each family's `info` block; agency rules AGU-USE-ROR, CCM-AGM-ROR and CCM-AGM-CSC.
+[^c03-crjson]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, machine-readable ruleset `fedramp-consolidated-rules.json`, version 2026.11.02.01 (last updated November 2, 2026; release published November 5, 2026), <https://github.com/FedRAMP/rules> (accessed Nov 9, 2026; first read at version 2026.10.13.01 on Oct 21, 2026). Occurrences of "authorization boundary" and "boundary" counted across the whole file, including the definition FRD-MAS added in 2026.11.02.01; rule-family tags and applicability read from each family's `info` block; agency rules AGU-USE-ROR, CCM-AGM-ROR and CCM-AGM-CSC.
 [^c03-cmu]: FedRAMP, "Cryptographic Module Use," *FedRAMP Consolidated Rules for 2026* (CMU-CSO-CMD, CMU-CSO-UVM, CMU-CSO-CAT), <https://www.fedramp.gov/2026/reference/cryptographic-module-use/> (accessed Oct 21, 2026).
 [^c03-mas]: FedRAMP, "Minimum Assessment Scope," *FedRAMP Consolidated Rules for 2026* (MAS-CSO-IIR with its notes, MAS-CSO-FLO, MAS-CSO-TPR, MAS-CSO-MDI, MAS-CSO-SUP), <https://www.fedramp.gov/2026/reference/minimum-assessment-scope/> (accessed Oct 21, 2026).
 [^c03-scope]: FedRAMP, "Scope of FedRAMP," *FedRAMP Consolidated Rules for 2026*, quoting OMB Memorandum M-24-15, <https://www.fedramp.gov/2026/scope/> (accessed Oct 21, 2026).

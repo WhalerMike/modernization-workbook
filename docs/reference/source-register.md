@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-08
+date-modified: 2026-11-09
 review-status: approved
 reviewed-sha256: 170d27155b243d6eecaa3a1cf4d7b0459be76b3ae6fb3a46d47339d3644af3dd
 last-reviewed: 2026-11-08
@@ -483,7 +483,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [NIST FIPS 200, Minimum Security Requirements for Federal Information and Information Systems](https://csrc.nist.gov/pubs/fips/200/final){#fips-200} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-200"} |
 | [NIST FIPS 201-3, full text (PDF)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.201-3.pdf){#fips-201-3-pdf} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="fips-201-3-pdf"} |
 | [NIST FIPS 201-3, Personal Identity Verification (PIV) of Federal Employees and Contractors](https://csrc.nist.gov/pubs/fips/201-3/final){#fips-201-3} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-201-3"} |
-| [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](https://csrc.nist.gov/pubs/ir/8547/ipd){#ir-8547} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ir-8547"} |
+| [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](https://csrc.nist.gov/pubs/ir/8547/final){#ir-8547} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ir-8547"} |
 | [NIST National Checklist Program](https://csrc.nist.gov/projects/national-checklist-program){#nist-ncp} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="nist-ncp"} |
 | [NIST SP 800-128, Guide for Security-Focused Configuration Management of Information Systems](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-128.pdf){#sp-800-128} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-128"} |
 | [NIST SP 800-137, Information Security Continuous Monitoring (ISCM) for Federal Information Systems and Organizations](https://csrc.nist.gov/pubs/sp/800/137/final){#sp-800-137} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-137"} |
@@ -673,6 +673,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |
 | November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
 | November 5, 2026 | 449 sources | Added: cited on the narrated deck slides |

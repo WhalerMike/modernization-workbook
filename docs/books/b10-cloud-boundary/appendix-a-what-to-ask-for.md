@@ -78,11 +78,11 @@ Each request below follows the same layout: what to ask, why the provider can an
 
 ### A6. Provide a FedRAMP-compatible trust center with programmatic access
 
-**Ask.** Provide certification data through a FedRAMP-compatible trust center with documented programmatic access, just-in-time access provisioning, and self-service access management for agency users and systems.
+**Ask.** Provide certification data through a FedRAMP-compatible trust center with documented programmatic access, just-in-time access provisioning, and self-service access management for agency users and systems. For an offering certified under Rev5, state the date the trust center will be in place. The Certification Data Sharing rules reach an existing Rev5 certification on their own schedule: 2027-08-01 for one already maintaining its certification, with a grace period to 2028-02-01 ([Federal HR 2.0 Across Agencies and Boundaries](../explainers/hr2-shared-governance-fedramp-boundary.md#when-the-rules-reach-a-rev5-package)).
 
 **Basis.** The 2026 rules require providers to "use a FedRAMP-compatible trust center to store and share FedRAMP Certification Data" (CDS-CSO-UTC), and require trust centers to "provide documented programmatic access to all FedRAMP Certification Data, including programmatic access to human-readable materials" (CDS-TRC-PAC), to share it "without interruption" (CDS-TRC-USH) and to log access for at least six months (CDS-TRC-ACL).[^aA-cds] On October 21, 2026, the Marketplace data showed a trust-center entry for 110 of its 781 listings and none for the three Microsoft 365 government packages.[^aA-fr]
 
-**A useful answer.** A trust-center URL, API documentation, and an access process the agency's governance tooling can use without a human request each time.
+**A useful answer.** A trust-center URL, API documentation, and an access process the agency's governance tooling can use without a human request each time; or, for a Rev5 offering without one yet, the provider's committed date.
 
 ### A7. Deliver Significant Change Notifications as a feed
 

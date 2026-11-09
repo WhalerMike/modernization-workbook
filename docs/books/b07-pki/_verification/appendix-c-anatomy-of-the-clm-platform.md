@@ -40,3 +40,11 @@ New appendix, written October 23, 2026, at the user's request: "describe each co
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Links to each book's certificate section, with counts of kinds the platform renews | Where the other books' certificates meet the platform | restated (internal links; counts from the sections) | The 17 sections |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| The cited docs.venafi.com pages (Docs/current) now serve version 26.2 under the Palo Alto Networks name. Rechecked in 26.2: sizing (2 servers to 50K active certificates, 6 at 250K, designed by the vendor past 1M), 4 cores / 16 GB / 5 GB per server, latency table (about 2 s at 0 ms, about 15 s at 30 ms), Message Bus not optional on 8883 TLS, no FIPS on ACMEv2 servers, ACME http-01 and dns-01 and certbot / win-acme / acme.sh, web services behind an application delivery controller for rolling upgrades, IIS on every server, Microsoft CA Read, Issue and Manage Certificates, and Request Certificates. New in 26.2 and not cited here: Entrust Certificate Services no longer supported (revocation through the Sectigo driver); Edge WebView2 runtime required before install. | Sentence added to the opening paragraph; footnotes left at 26.1 |

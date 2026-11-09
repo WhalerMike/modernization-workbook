@@ -1,5 +1,5 @@
 {
-  "_comment": "Chapter 05 fixture: the fictional tenant contoso.example as the fake serves it for PIM for Groups. Every ID is invented. Policies are shortened to the five rules the module manages (Learn lists 17 per policy).",
+  "_comment": "Chapter 05 fixture: the fictional tenant contoso.example as the fake serves it for PIM for Groups. Every ID is invented. Policies are shortened to the six rules the module manages (Learn lists 17 per policy). Every policy already selects the authentication context c1 except PRV-T0-PrivRoleAdmin's member policy, which still asks for MFA.",
   "groups": [
     {
       "id": "5a000000-0000-4000-8000-000000000001",
@@ -339,6 +339,21 @@
             }
           },
           {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": false,
+            "claimValue": null,
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
             "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyApprovalRule",
             "id": "Approval_EndUser_Assignment",
             "target": {
@@ -439,9 +454,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [
@@ -553,9 +582,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [
@@ -667,9 +710,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [
@@ -781,9 +838,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [
@@ -895,9 +966,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [
@@ -1009,9 +1094,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [
@@ -1118,9 +1217,23 @@
             "id": "Enablement_EndUser_Assignment",
             "enabledRules": [
               "Justification",
-              "MultiFactorAuthentication",
               "Ticketing"
             ],
+            "target": {
+              "caller": "EndUser",
+              "operations": [
+                "All"
+              ],
+              "level": "Assignment",
+              "inheritableSettings": [],
+              "enforcedSettings": []
+            }
+          },
+          {
+            "@odata.type": "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule",
+            "id": "AuthenticationContext_EndUser_Assignment",
+            "isEnabled": true,
+            "claimValue": "c1",
             "target": {
               "caller": "EndUser",
               "operations": [

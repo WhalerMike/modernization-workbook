@@ -57,7 +57,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | Implementation guide: prerequisites (roles, licenses), the six gates, Step 5's parallel run, the rollback table, evidence, dangers, SQL Server, AI agents | Before you start; each step's gate; Step 1.8; Step 2.6; Evidence; Dangers | The guide's SQL Server work goes to the Data Platform plan (Step 1.1 lists the handoff file); AI agents stay with Chapter 09 (Step 1.5) |
 | Chapter 01, inventory | Step 1.1, Step 1.6 | — |
 | Chapter 02, ownership | Step 1.1 | The orphan plan isn't applied in this runbook |
-| Chapter 03, Workload ID plan IDs and D-N4 | PF-03; the scope file's licensing record | — |
+| Chapter 03, Workload ID plan IDs and D-NP4 | PF-03; the scope file's licensing record | — |
 | Chapter 04, the policy file, plan and write path | Step 1.2 (plan), Step 2.2 (apply); the pilot policy's restrictions | Rotation is Chapter 04's own process, not a deployment step |
 | Chapter 05, conversions, exchange test, parallel run and day-31 disable | Step 1.3, Step 2.2 | — |
 | Chapter 06, the Kerberos island plan | Named as the production path for existing accounts | The runbook installs one new gMSA with Learn's commands |
@@ -73,5 +73,5 @@ Test results on November 9, 2026, Windows 11, PowerShell 7 with Pester 5.9.0: `d
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| H1 | Conditional Access is enabled ring by ring, Chapter 08's word; wave stays for a conversion wave (the pilot's `wave = 1`, ST-02, Chapter 04's fixes). The kit renamed with it: the settings file's `rings` and each policy's `ring`, `-Ring` on the smoke test and the rollback (`-Wave` kept as an alias), the manifests' `rings`, and Step 2.3's record, now `S2.3-staged-enable-by-ring.json`. Step 2.3's heading keeps its old anchor, `#step-23-staged-enable-by-wave`, as an explicit id | Throughout; Step 2.3 | restated-as-design (labeled) | Chapter 08; the project plan's N5.3 |
+| H1 | Conditional Access is enabled ring by ring, Chapter 08's word; wave stays for a conversion wave (the pilot's `wave = 1`, ST-02, Chapter 04's fixes). The kit renamed with it: the settings file's `rings` and each policy's `ring`, `-Ring` on the smoke test and the rollback (`-Wave` kept as an alias), the manifests' `rings`, and Step 2.3's record, now `S2.3-staged-enable-by-ring.json`. Step 2.3's heading keeps its old anchor, `#step-23-staged-enable-by-wave`, as an explicit id | Throughout; Step 2.3 | restated-as-design (labeled) | Chapter 08; the project plan's NP5.3 |
 | H2 | The pilot's application owner is a settings value, `pilot.ownerUpn`, which records the cutover and approves the day-31 disable; the settings check refuses a file without one or one that names an operator | Approvals; the settings file's rules; Steps 1.3 and 2.2 | restated-as-design (labeled): the Approvals table's owner, now separate from the operators in the file | Chapter 05, the cutover log |

@@ -14,7 +14,7 @@ last-reviewed: 2026-11-08
 
 *Part of the [Non-Person Identity learning path](index.md). Gate G2 Decision. Workbook [Chapter 03](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_NPI_Module_3.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_3_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_NPI_Module_3.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_3_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-3/Training_NPI_Module_3_Narrated.vtt).
 
 **Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_03_Migration_Path_Matrix_Narrated).
 
@@ -31,7 +31,7 @@ Three things are easy to blur, and the code keeps them apart. The matrix *propos
 | AC-2 Account Management; IA-5 Authenticator Management | KSI-IAM-SNU | `proposals.json`; `config/migration-matrix.json`; `decisions.json` |
 | AC-6(5) Privileged Accounts (HIGH-risk first) | KSI-IAM-SNU, KSI-IAM-JIT | `findings.json`, NPI-MAT-01 to -09 |
 | CM-3 Configuration Change Control (waves and rollback) | KSI-CMT-RVP | `waves.json` |
-| AC-3 Access Enforcement (D-N4 scope) | KSI-IAM-ELP, KSI-IAM-JIT | `workload-id-premium.json` |
+| AC-3 Access Enforcement (D-NP4 scope) | KSI-IAM-ELP, KSI-IAM-JIT | `workload-id-premium.json` |
 | CA-7 Continuous Monitoring (gate status) | KSI-MLA-EVC | `gate2.json` |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines this evidence up with what its providers report against them; it doesn't report KSIs itself. Which file supports which indicator is the program's mapping *(design guidance)*.
@@ -58,9 +58,9 @@ Read the guide's [Step 2](../../books/guides/non-person-identity-implementation.
 
 Read the workbook chapter in this order:
 
-- [The decisions the code holds](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-decisions-the-code-holds): proposal, disposition and gate, Learn's order of preference, and the Workload ID Premium decision D-N4.
-- [The proposal (N2.1)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-proposal-n2.1): matrix rows M01 to M19.
-- [The disposition (D-N3) and the waves (N2.2)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-disposition-d-n3-and-the-waves-n2.2): NPI-MAT-01 to -09, and how each wave's rollback is built.
+- [The decisions the code holds](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-decisions-the-code-holds): proposal, disposition and gate, Learn's order of preference, and the Workload ID Premium decision D-NP4.
+- [The proposal (NP2.1)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-proposal-np2.1): matrix rows M01 to M19.
+- [The disposition (D-NP3) and the waves (NP2.2)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-disposition-d-np3-and-the-waves-np2.2): NPI-MAT-01 to -09, and how each wave's rollback is built.
 - [Gate 2](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#gate-2): met only with no open Finding.
 
 ## Exercise: Lab 1, fixtures, no tenant (20 minutes)
@@ -222,7 +222,7 @@ Remove-Item -Recurse -Force out
 
 1. Who decides an identity's disposition?
     a. The matrix
-    b. The application owner, account by account (D-N3)
+    b. The application owner, account by account (D-NP3)
     c. The ISSO
     d. The validation kit
 2. An owner wants to move a gMSA to a dMSA. What does the code report?
@@ -244,13 +244,13 @@ Remove-Item -Recurse -Force out
     a. When every identity has a proposal
     b. When the waves are written
     c. Only when no finding of severity Finding is open
-    d. When the CISO signs D-N4
+    d. When the CISO signs D-NP4
 
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** The matrix proposes; the owner decides. Taught in [The decisions the code holds](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-decisions-the-code-holds).
-2. **b.** Taught in [The disposition (D-N3) and the waves (N2.2)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-disposition-d-n3-and-the-waves-n2.2) and the guide's [Step 2](../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target).
-3. **a.** Taught in [The disposition (D-N3) and the waves (N2.2)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-disposition-d-n3-and-the-waves-n2.2).
+2. **b.** Taught in [The disposition (D-NP3) and the waves (NP2.2)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-disposition-d-np3-and-the-waves-np2.2) and the guide's [Step 2](../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target).
+3. **a.** Taught in [The disposition (D-NP3) and the waves (NP2.2)](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-disposition-d-np3-and-the-waves-np2.2).
 4. **b.** Taught in [The decisions the code holds](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#the-decisions-the-code-holds) and shown in Lab 1, step 5.
 5. **c.** Taught in [Gate 2](../../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md#gate-2).
 :::

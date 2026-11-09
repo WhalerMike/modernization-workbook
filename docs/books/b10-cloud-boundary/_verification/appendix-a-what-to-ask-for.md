@@ -42,3 +42,9 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md`, §7 (f
 ## Additions, October 30, 2026 (follow-up)
 
 A one-line link was added at the end of the Summary paragraph. It points to the research page `docs/books/explainers/hr2-shared-governance-fedramp-boundary.md#questions-to-ask` as a worked example of A6 and A8. The link adds no new claims.
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | Item 502 remainder: A6 asks a Rev5 provider for the date its trust center will be in place; CDS reaches an existing Rev5 certification 2027-08-01 (maintaining), grace to 2028-02-01 | A6 Ask and A useful answer | verified (settled in the explainer) | Federal HR 2.0 Across Agencies and Boundaries, When the rules reach a Rev5 package (hb-cds-dates) |

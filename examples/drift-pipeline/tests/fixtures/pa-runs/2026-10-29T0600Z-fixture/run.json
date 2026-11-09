@@ -36,7 +36,7 @@
     "emergency-access": {
       "folder": "emergency",
       "status": "OK",
-      "manifestSha256": "3bd1bcc9d5c342600ebfe1b0acb58c19f7a6fbea1558eb0a0959097fa5ad2ccc"
+      "manifestSha256": "adb0856c9641273869f96b41d887db3100946fd6bd0d32d1e29c13a911757746"
     },
     "pim-audit": {
       "folder": "pim-audit",

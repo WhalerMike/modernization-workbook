@@ -54,7 +54,7 @@ Nothing comes back. Don't open an issue or a pull request with your rows, and do
 6. **Fix every row the Checks sheet marks FIX.** The seven checks need no macros and no code. A row needs a fix when:
    - the owner, the approver or the re-read check is blank;
    - the severity differs from its drift class's default and Notes doesn't say why;
-   - a class Book 13 sends to a person first (`missing_identity`, `unauthorized_write`) uses a machine lane;
+   - a class Book 13 sends to a person first (`missing_identity`, `orphan_account`, `unauthorized_write`) uses a machine lane;
    - no evidence is named;
    - no control is mapped;
    - a high-impact task has no human approval before it runs;
@@ -155,10 +155,11 @@ The prompt sheet `copilot-prompts.md` has copy-paste prompts to turn a task desc
 
 ## Version and revision history {#version-history}
 
-**Version 1.2**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/ttm-task-catalog.md).
+**Version 2.0**, in [edition 2026.11.5](../../about/archive.md#edition-2026-11-5) (November 8, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/ttm-task-catalog.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 2.0 | [2026.11.5](../../about/archive.md#edition-2026-11-5) | 2026-11-08 | Release 2.0, the baseline: checked against every other book; Draft becomes Baseline; Edition 2026.11.4: record the edition and point deck links at it ([#362](https://github.com/WhalerMike/modernization-workbook/pull/362)); Fix confirmed crosswalk errors in guides and explainers ([#406](https://github.com/WhalerMike/modernization-workbook/pull/406)); Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) ([#442](https://github.com/WhalerMike/modernization-workbook/pull/442)); Approve 116 gated pages (Nov 7); fix RMF map stale-review test ([#457](https://github.com/WhalerMike/modernization-workbook/pull/457)) |
 | 1.2 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Deck and audio links point at edition 2026.11.4 |
 | 1.1 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.0 | [2026.11.2](../../about/archive.md#edition-2026-11-2) | 2026-11-02 | Ticket-to-Machine task catalog pack: build an internal task catalog with Copilot ([#310](https://github.com/WhalerMike/modernization-workbook/pull/310)) |

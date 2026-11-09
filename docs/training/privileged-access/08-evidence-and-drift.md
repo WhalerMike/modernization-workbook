@@ -14,7 +14,7 @@ last-reviewed: 2026-11-08
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 3, task A3.6, and Phase 4, task A4.3, for Gate 4. Workbook [Chapter 08](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md). About 65 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_8.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_8_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_PA_Module_8.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_8_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narrated.vtt).
 
 ## Introduction (3 minutes)
 
@@ -240,7 +240,7 @@ rm -rf out
 
     ```text
     {"baseline": true, "counts": {"assignments_added": 0, "assignments_changed": 0, "assignments_removed": 0, "audit": 0, "changed": 0, "coverage_gaps": 0, "incidents": 0, "new": 26, "resolved": 0, "unchanged": 0, "unverified": 0}, "drift": true}
-    {"evidence_manifest_sha256": "122d0194f8be71d4ce1799abce87e9ea2185ffbde6e9be071a0dd08d4c757554", "package": "2026-10-29T0600Z-fixture"}
+    {"evidence_manifest_sha256": "208f4d6f3a6f7cbe0edb9e5a194034b492b1369509ab4ffd875abccbb4809251", "package": "2026-10-29T0600Z-fixture"}
     ```
 
     The compare exits `2`: a baseline with 26 new findings. The two runs are the repository's copies of the ones you made in step 3; a Pester test checks them against a fresh run.
@@ -305,8 +305,8 @@ rm -rf out
     ```
 
     ```text
-    {"evidence_manifest_sha256": "f30cc4ad6097807f1433b69f0b1c02dd1b7d6471d2ca3464395b63335af79c7b", "package": "2026-10-30T0600Z-fixture"}
-    {"evidence_manifest_sha256": "f30cc4ad6097807f1433b69f0b1c02dd1b7d6471d2ca3464395b63335af79c7b", "files": 15, "run_id": "2026-10-30T0600Z-fixture"}
+    {"evidence_manifest_sha256": "cc2428c804bd7096c0b6befbbbc128a6af5fbdc64929a185b9bce8d876342794", "package": "2026-10-30T0600Z-fixture"}
+    {"evidence_manifest_sha256": "cc2428c804bd7096c0b6befbbbc128a6af5fbdc64929a185b9bce8d876342794", "files": 15, "run_id": "2026-10-30T0600Z-fixture"}
     ```
 
     `sha256sum` prints nothing and exits `0`. In `EVIDENCE-MANIFEST.json`, `previous.evidence_manifest_sha256` is the day 1 hash.
@@ -335,8 +335,8 @@ rm -rf out
 
     | Package | Audit window | EVIDENCE-MANIFEST.json SHA-256 |
     |---|---|---|
-    | 2026-10-29T0600Z-fixture | 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z | `122d0194f8be71d4ce1799abce87e9ea2185ffbde6e9be071a0dd08d4c757554` |
-    | 2026-10-30T0600Z-fixture | 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z | `f30cc4ad6097807f1433b69f0b1c02dd1b7d6471d2ca3464395b63335af79c7b` |
+    | 2026-10-29T0600Z-fixture | 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z | `208f4d6f3a6f7cbe0edb9e5a194034b492b1369509ab4ffd875abccbb4809251` |
+    | 2026-10-30T0600Z-fixture | 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z | `cc2428c804bd7096c0b6befbbbc128a6af5fbdc64929a185b9bce8d876342794` |
 
     Object IDs only. The packages hold the names, under the evidence store's access control.
     ```

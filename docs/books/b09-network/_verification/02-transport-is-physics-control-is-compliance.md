@@ -125,3 +125,11 @@ The figure source `docs/images/diagrams/b09-network/src/ch02-pipe-and-governor.f
 | Claim | Result | Source |
 |---|---|---|
 | Cross-reference link text "Book 08 Chapter 05 — Edge Interception and Bypass" | corrected to the chapter's current title, "Edge Interception, Encrypted DNS and Rogue DHCP"; no fact change | Book 08, Chapter 05 |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Cisco advisory cisco-sa-sdwan-rpa-EHchtZk version 2.1 (October 28, 2026) adds a Talos blog link; still limited exploitation; Validator and the FedRAMP deployment type still listed. KEV catalog 2026.11.06 adds no Cisco SD-WAN entries after September 30 | footnote version and date updated (was version 2.0, June 16, 2026); no change to the text |

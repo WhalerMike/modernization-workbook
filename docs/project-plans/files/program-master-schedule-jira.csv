@@ -49,11 +49,11 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orien
 15,Task,11,P1.3 Intune policy design complete; pilot profiles staged (M-016),"P1.3 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 7–8 · total float 0 · predecessors: P1.2
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.3,task,owner-platform-teams,critical-path,2027-02-18,2027-02-24,27,,,,,,,,
-16,Task,11,X-IDL HR-to-cloud provisioning live for the foundation scope,"X-IDL · External · owner or approver: Identity Lifecycle project
+16,Task,11,X-IDL HR-to-cloud provisioning live for the foundation scope,"X-IDL · External · owner or approver: ISSO (Identity Lifecycle & Provisioning plan)
 Duration 0 working days · end of wk 8 · total float 0 · predecessors: —
 If decided late: G1 fails its HR-feed criterion and waits
 Comes from identity-lifecycle:IG3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-program-master-schedule,fmw-id-x-idl,external,owner-identity-lifecycle-project,,2027-03-01,2027-02-26,29,,,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-program-master-schedule,fmw-id-x-idl,external,owner-isso-identity-lifecycle-provisioning-plan,,2027-03-01,2027-02-26,29,,,,,,,,
 17,Task,11,P1.5 Conditional Access design running in report-only (M-017),"P1.5 · Task · owner or approver: CISO
 Duration 10 working days · wk 5–6 · total float 7 d · predecessors: G0
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.5,task,owner-ciso,,2027-02-01,2027-02-12,18,,,,,,,,

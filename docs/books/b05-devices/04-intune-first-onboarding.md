@@ -120,7 +120,7 @@ Microsoft now ships two Windows provisioning solutions. Windows Autopilot device
 | User-driven | Yes | Yes |
 | Pre-provisioned and self-deploying | No | Yes |
 | Windows 10 | No | Yes |
-| More than 10 apps or 10 PowerShell scripts during setup | No | Yes |
+| More than 25 apps or 10 PowerShell scripts during setup | No | Yes |
 | Block the desktop until user-based configuration is applied | No | Yes |
 | What admins configure | Device preparation policy, plus a device security group owned by the Intune Provisioning Client | Deployment profile, plus the Enrollment Status Page |
 | GCC High and DoD | Yes | No |
@@ -131,7 +131,7 @@ The workbook assumes a Microsoft 365 GCC tenant. Intune doesn't have a separate 
 
 The program's recommendation for a GCC tenant is **classic Windows Autopilot, user-driven, with Microsoft Entra join, and OEM or reseller registration carrying a group tag**, as the default for standard hardware. The reason is pillar 2. Classic Autopilot's registration carries the procurement attribute (group tag and purchase order ID) from the vendor to the Entra ID device object before the device is powered on. Device preparation has no registration and no group tag. Since August 2026 it offers *device association*, which binds a device to the tenant before enrollment, marks it corporate-owned, and can assign it a device-targeted policy and a name template; but association starts from device information exported on the device itself during setup and uploaded one device per file, so it's an administrator-side binding, not a vendor-side carrier.[^c04-ap-assoc] Without a vendor carrier, devices are added to a device group at enrollment time,[^c04-ap-overview] and the organizational assignment has to come from the procurement mapping table after enrollment.
 
-Use device preparation where its advantages matter (a simpler policy, faster provisioning, mixing Win32 and line-of-business apps in one deployment, or a tenant that might later move to GCC High), and carry the attribute from the serial-number mapping table in phase 3. Don't use either solution with hybrid join for new devices; that's what pillar 4 forbids.
+Use device preparation where its advantages matter (a simpler policy, faster provisioning, mixing Win32 and line-of-business apps in one deployment, or a tenant that might later move to GCC High), and carry the attribute from the serial-number mapping table in phase 3. Device preparation itself supports GCC High and DoD, but device association isn't yet available in sovereign cloud environments, so a tenant that moves to GCC High can't plan on association or the device name template that depends on it.[^c04-ap-overview] Don't use either solution with hybrid join for new devices; that's what pillar 4 forbids.
 
 Device preparation requires Windows 11 version 24H2 or later, or version 23H2 or 22H2 with KB5035942 or later. Installation media dated April 2024 or later includes that update. It needs Microsoft Entra automatic enrollment configured, and the first user who signs in must be allowed to join devices to Entra ID.[^c04-ap-dp-req] That last requirement is a governance point: on the device preparation path, the user's own join permission is what brings the device in.
 
@@ -181,7 +181,7 @@ The Enrollment Status Page (ESP) shows provisioning progress and can block the d
 
 For Intune-first, configure the ESP to block device use until the security-critical items are installed: the compliance-relevant configuration, Defender, BitLocker and any agent the validation phase checks for. Use the **Selected** blocking-apps list rather than **All**, so that a non-critical app's failure doesn't strand a device, and don't let users bypass the ESP on an installation error for the security-critical list. The ESP list filters which assigned apps are tracked; it doesn't itself assign them.[^c04-esp]
 
-Device preparation doesn't use the ESP. It applies only the apps and scripts selected in its policy during setup (up to 10 of each) and syncs policies assigned to the device group without tracking whether they've applied by the time the desktop appears.[^c04-ap-overview] On that path, the validation phase, not the setup screen, is what confirms the device reached its baseline.
+Device preparation doesn't use the ESP. It applies only the apps and scripts selected in its policy during setup (up to 25 apps and 10 PowerShell scripts) and syncs policies assigned to the device group without tracking whether they've applied by the time the desktop appears.[^c04-ap-overview][^c04-ap-compare] On that path, the validation phase, not the setup screen, is what confirms the device reached its baseline.
 
 ## The compliance and configuration baseline
 
@@ -273,9 +273,9 @@ The keys these checks join on, and a read-only script that finds three of the fi
 [^c04-mde-ssm]: Microsoft Learn, "Learn how to use Intune endpoint security policies to manage Microsoft Defender for Endpoint on devices that are not enrolled with Intune," <https://learn.microsoft.com/intune/device-security/microsoft-defender/security-settings-management> (accessed Oct 21, 2026).
 [^c04-ap-registration]: Microsoft Learn, "Windows Autopilot registration overview," <https://learn.microsoft.com/autopilot/registration-overview> (accessed Oct 20, 2026).
 [^c04-ap-faq]: Microsoft Learn, "Windows Autopilot device preparation FAQ," <https://learn.microsoft.com/autopilot/device-preparation/faq> (accessed Oct 20, 2026).
-[^c04-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Oct 20, 2026).
+[^c04-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Nov 9, 2026).
 [^c04-intune-gov]: Microsoft Learn, "Microsoft Intune Government Service overview," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026).
-[^c04-ap-overview]: Microsoft Learn, "Overview of Windows Autopilot device preparation," <https://learn.microsoft.com/autopilot/device-preparation/overview> (accessed Oct 20, 2026).
+[^c04-ap-overview]: Microsoft Learn, "Overview of Windows Autopilot device preparation," including section "Cloud environments," <https://learn.microsoft.com/autopilot/device-preparation/overview> (accessed Nov 9, 2026).
 [^c04-ap-assoc]: Microsoft Learn, "Overview of Windows Autopilot device association" (how device association works; key capabilities) and "Windows Autopilot device preparation: What's new" (device association, added August 27, 2026), <https://learn.microsoft.com/autopilot/device-preparation/device-association/overview>, <https://learn.microsoft.com/autopilot/device-preparation/whats-new> (accessed Oct 22, 2026).
 [^c04-ap-dp-name]: Microsoft Learn, "Windows Autopilot device preparation user-driven Microsoft Entra join: Create a Windows Autopilot device preparation policy," Configuration settings (Apply device name template; settings only available to associated devices), <https://learn.microsoft.com/autopilot/device-preparation/tutorial/user-driven/entra-join-autopilot-policy> (accessed Oct 22, 2026).
 [^c04-ap-dp-req]: Microsoft Learn, "Windows Autopilot device preparation requirements," <https://learn.microsoft.com/autopilot/device-preparation/requirements> (accessed Oct 20, 2026).

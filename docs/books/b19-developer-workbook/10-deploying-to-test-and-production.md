@@ -1258,7 +1258,7 @@ The commands are the test stage's [step 11](#step-11-roll-back), with `productio
 | Change | Test stage rollback | Production rollback |
 |---|---|---|
 | Provisioning job | Paused | Paused; correct records at the HR source, never in the directory |
-| Dynamic group | Deleted | Processing paused; the old group stays in place (guide, Gate 4) |
+| Dynamic group | Deleted | Unassigned: removed from every assignment the wave made, in the admin center; the group and the old group it replaces stay in place (guide, Gate 4) |
 | Lifecycle workflow | Disabled, then deleted | Disabled |
 | GPO link the stage created | Disabled | Disabled |
 | GPO link the stage disabled | Re-enabled | Re-enabled, never re-created (guide, Gates 5 and 8) |

@@ -79,6 +79,12 @@ Federal HR 2.0 wave and dates: \[wave, dates\]    Contractors outside the HR sys
 
 ## Version and revision history {#version-history}
 
-This guide has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/brief-chco.md).
+**Version 2.0**, in [edition 2026.11.5](../../about/archive.md#edition-2026-11-5) (November 8, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/brief-chco.md).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 2.0 | [2026.11.5](../../about/archive.md#edition-2026-11-5) | 2026-11-08 | Release 2.0, the baseline: checked against every other book; Draft becomes Baseline; Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs ([#390](https://github.com/WhalerMike/modernization-workbook/pull/390)); Approve 116 gated pages (Nov 7); fix RMF map stale-review test ([#457](https://github.com/WhalerMike/modernization-workbook/pull/457)); Release 2.0: Draft becomes Baseline ([#491](https://github.com/WhalerMike/modernization-workbook/pull/491)) |
+
+: Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->

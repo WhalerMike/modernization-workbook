@@ -23,3 +23,12 @@ Writer W5. Built from the published role chapters (Book 00 Ch07, Book 01 Ch09, B
 | training-index: The 20-book corpus table | This appendix | Replaced: roles map to the workbook's own books and chapters, not to the compliance series' book numbers, slots or KSI categories |
 | training-index: Core Compliance Pathway (nine-book spine) | This appendix | Replaced by role-specific reading lists |
 | training-index: Track audiences (ISSOs, assessors, ConMon operators; engineers) | This appendix, Track column | Carried |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Rows added for the head of agency and senior accountable official, the Zero Trust program lead (posture owner), information owners, pillar owners and field-office facilities (item 785); reading lists, tracks, assessments and cadences are design | Role tables | restated-as-design | Roles as defined in Book 14 Ch10, Book 11 Ch07 and Book 09 Ch09 |
+| 2 | Books 18 and 19 named for the next currency review (item 796) | Keeping the map current | restated-as-design | Book 18 index and Chapter 07; Book 19 index |

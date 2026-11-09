@@ -1,6 +1,6 @@
 ---
 title: "Chapter 03 — The Migration Path Matrix as Code"
-description: "Turn Book 02's migration path matrix into reviewed data and code, starting from Learn's own decision tables for choosing an on-premises service account, a cloud service account and Workload ID Premium (pinned in the repository), and adding what they leave to you: a proposed target for every identity in Chapter 01's register, read with Chapter 02's ownership run; the application owner's disposition (retire, re-platform, keep, or keep on Kerberos with an SPN owner and an end date the authorizing official accepts) checked against it; conversion waves with HIGH-risk accounts first and a rollback recorded per wave; the Workload ID Premium scope (D-N4) as a decision file checked against the tenant's subscriptions; and Gate 2 as a check, with labs against fixtures and a test tenant."
+description: "Turn Book 02's migration path matrix into reviewed data and code, starting from Learn's own decision tables for choosing an on-premises service account, a cloud service account and Workload ID Premium (pinned in the repository), and adding what they leave to you: a proposed target for every identity in Chapter 01's register, read with Chapter 02's ownership run; the application owner's disposition (retire, re-platform, keep, or keep on Kerberos with an SPN owner and an end date the authorizing official accepts) checked against it; conversion waves with HIGH-risk accounts first and a rollback recorded per wave; the Workload ID Premium scope (D-NP4) as a decision file checked against the tenant's subscriptions; and Gate 2 as a check, with labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-non-person-identity
@@ -29,28 +29,28 @@ The decisions behind the project plan's Gate 2, "every account has a decision." 
 ## Narrated tour
 {{< fmw-video DW_NPI_03_Migration_Path_Matrix_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_NPI_03_Migration_Path_Matrix.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_NPI_03_Migration_Path_Matrix.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
 
 ## Goal and audience
 
-**Goal.** By the end of this chapter you can produce, from code, what the plan's tasks and decisions for Phase 2 ask for: N2.1, "target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement"; D-N3, "retire, re-platform or keep, account by account"; N2.2, "conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave"; and D-N4, the Workload ID Premium licensing scope. You can show the ISSO, for Gate 2, which accounts still lack a decision and why. You can say, for each rule, whether it is Learn's, Learn's table, or the program's design.
+**Goal.** By the end of this chapter you can produce, from code, what the plan's tasks and decisions for Phase 2 ask for: NP2.1, "target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement"; D-NP3, "retire, re-platform or keep, account by account"; NP2.2, "conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave"; and D-NP4, the Workload ID Premium licensing scope. You can show the ISSO, for Gate 2, which accounts still lack a decision and why. You can say, for each rule, whether it is Learn's, Learn's table, or the program's design.
 
-**Audience.** Developers who build the project's decision records, the identity engineers who propose targets, the application owners who decide, the CISO who decides D-N4, and the ISSO who approves Gate 2. You should read PowerShell 7 and know Chapters 01 and 02. You don't need a tenant until Lab 2.
+**Audience.** Developers who build the project's decision records, the identity engineers who propose targets, the application owners who decide, the CISO who decides D-NP4, and the ISSO who approves Gate 2. You should read PowerShell 7 and know Chapters 01 and 02. You don't need a tenant until Lab 2.
 
 ## The decisions the code holds
 
 Three things are easy to blur, and the code keeps them apart:
 
-- **The proposal (N2.1)** comes from the matrix: a target for each account, decided by its type, where its workload runs and what credential it holds. Book 02's [migration path matrix](../../../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) and the implementation guide's [Step 2](../../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target) give the rule: no stored secrets; managed identities for Azure-hosted workloads; federation where the workload already has a trusted issuer; certificates only where neither applies; on premises, a gMSA, or a dMSA on a Windows Server 2025 domain. *Design guidance.*
-- **The disposition (D-N3)** is the application owner's, account by account: retire (unused or unowned); re-platform to a managed identity, a gMSA or dMSA, or an app registration with a federated credential or certificate; or keep on Kerberos with an SPN, islanded with an end date the authorizing official accepts. An owner may choose a target the matrix didn't propose, with a reason on the record.
+- **The proposal (NP2.1)** comes from the matrix: a target for each account, decided by its type, where its workload runs and what credential it holds. Book 02's [migration path matrix](../../../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) and the implementation guide's [Step 2](../../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target) give the rule: no stored secrets; managed identities for Azure-hosted workloads; federation where the workload already has a trusted issuer; certificates only where neither applies; on premises, a gMSA, or a dMSA on a Windows Server 2025 domain. *Design guidance.*
+- **The disposition (D-NP3)** is the application owner's, account by account: retire (unused or unowned); re-platform to a managed identity, a gMSA or dMSA, or an app registration with a federated credential or certificate; or keep on Kerberos with an SPN, islanded with an end date the authorizing official accepts. An owner may choose a target the matrix didn't propose, with a reason on the record.
 - **The gate (Gate 2)** is the ISSO's: "every account in the register has a disposition (retire, re-platform, or keep with an end date) and a target from the matrix; HIGH-risk accounts in the first wave; every kept Kerberos account has an SPN owner; waves and their rollback recorded."
 
 Learn's own guidance agrees on the order of preference. On premises, use a gMSA whenever possible, an sMSA if not, and a computer or user account only if no managed service account will run the service; test the service with a managed service account first.[^np03-onprem] [^np03-gmsa] In Microsoft Entra ID, use a managed identity for a service hosted in Azure if the service supports one, a service principal otherwise, and never a user account.[^np03-cloud] Windows Server's own account guide adds the dMSA, for a single server and for high-security scenarios that must prevent credential harvesting.[^np03-ws-accounts] A dMSA supersedes a traditional account and disables its password, but you can't migrate a managed service account or a gMSA to one, every machine that uses the account must support dMSAs, unconstrained delegation stops working once the migration completes, and each service account needs its own dMSA.[^np03-dmsa] [^np03-dmsa-faq] Workload identity federation lets an app registration or a user-assigned managed identity trust an external issuer, including an app on Azure compute that authenticates as an app registration by trusting a user-assigned managed identity.[^np03-wif]
 
-**Workload ID Premium (D-N4).** Learn lists what Premium adds over the free edition: access reviews for service principals in privileged roles, app health recommendations, Conditional Access for workload identities and ID Protection for workload identities.[^np03-wid-faq] Conditional Access covers only single-tenant service principals registered in the tenant; Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered, and creating or changing such a policy needs Workload ID Premium licenses.[^np03-ca-wid] ID Protection covers single-tenant and multitenant apps but not managed identities.[^np03-idp-wid] The program's position is to license the single-tenant service principals the identity governance officer classified Tier 1 ([Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds); [Chapter 06](../../../books/b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain)); the plan's options are Tier 1, wider, or none with app management policies and owner reviews in its place. *Design guidance.*
+**Workload ID Premium (D-NP4).** Learn lists what Premium adds over the free edition: access reviews for service principals in privileged roles, app health recommendations, Conditional Access for workload identities and ID Protection for workload identities.[^np03-wid-faq] Conditional Access covers only single-tenant service principals registered in the tenant; Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered, and creating or changing such a policy needs Workload ID Premium licenses.[^np03-ca-wid] ID Protection covers single-tenant and multitenant apps but not managed identities.[^np03-idp-wid] The program's position is to license the single-tenant service principals the identity governance officer classified Tier 1 ([Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds); [Chapter 06](../../../books/b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain)); the plan's options are Tier 1, wider, or none with app management policies and owner reviews in its place. *Design guidance.*
 
 ### Which cloud, for these reads
 
@@ -60,7 +60,7 @@ The matrix is offline logic over Chapters 01 and 02's files. Its two reads go to
 
 ### What Microsoft gives you
 
-Learn's service account series has two decision tables. *Securing on-premises service accounts* has "Choose the right type of service account": for each criterion (a single server, several servers, a load balancer, Windows Server 2008 R2 or 2012, a requirement to restrict the account to one server) it says whether a gMSA, an sMSA, a computer account or a user account will do, and the page says to use gMSAs whenever possible.[^np03-onprem] *Securing cloud-based service accounts* has the same for the cloud: a managed identity, a service principal or a user account, by whether the service is hosted in Azure or is multitenant.[^np03-cloud] For D-N4, the *Workload ID FAQ* has the Free and Premium capability table and the licensing answers.[^np03-wid-faq] Microsoft publishes no code that applies these tables to an inventory; the tables are the sample.
+Learn's service account series has two decision tables. *Securing on-premises service accounts* has "Choose the right type of service account": for each criterion (a single server, several servers, a load balancer, Windows Server 2008 R2 or 2012, a requirement to restrict the account to one server) it says whether a gMSA, an sMSA, a computer account or a user account will do, and the page says to use gMSAs whenever possible.[^np03-onprem] *Securing cloud-based service accounts* has the same for the cloud: a managed identity, a service principal or a user account, by whether the service is hosted in Azure or is multitenant.[^np03-cloud] For D-NP4, the *Workload ID FAQ* has the Free and Premium capability table and the licensing answers.[^np03-wid-faq] Microsoft publishes no code that applies these tables to an inventory; the tables are the sample.
 
 ### The pinned copy
 
@@ -81,7 +81,7 @@ Each row is pinned by a test in `tests/NpiMatrix.Tests.ps1`: the twelve in its t
 | Decides by servers, load balancer and Windows Server 2008 R2 or 2012, not by the account's type, credential or risk | The facts it needs aren't in any register, and HIGH-risk accounts get no priority | The account's type and credential from Chapter 01, workload facts from the owner (`workloads.csv`), and waves with HIGH first |
 | "Recommended if the service supports a Managed Identity" | Whether it does is left to you | `MiSupported` is a required fact for an Azure workload; without it, no proposal (NPI-MAT-02); with `No`, an app registration trusting a user-assigned managed identity[^np03-wif] |
 | Offers a service principal only client certificates and client secrets | Federation, Book 02's preference over a certificate, is missing | Rows M04, M10 and M15 propose a federated credential where the workload has an OIDC issuer |
-| Recommends a service principal for a multitenant service, without saying Conditional Access can't cover it[^np03-ca-wid] | A multitenant app can be put in the Workload ID Premium scope and buy nothing | The D-N4 scope checks each Tier 1 identity is a single-tenant service principal registered in the tenant (NPI-MAT-09) |
+| Recommends a service principal for a multitenant service, without saying Conditional Access can't cover it[^np03-ca-wid] | A multitenant app can be put in the Workload ID Premium scope and buy nothing | The D-NP4 scope checks each Tier 1 identity is a single-tenant service principal registered in the tenant (NPI-MAT-09) |
 | The FAQ lists what Premium adds, and says both "one license in the tenant unlocks all features for all workload identities" and that only eligible identities need licensing | The count to buy isn't stated as a rule | The scope counts eligible identities now and after conversion, compares them with the tenant's enabled units, and warns; the count stays open (research gaps, row 26) |
 | Nothing records a decision, an end date, an SPN owner, a wave or a rollback | Gate 2 is left to you | All of them, as files a reviewer reads, with findings NPI-MAT-01 to -09 and Gate 2's criteria |
 
@@ -99,12 +99,12 @@ This chapter's code is `powershell/NpiMatrix/NpiMatrix.psm1`, the entry script `
 | Chapter 02's run folder | The pipeline | `ownership.json`, `orphan-plan.json` and `manifest.json`; refused if a file's SHA-256 isn't the manifest's, or if the run checked a different register |
 | `config/migration-matrix.json` | Identity engineering, in a reviewed pull request | The matrix rows (type, workload location, credential kind, facts, target, source), the targets with their rollback, the disposition vocabulary, the combinations never allowed |
 | `workloads.csv` | Application owners | For each account: `Location` (`Azure`, `ArcServer`, `OidcIssuer`, `EntraApiNoIssuer`, `OnPremKerberos`, `Hybrid`), `MiSupported`, `Dmsa`, `Issuer` |
-| `dispositions.csv` | Application owners (D-N3) | `Disposition` (`Retire`, `Replatform`, `Keep`, `KeepKerberos`), `Target`, `Wave`, `DecidedBy`, `DecidedOn`, `EndDate`, `AoAcceptedBy`, `SpnOwnerUpn`, `Reason` |
-| `waves.csv` | Identity engineering (N2.2) | `Wave`, `Name`, `Starts`, `ParallelRunDays`, `RollbackOwnerUpn`, `RollbackReviewedOn` |
+| `dispositions.csv` | Application owners (D-NP3) | `Disposition` (`Retire`, `Replatform`, `Keep`, `KeepKerberos`), `Target`, `Wave`, `DecidedBy`, `DecidedOn`, `EndDate`, `AoAcceptedBy`, `SpnOwnerUpn`, `Reason` |
+| `waves.csv` | Identity engineering (NP2.2) | `Wave`, `Name`, `Starts`, `ParallelRunDays`, `RollbackOwnerUpn`, `RollbackReviewedOn` |
 | `program-dates.json` | The program master schedule | D08 (end dates for legacy authentication), program G5 (AD retired) and D11 (the provisional end state). It is the one program dates file: [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) reads the same file and refuses a copy whose SHA-256 isn't the one this run recorded |
-| `workload-id-premium.json` | The CISO (D-N4) | `decision` (`Tier1`, `Wide` or `None`), `decidedBy`, `decidedOn`, the Tier 1 identities, compensating controls |
+| `workload-id-premium.json` | The CISO (D-NP4) | `decision` (`Tier1`, `Wide` or `None`), `decidedBy`, `decidedOn`, the Tier 1 identities, compensating controls |
 
-### The proposal (N2.1)
+### The proposal (NP2.1)
 
 `Get-NpiMatrixProposal` gives every row of the register a scope and, in scope, a proposal. SQL Server accounts are handed off to the Data Platform plan and not counted against Gate 2 (research gaps, row 25); service principals of the tenant's own apps are covered by their app registration's row; external service principals and AI agents are out of scope with a reason; an account found only by a password that never expires waits for confirmation. For the rest, Retire comes first, for an account Chapter 02 found unowned (and nobody claimed or excepted) or one already disabled. Otherwise the first matrix row that matches the account's type, its workload's location and facts, and its credential kind proposes the target:
 
@@ -118,25 +118,25 @@ This chapter's code is `powershell/NpiMatrix/NpiMatrix.psm1`, the entry script `
 
 A proposal carries Learn's cautions where they apply: every host must support dMSAs, unconstrained delegation stops working under one,[^np03-dmsa] and an Arc-enabled server's identity is the server's, shared by every app its administrators let request tokens.[^np03-arc-mi] [^np03-arc-identity] Learn's cloud service account page says managed identities can't be used for services hosted outside Azure; its Arc pages give every Arc-enabled server one. The code proposes it with the caution (research gaps, row 23).
 
-### The disposition (D-N3) and the waves (N2.2)
+### The disposition (D-NP3) and the waves (NP2.2)
 
 `Test-NpiMigrationDecision` reads each owner's row and turns what's missing or wrong into findings with stable IDs (`<rule>:<identity>`, or `<rule>:wave-N`):
 
 | Rule | Severity | What it flags | Source |
 |---|---|---|---|
-| NPI-MAT-01 | Finding (Info for an account to confirm first) | No disposition recorded, or one the code doesn't know | D-N3; Gate 2 |
-| NPI-MAT-02 | Finding | No proposal: the workload facts are missing or incomplete, or no row matches | N2.1 |
+| NPI-MAT-01 | Finding (Info for an account to confirm first) | No disposition recorded, or one the code doesn't know | D-NP3; Gate 2 |
+| NPI-MAT-02 | Finding | No proposal: the workload facts are missing or incomplete, or no row matches | NP2.1 |
 | NPI-MAT-03 | Finding (Warn for delegation) | A target that doesn't belong to the disposition; an MSA or gMSA sent to a dMSA; a dMSA without the facts that allow one; unconstrained delegation under a dMSA | Learn[^np03-dmsa] [^np03-dmsa-faq] (research gaps, row 29) |
 | NPI-MAT-04 | Warn (Finding with no reason) | The owner chose a target the matrix didn't propose | *Design guidance* |
-| NPI-MAT-05 | Finding (Warn with no program dates) | An account kept in Active Directory with no end date, one past, or one after program G5; one kept on Kerberos after D08 or without the authorizing official's acceptance | D-N3; N3.6; N7.3 (*Design guidance*; research gaps, row 24) |
+| NPI-MAT-05 | Finding (Warn with no program dates) | An account kept in Active Directory with no end date, one past, or one after program G5; one kept on Kerberos after D08 or without the authorizing official's acceptance | D-NP3; NP3.6; NP7.3 (*Design guidance*; research gaps, row 24) |
 | NPI-MAT-06 | Finding | An account kept on Kerberos, or a kept account with an SPN, with no SPN owner who is an enabled member | Gate 2; Chapter 02's owner rule |
-| NPI-MAT-07 | Finding (Warn when kept) | A HIGH-risk account re-platformed outside wave 1; a HIGH-risk account kept, whose risk stays until its privilege is cut | N2.2; Book 02, Chapter 10 |
-| NPI-MAT-08 | Finding | A wave with members and no rollback owner who is an enabled member, no review date, or a parallel run under 30 days | N2.2; the guide's Step 5 |
-| NPI-MAT-09 | Finding, Warn or Info | The D-N4 scope: no decision; a Tier 1 identity Conditional Access can't cover; one whose decision takes it out of scope; no license or too few enabled units; `None` without compensating controls | D-N4; Learn[^np03-ca-wid] [^np03-wid-faq] |
+| NPI-MAT-07 | Finding (Warn when kept) | A HIGH-risk account re-platformed outside wave 1; a HIGH-risk account kept, whose risk stays until its privilege is cut | NP2.2; Book 02, Chapter 10 |
+| NPI-MAT-08 | Finding | A wave with members and no rollback owner who is an enabled member, no review date, or a parallel run under 30 days | NP2.2; the guide's Step 5 |
+| NPI-MAT-09 | Finding, Warn or Info | The D-NP4 scope: no decision; a Tier 1 identity Conditional Access can't cover; one whose decision takes it out of scope; no license or too few enabled units; `None` without compensating controls | D-NP4; Learn[^np03-ca-wid] [^np03-wid-faq] |
 
 Each SPN owner and rollback owner is read once, with `GET /users/{id}` and `$select=id,userPrincipalName,userType,accountEnabled`, and counts only as an enabled member, Chapter 02's rule.[^np03-user-get] A re-platformed account the owner left without a wave goes to wave 1 if it is HIGH-risk and wave 2 otherwise, marked as proposed. Each wave's rollback is assembled from its members' targets in `config/migration-matrix.json`: re-enable the legacy account and revert the application's configuration (Book 02's [Phase 4](../../../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)), and for a dMSA, Learn's `Undo-ADServiceAccountMigration`, with the superseded account kept, which Learn says never to delete.[^np03-dmsa-setup] [^np03-dmsa-faq]
 
-### The Workload ID Premium scope (D-N4)
+### The Workload ID Premium scope (D-NP4)
 
 `Get-NpiWorkloadIdScope` computes, from the register, which identities Conditional Access for workload identities can cover now (the tenant's own single-tenant app registrations), which ID Protection can, and which will leave or join after conversion (an app moving to a managed identity leaves; a traditional account moving to an app registration joins). It reads the tenant's subscriptions once, with `GET /subscribedSkus?$select=…` and `LicenseAssignment.Read.All`,[^np03-skus] finds Workload ID Premium by its service plan IDs (`AAD_WRKLDID_P1` and `AAD_WRKLDID_P2`),[^np03-sku-ref] and checks the CISO's decision file against both. The code doesn't buy, assign or change anything; Learn says no per-identity license assignment is needed.[^np03-wid-faq]
 
@@ -150,7 +150,7 @@ Each SPN owner and rollback owner is read once, with `GET /users/{id}` and `$sel
 
 ### The tests
 
-Pester 5 under PowerShell 7. This chapter's are 43 in `tests/NpiMatrix.Tests.ps1`: 12 for Learn's tables, run as published, and 31 for the call list (the task's declaration equals the union of its calls, GET only, no id that collides with `config/calls.json`), the inputs' hashes, each matrix row family, each rule, the waves and their rollback, the D-N4 scope and its one read, Gate 2, stable IDs and the entry script.
+Pester 5 under PowerShell 7. This chapter's are 43 in `tests/NpiMatrix.Tests.ps1`: 12 for Learn's tables, run as published, and 31 for the call list (the task's declaration equals the union of its calls, GET only, no id that collides with `config/calls.json`), the inputs' hashes, each matrix row family, each rule, the waves and their rollback, the D-NP4 scope and its one read, Gate 2, stable IDs and the entry script.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -429,7 +429,7 @@ Remove-Item -Recurse -Force out/matrix-test
    Add-Content <inputs>/dispositions.csv '<identity-id>,<disposition>,<target>,1,<your-upn>,<decided-on>,,,,'
    ```
 
-   And the wave and the D-N4 record:
+   And the wave and the D-NP4 record:
 
    ```powershell
    Add-Content <inputs>/waves.csv '1,Test wave,<wave-start>,30,<rollback-owner-upn>,<decided-on>'
@@ -487,10 +487,10 @@ The matrix, the owners' dispositions and the waves are what the guide's [G2 Deci
 | Learn's decision tables, evaluated as published against the fixture estate, agree with the matrix where they overlap, and each gap is pinned by a test (Lab 1, step 1: `NpiMatrix.Tests.ps1`, Chapter 03 blocks) | AC-2 Account Management (account types and the conditions for each) | KSI-IAM-SNU | The repository's tests; the pinned copies |
 | The task holds two read permissions and sends only GETs (Lab 1, step 2, and Lab 2, step 1: `Get-NpiMatrixRequiredPermission`; `config/calls-ch03.json`) | AC-6 Least Privilege | KSI-IAM-ELP, KSI-IAM-JIT | Identity engineering; the ISSO keeps the consent record |
 | Every row of the register has a scope and, in scope, a proposed target from Book 02's matrix, with Learn's cautions (Lab 1, steps 3 and 4: `proposals.json`; `config/migration-matrix.json`) | AC-2; IA-5 Authenticator Management (a secret moves to a managed identity, then federation, then a certificate) | KSI-IAM-SNU | Identity engineering, in a reviewed pull request |
-| Each owner's disposition is recorded with who decided and when (`decisions.json`, built from `dispositions.csv`) | AC-2 (approval of account conditions); CM-3 Configuration Change Control (decisions documented) | KSI-IAM-SNU (AC-2); KSI-CMT-LMC (CM-3) | Application owners (D-N3) |
+| Each owner's disposition is recorded with who decided and when (`decisions.json`, built from `dispositions.csv`) | AC-2 (approval of account conditions); CM-3 Configuration Change Control (decisions documented) | KSI-IAM-SNU (AC-2); KSI-CMT-LMC (CM-3) | Application owners (D-NP3) |
 | Every gap against Gate 2 is a finding with a stable ID: no disposition, no proposal, a target that doesn't fit, an AD end date missing or past program G5, no SPN owner, a HIGH-risk account outside wave 1 (Lab 1, step 5: `findings.json`, NPI-MAT-01 to -09) | AC-2; AC-6(5) Privileged Accounts (HIGH-risk first) | KSI-IAM-SNU, KSI-IAM-JIT | The identity governance office |
-| Each wave has a rollback owner who is an enabled member, a review date, a parallel run of at least 30 days and a rollback assembled from its targets (Lab 1, step 6: `waves.json`) | CM-3 (changes planned and reviewed, with their rollback) | KSI-CMT-RVP | Identity engineering (N2.2) |
-| Which identities Conditional Access for workload identities can cover now and after conversion, against the CISO's D-N4 decision and the tenant's licenses (Lab 1, step 7, and Lab 2, step 4: `workload-id-premium.json`) | AC-3 Access Enforcement | KSI-IAM-ELP, KSI-IAM-JIT | The CISO (D-N4) |
+| Each wave has a rollback owner who is an enabled member, a review date, a parallel run of at least 30 days and a rollback assembled from its targets (Lab 1, step 6: `waves.json`) | CM-3 (changes planned and reviewed, with their rollback) | KSI-CMT-RVP | Identity engineering (NP2.2) |
+| Which identities Conditional Access for workload identities can cover now and after conversion, against the CISO's D-NP4 decision and the tenant's licenses (Lab 1, step 7, and Lab 2, step 4: `workload-id-premium.json`) | AC-3 Access Enforcement | KSI-IAM-ELP, KSI-IAM-JIT | The CISO (D-NP4) |
 | Gate 2's five criteria, each with its open findings, and met only with no open Finding (`gate2.json`) | CA-7 Continuous Monitoring (status reporting) | KSI-MLA-EVC | The ISSO; the gate owner |
 | The run records the tenant, the cloud, every request, and the SHA-256 of the register, of Chapter 02's files, of the matrix, of each input and of each file written (`manifest.json`) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO, with the run's folder |
 | The code passes its tests (Lab 1, step 8: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
@@ -523,7 +523,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] Every account kept on Kerberos has an SPN owner who is an enabled member, an end date by D08 and the authorizing official's acceptance; every account kept in AD ends by program G5.
 - [ ] Every HIGH-risk account is in wave 1, retired, or kept with the privilege cut assigned.
 - [ ] Every wave has its rollback, a rollback owner, a review date and a 30-day parallel run.
-- [ ] The D-N4 decision is the CISO's, its Tier 1 list holds only eligible identities, and the tenant's units cover it.
+- [ ] The D-NP4 decision is the CISO's, its Tier 1 list holds only eligible identities, and the tenant's units cover it.
 - [ ] `config/migration-matrix.json` changed only in a reviewed pull request, and the manifest's hashes match the files handed to the ISSO.
 - [ ] The pinned Learn pages match their manifest, and every upstream commit since the pin has been reviewed.
 

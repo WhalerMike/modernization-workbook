@@ -29,7 +29,7 @@ The check and the alert behind the plan's tasks A0.4 and A1.1: "existing emergen
 ## Narrated tour
 {{< fmw-video DW_PA_02_Emergency_Access_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_PA_02_Emergency_Access.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_PA_02_Emergency_Access_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_PA_02_Emergency_Access.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_PA_02_Emergency_Access_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
@@ -244,7 +244,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   `ea01` passes. `ea02` fails five ways: PA-EA-02 (it's on `contoso.example`), PA-EA-05 (its Global Administrator assignment ends on December 31), PA-EA-06 (a phone method), PA-EA-07 (not in the exclusion group) and PA-EA-09 (last validated May 1). PA-EA-08 names three enforced policies, `CA001-All-Block-legacy-authentication`, `CA004-Admins-Require-compliant-device` and `PIM-Activation-c1`, and reports the report-only `CA090-Emergency-accounts-Report-sign-ins` as Info. PA-EA-10 names `carl.ops@contoso.example`, who is in the exclusion group and shouldn't be.
+   `ea01` passes. `ea02` fails five ways: PA-EA-02 (it's on `contoso.example`), PA-EA-05 (its Global Administrator assignment ends on December 31), PA-EA-06 (a phone method), PA-EA-07 (not in the exclusion group) and PA-EA-09 (last validated May 1). PA-EA-08 names three enforced policies, `CA001-AllUsers-BlockLegacyAuth`, `CA004-Admins-RequireCompliantDevice` and `PIM-Activation-c1`, and reports the report-only `CA090-AllUsers-ReportOnly-CoverageProbe` as Info. PA-EA-10 names `carl.ops@contoso.example`, who is in the exclusion group and shouldn't be.
 
 5. **Match the same export with the example's rule:**
 

@@ -29,7 +29,7 @@ Where `examples/servicenow-sailpoint` sits in Book 13's five-step loop, and the 
 ## Narrated tour
 {{< fmw-video DW_TTM_01_Loop_Typed_Task_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_TTM_01_Loop_Typed_Task.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_TTM_01_Loop_Typed_Task_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_TTM_01_Loop_Typed_Task.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_TTM_01_Loop_Typed_Task_Narrated.pptx) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-ttm-01-loop-typed-task/DW_TTM_01_Loop_Typed_Task_Narrated.vtt). Recorded on November 1, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
@@ -66,14 +66,14 @@ The contract is enforced in one place, the Scripted REST resource `servicenow/sc
 
 - **`validate(payload)`** applies the script's rules and returns the errors the script would answer 400 to, warnings for what it would accept but the loop can't use, and the normalized values: severity, priority, system, subject, de-duplication key and response window.
 - **The constants** (`DRIFT_CLASSES`, `DEFAULT_SEVERITY`, `PRIORITY`, `WINDOW_SECONDS`, `SYSTEMS`) mirror the script's. A test reads the JavaScript and fails if they drift apart, so the mirror can't silently go stale.
-- **`is_checkable(intended)`** is true only when an intended state names something the re-read client can compare. `{"attributes": {}, "entitlements_absent": []}` is a non-empty object, so it looks present, but a re-read finds no difference against it and would close the record on nothing. The check warns; for the two classes Book 13 routes to a person first, missing identity and an unauthorized write, the warning says the empty intent is expected until that person sets it.
+- **`is_checkable(intended)`** is true only when an intended state names something the re-read client can compare. `{"attributes": {}, "entitlements_absent": []}` is a non-empty object, so it looks present, but a re-read finds no difference against it and would close the record on nothing. The check warns; for the three classes the program routes to a person first (`HUMAN_DECISION_CLASSES`: missing identity, an orphan account and an unauthorized write), the warning says the empty intent is expected until that person sets it. Missing identity and an unauthorized write are Book 13's identity and provenance drift; an orphan account joins them because its owner decides whether to tie it to a person or disable it, and only then does the disable run as a gated machine action.
 - **The command line** checks a payload file, or turns a drift run into the payloads `identity_drift.py --push-to-servicenow` would post and checks each, printing the priority and the due date each would get.
 
 The de-duplication key the module reports is the one [Chapter 04](04-drift-to-a-typed-task.md) changes: source, subject, class and, when the payload names one, the attribute.
 
 ### The tests
 
-`tests/python/test_finding_contract.py`, 22 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, including Chapter 09's 32, 139 pytest tests pass, plus 15 node:test and 40 Pester tests, with no tenant or network.
+`tests/python/test_finding_contract.py`, 26 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the three human-first classes, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, including Chapter 09's 32, 143 pytest tests pass, plus 15 node:test and 40 Pester tests, with no tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -123,7 +123,7 @@ rm -rf out
 
    <!-- capture:end -->
 
-   `22 passed`.
+   `26 passed`.
 
 2. **Check five sample payloads:**
 
@@ -176,7 +176,7 @@ rm -rf out
 
    <!-- capture:end -->
 
-   Twelve lines start `ok`, three carry the warning (two missing identities and the unauthorized write), and the last line is `12 accepted, 0 rejected, 0 would de-duplicate`. Erin's two attribute drifts in Entra ID, department and manager, have their own keys; before Chapter 04's fix they shared one, and the second would have been folded into the first.
+   Twelve lines start `ok`, three carry the warning (two missing identities and the unauthorized write), and the last line is `12 accepted, 0 rejected, 0 would de-duplicate`. Erin's two attribute drifts in Entra ID, department and manager, have their own keys; before Chapter 04's fix they shared one, and the second would have been folded into the first. The three orphan accounts are human-first too, but their payloads already carry a checkable intent (disabled in ISC, `accountEnabled` false in Entra ID: the fix once the owner confirms), so they don't warn.
 
 5. **Delete the `out` folder** when you're done:
 
@@ -300,7 +300,7 @@ The control-by-control mapping is Book 13's [Appendix A](../../../books/b13-gove
 
 - [ ] `finding_contract.py`'s constants match the deployed Scripted REST script, and the parity test passes.
 - [ ] Every client that posts findings runs its payloads through `validate()` in its tests.
-- [ ] No payload a client builds is rejected, and every warning is understood (expected only for missing identity and unauthorized writes).
+- [ ] No payload a client builds is rejected, and every warning is understood (expected only for the human-first classes: missing identity, orphan accounts and unauthorized writes).
 - [ ] The tempo windows in the script are the program's current ones, and the severity defaults match Book 03's classes.
 - [ ] The Scripted REST API requires authentication and a `REST_Endpoint` ACL with a custom role.
 

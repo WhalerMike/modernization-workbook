@@ -49,7 +49,7 @@ The ScubaGear Entra ID baseline (`aad.md`) is the source for every ID below, as 
 
 ## Intune
 
-**ScubaGear has no Intune baseline.** Its baselines cover Entra ID, the security suite, Exchange Online, Power BI, Power Platform, SharePoint and OneDrive, and Teams.[^gpc-scubarepo] Intune practices are therefore checked by reading Intune's own configuration through Microsoft Graph, as [Book 15, Chapter 08](../books/b15-day2-operations/08-control-automation-m365-and-azure.md) describes. The one ScubaGear tie is indirect: MS.AAD.3.7v1 and 3.8v1 require managed devices in Conditional Access, and Intune compliance is what makes a device count as managed.
+**ScubaGear has no Intune baseline.** Its baselines cover Entra ID, the security suite, Exchange Online, Power BI, Power Platform, SharePoint and OneDrive, and Teams; a placeholder baseline for Super Intelligence (SI) and SI agents in Microsoft 365, added on November 4, 2026, has no policies yet.[^gpc-scubarepo] Intune practices are therefore checked by reading Intune's own configuration through Microsoft Graph, as [Book 15, Chapter 08](../books/b15-day2-operations/08-control-automation-m365-and-azure.md) describes. The one ScubaGear tie is indirect: MS.AAD.3.7v1 and 3.8v1 require managed devices in Conditional Access, and Intune compliance is what makes a device count as managed.
 
 | Practice | Book | Microsoft page | Check | Reviewed |
 |---|---|---|---|---|
@@ -115,7 +115,7 @@ Related: the Microsoft automation reference, [Module 1: Foundations](../training
 
 [^gpc-scuba]: CISA, ScubaGear, "Microsoft Entra ID" secure configuration baseline (`aad.md`, policies MS.AAD.1.1v1 to MS.AAD.9.1v1; file last changed October 22, 2026, with release v2.0.0), <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md>, accessed October 25, 2026.
 [^gpc-bodlist]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services, Required Configurations" (lists MS.AAD.3.2v1), <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations>, accessed October 25, 2026.
-[^gpc-scubarepo]: CISA, ScubaGear repository, baselines folder, <https://github.com/cisagov/ScubaGear/tree/main/PowerShell/ScubaGear/baselines>, accessed October 25, 2026.
+[^gpc-scubarepo]: CISA, ScubaGear repository, baselines folder, <https://github.com/cisagov/ScubaGear/tree/main/PowerShell/ScubaGear/baselines>, accessed October 25, 2026; re-read November 9, 2026 (`si.md`, "CISA M365 Secure Configuration Baseline for Super Intelligence (SI) / SI Agents capabilities", added at commit `8c954fc` with its description and policies marked TBD).
 [^gpc-legacy]: Microsoft Learn, "Block legacy authentication with Conditional Access" (updated March 24, 2026), <https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication>, accessed October 25, 2026.
 [^gpc-risk]: Microsoft Learn, "Risk policies" (updated October 30, 2025), <https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies>, accessed October 25, 2026.
 [^gpc-strength]: Microsoft Learn, "Overview of Conditional Access authentication strengths" (updated March 4, 2025), <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths>, accessed October 25, 2026.

@@ -60,3 +60,11 @@ Checked October 21, 2026 by writer W2. This chapter is new research; the brief a
 | (new research) Microsoft Entra workload and agent identities | Ch04 throughout | — |
 | (new research) AWS and Google equivalents | Ch04 AWS and Google, briefly | Kept to one paragraph each per brief |
 | index.md and whitepaper | — | Assigned to Ch01, Ch02, Ch03, Ch07, Ch09, Ch10; no Ch04 content in either source |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Amazon Bedrock AgentCore in AWS GovCloud (US): still US-West only; differences now Bedrock Guardrails Policy, Temporal Policy, AgentCore payments and AgentCore optimization; unavailable CloudFormation resources listed as AWS::AgentRegistry::Registry and ::RegistryRecord only (the OAuth2 and API key credential providers are no longer named) | Row 43 updated in the AWS paragraph; footnote [^c04-aws-gov] updated |

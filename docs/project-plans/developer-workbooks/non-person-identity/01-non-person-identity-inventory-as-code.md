@@ -29,14 +29,14 @@ The read behind the project plan's Gate 0, "non-person identities inventoried." 
 ## Narrated tour
 {{< fmw-video DW_NPI_01_Inventory_as_Code_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_NPI_01_Inventory_as_Code.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/DW_NPI_01_Inventory_as_Code_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_NPI_01_Inventory_as_Code.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_NPI_01_Inventory_as_Code_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
 
 ## Goal and audience
 
-**Goal.** By the end of this chapter you can produce, from code, the register the plan's tasks N0.1, N0.2, N0.4 and N0.5 ask for: "type, host, workload location, risk and candidate target for every identity", with HIGH-risk accounts listed, stale leads marked for confirmation against sign-in logs, and SQL Server accounts tagged for the Data Platform plan. You can say, for each rule in the code, whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
+**Goal.** By the end of this chapter you can produce, from code, the register the plan's tasks NP0.1, NP0.2, NP0.4 and NP0.5 ask for: "type, host, workload location, risk and candidate target for every identity", with HIGH-risk accounts listed, stale leads marked for confirmation against sign-in logs, and SQL Server accounts tagged for the Data Platform plan. You can say, for each rule in the code, whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
 
 **Audience.** Developers who build the project's read path, the identity and Active Directory engineers who run it, and the ISSOs who review it. You should read PowerShell 7 and know what a service principal is. You don't need a tenant or a domain until Lab 2.
 
@@ -143,7 +143,7 @@ An app's permissions are reported once, on its app registration row; its own ser
 
 A stale lead is an enabled Active Directory account with no logon in 90 days. It carries the note "confirm against domain controller and Entra sign-in logs before any change", and the code never disables, moves or deletes anything. The register reads no Entra sign-in activity, because the service principal sign-in activity report is a beta API (research gaps, row 3).
 
-An account whose SPN starts with `MSSQLSvc/`, or whose name matches the program's SQL Server and LDAP-bind patterns, is tagged `DataPlatform` and written to `data-platform-handoff.csv`: the plan hands those accounts to the Data Platform plan (task N0.4; [Book 06, Chapter 09](../../../books/b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)).
+An account whose SPN starts with `MSSQLSvc/`, or whose name matches the program's SQL Server and LDAP-bind patterns, is tagged `DataPlatform` and written to `data-platform-handoff.csv`: the plan hands those accounts to the Data Platform plan (task NP0.4; [Book 06, Chapter 09](../../../books/b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)).
 
 ### The findings
 
@@ -151,13 +151,13 @@ An account whose SPN starts with `MSSQLSvc/`, or whose name matches the program'
 
 | Rule | Severity | What it flags | Source |
 |---|---|---|---|
-| NPI-INV-01 | Finding | A HIGH-risk identity, with its reasons and candidate target | Project plan, N2.2 and Gate 0; Book 02 |
+| NPI-INV-01 | Finding | A HIGH-risk identity, with its reasons and candidate target | Project plan, NP2.2 and Gate 0; Book 02 |
 | NPI-INV-02 | Warn | A stale lead: an enabled AD account with no logon in 90 days, to confirm against sign-in logs | Book 02, Chapter 09; Learn on `lastLogonTimestamp`[^np01-lastlogon] |
 | NPI-INV-03 | Warn | An app registration or legacy service principal with fewer than two owners (Chapter 02 checks who they are) | Book 02, Chapter 09; Learn: at least two owners where possible[^np01-ownership] |
 | NPI-INV-04 | Warn | A client secret | Book 04, Chapter 05: never a client secret |
 | NPI-INV-05 | Warn | An expired credential still on the object | Book 04, Chapter 05: remove unused credentials |
 | NPI-INV-06 | Warn | A delegated grant consented for all users (`AllPrincipals`) | Learn: consent type on `oAuth2PermissionGrant`[^np01-grants] |
-| NPI-INV-07 | Info | A SQL Server or LDAP-bind account handed to the Data Platform plan | Project plan, N0.4 |
+| NPI-INV-07 | Info | A SQL Server or LDAP-bind account handed to the Data Platform plan | Project plan, NP0.4 |
 | NPI-INV-08 | Warn | An account found only by a password that never expires: may be a person | Learn: the criteria "might not find accounts", and find people too[^np01-user-svc] |
 | NPI-INV-09 | Warn | An object class or service principal type the register doesn't classify | *Design guidance* |
 
