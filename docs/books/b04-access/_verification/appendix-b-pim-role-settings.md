@@ -48,3 +48,11 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | R1 | "Role access reviews" row no longer attributes "quarterly, assignees self-attest" to Book 02 Ch09 (Ch09 sets no review cadence); it cites Book 02 Ch05 and Ch10, which now match this appendix | Where this appendix tightens Book 02 | corrected | aB-review <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> |
 | R2 | New row: Teams, Cloud Application, Hybrid Identity and Authentication Policy Administrator are Tier 1 here and absent from Book 02's table | Where this appendix tightens Book 02 | verified (absence checked in b02/09 PIM table) | aB-roles-ref <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#authentication-policy-administrator> |
 | R3 | PowerShell script moved here from Chapter 08, with an illustrative-code warning; footnote aB-update-rules added | Applying a tier's settings with PowerShell | moved | aB-update-rules (Oct 20 source, unchanged claim) |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Roles you can't manage in Privileged Identity Management](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-roles) | Tier 1 (Exchange and SharePoint note) | Nov 9, 2026 | PIM manages the Entra roles, not Exchange or SharePoint RBAC; PIM for Entra roles rather than PIM for Groups for those portals |

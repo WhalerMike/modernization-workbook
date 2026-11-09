@@ -71,3 +71,12 @@ Writer W5. Sources: `docs/executive-governance/ch07-operational-tempo/index.md` 
 | Same — "Leadership takeaway" | Key takeaways 2–3 | Carried |
 | Same — closing note ("cleaned extraction") | — | Source housekeeping |
 | `ticket-to-machine-appendices` — Appendices A–E | Appendix B (W7) | Linked, not carried; certificate exception summarized in "Which change classes qualify" |
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | ServiceNow as an alternative portal for entitlement management: request, history, approve or deny in ServiceNow; entitlement management stays the system of record; P2 or Entra Suite; installed from the ServiceNow Store | How the service desk fits, "Entra entitlement management with ServiceNow, compared with the SailPoint path" | supported | [Entitlement Management integration with ServiceNow](https://learn.microsoft.com/entra/id-governance/entitlement-management-servicenow-integration) |
+| 2 | Ticketed provisioning: custom extension on approval calls a Logic App, which opens a ServiceNow ticket; entitlement management resumes on the ticket-closure callback; 14-day limit before "assignment failed" | Same subsection | supported | [Automated ServiceNow ticket creation](https://learn.microsoft.com/entra/id-governance/entitlement-management-ticketed-provisioning) |
+| 3 | When each path fits; closure on the ticket is an assertion until a re-read; both paths support CM-3 and AC-2 | Same subsection | program design (comparison and claim wording follow the chapter's rule and the supports-not-satisfies rule) | this chapter; [Ticket-to-Machine example guide](../../guides/ttm-servicenow-sailpoint.md) |
+| 4 | Entra ID Governance available in GCC, GCC High and DoD; government-cloud availability of the ServiceNow Store integration and the ticketed-provisioning path "not yet specified" | Same subsection | supported (no government-cloud statement found on either integration page) | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) |

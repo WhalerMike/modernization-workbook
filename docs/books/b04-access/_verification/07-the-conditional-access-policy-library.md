@@ -208,3 +208,41 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 | Before | After | Check |
 |---|---|---|
 | CA001 "meets MS.AAD.1.1"; the custom strength "still meets MS.AAD.3.6" | "addresses" in both places | Decision of Nov 8, 2026; claim language: a policy supports a baseline policy, the assessor decides whether it is met |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Require multifactor authentication for admins accessing Microsoft admin portals](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin-portals) | Wave 2, CA003 | Nov 9, 2026 | Microsoft's admin-portal MFA template that CA003 supersedes; minimum role list |
+| [Require MFA for administrators](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin) | Wave 2, CA003 | Nov 9, 2026 | role-targeted admin MFA; built-in roles only |
+| [Require compliant device or Microsoft Entra hybrid joined device for administrators](https://learn.microsoft.com/entra/identity/conditional-access/policy-alt-admin-device-compliand-hybrid) | Wave 2, CA004 and CA025 | Nov 9, 2026 | managed-device requirement for administrators |
+| [Require MFA for Azure management](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-azure-mgmt) | Wave 2, CA027; Government cloud notes | Nov 9, 2026 | Azure portal, PowerShell and CLI grouped in the Windows Azure Service Management API; Azure Government uses the Azure Government Cloud Management API |
+| [Require multifactor authentication for all users](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength) | Wave 3, CA018 | Nov 9, 2026 | baseline of all users, all resources, no app exclusions |
+| [Require multifactor authentication strength for external users](https://learn.microsoft.com/entra/identity/conditional-access/policy-guests-mfa-strength) | Wave 3, CA018 | Nov 9, 2026 | email one-time passcode and federated guests can't use authentication strength; use the MFA grant |
+| [Require multifactor authentication for guest access](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-guest) | Wave 3, CA018 | Nov 9, 2026 | same limitation; MFA grant for those guest types |
+| [Protect security info registration with Conditional Access policy](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration) | Wave 1, CA020 | Nov 9, 2026 | TAP satisfies MFA for registration; guests excluded from the template |
+| [Restrict device code flow for Microsoft Teams devices with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-teams-devices-device-code-flow) | Wave 1, CA021 | Nov 9, 2026 | Teams device resource accounts in an exception group; Device Registration Service excluded |
+| [Block access by location](https://learn.microsoft.com/entra/identity/conditional-access/policy-block-by-location) | Wave 3, CA008 bullet | Nov 9, 2026 | country block through the location condition |
+| [Use access reviews to manage users excluded from Conditional Access policies](https://learn.microsoft.com/entra/id-governance/conditional-access-exclusion) | Wave 3, CA008 bullet; Rollout step 4 | Nov 9, 2026 | exclusion groups for travelers, reviewed and governed |
+| [Require approved client apps or app protection policy](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-approved-app-or-app-protection) | Wave 3, CA017 bullet | Nov 9, 2026 | app protection on iOS and Android; unsupported apps don't satisfy it |
+| [Require remediation for risky users](https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-user) | Wave 4, CA013 | Nov 9, 2026 | remediation covers password and passwordless users; strength and every-time frequency applied automatically |
+| [Block access for users with insider risk](https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-insider-block) | Wave 4, CA036 | Nov 9, 2026 | elevated insider risk block; some external user types excluded |
+| [Use application enforced restrictions for unmanaged devices](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-app-enforced-restrictions) | Wave 5, CA023 and CA024 | Nov 9, 2026 | app-enforced restrictions session control for Office 365 |
+| [Require reauthentication and disable browser persistence](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser) | Wave 5, CA029 | Nov 9, 2026 | never-persistent browser and periodic reauthentication |
+| [Software Restriction Policies](https://learn.microsoft.com/windows-server/identity/software-restriction-policies/software-restriction-policies) | Retiring Group Policy table | Nov 9, 2026 | SRP deprecated; use App Control for Business or AppLocker |
+| [Software Restriction Policies Technical Overview](https://learn.microsoft.com/windows-server/identity/software-restriction-policies/software-restriction-policies-technical-overview) | Retiring Group Policy table | Nov 9, 2026 | SRP is a Group Policy feature for what runs |
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | Network traffic is an optional, unnumbered policy family that depends on Global Secure Access licensing and availability | Optional family: Conditional Access on network traffic | added (design; no CA numbers assigned) | — |
+| A2 | Compliant network and the Microsoft traffic profile are in Entra ID P1/P2; Internet Access and Private Access are licensed separately or through the Microsoft Entra Suite, with P1/P2 | same | verified | [What is Global Secure Access?](https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview) |
+| A3 | Compliant network check: tenant-specific, no IP ranges to maintain, authentication-plane and CAE data-plane enforcement, signaling toggle path, All Compliant Network locations, Intune exclusions, automatic Global Secure Access exclusions, delete policies before disabling signaling | same | verified | [Enable compliant network check with Conditional Access](https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network) |
+| A4 | Policies can target Global Secure Access traffic and require MFA, compliant or hybrid joined device; the example excludes guests | same | verified | [Apply Conditional Access policies to Global Secure Access traffic](https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-microsoft-profile) |
+| A5 | Private Access and Quick Access apps get policies from Global Secure Access > Applications > Enterprise applications; application filters can group them | same | verified | [Apply Conditional Access policies to Private Access apps](https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-private-access-apps) |
+| A6 | Explicit Forward Proxy is preview; restrict to trusted networks (IP affinity); not in All internet resources; exclude GSA-ExplicitForwardProxy from compliant-network-for-all-resources policies | same | verified | [Configure a Conditional Access policy for Explicit Forward Proxy](https://learn.microsoft.com/entra/global-secure-access/how-to-configure-conditional-access-policy-for-explicit-forward-proxy); [Known limitations](https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations) |
+| A7 | Global Secure Access is available in GCC, not yet supported in GCC High, DoD or other government and sovereign clouds | same; Government cloud notes | verified | [Known limitations for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations) |
+| A8 | Compliant network is a candidate to complement NL-TrustedNetworks in CA005, CA029, CA032; the program still creates the policy in report-only | same | design (program convention) | — |

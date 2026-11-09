@@ -147,3 +147,20 @@ The owner's decision on the developer workbook's research gap row 74 (*Building 
 | # | Where | Old text | New text | Verdict |
 |---|---|---|---|---|
 | 1 | Step 8, after the settings table | The table's "If reviewers don't respond: Remove access", with no exception | A note: a review whose scope covers the emergency access accounts' permanent Global Administrator assignment uses "No change" on silence, and each unreviewed item is followed up as a finding; every other privileged review removes access | design (owner's decision); Chapter 07's PA-AR-06 enforces it in code |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Microsoft Entra ID Governance deployment guide to govern privileged identities](https://learn.microsoft.com/entra/architecture/governance-deployment-privileged-identities) | Step 5; Groups assigned to roles callout | Nov 9, 2026 | discovery first to turn permanent assignments into JIT; role-assignable group shown unexpanded in reviews, denied group loses the assignment |
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | Discovery and insights (preview), formerly the Security Wizard, is the inventory step for standing assignments: path, Privileged Role Administrator, Reduce Global Administrators, Eliminate standing access, Review service principals (remove only) | Step 5 | verified | [Discovery and insights (preview) for Microsoft Entra roles](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-security-wizard) |
+| A2 | The page recommends two emergency access accounts kept permanently assigned Global Administrator | Step 5 | verified | same |
+| A3 | The program uses the page to inventory and converts to group eligibility itself | Step 5 | design | — |
+| A4 | Government availability of the preview page is not yet specified; the feature availability page lists PIM only | Step 5 | verified (absence on the page) | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) |

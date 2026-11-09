@@ -75,3 +75,25 @@ The body now states the guidance directly. These were the earlier positions it u
 
 - The source library listed six countries for the named location.
 - The source library's custom strength allowed FIDO2 only, locking PIV holders out.
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Require multifactor authentication for admins accessing Microsoft admin portals](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin-portals) | How to use the templates (role list) | Nov 9, 2026 | the fourteen recommended admin roles |
+| [Require MFA for administrators](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin) | How to use the templates (role list) | Nov 9, 2026 | same fourteen roles |
+| [Protect security info registration with Conditional Access policy](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration) | Wave 1, CA020 | Nov 9, 2026 | registration user action; guests excluded |
+| [Restrict device code flow for Microsoft Teams devices with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-teams-devices-device-code-flow) | Wave 1, CA021 | Nov 9, 2026 | exclude the Device Registration Service |
+| [Require compliant device or Microsoft Entra hybrid joined device for administrators](https://learn.microsoft.com/entra/identity/conditional-access/policy-alt-admin-device-compliand-hybrid) | Wave 2, CA004 | Nov 9, 2026 | admin managed-device template |
+| [Require MFA for Azure management](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-azure-mgmt) | Wave 2, CA027 | Nov 9, 2026 | Windows Azure Service Management API as the target |
+| [Block access by location](https://learn.microsoft.com/entra/identity/conditional-access/policy-block-by-location) | Wave 3, CA008 | Nov 9, 2026 | country named location and block |
+| [Require multifactor authentication strength for external users](https://learn.microsoft.com/entra/identity/conditional-access/policy-guests-mfa-strength) | Wave 3, CA011 | Nov 9, 2026 | email one-time passcode guests need the MFA grant |
+| [Require multifactor authentication for guest access](https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-guest) | Wave 3, CA011 | Nov 9, 2026 | same |
+| [Require approved client apps or app protection policy](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-approved-app-or-app-protection) | Wave 3, CA017 | Nov 9, 2026 | app protection on iOS and Android |
+| [Require multifactor authentication for all users](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength) | Wave 3, CA018 | Nov 9, 2026 | all users, all resources, no exclusions |
+| [Require remediation for risky users](https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-user) | Wave 4, CA013 remediation form | Nov 9, 2026 | remediation template |
+| [Block access for users with insider risk](https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-insider-block) | Wave 4, CA036 | Nov 9, 2026 | insider risk block shape |
+| [Use application enforced restrictions for unmanaged devices](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-app-enforced-restrictions) | Wave 5, CA024 | Nov 9, 2026 | app-enforced restrictions session control |
+| [Require reauthentication and disable browser persistence](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser) | Wave 5, CA024 | Nov 9, 2026 | persistent browser never |

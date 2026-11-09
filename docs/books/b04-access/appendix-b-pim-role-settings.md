@@ -79,7 +79,7 @@ Microsoft's guidance is fewer than five Global Administrators;[^aB-privileged] t
 | Authentication Policy Administrator | 8 hours | Required: `PIM-Approvers-T1` | Required | 180 days | `PRV-T1-AuthPolicyAdmin` |
 | Compliance Administrator | 8 hours | Required: `PIM-Approvers-T1` | Required | 180 days | `PRV-T1-ComplianceAdmin` |
 
-For Exchange Administrator and SharePoint Administrator the program uses an eligible group-to-role assignment with active group members, the pattern Microsoft recommends for roles with Exchange, SharePoint or Purview permissions to avoid slow activation.[^aB-pim-groups] Some Exchange admin center areas don't recognize a role held through a group; where an administrator needs them, assign that person's eligibility directly to the role and record the exception.[^aB-rag]
+For Exchange Administrator and SharePoint Administrator the program uses an eligible group-to-role assignment with active group members, the pattern Microsoft recommends for roles with Exchange, SharePoint or Purview permissions to avoid slow activation.[^aB-pim-groups][^aB-pim-roles] Some Exchange admin center areas don't recognize a role held through a group; where an administrator needs them, assign that person's eligibility directly to the role and record the exception.[^aB-rag]
 
 ## Tier 2 — scoped operations
 
@@ -374,3 +374,4 @@ For a Tier 2 role whose approval has been risk-accepted, set `isApprovalRequired
 [^aB-email]: Microsoft Learn, "Email notifications in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-email-notifications> (accessed Oct 20, 2026).
 [^aB-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> (accessed Oct 21, 2026).
 [^aB-update-rules]: Microsoft Learn, "Update rules in PIM by using Microsoft Graph," <https://learn.microsoft.com/graph/how-to-pim-update-rules> (accessed Oct 20, 2026).
+[^aB-pim-roles]: Microsoft Learn, "Roles you can't manage in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-roles> (accessed Nov 9, 2026). PIM manages the Exchange Administrator and SharePoint Administrator Entra roles, not roles inside Exchange RBAC or SharePoint RBAC, and Microsoft points to PIM for Microsoft Entra roles rather than PIM for Groups for just-in-time access to SharePoint, Exchange or the Microsoft Purview portal.

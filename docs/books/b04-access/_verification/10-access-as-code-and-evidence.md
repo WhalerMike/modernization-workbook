@@ -104,3 +104,36 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | together they are how the program meets CM-3 and CM-5 for the identity plane and the FedRAMP 20x change-man... | together they are how the program supports, and produces evidence for, CM-3 and CM-5 for the identity plane... | no source change |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning. Pages were read with the Microsoft Learn MCP search (excerpts) on Nov 9, 2026.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [What is Microsoft Entra Tenant Governance?](https://learn.microsoft.com/entra/id-governance/tenant-governance/overview) | Tenant Governance configuration management | Nov 9, 2026 | baselines, snapshots, monitors every six hours, drifts |
+| [Microsoft Entra tenant governance documentation](https://learn.microsoft.com/entra/id-governance/tenant-governance) | Tenant Governance configuration management | Nov 9, 2026 | landing page for the same |
+| [Create a configuration monitor](https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-create-monitor) | Tenant Governance configuration management | Nov 9, 2026 | monitor evaluates tenant against baseline and reports drift |
+| [Update or delete a monitor](https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-update-delete-monitor) | Limits table, baseline update row | Nov 9, 2026 | update deletes earlier results and drifts |
+| [View monitor results and manage monitors](https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-see-monitor-results) | Limits paragraph | Nov 9, 2026 | remediation in the owning admin experience; next run confirms |
+| [Create configuration snapshots](https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-create-snapshots) | Microsoft Entra Exporter | Nov 9, 2026 | snapshots capture current state for baselines and audit evidence |
+| [Plan for tenant recoverability](https://learn.microsoft.com/entra/architecture/recoverability-tenant) | Microsoft Entra Exporter | Nov 9, 2026 | external versioned known-good state; TCM snapshots plus Graph exports kept separate |
+| [Best practices for securely deploying ID Governance](https://learn.microsoft.com/entra/id-governance/best-practices-secure-id-governance) | Change control, rule 4 | Nov 9, 2026 | least privilege for identities that administer governance |
+| [Recover from misconfigurations](https://learn.microsoft.com/entra/architecture/recover-from-misconfigurations) | Drift detection and closure | Nov 9, 2026 | audit log activities show who changed CA and other configuration |
+
+Not cited: [Configure configuration management service permissions](https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-set-up-permissions-tenant-monitoring) (no sentence in the chapter states the service-permission step; left covered-uncited).
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | Three evidence-package rows: alert rules and firings, custom reports, runbook run history | Evidence package for a period | design position (rows) | — |
+| A2 | Identity Governance dashboard: features configured, entity counts, coverage gaps; delegated Graph; Global Reader recommended | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/governance-dashboard) |
+| A3 | Dashboard licensed under P1, P2 and Governance | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals) |
+| A4 | Custom alerts: governance activity in the audit log; Azure Monitor alerts from Log Analytics; example list | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/governance-custom-alerts) |
+| A5 | Direct-add alert is the group-membership form of Chapter 09's first alert | Governance operations evidence | restated-as-design | — |
+| A6 | ADX custom reports: Graph PowerShell export of review and package data; example KQL questions; AccessReview.Read.All and EntitlementManagement.Read.All | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/custom-entitlement-report-with-adx-and-entra-id) |
+| A7 | Azure Automation: certificate and application permissions; EntitlementManagement.Read.All or catalog reader; webhook not authenticated; certificate renewal | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/identity-governance-automation) |
+| A8 | Export runbook read-only, scheduled, reviewed as Tier 0 | Governance operations evidence | design position | — |
+| A9 | ID Governance for Government available in GCC, GCC High, DoD | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals) |
+| A10 | Government-cloud availability of dashboard, custom alerts, ADX reports and Automation scenarios | Governance operations evidence | not yet specified | — |

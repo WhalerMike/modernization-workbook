@@ -26,7 +26,7 @@ A well-configured tenant can still fail an account-management audit. Conditional
 
 The program closes that gap with three mechanisms that run without anyone opening a ticket:
 
-1. **Requests through access packages.** People ask for a bundle of access, named approvers decide, and the assignment carries an expiry from the moment it is granted.
+1. **Requests through access packages.** People ask for a bundle of access, named approvers decide, and the assignment carries an expiry from the moment it is granted.[^c09-em-request]
 2. **Reviews on a calendar.** Owners, managers, or sponsors re-confirm each grant at a cadence set by its risk, and denied access is removed automatically.
 3. **Lifecycle events.** When the HR record says someone moved or left, Lifecycle Workflows remove the old access and request the new. The HR-driven lifecycle itself, from attributes to joiner, mover, and leaver design, belongs to [Book 03](../b03-hr-identity/index.md); this chapter covers only the access tasks.
 
@@ -43,7 +43,7 @@ Book 02 sets out the license tiers ([Chapter 09](../b02-identity/09-building-the
 | Access packages with groups, applications, and SharePoint sites; self-request; admin direct assignment | Yes | Yes |
 | Multi-stage approval with alternate approvers; manager, sponsor, and specific approvers | Yes | Yes |
 | Assignment expiration; separation-of-duties checks | Yes | Yes |
-| Automatic assignment policies; custom extensions; managers requesting on behalf of reports | | Yes |
+| Automatic assignment policies; custom extensions[^c09-em-extensions]; managers requesting on behalf of reports[^c09-em-behalf] | | Yes |
 | PIM for Groups eligibility and Entra roles (preview) as access package resources | | Yes |
 | Marking existing guests as governed | | Yes |
 | Access reviews of groups, applications, and roles (the original P2 set) | Yes | Yes |
@@ -54,7 +54,7 @@ Book 02 sets out the license tiers ([Chapter 09](../b02-identity/09-building-the
 The table summarizes Microsoft's feature-by-license reference.[^c09-licensing] Three licensing facts shape the design:
 
 - Users don't need a Governance license assigned to them, but the tenant needs enough licenses to cover every member user in scope of, or configuring, the governance features.[^c09-licensing]
-- Guests are billed differently: Governance uses monthly-active-user billing for guests, which requires an Azure subscription linked for guest billing.[^c09-licensing]
+- Guests are billed differently: Governance uses monthly-active-user billing for guests, which requires an Azure subscription linked for guest billing.[^c09-licensing][^c09-guest-billing]
 - Microsoft Entra ID Governance for Government, and a Governance add-on for P2 for Government, are available in GCC, GCC High, and DoD.[^c09-licensing]
 
 Plan on Governance licensing for the whole workforce. Partial licensing produces a governance program that covers some people and leaves the rest ungoverned.
@@ -63,7 +63,7 @@ Plan on Governance licensing for the whole workforce. Partial licensing produces
 
 Access packages and reviews work best when the thing being granted is a group. The program's rule is that user access to enterprise applications is assigned through security groups, never to individual users directly. That rule is a design position, and it does three jobs: reviews run against group membership instead of scattered assignments, onboarding and offboarding become membership changes, and the policy (who is in the group) stays separate from the enforcement (the group's assignment to the application).
 
-Two platform facts back the rule. Group-based assignment to applications requires Entra ID P1 or P2, and nested group memberships aren't supported for it: when a group is assigned to an application, only its direct members get access.[^c09-group-assign] An access review of a group, on the other hand, flattens nested groups and shows their users individually, but a denied user is removed only from direct membership, not from the nested group that gave them access.[^c09-create-review] Nesting therefore creates access that reviews can see but can't remove. The program prohibits nested groups in application access assignments, and any nesting found during a review is remediated as a finding.
+Two platform facts back the rule. Group-based assignment to applications requires Entra ID P1 or P2, and nested group memberships aren't supported for it: when a group is assigned to an application, only its direct members get access.[^c09-group-assign][^c09-app-access] An access review of a group, on the other hand, flattens nested groups and shows their users individually, but a denied user is removed only from direct membership, not from the nested group that gave them access.[^c09-create-review] Nesting therefore creates access that reviews can see but can't remove. The program prohibits nested groups in application access assignments, and any nesting found during a review is remediated as a finding.
 
 ### Naming and membership type
 
@@ -113,13 +113,13 @@ Entitlement management automates access requests, assignments, reviews, and expi
 
 ### Catalogs and delegation
 
-A catalog is a container of resources and the access packages built from them. Catalogs are how the program delegates: an administrator can add any resource to any catalog, but a non-administrator catalog owner can add only resources they own, and a catalog owner can make others co-owners or access package managers.[^c09-em-overview] Access package managers can create packages and policies inside the catalog but can't add resources; catalog readers have view-only access; access package assignment managers can change assignments but not packages or policies.[^c09-delegate] An access package can't be moved to a different catalog after it is created, so choose the catalog first.[^c09-ap-create]
+A catalog is a container of resources and the access packages built from them. Catalogs are how the program delegates: an administrator can add any resource to any catalog, but a non-administrator catalog owner can add only resources they own, and a catalog owner can make others co-owners or access package managers.[^c09-em-overview][^c09-em-catalog] Access package managers can create packages and policies inside the catalog but can't add resources; catalog readers have view-only access; access package assignment managers can change assignments but not packages or policies.[^c09-delegate][^c09-em-roles] An access package can't be moved to a different catalog after it is created, so choose the catalog first.[^c09-ap-create]
 
 The program creates one catalog per business domain that owns resources (for example, finance applications, HR applications, collaboration sites), with the domain's business owner as catalog owner and application owners as access package managers. R1 resources go into catalogs whose owners are approved by the governance office. The `General` catalog, which entitlement management creates automatically, is not used for program resources.[^c09-catalog-resource]
 
 ### Access packages
 
-An access package bundles resource roles: membership or ownership of security groups and Microsoft 365 groups (including Teams), assignment to enterprise applications and their app roles, and membership of SharePoint Online sites.[^c09-em-overview] With Entra ID Governance, a package can also grant eligible PIM for Groups membership, and Entra roles in preview.[^c09-licensing] Anything that keys on a security group comes along too: a group in a package can carry group-based licensing or an Azure role assignment.[^c09-em-overview]
+An access package bundles resource roles: membership or ownership of security groups and Microsoft 365 groups (including Teams), assignment to enterprise applications and their app roles, and membership of SharePoint Online sites.[^c09-em-overview][^c09-ap-resources] With Entra ID Governance, a package can also grant eligible PIM for Groups membership, and Entra roles in preview.[^c09-licensing][^c09-ap-pim] Anything that keys on a security group comes along too: a group in a package can carry group-based licensing or an Azure role assignment.[^c09-em-overview][^c09-ap-licenses-azure]
 
 The program uses the four package categories Book 02 defines (onboarding, department, project, and cross-tenant; see [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#entitlement-management-and-access-packages)), plus one rule from this book: privileged access arrives through PIM eligibility, never through a package that grants an active role ([Chapter 04](04-privileged-roles-and-tiers.md)).
 
@@ -131,8 +131,8 @@ Approval works like this as of October 2026:[^c09-approval]
 
 - A policy can require one, two, or three approval stages. In each stage, one approver's decision is enough; a denial in any stage, or no decision, ends the request.
 - Approvers can be specific users or groups, the requestor's manager, or an internal or external sponsor. If the manager is the first-stage approver, add a fallback approver for requestors with no manager in the directory.
-- Approvers can't approve their own requests.
-- Each stage has a decision deadline in days. A request that isn't decided in time is denied, and the user has to request again.
+- Approvers can't approve their own requests.[^c09-em-troubleshoot]
+- Each stage has a decision deadline in days. A request that isn't decided in time is denied, and the user has to request again.[^c09-em-process]
 - Alternate approvers receive a pending request on a forwarding schedule. Forwarding can start only a day after the request, and the request timeout must be at least four days to use it.
 - The policy can require justification from the requestor and from approvers, and can ask the requestor custom questions whose answers approvers see.
 
@@ -145,6 +145,10 @@ The program's approval chains follow the application's risk tier, which [Chapter
 | R1 | Application owner (alternate: backup application owner) | Identity governance office | 5 days | Requestor and approvers |
 
 The program's earlier request procedure only notified the governance office of R1 grants. Making the office a second approval stage costs a few hours and leaves an approval record instead of an email. For resources more sensitive still, Microsoft describes a three-stage pattern: the manager confirms the business need, the resource owner confirms the access, and a security reviewer can reject on risk criteria the owner doesn't see.[^c09-approval]
+
+**Risk-based approval stages.** Entitlement management can also add that security stage automatically, from risk signals, in preview as of November 2026. With ID Protection-based approvals, it reads the requestor's current user risk level from Microsoft Entra ID Protection, and if the level matches a threshold the administrator selected (for example Medium or High), it inserts a first approval stage routed to users in the Security Administrator role. Insider Risk Management-based approvals do the same with the user risk level from Microsoft Purview Insider Risk Management, routed to users in the Compliance Administrator role. When both are on, the request goes to the ID Protection approver first, then the Insider Risk approver, then the policy's own approvers. A denial at a risk stage closes the request, and every approval and denial is written to the entitlement management audit log.[^c09-em-idp-approvals][^c09-em-irm-approvals] Both need Microsoft Entra ID Governance or Microsoft Entra Suite licenses; the Insider Risk option also needs Purview licensing and an Insider Risk Management policy in place first.[^c09-em-idp-approvals][^c09-em-irm-approvals] Neither page states availability in GCC, GCC High or DoD, so government-cloud availability is not yet specified. As a design position, the program evaluates both in a test tenant and considers them for R1 packages once they reach general availability; until then the R1 chain above, with the governance office as a named stage, carries the security review.
+
+**Approval delegation in My Access.** Also in preview, an approver can name a delegate in My Access who answers access package approval requests and multi-resource (catalog) access reviews on the approver's behalf, for a set period or with no end date. An Identity Governance Administrator turns the preview on under entitlement management's preview features and can restrict delegates to the user's direct manager, to members of named groups, or leave them unrestricted, and can cap how long a delegation lasts. The limits matter for an approval chain: delegation covers only approvals assigned to the approver directly, not through a group; it covers only items assigned after it is set; it is one level deep, so a delegate can't redelegate; and the original approver can still respond. It needs Microsoft Entra ID Governance or Microsoft Entra Suite licenses.[^c09-myaccess-delegate] Learn doesn't state government-cloud availability for it, so that is not yet specified. As a design position, the program restricts delegates to members of each application's backup-owner group and caps delegations at 30 days, so a delegated R1 or R2 approval still lands with someone the chain already names; the governance office stage is assigned through a group and isn't affected.
 
 ### Expiration and extension
 
@@ -172,7 +176,7 @@ The *Application role assignment activity* workbook, with entitlement activity o
 
 ### Automatic assignment
 
-With Entra ID Governance, an automatic assignment policy assigns a package to everyone who matches a rule on user attributes (such as department or cost center) and removes the assignment when they stop matching.[^c09-em-overview][^c09-licensing] This is the mechanism for department packages, and it depends on the attributes the HR feed maintains ([Book 03](../b03-hr-identity/index.md)). Book 02 notes one caution: don't build automatic assignment rules on the `memberOf` operator, whose preview Microsoft ended on November 3, 2026, so rules that still use it have stopped updating ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#entitlement-management-and-access-packages)).
+With Entra ID Governance, an automatic assignment policy assigns a package to everyone who matches a rule on user attributes (such as department or cost center) and removes the assignment when they stop matching.[^c09-em-overview][^c09-licensing] This is the mechanism for department packages,[^c09-org-roles] and it depends on the attributes the HR feed maintains ([Book 03](../b03-hr-identity/index.md)). Book 02 notes one caution: don't build automatic assignment rules on the `memberOf` operator, whose preview Microsoft ended on November 3, 2026, so rules that still use it have stopped updating ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#entitlement-management-and-access-packages)).
 
 ### The request portal is covered by Section 508
 
@@ -180,7 +184,7 @@ The people who request access, approve it and review it are federal employees, a
 
 ## Access reviews
 
-Access reviews are recurring attestation that each person still needs what they hold. A review captures a snapshot of access when each instance starts; changes made during a review show up in the next cycle.[^c09-create-review]
+Access reviews are recurring attestation that each person still needs what they hold.[^c09-ar-manage] A review captures a snapshot of access when each instance starts; changes made during a review show up in the next cycle.[^c09-create-review]
 
 ![One review instance: a snapshot of access goes to reviewers, unanswered items fall to the fallback reviewer and then to the no-response default, auto-apply removes denials, and the decisions become evidence.](../../images/diagrams/b04-access/svg/ch09-review-instance.svg){#fig-ch09-review-instance fig-alt="Left to right. A slate box, instance starts, takes a snapshot of who holds the access. It feeds a violet box, reviewers decide, listing owner, manager, sponsor or self, with justification and recommendations. An amber box, fallback reviewer, receives items where there is no manager or owner, and feeds back into the reviewers box. The reviewers box feeds an amber box, no-response default, listing no change, remove, approve, or take recommendations. That feeds a green box, auto-apply, which removes denied access at the end of the instance. A dashed arrow from auto-apply leads to a slate box, evidence: results CSV, review history, audit records."}
 
@@ -190,22 +194,22 @@ Access reviews are recurring attestation that each person still needs what they 
 |---|---|---|
 | Group and Teams membership | Access reviews | P2 set; inactive-only scope needs Governance |
 | Application assignments | Access reviews | P2 set |
-| Access package assignments | The package's policy (lifecycle tab) or access reviews | P2 set |
+| Access package assignments | The package's policy (lifecycle tab) or access reviews[^c09-ar-package] | P2 set |
 | Entra roles and Azure resource roles | PIM | P2 or Governance |
 | PIM for Groups membership | Access reviews (preview) | Governance |
 | Guests across all Microsoft 365 groups | Access reviews, "All Microsoft 365 groups with guest users" | Guest billing applies |
 
 The table draws on Microsoft's review-creation guidance and licensing reference.[^c09-create-review][^c09-licensing] Note two scoping details. A review of all Microsoft 365 groups with guests covers guests only and excludes dynamic and role-assignable groups.[^c09-create-review] A group membership review can be scoped to users inactive for up to 730 days, and users created more recently than the inactivity window are left out so that a new user gets a chance to sign in.[^c09-create-review]
 
-Because the program assigns application access through groups, it reviews the groups, not the applications. Microsoft notes that a review of an application that uses group assignment doesn't remove the members of those groups, so they keep their access through the group.[^c09-ar-faq]
+Because the program assigns application access through groups, it reviews the groups, not the applications.[^c09-apps-deploy] Microsoft notes that a review of an application that uses group assignment doesn't remove the members of those groups, so they keep their access through the group.[^c09-ar-faq]
 
-Reviews of privileged roles happen in PIM; the role settings that pair with them are in [Chapter 08](08-pim-self-request-with-approval.md) and [Appendix B](appendix-b-pim-role-settings.md).
+Reviews of privileged roles happen in PIM;[^c09-pim-complete] the role settings that pair with them are in [Chapter 08](08-pim-self-request-with-approval.md) and [Appendix B](appendix-b-pim-role-settings.md).
 
 ### Reviewers and fallback reviewers
 
-Reviewers can be group owners (for group reviews), selected users or groups, the users themselves (self-review), or the users' managers.[^c09-create-review] When the reviewer is a manager or a group owner, add a fallback reviewer: fallback reviewers are asked when a user has no manager in the directory or the group has no owner.[^c09-create-review] For reviews of PIM for Groups with owners as reviewers, a fallback reviewer is mandatory, and only active (not eligible) owners count as reviewers.[^c09-create-review] Owners are fixed when an instance starts; ownership changes take effect at the next recurrence.[^c09-create-review]
+Reviewers can be group owners (for group reviews), selected users or groups, the users themselves (self-review), or the users' managers.[^c09-create-review][^c09-ar-self] When the reviewer is a manager or a group owner, add a fallback reviewer: fallback reviewers are asked when a user has no manager in the directory or the group has no owner.[^c09-create-review] For reviews of PIM for Groups with owners as reviewers, a fallback reviewer is mandatory, and only active (not eligible) owners count as reviewers.[^c09-create-review] Owners are fixed when an instance starts; ownership changes take effect at the next recurrence.[^c09-create-review]
 
-A multi-stage review runs two or three sets of reviewers in sequence, each in its own stage duration, and you choose which reviewees go on to the next stage (approved, denied, not reviewed, marked "don't know," or all) and whether later stages see earlier decisions.[^c09-create-review] The program uses two stages for R1 applications: the manager first, then the application owner for everyone the manager approved or marked "don't know." That replaces the manual "escalate to department owner" step in the program's older review procedure.
+A multi-stage review runs two or three sets of reviewers in sequence, each in its own stage duration, and you choose which reviewees go on to the next stage (approved, denied, not reviewed, marked "don't know," or all) and whether later stages see earlier decisions.[^c09-create-review][^c09-ar-multistage] The program uses two stages for R1 applications: the manager first, then the application owner for everyone the manager approved or marked "don't know." That replaces the manual "escalate to department owner" step in the program's older review procedure.
 
 ### Cadence
 
@@ -224,7 +228,7 @@ The program's schedule, by target. It refines the review schedule in [Book 02, C
 | R3 application access groups | Annual (January) | 21 days | Application or department owner | Department owner | No change | Yes |
 | Packages and groups with guests | Quarterly | 14 days | Sponsors | Governance office | Remove access | Yes |
 | Microsoft 365 group membership | Semiannual | 21 days | Group owners | Governance office | No change | No (recommendations only) |
-| `CA-Exclude-*` conditional access exclusion groups | Quarterly | 14 days | Group owner | Governance office | Remove access | Yes |
+| `CA-Exclude-*` conditional access exclusion groups[^c09-ca-exclusion] | Quarterly | 14 days | Group owner | Governance office | Remove access | Yes |
 | `PIM-Approvers-*` approver groups | Quarterly (`PIM-Approvers-T0` monthly, with the Tier 0 row) | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
 
 One exception to "Remove access" in the privileged rows: a review whose scope covers the emergency access accounts' permanent Global Administrator assignment uses **No change** when reviewers don't respond, and each unreviewed item is followed up as a finding. Removing access on silence there could remove the accounts kept for the day everything else fails ([Chapter 08](08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)). Every other privileged review removes access.
@@ -233,11 +237,11 @@ One exception to "Remove access" in the privileged rows: a review whose scope co
 
 When a review ends, *auto apply results to resource* removes denied users automatically; without it, someone has to apply the results by hand.[^c09-create-review] The *if reviewers don't respond* setting decides what happens to users nobody reviewed: no change, remove access, approve access, or take the system's recommendations.[^c09-create-review] Microsoft warns that combining "remove access" or "take recommendations" with auto-apply can revoke all access to a resource if reviewers don't respond.[^c09-create-review] That is why the program sets "remove access" only where an unreviewed grant is riskier than a lost one (privileged roles and guests), and "no change, escalate" for business applications, where a mass removal would stop work.
 
-For guest-only reviews, a denied guest can either lose only the reviewed membership, or be blocked from signing in for 30 days and then deleted from the tenant; within those 30 days an administrator can re-enable the account.[^c09-create-review] The program blocks and removes denied guests.
+For guest-only reviews, a denied guest can either lose only the reviewed membership, or be blocked from signing in for 30 days and then deleted from the tenant; within those 30 days an administrator can re-enable the account.[^c09-create-review][^c09-ar-guests] The program blocks and removes denied guests.
 
 Two review-quality settings matter as much as the cadence:
 
-- **Decision helpers.** "No sign-in within 30 days" recommends denial for users who haven't signed in during the previous 30 days (for application reviews, sign-in to the application), and "user-to-group affiliation" recommends denial for users far from the rest of the group in the reporting structure.[^c09-create-review] The machine-learning affiliation recommendation needs Governance.[^c09-licensing]
+- **Decision helpers.** "No sign-in within 30 days" recommends denial for users who haven't signed in during the previous 30 days (for application reviews, sign-in to the application), and "user-to-group affiliation" recommends denial for users far from the rest of the group in the reporting structure.[^c09-create-review][^c09-ar-recs] The machine-learning affiliation recommendation needs Governance.[^c09-licensing]
 - **Justification and reminders.** "Justification required" makes reviewers state a reason for each decision; reminders go to all reviewers halfway through the review.[^c09-create-review]
 
 Bulk approval is the efficient and dangerous part of any review. The program requires justification on every review, and for privileged-role reviews it requires a decision per assignment: reviewers don't accept recommendations in bulk. The service can't prevent a bulk action, so the review history (below) is checked for privileged reviews where one reviewer recorded many identical decisions within minutes.
@@ -249,7 +253,7 @@ The program's earlier review procedure was a distributed spreadsheet: the govern
 | Manual step | In Entra ID |
 |---|---|
 | Distribute the membership report | The review instance starts on schedule and emails reviewers |
-| Owner certifies each member | Reviewers decide in My Access, with recommendations |
+| Owner certifies each member | Reviewers decide in My Access, with recommendations[^c09-ar-perform] |
 | "Escalate" when unsure | "Don't know" decisions go to a second stage |
 | Help desk removes within 5 business days | Auto-apply removes denied users when the instance ends |
 | Owner confirms removals; office archives | Review history and audit records are exported (below) |
@@ -280,7 +284,7 @@ The program's access rules for each event, as design positions:
 - **Joiner.** Request the onboarding package and the department package. Never add a new hire directly to an application group.
 - **Mover.** A move is a re-derivation, not an additional grant. Remove the previous department's package assignments, request the new department's package, and send everything the person still holds outside packages to a review. Microsoft's built-in *Employee job profile change* template does the first two steps, and its *remove all access package assignments* task defaults to a scheduled removal 15 days after the trigger, a grace period for handover.[^c09-lcw-templates] The program keeps the grace period for standard access and sets it to zero for R1 and privileged access.
 - **Leaver.** Cancel pending requests, remove all package assignments, remove the user from all groups and teams, and revoke refresh tokens. The account disable and deletion steps are Book 03's.
-- **Inactivity.** The *Offboard inactive users* template keys on `lastSuccessfulSignInDateTime`; Microsoft's inactive-user templates default to 90 days of inactivity for the pre-offboarding workflow and 120 days for offboarding.[^c09-lcw-templates] The program uses it as a backstop for accounts whose HR record didn't produce a leaver event.
+- **Inactivity.** The *Offboard inactive users* template keys on `lastSuccessfulSignInDateTime`; Microsoft's inactive-user templates default to 90 days of inactivity for the pre-offboarding workflow and 120 days for offboarding.[^c09-lcw-templates][^c09-inactive] The program uses it as a backstop for accounts whose HR record didn't produce a leaver event.
 
 Learn gives two different tenant ceilings for workflows: the licensing page says up to 50 workflows, and the service limits page says 100 per tenant, with 25 tasks per workflow and up to 100 custom task extensions.[^c09-licensing][^c09-gov-limits] The program budgets to 50 until Microsoft reconciles the two pages. Spend workflows on events, not on individual applications; per-application cleanup belongs in the packages that a single "remove all assignments" task clears.
 
@@ -288,10 +292,61 @@ Learn gives two different tenant ceilings for workflows: the licensing page says
 
 Guests are where unreviewed access accumulates fastest, because nobody's HR record ends when a partner project does. Book 02 covers the collaboration model, cross-tenant access settings, and B2B direct connect ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration)). Governance of the guest's access works in four layers.
 
-- **Invite through a package.** When a policy allows users from a connected organization to request a package, an approved request creates the guest account automatically and assigns the access; the B2B allow and block lists still apply.[^c09-ext-users] Inviting through a package means every guest arrives with an approver, a sponsor, and an expiry.
+- **Invite through a package.** When a policy allows users from a connected organization to request a package, an approved request creates the guest account automatically and assigns the access; the B2B allow and block lists still apply.[^c09-ext-users][^c09-b2b-allowdeny] Inviting through a package means every guest arrives with an approver, a sponsor, and an expiry.[^c09-guest-deploy]
 - **End the account with the last assignment.** By default, when a guest who was invited through entitlement management loses their last package assignment (by expiry or by giving it up), they are blocked from signing in and their account is removed after 30 days; the block, the removal, and the number of days are configurable, and setting the days to zero removes the account immediately.[^c09-ext-users] This applies only to guests entitlement management invited, or to existing guests an administrator has marked as governed; ungoverned guests stay in the tenant indefinitely after losing their last assignment.[^c09-guest-lifecycle] Blocked guests can't request access again, so don't block guests who will return.[^c09-ext-users] Marking guests as governed needs Entra ID Governance.[^c09-licensing] The program marks every existing guest who holds a package assignment as governed, and keeps the default 30-day block before removal.
 - **Review on a quarterly cadence.** Packages and groups with guests are reviewed quarterly by sponsors, with denied guests blocked and removed (see the schedule above). Where guests review their own access, remember that a guest who hasn't accepted their invitation receives no review email, so unredeemed guests fall to the no-response default.[^c09-create-review]
-- **Policy for the guest population.** Guest lifecycle policies in Lifecycle Workflows, in preview as of October 2026, add tenant-wide rules: sponsor attestation (default 90 days, configurable 30 to 365), an activity requirement (default 90 days, 30 to 730), a minimum number of sponsors (1 to 5), and deletion of invitations not redeemed within a set number of days (default 30, 1 to 30).[^c09-guest-policies] The program will adopt them when they reach general availability; until then the quarterly sponsor review and the inactive-guest insights (a Governance feature) do the same job.[^c09-licensing]
+- **Policy for the guest population.** Guest lifecycle policies in Lifecycle Workflows, in preview as of October 2026, add tenant-wide rules: sponsor attestation (default 90 days, configurable 30 to 365), an activity requirement (default 90 days, 30 to 730), a minimum number of sponsors (1 to 5), and deletion of invitations not redeemed within a set number of days (default 30, 1 to 30).[^c09-guest-policies][^c09-sponsors] The program will adopt them when they reach general availability; until then the quarterly sponsor review and the inactive-guest insights (a Governance feature) do the same job.[^c09-licensing][^c09-stale-guests]
+
+## Tenant hygiene: unsanctioned tenants and Microsoft 365 groups
+
+Access governance assumes the program knows which tenants and groups exist. Two kinds of sprawl break that assumption: tenants nobody in central IT administers, and Microsoft 365 groups that outlive their purpose.
+
+### Unsanctioned tenants
+
+Microsoft's guidance is to inventory the organization's tenants first and then quarantine the ones that look unsanctioned, using settings in the primary tenant only, since the program has no administrative control of the suspect tenant. Quarantine adds friction (a "scream test") that prompts the suspect tenant's administrators to make contact, and every step should be easy to reverse. The levers Learn lists are: block inbound and outbound B2B sign-in for that tenant in cross-tenant access settings (P1); block sign-in to it from managed devices and networks with Tenant Restrictions v2 applied through Global Secure Access (P1); review and revoke permissions of, or delete, service principals for multitenant applications registered in that tenant (P1; a deleted service principal can be restored for 30 days); and cancel subscriptions provisioned in it.[^c09-quarantine] Learn gives a read-only query to find the service principals whose applications were registered in a suspect tenant:[^c09-quarantine]
+
+```http
+GET https://graph.microsoft.com/v1.0/servicePrincipals?$count=true&$filter=appOwnerOrganizationId eq {tenantId}
+ConsistencyLevel: eventual
+```
+
+The quarantine page doesn't state government-cloud availability for these steps, so it is not yet specified there. As a design position, the governance office decides each quarantine, records it with the partner tenant list ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md)), and lifts it only when an administrator of the other tenant proves ownership or hands control to the program.
+
+### Microsoft 365 group expiration
+
+An expiration policy gives Microsoft 365 groups a lifetime of 30 days or more; it applies to all, selected (up to 500), or no Microsoft 365 groups, and a tenant can have only one. Groups with user activity in Outlook, SharePoint, Teams or Viva Engage renew automatically about 35 days before they expire; otherwise owners are emailed 30 days, 15 days and 1 day before expiry, and a group nobody renews is deleted one day after it expires. A deleted group can be restored for 30 days, and that window can't be changed. The policy needs Entra ID P1 or P2 licenses for the members of every group it applies to (held, not necessarily assigned), and Groups Administrator or User Administrator to configure it.[^c09-groups-lifecycle] To view the current policy without changing it:[^c09-groups-lifecycle][^c09-get-lifecycle]
+
+```powershell
+Connect-MgGraph -Scopes "Directory.Read.All"
+Get-MgGroupLifecyclePolicy
+```
+
+The output shows the policy ID, the alternate notification address used for groups with no owner, `GroupLifetimeInDays`, and `ManagedGroupTypes` (`All`, `Selected` or `None`).[^c09-groups-lifecycle] Expiration covers Microsoft 365 groups only, so it doesn't touch the security groups the program uses for application access; those stay governed by owners and reviews.
+
+### Microsoft 365 group naming policy
+
+A naming policy enforces a prefix-suffix convention (fixed strings or the creator's attributes such as `[Department]`) and a custom blocked-words list of up to 5,000 entries on Microsoft 365 groups created in any workload. It doesn't apply to distribution groups, and Global Administrator and User Administrator are exempt from it.[^c09-groups-naming] It needs an Entra ID P1 license for each unique user, guests included, who is a member of one or more Microsoft 365 groups.[^c09-groups-naming-m365] To view the current settings (the Microsoft Graph beta module is required):[^c09-groups-naming]
+
+```powershell
+Connect-MgGraph -Scopes "Directory.Read.All"
+$Setting = Get-MgBetaDirectorySetting -DirectorySettingId (Get-MgBetaDirectorySetting | where -Property DisplayName -Value "Group.Unified" -EQ).id
+$Setting.Values
+```
+
+`PrefixSuffixNamingRequirement` and `CustomBlockedWordsList` hold the policy.[^c09-groups-settings] Learn has administrators create the `Group.Unified` settings object before setting a naming policy, so a tenant with no `Group.Unified` object has no naming policy configured.[^c09-groups-naming] Because the policy covers Microsoft 365 groups only, it can't enforce the program's `APP-` convention on security groups; that convention stays a pre-merge check ([Chapter 10](10-access-as-code-and-evidence.md#what-goes-in-the-repository)) and a review finding.
+
+### Restoring a deleted group
+
+A deleted Microsoft 365 group or cloud security group is kept, hidden, for 30 days and can be restored with its contents in that time; the window can't be changed. Soft delete for cloud security groups is in preview and available only in public clouds, and distribution groups aren't covered. Groups Administrator can restore any of them, and an owner can restore a group they own.[^c09-groups-restore] Restoring a role-assignable group needs Privileged Role Administrator, which matters for the program's `PRV-*` groups.[^c09-restore-object] To list deleted groups that can still be restored, without restoring anything:[^c09-groups-restore]
+
+```powershell
+Connect-MgGraph -Scopes "Group.Read.All"
+Get-MgBetaDirectoryDeletedGroup
+```
+
+Learn's restore page connects with `Group.ReadWrite.All`, which the restore itself (`Restore-MgBetaDirectoryDeletedItem`) needs; the listing above only reads.[^c09-groups-restore] A restored dynamic group is treated as a new group and repopulated from its rule, which can take up to 24 hours.[^c09-groups-lifecycle]
+
+**Government cloud.** Learn's Microsoft Entra feature availability page lists advanced group management (dynamic groups, naming policies, expiration, default classification) as available in Azure Government, which serves GCC High and DoD tenants; GCC tenants use Microsoft Entra ID in commercial Azure.[^c09-feature-availability][^c09-azure-gov-pairing] Soft delete and restore for cloud security groups is public-cloud only while in preview, as above; availability of Microsoft 365 group restore in government clouds is not yet specified.
 
 ## How the program evidences reviews
 
@@ -300,13 +355,13 @@ An assessor reads governance as records, not as settings. For each mechanism, th
 ### The records Entra ID produces
 
 - **Review results.** Results of any review, in progress or completed, can be downloaded as a CSV, and recurring reviews keep a history of completed instances.[^c09-complete-review] Microsoft Graph lists the decisions of each instance (one decision per reviewed identity) through the access reviews API, and the Microsoft Graph PowerShell cmdlet `Get-MgIdentityGovernanceAccessReviewDefinitionInstanceDecision` does the same; the default page size is 100 decisions.[^c09-complete-review]
-- **Review history reports.** A review history report pulls the decisions across reviews for a date range, filtered by review type and result, and records per user the reviewer, decision, justification, recommendation, who applied the result, and when.[^c09-review-history] Reports stay downloadable for 30 days, so the program downloads each one into the evidence store when it is generated.[^c09-review-history]
+- **Review history reports.** A review history report pulls the decisions across reviews for a date range, filtered by review type and result, and records per user the reviewer, decision, justification, recommendation, who applied the result, and when.[^c09-review-history] Reports stay downloadable for 30 days, so the program downloads each one into the evidence store when it is generated.[^c09-review-history][^c09-deploy-employee]
 - **Audit log entries.** Access review activity is recorded in the Entra audit log, including creating and ending a review and approving, denying, resetting, and applying decisions.[^c09-deploy-reviews] Entitlement management writes audit records in the `EntitlementManagement` category for each step of a request, from "User requests access package assignment" through approval to "Fulfill access package assignment."[^c09-em-reports]
 - **Assignment reports.** Each package's current assignments can be downloaded, and historical analysis of objects and assignments over time needs an export to Azure Data Explorer or a log workspace, because the reports show current state.[^c09-em-reports]
 
 ### Retention: the logs don't keep themselves
 
-Native retention is shorter than is often assumed: as of October 2026, Entra ID keeps audit and sign-in logs for 7 days on Free and 30 days on P1 and P2, and upgrading doesn't recover older data.[^c09-retention] Evidence that has to outlast a 30-day window has to leave the service first: Book 02's monitoring design streams every log category to a Log Analytics workspace with 365-day retention ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#monitoring-audit-and-compliance)).
+Native retention is shorter than is often assumed: as of October 2026, Entra ID keeps audit and sign-in logs for 7 days on Free and 30 days on P1 and P2, and upgrading doesn't recover older data.[^c09-retention][^c09-apps-prepare] Evidence that has to outlast a 30-day window has to leave the service first: Book 02's monitoring design streams every log category to a Log Analytics workspace with 365-day retention ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#monitoring-audit-and-compliance)).
 
 The program's retention requirements, as design positions:
 
@@ -322,7 +377,7 @@ A gap in log forwarding is a gap in evidence. The governance office confirms for
 
 ### Governance alerts
 
-Detections that guard the governance process itself run in the SIEM; the detection queries for privileged activity and sign-in coverage are in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#detection-rules) and the consent and application alerts are in [Chapter 06, Evidence and monitoring](06-who-decides-access.md#evidence-and-monitoring). Three are specific to this chapter:
+Detections that guard the governance process itself run in the SIEM;[^c09-ops-guide] the detection queries for privileged activity and sign-in coverage are in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#detection-rules) and the consent and application alerts are in [Chapter 06, Evidence and monitoring](06-who-decides-access.md#evidence-and-monitoring). Three are specific to this chapter:
 
 | Alert | Trigger | Priority |
 |---|---|---|
@@ -391,3 +446,47 @@ External Partner Persons are guests by default and arrive through a package, so 
 [^c09-grs32]: National Archives, General Records Schedule 3.2, *Information Systems Security Records*, Transmittal 33, items 030 and 031 (system access records, including user profiles, log-in files and audit trails), <https://www.archives.gov/files/records-mgmt/grs/grs03-2.pdf> (accessed Nov 2, 2026).
 [^c09-gov-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," section "Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Nov 7, 2026).
 [^c09-em-questions]: Microsoft Learn, "Change approval and requestor information settings for an access package in entitlement management," section "Collect additional requestor information for approval," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-approval-policy> (accessed Nov 2, 2026).
+[^c09-em-request]: Microsoft Learn, "Request an access package - entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-request-access>; and "What is the My Access portal?," <https://learn.microsoft.com/entra/id-governance/my-access-portal-overview> (accessed Nov 9, 2026).
+[^c09-em-extensions]: Microsoft Learn, "Trigger Logic Apps with custom extensions in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-logic-apps-integration>; and "Externally determine the approval requirements for an access package using custom extensions," <https://learn.microsoft.com/entra/id-governance/entitlement-management-dynamic-approval> (accessed Nov 9, 2026).
+[^c09-em-behalf]: Microsoft Learn, "Request access packages on-behalf-of other identities," <https://learn.microsoft.com/entra/id-governance/entitlement-management-request-behalf> (accessed Nov 9, 2026).
+[^c09-guest-billing]: Microsoft Learn, "Microsoft Entra ID Governance licensing for guest users," <https://learn.microsoft.com/entra/id-governance/microsoft-entra-id-governance-licensing-for-guest-users> (accessed Nov 9, 2026).
+[^c09-app-access]: Microsoft Learn, "Manage access to apps," <https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-access-management>; and "Understand how users are assigned to apps," <https://learn.microsoft.com/entra/identity/enterprise-apps/ways-users-get-assigned-to-applications> (accessed Nov 9, 2026).
+[^c09-em-catalog]: Microsoft Learn, "Create and manage a catalog of resources in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-catalog-create>; and "Delegate access governance to catalog creators in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-delegate-catalog> (accessed Nov 9, 2026).
+[^c09-em-roles]: Microsoft Learn, "Delegation and roles in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-delegate> (accessed Nov 9, 2026).
+[^c09-ap-resources]: Microsoft Learn, "Change resource roles for an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-resources> (accessed Nov 9, 2026).
+[^c09-ap-pim]: Microsoft Learn, "Using groups managed by Privileged Identity Management with access packages," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-pim-reference> (accessed Nov 9, 2026).
+[^c09-ap-licenses-azure]: Microsoft Learn, "Manage the lifecycle of group-based licenses in Microsoft Entra ID," <https://learn.microsoft.com/entra/id-governance/entitlement-management-group-licenses>; and "Assign Azure Role-based access control (RBAC) Roles - Entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-azure-role-assignments> (accessed Nov 9, 2026).
+[^c09-em-troubleshoot]: Microsoft Learn, "Troubleshoot entitlement management," section "Requests," <https://learn.microsoft.com/entra/id-governance/entitlement-management-troubleshoot> (accessed Nov 9, 2026).
+[^c09-em-process]: Microsoft Learn, "Request process & notifications - Microsoft Entra entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-process>; and "Approve or deny access requests - entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-request-approve> (accessed Nov 9, 2026).
+[^c09-em-idp-approvals]: Microsoft Learn, "Configure ID Protection-based approvals for access package requests in Entitlement Management (Preview)," <https://learn.microsoft.com/entra/id-governance/entitlement-management-configure-id-protection-approvals> (accessed Nov 9, 2026).
+[^c09-em-irm-approvals]: Microsoft Learn, "Configure Insider risk management-based approvals for access package requests in Entitlement Management (Preview)," <https://learn.microsoft.com/entra/id-governance/entitlement-management-configure-insider-risk-management-approvals> (accessed Nov 9, 2026).
+[^c09-myaccess-delegate]: Microsoft Learn, "Delegate approvals and access reviews in My Access (Preview)," <https://learn.microsoft.com/entra/id-governance/delegate-approvals-my-access> (accessed Nov 9, 2026).
+[^c09-org-roles]: Microsoft Learn, "Govern access with an organizational role model," <https://learn.microsoft.com/entra/id-governance/identity-governance-organizational-roles> (accessed Nov 9, 2026).
+[^c09-ar-manage]: Microsoft Learn, "Manage user access with access reviews," <https://learn.microsoft.com/entra/id-governance/manage-user-access-with-access-reviews>; and "Manage access with access reviews," <https://learn.microsoft.com/entra/id-governance/manage-access-review> (accessed Nov 9, 2026).
+[^c09-ar-package]: Microsoft Learn, "Review access of an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-review-access>; and "Self-review of an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-self-review> (accessed Nov 9, 2026).
+[^c09-apps-deploy]: Microsoft Learn, "Deploying policies for governing access to applications integrated with Microsoft Entra ID," section "Deploy entitlement management policies for automating access assignment," <https://learn.microsoft.com/entra/id-governance/identity-governance-applications-deploy> (accessed Nov 9, 2026).
+[^c09-pim-complete]: Microsoft Learn, "Complete an access review of Azure resource and Microsoft Entra roles in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-complete-roles-and-resource-roles-review> (accessed Nov 9, 2026).
+[^c09-ar-self]: Microsoft Learn, "Review your access to groups & apps in access reviews," <https://learn.microsoft.com/entra/id-governance/review-your-access>; and "Review your access to resources in access reviews," <https://learn.microsoft.com/entra/id-governance/self-access-review> (accessed Nov 9, 2026).
+[^c09-ar-multistage]: Microsoft Learn, "Using multi-stage reviews to meet your attestation and certification needs," <https://learn.microsoft.com/entra/id-governance/using-multi-stage-reviews> (accessed Nov 9, 2026).
+[^c09-ca-exclusion]: Microsoft Learn, "Manage users excluded from Conditional Access policies," <https://learn.microsoft.com/entra/id-governance/conditional-access-exclusion> (accessed Nov 9, 2026).
+[^c09-ar-recs]: Microsoft Learn, "Review recommendations for Access reviews," <https://learn.microsoft.com/entra/id-governance/review-recommendations-access-reviews> (accessed Nov 9, 2026).
+[^c09-ar-guests]: Microsoft Learn, "Manage guest access with access reviews," <https://learn.microsoft.com/entra/id-governance/manage-guest-access-with-access-reviews>; and "Use Microsoft Entra ID Governance to review and remove external users who no longer have resource access," <https://learn.microsoft.com/entra/id-governance/access-reviews-external-users> (accessed Nov 9, 2026).
+[^c09-ar-perform]: Microsoft Learn, "Review access to groups & applications in access reviews," <https://learn.microsoft.com/entra/id-governance/perform-access-review> (accessed Nov 9, 2026).
+[^c09-inactive]: Microsoft Learn, "Manage inactive users using Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-inactive-users>; and "How to manage inactive user accounts," <https://learn.microsoft.com/entra/identity/monitoring-health/howto-manage-inactive-user-accounts> (accessed Nov 9, 2026).
+[^c09-b2b-allowdeny]: Microsoft Learn, "Allow or block invitations," <https://learn.microsoft.com/entra/external-id/allow-deny-list> (accessed Nov 9, 2026).
+[^c09-guest-deploy]: Microsoft Learn, "Microsoft Entra ID Governance deployment guide to govern guest and partner access," <https://learn.microsoft.com/entra/architecture/governance-deployment-guest-access>; and "Plan new governance scenarios for business partners and external users with Microsoft ID Governance," <https://learn.microsoft.com/entra/id-governance/scenarios/govern-guest-lifecycle-new-project> (accessed Nov 9, 2026).
+[^c09-sponsors]: Microsoft Learn, "Add sponsors to a guest user in the Microsoft Entra admin center - External ID," <https://learn.microsoft.com/entra/external-id/b2b-sponsors>; "Manage sponsored guests in My Account," <https://learn.microsoft.com/entra/id-governance/manage-sponsored-guests-my-access>; and "Manage unsponsored guests using Lifecycle Workflows (Preview)," <https://learn.microsoft.com/entra/id-governance/how-to-lifecycle-workflow-unsponsored-guest-removal> (accessed Nov 9, 2026).
+[^c09-stale-guests]: Microsoft Learn, "Monitor and clean up stale guest accounts," <https://learn.microsoft.com/entra/identity/users/clean-up-stale-guest-accounts> (accessed Nov 9, 2026).
+[^c09-apps-prepare]: Microsoft Learn, "Govern access for applications in your environment," section "Prerequisites before configuring Microsoft Entra ID and Microsoft Entra ID Governance for identity governance," <https://learn.microsoft.com/entra/id-governance/identity-governance-applications-prepare> (accessed Nov 9, 2026).
+[^c09-ops-guide]: Microsoft Learn, "Microsoft Entra ID Governance operations reference guide," section "Assign owners to key tasks," <https://learn.microsoft.com/entra/architecture/ops-guide-govern> (accessed Nov 9, 2026).
+[^c09-deploy-employee]: Microsoft Learn, "Microsoft Entra ID Governance deployment guide to assign employee access," section "Access review history report," <https://learn.microsoft.com/entra/architecture/governance-deployment-employee-access> (accessed Nov 9, 2026).
+[^c09-quarantine]: Microsoft Learn, "Quarantine unsanctioned tenants," <https://learn.microsoft.com/entra/fundamentals/quarantine-unsanctioned-tenants> (accessed Nov 9, 2026).
+[^c09-groups-lifecycle]: Microsoft Learn, "Configure the expiration policy for Microsoft 365 groups," <https://learn.microsoft.com/entra/identity/users/groups-lifecycle> (accessed Nov 9, 2026).
+[^c09-get-lifecycle]: Microsoft Learn, "Get-MgGroupLifecyclePolicy" (permissions: Directory.Read.All, least privileged), <https://learn.microsoft.com/powershell/module/microsoft.graph.groups/get-mggrouplifecyclepolicy?view=graph-powershell-1.0> (accessed Nov 9, 2026).
+[^c09-groups-naming]: Microsoft Learn, "Enforce a naming policy on Microsoft 365 groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-naming-policy> (accessed Nov 9, 2026).
+[^c09-groups-naming-m365]: Microsoft Learn, "Microsoft 365 Groups and Microsoft Teams naming policy," section "Licensing requirements," <https://learn.microsoft.com/microsoft-365/enterprise/groups-naming-policy> (accessed Nov 9, 2026).
+[^c09-groups-settings]: Microsoft Learn, "Microsoft Entra cmdlets for configuring group settings," section "Template settings," <https://learn.microsoft.com/entra/identity/users/groups-settings-cmdlets> (accessed Nov 9, 2026).
+[^c09-groups-restore]: Microsoft Learn, "Restore a deleted Microsoft 365 group or cloud security group in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-restore-deleted> (accessed Nov 9, 2026).
+[^c09-restore-object]: Microsoft Learn, "Restore-EntraDeletedDirectoryObject" (roles needed to restore deleted groups, including role-assignable groups), <https://learn.microsoft.com/powershell/module/microsoft.entra.directorymanagement/restore-entradeleteddirectoryobject?view=entra-powershell> (accessed Nov 9, 2026).
+[^c09-feature-availability]: Microsoft Learn, "Microsoft Entra feature availability," section "Microsoft Entra ID" (Administration and hybrid identity: advanced group management), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
+[^c09-azure-gov-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration," <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Nov 9, 2026).
