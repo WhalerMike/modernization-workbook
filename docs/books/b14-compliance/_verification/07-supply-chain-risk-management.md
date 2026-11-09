@@ -125,3 +125,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | covers how these rules meet BOD 26-04. | covers how these rules line up with BOD 26-04. | no source change |
 | The third is that the closing artifacts are governance artifacts. A software bill of materials, a vulnerability report, an exploitability decision, a contract clause and a supplier notification agreement close these controls. | The third is that the supporting artifacts are governance artifacts. A software bill of materials, a vulnerability report, an exploitability decision, a contract clause and a supplier notification agreement are what support these controls. | no source change |
 | makes it the only way to close a control, and saying plainly | makes it the only way to support a control, and saying plainly | no source change |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| KSI-SCR-MIT reworded on Oct 31, 2026 ("Potential supply chain risks are persistently identified, reviewed, and mitigated."); the changelog says no material impact; KSI-SCR-MON unchanged | Quotation updated with the new wording; footnote [^c07-ksi-scr] updated |
+| CISA KEV JSON feed grew (the catalog changes weekly); field names `cveID`, `dateAdded`, `dueDate`, `forensicTriage` unchanged | No change |

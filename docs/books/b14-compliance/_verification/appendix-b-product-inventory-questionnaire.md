@@ -47,3 +47,11 @@ At the user's request, every certificate-dependent book maps its certificates to
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | 'Venafi' | Certificates and PKI row | corrected: CyberArk Certificate Manager (formerly Venafi) | CyberArk 26.1; Palo Alto Networks page |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged | Recording FedRAMP status notes the "Unknown" impact level and what to record instead; footnote [^aB-products] updated |
