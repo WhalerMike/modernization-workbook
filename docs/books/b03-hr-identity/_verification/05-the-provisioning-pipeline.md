@@ -93,3 +93,26 @@ Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; 
 | H2 | HISG expects agencies to keep onboarding through existing on-premises services and synchronizing to the cloud | Same | verified (added) | HISG §3.1.4, Identity Sync |
 | H3 | With an on-premises source of identity (federation, PTA, password sync), compromise there can reach the cloud | Same | verified (added) | HISG §3.1.1–3.1.3 security considerations |
 | H4 | Cloud-only landing, with AD accounts provisioned downstream from Entra ID, takes the on-premises directory out of that population's cloud sign-in | Same | restated-as-design | follows from c05-soa (Entra ID holds object SOA; provisioning to AD from Entra ID) and HISG §3.1.4 |
+
+## Revision 2026-11-09 — Learn gap additions (provisioning to on-premises applications; MIM retirement)
+
+New section "Provisioning to on-premises applications: retiring MIM" (entra-apps gap 9, entra-gov gap 14). Learn pages read Nov 9, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| G1 | MIM 2016 end of support January 9, 2029 | §On-premises apps | verified (matches Book 00 Chapter 01) | <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016> |
+| G2 | Three components; the ECMA host imports ECMA2 connectors used with MIM; outbound only; SCIM apps need only the agent | §How it works | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-application-provisioning-architecture>; on-premises-scim-provisioning |
+| G3 | Connector table: SQL databases, LDAP servers (not AD DS; no group membership), PowerShell, web services (Oracle EBS and SAP ECC templates) | §Connectors | verified | on-premises-sql-connector-configure; on-premises-ldap-connector-configure; on-premises-powershell-connector; on-premises-web-services-connector |
+| G4 | SAP ECC out of scope for this program | §Connectors | restated-as-design (decision: SAP out of scope; the HR platform is Oracle-based) | — |
+| G5 | Users only; no groups, reference or multivalued attributes; no password sync, initial password supported | §Limits | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/known-issues> |
+| G6 | 40-minute cycle, not configurable | §Limits | verified | configure-automatic-user-provisioning-portal; known-issues |
+| G7 | No auto-update for this scenario; latest and previous version supported | §Limits | verified | on-premises-application-provisioning-architecture; known-issues |
+| G8 | The on-premises app provisioning agent can't be the Cloud Sync or HR provisioning agent | §Limits | verified | known-issues; on-premises-ldap-connector-configure |
+| G9 | Windows Server 2016+, 3 GB RAM, .NET 4.7.2; program baseline 2019+ | §Servers | verified; baseline restated-as-design (program assumption) | on-premises-sql-connector-configure |
+| G10 | HTTPS 8585; self-signed certificate for testing, two-year expiry; CA certificate with matching subject; one active and one passive agent per data center | §Servers | verified | on-premises-application-provisioning-architecture |
+| G11 | P1 licensing; roles | §Licensing | verified | on-premises-sql-connector-configure; <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> |
+| G12 | Azure Government: automated provisioning and agent registration available; custom apps and ECMA connector available in US Government; not all gallery apps; GCC uses commercial; DoD not separately specified | §Government clouds | verified (DoD shown as not yet specified) | <https://learn.microsoft.com/entra/identity/authentication/feature-availability>; known-issues |
+| G13 | MIM export and import steps, folder and wizard paths, tenant URL | §Moving a MIM connector | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-migrate-microsoft-identity-manager>; on-premises-sql-connector-configure |
+| G14 | Services to check, 10-20 minute readiness, test script path | §Moving a MIM connector | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ecma-troubleshoot> |
+| G15 | Capabilities the agent doesn't use (one object type and partition; no hierarchies, full export or concurrent operations) | §Moving a MIM connector | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-custom-connector> |
+| G16 | Parallel run against a test copy until exports match | §Moving a MIM connector | restated-as-design | — |

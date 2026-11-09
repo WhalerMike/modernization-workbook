@@ -49,3 +49,13 @@ Written by the editor (the assigned writer's draft was stopped before the chapte
 | Appendix B quick reference card | — | Not carried (module-specific) |
 | Appendix C checklist | "Checklist" | Module-copy item dropped |
 | Appendix D sample manifest | — | Not carried (module-specific) |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Microsoft Learn pages listed as covered but uncited for this chapter were read on Nov 9, 2026 and cited where they support a specific sentence. No sentence was reworded. The krbtgt password reset page (forest recovery guide) supports nothing in this chapter, which only names krbtgt among the protected accounts; it stays covered-uncited because Chapter 09 is also in its workbook list.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Sites, subnets and site links set the shape of replication (c07-repl-concepts) | Read-only results table, topology row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts> |
+| L2 | Replication health needs an administrator-run summary; repadmin forest-wide status needs Enterprise Admins or equivalent (c07-repl-status) | Gap list, replication row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/troubleshoot/troubleshooting-active-directory-replication-problems> |
+| L3 | Recycle Bin status is a read-only substitute for Deleted Objects; it is off by default and irreversible once enabled (c07-ad-recyclebin) | Gap list, Deleted Objects row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/active-directory-recycle-bin> |

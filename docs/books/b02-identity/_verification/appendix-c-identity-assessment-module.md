@@ -74,3 +74,12 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (Appendices
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: assignment table replaced by the subset of the program attribute map (Book 03 Ch 06) this book reads, with a link; `accountExpires` note `extensionAttribute8` -> `extensionAttribute3`; LCW carriers 7/8 -> 2/3. Export-FMPUserInventory: property list and `ExtensionAttributes` object re-pointed (Region 4, OrgCode 10, Division 6, PositionCategory 12, CostCenter 5, WorkerType 11, HireDate 2, EndDate 3, ClearanceLevel 9, AccountType 7); labels Department/Role/Classification renamed OrgCode/PositionCategory/WorkerType; logic unchanged. |
+
+## Revision 2026-11-09 — Learn gap additions (MFA Server check)
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | MFA Server retired Sept 30, 2024; no longer services MFA requests | §MFA Server | verified | <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-migrate-to-microsoft-entra-mfa>; <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016-deprecated-features> |
+| G2 | `mfaServerDeprecation` recommendation flags MFA Server activity in the last seven days and lists client integrations | §MFA Server | verified | recommendation-migrate-to-microsoft-entra-mfa |
+| G3 | AD FS check for the `AzureMfaServerAuthentication` provider in additional authentication rules | §MFA Server | verified | <https://learn.microsoft.com/entra/identity/authentication/how-to-migrate-mfa-server-to-azure-mfa> |
+| G4 | Graph beta recommendations call and property names | §MFA Server | restated-as-design (illustrative; beta endpoint) | — |

@@ -198,3 +198,28 @@ Lifecycle Workflows: the one-sentence limits list was replaced with a pointer to
 |---|---|---|---|---|
 | C1 | Access review table rows for application assignments use the risk-tier notation R1 (quarterly, two stages) and R2 (semi-annually) | §Access reviews | corrected (Old: "application risk Tier 1" and "Tier 2". New: R1 and R2) | Book 04 Chapter 04 §Three different tiers; Chapter 09 §Cadence |
 | C2 | Lifecycle Workflows tenant ceiling: service limits page says 100, licensing page says 50; the program budgets to 50 | §Limits, guardrails and design at scale | corrected (Old: 100 only) | Book 03 Chapter 08 §Tenant ceilings; Book 04 Chapter 09 |
+
+## Revision 2026-11-09 — Learn gap additions (password protection, mandatory MFA, AD FS applications)
+
+New subsections "Banned passwords in the cloud and on the domain controllers," "Mandatory MFA for Azure and the admin portals" and "Applications that still sign in through AD FS"; the Phase 9 prerequisite and step 7 now point to Appendix D. Learn pages read Nov 9, 2026.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | Global banned list automatic, can't be disabled, not published | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-password-ban-bad> |
+| G2 | Custom list: 1,000 terms, 4-16 characters; Authentication Policy Administrator; several hours to apply | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/tutorial-configure-custom-password-protection> |
+| G3 | Normalization and fuzzy matching | §Banned passwords | verified | concept-password-ban-bad |
+| G4 | Licensing: cloud-only global free, custom P1/P2; synced users P1/P2 for both | §Banned passwords | verified | concept-password-ban-bad |
+| G5 | Proxy and DC agent; DCs never contact the internet; no new DC ports; no schema change; SYSVOL; RPC 135 and the RPC port | §Banned passwords | verified | concept-password-ban-bad-on-premises; howto-password-ban-bad-on-premises-deploy |
+| G6 | DC agent 2012 R2+, .NET 4.7.2, DFSR; reboot; not on RODCs; proxy 2012 R2+, TLS 1.2, required; two per forest; not with the Application Proxy connector | §Banned passwords | verified | howto-password-ban-bad-on-premises-deploy |
+| G7 | Proxies as Tier 0, 2019 baseline | §Banned passwords | restated-as-design (program assumption) | — |
+| G8 | Audit first; test promotion and demotion in audit; existing passwords checked at next change; never-expires accounts not checked | §Banned passwords | verified | howto-password-ban-bad-on-premises-deploy |
+| G9 | Install and registration commands; device code on Server Core; forest registration needs Enterprise Admin | §Banned passwords | verified | howto-password-ban-bad-on-premises-deploy |
+| G10 | Portal path to enable on premises; audit mode | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-operations> |
+| G11 | Log path and events 10014-10017, 10024-10025 | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-monitor> |
+| G12 | Supported in Azure Government; lists available in Azure Government; Azure Government proxy endpoints not yet specified on the deploy page | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-faq>; feature-availability; deploy page |
+| G13 | Mandatory MFA phases and dates; read operations exempt in Phase 2; postponement to July 1, 2026; no opt-out | §Mandatory MFA | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication> |
+| G14 | "As of November 2026 both phases apply" | §Mandatory MFA | restated-as-design (inferred from the latest postponement date) | — |
+| G15 | Break-glass in scope (passkey or CBA); workload identities out, user service accounts in; federated IdP must send `multipleauthn` | §Mandatory MFA | verified | concept-mandatory-multifactor-authentication |
+| G16 | Prepare: sign-in logs by app ID; CA on Microsoft Admin Portals and Windows Azure Service Management API, report-only; CLI 2.76+, PowerShell 14.3+ | §Mandatory MFA | verified | concept-mandatory-multifactor-authentication; <https://learn.microsoft.com/entra/identity/authentication/how-to-mandatory-multifactor-authentication> |
+| G17 | Enforced only in the public Azure cloud; not currently in Azure for US Government | §Mandatory MFA | verified | concept-mandatory-multifactor-authentication |
+| G18 | Domain conversion leaves other relying parties on AD FS; Appendix D | §AD FS applications; Phase 9 | restated-as-design; Appendix D claims log | <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-apps-phases-overview> |

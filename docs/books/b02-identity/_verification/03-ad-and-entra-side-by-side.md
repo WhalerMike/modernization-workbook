@@ -76,3 +76,19 @@ Verified: 2026-10-20
 | same — Alignment to Directory Migration (eight adapters) | "How the concepts map to the migration adapters" table, with a why column; sync-retirement paragraph | — |
 | same — footer | Not carried | Provenance boilerplate |
 | `docs/learning/README.md` — title, intro, Contents table, How to use | Not carried | Navigation page for the two learning references; both references are consolidated into this chapter and Appendix A |
+
+## Revision 2026-11-09 — Learn gap additions (security identifiers)
+
+New section "Security identifiers, and what replaces them" (Learn coverage gap ws-10). Learn pages read Nov 9, 2026.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | A security principal is anything the OS can authenticate (user, computer, their security groups); access tokens hold SIDs compared with ACEs | §Security identifiers | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-security-principals> |
+| G2 | Domain SID + RID; RID master hands out blocks; unique in scope, never reused; recreated user gets a new SID | §Security identifiers | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-security-identifiers> |
+| G3 | Well-known SIDs: -500, -512, -513, -515, -518, -519, S-1-5-32-544, S-1-1-0, S-1-5-11 | Table | verified | understand-security-identifiers; <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-special-identities-groups> |
+| G4 | Special identity group membership is computed by the OS and can't be viewed or modified | Table | verified | understand-special-identities-groups |
+| G5 | "No Entra ID group to map to" for Everyone and Authenticated Users; built-in Administrator rights don't carry over | Table | restated-as-design (program reading of the migration impact) | — |
+| G6 | SID changes across domains; old SID kept in multi-valued `sIDHistory`; all SIDs in the token | §Security identifiers | verified | understand-security-identifiers |
+| G7 | SID history injection risk across a trust without SID filtering; `/quarantine` accepts only directly trusted domain SIDs | §Security identifiers | verified | <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts>; <https://learn.microsoft.com/windows-server/administration/windows-commands/netdom-trust> |
+| G8 | `onPremisesSecurityIdentifier` on users and groups; group `securityIdentifier` for Windows scenarios | §Security identifiers | verified | Graph user and group resource types |
+| G9 | Entra-joined device local admin by group SID of the form S-1-12-1 | §Security identifiers | verified | <https://learn.microsoft.com/entra/identity/devices/assign-local-admin>; <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-localusersandgroups> |

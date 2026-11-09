@@ -602,12 +602,14 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: Use built-in tools to clean up metadata from removed domain controllers
-  coverage: covered-uncited
+  coverage: cited
   note: DC metadata cleanup during DC retirement
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/adprep/Changes-Made-by-Adprep.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/adprep/changes-made-by-adprep
   title: Changes Made by Adprep.exe
@@ -650,6 +652,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b01-transformation-arc/12-migration-roadmap.md
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/Domain-Wide-Updates.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/domain-wide-updates
   title: Active Directory domain-wide schema updates
@@ -840,12 +844,14 @@ pages:
   ms_date: '2025-06-06'
   ms_topic: how-to
   description: Learn how to enable Active Directory Recycle Bin and restore deleted objects in Active Directory Domain Services on Windows Server.
-  coverage: covered-uncited
+  coverage: cited
   note: AD Recycle Bin as a safety net
   workbook:
   - docs/books/b02-identity/07-read-only-discovery.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/07-read-only-discovery.md
+  - docs/books/b02-identity/_verification/07-read-only-discovery.md
 - path: WindowsServerDocs/identity/ad-ds/get-started/adac/Advanced-AD-DS-Management-Using-Active-Directory-Administrative-Center--Level-200-.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/advanced-ad-ds-management-using-active-directory-administrative-center--level-200-
   title: Advanced AD DS Management Using Active Directory Administrative Center (Level 200)
@@ -886,12 +892,14 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: 'Learn more about: Active Directory Replication Concepts'
-  coverage: covered-uncited
+  coverage: cited
   note: Replication health is assessed read-only before migration
   workbook:
   - docs/books/b02-identity/07-read-only-discovery.md
   - docs/books/b02-identity/08-assessing-the-forest.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/07-read-only-discovery.md
+  - docs/books/b02-identity/_verification/07-read-only-discovery.md
 - path: WindowsServerDocs/identity/ad-ds/get-started/virtual-dc/Active-Directory-Domain-Services-Overview.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
   title: Active Directory Domain Services overview
@@ -1271,11 +1279,13 @@ pages:
   ms_date: '2025-07-09'
   ms_topic: how-to
   description: Learn how to delegate administrative control in Active Directory Domain Services on Windows Server.
-  coverage: covered-uncited
+  coverage: cited
   note: Delegation model in the delegation chapter
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-add-gc.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-add-gc
   title: AD Forest Recovery - Adding the GC
@@ -1423,9 +1433,11 @@ pages:
   ms_date: '2023-07-10'
   ms_topic: how-to
   description: Beginning with a writeable DC in the forest root domain, complete the steps in this section in order to restore the first DC.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-nonauthoritative-restore.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-nonauthoritative-restore
   title: Active Directory Forest Recovery - Performing a nonauthoritative restore of Active Directory Domain Services
@@ -1885,11 +1897,13 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: troubleshooting-general
   description: 'Learn more about: Troubleshooting Active Directory Replication Problems'
-  coverage: covered-uncited
+  coverage: cited
   note: Replication health in the read-only discovery chapter
   workbook:
   - docs/books/b02-identity/07-read-only-discovery.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/07-read-only-discovery.md
+  - docs/books/b02-identity/_verification/07-read-only-discovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/troubleshoot/Verify-DNS-Functionality-to-Support-Directory-Replication.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/troubleshoot/verify-dns-functionality-to-support-directory-replication
   title: Verify DNS Functionality to Support Directory Replication
@@ -1959,9 +1973,11 @@ pages:
   ms_date: '2025-06-26'
   ms_topic: concept-article
   description: Become familiar with unique identifiers for Windows Server accounts and groups, such as security identifiers (SIDs). See tables of well-known SIDs.
-  coverage: not-covered
+  coverage: cited
   note: 'Security identifiers and special identity groups: concept reference, not in the glossary or Ch03'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/identity/ad-ds/manage/understand-security-principals.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-security-principals
   title: Security Principals
@@ -1969,11 +1985,13 @@ pages:
   ms_date: '2025-07-08'
   ms_topic: concept-article
   description: This article discusses security principals for Windows Server accounts and security groups and how they work in Active Directory.
-  coverage: covered-uncited
+  coverage: cited
   note: Security principals compared with Entra objects
   workbook:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/identity/ad-ds/manage/understand-service-accounts.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-service-accounts
   title: Service Accounts in Windows Server
@@ -1995,9 +2013,11 @@ pages:
   ms_date: '2025-07-08'
   ms_topic: concept-article
   description: Learn about Windows Server special identity groups that are used for Windows access control.
-  coverage: not-covered
+  coverage: cited
   note: 'Security identifiers and special identity groups: concept reference, not in the glossary or Ch03'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/identity/ad-ds/manage/virtual-dc/restore-virtualized-domain-controller.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/virtual-dc/restore-virtualized-domain-controller
   title: Restore a virtualized domain controller in Windows Server
@@ -2247,11 +2267,13 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: 'Learn more about: Delegating Administration of Account OUs and Resource OUs'
-  coverage: covered-uncited
+  coverage: cited
   note: Delegation model in the delegation chapter
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
 - path: WindowsServerDocs/identity/ad-ds/plan/Delegating-Administration-of-Default-Containers-and-OUs.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/delegating-administration-of-default-containers-and-ous
   title: Delegating Administration of Default Containers and OUs
@@ -2259,11 +2281,13 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: 'Learn more about: Delegating Administration of Default Containers and OUs'
-  coverage: covered-uncited
+  coverage: cited
   note: Delegation model in the delegation chapter
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
 - path: WindowsServerDocs/identity/ad-ds/plan/Deploying-AD-DS-in-a-New-Organization.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/deploying-ad-ds-in-a-new-organization
   title: Deploying AD DS in a New Organization
@@ -3219,9 +3243,11 @@ pages:
   ms_date: '2024-02-13'
   ms_topic: best-practice
   description: Best practices for the secure planning and deployment of Active Directory Federation Services (AD FS) and Web Application Proxy.
-  coverage: not-covered
+  coverage: cited
   note: 'Securing AD FS and WAP while it remains in the path: not covered'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/deployment/Checklist--Configuring-the-Account-Partner-Organization.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/deployment/checklist--configuring-the-account-partner-organization
   title: Checklist - Configuring the Account Partner Organization
@@ -4646,7 +4672,9 @@ pages:
   description: Learn more about AD FS Extranet Lockout and Extranet Smart Lockout to protect your users from experiencing extranet account lockout from malicious activity.
   coverage: out-of-scope
   note: AD FS access control and lockout policies; replaced by Entra Conditional Access and smart lockout (Book 04)
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/operations/Configure-AD-FS-Extranet-Soft-Lockout-Protection.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/operations/configure-ad-fs-extranet-soft-lockout-protection
   title: Configure AD FS Extranet Soft Lockout Protection
@@ -5161,9 +5189,11 @@ pages:
   ms_date: '2024-02-13'
   ms_topic: concept-article
   description: 'Learn more about: Auditing Enhancements to AD FS in Windows Server 2016'
-  coverage: not-covered
+  coverage: cited
   note: 'AD FS auditing events: usable to measure AD FS sign-in activity before decommission'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/technical-reference/Determine-the-Type-of-Claim-Rule-Template-to-Use.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/technical-reference/determine-the-type-of-claim-rule-template-to-use
   title: Determine the Type of Claim Rule Template to Use
@@ -5221,9 +5251,11 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: concept-article
   description: 'Learn more about: The Role of Claim Rules'
-  coverage: not-covered
+  coverage: cited
   note: 'AD FS claims and claim-rule concepts: needed to inventory relying-party trusts and map claims to Entra; only mentioned in b07 ch06-07'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/technical-reference/The-Role-of-Claims.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
   title: The Role of Claims
@@ -5251,9 +5283,11 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: concept-article
   description: 'Learn more about: The Role of the Claim Rule Language'
-  coverage: not-covered
+  coverage: cited
   note: 'AD FS claims and claim-rule concepts: needed to inventory relying-party trusts and map claims to Entra; only mentioned in b07 ch06-07'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/technical-reference/The-Role-of-the-Claims-Engine.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/technical-reference/the-role-of-the-claims-engine
   title: The Role of the Claims Engine
@@ -5271,9 +5305,11 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: concept-article
   description: 'Learn more about: The Role of the Claims Pipeline'
-  coverage: not-covered
+  coverage: cited
   note: 'AD FS claims and claim-rule concepts: needed to inventory relying-party trusts and map claims to Entra; only mentioned in b07 ch06-07'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/technical-reference/Understanding-Key-AD-FS-Concepts.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/technical-reference/understanding-key-ad-fs-concepts
   title: Understanding Key Active Directory Federation Services Concepts
@@ -5493,7 +5529,9 @@ pages:
   description: Learn how to use the admin and Tracelog to troubleshoot various Active Directory Federation Services issues.
   coverage: out-of-scope
   note: AD FS troubleshooting for a farm being retired
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: WindowsServerDocs/identity/ad-fs/troubleshooting/ad-fs-tshoot-loop.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/troubleshooting/ad-fs-tshoot-loop
   title: AD FS Troubleshooting - Loop Detection
@@ -5905,9 +5943,10 @@ pages:
   ms_date: '2024-02-13'
   ms_topic: how-to
   description: 'Learn more about: Deploy Claims Across Forests (Demonstration Steps)'
-  coverage: not-covered
+  coverage: cited
   note: 'Dynamic Access Control claims/central access policies: AD-dependent file-server access control, not covered (see gaps)'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
 - path: WindowsServerDocs/identity/solution-guides/Deploy-Claims-Across-Forests.md
   url: https://learn.microsoft.com/windows-server/identity/solution-guides/deploy-claims-across-forests
   title: Deploy Claims Across Forests
@@ -5965,9 +6004,11 @@ pages:
   ms_date: '2024-02-13'
   ms_topic: concept-article
   description: 'Learn more about: Dynamic Access Control Overview'
-  coverage: not-covered
+  coverage: cited
   note: 'Dynamic Access Control claims/central access policies: AD-dependent file-server access control, not covered (see gaps)'
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: WindowsServerDocs/identity/solution-guides/Plan-for-File-Access-Auditing.md
   url: https://learn.microsoft.com/windows-server/identity/solution-guides/plan-for-file-access-auditing
   title: Plan for File Access Auditing
