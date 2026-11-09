@@ -130,3 +130,23 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | Vol VI — Controls Operationalized | Control map | Merged |
 | Vol VI — Honest Limits | "Honest limits" | Carried |
 | Vol VI — Cross-References, Provenance | Chapter links; warning callout | Book VI-xx references mapped to Ch02, Ch07, Ch11; provenance note replaced by the illustrative-code callout |
+
+## Learn additions, November 9, 2026 (container labels, external sharing, AD RMS exit)
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage pass (Entra governance gap 15, Windows Server identity gap 6).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Container labels on groups, teams and sites set privacy, guest access and unmanaged-device access; content in the container doesn't inherit the label | New subsection "Labels on Teams, groups and sites" | verified (new) | `c09-container-labels`, Learn "Control external access to resources in Microsoft Entra ID with sensitivity labels" |
+| L2 | `EnableMIPLabels` must be set; at least one P1 license; labels synchronized with `Execute-AzureAdLabelSync`, up to 24 hours; don't change a published label's group settings afterwards | Same, and command block | verified; command block is Microsoft's steps, not run against a tenant | `c09-group-labels`, Learn "Assign sensitivity labels to Microsoft 365 groups in Microsoft Entra ID" |
+| L3 | Automatic classification and labeling for Teams, Microsoft 365 groups and SharePoint sites: Available in GCC and GCC High | Same | verified | `c09-gcc`, `c09-gcch` (Step 4 tables, re-read Nov 9, 2026) |
+| L4 | DoD availability of container labels | Same | not yet specified | No DoD table among the pages checked |
+| L5 | Entra external collaboration settings override Microsoft 365 sharing; Teams can be stricter but not looser; B2B integration for SharePoint and OneDrive; "New and existing guests" over "Anyone"; default links to people in the organization; Guest Inviter role | Same | verified | `c09-teams-sp-external`, Learn "Secure external access to Microsoft Teams, SharePoint, and OneDrive with Microsoft Entra ID" |
+| L6 | CUI lives in sites whose container label blocks guests, with item labels from auto-labeling | Same | restated-as-design | Program design |
+| L7 | AD RMS no longer in active development; migrate to Azure Information Protection without re-protecting content | New subsection "AD RMS has to leave before the domain does" | verified (new) | `c09-adrms`, Learn "Upgrading AD RMS to Windows Server 2016" |
+| L8 | Migration moves TPDs, keys, templates and URLs; reconfigures clients, Exchange and SharePoint; partners plan in step | Same | verified | `c09-adrms-migrate` |
+| L9 | Export and import every TPD, not only the active one; HSM key that can't be exported: read-only cluster for old content | Same | verified | `c09-adrms-phase2` |
+| L10 | An AD RMS cluster blocks domain retirement and is migrated before the last DC goes | Same | restated-as-design | Program design |
+| L11 | Government-cloud configuration for AIP in GCC High and DoD needs extra steps | Not added to the text | noted | Learn "Azure Information Protection Premium Government Service Description" (search result, Nov 9, 2026) |
+
+Left listed but uncited in the coverage map: groups-sensitivity-labels (sensitivity labels on Entra security groups, preview).

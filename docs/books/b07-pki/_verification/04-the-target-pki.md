@@ -135,3 +135,12 @@ Added at the author's request during the independent verification pass (`docs/ab
 | # | Correction | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | `c04-fips201` names §2.1 (proper authority) and §2.9.4 (18 hours of notification if the card can't be collected) | Footnotes | corrected | FIPS 201-3 |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | BYOCA request can be signed through Web Enrollment with the Subordinate Certification Authority template | BYOCA corrections | verified (second citation added) | `c04-pkcs10`: Learn, "Submit certificate requests using a PKCS #10 or a PKCS #7 file" (read Nov 9, 2026) |
+| L2 | Publish a CRL at an HTTP internet or extranet location; set AIA and CDP before issuing | Recommendation step 3 | verified (clause and citation added) | `c04-pki-design`: Learn, "PKI design considerations using Active Directory Certificate Services" (read Nov 9, 2026) |

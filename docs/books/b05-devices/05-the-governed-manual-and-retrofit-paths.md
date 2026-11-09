@@ -156,7 +156,7 @@ dsregcmd /status
 #   DomainJoined  : YES
 ```
 
-Those two values mean the device is both domain-joined and Entra-joined, which is what Group Policy enrollment requires.[^c05-enroll-troubleshoot]
+Those two values mean the device is both domain-joined and Entra-joined, which is what Group Policy enrollment requires.[^c05-enroll-troubleshoot][^c05-dsregcmd]
 
 Deploy configuration in priority order: the security baseline, BitLocker with recovery-key escrow to Entra ID, Windows Hello for Business, Defender Antivirus, firewall profiles and Windows LAPS. Intune's LAPS policy can back the local administrator account up to Entra ID or to Active Directory, and can rotate the password on a schedule.[^c05-laps] [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) covers Windows Hello for Business as part of phishing-resistant sign-in. Then attach a compliance policy: minimum OS version, BitLocker, Secure Boot, code integrity, Defender real-time protection and current signatures, firewall, TPM and health attestation. A device that fails it can be blocked by Conditional Access. Every compliance policy includes a *Mark device noncompliant* action. You can schedule it from 0 to 365 days to give users a grace period before Conditional Access takes effect.[^c05-noncompliance] [Book 04](../b04-access/index.md) owns the Conditional Access side of that decision.
 
@@ -425,6 +425,7 @@ The paths share the observe-before-change rule and the evidence requirement. The
 [^c05-enroll-methods]: Microsoft Learn, "Step 5 – Enroll devices in Microsoft Intune," section "Enrollment for Windows," <https://learn.microsoft.com/intune/device-enrollment/enroll-devices> (accessed Oct 20, 2026).
 [^c05-gpo-enroll]: Microsoft Learn, "Enroll a Windows device automatically using Group Policy," <https://learn.microsoft.com/windows/client-management/enroll-a-windows-10-device-automatically-using-group-policy> (accessed Oct 20, 2026).
 [^c05-enroll-troubleshoot]: Microsoft Learn, "Troubleshooting Windows 10 Group Policy-based auto-enrollment in Intune," <https://learn.microsoft.com/troubleshoot/mem/intune/device-enrollment/troubleshoot-windows-auto-enrollment> (accessed Oct 20, 2026).
+[^c05-dsregcmd]: Microsoft Learn, "Troubleshoot devices by using the dsregcmd command," section "Device state" (`AzureAdJoined` YES with `DomainJoined` YES is Microsoft Entra hybrid joined), <https://learn.microsoft.com/entra/identity/devices/troubleshoot-device-dsregcmd> (accessed Nov 9, 2026).
 [^c05-laps]: Microsoft Learn, "Microsoft Intune support for Windows LAPS," <https://learn.microsoft.com/intune/device-security/laps/overview> (accessed Oct 20, 2026).
 [^c05-noncompliance]: Microsoft Learn, "Configure actions for noncompliant devices in Intune," <https://learn.microsoft.com/intune/device-security/compliance/configure-noncompliance-actions> (accessed Oct 20, 2026).
 [^c05-mdmwins]: Microsoft Learn, "Policy CSP - ControlPolicyConflict," entry MDMWinsOverGP, <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-controlpolicyconflict> (accessed Oct 20, 2026).

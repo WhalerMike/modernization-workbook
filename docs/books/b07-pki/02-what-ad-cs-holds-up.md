@@ -41,7 +41,7 @@ Most enterprise AD CS deployments use a two-tier hierarchy, sometimes three. Mic
 | CA Web Enrollment | Browser-based, interactive certificate requests; the usual way to reach a standalone CA[^c02-webenroll] | Interactive requests are hard to inventory; find out who still uses it |
 | CRL distribution points (CDP) | HTTP and LDAP locations where CRLs are published | Entra CBA accepts only one CRL location per CA, over HTTP (or HTTPS; HTTP recommended); it doesn't use LDAP or OCSP[^c02-cba-ca][^c02-cba-crl] |
 | Authority Information Access (AIA) | HTTP and LDAP locations from which relying parties retrieve CA certificates to build the chain | LDAP locations are useful only to clients that can query the forest's directory |
-| Online Responder (optional) | Answers OCSP requests with a signed status for individual certificates[^c02-adcs-overview] | Serves only the CAs it's configured for; see the use-case map below |
+| Online Responder (optional) | Answers OCSP requests with a signed status for individual certificates[^c02-adcs-overview][^c02-ocsp-ops] | Serves only the CAs it's configured for; see the use-case map below |
 
 : AD CS components in a typical deployment {.striped .hover}
 
@@ -86,7 +86,7 @@ Record each CA with the same attributes. The values below are illustrative of a 
 
 : CA inventory record, with illustrative values {.striped .hover}
 
-Two rows were added to the source's template because the target depends on them. The key storage provider matters because AD CS post-quantum support requires CNG providers and doesn't support legacy CSPs.[^c02-pqc] The CRL size matters because Entra CBA downloads each trusted CA's CRL and enforces size limits ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) gives them).
+Two rows were added to the source's template because the target depends on them. The key storage provider matters because AD CS post-quantum support requires CNG providers and doesn't support legacy CSPs.[^c02-pqc][^c02-mldsa-templates] The CRL size matters because Entra CBA downloads each trusted CA's CRL and enforces size limits ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) gives them).
 
 ## Template categories
 
@@ -103,7 +103,7 @@ Templates are organized by use case, and the extended key usage (EKU) a template
 | EFS | Basic EFS, EFS Recovery Agent | Encrypting File System (`1.3.6.1.4.1.311.10.3.4`); File Recovery (`1.3.6.1.4.1.311.10.3.4.1`) | Domain users, recovery agents |
 | Smart card logon | Smartcard Logon | Smart Card Logon (`1.3.6.1.4.1.311.20.2.2`) | Smart card holders not served by PIV |
 | Domain controller authentication | Kerberos Authentication; older Domain Controller and Domain Controller Authentication | KDC Authentication (`1.3.6.1.5.2.3.5`) plus Client and Server Authentication | Domain controllers |
-| OCSP signing | OCSP Response Signing | OCSP Signing (`1.3.6.1.5.5.7.3.9`) | Online Responders |
+| OCSP signing | OCSP Response Signing | OCSP Signing (`1.3.6.1.5.5.7.3.9`)[^c02-ocsp-ops] | Online Responders |
 | IPsec | IPSec (Offline request) | IP Security IKE Intermediate (`1.3.6.1.5.5.8.2.2`) | VPN gateways |
 | Enrollment agent | Enrollment Agent | Certificate Request Agent (`1.3.6.1.4.1.311.20.2.1`) | Enrollment stations, registration authorities |
 
@@ -129,7 +129,7 @@ The inventory has four layers. The source guide included a PowerShell function f
 
 ### CA layer
 
-For each CA, the record in the previous section, plus the health of what it publishes: whether each CRL and AIA URL embedded in issued certificates is reachable from the networks its relying parties sit on, when each CRL next updates, and how large it is. Test the URL in an actual certificate, not the one the CA is configured to write; Microsoft's troubleshooting guidance makes the same distinction.[^c02-pki-health]
+For each CA, the record in the previous section, plus the health of what it publishes: whether each CRL and AIA URL embedded in issued certificates is reachable from the networks its relying parties sit on, when each CRL next updates, and how large it is. Test the URL in an actual certificate, not the one the CA is configured to write; Microsoft's troubleshooting guidance makes the same distinction.[^c02-pki-health][^c02-path-validation]
 
 ### Template layer
 
@@ -242,3 +242,6 @@ The pattern in the corrections is the one [Chapter 01](01-why-certificates-outli
 [^c02-template-concepts]: Microsoft Learn, "Certificate templates concepts" (Default certificate templates), <https://learn.microsoft.com/windows-server/identity/ad-cs/certificate-template-concepts> (accessed Oct 20, 2026).
 [^c02-imported-pfx]: Microsoft Learn, "Configure and use imported PKCS certificates with Intune," <https://learn.microsoft.com/intune/device-configuration/certificates/imported-pfx-profiles> (accessed Oct 20, 2026).
 [^c02-cba-crl]: Microsoft Learn, "Microsoft Entra certificate-based authentication Certificate Revocation List (CRL)" ("supports only HTTP or HTTPS. We recommend using HTTP instead of HTTPS for CRL distribution"; the CA configuration page still says the CDP "can only be HTTP URLs"), <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> (accessed Oct 21, 2026).
+[^c02-ocsp-ops]: Microsoft Learn, "Secure, monitor, renew, and scale Online Responders" (an Online Responder answers real-time OCSP queries and signs each status response; RFC 6960 requires a delegated signer to carry the OCSP Signing EKU), <https://learn.microsoft.com/windows-server/identity/ad-cs/secure-monitor-scale-online-responders> (accessed Nov 9, 2026).
+[^c02-mldsa-templates]: Microsoft Learn, "Configure certificate templates for ML-DSA," section "Review ML-DSA template requirements" ("Post-quantum cryptography (PQC) algorithms like ML-DSA are only supported by CNG providers"), <https://learn.microsoft.com/windows-server/identity/ad-cs/configure-ml-dsa-certificate-templates> (accessed Nov 9, 2026).
+[^c02-path-validation]: Microsoft Learn, "Configure AIA issuer retrieval and validate certificate endpoints," section "Review CA endpoint publication" (reissue a test certificate after an endpoint change and inspect that new certificate; existing certificates don't acquire changed AIA or CDP values), <https://learn.microsoft.com/windows-server/identity/ad-cs/configure-certificate-path-validation-revocation-policy> (accessed Nov 9, 2026).
