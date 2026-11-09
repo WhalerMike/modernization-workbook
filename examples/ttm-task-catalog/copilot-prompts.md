@@ -29,7 +29,7 @@ Drift class: missing_identity | stale_access | orphan_account | attribute_drift 
 Severity: P1 | P2 | P3 | P4 (windows: P1 immediate, P2 1 hour, P3 24 hours, P4 72 hours)
 Default severity by class: missing_identity, stale_access, orphan_account, unauthorized_write,
   credential_drift = P2; attribute_drift, schema_drift = P3
-Classes a person decides first: missing_identity, unauthorized_write
+Classes a person decides first: missing_identity, orphan_account, unauthorized_write
 Identity type: Person (time-boxed role) | Service identity | Managed or workload identity | AI agent | Protocol client
 High impact, Human approval before action: yes | no
 Re-read by: Independent checker | The identity that acted

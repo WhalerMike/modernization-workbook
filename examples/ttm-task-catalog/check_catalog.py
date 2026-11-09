@@ -33,7 +33,8 @@ fc = cs.fc
 SOURCE = "task-catalog"
 
 # A sample intended state per drift class, in the keys the re-read client can check.
-# Classes Book 13 sends to a person first get an empty one: the person sets it.
+# Classes Book 13 sends to a person first get an empty one: the person sets it. An orphan account
+# keeps its sample: the owner decides first, and the gated fix then disables the account.
 SAMPLE_INTENDED = {
     "stale_access": {"entitlements_absent": [{"attribute": "memberOf", "value": "SAMPLE-ENTITLEMENT"}]},
     "orphan_account": {"disabled": True},

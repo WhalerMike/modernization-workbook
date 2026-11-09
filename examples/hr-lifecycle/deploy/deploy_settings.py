@@ -34,6 +34,13 @@ SCHEMA = "fmp-hrlc-deploy/1"
 ENVIRONMENTS = ("test", "production")
 APPS = ("employee", "contractor")
 WORKFLOW_KEYS = ("pre-hire", "day-one", "mover", "leaver", "post-leaver", "contractor-leaver")  # config/workflows stems
+# What the output calls a workflow, where it differs from its key: the key stays the file and settings name,
+# and the output uses the books' term (the post-separation delete).
+WORKFLOW_LABELS = {"post-leaver": "post-separation"}
+
+
+def workflow_label(key: str) -> str:
+    return WORKFLOW_LABELS.get(key, key)
 # The same key pattern examples/hcm-entra refuses in its settings, plus values that are secrets.
 SECRET_KEY = re.compile(r"(secret|password|passwd|token|credential|private|apikey|api_key|bearer)", re.I)
 SECRET_VALUE = re.compile(r"(^eyJ[A-Za-z0-9_-]{10,}\.|-----BEGIN [A-Z ]*(PRIVATE KEY|CERTIFICATE)-----)")
