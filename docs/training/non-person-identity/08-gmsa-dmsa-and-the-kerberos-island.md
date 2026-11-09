@@ -54,9 +54,10 @@ After this module, you'll be able to:
 
 Read the guide's [Step 5](../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run): build the target, give it two owners, run old and new in parallel for 30 days, then disable, never delete. Then read:
 
-- The guide's [Step 2](../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target), its prerequisites for a gMSA: the KDS root key, and the wait of up to 10 hours.
+- The guide's [Step 2](../../books/guides/non-person-identity-implementation.md#step-2-decide-each-identitys-target), its prerequisites for a gMSA: one KDS root key for the forest, the wait of up to 10 hours, a name unique in the forest, and a password interval set only at creation.
 - The guide's [Step 3](../../books/guides/non-person-identity-implementation.md#step-3-set-the-credential-rules), its step 7 on AD-side credentials.
 - The guide's [Rollback](../../books/guides/non-person-identity-implementation.md#rollback) row for Step 5.
+- Optional, outside the timing: [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](../../books/guides/service-account-migration.md), Migrations A and B, the same moves by hand with Learn's commands.
 
 ## Unit 2: The plan and the island (12 minutes)
 

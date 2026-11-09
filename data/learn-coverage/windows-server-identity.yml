@@ -1264,6 +1264,7 @@ pages:
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b02-identity/appendix-b-forest-assessment-module.md
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
@@ -1281,6 +1282,7 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
@@ -1613,12 +1615,14 @@ pages:
   ms_date: '2025-07-09'
   ms_topic: how-to
   description: Explains how to configure Kerberos delegation for group Managed Service Accounts.
-  coverage: covered-uncited
+  coverage: cited
   note: 'gMSA/dMSA topic: covered in the Non-Person Identity workbook Ch06'
   workbook:
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/service-account-migration.md
+  - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
 - path: WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key
   title: Create a Key Distribution Service (KDS) Root Key
@@ -1631,6 +1635,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/source-register.md
@@ -1649,6 +1654,7 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b06-data-platform/07-the-authentication-audit.md
   - docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
 - path: WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts
@@ -1665,6 +1671,8 @@ pages:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/appendix-b-forest-assessment-module.md
   - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
+  - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/source-register.md
@@ -2009,9 +2017,11 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b06-data-platform/01-what-windows-authentication-actually-is.md
   - docs/books/b06-data-platform/02-why-the-inheritance-must-end.md
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
 - path: WindowsServerDocs/identity/ad-ds/manage/understand-special-identities-groups.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-special-identities-groups
@@ -3363,7 +3373,8 @@ pages:
   description: 'Learn more about: Configure a Federation Server'
   coverage: out-of-scope
   note: 'AD FS feature configuration, design or operation: the program retires AD FS (Book 02 ch10 decommission), so no new configuration guidance'
-  cited_by: []
+  cited_by:
+  - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
 - path: WindowsServerDocs/identity/ad-fs/deployment/Configure-Client-Computers-to-Trust-the-Account-Federation-Server.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/deployment/configure-client-computers-to-trust-the-account-federation-server
   title: Configure Client Computers to Trust the Account Federation Server
@@ -5169,7 +5180,8 @@ pages:
   description: Learn about the requirements for installing Active Directory Federation Services (ADFS) for your systems.
   coverage: out-of-scope
   note: 'AD FS feature configuration, design or operation: the program retires AD FS (Book 02 ch10 decommission), so no new configuration guidance'
-  cited_by: []
+  cited_by:
+  - docs/books/guides/service-account-migration.md
 - path: WindowsServerDocs/identity/ad-fs/technical-reference/AD-FS-and-KeySpec-Property.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/technical-reference/ad-fs-and-keyspec-property
   title: Active Directory Federation Services and certificate Key Specification property Information
