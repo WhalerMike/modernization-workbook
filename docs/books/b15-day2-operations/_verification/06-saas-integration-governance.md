@@ -129,3 +129,37 @@ A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own ch
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Wording: onboarding is the densest control-supporting moment; the chapter supports the controls it names; consent restriction doesn't answer SA-9; a verdict addresses it (earlier wording said the design closes or doesn't close controls) | Opening; Consent restriction answers who, not whether | claim language narrowed; no fact change | CONTRIBUTING.md, Claim language |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Quickstart: Add an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal) | Opening scenario | Nov 9, 2026 | Adding a gallery application in the admin center |
+| [Enable SAML single sign-on for an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal-setup-sso) | Opening scenario; Federation table, SC-8 row | Nov 9, 2026 | Configuring SAML single sign-on |
+| [User provisioning management for enterprise apps](https://learn.microsoft.com/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal) | Opening scenario | Nov 9, 2026 | Configuring provisioning for an enterprise app |
+| [Application consent management and evaluation of consent requests](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-consent-requests) | Consent restriction answers who, not whether | Nov 9, 2026 | Consent settings and evaluating requests |
+| [Review and take action on admin consent requests](https://learn.microsoft.com/entra/identity/enterprise-apps/review-admin-consent-requests) | Consent restriction answers who, not whether | Nov 9, 2026 | Admin consent workflow review |
+| [Protect against consent phishing](https://learn.microsoft.com/entra/identity/enterprise-apps/protect-against-consent-phishing) | OAuth application risk | Nov 9, 2026 | Attacker-registered apps and tricked consent |
+| [App visibility and control with Microsoft Defender for Cloud Apps](https://learn.microsoft.com/entra/identity/enterprise-apps/cloud-app-security) | OAuth application risk | Nov 9, 2026 | Defender for Cloud Apps with Entra-connected apps |
+| [What is automated app user provisioning in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/app-provisioning/user-provisioning) | Federation table, AC-2 row | Nov 9, 2026 | Automated create, update and disable in SaaS apps |
+| [Configure OIDC SSO for gallery and custom applications](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal-setup-oidc-sso) | Federation table, SC-8 row | Nov 9, 2026 | OpenID Connect single sign-on |
+| [Application Management certificates frequently asked questions](https://learn.microsoft.com/entra/identity/enterprise-apps/application-management-certs-faq) | Phase 3 | Nov 9, 2026 | Three-year default; 60/30/7-day notices to up to five addresses |
+| [PowerShell sample: Export enterprise apps with expiring secrets and certificates](https://learn.microsoft.com/entra/identity/enterprise-apps/scripts/powershell-export-enterprise-apps-with-expiring-secrets) | Phase 3 | Nov 9, 2026 | Finding expiring certificates ahead of rotation |
+| [PowerShell sample: Export app registrations with expiring secrets and certificates](https://learn.microsoft.com/entra/identity/enterprise-apps/scripts/powershell-export-apps-with-expiring-secrets) | Phase 3 | Nov 9, 2026 | Finding expiring credentials ahead of rotation |
+| [Tutorial - Customize Microsoft Entra attribute mappings](https://learn.microsoft.com/entra/identity/app-provisioning/customize-application-attributes) | Phase 4, enable provisioning | Nov 9, 2026 | Attribute mappings and scoping |
+| [Plan an automatic user provisioning deployment](https://learn.microsoft.com/entra/identity/app-provisioning/plan-auto-user-provisioning) | Phase 4, enable provisioning | Nov 9, 2026 | Planning scope and mappings; quarantine after four weeks |
+| [Quickstart: Create and assign a user account](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal-assign-users) | Phase 4, assignment required | Nov 9, 2026 | Assigning users to an app |
+| [Understand how users are assigned to apps](https://learn.microsoft.com/entra/identity/enterprise-apps/ways-users-get-assigned-to-applications) | Phase 4, assignment required | Nov 9, 2026 | Assignment paths |
+| [Find out when a specific user is able to access an app](https://learn.microsoft.com/entra/identity/app-provisioning/application-provisioning-when-will-provisioning-finish-specific-user) | Phase 5 | Nov 9, 2026 | Initial then periodic incremental cycles; provisioning not instant |
+| [Provision a user or group on demand](https://learn.microsoft.com/entra/identity/app-provisioning/provision-on-demand) | Phase 5 | Nov 9, 2026 | On-demand provisioning |
+| [Learn how Provisioning logs integrate with Azure Monitor](https://learn.microsoft.com/entra/identity/app-provisioning/application-provisioning-log-analytics) | Phase 6, logs | Nov 9, 2026 | Streaming provisioning logs out for retention and alerting |
+| [Report automatic user account provisioning](https://learn.microsoft.com/entra/identity/app-provisioning/check-status-user-account-provisioning) | Phase 6, logs | Nov 9, 2026 | Provisioning reporting methods |
+| [How to remove a user's access to an application](https://learn.microsoft.com/entra/identity/enterprise-apps/methods-for-removing-user-access) | Phase 7, offboard | Nov 9, 2026 | Removing assignments and disabling the app |
+| [Delete an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/delete-application-portal) | Phase 7, offboard | Nov 9, 2026 | Retiring the enterprise application |
+| [Assign enterprise application owners](https://learn.microsoft.com/entra/identity/enterprise-apps/assign-app-owners) | Help Desk Kit audit, orphaned application | Nov 9, 2026 | Assigning an owner |
+| [Grant Consent on Behalf of a Single User](https://learn.microsoft.com/entra/identity/enterprise-apps/grant-consent-single-user) | Help Desk Kit audit, consent types | Nov 9, 2026 | Principal (single-user) consent |
+| [Tutorial: Govern and monitor applications](https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-govern-monitor) | Keeping integrations authorized, access | Nov 9, 2026 | Access reviews and monitoring for apps |
+| [Quickstart: View enterprise applications](https://learn.microsoft.com/entra/identity/enterprise-apps/view-applications-portal) | Keeping integrations authorized, inventory | Nov 9, 2026 | Listing enterprise applications |
+| [Viewing apps using your tenant for identity management](https://learn.microsoft.com/entra/identity/enterprise-apps/application-list) | Keeping integrations authorized, inventory | Nov 9, 2026 | Application objects and service principals in the tenant |

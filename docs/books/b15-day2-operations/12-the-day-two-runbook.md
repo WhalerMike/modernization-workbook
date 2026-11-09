@@ -191,7 +191,7 @@ The filter uses Graph's advanced query support, in which `onPremisesProvisioning
 
 The ungoverned shape: a scheduled script writes event-log output to an administrative file share that anyone with server administrator rights can change. The audit record can be altered by the very people it is meant to hold accountable, which is what AU-9 exists to prevent: it asks the organization to "protect audit information and audit logging tools from unauthorized access, modification, and deletion."[^c12-sp80053] The source document ended with "Review Monday to see if this is enough."
 
-1. **Forward to the central log platform, not a share.** Event logs go to the log platform described in [Book 12](../b12-security-operations/index.md), in a store the monitored administrators can't alter. An administrative share is never an evidence destination. In an Azure Monitor Logs workspace, deleting data is a separate, permissioned operation, and each deletion appears in the workspace's Activity Log with the caller, the target table and the status.[^c12-la-delete] The program grants that permission to nobody who administers the systems whose logs it holds.
+1. **Forward to the central log platform, not a share.** Event logs go to the log platform described in [Book 12](../b12-security-operations/index.md), in a store the monitored administrators can't alter. An administrative share is never an evidence destination. Microsoft's authentication operations guide likewise gives archiving sign-in activity in a SIEM to the security operations team.[^c12-ops-guide-auth] In an Azure Monitor Logs workspace, deleting data is a separate, permissioned operation, and each deletion appears in the workspace's Activity Log with the caller, the target table and the status.[^c12-la-delete] The program grants that permission to nobody who administers the systems whose logs it holds.
 2. **Retain to policy.** Retention follows the audit-record policy (AU-11) and the federal logging requirements in [Book 12, Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md), not the free space on a server.
 3. **Review is a procedure.** Log review (AU-6) is scheduled and owned, and its findings enter the same remediation queue as everything else.
 4. **Emit.** Collection status and review completion go to the evidence pipeline.
@@ -218,6 +218,100 @@ The daily work produces most of the evidence. The longer cycles check that the e
 **Monthly.** Assessment results and the POA&M are regenerated from current evidence ([Chapter 11](11-attestation-and-the-compliance-app.md), [Book 14, Chapter 11](../b14-compliance/11-the-authorization-package.md)). The baseline conformance re-check compares current configuration with the intended baseline and raises drift that survived reconciliation as a CM-6 finding ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md)). Tier 0 privileged access is reviewed. And the ISSO reviews the harness results: which checks failed, whether each failure became work, and whether any check stopped running.
 
 **Quarterly.** Non-Tier-0 privileged access is reviewed, custom role records are revisited, and the ISSM runs the trend and evidence-quality review: which controls drift repeatedly, which verdicts rest on manual or derived evidence, and which evidence categories are close to their freshness limits. The known-bad event library behind the efficacy tests is refreshed, because an efficacy test that hasn't changed in a year has quietly become a rubber stamp.
+
+## The synchronization servers that stay
+
+The morning probe reads synchronization from the cloud side. The Entra Connect Sync servers that remain during the migration need their own checks on the server side, because the failures that matter most there (a suspended scheduler, an upgrade that stalled, a database near its ceiling, a changed account password) don't show up as a late synchronization until they have already stopped it. Microsoft's operations reference guide for identity and access management makes the same point about baselines: the default delta cycle is 30 minutes, a delta cycle that consistently takes longer should be investigated, and synchronization errors left unresolved for more than 100 days should be cleaned up.[^c12-ops-guide] The two entries below run alongside the daily probe in task 6 and the weekly cycle, and their results go to the evidence pipeline like every other step.
+
+The synchronization servers are Tier 0 assets ([Book 04](../b04-access/index.md)), and under the program's baseline assumption they run Windows Server 2019 or later. Where a server's operating system has to change, Microsoft's recommended method is a new server and a swing migration rather than an in-place upgrade.[^c12-connect-upgrade]
+
+### Entra Connect Sync server checks
+
+**Runs:** weekly, and after any upgrade or configuration change · **Supports:** CM-2, CM-6, CP-9, SI-2, SI-4
+
+1. **Version and upgrade.** Microsoft requires every Connect Sync server to be on version 2.6.84.0 or later, with application-based authentication configured, by April 7, 2027; synchronization stops after that date on servers that don't meet both, and all 1.x versions are already unsupported and no longer synchronize.[^c12-connect-upgrade][^c12-connect-versions] Automatic upgrade is on by default only for eligible installations (express settings, SQL Server Express LocalDB, fewer than 100,000 metaverse objects), and it doesn't proceed when, among other conditions, the LocalDB database is 8 GB or larger. `Get-ADSyncAutoUpgrade` reports Enabled, Disabled or Suspended, and `-Detail` gives the suspension reason.[^c12-connect-autoupgrade] Microsoft suggests a swing migration rather than an in-place upgrade for a server that hasn't been upgraded in 12 to 18 months.[^c12-connect-upgrade]
+2. **Staging server.** Only one server exports at a time; every other server stays in staging mode, which runs import and synchronization but no export, password hash synchronization or password writeback. Microsoft recommends leaving synchronization running on the staging server so it can take over without a long catch-up.[^c12-connect-staging] The check confirms `StagingModeEnabled` is `True` on every server except the active one.
+3. **Scheduler status.** `Get-ADSyncScheduler` shows whether the cycle is enabled (`SyncCycleEnabled`), whether staging mode is on, the interval in effect, the next cycle's start time, and the run-history retention (seven days by default). `SchedulerSuspended` is set by Connect during an upgrade and isn't supported as a manual setting, and leaving the installation wizard open also suspends the scheduler. `Get-ADSyncConnectorRunStatus` returns nothing when the engine is idle and the running connector's name when it isn't.[^c12-scheduler] A disabled cycle, or a suspension that outlasts the upgrade window, is a task.
+4. **Service account and connector account passwords.** The ADSync service account is created by the installation wizard with a 127-character password that doesn't expire, and the account can't be changed after installation. Microsoft warns that changing or resetting its password without following its procedure can leave the synchronization service unable to start or to read its encryption key.[^c12-connect-svcacct] Changing the AD DS Connector account's password means entering the new one in the connector's properties in the Synchronization Service Manager and restarting the service.[^c12-connect-connectors] Both are change-managed tasks ([Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md)), done on the staging server first.
+5. **Configuration export.** Each change made through the Connect wizard writes a time-stamped `Applied-SynchronizationPolicy-*.json` file to `%ProgramData%\AADConnect`; changes made through PowerShell, the Synchronization Service Manager or the Synchronization Rules Editor don't, and need an on-demand export through the wizard's **View or Export Current Configuration** task. Microsoft suggests keeping a copy in a protected location for disaster recovery.[^c12-connect-export] The check confirms the newest export is later than the last recorded change, and the protected copy is the CP-9 backup evidence.
+6. **Database.** By default Connect installs SQL Server 2019 Express LocalDB, which has a 10 GB limit, enough for roughly 100,000 objects; beyond that it needs a full SQL Server installation.[^c12-connect-prereq] When LocalDB reaches the limit, the synchronization service can no longer start or synchronize properly, and the long-term fix is a new server with full SQL Server, brought in as a staging server through a swing migration.[^c12-connect-localdb] The check records the database file's size and opens a task well before 8 GB, the point at which automatic upgrade stops.[^c12-connect-autoupgrade]
+7. **Required ports.** The server needs DNS (53), Kerberos (88), MS-RPC (135), LDAP (389), SMB (445), LDAP over TLS (636, only if TLS is used) and the high RPC ports (49152–65535) to the domain controllers, and HTTPS (443) plus HTTP (80, for certificate revocation lists) to Microsoft Entra ID. The latest Connect Health agent needs only 443; older agents also use 5671.[^c12-connect-ports] Microsoft's ADConnectivityTool module tests DNS, Kerberos and LDAP to named domain controllers.[^c12-connect-adtools]
+8. **Connect Health.** The Health agent for sync is installed with Connect, needs Entra ID P1 or P2, and requires Connect Sync V2.[^c12-health-agent][^c12-connect-health] Email notifications for alerts are on by default and go to the recipients set in **Notification settings**.[^c12-health-ops] The "Health service data isn't up to date" alert fires when the service hasn't received complete data for two hours; only the error state (no data at all) sends email, so the warning state needs a check of its own.[^c12-health-freshness] `Test-MicrosoftEntraConnectHealthConnectivity -Role Sync` tests whether the agent can upload.[^c12-health-agent] For duplicate-attribute errors, Connect Health's diagnose feature narrows the cause and, for orphaned objects only, can apply the fix from the cloud side.[^c12-health-diagnose]
+
+```powershell
+# Entra Connect Sync server check: read-only.
+# Run on each synchronization server (active and staging). It changes nothing.
+
+Import-Module ADSync
+
+# 1. Scheduler: cycle enabled, staging mode, suspension, interval, next run, retention.
+Get-ADSyncScheduler |
+    Select-Object SyncCycleEnabled, StagingModeEnabled, SchedulerSuspended,
+        CurrentlyEffectiveSyncCycleInterval, NextSyncCycleStartTimeInUTC, PurgeRunHistoryInterval
+
+# 2. Is a connector running now? An empty result means the engine is idle.
+Get-ADSyncConnectorRunStatus
+
+# 3. Automatic upgrade state, with the suspension reason if suspended.
+Get-ADSyncAutoUpgrade -Detail
+
+# 4. Server configuration version, to compare with the 2.6.84.0 minimum.
+(Get-ADSyncGlobalSettings).Parameters |
+    Where-Object Name -eq 'Microsoft.Synchronize.ServerConfigurationVersion' |
+    Select-Object Name, Value
+
+# 5. Database: where it is, and the LocalDB data file's size against the 10 GB limit.
+Get-ADSyncDatabaseConfiguration
+Get-Item "$env:ProgramFiles\Microsoft Azure AD Sync\Data\ADSync.mdf" |
+    Select-Object Name, @{ n = 'SizeGB'; e = { [math]::Round($_.Length / 1GB, 2) } }
+
+# 6. Newest configuration export written by the wizard.
+Get-ChildItem "$env:ProgramData\AADConnect" -Filter 'Applied-SynchronizationPolicy-*.json' |
+    Sort-Object LastWriteTime -Descending |
+    Select-Object -First 1 Name, LastWriteTime
+
+# 7. Can the Connect Health agent still upload?
+Test-MicrosoftEntraConnectHealthConnectivity -Role Sync
+```
+
+```powershell
+# Port check from the synchronization server to named domain controllers: read-only.
+# Tests DNS (53), Kerberos (88) and LDAP (389). Replace the names with your own.
+
+Import-Module "C:\Program Files\Microsoft Entra Connect\Tools\ADConnectivityTool.psm1"
+Confirm-NetworkConnectivity -DCs 'dc01.agency.example', 'dc02.agency.example' -Verbose
+```
+
+The cmdlets are Microsoft's: `Get-ADSyncScheduler` and `Get-ADSyncConnectorRunStatus` from the scheduler documentation,[^c12-scheduler] `Get-ADSyncAutoUpgrade` and `Get-ADSyncDatabaseConfiguration` from the ADSync reference,[^c12-connect-adsync] the server configuration version from Microsoft's automatic-upgrade troubleshooting,[^c12-connect-autoupgrade-ts] and `Confirm-NetworkConnectivity` from the ADConnectivityTool reference.[^c12-connect-adtools]
+
+**Government clouds.** Microsoft lists directory synchronization (Connect Sync and cloud sync) and Connect Health reporting as available in Azure for US Government.[^c12-feature-avail] Connect uses US-only endpoints there, with its own proxy list (`*.microsoftonline.us` and `*.gov.us.microsoftonline.com` among them); a server with no internet access needs the `AzureInstance` registry value set to `4` during a custom installation, and Microsoft asks hybrid environments that integrate with Azure Government to run the latest Connect release.[^c12-connect-gov] The Connect Health agent has its own Azure Government endpoint list, and installing it with the Hybrid Identity Administrator role isn't supported in Azure Government.[^c12-health-agent]
+
+### Entra Health monitoring and recommendations
+
+**Runs:** daily for health alerts, weekly for recommendations · **Supports:** CA-7, SI-4, RA-5
+
+1. **Health alerts, daily.** Microsoft Entra Health monitoring (preview) turns sign-in data into signals for four scenarios (sign-ins requiring MFA, sign-ins requiring a managed device, sign-ins requiring a compliant device, and sign-ins to SAML applications) and raises an alert when a signal breaks the tenant's own pattern; alerts also cover a Conditional Access block policy scenario. It needs at least four weeks of data to learn the pattern, and each alert emails the recipients the tenant chose.[^c12-entra-health] Viewing signals needs Entra ID P1 or P2; viewing and receiving alerts needs a non-trial P1 or P2 license and at least 100 monthly active users. Reports Reader is the least-privileged role to view them, and Helpdesk Administrator to update alerts and their notification settings.[^c12-health-mfa] The operator reads the active alerts each morning and opens a task for each one; dismissing an alert is a closure that carries its reason.[^c12-health-investigate]
+2. **Recommendations, weekly.** Microsoft Entra recommendations compare the tenant with Microsoft's best practices and refresh every 24 hours with a one-day lag. Each one is active, completed, dismissed or postponed, and the service marks it completed only when every affected resource is addressed.[^c12-recs-use] Several apply directly to the synchronization servers, among them deprecated Connect versions, rotating the AD DS Connector account's password, replacing an Enterprise or Domain Admin connector account, and removing unsafe permissions on Connect accounts.[^c12-recs-overview] Each active recommendation becomes a task, and a dismissal records the reason Microsoft requires.
+
+```powershell
+# Entra Health alerts and recommendations: read-only.
+# Requires the Microsoft Graph PowerShell beta modules and an identity holding only
+# HealthMonitoringAlert.Read.All and DirectoryRecommendations.Read.All. It changes nothing.
+
+Connect-MgGraph -Scopes 'HealthMonitoringAlert.Read.All', 'DirectoryRecommendations.Read.All' -NoWelcome
+
+# 1. Active health monitoring alerts.
+Get-MgBetaReportHealthMonitoringAlert `
+    -Filter "state eq microsoft.graph.healthmonitoring.alertState'active'" `
+    -Property 'id', 'alertType', 'createdDateTime', 'state'
+
+# 2. Active recommendations.
+Get-MgBetaDirectoryRecommendation -All |
+    Where-Object { $_.Status -eq 'active' } |
+    Select-Object DisplayName, RecommendationType, Priority, Status, ImpactStartDateTime
+```
+
+Both cmdlets call Microsoft Graph beta APIs, which Microsoft doesn't support for production applications.[^c12-graph-health-alerts][^c12-graph-recs] **Government clouds:** Microsoft lists the health monitoring alerts API for the global service only, not US Government L4 or L5 (DoD), and the recommendations API for the global service and US Government L4 and L5.[^c12-graph-health-alerts][^c12-graph-recs] Availability of Entra Health monitoring for GCC tenants is not yet specified.
 
 ## Validation and test harnesses
 
@@ -336,3 +430,31 @@ As with the compliance application, the agency should use what its platforms shi
 [^c12-snow-atf]: ServiceNow, "Test your apps with the ATF," Xanadu release documentation, <https://www.servicenow.com/docs/r/a3E8xg0zsiQLBPKbKO15Mg/cP2Njdzlu6Zs5j5aasYMIg> (accessed Oct 21, 2026).
 [^c12-sentinel-health]: Microsoft Learn, "Monitor the health of your data connectors" (data collection health monitoring workbook; `SentinelHealth` table and its supported connectors; Azure Monitor alert rules), <https://learn.microsoft.com/azure/sentinel/monitor-data-connector-health> (accessed Oct 21, 2026).
 [^c12-508]: 36 CFR part 1194, Appendix C, 602.3 (web-based self-service support documentation conforms to WCAG 2.0 Level A and AA), <https://www.ecfr.gov/current/title-36/chapter-XI/part-1194>; Office of Management and Budget, M-24-08, *Strengthening Digital Accessibility and the Management of Section 508 of the Rehabilitation Act*, December 21, 2023, §III.E and note 30 (scan web content at a set frequency, "including internal-facing web content on intranets," and add manual testing), <https://www.whitehouse.gov/wp-content/uploads/2023/12/M-24-08-Strengthening-Digital-Accessibility-and-the-Management-of-Section-508-of-the-Rehabilitation-Act.pdf> (both accessed Oct 23, 2026).
+[^c12-ops-guide]: Microsoft Learn, "Microsoft Entra operations reference guide," <https://learn.microsoft.com/entra/architecture/ops-guide-intro>; and "Microsoft Entra identity and access management operations reference guide," sections "Identify and resolve synchronization issues" and "Microsoft Entra Connect delta sync cycle baseline," <https://learn.microsoft.com/entra/architecture/ops-guide-iam> (both accessed Nov 9, 2026).
+[^c12-ops-guide-auth]: Microsoft Learn, "Microsoft Entra authentication management operations reference guide," section "Assign owners to key tasks," <https://learn.microsoft.com/entra/architecture/ops-guide-auth> (accessed Nov 9, 2026).
+[^c12-connect-upgrade]: Microsoft Learn, "Microsoft Entra Connect: Upgrade from a previous version to the latest" (mandatory upgrade to 2.6.84.0 with application-based authentication by April 7, 2027; upgrade methods; swing migration; upgrading the server operating system), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-upgrade-previous-version> (accessed Nov 9, 2026).
+[^c12-connect-versions]: Microsoft Learn, "Microsoft Entra Connect: Version release history," section "Non-functional Microsoft Entra Connect 1.x versions," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-version-history> (accessed Nov 9, 2026).
+[^c12-connect-autoupgrade]: Microsoft Learn, "Microsoft Entra Connect: Automatic upgrade," sections "Overview," "Auto upgrade eligibility" and "Troubleshooting," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-automatic-upgrade> (accessed Nov 9, 2026).
+[^c12-connect-autoupgrade-ts]: Microsoft Learn, "Microsoft Entra Connect is not working correctly after an automatic upgrade," section "Cause" (`Get-ADSyncGlobalSettings`, `Microsoft.Synchronize.ServerConfigurationVersion`, `SchedulerSuspended`), <https://learn.microsoft.com/troubleshoot/entra/entra-id/user-prov-sync/cannot-work-automatic-upgrade> (accessed Nov 9, 2026).
+[^c12-connect-staging]: Microsoft Learn, "Microsoft Entra Connect: Staging server and disaster recovery," section "Staging mode," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-staging-server> (accessed Nov 9, 2026).
+[^c12-connect-svcacct]: Microsoft Learn, "Microsoft Entra Connect Sync: Best practices for changing the default configuration," section "Changes to the service account," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-best-practices-changing-default-configuration>; "Changing the ADSync service account password," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-serviceacct-pass>; and "ADSync service account," <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-adsync-service-account> (all accessed Nov 9, 2026).
+[^c12-connect-connectors]: Microsoft Learn, "Using connectors with the Microsoft Entra Connect Sync Service Manager," section "Changing the AD DS account password," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-service-manager-ui-connectors> (accessed Nov 9, 2026).
+[^c12-connect-export]: Microsoft Learn, "Import and export Microsoft Entra Connect configuration settings," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-import-export-config> (accessed Nov 9, 2026).
+[^c12-connect-prereq]: Microsoft Learn, "Prerequisites for Microsoft Entra Connect," section "SQL Server used by Microsoft Entra Connect," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-prerequisites> (accessed Nov 9, 2026).
+[^c12-connect-localdb]: Microsoft Learn, "Microsoft Entra Connect: How to recover from LocalDB 10-GB limit," <https://learn.microsoft.com/entra/identity/hybrid/connect/tshoot-connect-recover-from-localdb-10gb-limit> (accessed Nov 9, 2026).
+[^c12-connect-ports]: Microsoft Learn, "Hybrid Identity Required Ports and Protocols," tables 1, 2 and 7a, <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-ports> (accessed Nov 9, 2026).
+[^c12-connect-adtools]: Microsoft Learn, "Microsoft Entra Connect: ADConnectivityTools PowerShell Reference," section "Confirm-NetworkConnectivity," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adconnectivitytools>; and "Troubleshoot Microsoft Entra connectivity with the ADConnectivityTool PowerShell module" (module location), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-adconnectivitytools> (both accessed Nov 9, 2026).
+[^c12-connect-adsync]: Microsoft Learn, "Microsoft Entra Connect: ADSync PowerShell Reference," sections "Get-ADSyncAutoUpgrade" and "Get-ADSyncDatabaseConfiguration," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsync> (accessed Nov 9, 2026).
+[^c12-connect-gov]: Microsoft Learn, "Microsoft Entra Connect: Special considerations for instances," section "Microsoft Azure Government," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-instances>; and "Hybrid identity considerations for the Azure Government cloud," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> (both accessed Nov 9, 2026).
+[^c12-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability," table "Microsoft Entra ID," rows "Directory synchronization—Microsoft Entra Connect (sync and cloud sync)" and "Microsoft Entra Connect Health reporting," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
+[^c12-health-agent]: Microsoft Learn, "Install the Microsoft Entra Connect Health agents," sections "Prerequisites," "Install the agent for sync" and "Test connectivity to the Microsoft Entra Connect Health service," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-agent-install> (accessed Nov 9, 2026).
+[^c12-health-ops]: Microsoft Learn, "Microsoft Entra Connect Health operations," section "Enable email notifications," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-operations> (accessed Nov 9, 2026).
+[^c12-health-freshness]: Microsoft Learn, "Microsoft Entra Connect Health - Health service data isn't up to date alert," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-data-freshness> (accessed Nov 9, 2026).
+[^c12-health-diagnose]: Microsoft Learn, "Microsoft Entra Connect Health - Diagnose duplicated attribute synchronization errors," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-diagnose-sync-errors> (accessed Nov 9, 2026).
+[^c12-entra-health]: Microsoft Learn, "What is Microsoft Entra Health monitoring?" (preview; signals, alerts and the scenarios they cover), <https://learn.microsoft.com/entra/identity/monitoring-health/concept-microsoft-entra-health> (accessed Nov 9, 2026).
+[^c12-health-mfa]: Microsoft Learn, "How to investigate sign-ins requiring Microsoft Entra multifactor authentication," section "Prerequisites," <https://learn.microsoft.com/entra/identity/monitoring-health/scenario-health-sign-ins-mfa> (accessed Nov 9, 2026).
+[^c12-health-investigate]: Microsoft Learn, "How to investigate Microsoft Entra Health monitoring alerts (Preview)," <https://learn.microsoft.com/entra/identity/monitoring-health/howto-investigate-health-scenario-alerts> (accessed Nov 9, 2026).
+[^c12-recs-use]: Microsoft Learn, "How to use Microsoft Entra Recommendations," sections "Prerequisites" and "How to read a recommendation," <https://learn.microsoft.com/entra/identity/monitoring-health/howto-use-recommendations> (accessed Nov 9, 2026).
+[^c12-recs-overview]: Microsoft Learn, "What are Microsoft Entra recommendations?" section "Recommendations overview table," <https://learn.microsoft.com/entra/identity/monitoring-health/overview-recommendations> (accessed Nov 9, 2026).
+[^c12-graph-health-alerts]: Microsoft Learn, "List alerts" (Microsoft Graph beta, `healthMonitoring`; national cloud availability: global service only), <https://learn.microsoft.com/graph/api/healthmonitoring-healthmonitoringroot-list-alerts?view=graph-rest-beta>; and "Get-MgBetaReportHealthMonitoringAlert," <https://learn.microsoft.com/powershell/module/microsoft.graph.beta.reports/get-mgbetareporthealthmonitoringalert?view=graph-powershell-beta> (both accessed Nov 9, 2026).
+[^c12-graph-recs]: Microsoft Learn, "List recommendations" (Microsoft Graph beta; national cloud availability: global service, US Government L4 and L5), <https://learn.microsoft.com/graph/api/directory-list-recommendation?view=graph-rest-beta>; and "Get-MgBetaDirectoryRecommendation," <https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.directorymanagement/get-mgbetadirectoryrecommendation?view=graph-powershell-beta> (both accessed Nov 9, 2026).

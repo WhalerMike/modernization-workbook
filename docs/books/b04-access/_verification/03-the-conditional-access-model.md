@@ -156,3 +156,43 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-4 | Entra Connect Sync account handling stays "not yet specified" and is now listed in an "Open items in this chapter" callout | Exclusions section | decision of Nov 8; labelling only | Mike's decision of Nov 8, 2026, item 4 |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Build resilience by using Continuous Access Evaluation](https://learn.microsoft.com/entra/architecture/resilience-with-continuous-access-evaluation) | Where Conditional Access sits (CAE sentence), c03-cae-resilience | Nov 9, 2026 | CAE critical events: account disabled or deleted, password change, MFA enabled, token revocation, elevated user risk |
+| [Enforcement for baseline scopes](https://learn.microsoft.com/entra/identity/conditional-access/concept-enforcement-resource-exclusions) | Target resources, All resources bullet, c03-baseline-scopes | Nov 9, 2026 | Excluded apps requesting baseline scopes now receive Conditional Access challenges |
+| [Office 365 App in Conditional Access reference](https://learn.microsoft.com/entra/identity/conditional-access/reference-office-365-application-contents) | Target resources, Suites bullet, c03-o365 | Nov 9, 2026 | Office 365 grouping targets the suite together to avoid service-dependency issues |
+| [Conditional Access service dependencies](https://learn.microsoft.com/entra/identity/conditional-access/service-dependencies) | Same, c03-o365 | Nov 9, 2026 | Early- and late-bound enforcement; use the Office 365 app for common policy |
+| [Enable Source IP Restoration with Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration) | Network, c03-source-ip | Nov 9, 2026 | Source IP restoration as the alternative to tracking cloud-proxy IPs |
+| [Tutorial: Enable source IP restoration](https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-source-ip-restoration) | Same, c03-source-ip | Nov 9, 2026 | Keeps IP-based location policies and risk detections accurate behind a proxy |
+| [Risk detection types and levels](https://learn.microsoft.com/entra/id-protection/concept-risk-detection-types) | Conditions table, sign-in and user risk row, c03-risk-detections | Nov 9, 2026 | Real-time and calculated (offline) risk detections |
+| [Authentication transfer as a condition](https://learn.microsoft.com/entra/identity/conditional-access/concept-authentication-transfer) | Conditions table, authentication flows row, c03-auth-transfer | Nov 9, 2026 | Authentication transfer is an authentication-flows condition |
+| [The Conditional Access What If tool](https://learn.microsoft.com/entra/identity/conditional-access/what-if-tool) | Grant controls (Block access) and Report-only mode, c03-what-if | Nov 9, 2026 | What If simulates which policies apply to a sign-in |
+| [Set Up Microsoft Entra Terms of Use with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/terms-of-use) | Grant controls list, c03-terms | Nov 9, 2026 | Terms of use as a grant control |
+| [How Authentication Strengths Work in a Conditional Access Policy](https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strength-how-it-works) | Authentication strengths intro, c03-auth-strength-how | Nov 9, 2026 | How built-in strengths are evaluated in policy |
+| [How Conditional Access Authentication Strengths Work for External Users](https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strength-external-users) | Authentication strengths, email OTP guests bullet, c03-auth-strength-external | Nov 9, 2026 | Strengths apply to external users who authenticate with Entra ID; others use require MFA |
+| [Get started with a phishing-resistant passwordless authentication deployment](https://learn.microsoft.com/entra/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication) | Authentication strengths, end-state sentence, c03-passwordless-plan | Nov 9, 2026 | Phishing-resistant passwordless deployment as the end state |
+| [Configure adaptive session lifetime policies](https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-session-lifetime) | Session controls, sign-in frequency row, c03-sif-howto | Nov 9, 2026 | Sign-in frequency configuration including "every time" |
+| [Resilience defaults for Microsoft Entra Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/resilience-defaults) | Session controls, disable resilience defaults row, c03-resilience-defaults | Nov 9, 2026 | Sessions extended during an outage; disabling denies access when sessions expire |
+| [Token Protection Deployment Guide - Windows](https://learn.microsoft.com/entra/identity/conditional-access/deployment-guide-token-protection-windows) | Session controls, token protection row, c03-token-protection | Nov 9, 2026 | Token binding to the device |
+| [Conditional Access insights and reporting workbook](https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-insights-reporting) | Report-only mode, tools paragraph, c03-insights | Nov 9, 2026 | Workbook needs P1 and a Log Analytics workspace with sign-in logs |
+| [Create a resilient access control management strategy](https://learn.microsoft.com/entra/identity/authentication/concept-resilient-controls) | Naming convention, contingency policies, c03-resilient-controls | Nov 9, 2026 | ENABLE IN EMERGENCY contingency policy naming |
+
+Note for the reviewer: the All resources bullet says the baseline-scope change is phased "from March 2026," which matches "Targeting resources in Conditional Access policies." The newly cited enforcement page says the rollout of the enforcement model began on June 15, 2026. Wording left unchanged; flagged for a later decision.
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | Custom controls are deprecated; adding and editing blocked from September 2026; full retirement early 2027 | Grant controls, "External MFA replaces custom controls" | verified (new) | c03-custom-controls <https://learn.microsoft.com/entra/identity/conditional-access/controls> |
+| G2 | External MFA (formerly external authentication methods): provider registered in the authentication methods policy through OIDC; users choose it at MFA prompts; Entra ID still makes the access decision | Same | verified (new) | c03-external-mfa <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-external-method-manage> |
+| G3 | External MFA satisfies the require-MFA grant, shows as MFA in sign-in logs, works with PIM and risk-based Conditional Access; custom controls don't | Same | verified (new) | c03-custom-migrate <https://learn.microsoft.com/entra/identity/conditional-access/how-to-migrate-custom-controls-external-mfa> |
+| G4 | External MFA doesn't satisfy any authentication strength, including the built-in MFA strength; use require MFA | Same | verified (new) | c03-external-mfa-provider <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-external-method-provider> |
+| G5 | A third-party PIV/CAC or MFA route can't reach the Phishing-resistant MFA strength, so it's transitional; PIV reaches it through Entra CBA | Same, second paragraph | restated-as-design (from G4 and the strengths table) | c03-external-mfa-provider; c03-auth-strengths |
+| G6 | Migration steps: register provider for a test group, report-only require-MFA policy, exclude test group from the custom-control policy, check logs, phase out, keep old policy Off at least two weeks | Same | verified (new) | c03-custom-migrate |
+| G7 | Read-only Graph PowerShell to list policies that use custom controls (`grantControls.customAuthenticationFactors`) | Same, code block | command (read-only) | conditionalAccessGrantControls resource type, c03-graph-grant |
+| G8 | Each cloud, including Azure for US Government, needs its own provider application; the US Government feature-availability list doesn't name external MFA, so GCC High and DoD availability is not yet specified | Same, last paragraph | verified (new); availability not yet specified | c03-external-mfa-provider; c03-gov-availability <https://learn.microsoft.com/entra/identity/authentication/feature-availability> |
