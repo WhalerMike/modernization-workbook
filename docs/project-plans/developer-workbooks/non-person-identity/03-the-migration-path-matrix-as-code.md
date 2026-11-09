@@ -101,7 +101,7 @@ This chapter's code is `powershell/NpiMatrix/NpiMatrix.psm1`, the entry script `
 | `workloads.csv` | Application owners | For each account: `Location` (`Azure`, `ArcServer`, `OidcIssuer`, `EntraApiNoIssuer`, `OnPremKerberos`, `Hybrid`), `MiSupported`, `Dmsa`, `Issuer` |
 | `dispositions.csv` | Application owners (D-NP3) | `Disposition` (`Retire`, `Replatform`, `Keep`, `KeepKerberos`), `Target`, `Wave`, `DecidedBy`, `DecidedOn`, `EndDate`, `AoAcceptedBy`, `SpnOwnerUpn`, `Reason` |
 | `waves.csv` | Identity engineering (NP2.2) | `Wave`, `Name`, `Starts`, `ParallelRunDays`, `RollbackOwnerUpn`, `RollbackReviewedOn` |
-| `program-dates.json` | The program master schedule | D08 (end dates for legacy authentication) and program G5 (AD retired) |
+| `program-dates.json` | The program master schedule | D08 (end dates for legacy authentication), program G5 (AD retired) and D11 (the provisional end state). It is the one program dates file: [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) reads the same file and refuses a copy whose SHA-256 isn't the one this run recorded |
 | `workload-id-premium.json` | The CISO (D-NP4) | `decision` (`Tier1`, `Wide` or `None`), `decidedBy`, `decidedOn`, the Tier 1 identities, compensating controls |
 
 ### The proposal (NP2.1)
@@ -247,7 +247,7 @@ Remove-Item -Recurse -Force out
 
    ```text
    Matrix: 21 identities in scope, 20 proposed (1 AppRegistrationFederated, 2 dMSA, 2 gMSA, 7 Keep, 2 ManagedIdentity, 6 Retire); 3 handed off, 1 to confirm first, 10 out of scope
-   Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (3, 1 HIGH)
+   Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (4, 1 HIGH)
    Workload ID Premium (D-N4): Tier1, 2 in scope; tenant holds 2 enabled units
    Findings: 7 Finding, 4 Warn, 1 Info
    Gate 2: not met (Every account has a disposition and a target from the matrix: 3; HIGH-risk accounts in the first wave: 1; Every kept Kerberos account has an SPN owner: 1; Waves and their rollback recorded: 1; Workload ID Premium scope decided (D-N4): 1)
@@ -302,7 +302,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   `svc-hrsync` is HIGH-risk but scheduled in wave 2. `svc-webfront` is kept on Kerberos with the authorizing official's acceptance but no SPN owner. `dmsa-hrsync$` is kept with no end date before program G5. Deploy Bot's owner kept its certificate, with a reason, where the matrix proposed a managed identity. Payroll Export is on the Tier 1 list but its own decision moves it to a managed identity, which Conditional Access can't cover; Vendor Portal is multitenant and can't be covered at all. This fixture stands alone: [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) and [Chapter 08](08-conditional-access-for-workload-identities.md) each run on a fixture of their own, so the same account can have a different disposition, end date or scope there.
+   `svc-hrsync` is HIGH-risk but scheduled in wave 2. `svc-webfront` is kept on Kerberos with the authorizing official's acceptance but no SPN owner. `dmsa-hrsync$` is kept with no end date before program G5. Deploy Bot's owner kept its certificate, with a reason, where the matrix proposed a managed identity. Payroll Export is on the Tier 1 list but its own decision moves it to a managed identity, which Conditional Access can't cover; Vendor Portal is multitenant and can't be covered at all. [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) reads these decisions from this run, with the authorizing official's acceptance (`AoAcceptedBy` in `decisions.json`), and adds only what a conversion needs; [Chapter 08](08-conditional-access-for-workload-identities.md) runs on a fixture of its own, so the same account can have a different scope there.
 
 6. **Read the waves and their rollback:**
 
@@ -313,7 +313,7 @@ Remove-Item -Recurse -Force out
    ```text
    Wave 1: Mail Automation; rollback owner 'carol@contoso.example'
      AppRegistrationFederated: Re-enable the legacy account or credential; revert the application's configuration; remove the federated credential
-   Wave 2: svc-hrsync, msa-print01$, Payroll Export; rollback owner ''
+   Wave 2: svc-hrsync, svc-intranet, msa-print01$, Payroll Export; rollback owner ''
      dMSA: Undo-ADServiceAccountMigration (Learn's undo for a dMSA migration); the superseded account is kept, never deleted
      gMSA: Re-enable the legacy account; set the service back to it
      ManagedIdentity: Re-enable the legacy account; revert the application's configuration to it
@@ -372,7 +372,7 @@ Remove-Item -Recurse -Force out
 
 ## Lab 2: test tenant
 
-Use a test tenant in the worldwide or GCC cloud, never production, with fictional people, and the Lab 2 runs of Chapters 01 and 02 (`out/inventory-test`, `out/ownership-test`). The run only reads. Work in `examples/non-person-identity` on Chapter 01's test host. You'll replace: `<tenant-id>` (the test tenant's ID), `<app-id>` and `<thumbprint>` (the app Chapter 01's Lab 2 registered, and its certificate), `<inputs>` (a folder for this lab's input files), `<identity-id>` (a test account's `IdentityId` in `out/inventory-test/register.csv`), `<location>`, `<mi-supported>`, `<dmsa>`, `<issuer>`, `<disposition>` and `<target>` (that account's values, as the fixture's files in `tests/fixtures/ch03/inputs` use them), `<your-upn>` (your user principal name), `<decided-on>` (today, `yyyy-MM-dd`), `<wave-start>` (the wave's start date), `<rollback-owner-upn>` (an enabled test user), `<tier1-app-id>` (the `IdentityId` of one single-tenant test app), `<d08-date>` and `<g5-date>` (your test program's D08 and program G5 dates, `yyyy-MM-dd`).
+Use a test tenant in the worldwide or GCC cloud, never production, with fictional people, and the Lab 2 runs of Chapters 01 and 02 (`out/inventory-test`, `out/ownership-test`). The run only reads. Work in `examples/non-person-identity` on Chapter 01's test host. You'll replace: `<tenant-id>` (the test tenant's ID), `<app-id>` and `<thumbprint>` (the app Chapter 01's Lab 2 registered, and its certificate), `<inputs>` (a folder for this lab's input files), `<identity-id>` (a test account's `IdentityId` in `out/inventory-test/register.csv`), `<location>`, `<mi-supported>`, `<dmsa>`, `<issuer>`, `<disposition>` and `<target>` (that account's values, as the fixture's files in `tests/fixtures/ch03/inputs` use them), `<your-upn>` (your user principal name), `<decided-on>` (today, `yyyy-MM-dd`), `<wave-start>` (the wave's start date), `<rollback-owner-upn>` (an enabled test user), `<tier1-app-id>` (the `IdentityId` of one single-tenant test app), `<d08-date>`, `<g5-date>` and `<island-eol>` (your test program's D08 and program G5 dates, and the end of life of its Kerberos island under D11, `yyyy-MM-dd`).
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -383,7 +383,7 @@ Every command in this lab, in order, from `examples/non-person-identity`. Each s
 # Step 2: Write the inputs
 New-Item -ItemType Directory -Force <inputs> | Out-Null
 foreach ($f in 'workloads', 'dispositions', 'waves') { Get-Content tests/fixtures/ch03/inputs/$f.csv -TotalCount 1 | Set-Content <inputs>/$f.csv }
-$d = Get-Content tests/fixtures/ch03/inputs/program-dates.json -Raw | ConvertFrom-Json; $d.d08LegacyAuthEndDate = '<d08-date>'; $d.g5AdRetired = '<g5-date>'; $d | ConvertTo-Json | Set-Content <inputs>/program-dates.json
+$d = Get-Content tests/fixtures/ch03/inputs/program-dates.json -Raw | ConvertFrom-Json; $d.d08LegacyAuthEndDate = '<d08-date>'; $d.g5AdRetired = '<g5-date>'; $d.d11.islandEndOfLife = '<island-eol>'; $d | ConvertTo-Json -Depth 5 | Set-Content <inputs>/program-dates.json
 
 # Step 2: Write the inputs
 Add-Content <inputs>/workloads.csv '<identity-id>,<location>,<mi-supported>,<dmsa>,<issuer>,<your-upn>'
@@ -414,12 +414,12 @@ Remove-Item -Recurse -Force out/matrix-test
    2. Select `LicenseAssignment.Read.All` and `User.Read.All`, then **Add permissions**.
    3. Select **Grant admin consent for** your tenant, and confirm.
 
-2. **Write the inputs** for the test accounts: a `workloads.csv` row and a `dispositions.csv` row for each, a `waves.csv` with one wave and a rollback owner who is an enabled test user, `program-dates.json`, and a `workload-id-premium.json` listing one single-tenant test app as Tier 1. The first commands make the three CSV files with the fixture's headers and write `program-dates.json` from the fixture's, with your test program's two dates:
+2. **Write the inputs** for the test accounts: a `workloads.csv` row and a `dispositions.csv` row for each, a `waves.csv` with one wave and a rollback owner who is an enabled test user, `program-dates.json`, and a `workload-id-premium.json` listing one single-tenant test app as Tier 1. The first commands make the three CSV files with the fixture's headers and write `program-dates.json` from the fixture's, with your test program's three dates:
 
    ```powershell
    New-Item -ItemType Directory -Force <inputs> | Out-Null
    foreach ($f in 'workloads', 'dispositions', 'waves') { Get-Content tests/fixtures/ch03/inputs/$f.csv -TotalCount 1 | Set-Content <inputs>/$f.csv }
-   $d = Get-Content tests/fixtures/ch03/inputs/program-dates.json -Raw | ConvertFrom-Json; $d.d08LegacyAuthEndDate = '<d08-date>'; $d.g5AdRetired = '<g5-date>'; $d | ConvertTo-Json | Set-Content <inputs>/program-dates.json
+   $d = Get-Content tests/fixtures/ch03/inputs/program-dates.json -Raw | ConvertFrom-Json; $d.d08LegacyAuthEndDate = '<d08-date>'; $d.g5AdRetired = '<g5-date>'; $d.d11.islandEndOfLife = '<island-eol>'; $d | ConvertTo-Json -Depth 5 | Set-Content <inputs>/program-dates.json
    ```
 
    Then, once for each test account, add its two rows:

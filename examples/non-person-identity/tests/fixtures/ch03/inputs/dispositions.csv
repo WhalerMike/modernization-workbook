@@ -4,7 +4,7 @@ ad:ad000000-0000-4000-8000-000000000003,Retire,,,frank@contoso.example,2026-10-2
 ad:ad000000-0000-4000-8000-000000000005,Retire,,,igo@contoso.example,2026-10-26,,,,
 ad:ad000000-0000-4000-8000-000000000006,Retire,,,igo@contoso.example,2026-10-26,,,,
 ad:ad000000-0000-4000-8000-000000000009,KeepKerberos,,,erin@contoso.example,2026-10-27,2027-05-31,ao@contoso.example,,Vendor web tier needs unconstrained delegation until its 2027 replacement
-ad:ad000000-0000-4000-8000-000000000012,KeepKerberos,,,erin@contoso.example,2026-10-27,2027-05-31,ao@contoso.example,erin@contoso.example,Intranet app retires in May 2027
+ad:ad000000-0000-4000-8000-000000000012,Replatform,gMSA,2,erin@contoso.example,2026-10-27,,,,
 ad:ad000000-0000-4000-8000-000000000021,Replatform,gMSA,2,gina@contoso.example,2026-10-27,,,,
 ad:ad000000-0000-4000-8000-000000000022,Keep,,,erin@contoso.example,2026-10-27,2027-08-31,,erin@contoso.example,
 ad:ad000000-0000-4000-8000-000000000024,Keep,,,harry@contoso.example,2026-10-27,2027-08-31,,,
