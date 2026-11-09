@@ -25,43 +25,43 @@ the enterprise IPAM before
 any cloud network is created.
 
 6
-00:00:16.787 --> 00:00:19.688
+00:00:16.787 --> 00:00:19.832
 Discovery is where IPAM
-meets the directives,
+supports the directives,
 
 7
-00:00:19.688 --> 00:00:22.588
+00:00:19.832 --> 00:00:22.663
 because you can't scan
 space you haven't recorded.
 
 8
-00:00:22.588 --> 00:00:26.937
+00:00:22.663 --> 00:00:27.288
 And IPv4 and IPv6 have to be
 planned in the same tool.
 
 9
-00:00:26.937 --> 00:00:29.813
+00:00:27.288 --> 00:00:30.163
 DHCP has to stay up and stay honest.
 
 10
-00:00:29.813 --> 00:00:33.920
+00:00:30.163 --> 00:00:34.271
 Failover partners share the
 same DNS update credentials,
 
 11
-00:00:33.920 --> 00:00:37.087
+00:00:34.271 --> 00:00:37.438
 or a takeover leaves
 names nobody can update.
 
 12
-00:00:37.087 --> 00:00:42.058
+00:00:37.438 --> 00:00:42.143
 And in the two products checked,
 failover is documented for IPv4 only,
 
 13
-00:00:42.058 --> 00:00:44.762
+00:00:42.143 --> 00:00:45.363
 which matters under the IPv6 targets.
 
 14
-00:00:44.762 --> 00:00:46.970
+00:00:45.363 --> 00:00:47.570
 Then, automation and logging.

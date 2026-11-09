@@ -58,1385 +58,1385 @@ Let's start with why this
 is harder than it looks.
 
 13
-00:00:43.390 --> 00:00:45.165
+00:00:43.310 --> 00:00:45.085
 Here's the uncomfortable part.
 
 14
-00:00:45.165 --> 00:00:47.828
+00:00:45.085 --> 00:00:47.748
 Every dashboard you own
 measures what arrived.
 
 15
-00:00:47.828 --> 00:00:49.339
+00:00:47.748 --> 00:00:49.259
 Nothing measures what didn't.
 
 16
-00:00:49.339 --> 00:00:51.400
+00:00:49.259 --> 00:00:51.320
 A source that was never connected,
 
 17
-00:00:51.400 --> 00:00:56.182
+00:00:51.320 --> 00:00:56.102
 a connector that looks green but isn't
 delivering, data parked where no rule can
 
 18
-00:00:56.182 --> 00:01:00.890
+00:00:56.102 --> 00:01:00.810
 run, or logging an attacker switched off:
 all four look exactly like a quiet day.
 
 19
-00:01:00.890 --> 00:01:03.340
+00:01:00.810 --> 00:01:03.260
 And the federal yardstick
 has moved with this.
 
 20
-00:01:03.340 --> 00:01:06.690
+00:01:03.260 --> 00:01:06.610
 The new logging memo scores
 agencies on how much of their
 
 21
-00:01:06.690 --> 00:01:10.040
+00:01:06.610 --> 00:01:09.960
 baseline produces real alerts,
 not on how much they store.
 
 22
-00:01:10.040 --> 00:01:12.914
+00:01:09.960 --> 00:01:12.834
 So visibility has to be
 designed, plane by plane,
 
 23
-00:01:12.914 --> 00:01:15.640
+00:01:12.834 --> 00:01:15.560
 and checked against what
 you expected to see.
 
 24
-00:01:15.640 --> 00:01:17.890
+00:01:15.560 --> 00:01:17.810
 That's what Module 1 builds.
 
 25
-00:01:21.640 --> 00:01:23.752
+00:01:21.560 --> 00:01:23.672
 Module 1 is the foundation.
 
 26
-00:01:23.752 --> 00:01:26.793
+00:01:23.672 --> 00:01:26.713
 First, one record shape
 that every tool agrees to,
 
 27
-00:01:26.793 --> 00:01:30.441
+00:01:26.713 --> 00:01:30.361
 so findings from different
 stacks can actually be joined.
 
 28
-00:01:30.441 --> 00:01:32.181
+00:01:30.361 --> 00:01:32.101
 Then we apply it to identity,
 
 29
-00:01:32.181 --> 00:01:36.310
+00:01:32.101 --> 00:01:36.230
 where the default quietly throws
 history away after a month.
 
 30
-00:01:40.060 --> 00:01:44.273
+00:01:39.980 --> 00:01:44.193
 Five tools can't give you one compliance
 picture just by sharing a dashboard.
 
 31
-00:01:44.273 --> 00:01:48.148
+00:01:44.193 --> 00:01:48.068
 They have to agree, ahead of
 time, on what a record says.
 
 32
-00:01:48.148 --> 00:01:52.056
+00:01:48.068 --> 00:01:51.976
 That's the evidence contract:
 eight fields every source emits,
 
 33
-00:01:52.056 --> 00:01:55.964
+00:01:51.976 --> 00:01:55.884
 covering what NIST already asks
 an audit record to establish,
 
 34
-00:01:55.964 --> 00:02:00.409
+00:01:55.884 --> 00:02:00.329
 plus which control it proves, whether
 it passed, and whether it's closed.
 
 35
-00:02:00.409 --> 00:02:04.173
+00:02:00.329 --> 00:02:04.093
 That last field matters most,
 because it's where closure lives.
 
 36
-00:02:04.173 --> 00:02:07.537
+00:02:04.093 --> 00:02:07.457
 Microsoft's normalization
 model gets you part of the way,
 
 37
-00:02:07.537 --> 00:02:10.686
+00:02:07.457 --> 00:02:10.606
 but it can't tell you which
 real asset a record is about.
 
 38
-00:02:10.686 --> 00:02:14.130
+00:02:10.606 --> 00:02:14.050
 And that turns out to be the
 hard part, so let's look at it.
 
 39
-00:02:17.880 --> 00:02:20.924
+00:02:17.800 --> 00:02:20.844
 Two records only describe
 the same server if they
 
 40
-00:02:20.924 --> 00:02:23.968
+00:02:20.844 --> 00:02:23.888
 carry the same identity,
 and every tool has its own.
 
 41
-00:02:23.968 --> 00:02:26.780
+00:02:23.888 --> 00:02:26.700
 So the join key can't
 come from any one tool.
 
 42
-00:02:26.780 --> 00:02:32.030
+00:02:26.700 --> 00:02:31.950
 It comes from the naming plane, your
 authoritative inventory of names and addresses.
 
 43
-00:02:32.030 --> 00:02:35.754
+00:02:31.950 --> 00:02:35.674
 Time is the other half, and it's
 easier to get wrong than it sounds:
 
 44
-00:02:35.754 --> 00:02:39.120
+00:02:35.674 --> 00:02:39.040
 join on when data arrived
 instead of when it was observed,
 
 45
-00:02:39.120 --> 00:02:42.342
+00:02:39.040 --> 00:02:42.262
 and you match the wrong
 records without a single error.
 
 46
-00:02:42.342 --> 00:02:47.375
+00:02:42.262 --> 00:02:47.295
 One caution worth knowing: the fully
 correlated trail is a High-baseline control,
 
 47
-00:02:47.375 --> 00:02:50.379
+00:02:47.295 --> 00:02:50.299
 so at Moderate the program
 chooses it on purpose.
 
 48
-00:02:50.379 --> 00:02:52.980
+00:02:50.299 --> 00:02:52.900
 Next, where all these records go.
 
 49
-00:02:56.730 --> 00:02:58.946
+00:02:56.650 --> 00:02:58.866
 A missing patch, a drifted setting,
 
 50
-00:02:58.946 --> 00:03:04.248
+00:02:58.866 --> 00:03:04.168
 an exposed storage account and a labeled
 file leaving the agency are all the same
 
 51
-00:03:04.248 --> 00:03:09.155
+00:03:04.168 --> 00:03:09.075
 kind of statement as a threat alert: this
 asset isn't in the state it should be.
 
 52
-00:03:09.155 --> 00:03:10.792
+00:03:09.075 --> 00:03:10.712
 So they all go in one queue.
 
 53
-00:03:10.792 --> 00:03:12.005
+00:03:10.712 --> 00:03:11.925
 Two lessons here.
 
 54
-00:03:12.005 --> 00:03:16.003
+00:03:11.925 --> 00:03:15.923
 Queue membership can change underneath
 you; a vendor default recently
 
 55
-00:03:16.003 --> 00:03:20.205
+00:03:15.923 --> 00:03:20.125
 moved data loss alerts out of the
 incident queue without anything failing.
 
 56
-00:03:20.205 --> 00:03:24.629
+00:03:20.125 --> 00:03:24.549
 And only two things close a record:
 a later observation showing the fix,
 
 57
-00:03:24.629 --> 00:03:27.680
+00:03:24.549 --> 00:03:27.600
 or the authorizing official
 accepting the risk.
 
 58
-00:03:27.680 --> 00:03:29.240
+00:03:27.600 --> 00:03:29.160
 Now, identity.
 
 59
-00:03:32.990 --> 00:03:37.265
+00:03:32.910 --> 00:03:37.185
 Identity looks instrumented out of
 the box, which is exactly the trap.
 
 60
-00:03:37.265 --> 00:03:41.298
+00:03:37.185 --> 00:03:41.218
 Entra keeps its own sign-in and
 audit history for about a month,
 
 61
-00:03:41.298 --> 00:03:44.065
+00:03:41.218 --> 00:03:43.985
 and once it's gone, no
 license brings it back.
 
 62
-00:03:44.065 --> 00:03:47.815
+00:03:43.985 --> 00:03:47.735
 The fix is one tenant-level
 setting that streams the logs out.
 
 63
-00:03:47.815 --> 00:03:50.738
+00:03:47.735 --> 00:03:50.658
 The detail that bites
 people is that the category
 
 64
-00:03:50.738 --> 00:03:53.090
+00:03:50.658 --> 00:03:53.010
 you tick isn't always the table you query.
 
 65
-00:03:53.090 --> 00:03:56.550
+00:03:53.010 --> 00:03:56.470
 The big decision is to treat all
 four sign-in streams as core,
 
 66
-00:03:56.550 --> 00:04:01.352
+00:03:56.470 --> 00:04:01.272
 because the non-interactive ones are where
 unattended credentials do their work.
 
 67
-00:04:01.352 --> 00:04:05.553
+00:04:01.272 --> 00:04:05.473
 Manage the cost with table plans,
 never by switching a stream off.
 
 68
-00:04:05.553 --> 00:04:08.180
+00:04:05.473 --> 00:04:08.100
 Next, how to deploy it properly.
 
 69
-00:04:11.930 --> 00:04:16.842
+00:04:11.850 --> 00:04:16.762
 A setting someone clicked once has no
 history, no review and no drift check.
 
 70
-00:04:16.842 --> 00:04:19.402
+00:04:16.762 --> 00:04:19.322
 So the program deploys this one from code,
 
 71
-00:04:19.402 --> 00:04:23.843
+00:04:19.322 --> 00:04:23.763
 and keeps its list of logged categories
 in the repository as the record.
 
 72
-00:04:23.843 --> 00:04:24.905
+00:04:23.763 --> 00:04:24.825
 Then retention.
 
 73
-00:04:24.905 --> 00:04:27.463
+00:04:24.825 --> 00:04:27.383
 Here's a trap that catches
 a lot of templates:
 
 74
-00:04:27.463 --> 00:04:31.868
+00:04:27.383 --> 00:04:31.788
 the retention field on a diagnostic
 setting no longer does anything at all.
 
 75
-00:04:31.868 --> 00:04:34.675
-Retention is set per
-table in the workspace,
+00:04:31.788 --> 00:04:35.762
+Retention is set per table in the
+workspace, at least six months
 
 76
-00:04:34.675 --> 00:04:39.743
-at least six months searchable and a year
-retrievable, to meet the logging memo.
+00:04:35.762 --> 00:04:39.813
+searchable and a year retrievable,
+in line with the logging memo.
 
 77
-00:04:39.743 --> 00:04:43.868
+00:04:39.813 --> 00:04:43.937
 Of course, a setting that saved
 isn't proof anything is arriving.
 
 78
-00:04:43.868 --> 00:04:45.280
+00:04:43.937 --> 00:04:45.340
 That's next.
 
 79
-00:04:49.030 --> 00:04:50.830
+00:04:48.950 --> 00:04:50.750
 Saving a setting proves nothing.
 
 80
-00:04:50.830 --> 00:04:54.874
+00:04:50.750 --> 00:04:54.794
 So the program runs a completeness
 check a day after any change,
 
 81
-00:04:54.874 --> 00:04:59.930
+00:04:54.794 --> 00:04:59.850
 again at three days, and then daily, against
 a named list of the tables it expects.
 
 82
-00:04:59.930 --> 00:05:05.455
+00:04:59.850 --> 00:05:05.375
 The result to fear is stale: it worked,
 then stopped, and old data hides the gap.
 
 83
-00:05:05.455 --> 00:05:07.672
+00:05:05.375 --> 00:05:07.592
 Microsoft Graph is useful here,
 
 84
-00:05:07.672 --> 00:05:12.192
+00:05:07.592 --> 00:05:12.112
 but as a magnifying glass for one
 specific question, not as a feed.
 
 85
-00:05:12.192 --> 00:05:15.491
+00:05:12.112 --> 00:05:15.411
 And watch one silent trap:
 without the right permission,
 
 86
-00:05:15.491 --> 00:05:19.292
+00:05:15.411 --> 00:05:19.212
 sign-in records quietly drop
 their Conditional Access results.
 
 87
-00:05:19.292 --> 00:05:20.405
+00:05:19.212 --> 00:05:20.325
 That's identity.
 
 88
-00:05:20.405 --> 00:05:24.030
+00:05:20.325 --> 00:05:23.950
 Module 2 moves to the
 platform and the mailbox.
 
 89
-00:05:27.780 --> 00:05:32.897
+00:05:27.700 --> 00:05:32.817
 Module 2 covers the two planes the
 identity setting never touches,
 
 90
-00:05:32.897 --> 00:05:36.618
+00:05:32.817 --> 00:05:36.538
 Azure resources and the
 Microsoft 365 audit log.
 
 91
-00:05:36.618 --> 00:05:38.492
+00:05:36.538 --> 00:05:38.412
 Then it asks the real question:
 
 92
-00:05:38.492 --> 00:05:42.910
+00:05:38.412 --> 00:05:42.830
 what turns all this stored data
 into detections someone can show?
 
 93
-00:05:46.660 --> 00:05:50.035
+00:05:46.580 --> 00:05:49.955
 Azure has two planes, and
 they behave very differently.
 
 94
-00:05:50.035 --> 00:05:54.673
+00:05:49.955 --> 00:05:54.592
 The activity log is on by default and
 records who created and changed things,
 
 95
-00:05:54.673 --> 00:05:57.985
+00:05:54.592 --> 00:05:57.905
 but it's deleted after ninety
 days unless you export it.
 
 96
-00:05:57.985 --> 00:06:02.171
+00:05:57.905 --> 00:06:02.091
 Resource logs, what actually happened
 inside a key vault or a database,
 
 97
-00:06:02.171 --> 00:06:05.997
+00:06:02.091 --> 00:06:05.917
 aren't collected at all until each
 resource gets its own setting.
 
 98
-00:06:05.997 --> 00:06:10.385
+00:06:05.917 --> 00:06:10.305
 The engineering choice that pays off
 later is sending them to dedicated tables.
 
 99
-00:06:10.385 --> 00:06:13.775
+00:06:10.305 --> 00:06:13.695
 The shared table runs out of
 columns, and when it does,
 
 100
-00:06:13.775 --> 00:06:16.535
+00:06:13.695 --> 00:06:16.455
 a detection rule silently stops matching.
 
 101
-00:06:16.535 --> 00:06:19.210
+00:06:16.455 --> 00:06:19.130
 So how do you keep every
 new resource emitting?
 
 102
-00:06:19.210 --> 00:06:20.410
+00:06:19.130 --> 00:06:20.330
 Policy.
 
 103
-00:06:24.160 --> 00:06:27.737
+00:06:24.080 --> 00:06:27.657
 Azure Policy can make logging
 a property of the platform,
 
 104
-00:06:27.737 --> 00:06:30.173
+00:06:27.657 --> 00:06:30.093
 so new resources are never born silent.
 
 105
-00:06:30.173 --> 00:06:31.997
+00:06:30.093 --> 00:06:31.917
 But here's what catches teams out.
 
 106
-00:06:31.997 --> 00:06:35.706
+00:06:31.917 --> 00:06:35.626
 The policy fixes new and
 changed resources automatically,
 
 107
-00:06:35.706 --> 00:06:40.323
+00:06:35.626 --> 00:06:40.243
 and for everything that already existed,
 it only marks them non-compliant.
 
 108
-00:06:40.323 --> 00:06:44.010
+00:06:40.243 --> 00:06:43.930
 Nothing gets deployed until
 someone runs a remediation task.
 
 109
-00:06:44.010 --> 00:06:48.098
+00:06:43.930 --> 00:06:48.018
 So the dashboard trends green
 while the old estate stays dark.
 
 110
-00:06:48.098 --> 00:06:51.817
+00:06:48.018 --> 00:06:51.737
 The program's habit is simple:
 assign, run the remediation,
 
 111
-00:06:51.817 --> 00:06:55.536
+00:06:51.737 --> 00:06:55.456
 then compare the compliant
 count against the inventory.
 
 112
-00:06:55.536 --> 00:06:58.210
+00:06:55.456 --> 00:06:58.130
 That comparison is the
 real coverage number.
 
 113
-00:06:58.210 --> 00:07:02.280
+00:06:58.130 --> 00:07:02.200
 Next, the Microsoft 365 audit log.
 
 114
-00:07:06.030 --> 00:07:12.293
+00:07:05.950 --> 00:07:12.213
 The Microsoft 365 audit log is the plane
 most often assumed and least often checked.
 
 115
-00:07:12.293 --> 00:07:16.425
+00:07:12.213 --> 00:07:16.345
 Verify it's actually on, and do it
 in the right PowerShell session,
 
 116
-00:07:16.425 --> 00:07:18.842
+00:07:16.345 --> 00:07:18.762
 because the other one always says off.
 
 117
-00:07:18.842 --> 00:07:23.969
+00:07:18.762 --> 00:07:23.889
 Collecting it through Microsoft's API has
 a few rules that break almost every first
 
 118
-00:07:23.969 --> 00:07:28.426
+00:07:23.889 --> 00:07:28.346
 attempt: patience when you subscribe,
 a seven-day window to fetch content,
 
 119
-00:07:28.426 --> 00:07:31.918
+00:07:28.346 --> 00:07:31.838
 events that arrive out of order,
 and duplicates by design.
 
 120
-00:07:31.918 --> 00:07:35.334
+00:07:31.838 --> 00:07:35.254
 So the collector tracks what
 it's fetched, deduplicates,
 
 121
-00:07:35.334 --> 00:07:38.230
+00:07:35.254 --> 00:07:38.150
 and looks back over a
 trailing window every run.
 
 122
-00:07:38.230 --> 00:07:40.820
+00:07:38.150 --> 00:07:40.740
 Then there's how long Microsoft keeps it.
 
 123
-00:07:44.570 --> 00:07:46.145
+00:07:44.490 --> 00:07:46.065
 This one surprises people.
 
 124
-00:07:46.145 --> 00:07:50.292
+00:07:46.065 --> 00:07:50.212
 How long a Microsoft 365 audit
 record survives depends on the
 
 125
-00:07:50.292 --> 00:07:54.033
+00:07:50.212 --> 00:07:53.953
 license of the person who did
 the thing, not on the tenant.
 
 126
-00:07:54.033 --> 00:07:57.875
+00:07:53.953 --> 00:07:57.795
 Fully licensed users get a
 year for the core workloads;
 
 127
-00:07:57.875 --> 00:08:01.632
+00:07:57.795 --> 00:08:01.552
 everyone else, including
 every guest, gets six months.
 
 128
-00:08:01.632 --> 00:08:03.608
+00:08:01.552 --> 00:08:03.528
 Most federal tenants are mixed,
 
 129
-00:08:03.608 --> 00:08:07.558
+00:08:03.528 --> 00:08:07.478
 so they have a split retention
 horizon that no dashboard shows.
 
 130
-00:08:07.558 --> 00:08:11.683
+00:08:07.478 --> 00:08:11.603
 The program's answer is to stop treating
 that tier as the evidence store.
 
 131
-00:08:11.683 --> 00:08:15.578
+00:08:11.603 --> 00:08:15.498
 Collect everything into your own
 workspace, set retention there,
 
 132
-00:08:15.578 --> 00:08:18.608
+00:08:15.498 --> 00:08:18.528
 and write the license split
 into the security plan.
 
 133
-00:08:18.608 --> 00:08:20.920
+00:08:18.528 --> 00:08:20.840
 Now, what do we do with all this data?
 
 134
-00:08:24.670 --> 00:08:26.170
+00:08:24.590 --> 00:08:26.090
 Here's the heart of the book.
 
 135
-00:08:26.170 --> 00:08:30.532
+00:08:26.090 --> 00:08:30.452
 A place where logs are kept isn't the
 same as a capability that reads them.
 
 136
-00:08:30.532 --> 00:08:35.007
+00:08:30.452 --> 00:08:34.927
 A workspace with no rules can prove
 storage; it can't prove analysis.
 
 137
-00:08:35.007 --> 00:08:38.377
+00:08:34.927 --> 00:08:38.297
 So the program's rule is that
 no source counts as monitored
 
 138
-00:08:38.377 --> 00:08:41.957
+00:08:38.297 --> 00:08:41.877
 until an enabled rule reads it
 and someone owns what it raises.
 
 139
-00:08:41.957 --> 00:08:46.507
+00:08:41.877 --> 00:08:46.427
 The rule types also set a floor on how
 fast you can possibly detect anything.
 
 140
-00:08:46.507 --> 00:08:49.358
+00:08:46.427 --> 00:08:49.278
 And get ready for the
 assessor's favorite request:
 
 141
-00:08:49.358 --> 00:08:52.557
+00:08:49.278 --> 00:08:52.477
 show me an alert from last month,
 and what you did about it.
 
 142
-00:08:52.557 --> 00:08:54.990
+00:08:52.477 --> 00:08:54.910
 Next, how the data gets in.
 
 143
-00:08:58.740 --> 00:09:03.267
+00:08:58.660 --> 00:09:03.187
 Every source reaches Sentinel by its
 own path and lands in its own table,
 
 144
-00:09:03.267 --> 00:09:05.953
+00:09:03.187 --> 00:09:05.873
 and each path has one
 gotcha worth knowing.
 
 145
-00:09:05.953 --> 00:09:09.979
+00:09:05.873 --> 00:09:09.899
 Appliances like DNS and SASE
 come through a forwarder that
 
 146
-00:09:09.979 --> 00:09:13.603
+00:09:09.899 --> 00:09:13.523
 stamps its own time, which
 matters when you join on time.
 
 147
-00:09:13.603 --> 00:09:18.852
+00:09:13.523 --> 00:09:18.772
 Write DNS rules against the normalized
 parser, so they survive a vendor change.
 
 148
-00:09:18.852 --> 00:09:20.840
+00:09:18.772 --> 00:09:20.760
 And plan in the Defender portal,
 
 149
-00:09:20.840 --> 00:09:25.503
+00:09:20.760 --> 00:09:25.423
 because that's the only place Sentinel
 will be supported after March 2027.
 
 150
-00:09:25.503 --> 00:09:26.926
+00:09:25.423 --> 00:09:26.846
 In the government clouds,
 
 151
-00:09:26.926 --> 00:09:30.452
+00:09:26.846 --> 00:09:30.372
 check each connector in your own
 portal before you design on it.
 
 152
-00:09:30.452 --> 00:09:33.020
+00:09:30.372 --> 00:09:32.940
 But how do you know a
 connector's still working?
 
 153
-00:09:36.770 --> 00:09:40.527
+00:09:36.690 --> 00:09:40.447
 A connector that silently stops is
 worse than one you never set up,
 
 154
-00:09:40.527 --> 00:09:42.545
+00:09:40.447 --> 00:09:42.465
 because you believe you're covered.
 
 155
-00:09:42.545 --> 00:09:45.684
+00:09:42.465 --> 00:09:45.604
 Microsoft's health table
 only covers some connectors,
 
 156
-00:09:45.684 --> 00:09:47.846
+00:09:45.604 --> 00:09:47.766
 so the program checks the data itself:
 
 157
-00:09:47.846 --> 00:09:52.170
+00:09:47.766 --> 00:09:52.090
 when did each table last hear something,
 and is that longer than it should be?
 
 158
-00:09:52.170 --> 00:09:55.820
+00:09:52.090 --> 00:09:55.740
 Make that check a rule, so a
 quiet source opens an incident.
 
 159
-00:09:55.820 --> 00:09:58.445
+00:09:55.740 --> 00:09:58.365
 Then divide the work with Defender XDR.
 
 160
-00:09:58.445 --> 00:10:01.208
+00:09:58.365 --> 00:10:01.128
 Let Defender detect what
 its own sensors see,
 
 161
-00:10:01.208 --> 00:10:04.195
+00:10:01.128 --> 00:10:04.115
 and point Sentinel at
 everything Defender can't.
 
 162
-00:10:04.195 --> 00:10:05.195
+00:10:04.115 --> 00:10:05.115
 That's Part 1.
 
 163
-00:10:05.195 --> 00:10:07.790
+00:10:05.115 --> 00:10:07.710
 Part 2 starts with vulnerabilities.
 
 164
-00:10:11.540 --> 00:10:14.765
+00:10:11.460 --> 00:10:14.685
 Module 3 is about findings and the clock.
 
 165
-00:10:14.765 --> 00:10:18.628
+00:10:14.685 --> 00:10:18.548
 A vulnerability program
 is judged on one record:
 
 166
-00:10:18.628 --> 00:10:22.878
+00:10:18.548 --> 00:10:22.798
 which flaw, which asset, found
 when, due when, fixed when.
 
 167
-00:10:22.878 --> 00:10:27.235
+00:10:22.798 --> 00:10:27.155
 We'll see the new federal clock, hand the
 work to the platforms that can fix it,
 
 168
-00:10:27.235 --> 00:10:29.770
+00:10:27.155 --> 00:10:29.690
 and finish in the cloud control plane.
 
 169
-00:10:33.520 --> 00:10:39.020
+00:10:33.440 --> 00:10:38.940
 In June 2026, CISA replaced the old
 severity buckets with a smarter clock.
 
 170
-00:10:39.020 --> 00:10:42.724
+00:10:38.940 --> 00:10:42.644
 Four questions about each
 vulnerable asset set the deadline:
 
 171
-00:10:42.724 --> 00:10:46.137
+00:10:42.644 --> 00:10:46.057
 is it exposed to the internet,
 is the flaw being exploited,
 
 172
-00:10:46.137 --> 00:10:50.495
+00:10:46.057 --> 00:10:50.415
 can the attack be automated, and how
 much control does it give an attacker.
 
 173
-00:10:50.495 --> 00:10:52.677
+00:10:50.415 --> 00:10:52.597
 The answers range from three days,
 
 174
-00:10:52.677 --> 00:10:56.183
+00:10:52.597 --> 00:10:56.103
 plus a forensic check, down to
 fix it at the next upgrade.
 
 175
-00:10:56.183 --> 00:10:57.682
+00:10:56.103 --> 00:10:57.602
 Two points to hold onto.
 
 176
-00:10:57.682 --> 00:11:01.532
+00:10:57.602 --> 00:11:01.452
 The clock starts at the earliest
 moment, and there are no waivers.
 
 177
-00:11:01.532 --> 00:11:06.120
+00:11:01.452 --> 00:11:06.040
 By December, every externally
 reachable asset needs an exposure tag.
 
 178
-00:11:06.120 --> 00:11:08.430
+00:11:06.040 --> 00:11:08.350
 So, how do you run that daily?
 
 179
-00:11:12.180 --> 00:11:16.897
+00:11:12.100 --> 00:11:16.817
 The daily job joins four things: what
 the scanner found, CISA's list of
 
 180
-00:11:16.897 --> 00:11:22.442
+00:11:16.817 --> 00:11:22.362
 exploited flaws, CISA's data on automation
 and impact, and your own exposure tags.
 
 181
-00:11:22.442 --> 00:11:24.830
+00:11:22.362 --> 00:11:24.750
 Two design choices make it trustworthy.
 
 182
-00:11:24.830 --> 00:11:28.942
+00:11:24.750 --> 00:11:28.862
 When data is missing, the program
 assumes the stricter answer.
 
 183
-00:11:28.942 --> 00:11:32.038
+00:11:28.862 --> 00:11:31.957
 And it remembers when each
 finding was first seen,
 
 184
-00:11:32.038 --> 00:11:36.492
+00:11:31.957 --> 00:11:36.412
 because recalculating that every
 morning quietly resets every clock.
 
 185
-00:11:36.492 --> 00:11:40.538
+00:11:36.412 --> 00:11:40.458
 Report how many findings closed on
 time and how many are past due,
 
 186
-00:11:40.538 --> 00:11:45.805
+00:11:40.458 --> 00:11:45.725
 never a percentage of the open queue, which
 improves every time new findings arrive.
 
 187
-00:11:45.805 --> 00:11:48.860
+00:11:45.725 --> 00:11:48.780
 Next, proving the scanner sees everything.
 
 188
-00:11:52.610 --> 00:11:57.323
+00:11:52.530 --> 00:11:57.243
 The scanner choice comes down to one
 property: the sensor follows the inventory.
 
 189
-00:11:57.323 --> 00:12:02.060
+00:11:57.243 --> 00:12:01.980
 Enroll a server in Azure Arc, in a
 covered subscription, and it's scanned.
 
 190
-00:12:02.060 --> 00:12:04.048
+00:12:01.980 --> 00:12:03.968
 But enrollment isn't coverage.
 
 191
-00:12:04.048 --> 00:12:08.938
+00:12:03.968 --> 00:12:08.858
 An extension can fail, a sensor can go
 unhealthy, so the program checks daily
 
 192
-00:12:08.938 --> 00:12:14.223
+00:12:08.858 --> 00:12:14.143
 that every enrolled server is actually
 reporting, and treats any gap as a finding.
 
 193
-00:12:14.223 --> 00:12:17.692
+00:12:14.143 --> 00:12:17.612
 And lifecycle sets a hard
 edge: a server whose security
 
 194
-00:12:17.692 --> 00:12:21.623
+00:12:17.612 --> 00:12:21.543
 updates have ended can still be
 scanned, but nothing can fix it.
 
 195
-00:12:21.623 --> 00:12:26.234
+00:12:21.543 --> 00:12:26.154
 That's a decision for the authorizing
 official, not a row that ages forever.
 
 196
-00:12:26.234 --> 00:12:28.500
+00:12:26.154 --> 00:12:28.420
 Now, who actually does the fixing?
 
 197
-00:12:32.250 --> 00:12:35.112
+00:12:32.170 --> 00:12:35.032
 Only the platform that runs
 a workload can fix it.
 
 198
-00:12:35.112 --> 00:12:38.574
+00:12:35.032 --> 00:12:38.494
 So the program lets each
 platform patch with the tools
 
 199
-00:12:38.574 --> 00:12:42.188
+00:12:38.494 --> 00:12:42.108
 its support model expects, in
 every cloud and on premises.
 
 200
-00:12:42.188 --> 00:12:45.764
+00:12:42.108 --> 00:12:45.684
 What's unified is the record
 every one of them sends back,
 
 201
-00:12:45.764 --> 00:12:47.863
+00:12:45.684 --> 00:12:47.783
 keyed to the same asset identity.
 
 202
-00:12:47.863 --> 00:12:52.438
+00:12:47.783 --> 00:12:52.358
 One thing no single tool can reach is
 the hypervisor and firmware layer,
 
 203
-00:12:52.438 --> 00:12:55.075
+00:12:52.358 --> 00:12:54.995
 so don't let an overlay promise otherwise.
 
 204
-00:12:55.075 --> 00:12:58.969
+00:12:54.995 --> 00:12:58.889
 And remember, a finding closes
 only when both halves agree:
 
 205
-00:12:58.969 --> 00:13:03.837
+00:12:58.889 --> 00:13:03.757
 the platform says what it applied, and
 a later scan no longer sees the flaw.
 
 206
-00:13:03.837 --> 00:13:05.424
+00:13:03.757 --> 00:13:05.344
 Patching is half the job.
 
 207
-00:13:05.424 --> 00:13:07.640
+00:13:05.344 --> 00:13:07.560
 Configuration is the other.
 
 208
-00:13:11.390 --> 00:13:15.528
+00:13:11.310 --> 00:13:15.448
 A patch that drifts back out of its
 hardened settings hasn't stayed fixed.
 
 209
-00:13:15.528 --> 00:13:17.750
+00:13:15.448 --> 00:13:17.670
 So baselines are written as code,
 
 210
-00:13:17.750 --> 00:13:22.028
+00:13:17.670 --> 00:13:21.948
 rolled out in audit mode first,
 and every drift becomes a record.
 
 211
-00:13:22.028 --> 00:13:23.941
+00:13:21.948 --> 00:13:23.861
 There's one setting worth knowing well.
 
 212
-00:13:23.941 --> 00:13:26.934
+00:13:23.861 --> 00:13:26.854
 Azure's auto-correct mode
 fixes drift silently,
 
 213
-00:13:26.934 --> 00:13:30.927
+00:13:26.854 --> 00:13:30.847
 and Microsoft says it can't report
 that the drift ever happened.
 
 214
-00:13:30.927 --> 00:13:35.602
+00:13:30.847 --> 00:13:35.522
 That means an attacker's change can
 be quietly undone and leave no trace.
 
 215
-00:13:35.602 --> 00:13:38.343
+00:13:35.522 --> 00:13:38.263
 So use auto-correct only
 for low-risk settings,
 
 216
-00:13:38.343 --> 00:13:41.589
+00:13:38.263 --> 00:13:41.509
 and keep visible drift wherever
 you need the evidence.
 
 217
-00:13:41.589 --> 00:13:45.452
+00:13:41.509 --> 00:13:45.372
 And a server that drops out of the
 report isn't clean; it's a gap.
 
 218
-00:13:45.452 --> 00:13:47.640
+00:13:45.372 --> 00:13:47.560
 Next, the cloud itself.
 
 219
-00:13:51.390 --> 00:13:55.927
+00:13:51.310 --> 00:13:55.847
 A public storage bucket has no missing
 patch, so no scanner will ever flag it.
 
 220
-00:13:55.927 --> 00:13:59.428
+00:13:55.847 --> 00:13:59.348
 Cloud posture tools read the
 cloud's own settings instead.
 
 221
-00:13:59.428 --> 00:14:02.316
+00:13:59.348 --> 00:14:02.236
 The program's rule for
 choosing them is practical:
 
 222
-00:14:02.316 --> 00:14:06.754
+00:14:02.236 --> 00:14:06.674
 where you already own a platform's native
 tool, it's primary for that platform,
 
 223
-00:14:06.754 --> 00:14:10.840
+00:14:06.674 --> 00:14:10.760
 and a coordinating tool earns its
 role only where it actually reaches.
 
 224
-00:14:10.840 --> 00:14:14.954
+00:14:10.760 --> 00:14:14.874
 Check every listing against the
 FedRAMP Marketplace, not memory,
 
 225
-00:14:14.954 --> 00:14:18.915
+00:14:14.874 --> 00:14:18.835
 and know the gaps, like no Oracle
 coverage from Microsoft's tool.
 
 226
-00:14:18.915 --> 00:14:21.186
+00:14:18.835 --> 00:14:21.106
 For containers, enforce at the gate:
 
 227
-00:14:21.186 --> 00:14:25.415
+00:14:21.106 --> 00:14:25.335
 refuse the privileged or unscanned
 workload before it ever runs.
 
 228
-00:14:25.415 --> 00:14:27.900
+00:14:25.335 --> 00:14:27.820
 Module 4 turns to data.
 
 229
-00:14:31.650 --> 00:14:34.925
+00:14:31.570 --> 00:14:34.845
 Module 4 closes the book
 with two questions.
 
 230
-00:14:34.925 --> 00:14:36.525
+00:14:34.845 --> 00:14:36.445
 What is actually in the file?
 
 231
-00:14:36.525 --> 00:14:40.560
+00:14:36.445 --> 00:14:40.480
 And who decides what the security
 team sees, keeps and lets go?
 
 232
-00:14:44.310 --> 00:14:47.854
+00:14:44.230 --> 00:14:47.774
 Network and identity controls
 can all pass while a sensitive
 
 233
-00:14:47.854 --> 00:14:51.398
+00:14:47.774 --> 00:14:51.318
 file walks out the door, because
 nothing said what the file was.
 
 234
-00:14:51.398 --> 00:14:55.760
+00:14:51.318 --> 00:14:55.680
 A sensitivity label supplies that
 signal, and other tools can read it.
 
 235
-00:14:55.760 --> 00:15:00.420
+00:14:55.680 --> 00:15:00.340
 The federal rules are simpler than
 people think: there are only two levels,
 
 236
-00:15:00.420 --> 00:15:04.469
+00:15:00.340 --> 00:15:04.389
 Basic and Specified, and the CUI
 Registry decides which applies,
 
 237
-00:15:04.469 --> 00:15:06.685
+00:15:04.389 --> 00:15:06.605
 not how sensitive something feels.
 
 238
-00:15:06.685 --> 00:15:09.710
+00:15:06.605 --> 00:15:09.630
 Privacy Act records,
 for example, are Basic,
 
 239
-00:15:09.710 --> 00:15:12.735
+00:15:09.630 --> 00:15:12.655
 while taxpayer information is Specified.
 
 240
-00:15:12.735 --> 00:15:15.192
+00:15:12.655 --> 00:15:15.112
 The program maps those levels to labels,
 
 241
-00:15:15.192 --> 00:15:19.585
+00:15:15.112 --> 00:15:19.505
 encrypts to groups rather than people,
 and deploys the whole set as code.
 
 242
-00:15:19.585 --> 00:15:21.980
+00:15:19.505 --> 00:15:21.900
 Then the labels have to be enforced.
 
 243
-00:15:25.730 --> 00:15:28.118
+00:15:25.650 --> 00:15:28.038
 Labels only matter if
 something acts on them.
 
 244
-00:15:28.118 --> 00:15:31.342
+00:15:28.038 --> 00:15:31.262
 Data loss prevention acts in three places:
 
 245
-00:15:31.342 --> 00:15:36.868
+00:15:31.262 --> 00:15:36.788
 inside the Microsoft 365 services, on
 the device, and at the cloud session.
 
 246
-00:15:36.868 --> 00:15:40.143
+00:15:36.788 --> 00:15:40.063
 The program's minimum set of
 policies is on the slide.
 
 247
-00:15:40.143 --> 00:15:42.618
+00:15:40.063 --> 00:15:42.538
 The rollout discipline
 is the part to copy.
 
 248
-00:15:42.618 --> 00:15:47.087
+00:15:42.538 --> 00:15:47.007
 Every policy starts in simulation,
 measured against real content,
 
 249
-00:15:47.087 --> 00:15:50.418
+00:15:47.007 --> 00:15:50.338
 because a false-positive
 storm that stamps CUI on
 
 250
-00:15:50.418 --> 00:15:53.993
+00:15:50.338 --> 00:15:53.913
 routine files becomes an
 agency-wide help desk event.
 
 251
-00:15:53.993 --> 00:15:57.942
+00:15:53.913 --> 00:15:57.862
 And once enforcement starts, watch
 the people who keep overriding it.
 
 252
-00:15:57.942 --> 00:16:01.260
+00:15:57.862 --> 00:16:01.180
 Next, the encryption keys behind all this.
 
 253
-00:16:05.010 --> 00:16:08.390
+00:16:04.930 --> 00:16:08.310
 When someone says bring your
 own key, ask which one,
 
 254
-00:16:08.390 --> 00:16:12.348
+00:16:08.310 --> 00:16:12.268
 because in Microsoft 365 it
 means three different things.
 
 255
-00:16:12.348 --> 00:16:15.473
+00:16:12.268 --> 00:16:15.393
 One protects every
 encrypted label at the root.
 
 256
-00:16:15.473 --> 00:16:17.772
+00:16:15.393 --> 00:16:17.692
 One encrypts the services at rest.
 
 257
-00:16:17.772 --> 00:16:22.249
+00:16:17.692 --> 00:16:22.169
 And one, double key encryption,
 protects only the content you choose,
 
 258
-00:16:22.249 --> 00:16:26.647
+00:16:22.169 --> 00:16:26.567
 at the cost of search, eDiscovery
 and co-authoring for that content.
 
 259
-00:16:26.647 --> 00:16:30.661
+00:16:26.567 --> 00:16:30.581
 The program uses that last one
 only for the narrowest categories.
 
 260
-00:16:30.661 --> 00:16:35.176
+00:16:30.581 --> 00:16:35.096
 One operational trap: Customer
 Key keys must never expire,
 
 261
-00:16:35.176 --> 00:16:40.822
+00:16:35.096 --> 00:16:40.742
 so a rotation policy that sets an expiry
 date can take Microsoft 365 down.
 
 262
-00:16:40.822 --> 00:16:43.920
+00:16:40.742 --> 00:16:43.840
 Which brings us to
 people, and who decides.
 
 263
-00:16:47.670 --> 00:16:49.815
+00:16:47.590 --> 00:16:49.735
 Most agencies can name their SOC.
 
 264
-00:16:49.815 --> 00:16:53.152
+00:16:49.735 --> 00:16:53.072
 Fewer can say who decided
 a log source is collected,
 
 265
-00:16:53.152 --> 00:16:55.932
+00:16:53.072 --> 00:16:55.852
 or who accepted the risk
 when it went quiet.
 
 266
-00:16:55.932 --> 00:16:58.382
+00:16:55.852 --> 00:16:58.302
 In practice it's whoever
 holds the console.
 
 267
-00:16:58.382 --> 00:17:01.509
+00:16:58.302 --> 00:17:01.429
 The book separates three
 things: who decides,
 
 268
-00:17:01.509 --> 00:17:04.044
+00:17:01.429 --> 00:17:03.964
 who does the work, and who's consulted.
 
 269
-00:17:04.044 --> 00:17:06.583
+00:17:03.964 --> 00:17:06.503
 The CIO decides scope and funding.
 
 270
-00:17:06.583 --> 00:17:08.707
+00:17:06.503 --> 00:17:08.627
 The CISO sets the requirements.
 
 271
-00:17:08.707 --> 00:17:13.557
+00:17:08.627 --> 00:17:13.477
 Only the authorizing official accepts
 risk, including the risk of not seeing.
 
 272
-00:17:13.557 --> 00:17:17.620
+00:17:13.477 --> 00:17:17.540
 And the SOC runs the queue and
 owns the one-hour notice to CISA.
 
 273
-00:17:17.620 --> 00:17:20.340
+00:17:17.540 --> 00:17:20.260
 Let's look at the
 decisions that matter most.
 
 274
-00:17:24.090 --> 00:17:26.724
+00:17:24.010 --> 00:17:26.644
 These are the decisions
 that quietly shrink
 
 275
-00:17:26.724 --> 00:17:29.215
+00:17:26.644 --> 00:17:29.135
 what the agency can see,
 each with one owner.
 
 276
-00:17:29.215 --> 00:17:31.992
+00:17:29.135 --> 00:17:31.912
 The pattern to notice is
 that the person who can make
 
 277
-00:17:31.992 --> 00:17:34.640
+00:17:31.912 --> 00:17:34.560
 a change is rarely the
 person who should decide it.
 
 278
-00:17:34.640 --> 00:17:38.715
+00:17:34.560 --> 00:17:38.635
 Lowering retention looks like a
 slider, but it's a records decision.
 
 279
-00:17:38.715 --> 00:17:42.432
+00:17:38.635 --> 00:17:42.352
 Silencing a noisy rule with an
 end date is the CISO's call;
 
 280
-00:17:42.432 --> 00:17:47.178
+00:17:42.352 --> 00:17:47.098
 silencing it forever is a risk
 acceptance for the authorizing official.
 
 281
-00:17:47.178 --> 00:17:51.440
+00:17:47.098 --> 00:17:51.360
 And a playbook that disables accounts
 needs approval before it ever runs.
 
 282
-00:17:51.440 --> 00:17:55.610
+00:17:51.360 --> 00:17:55.530
 Next, how roles and separations
 keep the evidence honest.
 
 283
-00:17:59.360 --> 00:18:05.001
+00:17:59.280 --> 00:18:04.921
 Every rule and playbook gets exactly one
 named owner, with a test and a review date,
 
 284
-00:18:05.001 --> 00:18:08.622
+00:18:04.921 --> 00:18:08.542
 so a silent table can be
 traced to the rules it blinds.
 
 285
-00:18:08.622 --> 00:18:11.176
+00:18:08.542 --> 00:18:11.096
 Each team gets the least access it needs,
 
 286
-00:18:11.176 --> 00:18:14.272
+00:18:11.096 --> 00:18:14.192
 with powerful roles
 activated only when needed.
 
 287
-00:18:14.272 --> 00:18:17.426
+00:18:14.192 --> 00:18:17.346
 And because security
 operations keeps the record of
 
 288
-00:18:17.426 --> 00:18:20.723
+00:18:17.346 --> 00:18:20.643
 what everyone else did, its
 own separations matter most.
 
 289
-00:18:20.723 --> 00:18:23.210
+00:18:20.643 --> 00:18:23.130
 Nobody quietly shortens the record.
 
 290
-00:18:23.210 --> 00:18:26.160
+00:18:23.130 --> 00:18:26.080
 Platform owners can't
 silence their own logs.
 
 291
-00:18:26.160 --> 00:18:28.735
+00:18:26.080 --> 00:18:28.655
 The SOC doesn't assess itself.
 
 292
-00:18:28.735 --> 00:18:32.710
+00:18:28.655 --> 00:18:32.630
 And a contractor can prepare a risk
 acceptance, but never sign it.
 
 293
-00:18:32.710 --> 00:18:34.910
+00:18:32.630 --> 00:18:34.830
 Let's close with the decisions.
 
 294
-00:18:38.660 --> 00:18:41.285
+00:18:38.580 --> 00:18:41.205
 So here are the decisions,
 each with an owner.
 
 295
-00:18:41.285 --> 00:18:44.423
+00:18:41.205 --> 00:18:44.343
 Name what must emit and check
 it against what arrives.
 
 296
-00:18:44.423 --> 00:18:47.284
+00:18:44.343 --> 00:18:47.204
 Build the naming plane before
 the evidence pipeline.
 
 297
-00:18:47.284 --> 00:18:50.173
+00:18:47.204 --> 00:18:50.093
 Tag every exposed asset before December.
 
 298
-00:18:50.173 --> 00:18:53.772
+00:18:50.093 --> 00:18:53.692
 Decide your key strategy before
 labels encrypt anything.
 
 299
-00:18:53.772 --> 00:18:58.360
+00:18:53.692 --> 00:18:58.280
 And send every blind spot to the
 authorizing official with an end date.
 
 300
-00:18:58.360 --> 00:19:01.245
+00:18:58.280 --> 00:19:01.165
 The good news is that the
 first steps cost nothing:
 
 301
-00:19:01.245 --> 00:19:05.397
+00:19:01.165 --> 00:19:05.317
 run the checks from this session on
 Monday, and put an owner on every rule.
 
 302
-00:19:05.397 --> 00:19:07.614
+00:19:05.317 --> 00:19:07.534
 You can't defend what you can't see,
 
 303
-00:19:07.614 --> 00:19:11.060
+00:19:07.534 --> 00:19:10.980
 and a finding closes only
 when it's fixed, with proof.
 
 304
-00:19:11.060 --> 00:19:11.870
+00:19:10.980 --> 00:19:11.790
 Thank you.

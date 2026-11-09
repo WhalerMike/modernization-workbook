@@ -143,11 +143,11 @@
   ],
   [
    43.325,
-   3.812,
-   "It also gives each change class a lane and a change-record type."
+   4.112,
+   "It also gives each operation class a lane and a change-record type."
   ],
   [
-   47.138,
+   47.438,
    2.85,
    "Every later gate builds what this one decides."
   ]
@@ -227,26 +227,26 @@
   ],
   [
    28.125,
-   4.85,
-   "Step three gives each change class a lane, following the workbook's design."
+   5.037,
+   "Step three gives each operation class a lane, following the workbook's design."
   ],
   [
-   32.975,
+   33.163,
    3.212,
    "The mapping onto these products is the program's inference."
   ],
   [
-   36.188,
+   36.375,
    6.75,
    "An autonomous class runs as a standard change, and the authorizing official accepts any class run that way."
   ],
   [
-   42.938,
+   43.125,
    3.288,
    "A gated class is an access request with approval."
   ],
   [
-   46.225,
+   46.413,
    4.112,
    "Step four writes the decisions to the record as a reviewed change."
   ]
@@ -613,26 +613,26 @@
   ],
   [
    12.6,
-   6.425,
-   "C M three, configuration change control: each change class has a lane and a change-record type."
+   6.65,
+   "C M three, configuration change control: each operation class has a lane and a change-record type."
   ],
   [
-   19.025,
+   19.25,
    6.362,
    "A C two, account management: one writer per attribute keeps account changes traceable to the source."
   ],
   [
-   25.387,
+   25.613,
    6.138,
    "And the workbook's design requires the authorizing official to accept any autonomous class in writing."
   ],
   [
-   31.525,
+   31.75,
    8.975,
    "Chapter 08 maps the check to configuration settings, change control, impact analysis, continuous monitoring and system monitoring."
   ],
   [
-   40.5,
+   40.725,
    10.425,
    "The evidence an I S S O keeps: the attribute map with each writer, the approver and lane tables, and the check's output with the data architect's decisions."
   ]
@@ -692,26 +692,26 @@
   ],
   [
    0.875,
-   9.537,
-   "You learned Gate 2's decisions: one writer per attribute, one approver system per authority class, and a lane and change-record type for each change class."
+   9.7,
+   "You learned Gate 2's decisions: one writer per attribute, one approver system per authority class, and a lane and change-record type for each operation class."
   ],
   [
-   10.412,
+   10.575,
    7.612,
    "You checked two provisioning configurations for attributes with two writers, and read each Finding, Warn and Info line."
   ],
   [
-   18.025,
+   18.188,
    5.475,
    "And you saw why the alias list and the directory name are inputs a reviewer has to confirm."
   ],
   [
-   23.5,
+   23.663,
    7.5,
    "Before you ship, work through the Chapter 08 checklist, and run the check whenever either provisioning configuration changes."
   ],
   [
-   31.0,
+   31.163,
    15.225,
    "Next is Module 4, sources and the starting drift: Gate 3 connects H R, Entra I D and SailPoint on one key, and you'll measure how far the directory is from H R over two days, and compare the runs without hiding what wasn't measured."
   ]

@@ -72,7 +72,7 @@ const SC = "Close";
   notes(s,
 `This is Part 1 of the implementation series for HR-Driven Identity. The HR pipeline makes the account exist. The implementation guide makes the HR record decide everything that happens to the account after that, and proves it did. It does that as seven gates an operator can run.
 
-This series stays at the level of those gates. For each one: what "done" means, the steps, the commands from the developer workbook's first lab where the workbook has them, the federal requirement the gate meets and the evidence an ISSO keeps, what's available in GCC and GCC High as the guide states it, and how to roll the gate back.
+This series stays at the level of those gates. For each one: what "done" means, the steps, the commands from the developer workbook's first lab where the workbook has them, the federal requirement the gate supports and the evidence an ISSO keeps, what's available in GCC and GCC High as the guide states it, and how to roll the gate back.
 
 Part 1 covers Gates G1 to G3: one writer for every account state and attribute, employees and contractors from their sources, and joiners ready on day one. Part 2 covers G4 to G7: access and movers, credentials, separation, and drift and evidence.
 

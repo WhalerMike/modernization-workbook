@@ -144,7 +144,7 @@ sourceSlide("Federal requirements: full citations", [
   "OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles, January 26, 2022, §III.A Identity (phishing-resistant MFA; the PIV binding).",
   "NIST, FIPS 201-3, Personal Identity Verification (PIV) of Federal Employees and Contractors, January 2022, §2.9.1, §2.9.4, §2.10.2 (reissuance and termination reach the binding).",
   "The full track-by-track mapping (AC, AU, CA, CM, IA, PS and SI controls; OMB M-19-17, M-25-21, M-26-14; the Federal HR 2.0 memo; SP 800-63-4; BOD 25-01) is in Part 1's federal-requirements slide and its citations.",
-  "Mapping: the guide's \"The federal requirements each track satisfies,\" reusing Book 02 App A, Book 05 Ch 10, Book 06 App A and Book 17 App A. The program's reading; the authorizing official decides.",
+  "Mapping: the guide's \"The federal requirements each track supports,\" reusing Book 02 App A, Book 05 Ch 10, Book 06 App A and Book 17 App A. The program's reading; the authorizing official decides.",
 ]);
 
 finish(OUT);

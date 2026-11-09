@@ -432,7 +432,7 @@ And privacy and records come in at design review, not at authorization. A new da
 No federal rule requires an architecture review board, but A-130 and NIST's controls require what one produces. In the program's design, the board reviews and doesn't vote. The chief architect decides standards, patterns and exceptions. The application owner decides the disposition. The authorizing official alone accepts residual risk, and the CIO approves what the agency buys.
 
 There are four gates: disposition, design review, the pull request, and release. Two are meetings, because they need judgment once per application. Two are automation, because they run many times a day on protected branches and a pipeline that keeps its outputs. A program that runs the pull-request gate as a meeting will stall or stop running it. And every gate leaves evidence behind.`,
-  "Book 18, Chapter 07 — Who Governs the Architecture (What federal policy asks for; The architecture review board; Four gates; Git and pipeline practice; How the gates become evidence; Responsibility matrix; Key takeaways).");
+  "Book 18, Chapter 07 — Who Governs the Architecture (What federal policy asks for; The architecture review board; Four gates; Git and pipeline practice; How the gates become evidence; Responsibility matrix; What leadership should take from this).");
 }
 
 // ------------------------------------------------------------------ How 1
@@ -487,7 +487,7 @@ It's honest about its limits. It's illustrative, not production code: synthetic 
 TOGAF's Architecture Development Method tells you the order: the triage is the business baseline, the reference architecture is the target, and the wave plan is the migration plan. Re-triage is change management, which starts the next cycle. Zachman's six-by-six grid tells you whether you've described everything. It isn't a method, and an empty cell is a question, not a defect.
 
 The requirement behind both is the architecture itself. A-130 asks for a baseline, a target and a transition plan, and NIST's controls carry that forward. No federal rule requires either framework. The mappings are the book's own reading, so file its artifacts as they are, and answer the assessor with those three.`,
-  "Book 18, Chapter 09 — Mapping the Work to TOGAF and Zachman (opening; What federal policy requires; The TOGAF Standard today; The Zachman Framework today; Using the mappings; Key takeaways).");
+  "Book 18, Chapter 09 — Mapping the Work to TOGAF and Zachman (opening; What federal policy requires; The TOGAF Standard today; The Zachman Framework today; Using the mappings; What leadership should take from this).");
 }
 
 // ------------------------------------------------------------------ How 3

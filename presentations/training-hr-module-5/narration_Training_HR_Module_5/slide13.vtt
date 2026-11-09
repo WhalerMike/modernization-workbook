@@ -5,60 +5,70 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:07.325
-This gate meets two controls in NIST special
-publication eight hundred fifty-three:
+00:00:01.437 --> 00:00:06.694
+This gate supports two controls in
+NIST special publication eight hundred
 
 3
-00:00:07.325 --> 00:00:11.362
-I A two, enhancement twelve,
-acceptance of PIV credentials,
+00:00:06.694 --> 00:00:11.533
+fifty-three: I A two, enhancement
+twelve, acceptance of PIV credentials,
 
 4
-00:00:11.362 --> 00:00:15.651
+00:00:11.533 --> 00:00:15.788
 and I A five, enhancement two,
 public key-based authentication.
 
 5
-00:00:15.651 --> 00:00:20.096
-It meets SCuBA's two phishing-resistant
-multifactor policies,
+00:00:15.788 --> 00:00:20.462
+It supports SCuBA's two
+phishing-resistant multifactor policies,
 
 6
-00:00:20.096 --> 00:00:25.225
+00:00:20.462 --> 00:00:25.562
 three point one and three point
 six, which BOD 25-01 requires.
 
 7
-00:00:25.225 --> 00:00:29.979
-And it meets FIPS two oh one dash
+00:00:25.562 --> 00:00:30.520
+And it supports FIPS two oh one dash
 three's issuance and termination rules,
 
 8
-00:00:29.979 --> 00:00:34.088
+00:00:30.520 --> 00:00:34.599
 and special publication eight
 hundred sixty-three dash four.
 
 9
-00:00:34.088 --> 00:00:39.022
+00:00:34.599 --> 00:00:38.775
+Your organization still sets the
+organization-defined parameters,
+
+10
+00:00:38.775 --> 00:00:41.925
+and the assessor decides
+whether each is satisfied.
+
+11
+00:00:41.925 --> 00:00:46.860
 The evidence an ISSO keeps for Gate
 5: the configuration export and
 
-10
-00:00:39.022 --> 00:00:44.137
+12
+00:00:46.860 --> 00:00:51.975
 the check's findings and manifest,
 dated, with each list's measurement.
 
-11
-00:00:44.137 --> 00:00:48.638
+13
+00:00:51.975 --> 00:00:56.475
 The C B nine and C B ten rows,
 beside the ScubaGear report.
 
-12
-00:00:48.638 --> 00:00:54.026
+14
+00:00:56.475 --> 00:01:01.863
 Lab 2's refused sign-in, with the revocation
 record and the list that published it.
 
-13
-00:00:54.026 --> 00:00:56.110
+15
+00:01:01.863 --> 00:01:03.960
 And the mode rules in the export.

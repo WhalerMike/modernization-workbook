@@ -161,36 +161,36 @@
   ],
   [
    33.875,
-   13.812,
-   "fed-ramp's Consolidated Rules for 2026 take mandatory effect on January 1, 2027, and fed-ramp accepts no new Rev5 certification applications after June 11, 2027."
+   23.188,
+   "fed-ramp's Consolidated Rules for 2026 take mandatory effect on January 1, 2027, except that the Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules became mandatory earlier, on December 7, 2026, and fed-ramp accepts no new Rev5 certification applications after June 11, 2027."
   ],
   [
-   47.688,
+   57.062,
    2.5,
    "The one that needs attention first is logging."
   ],
   [
-   50.188,
+   59.562,
    12.75,
    "O M B M-26-14 rescinded M-21-31, and its deadlines count from sis-uh's Logging Reference Architecture, published August 20, 2026."
   ],
   [
-   62.938,
+   72.312,
    5.138,
    "Counted from that date, the Agency Logging Plan falls on November 18 of this year."
   ],
   [
-   68.075,
+   77.45,
    4.0,
    "That's the program's arithmetic, not a date O M B published."
   ],
   [
-   72.075,
+   81.45,
    5.7,
    "So the nearest decision: the see-so's office confirms those dates, starting with the logging plan."
   ],
   [
-   77.775,
+   87.15,
    1.9,
    "Next, the vendor clocks."
   ]
@@ -729,31 +729,31 @@
   ],
   [
    33.138,
-   3.538,
-   "HR decides what each organizational attribute means."
+   3.45,
+   "H R decides what each organizational attribute means."
   ],
   [
-   36.675,
+   36.587,
    4.812,
    "And workstream leads own their designs, inside the see-so's requirements."
   ],
   [
-   41.487,
+   41.4,
    3.075,
    "Federal requirements already name some of these people."
   ],
   [
-   44.562,
+   44.475,
    9.062,
    "M twenty-two oh-nine required a zero trust implementation lead, and M nineteen seventeen requires an agency-wide eye-cam governance structure."
   ],
   [
-   53.625,
+   53.538,
    10.912,
    "So the decision for the sponsor and C I O, in Phase 0: name the sponsor, the steward and the steering committee, and build them from those existing roles, not alongside them."
   ],
   [
-   64.537,
+   64.45,
    3.45,
    "Next, three decisions the plans put on the wrong desk."
   ]

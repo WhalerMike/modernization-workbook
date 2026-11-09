@@ -31,7 +31,7 @@
   },
   {
     "slide": 7,
-    "title": "Federal requirements each track satisfies",
+    "title": "Federal requirements each track supports",
     "say": "Each track supports federal rules the agency already has to meet, in the program's mapping. The HR track carries account management, personnel termination and transfer, and identifier management in NIST 800-53, plus M-19-17 and the Federal HR 2.0 memo. PIV sign-in serves M-22-09 and FIPS 201. Intune and Arc carry the configuration and inventory controls, the non-person track carries privileged accounts and authenticators, and every track feeds monitoring under M-26-14. Your authorizing official decides; the architecture supplies the evidence. Next, a primer on attributes."
   },
   {

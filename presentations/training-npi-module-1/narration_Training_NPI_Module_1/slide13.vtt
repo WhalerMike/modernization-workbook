@@ -5,77 +5,87 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:04.978
-Gate 1 meets NIST
+00:00:01.437 --> 00:00:05.220
+Gate 1 supports NIST
 special publication eight
 
 3
-00:00:04.978 --> 00:00:08.613
+00:00:05.220 --> 00:00:08.813
 hundred fifty-three A C two,
 I A four and C M eight.
 
 4
-00:00:08.613 --> 00:00:11.850
+00:00:08.813 --> 00:00:12.987
+Your organization still sets the
+organization-defined parameters,
+
+5
+00:00:12.987 --> 00:00:16.137
+and the assessor decides
+whether each is satisfied.
+
+6
+00:00:16.137 --> 00:00:19.374
 The module's table maps
 each one to its evidence.
 
-5
-00:00:11.850 --> 00:00:15.756
+7
+00:00:19.374 --> 00:00:23.281
 For C M eight, system component
 inventory, it's the register,
 
-6
-00:00:15.756 --> 00:00:20.150
+8
+00:00:23.281 --> 00:00:27.675
 as JSON and as a spreadsheet file,
 and the Data Platform hand-off.
 
-7
-00:00:20.150 --> 00:00:22.817
+9
+00:00:27.675 --> 00:00:30.342
 For account and identifier management,
 
-8
-00:00:22.817 --> 00:00:26.212
+10
+00:00:30.342 --> 00:00:33.737
 it's the register's identity,
 type and owner columns.
 
-9
-00:00:26.212 --> 00:00:30.762
+11
+00:00:33.737 --> 00:00:38.287
 For privileged accounts and authenticator
 management, the high-risk findings.
 
-10
-00:00:30.762 --> 00:00:33.761
+12
+00:00:38.287 --> 00:00:41.287
 For least privilege of the
 reading process itself,
 
-11
-00:00:33.761 --> 00:00:35.975
+13
+00:00:41.287 --> 00:00:43.501
 the permission list and the call list.
 
-12
-00:00:35.975 --> 00:00:38.788
+14
+00:00:43.501 --> 00:00:46.313
 And for the run's integrity, the manifest,
 
-13
-00:00:38.788 --> 00:00:43.050
+15
+00:00:46.313 --> 00:00:50.575
 which holds the tenant, every
 request, and a hash of every file.
 
-14
-00:00:43.050 --> 00:00:47.688
+16
+00:00:50.575 --> 00:00:55.213
 K S I's are FedRAMP twenty X indicators
 for cloud service providers.
 
-15
-00:00:47.688 --> 00:00:52.128
+17
+00:00:55.213 --> 00:00:59.652
 The agency lines its evidence up
 with what its providers report;
 
-16
-00:00:52.128 --> 00:00:54.138
+18
+00:00:59.652 --> 00:01:01.662
 it doesn't report K S I's itself.
 
-17
-00:00:54.138 --> 00:00:57.460
+19
+00:01:01.662 --> 00:01:04.970
 Which file supports which
 indicator is the program's mapping.

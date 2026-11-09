@@ -30,7 +30,7 @@ Identity looks instrumented out of the box, which is exactly the trap. Entra kee
 
 ## Slide 8 — Deploy from code; set retention in the workspace
 
-A setting someone clicked once has no history, no review and no drift check. So the program deploys this one from code, and keeps its list of logged categories in the repository as the record. Then retention. Here's a trap that catches a lot of templates: the retention field on a diagnostic setting no longer does anything at all. Retention is set per table in the workspace, at least six months searchable and a year retrievable, to meet the logging memo. Of course, a setting that saved isn't proof anything is arriving. That's next.
+A setting someone clicked once has no history, no review and no drift check. So the program deploys this one from code, and keeps its list of logged categories in the repository as the record. Then retention. Here's a trap that catches a lot of templates: the retention field on a diagnostic setting no longer does anything at all. Retention is set per table in the workspace, at least six months searchable and a year retrievable, in line with the logging memo. Of course, a setting that saved isn't proof anything is arriving. That's next.
 
 ## Slide 9 — Prove emission, and use Graph as a magnifying glass
 

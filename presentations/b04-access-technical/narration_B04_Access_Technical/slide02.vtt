@@ -36,35 +36,35 @@ with deciding kept
 separate from enforcing.
 
 8
-00:00:27.513 --> 00:00:29.974
+00:00:27.513 --> 00:00:29.676
 The program maps that onto Entra ID.
 
 9
-00:00:29.974 --> 00:00:34.767
+00:00:29.676 --> 00:00:34.750
 Conditional Access is the policy engine,
 token issuance carries the decision out,
 
 10
-00:00:34.767 --> 00:00:38.219
+00:00:34.750 --> 00:00:38.406
 the applications and gateways
 are the enforcement points,
 
 11
-00:00:38.219 --> 00:00:41.813
+00:00:38.406 --> 00:00:42.212
 and Continuous Access Evaluation
 covers the active session.
 
 12
-00:00:41.813 --> 00:00:47.112
+00:00:42.212 --> 00:00:47.512
 That mapping is the program's interpretation,
 not one Microsoft or NIST publishes.
 
 13
-00:00:47.112 --> 00:00:49.853
+00:00:47.512 --> 00:00:50.254
 But it's why this session
 treats a Conditional
 
 14
-00:00:49.853 --> 00:00:52.510
+00:00:50.254 --> 00:00:52.920
 Access policy as the
 unit of access control.

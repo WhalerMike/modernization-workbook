@@ -485,7 +485,7 @@ Why not fold mappings into rules? Cadence: rule changes go through governance; m
   subhead(s, "OSCAL head", "THE CORRESPONDENCE IS THE PROGRAM'S OWN, NOT OSCAL'S", 5.95, 1.5, 6.8);
   table(s, "OSCAL", 1.85, [2.6, 2.0, 2.2], ["Program artifact", "Closest OSCAL model", "Why"], [
     ["Controls the rules support", "Catalog, tailored by a profile", "Points at a published baseline"],
-    ["Mappings for one adapter", "Component definition", "How one component meets controls"],
+    ["Mappings for one adapter", "Component definition", "How one component supports controls"],
     ["All mappings for a system", "SSP implementation", "The plan imports what components declare"],
     ["Runtime findings in a window", "Assessment results", "Evidence from assessment activities"],
     ["Open findings with dates", "POA&M", "What the owner still has to address"],
@@ -496,7 +496,7 @@ Why not fold mappings into rules? Cadence: rule changes go through governance; m
 
 The chapter shows three illustrative fragments. A layer-1 rule for organization codes states the meaning and the pattern and resolves against the organization registry, with its decision record. A layer-2 mapping binds that rule to the Entra directory adapter, a scope, and the controls it supports, AC-2 and CM-6. And a layer-3 finding carries the rule and version, the mapping, the record version, a hash of the collected input, the subject, the result and the drift class. Evaluation is a pure function of rule version, mapping and input. Nothing depends on the operator, the clock at evaluation time or the order objects came back in.
 
-The mapping layer is where a rule meets a control. CM-6, CM-2 with CM-2(2), and CA-7 are all Moderate; CM-6(1), automated management of settings, is High only. A deterministic rule set satisfies them with evidence rather than narrative: rules are the documented settings, mappings bind them, findings are the monitoring.
+The mapping layer is where a rule is tied to a control. CM-6, CM-2 with CM-2(2), and CA-7 are all Moderate; CM-6(1), automated management of settings, is High only. A deterministic rule set satisfies them with evidence rather than narrative: rules are the documented settings, mappings bind them, findings are the monitoring.
 
 The table is the program's own correspondence to OSCAL's three layers. FedRAMP's Key Security Indicators are a separate target that binds providers; an agency maps its own rules to SP 800-53.`,
   "Book 13, Chapter 05 — Deterministic Governance, \"Rules as code,\" \"How rules map to controls.\"");
@@ -522,7 +522,7 @@ The table is the program's own correspondence to OSCAL's three layers. FedRAMP's
 
 The engine compares against a versioned record, not a last-known-good snapshot, and that matters three ways. The expected state is reproducible, so a finding can be re-derived later. Approved change isn't drift: a change through Chapter 04's path updates the record first and the estate converges. The engine does SP 800-128's reconciliation structurally, because an approved change carries a provenance record. And the record can be wrong. If the estate is right and the record stale, the fix is a reviewed change to the record. The engine raises the finding either way; it doesn't decide which side is right.
 
-Detection runs on two clocks. On every proposed change to rules, mappings or registries, checks find schema and provenance drift in the record itself before it reaches the estate. Against the estate, a scheduled comparison reads platforms through adapters, and between runs the engine can watch the platform's own change events, as Book 02 does with the Entra audit log. Each check's cadence is set by its owning book, which is how the program meets CA-7 and CA-7(4).`,
+Detection runs on two clocks. On every proposed change to rules, mappings or registries, checks find schema and provenance drift in the record itself before it reaches the estate. Against the estate, a scheduled comparison reads platforms through adapters, and between runs the engine can watch the platform's own change events, as Book 02 does with the Entra audit log. Each check's cadence is set by its owning book, which is how the program supports, and produces evidence for, CA-7 and CA-7(4).`,
   "Book 13, Chapter 06 — The Drift Engine, \"Drift as a signal,\" \"What the engine compares against,\" \"Cadence.\"");
 }
 
@@ -536,8 +536,8 @@ Detection runs on two clocks. On every proposed change to rules, mappings or reg
     ["Schema", { text: "Built", options: { color: HEX.teal, bold: true } }, { text: "Built", options: { color: HEX.teal, bold: true } }],
     ["Provenance", { text: "Built", options: { color: HEX.teal, bold: true } }, { text: "Built", options: { color: HEX.teal, bold: true } }],
     ["Semantic", "n/a", { text: "Partly built", options: { color: HEX.amber, bold: true } }],
-    ["Authorization", "n/a", { text: "Design only", options: { color: HEX.red, bold: true } }],
-    ["Identity", "n/a", { text: "Design only", options: { color: HEX.red, bold: true } }],
+    ["Authorization", "n/a", { text: "Design only today", options: { color: HEX.red, bold: true } }],
+    ["Identity", "n/a", { text: "Design only today", options: { color: HEX.red, bold: true } }],
   ], { x: 8.25, fontSize: 12, limit: 4.85 });
   callout(s, "Contention", 5.05, 0.95, "FaCodeBranch", HEX.red, "Contention, a write to a demoted copy: ",
     "an authorization finding, critical when the copy is in use, and the sign a second source of truth is growing back.");

@@ -34,31 +34,31 @@ And every approval's timeout outcome
 is reject or cancel, never approve.
 
 8
-00:00:28.125 --> 00:00:32.975
-Step three gives each change class a
+00:00:28.125 --> 00:00:33.162
+Step three gives each operation class a
 lane, following the workbook's design.
 
 9
-00:00:32.975 --> 00:00:36.187
+00:00:33.162 --> 00:00:36.375
 The mapping onto these products
 is the program's inference.
 
 10
-00:00:36.187 --> 00:00:39.103
+00:00:36.375 --> 00:00:39.290
 An autonomous class runs
 as a standard change,
 
 11
-00:00:39.103 --> 00:00:42.938
+00:00:39.290 --> 00:00:43.125
 and the authorizing official
 accepts any class run that way.
 
 12
-00:00:42.938 --> 00:00:46.226
+00:00:43.125 --> 00:00:46.413
 A gated class is an access
 request with approval.
 
 13
-00:00:46.226 --> 00:00:50.400
+00:00:46.413 --> 00:00:50.590
 Step four writes the decisions to
 the record as a reviewed change.

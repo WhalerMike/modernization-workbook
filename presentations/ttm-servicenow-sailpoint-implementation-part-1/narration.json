@@ -7,7 +7,7 @@
   {
     "slide": 2,
     "title": "The seven gates on one page: done when, gap, proof",
-    "say": "Here are the seven gates on one page. The first is done when each product's FedRAMP status, the actions that run from a vendor's cloud, and the integration identities are all recorded and accepted. The second is done when every attribute has one writer, every authority class has one approval system, and every change class has a lane. That closes two of the four gaps. The third is done when HR, Entra ID and Active Directory are correlated on the employee I D and the starting drift is measured. The fourth is done when findings, requests and manual work all arrive in ServiceNow as typed tasks, each with an owner and a clock. Part 2 covers the rest: actuating through a connector or a declared exception, closing only on a re-read, and running the tempo with its evidence."
+    "say": "Here are the seven gates on one page. The first is done when each product's FedRAMP status, the actions that run from a vendor's cloud, and the integration identities are all recorded and accepted. The second is done when every attribute has one writer, every authority class has one approval system, and every operation class has a lane. That closes two of the four gaps. The third is done when HR, Entra ID and Active Directory are correlated on the employee I D and the starting drift is measured. The fourth is done when findings, requests and manual work all arrive in ServiceNow as typed tasks, each with an owner and a clock. Part 2 covers the rest: actuating through a connector or a declared exception, closing only on a re-read, and running the tempo with its evidence."
   },
   {
     "slide": 3,
@@ -36,8 +36,8 @@
   },
   {
     "slide": 8,
-    "title": "G2: a lane for every change class",
-    "say": "Next, every change class gets a lane. This mapping is the program's inference. Autonomous machine changes are SailPoint lifecycle states and birthright access, but only for classes the authorizing official listed. In ServiceNow, they're standard changes, pre-authorized. Gated machine changes are approved SailPoint access requests, or catalog items the spoke carries out, as normal changes where the class needs one. Human decisions are certifications, or a ServiceNow approval or change board. Certificates stay with the certificate platform, outside both products. Disconnected applications run as declared exceptions, with a service desk ticket, a recorded session and an end date. And emergencies go straight to the change board. The authorizing official has to accept any autonomous class in writing."
+    "title": "G2: a lane for every operation class",
+    "say": "Next, every operation class gets a lane. This mapping is the program's inference. Autonomous machine changes are SailPoint lifecycle states and birthright access, but only for classes the authorizing official listed. In ServiceNow, they're standard changes, pre-authorized. Gated machine changes are approved SailPoint access requests, or catalog items the spoke carries out, as normal changes where the class needs one. Human decisions are certifications, or a ServiceNow approval or change board. Certificates stay with the certificate platform, outside both products. Disconnected applications run as declared exceptions, with a service desk ticket, a recorded session and an end date. And emergencies go straight to the change board. The authorizing official has to accept any autonomous class in writing."
   },
   {
     "slide": 9,

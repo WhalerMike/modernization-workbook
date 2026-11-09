@@ -616,36 +616,41 @@
   ],
   [
    1.438,
-   9.375,
-   "This gate meets nist special publication eight hundred fifty-three A C two, account management, and P S seven, external personnel security."
+   9.55,
+   "This gate supports nist special publication eight hundred fifty-three A C two, account management, and P S seven, external personnel security."
   ],
   [
-   10.812,
-   6.775,
-   "It meets I A four, enhancement four, which identifies each person by status, such as contractor."
+   10.988,
+   6.963,
+   "It supports I A four, enhancement four, which identifies each person by status, such as contractor."
   ],
   [
-   17.587,
-   9.613,
-   "And it meets O M B M twenty-two oh-nine's expectation that enterprise identity draws on H R, contract management and personnel security."
+   17.95,
+   9.812,
+   "And it supports O M B M twenty-two oh-nine's expectation that enterprise identity draws on H R, contract management and personnel security."
   ],
   [
-   27.2,
+   27.762,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   35.087,
    13.338,
    "The evidence an I S S O keeps for Gate 2 starts with both reconciliation output folders and their manifests: one run before the contractor leaver ships, and one after, with zero C R oh one."
   ],
   [
-   40.538,
+   48.425,
    3.312,
    "Then the extract and the middleware's provenance manifest."
   ],
   [
-   43.85,
+   51.737,
    3.725,
    "The authority-per-fact table, signed by the governance body."
   ],
   [
-   47.575,
+   55.462,
    4.275,
    "And the privacy office's determination for the register and the card system."
   ]

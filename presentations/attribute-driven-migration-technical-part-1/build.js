@@ -52,7 +52,7 @@ section(M1);
   notes(s,
 `Module 1: the model. Before anything moves, the team needs a shared picture of what the OU tree was doing and where each of those jobs lands in Entra ID, because the target has to reproduce intent, not structure.
 
-So: the four jobs and the mechanism that replaces each; the four tracks the forest's identities move on, HR for people, Intune for end-user devices, Azure Arc for servers and the non-person track for workloads, each with its own source of truth; what the migration accomplishes on each track, how you know you're there, and the federal requirements each track satisfies; a primer on Entra ID's attributes against Active Directory's; the nine stages of the guide's path, each with one decider and a gate that says it's done; and Stage 0, the read-only inventory of the tree, its GPO links and its hand-made delegations.`,
+So: the four jobs and the mechanism that replaces each; the four tracks the forest's identities move on, HR for people, Intune for end-user devices, Azure Arc for servers and the non-person track for workloads, each with its own source of truth; what the migration accomplishes on each track, how you know you're there, and the federal requirements each track supports; a primer on Entra ID's attributes against Active Directory's; the nine stages of the guide's path, each with one decider and a gate that says it's done; and Stage 0, the read-only inventory of the tree, its GPO links and its hand-made delegations.`,
   `${G}, "What this migration accomplishes," "Four tracks," "Attributes," "The path on one page," Stage 0; Book 01, Chapter 04; Book 02, Chapters 07–09.`);
 }
 ["oujobs", "tracks", "accomplish", "federal", "model", "mapping", "stores", "stagemap", "stage0"].forEach((k) => SL[k]());
@@ -190,7 +190,7 @@ sourceSlide("Federal requirements: full citations", [
   "NIST, FIPS 201-3, Personal Identity Verification (PIV) of Federal Employees and Contractors, January 2022, §2.9.1, §2.9.4, §2.10.2.  ·  NIST, SP 800-63-4, Digital Identity Guidelines, July 2025 (supersedes SP 800-63-3).",
   "CISA, BOD 25-01, Implementing Secure Practices for Cloud Services, December 17, 2024, and its Required Configurations (SCuBA policies such as MS.AAD.1.1v1, MS.AAD.3.1v1, MS.AAD.5.1v1–5.3v1).",
   "Microsoft Learn, Plan for Microsoft 365 Government GCC deployments (FedRAMP Moderate), accessed Oct. 29, 2026; the NIST baseline and the FedRAMP class are separate facts (Book 14, Ch 03).",
-  "Mapping: the guide's \"The federal requirements each track satisfies,\" reusing Book 02 App A, Book 03 Ch 11, Book 05 Ch 10, Book 06 App A, Book 17 App A and Books 01, 11, 12, 14. The program's reading; the authorizing official decides.",
+  "Mapping: the guide's \"The federal requirements each track supports,\" reusing Book 02 App A, Book 03 Ch 11, Book 05 Ch 10, Book 06 App A, Book 17 App A and Books 01, 11, 12, 14. The program's reading; the authorizing official decides.",
 ]);
 
 finish(OUT);

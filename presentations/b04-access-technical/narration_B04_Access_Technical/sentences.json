@@ -64,21 +64,16 @@
   ],
   [
    27.512,
-   2.462,
-   "The program maps that onto Entra ID."
+   14.7,
+   "The program maps that onto Entra I D. Conditional Access is the policy engine, token issuance carries the decision out, the applications and gateways are the enforcement points, and Continuous Access Evaluation covers the active session."
   ],
   [
-   29.975,
-   11.838,
-   "Conditional Access is the policy engine, token issuance carries the decision out, the applications and gateways are the enforcement points, and Continuous Access Evaluation covers the active session."
-  ],
-  [
-   41.812,
+   42.212,
    5.3,
    "That mapping is the program's interpretation, not one Microsoft or nist publishes."
   ],
   [
-   47.112,
+   47.513,
    5.338,
    "But it's why this session treats a Conditional Access policy as the unit of access control."
   ]

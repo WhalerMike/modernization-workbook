@@ -99,7 +99,7 @@ Product facts are the vendors' own statements as the guide footnotes them. The k
   tag(s, "What");
   const tb = table(s, "Gates", 1.45, [2.1, 5.85, 0.95, 3.25], ["Gate", "Done when", "Gap", "Validate with"], [
     ["G1 Boundary", "Each product's FedRAMP status, the actions that run from a vendor cloud, and the integration identities are recorded and accepted", "—", "VK-NPI-02, VK-NPI-05; manual record"],
-    ["G2 Writers and approvers", "One writer per attribute and one approver system per authority class decided; each change class has a lane", "2, 4", "writer_check.py; manual"],
+    ["G2 Writers and approvers", "One writer per attribute and one approver system per authority class decided; each operation class has a lane", "2, 4", "writer_check.py; manual"],
     ["G3 Sources and drift", "HR, Entra ID and AD aggregated and correlated on employeeId; the starting drift measured", "—", "Kit drift tests; VK-HR-01, VK-HR-04"],
     ["G4 Front door", "Drift events, requests and disconnected-application work arrive in ServiceNow as typed, owned, clocked tasks", "—", "Kit contract and script tests"],
     ["G5 Actuation", "Each lane actuates through a connector or a declared exception, under a service identity", "3", "No automated check yet"],
@@ -114,7 +114,7 @@ Product facts are the vendors' own statements as the guide footnotes them. The k
 
 G1, the boundary, is done when each product's FedRAMP status, the actions that run from a vendor's cloud, and the integration identities are recorded and accepted. VK-NPI-02 and VK-NPI-05 check the identities; the rest is a manual record.
 
-G2, writers and approvers, is done when one writer per attribute and one approver system per authority class are decided, and each change class has a lane. It closes gaps 2 and 4. The developer workbook's writer check reads the provisioning exports; the rest is manual.
+G2, writers and approvers, is done when one writer per attribute and one approver system per authority class are decided, and each operation class has a lane. It closes gaps 2 and 4. The developer workbook's writer check reads the provisioning exports; the rest is manual.
 
 G3, sources and starting drift, is done when HR, Entra ID and Active Directory are aggregated in SailPoint and correlated on employeeId, and the starting drift is measured. The kit's drift tests and VK-HR-01 and VK-HR-04 prove part of it.
 
@@ -294,7 +294,7 @@ Step 4 writes the decisions to the authoritative record as a reviewed change, wi
 
 // ================================================================== 8 G2: lanes
 {
-  const s = content(SG2, "G2: a lane for every change class");
+  const s = content(SG2, "G2: a lane for every operation class");
   tag(s, "What");
   const tb = table(s, "Lanes", 1.45, [2.5, 5.6, 4.05], ["Lane (Book 13)", "On these products", "Change record in ServiceNow"], [
     ["Machine, autonomous (L4)", "SailPoint lifecycle states and birthright access, for classes the authorizing official enumerated", "Standard change: pre-authorized, no peer or CAB step"],
@@ -306,9 +306,9 @@ Step 4 writes the decisions to the authoritative record as a reviewed change, wi
   ], { fontSize: 11.5, limit: 6.0 });
   line(s, "Inf", "The mapping is the program's inference. The authorizing official accepts, in writing, any class run autonomously.",
     tb + 0.2, 0.4, 13.5);
-  sources(s, "Sources: Guide, G2 step 3 and the lanes table (inference; ServiceNow change types as footnoted); Book 13, Appendix B (change classes and lanes).");
+  sources(s, "Sources: Guide, G2 step 3 and the lanes table (inference; ServiceNow change types as footnoted); Book 13, Appendix B (operation classes and lanes).");
   notes(s,
-`Step 3 of G2 assigns each change class a lane on these products, from Book 13's Appendix B. The mapping is the program's inference, and the authorizing official accepts any class run autonomously.
+`Step 3 of G2 assigns each operation class a lane on these products, from Book 13's Appendix B. The mapping is the program's inference, and the authorizing official accepts any class run autonomously.
 
 Machine, autonomous, L4: SailPoint lifecycle states and birthright access, only for classes the authorizing official enumerated. In ServiceNow that's a standard change: pre-authorized, with no peer or CAB step.
 
@@ -321,7 +321,7 @@ Protocol-enforced: neither product. Certificates stay with the certificate lifec
 Declared exception: a Service Desk ticket for a disconnected application, a recorded session and an end date, with the ticket and an entry in the exception register.
 
 And emergency change: a ServiceNow emergency change, with a SailPoint workflow or a manual lifecycle-state change doing the work. ServiceNow's emergency changes go straight to CAB authorization.`,
-  `${IG}, Step 2, step 3 and "Book 13's lanes on ServiceNow and SailPoint (inference)"; Book 13, Appendix B — "Change classes and their lanes," "Certificates and the CLM platform."`);
+  `${IG}, Step 2, step 3 and "Book 13's lanes on ServiceNow and SailPoint (inference)"; Book 13, Appendix B — "Operation classes and their lanes," "Certificates and the CLM platform."`);
 }
 
 // ================================================================== 9 G2: in code
@@ -371,7 +371,7 @@ The guide's Validate step is plain about the limits: the check reads exports. It
   tag(s, "What");
   const tb = table(s, "Req", 1.45, [4.6, 7.55], ["Requirement", "Evidence the ISSO keeps"], [
     ["SP 800-53 AC-5, Separation of Duties (Moderate)", "The approver-per-class table, merged with its review; the requester never approves"],
-    ["SP 800-53 CM-3, Configuration Change Control (Moderate)", "The lane table: each change class with a lane and a change-record type"],
+    ["SP 800-53 CM-3, Configuration Change Control (Moderate)", "The lane table: each operation class with a lane and a change-record type"],
     ["SP 800-53 AC-2, Account Management", "The attribute map with each attribute's writer"],
     ["Book 13's L4 acceptance", "The authorizing official's signed acceptance of any autonomous class"],
   ], { fontSize: 12, limit: 6.6 });
@@ -389,9 +389,9 @@ The guide's Validate step is plain about the limits: the check reads exports. It
   notes(s,
 `G2's federal requirements, and the evidence the ISSO keeps.
 
-AC-5, separation of duties, at Moderate: one approver system per class, and the requester never approves. The evidence is the approver-per-class table, merged with its review. CM-3, configuration change control: each change class has a lane and a change-record type, so the lane table. AC-2, account management: one writer per attribute keeps account changes traceable to the source, so the attribute map with each attribute's writer. And Book 13's L4 acceptance: any autonomous class is accepted in writing by the authorizing official, so the signed class acceptance.
+AC-5, separation of duties, at Moderate: one approver system per class, and the requester never approves. The evidence is the approver-per-class table, merged with its review. CM-3, configuration change control: each operation class has a lane and a change-record type, so the lane table. AC-2, account management: one writer per attribute keeps account changes traceable to the source, so the attribute map with each attribute's writer. And Book 13's L4 acceptance: any autonomous class is accepted in writing by the authorizing official, so the signed class acceptance.
 
-Validate. Automated and read-only, writer_check.py compares the Entra inbound provisioning mappings with SailPoint's provisioning policies and flags any attribute with two writers. It reads exports; it doesn't check approver systems or lanes. The manual part: every HR-mastered attribute has exactly one writer in the attribute map, every authority class has exactly one approver system, every change class has a lane and a change-record type, and the decisions are merged in the record.
+Validate. Automated and read-only, writer_check.py compares the Entra inbound provisioning mappings with SailPoint's provisioning policies and flags any attribute with two writers. It reads exports; it doesn't check approver systems or lanes. The manual part: every HR-mastered attribute has exactly one writer in the attribute map, every authority class has exactly one approver system, every operation class has a lane and a change-record type, and the decisions are merged in the record.
 
 Availability: nothing new is used. Book 03's API-driven inbound provisioning, if it's the writer, is available in Azure for US Government, as are PIM, entitlement management, access reviews and Lifecycle Workflows. In GCC, Entra ID is the commercial service.
 
@@ -647,7 +647,7 @@ sourceSlide("Sources: orientation and G1", [
 sourceSlide("Sources: G2 and G3", [
   "Guide: Step 2 (steps 1–4, the lanes table, requirements and evidence, availability, interim path, Validate) and Step 3 (steps 1–6, requirements and evidence, availability, interim path, Validate).",
   "Vendor pages the guide footnotes: SailPoint Oracle HCM Cloud supported features; SailPoint access request approvals; ServiceNow change types; SailPoint Entra SaaS supported features and Azure Government endpoint configuration; SailPoint Native Change Detection; Microsoft Graph national cloud deployments; Entra feature availability.",
-  "Book 03, Ch 05 (the middleware's duties), Ch 06 (program attribute map), Ch 11 (drift classes). Book 15, Ch 03 (authority classes). Book 13, Ch 09 (who approves rule changes); Appendix B (change classes and lanes). Integration kit page, Build 3; how it's tested.",
+  "Book 03, Ch 05 (the middleware's duties), Ch 06 (program attribute map), Ch 11 (drift classes). Book 15, Ch 03 (authority classes). Book 13, Ch 09 (who approves rule changes); Appendix B (operation classes and lanes). Integration kit page, Build 3; how it's tested.",
   "Developer workbook, Chapter 08 (writer_check.py; Lab 1) and Chapter 06 (identity_drift.py; drift_compare.py; Lab 1). examples/servicenow-sailpoint: clients/python/writer_check.py, identity_drift.py, drift_compare.py, tests/fixtures (writers, hr_extract, hr_extract_day2).",
 ]);
 sourceSlide("Sources: G4 and the handoff", [

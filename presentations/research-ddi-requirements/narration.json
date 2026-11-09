@@ -27,7 +27,7 @@
   {
     "slide": 6,
     "title": "IPAM as the address authority, DHCP that stays up",
-    "say": "The fourth and fifth capabilities are about addresses. Left alone, each cloud's address manager allocates on its own, which recreates split-brain for addresses. So the book's rule is simple: every block is reserved in the enterprise IPAM before any cloud network is created. Discovery is where IPAM meets the directives, because you can't scan space you haven't recorded. And IPv4 and IPv6 have to be planned in the same tool. DHCP has to stay up and stay honest. Failover partners share the same DNS update credentials, or a takeover leaves names nobody can update. And in the two products checked, failover is documented for IPv4 only, which matters under the IPv6 targets. Then, automation and logging."
+    "say": "The fourth and fifth capabilities are about addresses. Left alone, each cloud's address manager allocates on its own, which recreates split-brain for addresses. So the book's rule is simple: every block is reserved in the enterprise IPAM before any cloud network is created. Discovery is where IPAM supports the directives, because you can't scan space you haven't recorded. And IPv4 and IPv6 have to be planned in the same tool. DHCP has to stay up and stay honest. Failover partners share the same DNS update credentials, or a takeover leaves names nobody can update. And in the two products checked, failover is documented for IPv4 only, which matters under the IPv6 targets. Then, automation and logging."
   },
   {
     "slide": 7,

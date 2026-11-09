@@ -18,7 +18,7 @@ The sign-in baseline is short: multifactor authentication for everyone, legacy s
 
 ## Slide 5 — Emergency access: the one standing exception
 
-Emergency access accounts are how you get back in when everything else fails: sign-in, multifactor, or a policy mistake. They're the only standing administrator rights the program accepts by design, so they're governed tightly. At least two cloud-only accounts, with phishing-resistant sign-in, excluded from blocking policies through one group, and an alert on every use. They're tested at least every ninety days. And they must work before any administrator role becomes just-in-time, or the agency can lock itself out of its own tenant. Next, the first HR feed.
+Emergency access accounts are how you get back in when everything else fails: sign-in, multifactor, or a policy mistake. They're the only standing administrator rights the program accepts by design, so they're governed tightly. Two cloud-only accounts, with phishing-resistant sign-in, excluded from blocking policies through one group, and an alert on every use. They're tested at least every ninety days. And they must work before any administrator role becomes just-in-time, or the agency can lock itself out of its own tenant. Next, the first HR feed.
 
 ## Slide 6 — The first HR feed, for a foundation scope
 

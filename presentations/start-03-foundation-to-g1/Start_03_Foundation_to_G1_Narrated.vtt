@@ -98,35 +98,35 @@ The cloud directory is flat, so
 scope has to be declared on purpose.
 
 22
-00:01:22.938 --> 00:01:27.415
+00:01:22.938 --> 00:01:27.479
 Phase one does that with dynamic
 groups and administrative units (AUs),
 
 23
-00:01:27.415 --> 00:01:31.662
+00:01:27.479 --> 00:01:31.787
 whose membership comes from attributes
 like department, fed by HR.
 
 24
-00:01:31.662 --> 00:01:32.788
+00:01:31.787 --> 00:01:32.913
 Two things to know.
 
 25
-00:01:32.788 --> 00:01:36.213
+00:01:32.913 --> 00:01:36.338
 AUs limit who can change an
 account, not who can see it.
 
 26
-00:01:36.213 --> 00:01:38.577
+00:01:36.338 --> 00:01:38.702
 And membership updates take hours,
 
 27
-00:01:38.577 --> 00:01:42.163
+00:01:38.702 --> 00:01:42.288
 sometimes more than a day, so
 plan in hours, not minutes.
 
 28
-00:01:42.163 --> 00:01:45.800
+00:01:42.288 --> 00:01:45.920
 Next, the baseline every
 sign-in has to meet.
 
@@ -178,50 +178,50 @@ That makes the emergency
 accounts critical.
 
 39
-00:02:26.960 --> 00:02:32.313
+00:02:26.960 --> 00:02:32.397
 Emergency access accounts are how you
 get back in when everything else fails:
 
 40
-00:02:32.313 --> 00:02:35.073
+00:02:32.397 --> 00:02:35.171
 sign-in, multifactor, or a policy mistake.
 
 41
-00:02:35.073 --> 00:02:37.882
+00:02:35.171 --> 00:02:38.025
 They're the only standing
 administrator rights the
 
 42
-00:02:37.882 --> 00:02:40.822
+00:02:38.025 --> 00:02:41.051
 program accepts by design,
 so they're governed tightly.
 
 43
-00:02:40.822 --> 00:02:45.086
-At least two cloud-only accounts,
-with phishing-resistant sign-in,
+00:02:41.051 --> 00:02:44.820
+Two cloud-only accounts, with
+phishing-resistant sign-in,
 
 44
-00:02:45.086 --> 00:02:50.060
+00:02:44.820 --> 00:02:49.873
 excluded from blocking policies through
 one group, and an alert on every use.
 
 45
-00:02:50.060 --> 00:02:52.498
+00:02:49.873 --> 00:02:52.366
 They're tested at least every ninety days.
 
 46
-00:02:52.498 --> 00:02:56.752
+00:02:52.366 --> 00:02:56.684
 And they must work before any
 administrator role becomes just-in-time,
 
 47
-00:02:56.752 --> 00:02:59.760
+00:02:56.684 --> 00:02:59.739
 or the agency can lock itself
 out of its own tenant.
 
 48
-00:02:59.760 --> 00:03:02.200
+00:02:59.739 --> 00:03:02.200
 Next, the first HR feed.
 
 49

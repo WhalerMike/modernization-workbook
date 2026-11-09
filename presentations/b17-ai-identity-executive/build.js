@@ -604,7 +604,7 @@ IA-9, service identification and authentication, describes an AI system calling 
   tag(s, "How");
   const clocks = [
     ["At least annually", "AI use-case inventory", "Vintage comparison; new and retired parts"],
-    ["Every two years", "Compliance plan; next in 2027", "States how the agency meets the memo"],
+    ["Every two years", "Compliance plan; next in 2027", "States how the agency intends to comply with the memo"],
     ["Yearly; 30 days", "Waivers certified, reported", "Each is an exception with an expiry"],
     ["Annually (FISMA)", "Security testing", "Covers the AI controls, IA-9 included"],
   ];

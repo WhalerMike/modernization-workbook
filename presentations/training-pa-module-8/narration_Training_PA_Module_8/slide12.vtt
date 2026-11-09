@@ -31,33 +31,33 @@ you pass day one's evidence
 manifest as the previous manifest.
 
 7
-00:00:24.650 --> 00:00:29.219
+00:00:24.650 --> 00:00:29.168
 The new package's hash starts
-seven six three d four a one f.
+f three zero c c four a d.
 
 8
-00:00:29.219 --> 00:00:32.525
+00:00:29.168 --> 00:00:32.825
 Verify it: fifteen files,
 and the same hash.
 
 9
-00:00:32.525 --> 00:00:35.169
+00:00:32.825 --> 00:00:35.469
 Then check it the way a reviewer would,
 
 10
-00:00:35.169 --> 00:00:38.325
+00:00:35.469 --> 00:00:38.625
 with sha256sum alone,
 checking the sums file.
 
 11
-00:00:38.325 --> 00:00:40.850
+00:00:38.625 --> 00:00:41.150
 It prints nothing and exits with zero.
 
 12
-00:00:40.850 --> 00:00:42.624
+00:00:41.150 --> 00:00:42.924
 In the evidence manifest,
 
 13
-00:00:42.624 --> 00:00:46.490
+00:00:42.924 --> 00:00:46.780
 the previous package's hash is
 day one's: that's the chain.

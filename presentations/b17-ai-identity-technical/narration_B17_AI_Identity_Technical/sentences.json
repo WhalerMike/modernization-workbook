@@ -113,41 +113,41 @@
  "4": [
   [
    0.05,
-   2.05,
-   "Most AI didn't come through the front door."
+   1.925,
+   "Most A I didn't come through the front door."
   ],
   [
-   2.1,
+   1.975,
    6.325,
    "It came as a vendor pilot, a key in a config file, or a feature switched on in software you already had."
   ],
   [
-   8.425,
+   8.3,
    9.562,
    "So it arrived without what an employee's account gets automatically: an owner, a place in the organization, a governed credential, reviews and an end date."
   ],
   [
-   17.988,
+   17.863,
    2.475,
    "The good news is you don't need new controls."
   ],
   [
-   20.462,
-   7.075,
-   "The account, identifier, authenticator and least-privilege controls you already meet apply to non-person accounts too."
+   20.337,
+   7.5,
+   "The account, identifier, authenticator and least-privilege controls you already implement apply to non-person accounts too."
   ],
   [
-   27.538,
+   27.837,
    1.875,
    "The real gap is coverage."
   ],
   [
-   29.413,
-   4.9,
-   "The AI's account just isn't in the inventory those controls are tested against."
+   29.712,
+   4.7,
+   "The A I's account just isn't in the inventory those controls are tested against."
   ],
   [
-   34.312,
+   34.413,
    2.112,
    "Here's what closing that gap looks like."
   ]
@@ -155,31 +155,31 @@
  "5": [
   [
    0.05,
-   15.688,
-   "The program's answer is seven things every AI identity needs: one record, a named human owner, a place in the organization, credentials with no stored secrets, monitoring, a lifecycle that ends, and evidence the authorizing official can use."
+   15.625,
+   "The program's answer is seven things every A I identity needs: one record, a named human owner, a place in the organization, credentials with no stored secrets, monitoring, a lifecycle that ends, and evidence the authorizing official can use."
   ],
   [
-   15.738,
-   3.962,
-   "Each one maps to a chapter, and to controls you already meet."
+   15.675,
+   4.2,
+   "Each one maps to a chapter, and to controls you already implement."
   ],
   [
-   19.7,
+   19.875,
    4.075,
    "Be clear that this is the program's design, not a new federal rule."
   ],
   [
-   23.775,
+   23.95,
    1.738,
    "And keep the order practical."
   ],
   [
-   25.512,
+   25.688,
    7.925,
    "Start with agents, the systems that can act, because that's where the damage would be, then work outward to the systems that only answer."
   ],
   [
-   33.438,
+   33.612,
    2.562,
    "Now, what do the federal rules actually say?"
   ]

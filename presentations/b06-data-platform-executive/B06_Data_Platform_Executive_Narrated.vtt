@@ -64,1107 +64,1107 @@ Let's start with why the
 database is where this hides.
 
 14
-00:00:49.650 --> 00:00:52.907
+00:00:49.840 --> 00:00:53.097
 Why does legacy authentication
 hide in the database?
 
 15
-00:00:52.907 --> 00:00:57.296
+00:00:53.097 --> 00:00:57.486
 Because SQL Server doesn't check
 a Windows user's password itself.
 
 16
-00:00:57.296 --> 00:01:00.979
+00:00:57.486 --> 00:01:01.169
 It trusts whatever Windows tells
 it, and you can't switch that off.
 
 17
-00:01:00.979 --> 00:01:04.394
+00:01:01.169 --> 00:01:04.584
 Which protocol a connection
 actually used is visible
 
 18
-00:01:04.394 --> 00:01:07.416
+00:01:04.584 --> 00:01:07.606
 only from inside the engine,
 one session at a time.
 
 19
-00:01:07.416 --> 00:01:11.983
+00:01:07.606 --> 00:01:12.173
 The dependencies sit in connection strings,
 service accounts and linked servers,
 
 20
-00:01:11.983 --> 00:01:14.611
+00:01:12.173 --> 00:01:14.801
 and none of them reaches
 an identity dashboard.
 
 21
-00:01:14.611 --> 00:01:17.915
+00:01:14.801 --> 00:01:18.105
 Of the four ways a connection
 can authenticate today,
 
 22
-00:01:17.915 --> 00:01:22.055
+00:01:18.105 --> 00:01:22.245
 only an Entra token passes through
 multifactor and device checks.
 
 23
-00:01:22.055 --> 00:01:25.786
+00:01:22.245 --> 00:01:25.976
 So when NTLM goes and
 Conditional Access arrives,
 
 24
-00:01:25.786 --> 00:01:28.605
+00:01:25.976 --> 00:01:28.795
 the database breaks last and hardest.
 
 25
-00:01:28.605 --> 00:01:29.984
+00:01:28.795 --> 00:01:30.174
 It needs its own plan.
 
 26
-00:01:29.984 --> 00:01:31.950
+00:01:30.174 --> 00:01:32.140
 And the worst of it is silent.
 
 27
-00:01:35.700 --> 00:01:37.475
+00:01:35.890 --> 00:01:37.665
 Here's the part nobody sees.
 
 28
-00:01:37.475 --> 00:01:41.053
+00:01:37.665 --> 00:01:41.243
 When an instance's service
 principal name is missing,
 
 29
-00:01:41.053 --> 00:01:45.850
+00:01:41.243 --> 00:01:46.040
 Kerberos quietly gives way to NTLM,
 and the application still connects.
 
 30
-00:01:45.850 --> 00:01:50.551
+00:01:46.040 --> 00:01:50.741
 The engine doesn't log which protocol
 each session used, so an estate that
 
 31
-00:01:50.551 --> 00:01:55.800
+00:01:50.741 --> 00:01:55.990
 believes it runs Kerberos can be running
 NTLM on a large share of its connections.
 
 32
-00:01:55.800 --> 00:01:57.338
+00:01:55.990 --> 00:01:57.528
 Only measurement tells you.
 
 33
-00:01:57.338 --> 00:02:01.658
+00:01:57.528 --> 00:02:01.848
 Meanwhile the identities themselves
 are anchored in Active Directory,
 
 34
-00:02:01.658 --> 00:02:06.051
+00:02:01.848 --> 00:02:06.241
 or in a password the instance checks on
 its own, like the built-in sa account.
 
 35
-00:02:06.051 --> 00:02:07.625
+00:02:06.241 --> 00:02:07.815
 None of this was a mistake.
 
 36
-00:02:07.625 --> 00:02:11.700
+00:02:07.815 --> 00:02:11.890
 It was good engineering for a world
 where everything was domain-joined.
 
 37
-00:02:11.700 --> 00:02:15.500
+00:02:11.890 --> 00:02:15.690
 That world is ending, and
 three drivers are ending it.
 
 38
-00:02:19.250 --> 00:02:21.599
+00:02:19.440 --> 00:02:21.789
 Three forces end this inheritance.
 
 39
-00:02:21.599 --> 00:02:24.621
+00:02:21.789 --> 00:02:24.811
 NTLM is going: Microsoft
 has deprecated it,
 
 40
-00:02:24.621 --> 00:02:28.074
+00:02:24.811 --> 00:02:28.264
 and the program has
 committed to eliminating it.
 
 41
-00:02:28.074 --> 00:02:33.539
+00:02:28.264 --> 00:02:33.729
 Zero trust needs the Entra identity
 plane in front of every human sign-in.
 
 42
-00:02:33.539 --> 00:02:36.436
+00:02:33.729 --> 00:02:36.626
 And when Active Directory
 stops being the source,
 
 43
-00:02:36.436 --> 00:02:39.102
+00:02:36.626 --> 00:02:39.292
 the engine needs an
 identity that outlives it.
 
 44
-00:02:39.102 --> 00:02:43.528
+00:02:39.292 --> 00:02:43.718
 April first, 2027 is the
 program's own NTLM block date,
 
 45
-00:02:43.528 --> 00:02:46.649
+00:02:43.718 --> 00:02:46.839
 not a Microsoft or federal deadline.
 
 46
-00:02:46.649 --> 00:02:52.183
+00:02:46.839 --> 00:02:52.373
 The outside dates in 2027 are support dates
 for older Windows Server and SQL Server,
 
 47
-00:02:52.183 --> 00:02:55.241
+00:02:52.373 --> 00:02:55.431
 and none of those versions
 can take Entra logins.
 
 48
-00:02:55.241 --> 00:02:59.818
+00:02:55.431 --> 00:03:00.008
 So the decision is to hold the
 order: count and consolidate,
 
 49
-00:02:59.818 --> 00:03:02.870
+00:03:00.008 --> 00:03:03.060
 enable Arc, move logins, then block NTLM.
 
 50
-00:03:02.870 --> 00:03:04.960
+00:03:03.060 --> 00:03:05.150
 Counting comes first.
 
 51
-00:03:08.710 --> 00:03:11.210
+00:03:08.900 --> 00:03:11.400
 Before anyone decides anything, count.
 
 52
-00:03:11.210 --> 00:03:16.311
+00:03:11.400 --> 00:03:16.501
 Twenty years of growth leave three kinds
 of sprawl: more instances than anyone
 
 53
-00:03:16.311 --> 00:03:21.648
+00:03:16.501 --> 00:03:21.838
 remembers, databases nobody can account
 for, and dependencies that cross domains.
 
 54
-00:03:21.648 --> 00:03:26.118
+00:03:21.838 --> 00:03:26.308
 No single tool finds them all, so
 the program combines a network sweep,
 
 55
-00:03:26.118 --> 00:03:29.333
+00:03:26.308 --> 00:03:29.523
 the Kerberos registration
 trail and Microsoft's
 
 56
-00:03:29.333 --> 00:03:32.548
+00:03:29.523 --> 00:03:32.738
 assessment tools into one
 inventory it can re-run.
 
 57
-00:03:32.548 --> 00:03:34.835
+00:03:32.738 --> 00:03:35.025
 The book's illustration makes the point.
 
 58
-00:03:34.835 --> 00:03:37.587
+00:03:35.025 --> 00:03:37.777
 A team that believes it
 has forty instances,
 
 59
-00:03:37.587 --> 00:03:41.410
+00:03:37.777 --> 00:03:41.600
 when discovery finds a hundred
 and ten, isn't behind schedule.
 
 60
-00:03:41.410 --> 00:03:44.622
+00:03:41.600 --> 00:03:44.812
 Its whole estimate is wrong
 by nearly three times.
 
 61
-00:03:44.622 --> 00:03:49.122
+00:03:44.812 --> 00:03:49.312
 Missing instances surface at the worst
 possible moment unless you look first.
 
 62
-00:03:49.122 --> 00:03:51.340
+00:03:49.312 --> 00:03:51.530
 Then each one needs a verdict.
 
 63
-00:03:55.090 --> 00:03:58.539
+00:03:55.280 --> 00:03:58.729
 Every instance gets one of
 three verdicts: retain it,
 
 64
-00:03:58.539 --> 00:04:01.988
+00:03:58.729 --> 00:04:02.178
 consolidate its workload
 into a target, or retire it.
 
 65
-00:04:01.988 --> 00:04:04.327
+00:04:02.178 --> 00:04:04.517
 Three lenses make the call defensible.
 
 66
-00:04:04.327 --> 00:04:05.508
+00:04:04.517 --> 00:04:05.698
 How busy is it?
 
 67
-00:04:05.508 --> 00:04:08.699
+00:04:05.698 --> 00:04:08.889
 A database untouched for
 over a year is a zombie,
 
 68
-00:04:08.699 --> 00:04:12.601
+00:04:08.889 --> 00:04:12.791
 and retiring it removes every
 forgotten login it carries.
 
 69
-00:04:12.601 --> 00:04:13.774
+00:04:12.791 --> 00:04:13.964
 What version is it?
 
 70
-00:04:13.774 --> 00:04:17.089
+00:04:13.964 --> 00:04:17.279
 Entra logins need SQL
 Server 2022 or later,
 
 71
-00:04:17.089 --> 00:04:21.363
+00:04:17.279 --> 00:04:21.553
 so most old engines are better
 consolidated than upgraded.
 
 72
-00:04:21.363 --> 00:04:22.656
+00:04:21.553 --> 00:04:22.846
 And what depends on it?
 
 73
-00:04:22.656 --> 00:04:26.715
+00:04:22.846 --> 00:04:26.905
 A job that runs once a quarter can
 make an idle instance load-bearing.
 
 74
-00:04:26.715 --> 00:04:31.748
+00:04:26.905 --> 00:04:31.938
 The decision for the CIO and data
 leadership: a verdict for every instance
 
 75
-00:04:31.748 --> 00:04:36.533
+00:04:31.938 --> 00:04:36.723
 and a named target, so authentication
 migrates once, in its final shape.
 
 76
-00:04:36.533 --> 00:04:37.890
+00:04:36.723 --> 00:04:38.080
 Then the audit.
 
 77
-00:04:41.640 --> 00:04:45.249
+00:04:41.830 --> 00:04:45.439
 The audit asks one question
 of every surviving instance:
 
 78
-00:04:45.249 --> 00:04:47.706
+00:04:45.439 --> 00:04:47.896
 what is actually authenticating here?
 
 79
-00:04:47.706 --> 00:04:53.568
+00:04:47.896 --> 00:04:53.758
 It records the logins, the mode, the service
 account and the Kerberos registration,
 
 80
-00:04:53.568 --> 00:04:56.502
+00:04:53.758 --> 00:04:56.692
 and it flags the worst
 first: an enabled sa,
 
 81
-00:04:56.502 --> 00:04:59.754
+00:04:56.692 --> 00:04:59.944
 active SQL logins, missing registrations.
 
 82
-00:04:59.754 --> 00:05:02.814
+00:04:59.944 --> 00:05:03.004
 Each instance then lands in
 one of three categories.
 
 83
-00:05:02.814 --> 00:05:04.100
+00:05:03.004 --> 00:05:04.290
 Ready for Entra now.
 
 84
-00:05:04.100 --> 00:05:06.248
+00:05:04.290 --> 00:05:06.438
 Ready once Azure Arc is installed.
 
 85
-00:05:06.248 --> 00:05:11.459
+00:05:06.438 --> 00:05:11.649
 Or blocked, because the version is older
 than 2022 or it's a failover cluster.
 
 86
-00:05:11.459 --> 00:05:16.227
+00:05:11.649 --> 00:05:16.417
 The decision: data leadership upgrades
 or retires each blocked instance it's
 
 87
-00:05:16.227 --> 00:05:19.207
+00:05:16.417 --> 00:05:19.397
 keeping, and anything that
 can't move in time goes
 
 88
-00:05:19.207 --> 00:05:22.261
+00:05:19.397 --> 00:05:22.451
 to the authorizing official
 as a dated exception.
 
 89
-00:05:22.261 --> 00:05:24.010
+00:05:22.451 --> 00:05:24.200
 Here's the destination.
 
 90
-00:05:27.760 --> 00:05:29.673
+00:05:27.950 --> 00:05:29.863
 The destination is simple to say.
 
 91
-00:05:29.673 --> 00:05:32.009
+00:05:29.863 --> 00:05:32.199
 Every connection carries an Entra token.
 
 92
-00:05:32.009 --> 00:05:35.773
+00:05:32.199 --> 00:05:35.963
 Azure Arc gives each instance
 an identity in Entra.
 
 93
-00:05:35.773 --> 00:05:39.145
+00:05:35.963 --> 00:05:39.335
 People, groups and
 applications get Entra logins,
 
 94
-00:05:39.145 --> 00:05:41.860
+00:05:39.335 --> 00:05:42.050
 and sa is disabled rather than migrated.
 
 95
-00:05:41.860 --> 00:05:47.036
+00:05:42.050 --> 00:05:47.226
 Multifactor is enforced by Conditional
 Access before a token is ever issued;
 
 96
-00:05:47.036 --> 00:05:49.948
+00:05:47.226 --> 00:05:50.138
 the engine itself has
 no multifactor logic.
 
 97
-00:05:49.948 --> 00:05:51.535
+00:05:50.138 --> 00:05:51.725
 One point saves months.
 
 98
-00:05:51.535 --> 00:05:55.335
+00:05:51.725 --> 00:05:55.525
 The engine can move to Entra while
 the server is still domain-joined.
 
 99
-00:05:55.335 --> 00:05:57.873
+00:05:55.525 --> 00:05:58.063
 Waiting for Windows sign-in to move first
 
 100
-00:05:57.873 --> 00:06:00.485
+00:05:58.063 --> 00:06:00.675
 is the most common
 cause of needless delay.
 
 101
-00:06:00.485 --> 00:06:04.040
+00:06:00.675 --> 00:06:04.230
 So the decision for server
 infrastructure: onboard Arc now,
 
 102
-00:06:04.040 --> 00:06:06.797
+00:06:04.230 --> 00:06:06.987
 starting with the instances
 that need it most.
 
 103
-00:06:06.797 --> 00:06:09.150
+00:06:06.987 --> 00:06:09.340
 Five positions govern that work.
 
 104
-00:06:12.900 --> 00:06:18.393
+00:06:13.090 --> 00:06:18.583
 The engine-authentication decision, still
 formally proposed, settles five positions.
 
 105
-00:06:18.393 --> 00:06:20.318
+00:06:18.583 --> 00:06:20.508
 Consolidation comes first.
 
 106
-00:06:20.318 --> 00:06:24.916
+00:06:20.508 --> 00:06:25.106
 Every production cutover runs in
 parallel: create the Entra login,
 
 107
-00:06:24.916 --> 00:06:29.597
+00:06:25.106 --> 00:06:29.787
 prove it works, disable the old one,
 watch for thirty days, then drop it.
 
 108
-00:06:29.597 --> 00:06:33.962
+00:06:29.787 --> 00:06:34.152
 SQL logins are eliminated, and
 sa is disabled and renamed,
 
 109
-00:06:33.962 --> 00:06:37.461
+00:06:34.152 --> 00:06:37.651
 with an empty break-glass
 group for emergencies.
 
 110
-00:06:37.461 --> 00:06:40.739
+00:06:37.651 --> 00:06:40.929
 Older versions upgrade or
 carry a dated exception.
 
 111
-00:06:40.739 --> 00:06:43.601
+00:06:40.929 --> 00:06:43.791
 And a per-instance record
 is the proof of closure.
 
 112
-00:06:43.601 --> 00:06:47.400
+00:06:43.791 --> 00:06:47.590
 The decision belongs to the
 CISO: set the standard once,
 
 113
-00:06:47.400 --> 00:06:52.529
+00:06:47.590 --> 00:06:52.719
 SQL authentication refused and sa
 disabled everywhere in production.
 
 114
-00:06:52.529 --> 00:06:56.460
+00:06:52.719 --> 00:06:56.650
 An instance that can't meet it
 doesn't stay in mixed mode quietly;
 
 115
-00:06:56.460 --> 00:06:58.731
+00:06:56.650 --> 00:06:58.921
 it goes to the authorizing official.
 
 116
-00:06:58.731 --> 00:07:00.960
+00:06:58.921 --> 00:07:01.150
 Now, where all this runs.
 
 117
-00:07:04.710 --> 00:07:06.813
+00:07:04.900 --> 00:07:07.003
 Two facts shape where this runs.
 
 118
-00:07:06.813 --> 00:07:11.944
+00:07:07.003 --> 00:07:12.134
 Entra authentication for Arc-connected SQL
 Server isn't offered in the US Government
 
 119
-00:07:11.944 --> 00:07:16.586
+00:07:12.134 --> 00:07:16.776
 Virginia region today, so the design uses
 a commercial Azure subscription in the
 
 120
-00:07:16.586 --> 00:07:18.942
+00:07:16.776 --> 00:07:19.132
 same directory as the government tenant,
 
 121
-00:07:18.942 --> 00:07:21.442
+00:07:19.132 --> 00:07:21.632
 and the hosts need a path
 to the public cloud.
 
 122
-00:07:21.442 --> 00:07:25.554
+00:07:21.632 --> 00:07:25.744
 The services it leans on are each
 listed in scope for FedRAMP High,
 
 123
-00:07:25.554 --> 00:07:27.839
+00:07:25.744 --> 00:07:28.029
 but a listing isn't an authorization.
 
 124
-00:07:27.839 --> 00:07:32.956
+00:07:28.029 --> 00:07:33.146
 On cost, Entra authentication itself
 works under a plain SQL Server license;
 
 125
-00:07:32.956 --> 00:07:38.459
+00:07:33.146 --> 00:07:38.649
 the extras are Conditional Access, privileged
 access management and Defender plans.
 
 126
-00:07:38.459 --> 00:07:42.892
+00:07:38.649 --> 00:07:43.082
 So the authorizing official decides:
 accept these leveraged services,
 
 127
-00:07:42.892 --> 00:07:46.726
+00:07:43.082 --> 00:07:46.916
 after reviewing each package,
 before production onboarding.
 
 128
-00:07:46.726 --> 00:07:48.620
+00:07:46.916 --> 00:07:48.810
 Now, who decides what.
 
 129
-00:07:52.370 --> 00:07:58.020
+00:07:52.560 --> 00:07:58.210
 Under Windows authentication, the DBA team
 owned database access almost by default.
 
 130
-00:07:58.020 --> 00:08:02.461
+00:07:58.210 --> 00:08:02.651
 In the target, one connection depends
 on a group the identity team built,
 
 131
-00:08:02.461 --> 00:08:07.203
+00:08:02.651 --> 00:08:07.393
 a rule the data owner approved, a permission
 only a privileged role can grant,
 
 132
-00:08:07.203 --> 00:08:12.095
+00:08:07.393 --> 00:08:12.285
 a login the DBAs created, and a connection
 string the application team changed.
 
 133
-00:08:12.095 --> 00:08:15.019
+00:08:12.285 --> 00:08:15.209
 Miss any owner and the
 gap shows up as drift,
 
 134
-00:08:15.019 --> 00:08:17.608
+00:08:15.209 --> 00:08:17.798
 or as a help desk call nobody can close.
 
 135
-00:08:17.608 --> 00:08:19.920
+00:08:17.798 --> 00:08:20.110
 So the model is one decider per row.
 
 136
-00:08:19.920 --> 00:08:22.850
+00:08:20.110 --> 00:08:23.040
 Data leadership decides
 verdicts and closure;
 
 137
-00:08:22.850 --> 00:08:27.808
+00:08:23.040 --> 00:08:27.998
 the authorizing official decides every
 exception; the CISO sets the standard.
 
 138
-00:08:27.808 --> 00:08:31.919
+00:08:27.998 --> 00:08:32.109
 The first step is filling the
 project's open sponsor and lead roles.
 
 139
-00:08:31.919 --> 00:08:34.140
+00:08:32.109 --> 00:08:34.330
 So what does each team actually do?
 
 140
-00:08:37.890 --> 00:08:39.128
+00:08:38.080 --> 00:08:39.318
 So who does the work?
 
 141
-00:08:39.128 --> 00:08:43.530
+00:08:39.318 --> 00:08:43.720
 The DBAs run the engine: the
 inventory, the audit, the logins,
 
 142
-00:08:43.530 --> 00:08:47.566
+00:08:43.720 --> 00:08:47.756
 the thirty-day parallel run,
 and the Kerberos repairs.
 
 143
-00:08:47.566 --> 00:08:49.828
+00:08:47.756 --> 00:08:50.018
 What they no longer decide is who gets in.
 
 144
-00:08:49.828 --> 00:08:54.890
+00:08:50.018 --> 00:08:55.080
 Membership of the group that holds sysadmin
 becomes a privileged access decision.
 
 145
-00:08:54.890 --> 00:08:57.885
+00:08:55.080 --> 00:08:58.075
 Application owners own
 their side of the chain:
 
 146
-00:08:57.885 --> 00:09:01.340
+00:08:58.075 --> 00:09:01.530
 connection strings, test
 sign-off and cutover windows.
 
 147
-00:09:01.340 --> 00:09:05.817
+00:09:01.530 --> 00:09:06.007
 And data owners, even when they're the
 same person, answer a different question:
 
 148
-00:09:05.817 --> 00:09:08.965
+00:09:06.007 --> 00:09:09.155
 does this access rule still
 describe the right people?
 
 149
-00:09:08.965 --> 00:09:11.928
+00:09:09.155 --> 00:09:12.118
 The decision for
 application and data owners:
 
 150
-00:09:11.928 --> 00:09:15.202
+00:09:12.118 --> 00:09:15.392
 confirm every rule before
 its group grants access.
 
 151
-00:09:15.202 --> 00:09:18.820
+00:09:15.392 --> 00:09:19.010
 Some steps sit outside
 the DBA team on purpose.
 
 152
-00:09:22.570 --> 00:09:27.032
+00:09:22.760 --> 00:09:27.222
 Some of the most powerful steps don't
 belong to DBAs at all, by design.
 
 153
-00:09:27.032 --> 00:09:31.804
+00:09:27.222 --> 00:09:31.994
 Granting the instance identity its
 directory permissions takes a role that can
 
 154
-00:09:31.804 --> 00:09:34.009
+00:09:31.994 --> 00:09:34.199
 manage every other role in the tenant,
 
 155
-00:09:34.009 --> 00:09:37.779
+00:09:34.199 --> 00:09:37.969
 so it stays with a small identity
 group, eligible only on request.
 
 156
-00:09:37.779 --> 00:09:41.830
+00:09:37.969 --> 00:09:42.020
 And the Azure roles around the server
 now matter as much as sysadmin.
 
 157
-00:09:41.830 --> 00:09:45.257
+00:09:42.020 --> 00:09:45.447
 Contributor on the server can
 run privileged extensions.
 
 158
-00:09:45.257 --> 00:09:49.851
+00:09:45.447 --> 00:09:50.041
 Contributor on the SQL resource
 can switch SQL logins back on.
 
 159
-00:09:49.851 --> 00:09:52.933
+00:09:50.041 --> 00:09:53.123
 Whoever holds those roles
 holds a database privilege.
 
 160
-00:09:52.933 --> 00:09:56.389
+00:09:53.123 --> 00:09:56.579
 So the CISO's decision: review
 those Azure assignments on
 
 161
-00:09:56.389 --> 00:09:59.921
+00:09:56.579 --> 00:10:00.111
 the same cadence as sysadmin,
 from the first Arc onboarding.
 
 162
-00:09:59.921 --> 00:10:02.590
+00:10:00.111 --> 00:10:02.780
 Next, the applications upstream.
 
 163
-00:10:06.340 --> 00:10:10.302
+00:10:06.530 --> 00:10:10.492
 The database isn't finished until
 the applications in front of it are.
 
 164
-00:10:10.302 --> 00:10:14.287
+00:10:10.492 --> 00:10:14.477
 Each application gets placed on
 two axes: how its users sign in,
 
 165
-00:10:14.287 --> 00:10:17.178
+00:10:14.477 --> 00:10:17.368
 and what its database
 driver can actually do,
 
 166
-00:10:17.178 --> 00:10:20.928
+00:10:17.368 --> 00:10:21.118
 from a simple configuration
 change to no Entra path at all.
 
 167
-00:10:20.928 --> 00:10:25.677
+00:10:21.118 --> 00:10:25.867
 An application stuck on legacy domain
 services holds its whole instance back.
 
 168
-00:10:25.677 --> 00:10:30.570
+00:10:25.867 --> 00:10:30.760
 The change itself is one line in a connection
 string, but it waits for three gates:
 
 169
-00:10:30.570 --> 00:10:32.794
+00:10:30.760 --> 00:10:32.984
 the login exists, the role is granted,
 
 170
-00:10:32.794 --> 00:10:36.352
+00:10:32.984 --> 00:10:36.542
 and it's been tested somewhere
 that looks like production.
 
 171
-00:10:36.352 --> 00:10:40.502
+00:10:36.542 --> 00:10:40.692
 Application owners approve each
 cutover against those gates.
 
 172
-00:10:40.502 --> 00:10:42.810
+00:10:40.692 --> 00:10:43.000
 Then, the protocol itself.
 
 173
-00:10:46.560 --> 00:10:49.348
+00:10:46.750 --> 00:10:49.538
 NTLM isn't a setting you switch off.
 
 174
-00:10:49.348 --> 00:10:53.058
+00:10:49.538 --> 00:10:53.248
 It's a protocol that four
 connection patterns keep producing,
 
 175
-00:10:53.058 --> 00:10:55.022
+00:10:53.248 --> 00:10:55.212
 and each has to be found and fixed.
 
 176
-00:10:55.022 --> 00:10:57.435
+00:10:55.212 --> 00:10:57.625
 The program does it in three phases.
 
 177
-00:10:57.435 --> 00:10:59.223
+00:10:57.625 --> 00:10:59.413
 Discover every source.
 
 178
-00:10:59.223 --> 00:11:02.056
+00:10:59.413 --> 00:11:02.246
 Restrict: block the oldest version first,
 
 179
-00:11:02.056 --> 00:11:06.973
+00:11:02.246 --> 00:11:07.163
 repair Kerberos registrations, move
 linked servers and applications.
 
 180
-00:11:06.973 --> 00:11:12.272
+00:11:07.163 --> 00:11:12.462
 Then eliminate, with a domain-wide
 block on April first, 2027.
 
 181
-00:11:12.272 --> 00:11:15.972
+00:11:12.462 --> 00:11:16.162
 Any instance already on
 Entra logins doesn't notice.
 
 182
-00:11:15.972 --> 00:11:20.235
+00:11:16.162 --> 00:11:20.425
 The block lives in Windows, so it
 ignores engine-level exceptions.
 
 183
-00:11:20.235 --> 00:11:23.448
+00:11:20.425 --> 00:11:23.638
 That leaves one open question
 for the NTLM program,
 
 184
-00:11:23.448 --> 00:11:26.966
+00:11:23.638 --> 00:11:27.156
 with each exception going to
 the authorizing official:
 
 185
-00:11:26.966 --> 00:11:31.785
+00:11:27.156 --> 00:11:31.975
 does the date hold for the long tail, or
 does it get dated, isolated exceptions?
 
 186
-00:11:31.785 --> 00:11:34.380
+00:11:31.975 --> 00:11:34.570
 Certificates are the next dependency.
 
 187
-00:11:38.130 --> 00:11:43.292
+00:11:38.320 --> 00:11:43.482
 SQL Server leans on certificates in three
 places most retirement plans can't see.
 
 188
-00:11:43.292 --> 00:11:46.900
+00:11:43.482 --> 00:11:47.090
 The TLS certificate every
 Entra connection now requires,
 
 189
-00:11:46.900 --> 00:11:49.830
+00:11:47.090 --> 00:11:50.020
 since those connections
 are always encrypted.
 
 190
-00:11:49.830 --> 00:11:52.955
+00:11:50.020 --> 00:11:53.145
 Certificates behind signed
 code and endpoints.
 
 191
-00:11:52.955 --> 00:11:57.781
+00:11:53.145 --> 00:11:57.971
 And certificate sign-in, the stopgap for
 connections that can't reach Entra in time,
 
 192
-00:11:57.781 --> 00:12:01.755
+00:11:57.971 --> 00:12:01.945
 which quietly depends on the domain
 controllers' own certificates.
 
 193
-00:12:01.755 --> 00:12:05.680
+00:12:01.945 --> 00:12:05.870
 Cloud PKI can't help here;
 it doesn't issue to servers.
 
 194
-00:12:05.680 --> 00:12:10.651
+00:12:05.870 --> 00:12:10.841
 The workbook's certificate plan settles
 the issuer: a retained internal hierarchy,
 
 195
-00:12:10.651 --> 00:12:13.101
+00:12:10.841 --> 00:12:13.291
 renewed through the lifecycle platform,
 
 196
-00:12:13.101 --> 00:12:17.280
+00:12:13.291 --> 00:12:17.470
 with domain controller certificates
 kept until the last one retires.
 
 197
-00:12:17.280 --> 00:12:21.227
+00:12:17.470 --> 00:12:21.417
 The decision for data leadership:
 set no retirement date for the old
 
 198
-00:12:21.227 --> 00:12:25.455
+00:12:21.417 --> 00:12:25.645
 certificate authority until every
 SQL Server dependency has moved.
 
 199
-00:12:25.455 --> 00:12:27.270
+00:12:25.645 --> 00:12:27.460
 Then, what done means.
 
 200
-00:12:30.800 --> 00:12:31.881
+00:12:31.210 --> 00:12:32.291
 Done isn't a date.
 
 201
-00:12:31.881 --> 00:12:33.597
+00:12:32.291 --> 00:12:34.007
 It's a posture you keep proving.
 
 202
-00:12:33.597 --> 00:12:38.709
+00:12:34.007 --> 00:12:39.119
 An instance is closed when five things
 hold at once: no usable Windows logins,
 
 203
-00:12:38.709 --> 00:12:43.093
+00:12:39.119 --> 00:12:43.503
 SQL authentication refused,
 Entra sign-ins observed working,
 
 204
-00:12:43.093 --> 00:12:47.565
+00:12:43.503 --> 00:12:47.975
 an Entra identity for the engine,
 and multifactor for every person.
 
 205
-00:12:47.565 --> 00:12:52.926
+00:12:47.975 --> 00:12:53.336
 Live evidence shows it over a validation
 period, and any drift is a violation.
 
 206
-00:12:52.926 --> 00:12:58.169
+00:12:53.336 --> 00:12:58.579
 That's why April first, 2027 is
 a consequence, not a finish line.
 
 207
-00:12:58.169 --> 00:13:02.062
+00:12:58.579 --> 00:13:02.472
 Migration ends well before it, and
 the last months are for proving.
 
 208
-00:13:02.062 --> 00:13:06.522
+00:13:02.472 --> 00:13:06.932
 The decision for data leadership, as
 system owner: declare closure only
 
 209
-00:13:06.522 --> 00:13:11.208
+00:13:06.932 --> 00:13:11.618
 on the security officer's evidence,
 with every exception already accepted.
 
 210
-00:13:11.208 --> 00:13:12.910
+00:13:11.618 --> 00:13:13.320
 What could still go wrong?
 
 211
-00:13:16.660 --> 00:13:19.681
+00:13:17.070 --> 00:13:20.091
 Here are the risks the book
 names, in three groups.
 
 212
-00:13:19.681 --> 00:13:24.454
+00:13:20.091 --> 00:13:24.864
 Scope: instances found late, cluster
 instances that can't take Entra logins,
 
 213
-00:13:24.454 --> 00:13:27.534
+00:13:24.864 --> 00:13:27.944
 and applications that
 hold their instance back.
 
 214
-00:13:27.534 --> 00:13:30.952
+00:13:27.944 --> 00:13:31.362
 Sequence: engine work held up
 waiting for Windows sign-in,
 
 215
-00:13:30.952 --> 00:13:34.802
+00:13:31.362 --> 00:13:35.212
 the old certificate authority
 retired before its replacement,
 
 216
-00:13:34.802 --> 00:13:37.779
+00:13:35.212 --> 00:13:38.189
 and migration still running
 when the block lands.
 
 217
-00:13:37.779 --> 00:13:42.280
+00:13:38.189 --> 00:13:42.690
 Control: Azure roles that can
 quietly turn SQL logins back on,
 
 218
-00:13:42.280 --> 00:13:46.798
+00:13:42.690 --> 00:13:47.208
 and one server identity shared by
 every application on the host.
 
 219
-00:13:46.798 --> 00:13:51.225
+00:13:47.208 --> 00:13:51.635
 The decision: every residual risk
 goes in the exception registry,
 
 220
-00:13:51.225 --> 00:13:56.555
+00:13:51.635 --> 00:13:56.965
 with a control, an owner and an end date,
 and the authorizing official accepts it.
 
 221
-00:13:56.555 --> 00:13:58.140
+00:13:56.965 --> 00:13:58.550
 One last question.
 
 222
-00:14:01.890 --> 00:14:05.616
+00:14:02.300 --> 00:14:06.060
 Once authentication has moved,
 a different question opens up:
 
 223
-00:14:05.616 --> 00:14:08.393
+00:14:06.060 --> 00:14:08.862
 which platform should
 each data domain live on?
 
 224
-00:14:08.393 --> 00:14:12.552
+00:14:08.862 --> 00:14:13.050
 That choice isn't forced, so it
 comes after, one domain at a time.
 
 225
-00:14:12.552 --> 00:14:16.519
+00:14:13.050 --> 00:14:16.907
 Stay on SQL Server, or move
 to PostgreSQL or Oracle;
 
 226
-00:14:16.519 --> 00:14:19.480
-each can meet the identity requirement.
+00:14:16.907 --> 00:14:20.063
+each can support the identity requirement.
 
 227
-00:14:19.480 --> 00:14:24.341
+00:14:20.063 --> 00:14:24.941
 The book scores them on ten dimensions
 with evidence, from migration effort and
 
 228
-00:14:24.341 --> 00:14:26.403
+00:14:24.941 --> 00:14:27.011
 skills to licensing and exit cost,
 
 229
-00:14:26.403 --> 00:14:29.721
+00:14:27.011 --> 00:14:30.337
 and two domains reaching
 different answers is normal.
 
 230
-00:14:29.721 --> 00:14:33.472
+00:14:30.337 --> 00:14:34.100
 The goal is fewer authoritative
 platforms, not one vendor.
 
 231
-00:14:33.472 --> 00:14:37.950
+00:14:34.100 --> 00:14:38.595
 So the decision for the CIO and
 data leadership: choose per domain,
 
 232
-00:14:37.950 --> 00:14:43.422
+00:14:38.595 --> 00:14:44.088
 after closure, as its own funded decision,
 with the same parallel-run discipline.
 
 233
-00:14:43.422 --> 00:14:45.630
+00:14:44.088 --> 00:14:46.300
 Let's pull the decisions together.
 
 234
-00:14:49.380 --> 00:14:50.955
+00:14:49.790 --> 00:14:51.365
 So, the decisions.
 
 235
-00:14:50.955 --> 00:14:53.672
+00:14:51.365 --> 00:14:54.082
 The CIO and data
 leadership hold the order,
 
 236
-00:14:53.672 --> 00:14:58.330
+00:14:54.082 --> 00:14:58.740
 give every instance a verdict and a
 target, upgrade or retire old engines,
 
 237
-00:14:58.330 --> 00:15:02.910
+00:14:58.740 --> 00:15:03.320
 set no retirement date for the old
 certificate authority until SQL
 
 238
-00:15:02.910 --> 00:15:07.180
+00:15:03.320 --> 00:15:07.590
 Server's certificates have moved,
 and declare closure on evidence.
 
 239
-00:15:07.180 --> 00:15:11.230
+00:15:07.590 --> 00:15:11.640
 The CISO sets the standard and
 reviews Azure roles like sysadmin.
 
 240
-00:15:11.230 --> 00:15:15.655
+00:15:11.640 --> 00:15:16.065
 Server infrastructure onboards
 Arc now, on domain-joined hosts.
 
 241
-00:15:15.655 --> 00:15:20.205
+00:15:16.065 --> 00:15:20.615
 Application and data owners approve
 their access rules and their cutovers.
 
 242
-00:15:20.205 --> 00:15:25.080
+00:15:20.615 --> 00:15:25.490
 The authorizing official accepts the
 leveraged services and every exception.
 
 243
-00:15:25.080 --> 00:15:28.430
+00:15:25.490 --> 00:15:28.840
 And the NTLM program
 decides the long tail.
 
 244
-00:15:28.430 --> 00:15:30.293
+00:15:28.840 --> 00:15:30.703
 None of this waits on a purchase.
 
 245
-00:15:30.293 --> 00:15:31.955
+00:15:30.703 --> 00:15:32.365
 Count the estate first.
 
 246
-00:15:31.955 --> 00:15:35.880
+00:15:32.365 --> 00:15:36.290
 Data Platform has the detail,
 every claim footnoted.
 
 247
-00:15:35.880 --> 00:15:36.710
+00:15:36.290 --> 00:15:37.120
 Thank you.

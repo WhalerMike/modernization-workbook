@@ -121,7 +121,7 @@ None of that was wrong. It just was never written down. And the cloud doesn't in
     ["BOD 25-01 (Dec 2024)", "Mandatory cloud-tenant configurations", "Mandatory policies June 20, 2025"],
     ["BOD 26-02 (Feb 2026)", "End-of-support internet-facing edge devices", "Listed devices out by Feb 5, 2027"],
     ["M-26-14 (May 2026)", "Rescinds M-21-31; risk-based logging", "Logging plan 90 days after Aug 20, 2026"],
-    ["FedRAMP 2026 rules", "Certification in Classes A to D", "Mandatory January 1, 2027"],
+    ["FedRAMP 2026 rules", "Certification in Classes A to D", "Mandatory January 1, 2027; two rules December 7, 2026"],
   ];
   s.addTable([head(["Federal policy", "What it sets", "Dates"]), ...pol.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }])],
     tableOpts([1.95, 2.45, 2.5], { y: 1.5, fontSize: 12, rowH: [0.42, 0.62, 0.62, 0.62, 0.62, 0.62] }));
@@ -139,7 +139,7 @@ None of that was wrong. It just was never written down. And the cloud doesn't in
     "the estate is surrounded by deadlines, each binding a different part of it, and each assuming the agency knows what it runs, who owns it and what governs it.");
   sources(s, "Sources: OMB M-22-09, M-26-14; CISA BOD 25-01, BOD 26-02, Logging Reference Architecture; FedRAMP Consolidated Rules for 2026; Microsoft Lifecycle, 2025–2029. Book 00, Chapter 01.");
   narrate(s,
-`The second reason is the calendar, and it isn't the agency's any more. Federal policy sets dates from outside. M-22-09's Zero Trust actions were due by the end of fiscal 2024; the deadline has passed, but the actions remain in force. BOD 25-01's mandatory cloud-tenant policies were due June 20, 2025. BOD 26-02 requires listed end-of-support edge devices to be decommissioned by February 5, 2027. M-26-14 rescinded M-21-31, and asks for an Agency Logging Plan within 90 days of CISA's Logging Reference Architecture, published on August 20, 2026. Counted from that date, the plan is due November 18, 2026; that's the program's arithmetic, not a date OMB published. And FedRAMP's Consolidated Rules become mandatory on January 1, 2027.
+`The second reason is the calendar, and it isn't the agency's any more. Federal policy sets dates from outside. M-22-09's Zero Trust actions were due by the end of fiscal 2024; the deadline has passed, but the actions remain in force. BOD 25-01's mandatory cloud-tenant policies were due June 20, 2025. BOD 26-02 requires listed end-of-support edge devices to be decommissioned by February 5, 2027. M-26-14 rescinded M-21-31, and asks for an Agency Logging Plan within 90 days of CISA's Logging Reference Architecture, published on August 20, 2026. Counted from that date, the plan is due November 18, 2026; that's the program's arithmetic, not a date OMB published. And FedRAMP's Consolidated Rules become mandatory on January 1, 2027, except that two of them, vulnerability detection and response and vulnerability evaluation and reporting, became mandatory earlier, on December 7, 2026.
 
 Vendor support adds its own clock. Windows 10 and Exchange Server 2016 and 2019 ended in October 2025. Windows Server 2016 ends January 12, 2027, and the workbook plans on those servers being gone by then. Nothing fails on a single date. But every deadline assumes the agency knows what it runs, who owns it and what governs it.`,
   "Book 00, Chapter 01 — Why Modernize, and Why Now (The clocks that now set the schedule: Federal policy; Vendor support).");
