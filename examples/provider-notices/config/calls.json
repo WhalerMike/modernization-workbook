@@ -100,7 +100,7 @@
       "operation": "aws health describe-events (AWS Health API DescribeEvents), open and upcoming events",
       "method": "read (AWS Health API)",
       "permissions": ["health:DescribeEvents"],
-      "elevated": "The account needs a Business, Enterprise On-Ramp or Enterprise Support plan, or the API answers SubscriptionRequiredException. AWS publishes no read-only managed policy for Health: use a customer managed policy with the three actions",
+      "elevated": "The account needs a qualifying AWS Support plan (AWS's pages name the plans differently), or the API answers SubscriptionRequiredException. AWS publishes no read-only managed policy for Health: use a customer managed policy with the three actions",
       "doc": "https://docs.aws.amazon.com/cli/latest/reference/health/describe-events.html",
       "permissionDoc": "https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html",
       "verified": true,
