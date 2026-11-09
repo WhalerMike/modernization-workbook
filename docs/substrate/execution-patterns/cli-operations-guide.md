@@ -452,13 +452,13 @@ function Test-FMPCanonArtifact { param(\[string\]\$FilePath) \$content = Get-Con
 
 4.3 --- Deprecate an Artifact
 
-Canonical artifacts are **never deleted**. To deprecate, update the YAML frontmatter:
+Canonical artifacts are **never deleted**. To deprecate, update the YAML frontmatter (FMP_NNN stands for the artifact being deprecated and FMP_MMM for its replacement; use your own identifiers):
 
-\-\-- document_id: FMP_003 title: Legacy Access Control Framework version: 1.4 status: DEPRECATED classification: Controlled owner: Program Maintainer boundary: GCC-Moderate superseded_by: FMP_042 deprecated_date: 2026-04-20 \-\--
+\-\-- document_id: FMP_NNN title: Legacy Access Control Framework version: 1.4 status: DEPRECATED classification: Controlled owner: Program Maintainer boundary: GCC-Moderate superseded_by: FMP_MMM deprecated_date: 2026-04-20 \-\--
 
 Then commit and push:
 
-git add canon/FMP_003.md git commit -m \"canon(FMP_003): deprecate in favor of FMP_042\" git push origin main
+git add canon/FMP_NNN.md git commit -m \"canon(FMP_NNN): deprecate in favor of FMP_MMM\" git push origin main
 
 4.4 --- Generate Canon Status Report
 
@@ -856,9 +856,9 @@ function Export-FMPGPOAssessment { param(\[string\]\$OutputPath = \"C:\\FMPAsses
 
 Chapter 17 --- Master Assessment Orchestrator
 
-This function calls all assessment functions in sequence and produces a consolidated summary report. Run this to perform a complete the Federal Modernization Program environment assessment in a single command.
+This function calls all eight assessment steps in sequence and produces a consolidated summary report. Run this to perform a complete the Federal Modernization Program environment assessment in a single command.
 
-function Invoke-FMPFullAssessment { param( \[string\]\$OutputPath = \"C:\\FMPAssessment\\\$(Get-Date -Format \'yyyyMMdd-HHmm\')\", \[string\]\$DnsServer = \"dc01.domain.local\" ) \$stopwatch = \[System.Diagnostics.Stopwatch\]::StartNew Write-Host \"=== the Federal Modernization Program Full Environment Assessment ===\" -ForegroundColor Cyan Write-Host \"Output: \$OutputPath\" -ForegroundColor Cyan New-Item -Path \$OutputPath -ItemType Directory -Force \| Out-Null Start-Transcript -Path \"\$OutputPath\\Assessment-Transcript.txt\" Write-Host \"\[1/7\] Forest and Domain Discovery\...\" -ForegroundColor Yellow Export-FMPForestAssessment -OutputPath \$OutputPath Write-Host \"\[2/7\] OU Structure\...\" -ForegroundColor Yellow Export-FMPOUStructure -OutputPath \$OutputPath Write-Host \"\[3/7\] Computer Objects\...\" -ForegroundColor Yellow Export-FMPComputerObjects -OutputPath \$OutputPath Write-Host \"\[4/7\] User Objects\...\" -ForegroundColor Yellow Export-FMPUserObjects -OutputPath \$OutputPath Write-Host \"\[5/7\] Group Objects\...\" -ForegroundColor Yellow Export-FMPGroupObjects -OutputPath \$OutputPath Write-Host \"\[6/7\] DNS Assessment\...\" -ForegroundColor Yellow Export-FMPDNSAssessment -DnsServer \$DnsServer -OutputPath \$OutputPath Write-Host \"\[7/7\] GPO Assessment\...\" -ForegroundColor Yellow Export-FMPGPOAssessment -OutputPath \$OutputPath \# Generate consolidated summary \$summary = \[PSCustomObject\]@{ AssessmentDate = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" ForestName = (Get-ADForest).Name DomainCount = (Get-ADForest).Domains.Count SiteCount = (Get-ADReplicationSite -Filter \*).Count DCCount = (Get-ADDomainController -Filter \*).Count OUCount = (Get-ADOrganizationalUnit -Filter \*).Count ComputerCount = (Get-ADComputer -Filter \*).Count UserCount = (Get-ADUser -Filter \*).Count GroupCount = (Get-ADGroup -Filter \*).Count GPOCount = (Get-GPO -All).Count ElapsedMinutes = \[math\]::Round(\$stopwatch.Elapsed.TotalMinutes, 1) } \$summary \| ConvertTo-Json \| Out-File \"\$OutputPath\\Assessment-Summary.json\" \$summary \| Format-List Stop-Transcript \$stopwatch.Stop Write-Host \"Assessment complete in \$(\[math\]::Round(\$stopwatch.Elapsed.TotalMinutes,1)) minutes\" \` -ForegroundColor Green Write-Host \"Results saved to: \$OutputPath\" -ForegroundColor Green }
+function Invoke-FMPFullAssessment { param( \[string\]\$OutputPath = \"C:\\FMPAssessment\\\$(Get-Date -Format \'yyyyMMdd-HHmm\')\", \[string\]\$DnsServer = \"dc01.domain.local\" ) \$stopwatch = \[System.Diagnostics.Stopwatch\]::StartNew Write-Host \"=== the Federal Modernization Program Full Environment Assessment ===\" -ForegroundColor Cyan Write-Host \"Output: \$OutputPath\" -ForegroundColor Cyan New-Item -Path \$OutputPath -ItemType Directory -Force \| Out-Null Start-Transcript -Path \"\$OutputPath\\Assessment-Transcript.txt\" Write-Host \"\[1/8\] Forest and Domain Discovery\...\" -ForegroundColor Yellow Export-FMPForestAssessment -OutputPath \$OutputPath Write-Host \"\[2/8\] OU Structure\...\" -ForegroundColor Yellow Export-FMPOUStructure -OutputPath \$OutputPath Write-Host \"\[3/8\] Computer Objects\...\" -ForegroundColor Yellow Export-FMPComputerObjects -OutputPath \$OutputPath Write-Host \"\[4/8\] User Objects\...\" -ForegroundColor Yellow Export-FMPUserObjects -OutputPath \$OutputPath Write-Host \"\[5/8\] Group Objects\...\" -ForegroundColor Yellow Export-FMPGroupObjects -OutputPath \$OutputPath Write-Host \"\[6/8\] DNS Assessment\...\" -ForegroundColor Yellow Export-FMPDNSAssessment -DnsServer \$DnsServer -OutputPath \$OutputPath Write-Host \"\[7/8\] Certificate Assessment\...\" -ForegroundColor Yellow Export-FMPCertAssessment -OutputPath \$OutputPath Write-Host \"\[8/8\] GPO Assessment\...\" -ForegroundColor Yellow Export-FMPGPOAssessment -OutputPath \$OutputPath \# Generate consolidated summary \$summary = \[PSCustomObject\]@{ AssessmentDate = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" ForestName = (Get-ADForest).Name DomainCount = (Get-ADForest).Domains.Count SiteCount = (Get-ADReplicationSite -Filter \*).Count DCCount = (Get-ADDomainController -Filter \*).Count OUCount = (Get-ADOrganizationalUnit -Filter \*).Count ComputerCount = (Get-ADComputer -Filter \*).Count UserCount = (Get-ADUser -Filter \*).Count GroupCount = (Get-ADGroup -Filter \*).Count GPOCount = (Get-GPO -All).Count ElapsedMinutes = \[math\]::Round(\$stopwatch.Elapsed.TotalMinutes, 1) } \$summary \| ConvertTo-Json \| Out-File \"\$OutputPath\\Assessment-Summary.json\" \$summary \| Format-List Stop-Transcript \$stopwatch.Stop Write-Host \"Assessment complete in \$(\[math\]::Round(\$stopwatch.Elapsed.TotalMinutes,1)) minutes\" \` -ForegroundColor Green Write-Host \"Results saved to: \$OutputPath\" -ForegroundColor Green }
 
 +----------------------------------------------------------------------------+
 | **Usage**                                                                  |
@@ -904,19 +904,21 @@ Chapter 19 --- Entra ID Device and Group Operations
 
 19.1 --- List All Devices
 
-\# List all Entra ID devices Get-MgDevice -All \| Select-Object DisplayName, DeviceId, OperatingSystem, OperatingSystemVersion, TrustType, IsCompliant, IsManaged \| Format-Table -AutoSize \# Get a specific device by name Get-MgDevice -Filter \"displayName eq \'FMP-GIT01\'\" \| Select-Object DisplayName, DeviceId, OperatingSystem, TrustType
+The Git server FMP-GIT01 is not hybrid joined, so it has no Entra ID device object and no device extensionAttributes. Its organizational attributes live as tags on its Azure Arc resource (section 23.6). The commands in this chapter apply to devices that do have an Entra ID device object, such as Windows 10 and Windows 11 workstations.
+
+\# List all Entra ID devices Get-MgDevice -All \| Select-Object DisplayName, DeviceId, OperatingSystem, OperatingSystemVersion, TrustType, IsCompliant, IsManaged \| Format-Table -AutoSize \# Get a specific device by name Get-MgDevice -Filter \"displayName eq \'<device-name>\'\" \| Select-Object DisplayName, DeviceId, OperatingSystem, TrustType
 
 19.2 --- Create a Dynamic Security Group
 
-\$groupParams = \@{ DisplayName = \"FMP-Tier0-GCC-Servers\" Description = \"Dynamic group for Tier 0 GCC-Moderate governance servers\" MailEnabled = \$false MailNickname = \"fmp-tier0-gcc\" SecurityEnabled = \$true GroupTypes = @(\"DynamicMembership\") MembershipRule = \'(device.extensionAttribute11 -eq \"Tier0\") and (device.extensionAttribute13 -eq \"Production\")\' MembershipRuleProcessingState = \"On\" } \$group = New-MgGroup -BodyParameter \$groupParams Write-Host \"Created group: \$(\$group.DisplayName) (ID: \$(\$group.Id))\"
+\$groupParams = \@{ DisplayName = \"FMP-Tier0-GCC-Devices\" Description = \"Dynamic group for Tier 0 GCC-Moderate governance devices that have Entra ID device objects\" MailEnabled = \$false MailNickname = \"fmp-tier0-gcc\" SecurityEnabled = \$true GroupTypes = @(\"DynamicMembership\") MembershipRule = \'(device.extensionAttribute11 -eq \"Tier0\") and (device.extensionAttribute13 -eq \"Production\")\' MembershipRuleProcessingState = \"On\" } \$group = New-MgGroup -BodyParameter \$groupParams Write-Host \"Created group: \$(\$group.DisplayName) (ID: \$(\$group.Id))\"
 
 19.3 --- List Dynamic Group Members
 
 \$members = Get-MgGroupMember -GroupId \$group.Id -All \$members \| ForEach-Object { Get-MgDevice -DeviceId \$\_.Id \| Select-Object DisplayName, OperatingSystem } \| Format-Table -AutoSize
 
-19.4 --- Set Device Extension Attributes
+19.4 --- Set Device Extension Attributes (Entra ID device objects only)
 
-\$deviceId = (Get-MgDevice -Filter \"displayName eq \'FMP-GIT01\'\").Id Update-MgDevice -DeviceId \$deviceId -BodyParameter \@{ extensionAttributes = \@{ extensionAttribute1 = \"EASTUS\" extensionAttribute2 = \"IT\" extensionAttribute3 = \"Governance\" extensionAttribute11 = \"Tier0\" extensionAttribute13 = \"Production\" extensionAttribute12 = \"GitServer\" } } Write-Host \"Extension attributes updated for FMP-GIT01\"
+\# Use a device that has an Entra ID device object; FMP-GIT01 does not (use Arc tags, section 23.6) \$deviceId = (Get-MgDevice -Filter \"displayName eq \'<device-name>\'\").Id Update-MgDevice -DeviceId \$deviceId -BodyParameter \@{ extensionAttributes = \@{ extensionAttribute1 = \"EASTUS\" extensionAttribute2 = \"IT\" extensionAttribute3 = \"Governance\" extensionAttribute11 = \"Tier0\" extensionAttribute13 = \"Production\" extensionAttribute12 = \"GitServer\" } } Write-Host \"Extension attributes updated for <device-name>\"
 
 19.5 --- App Registration Management
 
@@ -956,6 +958,8 @@ Chapter 21 --- Step-by-Step: Connecting to Intune
 
 Intune management uses the same Microsoft Graph PowerShell SDK. Ensure you are connected with the appropriate device management scopes.
 
+Intune does not manage Windows Server. FMP-GIT01 runs Windows Server 2025, so it cannot enroll and no Intune compliance policy, script or update ring applies to it. Chapters 21 and 22 apply to Windows 10 and Windows 11 administrator workstations. For the Git server, use Azure Policy machine configuration and Azure Update Manager through Azure Arc (sections 23.8 and 23.9).
+
 21.1 --- Authentication
 
 \# Connect with Intune-specific scopes (if not already connected) Connect-MgGraph -Scopes @( \"DeviceManagementConfiguration.ReadWrite.All\", \"DeviceManagementManagedDevices.ReadWrite.All\", \"DeviceManagementApps.ReadWrite.All\" )
@@ -966,7 +970,7 @@ Get-MgDeviceManagementManagedDevice -All \| Select-Object DeviceName, OperatingS
 
 21.3 --- Check Device Compliance
 
-\# Check compliance for a specific device Get-MgDeviceManagementManagedDevice -Filter \"deviceName eq \'FMP-GIT01\'\" \| Select-Object DeviceName, ComplianceState, LastSyncDateTime, ComplianceGracePeriodExpirationDateTime
+\# Check compliance for a specific device Get-MgDeviceManagementManagedDevice -Filter \"deviceName eq \'<workstation-name>\'\" \| Select-Object DeviceName, ComplianceState, LastSyncDateTime, ComplianceGracePeriodExpirationDateTime
 
 21.4 --- Get Device Compliance Policies
 
@@ -974,21 +978,21 @@ Get-MgDeviceManagementDeviceCompliancePolicy \| Select-Object DisplayName, Id, C
 
 21.5 --- Create a Compliance Policy
 
-\$compliancePolicy = \@{ \"@odata.type\" = \"#microsoft.graph.windows10CompliancePolicy\" displayName = \"FMP-Server-Compliance\" description = \"Compliance policy for the Federal Modernization Program governance servers\" bitLockerEnabled = \$true secureBootEnabled = \$true activeFirewallRequired = \$true defenderEnabled = \$true osMinimumVersion = \"10.0.26100\" } \$policy = New-MgDeviceManagementDeviceCompliancePolicy -BodyParameter \$compliancePolicy Write-Host \"Created compliance policy: \$(\$policy.DisplayName)\"
+\$compliancePolicy = \@{ \"@odata.type\" = \"#microsoft.graph.windows10CompliancePolicy\" displayName = \"FMP-Admin-Workstation-Compliance\" description = \"Compliance policy for the Federal Modernization Program administrator workstations\" bitLockerEnabled = \$true secureBootEnabled = \$true activeFirewallRequired = \$true defenderEnabled = \$true osMinimumVersion = \"10.0.26100\" } \$policy = New-MgDeviceManagementDeviceCompliancePolicy -BodyParameter \$compliancePolicy Write-Host \"Created compliance policy: \$(\$policy.DisplayName)\"
 
 21.6 --- Assign Policy to Dynamic Group
 
-\$assignment = \@{ target = \@{ \"@odata.type\" = \"#microsoft.graph.groupAssignmentTarget\" groupId = \$group.Id \# FMP-Tier0-GCC-Servers group ID } } New-MgDeviceManagementDeviceCompliancePolicyAssignment \` -DeviceCompliancePolicyId \$policy.Id \` -BodyParameter \$assignment Write-Host \"Policy assigned to group: FMP-Tier0-GCC-Servers\"
+\$assignment = \@{ target = \@{ \"@odata.type\" = \"#microsoft.graph.groupAssignmentTarget\" groupId = \$group.Id \# FMP-Tier0-GCC-Devices group ID } } New-MgDeviceManagementDeviceCompliancePolicyAssignment \` -DeviceCompliancePolicyId \$policy.Id \` -BodyParameter \$assignment Write-Host \"Policy assigned to group: FMP-Tier0-GCC-Devices\"
 
 Chapter 22 --- Intune Configuration Profiles
 
 22.1 --- Deploy PowerShell Health Check Script via Intune
 
-\# Create the script content \$scriptContent = @\' \# the Federal Modernization Program Gitea Health Check Script \# Deployed via Intune to governance servers \$giteaUrl = \"https://git.example.internal\" \$logPath = \"C:\\FMPLogs\\HealthCheck.log\" New-Item -Path (Split-Path \$logPath) -ItemType Directory -Force \| Out-Null \$timestamp = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" try { \$response = Invoke-WebRequest -Uri \"\$giteaUrl/api/v1/settings/api\" -TimeoutSec 10 \"\$timestamp \| Gitea API: OK (\$(\$response.StatusCode))\" \| Out-File \$logPath -Append } catch { \"\$timestamp \| Gitea API: FAIL (\$(\$\_.Exception.Message))\" \| Out-File \$logPath -Append } \'@ \# Upload script to Intune \$scriptBody = \@{ displayName = \"FMP-Gitea-HealthCheck\" description = \"Periodic health check for Gitea server availability\" scriptContent = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$scriptContent) ) runAsAccount = \"system\" enforceSignatureCheck = \$false runAs32Bit = \$false } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceManagementScripts\" \` -Body (\$scriptBody \| ConvertTo-Json) \` -ContentType \"application/json\"
+\# Create the script content \$scriptContent = @\' \# the Federal Modernization Program Gitea Health Check Script \# Deployed via Intune to administrator workstations \$giteaUrl = \"https://git.example.internal\" \$logPath = \"C:\\FMPLogs\\HealthCheck.log\" New-Item -Path (Split-Path \$logPath) -ItemType Directory -Force \| Out-Null \$timestamp = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" try { \$response = Invoke-WebRequest -Uri \"\$giteaUrl/api/v1/settings/api\" -TimeoutSec 10 \"\$timestamp \| Gitea API: OK (\$(\$response.StatusCode))\" \| Out-File \$logPath -Append } catch { \"\$timestamp \| Gitea API: FAIL (\$(\$\_.Exception.Message))\" \| Out-File \$logPath -Append } \'@ \# Upload script to Intune \$scriptBody = \@{ displayName = \"FMP-Gitea-HealthCheck\" description = \"Periodic health check for Gitea server availability\" scriptContent = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$scriptContent) ) runAsAccount = \"system\" enforceSignatureCheck = \$false runAs32Bit = \$false } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceManagementScripts\" \` -Body (\$scriptBody \| ConvertTo-Json) \` -ContentType \"application/json\"
 
 22.2 --- Configure Windows Update Ring
 
-\$updateRing = \@{ \"@odata.type\" = \"#microsoft.graph.windowsUpdateForBusinessConfiguration\" displayName = \"FMP-Server-UpdateRing\" description = \"Update ring for the Federal Modernization Program governance servers\" qualityUpdatesDeferralPeriodInDays = 7 featureUpdatesDeferralPeriodInDays = 30 automaticUpdateMode = \"autoInstallAtMaintenanceTime\" qualityUpdatesPauseStartDate = \$null featureUpdatesPauseStartDate = \$null businessReadyUpdatesOnly = \"businessReadyOnly\" scheduledInstallDay = \"saturday\" scheduledInstallTime = \"03:00:00\" } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations\" \` -Body (\$updateRing \| ConvertTo-Json) \` -ContentType \"application/json\"
+\$updateRing = \@{ \"@odata.type\" = \"#microsoft.graph.windowsUpdateForBusinessConfiguration\" displayName = \"FMP-Workstation-UpdateRing\" description = \"Update ring for the Federal Modernization Program administrator workstations\" qualityUpdatesDeferralPeriodInDays = 7 featureUpdatesDeferralPeriodInDays = 30 automaticUpdateMode = \"autoInstallAtMaintenanceTime\" qualityUpdatesPauseStartDate = \$null featureUpdatesPauseStartDate = \$null businessReadyUpdatesOnly = \"businessReadyOnly\" scheduledInstallDay = \"saturday\" scheduledInstallTime = \"03:00:00\" } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations\" \` -Body (\$updateRing \| ConvertTo-Json) \` -ContentType \"application/json\"
 
 22.3 --- Deploy Security Baseline
 
@@ -1010,30 +1014,46 @@ winget install Microsoft.AzureCLI \# Verify installation az \--version
 
 23.3 --- Create Resource Group
 
-az group create \` \--name rg-fmp-governance \` \--location eastus \` \--tags \"Environment=Production\" \"Boundary=GCC-Moderate\" \"OrgUnit=Governance\"
+Name the resource group rg-fmp-arc-{region}-{environment}, as the Azure Arc Policy Library expects. The library denies Arc-enabled servers that lack its six fmp- tags (fmp-region, fmp-site, fmp-department, fmp-device-tier, fmp-environment and fmp-device-role).
+
+az group create \` \--name rg-fmp-arc-east-production \` \--location eastus \` \--tags \"Environment=Production\" \"Boundary=GCC-Moderate\" \"OrgUnit=Governance\"
 
 23.4 --- Install the Azure Arc Agent
 
-\# Download and run the Azure Connected Machine Agent installer \# Run this on the target server (FMP-GIT01) az connectedmachine connect \` \--resource-group rg-fmp-governance \` \--name FMP-GIT01 \` \--location eastus \` \--tenant-id {tenant-id} \` \--subscription-id {subscription-id} \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \"Site=HeraldHarbor\"
+\# Download and run the Azure Connected Machine Agent installer \# Run this on the target server (FMP-GIT01) az connectedmachine connect \` \--resource-group rg-fmp-arc-east-production \` \--name FMP-GIT01 \` \--location eastus \` \--tenant-id {tenant-id} \` \--subscription-id {subscription-id} \` \--tags \"fmp-region=East\" \"fmp-site=HeraldHarbor\" \"fmp-department=Governance\" \"fmp-device-tier=Tier0\" \"fmp-environment=Production\" \"fmp-device-role=GitServer\" \"Boundary=GCC-Moderate\"
 
 23.5 --- Verify Enrollment
 
-az connectedmachine show \` \--name FMP-GIT01 \` \--resource-group rg-fmp-governance \` \--output table
+az connectedmachine show \` \--name FMP-GIT01 \` \--resource-group rg-fmp-arc-east-production \` \--output table
 
 23.6 --- Apply Resource Tags
 
-az connectedmachine update \` \--name FMP-GIT01 \` \--resource-group rg-fmp-governance \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \` \"Region=East\" \"Site=HeraldHarbor\" \"Function=Governance\" \` \"OS=WindowsServer2025\" \"ManagedBy=FMP\"
+az connectedmachine update \` \--name FMP-GIT01 \` \--resource-group rg-fmp-arc-east-production \` \--tags \"fmp-region=East\" \"fmp-site=HeraldHarbor\" \"fmp-department=Governance\" \` \"fmp-device-tier=Tier0\" \"fmp-environment=Production\" \"fmp-device-role=GitServer\" \` \"Boundary=GCC-Moderate\" \"OS=WindowsServer2025\" \"ManagedBy=FMP\"
 
 23.7 --- List Installed Extensions
 
-az connectedmachine extension list \` \--machine-name FMP-GIT01 \` \--resource-group rg-fmp-governance \` \--output table
+az connectedmachine extension list \` \--machine-name FMP-GIT01 \` \--resource-group rg-fmp-arc-east-production \` \--output table
+
+23.8 --- Audit Configuration with Machine Configuration
+
+Azure Policy machine configuration audits settings inside the server; it replaces the Intune compliance policy that cannot apply to Windows Server. Read the results for the Arc machine:
+
+az policy state list \` \--resource \"/subscriptions/{subscription-id}/resourceGroups/rg-fmp-arc-east-production/providers/Microsoft.HybridCompute/machines/FMP-GIT01\" \` \--query \"[].{Policy:policyDefinitionName, Compliance:complianceState}\" \` \--output table
+
+23.9 --- Schedule Patching with Azure Update Manager
+
+Azure Update Manager replaces the Intune update ring. Create a maintenance configuration with the InGuestPatch scope, then assign the Arc machine to it:
+
+az maintenance configuration create \` \--resource-group rg-fmp-arc-east-production \` \--resource-name mc-fmp-gitserver \` \--maintenance-scope InGuestPatch \` \--location eastus \` \--maintenance-window-start-date-time \"2026-12-05 03:00\" \` \--maintenance-window-duration \"03:00\" \` \--maintenance-window-recur-every \"Week Saturday\" \` \--maintenance-window-time-zone \"Eastern Standard Time\" \` \--extension-properties inGuestPatchMode=User \` \--reboot-setting IfRequired \` \--windows-parameters classifications-to-include=Critical classifications-to-include=Security
+
+az maintenance assignment create \` \--resource-group rg-fmp-arc-east-production \` \--location eastus \` \--resource-name FMP-GIT01 \` \--resource-type machines \` \--provider-name Microsoft.HybridCompute \` \--configuration-assignment-name mc-fmp-gitserver \` \--maintenance-configuration-id \"/subscriptions/{subscription-id}/resourceGroups/rg-fmp-arc-east-production/providers/Microsoft.Maintenance/maintenanceConfigurations/mc-fmp-gitserver\"
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Diagram 5 --- DIAG-005**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **The Federal Modernization Program Azure Arc Integration Topology**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| A hybrid-cloud architecture diagram showing: Left side (On-Premises): FMP-GIT01 server running Gitea behind IIS on Windows Server 2025, with the Azure Connected Machine Agent installed. A firewall separates on-premises from cloud. Right side (Azure Cloud): Azure Arc control plane in resource group rg-fmp-governance. Connected components include: Azure Policy (compliance), Azure Monitor (Log Analytics workspace), and Microsoft Defender for Cloud. Arrows: FMP-GIT01 → Azure Arc labeled \"HTTPS (port 443) outbound only\", Azure Arc → Azure Policy labeled \"Policy evaluation\", Azure Arc → Azure Monitor labeled \"Telemetry and logs\". Below: Az CLI workstation icon with arrows to Azure Arc for management commands. Color scheme: On-premises in blue (#4472C4), Azure cloud in light blue (#00B0F0), management arrows in green (#548235), data flow in gray (#888888). |
+| A hybrid-cloud architecture diagram showing: Left side (On-Premises): FMP-GIT01 server running Gitea behind IIS on Windows Server 2025, with the Azure Connected Machine Agent installed. A firewall separates on-premises from cloud. Right side (Azure Cloud): Azure Arc control plane in resource group rg-fmp-arc-east-production. Connected components include: Azure Policy (compliance), Azure Monitor (Log Analytics workspace), and Microsoft Defender for Cloud. Arrows: FMP-GIT01 → Azure Arc labeled \"HTTPS (port 443) outbound only\", Azure Arc → Azure Policy labeled \"Policy evaluation\", Azure Arc → Azure Monitor labeled \"Telemetry and logs\". Below: Az CLI workstation icon with arrows to Azure Arc for management commands. Color scheme: On-premises in blue (#4472C4), Azure cloud in light blue (#00B0F0), management arrows in green (#548235), data flow in gray (#888888). |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Dimensions: 700 × 420 pixels                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1042,7 +1062,7 @@ Chapter 24 --- Azure Policy via Arc
 
 24.1 --- Assign a Built-in Policy
 
-\# Assign \"Audit Windows machines that have pending reboot\" policy az policy assignment create \` \--name \"fmp-pending-reboot-audit\" \` \--display-name \"the Federal Modernization Program: Audit Pending Reboots\" \` \--policy \"/providers/Microsoft.Authorization/policyDefinitions/4221adbc-5c0f-474f-88b7-037f9f35042c\" \` \--scope \"/subscriptions/{subscription-id}/resourceGroups/rg-fmp-governance\" \` \--params \'{}\'
+\# Assign \"Audit Windows machines that have pending reboot\" policy az policy assignment create \` \--name \"fmp-pending-reboot-audit\" \` \--display-name \"the Federal Modernization Program: Audit Pending Reboots\" \` \--policy \"/providers/Microsoft.Authorization/policyDefinitions/4221adbc-5c0f-474f-88b7-037f9f35042c\" \` \--scope \"/subscriptions/{subscription-id}/resourceGroups/rg-fmp-arc-east-production\" \` \--params \'{}\'
 
 24.2 --- Create Custom Policy for Gitea Compliance
 
@@ -1050,21 +1070,21 @@ Chapter 24 --- Azure Policy via Arc
 
 24.3 --- View Compliance State
 
-\# List all policy states for the resource group az policy state list \` \--resource-group rg-fmp-governance \` \--query \"\[\].{Policy:policyDefinitionName, Compliance:complianceState, Resource:resourceId}\" \` \--output table \# Summarize compliance az policy state summarize \` \--resource-group rg-fmp-governance
+\# List all policy states for the resource group az policy state list \` \--resource-group rg-fmp-arc-east-production \` \--query \"\[\].{Policy:policyDefinitionName, Compliance:complianceState, Resource:resourceId}\" \` \--output table \# Summarize compliance az policy state summarize \` \--resource-group rg-fmp-arc-east-production
 
 24.4 --- Create Remediation Task
 
-az policy remediation create \` \--name \"fmp-remediate-pending-reboots\" \` \--policy-assignment \"fmp-pending-reboot-audit\" \` \--resource-group rg-fmp-governance
+az policy remediation create \` \--name \"fmp-remediate-pending-reboots\" \` \--policy-assignment \"fmp-pending-reboot-audit\" \` \--resource-group rg-fmp-arc-east-production
 
 Chapter 25 --- Azure Monitor via Arc
 
 25.1 --- Install Azure Monitor Agent Extension
 
-az connectedmachine extension create \` \--machine-name FMP-GIT01 \` \--resource-group rg-fmp-governance \` \--name AzureMonitorWindowsAgent \` \--publisher Microsoft.Azure.Monitor \` \--type AzureMonitorWindowsAgent \` \--location eastus
+az connectedmachine extension create \` \--machine-name FMP-GIT01 \` \--resource-group rg-fmp-arc-east-production \` \--name AzureMonitorWindowsAgent \` \--publisher Microsoft.Azure.Monitor \` \--type AzureMonitorWindowsAgent \` \--location eastus
 
 25.2 --- Create Log Analytics Workspace
 
-az monitor log-analytics workspace create \` \--resource-group rg-fmp-governance \` \--workspace-name law-fmp-governance \` \--location eastus \` \--retention-time 90 \` \--tags \"Boundary=GCC-Moderate\" \"Purpose=GovernanceMonitoring\"
+az monitor log-analytics workspace create \` \--resource-group rg-fmp-governance \` \--workspace-name law-fmp-governance \` \--location eastus \` \--retention-time 180 \` \--total-retention-time 365 \` \--tags \"Boundary=GCC-Moderate\" \"Purpose=GovernanceMonitoring\"
 
 25.3 --- Configure Data Collection Rule
 
@@ -1092,7 +1112,7 @@ C:\\path\\to\\repo\\tools\\FMP.Tools\\
 
 Module Manifest (FMP.Tools.psd1)
 
-\@{ RootModule = \'FMP.Tools.psm1\' ModuleVersion = \'2.0.0\' GUID = \'a1b2c3d4-e5f6-7890-abcd-ef1234567890\' Author = \'Your Name\' CompanyName = \'FMP\' Copyright = \'(c) 2026 the Federal Modernization Program. All rights reserved.\' Description = \'the Federal Modernization Program Governance OS CLI tools --- Git, Gitea API, AD, Entra ID, Intune, Arc\' PowerShellVersion = \'7.0\' RequiredModules = @(\'ActiveDirectory\', \'Microsoft.Graph\', \'GroupPolicy\') FunctionsToExport = @( \# Gitea API \'Connect-FMPGitea\', \'Get-FMPRepository\', \'Get-FMPCanonFile\', \'Set-FMPCanonFile\', \'New-FMPPullRequest\', \'Get-FMPPullRequest\', \'Merge-FMPPullRequest\', \'Sync-FMPFromGitHub\', \'Export-FMPCanonInventory\', \'Test-FMPCanonIntegrity\', \# Canon Steward \'Test-FMPCanonArtifact\', \'Export-FMPCanonStatusReport\', \'Find-FMPOrphanArtifacts\', \# AD Assessment \'Export-FMPForestAssessment\', \'Export-FMPOUStructure\', \'Export-FMPComputerObjects\', \'Export-FMPUserObjects\', \'Export-FMPGroupObjects\', \'Export-FMPDNSAssessment\', \'Export-FMPCertAssessment\', \'Export-FMPGPOAssessment\', \'Invoke-FMPFullAssessment\' ) PrivateData = \@{ PSData = \@{ Tags = @(\'FMP\', \'Governance\', \'Gitea\', \'Git\', \'GCC\') ProjectUri = \'https://git.example.internal/FMP/fmp\' } } }
+\@{ RootModule = \'FMP.Tools.psm1\' ModuleVersion = \'2.0.0\' GUID = \'a1b2c3d4-e5f6-7890-abcd-ef1234567890\' Author = \'Your Name\' CompanyName = \'FMP\' Copyright = \'(c) 2026 the Federal Modernization Program. All rights reserved.\' Description = \'the Federal Modernization Program Governance OS CLI tools --- Git, Gitea API, AD, Entra ID, Intune, Arc\' PowerShellVersion = \'7.0\' RequiredModules = @(\'ActiveDirectory\', \'Microsoft.Graph\', \'GroupPolicy\') FunctionsToExport = @( \# Gitea API \'Connect-FMPGitea\', \'Get-FMPRepository\', \'Get-FMPCanonFile\', \'Set-FMPCanonFile\', \'New-FMPPullRequest\', \'Merge-FMPPullRequest\', \'Sync-FMPFromGitHub\', \'Export-FMPCanonInventory\', \'Test-FMPCanonIntegrity\', \# Canon Steward \'Test-FMPCanonArtifact\', \'Export-FMPCanonStatusReport\', \'Find-FMPOrphanArtifacts\', \# AD Assessment \'Export-FMPForestAssessment\', \'Export-FMPOUStructure\', \'Export-FMPComputerObjects\', \'Export-FMPUserObjects\', \'Export-FMPGroupObjects\', \'Export-FMPDNSAssessment\', \'Export-FMPCertAssessment\', \'Export-FMPGPOAssessment\', \'Invoke-FMPFullAssessment\' ) PrivateData = \@{ PSData = \@{ Tags = @(\'FMP\', \'Governance\', \'Gitea\', \'Git\', \'GCC\') ProjectUri = \'https://git.example.internal/FMP/fmp\' } } }
 
 Import the Module
 
@@ -1345,7 +1365,7 @@ E.2 --- Credential Management
 
   AD Service Account             Active Directory (managed service account preferred)   Per domain policy   Read-only for assessments
 
-  Entra ID App Secret            Azure Key Vault                                        Every 180 days      Application-specific scopes
+  Entra ID App Certificate       Azure Key Vault (or a federated credential, no secret) Per certificate policy Application-specific scopes
 
   Webhook Shared Secret          Server environment variable or Key Vault               Every 180 days      Per-webhook unique secret
   ---------------------------------------------------------------------------------------------------------------------------------------------

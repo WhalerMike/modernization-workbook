@@ -41,15 +41,6 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Provisional position.** This book was drafted at temporary series slot 20 to
-avoid renumbering the series while the Vulnerability Management book is under
-active edit. Its intended home is with the network cluster (immediately after
-the Telecommunications Modernization book); the series-wide renumber will move
-it there. Cross-references in this document name other books by **title and
-role**, not by number, so the move does not break them.
-:::
-
-::: {.aan-important}
 **Series Context** — The naming/addressing, identity, and transport planes
 established earlier in this series describe *what* each network function must
 do — resolve a name, authenticate a device, encrypt a circuit, enforce a flow.
@@ -291,7 +282,7 @@ sources, not a SCuBA-style tenant scan; CISA's SCuBA baselines cover Microsoft
 
 # FedRAMP 20x KSI Alignment
 
-The edge substrate feeds two KSI themes. **KSI-CNA** (Cloud Native
+The edge substrate feeds three KSI themes. **KSI-CNA** (Cloud Native
 Architecture / network segmentation and boundary) draws its edge evidence from
 the boundary, overlay, and flow-enforcement controls above — the on-premises
 half of the same theme the cloud SASE service serves. **KSI-IAM** gains its

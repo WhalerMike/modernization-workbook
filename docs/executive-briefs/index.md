@@ -1,6 +1,6 @@
 ---
 title: "Executive Briefs"
-subtitle: "Single-page leadership summaries of the Federal Modernization Program capability areas"
+subtitle: "Leadership pointers to the Federal Modernization Program capability areas"
 doc-type: section-landing
 audience: "Agency CIO · CISO · modernization sponsors"
 canon-source: "src/fmp/canon/"
@@ -12,13 +12,9 @@ lifecycle_review: 2026-11-22
 
 # Executive Briefs {.unnumbered}
 
-::: {.callout-tip}
-## Download the full section
-**[executive-briefs-bundle.docx](../../downloads/executive-briefs-bundle.docx)** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
-:::
-
-Single-page summaries for agency leadership. Each brief answers four
-questions about one capability area:
+Pointers for agency leadership. Each row below names a capability area and
+points to the book chapter that covers it; where no chapter is linked, no
+page exists yet. Each capability area is framed by four questions:
 
 1. **What it is** — the capability in one paragraph.
 2. **Why it matters** — the governance or mission problem it solves.
@@ -29,14 +25,14 @@ questions about one capability area:
 
 Status badges follow the Whitepapers status conventions.
 
-| Slug | Topic | Status | Canon anchor |
-|---|---|---|---|
-| fmp-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
-| universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active | `src/fmp/canon/adr/adr-085-universal-enterprise-positioning.md` |
-| [adapter-ecosystem-overview](../books/b13-governance/08-the-adapter-model.md) | The dual-axis adapter taxonomy and registries | Active | `src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
-| [drift-engine-overview](../books/b13-governance/02-drift-is-the-primary-threat.md) | Drift-detection capability brief | Active | `docs/docs/16_DriftDetectionStandard.qmd` |
-| [evidence-fabric-overview](../books/b13-governance/07-evidence-over-attestation.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |
-| [ksi-conformance-overview](../books/b13-governance/11-reciprocity-and-one-authorization.md) | Machine-checkable Key Security Indicators | Active | `src/fmp/rules/ksi/` |
-| [reciprocity-single-ato-overview](../books/b13-governance/11-reciprocity-and-one-authorization.md) | One ATO, many agencies, signed per-agency evidence | Active | `src/fmp/canon/adr/adr-054-single-ato-reciprocity.md` |
-| [zero-trust-overview](../books/b11-zero-trust/01-a-whole-agency-property.md) | Zero-trust identity model brief | Active | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
-| [modernization-overview](../books/b00-orientation/01-why-modernize-now.md) | End-to-end modernization program brief | Active | `docs/docs/06_ProgramVision.qmd` |
+| Slug | Topic | Status |
+|---|---|---|
+| fmp-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active |
+| universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active |
+| [adapter-ecosystem-overview](../books/b13-governance/08-the-adapter-model.md) | The dual-axis adapter taxonomy and registries | Active |
+| [drift-engine-overview](../books/b13-governance/02-drift-is-the-primary-threat.md) | Drift-detection capability brief | Active |
+| [evidence-fabric-overview](../books/b13-governance/07-evidence-over-attestation.md) | Provenance and evidence pipeline brief | Active |
+| [ksi-conformance-overview](../books/b13-governance/11-reciprocity-and-one-authorization.md) | Machine-checkable Key Security Indicators | Active |
+| [reciprocity-single-ato-overview](../books/b13-governance/11-reciprocity-and-one-authorization.md) | One ATO, many agencies, signed per-agency evidence | Active |
+| [zero-trust-overview](../books/b11-zero-trust/01-a-whole-agency-property.md) | Zero-trust identity model brief | Active |
+| [modernization-overview](../books/b00-orientation/01-why-modernize-now.md) | End-to-end modernization program brief | Active |

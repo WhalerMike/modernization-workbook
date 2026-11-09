@@ -69,7 +69,7 @@ under real production load.
 
 Volume II **consumes** the cryptographic identity of Vol I Book 03 (Certificates
 & Tokens) and the transport of Vol I Books 05–06, and it **feeds** two downstream
-volumes: its DR runbooks are the Section-5 recovery procedures and its
+volumes: its DR design is the design intent for the Section-5 database recovery procedures (the runbooks themselves are not yet written in this volume) and its
 geo-replicated replica architecture is the CP-6 alternate-storage content the
 Business Continuity book (Vol IV Book 01) assembles into a CP-2 plan, and its
 continuous SQL compliance record emits into the Multi-Cloud Evidence Fabric (Vol

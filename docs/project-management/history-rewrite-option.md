@@ -37,7 +37,7 @@ A history rewrite changes the ID of every commit from the first one that touched
 
 ## If the maintainer decides to do it
 
-The cheapest moment is right after the pull request that moves the decks and audio to Releases merges and **before the first edition is cut**, so no edition tag needs rewriting, and when no other pull request is open.
+The cheapest moment was right after the pull request that moved the decks and audio to Releases merged and **before the first edition was cut**, so that no edition tag would need rewriting. That window has passed: edition 2026.10 was cut on October 31, 2026, and edition tags now run through 2026.11.4. A rewrite now would also rewrite every edition tag and update the `commit:` field of each edition in `data/editions.yml`. The best remaining moment is a time when no other pull request is open.
 
 1. Announce a freeze; merge or close every open pull request; let running agent sessions finish and commit.
 2. Mirror-clone the repository and keep that clone untouched as a backup.

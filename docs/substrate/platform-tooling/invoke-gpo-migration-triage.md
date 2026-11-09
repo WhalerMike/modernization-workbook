@@ -35,12 +35,10 @@ than being hidden behind a single opaque guess.
 
 | Artifact | Version | SHA256 |
 |---|---|---|
-| `Invoke-GpoMigrationTriage.ps1` | 1.0 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` |
+| `Invoke-GpoMigrationTriage.ps1` | 1.1 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` (v1.0 base; no v1.1 hash is recorded) |
 
-::: {.callout-note title="Need offline the Federal Modernization Program install media?"}
-Download the full CLI kit from Downloads → the Federal Modernization Program CLI Kit:
-[`fmp-cli.zip`]
-includes this script, `FMP.ConfigTools`, and an offline Python installer — no internet needed at install time.
+::: {.callout-note}
+This workbook's repository does not contain `Invoke-GpoMigrationTriage.ps1`, and the [Downloads](../../downloads.md) page lists no CLI kit that includes it. Treat the page as a description of the script's design and output.
 :::
 
 Verify integrity after download:
@@ -141,8 +139,7 @@ Set `FMP_OUTPUT` in a profile or CI job to avoid repeating the path across multi
 
 ### FMP.ConfigTools integration
 
-When the `FMP.ConfigTools` shared module (included in `fmp-cli.zip` under
-`scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
+When the `FMP.ConfigTools` shared module (not published in this workbook) is installed, the script uses it for structured
 output and optional transcript logging. If the module is absent, the script
 falls back to plain coloured `Write-Host` output — no hard dependency.
 
@@ -488,7 +485,7 @@ keyed by `GpoId`, so a downstream Evidence-Ledger join is trivial.
 | Field | Value |
 |---|---|
 | Script version | 1.1 |
-| Script SHA256 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` (v1.0 base) |
+| Script SHA256 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` (v1.0 base; the same hash as the Download table) |
 | Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
 | Outputs | `gpo-migration-triage-summary.json`, `gpo-migration-triage-detail.json` |
 | Optional module | `FMP.ConfigTools` v1.2.0 (prereq validation + transcript logging) |

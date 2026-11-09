@@ -241,7 +241,7 @@ Expected output: JSON files in D:\\FMP\\Assessment\\Identity\\. Queries user and
 
   Module not found                      D:\\FMP\\Modules\\ not in \$env:PSModulePath                           Add permanently: \[Environment\]::SetEnvironmentVariable(\'PSModulePath\', \$env:PSModulePath + \';D:\\FMP\\Modules\', \'Machine\')
 
-  Timeout on large forests              Assessment query exceeds default timeout                                Increase timeout parameters in module config. Consider running per-domain: Invoke-FMPADAssessment -DomainName child.domain.local
+  Timeout on large forests              Assessment query exceeds default timeout                                Increase timeout parameters in module config. Consider running per-domain: Invoke-FMPADAssessment -Domain child.domain.local
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 4.3 Assessment Data Management
@@ -418,9 +418,9 @@ This check is also performed as part of the daily health check (Check 9). For co
 
 1. **Confirm primary is down:** Verify via multiple methods --- ping, RDP, service checks, console access. Rule out network issues.
 
-2. **Update DNS:** Change git.example.internal A record to point to the secondary server IP. Reduce TTL beforehand if possible.
+2. **Fence the primary:** Confirm the primary cannot accept writes (stop its Gitea service, or take it off the network) before anything else changes, so only one node ever accepts commits.
 
-3. **Verify secondary Gitea:** Confirm the Gitea service is running on the secondary server and the UI is accessible.
+3. **Verify secondary Gitea and refs:** Confirm the Gitea service is running on the secondary server and the UI is accessible. Compare the secondary's refs with the last known primary refs, and record any known data delta if the primary failed mid-replication.
 
 4. **Notify users:** Inform all users that the platform is in read-only mode on the secondary server until promotion is complete.
 
@@ -432,7 +432,9 @@ This check is also performed as part of the daily health check (Check 9). For co
 
     - Restart Gitea service on secondary
 
-6. **When primary is restored:**
+6. **Repoint DNS:** Change git.example.internal A record to point to the secondary server IP. Reduce TTL beforehand if possible.
+
+7. **When primary is restored:**
 
     - Reverse the mirror direction (secondary → primary)
 
@@ -679,9 +681,9 @@ Appendix B --- Log File Reference
 
   health-YYYYMMDD.json   D:\\FMP\\Logs\\                JSON         Daily (one file per day)   90 days
 
-  gitea.log              D:\\Gitea\\log\\                Plain text   Size-based (100 MB)        30 days
+  gitea.log              D:\\Gitea\\log\\                Plain text   Size-based (100 MB)        1 year
 
-  IIS logs               C:\\inetpub\\logs\\LogFiles\\   W3C          Weekly                     90 days
+  IIS logs               C:\\inetpub\\logs\\LogFiles\\   W3C          Weekly                     1 year 
   --------------------------------------------------------------------------------------------------------------
 
 Appendix C --- Cross-References
