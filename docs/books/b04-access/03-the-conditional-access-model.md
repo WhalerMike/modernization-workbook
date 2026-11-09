@@ -32,7 +32,7 @@ The figure shows the path a sign-in takes through the policies that could apply 
 
 A policy that can be enforced needs at least a name, a user or workload identity assignment, a target resource, and a grant or block control.[^c03-policies] Conditional Access requires Microsoft Entra ID P1. Policies that use sign-in risk or user risk need Microsoft Entra ID P2, and policies that target workload identities need Workload ID Premium. When a license lapses, existing policies keep enforcing but can't be edited.[^c03-overview][^c03-workload]
 
-Two facts about where Conditional Access sits matter for design. It runs **after first-factor authentication**, so it isn't a front-line defense against password spray or denial of service, though it can act on the signals those attacks produce.[^c03-network] And it evaluates **token requests**, not sessions in progress: a policy is checked when a user signs in and when an application uses a refresh token to get a new access token, which for modern clients happens about once an hour.[^c03-network] Continuous Access Evaluation (CAE) closes part of that gap. Services that support it, initially Exchange Online, SharePoint Online and Teams, subscribe to critical events (account disabled or deleted, password changed or reset, MFA enabled, refresh tokens revoked, high user risk) and enforce them in near real time, typically within 15 minutes, and enforce IP-location policy changes immediately.[^c03-cae]
+Two facts about where Conditional Access sits matter for design. It runs **after first-factor authentication**, so it isn't a front-line defense against password spray or denial of service, though it can act on the signals those attacks produce.[^c03-network] And it evaluates **token requests**, not sessions in progress: a policy is checked when a user signs in and when an application uses a refresh token to get a new access token, which for modern clients happens about once an hour.[^c03-network] Continuous Access Evaluation (CAE) closes part of that gap. Services that support it, initially Exchange Online, SharePoint Online and Teams, subscribe to critical events (account disabled or deleted, password changed or reset, MFA enabled, refresh tokens revoked, high user risk) and enforce them in near real time, typically within 15 minutes, and enforce IP-location policy changes immediately.[^c03-cae][^c03-cae-resilience]
 
 ## Assignments: the signals a policy tests
 
@@ -53,8 +53,8 @@ Policies can also target agent identities and agents acting as users. The Micros
 
 The target can be applications, user actions, or authentication contexts.[^c03-resources]
 
-- **All resources.** Microsoft recommends a baseline MFA policy for all users and all resources with no resource exclusions. That's the only way to cover applications that can't be targeted individually, such as `Windows Azure Active Directory`, and Microsoft Graph, which can't be targeted on its own because it's an umbrella resource.[^c03-resources] Resource exclusions now have a cost: from March 2026 Microsoft is phasing out the old behavior that silently exempted low-privilege directory scopes (such as `User.Read`) when an all-resources policy excluded any app, so excluded apps may start receiving challenges.[^c03-resources]
-- **Suites.** *Office 365* targets Exchange, SharePoint, Teams and their dependencies together, and Microsoft advises using it instead of individual apps to avoid service-dependency gaps. *Windows Azure Service Management API* covers Azure Resource Manager and the Azure portal, which includes the Microsoft Entra admin center, and indirectly Azure CLI and Azure PowerShell. *Microsoft Admin Portals* covers the Exchange admin center, Azure portal, Microsoft 365 admin center and Security and Compliance portal, and is meant for inclusion, not as a bulk exclusion.[^c03-resources]
+- **All resources.** Microsoft recommends a baseline MFA policy for all users and all resources with no resource exclusions. That's the only way to cover applications that can't be targeted individually, such as `Windows Azure Active Directory`, and Microsoft Graph, which can't be targeted on its own because it's an umbrella resource.[^c03-resources] Resource exclusions now have a cost: from March 2026 Microsoft is phasing out the old behavior that silently exempted low-privilege directory scopes (such as `User.Read`) when an all-resources policy excluded any app, so excluded apps may start receiving challenges.[^c03-resources][^c03-baseline-scopes]
+- **Suites.** *Office 365* targets Exchange, SharePoint, Teams and their dependencies together, and Microsoft advises using it instead of individual apps to avoid service-dependency gaps.[^c03-o365] *Windows Azure Service Management API* covers Azure Resource Manager and the Azure portal, which includes the Microsoft Entra admin center, and indirectly Azure CLI and Azure PowerShell. *Microsoft Admin Portals* covers the Exchange admin center, Azure portal, Microsoft 365 admin center and Security and Compliance portal, and is meant for inclusion, not as a bulk exclusion.[^c03-resources]
 - **Filter for applications.** Instead of listing apps, a policy can select them by a custom security attribute on the service principal. Only attributes of type string work, the attributes are managed by the Attribute Definition and Attribute Assignment roles (Global Administrator can't read them by default), and the filter is evaluated at token issuance.[^c03-app-filter] The program uses this to target applications by environment ([Chapter 07](07-the-conditional-access-policy-library.md)).
 - **User actions.** *Register security information* and *Register or join devices*. The device action allows only MFA or authentication strength, and doesn't support device filters or client-app conditions.[^c03-resources]
 - **Authentication context.** Up to 99 labels (c1 to c99) that applications, SharePoint sites, Defender for Cloud Apps and PIM can request, so that a specific action or role activation triggers its own policy.[^c03-resources]
@@ -63,19 +63,19 @@ The target can be applications, user actions, or authentication contexts.[^c03-r
 
 Named locations hold IPv4 or IPv6 ranges or countries. A tenant can have up to 195 IP-based named locations with up to 2,000 ranges each, and masks must be longer than /8. A range can be marked trusted, which also improves ID Protection's risk scoring. Countries are resolved from the IP address or, optionally, from GPS reported by Microsoft Authenticator, with a choice to include IP addresses that don't map to any country.[^c03-network]
 
-Location is a weak signal, and Microsoft's documentation says why. Behind a cloud proxy or VPN, Entra ID sees the proxy's address and ignores `X-Forwarded-For`, because the header can't be validated. Keeping a current list of a cloud proxy's addresses is "nearly impossible," so Microsoft points to device-based policies or Global Secure Access source IP restoration instead.[^c03-network] The program uses location to block (countries where it never operates, workload identities off the agency network) and to shorten sessions off-network, never to waive MFA or device requirements.
+Location is a weak signal, and Microsoft's documentation says why. Behind a cloud proxy or VPN, Entra ID sees the proxy's address and ignores `X-Forwarded-For`, because the header can't be validated. Keeping a current list of a cloud proxy's addresses is "nearly impossible," so Microsoft points to device-based policies or Global Secure Access source IP restoration instead.[^c03-network][^c03-source-ip] The program uses location to block (countries where it never operates, workload identities off the agency network) and to shorten sessions off-network, never to waive MFA or device requirements.
 
 ### Conditions
 
 | Condition | What it tests | Notes |
 |---|---|---|
-| Sign-in risk, user risk | ID Protection's real-time and calculated risk | Requires P2[^c03-overview] |
+| Sign-in risk, user risk | ID Protection's real-time and calculated risk | Requires P2[^c03-overview][^c03-risk-detections] |
 | Insider risk | Purview Insider Risk Management levels through Adaptive Protection (minor, moderate, elevated) | Requires P2 and Purview Insider Risk Management[^c03-insider] |
 | Service principal risk | Risk on a workload identity | Workload ID Premium[^c03-workload] |
 | Device platforms | Android, iOS, Windows, macOS, Linux | Derived from unverified sources such as the user agent; use it to scope, never as a security boundary[^c03-policies] |
 | Client apps | Browser, mobile and desktop clients, Exchange ActiveSync, other clients | New policies apply to all client types unless configured. Exchange ActiveSync and "other clients" are legacy authentication, which can't do MFA or pass device state[^c03-conditions] |
 | Filter for devices | Device properties, including `extensionAttribute1` to `15` | Replaces the deprecated device state condition[^c03-conditions] |
-| Authentication flows | Device code flow and authentication transfer | Microsoft recommends blocking device code flow wherever possible[^c03-auth-flows] |
+| Authentication flows | Device code flow and authentication transfer | Microsoft recommends blocking device code flow wherever possible[^c03-auth-flows][^c03-auth-transfer] |
 
 Two conditions need more than a table row.
 
@@ -87,7 +87,7 @@ Two conditions need more than a table row.
 
 ### Grant controls
 
-**Block access** stops the sign-in. Microsoft calls it powerful and asks for report-only testing and the What If tool before it's enabled at scale.[^c03-grant] **Grant access** requires one or more of: multifactor authentication, an authentication strength, a device marked compliant by Intune, a Microsoft Entra hybrid joined device, an app protection policy, a password change, terms of use, or (where the tenant has them) custom controls. Multiple controls combine as "require all" by default, or "require one" by choice.[^c03-grant]
+**Block access** stops the sign-in. Microsoft calls it powerful and asks for report-only testing and the What If tool before it's enabled at scale.[^c03-grant][^c03-what-if] **Grant access** requires one or more of: multifactor authentication, an authentication strength, a device marked compliant by Intune, a Microsoft Entra hybrid joined device, an app protection policy, a password change, terms of use,[^c03-terms] or (where the tenant has them) custom controls. Multiple controls combine as "require all" by default, or "require one" by choice.[^c03-grant]
 
 | Control | Constraint that shapes policy design |
 |---|---|
@@ -101,9 +101,23 @@ Two conditions need more than a table row.
 
 When more than one risk policy applies, precedence is fixed: block overrides everything, and risk remediation overrides password change.[^c03-managed] [Chapter 07](07-the-conditional-access-policy-library.md) uses that rule in the policy that carries out the CISA requirement to block high-risk users.
 
+**External MFA replaces custom controls.** Custom controls, the grant that redirects a user to a third-party service, are deprecated: from September 2026 new ones can't be added and existing ones can't be edited, and full retirement is scheduled for early 2027.[^c03-custom-controls] The successor is external multifactor authentication (previously called external authentication methods). A third-party provider is registered in the authentication methods policy through OpenID Connect, users in scope can choose it at any MFA prompt, and Microsoft Entra ID still evaluates policy and makes the access decision.[^c03-external-mfa] Unlike a custom control, it counts for the "require multifactor authentication" grant, shows as MFA in the sign-in logs, and works with PIM and risk-based Conditional Access.[^c03-custom-migrate] It doesn't count for any authentication strength, not even the built-in Multifactor authentication strength, so a policy that relies on it must use "require multifactor authentication."[^c03-external-mfa-provider]
+
+That limit matters wherever a PIV/CAC or MFA sign-in runs through a third-party provider. Such a sign-in can't reach the Phishing-resistant MFA strength that principle 5 below sets as the end state, so the program treats a provider route as transitional; a PIV card reaches that strength through certificate-based authentication in Microsoft Entra ID, as in the contractor path above. Microsoft describes migration as a parallel run: register the provider and target a test group, create a "require multifactor authentication" policy in report-only for that group, exclude the group from the custom-control policy, check the sign-in logs, widen in phases, then set the custom-control policy to Off and keep it disabled for at least two weeks before deleting it.[^c03-custom-migrate] The inventory step is read-only:
+
+```powershell
+Connect-MgGraph -Scopes "Policy.Read.All"
+Get-MgIdentityConditionalAccessPolicy -All |
+    Where-Object { $_.GrantControls.CustomAuthenticationFactors } |
+    Select-Object DisplayName, State,
+        @{ n = 'CustomControls'; e = { $_.GrantControls.CustomAuthenticationFactors -join ', ' } }
+```
+
+Government cloud availability: Microsoft's provider guidance says a provider needs a separate application for Azure for US Government, but the Microsoft Entra feature-availability list for US Government doesn't name external MFA, so availability in GCC High and DoD is not yet specified.[^c03-external-mfa-provider][^c03-gov-availability]
+
 ### Authentication strengths
 
-An authentication strength names the method combinations a policy accepts. There are three built-in strengths, which Microsoft updates as methods change and administrators can't edit:[^c03-auth-strengths][^c03-auth-strength-graph]
+An authentication strength names the method combinations a policy accepts. There are three built-in strengths, which Microsoft updates as methods change and administrators can't edit:[^c03-auth-strengths][^c03-auth-strength-graph][^c03-auth-strength-how]
 
 | Built-in strength | Graph ID | Accepts |
 |---|---|---|
@@ -114,11 +128,11 @@ An authentication strength names the method combinations a policy accepts. There
 Custom strengths narrow the list further, for example to FIDO2 keys with specific AAGUIDs through a combination configuration.[^c03-auth-strength-graph] Four limits matter in practice:
 
 - A strength doesn't restrict the first factor. A user can still type a password; the policy then demands a qualifying method before access.[^c03-auth-strengths]
-- Email one-time passcode guests can't satisfy a strength; policies for them use "require MFA" ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)).[^c03-auth-strengths]
+- Email one-time passcode guests can't satisfy a strength; policies for them use "require MFA" ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)).[^c03-auth-strengths][^c03-auth-strength-external]
 - A strength and a sign-in frequency can be satisfied at different times: yesterday's FIDO2 sign-in plus today's Windows Hello unlock can satisfy both.[^c03-auth-strengths]
 - Windows Hello for Business satisfies a strength only if it was the primary sign-in method; a user who signed in with a password isn't offered it.[^c03-auth-strengths]
 
-Which methods agencies roll out, and in what order toward M-22-09, is [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)'s subject. This book assumes its end state: phishing-resistant MFA for everyone.
+Which methods agencies roll out, and in what order toward M-22-09, is [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)'s subject. This book assumes its end state: phishing-resistant MFA for everyone.[^c03-passwordless-plan]
 
 **Contractors and the PIV path.** Contractors sit in the Internals persona with employees (worker type code `CTR`, [below](#personas)), so they meet the same phishing-resistant strength, usually with their PIV certificate through certificate-based authentication configured as multifactor. Two moments are theirs to plan *(design guidance)*:
 
@@ -135,11 +149,11 @@ Session controls apply after every grant requirement is met.[^c03-policies]
 |---|---|
 | App-enforced restrictions | Passes device state to Exchange Online and SharePoint Online only, which give unmanaged devices a limited (for example, web-only, no-download) experience[^c03-session][^c03-graph-session] |
 | Conditional Access App Control | Routes the session through Defender for Cloud Apps' reverse proxy for session policies such as blocking downloads[^c03-session] |
-| Sign-in frequency | Hours, days, or every time. The default is a rolling 90 days, and any session-posture change (password change, noncompliant device, disabled account) already revokes the session. "Every time" is meant for risky users and sign-ins, Intune enrollment and similarly sensitive actions; without MFA it can cause sign-in loops[^c03-session-lifetime][^c03-graph-sif] |
+| Sign-in frequency | Hours, days, or every time. The default is a rolling 90 days, and any session-posture change (password change, noncompliant device, disabled account) already revokes the session. "Every time" is meant for risky users and sign-ins, Intune enrollment and similarly sensitive actions; without MFA it can cause sign-in loops[^c03-session-lifetime][^c03-graph-sif][^c03-sif-howto] |
 | Persistent browser session | Always or never; works correctly only when the policy targets all resources[^c03-graph-session] |
 | Customize continuous access evaluation | Disabling CAE requires all resources and no conditions[^c03-session] |
-| Disable resilience defaults | During an Entra ID outage, existing sessions are normally extended; this setting denies access instead when sessions expire[^c03-session] |
-| Token protection | Binds the sign-in session token to the device to reduce token replay[^c03-session] |
+| Disable resilience defaults | During an Entra ID outage, existing sessions are normally extended; this setting denies access instead when sessions expire[^c03-session][^c03-resilience-defaults] |
+| Token protection | Binds the sign-in session token to the device to reduce token replay[^c03-session][^c03-token-protection] |
 
 Microsoft warns against reauthenticating users more often than needed: users who are prompted constantly learn to approve prompts without thinking.[^c03-session-lifetime] The program shortens sessions only where risk justifies it (administrators, off-network sign-ins, sensitive applications) and otherwise relies on CAE to cut sessions when something changes.
 
@@ -185,7 +199,7 @@ In the sign-in logs and Microsoft Graph these appear as `reportOnlySuccess`, `re
 
 Three limits apply. Policies scoped to user actions can't run in report-only. A report-only policy that requires a compliant device can still prompt users on macOS, iOS and Android to pick a device certificate, so Microsoft advises excluding those platforms from report-only compliance policies. And GPS-based named locations prompt users for location even in report-only.[^c03-report-only][^c03-network]
 
-The tools for reading results are the sign-in log's Report-only tab, the policy impact view (Security Reader or higher), and the Conditional Access insights and reporting workbook, which needs P1 and a Log Analytics workspace receiving sign-in logs. To change an enforced policy, Microsoft's practice is to create a report-only copy with the change, compare the two, then update the original.[^c03-report-only] The What If tool simulates a sign-in against the policy set; it shows which policies would apply, but doesn't replace a test with real users.[^c03-plan]
+The tools for reading results are the sign-in log's Report-only tab, the policy impact view (Security Reader or higher), and the Conditional Access insights and reporting workbook, which needs P1 and a Log Analytics workspace receiving sign-in logs.[^c03-insights] To change an enforced policy, Microsoft's practice is to create a report-only copy with the change, compare the two, then update the original.[^c03-report-only] The What If tool simulates a sign-in against the policy set; it shows which policies would apply, but doesn't replace a test with real users.[^c03-plan][^c03-what-if]
 
 ## Exclusions
 
@@ -233,7 +247,7 @@ Microsoft recommends a naming standard that shows a sequence number, the resourc
 | Resource or condition | What narrows the policy, omitted when it's all resources with no condition | `HighUserRisk`, `OfficeApps`, `ProductionApps` |
 | Control | The response | `Block`, `RequirePhishResistantMFA` |
 
-Contingency policies follow Microsoft's emergency naming pattern: they're created disabled, begin with `ENABLE IN EMERGENCY`, name the disruption, and carry an order number, for example `EM01 - ENABLE IN EMERGENCY: MFA Disruption [1/4]`.[^c03-plan] Policies that target an authentication context instead of users and resources are named for the context, `{Purpose}-c{N}`, and take no library number: `PIM-Activation-c1` gates privileged role activation and `ProtectedActions-c2` gates protected actions ([Chapter 08, Step 6](08-pim-self-request-with-approval.md#step-6-close-the-loop-with-protected-actions)). Groups used by policies are prefixed by purpose: `CA-Persona-` for persona groups, `CA-Access-` for populations allowed to reach a restricted resource, and `CA-Exclude-` for governed exclusions.
+Contingency policies follow Microsoft's emergency naming pattern: they're created disabled, begin with `ENABLE IN EMERGENCY`, name the disruption, and carry an order number, for example `EM01 - ENABLE IN EMERGENCY: MFA Disruption [1/4]`.[^c03-plan][^c03-resilient-controls] Policies that target an authentication context instead of users and resources are named for the context, `{Purpose}-c{N}`, and take no library number: `PIM-Activation-c1` gates privileged role activation and `ProtectedActions-c2` gates protected actions ([Chapter 08, Step 6](08-pim-self-request-with-approval.md#step-6-close-the-loop-with-protected-actions)). Groups used by policies are prefixed by purpose: `CA-Persona-` for persona groups, `CA-Access-` for populations allowed to reach a restricted resource, and `CA-Exclude-` for governed exclusions.
 
 ### Personas
 
@@ -289,3 +303,24 @@ Devices carry their own label. The program sets the device object's `extensionAt
 [^c03-applied-graph]: Microsoft Learn, "appliedConditionalAccessPolicy resource type" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/resources/appliedconditionalaccesspolicy?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c03-bod2501]: Cybersecurity and Infrastructure Security Agency, BOD 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024, <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services> (accessed Oct 20, 2026).
 [^c03-bod-configs]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services, Required Configurations," <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 20, 2026).
+[^c03-cae-resilience]: Microsoft Learn, "Build resilience by using Continuous Access Evaluation in Microsoft Entra ID" (CAE critical events; longer-lived tokens revoked on events), <https://learn.microsoft.com/entra/architecture/resilience-with-continuous-access-evaluation> (accessed Nov 9, 2026).
+[^c03-baseline-scopes]: Microsoft Learn, "Improved enforcement for All resources policies with resource exclusions" (baseline scopes are evaluated as directory access when an All resources policy has exclusions), <https://learn.microsoft.com/entra/identity/conditional-access/concept-enforcement-resource-exclusions> (accessed Nov 9, 2026).
+[^c03-o365]: Microsoft Learn, "Apps included in Conditional Access Office 365 app suite," <https://learn.microsoft.com/entra/identity/conditional-access/reference-office-365-application-contents>; and "Service dependencies in Microsoft Entra Conditional Access," <https://learn.microsoft.com/entra/identity/conditional-access/service-dependencies> (both accessed Nov 9, 2026).
+[^c03-source-ip]: Microsoft Learn, "Enable Source IP Restoration with Global Secure Access," <https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration>; and "Tutorial: Enable source IP restoration" (keeps IP-based location policies and risk detections working behind a cloud proxy), <https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-source-ip-restoration> (both accessed Nov 9, 2026).
+[^c03-risk-detections]: Microsoft Learn, "Risk detection types and levels" (real-time and offline sign-in and user risk detections), <https://learn.microsoft.com/entra/id-protection/concept-risk-detection-types> (accessed Nov 9, 2026).
+[^c03-auth-transfer]: Microsoft Learn, "Authentication transfer as a condition to secure mobile users," <https://learn.microsoft.com/entra/identity/conditional-access/concept-authentication-transfer> (accessed Nov 9, 2026).
+[^c03-what-if]: Microsoft Learn, "The Conditional Access What If tool," <https://learn.microsoft.com/entra/identity/conditional-access/what-if-tool> (accessed Nov 9, 2026).
+[^c03-terms]: Microsoft Learn, "Set Up Microsoft Entra Terms of Use with Conditional Access," <https://learn.microsoft.com/entra/identity/conditional-access/terms-of-use> (accessed Nov 9, 2026).
+[^c03-auth-strength-how]: Microsoft Learn, "How Authentication Strengths Work in a Conditional Access Policy," <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strength-how-it-works> (accessed Nov 9, 2026).
+[^c03-auth-strength-external]: Microsoft Learn, "How Conditional Access Authentication Strengths Work for External Users," <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strength-external-users> (accessed Nov 9, 2026).
+[^c03-passwordless-plan]: Microsoft Learn, "Get started with a phishing-resistant passwordless authentication deployment in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication> (accessed Nov 9, 2026).
+[^c03-sif-howto]: Microsoft Learn, "Configure adaptive session lifetime policies," <https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-session-lifetime> (accessed Nov 9, 2026).
+[^c03-resilience-defaults]: Microsoft Learn, "Resilience defaults for Microsoft Entra Conditional Access," <https://learn.microsoft.com/entra/identity/conditional-access/resilience-defaults> (accessed Nov 9, 2026).
+[^c03-token-protection]: Microsoft Learn, "Token Protection Deployment Guide - Windows," <https://learn.microsoft.com/entra/identity/conditional-access/deployment-guide-token-protection-windows> (accessed Nov 9, 2026).
+[^c03-insights]: Microsoft Learn, "Conditional Access insights and reporting workbook" (prerequisites: a Log Analytics workspace with sign-in logs, and Microsoft Entra ID P1), <https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-insights-reporting> (accessed Nov 9, 2026).
+[^c03-resilient-controls]: Microsoft Learn, "Create a resilient access control management strategy" (contingency policies named ENABLE IN EMERGENCY), <https://learn.microsoft.com/entra/identity/authentication/concept-resilient-controls> (accessed Nov 9, 2026).
+[^c03-custom-controls]: Microsoft Learn, "Custom controls (preview)" (deprecated; adding and editing blocked from September 2026, full retirement early 2027), <https://learn.microsoft.com/entra/identity/conditional-access/controls> (accessed Nov 9, 2026).
+[^c03-external-mfa]: Microsoft Learn, "Manage an external multifactor authentication method in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-external-method-manage> (accessed Nov 9, 2026).
+[^c03-external-mfa-provider]: Microsoft Learn, "Use Microsoft Entra MFA with an external MFA provider" (grant controls based on authentication strengths, including the built-in MFA strength, don't accept external MFA; each cloud environment, including Azure for US Government, needs its own provider application), <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-external-method-provider> (accessed Nov 9, 2026).
+[^c03-custom-migrate]: Microsoft Learn, "Migrate from custom controls to external multifactor authentication" (why migrate; phased rollout; keep the old policy disabled at least two weeks), <https://learn.microsoft.com/entra/identity/conditional-access/how-to-migrate-custom-controls-external-mfa> (accessed Nov 9, 2026).
+[^c03-gov-availability]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).

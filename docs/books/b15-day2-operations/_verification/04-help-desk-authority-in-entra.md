@@ -152,3 +152,21 @@ A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own ch
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Risk Tier 1 access: application owner, then the identity governance office as a second approval stage (replaces the earlier "IGO notified, four-business-hour hold window") | The high-risk tasks table, enterprise-app row | corrected to match the published chapter | Book 04 Ch06, Risk tiers set the approval chain |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Create a custom role in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/role-based-access-control/custom-create) | Capability is not authority (custom assignment role) | Nov 9, 2026 | Custom roles can be created to replace a broader built-in role |
+| [App permissions for custom roles in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/role-based-access-control/custom-enterprise-app-permissions) | Capability is not authority (custom assignment role) | Nov 9, 2026 | `servicePrincipals/appRoleAssignedTo/update` delegates user and group assignment to apps |
+| [Create or delete administrative units](https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-manage) | Restricted management units, step 1 | Nov 9, 2026 | Restricted management is set when the unit is created |
+| [Add users, groups, or devices to an administrative unit](https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-add) | Restricted management units, step 1 | Nov 9, 2026 | Users and devices can be placed in the unit |
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Entra account recovery: IDV provider checks a government ID, Face Check matches the user, a Temporary Access Pass is issued to register new methods | Identity proofing before any credential action | supported | [Account recovery overview](https://learn.microsoft.com/entra/identity/authentication/concept-account-recovery-overview); [Enable and configure account recovery](https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-enable) |
+| 2 | Verified ID is supported in GCC, not GCC High; account recovery government-cloud availability not stated, so held until available in GCC ("not yet specified") | Identity proofing before any credential action | supported (absence of an availability statement checked on the account recovery pages and the feature availability page) | [What's new in Verified ID](https://learn.microsoft.com/entra/verified-id/whats-new), September 2025; [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) |

@@ -127,3 +127,14 @@ The body now states the guidance directly. These were the earlier positions it u
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | A2 access changes are approved by the owner the task names; application access follows the app's risk tier | §The help desk and cloud services authority split | corrected (Old: "the application owner approves", which contradicted R3 business-approver and R1 two-stage chains) | Chapter 06 §Risk tiers set the approval chain; Chapter 09 §Policies |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Assign enterprise application owners](https://learn.microsoft.com/entra/identity/enterprise-apps/assign-app-owners) | What each Entra role can actually do (Owner row) | Nov 9, 2026 | owners manage SSO, provisioning, user assignment; add or remove owners |
+| [What is application management?](https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-application-management) | Ownership changes and orphaned apps | Nov 9, 2026 | monitor so every app has at least two owners |
+| [Manage access to apps](https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-access-management) | Assignment | Nov 9, 2026 | group-based assignment needs P1 or P2; nested groups not supported |
+| [How to remove a user's access to an application in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/enterprise-apps/methods-for-removing-user-access) | Ownership changes and orphaned apps (step 4) | Nov 9, 2026 | disable all user access to an app as a removal method |
