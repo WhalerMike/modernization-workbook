@@ -519,551 +519,561 @@ Now, the newest part of
 the architecture: AI.
 
 110
-00:07:02.550 --> 00:07:06.454
+00:07:02.670 --> 00:07:06.574
 AI belongs in the architecture as
 a component behind one interface,
 
 111
-00:07:06.454 --> 00:07:09.800
+00:07:06.574 --> 00:07:09.920
 so providers and models can
 change without changing code.
 
 112
-00:07:09.800 --> 00:07:14.156
+00:07:09.920 --> 00:07:14.276
 Most uses, like drafting text or
 answering from agency content,
 
 113
-00:07:14.156 --> 00:07:16.250
+00:07:14.276 --> 00:07:16.370
 change nothing by themselves.
 
 114
-00:07:16.250 --> 00:07:18.562
+00:07:16.370 --> 00:07:18.682
 Agents are different, because they act.
 
 115
-00:07:18.562 --> 00:07:22.109
+00:07:18.682 --> 00:07:22.229
 You can't count on a model
 refusing a hidden instruction,
 
 116
-00:07:22.109 --> 00:07:27.121
+00:07:22.229 --> 00:07:27.241
 so the design limits what a steered agent
 can do: an identity and a human sponsor,
 
 117
-00:07:27.121 --> 00:07:31.362
+00:07:27.241 --> 00:07:31.482
 a short list of allowed tools, a step
 limit, and an audit of every call.
 
 118
-00:07:31.362 --> 00:07:34.825
+00:07:31.482 --> 00:07:34.945
 And the big one: no agent
 writes to a system of record.
 
 119
-00:07:34.825 --> 00:07:39.288
+00:07:34.945 --> 00:07:39.408
 It proposes, a person approves,
 and the service applies the change.
 
 120
-00:07:39.288 --> 00:07:41.180
+00:07:39.408 --> 00:07:41.300
 Next, compliance.
 
 121
-00:07:44.930 --> 00:07:48.193
+00:07:45.050 --> 00:07:48.313
 Compliance is usually a
 package assembled at the end.
 
 122
-00:07:48.193 --> 00:07:50.602
+00:07:48.313 --> 00:07:50.722
 Modernization is the
 moment to change that,
 
 123
-00:07:50.602 --> 00:07:54.017
+00:07:50.722 --> 00:07:54.137
 because you're choosing the
 platform and the pipeline anyway.
 
 124
-00:07:54.017 --> 00:07:59.035
+00:07:54.137 --> 00:07:59.155
 A control the platform implements once
 is inherited by every application on it,
 
 125
-00:07:59.035 --> 00:08:03.292
+00:07:59.155 --> 00:08:03.412
 and a pipeline that keeps its results
 writes the evidence as it goes.
 
 126
-00:08:03.292 --> 00:08:08.616
+00:08:03.412 --> 00:08:08.736
 Circular A one-thirty also turns legacy
 into a compliance question: systems that
 
 127
-00:08:08.616 --> 00:08:12.032
+00:08:08.736 --> 00:08:12.152
 can't be protected, including
 unsupported software,
 
 128
-00:08:12.032 --> 00:08:14.256
+00:08:12.152 --> 00:08:14.376
 get top priority for replacement.
 
 129
-00:08:14.256 --> 00:08:18.417
+00:08:14.376 --> 00:08:18.537
 So a retained application on
 unsupported software is a finding.
 
 130
-00:08:18.417 --> 00:08:22.181
+00:08:18.537 --> 00:08:22.301
 It needs a plan, a risk
 acceptance and a review date.
 
 131
-00:08:22.181 --> 00:08:24.560
+00:08:22.301 --> 00:08:24.680
 And two officials need to hear early.
 
 132
-00:08:28.310 --> 00:08:30.948
+00:08:28.430 --> 00:08:31.068
 Those are the privacy
 and records officials.
 
 133
-00:08:30.948 --> 00:08:34.687
+00:08:31.068 --> 00:08:34.807
 Modernization changes how
 personal information flows,
 
 134
-00:08:34.687 --> 00:08:39.539
+00:08:34.807 --> 00:08:39.659
 and the events that reopen their work
 are predictable: a new database, a new
 
 135
-00:08:39.539 --> 00:08:44.710
+00:08:39.659 --> 00:08:44.830
 data flow, an AI feature, production data
 copied into test, and retiring a system.
 
 136
-00:08:44.710 --> 00:08:46.810
+00:08:44.830 --> 00:08:46.930
 Retirement is the sneaky one.
 
 137
-00:08:46.810 --> 00:08:50.491
+00:08:46.930 --> 00:08:50.611
 Switching off an application is
 a decision about its records,
 
 138
-00:08:50.491 --> 00:08:54.172
+00:08:50.611 --> 00:08:54.292
 and a migration that drops
 history may be destroying records.
 
 139
-00:08:54.172 --> 00:08:56.248
+00:08:54.292 --> 00:08:56.368
 These judgments can't be automated.
 
 140
-00:08:56.248 --> 00:08:59.548
+00:08:56.368 --> 00:08:59.668
 So name those events, and
 route them to the privacy and
 
 141
-00:08:59.548 --> 00:09:03.373
+00:08:59.668 --> 00:09:03.493
 records officials at design
 review, before anything is built.
 
 142
-00:09:03.373 --> 00:09:06.360
+00:09:03.493 --> 00:09:06.480
 That brings us to who
 governs the architecture.
 
 143
-00:09:10.110 --> 00:09:13.038
+00:09:10.230 --> 00:09:13.158
 A target architecture
 holds across hundreds
 
 144
-00:09:13.038 --> 00:09:15.735
+00:09:13.158 --> 00:09:15.855
 of teams only if each
 decision has an owner.
 
 145
-00:09:15.735 --> 00:09:18.942
+00:09:15.855 --> 00:09:19.062
 No federal rule demands an
 architecture review board,
 
 146
-00:09:18.942 --> 00:09:22.862
+00:09:19.062 --> 00:09:22.982
 but several demand what one
 produces: an enterprise architecture,
 
 147
-00:09:22.862 --> 00:09:26.497
+00:09:22.982 --> 00:09:26.617
 and controlled change with
 security and privacy at the table.
 
 148
-00:09:26.497 --> 00:09:29.060
+00:09:26.617 --> 00:09:29.180
 The rule here is one decider per decision.
 
 149
-00:09:29.060 --> 00:09:32.335
+00:09:29.180 --> 00:09:32.455
 The chief architect decides
 standards and designs.
 
 150
-00:09:32.335 --> 00:09:35.260
+00:09:32.455 --> 00:09:35.380
 Application owners decide dispositions.
 
 151
-00:09:35.260 --> 00:09:37.994
+00:09:35.380 --> 00:09:38.114
 The authorizing official
 alone accepts risk,
 
 152
-00:09:37.994 --> 00:09:40.872
+00:09:38.114 --> 00:09:40.992
 and observes the board
 rather than sitting on it.
 
 153
-00:09:40.872 --> 00:09:45.210
+00:09:40.992 --> 00:09:45.330
 And the CIO, not the board,
 approves what the agency buys.
 
 154
-00:09:45.210 --> 00:09:48.685
+00:09:45.330 --> 00:09:48.805
 So the CIO charters the
 board and names its chair.
 
 155
-00:09:48.685 --> 00:09:50.270
+00:09:48.805 --> 00:09:50.390
 Then come the gates.
 
 156
-00:09:54.020 --> 00:09:58.871
+00:09:54.140 --> 00:09:58.991
 Every application that changes
 passes four gates: its disposition,
 
 157
-00:09:58.871 --> 00:10:02.682
+00:09:58.991 --> 00:10:02.802
 a design review, every pull
 request, and every release.
 
 158
-00:10:02.682 --> 00:10:06.833
+00:10:02.802 --> 00:10:06.953
 Two are meetings and two are
 automation, and that's deliberate.
 
 159
-00:10:06.833 --> 00:10:10.934
+00:10:06.953 --> 00:10:11.054
 The daily ones run in the pipeline,
 on protected branches that bind
 
 160
-00:10:10.934 --> 00:10:15.258
+00:10:11.054 --> 00:10:15.378
 administrators too, because a gate
 that's run as a meeting gets skipped.
 
 161
-00:10:15.258 --> 00:10:19.389
+00:10:15.378 --> 00:10:19.509
 Each gate leaves proof, so the evidence
 builds up as the work happens,
 
 162
-00:10:19.389 --> 00:10:22.783
+00:10:19.509 --> 00:10:22.903
 instead of screenshots the
 month before an assessment.
 
 163
-00:10:22.783 --> 00:10:26.370
+00:10:22.903 --> 00:10:27.229
+And the four run inside the system's
+own five life-cycle review gates,
+
+164
+00:10:27.229 --> 00:10:30.165
+from concept through
+operate, not beside them.
+
+165
+00:10:30.165 --> 00:10:33.753
 One threshold belongs to the
 authorizing official alone:
 
-164
-00:10:26.370 --> 00:10:30.407
+166
+00:10:33.753 --> 00:10:37.790
 when a change is significant enough
 to reopen the authorization.
 
-165
-00:10:30.407 --> 00:10:33.346
+167
+00:10:37.790 --> 00:10:40.728
 Set it early, and let
 design review apply it.
 
-166
-00:10:33.346 --> 00:10:35.020
+168
+00:10:40.728 --> 00:10:42.410
 Now, how it runs.
 
-167
-00:10:38.770 --> 00:10:42.620
+169
+00:10:46.160 --> 00:10:50.010
 The book ships a small, runnable
 reference implementation:
 
-168
-00:10:42.620 --> 00:10:45.606
+170
+00:10:50.010 --> 00:10:52.996
 a case service with a
 contract test, a front end,
 
-169
-00:10:45.606 --> 00:10:50.320
+171
+00:10:52.996 --> 00:10:57.710
 a migration tool with all three checks,
 and an agent that can only propose.
 
-170
-00:10:50.320 --> 00:10:53.532
+172
+00:10:57.710 --> 00:11:00.922
 Its tests prove the checks by
 breaking things on purpose.
 
-171
-00:10:53.532 --> 00:10:56.032
+173
+00:11:00.922 --> 00:11:03.422
 Change one amount, and two checks fail.
 
-172
-00:10:56.032 --> 00:10:59.494
+174
+00:11:03.422 --> 00:11:06.884
 Truncate one name, and only
 the checksum catches it.
 
-173
-00:10:59.494 --> 00:11:02.457
+175
+00:11:06.884 --> 00:11:09.847
 Just as important, it says
 what it doesn't prove.
 
-174
-00:11:02.457 --> 00:11:06.670
+176
+00:11:09.847 --> 00:11:14.060
 It has never run against a
 real Db2 or Oracle database,
 
-175
-00:11:06.670 --> 00:11:10.308
+177
+00:11:14.060 --> 00:11:17.698
 a real model, or production,
 and it has no sign-in.
 
-176
-00:11:10.308 --> 00:11:12.669
+178
+00:11:17.698 --> 00:11:20.059
 So copy the pattern, not the claim.
 
-177
-00:11:12.669 --> 00:11:16.410
+179
+00:11:20.059 --> 00:11:23.800
 Next, the frameworks your
 architects already use.
 
-178
-00:11:20.140 --> 00:11:23.530
+180
+00:11:27.550 --> 00:11:30.940
 Many architecture offices
 speak TOGAF or Zachman,
 
-179
-00:11:23.530 --> 00:11:25.790
+181
+00:11:30.940 --> 00:11:33.200
 so the book maps its work onto both.
 
-180
-00:11:25.790 --> 00:11:28.294
+182
+00:11:33.200 --> 00:11:35.704
 The short version: TOGAF
 tells you the order,
 
-181
-00:11:28.294 --> 00:11:31.702
+183
+00:11:35.704 --> 00:11:39.112
 and Zachman tells you whether
 you've described everything.
 
-182
-00:11:31.702 --> 00:11:33.790
+184
+00:11:39.112 --> 00:11:41.200
 But neither one is the requirement.
 
-183
-00:11:33.790 --> 00:11:38.528
+185
+00:11:41.200 --> 00:11:45.938
 Circular A one-thirty asks for an
 enterprise architecture with a baseline,
 
-184
-00:11:38.528 --> 00:11:41.890
+186
+00:11:45.938 --> 00:11:49.300
 a target and a transition
 plan, and names no framework.
 
-185
-00:11:41.890 --> 00:11:45.790
+187
+00:11:49.300 --> 00:11:53.200
 The book already produces all
 three: the triaged portfolio,
 
-186
-00:11:45.790 --> 00:11:48.815
+188
+00:11:53.200 --> 00:11:56.225
 the reference architecture,
 and the wave plan.
 
-187
-00:11:48.815 --> 00:11:51.513
+189
+00:11:56.225 --> 00:11:58.923
 So file those artifacts
 under the phase and cell
 
-188
-00:11:51.513 --> 00:11:54.278
+190
+00:11:58.923 --> 00:12:01.688
 your architects know,
 rather than rewriting them.
 
-189
-00:11:54.278 --> 00:11:56.791
+191
+00:12:01.688 --> 00:12:04.201
 And don't try to buy
 compliance with a framework.
 
-190
-00:11:56.791 --> 00:11:58.360
+192
+00:12:04.201 --> 00:12:05.770
 Now, the waves.
 
-191
-00:12:02.110 --> 00:12:06.198
+193
+00:12:09.520 --> 00:12:13.608
 A disposition for every
 application is a list, not a plan.
 
-192
-00:12:06.198 --> 00:12:11.235
+194
+00:12:13.608 --> 00:12:18.645
 Waves turn it into one, inside the
 program's existing phases and gates.
 
-193
-00:12:11.235 --> 00:12:16.463
+195
+00:12:18.645 --> 00:12:23.873
 Start with a pilot of a few simple
 applications, plus one representative hard case,
 
-194
-00:12:16.463 --> 00:12:20.923
+196
+00:12:23.873 --> 00:12:28.333
 so the first factory wave doesn't
 meet its first tangled database cold.
 
-195
-00:12:20.923 --> 00:12:25.910
+197
+00:12:28.333 --> 00:12:33.320
 Group applications by what must move
 together, especially a shared database.
 
-196
-00:12:25.910 --> 00:12:29.372
+198
+00:12:33.320 --> 00:12:36.782
 Plan a few waves ahead, but
 only the next one in detail.
 
-197
-00:12:29.372 --> 00:12:33.322
+199
+00:12:36.782 --> 00:12:40.732
 And size the waves by the throughput
 you've measured, not by the schedule.
 
-198
-00:12:33.322 --> 00:12:38.410
+200
+00:12:40.732 --> 00:12:45.820
 The factory is working if the fifth wave
 costs less per application than the first.
 
-199
-00:12:38.410 --> 00:12:40.400
+201
+00:12:45.820 --> 00:12:47.810
 Finally, paying for it.
 
-200
-00:12:44.150 --> 00:12:46.354
+202
+00:12:51.560 --> 00:12:53.764
 Waves are also a funding structure:
 
-201
-00:12:46.354 --> 00:12:49.925
+203
+00:12:53.764 --> 00:12:57.335
 small enough to approve, with
 results soon enough to show.
 
-202
-00:12:49.925 --> 00:12:55.433
+204
+00:12:57.335 --> 00:13:02.843
 The Technology Modernization Fund wants
 proposals that improve, retire or replace
 
-203
-00:12:55.433 --> 00:13:00.075
+205
+00:13:02.843 --> 00:13:07.485
 systems, aiming for results within a
 year, and a wave plan fits that shape.
 
-204
-00:13:00.075 --> 00:13:05.237
+206
+00:13:07.485 --> 00:13:12.647
 Working capital funds let the savings from
 one wave's retirements pay for the next.
 
-205
-00:13:05.237 --> 00:13:06.400
+207
+00:13:12.647 --> 00:13:13.810
 Two cautions.
 
-206
-00:13:06.400 --> 00:13:11.025
+208
+00:13:13.810 --> 00:13:18.435
 Report cost avoided only once the
 old system is actually switched off.
 
-207
-00:13:11.025 --> 00:13:13.500
+209
+00:13:18.435 --> 00:13:20.910
 And re-score the portfolio every year,
 
-208
-00:13:13.500 --> 00:13:16.375
+210
+00:13:20.910 --> 00:13:23.785
 with the budget cycle,
 so the list stays true.
 
-209
-00:13:16.375 --> 00:13:21.300
+211
+00:13:23.785 --> 00:13:28.710
 The CIO, who advises on every
 program, should sign the wave plan.
 
-210
-00:13:21.300 --> 00:13:23.520
+212
+00:13:28.710 --> 00:13:30.930
 Let's pull the decisions together.
 
-211
-00:13:27.270 --> 00:13:28.845
+213
+00:13:34.680 --> 00:13:36.255
 So, the decisions.
 
-212
-00:13:28.845 --> 00:13:32.685
+214
+00:13:36.255 --> 00:13:40.095
 The CIO approves no rewrite that
 waits on a single cut-over,
 
-213
-00:13:32.685 --> 00:13:36.445
+215
+00:13:40.095 --> 00:13:43.855
 charters the architecture
 board, and signs the wave plan.
 
-214
-00:13:36.445 --> 00:13:40.065
+216
+00:13:43.855 --> 00:13:47.475
 The program starts with an
 inventory and an agreed rubric,
 
-215
-00:13:40.065 --> 00:13:43.007
+217
+00:13:47.475 --> 00:13:50.417
 and application owners
 sign each disposition.
 
-216
-00:13:43.007 --> 00:13:47.821
+218
+00:13:50.417 --> 00:13:55.231
 The chief architect sets one target
 stack, asks every refactor how it will be
 
-217
-00:13:47.821 --> 00:13:49.807
+219
+00:13:55.231 --> 00:13:57.217
 strangled, forbids dual writes,
 
-218
-00:13:49.807 --> 00:13:53.169
+220
+00:13:57.217 --> 00:14:00.579
 and makes no-write agents
 with sponsors the standard.
 
-219
-00:13:53.169 --> 00:13:55.782
+221
+00:14:00.579 --> 00:14:03.192
 No cut-over happens without three proofs.
 
-220
-00:13:55.782 --> 00:13:58.795
+222
+00:14:03.192 --> 00:14:06.205
 Unsupported software is
 a finding with a plan.
 
-221
-00:13:58.795 --> 00:14:01.502
+223
+00:14:06.205 --> 00:14:08.912
 Privacy and records come
 in at design review,
 
-222
-00:14:01.502 --> 00:14:06.332
+224
+00:14:08.912 --> 00:14:13.742
 and the authorizing official decides
 when a change reopens the authorization.
 
-223
-00:14:06.332 --> 00:14:11.257
+225
+00:14:13.742 --> 00:14:18.667
 Application Modernization has the
 detail, with every claim footnoted.
 
-224
-00:14:11.257 --> 00:14:12.080
+226
+00:14:18.667 --> 00:14:19.490
 Thank you.

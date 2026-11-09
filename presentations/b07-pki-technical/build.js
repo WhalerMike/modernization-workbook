@@ -132,18 +132,18 @@ The slides show tables, checklists and decision matrices. The commands live in t
   table(s, "Rules", 1.85, [1.75, 4.4], ["Change", "What the book records"], [
     ["Public TLS", "Maximum validity 200 days from March 15, 2026 (in force), 100 days from March 15, 2027, 47 days from March 15, 2029"],
     ["KB5014754", "Full Enforcement since February 11, 2025; Compatibility mode gone since September 9, 2025"],
-    ["Post-quantum", "NIST IR 8547 draft: RSA-2048 signatures deprecated after 2030, all RSA and ECDSA disallowed after 2035"],
+    ["Post-quantum", "NIST IR 8547, final Oct. 27, 2026: RSA, ECDSA and EdDSA signatures at every strength deprecated after 2030, disallowed after 2035"],
     ["OMB M-26-15", "PQC migration plan due 120 days from June 24, 2026"],
   ], { x: 6.6, fontSize: 12.5 });
   callout(s, "Program", 5.35, 1.1, "FaTriangleExclamation", HEX.red, "Its own program: ",
     "issued certificates keep working after cutover until the first expiry wave finds no issuer. The replacement issuer has to be live first, and AD CS retires last.");
-  sources(s, "Sources: CA/Browser Forum Ballot SC-081v3 and Baseline Requirements 2.3.1; KB5014754; NIST IR 8547 (ipd); OMB M-26-15; Microsoft Learn — Cloud PKI, Intune platforms. Book 07, Ch 01.");
+  sources(s, "Sources: CA/Browser Forum Ballot SC-081v3 and Baseline Requirements 2.3.1; KB5014754; NIST IR 8547 (final); OMB M-26-15; Microsoft Learn — Cloud PKI, Intune platforms. Book 07, Ch 01.");
   notes(s,
 `Why this matters. A certificate is a signed naming claim that has already been handed out. It sits in device stores, on smart cards, in load balancers and in trust stores nobody remembers configuring. It doesn't move when the directory moves. It keeps working until it expires, and then whatever relied on it stops.
 
 Three properties make AD CS the hardest part of Active Directory to leave. An enterprise CA is wired into the forest: its templates, enrollment services, NTAuth trust and publication points live in the configuration partition. The cloud replacements cover only part of the estate: Cloud PKI issues to Intune-managed devices, and Intune doesn't manage Windows Server. And domain controllers need certificates for as long as domain controllers exist.
 
-Meanwhile the rules are moving under certificates already issued. Public TLS maximum validity is two hundred days today, a hundred days from March 15, 2027, and forty-seven days from March 15, 2029. KB5014754 put domain controllers in Full Enforcement on February 11, 2025, and Compatibility mode has been gone since September 9, 2025. NIST's draft post-quantum transition plan proposes deprecating RSA-2048 signatures after 2030 and disallowing RSA and ECDSA signatures after 2035, and OMB M-26-15 gave agencies a hundred and twenty days from June 24, 2026 to submit a migration plan.
+Meanwhile the rules are moving under certificates already issued. Public TLS maximum validity is two hundred days today, a hundred days from March 15, 2027, and forty-seven days from March 15, 2029. KB5014754 put domain controllers in Full Enforcement on February 11, 2025, and Compatibility mode has been gone since September 9, 2025. NIST's post-quantum transition plan, IR 8547, final on October 27, 2026, deprecates every quantum-vulnerable signature algorithm, RSA, ECDSA and EdDSA at every security strength, RSA-2048 included, after 2030, and disallows them after 2035; the final is stricter than the draft, which would have deprecated only the 112-bit level, and OMB M-26-15 gave agencies a hundred and twenty days from June 24, 2026 to submit a migration plan.
 
 So the move off AD CS runs as its own program. It fails at expiry, not at cutover, which can be months later and far from its cause.`,
   "Book 07, Chapter 01 — Why Certificates Outlive Every Migration.");
@@ -627,7 +627,7 @@ PKCS doesn't use NDES. The connector generates the key pair on its own server, r
 
 NDES picks a template by the request's purpose, so one server serves at most three templates. It can't be clustered; for availability, run several identical servers. Its own two registration-authority certificates expire like any other and are a frequent cause of outages.
 
-Keep the connector current. The current release is 6.2510.3.3007, from May 18, 2026. Let it update itself and alert on Warning or Error.
+Keep the connector current. The current release is 6.2510.3.3007, from May 18, 2026. Let it update itself and alert when the admin center shows it as Warning or Action required. Its status is Active, Warning, which means it can still issue but needs attention, or Action required, which means it can't issue or is disconnected from Intune.
 
 Which profile for which use. Wi-Fi, VPN, web application client certificates and user certificates for Entra CBA are trusted plus SCEP, from Cloud PKI, or from AD CS while a relying party trusts only AD CS. S/MIME signing is PKCS; S/MIME encryption is imported PKCS from a CA with key archival, because old mail needs the old keys. And a user certificate for certificate logon to AD needs the SID added, from AD CS or a CA in NTAuth.`,
   "Book 07, Chapter 06 — Device and User Certificates, \"SCEP with AD CS through NDES,\" \"Keep the connector current,\" \"Which profile for which use.\"");
@@ -954,7 +954,7 @@ endModule("Module 4");
 {
   const s = D.content("Backup", "Sources behind the orientation and Module 1");
   const src = [
-    "CA/Browser Forum, Ballot SC-081v3 (voting Apr. 4–11, 2025); Baseline Requirements v2.3.1 (Oct. 4, 2026), §1.2.2.  ·  NIST IR 8547 ipd (Nov. 12, 2024).  ·  OMB M-26-15 (June 24, 2026); OMB M-22-09.",
+    "CA/Browser Forum, Ballot SC-081v3 (voting Apr. 4–11, 2025); Baseline Requirements v2.3.1 (Oct. 4, 2026), §1.2.2.  ·  NIST IR 8547 (final, Oct. 27, 2026; supersedes the Nov. 12, 2024 draft).  ·  OMB M-26-15 (June 24, 2026); OMB M-22-09.",
     "Microsoft Learn: What is AD CS?; Certification Authority role service; Configure a CA to use ML-DSA; Post-Quantum Cryptography in AD CS; Monitor AD CS publication health with Enterprise PKI.",
     "Microsoft Learn: Manage AD CS certificate templates; Certificate templates concepts; autoenrollment renewal (approval required for renewals); ObjectIdGroupId (certenroll.h).",
     "W. Schroeder and L. Christensen, SpecterOps, Certified Pre-Owned (June 2021), cited for the ESC class names only.",

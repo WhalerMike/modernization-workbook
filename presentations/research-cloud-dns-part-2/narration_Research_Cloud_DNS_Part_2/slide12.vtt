@@ -55,15 +55,39 @@ Run named unprivileged, and
 keep the host to DNS only.
 
 12
-00:00:44.200 --> 00:00:51.174
-For a baseline, CIS has benchmarks
-only for BIND 9.11 and 9.9,
+00:00:44.200 --> 00:00:48.888
+For a baseline, CIS no longer
+lists a BIND benchmark of its own.
 
 13
-00:00:51.174 --> 00:00:53.400
-none for 9.20 or 9.18.
+00:00:48.888 --> 00:00:53.077
+On October 29, 2026 it listed
+two, for BIND 9.11 and 9.9;
 
 14
-00:00:53.400 --> 00:00:59.210
+00:00:53.077 --> 00:00:57.879
+by November 9 its BIND benchmark
+page returned not found,
+
+15
+00:00:57.879 --> 00:01:03.601
+and it points to CIS WorkBench for
+benchmarks it no longer supports.
+
+16
+00:01:03.601 --> 00:01:07.238
+There's none for 9.20 or 9.18.
+
+17
+00:01:07.238 --> 00:01:12.071
+The retired 9.11 benchmark can
+still be read for its intent,
+
+18
+00:01:12.071 --> 00:01:14.387
+checked against the 9.20 ARM.
+
+19
+00:01:14.387 --> 00:01:20.180
 So the agency states its own profile,
 approved by the CISO, as design guidance.

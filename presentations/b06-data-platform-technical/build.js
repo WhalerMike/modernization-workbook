@@ -345,7 +345,7 @@ Workbook: Book 06, Chapters 07, 08, 11 and 12.`);
   const s = D.content(secName(m), "What the authentication audit reads");
   modTag(s, m);
   T(s, "Reads", [
-    ...rich("Host and version  ", HEX.navy, "Version, edition, build. The host OS sets the Arc envelope: agent on Windows Server 2012–2025, SQL Server on Arc needs 2016+, program floor 2019."),
+    ...rich("Host and version  ", HEX.navy, "Version, edition, build. The host OS sets the Arc envelope: new agent versions on Windows Server 2012 R2–2025 (2012's last: 1.69, Oct. 2026), SQL Server on Arc needs 2016+, program floor 2019."),
     { text: "", options: { breakLine: true } },
     ...rich("Domain and Arc  ", HEX.navy, "Domain-join state; is the Connected Machine agent and its managed identity present?"),
     { text: "", options: { breakLine: true } },
@@ -365,7 +365,7 @@ Workbook: Book 06, Chapters 07, 08, 11 and 12.`);
   notes(s,
 `The audit runs only on what the gate kept, retain instances and consolidation targets, and its deliverable is a per-instance compliance record.
 
-For each host it records every instance, with version, edition and build, and the host operating system, which sets the Arc envelope. The Connected Machine agent runs on Windows Server 2012 through 2025, SQL Server enabled by Arc needs 2016 or later, and the program sets its own floor at Windows Server 2019, because 2016 leaves support in January 2027. It records domain-join state and whether the Arc agent and managed identity are present.
+For each host it records every instance, with version, edition and build, and the host operating system, which sets the Arc envelope. New Connected Machine agent versions support Windows Server 2012 R2 through 2025; Windows Server 2012 stopped receiving new agent versions in October 2026, with 1.69 its final compatible version, which Microsoft services for 12 months after that release; SQL Server enabled by Arc needs 2016 or later, and the program sets its own floor at Windows Server 2019, because 2016 leaves support in January 2027. It records domain-join state and whether the Arc agent and managed identity are present.
 
 Then the authentication mode. The registry value LoginMode is one for Windows Authentication mode and two for mixed. The audit cross-checks it against the running instance with the Is Integrated Security Only server property, because a mode change takes effect only after a restart, and any disagreement is an anomaly to resolve before migrating. On SQL Server 2025 enabled by Arc it also reads Is External Authentication Only, which shows the Disable SQL Authentication setting.
 

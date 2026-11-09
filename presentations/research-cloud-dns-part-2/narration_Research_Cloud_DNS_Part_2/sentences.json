@@ -519,11 +519,26 @@
   ],
   [
    44.2,
-   9.2,
-   "For a baseline, CIS has benchmarks only for BIND 9.11 and 9.9, none for 9.20 or 9.18."
+   4.688,
+   "For a baseline, CIS no longer lists a BIND benchmark of its own."
   ],
   [
-   53.4,
+   48.888,
+   14.713,
+   "On October 29, 2026 it listed two, for BIND 9.11 and 9.9; by November 9 its BIND benchmark page returned not found, and it points to CIS WorkBench for benchmarks it no longer supports."
+  ],
+  [
+   63.6,
+   3.638,
+   "There's none for 9.20 or 9.18."
+  ],
+  [
+   67.237,
+   7.15,
+   "The retired 9.11 benchmark can still be read for its intent, checked against the 9.20 ARM."
+  ],
+  [
+   74.388,
    5.737,
    "So the agency states its own profile, approved by the see-so, as design guidance."
   ]

@@ -345,41 +345,41 @@
  "10": [
   [
    0.05,
-   10.575,
-   "A good share of a federal estate sits outside Arc's support list: the Unix systems, and several older Linux releases that stop getting new agent versions in late 2026."
+   11.088,
+   "A good share of a federal estate sits outside Arc's support list: the Unix systems, and several older Linux releases that got their last new agent version in October 2026."
   ],
   [
-   10.625,
+   11.137,
    4.338,
    "Those are tier two, and Ansible reaches them over S S H."
   ],
   [
-   14.963,
+   15.475,
    1.163,
    "Two cautions."
   ],
   [
-   16.125,
+   16.637,
    8.225,
    "Privilege escalation can't be narrowed to specific commands, so that account has broad rights and has to be governed like a privileged identity."
   ],
   [
-   24.35,
+   24.863,
    4.938,
    "And check mode is only a simulation, so each drift check should stand on its own."
   ],
   [
-   29.288,
+   29.8,
    2.337,
    "Network gear is the easy win."
   ],
   [
-   31.625,
+   32.138,
    6.412,
    "A read-only facts run gives you the model, serial and version of every device, with nothing installed."
   ],
   [
-   38.038,
+   38.55,
    3.612,
    "Where a vendor controller exists, it owns the configuration."
   ]
