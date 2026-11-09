@@ -143,3 +143,11 @@ The workbook targets FedRAMP Moderate civilian agencies, so DISA STIGs are no lo
 | 1 | The DP hardening baseline is the agency's CM-6 settings; CM-6 lets the organization choose its common secure configurations, which vendors, federal agencies, consortia and others develop | DP vs Intune, "Hardening baseline" row | verified (NIST OSCAL Rev. 5 catalog, CM-6 statement and discussion) | `[^c11-cm6]` |
 | 2 | CIS publishes Microsoft Windows Server 2022 (5.1.0), Windows Server 2025 (2.1.0) and Microsoft IIS 10 (1.2.1) Benchmarks | Same row | verified (CIS Benchmarks list) | `[^c11-cis]` |
 | 3 | DISA IIS 10.0 Server and Site STIGs kept as an optional reference, labelled (High only), with the one-line *High only* explanation after the table | Same row; note after the table | restated (STIG facts unchanged) | `[^c11-stig]` |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| CIS Benchmarks list no longer shows any Microsoft IIS benchmark (row 2 recorded IIS 10 (1.2.1) on October 29, 2026), and cisecurity.org/benchmark/microsoft_iis returns 404; Windows Server 2025 is now 2.1.1, Windows Server 2022 still 5.1.0. No CIS announcement of the removal was found | Hardening-baseline row says CIS no longer lists the IIS benchmark and to confirm its status; `[^c11-cis]` keeps the IIS citation as retrieved before removal. The DISA IIS 10.0 STIG reference is unchanged |
