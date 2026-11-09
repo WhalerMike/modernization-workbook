@@ -289,7 +289,7 @@ tables:
       attestable: 'No'
   book-day2-appreg:
     page: docs/compliance/Vol_IX_Book_03_App_Registration_Governance.md
-    caption: 'Authorities Closed Here â€” App Registration Governance (request Â· consent Â· secret/cert lifecycle) (â€  = Closure-Necessity anchor: no alternate closure path)'
+    caption: 'Authorities Closed Here — App Registration Governance (request · consent · secret/cert lifecycle) († = Closure-Necessity anchor: no alternate closure path)'
     rows:
     - control: AC-2
       title: Account Management
@@ -309,7 +309,7 @@ tables:
       attestable: 'No'
     - control: IA-5(2)
       title: Public Key-Based Authentication
-      mechanism: App-registration credentials issued as short-lived certs (ACME) with mandatory expiry and scheduled, owner-approved rotation â€” no long-lived secrets in config
+      mechanism: App-registration credentials issued as short-lived certs (ACME) with mandatory expiry and scheduled, owner-approved rotation — no long-lived secrets in config
       gate: FedRAMP Moderate
       drivers: NIST SP 800-53 Rev 5; EO 14028
       slot: Identity

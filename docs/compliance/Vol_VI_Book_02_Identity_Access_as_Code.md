@@ -27,14 +27,14 @@ Developed by the **CSI Team (Cloud Services Infrastructure)**; not yet reviewed 
 :::
 
 ::: {.aan-important}
-**Series Context** — Volume VI Book 02. Deployable realization of the identity plane of **Volume I** and the privileged-access architecture of **Volume III (PAM)**: Conditional Access, PIM/JIT, port authentication, and certificate lifecycle as versioned policy applied through the Book VI-00 pipeline.
+**Series Context** — Volume VI Book 02. Deployable realization of the identity plane of **Volume I** and the privileged-access architecture of **Volume III (PAM)**: Conditional Access, PIM/JIT, port authentication, and certificate lifecycle as versioned policy applied through the change-controlled pipeline described in [Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model.
 :::
 
 # What This Document Addresses
 
 The architecture volumes establish that a verified identity, phishing-resistant authentication, and just-in-time elevation are the mechanisms that gate access. Those decisions are worthless as portal clicks — a Conditional Access estate no one can diff is a control no assessor can trace, and IA-2/AC-6 become assertions rather than evidence.
 
-This book expresses the access decisions as code: Conditional Access as a reviewable policy set, privileged roles as declarative JIT configuration, port authentication as profiles, and certificates as an automated lifecycle. The invariant it enforces is that **every access decision has a reviewable source of truth** that the pipeline applies and Book VI-08 re-asserts.
+This book expresses the access decisions as code: Conditional Access as a reviewable policy set, privileged roles as declarative JIT configuration, port authentication as profiles, and certificates as an automated lifecycle. The invariant it enforces is that **every access decision has a reviewable source of truth** that the pipeline applies and a post-deploy diff of deployed state against source re-asserts ([Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md)).
 
 # The Policy-as-Code Model
 
@@ -53,7 +53,7 @@ Access policy is held as declarative files, applied idempotently, and guarded by
 |---|---|---|---|
 | Conditional Access policy set (as code via Graph) | IA-2, AC-3 access decisions | Entra CA JSON/Bicep/Terraform | Okta/Ping policy-as-code |
 | PIM / JIT role configuration | AC-5/6 separation of duties and least privilege, IA-11 re-auth | Entra PIM as code | CyberArk/BeyondTrust JIT config |
-| Port-authentication profiles (802.1X EAP-TLS, MAB) | IA-3 device identity at the edge | NPS/RADIUS + switch profiles | Cisco ISE / Aruba ClearPass profiles |
+| Port-authentication profiles (802.1X EAP-TLS, MAB) | IA-3 device identity at the edge | NPS/RADIUS + switch profiles (NPS for the hybrid-joined phase only) | Cisco ISE / Aruba ClearPass profiles |
 | Certificate lifecycle automation (ACME, short-lived certs) | IA-5(2), SC-17 | Keyfactor/Sectigo + ACME as code | Venafi / AppViewX |
 
 ## Illustrative artifact — a phishing-resistant Conditional Access policy as code
@@ -83,7 +83,7 @@ The PIM configuration is the privileged-access counterpart: it declares that eli
 
 1. Apply Conditional Access in **report-only** first, review the impact against sign-in logs, then enable — the break-glass exclusion is verified present before any policy is set to `enabled`.
 2. Apply PIM role settings; migrate any standing privileged assignments to eligible-with-approval.
-3. Deploy 802.1X EAP-TLS profiles (Vol I Book 03 supplies the cert authority they trust).
+3. Deploy 802.1X EAP-TLS profiles (Vol I Book 03 supplies the cert authority they trust). NPS is viable for the hybrid-joined phase only: the RADIUS platform chosen under governance decision D3 (Vol I Book 02) must authorize Entra-native devices before the Active Directory objects NPS depends on are retired, so carry that migration trigger in the decision record rather than treat NPS as the end state.
 4. Stand up ACME/short-lived certificate automation so no long-lived credential lives in a config file.
 
 # Closure Necessity
@@ -105,7 +105,7 @@ Volume I/III prove that phishing-resistant, JIT-scoped identity is the closure m
 
 # Honest Limits
 
-- Conditional Access as code governs the *policy*; a global administrator can still change it out of band — Book VI-08 diffs deployed state against the source to catch that.
+- Conditional Access as code governs the *policy*; a global administrator can still change it out of band — a scheduled diff of deployed state against the source catches that ([Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md)).
 - The break-glass account is a deliberate, monitored exception; its use must itself be a high-severity Book VI-03 detection.
 - Substituting the identity provider changes the policy syntax and the connectors; the access-decision mechanism is invariant.
 
@@ -114,9 +114,9 @@ Volume I/III prove that phishing-resistant, JIT-scoped identity is the closure m
 - **Volume I (identity plane)** and **Volume III (PAM)** — the architecture this book deploys.
 - **Vol I Book 03** — the certificate authority the port-auth profiles trust.
 - **Book VI-04** — SOAR playbooks that consume identity risk to drive revocation.
-- **Book VI-07** — access-policy state and reviews emit to the evidence contract.
-- **Book VI-08** — deployed-vs-intended policy diffing.
+- [Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md) — access-policy state and reviews emit to the evidence contract.
+- [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) — the measures behind deployed-vs-intended policy diffing.
 
 # Provenance
 
-Draft. Products are deployed examples; substitution columns preserve the mechanism. The policy JSON is an illustrative pattern to adapt, not a drop-in policy — validate against the tenant and current Graph schema. Vendor capability claims name deployed examples and substitution candidates; their vendor-documentation sources are carried in the briefing deck spec, not inline here.
+Draft. Products are deployed examples; substitution columns preserve the mechanism. The policy JSON is an illustrative pattern to adapt, not a drop-in policy — validate against the tenant and current Graph schema. Vendor capability claims name deployed examples and substitution candidates; their vendor-documentation sources are cited in the Book 4 chapters on the Conditional Access model and policy library ([Book 4, Chapter 07](../books/b04-access/07-the-conditional-access-policy-library.md)).
