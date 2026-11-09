@@ -87,7 +87,7 @@ Keep surveys short, anonymous where possible, and summarized before anyone outsi
 The help desk sees readiness first. Microsoft calls the help desk "an invaluable signal" on how a passwordless deployment is progressing and recommends tracking ticket volume throughout.[^c10-ms-passwordless] [Book 00, Chapter 09](../b00-orientation/09-design-pilot-and-rollout.md#pilot-success-criteria) already sets ticket volume as a pilot success criterion. The program reads tickets three ways, by design:
 
 - **Volume per wave**, normalized by the number of users in the wave, against the pilot's baseline.
-- **Category**, so "how do I" questions, which point to training, are separated from failures, which point to configuration. The ITSM platform team adds a category for change-related tickets and tags each with the wave ([Book 15, Chapter 10](../b15-day2-operations/10-who-runs-day-two.md#the-itsm-platform-team)).
+- **Category**, so "how do I" questions, which point to training, are separated from failures, which point to configuration. The steward specifies a category for change-related tickets and a tag that records the wave, and the ITSM platform team builds both into the platform ([Book 15, Chapter 10](../b15-day2-operations/10-who-runs-day-two.md#the-itsm-platform-team)).
 - **Decay**, the number of days after a wave before ticket volume returns to the baseline. A wave whose tickets never decay has a problem training won't fix.
 
 ### Sign-in method registration

@@ -10,7 +10,7 @@ in a signed-in session; it changes nothing itself, which is its dry run:
   rollback-manual.md   steps that run on a server or in an admin center, with the exact path.
 
 The rollback follows the implementation guide's rule: re-enable, never re-create. In production a dynamic
-group is paused rather than deleted, a workflow disabled, a GPO link re-enabled (or disabled again), and a
+group is unassigned rather than deleted, and the group it replaces stays in place (guide, Gate 4), a workflow disabled, a GPO link re-enabled (or disabled again), and a
 locked retention policy is reported as something that can't be rolled back. In the test stage the objects
 the stage created are removed.
 
@@ -72,7 +72,13 @@ def k_hr_batch(e: dict, s: dict) -> list[Step]:
 def k_dynamic_group(e: dict, s: dict) -> list[Step]:
     if s["environment"] == "test":
         return [("cloud", f"Remove-MgGroup -GroupId {_q(e['id'])}")]
-    return [("cloud", f"Update-MgGroup -GroupId {_q(e['id'])} -MembershipRuleProcessingState 'Paused'")]
+    # Guide, Gate 4: a new dynamic group grants nothing until it is assigned, so production unassigns it and
+    # leaves it, and the group it replaces, in place. The wave's assignments are recorded later than the group,
+    # so their own rollback steps (newest first) come before this one; this step finishes the job.
+    group = e.get("name") or e["id"]
+    return [("portal", f"Intune admin center > Devices > Manage devices > Configuration > each policy assigned to {group} > "
+                       f"Properties > Assignments > Edit: remove {group}, Review + Save, Save. Leave the group "
+                       f"({e['id']}) and the group it replaces in place; don't pause or delete it (guide, Gate 4)")]
 
 
 def k_lcw_workflow(e: dict, s: dict) -> list[Step]:

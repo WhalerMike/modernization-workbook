@@ -101,6 +101,20 @@ Two of the gates are meetings and two are automation, and that ratio is delibera
 
 Gate 2 also decides when a change is significant enough to go back to the authorizing official. Whether a change is significant, and so needs reauthorization, is the authorizing official's decision, with the system owner and the ISSO responsible for the analysis ([Book 14, Chapter 10](../b14-compliance/10-who-owns-compliance.md#the-responsibility-matrix)); the gate's job is to apply that decision and record the answer. A written significance threshold is not yet specified in Book 14.
 
+### How the four gates sit inside the five life-cycle gates {#four-gates-and-five-life-cycle-gates}
+
+[Book 14, Chapter 05](../b14-compliance/05-program-management-controls.md#mission-and-business-processes-and-the-enterprise-architecture-pm-11-pm-7) implements PM-7 as five review gates in a system's life cycle: concept, design, build, deploy and operate. Those gates belong to the system; the four gates here belong to an application inside it, and they run inside the system's gates rather than beside them. The mapping is the program's design.
+
+| Life-cycle gate (Book 14) | Application gate (this chapter) | What carries across |
+|---|---|---|
+| 1. Concept | Gate 1, Disposition, with Gate 2's data classification and privacy check | The triage record reads the system's FIPS 199 categorization; the proposed boundary and data flows stay with the system's concept gate |
+| 2. Design | Gate 2, Design review | Decision records, the threat model and the privacy check. Supply chain requirements written into the acquisition stay with the system's design gate |
+| 3. Build | Gate 3, Pull request and CI | Tests, scans and the SBOM from every change |
+| 4. Deploy | Gate 4, Release | The signed build, the impact analysis and the change record. The authorization decision stays with the authorizing official, and a significant change goes back through Gate 2 |
+| 5. Operate | No application gate | The system's continuous monitoring covers the running application; a re-triage reopens Gate 1 |
+
+An application dispositioned *retire* or *retain* passes only Gate 1, so for it the system's own gates carry the rest.
+
 ## Git and pipeline practice
 
 Gates 3 and 4 work only if the way teams use version control makes them cheap. The program's design rests on five practices.

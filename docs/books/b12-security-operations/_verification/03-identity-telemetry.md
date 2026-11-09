@@ -101,3 +101,14 @@ A short "Privacy: identity telemetry is PII" section was added (additive; no exi
 | 4 | System of records: retrieved by name or identifier | verified | 5 U.S.C. §552a(a)(5) |
 | 5 | AU-3(3), PT-3, SI-12 titles; privacy baseline | verified | OSCAL catalog and privacy profile 5.2.0 |
 | 6 | Logs are for security monitoring; productivity use is a new purpose; obligations table | restated-as-design | - |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Completeness query now expects all eleven categories the setting deploys, adding `AADRiskyServicePrincipals` and `AADServicePrincipalRiskEvents` (item 586) | Verify emission | verified (table names) | Learn, How To: Export risk data (category-to-table mapping) |
+| 2 | Workload identity risk: managed identities not in scope; tenants without Workload Identities Premium still receive detections with limited detail | Verify emission | verified | Learn, Securing workload identities |
+| 3 | Expected-quiet exception for the two workload-identity tables | Verify emission | restated-as-design | - |
+| 4 | AU-3(1) control text; High value and Conditional categories named as the identity plane's additional information (item 599) | Categories | verified (control); restated-as-design | NIST OSCAL SP 800-53 Rev. 5 catalog |

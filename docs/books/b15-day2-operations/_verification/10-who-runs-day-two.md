@@ -57,3 +57,11 @@ A read of the book against Book 04 Chapter 06, Book 11 Chapter 04 and its own ch
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | The comment paragraphs after the matrix cover nine groups of rows (earlier text said nine rows) | The responsibility matrix | corrected count | This chapter's matrix (32 rows) |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The steward specifies the change-ticket category and the wave tag; the ITSM platform team adds both (item 804) | The ITSM platform team | restated-as-design | Book 16, Chapter 10 (the measure that uses them) |

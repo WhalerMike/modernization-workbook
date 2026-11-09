@@ -99,3 +99,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | Workflows per tenant: up to 100 | 100 on the limits page, 50 on the licensing page; the program plans for 50 | Chapter 05 limits table and footnotes |
 | Member map source: Chapter 04 step 3 | Same, naming the `$memberIds` table in that step | Chapter 04 Lab 2 step 3 |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Production rollback of a dynamic group unassigns it and keeps it and the group it replaces; `rollback.py` (`k_dynamic_group`) and its test changed to match (item 933) | Roll back in production | restated-as-design | Attribute-Driven Migration implementation guide, Gate 4 rollback |

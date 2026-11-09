@@ -96,7 +96,7 @@ The DNS and DDI team has a further role that day two depends on. It owns the nam
 
 ### The ITSM platform team
 
-The ITSM platform team runs the service management platform itself: the instance, its catalog items, workflows and approval rules, its integrations and connectors, the MID Servers that reach into the estate, and the service identities that automation runs under. It builds what the platform owners and the control owners specify. It doesn't decide what a catalog item does or which approval a control requires.
+The ITSM platform team runs the service management platform itself: the instance, its catalog items, workflows and approval rules, its integrations and connectors, the MID Servers that reach into the estate, and the service identities that automation runs under. It builds what the platform owners and the control owners specify. It doesn't decide what a catalog item does or which approval a control requires. Readiness measurement is one example: the steward specifies a ticket category for change-related tickets and a tag that records the wave a ticket belongs to, and the ITSM platform team adds both, so ticket trends can be read per wave ([Book 16, Chapter 10](../b16-people/10-measuring-readiness.md#help-desk-ticket-trends)).
 
 That line is easy to cross by accident. An approval rule is configuration in the platform, and the team that maintains the platform can usually edit it. CM-5 names workflow automation as one of the access restrictions on change,[^c10-sp80053] and the program reads that literally: a change to an approval rule, a routing rule or an integration's permissions is a change to a control, raised as a change record, reviewed by someone outside the ITSM platform team and authorized like any other normal change.
 
