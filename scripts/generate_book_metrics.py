@@ -103,15 +103,18 @@ def metrics(folder: Path, dated: bool, old_date: str) -> tuple[str, str, str]:
 def main() -> int:
     lines = INDEX.read_text(encoding="utf-8").replace("\r\n", "\n").split("\n")
     dated = git("rev-parse", "--is-shallow-repository") == "false"
-    out, changed = [], False
+    out, changed, in_table = [], False, False
     for i, line in enumerate(lines):
         if line.startswith("| Book | Topic |"):
             out.append(HEADER)
+            in_table = True
             continue
         if line.startswith("|---") and i and lines[i - 1].startswith("| Book | Topic |"):
             out.append(RULE)
             continue
-        if not re.match(r"\|\s*(\*\*)?B\d\d", line):
+        # Only rows of the books table: other tables on the page (the crosswalk) also start with a book number.
+        in_table = in_table and line.startswith("|")
+        if not in_table or not re.match(r"\|\s*(\*\*)?B\d\d", line):
             out.append(line)
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]

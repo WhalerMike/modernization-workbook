@@ -6,7 +6,7 @@ audience: [Technical]
 family: dw-hr-driven-identity
 part: How
 series-order: 8
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01

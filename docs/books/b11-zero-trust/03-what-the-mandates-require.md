@@ -7,7 +7,7 @@ family: b11-zero-trust
 book: B11
 part: What
 series-order: 3
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

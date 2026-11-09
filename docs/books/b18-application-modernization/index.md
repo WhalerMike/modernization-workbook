@@ -23,8 +23,8 @@ lifecycle_review: 2027-04-01
 # Book 18 — Application Modernization: A Portfolio, Not a Rewrite {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book is new material; it replaces no earlier workbook pages. Every external claim was checked against a primary source between October 28 and November 2, 2026 and carries a note, and each chapter keeps its verification log in the repository. Product versions and support windows (Java, Spring Boot, Node.js, React, PostgreSQL) and the status of migration tools are stated as of those dates. The reference implementation in Chapter 08 is illustrative: its tests pass against a real PostgreSQL engine, but it has not been run against a real Db2 or Oracle database or in production.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book is new material; it replaces no earlier workbook pages. Every external claim was checked against a primary source between October 28 and November 2, 2026 and carries a note, and each chapter keeps its verification log in the repository. Product versions and support windows (Java, Spring Boot, Node.js, React, PostgreSQL) and the status of migration tools are stated as of those dates. The reference implementation in Chapter 08 is illustrative: its tests pass against a real PostgreSQL engine, but it has not been run against a real Db2 or Oracle database or in production.
 :::
 
 ::: {.callout-tip}

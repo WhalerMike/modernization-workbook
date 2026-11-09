@@ -4,7 +4,7 @@ description: "A step-by-step guide to governing service accounts and workload id
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 07 — PKI & Certificates: AD CS to Cloud PKI, Entra CBA and Federal PKI {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book replaces the workbook's PKI Modernization Guide with one ordered book. Every external claim was checked against a primary source between October 20 and November 2, 2026 and carries a footnote. The guide's PowerShell assessment module isn't reproduced here: it stays in the repository's [`archive/b07-pki/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b07-pki) folder, with the rest of the original guide, until it has had a technical review. The guide's old address forwards to this page.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's PKI Modernization Guide with one ordered book. Every external claim was checked against a primary source between October 20 and November 2, 2026 and carries a footnote. The guide's PowerShell assessment module isn't reproduced here: it stays in the repository's [`archive/b07-pki/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b07-pki) folder, with the rest of the original guide, until it has had a technical review. The guide's old address forwards to this page.
 :::
 
 ::: {.callout-tip}

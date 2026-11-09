@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 01 — The Transformation Arc: Client-Server to Hybrid Cloud {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book replaces the workbook's *Client-Server to Hybrid-Cloud* series, the *Modernization Journey* whitepaper, the modernization overview page and an earlier copy of the series' opening chapters. Every external claim was checked against a primary source on October 20–25, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b01-transformation-arc/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b01-transformation-arc) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's *Client-Server to Hybrid-Cloud* series, the *Modernization Journey* whitepaper, the modernization overview page and an earlier copy of the series' opening chapters. Every external claim was checked against a primary source on October 20–25, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b01-transformation-arc/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b01-transformation-arc) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-note}

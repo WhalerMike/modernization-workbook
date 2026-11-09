@@ -7,7 +7,7 @@ family: b17-ai-identity
 book: B17
 part: Who
 series-order: 8
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

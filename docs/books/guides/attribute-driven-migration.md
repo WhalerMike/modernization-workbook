@@ -4,7 +4,7 @@ description: "One end-to-end path for moving a forest to Entra ID on attributes 
 doc-type: workbook-guide
 audience: [Executive, Technical, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
