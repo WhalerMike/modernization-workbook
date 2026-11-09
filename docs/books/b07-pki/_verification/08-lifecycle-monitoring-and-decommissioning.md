@@ -114,3 +114,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | GRS 3.2 items 060–062 cover PKI records incl. terminating a PKI; 7y6m to 20y6m by CA level | Decommissioning AD CS, step 9 | verified | GRS 3.2 (Transmittal 33) |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Vendor documentation version 26.2 names the self-hosted product Palo Alto Networks Certificate Manager - Self-Hosted on Palo Alto Networks Trust Protection Foundation; the provisioning, discovery, monitoring and multiple-CA statements and the Microsoft CA permissions are unchanged | Row 12's "Self-Hosted keeps name" sentence now states the 26.2 name; `[^c08-cyberark-sh]` gives the 26.1 address and the 26.2 title |

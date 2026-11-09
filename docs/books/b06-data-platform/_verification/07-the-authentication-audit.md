@@ -62,3 +62,11 @@ Diagram sources edited (labels only): `book-03-audit-inputs-and-record` (SPN wor
 ## Server standard, November 5, 2026
 
 Tense only; date carried from row 2. The Server 2019 floor is unchanged. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Learn, Connected Machine agent prerequisites (page dated November 5, 2026) now splits the OS list in two. Windows Server 2012 R2 through 2025 are in the table of systems that receive new agent versions; Windows Server 2012 moved to "Operating systems no longer supported by new agent versions," ended October 2026, final compatible agent version 1.69, serviced for 12 months after the final agent release. The November 2026 end date for 2012 R2 that row 1 recorded is no longer shown. | Scope sentence and `[^c07-arc-prereq]` rewritten to the current table. The program's Windows Server 2019 floor is unchanged. |
