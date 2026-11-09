@@ -20,53 +20,54 @@ and says create, in place,
 or differs for each.
 
 5
-00:00:13.688 --> 00:00:18.115
-Where decision D N six says agent
-Conditional Access isn't published,
+00:00:13.688 --> 00:00:16.835
+Where decision D N P six
+says agent Conditional
 
 6
-00:00:18.115 --> 00:00:19.901
-it marks them not available.
+00:00:16.835 --> 00:00:20.225
+Access isn't published, it
+marks them not available.
 
 7
-00:00:19.901 --> 00:00:23.663
+00:00:20.225 --> 00:00:23.988
 And it refuses a reviewed file
 that isn't report-only Block.
 
 8
-00:00:23.663 --> 00:00:25.888
+00:00:23.988 --> 00:00:26.213
 The write path is a separate script.
 
 9
-00:00:25.888 --> 00:00:29.902
+00:00:26.213 --> 00:00:30.227
 It refuses to run unless the
 plan's hash is the approved one,
 
 10
-00:00:29.902 --> 00:00:33.749
+00:00:30.227 --> 00:00:34.074
 for this tenant and cloud, and
 no more than seven days old.
 
 11
-00:00:33.749 --> 00:00:38.375
+00:00:34.074 --> 00:00:38.700
 Every write creates a report-only
 policy with Block as the only grant.
 
 12
-00:00:38.375 --> 00:00:42.388
+00:00:38.700 --> 00:00:42.713
 It runs as a person with the
 Conditional Access Administrator role.
 
 13
-00:00:42.388 --> 00:00:44.326
+00:00:42.713 --> 00:00:44.650
 And it never turns a policy on.
 
 14
-00:00:44.326 --> 00:00:49.168
+00:00:44.650 --> 00:00:49.493
 Microsoft Learn's page on Conditional
 Access for agents lists the feature as
 
 15
-00:00:49.168 --> 00:00:54.290
+00:00:49.493 --> 00:00:54.620
 preview, so that waits until the agent
 targets leave preview in the agency's cloud.

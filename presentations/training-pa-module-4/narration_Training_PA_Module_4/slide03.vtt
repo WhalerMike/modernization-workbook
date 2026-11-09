@@ -30,31 +30,41 @@ You'll read a role's diff and the
 plan's findings, pim oh one to oh nine.
 
 7
-00:00:20.800 --> 00:00:25.325
+00:00:20.800 --> 00:00:23.783
+You'll explain what the
+read-only alert check,
+
+8
+00:00:23.783 --> 00:00:27.813
+pim ten to thirteen, looks for,
+and where each finding is fixed.
+
+9
+00:00:27.813 --> 00:00:32.337
 You'll explain the rollout waves, and why
 a later wave waits for an earlier one.
 
-8
-00:00:25.325 --> 00:00:28.850
+10
+00:00:32.337 --> 00:00:35.862
 And you'll explain the order for
 converting a standing assignment.
 
-9
-00:00:28.850 --> 00:00:33.848
+11
+00:00:35.862 --> 00:00:40.860
 Before you start, finish Module 2,
 for the emergency accounts this module
 
-10
-00:00:33.848 --> 00:00:39.262
+12
+00:00:40.860 --> 00:00:46.274
 refuses to proceed without, and Module 3,
 for the activation gate and its policy.
 
-11
-00:00:39.262 --> 00:00:45.075
+13
+00:00:46.274 --> 00:00:52.087
 Lab 2 needs a worldwide or G C C test
 tenant, never production, with Microsoft
 
-12
-00:00:45.075 --> 00:00:50.570
+14
+00:00:52.087 --> 00:00:57.580
 Entra I D P2 or I D Governance licenses
 for the test users and approvers.

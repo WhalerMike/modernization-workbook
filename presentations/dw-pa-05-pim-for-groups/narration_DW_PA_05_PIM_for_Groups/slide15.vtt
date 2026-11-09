@@ -21,30 +21,40 @@ which is exactly the trap where
 activation can't be undone.
 
 5
-00:00:14.688 --> 00:00:17.312
-The policy also allows activation without
+00:00:14.688 --> 00:00:18.231
+The policy also allows
+activation without approval,
 
 6
-00:00:17.312 --> 00:00:19.863
-approval and for twice
-as long as it should.
+00:00:18.231 --> 00:00:23.063
+for twice as long as it should, and with
+M F A instead of the activation gate.
 
 7
-00:00:19.863 --> 00:00:23.063
+00:00:23.063 --> 00:00:26.262
 On the Azure group, another
 group is nested inside.
 
 8
-00:00:23.063 --> 00:00:26.887
+00:00:26.262 --> 00:00:30.087
 The diff shows each change
 in a line, removals last.
 
 9
-00:00:26.887 --> 00:00:30.575
+00:00:30.087 --> 00:00:33.775
 Then set a tight removal limit
 and watch a guard refuse to run.
 
 10
-00:00:30.575 --> 00:00:33.940
-Finally apply to the fake,
-and run the full suite.
+00:00:33.775 --> 00:00:37.411
+Finally apply to the fake:
+it refuses until you state
+
+11
+00:00:37.411 --> 00:00:40.625
+the gate's policy is On,
+then sends ten requests.
+
+12
+00:00:40.625 --> 00:00:42.190
+And run the full suite.

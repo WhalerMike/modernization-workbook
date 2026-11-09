@@ -83,43 +83,6 @@
    "In this module you check a fictional tenant's agents against the program's rules, see the same rules run where the cloud has no agent identities, and plan two report-only agent Conditional Access policies."
   ]
  ],
- "3": [
-  [
-   0.05,
-   5.562,
-   "Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab."
-  ],
-  [
-   5.612,
-   6.588,
-   "You'll describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary."
-  ],
-  [
-   12.2,
-   5.9,
-   "You'll explain decision D N six as data, and what the code does in a cloud without Agent I D."
-  ],
-  [
-   18.1,
-   5.75,
-   "You'll run the A I identity check and read its findings, including the top-priority drift."
-  ],
-  [
-   23.85,
-   4.688,
-   "You'll explain the ten-business-day sponsor rule, and what happens to an orphaned agent."
-  ],
-  [
-   28.538,
-   6.4,
-   "And you'll show that the agent Conditional Access plan is report-only, and runs only by its approved hash."
-  ],
-  [
-   34.938,
-   9.425,
-   "Before you start, finish Module 2, because the lab reads Chapter 2's ownership run, and Module 6, on Conditional Access for workload identities."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -175,48 +138,6 @@
    54.913,
    3.038,
    "So the program holds its decision about this as data."
-  ]
- ],
- "5": [
-  [
-   0.05,
-   9.062,
-   "The program's decision D N six is held as data, in a configuration file with each capability's stage by cloud, and its status is proposed."
-  ],
-  [
-   9.113,
-   2.263,
-   "The code reads it and picks a mode."
-  ],
-  [
-   11.375,
-   8.8,
-   "In the worldwide and G C C clouds it runs in Agent I D mode: it reads blueprints and agent identities and checks them against the rules."
-  ],
-  [
-   20.175,
-   9.662,
-   "In G C C High and D O D, where Microsoft Learn's feature availability page publishes no Agent I D availability, it runs in fallback mode."
-  ],
-  [
-   29.837,
-   6.938,
-   "It sends no agent identity read at all, and applies the same rules to the service principals the agents run as."
-  ],
-  [
-   36.775,
-   4.0,
-   "So the rules don't change by cloud; only what the code reads does."
-  ],
-  [
-   40.775,
-   2.987,
-   "Preview features are reported, never enforced."
-  ],
-  [
-   43.763,
-   1.538,
-   "That's design guidance."
   ]
  ],
  "6": [
@@ -306,115 +227,6 @@
    42.9,
    5.638,
    "Eighteen to twenty check the two policies, and twenty-one to twenty-three are the top-priority drift."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   6.45,
-   "The only thing this chapter ever writes is the two agent policies, report-only, and that's the kit's design."
-  ],
-  [
-   6.5,
-   7.188,
-   "The plan compares the two reviewed policies with the tenant's, and says create, in place, or differs for each."
-  ],
-  [
-   13.688,
-   6.213,
-   "Where decision D N six says agent Conditional Access isn't published, it marks them not available."
-  ],
-  [
-   19.9,
-   3.763,
-   "And it refuses a reviewed file that isn't report-only Block."
-  ],
-  [
-   23.663,
-   2.225,
-   "The write path is a separate script."
-  ],
-  [
-   25.887,
-   7.862,
-   "It refuses to run unless the plan's hash is the approved one, for this tenant and cloud, and no more than seven days old."
-  ],
-  [
-   33.75,
-   4.625,
-   "Every write creates a report-only policy with Block as the only grant."
-  ],
-  [
-   38.375,
-   4.013,
-   "It runs as a person with the Conditional Access Administrator role."
-  ],
-  [
-   42.388,
-   1.938,
-   "And it never turns a policy on."
-  ],
-  [
-   44.325,
-   9.912,
-   "Microsoft Learn's page on Conditional Access for agents lists the feature as preview, so that waits until the agent targets leave preview in the agency's cloud."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   0.725,
-   "Try it."
-  ],
-  [
-   0.775,
-   5.675,
-   "Lab 1 runs in the non-person identity folder of the examples, in PowerShell 7."
-  ],
-  [
-   6.45,
-   6.8,
-   "Its step one makes Chapter 1's register and Chapter 2's ownership run, so the chapter's steps are one ahead here."
-  ],
-  [
-   13.25,
-   3.212,
-   "The ownership run's last line is its plan's hash."
-  ],
-  [
-   16.462,
-   9.262,
-   "Step two sends Microsoft Learn's Agent I D samples to the fake: thirteen pass, none fail, and forty-nine of the file's other tests aren't run."
-  ],
-  [
-   25.725,
-   2.65,
-   "Step three lists what each task needs."
-  ],
-  [
-   28.375,
-   4.7,
-   "The read task holds ten read permissions, and none ends in ReadWrite."
-  ],
-  [
-   33.075,
-   3.425,
-   "The write task holds only the two policy permissions."
-  ],
-  [
-   36.5,
-   3.95,
-   "Step four reads decision D N six for each cloud."
-  ],
-  [
-   40.45,
-   9.363,
-   "The worldwide and G C C clouds run in Agent I D mode, with agent identities generally available and agent Conditional Access in preview."
-  ],
-  [
-   49.812,
-   4.85,
-   "G C C High and D O D run in fallback mode: nothing published."
   ]
  ],
  "10": [
@@ -719,6 +531,194 @@
    "The module page has three more questions, each linked to the section that answers it."
   ]
  ],
+ "3": [
+  [
+   0.05,
+   5.562,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab."
+  ],
+  [
+   5.612,
+   6.588,
+   "You'll describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary."
+  ],
+  [
+   12.2,
+   6.25,
+   "You'll explain decision D N P six as data, and what the code does in a cloud without Agent I D."
+  ],
+  [
+   18.45,
+   5.75,
+   "You'll run the A I identity check and read its findings, including the top-priority drift."
+  ],
+  [
+   24.2,
+   4.688,
+   "You'll explain the ten-business-day sponsor rule, and what happens to an orphaned agent."
+  ],
+  [
+   28.887,
+   6.4,
+   "And you'll show that the agent Conditional Access plan is report-only, and runs only by its approved hash."
+  ],
+  [
+   35.288,
+   9.425,
+   "Before you start, finish Module 2, because the lab reads Chapter 2's ownership run, and Module 6, on Conditional Access for workload identities."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   9.425,
+   "The program's decision D N P six is held as data, in a configuration file with each capability's stage by cloud, and its status is proposed."
+  ],
+  [
+   9.475,
+   2.263,
+   "The code reads it and picks a mode."
+  ],
+  [
+   11.738,
+   8.8,
+   "In the worldwide and G C C clouds it runs in Agent I D mode: it reads blueprints and agent identities and checks them against the rules."
+  ],
+  [
+   20.538,
+   9.662,
+   "In G C C High and D O D, where Microsoft Learn's feature availability page publishes no Agent I D availability, it runs in fallback mode."
+  ],
+  [
+   30.2,
+   6.938,
+   "It sends no agent identity read at all, and applies the same rules to the service principals the agents run as."
+  ],
+  [
+   37.138,
+   4.0,
+   "So the rules don't change by cloud; only what the code reads does."
+  ],
+  [
+   41.138,
+   2.987,
+   "Preview features are reported, never enforced."
+  ],
+  [
+   44.125,
+   1.538,
+   "That's design guidance."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.45,
+   "The only thing this chapter ever writes is the two agent policies, report-only, and that's the kit's design."
+  ],
+  [
+   6.5,
+   7.188,
+   "The plan compares the two reviewed policies with the tenant's, and says create, in place, or differs for each."
+  ],
+  [
+   13.688,
+   6.537,
+   "Where decision D N P six says agent Conditional Access isn't published, it marks them not available."
+  ],
+  [
+   20.225,
+   3.763,
+   "And it refuses a reviewed file that isn't report-only Block."
+  ],
+  [
+   23.988,
+   2.225,
+   "The write path is a separate script."
+  ],
+  [
+   26.212,
+   7.862,
+   "It refuses to run unless the plan's hash is the approved one, for this tenant and cloud, and no more than seven days old."
+  ],
+  [
+   34.075,
+   4.625,
+   "Every write creates a report-only policy with Block as the only grant."
+  ],
+  [
+   38.7,
+   4.013,
+   "It runs as a person with the Conditional Access Administrator role."
+  ],
+  [
+   42.712,
+   1.938,
+   "And it never turns a policy on."
+  ],
+  [
+   44.65,
+   9.912,
+   "Microsoft Learn's page on Conditional Access for agents lists the feature as preview, so that waits until the agent targets leave preview in the agency's cloud."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.675,
+   "Lab 1 runs in the non-person identity folder of the examples, in PowerShell 7."
+  ],
+  [
+   6.45,
+   6.8,
+   "Its step one makes Chapter 1's register and Chapter 2's ownership run, so the chapter's steps are one ahead here."
+  ],
+  [
+   13.25,
+   3.212,
+   "The ownership run's last line is its plan's hash."
+  ],
+  [
+   16.462,
+   9.262,
+   "Step two sends Microsoft Learn's Agent I D samples to the fake: thirteen pass, none fail, and forty-nine of the file's other tests aren't run."
+  ],
+  [
+   25.725,
+   2.65,
+   "Step three lists what each task needs."
+  ],
+  [
+   28.375,
+   4.7,
+   "The read task holds ten read permissions, and none ends in ReadWrite."
+  ],
+  [
+   33.075,
+   3.425,
+   "The write task holds only the two policy permissions."
+  ],
+  [
+   36.5,
+   4.4,
+   "Step four reads decision D N P six for each cloud."
+  ],
+  [
+   40.9,
+   9.363,
+   "The worldwide and G C C clouds run in Agent I D mode, with agent identities generally available and agent Conditional Access in preview."
+  ],
+  [
+   50.263,
+   4.85,
+   "G C C High and D O D run in fallback mode: nothing published."
+  ]
+ ],
  "16": [
   [
    0.05,
@@ -732,16 +732,16 @@
   ],
   [
    18.312,
-   18.325,
-   "The evidence an I S S O keeps from this module is the A I identities file, the findings, the orphan candidates, the policy plan with its approved hash, and the dry run's and apply's results and manifests, all dated; the capability table for decision D N six; and the test result."
+   18.75,
+   "The evidence an I S S O keeps from this module is the A I identities file, the findings, the orphan candidates, the policy plan with its approved hash, and the dry run's and apply's results and manifests, all dated; the capability table for decision D N P six; and the test result."
   ],
   [
-   36.638,
+   37.062,
    4.388,
    "Next is Module 10: find drift and file the evidence."
   ],
   [
-   41.025,
+   41.45,
    7.825,
    "It keeps every gate's state true against an approved baseline, and hands the I S S O evidence they can verify themselves."
   ]

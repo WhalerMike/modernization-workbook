@@ -21,20 +21,26 @@ Each request carries its permission
 and a line of diff a reviewer can read.
 
 5
-00:00:17.612 --> 00:00:19.838
-Nothing is sent unless you ask for it.
+00:00:17.612 --> 00:00:21.396
+Nothing is sent unless you ask for
+it, and a plan that selects the
 
 6
-00:00:19.838 --> 00:00:25.068
+00:00:21.396 --> 00:00:26.051
+authentication context also needs a
+person's statement that its policy is On.
+
+7
+00:00:26.051 --> 00:00:31.281
 And even then, seven guards can refuse the
 whole run: losing approval on a top tier,
 
-7
-00:00:25.068 --> 00:00:27.922
+8
+00:00:31.281 --> 00:00:34.135
 a permanent grant, a
 group approving itself,
 
-8
-00:00:27.922 --> 00:00:33.380
+9
+00:00:34.135 --> 00:00:39.580
 or suddenly removing more people than
 expected, which usually means a broken file.

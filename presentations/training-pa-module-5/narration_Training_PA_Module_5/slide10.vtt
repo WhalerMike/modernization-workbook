@@ -38,31 +38,36 @@ which is oh seven and oh
 nine: the owner trap.
 
 9
-00:00:24.763 --> 00:00:28.196
-And its member activation
-needs no approval and lasts
+00:00:24.763 --> 00:00:30.206
+And its member policy activates without
+approval, for eight hours instead of four,
 
 10
-00:00:28.196 --> 00:00:31.324
-eight hours instead of
-four, two oh eight findings.
+00:00:30.206 --> 00:00:35.329
+and with M F A instead of the authentication
+context c1: four oh eight findings,
 
 11
-00:00:31.324 --> 00:00:35.120
+00:00:35.329 --> 00:00:39.812
+for the duration, the enablement
+rules, the context and the approval.
+
+12
+00:00:39.812 --> 00:00:43.607
 On the Azure owner group, P R
 V T1 Azure Owner Sub Workload:
 
-12
-00:00:35.120 --> 00:00:40.400
+13
+00:00:43.607 --> 00:00:48.887
 it isn't role-assignable, which is a warning
 for a group that holds no Entra role,
 
-13
-00:00:40.400 --> 00:00:45.350
+14
+00:00:48.887 --> 00:00:53.837
 and it has a nested group, the legacy
 help desk group, as an eligible member.
 
-14
-00:00:45.350 --> 00:00:49.440
+15
+00:00:53.837 --> 00:00:57.940
 That's oh five, oh nine, and
 an oh eight for a policy rule.

@@ -47,12 +47,12 @@ const SS = "Check and summary";
   tag(s, "Why");
   const b = table(s, "Three", 1.45, [2.6, 2.8, 6.75], ["Step", "Whose", "What it does"], [
     ["The proposal", "The matrix", "Proposes a target, by account type and where the workload runs"],
-    ["The disposition", "The application owner", "Decides: retire, re-platform or keep, account by account (D-N3)"],
+    ["The disposition", "The application owner", "Decides: retire, re-platform or keep, account by account (D-NP3)"],
     ["The gate", "The ISSO", "Checks Gate 2: met only with no open Finding"],
   ], { fontSize: 13.5, limit: 3.6 });
   callout(s, "Five", b + 0.35, 0.95, "FaRoute", HEX.red, "Five places: ",
     "retire it; a gMSA or dMSA; a managed identity, a federated credential or a certificate. The program's rule: no stored secrets.");
-  sources(s, "Sources: Module 3, \"Introduction\"; the program's migration path matrix and decision D-N3 (design guidance).");
+  sources(s, "Sources: Module 3, \"Introduction\"; the program's migration path matrix and decision D-NP3 (design guidance).");
   notes(s,
 `Every identity ends in one of five places. Retire it. Move it to a group managed or delegated managed service account. Or move it to a managed identity, a federated credential, or a certificate. The program's migration path matrix, which is design guidance, decides by the account type and by where the workload runs, and its rule is simple: no stored secrets. But three things are easy to blur here, and the code keeps them apart. The matrix proposes a target. The application owner decides the disposition, account by account. And the ISSO checks the gate. Keep those three separate, and nobody can say the code made a decision that a person should have made. In this module you run all three on the fixtures, and read why Gate 2 isn't met yet.`,
   `${M} — Unit "Introduction"; workbook Chapter 03 — "The decisions the code holds."`);
@@ -112,7 +112,7 @@ endModule(SI);
   sources(s, "Sources: the program's migration path matrix (design guidance); Learn, Securing on-premises and cloud-based service accounts; Delegated Managed Service Accounts overview.");
   notes(s,
 `Unit 2 is the matrix as code. The proposal gives every identity in scope a target. SQL Server accounts are handed off, and an account found only by a password that never expires waits for confirmation. For the rest, retire comes first: for an account Module 2 found unowned and nobody claimed, or one already disabled. Otherwise the first matrix row that matches proposes the target. Rows one to five send a traditional account off premises to a managed identity, or an app registration with a federated credential or a certificate. Rows six and seven send a Kerberos account to a delegated managed service account where the domain and hosts allow one, otherwise a group managed one. Rows eight to thirteen handle the managed service accounts, fourteen to eighteen the app registrations, and nineteen keeps a managed identity. The workload facts come from the owner, and without them there's no proposal.`,
-  `${M} — Unit 2 "The matrix as code": workbook Chapter 03, "The proposal (N2.1)."`);
+  `${M} — Unit 2 "The matrix as code": workbook Chapter 03, "The proposal (NP2.1)."`);
 }
 
 // ================================================================== 6 The disposition: findings
@@ -128,24 +128,24 @@ endModule(SI);
     ["NPI-MAT-06", "An account kept on Kerberos with no SPN owner who is an enabled member"],
     ["NPI-MAT-07", "A HIGH-risk account re-platformed outside wave 1"],
     ["NPI-MAT-08", "A wave with no rollback owner who is an enabled member, or no review date"],
-    ["NPI-MAT-09", "The Workload ID Premium scope (D-N4): no decision, or an identity Conditional Access can't cover"],
+    ["NPI-MAT-09", "The Workload ID Premium scope (D-NP4): no decision, or an identity Conditional Access can't cover"],
   ], { fontSize: 12, limit: 6.5 });
-  sources(s, "Sources: Learn, Delegated Managed Service Accounts overview and FAQ; the program's decisions D-N3 and D-N4 and plan task N2.2 (design guidance).");
+  sources(s, "Sources: Learn, Delegated Managed Service Accounts overview and FAQ; the program's decisions D-NP3 and D-NP4 and plan task NP2.2 (design guidance).");
   notes(s,
 `The owner's disposition is read row by row, and what's missing or wrong becomes a finding, N P I M A T oh one to oh nine. Oh one: no disposition. Oh two: no proposal, because the workload facts are missing. Oh three: a target that doesn't fit, such as a managed or group managed service account sent to a delegated one, which Microsoft Learn's delegated managed service account documentation says can't be done. Oh four: the owner chose a target the matrix didn't propose; that's allowed, with a reason on the record. Oh five: an account kept in Active Directory with no end date, or one past the program's dates. Oh six: an account kept on Kerberos with no S P N owner. Oh seven: a high-risk account re-platformed outside wave 1. Oh eight: a wave with no rollback owner, or no review date. And oh nine is the Workload I D Premium scope.`,
-  `${M} — Unit 2: workbook Chapter 03, "The disposition (D-N3) and the waves (N2.2)."`);
+  `${M} — Unit 2: workbook Chapter 03, "The disposition (D-NP3) and the waves (NP2.2)."`);
 }
 
-// ================================================================== 7 Waves, D-N4, Gate 2
+// ================================================================== 7 Waves, D-NP4, Gate 2
 {
-  const s = content(SC, "Waves and rollback, D-N4, and Gate 2");
+  const s = content(SC, "Waves and rollback, D-NP4, and Gate 2");
   tag(s, "What");
-  const l = panel(s, "Waves", 0.6, 1.45, 4.0, null, HEX.navy, HEX.navyTint, "WAVES (N2.2)", "Each with its rollback", [
+  const l = panel(s, "Waves", 0.6, 1.45, 4.0, null, HEX.navy, HEX.navyTint, "WAVES (NP2.2)", "Each with its rollback", [
     "Built from the members' targets",
     "Re-enable the legacy account; revert the configuration",
     "A dMSA: Undo-ADServiceAccountMigration; the superseded account is kept",
   ], 12.5);
-  const m = panel(s, "DN4", 4.75, 1.45, 4.0, null, HEX.teal, HEX.tealTint, "WORKLOAD ID PREMIUM (D-N4)", "Who CA can cover", [
+  const m = panel(s, "DN4", 4.75, 1.45, 4.0, null, HEX.teal, HEX.tealTint, "WORKLOAD ID PREMIUM (D-NP4)", "Who CA can cover", [
     "Only single-tenant service principals registered in the tenant",
     "Not multitenant apps or managed identities",
     "The program licenses Tier 1",
@@ -154,10 +154,10 @@ endModule(SI);
     "Met only when no finding of severity Finding is open",
     "Each criterion lists its open findings",
   ], 12.5);
-  sources(s, "Sources: Learn, Setting up delegated Managed Service Accounts; Conditional Access for workload identities; Workload ID FAQ; the program's decision D-N4.");
+  sources(s, "Sources: Learn, Setting up delegated Managed Service Accounts; Conditional Access for workload identities; Workload ID FAQ; the program's decision D-NP4.");
   notes(s,
-`Three more pieces. First, the waves. Each wave's rollback is built from its members' targets: re-enable the legacy account and revert the application's configuration, and for a delegated managed service account, the undo command from Microsoft Learn's Setting up delegated Managed Service Accounts documentation, with the superseded account kept, never deleted. Second, decision D N 4, on the Workload I D Premium license. Microsoft Learn's Conditional Access for workload identities documentation says it covers only single-tenant service principals registered in the tenant. Multitenant apps and managed identities aren't covered. The program's position, which is design guidance, is to license the single-tenant service principals classified Tier 1, and the code counts who's eligible now and after conversion. It buys nothing. Third, Gate 2 itself, the ISSO's: five criteria, each reported with its open findings, and the gate is met only when no finding of severity Finding is open.`,
-  `${M} — Unit 2: workbook Chapter 03, "The decisions the code holds," "The disposition (D-N3) and the waves (N2.2)," "Gate 2."`);
+`Three more pieces. First, the waves. Each wave's rollback is built from its members' targets: re-enable the legacy account and revert the application's configuration, and for a delegated managed service account, the undo command from Microsoft Learn's Setting up delegated Managed Service Accounts documentation, with the superseded account kept, never deleted. Second, decision D N P 4, on the Workload I D Premium license. Microsoft Learn's Conditional Access for workload identities documentation says it covers only single-tenant service principals registered in the tenant. Multitenant apps and managed identities aren't covered. The program's position, which is design guidance, is to license the single-tenant service principals classified Tier 1, and the code counts who's eligible now and after conversion. It buys nothing. Third, Gate 2 itself, the ISSO's: five criteria, each reported with its open findings, and the gate is met only when no finding of severity Finding is open.`,
+  `${M} — Unit 2: workbook Chapter 03, "The decisions the code holds," "The disposition (D-NP3) and the waves (NP2.2)," "Gate 2."`);
 }
 endModule(SC);
 
@@ -175,12 +175,12 @@ endModule(SC);
     "$ ./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership -InputPath ... -OutputPath out/matrix",
     "Matrix: 21 identities in scope, 20 proposed (1 AppRegistrationFederated, 2 dMSA, 2 gMSA, 7 Keep,",
     "  2 ManagedIdentity, 6 Retire); 3 handed off, 1 to confirm first, 10 out of scope",
-    "Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (3, 1 HIGH)",
-    "Workload ID Premium (D-N4): Tier1, 2 in scope; tenant holds 2 enabled units",
+    "Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (4, 1 HIGH)",
+    "Workload ID Premium (D-NP4): Tier1, 2 in scope; tenant holds 2 enabled units",
     "Findings: 7 Finding, 4 Warn, 1 Info",
     "Gate 2: not met (Every account has a disposition and a target from the matrix: 3; HIGH-risk accounts",
     "  in the first wave: 1; Every kept Kerberos account has an SPN owner: 1; Waves and their rollback",
-    "  recorded: 1; Workload ID Premium scope decided (D-N4): 1)",
+    "  recorded: 1; Workload ID Premium scope decided (D-NP4): 1)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED; \"...\" MARKS CUTS)", pt: 10.5 });
   sources(s, "Sources: Module 3, \"Exercise: Lab 1,\" steps 1 to 3; examples/non-person-identity: Invoke-NpiMatrix.ps1, tests/fixtures/ch03 (fictional).");
   notes(s,
@@ -228,14 +228,14 @@ endModule(SC);
 
 // ================================================================== 10 Try it: waves and scope
 {
-  const s = content(SL, "Try it: the waves' rollback and the D-N4 scope");
+  const s = content(SL, "Try it: the waves' rollback and the D-NP4 scope");
   tag(s, "How");
   const c = code(s, "Waves", 0.6, 1.45, 12.15, [
     "# Step 6: read the waves and their rollback",
     "Wave 1: Mail Automation; rollback owner 'carol@contoso.example'",
     "  AppRegistrationFederated: Re-enable the legacy account or credential; revert the application's configuration;",
     "    remove the federated credential",
-    "Wave 2: svc-hrsync, msa-print01$, Payroll Export; rollback owner ''",
+    "Wave 2: svc-hrsync, svc-intranet, msa-print01$, Payroll Export; rollback owner ''",
     "  dMSA: Undo-ADServiceAccountMigration (Learn's undo for a dMSA migration); the superseded account is kept,",
     "    never deleted",
     "  gMSA: Re-enable the legacy account; set the service back to it",
@@ -248,7 +248,7 @@ endModule(SC);
   line(s, "Tests", "Six single-tenant apps can be covered today, four after conversion. Step 8: 513 tests passed, 0 failed.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 3, \"Exercise: Lab 1,\" steps 6 to 8; knowledge check answer 4; examples/non-person-identity/config/migration-matrix.json.");
   notes(s,
-`Step six prints each wave with its rollback. Wave 1 is Mail Automation, with a rollback owner, and its rollback re-enables the legacy credential, reverts the configuration and removes the federated credential. Wave 2 holds svc hrsync, a managed service account and Payroll Export, and its rollback owner is empty. That's the N P I M A T oh eight finding. Notice the delegated managed account's rollback is the undo command from Microsoft Learn's delegated managed service account documentation, and the superseded account is kept, never deleted. Step seven reads the Workload I D Premium scope. Six single-tenant app registrations can be covered by Conditional Access today, and four after conversion. Payroll Export is one that leaves: its owner's decision moves it to a managed identity, and managed identities aren't covered. Step eight runs every test: five hundred thirteen pass. Then delete the output, which names accounts and owners.`,
+`Step six prints each wave with its rollback. Wave 1 is Mail Automation, with a rollback owner, and its rollback re-enables the legacy credential, reverts the configuration and removes the federated credential. Wave 2 holds svc hrsync, svc intranet, a managed service account and Payroll Export. svc intranet is there because its owner re-platforms it to the group managed service account the matrix proposes. And the wave's rollback owner is empty. That's the N P I M A T oh eight finding. Notice the delegated managed account's rollback is the undo command from Microsoft Learn's delegated managed service account documentation, and the superseded account is kept, never deleted. Step seven reads the Workload I D Premium scope. Six single-tenant app registrations can be covered by Conditional Access today, and four after conversion. Payroll Export is one that leaves: its owner's decision moves it to a managed identity, and managed identities aren't covered. Step eight runs every test: five hundred thirteen pass. Then delete the output, which names accounts and owners.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 6 to 8; Knowledge check answer 4.`);
 }
 
@@ -267,7 +267,7 @@ endModule(SC);
     "follow the workbook's Chapter 03, Lab 2, which has the exact commands.");
   sources(s, "Sources: Module 3, \"Exercise: Lab 2, your test tenant\"; learning path index, \"What you need for the labs.\"");
   notes(s,
-`Lab 2 runs the matrix against your own test tenant, worldwide or G C C, never production, with fictional people, and with the Lab 2 runs of Modules 1 and 2 already done. The run only reads. Grant User dot Read dot All and License Assignment dot Read dot All to Module 1's reading app. Write the owners' inputs for your test accounts: where each workload runs, and each owner's decision. Run the matrix. Record what the license read shows, and check in the admin center which principals Conditional Access can actually target, because that's the scope the D N 4 decision rests on. To back it out, step six removes the two permissions and deletes the output. The authors haven't run Lab 2. The workbook's Chapter 3 has the exact commands.`,
+`Lab 2 runs the matrix against your own test tenant, worldwide or G C C, never production, with fictional people, and with the Lab 2 runs of Modules 1 and 2 already done. The run only reads. Grant User dot Read dot All and License Assignment dot Read dot All to Module 1's reading app. Write the owners' inputs for your test accounts: where each workload runs, and each owner's decision. Run the matrix. Record what the license read shows, and check in the admin center which principals Conditional Access can actually target, because that's the scope the D N P 4 decision rests on. To back it out, step six removes the two permissions and deletes the output. The authors haven't run Lab 2. The workbook's Chapter 3 has the exact commands.`,
   `${M} — Unit "Exercise: Lab 2, your test tenant"; learning path index — "What you need for the labs."`);
 }
 endModule(SL);
@@ -280,7 +280,7 @@ endModule(SL);
     ["AC-2; IA-5", "KSI-IAM-SNU", "proposals.json; config/migration-matrix.json; decisions.json"],
     ["AC-6(5) Privileged Accounts (HIGH first)", "KSI-IAM-SNU, KSI-IAM-JIT", "findings.json, NPI-MAT-01 to -09"],
     ["CM-3 (waves and rollback)", "KSI-CMT-RVP", "waves.json"],
-    ["AC-3 Access Enforcement (D-N4 scope)", "KSI-IAM-ELP, KSI-IAM-JIT", "workload-id-premium.json"],
+    ["AC-3 Access Enforcement (D-NP4 scope)", "KSI-IAM-ELP, KSI-IAM-JIT", "workload-id-premium.json"],
     ["CA-7 Continuous Monitoring (gate status)", "KSI-MLA-EVC", "gate2.json"],
   ], { fontSize: 12, limit: 5.0 });
   line(s, "KSI", "KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them. The mapping is design guidance.", b + 0.25, 0.7, 13.5);
@@ -293,12 +293,12 @@ endModule(SL);
 // ================================================================== 13 Check
 {
   const s = check(SS, "Check yourself: two questions on the decision", [
-    { q: "Who decides an identity's disposition?", options: ["a. The matrix", "b. The application owner, account by account (D-N3)", "c. The ISSO"] },
+    { q: "Who decides an identity's disposition?", options: ["a. The matrix", "b. The application owner, account by account (D-NP3)", "c. The ISSO"] },
     { q: "A HIGH-risk account is scheduled for re-platforming in wave 2. What happens?", options: ["a. NPI-MAT-07 raises a Finding: HIGH-risk accounts go in wave 1", "b. Nothing, as long as wave 2 has a rollback", "c. The code moves it to wave 1"] },
   ], "1 b: the matrix proposes; the owner decides; the ISSO checks the gate. 2 a: the code reports it, and changes nothing.");
   sources(s, "Sources: Module 3, \"Knowledge check,\" questions 1 and 3, and \"Check your answers.\"");
   notes(s,
-`Check yourself with two questions. First: who decides an identity's disposition? The answer is b: the application owner, account by account, under decision D N 3. The matrix only proposes, and the ISSO checks the gate. Second: a high-risk account is scheduled for re-platforming in wave 2. What happens? The answer is a. N P I M A T oh seven raises a finding, because high-risk accounts go in wave 1. The code reports it; it doesn't move the account itself. You saw exactly that finding for svc hrsync in step five. The module page has three more questions, each linked to the section that answers it.`,
+`Check yourself with two questions. First: who decides an identity's disposition? The answer is b: the application owner, account by account, under decision D N P 3. The matrix only proposes, and the ISSO checks the gate. Second: a high-risk account is scheduled for re-platforming in wave 2. What happens? The answer is a. N P I M A T oh seven raises a finding, because high-risk accounts go in wave 1. The code reports it; it doesn't move the account itself. You saw exactly that finding for svc hrsync in step five. The module page has three more questions, each linked to the section that answers it.`,
   `${M} — Unit "Knowledge check," questions 1 and 3; "Check your answers."`);
 }
 
@@ -317,7 +317,7 @@ endModule(SL);
     "Certificate rotation",
   ], 13.5);
   callout(s, "Keep", Math.max(l, r) + 0.3, 0.95, "FaFileShield", HEX.teal, "The evidence an ISSO keeps: ",
-    "proposals, decisions, waves, the D-N4 scope, findings, gate2.json and the manifest that hashes them, dated.");
+    "proposals, decisions, waves, the D-NP4 scope, findings, gate2.json and the manifest that hashes them, dated.");
   sources(s, "Sources: Module 3, \"Summary\"; Module 4, \"Introduction.\"");
   notes(s,
 `To sum up. You proposed a target for twenty identities, checked the owners' dispositions, read two waves and their rollback, and scoped Workload I D Premium. Gate 2 isn't met on the fixtures, and you can say why. The evidence an ISSO keeps for Gate 2 from this module is the proposals, the decisions, the waves, the license scope, the findings, the gate's status, and the manifest that hashes them and the inputs, all dated. Before you ship, work through the chapter's checklist. Next is Module 4: set the credential rules. The tenant can block new secrets and cap certificate lifetimes itself, and the rest is a rotation plan, from renewal to removal.`,
@@ -329,7 +329,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 3 deck", [
   "Module page: docs/training/non-person-identity/03-decide-the-target.md (Non-Person Identity learning path, Module 3): Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary. The learning path index: what you need for the labs.",
-  "What the module links for the design and rules: Non-Person Identity: An Implementation Guide, Step 2 (the condensed decision table, order of work, prerequisites for a gMSA, Validate G2); workbook Chapter 03, \"The decisions the code holds,\" \"The proposal (N2.1),\" \"The disposition (D-N3) and the waves (N2.2),\" \"Gate 2.\"",
+  "What the module links for the design and rules: Non-Person Identity: An Implementation Guide, Step 2 (the condensed decision table, order of work, prerequisites for a gMSA, Validate G2); workbook Chapter 03, \"The decisions the code holds,\" \"The proposal (NP2.1),\" \"The disposition (D-NP3) and the waves (NP2.2),\" \"Gate 2.\"",
   "Kit: examples/non-person-identity (Invoke-NpiMatrix.ps1; powershell/NpiMatrix; config/migration-matrix.json and calls-ch03.json; tests/fixtures/ch03). Fictional estate. Illustrative: tested against fixtures, not run against a live tenant.",
   "Lab output: run November 3, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity, with examples/third_party and examples/drift-pipeline beside it; long commands are wrapped and output trimmed where the slides say so. Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by the authors.",
 ]);

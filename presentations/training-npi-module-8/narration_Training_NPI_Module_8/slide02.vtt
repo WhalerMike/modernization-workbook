@@ -53,20 +53,24 @@ gives every one an end date.
 So converting isn't the end.
 
 12
-00:00:41.338 --> 00:00:46.935
+00:00:41.338 --> 00:00:47.246
 Every G M S A and D M S A must either
 move to a workload identity, retire,
 
 13
-00:00:46.935 --> 00:00:52.737
+00:00:47.246 --> 00:00:50.577
 or sit on a dated Kerberos island list,
-with an S P N owner and an end date.
 
 14
-00:00:52.737 --> 00:00:54.827
-In this module you plan all three,
+00:00:50.577 --> 00:00:54.874
+with an end date and, where it
+has S P N's, an S P N owner.
 
 15
-00:00:54.827 --> 00:00:58.440
+00:00:54.874 --> 00:00:56.965
+In this module you plan all three,
+
+16
+00:00:56.965 --> 00:01:00.580
 and you see the write path
 refuse a plan nobody approved.

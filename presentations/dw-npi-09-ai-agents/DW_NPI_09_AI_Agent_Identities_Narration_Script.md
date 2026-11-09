@@ -8,11 +8,11 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Non
 
 Why does this chapter come with so many questions up front? Because an agent works at machine speed, so whatever it can reach, it reaches fast. Microsoft's answer is Agent ID. A blueprint holds the credentials and creates the agent identities, which hold the permissions and show up in the logs. That structure has a sharp edge: the blueprint gets tokens on behalf of every agent under it, so one compromised blueprint credential is every agent at once. The platform became generally available in April; the extra security features need Agent 365.
 
-## Slide 3 — Release stage by cloud, and D-N6 as data
+## Slide 3 — Release stage by cloud, and D-NP6 as data
 
 Before any code, you need to know what's actually available, because the pieces are at different stages. The core objects are generally available. Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta. In this estate's G C C cloud, the documented subset is listed, mostly for delegated access. In the higher government clouds, nothing is published yet. So the program's decision is held as data: in G C C the code reads agent identities, and elsewhere it falls back to applying the same rules to service principals.
 
-## Slide 4 — The program's rules, N6.1 to N6.7
+## Slide 4 — The program's rules, NP6.1 to NP6.7
 
 Here are the program's rules, the workbook's design for AI identities, each held as a finding with a stable ID. Creation is closed, so an agent can't just appear. Every production agent has a reviewed handshake before it exists, naming who answers for it and what it may do. Credentials prefer a managed identity, and never a production secret. Inheritance never hands every future grant to every agent, and no agent holds a standing privileged role. Sponsors are real employees, and a transfer has ten business days to be confirmed. And drift is watched, with priorities.
 
@@ -48,7 +48,7 @@ The only thing this chapter ever writes is the two agent policies, report-only. 
 
 Who's involved? Developers build it. The identity governance officer keeps the handshakes and confirms orphans. The Chief AI Officer's staff keep the use-case inventory, security operations own the drift findings, and the security officers review the evidence. The read task holds ten read permissions and nothing that ends in read-write; a test enforces that. A person running it also needs a reader role for custom attributes, and the agent administrator role unless they own the agents. The write task holds only the policy permissions, in a person's signed-in session.
 
-## Slide 13 — Lab 1: Learn's samples, D-N6, then the check
+## Slide 13 — Lab 1: Learn's samples, D-NP6, then the check
 
 Lab 1 runs on a laptop, with Chapters 1 and 2's output in place. First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents. Then list each task's permissions, and read the decision table for each cloud: agent mode in the worldwide and G C C clouds, fallback in the higher ones. Then run the check in G C C. Eight AI identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2.
 

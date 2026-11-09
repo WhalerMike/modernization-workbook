@@ -306,46 +306,46 @@ them when their risk is high.
 Two decisions frame them.
 
 64
-00:03:58.455 --> 00:04:01.499
-D N four is licensing:
+00:03:58.455 --> 00:04:01.634
+D N P four is licensing:
 Workload I D Premium
 
 65
-00:04:01.499 --> 00:04:05.080
+00:04:01.634 --> 00:04:05.267
 for the Tier 1 single-tenant
 service principals.
 
 66
-00:04:05.080 --> 00:04:08.909
-D N five is enforcement, and
+00:04:05.267 --> 00:04:09.259
+D N P five is enforcement, and
 it's the CISO's call: enforce,
 
 67
-00:04:08.909 --> 00:04:13.930
+00:04:09.259 --> 00:04:14.380
 extend report-only, or enforce with
 exclusions that are dated and owned.
 
 68
-00:04:13.930 --> 00:04:18.802
+00:04:14.380 --> 00:04:19.252
 The scope file is the record: each
 in-scope principal by object I D and ring,
 
 69
-00:04:18.802 --> 00:04:23.918
+00:04:19.252 --> 00:04:24.368
 and each identity that's out of scope,
 with the control that covers it instead.
 
 70
-00:04:23.918 --> 00:04:26.644
+00:04:24.368 --> 00:04:27.093
 And each policy is rendered once per ring,
 
 71
-00:04:26.644 --> 00:04:31.856
+00:04:27.093 --> 00:04:32.305
 so enforcing one ring changes one policy
 and leaves the next one in report-only.
 
 72
-00:04:31.856 --> 00:04:33.910
+00:04:32.305 --> 00:04:34.370
 That's the program's design.
 
 73
@@ -504,63 +504,63 @@ so the code asks for five things
 at once, or the ring stays held.
 
 106
-00:06:43.442 --> 00:06:45.880
-A D N five record marks the ring.
+00:06:43.442 --> 00:06:46.254
+A D N P five record marks the ring.
 
 107
-00:06:45.880 --> 00:06:47.793
+00:06:46.254 --> 00:06:48.168
 The change says allow enforce.
 
 108
-00:06:47.793 --> 00:06:51.942
+00:06:48.168 --> 00:06:52.317
 The run names a sign-in summary
 whose hash the ring's record cites.
 
 109
-00:06:51.942 --> 00:06:53.967
+00:06:52.317 --> 00:06:54.343
 That summary shows the ring ready.
 
 110
-00:06:53.967 --> 00:06:56.805
+00:06:54.343 --> 00:06:57.179
 And every earlier ring
 is already enforced.
 
 111
-00:06:56.805 --> 00:06:59.805
+00:06:57.179 --> 00:07:00.180
 The five conditions are the
 program's design guidance.
 
 112
-00:06:59.805 --> 00:07:02.167
+00:07:00.180 --> 00:07:02.542
 The evidence comes from
 the sign-in reader.
 
 113
-00:07:02.167 --> 00:07:05.258
+00:07:02.542 --> 00:07:05.633
 Following Microsoft Learn's
 List sign-ins reference,
 
 114
-00:07:05.258 --> 00:07:09.544
+00:07:05.633 --> 00:07:09.919
 it reads the beta sign-in list with a
 filter for service principal sign-ins,
 
 115
-00:07:09.544 --> 00:07:13.479
+00:07:09.919 --> 00:07:13.854
 and sends a header without which
 report-only results don't come back.
 
 116
-00:07:13.479 --> 00:07:16.502
+00:07:13.854 --> 00:07:16.877
 Each principal gets one of four statuses:
 
 117
-00:07:16.502 --> 00:07:19.880
+00:07:16.877 --> 00:07:20.255
 no sign-ins, not evaluated,
 would block, or clear.
 
 118
-00:07:19.880 --> 00:07:23.950
+00:07:20.255 --> 00:07:24.330
 A ring is ready only when
 every principal in it is clear.
 
@@ -809,61 +809,61 @@ policies its files name.
 Step eight tries to enforce Ring 1.
 
 170
-00:10:43.820 --> 00:10:49.140
+00:10:43.820 --> 00:10:49.254
 You copy the scope and add an enforcement
-record: D N five, outcome enforce,
+record: D N P five, outcome enforce,
 
 171
-00:10:49.140 --> 00:10:54.548
+00:10:49.254 --> 00:10:54.688
 decided by the CISO, and Ring 1 with the
 summary's hash, reviewed by the ISSO.
 
 172
-00:10:54.548 --> 00:10:59.158
+00:10:54.688 --> 00:10:59.320
 Plan without allow enforce, and
 Ring 1's location policy is held.
 
 173
-00:10:59.158 --> 00:11:04.127
+00:10:59.320 --> 00:11:04.290
 Plan again with allow enforce and the
 reviewed summary, and the held becomes
 
 174
-00:11:04.127 --> 00:11:08.544
+00:11:04.290 --> 00:11:08.707
 a second update: C A oh fifteen Ring
 1 goes from report-only to enabled.
 
 175
-00:11:08.544 --> 00:11:13.072
+00:11:08.707 --> 00:11:13.234
 Now add one byte to a copy of the summary
 and plan again, and it's held again,
 
 176
-00:11:13.072 --> 00:11:17.445
+00:11:13.234 --> 00:11:17.607
 because the edited summary's hash
 isn't the one the reviewer recorded.
 
 177
-00:11:17.445 --> 00:11:19.878
+00:11:17.607 --> 00:11:20.041
 Step nine reads the alert definition:
 
 178
-00:11:19.878 --> 00:11:24.981
+00:11:20.041 --> 00:11:25.144
 a query over the service principal sign-in
 logs for result type five three oh oh
 
 179
-00:11:24.981 --> 00:11:29.063
+00:11:25.144 --> 00:11:29.226
 three, which Microsoft Learn's
 error code list names as blocked
 
 180
-00:11:29.063 --> 00:11:32.595
+00:11:29.226 --> 00:11:32.758
 by Conditional Access, for the
 four in-scope object I D's.
 
 181
-00:11:32.595 --> 00:11:36.770
+00:11:32.758 --> 00:11:36.940
 Step ten runs the tests:
 five hundred thirteen pass.
 
@@ -1082,36 +1082,36 @@ and summarized the service
 principal sign-ins.
 
 227
-00:14:33.333 --> 00:14:37.957
-And you saw a ring enforced only with
-the D N five decision, the allow-enforce
+00:14:33.333 --> 00:14:38.108
+And you saw a ring enforced only with the
+D N P five decision, the allow-enforce
 
 228
-00:14:37.957 --> 00:14:42.432
+00:14:38.108 --> 00:14:42.657
 switch and the reviewed summary, and
 held again when the summary changed.
 
 229
-00:14:42.432 --> 00:14:47.891
+00:14:42.657 --> 00:14:48.206
 The evidence an ISSO keeps is the scope
 file, the pre-merge check, the findings,
 
 230
-00:14:47.891 --> 00:14:52.830
+00:14:48.206 --> 00:14:52.962
 the plan and its requests, the sign-in
-summary with the hash the D N five
+summary with the hash the D N P
 
 231
-00:14:52.830 --> 00:14:57.682
-record cites, the alert definition,
+00:14:52.962 --> 00:14:58.246
+five record cites, the alert definition,
 and each run's manifest, all dated.
 
 232
-00:14:57.682 --> 00:15:00.758
+00:14:58.246 --> 00:15:01.320
 Before you ship, work through
 the chapter's checklist.
 
 233
-00:15:00.758 --> 00:15:06.630
+00:15:01.320 --> 00:15:07.180
 Next is Module 7: convert to managed
 identities and federation, Gate 5.

@@ -149,48 +149,48 @@ and why the blueprint is
 the credential boundary.
 
 32
-00:01:59.440 --> 00:02:02.016
-You'll explain decision D N six as data,
+00:01:59.440 --> 00:02:02.218
+You'll explain decision D N P six as data,
 
 33
-00:02:02.016 --> 00:02:05.340
+00:02:02.218 --> 00:02:05.690
 and what the code does in
 a cloud without Agent I D.
 
 34
-00:02:05.340 --> 00:02:08.854
+00:02:05.690 --> 00:02:09.204
 You'll run the A I identity
 check and read its findings,
 
 35
-00:02:08.854 --> 00:02:11.090
+00:02:09.204 --> 00:02:11.440
 including the top-priority drift.
 
 36
-00:02:11.090 --> 00:02:13.731
+00:02:11.440 --> 00:02:14.081
 You'll explain the
 ten-business-day sponsor rule,
 
 37
-00:02:13.731 --> 00:02:15.778
+00:02:14.081 --> 00:02:16.128
 and what happens to an orphaned agent.
 
 38
-00:02:15.778 --> 00:02:20.070
+00:02:16.128 --> 00:02:20.419
 And you'll show that the agent
 Conditional Access plan is report-only,
 
 39
-00:02:20.070 --> 00:02:22.178
+00:02:20.419 --> 00:02:22.527
 and runs only by its approved hash.
 
 40
-00:02:22.178 --> 00:02:27.541
+00:02:22.527 --> 00:02:27.891
 Before you start, finish Module 2, because
 the lab reads Chapter 2's ownership run,
 
 41
-00:02:27.541 --> 00:02:31.960
+00:02:27.891 --> 00:02:32.320
 and Module 6, on Conditional
 Access for workload identities.
 
@@ -272,60 +272,60 @@ So the program holds its
 decision about this as data.
 
 58
-00:03:37.720 --> 00:03:42.043
-The program's decision D N six is
+00:03:37.720 --> 00:03:42.261
+The program's decision D N P six is
 held as data, in a configuration
 
 59
-00:03:42.043 --> 00:03:46.782
+00:03:42.261 --> 00:03:47.145
 file with each capability's stage by
 cloud, and its status is proposed.
 
 60
-00:03:46.782 --> 00:03:49.046
+00:03:47.145 --> 00:03:49.408
 The code reads it and picks a mode.
 
 61
-00:03:49.046 --> 00:03:52.712
+00:03:49.408 --> 00:03:53.075
 In the worldwide and G C C clouds
 it runs in Agent I D mode:
 
 62
-00:03:52.712 --> 00:03:57.845
+00:03:53.075 --> 00:03:58.208
 it reads blueprints and agent identities
 and checks them against the rules.
 
 63
-00:03:57.845 --> 00:04:02.676
+00:03:58.208 --> 00:04:03.039
 In G C C High and D O D, where
 Microsoft Learn's feature availability
 
 64
-00:04:02.676 --> 00:04:07.507
+00:04:03.039 --> 00:04:07.870
 page publishes no Agent I D
 availability, it runs in fallback mode.
 
 65
-00:04:07.507 --> 00:04:09.924
+00:04:07.870 --> 00:04:10.287
 It sends no agent identity read at all,
 
 66
-00:04:09.924 --> 00:04:14.445
+00:04:10.287 --> 00:04:14.808
 and applies the same rules to the
 service principals the agents run as.
 
 67
-00:04:14.445 --> 00:04:18.445
+00:04:14.808 --> 00:04:18.808
 So the rules don't change by cloud;
 only what the code reads does.
 
 68
-00:04:18.445 --> 00:04:21.432
+00:04:18.808 --> 00:04:21.795
 Preview features are
 reported, never enforced.
 
 69
-00:04:21.432 --> 00:04:23.330
+00:04:21.795 --> 00:04:23.690
 That's design guidance.
 
 70
@@ -487,54 +487,55 @@ and says create, in place,
 or differs for each.
 
 103
-00:06:32.278 --> 00:06:36.705
-Where decision D N six says agent
-Conditional Access isn't published,
+00:06:32.278 --> 00:06:35.425
+Where decision D N P six
+says agent Conditional
 
 104
-00:06:36.705 --> 00:06:38.491
-it marks them not available.
+00:06:35.425 --> 00:06:38.815
+Access isn't published, it
+marks them not available.
 
 105
-00:06:38.491 --> 00:06:42.253
+00:06:38.815 --> 00:06:42.578
 And it refuses a reviewed file
 that isn't report-only Block.
 
 106
-00:06:42.253 --> 00:06:44.478
+00:06:42.578 --> 00:06:44.803
 The write path is a separate script.
 
 107
-00:06:44.478 --> 00:06:48.492
+00:06:44.803 --> 00:06:48.817
 It refuses to run unless the
 plan's hash is the approved one,
 
 108
-00:06:48.492 --> 00:06:52.339
+00:06:48.817 --> 00:06:52.664
 for this tenant and cloud, and
 no more than seven days old.
 
 109
-00:06:52.339 --> 00:06:56.965
+00:06:52.664 --> 00:06:57.290
 Every write creates a report-only
 policy with Block as the only grant.
 
 110
-00:06:56.965 --> 00:07:00.978
+00:06:57.290 --> 00:07:01.303
 It runs as a person with the
 Conditional Access Administrator role.
 
 111
-00:07:00.978 --> 00:07:02.916
+00:07:01.303 --> 00:07:03.240
 And it never turns a policy on.
 
 112
-00:07:02.916 --> 00:07:07.758
+00:07:03.240 --> 00:07:08.083
 Microsoft Learn's page on Conditional
 Access for agents lists the feature as
 
 113
-00:07:07.758 --> 00:07:13.180
+00:07:08.083 --> 00:07:13.510
 preview, so that waits until the agent
 targets leave preview in the agency's cloud.
 
@@ -586,22 +587,22 @@ The write task holds only
 the two policy permissions.
 
 124
-00:07:53.380 --> 00:07:57.330
+00:07:53.380 --> 00:07:57.780
 Step four reads decision
-D N six for each cloud.
+D N P six for each cloud.
 
 125
-00:07:57.330 --> 00:08:00.704
+00:07:57.780 --> 00:08:01.154
 The worldwide and G C C
 clouds run in Agent I D mode,
 
 126
-00:08:00.704 --> 00:08:06.693
+00:08:01.154 --> 00:08:07.143
 with agent identities generally available
 and agent Conditional Access in preview.
 
 127
-00:08:06.693 --> 00:08:11.900
+00:08:07.143 --> 00:08:12.360
 G C C High and D O D run in
 fallback mode: nothing published.
 
@@ -1040,36 +1041,36 @@ and applied a report-only agent policy
 to a fake by its approved hash.
 
 220
-00:14:12.083 --> 00:14:16.873
+00:14:12.083 --> 00:14:16.962
 The evidence an ISSO keeps from this
 module is the A I identities file,
 
 221
-00:14:16.873 --> 00:14:22.085
+00:14:16.962 --> 00:14:22.270
 the findings, the orphan candidates,
 the policy plan with its approved hash,
 
 222
-00:14:22.085 --> 00:14:26.204
+00:14:22.270 --> 00:14:26.466
 and the dry run's and apply's
 results and manifests, all dated;
 
 223
-00:14:26.204 --> 00:14:30.407
+00:14:26.466 --> 00:14:30.832
 the capability table for decision
-D N six; and the test result.
+D N P six; and the test result.
 
 224
-00:14:30.407 --> 00:14:34.796
+00:14:30.832 --> 00:14:35.220
 Next is Module 10: find
 drift and file the evidence.
 
 225
-00:14:34.796 --> 00:14:38.909
+00:14:35.220 --> 00:14:39.334
 It keeps every gate's state true
 against an approved baseline,
 
 226
-00:14:38.909 --> 00:14:42.680
+00:14:39.334 --> 00:14:43.110
 and hands the ISSO evidence
 they can verify themselves.

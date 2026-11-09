@@ -1,50 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.875
-To sum up.
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
 
 2
-00:00:00.875 --> 00:00:04.447
-You dry-ran the pilot wave, read
-a role's diff rule by rule,
+00:00:02.025 --> 00:00:06.175
+First: a role file requires
+approval and names no approver.
 
 3
-00:00:04.447 --> 00:00:09.607
-saw Tier 0 wait for Tier 1, saw the apply
-refuse until a person confirmed the gate,
+00:00:06.175 --> 00:00:07.187
+What happens?
 
 4
-00:00:09.607 --> 00:00:14.687
-and then applied fifty-one requests with
-no differences left on the read-back.
+00:00:07.187 --> 00:00:10.938
+The answer is b: rule pim
+oh one fails the file.
 
 5
-00:00:14.687 --> 00:00:20.500
-Carry one thing forward: eligibility for
-each role goes to the role's P R V group.
+00:00:10.938 --> 00:00:14.113
+It's half of the lockout
+Microsoft Learn documents.
 
 6
-00:00:20.500 --> 00:00:25.237
-Next is Module 5: PIM for
-Groups and the P R V groups.
+00:00:14.113 --> 00:00:18.188
+Second: why does the apply need
+the Activation Gate Checked switch?
 
 7
-00:00:25.237 --> 00:00:30.368
-A P R V group's own state has to be
-governed too: who is a member or owner,
+00:00:18.188 --> 00:00:23.345
+The answer is b: the gate's policy state
+can't be read from version one point oh, so
 
 8
-00:00:30.368 --> 00:00:34.938
-until when, on which ticket,
-and how membership is activated.
+00:00:23.345 --> 00:00:28.663
+a person states that the activation gate's
+policy is On before the context is set.
 
 9
-00:00:34.938 --> 00:00:38.116
-In Module 5 you keep that
-state in one reviewed file,
+00:00:28.663 --> 00:00:33.525
+You saw the first apply in Lab 1,
+step six, stop before any write.
 
 10
-00:00:38.116 --> 00:00:42.260
-and see the guards that keep people
-from losing access by mistake.
+00:00:33.525 --> 00:00:38.500
+The module page has two more questions,
+each linked to the section that answers it.

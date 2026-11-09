@@ -1,49 +1,84 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.025
-Check yourself with two questions.
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
 
 2
-00:00:02.025 --> 00:00:06.175
-First: a role file requires
-approval and names no approver.
+00:00:01.437 --> 00:00:05.787
+The role files, the plan
+and the read-back are the
 
 3
-00:00:06.175 --> 00:00:07.187
-What happens?
+00:00:05.787 --> 00:00:09.801
+evidence for the plan's
+tasks A1.6, A2.1 and A2.2.
 
 4
-00:00:07.187 --> 00:00:10.938
-The answer is b: rule pim
-oh one fails the file.
+00:00:09.801 --> 00:00:15.758
+From NIST special publication eight
+hundred fifty-three they support A C six,
 
 5
-00:00:10.938 --> 00:00:14.113
-It's half of the lockout
-Microsoft Learn documents.
+00:00:15.758 --> 00:00:21.250
+least privilege in time; A C two and
+A C three, approval before activation;
 
 6
-00:00:14.113 --> 00:00:18.188
-Second: why does the apply need
-the Activation Gate Checked switch?
+00:00:21.250 --> 00:00:25.625
+A C five, separation of duties;
+and A C six, enhancement five.
 
 7
-00:00:18.188 --> 00:00:23.345
-The answer is b: the gate's policy state
-can't be read from version one point oh, so
+00:00:25.625 --> 00:00:30.611
+And from CISA's B O D twenty-five
+oh-one and its ScubaGear baseline:
 
 8
-00:00:23.345 --> 00:00:28.663
-a person states that the activation gate's
-policy is On before the context is set.
+00:00:30.611 --> 00:00:36.613
+M S A A D seven point four, no standing
+assignment; seven point five, provisioning
 
 9
-00:00:28.663 --> 00:00:33.525
-You saw the first apply in Lab 1,
-step six, stop before any write.
+00:00:36.613 --> 00:00:42.800
+only through PIM; and seven point six,
+approval to activate Global Administrator.
 
 10
-00:00:33.525 --> 00:00:38.500
-The module page has two more questions,
-each linked to the section that answers it.
+00:00:42.800 --> 00:00:46.553
+The alert check's findings support
+A U six, audit record review,
+
+11
+00:00:46.553 --> 00:00:49.202
+and seven point seven
+and seven point eight,
+
+12
+00:00:49.202 --> 00:00:54.500
+the alerts on highly privileged assignments
+and on Global Administrator activation.
+
+13
+00:00:54.500 --> 00:00:57.489
+C M three and C M four, enhancement two,
+
+14
+00:00:57.489 --> 00:01:01.575
+cover the change: reviewed
+before, verified after.
+
+15
+00:01:01.575 --> 00:01:07.087
+The evidence an ISSO keeps: the role files
+and the tiers file; each wave's plan,
+
+16
+00:01:07.087 --> 00:01:11.621
+diff and before files; the apply's
+verify file and manifest; and,
+
+17
+00:01:11.621 --> 00:01:16.660
+for each conversion, the confirmed
+activations with their tickets.

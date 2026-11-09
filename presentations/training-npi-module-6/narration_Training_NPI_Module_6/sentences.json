@@ -167,58 +167,6 @@
    "And Microsoft Learn's Conditional Access for workload identities page says creating or changing these policies needs Workload I D Premium."
   ]
  ],
- "5": [
-  [
-   0.05,
-   2.587,
-   "Unit 2 is the context and the files."
-  ],
-  [
-   2.638,
-   2.987,
-   "The program's design guidance sets two policies."
-  ],
-  [
-   5.625,
-   7.662,
-   "C A oh fifteen blocks the ring's service principals from anywhere but one named location, the workload egress ranges."
-  ],
-  [
-   13.287,
-   3.288,
-   "C A oh thirty-seven blocks them when their risk is high."
-  ],
-  [
-   16.575,
-   1.5,
-   "Two decisions frame them."
-  ],
-  [
-   18.075,
-   6.625,
-   "D N four is licensing: Workload I D Premium for the Tier 1 single-tenant service principals."
-  ],
-  [
-   24.7,
-   8.85,
-   "D N five is enforcement, and it's the see-so's call: enforce, extend report-only, or enforce with exclusions that are dated and owned."
-  ],
-  [
-   33.55,
-   9.988,
-   "The scope file is the record: each in-scope principal by object I D and ring, and each identity that's out of scope, with the control that covers it instead."
-  ],
-  [
-   43.538,
-   7.938,
-   "And each policy is rendered once per ring, so enforcing one ring changes one policy and leaves the next one in report-only."
-  ],
-  [
-   51.475,
-   1.7,
-   "That's the program's design."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -331,63 +279,6 @@
    42.862,
    6.463,
    "Rollback drops the ring from the enforcement record and applies, so its policies go back to report-only."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   7.362,
-   "Turning a policy on is the moment a production job can stop, so the code asks for five things at once, or the ring stays held."
-  ],
-  [
-   7.412,
-   2.438,
-   "A D N five record marks the ring."
-  ],
-  [
-   9.85,
-   1.913,
-   "The change says allow enforce."
-  ],
-  [
-   11.762,
-   4.15,
-   "The run names a sign-in summary whose hash the ring's record cites."
-  ],
-  [
-   15.912,
-   2.025,
-   "That summary shows the ring ready."
-  ],
-  [
-   17.938,
-   2.837,
-   "And every earlier ring is already enforced."
-  ],
-  [
-   20.775,
-   3.0,
-   "The five conditions are the program's design guidance."
-  ],
-  [
-   23.775,
-   2.362,
-   "The evidence comes from the sign-in reader."
-  ],
-  [
-   26.137,
-   11.312,
-   "Following Microsoft Learn's List sign-ins reference, it reads the beta sign-in list with a filter for service principal sign-ins, and sends a header without which report-only results don't come back."
-  ],
-  [
-   37.45,
-   6.4,
-   "Each principal gets one of four statuses: no sign-ins, not evaluated, would block, or clear."
-  ],
-  [
-   43.85,
-   3.712,
-   "A ring is ready only when every principal in it is clear."
   ]
  ],
  "9": [
@@ -588,38 +479,6 @@
    "The code changes only the policies its files name."
   ]
  ],
- "13": [
-  [
-   0.05,
-   2.45,
-   "Step eight tries to enforce Ring 1."
-  ],
-  [
-   2.5,
-   15.338,
-   "You copy the scope and add an enforcement record: D N five, outcome enforce, decided by the see-so, and Ring 1 with the summary's hash, reviewed by the I S S O. Plan without allow enforce, and Ring 1's location policy is held."
-  ],
-  [
-   17.837,
-   9.387,
-   "Plan again with allow enforce and the reviewed summary, and the held becomes a second update: C A oh fifteen Ring 1 goes from report-only to enabled."
-  ],
-  [
-   27.225,
-   8.9,
-   "Now add one byte to a copy of the summary and plan again, and it's held again, because the edited summary's hash isn't the one the reviewer recorded."
-  ],
-  [
-   36.125,
-   15.15,
-   "Step nine reads the alert definition: a query over the service principal sign-in logs for result type five three oh oh three, which Microsoft Learn's error code list names as blocked by Conditional Access, for the four in-scope object I D's."
-  ],
-  [
-   51.275,
-   3.825,
-   "Step ten runs the tests: five hundred thirteen pass."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -771,6 +630,147 @@
    "The module page has three more questions, each linked to the section that answers it."
   ]
  ],
+ "5": [
+  [
+   0.05,
+   2.587,
+   "Unit 2 is the context and the files."
+  ],
+  [
+   2.638,
+   2.987,
+   "The program's design guidance sets two policies."
+  ],
+  [
+   5.625,
+   7.662,
+   "C A oh fifteen blocks the ring's service principals from anywhere but one named location, the workload egress ranges."
+  ],
+  [
+   13.287,
+   3.288,
+   "C A oh thirty-seven blocks them when their risk is high."
+  ],
+  [
+   16.575,
+   1.5,
+   "Two decisions frame them."
+  ],
+  [
+   18.075,
+   6.812,
+   "D N P four is licensing: Workload I D Premium for the Tier 1 single-tenant service principals."
+  ],
+  [
+   24.887,
+   9.113,
+   "D N P five is enforcement, and it's the see-so's call: enforce, extend report-only, or enforce with exclusions that are dated and owned."
+  ],
+  [
+   34.0,
+   9.988,
+   "The scope file is the record: each in-scope principal by object I D and ring, and each identity that's out of scope, with the control that covers it instead."
+  ],
+  [
+   43.987,
+   7.938,
+   "And each policy is rendered once per ring, so enforcing one ring changes one policy and leaves the next one in report-only."
+  ],
+  [
+   51.925,
+   1.7,
+   "That's the program's design."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.362,
+   "Turning a policy on is the moment a production job can stop, so the code asks for five things at once, or the ring stays held."
+  ],
+  [
+   7.412,
+   2.812,
+   "A D N P five record marks the ring."
+  ],
+  [
+   10.225,
+   1.913,
+   "The change says allow enforce."
+  ],
+  [
+   12.137,
+   4.15,
+   "The run names a sign-in summary whose hash the ring's record cites."
+  ],
+  [
+   16.288,
+   2.025,
+   "That summary shows the ring ready."
+  ],
+  [
+   18.312,
+   2.837,
+   "And every earlier ring is already enforced."
+  ],
+  [
+   21.15,
+   3.0,
+   "The five conditions are the program's design guidance."
+  ],
+  [
+   24.15,
+   2.362,
+   "The evidence comes from the sign-in reader."
+  ],
+  [
+   26.512,
+   11.312,
+   "Following Microsoft Learn's List sign-ins reference, it reads the beta sign-in list with a filter for service principal sign-ins, and sends a header without which report-only results don't come back."
+  ],
+  [
+   37.825,
+   6.4,
+   "Each principal gets one of four statuses: no sign-ins, not evaluated, would block, or clear."
+  ],
+  [
+   44.225,
+   3.712,
+   "A ring is ready only when every principal in it is clear."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.45,
+   "Step eight tries to enforce Ring 1."
+  ],
+  [
+   2.5,
+   15.5,
+   "You copy the scope and add an enforcement record: D N P five, outcome enforce, decided by the see-so, and Ring 1 with the summary's hash, reviewed by the I S S O. Plan without allow enforce, and Ring 1's location policy is held."
+  ],
+  [
+   18.0,
+   9.387,
+   "Plan again with allow enforce and the reviewed summary, and the held becomes a second update: C A oh fifteen Ring 1 goes from report-only to enabled."
+  ],
+  [
+   27.387,
+   8.9,
+   "Now add one byte to a copy of the summary and plan again, and it's held again, because the edited summary's hash isn't the one the reviewer recorded."
+  ],
+  [
+   36.288,
+   15.15,
+   "Step nine reads the alert definition: a query over the service principal sign-in logs for result type five three oh oh three, which Microsoft Learn's error code list names as blocked by Conditional Access, for the four in-scope object I D's."
+  ],
+  [
+   51.438,
+   3.825,
+   "Step ten runs the tests: five hundred thirteen pass."
+  ]
+ ],
  "17": [
   [
    0.05,
@@ -789,21 +789,21 @@
   ],
   [
    12.662,
-   9.1,
-   "And you saw a ring enforced only with the D N five decision, the allow-enforce switch and the reviewed summary, and held again when the summary changed."
+   9.325,
+   "And you saw a ring enforced only with the D N P five decision, the allow-enforce switch and the reviewed summary, and held again when the summary changed."
   ],
   [
-   21.762,
-   15.25,
-   "The evidence an I S S O keeps is the scope file, the pre-merge check, the findings, the plan and its requests, the sign-in summary with the hash the D N five record cites, the alert definition, and each run's manifest, all dated."
+   21.988,
+   15.588,
+   "The evidence an I S S O keeps is the scope file, the pre-merge check, the findings, the plan and its requests, the sign-in summary with the hash the D N P five record cites, the alert definition, and each run's manifest, all dated."
   ],
   [
-   37.013,
+   37.575,
    3.075,
    "Before you ship, work through the chapter's checklist."
   ],
   [
-   40.087,
+   40.65,
    5.812,
    "Next is Module 7: convert to managed identities and federation, Gate 5."
   ]

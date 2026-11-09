@@ -16,63 +16,83 @@ with the tier policy beside it; the values
 are this workbook's design guidance.
 
 4
-00:00:13.338 --> 00:00:18.588
+00:00:13.338 --> 00:00:19.076
+Every member and owner policy selects
+Module 3's authentication context, c1,
+
+5
+00:00:19.076 --> 00:00:25.088
+as the Federal Modernization Workbook's
+Book 04, Access and Privilege, requires.
+
+6
+00:00:25.088 --> 00:00:30.391
+So, as in Module 4, the Apply switch also
+needs the Activation Gate Checked switch,
+
+7
+00:00:30.391 --> 00:00:33.525
+a person's statement that
+the gate's policy is On.
+
+8
+00:00:33.525 --> 00:00:38.775
 The read compares the tenant with it
 and raises rules P G oh one to oh nine.
 
-5
-00:00:18.588 --> 00:00:23.412
+9
+00:00:38.775 --> 00:00:43.600
 Oh one is a name that doesn't follow
 the P R V pattern, the program's naming.
 
-6
-00:00:23.412 --> 00:00:27.423
+10
+00:00:43.600 --> 00:00:47.610
 Oh two is a group that holds an
 Entra role but isn't role-assignable,
 
-7
-00:00:27.423 --> 00:00:30.171
+11
+00:00:47.610 --> 00:00:50.358
 and oh three a dynamic
 or synchronized group;
 
-8
-00:00:30.171 --> 00:00:33.513
+12
+00:00:50.358 --> 00:00:53.700
 Microsoft Learn says PIM for
 Groups can't manage those.
 
-9
-00:00:33.513 --> 00:00:36.255
+13
+00:00:53.700 --> 00:00:56.442
 Oh four counts
 role-assignable groups against
 
-10
-00:00:36.255 --> 00:00:38.575
+14
+00:00:56.442 --> 00:00:58.762
 Microsoft Learn's limit of five hundred.
 
-11
-00:00:38.575 --> 00:00:43.325
+15
+00:00:58.762 --> 00:01:03.513
 Oh five is a group nested as a holder,
 or a service principal made eligible.
 
-12
-00:00:43.325 --> 00:00:46.637
+16
+00:01:03.513 --> 00:01:06.825
 Oh six is an entry with
 no end or no ticket.
 
-13
-00:00:46.637 --> 00:00:48.525
+17
+00:01:06.825 --> 00:01:08.712
 Oh seven is the owner trap.
 
-14
-00:00:48.525 --> 00:00:52.087
+18
+00:01:08.712 --> 00:01:12.275
 Oh eight is a policy rule that
 differs from the reviewed setting.
 
-15
-00:00:52.087 --> 00:00:55.947
+19
+00:01:12.275 --> 00:01:16.135
 And oh nine is anything the
 file doesn't grant or list:
 
-16
-00:00:55.947 --> 00:00:59.060
+20
+00:01:16.135 --> 00:01:19.250
 anything outside the file is unreviewed.

@@ -40,30 +40,25 @@ A report-only policy that doesn't
 exclude the group is only Info.
 
 9
-00:00:28.287 --> 00:00:32.466
+00:00:28.287 --> 00:00:32.476
 Microsoft Learn says report-only
-policies need no exclusion,
+policies need no exclusion.
 
 10
-00:00:32.466 --> 00:00:36.563
-and a report-only policy is how
-you record emergency sign-ins.
-
-11
-00:00:36.563 --> 00:00:40.512
+00:00:32.476 --> 00:00:36.425
 But the exclusion is required
 before the policy is enforced.
 
-12
-00:00:40.512 --> 00:00:45.535
+11
+00:00:36.425 --> 00:00:41.447
 And the program's own pre-merge check,
 which Module 3 builds, is stricter:
 
-13
-00:00:45.535 --> 00:00:50.038
+12
+00:00:41.447 --> 00:00:45.950
 it wants the exclusion on every
 policy file, whatever its state.
 
-14
-00:00:50.038 --> 00:00:52.220
+13
+00:00:45.950 --> 00:00:48.140
 Module 3 comes back to this.

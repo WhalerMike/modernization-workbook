@@ -33,35 +33,46 @@ whose migration started forty days
 ago, past the thirty-day parallel run.
 
 8
-00:00:23.037 --> 00:00:25.163
-svc webfront is blocked.
+00:00:23.037 --> 00:00:29.188
+gmsa ops, gmsa web and svc webfront stay
+on the island, as Chapter 3 decided.
 
 9
-00:00:25.163 --> 00:00:28.801
+00:00:29.188 --> 00:00:32.826
 The other actions are recorded with
 their reasons and write nothing.
 
 10
-00:00:28.801 --> 00:00:32.525
+00:00:32.826 --> 00:00:36.550
 Step seven reads the island
 list and the reconciliation.
 
 11
-00:00:32.525 --> 00:00:36.387
-Five island rows, each under the
-name the account will end up with.
+00:00:36.550 --> 00:00:40.625
+Six island rows, each under the
+name the account will end up with
 
 12
-00:00:36.387 --> 00:00:41.572
-gmsa intranet has no S P N owner and
-ends at the end of 2028, so it isn't
+00:00:40.625 --> 00:00:44.700
+and with its disposition, four of
+them ready for P four point six.
 
 13
-00:00:41.572 --> 00:00:47.525
-ready for P four point six, and its
-reconciliation outcome is unreconciled.
+00:00:44.700 --> 00:00:49.294
+gmsa intranet has no S P N owner
+and ends at the end of 2028,
 
 14
-00:00:47.525 --> 00:00:52.560
-gmsa web isn't ready either, because
-its end date runs past D oh eight's.
+00:00:49.294 --> 00:00:54.688
+so it isn't ready, and its
+reconciliation outcome is unreconciled.
+
+15
+00:00:54.688 --> 00:00:59.807
+svc webfront carries the authorizing
+official's acceptance from Chapter 3,
+
+16
+00:00:59.807 --> 00:01:02.710
+so it becomes ready once
+it has an S P N owner.

@@ -108,15 +108,15 @@ endModule(SI);
   const b = table(s, "Files", 1.45, [4.2, 7.95], ["Piece", "What it holds"], [
     ["CA015-ServiceAccounts-LocationRestriction", "Blocks the ring's service principals from anywhere but the named location NL-WorkloadEgress"],
     ["CA037-WorkloadIdentities-HighRisk-Block", "Blocks them at high service principal risk"],
-    ["D-N4, licensing", "Workload ID Premium for the Tier 1 single-tenant service principals"],
-    ["D-N5, enforcement", "The CISO's call: enforce, extend report-only, or enforce with dated, owned exclusions"],
+    ["D-NP4, licensing", "Workload ID Premium for the Tier 1 single-tenant service principals"],
+    ["D-NP5, enforcement", "The CISO's call: enforce, extend report-only, or enforce with dated, owned exclusions"],
     ["The scope file", "Each in-scope principal by object ID and ring; each out-of-scope identity with the control that covers it"],
   ], { fontSize: 12.5, limit: 4.9 });
   callout(s, "Ring", b + 0.3, 0.95, "FaSitemap", HEX.teal, "One policy per ring (design guidance): ",
     "each template is rendered per ring, so enforcing one ring changes one policy and leaves the next in report-only.");
   sources(s, "Sources: Module 6, Unit 2; workbook Chapter 08, \"The context the code depends on,\" \"The files.\"");
   notes(s,
-`Unit 2 is the context and the files. The program's design guidance sets two policies. C A oh fifteen blocks the ring's service principals from anywhere but one named location, the workload egress ranges. C A oh thirty-seven blocks them when their risk is high. Two decisions frame them. D N four is licensing: Workload I D Premium for the Tier 1 single-tenant service principals. D N five is enforcement, and it's the CISO's call: enforce, extend report-only, or enforce with exclusions that are dated and owned. The scope file is the record: each in-scope principal by object I D and ring, and each identity that's out of scope, with the control that covers it instead. And each policy is rendered once per ring, so enforcing one ring changes one policy and leaves the next one in report-only. That's the program's design.`,
+`Unit 2 is the context and the files. The program's design guidance sets two policies. C A oh fifteen blocks the ring's service principals from anywhere but one named location, the workload egress ranges. C A oh thirty-seven blocks them when their risk is high. Two decisions frame them. D N P four is licensing: Workload I D Premium for the Tier 1 single-tenant service principals. D N P five is enforcement, and it's the CISO's call: enforce, extend report-only, or enforce with exclusions that are dated and owned. The scope file is the record: each in-scope principal by object I D and ring, and each identity that's out of scope, with the control that covers it instead. And each policy is rendered once per ring, so enforcing one ring changes one policy and leaves the next one in report-only. That's the program's design.`,
   `${M} — Unit 2 "The limits and the scope": workbook Chapter 08, "The context the code depends on," "The files."`);
 }
 
@@ -128,11 +128,11 @@ endModule(SI);
     ["NPI-WCA-01", "A policy that targets users, groups, roles, a filter or ServicePrincipalsInMyTenant, not the ring's object IDs"],
     ["NPI-WCA-02, 03", "A managed identity in scope; an in-scope principal that isn't a single-tenant app registered here"],
     ["NPI-WCA-04", "An object ID that isn't a service principal here, or one that's disabled"],
-    ["NPI-WCA-05", "No D-N4 record; a principal that isn't Tier 1; an unknown ring; a duplicate"],
+    ["NPI-WCA-05", "No D-NP4 record; a principal that isn't Tier 1; an unknown ring; a duplicate"],
     ["NPI-WCA-06", "An out-of-scope record with no control or reviewer; an eligible principal that isn't Tier 1 (Info)"],
     ["NPI-WCA-07", "A policy that isn't report-only and block, for all resources and all client app types"],
     ["NPI-WCA-08", "A range too broad; any excluded location but NL-WorkloadEgress; a trusted location"],
-    ["NPI-WCA-09", "Enforcement without D-N5 or a reviewed summary, out of ring order, or with an exclusion not owned and dated"],
+    ["NPI-WCA-09", "Enforcement without D-NP5 or a reviewed summary, out of ring order, or with an exclusion not owned and dated"],
   ], { fontSize: 12, limit: 5.6 });
   line(s, "Exit", "A Finding exits with code 1 and fails the pipeline.", b + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 6, Unit 2, Lab 1 step 3; Chapter 08, \"The pre-merge check\"; Microsoft Learn, CA for workload identities, conditionalAccessConditionSet.");
@@ -166,7 +166,7 @@ endModule(SI);
   const s = content(SC, "Enforcement, ring by ring, and the sign-in reader");
   tag(s, "What");
   const l = panel(s, "Five", 0.6, 1.45, 6.3, null, HEX.red, HEX.redTint, "ALL FIVE, OR THE RING IS HELD", "Enforcement's five conditions", [
-    "A D-N5 record marks the ring",
+    "A D-NP5 record marks the ring",
     "-AllowEnforce in the change that enforces it",
     "A sign-in summary whose SHA-256 the ring's record cites",
     "The summary shows the ring ready",
@@ -182,7 +182,7 @@ endModule(SI);
     "a beta filter for service principal sign-ins, and a header without which report-only results don't come back.");
   sources(s, "Sources: Module 6, Unit 3; Chapter 08, \"Enforcement, ring by ring,\" \"The sign-in reader\"; Microsoft Learn, List signIns (beta).");
   notes(s,
-`Turning a policy on is the moment a production job can stop, so the code asks for five things at once, or the ring stays held. A D N five record marks the ring. The change says allow enforce. The run names a sign-in summary whose hash the ring's record cites. That summary shows the ring ready. And every earlier ring is already enforced. The five conditions are the program's design guidance. The evidence comes from the sign-in reader. Following Microsoft Learn's List sign-ins reference, it reads the beta sign-in list with a filter for service principal sign-ins, and sends a header without which report-only results don't come back. Each principal gets one of four statuses: no sign-ins, not evaluated, would block, or clear. A ring is ready only when every principal in it is clear.`,
+`Turning a policy on is the moment a production job can stop, so the code asks for five things at once, or the ring stays held. A D N P five record marks the ring. The change says allow enforce. The run names a sign-in summary whose hash the ring's record cites. That summary shows the ring ready. And every earlier ring is already enforced. The five conditions are the program's design guidance. The evidence comes from the sign-in reader. Following Microsoft Learn's List sign-ins reference, it reads the beta sign-in list with a filter for service principal sign-ins, and sends a header without which report-only results don't come back. Each principal gets one of four statuses: no sign-ins, not evaluated, would block, or clear. A ring is ready only when every principal in it is clear.`,
   `${M} — Unit 3 "Plan, sign-ins and enforcement": workbook Chapter 08, "Enforcement, ring by ring," "The sign-in reader."`);
 }
 endModule(SC);
@@ -253,7 +253,7 @@ endModule(SC);
     "Ring2: not ready",
     "  Deploy Bot       WouldBlock   sign-ins 2; outside the egress ranges: 203.0.113.7",
     "  HR Connector     NoSignIns    sign-ins 0",
-    "Summary SHA-256: d7767949b75e1e5d3f6a6bef6501eb7de8e98ddd8a9f22e1eb82698969d8752e",
+    "Summary SHA-256: da391f12869037f18d222c223d38990565bd37b3bf115cb8d70617e44d6dc26b",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED)", pt: 11 });
   line(s, "Read", "Ring 2 isn't ready: a ring is ready only when every principal in it is Clear.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 6, \"Exercise: Lab 1,\" step 6; Knowledge check, answer 5; workbook Chapter 08, \"The sign-in reader.\"");
@@ -290,7 +290,7 @@ endModule(SC);
 {
   const s = content(SL, "Try it: enforce Ring 1, then edit one byte");
   tag(s, "How");
-  const b = table(s, "Enf", 1.45, [5.4, 6.75], ["Step 8: plan with out/scope-ring1.json (D-N5 and the summary's hash)", "Prints"], [
+  const b = table(s, "Enf", 1.45, [5.4, 6.75], ["Step 8: plan with out/scope-ring1.json (D-NP5 and the summary's hash)", "Prints"], [
     ["Without -AllowEnforce", "Plan: 3 Create, 1 Held, 1 NotInRepository, 1 Update"],
     ["With -AllowEnforce and the reviewed summary", "Plan: 3 Create, 1 NotInRepository, 2 Update"],
     ["With -AllowEnforce and a copy with one byte added", "Plan: 3 Create, 1 Held, 1 NotInRepository, 1 Update"],
@@ -305,7 +305,7 @@ endModule(SC);
   line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.2, 0.45, 13.5);
   sources(s, "Sources: Module 6, \"Exercise: Lab 1,\" steps 8 to 10; Chapter 08, \"Enforcement, ring by ring\"; Microsoft Learn, Entra error codes.");
   notes(s,
-`Step eight tries to enforce Ring 1. You copy the scope and add an enforcement record: D N five, outcome enforce, decided by the CISO, and Ring 1 with the summary's hash, reviewed by the ISSO. Plan without allow enforce, and Ring 1's location policy is held. Plan again with allow enforce and the reviewed summary, and the held becomes a second update: C A oh fifteen Ring 1 goes from report-only to enabled. Now add one byte to a copy of the summary and plan again, and it's held again, because the edited summary's hash isn't the one the reviewer recorded. Step nine reads the alert definition: a query over the service principal sign-in logs for result type five three oh oh three, which Microsoft Learn's error code list names as blocked by Conditional Access, for the four in-scope object I D's. Step ten runs the tests: five hundred thirteen pass.`,
+`Step eight tries to enforce Ring 1. You copy the scope and add an enforcement record: D N P five, outcome enforce, decided by the CISO, and Ring 1 with the summary's hash, reviewed by the ISSO. Plan without allow enforce, and Ring 1's location policy is held. Plan again with allow enforce and the reviewed summary, and the held becomes a second update: C A oh fifteen Ring 1 goes from report-only to enabled. Now add one byte to a copy of the summary and plan again, and it's held again, because the edited summary's hash isn't the one the reviewer recorded. Step nine reads the alert definition: a query over the service principal sign-in logs for result type five three oh oh three, which Microsoft Learn's error code list names as blocked by Conditional Access, for the four in-scope object I D's. Step ten runs the tests: five hundred thirteen pass.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 8 to 10.`);
 }
 
@@ -368,16 +368,16 @@ endModule(SL);
     "Checked the policy files, and failed Learn's sample against the same rules",
     "Planned against a fictional tenant; created every policy report-only",
     "Summarized the service principal sign-ins",
-    "Saw a ring enforced only with D-N5, -AllowEnforce and the reviewed summary",
+    "Saw a ring enforced only with D-NP5, -AllowEnforce and the reviewed summary",
   ], 13);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 7: Convert to managed identities and federation", [
     "Gate G5 Conversion",
   ], 13.5);
   callout(s, "Keep", Math.max(l, r) + 0.3, 0.95, "FaFileShield", HEX.teal, "The evidence an ISSO keeps: ",
-    "the scope file, the checks, plan.json and requests.json, the summary with the hash D-N5 cites, the alert, each manifest.");
+    "the scope file, the checks, plan.json and requests.json, the summary with the hash D-NP5 cites, the alert, each manifest.");
   sources(s, "Sources: Module 6, \"Summary\"; Module 7.");
   notes(s,
-`To sum up. You checked the policy files, and failed Learn's sample against the same rules. You planned against a fictional tenant, created every policy report-only, and summarized the service principal sign-ins. And you saw a ring enforced only with the D N five decision, the allow-enforce switch and the reviewed summary, and held again when the summary changed. The evidence an ISSO keeps is the scope file, the pre-merge check, the findings, the plan and its requests, the sign-in summary with the hash the D N five record cites, the alert definition, and each run's manifest, all dated. Before you ship, work through the chapter's checklist. Next is Module 7: convert to managed identities and federation, Gate 5.`,
+`To sum up. You checked the policy files, and failed Learn's sample against the same rules. You planned against a fictional tenant, created every policy report-only, and summarized the service principal sign-ins. And you saw a ring enforced only with the D N P five decision, the allow-enforce switch and the reviewed summary, and held again when the summary changed. The evidence an ISSO keeps is the scope file, the pre-merge check, the findings, the plan and its requests, the sign-in summary with the hash the D N P five record cites, the alert definition, and each run's manifest, all dated. Before you ship, work through the chapter's checklist. Next is Module 7: convert to managed identities and federation, Gate 5.`,
   `${M} — Unit "Summary"; Module 7.`);
 }
 endModule(SS);

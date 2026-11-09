@@ -6,70 +6,88 @@ Unit 2 starts with the
 context the code depends on.
 
 2
-00:00:03.250 --> 00:00:06.737
-Every Kerberos account gets
-one of four dispositions.
+00:00:03.250 --> 00:00:06.825
+Every Kerberos account has
+one of four dispositions,
 
 3
-00:00:06.737 --> 00:00:09.414
-Convert, to a G M S A or a D M S A,
+00:00:06.825 --> 00:00:11.131
+and it's the application owner's
+decision from Module 3, D N P three,
 
 4
-00:00:09.414 --> 00:00:15.024
-with the new account's name,
-the workload and its hosts.
+00:00:11.131 --> 00:00:15.762
+which this chapter reads from Chapter
+3's run, never from a second list.
 
 5
-00:00:15.024 --> 00:00:17.258
-Island: it stays on Kerberos,
+00:00:15.762 --> 00:00:21.533
+Replatform: to a G M S A or a D M S A,
+converted here, with the new account's name,
 
 6
-00:00:17.258 --> 00:00:22.500
-with an S P N owner and an end date
-no later than decision D oh eight's.
+00:00:21.533 --> 00:00:25.738
+the workload and its hosts
+in one more reviewed file;
 
 7
-00:00:22.500 --> 00:00:25.450
-Workload identity: Chapter 5 moves it.
+00:00:25.738 --> 00:00:30.824
+to a managed identity or an app
+registration, Chapter 5 moves it.
 
 8
-00:00:25.450 --> 00:00:29.312
+00:00:30.824 --> 00:00:35.283
+Keep: it stays, with an
+end date no later than G 5,
+
+9
+00:00:35.283 --> 00:00:38.175
+and an S P N owner if it has S P N's.
+
+10
+00:00:38.175 --> 00:00:43.779
+Keep Kerberos: it stays on Kerberos with
+the authorizing official's acceptance,
+
+11
+00:00:43.779 --> 00:00:48.025
+an S P N owner, and an end date no
+later than decision D oh eight's.
+
+12
+00:00:48.025 --> 00:00:51.887
 Or retire, through the plan's
 reviewed decommission process.
 
-9
-00:00:29.312 --> 00:00:31.837
-The program adds four rules of its own.
-
-10
-00:00:31.837 --> 00:00:35.162
-They're the program's design
-guidance, not Microsoft's.
-
-11
-00:00:35.162 --> 00:00:38.506
-Every Kerberos account has
-a reviewed disposition,
-
-12
-00:00:38.506 --> 00:00:41.150
-kept in a file the application owners own.
-
 13
-00:00:41.150 --> 00:00:44.230
+00:00:51.887 --> 00:00:57.076
+The program adds five rules of its own,
+its design guidance, not Microsoft's.
+
+14
+00:00:57.076 --> 00:00:59.500
+The disposition is Chapter 3's.
+
+15
+00:00:59.500 --> 00:01:02.580
 Who may retrieve a managed
 password is reviewed data,
 
-14
-00:00:44.230 --> 00:00:46.750
+16
+00:01:02.580 --> 00:01:05.100
 not whatever Active Directory holds today.
 
-15
-00:00:46.750 --> 00:00:50.838
-Every account that stays has an
-S P N owner and an end date.
+17
+00:01:05.100 --> 00:01:09.613
+A D M S A migration runs thirty
+days before it completes.
 
-16
-00:00:50.838 --> 00:00:54.290
+18
+00:01:09.613 --> 00:01:12.687
+Every account that stays
+ends within its bound.
+
+19
+00:01:12.687 --> 00:01:16.130
 And never delete: the old
 account is disabled at most.

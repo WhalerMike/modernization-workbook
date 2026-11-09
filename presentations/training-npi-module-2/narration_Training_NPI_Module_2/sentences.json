@@ -36,90 +36,6 @@
    "It's illustrative: tested against fixtures, not run against a lyve tenant."
   ]
  ],
- "2": [
-  [
-   0.05,
-   2.05,
-   "Why does ownership matter so much?"
-  ],
-  [
-   2.1,
-   7.487,
-   "Because, as the program's guidance on app ownership warns, an owner can add a credential to an app, and then act as the app."
-  ],
-  [
-   9.588,
-   3.188,
-   "So owners are a control, not a contact list."
-  ],
-  [
-   12.775,
-   13.062,
-   "The program wants two human owners on every app registration and service principal, a record in the system inventory, and an application owner for every Active Directory account, found before the account is touched."
-  ],
-  [
-   25.837,
-   6.05,
-   "An identity with no owner is an orphan, and the plan's decision D N 2 says what happens to it."
-  ],
-  [
-   31.887,
-   2.987,
-   "Whatever happens, the rule is never delete."
-  ],
-  [
-   34.875,
-   9.0,
-   "In this module you check ownership as code, and you build the orphan rule as a plan that a reviewer approves by its hash, before anything changes."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   5.225,
-   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
-  ],
-  [
-   5.275,
-   4.75,
-   "You'll state the program's ownership rule, and which owners the code counts as valid."
-  ],
-  [
-   10.025,
-   6.737,
-   "You'll explain D N 2, the orphan rule, and how it differs from the program's own policy for orphaned apps."
-  ],
-  [
-   16.762,
-   4.138,
-   "You'll run the ownership check and read its findings and its orphan plan."
-  ],
-  [
-   20.9,
-   7.088,
-   "And you'll show that the write path only dry-runs without the Apply switch, and refuses a plan whose hash nobody approved."
-  ],
-  [
-   27.988,
-   5.625,
-   "Before you start, finish Module 1, because this module checks Module 1's register."
-  ],
-  [
-   33.612,
-   5.463,
-   "And read the guide's record each identity joins to, for the owner and sponsor fields."
-  ],
-  [
-   39.075,
-   6.1,
-   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone of the repository."
-  ],
-  [
-   45.175,
-   0.925,
-   "No tenant."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -212,48 +128,6 @@
    47.5,
    10.412,
    "Microsoft Learn's Deactivate an app registration procedure is on the beta endpoint, so the code disables the tenant's service principal instead, on version one point oh."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   1.7,
-   "Now the orphan rule itself."
-  ],
-  [
-   1.75,
-   13.9,
-   "The plan's decision D N 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it."
-  ],
-  [
-   15.65,
-   1.012,
-   "Never delete."
-  ],
-  [
-   16.663,
-   9.613,
-   "The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one."
-  ],
-  [
-   26.275,
-   5.175,
-   "And the program's rule for A I agents disables first, because an agent can act."
-  ],
-  [
-   31.45,
-   6.963,
-   "The program settled on D N 2, the stricter of the two: disable first, then thirty days to claim it."
-  ],
-  [
-   38.413,
-   3.025,
-   "The guide's Orphans step and the code both follow it."
-  ],
-  [
-   41.438,
-   9.213,
-   "Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete."
   ]
  ],
  "7": [
@@ -662,6 +536,132 @@
    35.775,
    7.812,
    "A matrix proposes where each identity should end up, the application owner decides, and the I S S O checks the gate."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.05,
+   "Why does ownership matter so much?"
+  ],
+  [
+   2.1,
+   7.487,
+   "Because, as the program's guidance on app ownership warns, an owner can add a credential to an app, and then act as the app."
+  ],
+  [
+   9.588,
+   3.188,
+   "So owners are a control, not a contact list."
+  ],
+  [
+   12.775,
+   13.062,
+   "The program wants two human owners on every app registration and service principal, a record in the system inventory, and an application owner for every Active Directory account, found before the account is touched."
+  ],
+  [
+   25.837,
+   6.425,
+   "An identity with no owner is an orphan, and the plan's decision D N P 2 says what happens to it."
+  ],
+  [
+   32.263,
+   2.987,
+   "Whatever happens, the rule is never delete."
+  ],
+  [
+   35.25,
+   9.0,
+   "In this module you check ownership as code, and you build the orphan rule as a plan that a reviewer approves by its hash, before anything changes."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   4.75,
+   "You'll state the program's ownership rule, and which owners the code counts as valid."
+  ],
+  [
+   10.025,
+   7.125,
+   "You'll explain D N P 2, the orphan rule, and how it differs from the program's own policy for orphaned apps."
+  ],
+  [
+   17.15,
+   4.138,
+   "You'll run the ownership check and read its findings and its orphan plan."
+  ],
+  [
+   21.288,
+   7.088,
+   "And you'll show that the write path only dry-runs without the Apply switch, and refuses a plan whose hash nobody approved."
+  ],
+  [
+   28.375,
+   5.625,
+   "Before you start, finish Module 1, because this module checks Module 1's register."
+  ],
+  [
+   34.0,
+   5.463,
+   "And read the guide's record each identity joins to, for the owner and sponsor fields."
+  ],
+  [
+   39.462,
+   6.1,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone of the repository."
+  ],
+  [
+   45.562,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.7,
+   "Now the orphan rule itself."
+  ],
+  [
+   1.75,
+   14.363,
+   "The plan's decision D N P 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it."
+  ],
+  [
+   16.113,
+   1.012,
+   "Never delete."
+  ],
+  [
+   17.125,
+   9.613,
+   "The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one."
+  ],
+  [
+   26.738,
+   5.175,
+   "And the program's rule for A I agents disables first, because an agent can act."
+  ],
+  [
+   31.913,
+   7.375,
+   "The program settled on D N P 2, the stricter of the two: disable first, then thirty days to claim it."
+  ],
+  [
+   39.288,
+   3.025,
+   "The guide's Orphans step and the code both follow it."
+  ],
+  [
+   42.312,
+   9.213,
+   "Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete."
   ]
  ]
 }

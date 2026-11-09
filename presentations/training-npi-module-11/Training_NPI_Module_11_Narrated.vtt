@@ -250,17 +250,17 @@ Learn's Conditional Access documentation
 lets you use to estimate a policy's effect.
 
 53
-00:03:10.420 --> 00:03:15.183
-In production it's enabled wave by
-wave, after a reviewed sign-in summary.
+00:03:10.420 --> 00:03:15.095
+In production it's enabled ring by
+ring, after a reviewed sign-in summary.
 
 54
-00:03:15.183 --> 00:03:18.205
+00:03:15.095 --> 00:03:18.118
 The runbook decides
 nothing the gates decide;
 
 55
-00:03:18.205 --> 00:03:21.670
+00:03:18.118 --> 00:03:21.570
 it deploys the controls
 that let each gate pass.
 
@@ -337,69 +337,69 @@ The settings file is
 one JSON file per stage.
 
 71
-00:04:22.115 --> 00:04:27.584
+00:04:22.115 --> 00:04:27.615
 It holds every value the commands need:
 the tenant, the cloud, the identities,
 
 72
-00:04:27.584 --> 00:04:32.965
+00:04:27.615 --> 00:04:33.027
 the operators, the pilot, the synthetic
-objects, the policies and the waves.
+objects, the policies and the rings.
 
 73
-00:04:32.965 --> 00:04:35.493
+00:04:33.027 --> 00:04:35.556
 The kit checks it before any command runs,
 
 74
-00:04:35.493 --> 00:04:38.690
+00:04:35.556 --> 00:04:38.753
 against four rules, which
 are this workbook's design.
 
 75
-00:04:38.690 --> 00:04:41.981
+00:04:38.753 --> 00:04:42.043
 No secrets: a field whose
 name looks like a secret,
 
 76
-00:04:41.981 --> 00:04:46.752
+00:04:42.043 --> 00:04:46.814
 or a value that looks like a client
 secret or a private key, stops the run.
 
 77
-00:04:46.752 --> 00:04:50.631
+00:04:46.814 --> 00:04:50.694
 The identities are named by client
 I D and certificate thumbprint,
 
 78
-00:04:50.631 --> 00:04:54.227
+00:04:50.694 --> 00:04:54.290
 and the private key stays in the
 operator's certificate store.
 
 79
-00:04:54.227 --> 00:04:57.122
+00:04:54.290 --> 00:04:57.184
 No placeholders: a value still shaped like
 
 80
-00:04:57.122 --> 00:05:00.015
+00:04:57.184 --> 00:05:00.077
 an angle-bracketed tenant
 I D stops the run.
 
 81
-00:05:00.015 --> 00:05:02.614
+00:05:00.077 --> 00:05:02.677
 The stage it says it is:
 the file's environment
 
 82
-00:05:02.614 --> 00:05:05.353
+00:05:02.677 --> 00:05:05.416
 must match the stage you
 tell the command to run.
 
 83
-00:05:05.353 --> 00:05:07.641
+00:05:05.416 --> 00:05:07.704
 And the same commands for both stages:
 
 84
-00:05:07.641 --> 00:05:11.990
+00:05:07.704 --> 00:05:12.060
 moving from test to production
 changes the file, and nothing else.
 
@@ -518,26 +518,26 @@ test to have passed every
 check, in another tenant.
 
 109
-00:06:43.743 --> 00:06:46.443
+00:06:43.743 --> 00:06:46.494
 Then production enables Conditional Access
 
 110
-00:06:46.443 --> 00:06:48.930
+00:06:46.494 --> 00:06:49.029
 for workload identities
-one wave at a time.
+one ring at a time.
 
 111
-00:06:48.930 --> 00:06:53.316
+00:06:49.029 --> 00:06:53.416
 Remember the status: nobody has run
 these stages against a live tenant,
 
 112
-00:06:53.316 --> 00:06:56.417
+00:06:53.416 --> 00:06:56.517
 and every live result in
 them is labeled Expected.
 
 113
-00:06:56.417 --> 00:06:59.730
+00:06:56.517 --> 00:06:59.830
 That's why Lab 1 runs only the dry run.
 
 114

@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Non
 
 ## Slide 2 — Why every gMSA and dMSA needs an end date
 
-Why does this chapter have an end date built in? Because a group managed service account only works while A D is in charge. The program decides early whether A D is retired or kept as a dated Kerberos island, and the risk register is blunt: anything still running under one of these accounts loses its credential when the last domain controller goes. So converting isn't the finish line. Every account must end up moving to a workload identity, retiring, or on a dated island list. The program adds four rules of its own, labeled as design guidance, and the strictest is simple: never delete.
+Why does this chapter have an end date built in? Because a group managed service account only works while A D is in charge. The program decides early whether A D is retired or kept as a dated Kerberos island, and the risk register is blunt: anything still running under one of these accounts loses its credential when the last domain controller goes. So converting isn't the finish line. Every account must end up moving to a workload identity, retiring, or on a dated island list. The program adds rules of its own, labeled as design guidance. Each account's disposition isn't decided here: it's the owner's decision from Chapter 3, read from that run. And the strictest rule is simple: never delete.
 
 ## Slide 3 — What gMSAs and dMSAs are, and where the code runs
 
@@ -22,11 +22,11 @@ This is where the stand-ins earn their keep. The creation steps are fine, and th
 
 ## Slide 6 — What they leave to you: limits, waits and deletes
 
-The rest of the gaps are about timing and safety. The walk-through completes a migration with no wait, while the overview asks for weeks, so the code waits twenty-eight days. It never checks the limits, like unconstrained delegation that silently stops working, so the code checks each one before planning. It restarts every service on the host. And the pages disagree on deleting the old account; the code takes the stricter side and has no delete at all. So the verdict: use Learn's commands and their order, but not the procedures as the program.
+The rest of the gaps are about timing and safety. The walk-through completes a migration with no wait, while the overview asks for weeks, so the code waits thirty days, the program's parallel run. It never checks the limits, like unconstrained delegation that silently stops working, so the code checks each one before planning. It restarts every service on the host. And the pages disagree on deleting the old account; the code takes the stricter side and has no delete at all. So the verdict: use Learn's commands and their order, but not the procedures as the program.
 
-## Slide 7 — The code and its four reviewed inputs
+## Slide 7 — The code, Chapter 03's decisions and three inputs
 
-So what does the code add? A module, two entry scripts kept strictly apart, one that only reads and one that writes, and its own list of allowed calls. It builds on Chapter 1's register and refuses one whose hash doesn't match. Then three reviewed files drive it: the owners' decision for each account, the list of who may fetch each managed password, and the program's end state, with its dates. Notice that the end state has no default. If the decision is missing, the run simply stops rather than guessing.
+So what does the code add? A module, two entry scripts kept strictly apart, one that only reads and one that writes, and its own list of allowed calls. It builds on Chapter 1's register and on Chapter 3's decisions, and refuses either if its hash doesn't match. The owner's decision for each account comes from Chapter 3, never from a second list. Then three reviewed files: the new account, workload and hosts for each account being re-platformed, who may fetch each managed password, and the one program dates file Chapter 3 also reads. Notice that the end state has no default. If the decision is missing, the run simply stops rather than guessing.
 
 ## Slide 8 — The check: nine rules, NPI-KRB-01 to NPI-KRB-09
 
@@ -34,11 +34,11 @@ The reader collects the root key's start time, every managed account with its pa
 
 ## Slide 9 — The plan: one action per account
 
-Each account becomes exactly one action. The group account path is: create it, wait while the server owner installs it and switches the service over, run in parallel for thirty days, then disable the old account. The delegated path is: create it, start the migration, wait the full twenty-eight days, then complete it, which disables the old account and moves its service principal names across. Anything else is recorded with a reason. And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash.
+Each account becomes exactly one action. The group account path is: create it, wait while the server owner installs it and switches the service over, run in parallel for thirty days, then disable the old account. The delegated path is: create it, start the migration, wait the full thirty days, then complete it, which disables the old account and moves its service principal names across. Anything else is recorded with a reason. And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash.
 
 ## Slide 10 — The island list and the reconciliation
 
-Two outputs carry the chapter's end date. The island list holds every account that will stay on Kerberos, under the name it will end up with, along with its owner, its end date, and whether it's ready to hand to the program's retirement work. The hand-off flag only turns true when every single row is ready. The reconciliation covers every managed account, existing or planned, and says where it ends up. When the program confirms its end-state decision, that file changes in a reviewed pull request and the run is repeated well before A D retires.
+Two outputs carry the chapter's end date. The island list holds every account that will stay on Kerberos, under the name it will end up with, along with its disposition from Chapter 3, its owner, its end date and the date that bounds it, and whether it's ready to hand to the program's retirement work. An account kept on Kerberos is ready only with the authorizing official's acceptance. The hand-off flag only turns true when every single row is ready. The reconciliation covers every managed account, existing or planned, and says where it ends up. When the program confirms its end-state decision, the program dates file changes in a reviewed pull request, and Chapter 3's run and this one are repeated well before A D retires.
 
 ## Slide 11 — The separate write path, and its refusals
 
@@ -50,19 +50,19 @@ Who's involved? Developers build the code. Server and directory engineers run th
 
 ## Slide 13 — Lab 1: Learn's procedures, then the check
 
-Lab 1 needs only a laptop, PowerShell 7 and Pester, plus Chapter 1's inventory output. First you run Learn's own procedures against the stand-ins, and you can read the test where the migration-state step fails, just as it would on a real server. Then you list what each task is allowed to run: the read task is only lookups. Then you run the check against a fictional estate. Nine accounts are in scope, with six findings, four planned writes, and a hand-off that isn't ready yet. Let's see why.
+Lab 1 needs only a laptop, PowerShell 7 and Pester, plus the runs of Chapters 1, 2 and 3: the register, the owners and the owners' decisions. First you run Learn's own procedures against the stand-ins, and you can read the test where the migration-state step fails, just as it would on a real server. Then you list what each task is allowed to run: the read task is only lookups. Then you run the check against a fictional estate. Nine accounts are in scope, with five findings, four planned writes, and a hand-off that isn't ready yet. Let's see why.
 
 ## Slide 14 — Lab 1: reading the findings and the plan
 
-Reading the findings is where the rules become concrete. One web server account is trusted for unconstrained delegation, which stops working after a delegated migration, so that conversion is blocked. Another account's reviewed retrievers add a server that Active Directory doesn't have yet, and its end date runs past the program's deadline. An intranet account has no owner and an end date years out, so it can't be reconciled. One sits in Domain Admins. Meanwhile the plan completes a migration that started forty days ago, and creates two new group accounts.
+Reading the findings is where the rules become concrete. Every decision here is the owner's, from Chapter 3. One web server account is trusted for unconstrained delegation, which stops working after a delegated migration, so its owner kept it on Kerberos, with the authorizing official's acceptance, but it has no S P N owner. Another account's reviewed retrievers add a server that Active Directory doesn't have yet. An intranet account being re-platformed has no owner and an end date years out, so it can't be reconciled. One sits in Domain Admins. Meanwhile the plan completes a migration that started forty days ago, and creates two new group accounts.
 
 ## Slide 15 — Lab 1: the island list, a dry run and a refusal
 
-Next you read the island list and the reconciliation side by side. Two rows aren't ready for hand-off, so the flag stays false, which is the point: an incomplete list never goes. Then the write path. A dry run with the approved hash reports the four writes it would send. Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts. Finally you pass a hash nobody approved, and it refuses outright. The full suite is five hundred thirteen passing tests.
+Next you read the island list and the reconciliation side by side. Each row now carries its disposition from Chapter 3. Two rows aren't ready for hand-off, so the flag stays false. The web front end carries the authorizing official's acceptance, so it becomes ready once it has an S P N owner. That's the point: which is the point: an incomplete list never goes. Then the write path. A dry run with the approved hash reports the four writes it would send. Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts. Finally you pass a hash nobody approved, and it refuses outright. The full suite is five hundred thirteen passing tests.
 
 ## Slide 16 — Lab 2: a test domain, a real migration
 
-Lab 2 moves to a test domain, never production, with a Windows Server 2025 domain controller and member server. You make two test accounts, one for each path, and grant the reader only a narrow delegated read of the root key's dates, recording whether that really works without exposing the key. A second person reviews the plan and hands you its hash. You apply it as a person, then run the next plan to start the migration, restart only the test service, and watch the Kerberos events. After twenty-eight days, complete it, or back it out by hand.
+Lab 2 moves to a test domain, never production, with a Windows Server 2025 domain controller and member server. You make two test accounts, one for each path, record their decisions by running Chapters 2 and 3 over them, and grant the reader only a narrow delegated read of the root key's dates, recording whether that really works without exposing the key. A second person reviews the plan and hands you its hash. You apply it as a person, then run the next plan to start the migration, restart only the test service, and watch the Kerberos events. After thirty days, complete it, or back it out by hand.
 
 ## Slide 17 — Dangers, and the guard for each
 

@@ -26,38 +26,6 @@
    "One note before we begin: the code is illustrative, tested against fixtures."
   ]
  ],
- "2": [
-  [
-   0.05,
-   2.413,
-   "Why does this chapter have an end date built in?"
-  ],
-  [
-   2.462,
-   4.612,
-   "Because a group managed service account only works while A D is in charge."
-  ],
-  [
-   7.075,
-   13.625,
-   "The program decides early whether A D is retired or kept as a dated Kerberos island, and the risk register is blunt: anything still running under one of these accounts loses its credential when the last domain controller goes."
-  ],
-  [
-   20.7,
-   2.312,
-   "So converting isn't the finish line."
-  ],
-  [
-   23.012,
-   6.188,
-   "Every account must end up moving to a workload identity, retiring, or on a dated island list."
-  ],
-  [
-   29.2,
-   7.138,
-   "The program adds four rules of its own, labeled as design guidance, and the strictest is simple: never delete."
-  ]
- ],
  "3": [
   [
    0.05,
@@ -139,70 +107,6 @@
    "Placeholder names that change from step to step are replaced by names from reviewed data."
   ]
  ],
- "6": [
-  [
-   0.05,
-   2.85,
-   "The rest of the gaps are about timing and safety."
-  ],
-  [
-   2.9,
-   7.112,
-   "The walk-through completes a migration with no wait, while the overview asks for weeks, so the code waits twenty-eight days."
-  ],
-  [
-   10.012,
-   7.8,
-   "It never checks the limits, like unconstrained delegation that silently stops working, so the code checks each one before planning."
-  ],
-  [
-   17.812,
-   2.65,
-   "It restarts every service on the host."
-  ],
-  [
-   20.462,
-   6.562,
-   "And the pages disagree on deleting the old account; the code takes the stricter side and has no delete at all."
-  ],
-  [
-   27.025,
-   5.662,
-   "So the verdict: use Learn's commands and their order, but not the procedures as the program."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   1.325,
-   "So what does the code add?"
-  ],
-  [
-   1.375,
-   7.963,
-   "A module, two entry scripts kept strictly apart, one that only reads and one that writes, and its own list of allowed calls."
-  ],
-  [
-   9.338,
-   4.838,
-   "It builds on Chapter 1's register and refuses one whose hash doesn't match."
-  ],
-  [
-   14.175,
-   10.287,
-   "Then three reviewed files drive it: the owners' decision for each account, the list of who may fetch each managed password, and the program's end state, with its dates."
-  ],
-  [
-   24.462,
-   2.438,
-   "Notice that the end state has no default."
-  ],
-  [
-   26.9,
-   4.1,
-   "If the decision is missing, the run simply stops rather than guessing."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -228,60 +132,6 @@
    34.65,
    2.1,
    "Every finding gets a stable I D."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   2.612,
-   "Each account becomes exactly one action."
-  ],
-  [
-   2.663,
-   10.562,
-   "The group account path is: create it, wait while the server owner installs it and switches the service over, run in parallel for thirty days, then disable the old account."
-  ],
-  [
-   13.225,
-   11.312,
-   "The delegated path is: create it, start the migration, wait the full twenty-eight days, then complete it, which disables the old account and moves its service principal names across."
-  ],
-  [
-   24.538,
-   2.35,
-   "Anything else is recorded with a reason."
-  ],
-  [
-   26.887,
-   6.562,
-   "And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   2.562,
-   "Two outputs carry the chapter's end date."
-  ],
-  [
-   2.612,
-   11.012,
-   "The island list holds every account that will stay on Kerberos, under the name it will end up with, along with its owner, its end date, and whether it's ready to hand to the program's retirement work."
-  ],
-  [
-   13.625,
-   4.5,
-   "The hand-off flag only turns true when every single row is ready."
-  ],
-  [
-   18.125,
-   6.2,
-   "The reconciliation covers every managed account, existing or planned, and says where it ends up."
-  ],
-  [
-   24.325,
-   9.525,
-   "When the program confirms its end-state decision, that file changes in a reviewed pull request and the run is repeated well before A D retires."
   ]
  ],
  "11": [
@@ -353,134 +203,6 @@
    "The write task does need administrator rights, because Learn's procedure requires them, and that's exactly why it's a separate script, run by a person, on a plan someone else approved."
   ]
  ],
- "13": [
-  [
-   0.05,
-   6.537,
-   "Lab 1 needs only a laptop, PowerShell 7 and Pester, plus Chapter 1's inventory output."
-  ],
-  [
-   6.588,
-   8.537,
-   "First you run Learn's own procedures against the stand-ins, and you can read the test where the migration-state step fails, just as it would on a real server."
-  ],
-  [
-   15.125,
-   5.112,
-   "Then you list what each task is allowed to run: the read task is only lookups."
-  ],
-  [
-   20.238,
-   2.675,
-   "Then you run the check against a fictional estate."
-  ],
-  [
-   22.913,
-   6.438,
-   "Nine accounts are in scope, with six findings, four planned writes, and a hand-off that isn't ready yet."
-  ],
-  [
-   29.35,
-   1.038,
-   "Let's see why."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   3.225,
-   "Reading the findings is where the rules become concrete."
-  ],
-  [
-   3.275,
-   8.338,
-   "One web server account is trusted for unconstrained delegation, which stops working after a delegated migration, so that conversion is blocked."
-  ],
-  [
-   11.613,
-   8.037,
-   "Another account's reviewed retrievers add a server that Active Directory doesn't have yet, and its end date runs past the program's deadline."
-  ],
-  [
-   19.65,
-   5.475,
-   "An intranet account has no owner and an end date years out, so it can't be reconciled."
-  ],
-  [
-   25.125,
-   2.025,
-   "One sits in Domain Admins."
-  ],
-  [
-   27.15,
-   6.325,
-   "Meanwhile the plan completes a migration that started forty days ago, and creates two new group accounts."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   4.0,
-   "Next you read the island list and the reconciliation side by side."
-  ],
-  [
-   4.05,
-   6.938,
-   "Two rows aren't ready for hand-off, so the flag stays false, which is the point: an incomplete list never goes."
-  ],
-  [
-   10.988,
-   1.325,
-   "Then the write path."
-  ],
-  [
-   12.312,
-   4.213,
-   "A dry run with the approved hash reports the four writes it would send."
-  ],
-  [
-   16.525,
-   7.912,
-   "Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts."
-  ],
-  [
-   24.438,
-   4.263,
-   "Finally you pass a hash nobody approved, and it refuses outright."
-  ],
-  [
-   28.7,
-   3.413,
-   "The full suite is five hundred thirteen passing tests."
-  ]
- ],
- "16": [
-  [
-   0.05,
-   8.075,
-   "Lab 2 moves to a test domain, never production, with a Windows Server 2025 domain controller and member server."
-  ],
-  [
-   8.125,
-   10.95,
-   "You make two test accounts, one for each path, and grant the reader only a narrow delegated read of the root key's dates, recording whether that really works without exposing the key."
-  ],
-  [
-   19.075,
-   3.438,
-   "A second person reviews the plan and hands you its hash."
-  ],
-  [
-   22.512,
-   8.375,
-   "You apply it as a person, then run the next plan to start the migration, restart only the test service, and watch the Kerberos events."
-  ],
-  [
-   30.887,
-   3.788,
-   "After twenty-eight days, complete it, or back it out by hand."
-  ]
- ],
  "17": [
   [
    0.05,
@@ -548,6 +270,324 @@
    32.638,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.413,
+   "Why does this chapter have an end date built in?"
+  ],
+  [
+   2.462,
+   4.612,
+   "Because a group managed service account only works while A D is in charge."
+  ],
+  [
+   7.075,
+   13.625,
+   "The program decides early whether A D is retired or kept as a dated Kerberos island, and the risk register is blunt: anything still running under one of these accounts loses its credential when the last domain controller goes."
+  ],
+  [
+   20.7,
+   2.312,
+   "So converting isn't the finish line."
+  ],
+  [
+   23.012,
+   6.188,
+   "Every account must end up moving to a workload identity, retiring, or on a dated island list."
+  ],
+  [
+   29.2,
+   4.375,
+   "The program adds rules of its own, labeled as design guidance."
+  ],
+  [
+   33.575,
+   6.888,
+   "Each account's disposition isn't decided here: it's the owner's decision from Chapter 3, read from that run."
+  ],
+  [
+   40.462,
+   3.05,
+   "And the strictest rule is simple: never delete."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.85,
+   "The rest of the gaps are about timing and safety."
+  ],
+  [
+   2.9,
+   8.6,
+   "The walk-through completes a migration with no wait, while the overview asks for weeks, so the code waits thirty days, the program's parallel run."
+  ],
+  [
+   11.5,
+   7.8,
+   "It never checks the limits, like unconstrained delegation that silently stops working, so the code checks each one before planning."
+  ],
+  [
+   19.3,
+   2.65,
+   "It restarts every service on the host."
+  ],
+  [
+   21.95,
+   6.562,
+   "And the pages disagree on deleting the old account; the code takes the stricter side and has no delete at all."
+  ],
+  [
+   28.512,
+   5.662,
+   "So the verdict: use Learn's commands and their order, but not the procedures as the program."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.325,
+   "So what does the code add?"
+  ],
+  [
+   1.375,
+   7.963,
+   "A module, two entry scripts kept strictly apart, one that only reads and one that writes, and its own list of allowed calls."
+  ],
+  [
+   9.338,
+   7.088,
+   "It builds on Chapter 1's register and on Chapter 3's decisions, and refuses either if its hash doesn't match."
+  ],
+  [
+   16.425,
+   5.112,
+   "The owner's decision for each account comes from Chapter 3, never from a second list."
+  ],
+  [
+   21.538,
+   12.113,
+   "Then three reviewed files: the new account, workload and hosts for each account being re-platformed, who may fetch each managed password, and the one program dates file Chapter 3 also reads."
+  ],
+  [
+   33.65,
+   2.438,
+   "Notice that the end state has no default."
+  ],
+  [
+   36.087,
+   4.1,
+   "If the decision is missing, the run simply stops rather than guessing."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.612,
+   "Each account becomes exactly one action."
+  ],
+  [
+   2.663,
+   10.562,
+   "The group account path is: create it, wait while the server owner installs it and switches the service over, run in parallel for thirty days, then disable the old account."
+  ],
+  [
+   13.225,
+   11.188,
+   "The delegated path is: create it, start the migration, wait the full thirty days, then complete it, which disables the old account and moves its service principal names across."
+  ],
+  [
+   24.413,
+   2.35,
+   "Anything else is recorded with a reason."
+  ],
+  [
+   26.762,
+   6.562,
+   "And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.562,
+   "Two outputs carry the chapter's end date."
+  ],
+  [
+   2.612,
+   14.475,
+   "The island list holds every account that will stay on Kerberos, under the name it will end up with, along with its disposition from Chapter 3, its owner, its end date and the date that bounds it, and whether it's ready to hand to the program's retirement work."
+  ],
+  [
+   17.087,
+   5.112,
+   "An account kept on Kerberos is ready only with the authorizing official's acceptance."
+  ],
+  [
+   22.2,
+   4.5,
+   "The hand-off flag only turns true when every single row is ready."
+  ],
+  [
+   26.7,
+   6.2,
+   "The reconciliation covers every managed account, existing or planned, and says where it ends up."
+  ],
+  [
+   32.9,
+   11.475,
+   "When the program confirms its end-state decision, the program dates file changes in a reviewed pull request, and Chapter 3's run and this one are repeated well before A D retires."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   10.925,
+   "Lab 1 needs only a laptop, PowerShell 7 and Pester, plus the runs of Chapters 1, 2 and 3: the register, the owners and the owners' decisions."
+  ],
+  [
+   10.975,
+   8.537,
+   "First you run Learn's own procedures against the stand-ins, and you can read the test where the migration-state step fails, just as it would on a real server."
+  ],
+  [
+   19.512,
+   5.112,
+   "Then you list what each task is allowed to run: the read task is only lookups."
+  ],
+  [
+   24.625,
+   2.675,
+   "Then you run the check against a fictional estate."
+  ],
+  [
+   27.3,
+   6.4,
+   "Nine accounts are in scope, with five findings, four planned writes, and a hand-off that isn't ready yet."
+  ],
+  [
+   33.7,
+   1.038,
+   "Let's see why."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.225,
+   "Reading the findings is where the rules become concrete."
+  ],
+  [
+   3.275,
+   3.45,
+   "Every decision here is the owner's, from Chapter 3."
+  ],
+  [
+   6.725,
+   13.275,
+   "One web server account is trusted for unconstrained delegation, which stops working after a delegated migration, so its owner kept it on Kerberos, with the authorizing official's acceptance, but it has no S P N owner."
+  ],
+  [
+   20.0,
+   5.062,
+   "Another account's reviewed retrievers add a server that Active Directory doesn't have yet."
+  ],
+  [
+   25.062,
+   6.612,
+   "An intranet account being re-platformed has no owner and an end date years out, so it can't be reconciled."
+  ],
+  [
+   31.675,
+   2.025,
+   "One sits in Domain Admins."
+  ],
+  [
+   33.7,
+   6.325,
+   "Meanwhile the plan completes a migration that started forty days ago, and creates two new group accounts."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.0,
+   "Next you read the island list and the reconciliation side by side."
+  ],
+  [
+   4.05,
+   3.413,
+   "Each row now carries its disposition from Chapter 3."
+  ],
+  [
+   7.463,
+   3.725,
+   "Two rows aren't ready for hand-off, so the flag stays false."
+  ],
+  [
+   11.188,
+   6.763,
+   "The web front end carries the authorizing official's acceptance, so it becomes ready once it has an S P N owner."
+  ],
+  [
+   17.95,
+   4.388,
+   "That's the point: which is the point: an incomplete list never goes."
+  ],
+  [
+   22.337,
+   1.325,
+   "Then the write path."
+  ],
+  [
+   23.663,
+   4.213,
+   "A dry run with the approved hash reports the four writes it would send."
+  ],
+  [
+   27.875,
+   7.912,
+   "Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts."
+  ],
+  [
+   35.788,
+   4.263,
+   "Finally you pass a hash nobody approved, and it refuses outright."
+  ],
+  [
+   40.05,
+   3.413,
+   "The full suite is five hundred thirteen passing tests."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   8.075,
+   "Lab 2 moves to a test domain, never production, with a Windows Server 2025 domain controller and member server."
+  ],
+  [
+   8.125,
+   14.988,
+   "You make two test accounts, one for each path, record their decisions by running Chapters 2 and 3 over them, and grant the reader only a narrow delegated read of the root key's dates, recording whether that really works without exposing the key."
+  ],
+  [
+   23.113,
+   3.438,
+   "A second person reviews the plan and hands you its hash."
+  ],
+  [
+   26.55,
+   8.375,
+   "You apply it as a person, then run the next plan to start the migration, restart only the test service, and watch the Kerberos events."
+  ],
+  [
+   34.925,
+   3.575,
+   "After thirty days, complete it, or back it out by hand."
   ]
  ]
 }

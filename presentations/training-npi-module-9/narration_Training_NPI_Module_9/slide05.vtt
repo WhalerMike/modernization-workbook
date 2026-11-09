@@ -1,58 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.373
-The program's decision D N six is
+00:00:00.050 --> 00:00:04.591
+The program's decision D N P six is
 held as data, in a configuration
 
 2
-00:00:04.373 --> 00:00:09.112
+00:00:04.591 --> 00:00:09.475
 file with each capability's stage by
 cloud, and its status is proposed.
 
 3
-00:00:09.112 --> 00:00:11.376
+00:00:09.475 --> 00:00:11.738
 The code reads it and picks a mode.
 
 4
-00:00:11.376 --> 00:00:15.042
+00:00:11.738 --> 00:00:15.405
 In the worldwide and G C C clouds
 it runs in Agent I D mode:
 
 5
-00:00:15.042 --> 00:00:20.175
+00:00:15.405 --> 00:00:20.538
 it reads blueprints and agent identities
 and checks them against the rules.
 
 6
-00:00:20.175 --> 00:00:25.006
+00:00:20.538 --> 00:00:25.369
 In G C C High and D O D, where
 Microsoft Learn's feature availability
 
 7
-00:00:25.006 --> 00:00:29.837
+00:00:25.369 --> 00:00:30.200
 page publishes no Agent I D
 availability, it runs in fallback mode.
 
 8
-00:00:29.837 --> 00:00:32.254
+00:00:30.200 --> 00:00:32.617
 It sends no agent identity read at all,
 
 9
-00:00:32.254 --> 00:00:36.775
+00:00:32.617 --> 00:00:37.138
 and applies the same rules to the
 service principals the agents run as.
 
 10
-00:00:36.775 --> 00:00:40.775
+00:00:37.138 --> 00:00:41.138
 So the rules don't change by cloud;
 only what the code reads does.
 
 11
-00:00:40.775 --> 00:00:43.762
+00:00:41.138 --> 00:00:44.125
 Preview features are
 reported, never enforced.
 
 12
-00:00:43.762 --> 00:00:45.360
+00:00:44.125 --> 00:00:45.720
 That's design guidance.

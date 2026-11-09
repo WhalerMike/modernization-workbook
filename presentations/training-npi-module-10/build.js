@@ -254,7 +254,7 @@ endModule(SC);
     "# Step 7, in a POSIX shell at the root of your copy of the repository",
     "$ cd examples/drift-pipeline",
     "$ python python/npi_evidence.py package --run $DAY1 --out out/evidence",
-    "{\"evidence_manifest_sha256\": \"574efc05...\", \"new\": 62, \"open\": 62, \"package\": \"2026-10-29T0600Z-fixture\", \"resolved\": 0}",
+    "{\"evidence_manifest_sha256\": \"12532bfb...\", \"new\": 62, \"open\": 62, \"package\": \"2026-10-29T0600Z-fixture\", \"resolved\": 0}",
     "$ python python/npi_evidence.py package --run $DAY2 \\",
     "    --previous-manifest out/evidence/2026-10-29T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/evidence",
     "{\"evidence_manifest_sha256\": \"35993595...\", \"new\": 19, \"open\": 80, \"package\": \"2026-10-30T0600Z-fixture\", \"resolved\": 1}",

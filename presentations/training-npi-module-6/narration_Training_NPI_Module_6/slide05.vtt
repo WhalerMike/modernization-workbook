@@ -29,44 +29,44 @@ them when their risk is high.
 Two decisions frame them.
 
 7
-00:00:18.075 --> 00:00:21.119
-D N four is licensing:
+00:00:18.075 --> 00:00:21.254
+D N P four is licensing:
 Workload I D Premium
 
 8
-00:00:21.119 --> 00:00:24.700
+00:00:21.254 --> 00:00:24.887
 for the Tier 1 single-tenant
 service principals.
 
 9
-00:00:24.700 --> 00:00:28.529
-D N five is enforcement, and
+00:00:24.887 --> 00:00:28.879
+D N P five is enforcement, and
 it's the CISO's call: enforce,
 
 10
-00:00:28.529 --> 00:00:33.550
+00:00:28.879 --> 00:00:34.000
 extend report-only, or enforce with
 exclusions that are dated and owned.
 
 11
-00:00:33.550 --> 00:00:38.422
+00:00:34.000 --> 00:00:38.872
 The scope file is the record: each
 in-scope principal by object I D and ring,
 
 12
-00:00:38.422 --> 00:00:43.538
+00:00:38.872 --> 00:00:43.988
 and each identity that's out of scope,
 with the control that covers it instead.
 
 13
-00:00:43.538 --> 00:00:46.264
+00:00:43.988 --> 00:00:46.713
 And each policy is rendered once per ring,
 
 14
-00:00:46.264 --> 00:00:51.476
+00:00:46.713 --> 00:00:51.925
 so enforcing one ring changes one policy
 and leaves the next one in report-only.
 
 15
-00:00:51.476 --> 00:00:53.230
+00:00:51.925 --> 00:00:53.690
 That's the program's design.

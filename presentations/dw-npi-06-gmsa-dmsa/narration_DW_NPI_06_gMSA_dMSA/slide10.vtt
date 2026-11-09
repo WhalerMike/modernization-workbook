@@ -5,41 +5,60 @@ WEBVTT
 Two outputs carry the chapter's end date.
 
 2
-00:00:02.612 --> 00:00:06.259
+00:00:02.612 --> 00:00:06.284
 The island list holds every
 account that will stay on Kerberos,
 
 3
-00:00:06.259 --> 00:00:10.047
-under the name it will end up with,
-along with its owner, its end date,
+00:00:06.284 --> 00:00:10.662
+under the name it will end up with, along
+with its disposition from Chapter 3,
 
 4
-00:00:10.047 --> 00:00:13.624
+00:00:10.662 --> 00:00:13.486
+its owner, its end date and
+the date that bounds it,
+
+5
+00:00:13.486 --> 00:00:17.087
 and whether it's ready to hand to
 the program's retirement work.
 
-5
-00:00:13.624 --> 00:00:18.125
+6
+00:00:17.087 --> 00:00:19.535
+An account kept on Kerberos is ready only
+
+7
+00:00:19.535 --> 00:00:22.199
+with the authorizing
+official's acceptance.
+
+8
+00:00:22.199 --> 00:00:26.700
 The hand-off flag only turns true
 when every single row is ready.
 
-6
-00:00:18.125 --> 00:00:21.421
+9
+00:00:26.700 --> 00:00:29.996
 The reconciliation covers
 every managed account,
 
-7
-00:00:21.421 --> 00:00:24.325
+10
+00:00:29.996 --> 00:00:32.900
 existing or planned, and
 says where it ends up.
 
-8
-00:00:24.325 --> 00:00:29.087
-When the program confirms its end-state
-decision, that file changes in
+11
+00:00:32.900 --> 00:00:36.167
+When the program confirms
+its end-state decision,
 
-9
-00:00:29.087 --> 00:00:33.910
-a reviewed pull request and the run
-is repeated well before A D retires.
+12
+00:00:36.167 --> 00:00:39.992
+the program dates file changes
+in a reviewed pull request,
+
+13
+00:00:39.992 --> 00:00:44.420
+and Chapter 3's run and this one are
+repeated well before A D retires.

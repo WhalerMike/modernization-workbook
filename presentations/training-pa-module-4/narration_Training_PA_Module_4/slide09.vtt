@@ -1,53 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.275
-Step three dry-runs wave one,
-the pilot class, Tier 1.
+00:00:00.050 --> 00:00:00.775
+Try it.
 
 2
-00:00:04.275 --> 00:00:08.954
-First you put the run's settings in
-one variable, the lab table: the cloud,
+00:00:00.775 --> 00:00:03.516
+Lab 1 runs in one PowerShell 7 session,
 
 3
-00:00:08.954 --> 00:00:12.665
-the fixture tenant, the bindings
-from aliases to groups,
+00:00:03.516 --> 00:00:08.025
+because steps four to six use
+the settings step three defines.
 
 4
-00:00:12.665 --> 00:00:18.150
-the emergency access file, the exceptions,
-the confirmed activations, and the date.
+00:00:08.025 --> 00:00:12.387
+Step one sends Microsoft Learn's
+samples to the fake, as published.
 
 5
-00:00:18.150 --> 00:00:19.700
-Later steps reuse it.
+00:00:12.387 --> 00:00:13.962
+Thirteen tests pass.
 
 6
-00:00:19.700 --> 00:00:21.113
-Then run wave one.
+00:00:13.962 --> 00:00:17.224
+The fourth shows that all
+six of Learn's updates apply,
 
 7
-00:00:21.113 --> 00:00:24.526
-Nine roles, no findings,
-thirteen warnings.
+00:00:17.224 --> 00:00:22.413
+and yet Application Administrator still
+differs from its file in six of seven rules.
 
 8
-00:00:24.526 --> 00:00:29.200
-The plan: forty-three rule updates,
-eight eligibility requests, and two
+00:00:22.413 --> 00:00:24.875
+Learn's samples aren't
+the program's settings.
 
 9
-00:00:29.200 --> 00:00:34.600
-standing assignments to convert, none
-confirmed yet, so neither would be removed.
+00:00:24.875 --> 00:00:27.575
+Step two lists each task's permissions.
 
 10
-00:00:34.600 --> 00:00:36.700
-It's a dry run, so nothing was sent,
+00:00:27.575 --> 00:00:31.043
+Planning needs three reads:
+role assignment schedules,
 
 11
-00:00:36.700 --> 00:00:41.860
-and the manifest lists every request it
-would send and the hash of every file.
+00:00:31.043 --> 00:00:34.737
+role eligibility schedules
+and role management policies.
+
+12
+00:00:34.737 --> 00:00:40.549
+Applying adds two writes: role eligibility
+schedules and role management policies.
+
+13
+00:00:40.549 --> 00:00:44.688
+And converting adds only one
+write: role assignment schedules.
+
+14
+00:00:44.688 --> 00:00:47.420
+The output on the slide is wrapped to fit.

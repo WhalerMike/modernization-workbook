@@ -134,10 +134,10 @@ endModule(SI);
     ["PA-PG-08", "A policy rule that differs from the reviewed setting, or a group approving itself"],
     ["PA-PG-09", "A schedule the file doesn't grant; a PRV group the file doesn't list"],
   ], { fontSize: 12, limit: 5.6 });
-  line(s, "File", "The desired state is prv-groups.json, with the tier policy in config/prv-group-policy.json (design guidance for the values).", b + 0.2, 0.75, 13);
+  line(s, "File", "The desired state is prv-groups.json, with the tier policy in config/prv-group-policy.json (design guidance). Every member and owner policy selects c1, so -Apply needs -ActivationGateChecked, as in Module 4.", b + 0.2, 0.75, 13);
   sources(s, "Sources: Module 5, Unit 2; Microsoft Learn, \"Use Microsoft Entra groups to manage role assignments,\" \"PIM for Groups\"; PimGroups.psm1.");
   notes(s,
-`Unit 2: the file, the findings and the guards. The desired state is one file, P R V groups dot json, with the tier policy beside it; the values are this workbook's design guidance. The read compares the tenant with it and raises rules P G oh one to oh nine. Oh one is a name that doesn't follow the P R V pattern, the program's naming. Oh two is a group that holds an Entra role but isn't role-assignable, and oh three a dynamic or synchronized group; Microsoft Learn says PIM for Groups can't manage those. Oh four counts role-assignable groups against Microsoft Learn's limit of five hundred. Oh five is a group nested as a holder, or a service principal made eligible. Oh six is an entry with no end or no ticket. Oh seven is the owner trap. Oh eight is a policy rule that differs from the reviewed setting. And oh nine is anything the file doesn't grant or list: anything outside the file is unreviewed.`,
+`Unit 2: the file, the findings and the guards. The desired state is one file, P R V groups dot json, with the tier policy beside it; the values are this workbook's design guidance. Every member and owner policy selects Module 3's authentication context, c1, as Book 04, Access and Privilege, requires. So, as in Module 4, the Apply switch also needs the Activation Gate Checked switch, a person's statement that the gate's policy is On. The read compares the tenant with it and raises rules P G oh one to oh nine. Oh one is a name that doesn't follow the P R V pattern, the program's naming. Oh two is a group that holds an Entra role but isn't role-assignable, and oh three a dynamic or synchronized group; Microsoft Learn says PIM for Groups can't manage those. Oh four counts role-assignable groups against Microsoft Learn's limit of five hundred. Oh five is a group nested as a holder, or a service principal made eligible. Oh six is an entry with no end or no ticket. Oh seven is the owner trap. Oh eight is a policy rule that differs from the reviewed setting. And oh nine is anything the file doesn't grant or list: anything outside the file is unreviewed.`,
   `${M} — Unit 2: workbook Chapter 05, "The desired state," "The read and the findings"; examples/privileged-access/powershell/PimGroups/PimGroups.psm1.`);
 }
 
@@ -207,20 +207,21 @@ endModule(SC);
     "# Step 4: plan against the fictional tenant, as a dry run",
     "PS> ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `",
     "      -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups",
-    "PIM for Groups: 9 Finding, 3 Warn, 0 Info",
-    "Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)",
+    "PIM for Groups: 11 Finding, 3 Warn, 0 Info",
+    "Plan: 10 change(s) (3 assignment, 2 eligibility, 5 policy rule)",
     "Guards: all passed",
+    "Activation gate: the plan selects an authentication context; -Apply also needs -ActivationGateChecked",
     "Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply",
     "Written to out/pim-groups (manifest.json lists every request and file hash)",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (THE PERMISSIONS LINE WRAPPED)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 9, 2026 (THE PERMISSIONS LINE WRAPPED)", pt: 10.5 });
   table(s, "Read", c + 0.25, [3.0, 9.15], ["Read it", "What the run printed"], [
     ["Four permissions", "Nothing ends in ReadWrite"],
-    ["12 results", "9 Finding, 3 Warn"],
-    ["8 changes", "3 assignment, 2 eligibility, 3 policy rule; the guards all passed; nothing sent"],
+    ["14 results", "11 Finding, 3 Warn"],
+    ["10 changes", "3 assignment, 2 eligibility, 5 policy rule; the guards all passed; -Apply also needs -ActivationGateChecked"],
   ], { fontSize: 13, limit: 6.1 });
   sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" steps 3 and 4; examples/privileged-access: Invoke-PaPimGroups.ps1, tests/fixtures/ch05 (fictional).");
   notes(s,
-`Step three lists the permissions the read needs. Four: Group dot Read Basic dot All, and the three PIM for Groups reads, for assignment schedules, eligibility schedules and role management policies. Nothing ends in ReadWrite. Step four plans against the fictional tenant, as a dry run. You give it the cloud, the fixture, the desired state file, the date and an output folder. The read raises nine findings and three warnings. The plan has eight changes: three assignments, two eligibilities and three policy rules. The guards all passed, so the plan could be applied. But it's a dry run, so nothing was sent: review the diff and the plan, then run again with Apply.`,
+`Step three lists the permissions the read needs. Four: Group dot Read Basic dot All, and the three PIM for Groups reads, for assignment schedules, eligibility schedules and role management policies. Nothing ends in ReadWrite. Step four plans against the fictional tenant, as a dry run. You give it the cloud, the fixture, the desired state file, the date and an output folder. The read raises eleven findings and three warnings. The plan has ten changes: three assignments, two eligibilities and five policy rules. The guards all passed, so the plan could be applied, but the run warns that it selects an authentication context, so the apply will also need the Activation Gate Checked switch. And it's a dry run, so nothing was sent: review the diff and the plan, then run again with Apply.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 3 and 4.`);
 }
 
@@ -242,21 +243,23 @@ endModule(SC);
     "PA-PG-07 Finding  PRV-T0-PrivRoleAdmin",
     "PA-PG-08 Finding  PRV-T0-PrivRoleAdmin",
     "PA-PG-08 Finding  PRV-T0-PrivRoleAdmin",
+    "PA-PG-08 Finding  PRV-T0-PrivRoleAdmin",
+    "PA-PG-08 Finding  PRV-T0-PrivRoleAdmin",
     "PA-PG-02 Warn     PRV-T1-AzureOwner-SubWorkload",
     "PA-PG-05 Finding  PRV-T1-AzureOwner-SubWorkload",
     "PA-PG-09 Finding  PRV-T1-AzureOwner-SubWorkload",
     "PA-PG-08 Finding  PRV-T1-AzureOwner-SubWorkload",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 9, 2026 (WRAPPED)", pt: 10.5 });
   panel(s, "Read", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "READ IT", null, [
     "PRV-T0-PrivRoleAdmin: a permanent active member the file doesn't grant",
     "An eligible owner with no active owner",
-    "Member activation without approval, for 8 hours instead of 4",
+    "Member activation without approval, for 8 hours instead of 4, and with MFA instead of c1",
     "PRV-T1-AzureOwner-SubWorkload: a nested group as an eligible member",
     "Two groups the file doesn't list (Warn)",
   ], 12.5);
   sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" step 5; examples/privileged-access/tests/fixtures/ch05 (fictional identities).");
   notes(s,
-`Step five prints the findings. Two warnings are P G oh nine for groups the file doesn't list: a legacy help desk group and an Intune administrators group. Then P R V T0 Priv Role Admin. It has a permanent active member the file doesn't grant, which is oh six and oh nine. It has an eligible owner with no active owner, which is oh seven and oh nine: the owner trap. And its member activation needs no approval and lasts eight hours instead of four, two oh eight findings. On the Azure owner group, P R V T1 Azure Owner Sub Workload: it isn't role-assignable, which is a warning for a group that holds no Entra role, and it has a nested group, the legacy help desk group, as an eligible member. That's oh five, oh nine, and an oh eight for a policy rule.`,
+`Step five prints the findings. Two warnings are P G oh nine for groups the file doesn't list: a legacy help desk group and an Intune administrators group. Then P R V T0 Priv Role Admin. It has a permanent active member the file doesn't grant, which is oh six and oh nine. It has an eligible owner with no active owner, which is oh seven and oh nine: the owner trap. And its member policy activates without approval, for eight hours instead of four, and with M F A instead of the authentication context c1: four oh eight findings, for the duration, the enablement rules, the context and the approval. On the Azure owner group, P R V T1 Azure Owner Sub Workload: it isn't role-assignable, which is a warning for a group that holds no Entra role, and it has a nested group, the legacy help desk group, as an eligible member. That's oh five, oh nine, and an oh eight for a policy rule.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," step 5.`);
 }
 
@@ -267,8 +270,11 @@ endModule(SC);
   const c = code(s, "Diff", 0.6, 1.45, 12.15, [
     "# Lab 1, step 6",
     "PS> Get-Content out/pim-groups/diff.txt",
-    "# PIM for Groups plan, cloud gcc, 8 change(s), dry run: nothing sent",
+    "# PIM for Groups plan, cloud gcc, 10 change(s), dry run: nothing sent",
     "~ PRV-T0-PrivRoleAdmin member Expiration_EndUser_Assignment: required=True max=PT8H -> required=True max=PT4H",
+    "~ PRV-T0-PrivRoleAdmin member Enablement_EndUser_Assignment: enabled=Justification,MultiFactorAuthentication,Ticketing",
+    "    -> enabled=Justification,Ticketing",
+    "~ PRV-T0-PrivRoleAdmin member AuthenticationContext_EndUser_Assignment: context=off -> context=c1",
     "~ PRV-T0-PrivRoleAdmin member Approval_EndUser_Assignment: approval=False approvers=groupMembers:5a00...00a0",
     "    -> approval=True approvers=groupMembers:5a00...00a0",
     "~ PRV-T1-AzureOwner-SubWorkload owner Expiration_Admin_Eligibility: required=False max=P90D -> required=True max=P90D",
@@ -280,11 +286,11 @@ endModule(SC);
     "PS> (Get-Content out/pim-groups/plan.json -Raw | ConvertFrom-Json).Permissions -join ', '",
     "PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup, PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup,",
     "  RoleManagementPolicy.ReadWrite.AzureADGroup",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED; \"...\" SHORTENS A GROUP ID)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 9, 2026 (WRAPPED; \"...\" SHORTENS A GROUP ID)", pt: 10.5 });
   line(s, "Read", "The policy rules come first, then grants, then the three removals; the plan names the writes it needs.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" step 6; examples/privileged-access: Invoke-PaPimGroups.ps1, tests/fixtures/ch05 (fictional).");
   notes(s,
-`Step six reads the diff, one line per change. A tilde is a change, a plus an addition, a minus a removal. The policy rules come first. The Tier 0 group's member activation goes from eight hours to four, and from no approval to approval, by the same approver group. The Azure owner group's eligible owners must now have an end. Then the grants. An Exchange admin member's end date moves out to April twenty twenty-seven, on change C H G ten oh two, and a new active member is added, on C H G ten oh five, each with its ticket. Then the three removals: the Tier 0 group's ungranted active member, its eligible owner, and the nested legacy group. Last, the plan names exactly the write permissions it would need: the three PIM for Groups ReadWrite permissions.`,
+`Step six reads the diff, one line per change. A tilde is a change, a plus an addition, a minus a removal. The policy rules come first. The Tier 0 group's member activation goes from eight hours to four; M F A leaves its enablement rules, which keep justification and a ticket; the authentication context goes from off to c1; and it goes from no approval to approval, by the same approver group. The Azure owner group's eligible owners must now have an end. Then the grants. An Exchange admin member's end date moves out to April twenty twenty-seven, on change C H G ten oh two, and a new active member is added, on C H G ten oh five, each with its ticket. Then the three removals: the Tier 0 group's ungranted active member, its eligible owner, and the nested legacy group. Last, the plan names exactly the write permissions it would need: the three PIM for Groups ReadWrite permissions.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," step 6.`);
 }
 
@@ -300,16 +306,19 @@ endModule(SC);
     "# Step 8: apply to the fake",
     "PS> ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `",
     "      -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply",
-    "PIM for Groups: 9 Finding, 3 Warn, 0 Info",
-    "Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)",
+    "Exception: The plan sets an authentication context: confirm its Conditional Access policy is On (Chapter 03), then pass -ActivationGateChecked",
+    "PS> ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `",
+    "      -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply -ActivationGateChecked",
+    "PIM for Groups: 11 Finding, 3 Warn, 0 Info",
+    "Plan: 10 change(s) (3 assignment, 2 eligibility, 5 policy rule)",
     "Guards: all passed",
-    "Applied: 8 sent, 0 failed",
+    "Applied: 10 sent, 0 failed",
     "Written to out/pim-groups-apply (manifest.json lists every request and file hash)",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 9, 2026 (WRAPPED)", pt: 10.5 });
   line(s, "Tests", "Step 9: Invoke-Pester -Path tests prints Tests Passed: 330, Failed: 0. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13);
   sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" steps 7 to 9; examples/privileged-access/powershell/PimGroups/PimGroups.psm1.");
   notes(s,
-`Step seven shows a guard refusing. Run the same plan with Apply, but with Max Removals set to two. Guard G six refuses: three removals is more than two; review them, and run again with a higher limit. Nothing is sent. Step eight applies to the fake with the default limit. The same findings and the same eight changes, the guards all pass, and eight requests are sent, none failed. The fake records the requests and doesn't change its tenant. Step nine runs the tests, three hundred thirty pass, and you delete the output folder.`,
+`Step seven shows a guard refusing. Run the same plan with Apply, but with Max Removals set to two. Guard G six refuses: three removals is more than two; review them, and run again with a higher limit. Nothing is sent. Step eight applies to the fake with the default limit. The first command stops before any write: the plan sets an authentication context, so confirm its Conditional Access policy is On, from Module 3, then pass Activation Gate Checked. The second has the same findings and the same ten changes, the guards all pass, and ten requests are sent, none failed: the policy rules first, then the grants and removals. The fake records the requests and doesn't change its tenant. Step nine runs the tests, three hundred thirty pass, and you delete the output folder.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 9.`);
 }
 
@@ -374,7 +383,8 @@ endModule(SL);
     "Read a fictional tenant's PRV groups against a reviewed file of four",
     "Found a standing member nobody granted, an owner trap and a nested group",
     "Read the exact requests that would fix them",
-    "Saw a guard refuse too many removals, and applied eight requests to the fake",
+    "Saw a guard refuse too many removals, and the apply refuse to select c1 until a person confirmed the gate",
+    "Applied ten requests to the fake",
   ], 13.5);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 6: PIM for Azure resources", [
     "Owner, Contributor and User Access Administrator",
@@ -384,7 +394,7 @@ endModule(SL);
     "for other privilege, such as an Azure role, the members are eligible for the group.");
   sources(s, "Sources: Module 5, \"Summary\"; Module 6, \"Introduction.\"");
   notes(s,
-`To sum up. You read a fictional tenant's P R V groups against a reviewed file of four, and found a standing member nobody granted, an owner trap, and a nested group. You read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake. Next is Module 6: PIM for Azure resources. Owner, Contributor and User Access Administrator on a subscription are privileged too. PIM for Azure resources isn't in Microsoft Graph: it goes through Azure Resource Manager, with Azure roles instead of Graph permissions. In Module 6 you hold it as code, with the same discipline: read, diff, and send only with Apply.`,
+`To sum up. You read a fictional tenant's P R V groups against a reviewed file of four, and found a standing member nobody granted, an owner trap, and a nested group. You read the exact requests that would fix them, saw a guard refuse a plan with too many removals, saw the apply refuse to select c1 until a person confirmed the gate, and applied ten requests to the fake. Next is Module 6: PIM for Azure resources. Owner, Contributor and User Access Administrator on a subscription are privileged too. PIM for Azure resources isn't in Microsoft Graph: it goes through Azure Resource Manager, with Azure roles instead of Graph permissions. In Module 6 you hold it as code, with the same discipline: read, diff, and send only with Apply.`,
   `${M} — Unit "Summary"; Module 6 — "Introduction."`);
 }
 endModule(SS);

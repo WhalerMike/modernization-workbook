@@ -34,29 +34,39 @@ the desired state file, the
 date and an output folder.
 
 8
-00:00:24.075 --> 00:00:27.562
-The read raises nine
+00:00:24.075 --> 00:00:27.575
+The read raises eleven
 findings and three warnings.
 
 9
-00:00:27.562 --> 00:00:30.659
-The plan has eight changes:
+00:00:27.575 --> 00:00:30.648
+The plan has ten changes:
 three assignments,
 
 10
-00:00:30.659 --> 00:00:33.512
-two eligibilities and three policy rules.
+00:00:30.648 --> 00:00:33.550
+two eligibilities and five policy rules.
 
 11
-00:00:33.512 --> 00:00:36.638
+00:00:33.550 --> 00:00:36.450
 The guards all passed, so
-the plan could be applied.
+the plan could be applied,
 
 12
-00:00:36.638 --> 00:00:39.071
-But it's a dry run, so nothing was sent:
+00:00:36.450 --> 00:00:39.986
+but the run warns that it selects
+an authentication context,
 
 13
-00:00:39.071 --> 00:00:42.820
+00:00:39.986 --> 00:00:43.663
+so the apply will also need the
+Activation Gate Checked switch.
+
+14
+00:00:43.663 --> 00:00:46.086
+And it's a dry run, so nothing was sent:
+
+15
+00:00:46.086 --> 00:00:49.820
 review the diff and the plan,
 then run again with Apply.

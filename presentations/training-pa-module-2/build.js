@@ -108,7 +108,7 @@ endModule(SI);
   tag(s, "What");
   const b = table(s, "EA8", 1.45, [3.3, 2.0, 6.85], ["The policy's state", "PA-EA-08", "Why"], [
     ["Enforced (enabled)", "Finding", "It doesn't exclude an emergency account, through the group or directly"],
-    ["Report-only", "Info", "Learn says report-only policies need no exclusion; it records emergency sign-ins"],
+    ["Report-only", "Info", "Learn says report-only policies need no exclusion"],
     ["Off", "Nothing", "It applies to no one"],
   ], { fontSize: 13, limit: 3.6 });
   const l = panel(s, "Every", 0.6, b + 0.25, 6.0, null, HEX.navy, HEX.navyTint, "EVERY ENFORCED POLICY", "Design guidance", [
@@ -120,7 +120,7 @@ endModule(SI);
   ], 13);
   sources(s, "Sources: Module 2, Unit 1; Microsoft Learn, \"Manage emergency access accounts,\" \"Analyze Conditional Access policy impact\"; PrivilegedAccess.psm1.");
   notes(s,
-`Pay attention to E A oh eight. Microsoft Learn says to exclude the emergency accounts from the policies that block or restrict sign-in. The code doesn't try to judge which policies do that. It checks every enforced policy, and that choice is this workbook's design guidance. An enforced policy that doesn't exclude an emergency account, through the group or directly, is a finding. A report-only policy that doesn't exclude the group is only Info. Microsoft Learn says report-only policies need no exclusion, and a report-only policy is how you record emergency sign-ins. But the exclusion is required before the policy is enforced. And the program's own pre-merge check, which Module 3 builds, is stricter: it wants the exclusion on every policy file, whatever its state. Module 3 comes back to this.`,
+`Pay attention to E A oh eight. Microsoft Learn says to exclude the emergency accounts from the policies that block or restrict sign-in. The code doesn't try to judge which policies do that. It checks every enforced policy, and that choice is this workbook's design guidance. An enforced policy that doesn't exclude an emergency account, through the group or directly, is a finding. A report-only policy that doesn't exclude the group is only Info. Microsoft Learn says report-only policies need no exclusion. But the exclusion is required before the policy is enforced. And the program's own pre-merge check, which Module 3 builds, is stricter: it wants the exclusion on every policy file, whatever its state. Module 3 comes back to this.`,
   `${M} — Unit 1, PA-EA-08: workbook Chapter 02, "The check"; Book 04, Chapter 10 — "A pre-merge check for the emergency access exclusion."`);
 }
 
@@ -222,12 +222,12 @@ endModule(SC);
     "PA-EA-06 Finding  ea02@contoso.example",
     "PA-EA-07 Finding  ea02@contoso.example",
     "PA-EA-09 Finding  ea02@contoso.example",
-    "PA-EA-08 Finding  CA001-All-Block-legacy-authentication",
-    "PA-EA-08 Finding  CA004-Admins-Require-compliant-device",
-    "PA-EA-08 Info     CA090-Emergency-accounts-Report-sign-ins",
+    "PA-EA-08 Finding  CA001-AllUsers-BlockLegacyAuth",
+    "PA-EA-08 Finding  CA004-Admins-RequireCompliantDevice",
+    "PA-EA-08 Info     CA090-AllUsers-ReportOnly-CoverageProbe",
     "PA-EA-08 Finding  PIM-Activation-c1",
     "PA-EA-10 Finding  carl.ops@contoso.example",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 9, 2026 (WRAPPED)", pt: 10.5 });
   panel(s, "Read", 8.45, 1.45, 4.3, null, HEX.teal, HEX.tealTint, "READ IT", null, [
     "ea01 passes",
     "ea02 fails five ways: domain, an ending assignment, a phone method, not in the group, an old drill",
@@ -237,7 +237,7 @@ endModule(SC);
   ], 12.5);
   sources(s, "Sources: Module 2, \"Exercise: Lab 1,\" step 4; examples/privileged-access/tests/fixtures (fictional identities).");
   notes(s,
-`Step four prints the findings. E A oh one, the first account, passes. The second, E A oh two, fails five ways. It's on contoso dot example, not the on-microsoft dot com domain. Its Global Administrator assignment ends, so it isn't permanent. It has a phone method, which isn't phishing-resistant. It isn't in the exclusion group. And its last drill is too old. Then the policies. Three enforced policies don't exclude the accounts: the legacy authentication block, the compliant-device policy for administrators, and the activation gate's own policy. Each of those could lock the emergency accounts out. The report-only policy that records emergency sign-ins is Info, as Microsoft Learn allows. And the last row, E A ten: carl dot ops is in the exclusion group, and shouldn't be, because every policy that excludes the group excludes him too.`,
+`Step four prints the findings. E A oh one, the first account, passes. The second, E A oh two, fails five ways. It's on contoso dot example, not the on-microsoft dot com domain. Its Global Administrator assignment ends, so it isn't permanent. It has a phone method, which isn't phishing-resistant. It isn't in the exclusion group. And its last drill is too old. Then the policies. Three enforced policies don't exclude the accounts: the legacy authentication block, the compliant-device policy for administrators, and the activation gate's own policy. Each of those could lock the emergency accounts out. The report-only policy, a coverage probe for all users, is Info, as Microsoft Learn allows. And the last row, E A ten: carl dot ops is in the exclusion group, and shouldn't be, because every policy that excludes the group excludes him too.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," step 4.`);
 }
 

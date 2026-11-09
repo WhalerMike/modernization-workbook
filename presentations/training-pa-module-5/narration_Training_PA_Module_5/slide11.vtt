@@ -15,55 +15,65 @@ addition, a minus a removal.
 The policy rules come first.
 
 4
-00:00:09.763 --> 00:00:13.851
+00:00:09.763 --> 00:00:14.092
 The Tier 0 group's member activation
-goes from eight hours to four,
+goes from eight hours to four;
 
 5
-00:00:13.851 --> 00:00:17.562
-and from no approval to approval,
-by the same approver group.
+00:00:14.092 --> 00:00:18.824
+M F A leaves its enablement rules,
+which keep justification and a ticket;
 
 6
-00:00:17.562 --> 00:00:21.250
+00:00:18.824 --> 00:00:21.951
+the authentication context
+goes from off to c1;
+
+7
+00:00:21.951 --> 00:00:26.362
+and it goes from no approval to
+approval, by the same approver group.
+
+8
+00:00:26.362 --> 00:00:30.051
 The Azure owner group's eligible
 owners must now have an end.
 
-7
-00:00:21.250 --> 00:00:22.387
+9
+00:00:30.051 --> 00:00:31.187
 Then the grants.
 
-8
-00:00:22.387 --> 00:00:27.886
+10
+00:00:31.187 --> 00:00:36.687
 An Exchange admin member's end date
 moves out to April twenty twenty-seven,
 
-9
-00:00:27.886 --> 00:00:31.942
+11
+00:00:36.687 --> 00:00:40.743
 on change C H G ten oh two, and
 a new active member is added,
 
-10
-00:00:31.942 --> 00:00:34.737
+12
+00:00:40.743 --> 00:00:43.538
 on C H G ten oh five,
 each with its ticket.
 
-11
-00:00:34.737 --> 00:00:39.308
+13
+00:00:43.538 --> 00:00:48.109
 Then the three removals: the Tier
 0 group's ungranted active member,
 
-12
-00:00:39.308 --> 00:00:42.549
+14
+00:00:48.109 --> 00:00:51.350
 its eligible owner, and
 the nested legacy group.
 
-13
-00:00:42.549 --> 00:00:46.304
+15
+00:00:51.350 --> 00:00:55.104
 Last, the plan names exactly the
 write permissions it would need:
 
-14
-00:00:46.304 --> 00:00:49.200
+16
+00:00:55.104 --> 00:00:58.010
 the three PIM for Groups
 ReadWrite permissions.

@@ -222,58 +222,6 @@
    "The program adds dual custody and a post-use review, and two rules of its own design: oh four, a disabled account, and E A ten, a stranger in the group."
   ]
  ],
- "5": [
-  [
-   0.05,
-   2.225,
-   "Pay attention to E A oh eight."
-  ],
-  [
-   2.275,
-   6.35,
-   "Microsoft Learn says to exclude the emergency accounts from the policies that block or restrict sign-in."
-  ],
-  [
-   8.625,
-   3.15,
-   "The code doesn't try to judge which policies do that."
-  ],
-  [
-   11.775,
-   5.475,
-   "It checks every enforced policy, and that choice is this workbook's design guidance."
-  ],
-  [
-   17.25,
-   6.638,
-   "An enforced policy that doesn't exclude an emergency account, through the group or directly, is a finding."
-  ],
-  [
-   23.887,
-   4.4,
-   "A report-only policy that doesn't exclude the group is only Info."
-  ],
-  [
-   28.288,
-   8.275,
-   "Microsoft Learn says report-only policies need no exclusion, and a report-only policy is how you record emergency sign-ins."
-  ],
-  [
-   36.562,
-   3.95,
-   "But the exclusion is required before the policy is enforced."
-  ],
-  [
-   40.513,
-   9.525,
-   "And the program's own pre-merge check, which Module 3 builds, is stricter: it wants the exclusion on every policy file, whatever its state."
-  ],
-  [
-   50.038,
-   2.138,
-   "Module 3 comes back to this."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -398,73 +346,6 @@
    39.388,
    7.0,
    "On the slide, the two resource I D's are wrapped to fit; on the command line, each one is a single word."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   1.962,
-   "Step four prints the findings."
-  ],
-  [
-   2.013,
-   3.075,
-   "E A oh one, the first account, passes."
-  ],
-  [
-   5.088,
-   3.462,
-   "The second, E A oh two, fails five ways."
-  ],
-  [
-   8.55,
-   4.463,
-   "It's on contoso dot example, not the on-microsoft dot com domain."
-  ],
-  [
-   13.012,
-   3.862,
-   "Its Global Administrator assignment ends, so it isn't permanent."
-  ],
-  [
-   16.875,
-   3.1,
-   "It has a phone method, which isn't phishing-resistant."
-  ],
-  [
-   19.975,
-   1.925,
-   "It isn't in the exclusion group."
-  ],
-  [
-   21.9,
-   1.938,
-   "And its last drill is too old."
-  ],
-  [
-   23.837,
-   1.288,
-   "Then the policies."
-  ],
-  [
-   25.125,
-   10.35,
-   "Three enforced policies don't exclude the accounts: the legacy authentication block, the compliant-device policy for administrators, and the activation gate's own policy."
-  ],
-  [
-   35.475,
-   2.8,
-   "Each of those could lock the emergency accounts out."
-  ],
-  [
-   38.275,
-   6.225,
-   "The report-only policy that records emergency sign-ins is Info, as Microsoft Learn allows."
-  ],
-  [
-   44.5,
-   9.525,
-   "And the last row, E A ten: carl dot ops is in the exclusion group, and shouldn't be, because every policy that excludes the group excludes him too."
   ]
  ],
  "10": [
@@ -717,6 +598,125 @@
    29.675,
    10.338,
    "It's the first module that writes, so it's the first that could lock people out, and its first rule, C A oh one, keeps the emergency group excluded from every policy file."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.225,
+   "Pay attention to E A oh eight."
+  ],
+  [
+   2.275,
+   6.35,
+   "Microsoft Learn says to exclude the emergency accounts from the policies that block or restrict sign-in."
+  ],
+  [
+   8.625,
+   3.15,
+   "The code doesn't try to judge which policies do that."
+  ],
+  [
+   11.775,
+   5.475,
+   "It checks every enforced policy, and that choice is this workbook's design guidance."
+  ],
+  [
+   17.25,
+   6.638,
+   "An enforced policy that doesn't exclude an emergency account, through the group or directly, is a finding."
+  ],
+  [
+   23.887,
+   4.4,
+   "A report-only policy that doesn't exclude the group is only Info."
+  ],
+  [
+   28.288,
+   4.188,
+   "Microsoft Learn says report-only policies need no exclusion."
+  ],
+  [
+   32.475,
+   3.95,
+   "But the exclusion is required before the policy is enforced."
+  ],
+  [
+   36.425,
+   9.525,
+   "And the program's own pre-merge check, which Module 3 builds, is stricter: it wants the exclusion on every policy file, whatever its state."
+  ],
+  [
+   45.95,
+   2.138,
+   "Module 3 comes back to this."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.962,
+   "Step four prints the findings."
+  ],
+  [
+   2.013,
+   3.075,
+   "E A oh one, the first account, passes."
+  ],
+  [
+   5.088,
+   3.462,
+   "The second, E A oh two, fails five ways."
+  ],
+  [
+   8.55,
+   4.463,
+   "It's on contoso dot example, not the on-microsoft dot com domain."
+  ],
+  [
+   13.012,
+   3.862,
+   "Its Global Administrator assignment ends, so it isn't permanent."
+  ],
+  [
+   16.875,
+   3.1,
+   "It has a phone method, which isn't phishing-resistant."
+  ],
+  [
+   19.975,
+   1.925,
+   "It isn't in the exclusion group."
+  ],
+  [
+   21.9,
+   1.938,
+   "And its last drill is too old."
+  ],
+  [
+   23.837,
+   1.288,
+   "Then the policies."
+  ],
+  [
+   25.125,
+   10.35,
+   "Three enforced policies don't exclude the accounts: the legacy authentication block, the compliant-device policy for administrators, and the activation gate's own policy."
+  ],
+  [
+   35.475,
+   2.8,
+   "Each of those could lock the emergency accounts out."
+  ],
+  [
+   38.275,
+   6.575,
+   "The report-only policy, a coverage probe for all users, is Info, as Microsoft Learn allows."
+  ],
+  [
+   44.85,
+   9.525,
+   "And the last row, E A ten: carl dot ops is in the exclusion group, and shouldn't be, because every policy that excludes the group excludes him too."
   ]
  ]
 }

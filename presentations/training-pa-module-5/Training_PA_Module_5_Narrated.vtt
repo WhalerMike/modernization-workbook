@@ -342,672 +342,741 @@ with the tier policy beside it; the values
 are this workbook's design guidance.
 
 72
-00:04:44.398 --> 00:04:49.648
+00:04:44.398 --> 00:04:50.136
+Every member and owner policy selects
+Module 3's authentication context, c1,
+
+73
+00:04:50.136 --> 00:04:56.148
+as the Federal Modernization Workbook's
+Book 04, Access and Privilege, requires.
+
+74
+00:04:56.148 --> 00:05:01.451
+So, as in Module 4, the Apply switch also
+needs the Activation Gate Checked switch,
+
+75
+00:05:01.451 --> 00:05:04.585
+a person's statement that
+the gate's policy is On.
+
+76
+00:05:04.585 --> 00:05:09.835
 The read compares the tenant with it
 and raises rules P G oh one to oh nine.
 
-73
-00:04:49.648 --> 00:04:54.472
+77
+00:05:09.835 --> 00:05:14.660
 Oh one is a name that doesn't follow
 the P R V pattern, the program's naming.
 
-74
-00:04:54.472 --> 00:04:58.483
+78
+00:05:14.660 --> 00:05:18.670
 Oh two is a group that holds an
 Entra role but isn't role-assignable,
 
-75
-00:04:58.483 --> 00:05:01.231
+79
+00:05:18.670 --> 00:05:21.418
 and oh three a dynamic
 or synchronized group;
 
-76
-00:05:01.231 --> 00:05:04.573
+80
+00:05:21.418 --> 00:05:24.760
 Microsoft Learn says PIM for
 Groups can't manage those.
 
-77
-00:05:04.573 --> 00:05:07.315
+81
+00:05:24.760 --> 00:05:27.502
 Oh four counts
 role-assignable groups against
 
-78
-00:05:07.315 --> 00:05:09.635
+82
+00:05:27.502 --> 00:05:29.822
 Microsoft Learn's limit of five hundred.
 
-79
-00:05:09.635 --> 00:05:14.385
+83
+00:05:29.822 --> 00:05:34.573
 Oh five is a group nested as a holder,
 or a service principal made eligible.
 
-80
-00:05:14.385 --> 00:05:17.697
+84
+00:05:34.573 --> 00:05:37.885
 Oh six is an entry with
 no end or no ticket.
 
-81
-00:05:17.697 --> 00:05:19.585
+85
+00:05:37.885 --> 00:05:39.772
 Oh seven is the owner trap.
 
-82
-00:05:19.585 --> 00:05:23.147
+86
+00:05:39.772 --> 00:05:43.335
 Oh eight is a policy rule that
 differs from the reviewed setting.
 
-83
-00:05:23.147 --> 00:05:27.007
+87
+00:05:43.335 --> 00:05:47.195
 And oh nine is anything the
 file doesn't grant or list:
 
-84
-00:05:27.007 --> 00:05:30.420
+88
+00:05:47.195 --> 00:05:50.610
 anything outside the file is unreviewed.
 
-85
-00:05:34.170 --> 00:05:40.258
+89
+00:05:54.360 --> 00:06:00.448
 The plan has a fixed order: groups, then
 policy rules, then grants, then removals.
 
-86
-00:05:40.258 --> 00:05:43.708
+90
+00:06:00.448 --> 00:06:03.898
 And seven guards refuse a
 plan before anything is sent.
 
-87
-00:05:43.708 --> 00:05:49.258
+91
+00:06:03.898 --> 00:06:09.448
 G one, a Tier 0 or Tier 1 policy
 losing approval or its approvers.
 
-88
-00:05:49.258 --> 00:05:54.057
+92
+00:06:09.448 --> 00:06:14.247
 G two, a rule that allows permanent
 grants, or a grant with no end.
 
-89
-00:05:54.057 --> 00:05:57.258
+93
+00:06:14.247 --> 00:06:17.448
 G three, a group set as its own approver.
 
-90
-00:05:57.258 --> 00:05:59.232
+94
+00:06:17.448 --> 00:06:19.422
 G four, the owner trap.
 
-91
-00:05:59.232 --> 00:06:03.770
+95
+00:06:19.422 --> 00:06:23.960
 G five, a group as a holder, or
 an eligible service principal.
 
-92
-00:06:03.770 --> 00:06:06.170
+96
+00:06:23.960 --> 00:06:26.360
 G six, too many removals.
 
-93
-00:06:06.170 --> 00:06:09.370
+97
+00:06:26.360 --> 00:06:29.560
 And G seven, a self-service
 action in the plan.
 
-94
-00:06:09.370 --> 00:06:13.982
+98
+00:06:29.560 --> 00:06:34.172
 One more choice: the pipeline's app
 doesn't create the P R V groups.
 
-95
-00:06:13.982 --> 00:06:17.107
+99
+00:06:34.172 --> 00:06:37.297
 Microsoft Learn's reference
 for creating a group says a
 
-96
-00:06:17.107 --> 00:06:21.320
+100
+00:06:37.297 --> 00:06:41.510
 role-assignable group needs Role
 Management dot ReadWrite dot Directory.
 
-97
-00:06:21.320 --> 00:06:24.159
+101
+00:06:41.510 --> 00:06:44.349
 The program keeps that
 permission off the pipeline,
 
-98
-00:06:24.159 --> 00:06:27.658
+102
+00:06:44.349 --> 00:06:47.848
 and a Privileged Role Administrator
 creates the groups by hand.
 
-99
-00:06:27.658 --> 00:06:30.340
+103
+00:06:47.848 --> 00:06:50.530
 That's this workbook's design guidance.
 
-100
-00:06:34.090 --> 00:06:34.815
+104
+00:06:54.280 --> 00:06:55.005
 Try it.
 
-101
-00:06:34.815 --> 00:06:40.352
+105
+00:06:55.005 --> 00:07:00.542
 Lab 1 runs in one PowerShell 7 session,
 in the privileged-access folder.
 
-102
-00:06:40.352 --> 00:06:45.702
+106
+00:07:00.542 --> 00:07:05.892
 Step one runs Microsoft's samples
 against the fake, as published: ten pass.
 
-103
-00:06:45.702 --> 00:06:48.975
+107
+00:07:05.892 --> 00:07:09.165
 Step two sends Microsoft
 Learn's Example 1 yourself,
 
-104
-00:06:48.975 --> 00:06:53.465
+108
+00:07:09.165 --> 00:07:13.655
 from the reference page for creating
 an eligibility schedule request.
 
-105
-00:06:53.465 --> 00:06:57.615
+109
+00:07:13.655 --> 00:07:17.805
 You load the module and the sample
 harness, and read the first example.
 
-106
-00:06:57.615 --> 00:07:01.977
+110
+00:07:17.805 --> 00:07:22.167
 Its title says an admin creates an
 eligible group ownership request.
 
-107
-00:07:01.977 --> 00:07:04.628
+111
+00:07:22.167 --> 00:07:24.818
 But its body's access I D says member.
 
-108
-00:07:04.628 --> 00:07:08.364
+112
+00:07:24.818 --> 00:07:28.554
 So the example is labeled
 ownership and asks for membership.
 
-109
-00:07:08.364 --> 00:07:11.539
+113
+00:07:28.554 --> 00:07:31.729
 Then send it to the fake:
 four hundred, Bad Request,
 
-110
-00:07:11.539 --> 00:07:17.015
+114
+00:07:31.729 --> 00:07:37.205
 because the schedule ended in February twenty
 twenty-three, before the fake's clock.
 
-111
-00:07:17.015 --> 00:07:18.315
+115
+00:07:37.205 --> 00:07:38.505
 Its dates are stale.
 
-112
-00:07:18.315 --> 00:07:21.980
+116
+00:07:38.505 --> 00:07:42.170
 Samples are a starting
 point, not a desired state.
 
-113
-00:07:25.730 --> 00:07:28.717
+117
+00:07:45.920 --> 00:07:48.907
 Step three lists the
 permissions the read needs.
 
-114
-00:07:28.717 --> 00:07:33.130
+118
+00:07:48.907 --> 00:07:53.320
 Four: Group dot Read Basic dot All,
 and the three PIM for Groups reads,
 
-115
-00:07:33.130 --> 00:07:38.505
+119
+00:07:53.320 --> 00:07:58.695
 for assignment schedules, eligibility
 schedules and role management policies.
 
-116
-00:07:38.505 --> 00:07:40.180
+120
+00:07:58.695 --> 00:08:00.370
 Nothing ends in ReadWrite.
 
-117
-00:07:40.180 --> 00:07:44.093
+121
+00:08:00.370 --> 00:08:04.283
 Step four plans against the
 fictional tenant, as a dry run.
 
-118
-00:07:44.093 --> 00:07:46.277
+122
+00:08:04.283 --> 00:08:06.467
 You give it the cloud, the fixture,
 
-119
-00:07:46.277 --> 00:07:49.755
+123
+00:08:06.467 --> 00:08:09.945
 the desired state file, the
 date and an output folder.
 
-120
-00:07:49.755 --> 00:07:53.242
-The read raises nine
+124
+00:08:09.945 --> 00:08:13.445
+The read raises eleven
 findings and three warnings.
 
-121
-00:07:53.242 --> 00:07:56.339
-The plan has eight changes:
+125
+00:08:13.445 --> 00:08:16.518
+The plan has ten changes:
 three assignments,
 
-122
-00:07:56.339 --> 00:07:59.192
-two eligibilities and three policy rules.
+126
+00:08:16.518 --> 00:08:19.420
+two eligibilities and five policy rules.
 
-123
-00:07:59.192 --> 00:08:02.318
+127
+00:08:19.420 --> 00:08:22.320
 The guards all passed, so
-the plan could be applied.
+the plan could be applied,
 
-124
-00:08:02.318 --> 00:08:04.751
-But it's a dry run, so nothing was sent:
+128
+00:08:22.320 --> 00:08:25.856
+but the run warns that it selects
+an authentication context,
 
-125
-00:08:04.751 --> 00:08:08.800
+129
+00:08:25.856 --> 00:08:29.533
+so the apply will also need the
+Activation Gate Checked switch.
+
+130
+00:08:29.533 --> 00:08:31.956
+And it's a dry run, so nothing was sent:
+
+131
+00:08:31.956 --> 00:08:35.990
 review the diff and the plan,
 then run again with Apply.
 
-126
-00:08:12.550 --> 00:08:14.662
+132
+00:08:39.740 --> 00:08:41.852
 Step five prints the findings.
 
-127
-00:08:14.662 --> 00:08:18.508
+133
+00:08:41.852 --> 00:08:45.698
 Two warnings are P G oh nine for
 groups the file doesn't list:
 
-128
-00:08:18.508 --> 00:08:22.513
+134
+00:08:45.698 --> 00:08:49.703
 a legacy help desk group and an
 Intune administrators group.
 
-129
-00:08:22.513 --> 00:08:25.812
+135
+00:08:49.703 --> 00:08:53.002
 Then P R V T0 Priv Role Admin.
 
-130
-00:08:25.812 --> 00:08:29.426
+136
+00:08:53.002 --> 00:08:56.616
 It has a permanent active
 member the file doesn't grant,
 
-131
-00:08:29.426 --> 00:08:31.112
+137
+00:08:56.616 --> 00:08:58.302
 which is oh six and oh nine.
 
-132
-00:08:31.112 --> 00:08:34.273
+138
+00:08:58.302 --> 00:09:01.463
 It has an eligible owner
 with no active owner,
 
-133
-00:08:34.273 --> 00:08:37.263
+139
+00:09:01.463 --> 00:09:04.453
 which is oh seven and oh
 nine: the owner trap.
 
-134
-00:08:37.263 --> 00:08:40.696
-And its member activation
-needs no approval and lasts
+140
+00:09:04.453 --> 00:09:09.896
+And its member policy activates without
+approval, for eight hours instead of four,
 
-135
-00:08:40.696 --> 00:08:43.824
-eight hours instead of
-four, two oh eight findings.
+141
+00:09:09.896 --> 00:09:15.019
+and with M F A instead of the authentication
+context c1: four oh eight findings,
 
-136
-00:08:43.824 --> 00:08:47.620
+142
+00:09:15.019 --> 00:09:19.502
+for the duration, the enablement
+rules, the context and the approval.
+
+143
+00:09:19.502 --> 00:09:23.297
 On the Azure owner group, P R
 V T1 Azure Owner Sub Workload:
 
-137
-00:08:47.620 --> 00:08:52.900
+144
+00:09:23.297 --> 00:09:28.577
 it isn't role-assignable, which is a warning
 for a group that holds no Entra role,
 
-138
-00:08:52.900 --> 00:08:57.850
+145
+00:09:28.577 --> 00:09:33.527
 and it has a nested group, the legacy
 help desk group, as an eligible member.
 
-139
-00:08:57.850 --> 00:09:02.240
+146
+00:09:33.527 --> 00:09:37.930
 That's oh five, oh nine, and
 an oh eight for a policy rule.
 
-140
-00:09:05.990 --> 00:09:09.253
+147
+00:09:41.680 --> 00:09:44.943
 Step six reads the diff,
 one line per change.
 
-141
-00:09:09.253 --> 00:09:13.789
+148
+00:09:44.943 --> 00:09:49.479
 A tilde is a change, a plus an
 addition, a minus a removal.
 
-142
-00:09:13.789 --> 00:09:15.703
+149
+00:09:49.479 --> 00:09:51.393
 The policy rules come first.
 
-143
-00:09:15.703 --> 00:09:19.791
+150
+00:09:51.393 --> 00:09:55.722
 The Tier 0 group's member activation
-goes from eight hours to four,
+goes from eight hours to four;
 
-144
-00:09:19.791 --> 00:09:23.502
-and from no approval to approval,
-by the same approver group.
+151
+00:09:55.722 --> 00:10:00.454
+M F A leaves its enablement rules,
+which keep justification and a ticket;
 
-145
-00:09:23.502 --> 00:09:27.190
+152
+00:10:00.454 --> 00:10:03.581
+the authentication context
+goes from off to c1;
+
+153
+00:10:03.581 --> 00:10:07.992
+and it goes from no approval to
+approval, by the same approver group.
+
+154
+00:10:07.992 --> 00:10:11.681
 The Azure owner group's eligible
 owners must now have an end.
 
-146
-00:09:27.190 --> 00:09:28.327
+155
+00:10:11.681 --> 00:10:12.817
 Then the grants.
 
-147
-00:09:28.327 --> 00:09:33.826
+156
+00:10:12.817 --> 00:10:18.317
 An Exchange admin member's end date
 moves out to April twenty twenty-seven,
 
-148
-00:09:33.826 --> 00:09:37.882
+157
+00:10:18.317 --> 00:10:22.373
 on change C H G ten oh two, and
 a new active member is added,
 
-149
-00:09:37.882 --> 00:09:40.677
+158
+00:10:22.373 --> 00:10:25.168
 on C H G ten oh five,
 each with its ticket.
 
-150
-00:09:40.677 --> 00:09:45.248
+159
+00:10:25.168 --> 00:10:29.739
 Then the three removals: the Tier
 0 group's ungranted active member,
 
-151
-00:09:45.248 --> 00:09:48.489
+160
+00:10:29.739 --> 00:10:32.980
 its eligible owner, and
 the nested legacy group.
 
-152
-00:09:48.489 --> 00:09:52.244
+161
+00:10:32.980 --> 00:10:36.734
 Last, the plan names exactly the
 write permissions it would need:
 
-153
-00:09:52.244 --> 00:09:55.440
+162
+00:10:36.734 --> 00:10:39.940
 the three PIM for Groups
 ReadWrite permissions.
 
-154
-00:09:59.190 --> 00:10:01.402
+163
+00:10:43.690 --> 00:10:45.902
 Step seven shows a guard refusing.
 
-155
-00:10:01.402 --> 00:10:05.291
+164
+00:10:45.902 --> 00:10:49.791
 Run the same plan with Apply,
 but with Max Removals set to two.
 
-156
-00:10:05.291 --> 00:10:09.051
+165
+00:10:49.791 --> 00:10:53.551
 Guard G six refuses: three
 removals is more than two;
 
-157
-00:10:09.051 --> 00:10:12.365
+166
+00:10:53.551 --> 00:10:56.865
 review them, and run
 again with a higher limit.
 
-158
-00:10:12.365 --> 00:10:13.540
+167
+00:10:56.865 --> 00:10:58.040
 Nothing is sent.
 
-159
-00:10:13.540 --> 00:10:16.578
+168
+00:10:58.040 --> 00:11:01.078
 Step eight applies to the
 fake with the default limit.
 
-160
-00:10:16.578 --> 00:10:19.530
-The same findings and
-the same eight changes,
+169
+00:11:01.078 --> 00:11:06.496
+The first command stops before any write:
+the plan sets an authentication context,
 
-161
-00:10:19.530 --> 00:10:23.440
-the guards all pass, and eight
-requests are sent, none failed.
+170
+00:11:06.496 --> 00:11:09.604
+so confirm its Conditional
+Access policy is On,
 
-162
-00:10:23.440 --> 00:10:26.828
+171
+00:11:09.604 --> 00:11:12.791
+from Module 3, then pass
+Activation Gate Checked.
+
+172
+00:11:12.791 --> 00:11:17.986
+The second has the same findings and the
+same ten changes, the guards all pass,
+
+173
+00:11:17.986 --> 00:11:20.543
+and ten requests are sent, none failed:
+
+174
+00:11:20.543 --> 00:11:24.090
+the policy rules first, then
+the grants and removals.
+
+175
+00:11:24.090 --> 00:11:27.478
 The fake records the requests
 and doesn't change its tenant.
 
-163
-00:10:26.828 --> 00:10:30.206
+176
+00:11:27.478 --> 00:11:30.855
 Step nine runs the tests,
 three hundred thirty pass,
 
-164
-00:10:30.206 --> 00:10:32.730
+177
+00:11:30.855 --> 00:11:33.380
 and you delete the output folder.
 
-165
-00:10:36.480 --> 00:10:41.334
+178
+00:11:37.130 --> 00:11:41.984
 Lab 2 runs in a worldwide or G C
 C test tenant with Microsoft Entra
 
-166
-00:10:41.334 --> 00:10:46.555
+179
+00:11:41.984 --> 00:11:47.205
 I D P2 or Governance licenses and
 fictional people, never production.
 
-167
-00:10:46.555 --> 00:10:50.880
+180
+00:11:47.205 --> 00:11:51.530
 Use groups made for the lab, because a
 group can't be taken back out of PIM.
 
-168
-00:10:50.880 --> 00:10:54.680
+181
+00:11:51.530 --> 00:11:55.330
 As a Privileged Role Administrator,
 make the lab groups by hand.
 
-169
-00:10:54.680 --> 00:10:57.167
+182
+00:11:55.330 --> 00:11:57.817
 Register a reader app and a writer app.
 
-170
-00:10:57.167 --> 00:11:00.898
+183
+00:11:57.817 --> 00:12:01.548
 Plan as the reader, apply the
 reviewed diff as the writer,
 
-171
-00:11:00.898 --> 00:11:03.818
+184
+00:12:01.548 --> 00:12:04.468
 then run the plan again
 and see zero changes.
 
-172
-00:11:03.818 --> 00:11:07.239
+185
+00:12:04.468 --> 00:12:07.889
 The reader gets the four read
 permissions from step three;
 
-173
-00:11:07.239 --> 00:11:11.517
+186
+00:12:07.889 --> 00:12:12.167
 the writer gets those and the three
 writes from step six, and nothing else.
 
-174
-00:11:11.517 --> 00:11:15.024
+187
+00:12:12.167 --> 00:12:15.674
 To back out, empty both lists
 in your file and apply it,
 
-175
-00:11:15.024 --> 00:11:18.367
+188
+00:12:15.674 --> 00:12:19.017
 so no schedule remains,
 then delete the lab folder.
 
-176
-00:11:18.367 --> 00:11:20.870
+189
+00:12:19.017 --> 00:12:21.520
 The authors haven't run Lab 2.
 
-177
-00:11:24.620 --> 00:11:26.007
+190
+00:12:25.270 --> 00:12:26.657
 The federal requirement.
 
-178
-00:11:26.007 --> 00:11:27.411
+191
+00:12:26.657 --> 00:12:28.061
 The P R V groups' file,
 
-179
-00:11:27.411 --> 00:11:31.795
+192
+00:12:28.061 --> 00:12:32.445
 the check and the plan are the
 evidence for the plan's task A2.1.
 
-180
-00:11:31.795 --> 00:11:37.128
+193
+00:12:32.445 --> 00:12:37.778
 From NIST special publication eight
 hundred fifty-three they support A C six,
 
-181
-00:11:37.128 --> 00:11:42.628
+194
+00:12:37.778 --> 00:12:43.278
 enhancement five, privileged accounts
 restricted to defined roles; A C six and A
 
-182
-00:11:42.628 --> 00:11:48.045
+195
+00:12:43.278 --> 00:12:48.695
 C five, least privilege and separation of
 duties; and A C two, account management.
 
-183
-00:11:48.045 --> 00:11:52.987
+196
+00:12:48.695 --> 00:12:53.637
 And from CISA's B O D twenty-five
 oh-one and its ScubaGear baseline:
 
-184
-00:11:52.987 --> 00:11:57.197
+197
+00:12:53.637 --> 00:12:57.847
 M S A A D seven point four, no
 permanent active assignment,
 
-185
-00:11:57.197 --> 00:12:01.133
+198
+00:12:57.847 --> 00:13:01.783
 and seven point five,
 provisioning only through PIM.
 
-186
-00:12:01.133 --> 00:12:02.995
+199
+00:13:01.783 --> 00:13:03.645
 C M three covers the change:
 
-187
-00:12:02.995 --> 00:12:06.807
+200
+00:13:03.645 --> 00:13:07.457
 reviewed before it's made,
 and an unsafe change stopped.
 
-188
-00:12:06.807 --> 00:12:12.622
+201
+00:13:07.457 --> 00:13:13.272
 The evidence an ISSO keeps: the reviewed
 file, with each holder's end date and
 
-189
-00:12:12.622 --> 00:12:19.090
+202
+00:13:13.272 --> 00:13:19.740
 ticket; each plan's diff, plan and findings;
 and each apply's results and manifest.
 
-190
-00:12:22.840 --> 00:12:24.815
+203
+00:13:23.490 --> 00:13:25.465
 Check yourself with two questions.
 
-191
-00:12:24.815 --> 00:12:30.215
+204
+00:13:25.465 --> 00:13:30.865
 First: the file lists three removals and
 you pass Max Removals two with Apply.
 
-192
-00:12:30.215 --> 00:12:31.227
+205
+00:13:30.865 --> 00:13:31.877
 What happens?
 
-193
-00:12:31.227 --> 00:12:36.178
+206
+00:13:31.877 --> 00:13:36.828
 The answer is b: guard G six refuses
 the plan, and nothing is sent.
 
-194
-00:12:36.178 --> 00:12:38.465
+207
+00:13:36.828 --> 00:13:39.115
 You saw it in Lab 1, step seven.
 
-195
-00:12:38.465 --> 00:12:42.865
+208
+00:13:39.115 --> 00:13:43.515
 Second: why does the pipeline's
 app not create the P R V groups?
 
-196
-00:12:42.865 --> 00:12:45.919
+209
+00:13:43.515 --> 00:13:46.569
 The answer is b: creating
 a role-assignable group
 
-197
-00:12:45.919 --> 00:12:49.203
+210
+00:13:46.569 --> 00:13:49.853
 needs Role Management dot
 ReadWrite dot Directory.
 
-198
-00:12:49.203 --> 00:12:52.042
+211
+00:13:49.853 --> 00:13:52.692
 The program keeps that
 permission off the pipeline,
 
-199
-00:12:52.042 --> 00:12:55.541
+212
+00:13:52.692 --> 00:13:56.191
 and a Privileged Role Administrator
 creates the groups by hand.
 
-200
-00:12:55.541 --> 00:13:00.790
+213
+00:13:56.191 --> 00:14:01.440
 The module page has two more questions,
 each linked to the section that answers it.
 
-201
-00:13:04.540 --> 00:13:05.365
+214
+00:14:05.190 --> 00:14:06.015
 To sum up.
 
-202
-00:13:05.365 --> 00:13:10.046
+215
+00:14:06.015 --> 00:14:10.696
 You read a fictional tenant's P R V
 groups against a reviewed file of four,
 
-203
-00:13:10.046 --> 00:13:14.965
+216
+00:14:10.696 --> 00:14:15.615
 and found a standing member nobody granted,
 an owner trap, and a nested group.
 
-204
-00:13:14.965 --> 00:13:19.052
-You read the exact requests that
-would fix them, saw a guard refuse
+217
+00:14:15.615 --> 00:14:18.717
+You read the exact requests
+that would fix them,
 
-205
-00:13:19.052 --> 00:13:23.290
-a plan with too many removals, and
-applied eight requests to the fake.
+218
+00:14:18.717 --> 00:14:23.806
+saw a guard refuse a plan with too many
+removals, saw the apply refuse to select
 
-206
-00:13:23.290 --> 00:13:27.078
+219
+00:14:23.806 --> 00:14:28.578
+c1 until a person confirmed the gate,
+and applied ten requests to the fake.
+
+220
+00:14:28.578 --> 00:14:32.366
 Next is Module 6: PIM for Azure resources.
 
-207
-00:13:27.078 --> 00:13:30.234
+221
+00:14:32.366 --> 00:14:35.522
 Owner, Contributor and
 User Access Administrator
 
-208
-00:13:30.234 --> 00:13:32.564
+222
+00:14:35.522 --> 00:14:37.852
 on a subscription are privileged too.
 
-209
-00:13:32.564 --> 00:13:36.605
+223
+00:14:37.852 --> 00:14:41.892
 PIM for Azure resources isn't in
 Microsoft Graph: it goes through
 
-210
-00:13:36.605 --> 00:13:41.102
+224
+00:14:41.892 --> 00:14:46.389
 Azure Resource Manager, with Azure
 roles instead of Graph permissions.
 
-211
-00:13:41.102 --> 00:13:45.325
+225
+00:14:46.389 --> 00:14:50.613
 In Module 6 you hold it as
 code, with the same discipline:
 
-212
-00:13:45.325 --> 00:13:48.000
+226
+00:14:50.613 --> 00:14:53.310
 read, diff, and send only with Apply.

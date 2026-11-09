@@ -10,48 +10,48 @@ First: who decides an
 identity's disposition?
 
 3
-00:00:05.225 --> 00:00:11.037
+00:00:05.225 --> 00:00:11.425
 The answer is b: the application owner,
-account by account, under decision D N 3.
+account by account, under decision D N P 3.
 
 4
-00:00:11.037 --> 00:00:15.725
+00:00:11.425 --> 00:00:16.113
 The matrix only proposes,
 and the ISSO checks the gate.
 
 5
-00:00:15.725 --> 00:00:20.375
+00:00:16.113 --> 00:00:20.763
 Second: a high-risk account is
 scheduled for re-platforming in wave 2.
 
 6
-00:00:20.375 --> 00:00:21.387
+00:00:20.763 --> 00:00:21.774
 What happens?
 
 7
-00:00:21.387 --> 00:00:22.631
+00:00:21.774 --> 00:00:23.019
 The answer is a.
 
 8
-00:00:22.631 --> 00:00:28.749
+00:00:23.019 --> 00:00:29.137
 N P I M A T oh seven raises a finding,
 because high-risk accounts go in wave 1.
 
 9
-00:00:28.749 --> 00:00:32.175
+00:00:29.137 --> 00:00:32.562
 The code reports it; it doesn't
 move the account itself.
 
 10
-00:00:32.175 --> 00:00:37.162
+00:00:32.562 --> 00:00:37.549
 You saw exactly that finding
 for svc hrsync in step five.
 
 11
-00:00:37.162 --> 00:00:39.590
+00:00:37.549 --> 00:00:39.977
 The module page has three more questions,
 
 12
-00:00:39.590 --> 00:00:42.140
+00:00:39.977 --> 00:00:42.530
 each linked to the
 section that answers it.
