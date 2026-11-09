@@ -148,11 +148,11 @@
     "The Conditional Access baseline, report-only first"
    ],
    [
-    146,
+    147,
     "Emergency access: the one standing exception"
    ],
    [
-    185,
+    186,
     "The first HR feed, for a foundation scope"
    ],
    [
@@ -575,7 +575,7 @@
    ],
    [
     218,
-    "Federal requirements each track satisfies"
+    "Federal requirements each track supports"
    ],
    [
     265,
@@ -820,71 +820,71 @@
     "Federal policy now sets the dates"
    ],
    [
-    223,
+    232,
     "Vendor support dates cluster on the same estate"
    ],
    [
-    313,
+    322,
     "Read the clocks exactly, then run one program"
    ],
    [
-    387,
+    396,
     "The charter: the page the sponsor signs"
    ],
    [
-    461,
+    470,
     "Six success criteria, each tested at a gate"
    ],
    [
-    531,
+    540,
     "Fifteen principles, one idea underneath"
    ],
    [
-    595,
+    604,
     "Seven phases, six gates, and who clears each"
    ],
    [
-    667,
+    677,
     "Five workstreams in parallel, one critical path"
    ],
    [
-    741,
+    750,
     "Seven projects, run inside the program"
    ],
    [
-    812,
+    821,
     "Who decides: one decider per row"
    ],
    [
-    884,
+    893,
     "Three decisions the plans put on the wrong desk"
    ],
    [
-    953,
+    962,
     "The people the program needs, and its rhythm"
    ],
    [
-    1023,
+    1032,
     "Pre-flight: assessment before action"
    ],
    [
-    1092,
+    1102,
     "Foundation and pilot: prove it on one division"
    ],
    [
-    1165,
+    1175,
     "Roll out in waves, then retire only what nothing uses"
    ],
    [
-    1238,
+    1247,
     "Steady state, and what success looks like"
    ],
    [
-    1308,
+    1318,
     "The risk register: what can sink the program"
    ],
    [
-    1386,
+    1395,
     "Decisions to make, and who makes them"
    ]
   ],
@@ -917,43 +917,43 @@
     "The schedule now belongs to OMB, CISA, FedRAMP and vendors"
    ],
    [
-    171,
+    181,
     "Read the clocks exactly, then run one program"
    ],
    [
-    235,
+    245,
     "How the workbook works: nineteen books, four questions"
    ],
    [
-    292,
+    302,
     "The charter: the page the sponsor signs"
    ],
    [
-    355,
+    366,
     "Six success criteria, each tested at a gate"
    ],
    [
-    412,
+    423,
     "Fifteen principles in five groups"
    ],
    [
-    470,
+    481,
     "Seven phases and six gates: the workbook's model"
    ],
    [
-    534,
+    545,
     "Seven complementary projects, run inside the program"
    ],
    [
-    596,
+    607,
     "Who decides: one owner for every decision"
    ],
    [
-    653,
+    664,
     "From pre-flight to steady state: what each stretch proves"
    ],
    [
-    713,
+    724,
     "Decisions to make, and next steps"
    ]
   ],
@@ -963,7 +963,7 @@
   "id": "B01_Transformation_Arc_Executive_Narrated",
   "title": "Book 01 — The Transformation Arc: executive briefing",
   "group": "book",
-  "minutes": 25,
+  "minutes": 26,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B01_Transformation_Arc_Executive_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.vtt",
@@ -986,7 +986,7 @@
     "Active Directory was the governance nobody wrote down"
    ],
    [
-    217,
+    218,
     "Five things must be true before the target holds"
    ],
    [
@@ -994,7 +994,7 @@
     "Platform: one governed host, one authoritative writer"
    ],
    [
-    372,
+    373,
     "Identity: the attributes have to be true first"
    ],
    [
@@ -1002,7 +1002,7 @@
     "Four tracks, four sources of truth, one end state"
    ],
    [
-    503,
+    504,
     "Policy: regenerate Group Policy; don't copy it"
    ],
    [
@@ -1014,7 +1014,7 @@
     "Compute: the domain join is the last thing to go"
    ],
    [
-    742,
+    743,
     "Access: log in to applications, not networks"
    ],
    [
@@ -1026,7 +1026,7 @@
     "One decider per decision; the AO signs for risk"
    ],
    [
-    980,
+    981,
     "Three decisions that land on the wrong desk"
    ],
    [
@@ -1046,11 +1046,11 @@
     "Gates go green on data, and rollback has an end"
    ],
    [
-    1353,
+    1354,
     "The clocks: FedRAMP's dates don't set the agency's"
    ],
    [
-    1444,
+    1454,
     "Decisions, owners, and where to start"
    ]
   ],
@@ -2066,7 +2066,7 @@
     "Module 1 — The Conditional Access policy library"
    ],
    [
-    184,
+    185,
     "One library, numbered once"
    ],
    [
@@ -2082,11 +2082,11 @@
     "Why the library looks like this: BOD 25-01"
    ],
    [
-    418,
+    419,
     "Module 2 — Rollout, exclusions and break-glass"
    ],
    [
-    441,
+    442,
     "Every policy passes the same gates"
    ],
    [
@@ -2106,11 +2106,11 @@
     "Monitoring: what the sign-in logs must show"
    ],
    [
-    708,
+    709,
     "Module 3 — PIM self-request with approval"
    ],
    [
-    728,
+    729,
     "Eligible, requested, approved: the activation gate"
    ],
    [
@@ -2122,11 +2122,11 @@
     "Build it in order: emergency access first"
    ],
    [
-    888,
+    889,
     "Approvers, alerts and the record PIM leaves"
    ],
    [
-    942,
+    943,
     "Module 4 — Access governance"
    ],
    [
@@ -2134,31 +2134,31 @@
     "Access packages: who requests, who approves, how long"
    ],
    [
-    1026,
+    1019,
     "Reviews on a calendar, removals by default"
    ],
    [
-    1081,
+    1075,
     "Lifecycle events and guest access"
    ],
    [
-    1138,
+    1131,
     "Module 5 — Access as code, and the evidence"
    ],
    [
-    1158,
+    1151,
     "One file per object, one writer per class"
    ],
    [
-    1211,
+    1204,
     "Change control, and closing drift at the source"
    ],
    [
-    1265,
+    1258,
     "What the assessor reads"
    ],
    [
-    1320,
+    1313,
     "Taking it back to the tenant"
    ]
   ],
@@ -2570,7 +2570,7 @@
     "The platform question comes after, per data domain"
    ],
    [
-    889,
+    890,
     "Decisions to make, owners and timing"
    ]
   ],
@@ -2641,7 +2641,7 @@
   "id": "B06_Data_Platform_Technical_Narrated",
   "title": "Book 06 — Data Platform: SQL Server Identity: technical deep dive",
   "group": "book",
-  "minutes": 22,
+  "minutes": 23,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B06_Data_Platform_Technical_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.vtt",
@@ -2688,11 +2688,11 @@
     "Three principal types replace Windows logins"
    ],
    [
-    411,
+    412,
     "The parallel run and the five decisions"
    ],
    [
-    462,
+    463,
     "Module 3 — NTLM, applications and closure"
    ],
    [
@@ -2700,7 +2700,7 @@
     "Four patterns that generate NTLM"
    ],
    [
-    533,
+    534,
     "Discover, restrict, eliminate"
    ],
    [
@@ -2720,7 +2720,7 @@
     "R01 — Prerequisites and the evidence model"
    ],
    [
-    772,
+    773,
     "R02 — Estate discovery and the consolidation gate"
    ],
    [
@@ -2732,15 +2732,15 @@
     "R04 — Arc deployment and the managed identity"
    ],
    [
-    935,
+    936,
     "R05 — Login migration and the parallel run"
    ],
    [
-    990,
+    991,
     "Module 5 — Runbooks R06–R10: NTLM to certificates"
    ],
    [
-    1014,
+    1015,
     "R06 — NTLM detection and remediation"
    ],
    [
@@ -2748,7 +2748,7 @@
     "R07 — Groups, admin units and the CA perimeter"
    ],
    [
-    1128,
+    1129,
     "R08 — Application chain and connection strings"
    ],
    [
@@ -2760,7 +2760,7 @@
     "R10 — Certificate discovery for AD CS"
    ],
    [
-    1293,
+    1302,
     "What to take back to the estate"
    ]
   ],
@@ -3581,8 +3581,8 @@
     "SD-WAN works the gap above the floor, and the tail"
    ],
    [
-    481,
-    "SASE above SD-WAN: who closes which control"
+    482,
+    "SASE above SD-WAN: who provides which control"
    ],
    [
     521,
@@ -3694,11 +3694,11 @@
     "Module 1: Transport physics, and what SD-WAN can fix"
    ],
    [
-    145,
+    146,
     "The floor and the gap: what engineering can reach"
    ],
    [
-    181,
+    182,
     "Route inflation: the ratio that caps path selection"
    ],
    [
@@ -3706,7 +3706,7 @@
     "Lean and bulk: path classes mirror the data layer"
    ],
    [
-    261,
+    262,
     "Tail tools, and what each one costs"
    ],
    [
@@ -3718,7 +3718,7 @@
     "Module 2: The branch edge and TIC 3.0"
    ],
    [
-    373,
+    374,
     "What DIA plus SASE still leaves ungoverned"
    ],
    [
@@ -3726,7 +3726,7 @@
     "TIC 3.0 at the branch: parity on every path"
    ],
    [
-    450,
+    451,
     "Placing SASE: geography, listings and the EIS order"
    ],
    [
@@ -3742,7 +3742,7 @@
     "Exemption mechanics: TRv2, egress ranges, three signers"
    ],
    [
-    610,
+    611,
     "Module 3: Securing and governing the fabric"
    ],
    [
@@ -3750,7 +3750,7 @@
     "The governor's attack surface, piece by piece"
    ],
    [
-    676,
+    677,
     "Step zero, made checkable: the governor's controls"
    ],
    [
@@ -3798,7 +3798,7 @@
     "Cost structure, phase inversion and the paired branch"
    ],
    [
-    1144,
+    1145,
     "What to decide, what to evidence, what to start"
    ]
   ],
@@ -3900,51 +3900,51 @@
     "FedRAMP 2026: services are certified, and you still authorize"
    ],
    [
-    310,
+    320,
     "\"The boundary\" is now four sets of obligations, and yours"
    ],
    [
-    391,
+    401,
     "Change is notified, not re-approved, and evidence becomes a feed"
    ],
    [
-    477,
+    487,
     "GCC is the worldwide service, minus a published list"
    ],
    [
-    560,
+    570,
     "A higher certification class won't bring the features back"
    ],
    [
-    645,
+    654,
     "One decider per row: who owns the boundary"
    ],
    [
-    727,
+    737,
     "Five decisions that look like engineering tickets"
    ],
    [
-    808,
+    818,
     "Three honest responses when a capability is outside"
    ],
    [
-    891,
+    901,
     "Exceptions: the provider's path, and the rules' limits"
    ],
    [
-    976,
+    986,
     "The alternative path: change the suite, keep the identity plane"
    ],
    [
-    1064,
+    1074,
     "What to ask a cloud provider for"
    ],
    [
-    1151,
+    1161,
     "Evidence the boundary in your own package"
    ],
    [
-    1232,
+    1242,
     "Five decisions, five owners, and the next step"
    ]
   ],
@@ -4684,7 +4684,7 @@
     "Deploy from code; set retention in the workspace"
    ],
    [
-    288,
+    289,
     "Prove emission, and use Graph as a magnifying glass"
    ],
    [
@@ -4700,7 +4700,7 @@
     "Azure Policy keeps new resources emitting, not old ones"
    ],
    [
-    425,
+    426,
     "The unified audit log: verify, collect, deduplicate"
    ],
    [
@@ -4760,7 +4760,7 @@
     "DLP on three surfaces, simulated before enforced"
    ],
    [
-    964,
+    965,
     "Three meanings of customer-managed key"
    ],
    [
@@ -4768,7 +4768,7 @@
     "Who runs security operations: decide, do, consult"
    ],
    [
-    1043,
+    1044,
     "The responsibility matrix: rows that narrow visibility"
    ],
    [
@@ -4930,7 +4930,7 @@
     "Who keeps the record, and who decides"
    ],
    [
-    574,
+    573,
     "Ticket to machine, within the actuation ladder"
    ],
    [
@@ -4938,7 +4938,7 @@
     "Reciprocity: shared evidence, each agency's decision"
    ],
    [
-    695,
+    694,
     "Governance at scale: small definitions, honest coverage"
    ],
    [
@@ -5298,7 +5298,7 @@
     "The federal clock: the dates still ahead"
    ],
    [
-    160,
+    161,
     "Moderate: two facts, not one"
    ],
    [
@@ -5318,7 +5318,7 @@
     "Privacy and training close by records, not settings"
    ],
    [
-    444,
+    445,
     "One owner for every step"
    ],
    [
@@ -5960,7 +5960,7 @@
     "Keep the evidence current: three AI clocks"
    ],
    [
-    830,
+    831,
     "Decisions to make, owners and timing"
    ]
   ],
@@ -6078,7 +6078,7 @@
     "The rule set: what binds, what guides, what's missing"
    ],
    [
-    232,
+    233,
     "No AI-specific ATO: two decisions, one record"
    ],
    [
@@ -6086,7 +6086,7 @@
     "Module 2: The inventory and the kinds of AI identity"
    ],
    [
-    296,
+    297,
     "The inventory read as identity data: anchors and gaps"
    ],
    [
@@ -6098,7 +6098,7 @@
     "High-impact fields report status, not evidence"
    ],
    [
-    415,
+    416,
     "Whose token does it present? Three subjects and a key"
    ],
    [
@@ -6118,7 +6118,7 @@
     "Module 3: Owners, lifecycle, credentials and privilege"
    ],
    [
-    600,
+    601,
     "Owner, sponsor and manager, and the program's rule"
    ],
    [
@@ -6130,7 +6130,7 @@
     "Retirement and orphans: disable first, then delete"
    ],
    [
-    727,
+    728,
     "Credential order: no stored secrets on the blueprint"
    ],
    [
@@ -6138,11 +6138,11 @@
     "Least privilege: Microsoft's block list is only a floor"
    ],
    [
-    811,
+    812,
     "Conditional Access follows the token subject"
    ],
    [
-    854,
+    855,
     "Three boundaries on what an agent can call"
    ],
    [
@@ -6407,115 +6407,115 @@
     "Two axes, a confidence flag, and where the grid points"
    ],
    [
-    224,
+    229,
     "The decision table: seven rules, first match wins"
    ],
    [
-    269,
+    267,
     "Owner review, the decision record and calibration"
    ],
    [
-    307,
+    306,
     "Module 2: The target architecture and the data"
    ],
    [
-    333,
+    332,
     "One target: the layers and the program's choices"
    ],
    [
-    371,
+    370,
     "Support windows: build the upgrade cadence in"
    ],
    [
-    410,
+    409,
     "Contracts first, thin layers, configuration from outside"
    ],
    [
-    448,
+    447,
     "The strangler fig, and the NIST security references"
    ],
    [
-    486,
+    485,
     "Moving the data: convert, move, prove, then cut over"
    ],
    [
-    522,
+    521,
     "Schema conversion: the dangerous conversions succeed"
    ],
    [
-    559,
+    558,
     "The conversion tools as of October 2026"
    ],
    [
-    597,
+    596,
     "Proving nothing was lost: three checks, three blind spots"
    ],
    [
-    634,
+    633,
     "Cut-over and coexistence: one writer per table"
    ],
    [
-    671,
+    670,
     "Module 3: AI, compliance and governance"
    ],
    [
-    693,
+    692,
     "Where AI fits, behind one provider-neutral interface"
    ],
    [
-    731,
+    730,
     "Agent guardrails: read, propose, never write"
    ],
    [
-    770,
+    769,
     "Compliance by design: controls across the life cycle"
    ],
    [
-    809,
+    808,
     "Secure development, privacy, data and records"
    ],
    [
-    847,
+    846,
     "The architecture review board: one decider each"
    ],
    [
-    886,
+    885,
     "Four gates, and the evidence each one leaves"
    ],
    [
-    923,
+    922,
     "Module 4: Reference implementation, frameworks, waves"
    ],
    [
-    946,
+    945,
     "The reference implementation: one application in miniature"
    ],
    [
-    985,
+    984,
     "What the code shows: contract, three checks, guardrails"
    ],
    [
-    1021,
+    1020,
     "What was verified on October 28, 2026, and what wasn't"
    ],
    [
-    1060,
+    1059,
     "TOGAF: the ADM phases, and the chapters that do them"
    ],
    [
-    1099,
+    1098,
     "Zachman: the cells filled, and the gaps that show"
    ],
    [
-    1134,
+    1132,
     "The waves on the program's phases and gates"
    ],
    [
-    1171,
+    1170,
     "Move groups, the factory, metrics and funding"
    ],
    [
-    1210,
+    1209,
     "Decisions, owners, and what to start on Monday"
    ]
   ],
@@ -7394,7 +7394,7 @@
     "Run it: the Command Reference"
    ],
    [
-    143,
+    142,
     "Prove it: the Federal Framework Crosswalk"
    ],
    [
@@ -7410,15 +7410,15 @@
     "Prove it: the Microsoft Practice Crosswalk"
    ],
    [
-    401,
+    400,
     "Trust it: the Source Register"
    ],
    [
-    457,
+    456,
     "How the six pages fit together"
    ],
    [
-    506,
+    505,
     "Where to start, by role"
    ],
    [
@@ -7462,11 +7462,11 @@
     "The seven gates on one page: done when, gap, proof"
    ],
    [
-    108,
+    109,
     "The loop on two products, and the four gaps"
    ],
    [
-    168,
+    169,
     "G1: FedRAMP status, and what runs from a vendor cloud"
    ],
    [
@@ -7478,12 +7478,12 @@
     "G1: requirement, evidence, availability, rollback"
    ],
    [
-    343,
+    344,
     "G2: one writer per attribute, one approver per class"
    ],
    [
     397,
-    "G2: a lane for every change class"
+    "G2: a lane for every operation class"
    ],
    [
     451,
@@ -7651,7 +7651,7 @@
     "IPAM as the address authority, DHCP that stays up"
    ],
    [
-    310,
+    311,
     "Automation and logging: every change and query on record"
    ],
    [
@@ -7675,7 +7675,7 @@
     "Approvals work only if nothing goes around them"
    ],
    [
-    624,
+    625,
     "Four delegation patterns, four sets of trade-offs"
    ],
    [
@@ -7683,7 +7683,7 @@
     "Worked example: four divisions, one governed platform"
    ],
    [
-    720,
+    721,
     "Who decides, under Book 08's responsibility matrix"
    ],
    [
@@ -13584,11 +13584,11 @@
     "The federal requirement and evidence for Gate 1"
    ],
    [
-    685,
+    692,
     "Check yourself: two questions on writers"
    ],
    [
-    733,
+    740,
     "Summary, and next: Module 2, contractor sources"
    ]
   ],
@@ -13672,11 +13672,11 @@
     "The federal requirement and evidence for Gate 2"
    ],
    [
-    702,
+    710,
     "Check yourself: two questions on contractors"
    ],
    [
-    751,
+    759,
     "Summary, and next: Module 3, joiners on day one"
    ]
   ],
@@ -13755,11 +13755,11 @@
     "The federal requirement and evidence for Gate 3"
    ],
    [
-    678,
+    685,
     "Check yourself: two questions on joiners"
    ],
    [
-    725,
+    733,
     "Summary, and next: Module 4, access and movers"
    ]
   ],
@@ -13843,11 +13843,11 @@
     "The federal requirement and evidence for Gate 4"
    ],
    [
-    701,
+    709,
     "Check yourself: two questions on access and movers"
    ],
    [
-    750,
+    757,
     "Summary, and next: Module 5, certificate checks"
    ]
   ],
@@ -13926,11 +13926,11 @@
     "The federal requirement, and the evidence to keep"
    ],
    [
-    679,
+    687,
     "Check yourself: two questions on card sign-in"
    ],
    [
-    723,
+    731,
     "Summary, and next: Module 6, separation timing"
    ]
   ],
@@ -14101,11 +14101,11 @@
     "The federal requirement, and the evidence to keep"
    ],
    [
-    737,
+    744,
     "Check yourself: two questions on drift and evidence"
    ],
    [
-    785,
+    793,
     "Summary: you've finished the learning path"
    ]
   ],
@@ -14638,11 +14638,11 @@
     "The federal requirement and evidence for Gate G1"
    ],
    [
-    729,
+    737,
     "Check yourself: two questions on the inventory"
    ],
    [
-    784,
+    792,
     "Summary, and next: Module 2, owners and orphans"
    ]
   ],
@@ -14810,11 +14810,11 @@
     "The federal requirement and evidence for Gate G2"
    ],
    [
-    704,
+    712,
     "Check yourself: two questions on the decision"
    ],
    [
-    750,
+    758,
     "Summary, and next: Module 4, the credential rules"
    ]
   ],
@@ -14898,11 +14898,11 @@
     "The federal requirement and evidence for Gate G3"
    ],
    [
-    740,
+    748,
     "Check yourself: two questions on credentials"
    ],
    [
-    786,
+    793,
     "Summary, and next: Module 5, cut the privilege"
    ]
   ],
@@ -14990,11 +14990,11 @@
     "The federal requirement and evidence for Gate G4"
    ],
    [
-    794,
+    801,
     "Check yourself: two questions on least privilege"
    ],
    [
-    843,
+    850,
     "Summary, and next: Module 6, Conditional Access"
    ]
   ],
@@ -15178,11 +15178,11 @@
     "The federal requirement and evidence for Gate G5"
    ],
    [
-    788,
+    795,
     "Check yourself: two questions on conversion"
    ],
    [
-    843,
+    851,
     "Summary, and next: Module 8, gMSAs and dMSAs"
    ]
   ],
@@ -16043,7 +16043,7 @@
     "Lab 2: two live runs, compared, packaged and verified"
    ],
    [
-    808,
+    809,
     "The federal requirement and the evidence for Gate 4"
    ],
    [
@@ -16276,7 +16276,7 @@
     "One approver system per class, and a lane for each"
    ],
    [
-    297,
+    298,
     "writer_check.py reads two provisioning exports"
    ],
    [
@@ -16288,11 +16288,11 @@
     "What the check guards against, and what it misses"
    ],
    [
-    454,
+    455,
     "Try it: find the attribute with two writers"
    ],
    [
-    504,
+    505,
     "Try it: the directory guard and the two reads"
    ],
    [
@@ -16300,7 +16300,7 @@
     "Lab 2: export the real mappings and run the check"
    ],
    [
-    605,
+    606,
     "Where agencies are: the HR feed, and the clouds"
    ],
    [
@@ -16312,7 +16312,7 @@
     "Check yourself: two questions on two writers"
    ],
    [
-    762,
+    763,
     "Summary, and next: Module 4, the starting drift"
    ]
   ],

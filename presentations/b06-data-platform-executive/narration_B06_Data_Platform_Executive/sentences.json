@@ -763,36 +763,36 @@
  "19": [
   [
    0.05,
-   6.6,
-   "Once authentication has moved, a different question opens up: which platform should each data domain live on?"
+   6.562,
+   "Once authentication has moved, a different question opens up: which platform should each data domain liv on?"
   ],
   [
-   6.65,
+   6.612,
    4.188,
    "That choice isn't forced, so it comes after, one domain at a time."
   ],
   [
-   10.838,
-   6.713,
-   "Stay on SQL Server, or move to PostgreSQL or Oracle; each can meet the identity requirement."
+   10.8,
+   7.013,
+   "Stay on sequel Server, or move to PostgreSQL or Oracle; each can support the identity requirement."
   ],
   [
-   17.55,
+   17.812,
    10.275,
    "The book scores them on ten dimensions with evidence, from migration effort and skills to licensing and exit cost, and two domains reaching different answers is normal."
   ],
   [
-   27.825,
+   28.087,
    3.763,
    "The goal is fewer authoritative platforms, not one vendor."
   ],
   [
-   31.587,
+   31.85,
    9.988,
    "So the decision for the C I O and data leadership: choose per domain, after closure, as its own funded decision, with the same parallel-run discipline."
   ],
   [
-   41.575,
+   41.837,
    1.863,
    "Let's pull the decisions together."
   ]

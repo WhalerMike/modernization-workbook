@@ -6,7 +6,7 @@ Welcome. This is the technical deep dive for Network and Transport, one of the b
 
 ## Slide 2 — Why this matters: the floor, the pipe and the governor
 
-Here's why this matters. Light in fiber covers about two hundred kilometers per millisecond, and nothing you can buy changes that. The famous 150-millisecond voice budget is mouth to ear, so the network really gets seventy to a hundred, and a cross-country hairpin can burn most of it before a call goes anywhere useful. That's the physics. The compliance side is just as firm: a circuit closes exactly one control family, telecommunications diversity. Everything else comes from the layer that governs the circuit. So a bare local breakout fixes latency and loses the boundary. Which brings us to the order you do things in.
+Here's why this matters. Light in fiber covers about two hundred kilometers per millisecond, and nothing you can buy changes that. The famous 150-millisecond voice budget is mouth to ear, so the network really gets seventy to a hundred, and a cross-country hairpin can burn most of it before a call goes anywhere useful. That's the physics. The compliance side is just as firm: a circuit supports exactly one control family, telecommunications diversity. Everything else comes from the layer that governs the circuit. So a bare local breakout fixes latency and loses the boundary. Which brings us to the order you do things in.
 
 ## Slide 3 — The order of operations, and where this deck goes
 
@@ -42,15 +42,15 @@ This slide explains why network people should care about tokens. The old reason 
 
 ## Slide 11 — Module 2: Governed transport and legacy protocols
 
-Module 2 is governed transport and the legacy protocols that ride on it. First the governor itself: what SD-WAN and SASE each close, and how to protect them. Then what actually breaks when you re-route a branch, which turns out to be a shorter, and different, list than the folklore suggests.
+Module 2 is governed transport and the legacy protocols that ride on it. First the governor itself: what SD-WAN and SASE each provide, and how to protect them. Then what actually breaks when you re-route a branch, which turns out to be a shorter, and different, list than the folklore suggests.
 
 ## Slide 12 — SD-WAN works the gap above the floor, and the tail
 
 Here's the honest version of what SD-WAN does. It can't beat the speed of light, but most real paths run well above that floor, and the gap is where SD-WAN earns its keep. It separates lean, latency-sensitive traffic from bulk transfers, and it recovers some of the detour in real routes. The underrated part is the tail. A quorum commit or a voice call is only as good as its unluckiest packet, and tools like forward error correction and packet duplication shrink that tail. What it never does is go below the floor. So what does SASE add on top?
 
-## Slide 13 — SASE above SD-WAN: who closes which control
+## Slide 13 — SASE above SD-WAN: who provides which control
 
-SD-WAN decides paths; it doesn't inspect anything. Boundary protection, web policy, malware inspection and private-app access come from the SASE services above it, and this table shows which layer closes which control. Two practical points. The enforcement point has a location, so a distant or poorly peered point of presence is just a hairpin with a new name; measure it before cutover. And FedRAMP status is per offering, not per vendor, and it covers the cloud service, not the boxes in your offices. Which raises the question nobody likes: who protects the governor?
+SD-WAN decides paths; it doesn't inspect anything. Boundary protection, web policy, malware inspection and private-app access come from the SASE services above it, and this table shows which layer provides which control. Two practical points. The enforcement point has a location, so a distant or poorly peered point of presence is just a hairpin with a new name; measure it before cutover. And FedRAMP status is per offering, not per vendor, and it covers the cloud service, not the boxes in your offices. Which raises the question nobody likes: who protects the governor?
 
 ## Slide 14 — Securing the governor before it carries traffic
 
@@ -98,7 +98,7 @@ RADIUS has a weakness of its own. Over plain UDP it relies on MD5, and the 2024 
 
 ## Slide 25 — Rollout in four phases, and the controls it closes
 
-The fastest way to cause an outage with access control is to enforce before you know what's on the network. So the rollout starts in monitor mode: everything authenticates, nothing is blocked, and the logs build a baseline. Then wired enforcement, then wireless, then tightening the device segments, finishing with a tabletop where someone plugs a rogue laptop into a meeting room. Done this way, it closes real device-authentication and inventory controls. One correction worth knowing: it doesn't close the external-connections control people often claim for it. That wraps up access control.
+The fastest way to cause an outage with access control is to enforce before you know what's on the network. So the rollout starts in monitor mode: everything authenticates, nothing is blocked, and the logs build a baseline. Then wired enforcement, then wireless, then tightening the device segments, finishing with a tabletop where someone plugs a rogue laptop into a meeting room. Done this way, it supports the device-authentication and inventory controls. One correction worth knowing: it doesn't close the external-connections control people often claim for it. That wraps up access control.
 
 ## Slide 26 — Module 4: Reference architecture and ownership
 

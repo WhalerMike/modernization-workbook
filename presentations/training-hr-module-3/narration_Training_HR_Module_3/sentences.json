@@ -586,36 +586,41 @@
   ],
   [
    1.438,
-   8.4,
-   "This gate meets nist special publication eight hundred fifty-three A C two, enhancement one, automated system account management."
+   8.438,
+   "This gate supports nist special publication eight hundred fifty-three A C two, enhancement one, automated system account management."
   ],
   [
-   9.838,
-   9.463,
-   "It meets I A five: the initial authenticator is time-limited, and goes to an accountable person; that's the short, one-time pass sent to the manager."
+   9.875,
+   9.55,
+   "It supports I A five: the initial authenticator is time-limited, and goes to an accountable person; that's the short, one-time pass sent to the manager."
   ],
   [
-   19.3,
-   10.425,
-   "And it meets O M B M twenty-two oh-nine's phishing-resistant multifactor authentication, which the Temporary Access Pass bridges to until the piv card is bound."
+   19.425,
+   10.662,
+   "And it supports O M B M twenty-two oh-nine's phishing-resistant multifactor authentication, which the Temporary Access Pass bridges to until the piv card is bound."
   ],
   [
-   29.725,
+   30.087,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   37.413,
    9.137,
    "The evidence an I S S O keeps for Gate 3: the reviewed workflow files, and the plan that changed each version, with its manifest."
   ],
   [
-   38.862,
+   46.55,
    7.925,
    "The lint's clean run, showing a one-time pass of at most twenty-four hours and an execution limit on every scheduled workflow."
   ],
   [
-   46.788,
+   54.475,
    2.487,
    "The readiness summary for each start date."
   ],
   [
-   49.275,
+   56.962,
    4.638,
    "And the workflows' run history, exported past Entra's thirty-day view."
   ]

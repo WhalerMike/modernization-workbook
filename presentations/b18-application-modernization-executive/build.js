@@ -648,7 +648,7 @@ The current TOGAF Standard is the 10th Edition from The Open Group, announced Ap
 Zachman's Framework, version 3.0, is a six-by-six grid of interrogatives and perspectives, explicitly not a methodology; it's the checklist. Read by column it shows the book's gaps: little on locations above the engineer row, and little on application timing such as batch windows, which belongs in design review.
 
 File the artifacts, don't redo them; treat an empty cell as a question; and don't buy compliance with a framework. These mappings are the program's reading, unreviewed by either publisher.`,
-  "Book 18, Chapter 09 — Mapping the Work to TOGAF and Zachman (What federal policy requires; The TOGAF Standard today; The Zachman Framework today; Mapping the chapters and artifacts; Using the mappings; Key takeaways).");
+  "Book 18, Chapter 09 — Mapping the Work to TOGAF and Zachman (What federal policy requires; The TOGAF Standard today; The Zachman Framework today; Mapping the chapters and artifacts; Using the mappings; What leadership should take from this).");
 }
 
 // ------------------------------------------------------------------ How 3
@@ -767,7 +767,7 @@ The chief architect owns one target stack, with upgrades budgeted; asks every re
 The application owner and the authorizing official see three validation results before every cut-over. A retained application on unsupported software is a finding with a plan, a risk acceptance and a review date. The privacy and records officials hear about the named events at design review. The authorizing official sets, before the first wave, when a change reopens the authorization. And the steward and sponsor run a pilot with one hard case, sizing later waves by throughput.
 
 None of these is a rewrite. Book 18 has the detail, with every claim footnoted. Thank you.`,
-  "Book 18, Chapter 01 (What leadership should take from this); Chapter 02 (What leadership should take from this); Chapters 03–06 (What leadership should take from this); Chapter 07 (Responsibility matrix; Key takeaways); Chapter 10 (Key takeaways; closing line).");
+  "Book 18, Chapter 01 (What leadership should take from this); Chapter 02 (What leadership should take from this); Chapters 03–06 (What leadership should take from this); Chapter 07 (Responsibility matrix; What leadership should take from this); Chapter 10 (What leadership should take from this; closing line).");
 }
 
 // ------------------------------------------------------------------ Backup

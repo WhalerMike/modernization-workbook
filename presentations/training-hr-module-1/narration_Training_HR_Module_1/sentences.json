@@ -586,21 +586,26 @@
   ],
   [
    1.438,
-   9.988,
-   "This gate meets nist special publication eight hundred fifty-three A C two, account management, and I A four, identifier management, through the register."
+   10.05,
+   "This gate supports nist special publication eight hundred fifty-three A C two, account management, and I A four, identifier management, through the register."
   ],
   [
-   11.425,
-   7.162,
-   "And it meets A U six, audit review, by reviewing writes made outside the named writer, which is what the scan does."
+   11.488,
+   7.325,
+   "And it supports A U six, audit review, by reviewing writes made outside the named writer, which is what the scan does."
   ],
   [
-   18.587,
+   18.812,
    4.9,
    "The guide's Gate 1 requirements table and the workbook chapter carry the details."
   ],
   [
-   23.488,
+   23.712,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   31.038,
    21.587,
    "The evidence an I S S O keeps for Gate 1: the signed register, with its lifecycle rows and the versioned scope filter; the output of the register check; the scan's output folder, with its manifest and the saved queries; and the Active Directory auditing settings, which this code doesn't read, because writes in Active Directory never reach the scan."
   ]

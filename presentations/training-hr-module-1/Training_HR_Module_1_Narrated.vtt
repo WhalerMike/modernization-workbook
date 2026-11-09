@@ -193,764 +193,774 @@ Lab 2 needs a worldwide or GCC
 test tenant, never production.
 
 41
-00:02:32.450 --> 00:02:34.500
+00:02:33.510 --> 00:02:35.560
 Here's the register
 you'll check in the lab.
 
 42
-00:02:34.500 --> 00:02:38.838
+00:02:35.560 --> 00:02:39.898
 It's the guide's table of lifecycle
 rows, kept as reviewed JSON.
 
 43
-00:02:38.838 --> 00:02:43.273
+00:02:39.898 --> 00:02:44.333
 Each row is an account-state
 transition or an HR-mastered value,
 
 44
-00:02:43.273 --> 00:02:47.963
+00:02:44.333 --> 00:02:49.023
 and each names exactly one writer
 and, where there is one, a backstop.
 
 45
-00:02:47.963 --> 00:02:50.387
+00:02:49.023 --> 00:02:51.447
 Inbound provisioning creates the account.
 
 46
-00:02:50.387 --> 00:02:54.668
+00:02:51.447 --> 00:02:55.728
 It enables it at hire, disables it at
 separation, and re-enables it if a
 
 47
-00:02:54.668 --> 00:02:59.788
+00:02:55.728 --> 00:03:00.848
 separation is cancelled, with Lifecycle
 Workflows as the backstop for all three.
 
 48
-00:02:59.788 --> 00:03:03.200
+00:03:00.848 --> 00:03:04.260
 It writes the hire date, the
 leave date and the manager.
 
 49
-00:03:03.200 --> 00:03:07.537
+00:03:04.260 --> 00:03:08.597
 The organization code and worker
 type code have the directory sync as
 
 50
-00:03:07.537 --> 00:03:11.875
+00:03:08.597 --> 00:03:12.935
 an interim backstop, for synced
 users until Active Directory retires.
 
 51
-00:03:11.875 --> 00:03:16.000
+00:03:12.935 --> 00:03:17.060
 The card management system's integration
 writes the certificate binding.
 
 52
-00:03:16.000 --> 00:03:19.611
+00:03:17.060 --> 00:03:20.671
 And notice deletion: the
 post-separation workflow writes it,
 
 53
-00:03:19.611 --> 00:03:21.850
+00:03:20.671 --> 00:03:22.910
 and inbound provisioning never does.
 
 54
-00:03:21.850 --> 00:03:23.720
+00:03:22.910 --> 00:03:24.780
 The register forbids it.
 
 55
-00:03:27.470 --> 00:03:32.375
+00:03:28.530 --> 00:03:33.435
 The register names four writers, and
 each one is a named group of identities,
 
 56
-00:03:32.375 --> 00:03:34.670
+00:03:33.435 --> 00:03:35.730
 so the scan can tell who made a write.
 
 57
-00:03:34.670 --> 00:03:38.332
+00:03:35.730 --> 00:03:39.392
 Inbound provisioning is the HR
 app and the contractor-source app,
 
 58
-00:03:38.332 --> 00:03:40.570
+00:03:39.392 --> 00:03:41.630
 which come through the same middleware.
 
 59
-00:03:40.570 --> 00:03:45.945
+00:03:41.630 --> 00:03:47.005
 Lifecycle Workflows is the set of workflow
 tasks that enable, disable and delete.
 
 60
-00:03:45.945 --> 00:03:51.107
+00:03:47.005 --> 00:03:52.167
 The card management integration writes the
 PIV binding, which is Gate 5's business.
 
 61
-00:03:51.107 --> 00:03:53.656
+00:03:52.167 --> 00:03:54.716
 And the sync agent is an interim writer,
 
 62
-00:03:53.656 --> 00:03:56.920
+00:03:54.716 --> 00:03:57.980
 for synced users until
 Active Directory retires.
 
 63
-00:03:56.920 --> 00:04:00.058
+00:03:57.980 --> 00:04:01.118
 Why does the workbook's design
 treat this so seriously?
 
 64
-00:04:00.058 --> 00:04:04.033
+00:04:01.118 --> 00:04:05.093
 Because whoever can write a slot
 decides what a rule on that slot grants.
 
 65
-00:04:04.033 --> 00:04:06.157
+00:04:05.093 --> 00:04:07.217
 A writer is an access decision.
 
 66
-00:04:06.157 --> 00:04:09.696
+00:04:07.217 --> 00:04:10.756
 And the pipeline's active value
 and the workflows' tasks can
 
 67
-00:04:09.696 --> 00:04:13.307
+00:04:10.756 --> 00:04:14.367
 both write account state, so
 without a register, they collide.
 
 68
-00:04:13.307 --> 00:04:17.380
+00:04:14.367 --> 00:04:18.440
 The register is signed, and
 carries a versioned scope filter.
 
 69
-00:04:21.130 --> 00:04:23.580
+00:04:22.190 --> 00:04:24.640
 The kit checks the register in two ways.
 
 70
-00:04:23.580 --> 00:04:27.507
+00:04:24.640 --> 00:04:28.567
 The first is the register check,
 rules W R oh one to oh nine,
 
 71
-00:04:27.507 --> 00:04:31.093
+00:04:28.567 --> 00:04:32.153
 which test the register's
 shape before you trust it.
 
 72
-00:04:31.093 --> 00:04:34.492
+00:04:32.153 --> 00:04:35.552
 A row must name a single
 writer and appear only once.
 
 73
-00:04:34.492 --> 00:04:37.367
+00:04:35.552 --> 00:04:38.427
 Every writer and backstop must be defined.
 
 74
-00:04:37.367 --> 00:04:39.762
+00:04:38.427 --> 00:04:40.822
 A writer with no
 identities gets a warning,
 
 75
-00:04:39.762 --> 00:04:42.430
+00:04:40.822 --> 00:04:43.490
 because the scan couldn't
 attribute its writes.
 
 76
-00:04:42.430 --> 00:04:46.142
+00:04:43.490 --> 00:04:47.202
 Every required account-state
 transition, created,
 
 77
-00:04:46.142 --> 00:04:49.943
+00:04:47.202 --> 00:04:51.003
 enabled, disabled, re-enabled
 and deleted, needs a row.
 
 78
-00:04:49.943 --> 00:04:53.280
+00:04:51.003 --> 00:04:54.340
 Deletion must never be written
 by inbound provisioning.
 
 79
-00:04:53.280 --> 00:04:55.655
+00:04:54.340 --> 00:04:56.715
 A backstop can't be the writer itself.
 
 80
-00:04:55.655 --> 00:04:59.605
+00:04:56.715 --> 00:05:00.665
 Two rows for the same audited change
 can't name different writers.
 
 81
-00:04:59.605 --> 00:05:03.955
+00:05:00.665 --> 00:05:05.015
 And the register should be recorded as
 signed, with a versioned scope filter.
 
 82
-00:05:03.955 --> 00:05:07.474
+00:05:05.015 --> 00:05:08.534
 Every tool in the kit
 uses the same exit codes:
 
 83
-00:05:07.474 --> 00:05:12.600
+00:05:08.534 --> 00:05:13.660
 zero when clean, two for findings
 or warnings, one for an error.
 
 84
-00:05:16.350 --> 00:05:18.225
+00:05:17.410 --> 00:05:19.285
 The second check is the scan.
 
 85
-00:05:18.225 --> 00:05:20.980
+00:05:19.285 --> 00:05:22.040
 It reads an export of
 the directory audit log,
 
 86
-00:05:20.980 --> 00:05:24.629
+00:05:22.040 --> 00:05:25.689
 keeps the successful records
 inside the window you give it,
 
 87
-00:05:24.629 --> 00:05:29.246
+00:05:25.689 --> 00:05:30.306
 and matches each one to a row of the
 register: by the activity, such as Disable
 
 88
-00:05:29.246 --> 00:05:34.012
+00:05:30.306 --> 00:05:35.072
 account, and for an Update user record,
 by the name of the property that changed.
 
 89
-00:05:34.012 --> 00:05:35.849
+00:05:35.072 --> 00:05:36.909
 Then it judges who made the write.
 
 90
-00:05:35.849 --> 00:05:37.425
+00:05:36.909 --> 00:05:38.485
 The row's writer is fine.
 
 91
-00:05:37.425 --> 00:05:40.159
+00:05:38.485 --> 00:05:41.219
 The backstop gets W S oh two, a warning:
 
 92
-00:05:40.159 --> 00:05:43.987
+00:05:41.219 --> 00:05:45.047
 confirm the writer acted, or
 find out why it was late.
 
 93
-00:05:43.987 --> 00:05:48.888
+00:05:45.047 --> 00:05:49.948
 Anyone else is W S oh one, a second
 writer, and that's a finding.
 
 94
-00:05:48.888 --> 00:05:50.891
+00:05:49.948 --> 00:05:51.951
 And a writer the row forbids,
 
 95
-00:05:50.891 --> 00:05:55.249
+00:05:51.951 --> 00:05:56.309
 like inbound provisioning deleting
 an account, is W S oh four.
 
 96
-00:05:55.249 --> 00:06:00.464
+00:05:56.309 --> 00:06:01.524
 The scan writes an output folder with
 a manifest that holds each file's hash,
 
 97
-00:06:00.464 --> 00:06:04.260
+00:06:01.524 --> 00:06:05.320
 and a saved query for every
 row, which Module 7 runs.
 
 98
-00:06:08.010 --> 00:06:08.973
+00:06:09.070 --> 00:06:10.033
 Two limits.
 
 99
-00:06:08.973 --> 00:06:11.022
+00:06:10.033 --> 00:06:12.082
 First, what the scan can't see.
 
 100
-00:06:11.022 --> 00:06:14.297
+00:06:12.082 --> 00:06:15.357
 For synced users, a write
 made in Active Directory
 
 101
-00:06:14.297 --> 00:06:17.572
+00:06:15.357 --> 00:06:18.632
 never reaches the Entra
 audit log this scan reads.
 
 102
-00:06:17.572 --> 00:06:20.773
+00:06:18.632 --> 00:06:21.833
 Only Active Directory's own
 change auditing sees it.
 
 103
-00:06:20.773 --> 00:06:25.355
+00:06:21.833 --> 00:06:26.415
 The guide's interim path covers that:
 it names the sync agent as a writer in
 
 104
-00:06:25.355 --> 00:06:30.397
+00:06:26.415 --> 00:06:31.457
 the register, and reviews the access
 control lists on the organizational units.
 
 105
-00:06:30.397 --> 00:06:32.723
+00:06:31.457 --> 00:06:33.783
 Second, what the scan can't confirm.
 
 106
-00:06:32.723 --> 00:06:37.522
+00:06:33.783 --> 00:06:38.582
 To match an Update user record, the
 register names the property that changed.
 
 107
-00:06:37.522 --> 00:06:41.884
+00:06:38.582 --> 00:06:42.944
 Learn doesn't document those names,
 so each one is the program's reading.
 
 108
-00:06:41.884 --> 00:06:45.473
+00:06:42.944 --> 00:06:46.533
 If a name is wrong, the scan
 reports nothing for that value,
 
 109
-00:06:45.473 --> 00:06:48.297
+00:06:46.533 --> 00:06:49.357
 and silence looks exactly
 like a clean month.
 
 110
-00:06:48.297 --> 00:06:51.672
+00:06:49.357 --> 00:06:52.732
 That's why Lab 2 matters more
 here than in most modules.
 
 111
-00:06:51.672 --> 00:06:54.390
+00:06:52.732 --> 00:06:55.450
 Confirm every property name against a real
 
 112
-00:06:54.390 --> 00:06:57.770
+00:06:55.450 --> 00:06:58.830
 audit record before the
 scan counts as evidence.
 
 113
-00:07:01.520 --> 00:07:02.245
+00:07:02.580 --> 00:07:03.305
 Try it.
 
 114
-00:07:02.245 --> 00:07:07.405
+00:07:03.305 --> 00:07:08.465
 Lab 1 runs in the hr-lifecycle folder
 of the examples, on fictional fixtures,
 
 115
-00:07:07.405 --> 00:07:11.233
+00:07:08.465 --> 00:07:12.293
 and nothing in it signs in to
 anything or sends a request.
 
 116
-00:07:11.233 --> 00:07:14.807
+00:07:12.293 --> 00:07:15.867
 Step one lists what the scan
 reads, and with what permission.
 
 117
-00:07:14.807 --> 00:07:18.402
+00:07:15.867 --> 00:07:19.462
 The list option prints the task's
 calls without making them:
 
 118
-00:07:18.402 --> 00:07:23.243
+00:07:19.462 --> 00:07:24.303
 two GET calls against the audit logs,
 the directory audits and the provisioning
 
 119
-00:07:23.243 --> 00:07:27.570
+00:07:24.303 --> 00:07:28.630
 logs, which need AuditLog dot Read dot
 All and Directory dot Read dot All.
 
 120
-00:07:27.570 --> 00:07:30.745
+00:07:28.630 --> 00:07:31.805
 Those are the only two
 permissions a real run would need.
 
 121
-00:07:30.745 --> 00:07:33.195
+00:07:31.805 --> 00:07:34.255
 Step two checks the program's register.
 
 122
-00:07:33.195 --> 00:07:38.468
+00:07:34.255 --> 00:07:39.528
 It comes back with zero findings, zero
 warnings and zero information items,
 
 123
-00:07:38.468 --> 00:07:43.145
+00:07:39.528 --> 00:07:44.205
 and an exit code of zero, so the
 register's shape passes every W R rule.
 
 124
-00:07:43.145 --> 00:07:45.275
+00:07:44.205 --> 00:07:46.335
 That's the precondition for the scan:
 
 125
-00:07:45.275 --> 00:07:49.460
+00:07:46.335 --> 00:07:50.520
 a register you've checked is one
 you can test the audit log against.
 
 126
-00:07:53.210 --> 00:07:57.060
+00:07:54.270 --> 00:07:58.120
 Step three scans October's audit
 records against the register.
 
 127
-00:07:57.060 --> 00:08:00.977
+00:07:58.120 --> 00:08:02.037
 You give it the register, the audit
 export, a window from the first
 
 128
-00:08:00.977 --> 00:08:04.672
+00:08:02.037 --> 00:08:05.732
 to the thirty-first of October,
 the cloud, and an output folder.
 
 129
-00:08:04.672 --> 00:08:11.860
+00:08:05.732 --> 00:08:12.920
 The cloud option has no default; G C C,
 G C C High or D O D picks the Graph host.
 
 130
-00:08:11.860 --> 00:08:14.298
+00:08:12.920 --> 00:08:15.358
 The scan found eleven protected writes.
 
 131
-00:08:14.298 --> 00:08:17.685
+00:08:15.358 --> 00:08:18.745
 Five were by the writer the row
 names, which is what you want.
 
 132
-00:08:17.685 --> 00:08:19.160
+00:08:18.745 --> 00:08:20.220
 One was by the backstop.
 
 133
-00:08:19.160 --> 00:08:22.960
+00:08:20.220 --> 00:08:24.020
 Four were by a second writer, someone
 the register doesn't name at all.
 
 134
-00:08:22.960 --> 00:08:25.735
+00:08:24.020 --> 00:08:26.795
 And one was by a writer
 the register forbids.
 
 135
-00:08:25.735 --> 00:08:29.760
+00:08:26.795 --> 00:08:30.820
 That's five findings and one
 warning, so the exit code is two.
 
 136
-00:08:29.760 --> 00:08:33.127
+00:08:30.820 --> 00:08:34.187
 The output folder's manifest
 lists every file's hash,
 
 137
-00:08:33.127 --> 00:08:35.085
+00:08:34.187 --> 00:08:36.145
 so the run can be checked later.
 
 138
-00:08:35.085 --> 00:08:38.120
+00:08:36.145 --> 00:08:39.180
 The output on the slide is wrapped to fit.
 
 139
-00:08:41.870 --> 00:08:45.095
+00:08:42.930 --> 00:08:46.155
 Step four prints the
 findings, one line each.
 
 140
-00:08:45.095 --> 00:08:50.105
+00:08:46.155 --> 00:08:51.165
 Four are W S oh one, second writers: a
 help desk technician disabled an account,
 
 141
-00:08:50.105 --> 00:08:53.206
+00:08:51.165 --> 00:08:54.266
 an Exchange administrator
 edited a leave date,
 
 142
-00:08:53.206 --> 00:08:58.295
+00:08:54.266 --> 00:08:59.355
 the help desk changed a manager, and a
 fix-up script wrote an organization code.
 
 143
-00:08:58.295 --> 00:09:03.245
+00:08:59.355 --> 00:09:04.305
 None of them is inbound provisioning,
 the writer every one of those rows names.
 
 144
-00:09:03.245 --> 00:09:07.639
+00:09:04.305 --> 00:09:08.699
 One is W S oh four: inbound
 provisioning deleted an account,
 
 145
-00:09:07.639 --> 00:09:09.745
+00:09:08.699 --> 00:09:10.805
 which the register forbids.
 
 146
-00:09:09.745 --> 00:09:14.312
+00:09:10.805 --> 00:09:15.372
 And one is the W S oh two warning:
 the backstop, Lifecycle Workflows,
 
 147
-00:09:14.312 --> 00:09:19.470
+00:09:15.372 --> 00:09:20.530
 enabled a hire, so you confirm the pipeline
 acted or find out why it was late.
 
 148
-00:09:19.470 --> 00:09:24.563
+00:09:20.530 --> 00:09:25.623
 Step five prints one saved query, the
 third, for the disabled-at-separation row:
 
 149
-00:09:24.563 --> 00:09:27.587
+00:09:25.623 --> 00:09:28.647
 a filter on Disable
 account inside the window,
 
 150
-00:09:27.587 --> 00:09:30.532
+00:09:28.647 --> 00:09:31.592
 with the pipeline and
 the workflows allowed.
 
 151
-00:09:30.532 --> 00:09:36.140
+00:09:31.592 --> 00:09:37.200
 Step six runs the tests, fifty-seven
 pass, and you delete the output folder.
 
 152
-00:09:39.890 --> 00:09:43.988
+00:09:40.950 --> 00:09:45.048
 Lab 2 runs the same scan
 against your own test tenant,
 
 153
-00:09:43.988 --> 00:09:46.752
+00:09:45.048 --> 00:09:47.812
 worldwide or G C C, never production.
 
 154
-00:09:46.752 --> 00:09:49.164
+00:09:47.812 --> 00:09:50.224
 Make two known writes in the admin center,
 
 155
-00:09:49.164 --> 00:09:51.789
+00:09:50.224 --> 00:09:52.849
 then export the audit
 window that holds them.
 
 156
-00:09:51.789 --> 00:09:54.448
+00:09:52.849 --> 00:09:55.508
 Before you scan, confirm
 the property names
 
 157
-00:09:54.448 --> 00:09:57.327
+00:09:55.508 --> 00:09:58.387
 the register expects
 against the real records.
 
 158
-00:09:57.327 --> 00:10:00.303
+00:09:58.387 --> 00:10:01.363
 That's the step that turns
 the scan into evidence.
 
 159
-00:10:00.303 --> 00:10:05.440
+00:10:01.363 --> 00:10:06.500
 Then put your tenant's service principal
 I D's in a copy of the register, and scan.
 
 160
-00:10:05.440 --> 00:10:11.052
+00:10:06.500 --> 00:10:12.112
 Both of your admin center changes should
 come back as W S oh one, second writers.
 
 161
-00:10:11.052 --> 00:10:15.698
+00:10:12.112 --> 00:10:16.758
 The reader app needs a certificate and
 two application permissions with admin
 
 162
-00:10:15.698 --> 00:10:20.415
+00:10:16.758 --> 00:10:21.475
 consent, AuditLog dot Read dot All and
 Directory dot Read dot All, and nothing else.
 
 163
-00:10:20.415 --> 00:10:24.925
+00:10:21.475 --> 00:10:25.985
 To back it out, restore the test
 users' values, remove the permissions,
 
 164
-00:10:24.925 --> 00:10:28.952
+00:10:25.985 --> 00:10:30.012
 and delete the app, its certificate,
 the export and the output.
 
 165
-00:10:28.952 --> 00:10:31.450
+00:10:30.012 --> 00:10:32.510
 The authors haven't run Lab 2.
 
 166
-00:10:35.200 --> 00:10:36.587
+00:10:36.260 --> 00:10:37.647
 The federal requirement.
 
 167
-00:10:36.587 --> 00:10:41.503
-This gate meets NIST special publication
+00:10:37.647 --> 00:10:42.712
+This gate supports NIST special publication
 eight hundred fifty-three A C two,
 
 168
-00:10:41.503 --> 00:10:46.576
+00:10:42.712 --> 00:10:47.698
 account management, and I A four, identifier
 management, through the register.
 
 169
-00:10:46.576 --> 00:10:48.644
-And it meets A U six, audit review,
+00:10:47.698 --> 00:10:49.982
+And it supports A U six, audit review,
 
 170
-00:10:48.644 --> 00:10:53.737
+00:10:49.982 --> 00:10:55.023
 by reviewing writes made outside the
 named writer, which is what the scan does.
 
 171
-00:10:53.737 --> 00:10:58.637
+00:10:55.023 --> 00:10:59.922
 The guide's Gate 1 requirements table and
 the workbook chapter carry the details.
 
 172
-00:10:58.637 --> 00:11:02.262
+00:10:59.922 --> 00:11:04.097
+Your organization still sets the
+organization-defined parameters,
+
+173
+00:11:04.097 --> 00:11:07.247
+and the assessor decides
+whether each is satisfied.
+
+174
+00:11:07.247 --> 00:11:10.872
 The evidence an ISSO keeps for
 Gate 1: the signed register,
 
-173
-00:11:02.262 --> 00:11:05.808
+175
+00:11:10.872 --> 00:11:14.418
 with its lifecycle rows and
 the versioned scope filter;
 
-174
-00:11:05.808 --> 00:11:09.431
+176
+00:11:14.418 --> 00:11:18.042
 the output of the register
 check; the scan's output folder,
 
-175
-00:11:09.431 --> 00:11:14.828
+177
+00:11:18.042 --> 00:11:23.438
 with its manifest and the saved queries;
 and the Active Directory auditing settings,
 
-176
-00:11:14.828 --> 00:11:16.601
+178
+00:11:23.438 --> 00:11:25.211
 which this code doesn't read,
 
-177
-00:11:16.601 --> 00:11:20.590
+179
+00:11:25.211 --> 00:11:29.190
 because writes in Active
 Directory never reach the scan.
 
-178
-00:11:24.340 --> 00:11:26.315
+180
+00:11:32.940 --> 00:11:34.915
 Check yourself with two questions.
 
-179
-00:11:26.315 --> 00:11:31.190
+181
+00:11:34.915 --> 00:11:39.790
 First: your HR feed and the leaver
 workflow can both disable an account.
 
-180
-00:11:31.190 --> 00:11:34.578
+182
+00:11:39.790 --> 00:11:43.178
 What does the register record for
 the disabled-at-separation row?
 
-181
-00:11:34.578 --> 00:11:39.352
+183
+00:11:43.178 --> 00:11:47.952
 The answer is b: one writer, with
 the other recorded as its backstop.
 
-182
-00:11:39.352 --> 00:11:42.622
+184
+00:11:47.952 --> 00:11:51.222
 The register check enforces
 it: one writer per row,
 
-183
-00:11:42.622 --> 00:11:45.414
+185
+00:11:51.222 --> 00:11:54.014
 and a backstop that
 isn't the writer itself.
 
-184
-00:11:45.414 --> 00:11:49.115
+186
+00:11:54.014 --> 00:11:57.715
 Second: which writes does the
 Entra audit-log scan not see?
 
-185
-00:11:49.115 --> 00:11:53.465
+187
+00:11:57.715 --> 00:12:02.065
 The answer is c: writes made in
 Active Directory for synced users.
 
-186
-00:11:53.465 --> 00:11:58.291
+188
+00:12:02.065 --> 00:12:06.891
 Only Active Directory's change auditing
 sees those, and the guide's interim
 
-187
-00:11:58.291 --> 00:12:03.040
+189
+00:12:06.891 --> 00:12:11.640
 path names the sync agent as a writer
 and reviews the access control lists.
 
-188
-00:12:03.040 --> 00:12:08.290
+190
+00:12:11.640 --> 00:12:16.890
 The module page has two more questions,
 each linked to the section that answers it.
 
-189
-00:12:12.040 --> 00:12:12.865
+191
+00:12:20.640 --> 00:12:21.465
 To sum up.
 
-190
-00:12:12.865 --> 00:12:17.932
+192
+00:12:21.465 --> 00:12:26.532
 You checked a writer register's shape,
 scanned a month of audit records against it,
 
-191
-00:12:17.932 --> 00:12:20.427
+193
+00:12:26.532 --> 00:12:29.027
 and read the saved query that Gate 7 runs.
 
-192
-00:12:20.427 --> 00:12:23.004
+194
+00:12:29.027 --> 00:12:31.604
 Along the way you saw four second writers,
 
-193
-00:12:23.004 --> 00:12:26.490
+195
+00:12:31.604 --> 00:12:35.090
 one forbidden delete, and one
 backstop that acted first.
 
-194
-00:12:26.490 --> 00:12:30.414
+196
+00:12:35.090 --> 00:12:39.014
 Carry one thing forward: inbound
 provisioning writes the leave
 
-195
-00:12:30.414 --> 00:12:34.115
+197
+00:12:39.014 --> 00:12:42.715
 date and the active value, and
 that's true for contractors too.
 
-196
-00:12:34.115 --> 00:12:38.165
+198
+00:12:42.715 --> 00:12:46.765
 Next is Module 2: run contractors
 from their own source.
 
-197
-00:12:38.165 --> 00:12:43.702
+199
+00:12:46.765 --> 00:12:52.302
 Contractors don't come from HR, and an end
 date nobody updates keeps access alive.
 
-198
-00:12:43.702 --> 00:12:48.737
+200
+00:12:52.302 --> 00:12:57.337
 In Module 2 you'll compute each contractor's
 earliest end, reconcile the register,
 
-199
-00:12:48.737 --> 00:12:52.569
+201
+00:12:57.337 --> 00:13:01.169
 the card system and the directory
 without changing anything,
 
-200
-00:12:52.569 --> 00:12:56.920
+202
+00:13:01.169 --> 00:13:05.520
 and write a sponsor review that
 removes access when nobody responds.

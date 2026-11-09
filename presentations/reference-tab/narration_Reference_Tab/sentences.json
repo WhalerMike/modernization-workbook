@@ -44,16 +44,16 @@
   ],
   [
    20.438,
-   6.037,
-   "Prove it: which federal requirement a piece of work satisfies, and what evidence an assessor would read."
+   5.925,
+   "Prove it: which federal requirement a piece of work supports, and what evidence an assessor would read."
   ],
   [
-   26.475,
+   26.363,
    3.888,
    "Trust it: whether the sources behind all of this are still current."
   ],
   [
-   30.363,
+   30.25,
    2.975,
    "Every page on the tab answers one of those three."
   ]
@@ -88,31 +88,31 @@
  "4": [
   [
    0.05,
-   7.162,
-   "The Command Reference lists every command in the example kits: 694 of them across sixteen kits."
+   7.025,
+   "The Command Reference lists every command in the example kits: 718 of them across seventeen kits."
   ],
   [
-   7.213,
-   8.088,
-   "That is 599 functions exported by PowerShell modules, 47 PowerShell scripts and 48 Python tools."
+   7.075,
+   8.012,
+   "That is 615 functions exported by PowerShell modules, 55 PowerShell scripts and 48 Python tools."
   ],
   [
-   15.3,
+   15.088,
    2.325,
    "What makes it trustworthy is how it's made."
   ],
   [
-   17.625,
+   17.413,
    4.95,
    "The page is generated from each command's own help text every time the site builds."
   ],
   [
-   22.575,
+   22.363,
    8.838,
    "If the help changes, the page changes with it, so the two never drift apart, and a public command without a synopsis or an example fails the check."
   ],
   [
-   31.413,
+   31.2,
    9.938,
    "Each row also links back to the chapters and training modules that teach the command, so an engineer can go from what does this do, to where do I learn it, in one click."
   ]
@@ -187,21 +187,21 @@
   ],
   [
    32.05,
-   11.738,
-   "The marks today: 25 covered, 13 partial, 9 partial by design, where the workbook gives a template and a prompt because the decision belongs to the agency, and none not covered."
+   11.65,
+   "The marks today: 24 covered, 14 partial, 9 partial by design, where the workbook gives a template and a prompt because the decision belongs to the agency, and none not covered."
   ],
   [
-   43.788,
+   43.7,
    3.875,
    "It also corrects a common mistake: FISMA isn't a level."
   ],
   [
-   47.663,
+   47.575,
    3.925,
    "FISMA Moderate is shorthand for a categorization and a baseline."
   ],
   [
-   51.587,
+   51.5,
    4.438,
    "The page is in review, waiting for a reviewer who didn't write the marks."
   ]

@@ -921,7 +921,7 @@ For Azure workloads, Key Vault Premium HSMs and Managed HSM are FIPS 140-3 Level
     ["Authorizing official", "Residual risk, including what isn't seen"],
     ["System owner / ISSO", "How and when the system's findings are fixed"],
     ["Top-level SOC", "Severity, assignment, closure; CISA notice within one hour"],
-    ["Security engineering", "How a requirement is met in the platform"],
+    ["Security engineering", "How the platform supports a requirement"],
     ["Records, privacy, counsel", "Disposition; log content; legal review of monitoring"],
   ], { x: 6.95, fontSize: 12, limit: 5.75 });
   txt(s, "CCP", [

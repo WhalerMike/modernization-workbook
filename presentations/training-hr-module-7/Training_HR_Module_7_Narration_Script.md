@@ -54,7 +54,7 @@ Lab 2 runs the same thing for real, in a worldwide or GCC test tenant, never pro
 
 ## Slide 14 — The federal requirement, and the evidence to keep
 
-The federal requirement. In NIST special publication eight hundred fifty-three terms, this gate meets C A seven, continuous monitoring with system-level metrics, and A U six and A U eleven with S I twelve: the review and retention of audit records. It also meets BOD 25-01's continuous reporting. The evidence an ISSO keeps for Gate 7: every period's manifest, summary and checksum file, with the approved thresholds. The packages, with each unauthorized-write finding's closure at the source. The storage container's retention and immutability settings, set to the records schedule. And the ScubaGear results beside the period. The guide's Evidence section gathers all seven gates into one file per population.
+The federal requirement. In NIST special publication eight hundred fifty-three terms, this gate supports C A seven, continuous monitoring with system-level metrics, and A U six and A U eleven with S I twelve: the review and retention of audit records. It also supports BOD 25-01's continuous reporting. Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied. The evidence an ISSO keeps for Gate 7: every period's manifest, summary and checksum file, with the approved thresholds. The packages, with each unauthorized-write finding's closure at the source. The storage container's retention and immutability settings, set to the records schedule. And the ScubaGear results beside the period. The guide's Evidence section gathers all seven gates into one file per population.
 
 ## Slide 15 — Check yourself: two questions on drift and evidence
 

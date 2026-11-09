@@ -15,45 +15,45 @@ a vendor's cloud, and the integration
 identities are all recorded and accepted.
 
 4
-00:00:11.849 --> 00:00:15.235
+00:00:11.849 --> 00:00:15.205
 The second is done when every
 attribute has one writer,
 
 5
-00:00:15.235 --> 00:00:20.200
+00:00:15.205 --> 00:00:20.350
 every authority class has one approval
-system, and every change class has a lane.
+system, and every operation class has a lane.
 
 6
-00:00:20.200 --> 00:00:22.550
+00:00:20.350 --> 00:00:22.700
 That closes two of the four gaps.
 
 7
-00:00:22.550 --> 00:00:26.644
+00:00:22.700 --> 00:00:26.794
 The third is done when HR, Entra
 ID and Active Directory are
 
 8
-00:00:26.644 --> 00:00:31.250
+00:00:26.794 --> 00:00:31.400
 correlated on the employee I D and
 the starting drift is measured.
 
 9
-00:00:31.250 --> 00:00:35.318
+00:00:31.400 --> 00:00:35.468
 The fourth is done when findings,
 requests and manual work all
 
 10
-00:00:35.318 --> 00:00:39.625
+00:00:35.468 --> 00:00:39.775
 arrive in ServiceNow as typed tasks,
 each with an owner and a clock.
 
 11
-00:00:39.625 --> 00:00:44.842
+00:00:39.775 --> 00:00:44.992
 Part 2 covers the rest: actuating through
 a connector or a declared exception,
 
 12
-00:00:44.842 --> 00:00:49.220
+00:00:44.992 --> 00:00:49.370
 closing only on a re-read, and
 running the tempo with its evidence.

@@ -5,70 +5,80 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:04.869
-Gate 5 meets NIST
+00:00:01.437 --> 00:00:05.094
+Gate 5 supports NIST
 special publication eight
 
 3
-00:00:04.869 --> 00:00:08.300
+00:00:05.094 --> 00:00:08.475
 hundred fifty-three I A
 five, I A nine and A U two.
 
 4
-00:00:08.300 --> 00:00:11.700
+00:00:08.475 --> 00:00:12.650
+Your organization still sets the
+organization-defined parameters,
+
+5
+00:00:12.650 --> 00:00:15.800
+and the assessor decides
+whether each is satisfied.
+
+6
+00:00:15.800 --> 00:00:19.200
 The module's table maps each
 control to its evidence.
 
-5
-00:00:11.700 --> 00:00:15.245
+7
+00:00:19.200 --> 00:00:22.745
 Authenticator management
 and service identification:
 
-6
-00:00:15.245 --> 00:00:18.112
+8
+00:00:22.745 --> 00:00:25.612
 the conversion file, the
 plan and the findings.
 
-7
-00:00:18.112 --> 00:00:21.438
+9
+00:00:25.612 --> 00:00:28.938
 Verification of controls:
 the exchange tests.
 
-8
-00:00:21.438 --> 00:00:24.208
+10
+00:00:28.938 --> 00:00:31.708
 Account management and disabling accounts:
 
-9
-00:00:24.208 --> 00:00:28.100
+11
+00:00:31.708 --> 00:00:35.600
 the conversion records, the cutover
 log and the apply's results.
 
-10
-00:00:28.100 --> 00:00:32.975
+12
+00:00:35.600 --> 00:00:40.475
 Least privilege and access restrictions
 for change: the two tasks' permissions.
 
-11
-00:00:32.975 --> 00:00:37.563
+13
+00:00:40.475 --> 00:00:45.063
 Change control: the plan's hash,
 and the dry-run and apply folders.
 
-12
-00:00:37.563 --> 00:00:42.950
+14
+00:00:45.063 --> 00:00:50.450
 Audit events: Lab 2's sign-in entry that
 shows a federated credential was used.
 
-13
-00:00:42.950 --> 00:00:46.800
+15
+00:00:50.450 --> 00:00:54.300
 And the run's integrity: the
 manifest in each output folder.
 
-14
-00:00:46.800 --> 00:00:50.944
+16
+00:00:54.300 --> 00:00:58.444
 K S I's are FedRAMP twenty X indicators
 for cloud service providers;
 
-15
-00:00:50.944 --> 00:00:54.840
+17
+00:00:58.444 --> 00:01:02.350
 which file supports which
 indicator is the program's mapping.

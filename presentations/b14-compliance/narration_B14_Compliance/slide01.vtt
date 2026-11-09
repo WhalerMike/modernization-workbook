@@ -56,20 +56,20 @@ And how do you build the authorization
 package and keep it current?
 
 13
-00:00:30.276 --> 00:00:33.866
-If you remember one thing, make
-it this: a control is closed when
+00:00:30.276 --> 00:00:33.987
+If you remember one thing, make it
+this: a control is closed when the
 
 14
-00:00:33.866 --> 00:00:37.738
-the thing that closes it is running,
+00:00:33.987 --> 00:00:37.975
+mechanism that supports it is running,
 and the record shows it working.
 
 15
-00:00:37.738 --> 00:00:41.025
+00:00:37.975 --> 00:00:41.263
 Everything else is a
 promise, and promises age.
 
 16
-00:00:41.025 --> 00:00:43.220
+00:00:41.263 --> 00:00:43.460
 Let's start with who owes which proof.

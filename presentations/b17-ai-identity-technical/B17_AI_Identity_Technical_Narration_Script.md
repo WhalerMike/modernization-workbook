@@ -14,11 +14,11 @@ Module 1 sets the ground. We'll look at how AI got into agencies without the ide
 
 ## Slide 4 — AI arrived outside the program; the controls still apply
 
-Most AI didn't come through the front door. It came as a vendor pilot, a key in a config file, or a feature switched on in software you already had. So it arrived without what an employee's account gets automatically: an owner, a place in the organization, a governed credential, reviews and an end date. The good news is you don't need new controls. The account, identifier, authenticator and least-privilege controls you already meet apply to non-person accounts too. The real gap is coverage. The AI's account just isn't in the inventory those controls are tested against. Here's what closing that gap looks like.
+Most AI didn't come through the front door. It came as a vendor pilot, a key in a config file, or a feature switched on in software you already had. So it arrived without what an employee's account gets automatically: an owner, a place in the organization, a governed credential, reviews and an end date. The good news is you don't need new controls. The account, identifier, authenticator and least-privilege controls you already implement apply to non-person accounts too. The real gap is coverage. The AI's account just isn't in the inventory those controls are tested against. Here's what closing that gap looks like.
 
 ## Slide 5 — Seven things every AI identity needs
 
-The program's answer is seven things every AI identity needs: one record, a named human owner, a place in the organization, credentials with no stored secrets, monitoring, a lifecycle that ends, and evidence the authorizing official can use. Each one maps to a chapter, and to controls you already meet. Be clear that this is the program's design, not a new federal rule. And keep the order practical. Start with agents, the systems that can act, because that's where the damage would be, then work outward to the systems that only answer. Now, what do the federal rules actually say?
+The program's answer is seven things every AI identity needs: one record, a named human owner, a place in the organization, credentials with no stored secrets, monitoring, a lifecycle that ends, and evidence the authorizing official can use. Each one maps to a chapter, and to controls you already implement. Be clear that this is the program's design, not a new federal rule. And keep the order practical. Start with agents, the systems that can act, because that's where the damage would be, then work outward to the systems that only answer. Now, what do the federal rules actually say?
 
 ## Slide 6 — The rule set: what binds, what guides, what's missing
 

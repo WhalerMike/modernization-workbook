@@ -156,7 +156,7 @@ The program's own register of GCC telemetry gaps has 26 rows. Eight are vendor-c
   cards(s, "Rules", [
     ["FaLandmark", "Certified, Classes A to D", HEX.navy, HEX.navyTint, ["Class B: the former low-impact baselines", "Class C includes the current Moderate baseline", "Class D includes the current High baseline", "No numbers, to avoid confusion with DoD impact levels"]],
     ["FaUserCheck", "Your ATO, not theirs", HEX.teal, HEX.tealTint, ["Each agency still authorizes its own systems", "Authorize at the security category you deem appropriate", "Notify FedRAMP with the ATO letter"]],
-    ["FaUserClock", "The dates", HEX.amber, HEX.amberTint, ["June 25, 2026: rules announced", "July 4, 2026: optional early adoption", "January 1, 2027: mandatory for all", "June 11, 2027: no new Rev5 requests", "Existing Rev5: \"likely no later than 2029\""]],
+    ["FaUserClock", "The dates", HEX.amber, HEX.amberTint, ["June 25, 2026: rules announced", "July 4, 2026: optional early adoption", "January 1, 2027: mandatory for all; two vulnerability rules December 7, 2026", "June 11, 2027: no new Rev5 requests", "Existing Rev5: \"likely no later than 2029\""]],
   ], 13, 3.55);
   callout(s, "Vocabularies", 5.3, 1.2, "FaBook", HEX.navy, "Two vocabularies for years: ",
     "Rev5 packages describe a provider-drawn boundary; packages under the new rules describe scope, as data. The scope, change and data-sharing rule families apply to Rev5 Class C too.");
@@ -166,7 +166,7 @@ The program's own register of GCC telemetry gaps has 26 rows. Eight are vendor-c
 
 Two cautions come with the new labels. The class describes what FedRAMP assessed, not your use: agencies may authorize a service at any security category they deem appropriate under the Risk Management Framework. And certification doesn't replace your decision. Each agency still authorizes its own federal information systems, and notifies FedRAMP afterward with a copy of the authorization letter.
 
-The dates matter for planning. Optional early adoption began on July 4, 2026. Adoption is mandatory for everyone on January 1, 2027. FedRAMP stops accepting new Rev5 certification requests on June 11, 2027, and says the end date for existing Rev5 certifications isn't final, but is likely no later than 2029. Plan against those words, not against a specific date someone repeats.
+The dates matter for planning. Optional early adoption began on July 4, 2026. Adoption is mandatory for everyone on January 1, 2027, except that the Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules became mandatory earlier, on December 7, 2026. FedRAMP stops accepting new Rev5 certification requests on June 11, 2027, and says the end date for existing Rev5 certifications isn't final, but is likely no later than 2029. Plan against those words, not against a specific date someone repeats.
 
 So for years you'll hold two kinds of package at once. Rev5 packages describe a boundary the provider drew. Packages under the new rules describe scope, as data. And the new rule families on assessment scope, change notification and data sharing apply to Rev5 Class C certifications too. Read each package in its own terms, and don't force one vocabulary into the other.`,
   "Book 10, Chapter 03 — What Changed at FedRAMP (Certification replaces authorization; Rev5 and the 2026 rules side by side); Chapter 09 (Make the scope arguments the 2026 rules allow); Chapter 11 (What the package is). Announcement date: Book 01, Chapter 12 — Migration Roadmap.");
@@ -617,7 +617,7 @@ And the contracting officer buys the SKU the boundary assumes, and specifies cap
 
 The next step needs no award. Before the next architecture review, list every cloud feature your designs depend on, with its Marketplace package, its availability in your environment and the page that says so. Then put Appendix A's requests to your provider, and record the answers in your package.
 
-The rules become mandatory on January 1, 2027, and new Rev5 requests stop on June 11, 2027. Neither date moves your own boundary. It's still yours to draw, to evidence and to sign.
+The rules become mandatory on January 1, 2027, two vulnerability rules having started on December 7, 2026, and new Rev5 requests stop on June 11, 2027. Neither date moves your own boundary. It's still yours to draw, to evidence and to sign.
 
 The license says what you bought; the boundary says what you may use. Book 10 has the detail, with every claim footnoted. Thank you.`,
   "Book 10, Chapters 01, 04, 08, 09 and 11; Appendix A.");

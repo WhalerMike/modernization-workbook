@@ -46,7 +46,7 @@ Step six compares the next day with the first. It's not a baseline now. One assi
 
 ## Slide 12 — Try it: draft the issues, then package and verify day two
 
-Step seven drafts the findings for the issue tracker: seven to open, nine to close, none to comment on. Then search the drafts for the fictional domain, contoso. Zero matches, and grep exits with one: no user principal name reaches the drafts. Step eight packages the second day, chained to the first: you pass day one's evidence manifest as the previous manifest. The new package's hash starts seven six three d four a one f. Verify it: fifteen files, and the same hash. Then check it the way a reviewer would, with sha256sum alone, checking the sums file. It prints nothing and exits with zero. In the evidence manifest, the previous package's hash is day one's: that's the chain.
+Step seven drafts the findings for the issue tracker: seven to open, nine to close, none to comment on. Then search the drafts for the fictional domain, contoso. Zero matches, and grep exits with one: no user principal name reaches the drafts. Step eight packages the second day, chained to the first: you pass day one's evidence manifest as the previous manifest. The new package's hash starts f three zero c c four a d. Verify it: fifteen files, and the same hash. Then check it the way a reviewer would, with sha256sum alone, checking the sums file. It prints nothing and exits with zero. In the evidence manifest, the previous package's hash is day one's: that's the chain.
 
 ## Slide 13 — Try it: assemble the period for the ISSO
 

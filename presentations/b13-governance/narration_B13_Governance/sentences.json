@@ -312,61 +312,61 @@
  "6": [
   [
    0.05,
-   4.35,
-   "When the program says a control is satisfied, how does anyone know it's right?"
+   4.3,
+   "When the program reports on a control, how does anyone know the report is right?"
   ],
   [
-   4.4,
+   4.35,
    1.887,
    "The usual answer is trust."
   ],
   [
-   6.287,
+   6.237,
    2.388,
    "The program's answer is determinism."
   ],
   [
-   8.675,
+   8.625,
    6.6,
    "Give it the same version of the record and the same inputs, and it produces the same evidence, byte for byte."
   ],
   [
-   15.275,
+   15.225,
    2.5,
    "So an assessor doesn't have to trust the run."
   ],
   [
-   17.775,
+   17.725,
    2.425,
    "They repeat it and compare the hashes."
   ],
   [
-   20.2,
+   20.15,
    1.712,
    "That's different from automation."
   ],
   [
-   21.913,
+   21.863,
    6.6,
    "Automation makes the answer arrive faster; determinism makes it the same answer no matter who asks."
   ],
   [
-   28.512,
+   28.462,
    12.562,
-   "The rules live in three layers, each with its own reviewer: rules that say what things mean, mappings that say which rules apply to which controls, and runtime code, the only layer allowed to change state."
+   "The rules liv in three layers, each with its own reviewer: rules that say what things mean, mappings that say which rules apply to which controls, and runtime code, the only layer allowed to change state."
   ],
   [
-   41.075,
+   41.025,
    5.013,
    "One honest limit: determinism is faithful to the record, not a check on it."
   ],
   [
-   46.087,
+   46.038,
    3.188,
    "A wrong rule gives the same wrong answer every time."
   ],
   [
-   49.275,
+   49.225,
    1.725,
    "Next, the drift engine."
   ]

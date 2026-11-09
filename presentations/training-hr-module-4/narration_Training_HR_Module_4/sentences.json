@@ -581,46 +581,51 @@
   ],
   [
    1.438,
-   10.75,
-   "This gate meets nist special publication eight hundred fifty-three A C two, which asks you to authorize access on organization-defined attributes and to review accounts."
+   10.787,
+   "This gate supports nist special publication eight hundred fifty-three A C two, which asks you to authorize access on organization-defined attributes and to review accounts."
   ],
   [
-   12.188,
-   5.675,
-   "It meets A C six, least privilege, and A C five, separation of duties."
+   12.225,
+   5.812,
+   "It supports A C six, least privilege, and A C five, separation of duties."
   ],
   [
-   17.863,
-   5.4,
-   "It meets P S five, personnel transfer, which is what the residual review is for."
+   18.038,
+   5.513,
+   "It supports P S five, personnel transfer, which is what the residual review is for."
   ],
   [
-   23.262,
-   10.5,
-   "And it meets scuba policy seven point five, highly privileged roles only through a privileged access management system, required under B O D twenty-five oh-one."
+   23.55,
+   10.575,
+   "And it supports scuba policy seven point five, highly privileged roles only through a privileged access management system, required under B O D twenty-five oh-one."
   ],
   [
-   33.763,
+   34.125,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   41.45,
    8.887,
    "The evidence an I S S O keeps for Gate 4: the reviewed policy files, the lint's clean run, and the hash of each body sent."
   ],
   [
-   42.65,
+   50.337,
    2.8,
    "The member-of scan's output with zero rows."
   ],
   [
-   45.45,
+   53.138,
    1.788,
    "A A oh nine's clean run."
   ],
   [
-   47.237,
+   54.925,
    5.55,
    "Each mover's residual sheet, the manager's decisions and the transfer-to-review interval."
   ],
   [
-   52.788,
+   60.475,
    3.862,
    "And the separation-of-duties settings in the package configuration."
   ]

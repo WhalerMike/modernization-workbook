@@ -59,21 +59,21 @@
   ],
   [
    19.775,
-   7.737,
-   "The compliance side is just as firm: a circuit closes exactly one control family, telecommunications diversity."
+   7.7,
+   "The compliance side is just as firm: a circuit supports exactly one control family, telecommunications diversity."
   ],
   [
-   27.512,
+   27.475,
    3.2,
    "Everything else comes from the layer that governs the circuit."
   ],
   [
-   30.712,
+   30.675,
    4.338,
    "So a bare local breakout fixes latency and loses the boundary."
   ],
   [
-   35.05,
+   35.013,
    2.65,
    "Which brings us to the order you do things in."
   ]
@@ -128,8 +128,8 @@
   ],
   [
    15.912,
-   5.013,
-   "We'll read what's really there, and finish with how token security changes where data can live."
+   5.05,
+   "We'll read what's really there, and finish with how token security changes where data can liv."
   ]
  ],
  "5": [
@@ -367,11 +367,11 @@
   ],
   [
    4.763,
-   5.362,
-   "First the governor itself: what SD-WAN and sassy each close, and how to protect them."
+   5.513,
+   "First the governor itself: what SD-WAN and sassy each provide, and how to protect them."
   ],
   [
-   10.125,
+   10.275,
    7.35,
    "Then what actually breaks when you re-route a branch, which turns out to be a shorter, and different, list than the folklore suggests."
   ]
@@ -421,26 +421,26 @@
   ],
   [
    3.625,
-   10.325,
-   "Boundary protection, web policy, malware inspection and private-app access come from the sassy services above it, and this table shows which layer closes which control."
+   10.162,
+   "Boundary protection, web policy, malware inspection and private-app access come from the sassy services above it, and this table shows which layer provides which control."
   ],
   [
-   13.95,
+   13.787,
    1.512,
    "Two practical points."
   ],
   [
-   15.463,
+   15.3,
    9.2,
    "The enforcement point has a location, so a distant or poorly peered point of presence is just a hairpin with a new name; measure it before cutover."
   ],
   [
-   24.663,
+   24.5,
    7.275,
    "And fed-ramp status is per offering, not per vendor, and it covers the cloud service, not the boxes in your offices."
   ],
   [
-   31.938,
+   31.775,
    3.837,
    "Which raises the question nobody likes: who protects the governor?"
   ]
@@ -840,16 +840,16 @@
   ],
   [
    22.512,
-   4.85,
-   "Done this way, it closes real device-authentication and inventory controls."
+   4.688,
+   "Done this way, it supports the device-authentication and inventory controls."
   ],
   [
-   27.363,
+   27.2,
    6.237,
    "One correction worth knowing: it doesn't close the external-connections control people often claim for it."
   ],
   [
-   33.6,
+   33.438,
    1.975,
    "That wraps up access control."
   ]

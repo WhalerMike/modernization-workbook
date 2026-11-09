@@ -27,7 +27,7 @@
   {
     "slide": 6,
     "title": "Two axes, a confidence flag, and where the grid points",
-    "say": "The six criteria roll up into two axes: how much the mission needs the application, and how healthy it is to run and change. The grid shows where each corner points. Low value? Retire it first. High value and healthy? Keep it, on purpose. High value and unhealthy? Fix the platform or the code, whichever is the real problem. Every score also carries a flag for how far you can trust it: measured, attested or assumed. Mostly assumed means no decision yet. And always prefer what's measured, like usage logs, over what people believe. Next, the rules."
+    "say": "Five of the six criteria roll up into two axes: how much the mission needs the application, and how healthy it is to run and change. Dependencies stay out of both axes and set the order of the moves. The grid shows where each corner points. Low value? Retire it first. High value and healthy? Keep it, on purpose. High value and unhealthy? Fix the platform or the code, whichever is the real problem. Every score also carries a flag for how far you can trust it: measured, attested or assumed. Mostly assumed means no decision yet. And always prefer what's measured, like usage logs, over what people believe. Next, the rules."
   },
   {
     "slide": 7,

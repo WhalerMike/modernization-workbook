@@ -357,87 +357,87 @@ edit them in AD or HR, not in Entra ID.
 Now the attributes themselves.
 
 76
-00:05:03.370 --> 00:05:07.607
+00:05:03.370 --> 00:05:07.616
 These are the attributes your team
 already knows, and what each becomes.
 
 77
-00:05:07.607 --> 00:05:10.958
+00:05:07.616 --> 00:05:10.975
 distinguishedName comes across,
 but never use it for policy,
 
 78
-00:05:10.958 --> 00:05:13.169
+00:05:10.975 --> 00:05:13.196
 because it's the placement we're leaving.
 
 79
-00:05:13.169 --> 00:05:15.763
+00:05:13.196 --> 00:05:15.795
 Rules can't read manager or employeeType,
 
 80
-00:05:15.763 --> 00:05:18.508
+00:05:15.795 --> 00:05:18.545
 which is why the program
 keeps coded copies.
 
 81
-00:05:18.508 --> 00:05:23.483
+00:05:18.545 --> 00:05:23.536
 The disabled bit becomes accountEnabled,
 and every access rule should require it.
 
 82
-00:05:23.483 --> 00:05:28.126
+00:05:23.536 --> 00:05:28.190
 And two have no attribute at all:
 Kerberos service principal names stay
 
 83
-00:05:28.126 --> 00:05:32.770
+00:05:28.190 --> 00:05:32.840
 in AD until the workloads move, and
 admin count gives way to roles and PIM.
 
 84
-00:05:32.770 --> 00:05:34.750
+00:05:32.840 --> 00:05:34.750
 So where do the values live?
 
 85
-00:05:38.500 --> 00:05:41.688
+00:05:38.500 --> 00:05:41.695
 This is the store table, and
 both parts point back to it.
 
 86
-00:05:41.688 --> 00:05:45.887
+00:05:41.695 --> 00:05:45.836
 There are eight places an attribute can
 live, in the order to reach for them.
 
 87
-00:05:45.887 --> 00:05:47.563
+00:05:45.836 --> 00:05:47.508
 Native properties first.
 
 88
-00:05:47.563 --> 00:05:53.175
+00:05:47.508 --> 00:05:53.132
 Then extension attributes one to fifteen,
 which rules can read but anyone can see.
 
 89
-00:05:53.175 --> 00:05:55.938
+00:05:53.132 --> 00:05:55.908
 Directory extensions when
 you need more slots.
 
 90
-00:05:55.938 --> 00:06:00.738
+00:05:55.908 --> 00:06:00.720
 Custom security attributes for sensitive
 values that dynamic rules can't read.
 
 91
-00:06:00.738 --> 00:06:06.751
+00:06:00.720 --> 00:06:06.742
 Then device properties, Azure tags, and
 certificate user I Ds, the PIV binding.
 
 92
-00:06:06.751 --> 00:06:08.788
+00:06:06.742 --> 00:06:08.786
 Pick the store by who has to read it.
 
 93
-00:06:08.788 --> 00:06:10.310
+00:06:08.786 --> 00:06:10.310
 Now, the path.
 
 94

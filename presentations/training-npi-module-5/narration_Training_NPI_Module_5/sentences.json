@@ -648,56 +648,61 @@
   ],
   [
    1.438,
-   8.125,
-   "Gate 4 meets nist special publication eight hundred fifty-three A C six, A C six enhancement five, and I A nine."
+   8.262,
+   "Gate 4 supports nist special publication eight hundred fifty-three A C six, A C six enhancement five, and I A nine."
   ],
   [
-   9.562,
+   9.7,
+   7.325,
+   "Your organization still sets the organization-defined parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   17.025,
    3.4,
    "The module's table maps each control to its evidence."
   ],
   [
-   12.963,
+   20.425,
    3.288,
    "For least privilege, it's the sweep and the findings."
   ],
   [
-   16.25,
+   23.712,
    2.725,
    "For privileged accounts, the hand-off file."
   ],
   [
-   18.975,
+   26.438,
    3.85,
    "For review of privileges, the owner review and its status."
   ],
   [
-   22.825,
+   30.288,
    6.763,
    "For change control, the plan and its hash, and the results and manifest from the dry run and the apply."
   ],
   [
-   29.587,
+   37.05,
    4.388,
    "For separation of duties, the plan's hash approved by a second person."
   ],
   [
-   33.975,
+   41.438,
    4.037,
    "And for the run's integrity, the manifest in each output folder."
   ],
   [
-   38.013,
+   45.475,
    4.638,
    "K S I's are fed-ramp twenty X indicators for cloud service providers."
   ],
   [
-   42.65,
+   50.112,
    6.9,
    "The agency lines its evidence up with what its providers report against them; it doesn't report K S I's itself."
   ],
   [
-   49.55,
+   57.013,
    3.25,
    "Which file supports which indicator is the program's mapping."
   ]

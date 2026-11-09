@@ -161,41 +161,41 @@
   ],
   [
    29.663,
-   5.412,
-   "Entra ID has no O U tree, so each effect has to be rebuilt on purpose."
+   5.638,
+   "Entra I D has no O U tree, so each effect has to be rebuilt on purpose."
   ],
   [
-   35.075,
+   35.3,
    4.987,
    "Most migration plans count users, computers, groups and Group Policy."
   ],
   [
-   40.062,
+   40.288,
    10.938,
    "The program counts eleven categories, adding service accounts, D N S and DHCP, certificate services, radius, el-dap-bound applications and trusts."
   ],
   [
-   51.0,
+   51.225,
    1.438,
    "Those fail silently."
   ],
   [
-   52.438,
+   52.663,
    2.475,
    "No log line says governance has failed."
   ],
   [
-   54.913,
+   55.138,
    7.388,
    "Microsoft hasn't deprecated Active Directory, so there's no vendor deadline; retiring it is the agency's decision."
   ],
   [
-   62.3,
+   62.525,
    11.875,
    "That makes scope a decision for the sponsor and the C I O, when scope and funding are set: fund this as a governance transformation across all eleven categories, not a users-and-groups project."
   ],
   [
-   74.175,
+   74.4,
    3.125,
    "Next, what has to be true for the target to hold."
   ]
@@ -774,16 +774,16 @@
   ],
   [
    53.062,
-   8.988,
-   "M nineteen seventeen requires an agency-wide identity governance structure that includes HR, general counsel, privacy and acquisition."
+   9.1,
+   "M nineteen seventeen requires an agency-wide identity governance structure that includes H R, general counsel, privacy and acquisition."
   ],
   [
-   62.05,
+   62.163,
    10.037,
    "So the first decision for the sponsor and the C I O, before Phase 0: confirm who already holds those roles, and decide whether one becomes the program's steward."
   ],
   [
-   72.088,
+   72.2,
    2.175,
    "Next, the decision matrix."
   ]
@@ -1188,46 +1188,46 @@
   ],
   [
    13.225,
-   9.35,
-   "They become mandatory on January 1, 2027, and new Rev5 certification applications stop on June 11, 2027."
+   18.925,
+   "They become mandatory on January 1, 2027, except that the Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules became mandatory earlier, on December 7, 2026, and new Rev5 certification applications stop on June 11, 2027."
   ],
   [
-   22.575,
+   32.15,
    2.9,
    "None of that certifies the agency's own estate."
   ],
   [
-   25.475,
+   35.05,
    8.875,
    "Each agency still authorizes its own systems; what the 2027 date changes is the evidence your providers publish and you inherit."
   ],
   [
-   34.35,
+   43.925,
    15.1,
    "The deadlines that bind the agency directly come from O M B and sis-uh: M-26-14's logging plan and maturity levels, and B O D twenty-five oh-one's baselines for Microsoft 365 tenants."
   ],
   [
-   49.45,
+   59.025,
    2.05,
    "The estate has its own dates too."
   ],
   [
-   51.5,
+   61.075,
    16.988,
    "Windows 10 reached end of support on October 14, 2025, Windows Server 2012 security updates ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027."
   ],
   [
-   68.487,
+   78.062,
    5.3,
    "Mainframes join the access work late, and may need other zero trust mechanisms."
   ],
   [
-   73.787,
+   83.362,
    10.463,
    "So the sponsor and the C I O sequence the program against the agency's own deadlines and end-of-support dates, starting now, not against fed-ramp's 2027 date."
   ],
   [
-   84.25,
+   93.825,
    2.675,
    "To close, the decisions in one place."
   ]

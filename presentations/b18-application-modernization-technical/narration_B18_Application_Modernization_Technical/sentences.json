@@ -172,61 +172,66 @@
  "6": [
   [
    0.05,
-   7.85,
-   "The six criteria roll up into two axes: how much the mission needs the application, and how healthy it is to run and change."
+   8.425,
+   "Five of the six criteria roll up into two axes: how much the mission needs the application, and how healthy it is to run and change."
   ],
   [
-   7.9,
+   8.475,
+   4.037,
+   "Dependencies stay out of both axes and set the order of the moves."
+  ],
+  [
+   12.512,
    2.425,
    "The grid shows where each corner points."
   ],
   [
-   10.325,
+   14.938,
    0.963,
    "Low value?"
   ],
   [
-   11.287,
+   15.9,
    1.375,
    "Retire it first."
   ],
   [
-   12.662,
+   17.275,
    1.675,
    "High value and healthy?"
   ],
   [
-   14.338,
+   18.95,
    1.475,
    "Keep it, on purpose."
   ],
   [
-   15.812,
+   20.425,
    1.9,
    "High value and unhealthy?"
   ],
   [
-   17.712,
+   22.325,
    3.875,
    "Fix the platform or the code, whichever is the real problem."
   ],
   [
-   21.587,
+   26.2,
    6.15,
    "Every score also carries a flag for how far you can trust it: measured, attested or assumed."
   ],
   [
-   27.738,
+   32.35,
    2.663,
    "Mostly assumed means no decision yet."
   ],
   [
-   30.4,
+   35.013,
    4.888,
    "And always prefer what's measured, like usage logs, over what people believe."
   ],
   [
-   35.288,
+   39.9,
    1.55,
    "Next, the rules."
   ]

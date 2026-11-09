@@ -20,39 +20,39 @@ and services that authenticate
 before they talk.
 
 5
-00:00:13.437 --> 00:00:18.263
+00:00:13.437 --> 00:00:18.213
 NIST's AI framework adds inventory,
 decommissioning and clear roles.
 
 6
-00:00:18.263 --> 00:00:20.237
+00:00:18.213 --> 00:00:20.187
 So the gap isn't the catalog.
 
 7
-00:00:20.237 --> 00:00:23.871
+00:00:20.187 --> 00:00:23.821
 It's coverage: the AI system's
 account is often simply missing
 
 8
-00:00:23.871 --> 00:00:27.650
+00:00:23.821 --> 00:00:27.600
 from the account inventory those
 controls are tested against.
 
 9
-00:00:27.650 --> 00:00:33.110
+00:00:27.600 --> 00:00:32.979
 The book's model gives every AI identity
 seven things, from an identity record and a
 
 10
-00:00:33.110 --> 00:00:38.650
+00:00:32.979 --> 00:00:38.438
 named owner to a lifecycle that ends and
 evidence the authorizing official can use.
 
 11
-00:00:38.650 --> 00:00:42.850
-That model is program design,
-built on controls you already meet.
+00:00:38.438 --> 00:00:42.901
+That model is program design, built
+on controls you already implement.
 
 12
-00:00:42.850 --> 00:00:45.410
+00:00:42.901 --> 00:00:45.460
 Now, what the federal rules actually say.
