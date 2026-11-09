@@ -59,7 +59,7 @@ interception problem — is developed in the workbook's
 [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md);
 this volume is the per-platform build-out beneath that argument.
 
-Because DDI is the join key the rest of the series reconciles to — the CMDB (Vol VII Book 01), the multi-CSP patch queue (Vol III Book 03), and the evidence fabric (Vol III Book 07) all key on the authoritative asset identity IPAM owns — this volume is upstream of much of the program. It is placed last in reading order only because it is the deepest implementation detail; in dependency order it is near the root.
+Because DDI is the join key the rest of the series reconciles to — the CMDB ([Book 15, Chapter 07](../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md)), the multi-CSP patch queue (Vol III Book 03), and the evidence fabric (Vol III Book 07) all key on the authoritative asset identity IPAM owns — this volume is upstream of much of the program. It is placed last in reading order only because it is the deepest implementation detail; in dependency order it is near the root.
 
 # Books in This Volume
 
@@ -84,15 +84,15 @@ Each book below is a chapter of the `infoblox-ddi-book/` kit; the volume overvie
 
 Volume VIII is the deployable realization of **Vol I Book 01**'s naming plane and the multi-cloud build-out of the DDI/IPAM necessity the series anchors there. It is depended on by:
 
-- **Vol VII Book 01 (CMDB Reconciliation)** — the ServiceNow CMDB reconciles every M365/Azure CI to the authoritative IPAM/DDI identity this volume stands up (the CM-8 join key).
-- **Vol VII Book 05 (The ServiceNow Compliance App)** — generalizes this volume's ServiceNow orchestration pattern (Book VIII-07: catalog → approval/SoD → apply → validation gate → CMDB close) from DDI provisioning to control-compliance work.
+- [Book 15, Chapter 07](../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md) (CMDB and asset identity) — the ServiceNow CMDB reconciles every M365/Azure CI to the authoritative IPAM/DDI identity this volume stands up (the CM-8 join key).
+- [Book 15, Chapter 11](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md) (attestation and the compliance app) — generalizes this volume's ServiceNow orchestration pattern (Book VIII-07: catalog → approval/SoD → apply → validation gate → CMDB close) from DDI provisioning to control-compliance work.
 - **Vol III Book 03 / Book 07** — the multi-CSP patch queue and evidence fabric key on the same authoritative asset identity.
 
 Truth is separated from enforcement, as everywhere in the series: the DDI/IPAM plane this volume builds is a **truth plane** (depended on, not re-platformed casually); the per-cloud provisioning pipelines and the ServiceNow front door are **enforcement/coordination planes** on top of it.
 
 # Governance Boundary
 
-The per-CSP chapters are the mechanism build-out and are CSP-agnostic by design. **Federal control closure is operated at the ServiceNow front door (Book VIII-07 §7.4), which coordinates the GCC-Moderate boundary**: the ServiceNow Government Cloud platform holds **FedRAMP High** authorization and coordinates a Moderate boundary — the High-on-Moderate boundary treatment (High conservatively encompasses the Moderate baseline; the CMDB reconciles to IPAM/DDI, never replaces it) is stated once in **Vol VII Book 00 §"Authorization Boundary Treatment — ServiceNow High-on-Moderate"** and inherited here without restatement. The instance runs a MID Server in-boundary so credentials and Terraform execution never leave the ATO boundary, and the Universal DDI SaaS path is gated by an explicit boundary acknowledgment. The catalog approval, the change record, the validation-gate verdict, and the CMDB reconcile are the audit evidence — the same coordination discipline Volume VII applies to M365 and Azure compliance.
+The per-CSP chapters are the mechanism build-out and are CSP-agnostic by design. **Federal control closure is operated at the ServiceNow front door (Book VIII-07 §7.4), which coordinates the GCC-Moderate boundary**: the ServiceNow Government Cloud platform holds **FedRAMP High** authorization and coordinates a Moderate boundary — the High-on-Moderate boundary treatment (High conservatively encompasses the Moderate baseline; the CMDB reconciles to IPAM/DDI, never replaces it) is stated once in [Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md), [The boundary question](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-boundary-question), and inherited here without restatement. The instance runs a MID Server in-boundary so credentials and Terraform execution never leave the ATO boundary, and the Universal DDI SaaS path is gated by an explicit boundary acknowledgment. The catalog approval, the change record, the validation-gate verdict, and the CMDB reconcile are the audit evidence — the same coordination discipline Volume VII applies to M365 and Azure compliance.
 
 # Authorities Closed Here — Volume VIII (cross-cutting books)
 
@@ -124,7 +124,7 @@ The per-CSP chapters *realize* the naming plane; the two cross-cutting books car
 
 - **`infoblox-ddi-book/`** — the chapter content of this volume (independently distributable kit).
 - **Vol I Book 01 (Cloud Landing Zone, IPAM/DDI, FedRAMP)** — the architecture-level naming-plane necessity this volume realizes.
-- **Vol VII Book 01 / Book 05** — the CMDB reconcile and the ServiceNow compliance app that build on this volume's IPAM/DDI identity and orchestration pattern.
+- [Book 15, Chapter 07](../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md) and [Book 15, Chapter 11](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md) — the CMDB reconcile and the ServiceNow compliance app that build on this volume's IPAM/DDI identity and orchestration pattern.
 - **`federal-compliance-compliance-spine.yml`** — the SSOT registering this volume (`vol-8`) and its control closures.
 
 # Provenance
