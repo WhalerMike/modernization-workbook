@@ -344,9 +344,31 @@ import evidence  # noqa: E402
 
 # KSI IDs the program's pages already cite (Book 04, Chapter 10; Book 13, Appendix A and Chapter 04;
 # Book 14, Chapter 03), all listed on fedramp.gov's KSI page read November 2, 2026.
-CITED_KSIS = {"KSI-IAM-AAM", "KSI-IAM-ELP", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-APM", "KSI-CMT-LMC", "KSI-CMT-RMV",
-              "KSI-CMT-RVP", "KSI-CMT-VTD", "KSI-MLA-EVC", "KSI-MLA-OSM", "KSI-MLA-LET", "KSI-MLA-RVL", "KSI-SVC-ACM",
+CITED_KSIS = {"KSI-IAM-AAM", "KSI-IAM-ELP", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-SUS", "KSI-IAM-APM", "KSI-CMT-LMC",
+              "KSI-CMT-RMV", "KSI-CMT-RVP", "KSI-CMT-VTD", "KSI-MLA-EVC", "KSI-MLA-OSM", "KSI-MLA-LET", "KSI-MLA-RVL", "KSI-SVC-ACM",
               "KSI-SVC-ASM", "KSI-PIY-GIV", "KSI-INR-RIR"}
+
+
+def test_ac_2_1_and_ps_4_carry_the_guides_indicators():
+    # The implementation guide's Gate 3 and Gate 6 tables: AC-2(1) with KSI-IAM-JIT; PS-4 with KSI-IAM-ELP,
+    # and KSI-IAM-JIT and KSI-IAM-SUS with AC-2(3).
+    for step, m in evidence.STEPS.items():
+        if "AC-2(1)" in m["nist"]:
+            assert "KSI-IAM-JIT" in m["ksi"], step
+        if "PS-4" in m["nist"]:
+            assert {"KSI-IAM-ELP", "KSI-IAM-JIT", "KSI-IAM-SUS"} <= set(m["ksi"]), step
+
+
+def test_the_post_leaver_workflow_is_called_post_separation_in_the_output(tmp_path):
+    s = _settings()
+    pf = {r["ObjectKey"]: r["Object"] for r in _run_pf(tmp_path, FX / "preflight") if r["Rule"] == "PF-05"}
+    rb = {r["ObjectKey"]: r["Object"] for r in rollback.verify(s, FX / "preflight") if r["Rule"] == "RB-02"}
+    assert pf["post-leaver"] == rb["post-leaver"] == "post-separation"
+    assert pf["leaver"] == "leaver"
+    steps, _ = rollback.plan(s, None)
+    says = [x["say"] for x in steps]
+    assert "Turn off scheduling for the post-separation workflow (stays enabled for on-demand runs)" in says
+    assert not any("post-leaver" in x for x in says)
 
 
 def test_every_step_maps_to_controls_and_only_to_cited_ksis():

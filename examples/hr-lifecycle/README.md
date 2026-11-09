@@ -93,7 +93,7 @@ python -m pytest tests -q
 python -m pytest deploy/tests -q
 ```
 
-57 tests for the chapters' tools, and 23 for the runbook's scripts in `deploy/tests` (kept apart so the chapters' test step still counts the tools'), no tenant and no network. `examples/drift-pipeline/tests/test_hr_evidence.py` also builds runs from this kit's fixtures, so the drift pipeline's suite runs when this kit changes.
+57 tests for the chapters' tools, and 25 for the runbook's scripts in `deploy/tests` (kept apart so the chapters' test step still counts the tools'), no tenant and no network. `examples/drift-pipeline/tests/test_hr_evidence.py` also builds runs from this kit's fixtures, so the drift pipeline's suite runs when this kit changes.
 
 ## Not covered
 
