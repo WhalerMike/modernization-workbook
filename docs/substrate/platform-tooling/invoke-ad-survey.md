@@ -42,19 +42,13 @@ publish raw findings.
 
 ## Download
 
-| Artifact | Version | SHA256 |
+::: {.callout-note}
+**Historical reference.** This workbook's repository does not contain `Invoke-ADSurvey.ps1` (there is no `scripts/ad-survey/` folder) or the `survey.py` adapter that consumed it, so there is nothing to download from this page and no hash to verify. The page describes the script's design and output. For a read-only estate assessment that is published, see the Start Kit on the [Downloads](../../downloads.md) page.
+:::
+
+| Artifact | Version | Status |
 |---|---|---|
-| [`Invoke-ADSurvey.ps1`] | 1.0 | `9b590c08158a40f8b7e0145329101580ec29e7575735985301f1d291d665701f` |
-
-The script is served from its canonical home (`scripts/ad-survey/` in the repo)
-because it is also the runtime artifact the Federal Modernization Program AD adapter invokes — one file,
-no drift. Use the **Download raw file** button on the GitHub page, then verify
-integrity after download:
-
-```powershell
-Get-FileHash .\Invoke-ADSurvey.ps1 -Algorithm SHA256
-# compare the output to the SHA-256 above before running
-```
+| `Invoke-ADSurvey.ps1` | 1.0 | Not published in this repository |
 
 ## Prerequisites
 

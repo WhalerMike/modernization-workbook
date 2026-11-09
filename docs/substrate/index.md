@@ -14,11 +14,6 @@ lifecycle_review: 2026-11-22
 
 # Substrate {.unnumbered}
 
-::: {.callout-tip}
-## Download the full section
-**[substrate-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
-:::
-
 The **shared spine that governance, Federal Compliance, and OrgMod ride on.** These components aren't
 governance, compliance, *or* modernization — they're the machinery that lets
 all three exist: the monorepo, the render pipeline, the architecture
@@ -33,11 +28,11 @@ redefining them.
 
 ## Sub-categories
 
-| Section | Scope | Leaf count |
+| Section | Scope | Pages |
 |---|---|---|
-| [Platform & tooling](platform-tooling/index.html) | GitHub/Gitea monorepo · Quarto pipeline · canon sync · CI/CD · Customer Documents portal · CLI · Academy | 8 |
-| [Core architecture](core-architecture/index.html) | Six-Plane Architecture · Three-Layer Rule Model · Drift Engine · Evidence Chain · Boundary Impact Model · Two-Way Governance | 6 |
-| [Execution patterns](execution-patterns/index.html) | Two-Brain Execution (Copilot + Execution Substrate) · "Instruments vs. Orchestra" positioning | 2 |
+| [Platform & tooling](platform-tooling/index.html) | Azure Arc policy library · Active Directory survey script · Group Policy migration triage and obsolete-object audit scripts | 4 |
+| [Core architecture](core-architecture/index.html) | Active-passive replication of the Git substrate · disaster recovery playbook | 2 |
+| [Execution patterns](execution-patterns/index.html) | CLI and operations guide · operations runbook | 2 |
 
 ## Canonical invariants
 

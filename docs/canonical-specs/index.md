@@ -1,6 +1,6 @@
 ---
 title: "Canonical the Federal Modernization Program Specifications"
-subtitle: "The SSOT Specification Layer — Published Verbatim from `src/fmp/canon/`"
+subtitle: "The SSOT Specification Layer — Stub Pages"
 date: 2026-06-26
 format:
   html:
@@ -16,22 +16,14 @@ aliases:
 ---
 
 
-::: {.callout-tip}
-## Download the full section
-**[canon-bundle.docx]** — every canonical specification in
-this section concatenated into one Word document, figures embedded.
-Regenerated on every site deploy. Each spec below is also downloadable
-individually as its own `.docx` from its page.
-:::
-
 ## What this section is
 
 These pages are the **canonical the Federal Modernization Program specifications** — the single-source-of-truth
-(SSOT) layer of the substrate. Each page renders its authoritative source
-**verbatim** from `src/fmp/canon/` through an
-the program decision include-style wrapper:
-the published page is generated, the `.md` under `src/fmp/canon/` is the
-authority, and every downstream document traces its provenance back here.
+(SSOT) layer of the substrate. Each page here is a **stub**: a wrapper that
+shows the spec's identifier, status and version in a callout, with no body
+and no link to the authoritative source. The authoritative text is not
+published in this repository, so read each page as a registry entry, not as
+the specification itself.
 
 A spec carries a `FMP_NNN` identifier allocated in
 [`document-registry.yaml`],
@@ -47,14 +39,16 @@ cited fact (see [the program decision]).
 |---|---|
 | [FMP_002](002_SCuBA_Technical_Specification_v1.0.md) | SCuBA Technical Specification |
 | [FMP_003](003_Adapter_Segmentation_Overview_v1.0.md) | Adapter Segmentation Overview |
+| [FMP_015](015_Governance_Platform_Coverage_And_Gap_Doctrine_v1.0.md) | Governance-Platform Coverage And Gap Doctrine |
 | [FMP_005](005_SCuBA_Value_Proposition_v1.0.md) | Value Proposition — Two-Way Governance for SCuBA & BOD 25-01 |
 
-## Identity & addressing planes
+## Identity & addressing planes, and vendor contract pins
 
 | Spec | Title |
 |---|---|
-| [the directory modernization program | Identity & Directory Transformation Inventory — AD to Entra ID |
 | [FMP_195](schemas/195_Addressing_Plane_Drift_Taxonomy.md) | Addressing-Plane Drift Taxonomy — DNS & Namespace Governance |
+| [FMP_210](schemas/210_identityiq-api-contract-pin.md) | SailPoint IdentityIQ REST API — Vendor Contract Pin |
+| [FMP_211](schemas/211_servicenow-deployment-contract-pin.md) | ServiceNow Deployment Contract — Schema Pin |
 
 ## PowerShell module specifications
 
@@ -82,9 +76,6 @@ cited fact (see [the program decision]).
 
 ## Provenance
 
-Every page in this section is generated; do not edit the published `.qmd`
-wrappers directly. To change a spec, edit its source under
-[`src/fmp/canon/`]
-and follow the canon-change process (a `FMP_NNN` allocation for a new doc, an
-ADR for a doctrinal change, governance review). The wrapper and this index then
-re-render on the next site deploy.
+Every page in this section is a stub wrapper. A new spec takes an `FMP_NNN`
+identifier and an index row here; a doctrinal change takes a decision record
+and governance review.

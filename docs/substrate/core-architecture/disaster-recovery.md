@@ -88,7 +88,7 @@ The following components constitute the Federal Modernization Program Governance
 
 - **Git Repositories** --- All bare repositories under D:\\GitRepos\\, including the canonical canon/ governance directory
 
-- **Gitea Database** --- SQLite database at D:\\Gitea\\data\\gitea.db containing users, issues, PRs, SSH keys, and metadata
+- **Gitea Database** --- Users, issues, PRs, SSH keys, and metadata. The program's full-production profile keeps this in an external PostgreSQL database (`fmp_gitea`), not in a local file; the single-host profile uses SQLite at D:\\Gitea\\data\\gitea.db. The SQLite file path, the VSS copy in section 4.1 and the `PRAGMA integrity_check` in section 3.5 apply to the single-host profile only. In the PostgreSQL profile the nightly `gitea dump` archive (Gitea's single-archive backup of files and databases) goes to Azure Blob storage, and the database team restores the database on the PostgreSQL host. See [Book 10, Appendix B](../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md) (family F and section C.4)
 
 - **AD Assessment Data** --- JSON output from Active Directory assessments stored in D:\\FMP\\Assessment\\
 
@@ -137,14 +137,14 @@ All backup, recovery, monitoring, and validation procedures are implemented as P
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Note**                                                                                                                                                                                                                      |
 |                                                                                                                                                                                                                               |
-| All PowerShell scripts in this playbook are maintained in the Federal Modernization Program repository under ops/dr/ and are subject to the same governance controls (code review, signed commits, canon enforcement) as all other platform artifacts. |
+| All PowerShell scripts in this playbook are printed here in full. This workbook's repository has no ops/dr/ folder, so copy them into your own platform repository under ops/dr/, where they are subject to the same governance controls (code review, signed commits, canon enforcement) as all other platform artifacts. |
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 2\. RPO/RTO Definitions
 
 The following table defines the Recovery Point Objective (RPO), Recovery Time Objective (RTO), backup method, recovery priority, and dependencies for every the Federal Modernization Program platform component. Priority levels range from P1 (critical --- immediate recovery required) to P3 (important --- recovery within business day).
 
-These objectives span two tiers of recovery. **High-availability failover** (the hot-standby posture in **the program decision**) handles node, disk, power, and network failures automatically: a quorum witness gates promotion so exactly one node ever binds commits, the failed node is fenced, and synchronous replication yields near-zero RPO with a single-digit-minute RTO. **Disaster recovery** --- the runbooks in this playbook --- is the cold-restore floor for total-site loss, rebuilding from the backup chain and the off-premises mirror. The component values below are the disaster-recovery targets; where high availability is enabled, the everyday failure path is the faster the program decision failover, not a restore.
+These objectives span two tiers of recovery. **High-availability failover** (the hot-standby posture in **the program decision**) handles node, disk, power, and network failures automatically: a quorum witness gates promotion so exactly one node ever binds commits, the failed node is fenced, and synchronous replication yields near-zero RPO with a single-digit-minute RTO. **Disaster recovery** --- the runbooks in this playbook --- is the cold-restore floor for total-site loss, rebuilding from the backup chain and the off-premises mirror. The program's cold-restore baseline is a 24-hour recovery point and a 4-hour recovery time ([Book 10, Appendix B](../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md), section C.4). The component values below are the disaster-recovery targets for each component; the tighter 1-hour values for the Gitea server and database apply only where the hourly backups below are running, and otherwise the cold-restore baseline governs. Where high availability is enabled, the everyday failure path is the faster the program decision failover, not a restore.
 
   --------------------------------------------------------------------------------------------------------------------------------------------
   **Component**                 **RPO**          **RTO**   **Backup Method**                        **Priority**   **Dependencies**
@@ -220,7 +220,7 @@ The Federal Modernization Program platform employs five distinct backup targets 
 
 3. **Windows Server Backup (Network Share)** --- Full system backup to \\\\backup-server\\FMP\\ via Windows Server Backup. Runs weekly with daily incremental. Provides bare-metal restore capability.
 
-4. **GitHub Mirror** --- The fmp repository is mirrored to github.com/example-org/fmp. Updated on every push. Provides geographically distributed, off-site backup and public reference point.
+4. **GitHub Mirror** --- The fmp repository is mirrored to github.com/example-org/fmp. Synchronized every 6 hours by the FMP-GitHubSync scheduled task (see the operations runbook), or by hand with `git push github main`, which sends the main branch only; tags are pushed separately. Provides geographically distributed, off-site backup and public reference point.
 
 5. **Certificate Backup** --- Password-protected PFX exports to \\\\backup-server\\FMP\\certs\\. Triggered on certificate changes. Last 5 versions retained.
 
@@ -282,7 +282,7 @@ Backups are not trusted until verified. The following checks run automatically a
 
 4\. Automated Backup Scripts
 
-All backup scripts are located in the Federal Modernization Program repository at ops/dr/scripts/ and are executed under the svc-gitea service account with appropriate permissions. Each script logs to D:\\FMP\\Logs\\backup.log and returns exit code 0 on success or 1 on failure.
+All backup scripts are printed in this section; once copied into your own platform repository at ops/dr/scripts/ (this workbook's repository has no ops folder), they are executed under the svc-gitea service account with appropriate permissions. Each script logs to D:\\FMP\\Logs\\backup.log and returns exit code 0 on success or 1 on failure.
 
 4.1 Backup-FMPGiteaDB.ps1
 
@@ -825,7 +825,7 @@ Appendix B --- Complete PowerShell Script Index
 
   Invoke-FMPBackup.ps1         Master orchestrator --- runs all backup scripts   Daily (02:00)               All backup scripts                  Manifest JSON; webhook notification; backup.log
 
-  Test-FMPPlatformHealth.ps1   Comprehensive platform health monitoring          Every 15 minutes            IIS, DNS, Gitea API                 Health report; health.jsonl; webhook alert
+  Test-FMPPlatformHealth.ps1   Comprehensive platform health monitoring          On demand (no task)         IIS, DNS, Gitea API                 Health report; health.jsonl; webhook alert
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Appendix C --- Backup Manifest Schema
@@ -885,7 +885,7 @@ This playbook is part of the Federal Modernization Program Governance OS documen
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Document Maintenance**                                                                                                                                                                                                                                                                                                                   |
 |                                                                                                                                                                                                                                                                                                                                            |
-| This playbook is version-controlled in the Federal Modernization Program repository at ops/dr/FMP-Disaster-Recovery-Playbook.md. All updates must follow the standard canon governance process: branch, commit, pull request, review, and merge. The playbook must be reviewed and updated after every P1/P2 incident and during each quarterly tabletop exercise. |
+| This playbook is published in this workbook as a page; keep your working copy version-controlled in your own platform repository (for example at ops/dr/FMP-Disaster-Recovery-Playbook.md). All updates must follow the standard canon governance process: branch, commit, pull request, review, and merge. The playbook must be reviewed and updated after every P1/P2 incident and during each quarterly tabletop exercise. |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 --- End of Document ---\

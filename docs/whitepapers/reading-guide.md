@@ -1,6 +1,6 @@
 ---
 title: "Whitepaper Reading Guide"
-subtitle: "How the 29 papers relate, and recommended paths through them"
+subtitle: "How the papers relate, and recommended paths through them"
 doc-type: reference
 author: Michael Stratton
 date: "August 2026"
@@ -17,7 +17,7 @@ lifecycle_review: 2026-11-22
 
 # Whitepaper Reading Guide {.unnumbered}
 
-The section index lists all 29 papers as a flat table —
+The [section README](README.md) lists the papers as a flat table —
 good for lookup, silent on how the papers relate to each other or what
 order to read them in. This page groups them into tracks and proposes
 reading paths for common audiences. It is a companion to the index, not
@@ -94,7 +94,7 @@ The AD → Entra ID arc.
 |---|---|---|
 | [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) | Moved to Book 02 | Original statement of the structural migration problem — read for the business case. |
 | [The Session vs. Telemetry Divide](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
-| [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](../books/b01-transformation-arc/01-why-modernization-is-hard.md) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
+| [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform. Cross-listed as the flagship of Track 4. |
 | [Flipping 50,000 Devices to Hybrid Join](../books/b05-devices/02-the-hybrid-join-trap.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |
 | [FMP vs. Native Tools](../books/b02-identity/06-who-owns-the-migration.md) | Moved to Book 02 | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
@@ -115,7 +115,7 @@ BOD-25-01 and CISA SCuBA.
 
 | Paper | Status | Role |
 |---|---|---|
-| [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) | Draft | **Flagship of this track**, cross-listed from Track 2. The forty-year mainframe-to-Zero-Trust arc, argued **vendor-neutral and product-neutral**, with the canon trail confined to a separable closing appendix. Has this corpus's most fully worked Call to Action, and the FedRAMP 20x Consolidated Rules timeline. |
+| [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) | Draft | **Flagship of this track**, cross-listed from Track 2. The forty-year mainframe-to-Zero-Trust arc, argued **vendor-neutral and product-neutral**. The FedRAMP Consolidated Rules timeline is in [Book 00, Chapter 01](../books/b00-orientation/01-why-modernize-now.md). |
 | [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Draft | The transport-and-policy layer underneath this track's Act 4 architecture. Read after the flagship's Act 4, or standalone for a network-engineering audience. |
 | [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) | Draft | The DNS layer underneath the same Act 4 architecture — split-brain DNS, Universal DDI, Cisco SD-WAN interception. Sibling to the SD-WAN paper, not sequential to it. |
 | [Book 08, Appendix A — DNS Record Types and Ecosystem Integrations](../books/b08-ddi/appendix-a-dns-record-types.md) | Draft | The record-type catalog and ecosystem-integration table — bookmarkable reference, not meant to be read start to finish. |
@@ -129,14 +129,10 @@ This track's flagship and Track 2's narrative used to be two papers telling the
 same forty-year arc: an external vendor-neutral edition and an internal
 canon-anchored one. Handing the wrong one to an audience was the single most
 common mis-sequencing risk in this corpus, so they were merged into
-*Modernization Journey*, which keeps the vendor-neutral voice. The canon trail
-the other edition carried survives as that paper's
-[closing appendix](../books/b01-transformation-arc/01-why-modernization-is-hard.md),
-placed after the Call to Action so the argument still reads end to end without
-it — and so it can be dropped when the paper is handed outward. the compliance series Vol I
-Book 05 tells the same arc in federal control-closure terms and names no
-automation engine at all, so the appendix, not the book, is where the ADR
-provenance lives.
+*Modernization Journey*, which keeps the vendor-neutral voice. The chapter
+carries no appendix of canon references, so it can be handed outward as it
+stands. The compliance series Vol I Book 05 tells the same arc in federal
+control-closure terms and names no automation engine at all.
 :::
 
 ### Track 5 — Federal Program-Specific Alignment
@@ -160,7 +156,7 @@ alphabetical file list.
 
 **A federal CIO/CISO with 30 minutes (first exposure)**
 
-1. [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — the compliance-deadline argument (FedRAMP 20x) and its Call to Action, written to be handed off without modification.
+1. [Why Modernize, and Why Now](../books/b00-orientation/01-why-modernize-now.md) (Book 00, Chapter 01) — the compliance-deadline argument, including the FedRAMP Consolidated Rules timeline, and what leadership should take from it.
 
 **An assessor validating BOD-25-01 / ZTMM claims**
 
@@ -189,9 +185,6 @@ alphabetical file list.
 
 **Reading the whole corpus, start to finish**
 
-Track 1 (all four) → Track 2 (all six) → Track 3 (all four) → Track 4
-(all four) → Track 5 (the two papers not already read in Track 2). This order
-front-loads the doctrine (Track 1) before any domain paper assumes it,
-and reads the two mainframe-to-Zero-Trust narratives back-to-back
-(Track 2 then Track 4) so the vendor-neutral vs. canon-anchored
-contrast is visible rather than discovered by accident months apart.
+Track 1 (all four) → Track 2 (all six) → Track 3 (all five) → Track 4
+(all six) → Track 5 (the two papers not already read in Track 2). This order
+front-loads the doctrine (Track 1) before any domain paper assumes it.

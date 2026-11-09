@@ -97,7 +97,7 @@ The policy library is organized across five governance domains:
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **ENVIRONMENT CONTEXT**                                                                                                                                                                                                                                                                                                                                                                                                        |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| The Federal Modernization Program operates within a GCC-Moderate boundary for all Microsoft 365 SaaS services. Azure Arc is deployed in Commercial Cloud under an explicit exception documented in the Federal Modernization Program architecture decision record. This library targets the Commercial Cloud Azure Policy engine. All 24 policy definitions and 3 policy initiatives defined herein are maintained in the Federal Modernization Program repository at **https://github.com/WhalerMike/modernization-workbook**. |
+| The Federal Modernization Program operates within a GCC-Moderate boundary for all Microsoft 365 SaaS services. Azure Arc is deployed in Commercial Cloud under an explicit exception documented in the Federal Modernization Program architecture decision record. This library targets the Commercial Cloud Azure Policy engine. The 27 policy definitions and 3 policy initiatives described herein are illustrative: this workbook's repository does not contain the definition files (no /policies/arc/ folder) or the Install-FMPArcAgent.ps1 script, so build and maintain them in your own repository. |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 2\. Azure Arc Overview for the Federal Modernization Program
@@ -156,7 +156,7 @@ Effect: AuditIfNotExists \| Category: Agent Deployment \| Severity: High
 
 **Scope:** All server OUs identified in the AD assessment inventory.
 
-**Remediation:** Deploy the Connected Machine Agent using the Federal Modernization Program deployment script (Install-FMPArcAgent.ps1) from the Federal Modernization Program repository. The script handles service principal authentication, proxy configuration, and tag assignment.
+**Remediation:** Deploy the Connected Machine Agent using a deployment script such as Install-FMPArcAgent.ps1 (illustrative; this workbook does not publish it). The script handles service principal authentication, proxy configuration, and tag assignment.
 
 Policy 3.2: Arc Agent Version Compliance
 
@@ -215,11 +215,11 @@ Effect: Deny \| Category: Tagging \| Severity: Critical
 
   fmp-department    Department              extensionAttribute3
 
-  fmp-device-tier   DeviceTier              extensionAttribute4
+  fmp-device-tier   DeviceTier              extensionAttribute11
 
-  fmp-environment   Environment             extensionAttribute5
+  fmp-environment   Environment             extensionAttribute13
 
-  fmp-device-role   DeviceRole              extensionAttribute6
+  fmp-device-role   DeviceRole              extensionAttribute12
   --------------------------------------------------------------------
 
 Policy 4.2: Tag Value Validation
@@ -371,13 +371,13 @@ Policy 6.2: Patch Compliance
 
 **FMP-Arc-PatchCompliance**
 
-Effect: AuditIfNotExists \| Category: Compliance \| Severity: Critical
+Effect: AuditIfNotExists \| Category: Compliance \| Severity: High
 
 **Description:** Verifies that servers are enrolled in Azure Update Manager and are patch-current according to the Federal Modernization Program SLA requirements.
 
 **Compliance Thresholds:**
 
-- **Critical patches:** Must be applied within 14 days of release
+- **Critical patches:** Must be applied within 7 days of release, the remediation window for a High-severity finding
 
 - **All other patches:** Must be applied within 30 days of release
 
@@ -669,7 +669,7 @@ Type: Policy Initiative \| Assignment Scope: Servers tagged fmp-device-tier=Tier
 
 **Description:** Enhanced security policy set for Tier0 servers --- Domain Controllers, Certificate Authority servers, and Git servers. Includes all Governance Baseline policies plus additional restrictions for privileged infrastructure.
 
-**Additional Policies (beyond Governance Baseline):**
+**Additional Policies (beyond Governance Baseline):** These are described restrictions; this library does not define them as separate policy definitions.
 
 - **Internet Access Audit** --- Verify Tier0 servers have no direct internet access
 
@@ -725,7 +725,7 @@ Type: Policy Initiative \| Assignment Scope: All Arc-enabled servers in the Fede
 
 - Azure CLI (2.50+) or Az PowerShell module (10.0+) installed
 
-- Access to the Federal Modernization Program policy repository: https://github.com/example-org/fmp
+- Access to your own policy repository (this library is illustrative and its definition files are not published in this workbook)
 
 11.2 Resource Group Structure
 
@@ -956,14 +956,14 @@ When remediation cannot be completed within the SLA window or requires elevated 
 
   **High**       7 days                TLS misconfiguration, firewall disabled, missing patches (critical), agent offline
 
-  **Medium**     30 days               Certificate expiry warning, stale assessment data, outdated agent version
+  **Medium**     30 days               Certificate expiry warning, stale assessment data, outdated agent version, NTP configuration drift
 
-  **Low**        90 days               Tag inheritance issues, NTP configuration drift
+  **Low**        90 days               Tag inheritance issues
   ------------------------------------------------------------------------------------------------------------------------------
 
 Appendix A: Policy Definition JSON Templates
 
-The following skeleton JSON templates illustrate the Azure Policy definition structure used by the Federal Modernization Program policies. Complete definitions are maintained in the Federal Modernization Program repository under /policies/arc/definitions/.
+The following skeleton JSON templates illustrate the Azure Policy definition structure used by the Federal Modernization Program policies. The complete definitions are not published in this workbook; keep yours in your own repository, for example under /policies/arc/definitions/.
 
 A.1 Audit Policy --- FMP-Arc-AgentVersion
 
@@ -1053,4 +1053,4 @@ The Federal Modernization Program program maintains custom DSC resources in the 
 
 **Document Version:** 1.0 \| **Date:** April 21, 2026 \| **the Federal Modernization Program Governance OS Modernization Program**
 
-This document contains 24 policy definitions and 3 policy initiatives for the Federal Modernization Program Azure Arc governance framework. All policy definitions are maintained as code in the Federal Modernization Program repository and deployed via the CI/CD pipeline described in Section 11.
+This document contains 27 policy definitions and 3 policy initiatives for the Federal Modernization Program Azure Arc governance framework. Keep your policy definitions as code in your own repository and deploy them via the CI/CD pipeline described in Section 11.
