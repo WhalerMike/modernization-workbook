@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 1f924a0e927da38597f0d2e4b4e5f76bb45ead95f3db17b8b8ebe03e7e418cc4
-last-reviewed: 2026-11-07
+reviewed-sha256: b4df1847af9ded3b687c808067dd1d9d20abd5395cd4cacc197b774d3c6a52fd
+last-reviewed: 2026-11-09
 ---
 # Chapter 08 — Deploying to a Test Tenant, Then to Production
 
