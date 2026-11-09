@@ -93,13 +93,13 @@ Every URL below was opened on October 21, 2026. Primary sources (federal documen
 - CISA, *TIC Core Guidance Volume 4: Use Case Handbook*, Version 1.2, September 2026. <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Use_Case_Handbook_September_2026_86.pdf>
 - CISA, *TIC Core Guidance Volume 5: Overlay Handbook*, Version 1.2, September 2026. <https://www.cisa.gov/sites/default/files/2026-10/TIC_3.0_Overlay_Handbook_September_2026_508c.pdf>
 - CISA, *TIC 3.0 Traditional TIC Use Case*, Version 1.0. <https://www.cisa.gov/sites/default/files/2026-09/CISA_TIC_3.0_Traditional_TIC_Use_Case.pdf>
-- CISA, *TIC 3.0 Branch Office Use Case*, Version 3.0, September 2026. <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Branch_Office_Use_September_2026_6.pdf>
+- CISA, *TIC 3.0 Branch Office Use Case*, Version 3.0, September 2026. <https://www.cisa.gov/sites/default/files/2026-10/tic-3-branch-office-use-september-2026-508c.pdf>
 - CISA, *TIC 3.0 Remote User Use Case*, Version 2.2, September 2026. <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Remote_User_Use_Case_September_2026_61.pdf>
 - CISA, *TIC 3.0 Cloud Use Case*, Version 1.2, September 2026. <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Cloud_Use_Case_September_2026COPY.pdf>
 - CISA, *The Journey to Zero Trust: Using Secure Access Service Edge in a Modern TIC 3.0 Solution*, Version 1.0, June 2026. <https://www.cisa.gov/resources-tools/resources/using-sase-modern-tic-30-solution>
 - CISA, *Encrypted DNS Implementation Guidance*, May 16, 2024. <https://www.cisa.gov/resources-tools/resources/encrypted-dns-implementation-guidance>
 - CISA, Protective Domain Name System (DNS) Resolver service. <https://www.cisa.gov/resources-tools/services/protective-domain-name-system-dns-resolver>
-- CISA, Logging Reference Architecture, August 20, 2026. <https://www.cisa.gov/logging>
+- CISA, Logging Reference Architecture, August 20, 2026. <https://www.cisa.gov/resources-tools/resources/logging-reference-architecture>
 - CISA, *Zero Trust Maturity Model*, Version 2.0, April 2023. <https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf>
 
 ### Primary sources: OMB memoranda, executive orders and CISA directives
@@ -157,7 +157,7 @@ Used only where no primary source could be retrieved. They are labeled "Third-pa
 
 [^aB-m1926]: Office of Management and Budget, M-19-26, *Update to the Trusted Internet Connections (TIC) Initiative*, September 12, 2019, <https://www.whitehouse.gov/wp-content/uploads/2019/09/M-19-26.pdf> (accessed Oct 21, 2026).
 [^aB-scc]: Cybersecurity and Infrastructure Security Agency, *TIC Core Guidance Volume 3: Security Capabilities Catalog*, Version 3.3, September 2026, §1.1, §2, §4, §4.1 (3.UNI.PEPAR) and §4.2, <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Security_Capabilities_Catalogs_September_2026_17.pdf> (accessed Oct 21, 2026).
-[^aB-branch]: Cybersecurity and Infrastructure Security Agency, *TIC 3.0 Branch Office Use Case*, Version 3.0, September 2026, §3, §6, §7 and §8, <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Branch_Office_Use_September_2026_6.pdf> (accessed Oct 21, 2026).
+[^aB-branch]: Cybersecurity and Infrastructure Security Agency, *TIC 3.0 Branch Office Use Case*, Version 3.0, September 2026, §3, §6, §7 and §8, <https://www.cisa.gov/sites/default/files/2026-10/tic-3-branch-office-use-september-2026-508c.pdf> (accessed Oct 21, 2026).
 [^aB-core]: Cybersecurity and Infrastructure Security Agency, "Trusted Internet Connections (TIC) 3.0 Core Guidance Documents," revision date September 23, 2026, <https://www.cisa.gov/resources-tools/resources/trusted-internet-connections-tic-30-core-guidance-documents> (accessed Oct 21, 2026).
 [^aB-guidebook]: Cybersecurity and Infrastructure Security Agency, *TIC Core Guidance Volume 1: Program Guidebook*, Version 1.2, September 2026, guiding principles, §10 and §13, <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf> (accessed Oct 21, 2026).
 [^aB-sase]: Cybersecurity and Infrastructure Security Agency, *The Journey to Zero Trust: Using Secure Access Service Edge in a Modern TIC 3.0 Solution*, Version 1.0, June 2026, §5.5 and Appendix A, <https://www.cisa.gov/sites/default/files/2026-07/The_Journey_to_Zero_Trust-Using_SAS_in_a_Modern_TIC3.0_Solution.pdf> (accessed Oct 21, 2026).
@@ -165,7 +165,7 @@ Used only where no primary source could be retrieved. They are labeled "Third-pa
 [^aB-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, §III.C (Networks) and "Encrypting DNS traffic," <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 21, 2026).
 [^aB-pdns]: Cybersecurity and Infrastructure Security Agency, "Protective Domain Name System (DNS) Resolver," <https://www.cisa.gov/resources-tools/services/protective-domain-name-system-dns-resolver> (accessed Oct 21, 2026).
 [^aB-m2614]: Office of Management and Budget, M-26-14, *Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats*, May 22, 2026, "Agency Actions," Appendix B and Appendix C, <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf> (accessed Oct 21, 2026).
-[^aB-lra]: Cybersecurity and Infrastructure Security Agency, "Logging Reference Architecture" (published August 20, 2026), <https://www.cisa.gov/logging> (accessed Oct 21, 2026).
+[^aB-lra]: Cybersecurity and Infrastructure Security Agency, "Logging Reference Architecture" (published August 20, 2026), <https://www.cisa.gov/resources-tools/resources/logging-reference-architecture> (accessed Oct 21, 2026).
 [^aB-bod2302]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 23-02, June 13, 2023, <https://www.cisa.gov/news-events/directives/binding-operational-directive-23-02> (accessed Oct 21, 2026).
 [^aB-bod2602]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 26-02, February 5, 2026, <https://www.cisa.gov/news-events/directives/bod-26-02-mitigating-risk-end-support-edge-devices> (accessed Oct 21, 2026). Dates computed from the issue date.
 [^aB-bod2604]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 26-04, June 10, 2026, <https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk> (accessed Oct 21, 2026). Dates computed from the issue date.

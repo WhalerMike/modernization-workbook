@@ -379,7 +379,7 @@
    "id": "cisa-logging",
    "title": "CISA Logging Reference Architecture",
    "publisher": "CISA",
-   "url": "https://www.cisa.gov/Logging",
+   "url": "https://www.cisa.gov/resources-tools/resources/logging-reference-architecture",
    "status": "active",
    "added": "2026-11-05",
    "labels": [
@@ -390,6 +390,10 @@
     {
      "date": "2026-11-05",
      "change": "Added: cited on the Start series and Book 00 slides"
+    },
+    {
+     "date": "2026-11-09",
+     "change": "Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check)"
     }
    ]
   },
@@ -526,7 +530,7 @@
    "id": "tic-3-branch-office",
    "title": "CISA TIC 3.0 Branch Office Use Case",
    "publisher": "CISA",
-   "url": "https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Branch_Office_Use_September_2026_6.pdf",
+   "url": "https://www.cisa.gov/sites/default/files/2026-10/tic-3-branch-office-use-september-2026-508c.pdf",
    "status": "active",
    "added": "2026-11-05",
    "labels": [
@@ -537,6 +541,10 @@
     {
      "date": "2026-11-05",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-09",
+     "change": "Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check)"
     }
    ]
   },

@@ -275,7 +275,7 @@
       "id": "cisa-blog",
       "name": "CISA blog",
       "type": "rss",
-      "url": "https://www.cisa.gov/cisa/blog.xml",
+      "url": "https://www.cisa.gov/blog.xml",
       "source": "Listed on https://www.cisa.gov/about/contact-us/subscribe-updates-cisa"
     },
     {
