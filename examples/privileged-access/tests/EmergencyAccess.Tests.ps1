@@ -70,8 +70,8 @@ Describe 'Test-PaEmergencyAccess on the fixture' {
     It 'PA-EA-06: a phone method is a Finding' { (Get-Rule $script:Run 'PA-EA-06' 'Finding').Issue | Should -Match 'phoneAuthenticationMethod' }
     It 'PA-EA-07: not in the exclusion group' { (Get-Rule $script:Run 'PA-EA-07').ObjectId | Should -Be @($script:Ea02) }
     It 'PA-EA-08: enforced policies that miss an account; report-only is Info; disabled is ignored' {
-        (Get-Rule $script:Run 'PA-EA-08' 'Finding').Object | Should -Be @('CA001-All-Block-legacy-authentication', 'CA004-Admins-Require-compliant-device', 'PIM-Activation-c1')
-        (Get-Rule $script:Run 'PA-EA-08' 'Info').Object | Should -Be @('CA090-Emergency-accounts-Report-sign-ins')
+        (Get-Rule $script:Run 'PA-EA-08' 'Finding').Object | Should -Be @('CA001-AllUsers-BlockLegacyAuth', 'CA004-Admins-RequireCompliantDevice', 'PIM-Activation-c1')
+        (Get-Rule $script:Run 'PA-EA-08' 'Info').Object | Should -Be @('CA090-AllUsers-ReportOnly-CoverageProbe')
         (Get-Rule $script:Run 'PA-EA-08').Object | Should -Not -Contain 'CA099-Retired-Pilot'
     }
     It 'PA-EA-09: a validation older than 90 days' { (Get-Rule $script:Run 'PA-EA-09').Issue | Should -Match '2026-05-01' }
