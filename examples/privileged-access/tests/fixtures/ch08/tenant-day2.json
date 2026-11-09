@@ -438,7 +438,7 @@
   "conditionalAccessPolicies": [
     {
       "id": "ca000000-0000-4000-8000-000000000001",
-      "displayName": "CA001-All-Block-legacy-authentication",
+      "displayName": "CA001-AllUsers-BlockLegacyAuth",
       "state": "enabled",
       "conditions": {
         "users": {
@@ -455,7 +455,7 @@
     },
     {
       "id": "ca000000-0000-4000-8000-000000000004",
-      "displayName": "CA004-Admins-Require-compliant-device",
+      "displayName": "CA004-Admins-RequireCompliantDevice",
       "state": "enabled",
       "conditions": {
         "users": {
@@ -471,7 +471,7 @@
     },
     {
       "id": "ca000000-0000-4000-8000-000000000090",
-      "displayName": "CA090-Emergency-accounts-Report-sign-ins",
+      "displayName": "CA090-AllUsers-ReportOnly-CoverageProbe",
       "state": "enabledForReportingButNotEnforced",
       "conditions": {
         "users": {

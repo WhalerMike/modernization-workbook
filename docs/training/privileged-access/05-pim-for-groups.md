@@ -30,6 +30,8 @@ The guards refuse a plan before anything is sent. Three of them stop an unsafe c
 - **PA-PG-G6** refuses more removals than `-MaxRemovals` (default 5), the sign of a wrong or truncated file.
 - **PA-PG-G1** refuses a Tier 0 or Tier 1 policy losing approval or its approvers.
 
+And as in Module 4, `-Apply` won't select the authentication context `c1` without **`-ActivationGateChecked`**, a person's statement that `PIM-Activation-c1` is On.
+
 Learn also says a group can't be taken back out of PIM once onboarded, so Lab 2 uses groups made for the lab.
 :::
 
@@ -74,7 +76,7 @@ The access packages for PRV membership, the plan's A3.3, aren't built here.
 
 Read three sections of the chapter:
 
-- [The desired state](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#the-desired-state): `prv-groups.json`, and the tier policy in `config/prv-group-policy.json`. *Design guidance* for the values.
+- [The desired state](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#the-desired-state): `prv-groups.json`, and the tier policy in `config/prv-group-policy.json`. *Design guidance* for the values. Every member and owner policy selects Module 3's authentication context `c1`, as Book 04 requires, so `-Apply` needs `-ActivationGateChecked`, as in Module 4.
 - [The read and the findings](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#the-read-and-the-findings): PA-PG-01 to PA-PG-09. Activations aren't standing state, so they're left out.
 - [The plan, the dry run and `-Apply`](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#the-plan-the-dry-run-and--apply) and [Least privilege per call](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#least-privilege-per-call): the plan's fixed order (groups, then policy rules, then grants, then removals), the guards, and why `RoleManagement.ReadWrite.Directory` stays off the pipeline's app. *Design guidance.*
 
@@ -120,6 +122,8 @@ Get-Content out/pim-groups/diff.txt
 # Step 8: Apply to the fake
 ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
     -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply
+./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+    -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply -ActivationGateChecked
 
 # Step 9: Run the tests, then delete out
 Invoke-Pester -Path tests
@@ -181,9 +185,10 @@ Remove-Item -Recurse -Force out
     ```
 
     ```text
-    PIM for Groups: 9 Finding, 3 Warn, 0 Info
-    Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)
+    PIM for Groups: 11 Finding, 3 Warn, 0 Info
+    Plan: 10 change(s) (3 assignment, 2 eligibility, 5 policy rule)
     Guards: all passed
+    Activation gate: the plan selects an authentication context; -Apply also needs -ActivationGateChecked
     Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply
     Written to out/pim-groups (manifest.json lists every request and file hash)
     ```
@@ -205,13 +210,15 @@ Remove-Item -Recurse -Force out
     PA-PG-07 Finding  PRV-T0-PrivRoleAdmin
     PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
     PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
+    PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
+    PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
     PA-PG-02 Warn     PRV-T1-AzureOwner-SubWorkload
     PA-PG-05 Finding  PRV-T1-AzureOwner-SubWorkload
     PA-PG-09 Finding  PRV-T1-AzureOwner-SubWorkload
     PA-PG-08 Finding  PRV-T1-AzureOwner-SubWorkload
     ```
 
-    On `PRV-T0-PrivRoleAdmin`: a permanent active member the file doesn't grant, an eligible owner with no active owner, and member activation without approval and for 8 hours instead of 4. On `PRV-T1-AzureOwner-SubWorkload`: a nested group as an eligible member. The chapter's step 5 explains each row.
+    On `PRV-T0-PrivRoleAdmin`: a permanent active member the file doesn't grant, an eligible owner with no active owner, and a member policy that activates without approval, for 8 hours instead of 4, and with MFA instead of `c1`. On `PRV-T1-AzureOwner-SubWorkload`: a nested group as an eligible member. The chapter's step 5 explains each row.
 
 6. **Read the diff:**
 
@@ -221,8 +228,10 @@ Remove-Item -Recurse -Force out
     ```
 
     ```text
-    # PIM for Groups plan, cloud gcc, 8 change(s), dry run: nothing sent
+    # PIM for Groups plan, cloud gcc, 10 change(s), dry run: nothing sent
     ~ PRV-T0-PrivRoleAdmin member Expiration_EndUser_Assignment: required=True max=PT8H -> required=True max=PT4H
+    ~ PRV-T0-PrivRoleAdmin member Enablement_EndUser_Assignment: enabled=Justification,MultiFactorAuthentication,Ticketing -> enabled=Justification,Ticketing
+    ~ PRV-T0-PrivRoleAdmin member AuthenticationContext_EndUser_Assignment: context=off -> context=c1
     ~ PRV-T0-PrivRoleAdmin member Approval_EndUser_Assignment: approval=False approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0 -> approval=True approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0
     ~ PRV-T1-AzureOwner-SubWorkload owner Expiration_Admin_Eligibility: required=False max=P90D -> required=True max=P90D
     ~ active member PRV-T1-ExchangeAdmin eve.exch@contoso.example end 2026-12-31 -> 2027-04-28 (CHG-1002)
@@ -253,17 +262,20 @@ Remove-Item -Recurse -Force out
     ```powershell
     ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
         -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply
+    ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+        -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply -ActivationGateChecked
     ```
 
     ```text
-    PIM for Groups: 9 Finding, 3 Warn, 0 Info
-    Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)
+    Exception: The plan sets an authentication context: confirm its Conditional Access policy is On (Chapter 03), then pass -ActivationGateChecked
+    PIM for Groups: 11 Finding, 3 Warn, 0 Info
+    Plan: 10 change(s) (3 assignment, 2 eligibility, 5 policy rule)
     Guards: all passed
-    Applied: 8 sent, 0 failed
+    Applied: 10 sent, 0 failed
     Written to out/pim-groups-apply (manifest.json lists every request and file hash)
     ```
 
-    The fake records the requests and doesn't change its tenant.
+    The first command stops before any write. The second sends the policy rules first, then the grants and removals. The fake records the requests and doesn't change its tenant.
 
 9. **Run the tests, then delete `out`:**
 
@@ -315,7 +327,7 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You read a fictional tenant's PRV groups against a reviewed file of four, found a standing member nobody granted, an owner trap and a nested group, read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake.
+You read a fictional tenant's PRV groups against a reviewed file of four, found a standing member nobody granted, an owner trap and a nested group, read the exact requests that would fix them, saw a guard refuse a plan with too many removals, saw the apply refuse to select `c1` until a person confirmed the gate, and applied ten requests to the fake.
 
 **The evidence an ISSO keeps:** the reviewed `prv-groups.json`, with each holder's end date and ticket; each plan's `diff.txt`, `plan.json` and `findings.json`; and each apply's `results.json` and `manifest.json`. The full list is in the chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#federal-requirements-and-evidence); before the code ships, work through its [checklist](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#checklist).
 

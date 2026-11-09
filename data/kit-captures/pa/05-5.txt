@@ -9,6 +9,8 @@ PA-PG-09 Finding  PRV-T0-PrivRoleAdmin
 PA-PG-07 Finding  PRV-T0-PrivRoleAdmin
 PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
 PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
+PA-PG-08 Finding  PRV-T0-PrivRoleAdmin
 PA-PG-02 Warn     PRV-T1-AzureOwner-SubWorkload
 PA-PG-05 Finding  PRV-T1-AzureOwner-SubWorkload
 PA-PG-09 Finding  PRV-T1-AzureOwner-SubWorkload

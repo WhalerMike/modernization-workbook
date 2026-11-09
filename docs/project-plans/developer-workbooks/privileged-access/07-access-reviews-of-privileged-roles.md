@@ -90,13 +90,13 @@ This chapter adds a module of its own, `powershell/PaAccessReviews/PaAccessRevie
 
 ### The reviewed JSON
 
-One file holds every series. Each review has a name with the managed prefix (`PAR-`), a kind, a tier, a cadence, reviewers, fallback reviewers and a description for reviewers; defaults hold the rest. `Read-PaArConfig` refuses a reviewer named by UPN, a name without the prefix, a name used twice, and anything that isn't an object ID where one belongs. The fixture's seven series follow Book 04, Chapter 09's schedule (*Design guidance*), with three differences from Book 04. Role series cover users with active and eligible assignments, where Chapter 08's Step 8 scopes the review to eligible assignments. The Global Administrator series uses "No change" on silence, the one exception Chapter 08's Step 8 records for the emergency accounts and Chapter 09 and Appendix B do not. The Tier 1 series list only the tier's approver group and the fallback, without the role owner Chapter 09 and Appendix B add:
+One file holds every series. Each review has a name with the managed prefix (`PAR-`), a kind, a tier, a cadence, reviewers, fallback reviewers and a description for reviewers; defaults hold the rest. `Read-PaArConfig` refuses a reviewer named by UPN, a name without the prefix, a name used twice, and anything that isn't an object ID where one belongs. The fixture's seven series follow Book 04, Chapter 09's schedule (*Design guidance*), with one difference from Book 04: role series cover users with active and eligible assignments, where Chapter 08's Step 8 scopes the review to eligible assignments. The Global Administrator series uses "No change" on silence, the one exception Chapter 08's Step 8, Chapter 09 and Appendix B record for the emergency accounts. The Tier 1 series lists the role owner and the tier's approver group as reviewers, as Chapter 09 and Appendix B do; in the fixture the Exchange role owner is a group, `aa000000-0000-4000-8000-000000000015`:
 
 | Series | Kind | Scope | Cadence | Reviewers, fallback | On silence |
 |---|---|---|---|---|---|
 | `PAR-T0-GlobalAdministrator-Monthly` | Entra role | Users, active and eligible | Monthly, 14 days | `PIM-Approvers-T0`, governance office | No change (PA-AR-06) |
 | `PAR-T0-PrivilegedRoleAdministrator-Monthly` | Entra role | Same | Monthly | Same | Deny |
-| `PAR-T1-ExchangeAdministrator-Quarterly` | Entra role | Same | Quarterly | `PIM-Approvers-T1`, governance office | Deny |
+| `PAR-T1-ExchangeAdministrator-Quarterly` | Entra role | Same | Quarterly | Exchange role owner and `PIM-Approvers-T1`, governance office | Deny |
 | `PAR-PRV-T0-GlobalAdmin-Monthly` | PIM for Groups group (preview) | Transitive members of `PRV-T0-GlobalAdmin` | Monthly | Governance office, Privileged Role Administrator group | Deny |
 | `PAR-PRV-T0-PrivRoleAdmin-Monthly` | PIM for Groups group (preview) | Transitive members of `PRV-T0-PrivRoleAdmin` | Monthly | Same | Deny |
 | `PAR-PRV-T1-ExchangeAdmin-Quarterly` | PIM for Groups group (preview) | Transitive members of `PRV-T1-ExchangeAdmin` | Quarterly | Same | Deny |

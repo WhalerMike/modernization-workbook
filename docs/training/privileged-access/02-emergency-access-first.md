@@ -173,9 +173,9 @@ Remove-Item -Recurse -Force out
     PA-EA-06 Finding  ea02@contoso.example
     PA-EA-07 Finding  ea02@contoso.example
     PA-EA-09 Finding  ea02@contoso.example
-    PA-EA-08 Finding  CA001-All-Block-legacy-authentication
-    PA-EA-08 Finding  CA004-Admins-Require-compliant-device
-    PA-EA-08 Info     CA090-Emergency-accounts-Report-sign-ins
+    PA-EA-08 Finding  CA001-AllUsers-BlockLegacyAuth
+    PA-EA-08 Finding  CA004-Admins-RequireCompliantDevice
+    PA-EA-08 Info     CA090-AllUsers-ReportOnly-CoverageProbe
     PA-EA-08 Finding  PIM-Activation-c1
     PA-EA-10 Finding  carl.ops@contoso.example
     ```

@@ -112,7 +112,7 @@ This chapter adds its own module, `powershell/PimGroups/PimGroups.psm1`, its own
 
 `prv-groups.json` is the reviewed file. It names the approver group for each tier and lists each PRV group with its ID (absent for a group still to be created), tier, what it holds, and its `member` and `owner` entries, each `active` or `eligible`, with a principal ID, a name for the diff, a type, an end date and a ticket. `Read-PaPrvGroupConfig` refuses a name where an object ID belongs, an unknown tier, and a duplicate group.
 
-`config/prv-group-policy.json` sets the policy for each access type and tier. It is *Design guidance*: member activation of 4 hours for T0 and 8 for the rest, eligibility of 90, 180, 180 and 365 days, and approval for T0 and T1, from Book 04, Appendix B ([Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md)); owner activation of one hour with approval, from the example in Learn's PIM deployment plan.[^pa05-pim-plan] Two Learn pages differ on the longest activation: the Graph overview says activation is always time-bound for at most eight hours, and the settings page says one to 24.[^pa05-overview] [^pa05-settings] The code follows the stricter and flags anything over eight hours. The authentication context `c1` is Chapter 03's. Book 04 requires it for PIM for Groups as it does for PIM role settings, but these rules don't select it yet: they require MFA, justification and a ticket. When `c1` is added, Learn says it prompts on every activation only if its Conditional Access policy sets sign-in frequency to **Every time**, and even then a 10-minute window applies across Microsoft Entra roles, Azure resource roles and PIM for Groups.[^pa05-settings-reauth] Learn's release notes list that reauthentication as generally available since April 2026, while the PIM deployment plan still marks "Require Conditional Access context" as public preview; the chapter treats it as preview, the stricter reading.[^pa05-whats-new] [^pa05-pim-plan-ca]
+`config/prv-group-policy.json` sets the policy for each access type and tier. It is *Design guidance*: member activation of 4 hours for T0 and 8 for the rest, eligibility of 90, 180, 180 and 365 days, and approval for T0 and T1, from Book 04, Appendix B ([Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md)); owner activation of one hour with approval, from the example in Learn's PIM deployment plan.[^pa05-pim-plan] Two Learn pages differ on the longest activation: the Graph overview says activation is always time-bound for at most eight hours, and the settings page says one to 24.[^pa05-overview] [^pa05-settings] The code follows the stricter and flags anything over eight hours. Every member and owner policy also selects the authentication context `c1`, Chapter 03's activation gate: Book 04 requires it for PIM for Groups as it does for PIM role settings ([Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md)). As in Chapter 04's role files, the enablement rules then ask for justification and a ticket (justification only for read-only members), not MFA. Learn says to create and enable the context's Conditional Access policy before PIM selects it; if no policy targets the context, activation falls back to MFA, but not when the policy is off, report-only or excludes the user.[^pa05-settings-reauth] So, as in Chapter 04, `-Apply` refuses a plan that selects `c1` unless you pass `-ActivationGateChecked`, a person's statement that `PIM-Activation-c1` is On. Learn says `c1` prompts on every activation only if its Conditional Access policy sets sign-in frequency to **Every time**, and even then a 10-minute window applies across Microsoft Entra roles, Azure resource roles and PIM for Groups.[^pa05-settings-reauth] Learn's release notes list that reauthentication as generally available since April 2026, while the PIM deployment plan still marks "Require Conditional Access context" as public preview; the chapter treats it as preview, the stricter reading.[^pa05-whats-new] [^pa05-pim-plan-ca]
 
 ### The read and the findings
 
@@ -127,7 +127,7 @@ This chapter adds its own module, `powershell/PimGroups/PimGroups.psm1`, its own
 | PA-PG-05 | Finding | A group as a member or owner, or a service principal made eligible | Learn: no active nesting in a role-assignable group,[^pa05-rag] nesting in PIM for Groups not recommended, and service principals can't be eligible;[^pa05-pim-plan] *Design guidance* to allow no group at all, because an eligible group hides its people from the review |
 | PA-PG-06 | Finding; Warn | An entry with no end, or one already ended (Finding); one with no ticket (Warn) | Learn: zero permanently active assignments except emergency accounts;[^pa05-pim-plan] *Design guidance* for eligibility and tickets |
 | PA-PG-07 | Finding | Eligible owners with no active owner; any owner on a T0 group | Learn: the last active owner can't be removed, so an activated owner's deactivation fails and, after 30 days, PIM stops trying;[^pa05-concept] *Design guidance* that T0 groups have no owners, since owners manage membership |
-| PA-PG-08 | Finding; Warn | A policy rule that differs from the reviewed setting (Finding on T0 and T1 and on any expiration rule, Warn otherwise); activation over 8 hours; approval with no approver group; a group approving itself; eligible members activating into an Entra role without approval (Warn) | Learn: approval recommended for groups that elevate into Entra roles;[^pa05-rag] approvers can't approve their own requests;[^pa05-approval] *Design guidance* for the settings |
+| PA-PG-08 | Finding; Warn | A policy rule that differs from the reviewed setting (Finding on T0 and T1 and on any expiration rule, Warn otherwise); activation over 8 hours; an authentication context outside `c1` to `c99`; approval with no approver group; a group approving itself; eligible members activating into an Entra role without approval (Warn) | Learn: approval recommended for groups that elevate into Entra roles;[^pa05-rag] approvers can't approve their own requests;[^pa05-approval] *Design guidance* for the settings |
 | PA-PG-09 | Finding; Warn | A schedule the file doesn't grant (Finding); a role-assignable or `PRV-*` group the file doesn't list (Warn) | *Design guidance*: anything outside the file is unreviewed |
 
 Activations, `assignmentType` `activated`, aren't standing state: the code leaves them out of both the findings and the plan.
@@ -136,7 +136,7 @@ Activations, `assignmentType` `activated`, aren't standing state: the code leave
 
 `New-PaPimGroupPlan` turns the differences into requests, in a fixed order: groups to create, then policy rules, so the rules are in force before anyone is granted, then grants and updates, then removals. Each operation carries its call ID, method, URI, body, its least-privileged permission and one diff line. `diff.txt` is the diff; `plan.json` is the exact requests.
 
-`Invoke-PaPgPlan` is a dry run unless you pass `-Apply`. With `-Apply` it refuses to start if any guard fails, sends each request through a declared write call on the cloud's own host, and stops at the first error. The guards are *Design guidance*, each tied to a rule above:
+`Invoke-PaPgPlan` is a dry run unless you pass `-Apply`. With `-Apply` it refuses to start if any guard fails, or if the plan selects an authentication context and `-ActivationGateChecked` wasn't passed; then it sends each request through a declared write call on the cloud's own host, and stops at the first error. The guards are *Design guidance*, each tied to a rule above:
 
 | Guard | Refuses |
 |---|---|
@@ -216,6 +216,8 @@ Get-Content out/pim-groups/diff.txt
 # Step 8: Apply to the fake
 ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
     -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply
+./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+    -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply -ActivationGateChecked
 
 # Step 9: Run the tests
 Invoke-Pester -Path tests
@@ -283,9 +285,10 @@ Remove-Item -Recurse -Force out
    ```
 
    ```text
-   PIM for Groups: 9 Finding, 3 Warn, 0 Info
-   Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)
+   PIM for Groups: 11 Finding, 3 Warn, 0 Info
+   Plan: 10 change(s) (3 assignment, 2 eligibility, 5 policy rule)
    Guards: all passed
+   Activation gate: the plan selects an authentication context; -Apply also needs -ActivationGateChecked
    Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply
    Written to out/pim-groups (manifest.json lists every request and file hash)
    ```
@@ -308,7 +311,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   On `PRV-T0-PrivRoleAdmin`: a permanent active member, `ben.ops`, whom the file doesn't grant (PA-PG-06 and PA-PG-09); an eligible owner, `cara.cloud`, with no active owner (PA-PG-07 and PA-PG-09); and member activation without approval and for 8 hours instead of 4 (two PA-PG-08). On `PRV-T1-AzureOwner-SubWorkload`: the group `Helpdesk-Admins-Legacy` nested as an eligible member (PA-PG-05 and PA-PG-09), an owner policy that doesn't require eligibility to expire (PA-PG-08), and a Warn because the group isn't role-assignable (PA-PG-02). Two Warns for groups the file doesn't list (PA-PG-09). Cara's activated membership of the Azure group isn't reported: it's an activation, not standing state.
+   On `PRV-T0-PrivRoleAdmin`: a permanent active member, `ben.ops`, whom the file doesn't grant (PA-PG-06 and PA-PG-09); an eligible owner, `cara.cloud`, with no active owner (PA-PG-07 and PA-PG-09); and a member policy that activates without approval, for 8 hours instead of 4, and with MFA instead of the authentication context `c1` (four PA-PG-08: the duration, the enablement rules, the context and the approval). Every other policy in the fixture already selects `c1`. On `PRV-T1-AzureOwner-SubWorkload`: the group `Helpdesk-Admins-Legacy` nested as an eligible member (PA-PG-05 and PA-PG-09), an owner policy that doesn't require eligibility to expire (PA-PG-08), and a Warn because the group isn't role-assignable (PA-PG-02). Two Warns for groups the file doesn't list (PA-PG-09). Cara's activated membership of the Azure group isn't reported: it's an activation, not standing state.
 
 6. **Read the diff:**
 
@@ -323,7 +326,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   Three policy rule changes (`~`), Eve's membership extended from December 31 to April 28 and Ben granted membership of `PRV-T1-ExchangeAdmin` on CHG-1005, then three removals (`-`). The plan needs `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup, PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup, RoleManagementPolicy.ReadWrite.AzureADGroup`.
+   Five policy rule changes (`~`), three of them the member policy of `PRV-T0-PrivRoleAdmin` moving from MFA to `c1`, Eve's membership extended from December 31 to April 28 and Ben granted membership of `PRV-T1-ExchangeAdmin` on CHG-1005, then three removals (`-`). The plan needs `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup, PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup, RoleManagementPolicy.ReadWrite.AzureADGroup`.
 
 7. **See a guard refuse:**
 
@@ -345,6 +348,8 @@ Remove-Item -Recurse -Force out
    ```powershell
    ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
        -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply
+   ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+       -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply -ActivationGateChecked
    ```
 
    <!-- capture:begin 05-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
@@ -353,7 +358,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   The same first three lines, then `Applied: 8 sent, 0 failed`. The fake records the requests and doesn't change its tenant.
+   The first command stops before any write: `The plan sets an authentication context: confirm its Conditional Access policy is On (Chapter 03), then pass -ActivationGateChecked`. The second prints the same first three lines, then `Applied: 10 sent, 0 failed`. The fake records the requests and doesn't change its tenant.
 
 9. **Run the tests:**
 
@@ -424,7 +429,7 @@ Get-Content out/pim-groups-test/diff.txt
 
 # Step 4: Apply as the writer
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <writer-app-id> -CertificateThumbprint <thumbprint>
-./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id> -Apply
+./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id> -Apply -ActivationGateChecked
 
 # Step 5: Rerun the plan
 ./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id>
@@ -495,11 +500,11 @@ Remove-Item -Recurse -Force out/pim-groups-test
    Get-Content out/pim-groups-test/diff.txt
    ```
 
-4. **Apply as the writer.** Review `diff.txt`, sign in as the writer, and apply:
+4. **Apply as the writer.** Review `diff.txt`. The lab group's policies select `c1`, so first confirm that the test tenant's `PIM-Activation-c1` policy is On ([Chapter 03](03-conditional-access-for-administrators.md), Lab 2); `-ActivationGateChecked` is your statement that it is. Then sign in as the writer and apply:
 
    ```powershell
    Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <writer-app-id> -CertificateThumbprint <thumbprint>
-   ./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id> -Apply
+   ./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id> -Apply -ActivationGateChecked
    ```
 
    Then open **ID Governance** > **Privileged Identity Management** > **Groups** > `PRV-T1-LabTest` and compare the member settings and assignments with the file. Record whether each request succeeded with the `AzureADGroup` permissions alone (research gaps, row 53) and whether the v1.0 rule update on the `Group_` policy took effect (row 55).
@@ -579,7 +584,7 @@ The PRV groups' file, the check and the plan are the evidence for the plan's tas
 | A schedule the file doesn't grant, and a privileged group the file doesn't list: PA-PG-09 in `findings.json` | AC-2, account management: access nobody reviewed is found | KSI-IAM-JIT | The ISSO |
 | The write permissions a run needs are exactly those of its own operations: Lab 1, step 6, `diff.txt` and the `Permissions` list in `plan.json` | AC-6 for the identity that applies; CM-3 | KSI-IAM-ELP, KSI-CMT-LMC | Identity engineering |
 | A plan with more removals than allowed is refused before anything is sent: Lab 1, step 7, `Refusing to apply: PA-PG-G6` | CM-3: an unsafe change is stopped (the guards are design guidance) | KSI-CMT-LMC | The repository's test runs |
-| An apply sends each request in order and records the result: Lab 1, step 8, `results.json` and `manifest.json` in `out/pim-groups-apply` | CM-3, approved changes implemented and recorded | KSI-CMT-LMC | The ISSO, beside the files the manifest lists |
+| An apply refuses to select `c1` without a person's statement that its policy is On, then sends each request in order and records the result: Lab 1, step 8, the refusal, then `results.json` and `manifest.json` in `out/pim-groups-apply` | CM-3, approved changes implemented and recorded | KSI-CMT-LMC | The ISSO, beside the files the manifest lists |
 | The groups are made by hand by a Privileged Role Administrator, so the pipeline's app never holds `RoleManagement.ReadWrite.Directory`, and the reviewed file names each holder with an end date and a ticket: Lab 2, step 1, `prv-groups.json` | AC-6 and AC-6(5) (keeping the permission off the pipeline is design guidance) | KSI-IAM-ELP, KSI-IAM-JIT | Identity engineering, in the repository |
 | A live plan of the test tenant, as the reader app: Lab 2, step 3, `out/pim-groups-test/findings.json` and `diff.txt` | CM-3 | KSI-CMT-LMC | Identity engineering |
 | The writer applies the reviewed diff: Lab 2, step 4, `results.json` and `manifest.json` | CM-3; AC-5, a reader and a writer that are different identities | KSI-CMT-LMC, KSI-IAM-JIT | The ISSO |
@@ -609,7 +614,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers.[^pa05-ksi] The agen
 - [ ] `prv-groups.json` passes `Test-PaPrvGroupConfig` with no Finding, and every entry has an end date and a ticket.
 - [ ] Every PRV group that holds an Entra role is role-assignable, and no PRV group is dynamic or synchronized.
 - [ ] No group and no eligible service principal is a member or owner of a PRV group, and no T0 group has an owner.
-- [ ] Member and owner policies match `prv-group-policy.json`: approval by the tier's approver group for T0 and T1, activation no longer than 8 hours, expiration required.
+- [ ] Member and owner policies match `prv-group-policy.json`: approval by the tier's approver group for T0 and T1, activation no longer than 8 hours, expiration required, and the authentication context `c1` on activation, set only after `PIM-Activation-c1` is On.
 - [ ] Each approver group has at least two members, and none of them is approving their own group.
 - [ ] The latest plan was reviewed by someone other than its author before `-Apply`, and a rerun shows no changes.
 - [ ] The reader app holds exactly the four read permissions; the writer holds those and only the write permissions the plan lists.
