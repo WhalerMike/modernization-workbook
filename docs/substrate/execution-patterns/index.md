@@ -18,8 +18,12 @@ How the Federal Modernization Program actually *runs* — the distinction betwee
 execution, and the strategic framing
 that keeps product positioning crisp.
 
-## Leaves
+## Pages
 
-- **S.E.1** Two-Brain Execution (Copilot governs · Execution Substrate executes)
-  — the program decision *(to author)*
-- **S.E.2** "Instruments vs. Orchestra" positioning narrative — from Gap Analysis
+- [CLI and Operations Guide](cli-operations-guide.md) — Git, Gitea API, PowerShell and platform integration
+- [Operations Runbook](operations-runbook.md) — day-to-day platform administration
+
+## Topics without a page here
+
+- Two-Brain Execution (Copilot governs · Execution Substrate executes) *(to author)*
+- "Instruments vs. Orchestra" positioning narrative

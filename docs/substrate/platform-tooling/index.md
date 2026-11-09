@@ -18,13 +18,21 @@ The day-to-day machinery that every canon author, every automation, and
 every reader interacts with. These tools are shared — modernization and
 compliance both ride on them.
 
-## Leaves
+## Pages
 
-- **S.P.1** GitHub / Gitea monorepo
-- **S.P.2** Quarto render pipeline
-- **S.P.3** Canon sync (`sync_canon.py`)
-- **S.P.4** CI/CD (GitHub Actions)
-- **S.P.5** Customer Documents portal
-- **S.P.6** the Federal Modernization Program CLI
-- **S.P.7** PowerShell Module Reference
-- **S.P.8** the Federal Modernization Program Academy (training platform)
+- [Azure Arc Policy Library](azure-arc-policy-library.md) — Azure Policy definitions for Arc-enabled servers
+- [Invoke-ADSurvey](invoke-ad-survey.md) — read-only forest survey
+- [Invoke-GpoMigrationTriage](invoke-gpo-migration-triage.md) — classify every GPO for migration to Intune or Azure Arc
+- [Invoke-GpoObsoleteAudit](invoke-gpo-obsolete-audit.md) — flag obsolete or misconfigured GPOs
+
+## Topics without a page here
+
+These platform topics have no page in this section.
+
+- GitHub / Gitea monorepo
+- Quarto render pipeline
+- Canon sync (`sync_canon.py`)
+- CI/CD (GitHub Actions)
+- Customer Documents portal
+- PowerShell Module Reference
+- Training platform (Academy)
