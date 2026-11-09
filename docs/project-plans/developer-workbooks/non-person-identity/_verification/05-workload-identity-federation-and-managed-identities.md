@@ -20,7 +20,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Order: managed identity, then federated credential, then certificate; HIGH-risk first; 30-day parallel run then disable; rollback re-enables | What the code depends on; NPI-WIF-01 | carried forward from Book 02, Chapter 10, Phase 4 and the project plan N3.2 to N3.4 | Book 02; project plan |
+| 1 | Order: managed identity, then federated credential, then certificate; HIGH-risk first; 30-day parallel run then disable; rollback re-enables | What the code depends on; NPI-WIF-01 | carried forward from Book 02, Chapter 10, Phase 4 and the project plan NP3.2 to NP3.4 | Book 02; project plan |
 | 2 | A wrong subject is created without error and fails only at token exchange; test each exchange before the parallel run | What the code depends on; Dangers | verified (Learn include) and carried forward (plan risk; Book 02, Chapter 09) | Learn, shared include; project plan |
 | 3 | Issuer, subject, audience must match; issuer whitespace blocks; 600 characters; single audience, `api://AzureADTokenExchange` recommended; name 3–120, alphanumeric first, immutable; no wildcards; 20 per app or user-assigned identity | What the code depends on; NPI-WIF-02 to -06; Verified facts | verified | Learn, shared include (pinned) |
 | 4 | The match is case-sensitive | What the code depends on; NPI-WIF-02; Verified facts | verified | Learn, Workload identity federation concepts |
@@ -55,7 +55,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N3.2, N3.3, N3.4 and the risk "a federated credential's subject is wrong" | Goal; the checks; the exchange test; the parallel run | N3.1 and N3.7 (app management policies, rotation) are Chapter 04's; N3.5 and N3.6 (gMSAs, dMSAs, Kerberos) Chapter 06's |
+| Project plan NP3.2, NP3.3, NP3.4 and the risk "a federated credential's subject is wrong" | Goal; the checks; the exchange test; the parallel run | NP3.1 and NP3.7 (app management policies, rotation) are Chapter 04's; NP3.5 and NP3.6 (gMSAs, dMSAs, Kerberos) Chapter 06's |
 | Book 02, Chapter 09 (workload identity federation; 20 credentials; test each one) | What the code depends on | — |
 | Book 02, Chapter 10, Phase 4 (order, parallel run, rollback) | What the code depends on; the plan actions | Conditional Access for workload identities (Phase 4, step 3) is Chapter 08's |
 | Implementation guide, Step 5 (build the target; 30 days; disable, don't delete; holding OU; record the result) | The parallel run; `Converted` | Moving the disabled account to a holding OU is left to the operator: the write path declares only `Disable-ADAccount` |

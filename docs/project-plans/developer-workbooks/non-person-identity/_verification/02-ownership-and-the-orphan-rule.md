@@ -16,8 +16,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 2 | Service principal owners are users or service principals | The rule; Verified facts | verified | Learn, Get-MgServicePrincipalOwner |
 | 3 | Keep ownership minimal; review owners every few months | The rule | verified | Learn, Security best practices for application properties |
 | 4 | Owners can add a credential and act as the app | The rule | carried forward from Book 04, Chapter 05 | Book 04 |
-| 5 | Two human owners, never service accounts; not service principals or guests | The rule; NPI-OWN-03, -04 | restated-as-design (labeled) from Book 02, Chapter 09 and the project plan's N1.1 | Book 02; project plan |
-| 6 | Orphan rule D-N2; Book 04, Chapter 06's order; Book 17's order | The rule; research gaps | recorded (row 11) | project plan; Book 04; Book 17 |
+| 5 | Two human owners, never service accounts; not service principals or guests | The rule; NPI-OWN-03, -04 | restated-as-design (labeled) from Book 02, Chapter 09 and the project plan's NP1.1 | Book 02; project plan |
+| 6 | Orphan rule D-NP2; Book 04, Chapter 06's order; Book 17's order | The rule; research gaps | recorded (row 11) | project plan; Book 04; Book 17 |
 | 7 | Disable, don't delete, until the review is complete; delete after a defined period and warning | The rule; Verified facts | verified | Learn, Governing Microsoft Entra service accounts; Govern on-premises service accounts |
 | 8 | Deactivate: `isDisabled` on beta; reactivation on v1.0; tokens stay valid until expiry; remove owners to prevent reactivation; delete leaves a 30-day recycle bin | The rule; Verified facts; Dangers | verified | Learn, Deactivate an app registration |
 | 9 | Disable sign-in: `accountEnabled` false blocks tokens in this tenant only; roles; restore with `true` | The rule; Verified facts; Lab 2 | verified | Learn, Disable user sign-in for an application |
@@ -31,7 +31,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 17 | Get a user: application `User.Read.All`; non-default properties need `$select`; encode `#` as `%23` | The check; Verified facts | verified | Learn, Get a user; Get-MgUser |
 | 18 | `Application.ReadWrite.All` lets an app act as other entities | Write path | verified | Learn, Microsoft Graph permissions reference |
 | 19 | Sample behavior: noise in the ownerless list; service principal owners, not registration owners; guests and service principals counted; any directory object added; hard-coded host; free-text reference; no disable step | Gap table | verified by sending the pinned samples to the fake; pinned in `MicrosoftSamples.Tests.ps1` | local run |
-| 20 | AI sponsor fields (federal sponsor, sponsoring group, technical owner, inventory record) | The check | restated from Book 17, Chapter 05 and N1.2; recorded, not checked (row 18) | Book 17; project plan |
+| 20 | AI sponsor fields (federal sponsor, sponsoring group, technical owner, inventory record) | The check | restated from Book 17, Chapter 05 and NP1.2; recorded, not checked (row 18) | Book 17; project plan |
 | 21 | The writer's guards (approved hash, tenant, cloud, seven days, bodies, delegated only, prechecks) | Write path; Dangers | restated-as-design (labeled) | — |
 | 22 | Lab 1 outputs (10 passed; permissions; 22 identities, 7 candidates, 20/3/1, 2 AI rows; the plan table and its hash; dry run; apply; the refusal; 14 user reads; 97 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 23 | Lab 2 behavior (guest `userType`; the AD right for the disable; activation status after the disable) | Lab 2 | not run against a tenant or domain; rows 15 and 16 | — |
@@ -42,7 +42,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N1.1, N1.3, D-N2, Gate 1 | Goal; the rule; the plan | N1.2 is recorded only; built in Chapter 09 |
+| Project plan NP1.1, NP1.3, D-NP2, Gate 1 | Goal; the rule; the plan | NP1.2 is recorded only; built in Chapter 09 |
 | Book 04, Chapter 05 (ownership) and Chapter 06 (orphan policy, owner transfer) | The rule; research gaps, row 11 | The ten-business-day owner transfer belongs with the mover and leaver workflows (Chapter 09 for sponsors) |
 | Book 02, Chapters 09 and 10 (two human owners; owner before touching) | The rule; NPI-OWN-08 | — |
 | Book 17, Chapter 05 (two named humans and a record; the orphaned agent; disabling never automatic) | AI sponsor fields; delegated write path | The orphan rule for agents is Chapter 09's |

@@ -54,11 +54,11 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N3.1, N3.7 | Goal; the rules; both plans | Gate 3 also needs N3.4 and N3.6 (Chapters 05 and 06) |
+| Project plan NP3.1, NP3.7 | Goal; the rules; both plans | Gate 3 also needs NP3.4 and NP3.6 (Chapters 05 and 06) |
 | Book 04, Chapter 05 (enforcing the order with app management policies; app instance property lock; governing app registrations; certificates and the CLM platform) | The rules; the policy file; the rotation | The CA choice stays with Book 07 and Vol I, Book 03 (row 39) |
 | Book 04, Chapter 06 (exceptions) | Exceptions with a record and an end date | The exception process itself is Book 04's |
 | Book 02, Chapter 09 (annual rotation while remediated) | `legacyMaxLifetimeDays` | — |
-| Project plan D-N4 (Workload ID Premium scope) | Licensing note; row 31 | Not a gate for this chapter |
+| Project plan D-NP4 (Workload ID Premium scope) | Licensing note; row 31 | Not a gate for this chapter |
 | Chapter 01's register and manifest | `Import-NpiCh04Register`; the lock and rotation scopes | — |
 | Chapter 02 (owners who are enabled members; the separate, delegated write path) | Approver check; `Invoke-NpiCredentialAction.ps1` | — |
 | Chapter 05 (federated credentials, managed identities) | `ReplaceSecret` points there | — |

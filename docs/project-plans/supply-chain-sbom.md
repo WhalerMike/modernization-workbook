@@ -126,7 +126,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-G0 | [Program G0: Ready to Plan](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#why-the-questionnaire-comes-first) | External | Steward | — | — | end of wk 4 | 3 d |
+| X-G0 | [Program G0: Ready to Plan](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#why-the-questionnaire-comes-first) | External | Steward (backup: executive sponsor; program) | — | — | end of wk 4 | 3 d |
 | S0.1 | [Charter drafted: pilot system, supply chain team, risk-acceptance owner, risk-based timelines](../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what) | Task | CISO | 8 | — | wk 1–2 | 4 d |
 | D-S1 | [Approve the supply chain charter and name the team (SR-2(1))](../books/b14-compliance/10-who-owns-compliance.md#the-supply-chain-risk-lead) | Decision | CIO | — | S0.1 | end of wk 2 | 4 d |
 | D-S2 | [Remediation timelines: risk-based or uniform](../books/b14-compliance/02-the-federal-clock.md#bod-26-04-risk-based-remediation) | Decision | CISO | — | S0.1 | end of wk 2 | 4 d |
@@ -172,7 +172,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | D-S6 | [Supply chain risk carried on the pilot system](../books/b14-compliance/10-who-owns-compliance.md#the-responsibility-matrix) | Decision | Authorizing official | — | D-S5 | end of wk 7 | 20 d |
 | S3.2 | [Provisioning gate on for new SaaS: Marketplace certification and the agency's authorization of the using system](../books/b14-compliance/07-supply-chain-risk-management.md#fedramp-what-binds-cloud-providers) | Task | Supply chain risk lead | 5 | S1.2, D-S4 | wk 4 | 35 d |
 | S3.3 | [Each provider's VDR and VER status checked after FedRAMP's corrective-action window closes](../books/b14-compliance/02-the-federal-clock.md#the-dates-still-ahead) | Task | ISSO | 3 | S0.2 (SS) +45 d, S2.4 | wk 10 | 7 d |
-| X-G1 | [Program G1: Foundation Complete](../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock) | External | Steward | — | — | end of wk 8 | 13 d |
+| X-G1 | [Program G1: Foundation Complete](../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock) | External | Steward (program) | — | — | end of wk 8 | 13 d |
 | S3.4 | [Dated register re-verified at the program's G1](../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock) | Task | Program office | 2 | X-G1, S1.4 | wk 9 | 13 d |
 | SG3 | [Gate 3 — Remediation and the provisioning gate proven](../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what) | Gate | CISO | — | S3.1, D-S6, S3.2, S3.3, S3.4 | end of wk 10 | 5 d |
 
@@ -182,13 +182,13 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-CM1 | [Evidence contract published](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) | External | Continuous Monitoring project | — | — | end of wk 4 | 27 d |
+| X-CM1 | [Evidence contract published](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) | External | CISO (Continuous Monitoring & Evidence Fabric plan) | — | — | end of wk 4 | 27 d |
 | S4.1 | [SBOMs, reports and VEX statements signed, stored immutably and emitted in the contract's shape](../books/b14-compliance/07-supply-chain-risk-management.md#the-evidence-pipeline) | Task | Engineering teams | 5 | SG2, X-CM1, D-S5 | wk 8 | 10 d |
 | S4.2 | [Pilot release workflow at SLSA Build L2](../books/b14-compliance/07-supply-chain-risk-management.md#build-provenance) | Task | Engineering teams | 5 | S1.1 | wk 4–5 | 22 d |
 | S4.3 | [Build L3 through shared reusable workflows; two-party review on protected branches](../books/b14-compliance/07-supply-chain-risk-management.md#build-provenance) | Task | Engineering teams | 10 | S4.2 | wk 5–7 | 22 d |
 | D-S7 | [Which clauses each acquisition carries](../books/b14-compliance/07-supply-chain-risk-management.md#the-closure-record) | Decision | Contracting officer, advised by the supply chain team | — | S1.3 | end of wk 5 | 5 d |
 | S4.4 | [Clauses written into the next acquisitions](../books/b14-compliance/07-supply-chain-risk-management.md#supplier-disclosure) | Task | Contracting officer | 25 | D-S7 | wk 6–10 | 5 d |
-| X-CM4 | [Package artifacts generated from the stream](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) | External | Continuous Monitoring project | — | — | end of wk 10 | 4 d |
+| X-CM4 | [Package artifacts generated from the stream](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) | External | CISO (Continuous Monitoring & Evidence Fabric plan) | — | — | end of wk 10 | 4 d |
 | S4.5 | **[Pilot findings in the generated POA&M; a closure record per SR control naming what closes it](../books/b14-compliance/07-supply-chain-risk-management.md#the-closure-record)** | Task | ISSO | 5 | S4.1, S3.1, X-CM4 | wk 11 | 0 |
 | SG4 | **[Gate 4 — Evidence in the stream](../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what)** | Gate | CISO | — | S4.3, S4.4, S4.5, S0.4, SG3 | end of wk 11 | 0 |
 
@@ -207,12 +207,13 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | ISSO | 3 | — | — |
 | Authorizing official | — | 2 | — |
 | CIO | — | 1 | 1 |
-| Continuous Monitoring project | 2 | — | — |
-| Steward | 2 | — | — |
+| CISO (Continuous Monitoring & Evidence Fabric plan) | 2 | — | — |
 | Contracting officer | 1 | — | — |
 | Contracting officer, advised by the supply chain team | — | 1 | — |
 | Engineering teams that build and release software | — | 1 | — |
 | Owning application team, reviewed by security | — | 1 | — |
+| Steward (backup: executive sponsor; program) | 1 | — | — |
+| Steward (program) | 1 | — | — |
 | System owner | 1 | — | — |
 
 : Ownership {.striped .hover}

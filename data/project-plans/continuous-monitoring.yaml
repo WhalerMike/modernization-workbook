@@ -57,10 +57,10 @@ risks:
 
 tasks:
   # ------------------------------------------------- program milestones this plan is timed against
-  - {id: X-P02, kind: external, phase: 0, name: "Platform host built and repository seeded", ref: "program-master-schedule:P0.2", owner: "Platform teams",
+  - {id: X-P02, kind: external, phase: 0, name: "Platform host built and repository seeded", ref: "program-master-schedule:P0.2",
      late: "The contract has no record to be committed to; Gate 1 waits",
      source: "../books/b13-governance/03-one-authoritative-record.md#where-the-record-lives"}
-  - {id: X-G0, kind: external, phase: 0, name: "Program G0: Ready to Plan", ref: "program-master-schedule:G0", owner: "Steward",
+  - {id: X-G0, kind: external, phase: 0, name: "Program G0: Ready to Plan", ref: "program-master-schedule:G0",
      late: "This plan's Gate 0 should land before it; the pilot scope feeds the program's planning",
      source: "../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program"}
   # ------------------------------------------------- Phase 0 — charter and alignment
@@ -119,12 +119,12 @@ tasks:
      criteria: "One reconciled picture for the pilot scope, joined on asset identity, with unjoinable records counted, not dropped",
      source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
   # ------------------------------------------------- Phase 4 — detection and assembly
-  - {id: X-P12, kind: external, phase: 4, name: "Enterprise groups and administrative units built", ref: "program-master-schedule:P1.2", owner: "Platform teams",
+  - {id: X-P12, kind: external, phase: 4, name: "Enterprise groups and administrative units built", ref: "program-master-schedule:P1.2",
      late: "There is nothing to drift-check before G1; the drift run moves day for day",
      source: "../books/b13-governance/06-the-drift-engine.md#one-model-many-domain-checks"}
   - {id: M4.1, phase: 4, name: "Pilot groups and administrative units checked against the record; findings written in contract shape", dur: 3, after: [X-P12, MG2, M1.3], owner: "Drift detection lead",
      source: "../books/b13-governance/06-the-drift-engine.md#what-is-built-today"}
-  - {id: X-G1, kind: external, phase: 4, name: "Program G1: Foundation Complete (groups and AUs drift-clean)", ref: "program-master-schedule:G1", after: [M4.1], owner: "Steward",
+  - {id: X-G1, kind: external, phase: 4, name: "Program G1: Foundation Complete (groups and AUs drift-clean)", ref: "program-master-schedule:G1", after: [M4.1],
      late: "M4.1 must finish before it, or G1's drift-clean criterion rests on findings recorded by hand",
      source: "../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project"}
   - {id: D-M4, kind: decision, phase: 4, name: "Actuation ceiling for each pilot operation class", after: [M1.3], owner: "Authorizing official",
@@ -150,15 +150,15 @@ tasks:
      source: "../books/b13-governance/09-who-governs.md#cadence"}
   - {id: M5.2, phase: 5, name: "Months 1 to 3: assessment results and the POA&M regenerated, POA&M reviewed, posture report to the AO", dur: 60, after: ["M5.1:SS"], owner: "ISSO",
      source: "../books/b14-compliance/11-the-authorization-package.md#the-cadence"}
-  - {id: X-P23, kind: external, phase: 5, name: "Pilot devices moved by pattern", ref: "program-master-schedule:P2.3", owner: "Platform teams",
+  - {id: X-P23, kind: external, phase: 5, name: "Pilot devices moved by pattern", ref: "program-master-schedule:P2.3",
      late: "Device-posture findings can't start; the margin to the G2 hold shrinks day for day",
      source: "../books/b13-governance/06-the-drift-engine.md#cadence"}
   - {id: M5.3, phase: 5, name: "Pilot devices' posture findings written in contract shape, before the program's drift-clean hold", dur: 3, after: [X-P23, M2.3, M1.3], owner: "Platform teams",
      source: "../books/b13-governance/06-the-drift-engine.md#what-is-built-today"}
-  - {id: X-HOLD, kind: external, phase: 5, name: "Program drift-clean hold begins (P2.11)", ref: "program-master-schedule:P2.11:start", after: [M5.3], owner: "Program office",
+  - {id: X-HOLD, kind: external, phase: 5, name: "Program drift-clean hold begins (P2.11)", ref: "program-master-schedule:P2.11:start", after: [M5.3],
      late: "The hold can't be measured from data, so G2 can't pass on evidence",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
-  - {id: X-G2, kind: external, phase: 5, name: "Program G2: Pilot Clean (zero drift for the hold period)", ref: "program-master-schedule:G2", owner: "Steward and executive sponsor",
+  - {id: X-G2, kind: external, phase: 5, name: "Program G2: Pilot Clean (zero drift for the hold period)", ref: "program-master-schedule:G2",
      late: "M5.3 must finish before the 14-day hold that ends at G2",
      source: "../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project"}
   - {id: M5.4, phase: 5, name: "Federal senior information security official named to review each provider's Ongoing Certification Report", dur: 3, after: [MG4], owner: "CISO",

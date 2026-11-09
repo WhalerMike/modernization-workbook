@@ -31,7 +31,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 17 | The matrix's targets for traditional, MSA, IIS application pool and scheduled task identities | Context | carried forward from Book 02, Chapter 09 | Book 02 |
 | 18 | 30-day parallel run, then disable the legacy account | Rules; DisableSuperseded | carried forward from Book 02, Chapter 10, Phase 4 | Book 02 |
 | 19 | A gMSA works only while AD is authoritative; loses its credential at DC demotion | Context; NPI-KRB-07 | carried forward from the companion guide and the project plan's risk register | guide; project plan |
-| 20 | N3.5, N3.6, N7.3, D08, D11, D09, G5, P4.6, the 72-day margin | Goal; reconciliation | restated from the project plan | project plan |
+| 20 | NP3.5, NP3.6, NP7.3, D08, D11, D09, G5, P4.6, the 72-day margin | Goal; reconciliation | restated from the project plan | project plan |
 | 21 | Dispositions, reviewed retrievers, end dates within D08 and G5, never delete, 28 days, 10 hours, seven-day plan, person-only writes | Rules; write path; Dangers | restated-as-design (labeled) | — |
 | 22 | Lab 1 outputs (17 passed; the cmdlets per task; 9 in scope, 6/1/2, 9 actions and 4 writes, island list 5/3, reconciliation counts, plan hash; findings table; plan table; island and reconciliation tables; dry run; apply; refusal; seven reads; 158 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 23 | Lab 2 behavior (delegated KDS read; retrievers on a default read; state 0 accepted by Start; completion after 28 days; Undo by hand) | Lab 2 | not run against a domain; rows 51 to 53 | — |
@@ -42,7 +42,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N3.5, N3.6, N7.3, X-D08, X-D11, X-P46, X-G5 and the gMSA risk | Goal; rules; the island list; the reconciliation | Gate 3 and Gate 7 are judged with Chapter 10's evidence |
+| Project plan NP3.5, NP3.6, NP7.3, X-D08, X-D11, X-P46, X-G5 and the gMSA risk | Goal; rules; the island list; the reconciliation | Gate 3 and Gate 7 are judged with Chapter 10's evidence |
 | Book 02, Chapter 09 (matrix; dMSA row) | Context; dispositions | The matrix as a whole is Chapter 03's |
 | Book 02, Chapter 10 (Phase 4 parallel run; what still needs AD) | DisableSuperseded; context | DNS, DHCP and Kerberos-bound applications are tracked in Book 02, Chapter 04 and Book 08 |
 | The companion guide (service accounts, MSAs, gMSAs and dMSAs) | Context | — |

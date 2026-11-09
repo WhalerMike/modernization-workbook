@@ -35,7 +35,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 19 | Audit activity *Remove app role assignment from the service principal* | Lab 2, step 5 | verified | Learn, View activity logs of application permissions |
 | 20 | Built-in role template IDs (Global Administrator, Privileged Role Administrator, Application Administrator, Cloud Application Administrator, Directory Writers, Directory Readers) | `config/least-privilege.json` | verified | Learn, Microsoft Entra built-in roles |
 | 21 | Owners review every grant quarterly; application-specific roles and scopes; avoid `Directory.ReadWrite.All` | The rule | restated-as-design (labeled) from Book 02, Chapter 09 | Book 02 |
-| 22 | N4.1 to N4.3, Gate 4, X-A34 and the hand-off of privileged non-human identities | Goal; the rule; NPI-LP-08 | restated from the project plan | project plan |
+| 22 | NP4.1 to NP4.3, Gate 4, X-A34 and the hand-off of privileged non-human identities | Goal; the rule; NPI-LP-08 | restated from the project plan | project plan |
 | 23 | The reviewed list, its classes, the exception fields, the quarter rule, the plan actions, the writer's guards (hash, tenant, cloud, seven days, targets, bodies, delegated only, prechecks) | The code; Dangers | restated-as-design (labeled) | — |
 | 24 | Lab 1 outputs (10 passed; the two permission lines; 11 / 20 / 2 / 3; 7 / 3 / 3; review 15 / 9 / 6 / 4; 11 actions, 3 writes; the plan's hash; the findings by rule and the hand-off; the open rows; the plan table; dry run; apply; refusal; 45 reads; 141 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 25 | Lab 2 behavior (inherited assignments at a subscription list; Graph's answer to the script's request; Directory Writers after the removal) | Lab 2 | not run against a tenant; rows 61, 65 and 68 | — |
@@ -47,7 +47,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N4.1, N4.2, N4.3, Gate 4, X-A34, D-N4 | Goal; the rule; the review; NPI-LP-08 | Access reviews for privileged service principals are the Privileged Access plan's (A3.4) and its workbook's Chapter 07 |
+| Project plan NP4.1, NP4.2, NP4.3, Gate 4, X-A34, D-NP4 | Goal; the rule; the review; NPI-LP-08 | Access reviews for privileged service principals are the Privileged Access plan's (A3.4) and its workbook's Chapter 07 |
 | Book 02, Chapter 09 (governing service principals: quarterly reviews, application-specific roles and scopes) | The rule; the review | — |
 | Book 04, Chapter 05 (permission tiers; mail application permissions under an application access policy; managed identities) | The rule; NPI-LP-05; research gaps, row 63 | Book 04's mail standard isn't changed here: the change is the CISO's, in Book 04's own reviewed change |
 | Privileged Access workbook, Chapter 07 (access reviews of privileged roles, service principal reviews need Workload ID Premium) | The review; research gaps, row 66 | Not repeated: this chapter hands privileged service principals off |
