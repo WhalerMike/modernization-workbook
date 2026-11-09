@@ -340,7 +340,9 @@ def test_rollback_production_reenables_never_deletes(tmp_path):
     steps = rb.plan(s, rb.load_record(rb.record_path(s, p)))
     text = "\n".join(st["step"] for st in steps)
     assert "Remove-MgGroup" not in text and "Remove-MgIdentityGovernanceLifecycleWorkflow" not in text
-    assert "-MembershipRuleProcessingState 'Paused'" in text
+    assert "MembershipRuleProcessingState" not in text
+    assert any(st["where"] == "portal" and "remove g1" in st["step"] and "don't pause or delete" in st["step"]
+               for st in steps)
     assert "-LinkEnabled Yes" in text
     assert any(st["where"] == "portal" and "Assignments > Edit" in st["step"] for st in steps)
     assert any("can't be deleted or shortened" in st["step"] for st in steps)

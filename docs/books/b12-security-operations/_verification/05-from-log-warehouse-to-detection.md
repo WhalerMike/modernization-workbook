@@ -115,3 +115,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | Per-table retention meeting M-26-14's floor | Per-table retention at or above M-26-14's floor | no source change |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | AU-7 row in the controls table (item 599) | Controls this chapter makes assessable | verified (control text); restated-as-design (implementation and evidence) | NIST OSCAL SP 800-53 Rev. 5 catalog; Chapter 12 for the no-alteration fact |

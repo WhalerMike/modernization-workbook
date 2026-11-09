@@ -59,3 +59,11 @@ Opened November 2, 2026: OMB M-24-08 PDF (text extracted locally), read at §III
 | Before | After | Check |
 |---|---|---|
 | Heading "Key takeaways" | Heading "What leadership should take from this", matching Chapters 01 to 06 | Decision of Nov 8, 2026; nothing in docs links to the old #key-takeaways anchor |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Mapping of the four application gates onto Book 14's five PM-7 life-cycle gates (item 884) | How the four gates sit inside the five life-cycle gates | restated-as-design | Book 14, Chapter 05 (the five gates are program design there too) |

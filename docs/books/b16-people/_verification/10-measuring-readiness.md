@@ -64,3 +64,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | Federal requirements are mostly satisfied by completion: | Federal training requirements mostly ask for completion: | no source change |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The steward specifies the change-ticket category and wave tag; the ITSM platform team builds them, as Book 15 Ch10 now says (item 804) | Help desk ticket trends | restated-as-design | Book 15, Chapter 10 |

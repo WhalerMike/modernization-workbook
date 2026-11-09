@@ -150,3 +150,12 @@ Full read of the page, top to bottom, after the first reader covered it by diff.
 | Before | After | Check |
 |---|---|---|
 | "Three of CA-7's items are about metrics and three are about acting" (the list has seven) | Seven items named by group: three metrics, two assessing and analyzing, two acting | Decision of Nov 8, 2026; counted from the list in the same section (SP 800-53 CA-7 items a to g as the page lists them) |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | CA-7(4): effectiveness, compliance and change monitoring; mapped onto the metric set (item 599) | What continuous monitoring asks for | verified (control text); restated-as-design (mapping) | NIST OSCAL SP 800-53 Rev. 5 catalog |
+| 2 | AU-4 and AU-7 answered by the tiers; workspace data can't be altered after ingestion (item 599) | Retention tiers | verified (control text; no-alteration fact already cited as c12-export); restated-as-design | NIST OSCAL catalog; Learn (c12-export) |

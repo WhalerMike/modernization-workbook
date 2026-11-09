@@ -128,3 +128,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | Before | After | Check |
 |---|---|---|
 | Risk tolerance statement signed by the head of agency or the senior accountable official for risk management | Head of agency signs; the senior accountable official for risk management signs only where the agency delegates it (Task P-2) | Decision of Nov 8, 2026; SP 800-37 Rev. 2 Task P-2 as set out in Appendix G (owner: Head of Agency) |
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Pointer: Book 18 Chapter 07's four application gates run inside the five PM-7 life-cycle gates and are mapped there (item 884) | Enterprise architecture (PM-7) | restated-as-design | Book 18, Chapter 07 |

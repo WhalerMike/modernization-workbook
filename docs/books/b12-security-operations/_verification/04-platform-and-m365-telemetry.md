@@ -136,3 +136,11 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/siem-te
 
 - `az monitor diagnostic-settings categories list` query shape (`categoryType`, `categoryGroups`) — command exists in the Azure CLI `diagnostic-settings` group but its output property names were not checked on a reference page.
 - The JSON shape returned by `az monitor diagnostic-settings subscription list` (`value` array) — inferred from the documented `SubscriptionDiagnosticSettingsResourceCollection` return type.
+
+## Held items, November 9, 2026
+
+Post-baseline items from the crosswalk's held list. Each source was opened on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | AU-4 asks for audit log storage capacity allocated to accommodate retention requirements (item 599) | Retention | verified | NIST OSCAL SP 800-53 Rev. 5 catalog |
