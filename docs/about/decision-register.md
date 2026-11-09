@@ -447,7 +447,7 @@ There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded
 | **Choice** | The series is framed as an opportunity to start HR-driven identity. The starting point is ticket-driven accounts, not an existing connector. Federal HR data standards supply the attribute layer for employees. |
 | **Rationale** | The series had drifted toward 'implement' and was refocused on starting. |
 | **Basis** | Workbook design |
-| **Sources** | <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-application-provisioning> |
+| **Sources** | <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision> |
 | **Pages affected** | [HR-Driven Identity](../books/b03-hr-identity/index.md), [Chapter 04 — Attribute Authority](../books/b03-hr-identity/04-attribute-authority.md) |
 | **Date** | 2026-10-19 |
 | **Status** | settled |

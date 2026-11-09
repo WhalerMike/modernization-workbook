@@ -299,6 +299,18 @@ website:
             - docs/training/non-person-identity/09-ai-agent-identities.md
             - docs/training/non-person-identity/10-drift-and-evidence.md
             - docs/training/non-person-identity/11-deploying-to-test-and-production.md
+        - section: "Provider Notices learning path"
+          href: docs/training/provider-notices/index.md
+          contents:
+            - docs/training/provider-notices/01-why-provider-notices-go-unread.md
+            - docs/training/provider-notices/02-azure-service-health-and-alerts.md
+            - docs/training/provider-notices/03-microsoft-365-message-center.md
+            - docs/training/provider-notices/04-oci-announcements.md
+            - docs/training/provider-notices/05-aws-health-and-the-support-plan.md
+            - docs/training/provider-notices/06-google-incidents-and-the-maintenance-gap.md
+            - docs/training/provider-notices/07-routing-to-owners.md
+            - docs/training/provider-notices/08-digest-evidence-and-go-no-go.md
+            - docs/training/provider-notices/09-deploying-to-test-and-production.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
