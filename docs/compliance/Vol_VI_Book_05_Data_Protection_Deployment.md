@@ -27,7 +27,7 @@ Developed by the **CSI Team (Cloud Services Infrastructure)**; not yet reviewed 
 :::
 
 ::: {.aan-important}
-**Series Context** — Volume VI Book 05. Deployable realization of **Volume III (Data Protection)**: the federal CUI sensitivity-label taxonomy, DLP policy packs, and agency-controlled cryptographic key management, expressed as code and applied through the Book VI-00 pipeline.
+**Series Context** — Volume VI Book 05. Deployable realization of **Volume III (Data Protection)**: the federal CUI sensitivity-label taxonomy, DLP policy packs, and agency-controlled cryptographic key management, expressed as code and applied through the change-controlled pipeline described in [Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model.
 :::
 
 # What This Document Addresses
@@ -61,7 +61,7 @@ New-Label -Name "CUI-Specified-PrivacyAct" -DisplayName "CUI-Specified — Priva
 # Keys are agency-held (BYOK): rotation and revocation live in the key-vault module below.
 ```
 
-The key material is the other half: sensitivity-label encryption for the CUI tiers binds to **agency-held keys**, so the agency can rotate or revoke them — for instance after an administrator with access departs. The key vault, its customer-managed keys, rotation policy, and access policy are declared as infrastructure (SC-12/12(1)), giving the audit trail SC-28 and AU-10 expect.
+The key material is the other half: sensitivity-label encryption for the CUI tiers binds to **agency-held keys**, so the agency can rotate or revoke them — for instance after an administrator with access departs. The key vault, its customer-managed keys, rotation policy, and access policy are declared as infrastructure (SC-12, and SC-12(1) where the agency elects it above the Moderate baseline), giving the audit trail SC-28 and AU-10 expect.
 
 # Deployable Artifacts
 
@@ -69,7 +69,7 @@ The key material is the other half: sensitivity-label encryption for the CUI tie
 |---|---|---|---|
 | Sensitivity-label taxonomy (CUI tiers, parent/child, protection settings) | Information classification & marking | Purview labels via PowerShell/Graph as code | AWS Macie classifications; data-tagging policy |
 | DLP policy packs (service/endpoint/network) | AC-4 movement restriction | Purview DLP as code | Symantec/Forcepoint DLP policy-as-code |
-| Key management (CMK/BYOK, rotation, access policy) | SC-12/12(1), SC-28 | Key Vault + CMK Terraform | AWS KMS + CloudHSM as code |
+| Key management (CMK/BYOK, rotation, access policy) | SC-12, SC-28; SC-12(1) (agency-elected, above the Moderate baseline) | Key Vault + CMK Terraform | AWS KMS + CloudHSM as code |
 | Audit-retention configuration | AU-10 non-repudiation (agency-elected, above the Moderate baseline), retention | Purview Audit tier + export as code | CloudTrail Lake retention config |
 
 # Deployment
@@ -91,7 +91,7 @@ Volume III shows a network boundary cannot enforce "block external sharing of CU
 | Control | Title | How this book deploys it |
 |---|---|---|
 | AC-4 | Information Flow Enforcement | Label-derived DLP movement restriction |
-| SC-12/12(1) | Cryptographic Key Establishment & Management | CMK/BYOK, rotation, revocation as code |
+| SC-12; SC-12(1) | Cryptographic Key Establishment & Management (SC-12(1) agency-elected, above the Moderate baseline) | CMK/BYOK, rotation, revocation as code |
 | SC-28 | Protection of Information at Rest | CMK-backed encryption of classified stores |
 | AU-10 | Non-repudiation (agency-elected, above the Moderate baseline) | Premium audit tier + immutable export |
 | MP-3 | Media Marking | Label-driven electronic marking of CUI; physical-media controls (MP-2/4/5) out of scope |
@@ -107,8 +107,8 @@ Volume III shows a network boundary cannot enforce "block external sharing of CU
 - **Volume III — Data Protection (Purview)** — the architecture this book deploys.
 - **Book VI-03** — the label/DLP detections that watch this deployment for abuse.
 - **Book VI-01** — the landing zone and authorized boundary the key vault is deployed inside.
-- **Book VI-07** — label and key events emit to the evidence contract.
+- [Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md) — label and key events emit to the evidence contract.
 
 # Provenance
 
-Draft. Products are deployed examples; substitution columns preserve the mechanism. The PowerShell is an illustrative pattern to adapt, not a drop-in script — validate against current cmdlet schemas and the agency's CUI category set. Vendor capability claims name deployed examples and substitution candidates; their Microsoft Learn and AWS documentation sources are carried in the briefing deck spec (Vol_VI_Book_05.yaml), not inline here.
+Draft. Products are deployed examples; substitution columns preserve the mechanism. The PowerShell is an illustrative pattern to adapt, not a drop-in script — validate against current cmdlet schemas and the agency's CUI category set. Vendor capability claims name deployed examples and substitution candidates; their Microsoft Learn and AWS documentation sources are cited in [Book 12, Chapter 09](../books/b12-security-operations/09-data-protection-and-classification.md).

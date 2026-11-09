@@ -27,7 +27,7 @@ Developed by the **CSI Team (Cloud Services Infrastructure)**; not yet reviewed 
 :::
 
 ::: {.aan-important}
-**Series Context** — Volume VI Book 06. Deployable realization of the configuration and posture architecture of **Volume III (Cloud-Native Posture, Patch & Systems Management)**: secure-baseline policy-as-code with continuous drift detection, applied through the Book VI-00 pipeline.
+**Series Context** — Volume VI Book 06. Deployable realization of the configuration and posture architecture of **Volume III (Cloud-Native Posture, Patch & Systems Management)**: secure-baseline policy-as-code with continuous drift detection, applied through the change-controlled pipeline described in [Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model.
 :::
 
 # What This Document Addresses
@@ -76,7 +76,7 @@ rules:
     desired: "Disabled"
     onDrift: report          # TUNE: report-only where auto-remediation risks a break
 driftExport:
-  target: evidence-contract  # Book VI-07: every drift + reconciliation is an evidence record
+  target: evidence-contract  # Book 12 Chapter 02: every drift + reconciliation is an evidence record
 ```
 
 The SCuBA conformance packs are the cloud-business-application counterpart: the assessment output is diffed against the intended SCuBA baseline, and any governed exception is carried as a documented deviation rather than an open drift — so an assessor sees a governed exception backed by policy, not a silent gap.
@@ -85,7 +85,7 @@ The SCuBA conformance packs are the cloud-business-application counterpart: the 
 
 1. Assign each baseline in **audit-only** first; measure the drift population before enabling any auto-remediation — a baseline that auto-remediates a setting the estate depends on is an availability incident.
 2. Split rules into `remediate` (safe, idempotent) and `report` (needs human judgment); the split is itself reviewed in the pull request.
-3. Wire drift and reconciliation records to the evidence contract (Book VI-07) so CM-6 is continuously evidenced.
+3. Wire drift and reconciliation records to the evidence contract ([Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md)) so CM-6 is continuously evidenced.
 4. Feed unremediated drift into the SI-2 remediation queue and the POA&M.
 
 # Closure Necessity
@@ -113,8 +113,8 @@ Volume III proves conformance tooling *measures drift from an intended state; it
 # Cross-References
 
 - **Volume III — Cloud-Native Posture / Patch & Systems Management** — the architecture this book deploys.
-- **Book VI-07** — drift and conformance results emit to the evidence contract.
-- **Book VI-08** — baseline conformance is validated by the test harnesses.
+- [Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md) — drift and conformance results emit to the evidence contract.
+- [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) — baseline conformance is validated by the same detection-efficacy and telemetry-completeness measures.
 
 # Provenance
 
