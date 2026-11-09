@@ -40,3 +40,12 @@ The federal requirements table gained a KSI column and a row for every Lab 1 and
 | K2 | AC-5, CA-3, CM-8, SA-9 and SA-11 added to the Moderate footnote's list | Federal requirements footnote | verified against the SP 800-53B Moderate OSCAL profile, release 5.2.0, read November 2, 2026; the footnote keeps its November 1 date for the controls first listed | NIST OSCAL Moderate profile |
 | K3 | KSIs are FedRAMP 20x indicators for cloud providers; the agency lines its evidence up with them and doesn't report them | Sentence under the table | restated from Book 00, Appendix B | Book 00, Appendix B |
 | K4 | RA-7, CA-5, AU-14 and CM-4 (base control) are cited by no indicator; rows that rest on them, on the program's tempo or on lab clean-up say "None" | Federal requirements table | verified | FedRAMP, Key Security Indicators |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499). Checked November 9, 2026.
+
+| Finding | Change |
+|---|---|
+| SailPoint OpenAPI v2025 `workflows.yaml` at commit `2a1f293` (2026-11-03): `listWorkflows` and `createWorkflow` now name user level `ORG_ADMIN`; scopes unchanged | Facts row and footnote `ttm03-workflows` add the user level (row 7) |
+| FedRAMP Marketplace data: SailPoint Identity Security Cloud (FR2001938710A) still FedRAMP Certified, Class C, agency path; the data no longer gives an impact level for any listing | No effect on the facts row (Moderate is the former name of Class C) |

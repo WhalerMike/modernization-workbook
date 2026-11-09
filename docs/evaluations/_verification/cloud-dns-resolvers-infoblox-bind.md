@@ -153,3 +153,14 @@ Oracle Cloud Infrastructure was added in Part 1 (a new subsection), in the meeti
 | 111 | Moderate systems on OCI infrastructure inherit from the Government Cloud's High authorization; commercial OCI needs its own authorization basis | Part 1 OCI | inference (labelled) | — |
 | 112 | No Oracle page describes signing private zones; whether the VCN resolver passes DNSSEC data downstream **confirm** | Part 3 | verified as absence (no such text on the Private DNS page) | cdns-oci-pdns |
 | 113 | BIND in a VCN forwards `oraclevcn.com` and private views to 169.254.169.254; Autonomous Database private endpoint names | Part 3 | design, built on cdns-oci-vcndns, cdns-oci-trouble and Book 08 PD-25 | — |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a gone source and changes in cited sources. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| CIS "CIS Benchmarks: BIND" page, <https://www.cisecurity.org/benchmark/bind>: HTTP 404. CIS's benchmark list no longer shows the ISC BIND DNS Server 9.11 or 9.9 benchmarks; its only BIND entry is "BIND 9.x STIG (1.0.0)" under DISA STIG, and it says unsupported benchmarks aren't listed (CIS WorkBench). No replacement CIS benchmark exists | Row 91 restated: CIS listed the two benchmarks on October 29 and no longer lists a BIND benchmark of its own. Footnote `cdns-cis` keeps the old address, marked retrieved before removal. The 9.11 benchmark's intent stays in the agency profile, labelled as retired |
+| AWS whitepaper *Hybrid Cloud DNS Options for Amazon VPC*: the HTML address now redirects (302) to the Route 53 Developer Guide, "What is Route 53 VPC Resolver?". The PDF of the whitepaper is still published and still carries the "historical reference only" notice, the December 2, 2022 publication date, "Each EC2 instance is limited to 1024 packets per second for DNS queries" and "it is critical to specify the forward only option" | Moved: footnote `cdns-aws-whitepaper` now points to the PDF (row 49 unchanged) |
+| Azure DNS monitoring data reference (queries-per-second wording); Azure Retail Prices API (first page, 68 bytes smaller) | No effect: resolver and ruleset metrics and resolver-policy-only resource logs unchanged; the US Gov meters were not re-read |
+| FedRAMP Marketplace data: AWS US East/West (Class C), AWS GovCloud and Oracle Cloud Infrastructure-Government Cloud (Class D), Fusion Cloud (Class C) unchanged; the data no longer gives an impact level for any listing | No effect (dated footnotes) |

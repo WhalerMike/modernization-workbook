@@ -70,3 +70,12 @@ Vendor pages opened on November 2, 2026:
 | Chapter 08: one writer per attribute | Step 1.6 note on inbound provisioning | — |
 | Kit README: ServiceNow setup, system properties, verify list | Before you start; Step 1.1; couldn't verify | The table definition stays in the README |
 | Searched but not used: SailPoint developer-forum posts on the HTTP Request step's OAuth secret | — | Not vendor documentation; the question went to research gaps, row 83 |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported changes in cited sources. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP Marketplace `products.json` (`last_change` 2026-11-09T05:06:48Z) now nests listings under `data.Products`, reports `impact_level` as `Unknown` and leaves `fedramp_auth` and `cert_date` empty for all 791 listings. Pre-flight 1's command failed against it (`TypeError` on `d['data']`) | Command rewritten to read `data.Products` (or a top-level list), print `cert_class`, and take the certification date from the listing's event log; run against the November 9 data, it prints `F1305072116 Government Community Cloud FedRAMP Certified Class D JAB 2019-08-12` and `FR2001938710A SailPoint Identity Security Cloud FedRAMP Certified Class C Agency 2024-06-05`. Expected output, facts rows and footnote `ttm09-fedramp` updated (row 1) |
+| SailPoint OpenAPI v2025 `workflows.yaml` at commit `2a1f293` (2026-11-03): `listWorkflows` and `createWorkflow` now carry `x-sailpoint-userLevels: ORG_ADMIN`; scopes unchanged; new basic-mode trigger filter (`mode`, `filterDefinition`) is optional, so the kit's `filter.$` triggers stay valid | Facts row and footnote `ttm09-wf-spec` add the user level (row 19). The workflow administrator is an API client, so no step changes |

@@ -60,3 +60,11 @@ Verdicts: **verified** (the source says it; checked 2026-10-25); **inference** (
 | 43 | BOD 25-01's list gives MS.AAD.3.2v1 ("if phishing-resistant MFA isn't enforced yet, enforce an alternative MFA method"); ScubaGear 2.0.0 has MS.AAD.3.2v2 ("MFA SHALL be enforced for all users"), last modified February 2026 | What this found, first item | verified | bodlist; scuba |
 | 44 | Intune rows depend on the Graph evidence approach in Book 15 | What this found, second item | verified | scubarepo (no Intune baseline); Book 15, Chapter 08 |
 | 45 | Proving Entra authentication on Arc-enabled SQL Server needs a custom check, such as a query of the instance's logins | What this found, third item | inference | — (labelled *inference* on the page) |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a new commit in the ScubaGear baselines folder. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| ScubaGear baselines folder now also holds `si.md`, "CISA M365 Secure Configuration Baseline for Super Intelligence (SI) / SI Agents capabilities", added November 4, 2026 (commit `8c954fc`) as a shell: description, assumptions and policies marked TBD. Still no Intune baseline | The baseline list and footnote `gpc-scubarepo` name the placeholder (row 16); "ScubaGear has no Intune baseline" unchanged |
