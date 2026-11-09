@@ -65,3 +65,11 @@ Checked October 21, 2026 by writer W5. Source: `docs/case-studies/google-workspa
 | Suggested Next Steps | The decision record (six steps) | Steps re-ordered and given evidence content |
 | Sources line | Footnotes | Replaced by specific dated sources |
 | Pattern-reference disclaimer | Marketplace table note ("examples, not recommendations") and public-example framing | |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged; the Google Workspace description still carries the SA-9(5) note | Gemini for Government impact level dated October 21, 2026; footnote [^c10-marketplace] records the re-read and that the table's impact levels are the October 21 values |

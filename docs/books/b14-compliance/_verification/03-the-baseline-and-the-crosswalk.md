@@ -92,3 +92,11 @@ Method, all on October 21, 2026. The 149 crosswalk rows were parsed from the sou
 |---|---|---|---|
 | Identifiers checked (claim 15) | "All 149 identifiers and titles were checked" | All 152 checked, including AT-2(3) Social Engineering and Mining, PT-6 System of Records Notice and PT-8 Computer Matching Requirements: each exists in release 5.2.0, none withdrawn, titles match Appendix A apart from capitalization | `NIST_SP-800-53_rev5_catalog.json` (version 5.2.0, last modified 2026-10-22) from usnistgov/oscal-content, read November 8, 2026; every Appendix A control id matched to a catalog control and its `status` property |
 | Controls treated in exactly one book (claim 23) | "Ninety-four of the 152" | Ninety-four of the 149 archived-crosswalk controls (re-counted from distinct volume and book pairs); the three added since are in no series book, so 94 of 152 stands. From Appendix A's workbook-chapter column: 83 in exactly one of Books 00 to 13, 21 in two, 48 in none | `archive/b14-compliance/docs/compliance/Vol_0_Book_02_Control_Crosswalk.md` and `appendix-a-control-crosswalk.md`, counted November 8, 2026 |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged; status values unchanged (FedRAMP Certified, Initial Implementation, FedRAMP In Process, Agency Authorization In Process, Legacy FedRAMP Ready) | FedRAMP status paragraph notes the "Unknown" impact level and says to record the class and take the impact level from the package; footnote [^c03-marketplace] updated |

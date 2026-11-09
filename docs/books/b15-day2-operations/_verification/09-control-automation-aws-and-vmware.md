@@ -113,3 +113,12 @@ Internal vocabulary translated: "Closure Necessity" callouts, "Authorities Close
 | VMware — Provenance (four passes) | — | Internal editorial history |
 | VMware — References | Footnotes (re-verified) | Internal file references dropped |
 | (new) | AWS Audit Manager section; AWS routes table and SMC end of support; STIG content for VCF 9; VMware routes; one-contract table; illustrative AWS reads | Required by the brief or found while verifying |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| AWS Security Hub in AWS GovCloud (US) page adds "Security Hub does not support integrations with Azure in the AWS GovCloud (US) Region"; network scanning is no longer listed among the differences; the other listed gaps are unchanged | Gap list updated (Azure integration added, network scanning removed); footnote [^c09-sh-govcloud] updated |
+| AWS Config in AWS GovCloud (US): still "SSM documents for AWS Config remediation actions are not available"; both Regions listed | No change |
