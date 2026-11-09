@@ -359,7 +359,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | NIST AI 100-1 (AI RMF) | AI Risk Management Framework | Book 17 (AI Identity Governance) | Under revision; no revised version published |
 | NIST AI 600-1 | Generative AI Profile | Book 17 (AI Identity Governance) | Cited as current |
 | NIST Cybersecurity Framework 2.0 | CSF 2.0 | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
-| NIST IR 8547 (initial public draft) | Transition to post-quantum cryptography standards | Book 07 (PKI & Certificates) | Draft |
+| NIST IR 8547 | Transition to post-quantum cryptography standards | Book 07 (PKI & Certificates) | Final, October 2026 (superseded the November 2024 initial public draft) |
 | NIST National Checklist Program | Configuration checklist repository (SP 800-70) | Book 12 (Security Operations & Telemetry) | Cited as current; SP 800-70 Rev. 5 (May 2026) superseded Rev. 4[^ncp] |
 | NIST National Vulnerability Database | NVD | Book 11 (Zero Trust & Assessment); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | NIST OSCAL | Open Security Controls Assessment Language | All 20 books | Cited as current |

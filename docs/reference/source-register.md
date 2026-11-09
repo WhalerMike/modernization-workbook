@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-08
+date-modified: 2026-11-09
 review-status: approved
 reviewed-sha256: 170d27155b243d6eecaa3a1cf4d7b0459be76b3ae6fb3a46d47339d3644af3dd
 last-reviewed: 2026-11-08
@@ -54,12 +54,12 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [CISA Encrypted DNS Implementation Guidance](https://www.cisa.gov/resources-tools/resources/encrypted-dns-implementation-guidance){#cisa-encrypted-dns} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-encrypted-dns"} |
 | [CISA Federal Incident Notification Guidelines](https://www.cisa.gov/federal-incident-notification-guidelines){#cisa-incident-notification} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-incident-notification"} |
 | [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog){#cisa-kev} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-kev"} |
-| [CISA Logging Reference Architecture](https://www.cisa.gov/Logging){#cisa-logging} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-logging"} |
+| [CISA Logging Reference Architecture](https://www.cisa.gov/resources-tools/resources/logging-reference-architecture){#cisa-logging} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-logging"} |
 | [CISA Protective Domain Name System (DNS) Resolver](https://www.cisa.gov/resources-tools/services/protective-domain-name-system-dns-resolver){#cisa-protective-dns} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-protective-dns"} |
 | [CISA SCuBA Microsoft Entra ID secure configuration baseline](https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md){#scuba-entra-baseline} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="scuba-entra-baseline"} |
 | [CISA ScubaGear](https://github.com/cisagov/ScubaGear){#scubagear} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="scubagear"} |
 | [CISA ScubaGoggles releases](https://github.com/cisagov/ScubaGoggles/releases){#scubagoggles-releases} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="scubagoggles-releases"} |
-| [CISA TIC 3.0 Branch Office Use Case](https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Branch_Office_Use_September_2026_6.pdf){#tic-3-branch-office} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tic-3-branch-office"} |
+| [CISA TIC 3.0 Branch Office Use Case](https://www.cisa.gov/sites/default/files/2026-10/tic-3-branch-office-use-september-2026-508c.pdf){#tic-3-branch-office} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tic-3-branch-office"} |
 | [CISA TIC 3.0 Core Guidance Volume 1: Program Guidebook](https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf){#tic-3-program-guidebook} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tic-3-program-guidebook"} |
 | [CISA TIC 3.0 Security Capabilities Catalogs](https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Security_Capabilities_Catalogs_September_2026_17.pdf){#tic-3-security-capabilities} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tic-3-security-capabilities"} |
 | [CISA Zero Trust Maturity Model v2.0, Zero Trust Maturity Model](https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf){#cisa-ztmm} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="cisa-ztmm"} |
@@ -483,7 +483,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [NIST FIPS 200, Minimum Security Requirements for Federal Information and Information Systems](https://csrc.nist.gov/pubs/fips/200/final){#fips-200} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-200"} |
 | [NIST FIPS 201-3, full text (PDF)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.201-3.pdf){#fips-201-3-pdf} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="fips-201-3-pdf"} |
 | [NIST FIPS 201-3, Personal Identity Verification (PIV) of Federal Employees and Contractors](https://csrc.nist.gov/pubs/fips/201-3/final){#fips-201-3} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="fips-201-3"} |
-| [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](https://csrc.nist.gov/pubs/ir/8547/ipd){#ir-8547} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ir-8547"} |
+| [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](https://csrc.nist.gov/pubs/ir/8547/final){#ir-8547} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ir-8547"} |
 | [NIST National Checklist Program](https://csrc.nist.gov/projects/national-checklist-program){#nist-ncp} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="nist-ncp"} |
 | [NIST SP 800-128, Guide for Security-Focused Configuration Management of Information Systems](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-128.pdf){#sp-800-128} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-128"} |
 | [NIST SP 800-137, Information Security Continuous Monitoring (ISCM) for Federal Information Systems and Organizations](https://csrc.nist.gov/pubs/sp/800/137/final){#sp-800-137} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sp-800-137"} |
@@ -673,6 +673,9 @@ This register lists 540 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
+| November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
+| November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Updated: NIST published IR 8547 final in October 2026, superseding the initial public draft (source watch 2026-11-02 new publication) |
 | November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
 | November 5, 2026 | 449 sources | Added: cited on the narrated deck slides |
