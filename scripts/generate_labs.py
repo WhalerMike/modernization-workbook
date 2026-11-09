@@ -314,7 +314,7 @@ def place(wb: Workbook, md: str) -> str:
         lines = [f"Every gate's hands-on work is a lab in the developer workbook [*{wb.title}*]({rel(src, wb.docs + '/index.md')}): "
                  f"Lab 1 on a laptop with the kit's fixtures, Lab 2 in a non-production environment. "
                  f"[The Labs page]({labs}) lists them chapter by chapter, with what each needs and a direct link"
-                 + ("; each gate below ends with a *Try it* box that links its own." if mods or wb.gates else ".")]
+                 + ("; each gate below links its own labs." if mods or wb.gates else ".")]
         md = md[:nxt] + block("labs", lines, "Labs for this guide") + md[nxt:]
     return md
 
