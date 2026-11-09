@@ -151,3 +151,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | An agency with workloads elsewhere meets CP-6 to CP-10 with each platform's own services | An agency with workloads elsewhere supports CP-6 to CP-10 with each platform's own services | no source change |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Azure Backup security overview retitled "Overview of security and cyber recovery in Azure Backup" (ms.date Nov 2, 2026). Re-read: vaulted data in a Microsoft-managed subscription and tenant; soft delete default 14 days, up to 180; immutability; MUA through Resource Guard. The best-practices page no longer describes the 3-2-1-1 strategy, which this chapter doesn't cite | Footnote [^c06-azbackup] title updated; claims unchanged |
+| Microsoft 365 Backup overview (ms.date Nov 4, 2026): still "now available for Government Community Cloud (GCC) organizations"; configurable retention added | No change |

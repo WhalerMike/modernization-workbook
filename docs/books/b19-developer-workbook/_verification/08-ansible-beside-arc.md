@@ -69,3 +69,13 @@ New section before Dangers: 13 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 | 6 | M-22-09 statement cited in the section intro | Federal requirements and evidence | verified | M-22-09 PDF text extracted and read November 2, 2026 |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Ansible "Controlling playbook execution: strategies and more" moved (301) to docs.ansible.com/projects/ansible/latest/...; same title and content (`serial`, `max_fail_percentage`) | Footnote [^c08-ans-strategy] URL updated |
+| ansible-collections/azure commit 7de0d8a (Nov 4, 2026) adds `desired_version` convergence and `azure_arc_state: absent` offboarding to the azure_arc role, marked version_added 4.3.0; the latest release is still v4.2.0, the pinned copy | No change: the chapter describes the pinned 4.2.0 role. When 4.3.0 ships, re-read the pinned-copy table and the back-out step |
+| Arc "Identity and authorization" page retitled "Managed identity and access control" (TPM-backed identity commit); onboarding and resource administrator role text unchanged | No change |
