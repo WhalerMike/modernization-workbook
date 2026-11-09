@@ -1,6 +1,6 @@
 ---
 title: "Module 11: Deploy to test, then production"
-description: "Workbook Chapter 11, the deployment runbook, across every gate: one settings file per stage with no secret, a read-only preflight, a safe order from inventory to report-only Conditional Access, a smoke test on synthetic objects, an evidence record for every requirement row, a rollback approved by its SHA-256 and rehearsed in test, the go/no-go criteria, then production in waves. You dry-run four of the five deploy scripts on fixtures and see a fixture stage refused at the evidence check. About 60 minutes, with a lab on fixtures and a pointer to the live test and production stages; the chapter hasn't been run against a live tenant."
+description: "Workbook Chapter 11, the deployment runbook, across every gate: one settings file per stage with no secret, a read-only preflight, a safe order from inventory to report-only Conditional Access, a smoke test on synthetic objects, an evidence record for every requirement row, a rollback approved by its SHA-256 and rehearsed in test, the go/no-go criteria, then production, enabling Conditional Access ring by ring. You dry-run four of the five deploy scripts on fixtures and see a fixture stage refused at the evidence check. About 60 minutes, with a lab on fixtures and a pointer to the live test and production stages; the chapter hasn't been run against a live tenant."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -68,7 +68,7 @@ Read the workbook chapter in this order:
 
 ## Unit 2: The stages and the promotion (10 minutes)
 
-The live test stage prepares synthetic objects, runs the preflight, deploys in the safe order, runs the smoke test, captures the evidence and rehearses the rollback, then deploys again. Production starts only when every go/no-go criterion is signed, and enables Conditional Access one wave at a time. Read:
+The live test stage prepares synthetic objects, runs the preflight, deploys in the safe order, runs the smoke test, captures the evidence and rehearses the rollback, then deploys again. Production starts only when every go/no-go criterion is signed, and enables Conditional Access one ring at a time. Read:
 
 - [Prepare the stage](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#prepare-the-stage) and [Pre-flight checks](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#pre-flight-checks): PF-01 to PF-11 and the KDS root key.
 - [Stage 1: live test](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#stage-1-live-test), Steps 1.1 to 1.8, with the [smoke test](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#step-1.6-smoke-test) and the [rollback](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#step-1.8-roll-back-the-test-stage).
@@ -156,7 +156,7 @@ Remove-Item -Recurse -Force out
     ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -SnapshotPath out/dryrun/test-preflight/snapshot.json -To Disabled -IncludeSmokeCleanup -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback
     ```
 
-    Expect `Rollback plan (test, to Disabled): 7 action(s)`, RB-01 to RB-07, and `Plan SHA-256 for the reviewer: 2d365b3052a6db5e5f134937f011974afe132f790e607b21e9de8d071ca29ed2`. No action is a delete.
+    Expect `Rollback plan (test, to Disabled): 7 action(s)`, RB-01 to RB-07, and `Plan SHA-256 for the reviewer: 0cb6515f2ee068986f8e097a1f415798757a4dc477d2d91884c987895f873d3d`. No action is a delete.
 
 5. **Apply the plan with a hash nobody approved:**
 
@@ -164,7 +164,7 @@ Remove-Item -Recurse -Force out
     ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -PlanPath out/dryrun/test-rollback/rollback-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback-refused
     ```
 
-    Expect an error: `The plan's SHA-256 is 2d365b30…, not the approved 00000000…. Nothing was sent.`
+    Expect an error: `The plan's SHA-256 is 0cb6515f…, not the approved 00000000…. Nothing was sent.`
 
 6. **Dry-run the rollback with the approved hash:**
 
@@ -225,7 +225,7 @@ Remove-Item -Recurse -Force out
 
 1. Why does the runbook enable Conditional Access for workload identities last, and only in report-only mode in test?
     a. Workload ID Premium is licensed last
-    b. It's the control that can block a sign-in; Learn lets it run report-only to estimate its effect, and production enables it wave by wave after a reviewed sign-in summary
+    b. It's the control that can block a sign-in; Learn lets it run report-only to estimate its effect, and production enables it ring by ring after a reviewed sign-in summary
     c. It depends on the gMSA
     d. Graph creates it only in production
 2. Learn documents no report-only mode for app management policies. What keeps the pilot policy safe?

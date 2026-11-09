@@ -42,4 +42,13 @@ Method:
 - When the refusal in Chapters 04, 06 and 09 of an unapproved plan hash runs in a non-interactive `pwsh -c` session, the refusal ends that session with exit code 1. Pasted line by line, as the labs mean, the shell carries on. The chapters don't state the exit code, and the modules don't either.
 - Chapter 10's Lab 1 doesn't say "Work in `examples/...`", because it uses two folders, so the generated command list names no folder. Module 10 keeps that, and adds the `cd` line to step 7.
 
+## Kit follow-up (November 9, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | Module 3's Lab 1: `waves 1 (1, 1 HIGH), 2 (4, 1 HIGH)`, `D-NP4`, and wave 2 now holds `svc-intranet`, which Chapter 03's fixture re-platforms to a gMSA | Module 3, steps 3 and 6 | re-run November 9, 2026; matched | Chapter 03, Lab 1 |
+| K2 | Module 8's Lab 1 makes Chapters 01 to 03's runs first and passes `-MatrixRun` and `-ProgramDatesPath`; its findings, plan, island list, dry run and refusal are pasted from that run (5 Finding, 1 Warn, 2 Info; 6 island rows, 4 ready; plan `e8fb8355…`). The knowledge check's questions 1 and 2 follow Chapter 03's rules: `KeepKerberos` ends by D08 with the authorizing official's acceptance and an SPN owner; `svc-webfront` is kept on Kerberos rather than blocked | Module 8, steps 1 and 4 to 9; Knowledge check | re-run November 9, 2026; matched | Chapter 06, Lab 1 |
+| K3 | Module 6 names `D-NP5` in its enforcement step; Module 9 shows `D-NP6` and plan `5a800246…`; Module 6's sign-in summary hash is `da391f12…` | Modules 6 and 9 | matched against captures 08-6, 08-8, 09-5, 09-8 and 09-10, November 9, 2026 | Chapters 08 and 09, Lab 1 |
+| K4 | Module 11 says Conditional Access is enabled ring by ring; its rollback plan hash is `0cb6515f…` | Module 11, description, Unit 2, step 4 and 5, Knowledge check | re-run November 9, 2026; matched | Chapter 11 |
+
 *For project use.*

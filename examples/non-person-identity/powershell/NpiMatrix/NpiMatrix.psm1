@@ -3,11 +3,11 @@
     NpiMatrix: Chapter 03 of the developer workbook "Building Non-Person Identity".
 
     Book 02, Chapter 09's migration path matrix as reviewed data (config/migration-matrix.json): a
-    proposed target for every identity in Chapter 01's register (N2.1), read with Chapter 02's
-    ownership run; the application owner's disposition checked against it (D-N3: retire, re-platform,
+    proposed target for every identity in Chapter 01's register (NP2.1), read with Chapter 02's
+    ownership run; the application owner's disposition checked against it (D-NP3: retire, re-platform,
     keep, or keep on Kerberos with an SPN owner and an end date); conversion waves with HIGH-risk
-    accounts first and a rollback recorded per wave (N2.2); the Workload ID Premium scope as a
-    decision file (D-N4); and Gate 2 as a check. Offline logic: the only network calls are two
+    accounts first and a rollback recorded per wave (NP2.2); the Workload ID Premium scope as a
+    decision file (D-NP4); and Gate 2 as a check. Offline logic: the only network calls are two
     declared reads in config/calls-ch03.json. Nothing here writes.
 
     Illustrative: tested against fixtures and fakes, not against a production tenant or domain.
@@ -216,7 +216,7 @@ function Import-NpiMatrixJson {
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable -Depth 20
 }
 
-# ----------------------------------------------------------------------------- N2.1: the proposal
+# ----------------------------------------------------------------------------- NP2.1: the proposal
 
 function Test-NpiMatrixYes { param([string]$Text) "$Text".Trim() -in 'Yes', 'yes', 'true', 'True', 'Y', 'y' }
 function Test-NpiMatrixNo { param([string]$Text) "$Text".Trim() -in 'No', 'no', 'false', 'False', 'N', 'n' }
@@ -224,7 +224,7 @@ function Test-NpiMatrixNo { param([string]$Text) "$Text".Trim() -in 'No', 'no', 
 function Get-NpiMatrixProposal {
     <#
     .SYNOPSIS
-        A proposed target for every identity in the register (N2.1): Retire for an unowned or
+        A proposed target for every identity in the register (NP2.1): Retire for an unowned or
         disabled one, otherwise the first matrix row that matches its type, its workload's location
         and facts, and its credential kind. Identities outside the matrix get a reason, not a row.
     .EXAMPLE
@@ -249,7 +249,7 @@ function Get-NpiMatrixProposal {
             Scope = 'Matrix'; Location = ''; Facts = ''; MatrixRow = ''; Proposed = ''; ProposedLabel = ''; Why = ''; Cautions = @()
             ChapterOneCandidate = "$($row.CandidateTarget)"; OrphanState = ''; SpnCount = [int]$row.SpnCount; Delegation = "$($row.Delegation)"
         }
-        if ($row.Handoff -eq 'DataPlatform') { $p.Scope = 'HandedOff'; $p.Why = 'SQL Server account: the Data Platform plan decides its disposition (N0.4)'; $out.Add([pscustomobject]$p); continue }
+        if ($row.Handoff -eq 'DataPlatform') { $p.Scope = 'HandedOff'; $p.Why = 'SQL Server account: the Data Platform plan decides its disposition (NP0.4)'; $out.Add([pscustomobject]$p); continue }
         if ($Config.outOfScope.ContainsKey($row.Type)) { $p.Scope = 'OutOfScope'; $p.Why = $Config.outOfScope[$row.Type]; $out.Add([pscustomobject]$p); continue }
         if ($row.Type -notin $Config.inScopeTypes) { $p.Scope = 'OutOfScope'; $p.Why = "Type '$($row.Type)' isn't in the matrix (NPI-INV-09)"; $out.Add([pscustomobject]$p); continue }
         if ("$($row.Note)" -like $script:Confirm) { $p.Scope = 'ConfirmFirst'; $p.Why = 'Not decided until someone confirms it is a service account (NPI-INV-08, NPI-OWN-09)'; $out.Add([pscustomobject]$p); continue }
@@ -301,13 +301,13 @@ function Get-NpiMatrixProposal {
     $out.ToArray()
 }
 
-# ----------------------------------------------------------------------------- D-N3: the disposition, and N2.2: the waves
+# ----------------------------------------------------------------------------- D-NP3: the disposition, and NP2.2: the waves
 
 function Test-NpiMigrationDecision {
     <#
     .SYNOPSIS
-        Check each owner's disposition (D-N3) against the matrix's proposal, sequence the waves
-        (N2.2) and return @{ Decisions; Waves; Findings }. Findings NPI-MAT-01 to NPI-MAT-08,
+        Check each owner's disposition (D-NP3) against the matrix's proposal, sequence the waves
+        (NP2.2) and return @{ Decisions; Waves; Findings }. Findings NPI-MAT-01 to NPI-MAT-08,
         each with a stable ID (rule:identity, or rule:wave-N).
     .EXAMPLE
         # Check the fixture dispositions and waves against the proposals.
@@ -346,7 +346,7 @@ function Test-NpiMigrationDecision {
 
         $d = if ($byId.ContainsKey($p.IdentityId)) { $byId[$p.IdentityId] } else { $null }
         if (-not $d -or -not "$($d.Disposition)" -or -not "$($d.DecidedBy)" -or -not "$($d.DecidedOn)") {
-            $f.Add((New-NpiFinding 'NPI-MAT-01' 'Finding' $p.IdentityId $label "No disposition recorded by the application owner (D-N3)$(if ($p.Proposed) { "; the matrix proposes $($p.Proposed)" })"))
+            $f.Add((New-NpiFinding 'NPI-MAT-01' 'Finding' $p.IdentityId $label "No disposition recorded by the application owner (D-NP3)$(if ($p.Proposed) { "; the matrix proposes $($p.Proposed)" })"))
             $dec.Add([pscustomobject]$r); continue
         }
         $disp = "$($d.Disposition)".Trim()
@@ -383,7 +383,7 @@ function Test-NpiMigrationDecision {
             elseif (-not $limit) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Warn' $p.IdentityId $label "End date $($d.EndDate) can't be checked: $limitName isn't in program-dates.json")) }
             elseif ($end -gt $limit) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "End date $($d.EndDate) is after $limitName, $($limit.ToString('yyyy-MM-dd'))")) }
             if ($disp -eq 'KeepKerberos') { $r.AoAcceptedBy = "$($d.AoAcceptedBy)" }   # carried to Chapter 06's island list
-            if ($disp -eq 'KeepKerberos' -and -not "$($d.AoAcceptedBy)") { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label 'Kept on Kerberos without the authorizing official''s acceptance recorded (D-N3)')) }
+            if ($disp -eq 'KeepKerberos' -and -not "$($d.AoAcceptedBy)") { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label 'Kept on Kerberos without the authorizing official''s acceptance recorded (D-NP3)')) }
             if ($disp -eq 'KeepKerberos' -or $p.SpnCount -gt 0) {
                 $r.SpnOwner = "$($d.SpnOwnerUpn)"
                 if (-not "$($d.SpnOwnerUpn)") { $f.Add((New-NpiFinding 'NPI-MAT-06' 'Finding' $p.IdentityId $label 'Kept on Kerberos with no SPN owner (Gate 2)')) }
@@ -394,11 +394,11 @@ function Test-NpiMigrationDecision {
             }
         }
 
-        # N2.2: HIGH first.
+        # NP2.2: HIGH first.
         if ($disp -eq 'Replatform') {
             if ("$($d.Wave)") { $r.Wave = [int]$d.Wave; $r.WaveSource = 'Owner' }
             else { $r.Wave = $(if ($p.Risk -eq 'HIGH') { $first } else { $first + 1 }); $r.WaveSource = 'Proposed' }
-            if ($p.Risk -eq 'HIGH' -and $r.Wave -ne $first) { $f.Add((New-NpiFinding 'NPI-MAT-07' 'Finding' $p.IdentityId $label "HIGH risk ($($p.RiskReasons)) but in wave $($r.Wave); HIGH-risk accounts go in wave $first (N2.2)")) }
+            if ($p.Risk -eq 'HIGH' -and $r.Wave -ne $first) { $f.Add((New-NpiFinding 'NPI-MAT-07' 'Finding' $p.IdentityId $label "HIGH risk ($($p.RiskReasons)) but in wave $($r.Wave); HIGH-risk accounts go in wave $first (NP2.2)")) }
         } elseif ($p.Risk -eq 'HIGH' -and $disp -in 'Keep', 'KeepKerberos') {
             $f.Add((New-NpiFinding 'NPI-MAT-07' 'Warn' $p.IdentityId $label "HIGH risk ($($p.RiskReasons)) and kept: the risk stays until its privilege is cut (Chapter 07; the Privileged Access plan's A3.4)"))
         }
@@ -406,7 +406,7 @@ function Test-NpiMigrationDecision {
         $dec.Add([pscustomobject]$r)
     }
 
-    # The waves and their rollback (N2.2).
+    # The waves and their rollback (NP2.2).
     $declared = @{}; foreach ($w in $Waves) { if ("$($w.Wave)") { $declared[[int]$w.Wave] = $w } }
     $plan = [Collections.Generic.List[object]]::new()
     $numbers = @(@($dec | Where-Object { "$($_.Wave)" }) | ForEach-Object { [int]$_.Wave }) + @($declared.Keys) | Sort-Object -Unique
@@ -435,17 +435,17 @@ function Test-NpiMigrationDecision {
     [pscustomobject]@{ Decisions = $dec.ToArray(); Waves = $plan.ToArray(); Findings = $f.ToArray() }
 }
 
-# ----------------------------------------------------------------------------- D-N4: Workload ID Premium scope
+# ----------------------------------------------------------------------------- D-NP4: Workload ID Premium scope
 
 function Get-NpiWorkloadIdScope {
     <#
     .SYNOPSIS
-        The Workload ID Premium licensing scope (D-N4) as a decision file checked against the
+        The Workload ID Premium licensing scope (D-NP4) as a decision file checked against the
         register, the decisions and the tenant's subscriptions: which identities Conditional Access
         and ID Protection for workload identities can cover, now and after conversion, how many each
         option scopes, and whether the tenant holds the license. Finding NPI-MAT-09.
     .EXAMPLE
-        # Check the fixture D-N4 decision against the register and the decisions.
+        # Check the fixture D-NP4 decision against the register and the decisions.
         $wid = Get-NpiWorkloadIdScope -Reader $reader -Rows $register.Rows -Decisions $decision.Decisions -Config (Import-NpiMatrixConfig) -Decision (Import-NpiMatrixJson tests/fixtures/ch03/inputs/workload-id-premium.json)
         $wid.Scope.scope
     #>
@@ -473,10 +473,10 @@ function Get-NpiWorkloadIdScope {
     $enabled = @($wid | Where-Object { $_['capabilityStatus'] -eq 'Enabled' })
     $units = 0; foreach ($s in $enabled) { $units += [int]$s['prepaidUnits']['enabled'] }
 
-    $label = 'Workload ID Premium scope (D-N4)'; $key = 'D-N4'
+    $label = 'Workload ID Premium scope (D-NP4)'; $key = 'D-NP4'
     $option = if ($Decision) { "$($Decision['decision'])" } else { '' }
     $scope = @()
-    if (-not $Decision) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Finding' $key $label 'No D-N4 decision file: the CISO decides the Workload ID Premium scope before Gate 2')) }
+    if (-not $Decision) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Finding' $key $label 'No D-NP4 decision file: the CISO decides the Workload ID Premium scope before Gate 2')) }
     elseif ($option -notin $Config.workloadIdPremium.options) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Finding' $key $label "Unknown option '$option'; use $($Config.workloadIdPremium.options -join ', ')")) }
     else {
         if (-not "$($Decision['decidedBy'])" -or -not "$($Decision['decidedOn'])") { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Finding' $key $label 'The decision has no decidedBy or decidedOn')) }
@@ -488,8 +488,8 @@ function Get-NpiWorkloadIdScope {
                 foreach ($id in $listed) {
                     $row = @($Rows | Where-Object IdentityId -EQ $id)
                     $name = if ($row) { "$($row[0].Name) ($($row[0].Type))" } else { $id }
-                    if ($id -notin $caIds) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Finding' "D-N4:$id" $name 'Listed for Tier 1, but Conditional Access for workload identities can''t cover it: only single-tenant service principals registered in this tenant')) }
-                    elseif ($id -in $leaving) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Warn' "D-N4:$id" $name "Listed for Tier 1, but its decision ($($dec[$id].Target)) takes it out of scope: managed identities aren't covered")) }
+                    if ($id -notin $caIds) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Finding' "D-NP4:$id" $name 'Listed for Tier 1, but Conditional Access for workload identities can''t cover it: only single-tenant service principals registered in this tenant')) }
+                    elseif ($id -in $leaving) { $f.Add((New-NpiFinding 'NPI-MAT-09' 'Warn' "D-NP4:$id" $name "Listed for Tier 1, but its decision ($($dec[$id].Target)) takes it out of scope: managed identities aren't covered")) }
                 }
             }
             'Wide' { $scope = $after }
@@ -523,7 +523,7 @@ function Test-NpiGate2 {
     .SYNOPSIS
         Gate 2, "every account has a decision": every account in scope has a disposition and a
         target from the matrix; HIGH-risk accounts in the first wave; every kept Kerberos account
-        has an SPN owner; waves and their rollback recorded; the D-N4 scope decided.
+        has an SPN owner; waves and their rollback recorded; the D-NP4 scope decided.
     .EXAMPLE
         # Gate 2 over the decision and scope findings.
         $gate = Test-NpiGate2 -Findings (@($decision.Findings) + @($wid.Findings)) -Decisions $decision.Decisions
@@ -537,10 +537,10 @@ function Test-NpiGate2 {
         'HIGH-risk accounts in the first wave'                         = @($blocking | Where-Object Rule -EQ 'NPI-MAT-07').Count
         'Every kept Kerberos account has an SPN owner'                 = @($blocking | Where-Object Rule -EQ 'NPI-MAT-06').Count
         'Waves and their rollback recorded'                            = @($blocking | Where-Object Rule -EQ 'NPI-MAT-08').Count
-        'Workload ID Premium scope decided (D-N4)'                     = @($blocking | Where-Object Rule -EQ 'NPI-MAT-09').Count
+        'Workload ID Premium scope decided (D-NP4)'                     = @($blocking | Where-Object Rule -EQ 'NPI-MAT-09').Count
     }
     [pscustomobject][ordered]@{
-        gate = 'NG2'; met = ($blocking.Count -eq 0)
+        gate = 'NPG2'; met = ($blocking.Count -eq 0)
         criteria = @($crit.Keys | ForEach-Object { [ordered]@{ criterion = $_; open = $crit[$_]; met = ($crit[$_] -eq 0) } })
         decided = @($Decisions | Where-Object Decided).Count; inScope = @($Decisions | Where-Object { $_.Disposition -ne 'HandedOff' }).Count; handedOff = @($Decisions | Where-Object Disposition -EQ 'HandedOff').Count
         approver = 'ISSO'

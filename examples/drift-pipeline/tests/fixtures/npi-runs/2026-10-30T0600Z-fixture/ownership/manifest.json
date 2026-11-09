@@ -5,7 +5,7 @@
   "tenantId": "c0ffee00-0000-4000-8000-000000000001",
   "domain": "corp.contoso.example",
   "asOf": "2026-10-30",
-  "generated": "2026-11-07T01:08:21.2737496Z",
+  "generated": "2026-11-09T13:30:59.6600197Z",
   "graphPermissions": [
     "User.Read.All"
   ],
@@ -16,96 +16,96 @@
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/alice%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9428495Z"
+      "at": "2026-11-09T13:30:59.0277910Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/bob%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9463470Z"
+      "at": "2026-11-09T13:30:59.0310864Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/frank%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9492410Z"
+      "at": "2026-11-09T13:30:59.0339412Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/gina%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9611420Z"
+      "at": "2026-11-09T13:30:59.0504396Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/erin%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9654268Z"
+      "at": "2026-11-09T13:30:59.0639767Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000001?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9802659Z"
+      "at": "2026-11-09T13:30:59.1130066Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000002?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9827462Z"
+      "at": "2026-11-09T13:30:59.1156933Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000003?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:20.9987564Z"
+      "at": "2026-11-09T13:30:59.1322958Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000004?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0152944Z"
+      "at": "2026-11-09T13:30:59.1366902Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000005?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0224595Z"
+      "at": "2026-11-09T13:30:59.1487811Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000006?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0283240Z"
+      "at": "2026-11-09T13:30:59.1529726Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000008?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0389590Z"
+      "at": "2026-11-09T13:30:59.2292395Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000007?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0430951Z"
+      "at": "2026-11-09T13:30:59.2353986Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/gina%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0800340Z"
+      "at": "2026-11-09T13:30:59.2695031Z"
     },
     {
       "call": "graph-user",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/users/dave_partner.example%23EXT%23%40contosoexample.onmicrosoft.com?$select=id,userPrincipalName,userType,accountEnabled",
-      "at": "2026-11-07T01:08:21.0865047Z"
+      "at": "2026-11-09T13:30:59.3478895Z"
     }
   ],
   "files": {
     "ai-sponsor-fields.json": "8ac7738a623e0c8dd473fe5f2f5d2bf93a81d03df6b6a94cf7a80c1a41e54cc9",
-    "findings.json": "688533b0ea45bc537217cba7bc3efeb99cd0fedca1a849624503f5deef8b975a",
+    "findings.json": "1d64aed190b967e472a9ed0d14ddfcb228b121efcc056efe7cfc8b2e4595037e",
     "orphan-plan.json": "b1b4955ef991531415b0e5939768f2e9180144617c22b020d72b1c7f82a6de66",
     "ownership.json": "6d490e003d1f8cbb3890a07dacccb0c69ce2ddc4367ba6d1aab6c0cb69df1a83"
   },

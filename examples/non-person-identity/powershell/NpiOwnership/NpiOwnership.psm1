@@ -5,7 +5,7 @@
     The ownership check over Chapter 01's register (two human owners who are enabled members, not
     service principals or guests; a service-management reference that names an active record; an
     application owner for every AD service account), findings with stable IDs, and the orphan rule
-    (decision D-N2) as a dry-run plan: disable, never delete, once the identity governance officer
+    (decision D-NP2) as a dry-run plan: disable, never delete, once the identity governance officer
     confirms; a 30-day claim window recorded. Writes happen only in Invoke-NpiOrphanPlan with -Apply,
     through a separate writer whose calls are declared for the orphan-apply task.
 #>
@@ -149,7 +149,7 @@ function Test-NpiOwnership {
                 $rule = switch ($why) { 'guest' { 'NPI-OWN-04' } default { 'NPI-OWN-05' } }
                 $f.Add((New-NpiFinding $rule 'Warn' $row.IdentityId $label "Owner $who is $why; it doesn't count toward the two"))
             }
-            if ($valid -eq 0) { $f.Add((New-NpiFinding 'NPI-OWN-01' 'Finding' $row.IdentityId $label 'No valid human owner: an orphan candidate under the orphan rule (D-N2)')) }
+            if ($valid -eq 0) { $f.Add((New-NpiFinding 'NPI-OWN-01' 'Finding' $row.IdentityId $label 'No valid human owner: an orphan candidate under the orphan rule (D-NP2)')) }
             elseif ($valid -eq 1) { $f.Add((New-NpiFinding 'NPI-OWN-02' 'Finding' $row.IdentityId $label 'One valid human owner; the rule is two')) }
             $rec = if ($row.Type -eq 'AppRegistration') { & $checkRecord $row "$($row.ServiceManagementReference)" $label } else { 'n/a (no app registration)' }
             $ids.Add([pscustomobject]@{ IdentityId = $row.IdentityId; Name = $row.Name; Type = $row.Type; Enabled = $row.Enabled; ValidHumanOwners = $valid; OwnerProblems = ($problems -join '; '); ServiceRecord = "$($row.ServiceManagementReference)"; RecordCheck = $rec; OrphanCandidate = ($valid -eq 0); Handoff = "$($row.Handoff)" })
@@ -168,7 +168,7 @@ function Test-NpiOwnership {
                 $why = Test-NpiHumanOwner (& $person $o.OwnerUpn)
                 if ($why) { $problem = "$($o.OwnerUpn) is $why" } else { $valid = 1 }
             }
-            if ($valid -eq 0) { $f.Add((New-NpiFinding 'NPI-OWN-08' 'Finding' $row.IdentityId $label "No valid application owner ($problem): an orphan candidate under the orphan rule (D-N2)")) }
+            if ($valid -eq 0) { $f.Add((New-NpiFinding 'NPI-OWN-08' 'Finding' $row.IdentityId $label "No valid application owner ($problem): an orphan candidate under the orphan rule (D-NP2)")) }
             $rec = & $checkRecord $row "$(if ($o) { $o.ApplicationRecord })" $label
             $ids.Add([pscustomobject]@{ IdentityId = $row.IdentityId; Name = $row.Name; Type = $row.Type; Enabled = $row.Enabled; ValidHumanOwners = $valid; OwnerProblems = $problem; ServiceRecord = "$(if ($o) { $o.ApplicationRecord })"; RecordCheck = $rec; OrphanCandidate = ($valid -eq 0); Handoff = "$($row.Handoff)" })
         }
@@ -179,7 +179,7 @@ function Test-NpiOwnership {
 function New-NpiOrphanPlan {
     <#
     .SYNOPSIS
-        The orphan rule (D-N2) as a dry-run plan. An orphan candidate is disabled, never deleted,
+        The orphan rule (D-NP2) as a dry-run plan. An orphan candidate is disabled, never deleted,
         only after the identity governance officer confirms it in the confirmations log; the claim
         window is 30 days from the disable. Owner nominations become AddOwner actions for app
         registrations, after the nominee is checked. Nothing here writes.

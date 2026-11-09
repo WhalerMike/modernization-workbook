@@ -48,10 +48,10 @@ The Kerberos-only part of credential modernization (the project plan's NP3.5 and
 
 The program's rules for this chapter *(Design guidance)*:
 
-- **Every Kerberos account has a reviewed disposition, and it is Chapter 03's:** the application owner's D-NP3 decision, `Retire`, `Replatform`, `Keep` or `KeepKerberos`, which this chapter reads from [Chapter 03](03-the-migration-path-matrix-as-code.md)'s run, never from a second list. `Replatform` to a gMSA or a dMSA is converted here; `Replatform` to a managed identity or an app registration moves in Chapter 05; `Keep` and `KeepKerberos` stay, with an SPN owner and an end date, and `KeepKerberos` carries the authorizing official's acceptance onto the island list; `Retire` goes through the decommission process. For each account it re-platforms, `kerberos-replatform.csv`, kept with the application records, names the new account, its workload and its hosts. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
+- **Every Kerberos account has a reviewed disposition, and it is Chapter 03's:** the application owner's D-NP3 decision, `Retire`, `Replatform`, `Keep` or `KeepKerberos`, which this chapter reads from [Chapter 03](03-the-migration-path-matrix-as-code.md)'s run, never from a second list. `Replatform` to a gMSA or a dMSA is converted here; `Replatform` to a managed identity or an app registration moves in Chapter 05; `Keep` and `KeepKerberos` stay, with an end date and, where Chapter 03 asks for one, an SPN owner, and `KeepKerberos` carries the authorizing official's acceptance onto the island list; `Retire` goes through the decommission process. For each account it re-platforms, `kerberos-replatform.csv`, kept with the application records, names the new account, its workload and its hosts. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
 - **Who may retrieve a managed password is reviewed data**, in `password-retrievers.json`, not whatever AD holds today.
 - **A dMSA migration runs for 30 days before it completes.** That is the program's parallel run for every conversion, and it covers four 7-day ticket lifetimes, the wait Learn recommends before completing (at least two).[^np06-dmsa-overview]
-- **Every account that stays on Kerberos has an SPN owner and an end date no later than D08's;** every gMSA and dMSA ends no later than program G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
+- **Every account that stays on Kerberos has an end date, bounded as in Chapter 03:** no later than D08's for an account kept on Kerberos with the authorizing official's acceptance (`KeepKerberos`), and no later than program G5 for every other one, a kept or planned gMSA or dMSA. **It has an SPN owner where Chapter 03 asks for one:** a `KeepKerberos` account, or any account with SPNs; a kept account with no SPNs needs none. Every gMSA and dMSA also ends no later than program G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
 - **Never delete.** The old account is disabled at most, by `Complete-ADServiceAccountMigration` for a dMSA or by `Disable-ADAccount` after a clean 30-day parallel run on a gMSA ([Book 02, Chapter 10, Phase 4](../../../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)); retirement goes through the plan's reviewed decommission process.
 
 ### Which domain, and which cloud
@@ -114,8 +114,8 @@ This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, tw
 | NPI-KRB-02 | Finding | A Kerberos account with no disposition in Chapter 03's decisions, or one this chapter doesn't know; a move to a workload identity with no `Reference` | Project plan, D-NP3 (*Design guidance*) |
 | NPI-KRB-03 | Finding | A gMSA or dMSA whose retrievers in AD differ from the reviewed list, or that has no reviewed list, or an empty one | *Design guidance* |
 | NPI-KRB-04 | Finding | A target that can't be used: a dMSA from an MSA, or with unconstrained delegation, a host or a domain without Windows Server 2025, one dMSA for two accounts; a gMSA with no reviewed retrievers; a gMSA or dMSA converted again | Learn[^np06-dmsa-overview] [^np06-dmsa-faq] |
-| NPI-KRB-05 | Finding | An account that stays on Kerberos with no SPN owner | Project plan, NP3.6 |
-| NPI-KRB-06 | Finding / Warn | No end date, or one after D08's; Warn while D08 isn't set | Project plan, NP3.6 |
+| NPI-KRB-05 | Finding | An account that stays on Kerberos with no SPN owner, where Chapter 03 asks for one: a `KeepKerberos` account, or one with SPNs | Project plan, NP3.6; Chapter 03 |
+| NPI-KRB-06 | Finding / Warn | No end date, or one after its bound: D08's for a `KeepKerberos` account, program G5's for any other; Warn while that date isn't set | Project plan, NP3.6 and NP7.3; Chapter 03 |
 | NPI-KRB-07 | Finding | A gMSA or dMSA not reconciled with D11: no destination; a move or retirement after program G5; an island account past program G5 when AD is retired, or past the island's end of life | Project plan, NP7.3 and program G5 |
 | NPI-KRB-08 | Warn | A managed service account in a privileged group | Learn[^np06-entra-gmsa] |
 | NPI-KRB-09 | Info | A SQL Server account, handed to the Data Platform plan | Chapter 01 |
@@ -138,7 +138,7 @@ The plan is written as `kerberos-plan.json` with the register's SHA-256, the SHA
 
 ### The island list and the reconciliation
 
-`island-list.csv` holds every account that stays on Kerberos under the name it will have (the dMSA or gMSA a conversion creates, or the account itself), with its SPNs, its D-NP3 disposition, SPN owner, end date, whether the date is within D08, the authorizing official who accepted an account kept on Kerberos (`AoAcceptedBy`, carried from Chapter 03) and whether it is ready for the program's SPN retirement (P4.6). A `KeepKerberos` account without that acceptance isn't ready. The run's manifest records `islandHandoffReady`, true only when D08 is set and every row is ready.
+`island-list.csv` holds every account that stays on Kerberos under the name it will have (the dMSA or gMSA a conversion creates, or the account itself), with its SPNs, its D-NP3 disposition, SPN owner, end date, the date that bounds it (`EndBound`: `D08` for a `KeepKerberos` account, `G5` for any other) and whether the end date is within it (`WithinBound`), the authorizing official who accepted an account kept on Kerberos (`AoAcceptedBy`, carried from Chapter 03) and whether it is ready for the program's SPN retirement (P4.6). A `KeepKerberos` account without that acceptance isn't ready, and neither is an account that needs an SPN owner and has none. The run's manifest records `islandHandoffReady`, true only when every row is ready; a row whose bounding date isn't set isn't.
 
 `reconciliation.json` holds every gMSA and dMSA, existing or planned, with its destination and outcome: `MovesToWorkloadIdentity`, `Retires`, `OnIslandList`, `HandedOff` or `Unreconciled`. When the program confirms or revises D11 (D09, week 36), `program-dates.json` changes in a reviewed pull request, and Chapter 03's run and this one are repeated inside the 72-day margin before program G5.
 
@@ -281,11 +281,11 @@ It prints nothing. The three folders hold the register, the owners and the owner
 
    ```text
    Kerberos accounts: 9 in scope; KDS root key Ready
-   Findings: 8 Finding, 1 Warn, 2 Info
+   Findings: 5 Finding, 1 Warn, 2 Info
    Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
-   Island list: 6 accounts, 2 ready for P4.6; hand-off ready: False
+   Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
    Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-   Plan SHA-256: b1019500744ecfb5d2c4e0a3f5ace7441e9c82cb931d7b5bd838961fedab5e0a
+   Plan SHA-256: e8fb8355ee0989d9ce9d7b107cd52f45d0eea5f155a49c1667a1bf5840de9cca
    ```
 
    <!-- capture:begin 06-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
@@ -306,11 +306,8 @@ It prints nothing. The three folders hold the register, the owners and the owner
    Rule       Severity ObjectKey
    ----       -------- ---------
    NPI-KRB-03 Finding  gmsa-web$
-   NPI-KRB-05 Finding  gmsa-ops$
    NPI-KRB-05 Finding  svc-intranet
    NPI-KRB-05 Finding  svc-webfront
-   NPI-KRB-06 Finding  gmsa-ops$
-   NPI-KRB-06 Finding  gmsa-web$
    NPI-KRB-06 Finding  svc-intranet
    NPI-KRB-07 Finding  gmsa-intranet$
    NPI-KRB-08 Warn     gmsa-ops$
@@ -324,7 +321,7 @@ It prints nothing. The three folders hold the register, the owners and the owner
 
    <!-- capture:end -->
 
-   Each disposition is Chapter 03's. `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so its owner kept it on Kerberos (`KeepKerberos`, with the authorizing official's acceptance) instead of the dMSA the matrix proposed; it has no SPN owner. Had the owner chosen the dMSA, this chapter would block it (NPI-KRB-04, pinned by the tests). `gmsa-web$`'s reviewed retrievers add `WEB03`, and the end date Chapter 03 records for it (August 31, 2027) is after D08's (June 30, 2027). `gmsa-ops$` has the same end date and no SPN owner, and is in Domain Admins. Chapter 03 re-platforms `svc-intranet` to a gMSA, but `kerberos-replatform.csv` names no SPN owner for it, and its end date (2028) is after D08 and after the island's end of life, so its planned gMSA isn't reconciled.
+   Each disposition is Chapter 03's. `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so its owner kept it on Kerberos (`KeepKerberos`, with the authorizing official's acceptance) instead of the dMSA the matrix proposed; it has no SPN owner. Had the owner chosen the dMSA, this chapter would block it (NPI-KRB-04, pinned by the tests). `gmsa-web$`'s reviewed retrievers add `WEB03`, and the end date Chapter 03 records for it (August 31, 2027) is after D08's (June 30, 2027) but before program G5 (September 30, 2027), which bounds a kept gMSA, as in Chapter 03. `gmsa-ops$` has the same end date and no SPN owner, which it doesn't need because it has no SPNs, and is in Domain Admins. Chapter 03 re-platforms `svc-intranet` to a gMSA, but `kerberos-replatform.csv` names no SPN owner for it, and its end date (2028) is after program G5 and after the island's end of life, so its planned gMSA isn't reconciled.
 
 5. **Read the plan:**
 
@@ -366,9 +363,9 @@ It prints nothing. The three folders hold the register, the owners and the owner
    -------        ----        -----------  -----------                   -------    ------------       -----------
    dmsa-hrsync$   dMSA        Replatform   hr-apps.owner@contoso.example 2027-06-30                    True
    gmsa-intranet$ gMSA        Replatform                                 2028-12-31                    False
-   gmsa-ops$      gMSA        Keep                                       2027-08-31                    False
+   gmsa-ops$      gMSA        Keep                                       2027-08-31                    True
    gmsa-print$    gMSA        Replatform   print.owner@contoso.example   2027-06-30                    True
-   gmsa-web$      gMSA        Keep         erin@contoso.example          2027-08-31                    False
+   gmsa-web$      gMSA        Keep         erin@contoso.example          2027-08-31                    True
    svc-webfront   Traditional KeepKerberos                               2027-05-31 ao@contoso.example False
 
    Account        Type Planned Destination Outcome
@@ -423,7 +420,7 @@ It prints nothing. The three folders hold the register, the owners and the owner
 
    <!-- capture:end -->
 
-   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is b1019500…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is e8fb8355…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 9. **Run the tests:**
 
@@ -567,7 +564,7 @@ Remove-Item -Recurse -Force out/kerberos-test*
    ./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory-test -OwnershipRun out/kerberos-test-ownership -InputPath <matrix-inputs> -OutputPath out/kerberos-test-matrix
    ```
 
-   Then this chapter's two files: `kerberos-replatform.csv` names the dMSA and the gMSA on that host, each with a test SPN owner and an end date before your test D08, and `password-retrievers.json` the gMSA's retrievers:
+   Then this chapter's two files: `kerberos-replatform.csv` names the dMSA and the gMSA on that host, each with a test SPN owner and an end date before your test program G5, and `password-retrievers.json` the gMSA's retrievers:
 
    ```powershell
    Get-Content tests/fixtures/ch06/inputs/kerberos-replatform.csv -TotalCount 1 | Set-Content <inputs>/kerberos-replatform.csv
@@ -685,7 +682,7 @@ The Kerberos accounts are the on-premises part of the guide's [G5 Conversion](..
 | Learn's gMSA and dMSA procedures, run as published against stand-ins, are the models the code keeps, and each gap is pinned by a test (Lab 1, step 1: `KerberosIslandSamples.Tests.ps1`, 17 tests) | IA-5 Authenticator Management | KSI-IAM-SNU | The repository's tests; the pinned copies |
 | The read holds no domain administration; the write task does, and is a person's (Lab 1, step 2: the cmdlets and rights for `kerberos-island` and `kerberos-apply`; Lab 2, step 2: the delegated read of `msKds-UseStartTime` and `msKds-CreateTime` only) | AC-6 Least Privilege; CM-5 Access Restrictions for Change | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-CMT-RVP (CM-5) | AD engineering; the ISSO |
 | Each Kerberos account gets one action, with the register's and each input's SHA-256, and the same inputs give the same plan hash (Lab 1, steps 3 and 5: `kerberos-plan.json`) | IA-5 (Windows-managed passwords replace stored ones); CM-3 Configuration Change Control | KSI-IAM-SNU; KSI-CMT-LMC | Identity engineering; the reviewer who approves the hash |
-| No root key, no disposition, an unusable target, no SPN owner, no end date or one past D08, an unreconciled account: each is a finding (Lab 1, step 4, and Lab 2, step 3: `findings.json`, NPI-KRB-01 to -07 and -09) | AC-2 Account Management; IA-5 | KSI-IAM-SNU | Identity engineering |
+| No root key, no disposition, an unusable target, no SPN owner where one is needed, no end date or one past its bound (D08 or program G5), an unreconciled account: each is a finding (Lab 1, step 4, and Lab 2, step 3: `findings.json`, NPI-KRB-01 to -07 and -09) | AC-2 Account Management; IA-5 | KSI-IAM-SNU | Identity engineering |
 | A managed service account in a privileged group is flagged (`findings.json`, NPI-KRB-08) | AC-6(5) Privileged Accounts | KSI-IAM-SNU, KSI-IAM-JIT | AD engineering, through the Privileged Access plan |
 | Only the reviewed hosts can retrieve each gMSA's and dMSA's password (`password-retrievers.json`; NPI-KRB-03; `SetRetrievers` in the plan) | AC-6 Least Privilege (who can retrieve a managed password) | KSI-IAM-ELP | Server and AD engineering |
 | Every account that stays on Kerberos is listed under its future name, with its SPNs, SPN owner, end date and, for one kept on Kerberos, the authorizing official's acceptance from Chapter 03 (Lab 1, step 6: `island-list.csv`) | CM-8 System Component Inventory; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | Identity engineering lead |
@@ -722,7 +719,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] No dMSA was planned for an MSA, an account with unconstrained delegation, or a host without Windows Server 2025, and none was completed before 30 days.
 - [ ] Every plan's SHA-256 was approved by someone other than the person who applied it, and the write path's manifest is filed with the change record.
 - [ ] No old account was deleted; each superseded one is disabled and has a retirement decision.
-- [ ] Every account on the island list has an SPN owner and an end date within D08, every `KeepKerberos` account carries the authorizing official's acceptance from Chapter 03, and the list went to the program's SPN retirement (P4.6) only when `islandHandoffReady` was true.
+- [ ] Every account on the island list has an end date within its bound (D08 for a `KeepKerberos` account, program G5 for a kept or planned gMSA or dMSA) and, where Chapter 03 asks for one, an SPN owner; every `KeepKerberos` account carries the authorizing official's acceptance from Chapter 03, and the list went to the program's SPN retirement (P4.6) only when `islandHandoffReady` was true.
 - [ ] Every gMSA and dMSA is `MovesToWorkloadIdentity`, `Retires`, `OnIslandList` or `HandedOff` against the current `program-dates.json`, and Chapter 03's run and this one were repeated after D11 was confirmed.
 - [ ] The pinned Learn pages match their manifest, and every upstream commit since the pin has been reviewed.
 

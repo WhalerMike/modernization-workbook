@@ -5,4 +5,4 @@ Apply: 4 Sent
   Sent      CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
   Sent      CreateGmsa            svc-intranet    New-ADServiceAccount
 PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
-Exception: The plan's SHA-256 is b1019500744ecfb5d2c4e0a3f5ace7441e9c82cb931d7b5bd838961fedab5e0a, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+Exception: The plan's SHA-256 is e8fb8355ee0989d9ce9d7b107cd52f45d0eea5f155a49c1667a1bf5840de9cca, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

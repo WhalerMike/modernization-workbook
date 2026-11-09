@@ -15,7 +15,7 @@
 #      compared with the approved baseline by fingerprint;
 #   4. packages the run with a SHA-256 per file, chained to the previous package, and writes it to
 #      an immutable container;
-#   5. on the first day of a month, assembles the previous month's packages for the ISSO (N7.4).
+#   5. on the first day of a month, assembles the previous month's packages for the ISSO (NP7.4).
 # The Active Directory reads need a runner inside the domain; this sample skips them (-SkipAd), and
 # the domain's own scheduled run writes its register beside this one.
 #

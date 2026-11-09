@@ -2,8 +2,8 @@
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0.0' }
 # Chapter 03: Learn's service account decision tables, run as published (pinned in
 # examples/third_party/entra-service-account-choice-pages), then the migration path matrix as code
-# over Chapters 01 and 02's runs: the proposal (N2.1), the disposition (D-N3), the waves (N2.2),
-# the Workload ID Premium scope (D-N4) and Gate 2, against the fictional estate served by the fakes.
+# over Chapters 01 and 02's runs: the proposal (NP2.1), the disposition (D-NP3), the waves (NP2.2),
+# the Workload ID Premium scope (D-NP4) and Gate 2, against the fictional estate served by the fakes.
 
 BeforeAll {
     Import-Module (Join-Path $PSScriptRoot '../powershell/NpiMatrix/NpiMatrix.psm1') -Force
@@ -102,7 +102,7 @@ Describe 'Chapter 03: Learn''s "Securing cloud-based service accounts" table, ru
 }
 
 Describe 'Chapter 03: Learn''s Workload ID FAQ, read as published' {
-    It 'lists the Premium-only capabilities: the model for what D-N4 buys' {
+    It 'lists the Premium-only capabilities: the model for what D-NP4 buys' {
         @(Get-LearnWorkloadIdFeature | Where-Object { $_.Premium -and -not $_.Free }).Capability | Should -Be @('Access reviews for service provider-assigned privileged roles', 'App Health Recommendations', 'Conditional Access policies for workload identities', 'ID Protection for workload identities')
         @(Get-LearnWorkloadIdFeature | Where-Object Capability -In 'Managed identities', 'Workload identity federation', 'Application management policies').Free | Should -Be @($true, $true, $true)
     }
@@ -159,7 +159,7 @@ Describe 'Chapters 01 and 02 as inputs' {
     }
 }
 
-Describe 'N2.1: a target proposed for every identity' {
+Describe 'NP2.1: a target proposed for every identity' {
     It 'puts every in-scope identity in the matrix, hands off SQL Server, holds jdoe, and leaves the rest out with a reason' {
         @($script:Proposals | Where-Object Scope -EQ 'Matrix').Count | Should -Be 21
         @($script:Proposals | Where-Object Scope -EQ 'HandedOff').Name | Sort-Object | Should -Be @('gmsa-sql$', 'svc-ldapbind', 'svc-sqlprod')
@@ -202,7 +202,7 @@ Describe 'N2.1: a target proposed for every identity' {
     }
 }
 
-Describe 'D-N3: the owner''s disposition' {
+Describe 'D-NP3: the owner''s disposition' {
     It 'NPI-MAT-01: no disposition is a finding; an account to confirm first is Info' {
         (Get-F 'NPI-MAT-01' | Where-Object Severity -EQ 'Finding').Object | Should -Be 'svc-oldftp (Traditional)'
         (Get-F 'NPI-MAT-01' | Where-Object Severity -EQ 'Info').Object | Should -Be 'jdoe (Traditional)'
@@ -250,7 +250,7 @@ Describe 'D-N3: the owner''s disposition' {
     }
 }
 
-Describe 'N2.2: waves, HIGH-risk first, a rollback per wave' {
+Describe 'NP2.2: waves, HIGH-risk first, a rollback per wave' {
     It 'NPI-MAT-07: a HIGH-risk account re-platformed outside wave 1 is a finding; a kept HIGH one is a warning' {
         (Get-F 'NPI-MAT-07' | Where-Object Severity -EQ 'Finding').Object | Should -Be 'svc-hrsync (Traditional)'
         @(Get-F 'NPI-MAT-07' | Where-Object Severity -EQ 'Warn').Object | Sort-Object | Should -Be @('gmsa-ops$ (gMSA)', 'svc-webfront (Traditional)')
@@ -278,7 +278,7 @@ Describe 'N2.2: waves, HIGH-risk first, a rollback per wave' {
     }
 }
 
-Describe 'D-N4: the Workload ID Premium scope' {
+Describe 'D-NP4: the Workload ID Premium scope' {
     It 'reads the tenant''s subscriptions with one GET and LicenseAssignment.Read.All, and finds the Workload ID plan by service plan ID' {
         $t = New-TestReader
         $s = Get-NpiWorkloadIdScope -Reader $t.Reader -Rows $script:Register.Rows -Decisions $script:Decision.Decisions -Config $script:Config -Decision $script:Dn4
@@ -300,7 +300,7 @@ Describe 'D-N4: the Workload ID Premium scope' {
         (Get-F 'NPI-MAT-09' $s.Findings).Issue | Should -Match 'enabled units for'
     }
     It 'no decision file, or None without compensating controls, fails Gate 2' {
-        (Get-F 'NPI-MAT-09' (Get-TestScope -Decision $null).Findings).Issue | Should -Match 'No D-N4 decision'
+        (Get-F 'NPI-MAT-09' (Get-TestScope -Decision $null).Findings).Issue | Should -Match 'No D-NP4 decision'
         (Get-F 'NPI-MAT-09' (Get-TestScope -Decision @{ decision = 'None'; decidedBy = 'ciso@contoso.example'; decidedOn = '2026-10-28'; compensatingControls = @() }).Findings | Where-Object Severity -EQ 'Finding').Issue | Should -Match 'compensating controls'
     }
 }

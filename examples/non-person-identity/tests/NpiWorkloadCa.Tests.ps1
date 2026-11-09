@@ -46,7 +46,7 @@ BeforeAll {
     function New-EnforcedScope([string]$Sha, [string[]]$Rings = @('Ring1')) {
         $s = Copy-Scope
         $s['enforcement'] = @{
-            decision   = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
+            decision   = @{ id = 'D-NP5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
             rings      = @($Rings | ForEach-Object { @{ ring = $_; enforce = $true; signInReview = $Sha; reviewedBy = 'ISSO'; reviewedOn = '2026-10-30' } })
             exclusions = @()
         }
@@ -180,7 +180,7 @@ Describe 'The pre-merge check' {
         $r | Should -Contain 'NPI-WCA-02'
         $r | Should -Contain 'NPI-WCA-03'
     }
-    It 'NPI-WCA-05: no D-N4 record, a principal that isn''t Tier 1, an unknown ring, a duplicate' {
+    It 'NPI-WCA-05: no D-NP4 record, a principal that isn''t Tier 1, an unknown ring, a duplicate' {
         $s = Copy-Scope
         $s['licensing'] = $null
         $s['inScope'][0]['tier'] = 'Tier2'
@@ -207,13 +207,13 @@ Describe 'The pre-merge check' {
         $repo.Locations[0].Body['isTrusted'] = $true
         @(Test-NpiWcaRepository -Repository $repo -Scope $script:Scope -AsOf $script:AsOf).Severity | Should -Be @('Warn')
     }
-    It 'NPI-WCA-09: enforcement without D-N5, out of ring order, or with an exclusion that has no end date or has ended' {
+    It 'NPI-WCA-09: enforcement without D-NP5, out of ring order, or with an exclusion that has no end date or has ended' {
         $s = New-EnforcedScope -Sha ('a' * 64) -Rings 'Ring2'
         $s['enforcement']['decision'] = $null
         $s['enforcement']['exclusions'] = @(@{ objectId = $script:Ids.DeployBot; ring = 'Ring2'; owner = 'App owner'; reason = 'Moves to new egress Nov 15' }, @{ objectId = $script:Ids.HR; ring = 'Ring2'; owner = 'App owner'; reason = 'x'; ends = '2026-10-01' })
         $m = @(Test-NpiWcaRepository -Repository $script:Repo -Scope $s -AsOf $script:AsOf | Where-Object Rule -EQ 'NPI-WCA-09').Message
         $m.Count | Should -Be 4
-        ($m -join ' ') | Should -Match 'no D-N5 record'
+        ($m -join ' ') | Should -Match 'no D-NP5 record'
         ($m -join ' ') | Should -Match 'Enforced before Ring1'
         ($m -join ' ') | Should -Match 'owner, a reason and an end date'
         ($m -join ' ') | Should -Match 'Ended 2026-10-01'
@@ -228,7 +228,7 @@ Describe 'The pre-merge check' {
 }
 
 Describe 'The tenant check' {
-    It 'confirms the fixture scope: no Finding, and two eligible apps left uncovered under D-N4 as Info' {
+    It 'confirms the fixture scope: no Finding, and two eligible apps left uncovered under D-NP4 as Info' {
         $c = New-NpiWcaClient -Cloud gcc -Task wca-read -Invoke (New-Fake).Invoke
         $r = Test-NpiWcaTenantScope -Client $c -Scope $script:Scope
         @($r.Findings | Where-Object Severity -NE 'Info').Count | Should -Be 0
@@ -322,14 +322,14 @@ Describe 'The plan and the dry run' {
 
 Describe 'Enforcement ring by ring' {
     BeforeAll { $script:Sum = Save-Summary }
-    It 'holds a marked ring without -AllowEnforce, without D-N5, with a summary nobody reviewed, or that isn''t ready' {
+    It 'holds a marked ring without -AllowEnforce, without D-NP5, with a summary nobody reviewed, or that isn''t ready' {
         $s = New-EnforcedScope -Sha $script:Sum.Sha -Rings 'Ring1', 'Ring2'
         (Get-NpiWcaEnforcement -Scope $s -SignInSummaryPath $script:Sum.Path)['Ring1'].Note | Should -Match 'AllowEnforce'
         $e = Get-NpiWcaEnforcement -Scope $s -AllowEnforce -SignInSummaryPath $script:Sum.Path
         $e['Ring1'].Enforce | Should -BeTrue
         $e['Ring2'].Note | Should -Match 'doesn''t show this ring ready'
         $n = New-EnforcedScope -Sha $script:Sum.Sha; $n['enforcement']['decision']['outcome'] = 'ExtendReportOnly'
-        (Get-NpiWcaEnforcement -Scope $n -AllowEnforce -SignInSummaryPath $script:Sum.Path)['Ring1'].Note | Should -Match 'no D-N5 record'
+        (Get-NpiWcaEnforcement -Scope $n -AllowEnforce -SignInSummaryPath $script:Sum.Path)['Ring1'].Note | Should -Match 'no D-NP5 record'
         $x = New-EnforcedScope -Sha ('0' * 64)
         (Get-NpiWcaEnforcement -Scope $x -AllowEnforce -SignInSummaryPath $script:Sum.Path)['Ring1'].Note | Should -Match 'not the reviewed'
         (Get-NpiWcaEnforcement -Scope (New-EnforcedScope -Sha $script:Sum.Sha) -AllowEnforce)['Ring1'].Note | Should -Match 'SignInSummaryPath'
@@ -365,7 +365,7 @@ Describe 'Enforcement ring by ring' {
         $row.Action | Should -Be 'Update'
         $row.Body['state'] | Should -Be 'enabledForReportingButNotEnforced'
     }
-    It 'puts a dated exclusion (D-N5, enforce with named exclusions) in its ring''s policies until it ends' {
+    It 'puts a dated exclusion (D-NP5, enforce with named exclusions) in its ring''s policies until it ends' {
         $s = Copy-Scope
         $s['enforcement']['exclusions'] = @(@{ objectId = $script:Ids.DeployBot; ring = 'Ring2'; owner = 'App owner'; reason = 'Moves to the new egress range'; ends = '2026-11-15' })
         @(Test-NpiWcaRepository -Repository $script:Repo -Scope $s -AsOf $script:AsOf).Count | Should -Be 0

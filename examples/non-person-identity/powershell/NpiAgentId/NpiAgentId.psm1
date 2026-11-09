@@ -4,10 +4,10 @@
 
     AI agent identities read with their blueprints, sponsors, technical owners and inventory
     records, and checked against the program's rules (Book 17, Chapters 04 to 07): creation closed
-    (N6.1), the production handshake as a reviewed record (N6.2), no stored secret on a production
-    blueprint (N6.3), least privilege and no standing privileged role (N6.4), the sponsor mover and
-    leaver tasks with the ten-business-day confirmation rule (N6.5), agent Conditional Access in
-    report-only (N6.6) and the AI drift checks (N6.7). Decision D-N6 is data
+    (NP6.1), the production handshake as a reviewed record (NP6.2), no stored secret on a production
+    blueprint (NP6.3), least privilege and no standing privileged role (NP6.4), the sponsor mover and
+    leaver tasks with the ten-business-day confirmation rule (NP6.5), agent Conditional Access in
+    report-only (NP6.6) and the AI drift checks (NP6.7). Decision D-NP6 is data
     (config/agent-id-capabilities-ch09.json): where agent identities aren't available, the same
     rules run on the service principals and managed identities the agents use.
 
@@ -36,12 +36,12 @@ function Get-NpiAgentConfig {
     <#
     .SYNOPSIS
         Reads the Chapter 09 configuration and returns the call list, the program's rules and
-        the D-N6 capability table as hashtables, with the folder they were read from.
+        the D-NP6 capability table as hashtables, with the folder they were read from.
     .EXAMPLE
         (Get-NpiAgentConfig).Rules.desiredCaPolicies
     #>
 
-    <# The call list, the program's rules and the D-N6 capability table, as hashtables. #>
+    <# The call list, the program's rules and the D-NP6 capability table, as hashtables. #>
     [CmdletBinding()]
     param([string]$ConfigRoot = $script:ConfigRoot)
     $read = { param($n) Get-Content -LiteralPath (Join-Path $ConfigRoot $n) -Raw | ConvertFrom-Json -AsHashtable -Depth 50 }
@@ -89,7 +89,7 @@ function Get-NpiAgentRequiredPermission {
 function Get-NpiAgentCapability {
     <#
     .SYNOPSIS
-        D-N6 for one cloud: Mode 'AgentId' where agent identities are available, else 'Fallback'
+        D-NP6 for one cloud: Mode 'AgentId' where agent identities are available, else 'Fallback'
         (service principals and managed identities under the same governance), with the stage and
         watch flag of each capability.
     .EXAMPLE
@@ -412,7 +412,7 @@ function Test-NpiAgentId {
     $holidays = @($rules.federalHolidays)
     $empType = $rules.sponsor.employeeType
 
-    # --- N6.1 creation closed --------------------------------------------------------------
+    # --- NP6.1 creation closed --------------------------------------------------------------
     $cs = $Inputs.CreationSetting
     if (-not $cs) { & $add 'NPI-AI-01' 'Finding' 'tenant:creation' 'Users can create agent blueprints' 'No dated reading of the setting: Learn documents it only in the admin center, so a person records it (creation-setting.json)' }
     else {
@@ -466,7 +466,7 @@ function Test-NpiAgentId {
             $conf = @($Inputs.Confirmations | Where-Object { $_.AgentIdentityId -eq $key -and $_.EventSponsorUpn -eq $ev.SponsorUpn -and (ConvertTo-NpiAgentDate $_.ConfirmedOn) -ge $start -and (ConvertTo-NpiAgentDate $_.ConfirmedOn) -le $due })
             if ($conf.Count) { continue }
             if ($AsOf.Date -gt $due) {
-                & $add 'NPI-AI-16' 'Finding' "$key/$($ev.SponsorUpn)" $label ("Sponsor {0} ({1} {2}): no confirmation by {3}, ten business days later. An orphaned agent: the identity governance officer confirms, then the orphan rule (D-N2) applies" -f $ev.SponsorUpn, $ev.Event, $ev.EffectiveDate, $due.ToString('yyyy-MM-dd'))
+                & $add 'NPI-AI-16' 'Finding' "$key/$($ev.SponsorUpn)" $label ("Sponsor {0} ({1} {2}): no confirmation by {3}, ten business days later. An orphaned agent: the identity governance officer confirms, then the orphan rule (D-NP2) applies" -f $ev.SponsorUpn, $ev.Event, $ev.EffectiveDate, $due.ToString('yyyy-MM-dd'))
                 $state = 'Orphaned'
             } else {
                 & $add 'NPI-AI-16' 'Info' "$key/$($ev.SponsorUpn)" $label ("Sponsor {0} ({1} {2}): {3} or a successor confirms by {4}" -f $ev.SponsorUpn, $ev.Event, $ev.EffectiveDate, $ev.NewSponsorUpn, $due.ToString('yyyy-MM-dd'))
@@ -520,7 +520,7 @@ function Test-NpiAgentId {
         elseif ($handshakeOk -and -not $approved) { & $add 'NPI-AI-20' 'Warn' $key $label 'Approved in the handshake but the approval attribute is missing: blocked once the policy is enforced' }
 
         $state = & $sponsorEvents $key $label $sponsorUpns @($(if ($invRow) { $invRow.FederalSponsorUpn }))
-        if ($state -eq 'Orphaned' -or -not $valid.Count) { $orphans.Add([pscustomobject]@{ IdentityId = $key; Name = $o.displayName; Type = 'AgentIdentity'; Reason = $(if ($state -eq 'Orphaned') { 'Sponsor transfer unconfirmed after ten business days' } else { 'No accountable human' }); Rule = 'D-N2: the identity governance officer confirms, then a person disables; never automatic' }) }
+        if ($state -eq 'Orphaned' -or -not $valid.Count) { $orphans.Add([pscustomobject]@{ IdentityId = $key; Name = $o.displayName; Type = 'AgentIdentity'; Reason = $(if ($state -eq 'Orphaned') { 'Sponsor transfer unconfirmed after ten business days' } else { 'No accountable human' }); Rule = 'D-NP2: the identity governance officer confirms, then a person disables; never automatic' }) }
         $ids.Add([pscustomobject]@{
                 IdentityId = $key; Name = $o.displayName; Type = 'AgentIdentity'; Blueprint = $o.agentIdentityBlueprintId
                 FederalSponsor = ($valid | Select-Object -First 1 | ForEach-Object userPrincipalName); SponsoringGroup = ($groupSponsors -join '; ')
@@ -562,14 +562,14 @@ function Test-NpiAgentId {
             })
     }
 
-    # --- AI systems on service principals and managed identities (D-N6 fallback) ------------
+    # --- AI systems on service principals and managed identities (D-NP6 fallback) ------------
     $regByObject = @{}; foreach ($r in @($Runs.Register.Rows)) { if ($r.ObjectId) { $regByObject[$r.ObjectId] = $r } }
     $regByApp = @{}; foreach ($r in @($Runs.Register.Rows | Where-Object Type -EQ 'AppRegistration')) { $regByApp[$r.AppId] = $r }
     foreach ($fb in @($Estate.Fallback)) {
         $row = $fb.Inventory; $key = "sp:$($row.IdentityObjectId)"; $label = "$($row.Name) ($($row.IdentityType))"
         $h = if ($hsById.ContainsKey($row.IdentityObjectId)) { $hsById[$row.IdentityObjectId] } else { $null }
-        if ($Capability.Mode -eq 'AgentId' -and -not ($h -and $h.FallbackReason)) { & $add 'NPI-AI-03' 'Warn' $key $label 'An agent on an ordinary service principal where agent identities are available: route it to the blueprint path, or record the D-N6 fallback reason in its handshake' }
-        elseif ($Capability.Mode -eq 'Fallback') { & $add 'NPI-AI-03' 'Info' $key $label "Governed under the D-N6 fallback: agent identities aren't available in cloud '$($Capability.Cloud)'" }
+        if ($Capability.Mode -eq 'AgentId' -and -not ($h -and $h.FallbackReason)) { & $add 'NPI-AI-03' 'Warn' $key $label 'An agent on an ordinary service principal where agent identities are available: route it to the blueprint path, or record the D-NP6 fallback reason in its handshake' }
+        elseif ($Capability.Mode -eq 'Fallback') { & $add 'NPI-AI-03' 'Info' $key $label "Governed under the D-NP6 fallback: agent identities aren't available in cloud '$($Capability.Cloud)'" }
         if (-not $h) { & $add 'NPI-AI-04' 'Finding' $key $label 'No production handshake record' } else { $null = & $checkHandshake $key $label $h $row '' }
         $sp = if ($regByObject.ContainsKey($row.IdentityObjectId)) { $regByObject[$row.IdentityObjectId] } else { $null }
         $app = if ($row.BlueprintAppId -and $regByApp.ContainsKey($row.BlueprintAppId)) { $regByApp[$row.BlueprintAppId] } elseif ($sp -and $regByApp.ContainsKey($sp.AppId)) { $regByApp[$sp.AppId] } else { $null }
@@ -585,23 +585,23 @@ function Test-NpiAgentId {
                 IdentityId = $key; Name = $row.Name; Type = $row.IdentityType; Blueprint = ''
                 FederalSponsor = $(if (-not $w) { $row.FederalSponsorUpn } else { '' }); SponsoringGroup = "$($row.SponsoringGroupId)"; TechnicalOwner = "$($row.TechnicalOwnerUpn)"
                 InventoryRecord = "$($row.RecordId)"; UseCaseId = "$($row.UseCaseId)"; Handshake = "$(if ($h) { $h.HandshakeId })"
-                AccessMode = "$(if ($h) { $h.AccessMode })"; Approved = $null; SponsorState = $state; Governance = "D-N6 fallback ($(if ($sp) { $sp.Type } else { 'not in the register' }))"
+                AccessMode = "$(if ($h) { $h.AccessMode })"; Approved = $null; SponsorState = $state; Governance = "D-NP6 fallback ($(if ($sp) { $sp.Type } else { 'not in the register' }))"
             })
     }
 
-    # --- inventory entries the directory can't match: N6.7 ------------------------------------
+    # --- inventory entries the directory can't match: NP6.7 ------------------------------------
     $known = @{}; foreach ($i in $ids) { $known[($i.IdentityId -replace '^(sp|app):', '')] = $true }
     foreach ($row in $inv) {
         $agentic = $row.Classification -eq 'Agentic AI' -and $row.Stage -in 'Deployed', 'Piloted'
         if (-not $agentic) { continue }
         if ($row.IdentityType -eq 'None' -or -not $row.IdentityObjectId) { & $add 'NPI-AI-21' 'Finding' "uc:$($row.UseCaseId)" "$($row.Name) (use case)" "An agentic AI system ($($row.Stage)) with no governed identity: issue one through the handshake, or correct the inventory" }
         elseif (-not $known.ContainsKey($row.IdentityObjectId)) {
-            if ($Capability.Mode -eq 'Fallback' -and $row.IdentityType -eq 'AgentIdentity') { & $add 'NPI-AI-03' 'Finding' "uc:$($row.UseCaseId)" "$($row.Name) (use case)" "The record names an agent identity, but D-N6 says agent identities aren't available in cloud '$($Capability.Cloud)'" }
+            if ($Capability.Mode -eq 'Fallback' -and $row.IdentityType -eq 'AgentIdentity') { & $add 'NPI-AI-03' 'Finding' "uc:$($row.UseCaseId)" "$($row.Name) (use case)" "The record names an agent identity, but D-NP6 says agent identities aren't available in cloud '$($Capability.Cloud)'" }
             else { & $add 'NPI-AI-21' 'Finding' "uc:$($row.UseCaseId)" "$($row.Name) (use case)" "The record names identity $($row.IdentityObjectId), which the directory doesn't return" }
         }
     }
 
-    # --- N6.5 sponsor workflows -------------------------------------------------------------
+    # --- NP6.5 sponsor workflows -------------------------------------------------------------
     $td = $rules.sponsorTaskDefinitions
     foreach ($cat in 'leaver', 'mover') {
         $ok = @($Estate.Workflows | Where-Object {
@@ -615,10 +615,10 @@ function Test-NpiAgentId {
         }
     }
 
-    # --- N6.6 agent Conditional Access ------------------------------------------------------
+    # --- NP6.6 agent Conditional Access ------------------------------------------------------
     $cfg = Get-NpiAgentConfig
     if ($Capability.AgentConditionalAccess.available -eq $false) {
-        & $add 'NPI-AI-18' 'Info' 'ca:not-available' 'Agent Conditional Access' "Not published for cloud '$($Capability.Cloud)' (D-N6): the fallback service principals are covered by Conditional Access for workload identities (Chapter 08)"
+        & $add 'NPI-AI-18' 'Info' 'ca:not-available' 'Agent Conditional Access' "Not published for cloud '$($Capability.Cloud)' (D-NP6): the fallback service principals are covered by Conditional Access for workload identities (Chapter 08)"
     }
     foreach ($rel in @($(if ($Capability.AgentConditionalAccess.available -ne $false) { $rules.desiredCaPolicies }))) {
         $want = Get-Content -LiteralPath (Join-Path $cfg.Root $rel) -Raw | ConvertFrom-Json -AsHashtable
@@ -629,11 +629,11 @@ function Test-NpiAgentId {
         $watch = "preview watch item: $($Capability.AgentConditionalAccess.stage)"
         if (-not $have) { & $add $rule $sev "ca:$kind" $want.displayName "Not in the tenant ($watch): create it report-only through the reviewed plan" ; continue }
         $problems = @(Test-NpiAgentCaPolicyShape -Policy $have -Kind $kind -ApprovalRule $rules.approvalAttribute)
-        if ($have.state -eq 'enabled') { & $add $rule 'Warn' "ca:$kind" $want.displayName "Enforced while agent targeting is a $watch; D-N6 keeps it report-only until the label is removed in this cloud" }
+        if ($have.state -eq 'enabled') { & $add $rule 'Warn' "ca:$kind" $want.displayName "Enforced while agent targeting is a $watch; D-NP6 keeps it report-only until the label is removed in this cloud" }
         elseif ($problems.Count) { & $add $rule $sev "ca:$kind" $want.displayName ("Differs from the reviewed policy: {0}" -f ($problems -join '; ')) }
     }
 
-    # --- N6.7 credentials added outside the pipeline ------------------------------------------
+    # --- NP6.7 credentials added outside the pipeline ------------------------------------------
     $aiObjects = @{}; foreach ($b in @($Estate.Blueprints)) { $aiObjects[$b.Object.id] = $b.Object.displayName }
     foreach ($a in @($Estate.Identities)) { $aiObjects[$a.Object.id] = $a.Object.displayName }
     foreach ($fb in @($Estate.Fallback)) { $aiObjects[$fb.Inventory.IdentityObjectId] = $fb.Inventory.Name; $r = $regByApp["$($fb.Inventory.BlueprintAppId)"]; if ($r) { $aiObjects[$r.ObjectId] = $fb.Inventory.Name } }
@@ -660,7 +660,7 @@ function New-NpiAgentCaPlan {
     .SYNOPSIS
         A dry-run plan for the two agent policies: Create (report-only) where the tenant has no
         policy of that name, InPlace or Differs where it has one. Nothing here writes. Refuses a
-        reviewed policy file that isn't report-only Block, and a cloud where D-N6 says agent
+        reviewed policy file that isn't report-only Block, and a cloud where D-NP6 says agent
         Conditional Access isn't available.
     .EXAMPLE
         $plan = New-NpiAgentCaPlan -Estate $estate -Cloud gcc -TenantId $runs.TenantId -AsOf ([datetime]'2026-10-30')
@@ -678,7 +678,7 @@ function New-NpiAgentCaPlan {
         if ($bad.Count) { throw "The reviewed policy $rel doesn't meet the design: $($bad -join '; ')" }
         $have = @($Estate.CaPolicies | Where-Object { $_.displayName -eq $want.displayName })
         $a = [ordered]@{ ActionId = "$kind"; Policy = $want.displayName; Kind = $kind; Action = ''; Write = $false; Call = ''; Method = ''; Target = ''; Body = $null; Reason = '' }
-        if ($cap.AgentConditionalAccess.available -eq $false) { $a.Action = 'NotAvailable'; $a.Reason = "D-N6: agent Conditional Access isn't published for cloud '$Cloud'" }
+        if ($cap.AgentConditionalAccess.available -eq $false) { $a.Action = 'NotAvailable'; $a.Reason = "D-NP6: agent Conditional Access isn't published for cloud '$Cloud'" }
         elseif (-not $have.Count) { $a.Action = 'Create'; $a.Write = $true; $a.Call = 'agid-ca-create'; $a.Method = 'POST'; $a.Target = "$graph/beta/identity/conditionalAccess/policies"; $a.Body = $want; $a.Reason = "Report-only; $($cap.AgentConditionalAccess.stage), a watch item" }
         else {
             $diff = @(Test-NpiAgentCaPolicyShape -Policy $have[0] -Kind $kind -ApprovalRule $cfg.Rules.approvalAttribute)
@@ -750,7 +750,7 @@ function Invoke-NpiAgentCaPlan {
 function Export-NpiAgentRun {
     <#
     .SYNOPSIS
-        Write a run's files and a manifest with the task, cloud, tenant, D-N6 mode, the permissions
+        Write a run's files and a manifest with the task, cloud, tenant, D-NP6 mode, the permissions
         the task holds, every request, the SHA-256 of each file, and of each input.
     .EXAMPLE
         Export-NpiAgentRun -OutputPath out/agent-id -Task agent-id -Cloud gcc -Mode Fixture -TenantId $runs.TenantId -AsOf '2026-10-30' -Evidence $reader.Evidence -Files @{ 'findings.json' = @($result.Findings); 'agent-ca-plan.json' = $plan }

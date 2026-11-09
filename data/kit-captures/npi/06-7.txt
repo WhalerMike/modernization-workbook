@@ -3,9 +3,9 @@ Account        Type        Disposition  SpnOwnerUpn                   EndDate   
 -------        ----        -----------  -----------                   -------    ------------       -----------
 dmsa-hrsync$   dMSA        Replatform   hr-apps.owner@contoso.example 2027-06-30                    True
 gmsa-intranet$ gMSA        Replatform                                 2028-12-31                    False
-gmsa-ops$      gMSA        Keep                                       2027-08-31                    False
+gmsa-ops$      gMSA        Keep                                       2027-08-31                    True
 gmsa-print$    gMSA        Replatform   print.owner@contoso.example   2027-06-30                    True
-gmsa-web$      gMSA        Keep         erin@contoso.example          2027-08-31                    False
+gmsa-web$      gMSA        Keep         erin@contoso.example          2027-08-31                    True
 svc-webfront   Traditional KeepKerberos                               2027-05-31 ao@contoso.example False
 PS> Get-Content out/kerberos/reconciliation.json -Raw | ConvertFrom-Json | Format-Table Account, Type, Planned, Destination, Outcome
 Account        Type Planned Destination Outcome

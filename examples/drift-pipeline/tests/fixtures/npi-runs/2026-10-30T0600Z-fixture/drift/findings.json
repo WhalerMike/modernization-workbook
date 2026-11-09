@@ -86,7 +86,7 @@
     "Chapter": "10",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000003",
     "Object": "svc-backup (Traditional)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "096d9e51a904f05e"
   },
   {
@@ -96,7 +96,7 @@
     "Chapter": "10",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
     "Object": "svc-oldftp (Traditional)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "0ddaf54f215fcf84"
   },
   {
@@ -106,7 +106,7 @@
     "Chapter": "10",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000005",
     "Object": "svc-reports (Traditional)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "c1d94f86210d0db3"
   },
   {
@@ -116,7 +116,7 @@
     "Chapter": "10",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000006",
     "Object": "sa-printsvc (Traditional)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "46d90322794c3f60"
   },
   {
@@ -126,7 +126,7 @@
     "Chapter": "10",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000024",
     "Object": "gmsa-ops$ (gMSA)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "cf38b8402f5add75"
   },
   {
@@ -136,7 +136,7 @@
     "Chapter": "10",
     "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
     "Object": "Legacy Reports (AppRegistration)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "2fc525c2ededa1a9"
   },
   {
@@ -146,7 +146,7 @@
     "Chapter": "10",
     "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
     "Object": "Old SAML Connector (LegacyServicePrincipal)",
-    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-NP2) decides, and nothing here disables it",
     "Fingerprint": "c13f916350edc908"
   },
   {
