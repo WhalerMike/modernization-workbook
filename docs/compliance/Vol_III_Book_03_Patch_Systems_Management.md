@@ -229,7 +229,7 @@ this"). Phase 5 is that estate's turn, and the landing shape is now decided:
 **extend in place, not a new volume.** The RedHat-on-AWS workstreams land as
 extensions of the books that already govern their functions — this book for
 patch and configuration (SI-2, CM-2/6, via Satellite + Ansible Automation
-Platform + AWS SSM per the actuation matrix above), Vol VIII Book 02 for the
+Platform + AWS SSM per the actuation matrix above), [Book 08, Chapter 07](../books/b08-ddi/07-cloud-private-endpoints-and-ipam.md) (via Vol VIII Book 00) for the
 DDI naming plane and CM-8 join key on AWS, Vol III Book 07 for Security Hub /
 GuardDuty evidence ingestion, and the Volume IX day-2 control maps for
 instance provisioning and patch-scheduling catalog items. A separate

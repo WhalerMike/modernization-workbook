@@ -53,7 +53,7 @@ This book supplies that front door, reusing the exact pattern the DDI ServiceNow
 
 # Reuse — This Is the DDI App, Generalized
 
-The DDI ServiceNow app (Vol VIII Book 07, `infoblox-ddi-book/servicenow-app/`) implements this loop as a scoped-app kit for DNS-backed subnet provisioning: a catalog item fronts a Terraform module through the CPG Connector, a MID-Server gate validates, and the Service Graph Connector reconciles to the CMDB. This book **extends the same records** to full landing-zone provisioning — same connectors, same in-boundary MID, same validation-gate discipline, broader module scope.
+The DDI ServiceNow app (Vol VIII Book 07; see [Book 08, Chapter 11](../books/b08-ddi/11-operating-the-control-plane.md), ITSM integration) implements this loop as a scoped-app kit for DNS-backed subnet provisioning: a catalog item fronts a Terraform module through the CPG Connector, a MID-Server gate validates, and the Service Graph Connector reconciles to the CMDB. This book **extends the same records** to full landing-zone provisioning — same connectors, same in-boundary MID, same validation-gate discipline, broader module scope.
 
 # Closure Necessity
 
@@ -84,7 +84,7 @@ Generated from the compliance spine (`federal-compliance-compliance-spine.yml`);
 # Cross-References
 
 - **Vol VI Book 01 (Landing Zone & Network as Code)** — the IaC this front door drives.
-- **Vol VIII Book 07 / `infoblox-ddi-book/servicenow-app/`** — the DDI catalog→Terraform→gate→CMDB pattern this book generalizes.
+- **Vol VIII Book 07** ([Book 08, Chapter 11](../books/b08-ddi/11-operating-the-control-plane.md), ITSM integration) — the DDI catalog→Terraform→gate→CMDB pattern this book generalizes.
 - **Vol I Book 01 (IPAM/DDI)** — the authoritative record allocations reconcile to (CM-8).
 - **Vol VII Book 04** — where the provisioning evidence becomes attestation.
 
