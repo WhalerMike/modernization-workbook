@@ -1,7 +1,7 @@
 ---
 title: "Book 15 — Compliance Automation & Day-2 Operations"
-subtitle: "Why modernization succeeds or fails at the help desk: intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, control compliance automation across clouds, who runs day two, attestation, and the operator runbook"
-description: "Book 15 of the Federal Modernization Workbook: why a modernized estate is judged on day two, intake, triage and routing, help-desk authority and identity verification, the ITSM and Teams telephony catalogs, SaaS integration governance, the CMDB and asset identity, control compliance automation for Microsoft 365, Azure, AWS and VMware, who runs day two, attestation and the compliance application, and the day-two runbook and validation harnesses."
+subtitle: "Why modernization succeeds or fails at the help desk: intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, control compliance automation across clouds, who runs day two, attestation, the operator runbook, and provider notices"
+description: "Book 15 of the Federal Modernization Workbook: why a modernized estate is judged on day two, intake, triage and routing, help-desk authority and identity verification, the ITSM and Teams telephony catalogs, SaaS integration governance, the CMDB and asset identity, control compliance automation for Microsoft 365, Azure, AWS and VMware, who runs day two, attestation and the compliance application, the day-two runbook and validation harnesses, and the operating model for provider notices."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b15-day2-operations
@@ -25,7 +25,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-important appearance="default"}
 ## Status — baseline book
-This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's help-desk Entra operations guide, the day-two operator runbook, the ServiceNow compliance-kit roadmap, and the Federal Compliance series' implementation, automation and day-two operations volumes that cover the help desk, ITSM and telephony catalogs, SaaS integration, the CMDB, control compliance automation, attestation, the evidence pipeline and validation harnesses. Every external claim was checked against a primary source between October 21 and November 2, 2026, and each note carries its own date. The replaced pages are kept in the repository's [`archive/b15-day2-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b15-day2-operations) folder, and their old addresses forward to the chapters that replaced them.
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. [Chapter 14](14-provider-notices.md), on provider notices, was added after Release 2.0 and is a draft until the next baseline edition. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's help-desk Entra operations guide, the day-two operator runbook, the ServiceNow compliance-kit roadmap, and the Federal Compliance series' implementation, automation and day-two operations volumes that cover the help desk, ITSM and telephony catalogs, SaaS integration, the CMDB, control compliance automation, attestation, the evidence pipeline and validation harnesses. Every external claim was checked against a primary source between October 21 and November 2, 2026, and each note carries its own date. The replaced pages are kept in the repository's [`archive/b15-day2-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b15-day2-operations) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip appearance="default"}
@@ -57,7 +57,7 @@ A modernized estate is judged on day two. The test is whether the help desk can 
 | **Why** | Why does modernization succeed or fail at the help desk, and why is day two where compliance lives or dies? | [01](01-the-help-desk-decides.md), [02](02-day-two-is-where-compliance-lives.md) |
 | **What** | Intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, and control compliance automation across clouds | [03](03-intake-triage-and-routing.md), [04](04-help-desk-authority-in-entra.md), [05](05-the-service-catalogs.md), [06](06-saas-integration-governance.md), [07](07-the-cmdb-and-asset-identity.md), [08](08-control-automation-m365-and-azure.md), [09](09-control-automation-aws-and-vmware.md) |
 | **Who** | Who executes, who approves, and who owns each catalog, runbook and record | [10](10-who-runs-day-two.md) |
-| **How** | Attest and evidence controls through the compliance application, run the day-two runbook with harnesses that test the automation itself, and build the automation in-house when there is no funding for new products | [11](11-attestation-and-the-compliance-app.md), [12](12-the-day-two-runbook.md), [13](13-building-day-two-automation-in-house.md) |
+| **How** | Attest and evidence controls through the compliance application, run the day-two runbook with harnesses that test the automation itself, build the automation in-house when there is no funding for new products, and own every provider's notices through to closure | [11](11-attestation-and-the-compliance-app.md), [12](12-the-day-two-runbook.md), [13](13-building-day-two-automation-in-house.md), [14](14-provider-notices.md) |
 
 Appendix: [A — Help desk task reference](appendix-a-help-desk-task-reference.md)
 
@@ -66,8 +66,8 @@ Appendix: [A — Help desk task reference](appendix-a-help-desk-task-reference.m
 - **Executives (20 minutes):** Chapters 01, 02 and 10, or the 15-minute presentation.
 - **Service desk managers and staff:** Chapters 03 and 04, with Appendix A.
 - **ITSM and ServiceNow platform teams:** Chapters 05, 07, 11 and 13.
-- **Cloud and platform engineers:** Chapters 06, 08 and 09.
-- **Operations leads and ISSOs:** Chapters 10, 11 and 12.
+- **Cloud and platform engineers:** Chapters 06, 08, 09 and 14.
+- **Operations leads and ISSOs:** Chapters 10, 11, 12 and 14.
 
 ## Where this book sits in the workbook
 

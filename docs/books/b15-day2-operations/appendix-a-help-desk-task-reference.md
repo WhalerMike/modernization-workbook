@@ -102,7 +102,7 @@ Escalate to identity engineering and stop on any of these: a duplicate object fo
 | Triage a Microsoft consent or security notification | None needed to triage; never act from the email | — | Escalate: application owner, then identity governance officer; security operations for risk alerts | Check the audit log for "Consent to application" events[^aA-audit] | Ticket with source, findings, escalation target and time |
 | Check a device's join and compliance state | A reader role in Entra ID, and an Intune role for compliance detail | Tenant | None | — | Ticket |
 
-Microsoft notifications are triaged the same way every time. Consent request notifications go to the application owner and the identity governance officer and are never approved by the help desk. A sign-in risk alert goes to the security operations center with the service desk supervisor informed; the help desk can revoke the user's sessions on the incident ticket but doesn't change risk policy. A service health notice is correlated with open tickets and posted as a known issue.
+Microsoft notifications are triaged the same way every time. Consent request notifications go to the application owner and the identity governance officer and are never approved by the help desk. A sign-in risk alert goes to the security operations center with the service desk supervisor informed; the help desk can revoke the user's sessions on the incident ticket but doesn't change risk policy. A service health notice is correlated with open tickets and posted as a known issue; who owns each kind of provider notice, and how it becomes a task and closes, is [Chapter 14](14-provider-notices.md).
 
 ## Escalation matrix
 
