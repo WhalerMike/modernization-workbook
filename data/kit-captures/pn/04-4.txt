@@ -1,0 +1,8 @@
+PS> Import-Csv out/aws/notices.csv | Format-Table kind, status, actionRequired, actionRequiredBy, title, resources
+kind        status actionRequired actionRequiredBy     title                              resources
+----        ------ -------------- ----------------     -----                              ---------
+retirement  open   true           2026-12-01T00:00:00Z EC2: Instance retirement scheduled arn:aws:ec2:us-east-1:111122223333:instance/i-0abc1234example
+security    open   true                                IAM: Security notification         arn:aws:iam::111122223333:user/example-user
+maintenance open   false                               RDS: Maintenance scheduled         arn:aws:rds:us-east-1:111122223333:db:example-db-01
+incident    closed false                               S3: Operational issue
+retirement  open   true           2027-01-15T00:00:00Z LAMBDA: Planned lifecycle event    arn:aws:lambda:us-west-2:111122223333:function:example-function

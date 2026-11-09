@@ -1,0 +1,7 @@
+PS> Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+PS> Get-PnRequiredPermission -Provider m365 | Format-Table Call, Permissions, Verified
+Call                  Permissions             Verified
+----                  -----------             --------
+m365-messages         ServiceMessage.Read.All     True
+m365-issues           ServiceHealth.Read.All      True
+m365-health-overviews ServiceHealth.Read.All      True

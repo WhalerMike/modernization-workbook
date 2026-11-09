@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Oracle Cloud Infrastructure announcements*', '*OCI*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          9           0

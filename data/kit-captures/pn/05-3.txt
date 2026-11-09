@@ -1,0 +1,5 @@
+PS> Import-Csv out/google/notices.csv | Format-Table kind, status, title, services, regions
+kind     status title                                   services         regions
+----     ------ -----                                   --------         -------
+incident open   Cloud SQL connection errors in us-east4 Google Cloud SQL us-east4
+incident closed Cloud Storage latency in us-central1    Cloud Storage    us-central1

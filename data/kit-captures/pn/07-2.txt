@@ -1,0 +1,3 @@
+PS> ./Invoke-PnDigest.ps1 -NoticesPath out/day2/notices.json -StatePath out/state.json -OutputPath out/digest -AsOf 2026-11-16T12:00:00Z
+Digest: 16 open, 8 need action, 5 starting in the next 30 days, 2 new, 4 closed or no longer listed
+Written to out/digest: digest.md, digest.csv, manifest.json

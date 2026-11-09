@@ -1,0 +1,6 @@
+PS> ./deploy/New-PnAlertPolicy.ps1 -SettingsPath deploy/tests/fixtures/settings.production.json -FixturePath deploy/tests/fixtures/environment-production.json -OutputPath out/alerts -AsOf 2026-11-16T12:00:00Z
+AL-01  WouldApply  az policy assignment create --name pn-service-health-alerts --display-name Configure subscriptions to enable Service Health Monitoring Alert Rules --policy 98903777-a9f6-47f5-90a9-acaf62ab01a8 --scope /providers/Microsoft.Management/managementGroups/mg-contoso-example --mi-system-assigned --location eastus --role /providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-00000000e001 --identity-scope /providers/Microsoft.Management/managementGroups/mg-contoso-example
+AL-02  WouldApply  az policy remediation create --name pn-service-health-alerts-remediation --policy-assignment /providers/Microsoft.Management/managementGroups/mg-contoso-example/providers/Microsoft.Authorization/policyAssignments/pn-service-health-alerts --management-group mg-contoso-example
+
+Plan SHA-256: 6a1ec6adbd50bc2cec2bcc803ee45629bc0a0d7de416fcafd3216db443a4a3b7
+Dry run: nothing changed. To apply, add -Apply -ApprovedSha256 <the hash above> after the change record approves it.

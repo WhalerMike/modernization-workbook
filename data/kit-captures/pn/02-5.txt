@@ -1,0 +1,9 @@
+PS> (Read-PnJson -Path out/m365/notices.json).notices | ForEach-Object { [pscustomobject]@{ noticeId = $_.noticeId; actionBasis = $_.actionBasis } } | Format-Table
+noticeId      actionBasis
+--------      -----------
+m365:EX900101 none
+m365:MC900001 provider: actionRequiredByDateTime
+m365:MC900002 none
+m365:MC900003 rule: Message center category preventOrFixIssue
+m365:MC900004 none
+m365:TM900102 none

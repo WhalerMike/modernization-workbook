@@ -1,0 +1,4 @@
+PS> foreach ($c in 'gcc', 'gcchigh', 'dod') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
+gcc      https://graph.microsoft.com      Global
+gcchigh  https://graph.microsoft.us       USGov
+dod      https://dod-graph.microsoft.us   USGovDoD

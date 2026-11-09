@@ -1,0 +1,49 @@
+PS> Get-Content out/day1-route/tasks/create-azure-RT5J-6KL.json
+{
+  "kind": "provider_notice",
+  "action": "create",
+  "source": "provider-notices-kit",
+  "dedupe_key": "azure|RT5J-6KL",
+  "severity": "P3",
+  "priority": "3",
+  "response_window_seconds": 86400,
+  "response_due": "2026-11-10T12:00:00Z",
+  "action_required": true,
+  "action_due": "2027-09-30T00:00:00Z",
+  "assignment_group": "Cloud Platform Engineering (example)",
+  "short_description": "[Azure retirement] Retirement: Basic SKU public IP addresses",
+  "description": "Azure retirement: Retirement: Basic SKU public IP addresses/nProvider ID: RT5J-6KL/nWindow: 2026-09-30T00:00:00Z to 2027-09-30T00:00:00Z/nAction required by: 2027-09-30T00:00:00Z (rule: Azure retirement (HealthAdvisory, EventSubType Retirement); due at the advisory end time)/nServices: Virtual Network/nRegions: East US, East US 2/nResources: /subscriptions/00000000-0000-0000-0000-00000000aa01/resourcegroups/rg-net/providers/microsoft.network/publicipaddresses/pip-legacy01/nSource: https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000aa01/providers/Microsoft.ResourceHealth/events/RT5J-6KL?api-version=2025-05-01/n/nBasic SKU public IP addresses will be retired on 30 September 2027. Upgrade to Standard SKU public IP addresses before then.",
+  "contingency_review": true,
+  "origin": {
+    "notice_id": "azure:RT5J-6KL",
+    "provider": "azure",
+    "cloud": "AzureCloud",
+    "kind": "retirement",
+    "status": "open",
+    "source_ref": "RT5J-6KL",
+    "source_url": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000aa01/providers/Microsoft.ResourceHealth/events/RT5J-6KL?api-version=2025-05-01",
+    "fingerprint": "02f776686826535d3b3709afe9090e6a16346e1bd34f48c794b9cbfff7cf4f7d",
+    "rule_id": "R02"
+  },
+  "ticket_to_machine": {
+    "lane": "Human decision",
+    "trigger": "event",
+    "c1_origin": "Provider notice azure:RT5J-6KL, read by the provider notices kit",
+    "c2_approver_role": "System owner",
+    "c3_action": "Plan the change the notice calls for and run it under change control",
+    "c4_reread_check": "The next collection shows the notice closed or no longer listed, or the named resources no longer affected",
+    "c5_evidence_kept": "notices.json and this payload from the run, the change or decision record, and the evidence chain"
+  },
+  "controls": [
+    "CM-3",
+    "CM-4",
+    "CP-2",
+    "SI-5"
+  ],
+  "ksis": [
+    "KSI-CMT-LMC",
+    "KSI-CMT-RVP",
+    "KSI-RPL-ARP",
+    "KSI-SCR-MON"
+  ]
+}

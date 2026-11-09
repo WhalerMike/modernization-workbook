@@ -1,0 +1,7 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider azure -AsOf 2026-11-09T12:00:00Z -OutputPath out/azure
+Collected as of 2026-11-09T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+azure    AzureCloud         5      5        2  advisory 1, incident 1, maintenance 1, retirement 1, security 1
+
+5 notices, each valid against schema/notice.schema.json. Written to out/azure: notices.json, notices.csv, raw/, manifest.json

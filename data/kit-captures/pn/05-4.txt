@@ -1,0 +1,12 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -Provider google -AsOf 2026-11-16T12:00:00Z -OutputPath out/google-day2
+Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+google   global             2      0        0  incident 2
+
+2 notices, each valid against schema/notice.schema.json. Written to out/google-day2: notices.json, notices.csv, raw/, manifest.json
+PS> Import-Csv out/google-day2/notices.csv | Format-Table kind, status, title, windowEnd
+kind     status title                                   windowEnd
+----     ------ -----                                   ---------
+incident closed Cloud SQL connection errors in us-east4 2026-11-09T13:00:00Z
+incident closed Cloud Storage latency in us-central1    2026-11-04T13:20:00Z

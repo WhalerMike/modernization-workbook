@@ -1,0 +1,17 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -Provider m365 -AsOf 2026-11-16T12:00:00Z -OutputPath out/m365-day2
+Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+m365     gcc                7      5        3  advisory 3, change 2, incident 1, retirement 1
+
+7 notices, each valid against schema/notice.schema.json. Written to out/m365-day2: notices.json, notices.csv, raw/, manifest.json
+PS> Import-Csv out/m365-day2/notices.csv | Format-Table noticeId, kind, status, actionRequiredBy, title
+noticeId      kind       status actionRequiredBy     title
+--------      ----       ------ ----------------     -----
+m365:EX900101 incident   closed                      Some users may see delays receiving external email
+m365:MC900001 retirement open   2027-01-31T08:00:00Z Retirement of Basic authentication for SMTP AUTH client submission
+m365:MC900002 advisory   open                        New meeting recap features in Microsoft Teams
+m365:MC900003 change     open                        (Updated) Update SharePoint Framework solutions that use a deprecated library
+m365:MC900004 advisory   open                        Microsoft Viva: new insights dashboard
+m365:MC900005 change     open   2027-02-28T08:00:00Z Action required: register your apps for the new mail sender policy
+m365:TM900102 advisory   closed                      Users couldn't load the Teams web app in some browsers

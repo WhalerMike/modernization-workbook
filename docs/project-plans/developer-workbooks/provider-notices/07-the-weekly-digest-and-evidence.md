@@ -1,0 +1,375 @@
+---
+title: "Chapter 07 — The Weekly Digest and Evidence"
+description: "What the owners read and what the ISSO keeps: a weekly digest in five sections (open notices by provider and kind, action required soonest first with the owner the routing named, maintenance and changes starting soon, what is new and what closed), and an evidence chain in which every run folder is checked against its manifest, copied, hashed and recorded with the steps it covers and their NIST SP 800-53 controls and FedRAMP 20x KSIs, each record carrying the hash of the one before, with a SHA256SUMS file the ISSO can check and a stage check that says which steps still lack a passing record. Labs against fixtures and a test run folder."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-provider-notices
+part: How
+series-order: 7
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 07 — The Weekly Digest and Evidence
+
+*The digest is for the people who act; the evidence is for the people who check. Both come from the same runs, so neither can drift from what was actually read.*
+
+::: {.callout-note}
+## In this chapter
+The digest and the evidence chain behind the guide's [G7 Digest and evidence](../../../books/guides/provider-notices-implementation.md#step-7-digest-and-evidence). You start with what the guide's evidence table asks the ISSO to keep. Then you read the digest's five sections, the evidence record, the chain and the stage check that the runbook's go/no-go uses. Lab 1 builds a week of runs from the fixtures, writes the digest, records three runs, checks the chain, shows the stage check naming the steps still missing, and changes a recorded file to watch the check fail. Lab 2 runs the same against a test environment's run folders.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can write the weekly digest from a collection and the routing state, record every run as evidence the ISSO can verify with a hash, and say which of a stage's steps have a passing record.
+
+**Audience.** Developers who maintain the kit, the ISSO who owns G7, and the owners who read the digest. You should have run Chapter 06's Lab 1.
+
+## Start with the guide's evidence table
+
+### What the guide asks for
+
+The guide's [Evidence](../../../books/guides/provider-notices-implementation.md#evidence) section lists, gate by gate, what the ISSO keeps: each provider's raw output, the notices and the manifest; the task payloads, routing table and state; the digests, preflight results and evidence records with `records.csv` and `SHA256SUMS`. It maps them to SA-9, SI-5, CM-3, CM-4, CP-2, RA-3, CA-7, AU-9 and SR-8, and to the KSIs FedRAMP lists for them. It says the kit's records support those controls, and the assessor decides them.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/DigestEvidence.Tests.ps1`.
+
+| What the guide names | Why naming isn't enough | What the kit adds |
+|---|---|---|
+| "The digest goes to the owners" | Owners read a page, not a JSON file | `digest.md` in five sections, and `digest.csv` with each notice's route and owner |
+| "Every run is in the evidence" | A folder of files can be changed after the fact | Each run folder checked against its manifest, copied under `runs/`, and recorded with every file's SHA-256 |
+| A list of controls and KSIs per gate | Someone has to say which run supports which | Each record names its steps and their controls and KSIs, from `config/requirements.json` |
+| Records kept over time | A record removed from the middle goes unnoticed | Each record holds the SHA-256 of the record before it |
+| A go/no-go | Which steps still lack evidence? | `-Check -Stage` lists every step the stage needs, pass or fail |
+
+**The verdict.** Keep the guide's table as the list. Build the digest and the chain, because a list of files isn't evidence until someone can check it.
+
+## The code
+
+### The digest
+
+`Invoke-PnDigest.ps1` (`New-PnDigest`) reads a collection and the routing state and writes `digest.md`, `digest.csv` and a manifest:
+
+1. **Open notices by provider**, counted by kind and action required.
+2. **Action required**, soonest due first, with the assignment group the routing named (or `digest` when no task).
+3. **Maintenance and changes starting in the next 30 days.**
+4. **New in the last 7 days**, by first-seen time in the state.
+5. **Closed or no longer listed in the last 7 days**, including notices the provider stopped listing.
+
+The window lengths are parameters (`-Days`, `-UpcomingDays`) and come from the settings' `digest` block in the scheduled run.
+
+### The evidence record
+
+`Invoke-PnEvidence.ps1` (`Write-PnEvidence`) records one run folder: it re-hashes every file its manifest lists, copies the folder to `runs/<NNNN>-<task>`, and writes `records/<NNNN>-<task>.json` with the time, environment, mode, change record, the command, the result (`Pass` only if every file matches its manifest), the steps it covers with their controls and KSIs, the claim language, every file's SHA-256 and the previous record's SHA-256. It appends `records.csv` and rewrites `SHA256SUMS`, one `sha256  path` line per file, which `sha256sum -c` can check.
+
+| Run | Steps it covers |
+|---|---|
+| A collection | `COL-<PROVIDER>` for each provider read, `NORMALIZE` |
+| A routing run | `ROUTE`, and `CONTINGENCY` if a payload asks for a plan review |
+| A digest | `DIGEST` |
+| The runbook's pre-flight, scheduled run, alert plan, rollback | `PRE`, `RUN`, `ALERTS`, `RB` |
+| Every record | `EVIDENCE` |
+
+`-Check` verifies `SHA256SUMS` against every file and walks the chain; `-Check -Stage test` (or `production`) adds a row for each step the stage needs: test needs `PRE`, `RUN`, `ROUTE` and `DIGEST`, and production adds `ALERTS`. Any failing row exits 1.
+
+### The tests
+
+`tests/DigestEvidence.Tests.ps1`: the digest's sections and counts, the record's fields and claim language, the chain, a changed file, a removed record, a failed run, a stage's missing steps, and the requirements catalog itself.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 records fictional runs. The evidence chain protects files from undetected change; it doesn't decide a control. Keep the evidence folder on agency storage with the access the ISSO sets.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/provider-notices`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/provider-notices`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Make a week of runs
+./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/day1
+./Invoke-PnRoute.ps1 -NoticesPath out/day1/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day1-route -AsOf 2026-11-09T12:00:00Z
+./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/day2
+./Invoke-PnRoute.ps1 -NoticesPath out/day2/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day2-route -AsOf 2026-11-16T12:00:00Z
+
+# Step 2: Write the digest for the second week
+./Invoke-PnDigest.ps1 -NoticesPath out/day2/notices.json -StatePath out/state.json -OutputPath out/digest -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Read it as the owners will
+Get-Content out/digest/digest.md
+
+# Step 4: Record three runs as evidence
+./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2 -AsOf 2026-11-16T12:00:00Z
+./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2-route -AsOf 2026-11-16T12:00:00Z
+./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/digest -AsOf 2026-11-16T12:00:00Z
+
+# Step 5: Check the chain
+./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
+
+# Step 6: Check the test stage's coverage
+./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check -Stage test
+
+# Step 7: Read the records' index
+Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, steps
+
+# Step 8: Change a recorded file and check again
+Add-Content -Path out/evidence/runs/0003-digest/digest.md -Value 'edited after it was recorded'
+./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
+
+# Step 9: Run the kit's whole test suite
+Invoke-Pester -Path tests -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Make a week of runs.** Chapter 06's two collections and routings, in one go:
+
+   ```powershell
+   ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/day1
+   ./Invoke-PnRoute.ps1 -NoticesPath out/day1/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day1-route -AsOf 2026-11-09T12:00:00Z
+   ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/day2
+   ./Invoke-PnRoute.ps1 -NoticesPath out/day2/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day2-route -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-1.txt))](captures/07-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtur… and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Write the digest for the second week:**
+
+   ```powershell
+   ./Invoke-PnDigest.ps1 -NoticesPath out/day2/notices.json -StatePath out/state.json -OutputPath out/digest -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   ```text
+   Digest: 16 open, 8 need action, 5 starting in the next 30 days, 2 new, 4 closed or no longer listed
+   Written to out/digest: digest.md, digest.csv, manifest.json
+   ```
+
+   <!-- capture:begin 07-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-2.txt))](captures/07-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnDigest.ps1 -NoticesPath out/day2/notices.json -StatePath out/state… and what it printed"}
+
+   <!-- capture:end -->
+
+3. **Read it as the owners will.** Look at the action-required table: soonest first, each with its owner, and the two with no date at the bottom as `not stated`:
+
+   ```powershell
+   Get-Content out/digest/digest.md
+   ```
+
+   <!-- capture:begin 07-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-3.txt))](captures/07-3.png){.lightbox fig-alt="Terminal window showing Get-Content out/digest/digest.md and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Record three runs as evidence:**
+
+   ```powershell
+   ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2 -AsOf 2026-11-16T12:00:00Z
+   ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2-route -AsOf 2026-11-16T12:00:00Z
+   ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/digest -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-4.txt))](captures/07-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2 -AsOf 20… and what it printed"}
+
+   <!-- capture:end -->
+
+   Each prints its steps, controls and KSIs. The routing run adds `CONTINGENCY` and CP-2, because a payload asked for a plan review.
+
+5. **Check the chain:**
+
+   ```powershell
+   ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
+   ```
+
+   ```text
+   SUMS           Pass  25 files match SHA256SUMS
+   CHAIN          Pass  3 records, chain unbroken
+   ```
+
+   <!-- capture:begin 07-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-5.txt))](captures/07-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check and what it printed"}
+
+   <!-- capture:end -->
+
+6. **Check the test stage's coverage.** A lab has no pre-flight or scheduled run, so those two steps fail and the command exits 1, which is what a go/no-go would see:
+
+   ```powershell
+   ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check -Stage test
+   ```
+
+   <!-- capture:begin 07-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-6.txt))](captures/07-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check -Stage test and what it printed"}
+
+   <!-- capture:end -->
+
+7. **Read the records' index:**
+
+   ```powershell
+   Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, steps
+   ```
+
+   <!-- capture:begin 07-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-7.txt))](captures/07-7.png){.lightbox fig-alt="Terminal window showing Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, steps and what it printed"}
+
+   <!-- capture:end -->
+
+8. **Change a recorded file and check again.** Both checks fail, and name the file:
+
+   ```powershell
+   Add-Content -Path out/evidence/runs/0003-digest/digest.md -Value 'edited after it was recorded'
+   ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
+   ```
+
+   <!-- capture:begin 07-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-8.txt))](captures/07-8.png){.lightbox fig-alt="Terminal window showing Add-Content -Path out/evidence/runs/0003-digest/digest.md -Value 'edited afte… and what it printed"}
+
+   <!-- capture:end -->
+
+9. **Run the kit's whole test suite:**
+
+   ```powershell
+   Invoke-Pester -Path tests -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 07-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-9.txt))](captures/07-9.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests -Output None -PassThru | Select-Object PassedCount,… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `PassedCount` 140 and `FailedCount` 0, and an evidence folder whose `SHA256SUMS` you could hand to the ISSO, before step 8 changed it. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 07-10 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/07-10.txt))](captures/07-10.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test environment's runs
+
+Use the run folders from any earlier chapter's Lab 2 in a test tenant, account, tenancy or project, never production, kept on agency storage. Work in `examples/provider-notices`. You'll replace: `<run-folder>` (a collection's output folder from an earlier chapter's Lab 2, such as `out/azure-test`, kept until this lab is done), `<evidence-folder>` (a new folder for this lab's evidence), `<state-file>` (a new routing state file, such as `out/state-test.json`) and `<change-record>` (the test change record's number).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/provider-notices`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Route and digest the test collection
+./Invoke-PnRoute.ps1 -NoticesPath <run-folder>/notices.json -RoutingPath config/routing.json -StatePath <state-file> -OutputPath <run-folder>-route
+./Invoke-PnDigest.ps1 -NoticesPath <run-folder>/notices.json -StatePath <state-file> -OutputPath <run-folder>-digest
+
+# Step 2: Record all three, with the change record, and check the chain
+./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -RunPath <run-folder> -ChangeRecord <change-record>
+./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -RunPath <run-folder>-route -ChangeRecord <change-record>
+./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -RunPath <run-folder>-digest -ChangeRecord <change-record>
+./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -Check
+
+# Step 3: Back it out
+Remove-Item -Recurse -Force <run-folder>-route, <run-folder>-digest
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Route and digest the test collection,** with the lab's routing and a new state file:
+
+   ```powershell
+   ./Invoke-PnRoute.ps1 -NoticesPath <run-folder>/notices.json -RoutingPath config/routing.json -StatePath <state-file> -OutputPath <run-folder>-route
+   ./Invoke-PnDigest.ps1 -NoticesPath <run-folder>/notices.json -StatePath <state-file> -OutputPath <run-folder>-digest
+   ```
+
+2. **Record all three, with the change record, and check the chain:**
+
+   ```powershell
+   ./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -RunPath <run-folder> -ChangeRecord <change-record>
+   ./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -RunPath <run-folder>-route -ChangeRecord <change-record>
+   ./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -RunPath <run-folder>-digest -ChangeRecord <change-record>
+   ./Invoke-PnEvidence.ps1 -EvidencePath <evidence-folder> -Check
+   ```
+
+   Give the digest to the test environment's owners and ask whether each action-required row reached the right person.
+
+3. **Back it out.** The evidence of a test stage is kept with its change record; delete only the copies outside agency storage:
+
+   ```powershell
+   Remove-Item -Recurse -Force <run-folder>-route, <run-folder>-digest
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Controls | SA-9 c, SI-5 a/c/d, CM-3 b/f, CM-4, CP-2 e, SR-8, RA-3 f, CA-7 d–f, AU-9: statement parts as the kit's catalog paraphrases them | [^pn07-oscal] |
+| KSIs | KSI-SCR-MON cites SA-9, SI-5, SR-8, RA-3; KSI-SCR-MIT cites SA-9 and RA-3; KSI-CMT-LMC and KSI-CMT-RVP cite CM-3; KSI-RPL-ARP cites CP-2; KSI-MLA-EVC cites CA-7 and RA-3 | [^pn07-ksi] |
+| AU-9 to KSI-MLA-OSM | The privileged access guide's mapping | [Privileged access guide](../../../books/guides/privileged-access-implementation.md) |
+
+The catalog's text and the KSIs' related controls were read for the guide on November 9, 2026; this chapter adds none.
+
+## Federal requirements and evidence
+
+The digest and the evidence are what the guide's [G7](../../../books/guides/provider-notices-implementation.md#step-7-digest-and-evidence) checks. The mappings are the kit's `config/requirements.json`.[^pn07-oscal] [^pn07-ksi]
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The owners got the week's notices, with what needs action, by when and who owns it (Lab 1, steps 2 and 3; Lab 2, step 1: `digest.md`, `digest.csv`) | SI-5 c; SA-9 c; RA-3 f | KSI-SCR-MON, KSI-SCR-MIT | The owners; the ISSO files each week's digest |
+| Each run is recorded with its steps, controls and KSIs, every file's hash and the previous record's hash (Lab 1, step 4; Lab 2, step 2: `records/`, `records.csv`) | CA-7; AU-9 | KSI-MLA-EVC, KSI-MLA-OSM | The ISSO |
+| The folder is unchanged since it was recorded, and a change is caught (Lab 1, steps 5 and 8: `SHA256SUMS`, `-Check`) | AU-9 | KSI-MLA-OSM | The ISSO |
+| The stage's steps each have a passing record, or the gap is named (Lab 1, step 6: `-Check -Stage`) | CA-7 | KSI-MLA-EVC | The ISSO, at the go/no-go |
+
+KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Each record carries that sentence as its claim. The kit's records support these controls; the agency's assessor decides them. Which output supports which indicator is the program's mapping *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| The weekly run stops silently | No digest, no evidence, no tasks | The chain shows the gap in dates; the go/no-go fails without a passing `RUN` record |
+| A recorded file edited later | The evidence no longer shows what was read | `SHA256SUMS` and each record's file hashes; `-Check` names the file |
+| A record removed from the middle | A bad week disappears | Each record holds the previous record's hash |
+| The digest sent outside the agency | Which clouds and services matter, published | The digest is written for the agency's owners and kept on agency storage |
+| A pass read as a control decision | Someone tells an auditor the control is done | Each record's claim says it supports the controls and the assessor decides |
+
+## Checklist
+
+- [ ] The digest reaches every owner the routing names, every week.
+- [ ] Every collection, routing run and digest is recorded, with the change record where there is one.
+- [ ] `Invoke-PnEvidence.ps1 -Check` passes on the evidence folder.
+- [ ] The stage check lists every step the go/no-go needs, each passing.
+- [ ] The evidence folder is on agency storage, with access the ISSO set.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 06 — Routing to Owners and Ticket-to-Machine Tasks](06-routing-to-owners-and-ticket-to-machine-tasks.md) · [Workbook index](index.md) · [Next: Chapter 08 — Deploying to Test and Production →](08-deploying-to-test-and-production.md)
+:::
+
+[^pn07-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026; carried from the provider notices guide's verification log).
+[^pn07-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026; carried from the provider notices guide's verification log).

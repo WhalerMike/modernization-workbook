@@ -1,0 +1,7 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider aws -AsOf 2026-11-09T12:00:00Z -OutputPath out/aws
+Collected as of 2026-11-09T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+aws      aws                5      4        3  incident 1, maintenance 1, retirement 2, security 1
+
+5 notices, each valid against schema/notice.schema.json. Written to out/aws: notices.json, notices.csv, raw/, manifest.json

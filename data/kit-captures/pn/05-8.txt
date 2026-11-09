@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Google Cloud Personalized Service Health*', '*Google*', '*unverified*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          8           0

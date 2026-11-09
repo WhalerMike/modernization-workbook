@@ -1,0 +1,5 @@
+PS> $s = Read-PnSettings -Path tests/fixtures/settings.lab.json
+PS> $s.providers.google.scope = 'organization'
+PS> $s.providers.google.organization = '123456789012'
+PS> Invoke-PnCall -Invoker (New-PnLiveInvoker -Settings $s -SkipContextCheck) -CallId google-organization-events
+Exception: Call google-organization-events isn't verified against its provider's documentation (The gcloud group organization-events is listed on the gcloud beta reference; the exact GA flags for it weren't read. The REST call is verified). Pass -AllowUnverified to run it.
