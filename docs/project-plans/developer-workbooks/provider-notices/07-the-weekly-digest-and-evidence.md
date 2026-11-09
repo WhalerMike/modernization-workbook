@@ -31,7 +31,7 @@ The digest and the evidence chain behind the guide's [G7 Digest and evidence](..
 
 ### What the guide asks for
 
-The guide's [Evidence](../../../books/guides/provider-notices-implementation.md#evidence) section lists, gate by gate, what the ISSO keeps: each provider's raw output, the notices and the manifest; the task payloads, routing table and state; the digests, preflight results and evidence records with `records.csv` and `SHA256SUMS`. It maps them to SA-9, SI-5, CM-3, CM-4, CP-2, RA-3, CA-7, AU-9 and SR-8, and to the KSIs FedRAMP lists for them. It says the kit's records support those controls, and the assessor decides them.
+The guide's [Evidence](../../../books/guides/provider-notices-implementation.md#evidence) section lists, gate by gate, what the ISSO keeps: each provider's raw output, the notices and the manifest; the task payloads, routing table and state; the digests, preflight results and evidence records with `records.csv` and `SHA256SUMS`. It maps them to SA-9, SI-5, CM-3, CM-4, CP-2, RA-3, CA-7, AU-9 and SR-8, and to the KSIs FedRAMP lists for them. It says the kit's records support those controls, and the assessor decides them. Book 15's [Chapter 14](../../../books/b15-day2-operations/14-provider-notices.md#the-weekly-digest) says who reads the digest and what they do with it.
 
 ### What it leaves to you
 

@@ -45,6 +45,7 @@ The target estate is a civilian agency at FedRAMP Moderate in Microsoft 365 GCC 
 | This workbook | One chapter per gate: the code the gate needs, labs, verified facts, evidence; and a runbook for test and production | This page and its eight chapters |
 | Code | `examples/provider-notices`: four entry scripts, one PowerShell module with a collector and normalizer per provider, the router, the digest and the evidence chain, the runbook's `deploy/` scripts, fictional fixtures for two weeks, and 165 Pester tests (140 in `tests`, 25 in `deploy/tests`) | [`examples/provider-notices`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/provider-notices) |
 | The task pattern | Ticket-to-Machine: the typed task, its lanes and the five clauses of the request chain | [Book 13, Chapter 10](../../../books/b13-governance/10-ticket-to-machine.md) and [Appendix B](../../../books/b13-governance/appendix-b-ticket-to-machine-reference.md); [*Building Ticket-to-Machine*](../ticket-to-machine/index.md) |
+| The operations view | Why notices go unread, who owns each kind, from notice to task to closure, the weekly digest and the evidence, for the people who run day two | [Book 15, Chapter 14](../../../books/b15-day2-operations/14-provider-notices.md) |
 | Where the email goes today | Service health email routed to the help desk supervisor, and why nothing is approved on the strength of an email | [Book 15, Chapter 03](../../../books/b15-day2-operations/03-intake-triage-and-routing.md) |
 | Your routing | Neutral templates and Microsoft 365 Copilot Chat prompts to write the agency's own routing at work | [`templates/`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/provider-notices/templates) and [`copilot-prompts.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/provider-notices/copilot-prompts.md) |
 
@@ -87,6 +88,7 @@ The outline follows the guide's gates, in order. Chapters 01 to 05 are independe
 
 ## Reading paths
 
+- **Anyone new to provider notices:** Book 15's [Chapter 14](../../../books/b15-day2-operations/14-provider-notices.md) for why and who, then the guide.
 - **Developers new to the kit:** the guide's [path on one page](../../../books/guides/provider-notices-implementation.md#the-path-on-one-page), then Chapter 01 for the record every provider fills.
 - **Developers who own one provider:** Chapter 01's record, then that provider's chapter.
 - **Whoever runs the service desk and change process:** Chapter 06, with [*Building Ticket-to-Machine*](../ticket-to-machine/index.md) for the receiving side.
@@ -95,7 +97,7 @@ The outline follows the guide's gates, in order. Chapters 01 to 05 are independe
 
 ## Where this workbook sits
 
-This is the developer workbook for the [Provider Notices implementation guide](../../../books/guides/provider-notices-implementation.md), one of the [developer workbooks](../index.md) under Projects in the Federal Modernization Workbook. The guide sits with Book 15's day-two operations: [Chapter 03](../../../books/b15-day2-operations/03-intake-triage-and-routing.md) routes the provider's email today, and the guide replaces the email with the provider's own API. The routing it builds is the Ticket-to-Machine pattern of [Book 13](../../../books/b13-governance/10-ticket-to-machine.md).
+This is the developer workbook for the [Provider Notices implementation guide](../../../books/guides/provider-notices-implementation.md), one of the [developer workbooks](../index.md) under Projects in the Federal Modernization Workbook. The operating model is Book 15's [Chapter 14, Provider Notices in Day-Two Operations](../../../books/b15-day2-operations/14-provider-notices.md): why notices go unread, who owns each kind, and how a notice becomes a task and closes. Book 15's [Chapter 03](../../../books/b15-day2-operations/03-intake-triage-and-routing.md) routes the provider's email today, and the guide replaces the email with the provider's own API. The routing it builds is the Ticket-to-Machine pattern of [Book 13](../../../books/b13-governance/10-ticket-to-machine.md).
 
 ## Chapters
 

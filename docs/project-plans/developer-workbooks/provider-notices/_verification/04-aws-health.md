@@ -10,7 +10,7 @@ Lab 1 was run with `python scripts/kit_captures.py pn` on Windows 11, PowerShell
 |---|---|---|---|---|
 | 1 | Event fields, categories, `actionability`, `personas`, `statusCode` | Start with; The code | carried (guide row 21) | `pn04-events` |
 | 2 | DescribeEventDetails takes 1 to 10 ARNs; AffectedEntity | Start with; Lab 1 step 7 | carried (guide row 22) | `pn04-details` |
-| 3 | Support plans; `SubscriptionRequiredException` | Start with; Lab 2; Dangers | carried (guide row 23) | `pn04-plan` |
+| 3 | A qualifying AWS Support plan; `SubscriptionRequiredException` | Start with; Lab 2; Verified facts; Dangers | re-read November 9 after the coordinator's note: AWS's pages disagree. The concepts page names Business Support+, Enterprise Support or Unified Operations; the API reference's Welcome page names Business, Enterprise On-Ramp or Enterprise Support; the GovCloud (US) page names Business or Enterprise. The chapter says "a qualifying AWS Support plan", cites both, and names no plan as settled. (The guide's wording is being fixed separately.) | `pn04-plan`, `pn04-gov` |
 | 4 | No read-only managed policy; `health:Describe*` example | Start with; Lab 2 step 1 | carried (guide row 24) | `pn04-iam` |
 | 5 | Active endpoint `us-east-1`; GovCloud single endpoint `us-gov-west-1`; EventBridge doesn't send public events there | Start with; Verified facts | carried (guide rows 25 and 26) | `pn04-endpoint`, `pn04-gov` |
 | 6 | EventBridge `aws.health` | Verified facts | carried (guide row 27) | `pn04-eb` |
