@@ -45,6 +45,11 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Generate the command reference body
+        # docs/reference/commands.md includes _commands-body.md, which isn't in git;
+        # build it from the tagged commit, as the site build does.
+        run: python3 scripts/command_reference.py
+
       - name: Build the Word editions
         # The same bundles the site publishes under downloads/ (scripts/bundles.yml).
         run: python3 scripts/build_bundles.py --out _edition
