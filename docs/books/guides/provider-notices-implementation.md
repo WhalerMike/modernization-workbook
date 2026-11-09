@@ -11,7 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
-review-status: pending
+review-status: approved
+reviewed-sha256: c1a1586dedb041a7945a3224a10deb423bd3d5c6f967298ae5809b44bb951a5a
+last-reviewed: 2026-11-09
 ---
 # Provider Notices: An Implementation Guide
 
