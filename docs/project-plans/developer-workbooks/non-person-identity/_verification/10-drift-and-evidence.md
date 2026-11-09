@@ -64,3 +64,11 @@ The chapter's new section has 20 rows: each Lab 1 and Lab 2 step that produces e
 | F2 | Each KSI named (KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-IAM-SUS, KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM, KSI-MLA-RVL, KSI-PIY-GIV, KSI-SVC-ACM, KSI-SVC-EIS, KSI-SVC-VRI) lists the row's control, or one of its enhancements, among its related SP 800-53 controls | Federal requirements and evidence | verified against FedRAMP's page. IA-9 is in no NIST baseline; no indicator lists it, so its rows say so. Every ID was already cited in the repository (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Appendix A; Book 14, Chapter 03); none is new | [^np10-ksi], read November 2, 2026 |
 | F3 | KSIs are provider-side FedRAMP 20x indicators; the agency doesn't report them | The sentence under the table | carried forward | Book 00, Appendix B |
 | F4 | Which output supports which indicator, and how SCuBA or M-25-21 rows map through a control | The KSI column | restated-as-design (labeled) | the program's mapping |
+
+## Kit follow-up (November 9, 2026)
+
+The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date and SPN-owner rules, and the captures were regenerated with `python scripts/kit_captures.py npi --images`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | The ownership and drift findings name the orphan rule `D-NP2` and the register's hand-off `NP0.4`, so both evidence packages' hashes changed: `12532bfb…` and `7676170f…`. The two kept runs in `examples/drift-pipeline/tests/fixtures/npi-runs` were regenerated from the kit, with their manifests and `run.json` | Lab 1, steps 7 and 8 | updated by running the commands as written; the counts didn't change | captures 10-7 to 10-9, November 9, 2026; `NpiDrift.Tests.ps1` and the drift pipeline's pytest pass |

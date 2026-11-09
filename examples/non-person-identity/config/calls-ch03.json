@@ -32,7 +32,7 @@
       "stage": "v1.0",
       "tasks": ["migration-matrix"],
       "learn": "https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0",
-      "note": "Reads whether the tenant holds a Workload ID Premium subscription (service plans AAD_WRKLDID_P1 or AAD_WRKLDID_P2) and how many units are enabled, for the D-N4 scope. Supports $select only, not $filter."
+      "note": "Reads whether the tenant holds a Workload ID Premium subscription (service plans AAD_WRKLDID_P1 or AAD_WRKLDID_P2) and how many units are enabled, for the D-NP4 scope. Supports $select only, not $filter."
     }
   ]
 }

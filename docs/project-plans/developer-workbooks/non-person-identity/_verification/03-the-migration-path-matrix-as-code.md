@@ -71,3 +71,11 @@ Done with Chapter 06's two held items. Test results on November 9, 2026, Windows
 | H1 | `program-dates.json` also holds D11 and is the one program dates file Chapter 06 reads; Lab 2 writes the island's end of life into it | The inputs; Lab 2, step 2 | restated-as-design (labeled) | Project plan, D08, D11 and G5 |
 | H2 | `decisions.json` carries `DecidedOn` and, for `KeepKerberos`, the authorizing official's acceptance (`AoAcceptedBy`), which Chapter 06 puts on its island list | The disposition (D-NP3) and the waves (NP2.2) | restated-as-design (labeled) | Project plan, D-NP3 |
 | H3 | The fixture re-platforms `svc-intranet` to a gMSA in wave 2, the matrix's proposal (M07), so Chapter 06 has a gMSA conversion for an IIS application pool to plan; Lab 1's wave line and wave 2's members changed with it | Lab 1, steps 3 and 6 | updated by running the commands as written | local run, November 9, 2026 |
+
+## Kit follow-up (November 9, 2026)
+
+The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date and SPN-owner rules, and the captures were regenerated with `python scripts/kit_captures.py npi --images`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | The kit prints `D-NP4` in Lab 1's Workload ID Premium line and Gate 2's criterion; the rest of the run's output is unchanged | Lab 1, step 3 | updated by running the commands as written | local run and capture 03-3, November 9, 2026 |

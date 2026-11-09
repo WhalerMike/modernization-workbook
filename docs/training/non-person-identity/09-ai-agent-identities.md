@@ -178,11 +178,11 @@ Remove-Item -Recurse -Force out
     ```
 
     ```text
-    D-N6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview
+    D-NP6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview
     AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2
     Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2
     Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent
-    Plan SHA-256: 754fda6b79d55b514ea438039da2ca764e14dc98a88f0c70a60f4ac9762ce450
+    Plan SHA-256: 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b
     ```
 
 6. **Read the findings:**
@@ -209,7 +209,7 @@ Remove-Item -Recurse -Force out
     ./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
     ```
 
-    The last command prints `D-N6 (Proposed): Fallback mode in cloud 'gcchigh'` and `AI identities: 1 checked (1 ServicePrincipal)`. No agent identity read is sent.
+    The last command prints `D-NP6 (Proposed): Fallback mode in cloud 'gcchigh'` and `AI identities: 1 checked (1 ServicePrincipal)`. No agent identity read is sent.
 
 9. **Dry-run the agent Conditional Access plan with its approved hash:**
 
@@ -230,7 +230,7 @@ Remove-Item -Recurse -Force out
     ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
     ```
 
-    Expect `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only`. Then the refusal: `The plan's SHA-256 is 754fda6b…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+    Expect `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only`. Then the refusal: `The plan's SHA-256 is 5a800246…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 11. **Run the tests:**
 

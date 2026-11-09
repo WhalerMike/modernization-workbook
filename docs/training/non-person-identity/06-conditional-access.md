@@ -120,7 +120,7 @@ $fake.Tenant.policies | Where-Object { $_.displayName -like 'CA0*' } | ForEach-O
 # Step 8: Try to enforce Ring 1, without and with -AllowEnforce
 $sha = (Get-FileHash out/wca-signins/signin-summary.json -Algorithm SHA256).Hash.ToLower()
 $s = Get-Content tests/fixtures/ch08/scope.json -Raw | ConvertFrom-Json -AsHashtable
-$s.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
+$s.enforcement = @{ decision = @{ id = 'D-NP5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
                     rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = 'ISSO'; reviewedOn = '2026-10-30' }); exclusions = @() }
 $s | ConvertTo-Json -Depth 10 | Set-Content out/scope-ring1.json
 ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-held
@@ -205,7 +205,7 @@ Remove-Item -Recurse -Force out
     ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud gcc -ScopePath tests/fixtures/ch08/scope.json -FixturePath tests/fixtures/ch08/tenant.json -From 2026-10-12 -To 2026-10-30T12:00:00 -OutputPath out/wca-signins
     ```
 
-    Expect `Ring1: ready for enforcement` (Mail Automation and Payroll Export `Clear`) and `Ring2: not ready` (Deploy Bot `WouldBlock`, from `203.0.113.7`; HR Connector `NoSignIns`). The summary's SHA-256 is `d7767949b75e1e5d3f6a6bef6501eb7de8e98ddd8a9f22e1eb82698969d8752e`.
+    Expect `Ring1: ready for enforcement` (Mail Automation and Payroll Export `Clear`) and `Ring2: not ready` (Deploy Bot `WouldBlock`, from `203.0.113.7`; HR Connector `NoSignIns`). The summary's SHA-256 is `da391f12869037f18d222c223d38990565bd37b3bf115cb8d70617e44d6dc26b`.
 
 7. **Apply against the fake, twice:**
 
@@ -231,7 +231,7 @@ Remove-Item -Recurse -Force out
     ```powershell
     $sha = (Get-FileHash out/wca-signins/signin-summary.json -Algorithm SHA256).Hash.ToLower()
     $s = Get-Content tests/fixtures/ch08/scope.json -Raw | ConvertFrom-Json -AsHashtable
-    $s.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
+    $s.enforcement = @{ decision = @{ id = 'D-NP5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
                         rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = 'ISSO'; reviewedOn = '2026-10-30' }); exclusions = @() }
     $s | ConvertTo-Json -Depth 10 | Set-Content out/scope-ring1.json
     ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-held

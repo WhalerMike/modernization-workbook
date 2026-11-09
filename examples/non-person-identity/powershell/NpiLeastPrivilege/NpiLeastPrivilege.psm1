@@ -458,7 +458,7 @@ function Get-NpiLpQuarter {
 function New-NpiLpOwnerReview {
     <#
     .SYNOPSIS
-        The quarterly owner review (N4.3): one row per grant of every service principal this chapter
+        The quarterly owner review (NP4.3): one row per grant of every service principal this chapter
         sweeps, with its owners, whether it's broad, its exception and the proposal, and the
         owner's decision this quarter if there is one. Privileged service principals aren't in it:
         their review is the Privileged Access plan's. Returns @{ Rows; Status }.

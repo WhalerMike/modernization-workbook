@@ -10,7 +10,7 @@
     are policy templates rendered once per ring. A pre-merge check (NPI-WCA-01 to -09) reads the
     files only; a tenant check confirms each object ID is what the scope says it is. A plan
     compares the files with the tenant: a dry run unless the client is the wca-apply task, every
-    new policy created report-only, a ring enforced only with -AllowEnforce, a D-N5 record and a
+    new policy created report-only, a ring enforced only with -AllowEnforce, a D-NP5 record and a
     reviewed sign-in summary that shows the ring ready. Nothing is ever deleted. A reader for the
     service principal sign-in logs (Graph beta) summarizes the report-only results per principal,
     and an alert definition for block events is rendered from the scope for security operations.
@@ -519,9 +519,9 @@ function Test-NpiWcaRepository {
     $egressName = [string](Get-NpiWcaValue $Scope 'egress', 'name')
     foreach ($p in $Repository.Policies) { foreach ($x in Test-NpiWcaPolicyBody -Body $p.Body -EgressName $egressName -Name $p.Name) { $f.Add($x) } }
 
-    # NPI-WCA-05: D-N4 licensing, Tier 1 only, one ring each, no duplicates.
+    # NPI-WCA-05: D-NP4 licensing, Tier 1 only, one ring each, no duplicates.
     $lic = $Scope['licensing']
-    if (-not $lic -or -not $lic['decidedBy'] -or -not $lic['decidedOn']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-05' 'Finding' 'licensing' 'No D-N4 record: Workload ID Premium is required to create or change these policies')) }
+    if (-not $lic -or -not $lic['decidedBy'] -or -not $lic['decidedOn']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-05' 'Finding' 'licensing' 'No D-NP4 record: Workload ID Premium is required to create or change these policies')) }
     $rings = @($Scope['rings'] | ForEach-Object { $_['name'] })
     $seen = @{}
     foreach ($e in @($Scope['inScope'])) {
@@ -529,7 +529,7 @@ function Test-NpiWcaRepository {
         if ("$($e['objectId'])" -notmatch $script:Guid) { $f.Add((New-NpiWcaFinding 'NPI-WCA-01' 'Finding' $n "objectId '$($e['objectId'])' isn't an object ID")) }
         if ($seen.ContainsKey("$($e['objectId'])")) { $f.Add((New-NpiWcaFinding 'NPI-WCA-05' 'Finding' $n 'Listed twice in scope')) }
         $seen["$($e['objectId'])"] = $true
-        if ($e['tier'] -ne 'Tier1') { $f.Add((New-NpiWcaFinding 'NPI-WCA-05' 'Finding' $n "Tier '$($e['tier'])': D-N4 licenses Tier 1 single-tenant service principals")) }
+        if ($e['tier'] -ne 'Tier1') { $f.Add((New-NpiWcaFinding 'NPI-WCA-05' 'Finding' $n "Tier '$($e['tier'])': D-NP4 licenses Tier 1 single-tenant service principals")) }
         if ($rings -notcontains $e['ring']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-05' 'Finding' $n "Ring '$($e['ring'])' isn't one of: $($rings -join ', ')")) }
         # NPI-WCA-02 and -03 on what the scope records; the tenant check confirms them.
         if ($e['servicePrincipalType'] -eq 'ManagedIdentity') { $f.Add((New-NpiWcaFinding 'NPI-WCA-02' 'Finding' $n 'A managed identity: Learn says managed identities aren''t covered by Conditional Access')) }
@@ -553,12 +553,12 @@ function Test-NpiWcaRepository {
         if ($l.Body['displayName'] -ne $egressName) { $f.Add((New-NpiWcaFinding 'NPI-WCA-08' 'Finding' $l.Name "The named location file is '$($l.Body['displayName'])', not the scope's $egressName")) }
         if ($l.Body['isTrusted'] -ne $false) { $f.Add((New-NpiWcaFinding 'NPI-WCA-08' 'Warn' $l.Name 'Marked trusted: user policies that exclude trusted locations would then trust the workload ranges too')) }
     }
-    # NPI-WCA-09: enforcement only with a D-N5 record, ring by ring, and dated, owned exclusions.
+    # NPI-WCA-09: enforcement only with a D-NP5 record, ring by ring, and dated, owned exclusions.
     $enf = $Scope['enforcement']
     $er = @(if ($enf) { $enf['rings'] })
     if ($er.Count) {
         $d = $enf['decision']
-        if (-not $d -or $d['id'] -ne 'D-N5' -or $d['outcome'] -notin 'Enforce', 'EnforceWithExclusions' -or -not $d['decidedBy'] -or -not $d['decidedOn']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-09' 'Finding' 'enforcement' 'A ring is marked for enforcement with no D-N5 record (Enforce or EnforceWithExclusions, decided by and on)')) }
+        if (-not $d -or $d['id'] -ne 'D-NP5' -or $d['outcome'] -notin 'Enforce', 'EnforceWithExclusions' -or -not $d['decidedBy'] -or -not $d['decidedOn']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-09' 'Finding' 'enforcement' 'A ring is marked for enforcement with no D-NP5 record (Enforce or EnforceWithExclusions, decided by and on)')) }
     }
     $order = @{}; foreach ($r in @($Scope['rings'])) { $order[$r['name']] = [int]$r['order'] }
     foreach ($r in $er) {
@@ -570,7 +570,7 @@ function Test-NpiWcaRepository {
     foreach ($x in @(if ($enf) { $enf['exclusions'] })) {
         $n = "exclusion:$($x['objectId'])"
         $ends = ConvertTo-NpiWcaDate $x['ends']
-        if (-not $x['owner'] -or -not $ends -or -not $x['reason']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-09' 'Finding' $n 'An exclusion needs an owner, a reason and an end date (D-N5, enforce with named exclusions)')) }
+        if (-not $x['owner'] -or -not $ends -or -not $x['reason']) { $f.Add((New-NpiWcaFinding 'NPI-WCA-09' 'Finding' $n 'An exclusion needs an owner, a reason and an end date (D-NP5, enforce with named exclusions)')) }
         elseif ($ends -le $AsOf) { $f.Add((New-NpiWcaFinding 'NPI-WCA-09' 'Finding' $n "Ended $($x['ends']); remove it or record a new decision")) }
         if (-not @($Scope['inScope'] | Where-Object { $_['objectId'] -eq $x['objectId'] -and $_['ring'] -eq $x['ring'] }).Count) { $f.Add((New-NpiWcaFinding 'NPI-WCA-09' 'Finding' $n "Not an in-scope service principal of ring '$($x['ring'])'")) }
     }
@@ -620,7 +620,7 @@ function Test-NpiWcaTenantScope {
         else { 'Eligible' }
         $classes[$sp['id']] = $class
         if ($inIds -contains $sp['id'] -or $outIds -contains $sp['id'] -or $class -eq 'Microsoft') { continue }
-        if ($class -eq 'Eligible') { $f.Add((New-NpiWcaFinding 'NPI-WCA-06' 'Info' "$($sp['displayName'])" 'Single-tenant and eligible, but not Tier 1 in scope: not covered by CA015 or CA037 under D-N4')) }
+        if ($class -eq 'Eligible') { $f.Add((New-NpiWcaFinding 'NPI-WCA-06' 'Info' "$($sp['displayName'])" 'Single-tenant and eligible, but not Tier 1 in scope: not covered by CA015 or CA037 under D-NP4')) }
         else { $f.Add((New-NpiWcaFinding 'NPI-WCA-06' 'Finding' "$($sp['displayName'])" "A $class service principal that Conditional Access can't cover, with no out-of-scope record naming the control that covers it")) }
     }
     [pscustomobject]@{ Findings = $f.ToArray(); Classes = $classes }
@@ -632,7 +632,7 @@ function Get-NpiWcaEnforcement {
     <#
     .SYNOPSIS
         Which rings may be enforced on this run. A ring is enforced only when the scope marks it,
-        D-N5 is recorded, -AllowEnforce was given, the sign-in summary at -SignInSummaryPath has
+        D-NP5 is recorded, -AllowEnforce was given, the sign-in summary at -SignInSummaryPath has
         the SHA-256 the ring's record cites and shows the ring ready, and every earlier ring is
         enforced too. Anything else holds the ring in report-only, with the reason.
     .EXAMPLE
@@ -645,7 +645,7 @@ function Get-NpiWcaEnforcement {
     $enf = $Scope['enforcement']
     $er = @(if ($enf) { $enf['rings'] })
     $d = if ($enf) { $enf['decision'] } else { $null }
-    $decided = $d -and $d['id'] -eq 'D-N5' -and $d['outcome'] -in 'Enforce', 'EnforceWithExclusions' -and $d['decidedBy'] -and $d['decidedOn']
+    $decided = $d -and $d['id'] -eq 'D-NP5' -and $d['outcome'] -in 'Enforce', 'EnforceWithExclusions' -and $d['decidedBy'] -and $d['decidedOn']
     $summary = $null; $summaryHash = $null
     if ($SignInSummaryPath -and (Test-Path -LiteralPath $SignInSummaryPath)) { $summaryHash = Get-NpiFileHash -Path $SignInSummaryPath; $summary = Get-Content -LiteralPath $SignInSummaryPath -Raw | ConvertFrom-Json -AsHashtable -Depth 30 }
     foreach ($ring in @($Scope['rings'] | Sort-Object { [int]$_['order'] })) {
@@ -655,14 +655,14 @@ function Get-NpiWcaEnforcement {
         if (-not $rec.Count) { $out[$name] = [pscustomobject]@{ Enforce = $false; Marked = $false; Note = 'Report-only: not marked for enforcement' }; continue }
         $rec = $rec[0]
         $earlier = @($Scope['rings'] | Where-Object { [int]$_['order'] -lt [int]$ring['order'] } | ForEach-Object { $_['name'] })
-        if (-not $decided) { $why = 'no D-N5 record' }
+        if (-not $decided) { $why = 'no D-NP5 record' }
         elseif (-not $AllowEnforce) { $why = 'needs -AllowEnforce in the change that enforces it' }
         elseif (-not $summary) { $why = 'needs -SignInSummaryPath, the reviewed sign-in summary' }
         elseif ($summaryHash -ne "$($rec['signInReview'])".ToLowerInvariant()) { $why = "the sign-in summary's SHA-256 is $summaryHash, not the reviewed $($rec['signInReview'])" }
         elseif (-not @($summary['rings'] | Where-Object { $_['ring'] -eq $name -and $_['ready'] }).Count) { $why = 'the sign-in summary doesn''t show this ring ready' }
         elseif (@($earlier | Where-Object { -not $out.Contains($_) -or -not $out[$_].Enforce }).Count) { $why = 'an earlier ring isn''t enforced' }
         if ($why) { $out[$name] = [pscustomobject]@{ Enforce = $false; Marked = $true; Note = "Enforcement held: $why" } }
-        else { $out[$name] = [pscustomobject]@{ Enforce = $true; Marked = $true; Note = "Enforced under D-N5 ($($d['decidedOn']))" } }
+        else { $out[$name] = [pscustomobject]@{ Enforce = $true; Marked = $true; Note = "Enforced under D-NP5 ($($d['decidedOn']))" } }
     }
     $out
 }

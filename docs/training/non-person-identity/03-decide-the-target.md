@@ -141,8 +141,8 @@ Remove-Item -Recurse -Force out
 
     ```text
     Matrix: 21 identities in scope, 20 proposed (1 AppRegistrationFederated, 2 dMSA, 2 gMSA, 7 Keep, 2 ManagedIdentity, 6 Retire); 3 handed off, 1 to confirm first, 10 out of scope
-    Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (3, 1 HIGH)
-    Workload ID Premium (D-N4): Tier1, 2 in scope; tenant holds 2 enabled units
+    Dispositions: 18 decided of 22; waves 1 (1, 1 HIGH), 2 (4, 1 HIGH)
+    Workload ID Premium (D-NP4): Tier1, 2 in scope; tenant holds 2 enabled units
     Findings: 7 Finding, 4 Warn, 1 Info
     ```
 
@@ -173,13 +173,13 @@ Remove-Item -Recurse -Force out
     ```text
     Wave 1: Mail Automation; rollback owner 'carol@contoso.example'
       AppRegistrationFederated: Re-enable the legacy account or credential; revert the application's configuration; remove the federated credential
-    Wave 2: svc-hrsync, msa-print01$, Payroll Export; rollback owner ''
+    Wave 2: svc-hrsync, svc-intranet, msa-print01$, Payroll Export; rollback owner ''
       dMSA: Undo-ADServiceAccountMigration (Learn's undo for a dMSA migration); the superseded account is kept, never deleted
       gMSA: Re-enable the legacy account; set the service back to it
       ManagedIdentity: Re-enable the legacy account; revert the application's configuration to it
     ```
 
-    Wave 2 has no rollback owner. That is NPI-MAT-08.
+    Wave 2 holds `svc-intranet`, which its owner re-platforms to the gMSA the matrix proposes. It has no rollback owner. That is NPI-MAT-08.
 
 7. **Read the Workload ID Premium scope:**
 

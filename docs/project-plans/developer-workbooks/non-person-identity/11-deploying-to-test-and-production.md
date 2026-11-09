@@ -138,8 +138,8 @@ These are the only values you replace in this chapter's commands:
 | `<egress-range>` | The pilot's egress range for the workload location policy, in CIDR form (Chapter 08's `NL-WorkloadEgress`) |
 | `<microsoft-owner-tenant-id>` | The tenant ID Microsoft's first-party apps report as their owner, as Chapter 08 records it |
 | `<oos-object-id>`, `<oos-name>`, `<oos-class>`, `<oos-control>`, `<oos-reviewed-by>`, `<oos-reviewed-on>` | One identity that stays out of the Conditional Access scope (each managed identity and multitenant app in the tenant, including the pilot's managed identity) and the control that covers it, as Chapter 08's `outOfScope` entries have them; without a record for each, Chapter 08's check raises NPI-WCA-06 and the apply refuses to start |
-| `<d-n4-outcome>` | The CISO's Workload ID Premium decision (D-NP4), in words, with `<d-n4-by>` and `<d-n4-on>` |
-| `<d-n5-by>`, `<d-n5-on>` | Who decided D-NP5 (enforce a ring), and when |
+| `<d-np4-outcome>` | The CISO's Workload ID Premium decision (D-NP4), in words, with `<d-np4-by>` and `<d-np4-on>` |
+| `<d-np5-by>`, `<d-np5-on>` | Who decided D-NP5 (enforce a ring), and when |
 | `<reviewer-upn>` | The reviewer's user principal name: a reviewer who is not the operator, as the Approvals table requires |
 | `<sha>` | A plan's SHA-256, as the reviewer passes it back to you |
 | `<test-evidence>` | The test stage's smoke-test folder, `<outputRoot>/smoke-final` from the test settings file |
@@ -287,7 +287,7 @@ Rollback plan (test, to Disabled): 7 action(s)
   RB-05 G5      AdEnable               svc-payexport
   RB-06 Cleanup SpDisable              synthetic service principal
   RB-07 Cleanup AdDisable              svc-npi-smoke
-Plan SHA-256 for the reviewer: 2d365b3052a6db5e5f134937f011974afe132f790e607b21e9de8d071ca29ed2
+Plan SHA-256 for the reviewer: 0cb6515f2ee068986f8e097a1f415798757a4dc477d2d91884c987895f873d3d
 Rollback DryRun (Fixture, test): 7 WouldApply
   RB-01 WouldApply  ConditionalAccessState CA015-ServiceAccounts-LocationRestriction-Ring1 enabledForReportingButNotEnforced -> disabled
   RB-02 WouldApply  ConditionalAccessState CA037-WorkloadIdentities-HighRisk-Block-Ring1 enabledForReportingButNotEnforced -> disabled
@@ -363,7 +363,7 @@ and `SHA256SUMS` lists every file in the folder, starting with `0c71b3b06453a377
 The test preflight's one Warn is deliberate: the fixture's Conditional Access administrator holds a standing assignment instead of a PIM-eligible one, which the preflight reports but doesn't block (*Design guidance*). An approved hash other than the plan's stops the rollback before it sends anything:
 
 ```text
-The plan's SHA-256 is 2d365b3052a6db5e5f134937f011974afe132f790e607b21e9de8d071ca29ed2, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
+The plan's SHA-256 is 0cb6515f2ee068986f8e097a1f415798757a4dc477d2d91884c987895f873d3d, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
 ```
 
 Delete the dry run's folder when you're done:
@@ -703,7 +703,7 @@ Fulfils the Conditional Access half of [G4 Least privilege](../../../books/guide
    # One record for each managed identity and multitenant app in the tenant, including the pilot's managed identity from Step 1.3; repeat the line for each
    $sc.outOfScope += @{ objectId = '<oos-object-id>'; name = '<oos-name>'; class = '<oos-class>'; control = '<oos-control>'; reviewedBy = '<oos-reviewed-by>'; reviewedOn = '<oos-reviewed-on>' }
    $sc.egress.ranges = @('<egress-range>')
-   $sc.licensing = @{ decision = 'D-N4'; outcome = '<d-n4-outcome>'; decidedBy = '<d-n4-by>'; decidedOn = '<d-n4-on>' }
+   $sc.licensing = @{ decision = 'D-NP4'; outcome = '<d-np4-outcome>'; decidedBy = '<d-np4-by>'; decidedOn = '<d-np4-on>' }
    $sc.microsoftOwnerTenantIds = @('<microsoft-owner-tenant-id>')
    New-Item -ItemType Directory -Force (Split-Path $s.conditionalAccess.scopePath) | Out-Null
    $sc | ConvertTo-Json -Depth 10 | Set-Content $s.conditionalAccess.scopePath
@@ -996,7 +996,7 @@ Conditional Access is enabled one of Chapter 08's rings at a time, as the settin
    ```powershell
    $sha = (Get-FileHash "$out/wca-signins-Ring1/signin-summary.json" -Algorithm SHA256).Hash.ToLower()
    $sc = Get-Content $s.conditionalAccess.scopePath -Raw | ConvertFrom-Json -AsHashtable
-   $sc.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = '<d-n5-by>'; decidedOn = '<d-n5-on>' }
+   $sc.enforcement = @{ decision = @{ id = 'D-NP5'; outcome = 'Enforce'; decidedBy = '<d-np5-by>'; decidedOn = '<d-np5-on>' }
                         rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = '<reviewer-upn>'; reviewedOn = (Get-Date -Format yyyy-MM-dd) }); exclusions = @() }
    $sc | ConvertTo-Json -Depth 10 | Set-Content $s.conditionalAccess.scopePath
    ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -OutputPath "$out/wca-enforce-Ring1" -Apply -AllowEnforce -SignInSummaryPath "$out/wca-signins-Ring1/signin-summary.json"

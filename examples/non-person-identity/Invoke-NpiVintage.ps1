@@ -1,7 +1,7 @@
 #Requires -Version 7.1
 <#
 .SYNOPSIS
-    Chapter 10: the annual AI use-case inventory vintage comparison (plan task N7.4, M-25-21).
+    Chapter 10: the annual AI use-case inventory vintage comparison (plan task NP7.4, M-25-21).
     Compares this year's vintage with last year's by use case ID, joins both to Chapter 01's register
     through the use-case map and the service records, and writes the findings and changes with a
     manifest. Reads files only; nothing signs in.

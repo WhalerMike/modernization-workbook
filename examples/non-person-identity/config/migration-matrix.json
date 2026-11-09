@@ -1,5 +1,5 @@
 {
-  "_comment": "Design guidance: Book 02, Chapter 09's migration path matrix and the implementation guide's Step 2 as reviewed data (Chapter 03). Rows are tried in order and the first match proposes the target; the owner's disposition (D-N3) decides. Learn's own tables (pinned in examples/third_party/entra-service-account-choice-pages) are the model for the on-premises and cloud choices; the rows add what they leave out. Change this file in a reviewed pull request; the run records its SHA-256 in its manifest.",
+  "_comment": "Design guidance: Book 02, Chapter 09's migration path matrix and the implementation guide's Step 2 as reviewed data (Chapter 03). Rows are tried in order and the first match proposes the target; the owner's disposition (D-NP3) decides. Learn's own tables (pinned in examples/third_party/entra-service-account-choice-pages) are the model for the on-premises and cloud choices; the rows add what they leave out. Change this file in a reviewed pull request; the run records its SHA-256 in its manifest.",
   "inScopeTypes": ["Traditional", "MSA", "gMSA", "dMSA", "UnknownServiceAccount", "AppRegistration", "LegacyServicePrincipal", "ManagedIdentitySystemAssigned", "ManagedIdentityUserAssigned"],
   "outOfScope": {
     "ServicePrincipal": "Governed through its app registration's row",

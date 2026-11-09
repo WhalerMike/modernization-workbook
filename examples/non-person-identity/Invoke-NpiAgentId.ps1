@@ -1,7 +1,7 @@
 #Requires -Version 7.1
 <#
 .SYNOPSIS
-    Chapter 09: read the AI agent identities and blueprints (or, where decision D-N6 says agent
+    Chapter 09: read the AI agent identities and blueprints (or, where decision D-NP6 says agent
     identities aren't available, the service principals the agents run as), check them against the
     program's rules, fill in the sponsor fields Chapter 02 recorded, and write the findings, the
     orphan candidates for Chapter 02's orphan rule, and a dry-run plan for the two agent
@@ -49,7 +49,7 @@ $null = Export-NpiAgentRun -OutputPath $OutputPath -Task 'agent-id' -Cloud $Clou
 }
 $planHash = Get-NpiFileHash -Path (Join-Path $OutputPath 'agent-ca-plan.json')
 $fs = @($result.Findings)
-Write-Output ("D-N6 ({0}): {1} mode in cloud '{2}'; agent Conditional Access {3}; agent risk {4}" -f $cap.Status, $cap.Mode, $Cloud, $cap.AgentConditionalAccess.stage, $cap.AgentRisk.stage)
+Write-Output ("D-NP6 ({0}): {1} mode in cloud '{2}'; agent Conditional Access {3}; agent risk {4}" -f $cap.Status, $cap.Mode, $Cloud, $cap.AgentConditionalAccess.stage, $cap.AgentRisk.stage)
 Write-Output ("AI identities: {0} checked ({1}); Chapter 02 sponsor fields filled: {2} of {3}" -f @($result.Identities).Count, ((@($result.Identities) | Group-Object Type | Sort-Object Name | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', '), $filled.Count, @($runs.SponsorFields).Count)
 Write-Output ("Findings: {0} Finding ({1} P1, {2} P2), {3} Warn, {4} Info. Orphan candidates for Chapter 02: {5}" -f @($fs | Where-Object Severity -EQ 'Finding').Count, @($fs | Where-Object Priority -EQ 'P1').Count, @($fs | Where-Object Priority -EQ 'P2').Count, @($fs | Where-Object Severity -EQ 'Warn').Count, @($fs | Where-Object Severity -EQ 'Info').Count, @($result.OrphanCandidates).Count)
 Write-Output ("Agent CA plan: {0}; nothing sent" -f ((@($plan.actions) | ForEach-Object { "$($_.Kind) $($_.Action)" }) -join ', '))

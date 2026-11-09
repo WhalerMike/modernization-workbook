@@ -647,7 +647,7 @@ function Test-NpiRegisterDrift {
 
     # 03: ownerless, from Chapter 02's run.
     foreach ($o in @($Ownership | Where-Object { $_.OrphanCandidate })) {
-        $f.Add((New-NpiDriftFinding 'NPI-DRF-03' 'Finding' $o.IdentityId "$($o.Name) ($($o.Type))" 'Ownerless: an orphan candidate in Chapter 02''s run; the orphan rule (D-N2) decides, and nothing here disables it'))
+        $f.Add((New-NpiDriftFinding 'NPI-DRF-03' 'Finding' $o.IdentityId "$($o.Name) ($($o.Type))" 'Ownerless: an orphan candidate in Chapter 02''s run; the orphan rule (D-NP2) decides, and nothing here disables it'))
     }
 
     # 04: unused, from the service principal sign-in activity report (beta).
@@ -729,7 +729,7 @@ function Test-NpiRegisterDrift {
 function Test-NpiReviewCycle {
     <#
     .SYNOPSIS
-        The review cycle record (plan task N7.2) from the outputs of Chapters 07 and 09, read only.
+        The review cycle record (plan task NP7.2) from the outputs of Chapters 07 and 09, read only.
         NPI-REV-01: an app registration holding Graph permissions with no owners' permission review
         in the last quarter. NPI-REV-02: an agent identity or blueprint with no sponsor attestation
         in the last 12 months. NPI-REV-03: an agent's access assignment with no end date, an end

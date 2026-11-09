@@ -455,7 +455,7 @@ function Test-NpiRegister {
         if ($r.Secrets -gt 0) { $f.Add((New-NpiFinding 'NPI-INV-04' 'Warn' $k $n "Holds $($r.Secrets) client secret(s)")) }
         if ($r.ExpiredCredentials -gt 0) { $f.Add((New-NpiFinding 'NPI-INV-05' 'Warn' $k $n "$($r.ExpiredCredentials) expired credential(s) still on the object; remove unused credentials")) }
         if ($r.TenantWideConsent) { $f.Add((New-NpiFinding 'NPI-INV-06' 'Warn' $k $n 'Holds a delegated grant consented for all users (consentType AllPrincipals)')) }
-        if ($r.Handoff -eq 'DataPlatform') { $f.Add((New-NpiFinding 'NPI-INV-07' 'Info' $k $n 'SQL Server account: handed to the Data Platform plan (task N0.4)')) }
+        if ($r.Handoff -eq 'DataPlatform') { $f.Add((New-NpiFinding 'NPI-INV-07' 'Info' $k $n 'SQL Server account: handed to the Data Platform plan (task NP0.4)')) }
         if ($r.Note -like 'Detected only by a password that never expires*') { $f.Add((New-NpiFinding 'NPI-INV-08' 'Warn' $k $n $r.Note)) }
         if ($r.Type -in @('UnknownServiceAccount', 'UnknownServicePrincipal')) { $f.Add((New-NpiFinding 'NPI-INV-09' 'Warn' $k $n $r.Note)) }
     }
