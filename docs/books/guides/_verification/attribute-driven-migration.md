@@ -236,3 +236,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | The `memberOf` preview ends November 3, 2026 | The preview ended November 3, 2026 | Book 02 Ch 09 (Microsoft Learn page, accessed Oct 20 and Oct 29; date reached) |
+
+## Source watch follow-up, November 9, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Arc coverage: Windows Server 2012 and 2012 R2 "no new agent versions after November 2026" (row 103) | Windows Server 2012's last new agent version was 1.69, October 2026, serviced for 12 months; 2012 R2 still listed for new agent versions | Microsoft Learn, "Connected Machine agent prerequisites," re-read Nov 9, 2026: "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation"; matches Book 05 Ch09 SW1 |
+| Arc coverage: Linux releases "get no new agent versions after November 2026" (row 103) | RHEL 7 added to the list; all got 1.69 as their last new agent version in October 2026, as did AlmaLinux 8 and Oracle Linux 8 on Arm64; Azure Linux 3.0 none after February 2027 | Same; matches Book 05 Ch09 SW2 |
+| Footnote `adm-arc-prereq` accessed Oct 29, 2026 | Section names added; accessed Nov 9, 2026 | Same |

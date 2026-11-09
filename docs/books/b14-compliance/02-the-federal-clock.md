@@ -201,6 +201,7 @@ Counted from October 21, 2026, the dates that still lie ahead are these. Dates m
 | February 5, 2028 (counted) | BOD 26-02 | Agency | Continuous edge discovery; decommission on each device's date |
 | January 2, 2030 | M-26-15, EO 14306 | Agency | TLS 1.3 supported |
 | December 31, 2030 | M-26-15 | Agency | Quantum risk mitigated as far as feasible |
+| After 2030; after 2035 | NIST IR 8547 (guidance) | Neither directly | Quantum-vulnerable signature algorithms (RSA, ECDSA, EdDSA) deprecated after 2030 and disallowed under NIST standards and guidelines after 2035. For the systems M-26-15 prioritizes, its earlier deadlines take precedence[^c02-nistir8547] |
 
 ## How the program keeps the clock
 
@@ -233,6 +234,7 @@ The register earns its keep the way the corrections in this chapter did. Several
 [^c02-lra]: Cybersecurity and Infrastructure Security Agency, "Logging Reference Architecture" (publish date August 20, 2026), <https://www.cisa.gov/resources-tools/resources/logging-reference-architecture> (accessed Oct 21, 2026).
 [^c02-m2605]: Office of Management and Budget, M-26-05, *Adopting a Risk-based Approach to Software and Hardware Security*, January 23, 2026, with footnote 1, <https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf> (accessed Oct 21, 2026).
 [^c02-m2615]: Office of Management and Budget, M-26-15, *Execution of the Migration to Post-Quantum Cryptography*, June 24, 2026, §1 (Overview), §3 (Required Agency Actions, including C.2 to C.4 and D, Plan Submission) and Appendix A §4 (TLS 1.3), <https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf> (accessed Oct 21, 2026).
+[^c02-nistir8547]: NIST, IR 8547, *Transition to Post-Quantum Cryptography Standards*, October 2026 (final, October 27, 2026), §4 and §4.1.1 (Table 2), <https://csrc.nist.gov/pubs/ir/8547/final>, <https://doi.org/10.6028/NIST.IR.8547> (PDF read Nov 9, 2026).
 [^c02-m2107]: Office of Management and Budget, M-21-07, *Completing the Transition to Internet Protocol Version 6 (IPv6)*, November 19, 2020, agency action 4 (implementation plan milestones a to d), <https://www.whitehouse.gov/wp-content/uploads/2020/11/M-21-07.pdf> (accessed Oct 21, 2026).
 [^c02-cmvp]: National Institute of Standards and Technology, Cryptographic Module Validation Program, project page (FIPS 140-2 to FIPS 140-3 transition; Historical List after September 21, 2026), <https://csrc.nist.gov/projects/cryptographic-module-validation-program> (accessed Oct 21, 2026).
 [^c02-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, publication page (Release 5.2.0, August 27, 2025), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 21, 2026).

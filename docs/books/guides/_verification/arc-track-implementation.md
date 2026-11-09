@@ -93,3 +93,10 @@ Existing: VK-ARC-01 to VK-ARC-05; VK-NPI-01, VK-NPI-02, VK-NPI-03, VK-NPI-07.
 ## Server standard, November 5, 2026
 
 ESU guidance reworded as the exception path; dates carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Source watch follow-up, November 9, 2026
+
+| Before | After | Source |
+|---|---|---|
+| 1.4 coverage table: Windows Server 2012 and 2012 R2 "no new agent versions after November 2026" | Windows Server 2012 got its last new agent version, 1.69, in October 2026, serviced for 12 months; 2012 R2 is still listed for new agent versions; ESU sentence unchanged | Microsoft Learn, "Connected Machine agent prerequisites," re-read Nov 9, 2026: "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation"; matches Book 05 Ch09 SW1 |
+| 1.4 coverage table: Linux "several releases losing new agent versions after November 2026" | Named releases got their last new agent version, 1.69, in October 2026; Azure Linux 3.0 none after February 2027 | Same; matches Book 05 Ch09 SW2 |
