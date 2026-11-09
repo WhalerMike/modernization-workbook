@@ -324,6 +324,8 @@ The requests above set one rule on one role. To apply a whole tier's gate at onc
 
 An approval gate does nothing for an administrator who never has to activate. Inventory the tenant's active directory role assignments, and convert every human one to an eligible assignment of the role-assignable group that should hold it ([Chapter 04](04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)). Create the eligible assignment first, confirm the person can activate through it, and only then remove the active assignment, so no administrator is stranded mid-conversion. (Some older scripts in the compliance series remove first and create second; don't copy that order.)
 
+Start the inventory in PIM's **Discovery and insights (preview)** page, which replaced the Security Wizard: at **ID Governance** > **Privileged Identity Management** > **Microsoft Entra roles** > **Discovery and insights (preview)**, a Privileged Role Administrator sees each privileged role and how many users hold it, and its **Reduce Global Administrators**, **Eliminate standing access** and **Review service principals** actions show the permanent assignments to work through; for service principals it can only remove an assignment.[^c08-discovery] Microsoft's governance deployment guide puts this discovery step first for the same reason, to turn permanent assignments into just-in-time ones.[^c08-gov-deploy] The program uses the page as the inventory and does the conversion itself, because its **Make eligible** action makes the existing user or group eligible rather than moving the person to the role-assignable group, and the page also recommends keeping the two emergency access accounts permanently assigned, which matches the exclusions below.[^c08-discovery] Microsoft's government feature availability page lists PIM but not this preview page separately, so its availability in GCC High and the Department of Defense cloud is not yet specified.[^c08-feature-availability]
+
 ```http
 POST https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleRequests
 Content-Type: application/json
@@ -420,7 +422,7 @@ Reviewers are never the assignees themselves. Microsoft offers a self-review opt
 
 ::: {.callout-note}
 ## Groups assigned to roles
-When a role-assignable group holds the role, the review shows the group by name, not its members, and a denial removes the group's assignment.[^c08-review] Pair each role review with an access review of the group's membership ([Chapter 09](09-access-governance.md)); otherwise membership drift is invisible to the role review. Review the approver groups the same way: they hold no role, but they're privileged objects.
+When a role-assignable group holds the role, the review shows the group by name, not its members, and a denial removes the group's assignment.[^c08-review][^c08-gov-deploy] Pair each role review with an access review of the group's membership ([Chapter 09](09-access-governance.md)); otherwise membership drift is invisible to the role review. Review the approver groups the same way: they hold no role, but they're privileged objects.
 :::
 
 ### Step 9 — Export audit records for retention {#step-9-export-audit-records-for-retention}
@@ -637,3 +639,5 @@ The NIST text behind the AC rows is short: AC-6 requires allowing only the acces
 [^c08-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; current release 5.2.0), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 21, 2026).
 [^c08-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), AC-6(7), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 21, 2026).
 [^c08-nist-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, OSCAL profile, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Oct 20, 2026).
+[^c08-discovery]: Microsoft Learn, "Discovery and insights (preview) for Microsoft Entra roles (formerly Security Wizard)," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-security-wizard> (accessed Nov 9, 2026).
+[^c08-gov-deploy]: Microsoft Learn, "Microsoft Entra ID Governance deployment guide to govern privileged identities," <https://learn.microsoft.com/entra/architecture/governance-deployment-privileged-identities> (accessed Nov 9, 2026).

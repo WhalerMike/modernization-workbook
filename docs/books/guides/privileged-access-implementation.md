@@ -54,7 +54,7 @@ The validation kit's [VK-CA-01](https://github.com/WhalerMike/modernization-work
 
 ::: {.callout-tip}
 ## Labs for this guide
-Every gate's hands-on work is a lab in the developer workbook [*Building Privileged Access*](../../project-plans/developer-workbooks/privileged-access/index.md): Lab 1 on a laptop with the kit's fixtures, Lab 2 in a non-production environment. [The Labs page](../../training/labs.md#pa) lists them chapter by chapter, with what each needs and a direct link; each gate below ends with a *Try it* box that links its own.
+Every gate's hands-on work is a lab in the developer workbook [*Building Privileged Access*](../../project-plans/developer-workbooks/privileged-access/index.md): Lab 1 on a laptop with the kit's fixtures, Lab 2 in a non-production environment. [The Labs page](../../training/labs.md#pa) lists them chapter by chapter, with what each needs and a direct link; each gate below links its own labs.
 :::
 
 <!-- labs:end -->

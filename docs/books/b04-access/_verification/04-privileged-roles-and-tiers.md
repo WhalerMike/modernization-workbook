@@ -112,3 +112,48 @@ Item 204 of the Nov 7 sort: the tiers table said "three places with three meanin
 | T4 | Device `extensionAttribute11` values `Tier0`, `Tier1`, `Tier2`, `UNPOSITIONED`; `Tier0` is PAWs, `Tier2` standard workstations | Device security tier row | restated (internal) | Book 05 Ch08 device attribute schema, CP-002, CP-003 |
 | T5 | Four coverage tiers, managed to isolated or retired | Coverage tier row | restated (internal) | Book 05 Ch03, What Intune and Arc don't reach |
 | T6 | The AD tier model requires a PAW of the same tier for each tier | Paragraph after the table | verified (new) | c04-ad-tier, section "Privileged access workstations (PAWs) required for each tier" |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Understand Microsoft Entra role concepts](https://learn.microsoft.com/entra/identity/role-based-access-control/concept-understand-roles) | Built-in roles and the privileged label, first sentence, c04-role-concepts | Nov 9, 2026 | A role is a set of permissions assigned to a principal at a scope |
+| [Create a custom role in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/role-based-access-control/custom-create) | Least-privileged choices, c04-custom-roles | Nov 9, 2026 | Custom role as a narrower grant |
+| [Understanding least privilege with Microsoft Entra ID Governance](https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged) | Same, c04-custom-roles | Nov 9, 2026 | Minimum access for the task; least-privileged roles |
+| [Secure resource isolation in a single tenant](https://learn.microsoft.com/entra/architecture/secure-single-tenant) | Least-privileged choices, AU scoping, c04-secure-isolation | Nov 9, 2026 | Administrative units restrict a role's permissions to part of the organization |
+| [Introduction to delegated administration and isolated environments](https://learn.microsoft.com/entra/architecture/secure-introduction) | Same, c04-secure-isolation | Nov 9, 2026 | Administrative units for role management |
+| [Secure access practices for administrators in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/role-based-access-control/security-planning) | Five placements, cloud-only bullet, c04-security-planning | Nov 9, 2026 | Privileged accounts cloud-only with no ties to on-premises AD |
+| [Appendix D: Securing Built-in Administrator Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/appendix-d--securing-built-in-administrator-accounts-in-active-directory) | Five placements, AD Tier 0 not delegated, c04-ad-least-privilege | Nov 9, 2026 | "Account is sensitive and cannot be delegated" on privileged accounts |
+| [Implementing Least-Privilege Administrative Models](https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models) | Same, c04-ad-least-privilege | Nov 9, 2026 | Delegation lets an account's credentials be used on other systems; the flag prevents it |
+| [Guidance about how to configure protected accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/how-to-configure-protected-accounts) | Same, c04-ad-least-privilege | Nov 9, 2026 | Protected Users for administrator accounts |
+| [Microsoft Entra ID Governance deployment guide to govern privileged identities](https://learn.microsoft.com/entra/architecture/governance-deployment-privileged-identities) | How a role reaches a person, c04-gov-privileged | Nov 9, 2026 | Eligible vs active PIM assignments; PIM for Entra roles, Azure roles and groups |
+| [Best practices to secure with Microsoft Entra ID](https://learn.microsoft.com/entra/architecture/secure-best-practices) | Azure RBAC (PIM for Azure roles), Privileged access workstations, Emergency access accounts, c04-secure-best | Nov 9, 2026 | No standing access via PIM; privileged access from secure workstations; two cloud-only emergency accounts |
+| [Implementing Secure Administrative Hosts](https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/implementing-secure-administrative-hosts) | Privileged access workstations; Domain controllers subsection, c04-admin-hosts | Nov 9, 2026 | Never administer a trusted system from a less-trusted host |
+
+Also cited for the first time in this chapter, through the additions below: Best practices for securing Active Directory, Appendix E, Appendix F and Appendix G (securing the Enterprise Admins, Domain Admins and Administrators groups), and Avenues to Compromise.
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| D1 | A DC can read and write anything in AD DS; a compromised one leaves the forest untrustworthy without a known good backup | Domain controllers while they remain Tier 0 | verified (new) | c04-dc-secure <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/securing-domain-controllers-against-attack> |
+| D2 | AD security in three parts: reduce attack surface, monitor, plan for compromise | Same | verified (new) | c04-ad-best <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/best-practices-for-securing-active-directory> |
+| D3 | Administer DCs only from higher-trust hosts; RDP to DCs only from authorized users and systems, by GPO and Windows Firewall | Same, hardening list | verified (new) | c04-dc-secure; c04-admin-hosts |
+| D4 | Block internet from DCs and prevent browsers; privileged browsing from DCs seen in assessments | Same | verified (new) | c04-dc-secure; c04-avenues <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/avenues-to-compromise> |
+| D5 | Patch and manage DCs separately from general servers | Same | verified (new) | c04-dc-secure |
+| D6 | Newest supported Windows Server, Server Core preferred, minimal software | Same | verified (new) | c04-dc-secure |
+| D7 | Windows Server 2019 minimum while DCs remain; 2016 gone by Jan 12, 2027 | Same | program assumption | program baseline (stated as an assumption) |
+| D8 | Enterprise Admins, Domain Admins, Administrators hold no day-to-day accounts; changes alert | Same | verified (new) | c04-ad-groups (Appendices E, F, G) |
+| D9 | Use Advanced Audit Policy subcategories; Group Policy may misreport effective policy, auditpol.exe doesn't | Same, monitoring | verified (new) | c04-ad-monitor <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/monitoring-active-directory-for-signs-of-compromise> |
+| D10 | Appendix L High events 4719, 4765, 4794; High means investigate one occurrence; test against baseline first | Same | verified (new) | c04-events <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor> |
+| D11 | Read-only `auditpol /get` commands | Same, code block | command (read-only) | c04-ad-monitor |
+| D12 | A compromised forest can't be fully restored without a record of every change or a known good backup; changes replicate to all DCs | Same, planning for compromise | verified (new) | c04-ad-compromise <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/planning-for-compromise> |
+| S1 | Entra sign-in to Azure Linux VMs and Arc-enabled Linux servers via OpenSSH certificates (AADSSHLoginForLinux, system-assigned managed identity, `az ssh vm`); no SSH keys distributed; disabled accounts lose access | Azure RBAC, "Privileged SSH to Linux servers" | verified (new) | c04-linux-ssh <https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux> |
+| S2 | VM Administrator Login allows sudo; VM User Login doesn't | Same | verified (new) | c04-linux-ssh |
+| S3 | Conditional Access through the Azure Linux VM Sign-In app; device checks only with the Azure CLI on Windows and macOS | Same | verified (new) | c04-linux-ssh |
+| S4 | Azure Policy flags VMs without Entra sign-in and unapproved local accounts | Same | verified (new) | c04-linux-ssh |
+| S5 | Supported clouds: Azure Global and Azure Government; GCC, GCC High and DoD breakdown not yet specified | Same | verified (new); breakdown not yet specified | c04-linux-ssh |
+| S6 | SSH admin is server-tier (T1) as eligible VM Administrator Login on the resource group; identity-infrastructure servers are T0; local accounts and long-lived keys are findings | Same, second paragraph | restated-as-design | program position (consistent with the Azure RBAC placements table) |
+| S7 | Read-only Azure CLI checks for role assignments and the extension | Same, code block | command (read-only) | c04-linux-ssh |

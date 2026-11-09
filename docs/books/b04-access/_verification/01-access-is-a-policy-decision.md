@@ -60,3 +60,12 @@ All sources opened on October 20, 2026. M-22-09, NIST SP 800-207 and the CISA ZT
 | access-plane/index — F.4 Certificate-based authentication | Not carried here | Book 02 Ch10 and the PKI book (B07) |
 | access-plane/index — F.5 Privileged access management (PIM self-request; CyberArk adapter) | Ch02 §Just in time (links Ch08, Appendix B) | CyberArk adapter not carried: vendor integration, for the Chapter 04 or Chapter 10 writer |
 | access-plane/index — F.6 Break-glass accounts | Ch02 §Break-glass | — |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Fundamentals of securing with Microsoft Entra ID](https://learn.microsoft.com/entra/architecture/secure-fundamentals) | Conditional Access as the policy engine (signals sentence), c01-secure-fundamentals | Nov 9, 2026 | Conditional Access brings user, device, risk and network context into the authorization decision |
+| [Best practices to secure with Microsoft Entra ID](https://learn.microsoft.com/entra/architecture/secure-best-practices) | What goes wrong table, Exceptions row, c01-secure-best | Nov 9, 2026 | Modern authentication only; every onboarded app gets explicit Conditional Access policies; Conditional Access for workload identities |

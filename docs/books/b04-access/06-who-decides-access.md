@@ -95,7 +95,7 @@ Decision rights live in the ticket; capability lives in the role. The two diverg
 | Cloud Application Administrator | The same, without application proxy[^c06-roles] | Same consequence |
 | Privileged Role Administrator | Grant consent for any permission to any API, including Microsoft Graph application permissions[^c06-grant-admin] | The role the IGO activates to execute an approved Graph application-permission grant; Microsoft notes a Global Administrator is typically required in practice, so test the path in the pilot ([Chapter 05](05-applications-and-workload-identities.md)) |
 | Global Administrator | Everything; the only role that can turn on the admin consent workflow in the admin center, and the only one that can approve workflow requests for Microsoft Graph app roles[^c06-workflow] | Emergency use, and the PIM-activated fallback for a Graph application-permission grant that Privileged Role Administrator can't complete ([Chapter 05](05-applications-and-workload-identities.md)) |
-| Owner of an app | Manage that app's configuration, including single sign-on, provisioning and user assignment; add owners; add a credential and act as the app[^c06-owners] | Ownership is a privilege, not a label. Keep Owners to two technical people |
+| Owner of an app | Manage that app's configuration, including single sign-on, provisioning and user assignment; add owners; add a credential and act as the app[^c06-owners][^c06-assign-owners] | Ownership is a privilege, not a label. Keep Owners to two technical people |
 | Custom role with `microsoft.directory/servicePrincipals/appRoleAssignedTo/update` | Manage user and group assignments to enterprise apps, scoped to one app or the whole tenant; requires Entra ID P1[^c06-custom-apps] | The narrowest role for the help desk's assignment work |
 
 Microsoft's own warning about Application Administrator is direct: assigning a user to it gives that user the ability to impersonate an application's identity, which can be an elevation of privilege over what their role assignments allow.[^c06-roles] An app with `RoleManagement.ReadWrite.Directory` makes Application Administrator a path to any role in the tenant.
@@ -190,8 +190,8 @@ Revocation runs the other way. The owner, the IGO, the CISO or a security alert 
 
 Access to an enterprise application is granted through security groups, never by assigning an individual. Three Entra facts shape the design:
 
-- Group-based assignment requires Entra ID P1 or P2, and only security groups can be assigned.[^c06-assign][^c06-groups-saas]
-- Assignment doesn't cascade to nested groups. Only direct members of an assigned group get access.[^c06-assign]
+- Group-based assignment requires Entra ID P1 or P2, and only security groups can be assigned.[^c06-assign][^c06-groups-saas][^c06-access-mgmt]
+- Assignment doesn't cascade to nested groups. Only direct members of an assigned group get access.[^c06-assign][^c06-access-mgmt]
 - An app can be set to require assignment, so only assigned users and groups can sign in, and an app that requires assignment always needs admin consent for its permissions.[^c06-assign]
 
 The program sets **Assignment required** on every enterprise application, assigns only groups with direct members, and treats any nested group found in review as a finding to fix immediately.
@@ -259,12 +259,12 @@ Before acting, an executor checks three things and puts the ticket on hold if an
 
 An owner who leaves or changes roles starts a transfer at least ten business days before the change. The business approver nominates a successor, the IGO approves, the help desk updates the registry and, if the successor is a technical owner, the Owners list, and pending reviews and consent requests move to the successor, who completes an owner briefing within five business days.
 
-An application is orphaned when it has no named owner in the registry or the Owners list. Microsoft recommends monitoring so that every app has at least two owners, and using the app's `serviceManagementReference` to point at a team so ownership survives one person leaving.[^c06-owners] The program's orphan policy is:
+An application is orphaned when it has no named owner in the registry or the Owners list. Microsoft recommends monitoring so that every app has at least two owners, and using the app's `serviceManagementReference` to point at a team so ownership survives one person leaving.[^c06-owners][^c06-app-mgmt] The program's orphan policy is:
 
 1. The app is reclassified as R1 until it has an owner.
 2. The IGO takes interim ownership, and a ticket opens automatically.
 3. The IGO has 30 calendar days to assign an owner or start decommissioning.
-4. At day 31, access to the app is suspended, preferably by deactivating it so that it stops getting tokens but keeps its configuration ([Chapter 05](05-applications-and-workload-identities.md#two-objects-for-one-application)), and the business approver and CISO are told.
+4. At day 31, access to the app is suspended, preferably by deactivating it so that it stops getting tokens but keeps its configuration ([Chapter 05](05-applications-and-workload-identities.md#two-objects-for-one-application)), and the business approver and CISO are told.[^c06-remove-access]
 
 A weekly automated check for apps with fewer than two owners feeds this policy; the inventory script at the end of [Chapter 05](05-applications-and-workload-identities.md#a-read-only-inventory-to-start-from) is one way to start it.
 
@@ -378,3 +378,7 @@ The credential alert matters most, because adding a credential is how an Applica
 [^c06-assign]: Microsoft Learn, "Manage users and groups assignment to an application," <https://learn.microsoft.com/entra/identity/enterprise-apps/assign-user-or-group-access-portal> (accessed Oct 20, 2026).
 [^c06-groups-saas]: Microsoft Learn, "Use a group to manage access to SaaS applications," <https://learn.microsoft.com/entra/identity/users/groups-saasapps> (accessed Oct 20, 2026).
 [^c06-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention> (accessed Oct 20, 2026).
+[^c06-assign-owners]: Microsoft Learn, "Assign enterprise application owners," <https://learn.microsoft.com/entra/identity/enterprise-apps/assign-app-owners> (accessed Nov 9, 2026).
+[^c06-app-mgmt]: Microsoft Learn, "What is application management?," section "Manage access," <https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-application-management> (accessed Nov 9, 2026).
+[^c06-access-mgmt]: Microsoft Learn, "Manage access to apps," section "Assigning users and groups to an app," <https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-access-management> (accessed Nov 9, 2026).
+[^c06-remove-access]: Microsoft Learn, "How to remove a user's access to an application in Microsoft Entra ID," scenario "Disable all user access to an application," <https://learn.microsoft.com/entra/identity/enterprise-apps/methods-for-removing-user-access> (accessed Nov 9, 2026).
