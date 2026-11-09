@@ -33,10 +33,8 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 ::: {.aan-note}
 **Relationship to the published whitepaper.** This narrative is also
 published, in provenance-anchored form, as the whitepaper
-[Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md),
-whose closing section maps each Act-4 claim line-by-line to the governance
-engine's decision records. That publication owns the narrative and its
-provenance mapping; this book owns the federal control-closure framing
+[Book 01, Chapter 01, Why Modernization Is Hard](../books/b01-transformation-arc/01-why-modernization-is-hard.md).
+That chapter owns the narrative; this book owns the federal control-closure framing
 (NIST 800-53 mappings, FedRAMP 20x KSI alignment, TIC 3.0) and the
 Appendix A federal implementation reference.
 :::
@@ -283,7 +281,7 @@ That is application-aware networking. **NIST SP 800-207's** seven zero trust ten
 
 - **SD-WAN is AAN at the transport layer.** SD-WAN achieves application awareness through DPI or FQDN/signature-based identification, then applies per-application path selection dynamically based on real-time path quality measurement. SD-WAN alone does not enforce access control based on user identity or device posture. That requires SASE.
 - **SASE is the delivery architecture that completes AAN.** SASE converges SD-WAN with cloud-delivered security services — CASB, FWaaS, ZTNA, SWG — at the network edge. It brings user identity (from the IdP via SAML/OIDC), device posture (from MDM/EDR), application identity (from DPI), and data classification (from CASB) into a single enforcement point distributed geographically near the user.
-- **CISA ZTMM maps AAN to the Networks pillar maturity progression.** Traditional: all decisions at IP/port layer, no application visibility. Initial: basic application identification. Advanced: application-aware routing and enforcement — the FedRAMP ConMon standard posture. Optimal: fully dynamic, identity-driven, application-aware policy with continuous behavioral monitoring.
+- **CISA ZTMM maps AAN to the Networks pillar maturity progression.** Traditional: all decisions at IP/port layer, no application visibility. Initial: basic application identification. Advanced: application-aware routing and enforcement — the posture this program targets. Optimal: fully dynamic, identity-driven, application-aware policy with continuous behavioral monitoring.
 
 ## Principle 3 — Move From Session-Based to Token-Based Identity
 
@@ -318,7 +316,7 @@ For agencies on the mainframe-to-AAN modernization path, this is not a complianc
 - **July 28, 2026:** FedRAMP Ready submissions cease — no new Ready pathway submissions accepted
 - **August 3, 2026:** Class A pipeline opens
 - **August 31, 2026:** Class B and C pipelines open
-- **January 1, 2027:** Consolidated Rules mandatory for all certified systems — all ConMon evidence must meet machine-readable KSI format
+- **January 1, 2027:** Consolidated Rules mandatory for all certified systems — the Key Security Indicators bind providers, so the agency's own ConMon evidence is governed by OMB Circular A-130 and CA-7; structuring it on the same machine-readable model is this program's design choice, not a federal deadline
 - **June 11, 2027:** No new Rev5 certification applications accepted
 
 ::: {.aan-important}
@@ -333,10 +331,10 @@ A governance substrate that embodies these principles is not a passive registry 
 |---|---|---|
 | Traditional | Record and observe only | Desired state documented; actual state collected manually. No automated detection or correction. |
 | Initial | Observe and advise | Automated detection of drift from policy. Corrective actions generated and surfaced to operators. No automated writes. |
-| **Advanced** | **Gated actuation** | **Governance framework generates a corrective action; a human approves before it executes. Dry-run required before production. Federal ConMon standard posture.** |
+| **Advanced** | **Gated actuation** | **Governance framework generates a corrective action; a human approves before it executes. Dry-run required before production. The program's target posture.** |
 | Optimal | Autonomous within guardrails | Governance framework closes the loop without human intervention for enumerated low-blast-radius operation classes. High-blast-radius operations remain gated permanently. |
 
-> **What this means for authorizing officials:** FedRAMP continuous monitoring and OMB M-22-09 expect agencies to operate at Advanced maturity as the production standard. Advanced maturity — gated actuation, where the governance framework generates a corrective action and a human approves before it executes — is the posture an Authorizing Official can sign. High-blast-radius operations — tenant-wide role changes, network policy updates that touch thousands of endpoints — remain gated permanently regardless of overall maturity level.
+> **What this means for authorizing officials:** Neither FedRAMP continuous monitoring nor OMB M-22-09 requires a particular maturity stage; this program takes Advanced maturity as its target for production. Advanced maturity — gated actuation, where the governance framework generates a corrective action and a human approves before it executes — is the posture an Authorizing Official can sign. High-blast-radius operations — tenant-wide role changes, network policy updates that touch thousands of endpoints — remain gated permanently regardless of overall maturity level.
 
 # Federal Framework Alignment
 
@@ -349,7 +347,7 @@ The following table maps each concept in this narrative to the federal mandate, 
 | Authoritative identity attributes from HR / authoritative sources | FICAM Architecture, OMB M-22-09 | NIST SP 800-63 Digital Identity Guidelines |
 | Application-aware networking; per-transaction policy enforcement | OMB M-22-09 §4, EO 14028 | NIST SP 800-207, TIC 3.0 Branch Office and Remote User use cases |
 | Phishing-resistant MFA / Certificate-Based Authentication | BOD 25-01, OMB M-22-09 | CISA ZTMM v2.0 Identity pillar (Advanced/Optimal) |
-| Eliminate NTLM; move to token-based identity | BOD 25-01 (M365 SCuBA baselines) | CISA ZTMM v2.0 Identity pillar |
+| Eliminate NTLM; move to token-based identity | OMB M-22-09 and Microsoft's NTLM deprecation (BOD 25-01 does not itself mandate NTLM elimination) | CISA ZTMM v2.0 Identity pillar |
 | Device compliance as input to access decisions | OMB M-22-09 §3 | CISA ZTMM v2.0 Devices pillar |
 | SD-WAN local internet breakout; eliminate MPLS hairpin | TIC 3.0 (Trusted Internet Connections) | CISA ZTMM v2.0 Networks pillar |
 | SASE / ZTNA as access model replacing VPN | OMB M-22-09 §4, TIC 3.0 | NIST SP 800-207, CISA ZTMM Networks pillar |
@@ -357,7 +355,7 @@ The following table maps each concept in this narrative to the federal mandate, 
 | IP address inventory as compliance evidence (CM-8) | FedRAMP Moderate | NIST SP 800-53 Rev 5 CM-8 |
 | Audit provenance: every transaction traceable to authorized source | FedRAMP Moderate AU-2/12 | NIST SP 800-53 Rev 5 AU-2, AU-12 |
 | Continuous monitoring; automated KSI enforcement | FedRAMP 20x Consolidated Rules (Jun 25, 2026); OMB Circular A-130 | NIST SP 800-53 Rev 5 CA-7 (RMF continuous-monitoring step per SP 800-37 Rev 2); FedRAMP 20x KSIs; mandatory Jan 1, 2027 |
-| Gated actuation as standard governance posture (Advanced maturity) | FedRAMP ConMon, OMB M-22-09 | CISA ZTMM v2.0 Automation and Orchestration pillar |
+| Gated actuation as the program's target governance posture (Advanced maturity) | Program target; OMB M-22-09 requires no particular stage | CISA ZTMM v2.0 Automation and Orchestration pillar |
 | Machine-readable KSI evidence; no manual evidence assembly | FedRAMP 20x Consolidated Rules — Class A/B/C pipelines open Aug 3/31, 2026 | FedRAMP 20x JSON evidence format; GitHub-published structured rules |
 
 # Appendix A — Cisco Catalyst SD-WAN and Microsoft 365 Informed Network Routing: Federal Implementation Reference {#appendix-cisco-inr}
@@ -369,7 +367,7 @@ The following table maps each concept in this narrative to the federal mandate, 
 :::
 
 ::: {.aan-important}
-**INR telemetry is a commercial-cloud capability — it is unavailable in this appendix's own scope.** Microsoft 365 Informed Network Routing is not offered in the GCC Moderate cloud. Microsoft Learn states the feature "supports tenants in WW Commercial cloud but not the GCC Moderate, GCC High, DoD, Germany, or China clouds," and the substrate encodes this as a machine-enforced contract fixture — **FINDING-001** (`tests/fixtures/contract/m365/informed-network-routing-unavailable-gcc-moderate.yaml`), which requires the adapter to return a `CapabilityUnavailable` claim rather than assume INR telemetry.
+**INR telemetry is a commercial-cloud capability — it is unavailable in this appendix's own scope.** Microsoft 365 Informed Network Routing is not offered in the GCC Moderate cloud. Microsoft Learn states the feature "supports tenants in WW Commercial cloud but not the GCC Moderate, GCC High, DoD, Germany, or China clouds," so the design must not assume INR telemetry in a GCC Moderate tenant (design finding FINDING-001). The tenant-specific check is below.
 
 **What this means for the architecture below.** The INR-fed telemetry channel — Microsoft sharing per-endpoint path and performance signals with the SD-WAN fabric — is **not** available to a GCC Moderate agency. Everything else in this appendix holds: the branch still runs **Cloud OnRamp for SaaS**, which probes the published M365 GCC Optimize/Allow endpoints directly and steers to the best local-breakout path from its own measurements. The control table, KSI evidence contracts, and TIC alignment are satisfied by probe-based steering; only the Microsoft-fed telemetry enrichment is lost. Where the sections below reference INR telemetry, read them as the commercial-cloud target state and Cloud OnRamp probe-based steering as the GCC Moderate implementation. Cite FINDING-001 in the boundary documentation so an assessor sees the constraint was designed for, not missed.
 

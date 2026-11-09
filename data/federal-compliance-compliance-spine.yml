@@ -106,7 +106,7 @@ tables:
       attestable: 'No'
     - control: RA-5
       title: Vulnerability Monitoring and Scanning
-      mechanism: Assessment handoff FROM Book 11 (scan measures the gap; this book actuates remediation)
+      mechanism: Assessment handoff FROM the Vulnerability Management book, Vol III Book 02 (scan measures the gap; this book actuates remediation)
       gate: FedRAMP Moderate
       drivers: NIST SP 800-53 Rev 5; CISA BOD 26-04
       slot: Endpoint

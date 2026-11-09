@@ -1034,7 +1034,7 @@ FedRAMP 20x KSI-IAM-APM (Adopting Passwordless Methods) calls for secure passwor
 
 FedRAMP 20x's KSI-MLA (Monitoring, Logging, and Auditing) theme covers monitoring privileged workstations with endpoint detection — "EDR" is a capability, not a CR26 indicator. The PAW baseline with WDAC, Credential Guard, and Microsoft Defender for Endpoint provides the coverage; the PAW Intune compliance policy ensures it is continuously verified.
 
-Agencies implementing this document should reference the FedRAMP 20x Machine-Readable Evidence guidelines and capture the following as control evidence artifacts: PIM eligible assignment export (JSON from Microsoft Graph), PIM activation audit log export (90-day retention), Conditional Access policy export, Intune compliance policy export, and the break-glass quarterly test record.
+Agencies implementing this document should reference the FedRAMP 20x Machine-Readable Evidence guidelines and capture the following as control evidence artifacts: PIM eligible assignment export (JSON from Microsoft Graph), PIM activation audit log export (retained for at least three years, the AU-11 retention figure in Vol III Book 06), Conditional Access policy export, Intune compliance policy export, and the break-glass quarterly test record.
 :::
 
 ---

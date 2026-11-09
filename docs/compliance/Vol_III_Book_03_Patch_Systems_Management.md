@@ -41,14 +41,6 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Provisional position.** This book was drafted at temporary series slot 21 to
-avoid renumbering the series while adjacent books settle. Its intended home is
-immediately after the Vulnerability Management book (the assessment half), whose
-remediation half it carries. Cross-references name other books by **title and
-role**, not number, so the series-wide renumber does not break them.
-:::
-
-::: {.aan-important}
 **Series Context** — The Vulnerability Management book answers *what is
 unpatched* — continuous scanning, CISA KEV cross-reference, risk-based SLAs, and
 the machine-readable compliance record, worked on the Microsoft/Defender estate.
@@ -269,7 +261,7 @@ actuation stack emits:
 
 | Field | Content | Why it is load-bearing |
 |---|---|---|
-| **Join key** | The asset's authoritative identity from the IPAM/DDI naming plane (CM-8) | An unreconciled record proves nothing about any real asset — the 5.3 estate gate runs *first* |
+| **Join key** | The asset's authoritative identity from the IPAM/DDI naming plane (CM-8) | An unreconciled record proves nothing about any real asset — reconciling the record to the CM-8 inventory runs *first* |
 | **Source stack** | `satellite`, `aap`, or `ssm` | Which platform-native orchestrator performed the remediation |
 | **Finding reference** | Patch/erratum id, CVE, and KEV flag where applicable | Joins the record back to the Book 02 assessment queue entry it closes |
 | **SLA class** | The remediation-SLA class assigned at assessment (SI-2(3), BOD 26-04 model) | Whether the closure beat its clock is a fact, not a recollection |
@@ -330,7 +322,7 @@ closes the SI-2 and CM families that act on it.
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-8 † | System Component Inventory | IPAM-keyed asset identity as the join key correlating all native-stack inventories (naming-plane necessity) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 23-01 | Network | KSI-PIY | No |
-| RA-5 | Vulnerability Monitoring and Scanning | Assessment handoff FROM Book 11 (scan measures the gap; this book actuates remediation) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 26-04 | Endpoint | KSI-MLA | No |
+| RA-5 | Vulnerability Monitoring and Scanning | Assessment handoff FROM the Vulnerability Management book, Vol III Book 02 (scan measures the gap; this book actuates remediation) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 26-04 | Endpoint | KSI-MLA | No |
 | CM-2 | Baseline Configuration | Desired-state config baseline per platform (Azure Machine Config, SSM State Manager, Aria, Ansible) | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB Circular A-130 | Endpoint | KSI-CMT | No |
 | CM-6 | Configuration Settings | Drift detection + reconciliation against the baseline; drift record to the evidence contract | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA SCuBA | Endpoint | KSI-CMT | No |
 | SI-2 † | Flaw Remediation | Platform-native patch orchestration per CSP × OS (Intune/Arc, SSM, OS Mgmt Hub/Ksplice, vLCM, Satellite/Ansible) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 26-04; EO 14028 | Endpoint | KSI-SVC, KSI-MLA | No |
@@ -354,8 +346,10 @@ Management book produces for the Microsoft estate.
 ## Stack Selection Status
 
 Patch and systems-management stack selections follow the agency's platform
-footprint and are pending procurement review. The native stacks mapped here are
-each FedRAMP-authorized CSP capabilities; the cross-CSP overlay option
+footprint and are pending procurement review. The CSP stacks mapped here
+(Intune/Arc, AWS SSM, OCI OS Management Hub) are FedRAMP-authorized CSP capabilities;
+the customer-operated stacks (vSphere Lifecycle Manager, Red Hat Satellite / Ansible)
+carry no FedRAMP CSO and are accredited as agency-operated components; the cross-CSP overlay option
 (Tanium / BigFix / Ivanti) is an alternative, not a requirement. Final selection
 requires verification of each stack's authorization on the FedRAMP Marketplace,
 plus agency-specific environment testing and procurement authority.

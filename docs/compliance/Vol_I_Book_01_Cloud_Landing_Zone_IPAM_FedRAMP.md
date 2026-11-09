@@ -25,14 +25,16 @@ execute:
   echo: false
 
 aliases:
-  - /customer-documents/federal-aan-series/Vol_I_Book_01_FedAAN_SSA_Landing_Zone_IPAM_FedRAMP.html
-  - /customer-documents/federal-compliance-series/Vol_I_Book_01_Compliance_SSA_Landing_Zone_IPAM_FedRAMP.html
+  - /customer-documents/federal-aan-series/Vol_I_Book_01_FedAAN_Landing_Zone_IPAM_FedRAMP.html
+  - /customer-documents/federal-compliance-series/Vol_I_Book_01_Compliance_Landing_Zone_IPAM_FedRAMP.html
 
 ---
 
-```{=html}
-<div class="fouo-banner">UNCLASSIFIED // FOR OFFICIAL USE ONLY — {{< meta agency.short >}} Cloud Services Team</div>
-```
+:::: {.content-hidden unless-profile="ssa"}
+::: {.fouo-banner}
+UNCLASSIFIED // FOR OFFICIAL USE ONLY — {{< meta agency.short >}} Cloud Services Team
+:::
+::::
 
 ::: {.aan-warning}
 ## Draft Proposal — Subject to Review
@@ -54,7 +56,7 @@ The {{< meta agency.full >}} operates four distinct cloud environments — on-pr
 
 **Unified DDI** — an authoritative DNS/DHCP/IPAM plane with DNSSEC and RPZ — solves all four problems from a single control plane. **InfoBlox DDI** is the deployed example this document evaluates for {{< meta agency.short >}}'s estate. Under Path A (cloud-managed, below) the control plane is InfoBlox's FedRAMP-authorized offering, listed on the Marketplace as **Infoblox Government Cloud** (CSO FR2017257053, hosted on AWS GovCloud — verify current scope and authorization date on the FedRAMP Marketplace); under Path B (agency-operated, the better fit for {{< meta agency.short >}}'s topology) the agency carries the component in its own boundary and no inheritance applies.
 
-> **The DDI-specific scope of this authorization is six days old, not three years old.** CSO FR2017257053 was originally authorized December 15, 2022 (Census/Commerce sponsored) for **BloxOne Threat Defense Federal Cloud** — a DNS-security/threat-intelligence service (Cloud Services Portal, TIDE, Dossier), not the DDI/IPAM management plane this book is about. Only on **July 22, 2026** was the same CSO — rebranded Infoblox Government Cloud — recertified FedRAMP Moderate with an expanded boundary adding Universal DDI Management, NIOS-X Servers, and Universal Asset Insights. Every "CSO FR2017257053" citation below refers to that July 2026 event for DDI purposes, not the 2022/2023 Threat Defense authorization.
+> **The DDI-specific scope of this authorization dates from July 22, 2026, not from the 2022 authorization.** CSO FR2017257053 was originally authorized December 15, 2022 (Census/Commerce sponsored) for **BloxOne Threat Defense Federal Cloud** — a DNS-security/threat-intelligence service (Cloud Services Portal, TIDE, Dossier), not the DDI/IPAM management plane this book is about. Only on **July 22, 2026** was the same CSO — rebranded Infoblox Government Cloud — recertified FedRAMP Moderate with an expanded boundary adding Universal DDI Management, NIOS-X Servers, and Universal Asset Insights. Every "CSO FR2017257053" citation below refers to that July 2026 event for DDI purposes, not the 2022/2023 Threat Defense authorization.
 
 > **Mechanism, not product.** Per series doctrine (Vol 0 Book 00, Executive Summary), closure necessity names mechanism classes, never products. The mechanism argued for throughout this document is unified DDI; InfoBlox is the deployed example chosen for {{< meta agency.short >}}'s current estate, **BlueCat Integrity** is the principal mechanism-class peer, and the ConMon roadmap's alternatives matrix documents what changes on substitution. Every closure claim below is a claim about the mechanism class.
 
@@ -80,7 +82,7 @@ The agency deploys an InfoBlox NIOS virtual appliance as the Grid Master on-prem
 
 > **{{< meta agency.short >}} topology note:** For {{< meta agency.short >}}'s multi-cloud architecture spanning AWS GovCloud, Azure (commercial, paired with the agency's Microsoft 365 GCC tenant), Oracle OCI, and on-premises VMware, Path B — NIOS Grid with an on-premises Grid Master — more closely matches {{< meta agency.short >}}'s topology. No single cloud provider is the hub; all four environments are equal spokes of the on-premises control plane. The decision between Path A and Path B should involve OIS and the CIO Office, as it determines whether InfoBlox is a shared-responsibility SaaS or an agency-operated infrastructure component. Agency selection pending.
 
-}-governed hub; Grid Members in AWS, Azure Gov, OCI, and on-prem sites as equal spokes; documented inside {{< meta agency.short >}}'s own FedRAMP Moderate boundary with agency-owned evidence; procured via GSA Schedule GS-35F or agency IDIQ; best fit when no single cloud is the hub and the trust plane stays in-house. Amber note: Path B more closely matches {{< meta agency.short >}} topology; the A/B decision belongs to OIS and the CIO Office; agency selection pending. White background. Source: Book 01 InfoBlox DDI Briefing deck, Date Code 2026-07-07 09:11 ET." width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … governed hub; Grid Members in AWS, Azure Gov, OCI, and on-prem sites as equal spokes; documented inside {{< meta agency.short >}}'s own FedRAMP Moderate boundary with agency-owned evidence; procured via GSA Schedule GS-35F or agency IDIQ; best fit when no single cloud is the hub and the trust plane stays in-house. Amber note: Path B more closely matches {{< meta agency.short >}} topology; the A/B decision belongs to OIS and the CIO Office; agency selection pending. White background. Source: Book 01 InfoBlox DDI Briefing deck, Date Code 2026-07-07 09:11 ET.
 
 ```{=html}
 </div>
@@ -243,17 +245,17 @@ InfoBlox and Microsoft have a formal **Azure Technology Alliance Partnership** w
 
 #### M365 GCC Boundary Enforcement
 
-Microsoft publishes M365 endpoint changes (IP ranges + FQDNs) via the Office 365 IP and URL Web Service API. For GCC Moderate specifically, Microsoft publishes a separate GCC endpoint list — the commercial and GCC IP ranges are different and must not be mixed. A workstation accidentally reaching a commercial Microsoft 365 endpoint instead of the GCC endpoint is a **FedRAMP boundary violation**.
+Microsoft publishes M365 endpoint changes (IP ranges + FQDNs) via the Office 365 IP and URL Web Service API. For GCC Moderate specifically, Microsoft publishes no separate list: the Worldwide instance of the service ("Worldwide, including GCC") is the list a GCC tenant uses, and it is the same list Vol I Book 05 builds Cloud OnRamp on. Microsoft publishes separate lists only for GCC High, DoD and the 21Vianet cloud, and those ranges must not be mixed in. A workstation accidentally reaching an endpoint of another Microsoft 365 cloud, or one outside the published list, is a **FedRAMP boundary violation**.
 
 InfoBlox provides the automated enforcement pipeline:
 
 1. **Daily poll** of the Microsoft M365 GCC endpoint API (version-change detection)
 2. **RPZ passthrough allow-list** — GCC FQDNs explicitly allowed through threat blocking
-3. **RPZ block list** — commercial M365 FQDNs (non-GCC) blocked at DNS layer
+3. **RPZ block list** — FQDNs of the other Microsoft 365 clouds (GCC High, DoD, 21Vianet) blocked at DNS layer
 4. **Azure NSG IP Group** update — GCC Optimize IP ranges pushed to Azure
 5. **AWS GovCloud Security Group** update — GCC IP ranges for outbound rules
 6. **VPN split-tunnel DNS** — M365 Optimize FQDNs route via local interface, not VPN tunnel
-7. **Sentinel alert** — any DNS query from an in-boundary workload to a commercial M365 endpoint triggers an IR ticket
+7. **Sentinel alert** — any DNS query from an in-boundary workload to an endpoint of another Microsoft 365 cloud triggers an IR ticket
 
 ::: {.aan-warning}
 **Without InfoBlox automation:** Each of Microsoft's 8–12 annual endpoint changes requires four separate change tickets across NSG, Security Groups, RPZ, and VPN config — during which {{< meta agency.short >}} has a boundary gap window. With InfoBlox, all four update within minutes of the next daily poll of Microsoft's API — a worst-case gap of roughly 24 hours rather than the days-to-weeks a manual four-ticket cycle takes.
@@ -261,7 +263,7 @@ InfoBlox provides the automated enforcement pipeline:
 
 ### AWS Partnership: BloxOne Runs ON AWS GovCloud {#sec-aws}
 
-} environments on the right" width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … environments on the right
 
 The AWS relationship is the deepest of all three cloud vendors: **InfoBlox's own FedRAMP-authorized cloud service (Infoblox Government Cloud, CSO FR2017257053 — verify current scope and date on the FedRAMP Marketplace) is hosted on AWS GovCloud.** This makes AWS the infrastructure foundation for InfoBlox's SaaS control plane.
 
@@ -283,7 +285,7 @@ AWS-specific InfoBlox capabilities:
 
 ### Oracle Cloud / OCI: OPM HRIT Future Integration {#sec-oracle}
 
-} environment on left and OPM HRIT on Oracle OCI on right, with InfoBlox in the center managing the DNS conditional forwarder, certificate monitor, and IP documentation" width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … environment on left and OPM HRIT on Oracle OCI on right, with InfoBlox in the center managing the DNS conditional forwarder, certificate monitor, and IP documentation
 
 OPM is migrating OPM HRIT (federal HR and benefits processing) to Oracle HCM Cloud on OCI. As OPM's OPM HRIT moves to OCI-hosted SaaS, {{< meta agency.short >}}'s integration path changes from a mainframe handoff to a cloud API call from {{< meta agency.short >}}'s environment to OPM's OCI-hosted service endpoints.
 
@@ -367,7 +369,7 @@ Legacy DNS was designed for a flat environment: one zone, manual A records, a si
 
 **Uncontrolled split-brain.** When internal and external DNS are not deliberately separated, the same FQDN resolves to different addresses by accident. Controlled split-horizon DNS is the same mechanism — intentional. Internal users get private resolution; external users get public resolution; InfoBlox view policy enforces both. Accidental split-brain is a misconfiguration; deliberate split-horizon is a security boundary.
 
-}. Center: two resolvers with the same zone name but different data. Right: Answer A returns 10.1.4.22, a private IP unreachable from cloud; Answer B returns 20.14.8.55, a public IP that routes over the internet. Red panel below lists three structural reasons runbooks and audits fail: the failure is silent — the query succeeds with the wrong answer and surfaces as a network problem; the change surface is too large — every private endpoint and IP change touches up to five DNS systems; and security policy diverges too — an RPZ block applied in one resolver protects nothing behind the other four. White background. Source: Book 01 InfoBlox DDI Briefing deck, Date Code 2026-07-07 09:11 ET." width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … Center: two resolvers with the same zone name but different data. Right: Answer A returns 10.1.4.22, a private IP unreachable from cloud; Answer B returns 20.14.8.55, a public IP that routes over the internet. Red panel below lists three structural reasons runbooks and audits fail: the failure is silent — the query succeeds with the wrong answer and surfaces as a network problem; the change surface is too large — every private endpoint and IP change touches up to five DNS systems; and security policy diverges too — an RPZ block applied in one resolver protects nothing behind the other four. White background. Source: Book 01 InfoBlox DDI Briefing deck, Date Code 2026-07-07 09:11 ET.
 
 **Opaque observability.** When all workloads resolve through undifferentiated names, a DNS query log cannot identify the cloud, environment, or service from the FQDN. `prod.api.azure.{{< meta agency.domain >}}` is self-documenting. `svc-443-node7.{{< meta agency.domain >}}` is not.
 
@@ -391,7 +393,7 @@ The following hierarchy applies five patterns — functional, geographic, enviro
 └── mon.{{< meta agency.domain >}}                   (monitoring — ThousandEyes, Azure Monitor)
 ```
 
-} as root with five functional first-level subdomains: internal (split-view, green), api, auth, vc (blue), and mgmt (orange, admin-only). Each L1 zone shows its wildcard cert scope, DNS view assignment, and RPZ policy. Sub-zone pills under internal show cloud platforms vmw/azure/aws/oci; under api show env tiers prod/staging; under vc show geographic nodes us-east and teamsconn." width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … as root with five functional first-level subdomains: internal (split-view, green), api, auth, vc (blue), and mgmt (orange, admin-only). Each L1 zone shows its wildcard cert scope, DNS view assignment, and RPZ policy. Sub-zone pills under internal show cloud platforms vmw/azure/aws/oci; under api show env tiers prod/staging; under vc show geographic nodes us-east and teamsconn.
 
 **Depth guideline:** Prefer three labels or fewer. `prod.api.{{< meta agency.domain >}}` is preferable to `us-east.prod.api.{{< meta agency.domain >}}` unless geography carries an independent operational meaning (separate certificate, separate RPZ policy, separate routing). Each additional label multiplies certificate scope complexity and diagnostic friction.
 
@@ -464,7 +466,7 @@ resource "infoblox_cname_record" "teamsconn_active" {
 
 When a new VM provisions in any environment, InfoBlox creates the DNS record in the correct zone, allocates the IPAM entry in the correct Network View, and triggers SCEP enrollment in the correct CA — all from the zone the record belongs to. The namespace is the configuration.
 
-**Kubernetes `external-dns`:** For Kubernetes workloads on any platform, the `external-dns` controller creates and removes InfoBlox DNS records as services come and go. A Service annotated with `external-dns.alpha.kubernetes.io/hostname: payments.api.{{< meta agency.domain >}}` results in an A record in `prod.api.{{< meta agency.domain >}}` pointing to the load balancer IP — created on Service creation, removed on Service deletion, with no manual DNS management required.
+**Kubernetes `external-dns`:** For Kubernetes workloads on any platform, the `external-dns` controller creates and removes InfoBlox DNS records as services come and go. A Service annotated with `external-dns.alpha.kubernetes.io/hostname: payments.prod.api.{{< meta agency.domain >}}` results in an A record in `prod.api.{{< meta agency.domain >}}` pointing to the load balancer IP — created on Service creation, removed on Service deletion, with no manual DNS management required.
 
 ### RPZ Policy Scoping by Subdomain {#sec-subdomain-rpz}
 
@@ -499,7 +501,7 @@ The subdomain strategy adds one new control — AC-4 — to the NIST mapping in 
 
 Global server load balancing has always been a DNS function wearing an appliance badge. When a hardware GSLB appliance decides which data center or cloud region answers a user's request, the mechanism it uses is a DNS response: the appliance acts as an authoritative name server that answers the same query differently depending on endpoint health, requestor topology, and policy weight. Strip away the chassis, and what remains is health-checked, policy-driven authoritative DNS — a control-plane function of the naming and addressing layer, not a data-plane function of any appliance tier.
 
-}; InfoBlox DTC at center checking ICMP/TCP/HTTPS health monitors against three endpoint pools on the right: On-Premises (healthy, priority 1), AWS GovCloud (healthy, priority 2), and Azure (unhealthy, excluded from answer set). The DNS response returns the IP of the highest-priority healthy pool member." width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … InfoBlox DTC at center checking ICMP/TCP/HTTPS health monitors against three endpoint pools on the right: On-Premises (healthy, priority 1), AWS GovCloud (healthy, priority 2), and Azure (unhealthy, excluded from answer set). The DNS response returns the IP of the highest-priority healthy pool member.
 
 Modern DDI platforms implement this function natively. InfoBlox DNS Traffic Control (DTC) attaches health monitors (ICMP, TCP, HTTP/S) to pools of service endpoints and computes each A/AAAA response at query time from pool member health, topology rules, and weighted ratios — a degraded endpoint simply stops appearing in answers, within one TTL, with no traffic ever passing through the Grid Member. The cloud providers expose the same function as DNS routing policy: Route 53 weighted, latency-based, geolocation, and failover routing policies; Azure Traffic Manager profiles; OCI Traffic Management steering policies. In every case the steering decision executes in the resolution path, and the "load balancer" is the answer itself.
 
@@ -545,7 +547,7 @@ The following table maps InfoBlox DDI landing zone capabilities to specific NIST
 
 CISA's Zero Trust Maturity Model v2.0 (April 2023) defines five pillars and three cross-cutting capabilities across four maturity stages: Traditional → Initial → Advanced → Optimal.
 
-} at Advanced maturity through DNSSEC, certificate-to-IP binding, IaC automation, and unified syslog. FedRAMP 20x: Advanced equals AO-signable posture, mandatory January 1 2027." width="100%"}
+*Figure description (image not included; the opening of the description was not preserved):* … at Advanced maturity through DNSSEC, certificate-to-IP binding, IaC automation, and unified syslog. FedRAMP 20x: Advanced equals AO-signable posture, mandatory January 1 2027.
 
 ### Networks Pillar (Deepest Alignment) {#sec-zt-networks}
 
@@ -600,7 +602,7 @@ InfoBlox DDI enforces the FedRAMP authorization boundary at three layers simulta
 
 **Layer 2 — DNS = Boundary Enforcement at Egress.** Every DNS query from every workload passes through the InfoBlox Grid Member (because all VPC/VNet/NSX-T DHCP Options point to it). InfoBlox enforces:
 
-- RPZ blocks commercial M365 endpoints (prevents FedRAMP data reaching non-GCC Microsoft infrastructure)
+- RPZ blocks the endpoints of the other Microsoft 365 clouds (prevents FedRAMP data reaching Microsoft infrastructure outside the tenant's cloud instance)
 - RPZ blocks non-FedRAMP SaaS FQDNs (prevents workloads from reaching unauthorized cloud services)
 - Conditional forwarders for external services generate the SA-9 documentation automatically
 - DNSSEC validation required — DNS spoofing that could redirect traffic outside the boundary is rejected
@@ -812,7 +814,7 @@ Each phase produces immediately usable compliance evidence and security value �
 - Deploy InfoBlox Grid Member as Azure VM in Hub VNet; configure Azure DNS Private Resolver to forward to Grid Member
 - Register all Azure VNet/subnet CIDRs in InfoBlox Azure-GCC Network View; enable Azure connector
 - Configure Azure Key Vault Certificate Manager polling in InfoBlox Certificate Tracker
-- Configure M365 GCC endpoint API polling; test RPZ passthrough and commercial M365 RPZ block
+- Configure M365 GCC endpoint API polling; test RPZ passthrough and the RPZ block for other Microsoft 365 clouds
 
 ### Phase 4 — AWS GovCloud Integration (Months 5–7) {.unnumbered}
 
@@ -861,6 +863,8 @@ Each phase produces immediately usable compliance evidence and security value �
 
 ---
 
-```{=html}
-<div class="fouo-banner">UNCLASSIFIED // FOR OFFICIAL USE ONLY — {{< meta agency.short >}} Cloud Services Team — Cloud Landing Zone IPAM/DDI/PKI Architecture — July 8, 2026</div>
-```
+:::: {.content-hidden unless-profile="ssa"}
+::: {.fouo-banner}
+UNCLASSIFIED // FOR OFFICIAL USE ONLY — {{< meta agency.short >}} Cloud Services Team — Cloud Landing Zone IPAM/DDI/PKI Architecture — July 8, 2026
+:::
+::::
