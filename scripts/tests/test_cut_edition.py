@@ -49,13 +49,28 @@ class Titles(unittest.TestCase):
         self.assertNotIn("baseline", ce.notes(EID, "S", {}))
 
 
+_real_load = ce.gr.load
+
+
+def load_without_baseline(units):
+    # The repository's own data/editions.yml has had a baseline edition since Release 2.0; these dry runs
+    # test a cut as if none were marked yet.
+    editions, rest = _real_load(units)
+    return [{k: v for k, v in ed.items() if k not in ("baseline", "release")} for ed in editions], rest
+
+
 class DryRun(unittest.TestCase):
-    def run_cut(self, *args):
+    def run_cut(self, *args, load=load_without_baseline):
         out = io.StringIO()
         with mock.patch.object(ce, "git", fake_git), mock.patch.object(ce, "draft_units", lambda *a: {}), \
-                contextlib.redirect_stdout(out):
+                mock.patch.object(ce.gr, "load", load), contextlib.redirect_stdout(out):
             code = ce.main([EID, "--summary", "S", "--dry-run", *args])
         return code, out.getvalue()
+
+    def test_a_second_baseline_is_refused(self):
+        with self.assertRaises(SystemExit) as cm:
+            self.run_cut("--baseline", load=_real_load)
+        self.assertIn("already marked baseline", str(cm.exception))
 
     def test_baseline_dry_run_prints_title_and_the_two_fields(self):
         code, text = self.run_cut("--baseline")
