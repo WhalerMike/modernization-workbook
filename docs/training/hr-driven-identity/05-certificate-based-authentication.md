@@ -14,7 +14,7 @@ last-reviewed: 2026-11-08
 
 *Part of the [HR-Driven Identity learning path](index.md). Gate G5 Credentials. Workbook [Chapter 05](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md). About 50 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_HR_Module_5.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_5_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_HR_Module_5.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_HR_Module_5_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_HR_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-hr-module-5/Training_HR_Module_5_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

@@ -14,7 +14,7 @@ last-reviewed: 2026-11-07
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 1, task A1.5, and Phase 2, tasks A2.3, A2.5 and A2.6. Workbook [Chapter 03](../../project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_3.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_3_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_PA_Module_3.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_3_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-3/Training_PA_Module_3_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

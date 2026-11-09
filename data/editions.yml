@@ -798,6 +798,486 @@ editions:
       developer-workbooks/ticket-to-machine:
         changes:
           - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
+  - id: edition-2026.11.5
+    date: 2026-11-08
+    commit: 7aa71ba4ca28a83d23ef73818a2346007d4a229f
+    summary: "Release 2.0 is the workbook's baseline edition: the nineteen topic books, and the guides, developer workbooks, training pages and Source Register approved by the workbook's editor, are complete and checked against every other book. From here every change is tracked against Release 2.0 (Version 2.1, 2.2 and on); Baseline is not a claim of independent peer review."
+    baseline: true
+    release: "2.0"
+    units:
+      b00-orientation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Workbook Map replaces the Site Map (#364)"
+          - "Approve Book 19's index and the Source Register; settle the sweep's judgment calls (#365)"
+          - "Book 00: fix confirmed crosswalk errors (published scope, Reference menu, Foundation gate, gate template link, Cloud PKI entitlement, test plan catalog) (#410)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 00: fix 18 inconsistencies (G0 conditions, phases, drift classes, charters, GPO link order, reading paths) (#421)"
+          - "Books 00-03: decision fixes (AU naming, tiers, durations, drift ceilings, figures, ownership) (#452)"
+          - "Content Delivery Modernization: distribution point consolidation guides, plan and kit (#468)"
+          - "Consistency read A (Books 00-04): risk-tier notation, memberOf, emergency accounts (#482)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b01-transformation-arc:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 01: fix confirmed crosswalk errors (appendix A rows, Ch 05, 07, 08, 09, 10, 11, 12) (#376)"
+          - "Book 01: resolve inconsistency findings (14 fixed, 4 held for decision) (#424)"
+          - "Books 00-03: decision fixes (AU naming, tiers, durations, drift ceilings, figures, ownership) (#452)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read A (Books 00-04): risk-tier notation, memberOf, emergency accounts (#482)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b02-identity:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 02: fix confirmed crosswalk errors (extension attributes, memberOf date, Entra Domain Services, discovery gaps, attribute-quality reference, server management) (#398)"
+          - "Figures, kit and config: Entra Domain Services diagram, CLM figure, Book 17 figures, hcm-entra slots 4-6, NPI apply hash and operator (#418)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "External Partner follow-up: ch10 stages and TAP lifetime, guest-invitation decider, control-support wording (#420)"
+          - "Book 02: resolve 22 inconsistencies (tiers, drift classes, titles, GCC caveat, Start Kit, BOD 26-04) (#426)"
+          - "Books 00-03: decision fixes (AU naming, tiers, durations, drift ceilings, figures, ownership) (#452)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read A (Books 00-04): risk-tier notation, memberOf, emergency accounts (#482)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b03-hr-identity:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 03: fix confirmed crosswalk errors (#371)"
+          - "Add source-check note for External Partner Person (WD-139) (#397)"
+          - "Record WD-140 to WD-143 and the second source pass for the partner chapter (#402)"
+          - "Add External Partner Person chapter, Entra profile and record (Book 03 ch15, Book 04 App C, Book 03 App D) (#417)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "External Partner follow-up: ch10 stages and TAP lifetime, guest-invitation decider, control-support wording (#420)"
+          - "Book 03: resolve 23 inconsistency findings (terms, lists, cross-references) (#425)"
+          - "Books 00-03: decision fixes (AU naming, tiers, durations, drift ceilings, figures, ownership) (#452)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read A (Books 00-04): risk-tier notation, memberOf, emergency accounts (#482)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b04-access:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 04: fix confirmed crosswalk errors (roles count, pointers, CA090 exemption, forced report-only, schedule rows) (#374)"
+          - "Add External Partner Person chapter, Entra profile and record (Book 03 ch15, Book 04 App C, Book 03 App D) (#417)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 04: align nine inconsistencies (tiers, reviewers, strengths list, licence name, dates) (#423)"
+          - "Book 04: decisions pass (Nov 7) (#454)"
+          - "Decks: match Books 04, 16 and 18 pages after the Nov 7 decisions passes (#460)"
+          - "Re-render five videos after the #460 deck wording changes (#461)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read A (Books 00-04): risk-tier notation, memberOf, emergency accounts (#482)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b05-devices:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 05: fix error findings 1-7, 9, 10 (certs, scope, CP/SC lists, Tier2, server OS, resource access) (#370)"
+          - "Book 05: repoint finding 8 sentences to say Chapter 10 is Intune-only (#413)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "Book 05: inconsistency fixes (b05) (#429)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Content Delivery Modernization: distribution point consolidation guides, plan and kit (#468)"
+          - "Consistency read B (Books 05-09): fix duplicated phrase in Book 05 Ch04 and a stale chapter title in Book 09 Ch02 (#481)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b06-data-platform:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 06: fix error findings 284-299 (login sequence, audit outputs, AD CS decision, posture wording, licensing) (#379)"
+          - "Book 06: fix inconsistency findings (36 fixed, 2 left for decision) (#428)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b07-pki:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 07: fix confirmed crosswalk errors (PIV issuer, profile pointers, renewal engines, trust-store wording, at-a-glance table, Appendix C) (#385)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 07: fix 25 inconsistency findings (servers, roles, terms, counts) (#427)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b08-ddi:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 08: fix confirmed crosswalk errors (Protective DNS timing, DC DNS role, locator records, DoH, ownership, sources) (#387)"
+          - "Figures, kit and config: Entra Domain Services diagram, CLM figure, Book 17 figures, hcm-entra slots 4-6, NPI apply hash and operator (#418)"
+          - "Book 08: fix inconsistency findings (sources, should/must, rollback, GCC-Moderate, Oracle, certification wording) (#430)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Nov 8 fixes: Start Here about 7 minutes; BOD 25-01 reporting methods per CISA; EO 14144 4(c) in Book 08; SP access review stage (#466)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b09-network:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 09: fix confirmed crosswalk error findings (#372)"
+          - "Book 09: MAB default to quarantine; re-time savings ramp to the roadmap (#375)"
+          - "Book 09: resolve 24 inconsistency findings (cutover gate, FedRAMP wording, glossary, cross-references) (#431)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Content Delivery Modernization: distribution point consolidation guides, plan and kit (#468)"
+          - "Claim language: Books 09, 14 and 15 say supports, not closes (#476)"
+          - "Consistency read B (Books 05-09): fix duplicated phrase in Book 05 Ch04 and a stale chapter title in Book 09 Ch02 (#481)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b10-cloud-boundary:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 10: fix confirmed crosswalk errors (GCC example counts, egress allowlist, POA&M vs exception, table description) (#399)"
+          - "Book 10: make chapter terms, cites and Rev5 dates agree (inconsistency wave) (#432)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b11-zero-trust:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 11: fix confirmed crosswalk errors (vendor-tool wording, Book 09/12/02 pointers, drift classes, Appendix A) (#386)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 11: fix 19 cross-page inconsistencies (Security Suite, pillars, stall point, role set, Book 12/13 links, drift status, dates) (#433)"
+          - "Nov 8 fixes: Start Here about 7 minutes; BOD 25-01 reporting methods per CISA; EO 14144 4(c) in Book 08; SP access review stage (#466)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read C (Books 10 to 14): BOD 25-01 methods, anchor, closes-to-supports (#480)"
+          - "Consistency read C2: full read of Book 11 Ch07/08, Book 12 Ch12, Book 13 Ch05/06/App B (#485)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b12-security-operations:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 12: fix confirmed crosswalk errors (risk acceptance split, PaaS guest OS, deployment order, appendix scope, references) (#400)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 12: align inconsistent numbers, terms, titles and cross-references (22 findings) (#434)"
+          - "Decisions pass, Books 05-12: apply Mike's calls and take-the-recommendation items (#453)"
+          - "Nov 8 fixes: Start Here about 7 minutes; BOD 25-01 reporting methods per CISA; EO 14144 4(c) in Book 08; SP access review stage (#466)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read C (Books 10 to 14): BOD 25-01 methods, anchor, closes-to-supports (#480)"
+          - "Consistency read C2: full read of Book 11 Ch07/08, Book 12 Ch12, Book 13 Ch05/06/App B (#485)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b13-governance:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 13: fix confirmed crosswalk errors (plane inputs, POA&M rule, exception approver, evidence-plane pointers, retention owner) (#380)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 13: fix inconsistency findings (terms, severities, escalation, record class, evidence bundle) (#422)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read C2: full read of Book 11 Ch07/08, Book 12 Ch12, Book 13 Ch05/06/App B (#485)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b14-compliance:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Approve Book 19's index and the Source Register; settle the sweep's judgment calls (#365)"
+          - "Book 14: fix confirmed crosswalk errors (AT-2(3), PT-6, PT-8 rows, SR citations, Book 07 classes, pointers, matrix) (#382)"
+          - "Book 14: SAP, SAR and CM-4 impact analysis templates with Copilot prompts (Appendices C-E) (#395)"
+          - "Book 14 Appendix C: categorization walk-through (P-12, C-1..C-3) (#394)"
+          - "Book 14 Appendix C: Prepare-step templates (P-2, P-14, P-6) with Copilot prompts (#392)"
+          - "Book 14: re-render two figures, add PM-18/PM-19, fix Appendix D kit row, Appendix F/G links, P-6 reference (#415)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 14: resolve inconsistency findings (roles, scope rule, crosswalk, series map, evidence layer) (#436)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Claim language: Books 09, 14 and 15 say supports, not closes (#476)"
+          - "Consistency read C (Books 10 to 14): BOD 25-01 methods, anchor, closes-to-supports (#480)"
+          - "Book 14 consistency read C3: privacy-baseline PM list, three-property count, IA-9/SC-8 home, claim wording (#484)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b15-day2-operations:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 15: fix confirmed crosswalk errors (admin consent chain, Tier 1 notice, per-user MFA role, federated reset, CA exclusions, evidence record) (#403)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "External Partner follow-up: ch10 stages and TAP lifetime, guest-invitation decider, control-support wording (#420)"
+          - "Book 15: settle 33 inconsistency findings (contract values, read-only rule, approvers, terms, pointers) (#435)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Claim language: Books 09, 14 and 15 say supports, not closes (#476)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Help desk guide and Book 15 Ch03: route application access by risk tier as in Book 04 (#492)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b16-people:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 16: fix confirmed crosswalk errors (#407)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "Book 16: fix 24 inconsistency findings (gates, owners, ladder, counts, citations) (#437)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Decks: match Books 04, 16 and 18 pages after the Nov 7 decisions passes (#460)"
+          - "Re-render five videos after the #460 deck wording changes (#461)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b17-ai-identity:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 17: fix confirmed crosswalk errors (#383)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "Figures, kit and config: Entra Domain Services diagram, CLM figure, Book 17 figures, hcm-entra slots 4-6, NPI apply hash and operator (#418)"
+          - "External Partner Person: light edits to existing pages, held findings, links (E0 to E9) (#419)"
+          - "Book 17: align inconsistent terms, owners, dates and licenses (17 findings) (#438)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b18-application-modernization:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Book 18: fix confirmed crosswalk errors (rule 7 override, dependency axis and scoring, cross-chapter pointers, decision rights) (#381)"
+          - "Book 18: fix inconsistency findings (triage record, sponsor, gates, roles, dates) (#440)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Db2 spelling: Downloads, home page, app-modernization example, Book 18 brief and verification (#458)"
+          - "Decks: match Books 04, 16 and 18 pages after the Nov 7 decisions passes (#460)"
+          - "Re-render five videos after the #460 deck wording changes (#461)"
+          - "Re-render Start Episode 4 and the Book 18 briefing video (#471)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Decks: supports, not satisfies (wording, narration, re-rendered videos) (#489)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      b19-developer-workbook:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Approve Book 19's index and the Source Register; settle the sweep's judgment calls (#365)"
+          - "Book 19: fix confirmed crosswalk errors (#377)"
+          - "Book 19 Ch 09: OSCAL export lab step (#401)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "Book 19: fix inconsistency findings (#439)"
+          - "Decisions fix pass for Books 13 to 19: Book 18 gates and roles, Db2 spelling, Book 15 approvers, Book 16 criteria, Book 17 roles, Book 13 drift mapping (#456)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Approve four gated pages (Nov 8) (#478)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/ansible-configuration-automation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides A: fix 14 inconsistency findings (#441)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/arc-track-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides A: fix confirmed crosswalk errors (book count, PS-7 row, Chapter 03 absorbed findings, slots 4-6, VK-ARC-01 and 04 descriptions) (#411)"
+          - "Guides A: fix 14 inconsistency findings (#441)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/attribute-driven-migration-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides A: fix 14 inconsistency findings (#441)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/attribute-driven-migration:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides A: fix confirmed crosswalk errors (book count, PS-7 row, Chapter 03 absorbed findings, slots 4-6, VK-ARC-01 and 04 descriptions) (#411)"
+          - "Guides A: fix 14 inconsistency findings (#441)"
+          - "Book 05: inconsistency fixes (b05) (#429)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Approve four gated pages (Nov 8) (#478)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/brief-authorizing-official:
+        changes:
+          - "Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs (#390)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/brief-chco:
+        changes:
+          - "Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs (#390)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/brief-cio:
+        changes:
+          - "Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs (#390)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/brief-ciso:
+        changes:
+          - "Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs (#390)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/charter-sign-off-sheet:
+        changes:
+          - "Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs (#390)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/cisco-sdwan-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Review gate ignores the edition tag in deck links; four decks build again (#363)"
+      guides/cyberark-certificate-lifecycle:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Review gate ignores the edition tag in deck links; four decks build again (#363)"
+      guides/dp-consolidation-implementation:
+        changes:
+          - "Content Delivery Modernization: distribution point consolidation guides, plan and kit (#468)"
+          - "Approve the remaining 20 gated pages (Nov 8) (#479)"
+      guides/dp-consolidation:
+        changes:
+          - "Content Delivery Modernization: distribution point consolidation guides, plan and kit (#468)"
+          - "Executive decision deck: Content Delivery Modernization (DP Consolidation) (#465)"
+          - "Approve the remaining 20 gated pages (Nov 8) (#479)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+      guides/effective-meetings:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides A: fix 14 inconsistency findings (#441)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/hcm-entra-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides A: fix confirmed crosswalk errors (book count, PS-7 row, Chapter 03 absorbed findings, slots 4-6, VK-ARC-01 and 04 descriptions) (#411)"
+          - "Figures, kit and config: Entra Domain Services diagram, CLM figure, Book 17 figures, hcm-entra slots 4-6, NPI apply hash and operator (#418)"
+          - "Guides A: fix 14 inconsistency findings (#441)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+      guides/hr-driven-identity-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Review gate ignores the edition tag in deck links; four decks build again (#363)"
+          - "Fix confirmed crosswalk errors in guides and explainers (#406)"
+          - "Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) (#442)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+      guides/infoblox-nios-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Review gate ignores the edition tag in deck links; four decks build again (#363)"
+      guides/intune-track-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Fix confirmed crosswalk errors in guides and explainers (#406)"
+          - "Book 05: inconsistency fixes (b05) (#429)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/non-person-identity-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Fix confirmed crosswalk errors in guides and explainers (#406)"
+          - "Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) (#442)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Nov 8 fixes: Start Here about 7 minutes; BOD 25-01 reporting methods per CISA; EO 14144 4(c) in Book 08; SP access review stage (#466)"
+          - "Approve four gated pages (Nov 8) (#478)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/one-page-ask:
+        changes:
+          - "Meeting pack: The One-Page Ask, Charter Sign-Off Sheet and four reader briefs (#390)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      guides/privileged-access-implementation:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) (#442)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+      guides/snow-sailpoint-integration-kit:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Fix confirmed crosswalk errors in guides and explainers (#406)"
+          - "Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) (#442)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+      guides/ttm-servicenow-sailpoint:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Review gate ignores the edition tag in deck links; four decks build again (#363)"
+          - "Fix confirmed crosswalk errors in guides and explainers (#406)"
+          - "Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) (#442)"
+          - "Decisions pass: guides, reference and training (#455)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Approve the remaining 20 gated pages (Nov 8) (#479)"
+          - "Consistency read D: Books 15-19, guides, non-book pages (#483)"
+          - "Decisions 10-27 (Nov 8): Books 10-19, guides, training, help desk guide (#487)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+      guides/ttm-task-catalog:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Fix confirmed crosswalk errors in guides and explainers (#406)"
+          - "Guides and explainers: fix inconsistency findings (Oracle platform, Wave 2 count, emergency class, name change, contractor source) (#442)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+      developer-workbooks/hr-driven-identity:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Workbooks HR and ticket-to-machine: fix confirmed crosswalk errors (pre-flight order, test evidence, VK-HR-06 limit, JW rule count, ISC clients) (#409)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "HR-driven identity and Ticket-to-Machine workbooks: fix inconsistency findings (#449)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "NPI workbook: fix 11 confirmed crosswalk errors (#378)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "Figures, kit and config: Entra Domain Services diagram, CLM figure, Book 17 figures, hcm-entra slots 4-6, NPI apply hash and operator (#418)"
+          - "Non-Person Identity workbook: fix 16 inconsistency findings (#447)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Claim language: supports, not satisfies (rule, check, first sweep) (#474)"
+          - "Approve four gated pages (Nov 8) (#478)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      developer-workbooks/privileged-access:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Privileged access workbook: fix confirmed crosswalk errors (#408)"
+          - "Privileged access workbook: fix 22 inconsistency findings (#448)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Decisions of Nov 8, items 1-9 (Books 00-08) (#486)"
+          - "Approve 15 gated pages (Nov 8, after the consistency read) (#490)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
+      developer-workbooks/ticket-to-machine:
+        changes:
+          - "Edition 2026.11.4: record the edition and point deck links at it (#362)"
+          - "Review gate ignores the edition tag in deck links; four decks build again (#363)"
+          - "Reword the evidence export summary: closed, not closed on a re-read (#384)"
+          - "Workbooks HR and ticket-to-machine: fix confirmed crosswalk errors (pre-flight order, test evidence, VK-HR-06 limit, JW rule count, ISC clients) (#409)"
+          - "Apply the open-choice decisions: text, plans, training, reference, register (#416)"
+          - "HR-driven identity and Ticket-to-Machine workbooks: fix inconsistency findings (#449)"
+          - "Approve 116 gated pages (Nov 7); fix RMF map stale-review test (#457)"
+          - "Release 2.0: Draft becomes Baseline (#491)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.
