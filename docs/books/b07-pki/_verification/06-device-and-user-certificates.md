@@ -175,3 +175,21 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | Certificate Connector overview, section "Connector status" (rewritten; page updated Oct 26, 2026): statuses are now Active, Warning (can issue, issue needs attention) and Action required (can't issue, or disconnected), with health messages for CA connectivity, disconnection, issuing and revocation permissions and template configuration; the page no longer describes Warning and Error statuses for deprecated versions | updated: alert on Warning or Action required (was Warning or Error); version, lifecycle and instance claims unchanged |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | NDES policy module binds a SCEP request to user, purpose and certificate type; one policy module; removing NDES doesn't uninstall it | SCEP with AD CS | verified (sentence added) | `c06-ndes-policy`: Learn, "Use a policy module with NDES" and "Install a policy module with NDES" (read Nov 9, 2026) |
+| L2 | NDES service account has Read and Enroll on the template | AD CS requirements table | verified (second citation added) | `c06-ndes-account`: Learn, "Configure NDES to use a domain user account" (read Nov 9, 2026) |
+| L3 | AD FS checks revocation over HTTP, HTTPS, LDAP or OCSP; chain on every AD FS and WAP server; root in NTAuth | Trust parity | verified (clause added) | `c06-adfs-certauth`: Learn, "Configure AD FS support for user certificate authentication" (read Nov 9, 2026) |
+| L4 | AD FS Rapid Restore Tool backs up the farm | Record the federation configuration | verified (second citation added) | `c06-adfs-rrt`: Learn, "AD FS Rapid Restore tool" and "AD FS: Offline tools" (read Nov 9, 2026) |
+| L5 | Intune Windows SCEP KSP setting includes "Enroll to TPM KSP, otherwise fail" | New section: TPM key attestation | verified (new) | `c06-scep-ksp`: Learn, "Create and assign SCEP certificate profiles in Intune" (read Nov 9, 2026) |
+| L6 | TPM key attestation: what it proves; Key Attestation tab prerequisites; attestation modes; three trust models and OIDs .30/.31/.32 with assurance levels; Include Issuance Policies default; VPN/Wi-Fi OID example; enterprise CA, RSA, Platform Crypto Provider only; no non-persistent processing; EKpub allow-list via `EndorsementKeyListDirectories`; EKCA/EKROOT stores; `Get-TpmEndorsementKeyInfo`; `Confirm-CAEndorsementKeyInfo`; folder permissions | New section: TPM key attestation | verified (new) | `c06-tpm-attest`: Learn, "TPM Key Attestation" (read Nov 9, 2026) |
+| L7 | Whether NDES/Connector or Cloud PKI SCEP requests carry attestation | New section | not yet specified (Learn silent; searched Learn Nov 9, 2026) | Learn search: Intune SCEP, NDES, TPM attestation |
+| L8 | PKCS keys are generated on the connector server, so they can't be TPM-attested | New section | verified (existing citation) | `c06-pkcs` |
+| L9 | Use attestation Required on AD CS templates and gate relying parties on the OID | New section | restated-as-design | Program design |
+| L10 | Government cloud availability of attested certificates through Intune or Cloud PKI | New section | not yet specified | Learn doesn't say |
+| L11 | `Import-Certificate -CertStoreLocation Cert:\LocalMachine\EKCA` to fill the stores | New section, command block | restated (Learn's example copies files into the Cert: drive stores; `Import-Certificate` is the documented cmdlet for public certificates) | `c06-tpm-attest`; Learn, "Inspect certificates and manage certificate store contents" |

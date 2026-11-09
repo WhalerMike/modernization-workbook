@@ -931,9 +931,10 @@ pages:
   ms_date: '2023-02-23'
   ms_topic: how-to
   description: Use sensitivity labels as a part of your overall security plan for external access
-  coverage: not-covered
+  coverage: cited
   note: Sensitivity labels and Teams/SharePoint external sharing; data-protection chapter candidate (Book 12 Ch09)
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/09-data-protection-and-classification.md
 - path: docs/architecture/9-secure-access-teams-sharepoint.md
   url: https://learn.microsoft.com/entra/architecture/9-secure-access-teams-sharepoint
   title: Secure external access to Microsoft Teams, SharePoint, and OneDrive with Microsoft Entra ID
@@ -941,9 +942,10 @@ pages:
   ms_date: '2023-02-28'
   ms_topic: how-to
   description: Secure access to Microsoft 365 services as a part of your external access security plan
-  coverage: not-covered
+  coverage: cited
   note: Sensitivity labels and Teams/SharePoint external sharing; data-protection chapter candidate (Book 12 Ch09)
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/09-data-protection-and-classification.md
 - path: docs/architecture/architecture-icons.md
   url: https://learn.microsoft.com/entra/architecture/architecture-icons
   title: Microsoft Entra architecture icons
@@ -997,12 +999,14 @@ pages:
   ms_date: '2023-01-10'
   ms_topic: concept-article
   description: Architectural guidance on achieving LDAP authentication with Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Application authentication patterns and legacy-app classes; four-class application pattern and hidden migration surface
   workbook:
   - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
+  - docs/books/b06-data-platform/_verification/18-the-four-class-pattern-for-applications.md
 - path: docs/architecture/auth-oauth2.md
   url: https://learn.microsoft.com/entra/architecture/auth-oauth2
   title: OAuth 2.0 authorization with Microsoft Entra ID
@@ -1023,12 +1027,14 @@ pages:
   ms_date: '2023-01-10'
   ms_topic: concept-article
   description: Architectural guidance on achieving OpenID Connect authentication with Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Application authentication patterns and legacy-app classes; four-class application pattern and hidden migration surface
   workbook:
   - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
+  - docs/books/b06-data-platform/_verification/18-the-four-class-pattern-for-applications.md
 - path: docs/architecture/auth-password-based-sso.md
   url: https://learn.microsoft.com/entra/architecture/auth-password-based-sso
   title: Password-based authentication with Microsoft Entra ID
@@ -1101,12 +1107,14 @@ pages:
   ms_date: '2024-02-26'
   ms_topic: concept-article
   description: Architectural guidance on achieving SAML authentication with Microsoft Entra ID
-  coverage: covered-uncited
+  coverage: cited
   note: Application authentication patterns and legacy-app classes; four-class application pattern and hidden migration surface
   workbook:
   - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
+  - docs/books/b06-data-platform/_verification/18-the-four-class-pattern-for-applications.md
 - path: docs/architecture/auth-ssh.md
   url: https://learn.microsoft.com/entra/architecture/auth-ssh
   title: SSH authentication with Microsoft Entra ID
@@ -5067,9 +5075,10 @@ pages:
   ms_date: '2025-09-11'
   ms_topic: concept-article
   description: Improve your security posture with the Microsoft Entra Zero Trust assessment to protect engineering systems.
-  coverage: not-covered
+  coverage: cited
   note: Microsoft tenant isolation and engineering-system guidance not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
 - path: docs/fundamentals/zero-trust-protect-identities.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities
   title: Security guidance - Protect identities and secrets
@@ -5103,9 +5112,10 @@ pages:
   ms_date: '2026-10-01'
   ms_topic: concept-article
   description: Improve your security posture with the Microsoft Entra Zero Trust assessment to protect tenants and isolate production systems.
-  coverage: not-covered
+  coverage: cited
   note: Microsoft tenant isolation and engineering-system guidance not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
 - path: docs/fundamentals/zero-trust-response-remediation.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-response-remediation
   title: Security guidance | accelerate response and remediation
@@ -5113,11 +5123,12 @@ pages:
   ms_date: '2025-09-12'
   ms_topic: concept-article
   description: Improve your security posture with the Microsoft Entra Zero Trust assessment to accelerate response and remediation.
-  coverage: covered-uncited
+  coverage: cited
   note: Detection and response.
   workbook:
   - docs/books/b12-security-operations/11-detection-engineering-and-response.md
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/11-detection-engineering-and-response.md
 - path: docs/global-secure-access/concept-ai-agent-discovery.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-ai-agent-discovery
   title: AI agent discovery in Global Secure Access (preview)
@@ -5136,9 +5147,10 @@ pages:
   ms_date: '2025-12-08'
   ms_topic: overview
   description: Learn how Global Secure Access alerts notify you about security issues and operational concerns, helping to strengthen your organization's security posture.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access logs, alerts and Sentinel integration; fits Book 12 Ch03
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/global-secure-access/concept-bring-your-own-device.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-bring-your-own-device
   title: Learn about bring your own device (BYOD) with the Global Secure Access clients for Microsoft Entra Private Access and Microsoft Entra Internet Access
@@ -5880,9 +5892,10 @@ pages:
   ms_date: '2026-02-21'
   ms_topic: how-to
   description: The Global Secure Access client helps secure network traffic at the user device. This article describes how to download and install the Android client.
-  coverage: not-covered
+  coverage: cited
   note: Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate
-  cited_by: []
+  cited_by:
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/global-secure-access/how-to-install-ios-client.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-install-ios-client
   title: Install the Global Secure Access Client for iOS
@@ -5890,9 +5903,10 @@ pages:
   ms_date: '2025-10-13'
   ms_topic: how-to
   description: The Global Secure Access client helps secure network traffic at the user device. This article describes how to download and install the iOS client.
-  coverage: not-covered
+  coverage: cited
   note: Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate
-  cited_by: []
+  cited_by:
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/global-secure-access/how-to-install-macos-client.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-install-macos-client
   title: Install the Global Secure Access Client for macOS
@@ -5910,9 +5924,10 @@ pages:
   ms_date: '2026-11-03'
   ms_topic: how-to
   description: The Global Secure Access client helps secure network traffic at the user device. This article describes how to download and install the Windows client.
-  coverage: not-covered
+  coverage: cited
   note: Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate
-  cited_by: []
+  cited_by:
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/global-secure-access/how-to-list-remote-networks.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-list-remote-networks
   title: How to list remote networks for Global Secure Access
@@ -6150,9 +6165,10 @@ pages:
   ms_date: '2026-06-04'
   ms_topic: how-to
   description: Strengthen your organization's security posture by integrating Global Secure Access with Microsoft Sentinel using preconfigured workbooks and analytics rules.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access logs, alerts and Sentinel integration; fits Book 12 Ch03
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/global-secure-access/how-to-simulate-remote-network.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-simulate-remote-network
   title: Simulate remote network connectivity using Azure VNG
@@ -6213,7 +6229,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/how-to-transport-layer-security-settings.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings
@@ -6226,7 +6241,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/how-to-transport-layer-security.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security
@@ -6239,7 +6253,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/how-to-universal-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions
@@ -6518,9 +6531,11 @@ pages:
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/12-microsoft-365-traffic.md
   - docs/books/b09-network/appendix-a-optimize-exemption-instruments.md
+  - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
   - docs/books/explainers/hybrid-credentials.md
   - docs/books/guides/cisco-sdwan-implementation.md
+  - docs/books/guides/intune-track-implementation.md
   - docs/evaluations/sdwan-platform-deep-dive.md
 - path: docs/global-secure-access/reference-daily-health-check.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-daily-health-check
@@ -6733,7 +6748,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/scripts/powershell-add-internet-access-device-compliance-bypasses.md
   url: https://learn.microsoft.com/entra/global-secure-access/scripts/powershell-add-internet-access-device-compliance-bypasses
@@ -6826,7 +6840,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/scripts/powershell-start-entra-recovery-preview.md
   url: https://learn.microsoft.com/entra/global-secure-access/scripts/powershell-start-entra-recovery-preview
@@ -7002,7 +7015,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/tutorial-internet-access-application-discovery.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-application-discovery
@@ -7065,7 +7077,6 @@ pages:
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  - docs/books/b07-pki/07-coexistence-and-migration.md
   cited_by: []
 - path: docs/global-secure-access/tutorial-internet-access-url-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-url-filtering
@@ -10814,9 +10825,10 @@ pages:
   ms_date: '2025-01-28'
   ms_topic: concept-article
   description: Learn about the Microsoft Entra SSO plug-in for Apple devices using iOS, iPadOS, and macOS devices.
-  coverage: not-covered
+  coverage: cited
   note: Device SSO (Apple SSO plug-in, shared device mode, WAM) is part of the Intune track but not walked through in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/identity-platform/application-consent-experience.md
   url: https://learn.microsoft.com/entra/identity-platform/application-consent-experience
   title: Consent experience for applications in Microsoft Entra ID
@@ -12710,9 +12722,10 @@ pages:
   ms_date: '2024-03-19'
   ms_topic: how-to
   description: Comprehensive guide for the Microsoft Entra ID Windows Account Manager (WAM) API, detailing its usage, parameters, and integration in Windows applications.
-  coverage: not-covered
+  coverage: cited
   note: Device SSO (Apple SSO plug-in, shared device mode, WAM) is part of the Intune track but not walked through in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/identity-platform/reference-error-codes.md
   url: https://learn.microsoft.com/entra/identity-platform/reference-error-codes
   title: Microsoft Entra authentication & authorization error codes
@@ -13309,9 +13322,10 @@ pages:
   ms_date: '2021-01-29'
   ms_topic: reference
   description: This deployment guide explains how to support passwordless authentication with FIDO2 security keys in the applications you develop
-  coverage: not-covered
+  coverage: cited
   note: Device SSO (Apple SSO plug-in, shared device mode, WAM) is part of the Intune track but not walked through in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/identity-platform/supported-accounts-validation.md
   url: https://learn.microsoft.com/entra/identity-platform/supported-accounts-validation
   title: Validation differences by supported account types
@@ -16451,12 +16465,13 @@ pages:
   ms_date: '2026-02-02'
   ms_topic: concept-article
   description: Learn about using passkey (FIDO2) authentication in Microsoft Entra ID to help improve and secure sign-in events
-  coverage: covered-uncited
+  coverage: cited
   note: FIDO2 and passkeys as phishing-resistant methods.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/09-federal-workforce-credentials.md
 - path: docs/identity/authentication/concept-authentication-phone-options.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-authentication-phone-options
   title: Voice call authentication method
@@ -16687,12 +16702,13 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn about Microsoft Entra certificate-based authentication on Android devices
-  coverage: covered-uncited
+  coverage: cited
   note: Certificate-based authentication with PIV/CAC.
   workbook:
   - docs/training/hr-driven-identity/05-certificate-based-authentication.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/09-federal-workforce-credentials.md
 - path: docs/identity/authentication/concept-certificate-based-authentication-mobile-ios.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-mobile-ios
   title: Microsoft Entra certificate-based authentication on Apple devices
@@ -17591,12 +17607,13 @@ pages:
   ms_date: '2026-07-05'
   ms_topic: how-to
   description: Learn how to sign in to Microsoft Entra ID with a FIDO2 security key. Sign in to web apps, Windows, and on-premises resources.
-  coverage: covered-uncited
+  coverage: cited
   note: FIDO2 and passkeys as phishing-resistant methods.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/09-federal-workforce-credentials.md
 - path: docs/identity/authentication/how-to-sign-in-entra-passkey-windows.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-sign-in-entra-passkey-windows
   title: Sign in with a Microsoft Entra passkey on Windows
@@ -19513,12 +19530,13 @@ pages:
   ms_date: '2026-04-05'
   ms_topic: concept-article
   description: Learn about device soft delete (preview) in Microsoft Entra ID, which moves deleted devices to a recoverable state instead of permanently removing them.
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid join, device registration and troubleshooting.
   workbook:
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/06-who-owns-the-endpoint.md
 - path: docs/identity/devices/concept-tokens-microsoft-entra-id.md
   url: https://learn.microsoft.com/entra/identity/devices/concept-tokens-microsoft-entra-id
   title: Understanding Tokens in Microsoft Entra ID
@@ -19636,9 +19654,10 @@ pages:
   ms_date: '2026-09-14'
   ms_topic: how-to
   description: Learn how to migrate Enterprise State Roaming management from Microsoft Entra ID to Windows settings backup and restore policies.
-  coverage: not-covered
+  coverage: cited
   note: Enterprise State Roaming not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: docs/identity/devices/enterprise-state-roaming-faqs.yml
   url: https://learn.microsoft.com/entra/identity/devices/enterprise-state-roaming-faqs
   title: Settings and data roaming FAQ for administrators
@@ -19646,9 +19665,10 @@ pages:
   ms_date: '2025-06-27'
   ms_topic: faq
   description: Frequently asked questions about ESR
-  coverage: not-covered
+  coverage: cited
   note: Enterprise State Roaming not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: docs/identity/devices/enterprise-state-roaming-group-policy-settings.md
   url: https://learn.microsoft.com/entra/identity/devices/enterprise-state-roaming-group-policy-settings
   title: Group Policy and MDM settings for ESR
@@ -19702,12 +19722,14 @@ pages:
   ms_date: '2024-11-25'
   ms_topic: how-to
   description: Verify configurations for Microsoft Entra hybrid joined devices
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid join, device registration and troubleshooting.
   workbook:
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/02-the-hybrid-join-trap.md
+  - docs/books/b05-devices/_verification/02-the-hybrid-join-trap.md
 - path: docs/identity/devices/how-to-hybrid-join.md
   url: https://learn.microsoft.com/entra/identity/devices/how-to-hybrid-join
   title: Configure Microsoft Entra hybrid join
@@ -19998,12 +20020,14 @@ pages:
   ms_date: '2025-06-27'
   ms_topic: troubleshooting
   description: This article covers how to use the output from the dsregcmd command to understand the state of devices in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid join, device registration and troubleshooting.
   workbook:
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
+  - docs/books/guides/intune-track-implementation.md
 - path: docs/identity/devices/troubleshoot-device-registration-tool-linux.md
   url: https://learn.microsoft.com/entra/identity/devices/troubleshoot-device-registration-tool-linux
   title: Troubleshoot Device Registration Command Tool on Linux
@@ -23224,9 +23248,10 @@ pages:
   ms_date: '2025-09-25'
   ms_topic: how-to
   description: This article describes security improvements to Microsoft Entra Connect Sync and how to enable logging of administrator activities.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/hybrid/connect/authenticate-application-id.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/authenticate-application-id
   title: Authenticate to Microsoft Entra ID by Using Application Identity
@@ -24999,9 +25024,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: overview
   description: Describes the tools that are used to synchronize and monitor your on-premises environment with Microsoft Entra ID.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/hybrid/connect/whatis-azure-ad-connect-v2.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/whatis-azure-ad-connect-v2
   title: Introduction to Microsoft Entra Connect V2
@@ -26017,11 +26043,12 @@ pages:
   ms_date: '2025-03-17'
   ms_topic: troubleshooting-general
   description: Learn about the activity captured in the service principal sign-in logs in Microsoft Entra monitoring and health.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra activity, sign-in and audit logs and their integration.
   workbook:
   - docs/books/b12-security-operations/03-identity-telemetry.md
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/monitoring-health/concept-sign-in-log-activity-details.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/concept-sign-in-log-activity-details
   title: Learn about the sign-in log activity details
@@ -26216,6 +26243,7 @@ pages:
   coverage: cited
   note: Entra Health monitoring scenarios and alerts (preview) not covered.
   cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/monitoring-health/howto-investigate-internet-access-signals.md
@@ -26377,6 +26405,7 @@ pages:
   coverage: cited
   note: Entra recommendations not covered as a feature.
   cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/monitoring-health/overview-workbooks.md
@@ -26575,11 +26604,12 @@ pages:
   ms_date: '2024-09-27'
   ms_topic: reference
   description: Reference information for the factors that drive sign-in and audit log latency in Microsoft Entra ID
-  coverage: covered-uncited
+  coverage: cited
   note: Entra activity, sign-in and audit logs and their integration.
   workbook:
   - docs/books/b12-security-operations/03-identity-telemetry.md
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/monitoring-health/reference-powershell-reporting.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/reference-powershell-reporting
   title: Microsoft Graph PowerShell monitoring and health cmdlets
@@ -26684,9 +26714,10 @@ pages:
   ms_date: '2025-06-06'
   ms_topic: how-to
   description: Learn about the Microsoft Entra Health signals and alerts for Conditional Access block policy health scenarios
-  coverage: not-covered
+  coverage: cited
   note: Entra Health monitoring scenarios and alerts (preview) not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/monitoring-health/scenario-health-sign-ins-compliant-managed-device.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/scenario-health-sign-ins-compliant-managed-device
   title: Sign-ins requiring a compliant or managed device
@@ -26694,9 +26725,10 @@ pages:
   ms_date: '2025-06-06'
   ms_topic: how-to
   description: Learn about the Microsoft Entra Health signals and alerts for sign-ins that require a compliant or managed device
-  coverage: not-covered
+  coverage: cited
   note: Entra Health monitoring scenarios and alerts (preview) not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/monitoring-health/scenario-health-sign-ins-mfa.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/scenario-health-sign-ins-mfa
   title: Sign-ins requiring Microsoft Entra MFA
@@ -26707,6 +26739,7 @@ pages:
   coverage: cited
   note: Entra Health monitoring scenarios and alerts (preview) not covered.
   cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/monitoring-health/scenario-health-sign-ins-saml-auth.md
@@ -26716,9 +26749,10 @@ pages:
   ms_date: '2025-07-31'
   ms_topic: how-to
   description: Learn about the Microsoft Entra Health signals and alerts for sign-ins to applications that use SAML authentication
-  coverage: not-covered
+  coverage: cited
   note: Entra Health monitoring scenarios and alerts (preview) not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: docs/identity/monitoring-health/troubleshoot-audit-data-verified-domain.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/troubleshoot-audit-data-verified-domain
   title: Bulk changes to usernames during verified domain changes
@@ -27816,12 +27850,13 @@ pages:
   ms_date: '2026-04-03'
   ms_topic: how-to
   description: Learn how to assign sensitivity labels to groups. See troubleshooting information and view more resources.
-  coverage: covered-uncited
+  coverage: cited
   note: Sensitivity labels on groups.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b12-security-operations/09-data-protection-and-classification.md
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/09-data-protection-and-classification.md
 - path: docs/identity/users/groups-bulk-download-members.md
   url: https://learn.microsoft.com/entra/identity/users/groups-bulk-download-members
   title: Bulk download group membership list - Azure portal

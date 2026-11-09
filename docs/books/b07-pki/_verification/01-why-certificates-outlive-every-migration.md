@@ -74,3 +74,11 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | NIST IR 8547 final published October 27, 2026 (the initial public draft is marked obsoleted). Table 2 now deprecates all quantum-vulnerable signatures (RSA, ECDSA, EdDSA at 112 and 128 bits) after 2030 and disallows them after 2035; §4 adds that systems prioritized under OMB M-26-15 must adopt PQC signatures by December 31, 2031; 10 to 20 years (§1) and PKI-before-applications (§2.2) unchanged | updated: paragraph now cites the final, states the broader 2030 deprecation and the 2031 deadline for prioritized systems; claim 20 superseded; footnote points to csrc.nist.gov/pubs/ir/8547/final and the DOI (PDF read) |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | AD CS supports ML-DSA on Windows Server 2025 with the May 2026 update; CNG KSPs required, legacy CSPs not supported | Post-quantum paragraph | verified (citation added) | `c01-mldsa`: Learn, "What is ML-DSA support in AD CS?" (read Nov 9, 2026) |
