@@ -109,6 +109,23 @@ can also name books of its own, in which case every new item is reported
 (B12 Security Operations, B17 AI Identity Governance); the issue marks those
 "(planned)".
 
+**New and retired Learn identity pages.** The [Learn Coverage
+Map](../../docs/reference/learn-coverage.md) tracks every Microsoft Learn page
+in two folders: Windows Server identity (`WindowsServerDocs/identity/` in
+`MicrosoftDocs/windowsserverdocs`) and Microsoft Entra (`docs/` in
+`MicrosoftDocs/entra-docs`, without `docs/identity/saas-apps/`, the
+per-application SaaS tutorials). Each run reads both folders' file lists from
+the GitHub API (one tree request per repository), applies the same page rules
+as the map (`learn_pages.py`: `.md` and `.yml` files, not includes, media,
+tables of contents or context files) and compares the resulting URLs with the
+previous run's, kept in the state file under `learn_pages`. A page added or
+removed since then is listed once, under **New and retired Learn identity
+pages**. Pages under the excluded folders are never listed. The first run with
+this check records the lists silently. A test run filtered with `--limit`,
+`--only-domain` or `--url`, or run with `--no-learn-pages`, skips it. When a
+page is listed, run `python scripts/learn_coverage.py` to add the new pages to
+the map's data (as not reviewed) and mark the retired ones gone.
+
 **Review dates for status-labeled pages.** Every status-labeled page (front
 matter `research-status`, as above) carries `last-reviewed: YYYY-MM-DD` in its front matter: the date someone
 last checked it against its sources. A page last reviewed more than 90
@@ -132,8 +149,9 @@ first 17 come due on November 22, 2026. The same command lists them.
 **Gated pages awaiting review.** Some pages are held behind a review
 gate: today, Book 19 (`docs/books/b19-developer-workbook/`), the
 developer workbooks under Projects (`docs/project-plans/developer-workbooks/`),
-the implementation guides (`docs/books/guides/`) and the training paths
-(`docs/training/`). Pages and folders starting with `_` (briefs,
+the implementation guides (`docs/books/guides/`), the training paths
+(`docs/training/`), the Source Register and the Learn Coverage Map
+(`docs/reference/learn-coverage.md`). Pages and folders starting with `_` (briefs,
 verification logs) aren't gated.
 Book 19's citations are watched with the other books', under `B19`; the
 developer workbooks' are watched like a book's, reported under the code `DW`.
@@ -193,6 +211,13 @@ label is `source-watch`. The issue has four sections:
    review, with its status and last-reviewed date. Review the page,
    update `last-reviewed` (and any row dates on the page), and it drops
    off the next week's issue.
+
+The issue can also list **gated pages awaiting review** and, when Microsoft
+added or removed one, **new and retired Learn identity pages**: each with its
+side (Windows Server identity or Microsoft Entra), whether it is new or
+retired, and its source file. Add new pages to the coverage map with
+`python scripts/learn_coverage.py` and review them; a retired page the
+workbook cites needs a new source.
 
 A week with more than fits in an issue (GitHub's limit is 65,536
 characters) is cut short, with counts of what was left out. The full report
@@ -286,7 +311,8 @@ Files:
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
 | `register.py` | The [Source Register](../../docs/reference/source-register.md): generates the page from `data/source-register.json`, checks its rules, and digests each row's latest result for the page to read. The scan never edits the register: a row whose original moved or went is listed in the issue with the fix it needs. |
+| `learn_pages.py` | The Learn identity folders the [Learn Coverage Map](../../docs/reference/learn-coverage.md) tracks: which files are pages, each page's URL, and the weekly list of pages added and removed. Shared with `scripts/learn_coverage.py`. |
 | `review_dates.py` | Lists the status-labeled pages due for review (`last-reviewed` older than 90 days, or missing), and the pages whose `lifecycle_review` date has passed. |
 | `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays, skipped hosts and curl hosts. |
 | `data/source-watch/feeds.json` | The feeds and the topic → book map. |
-| `source-watch-state` branch | `data/source-watch/state.json`: per-source fingerprints and per-feed seen ids. Kept off main, because every push to main redeploys the site. |
+| `source-watch-state` branch | `data/source-watch/state.json`: per-source fingerprints and per-feed seen ids, and the Learn identity pages seen last run (`learn_pages`). Kept off main, because every push to main redeploys the site. |

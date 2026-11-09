@@ -1,0 +1,5 @@
+PS> $s = Read-PnSettings -Path tests/fixtures/settings.lab.json
+PS> (Get-PnLiveCommand -CallId m365-messages -Settings $s).Uri
+https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages
+PS> Get-PnLiveCommand -CallId m365-messages -Settings $s -Arguments @{ nextLink = 'https://graph.example.net/v1.0/admin/serviceAnnouncement/messages?skip=100' }
+Exception: Refusing https://graph.example.net/v1.0/admin/serviceAnnouncement/messages?skip=100: it isn't on the gcc Graph host https://graph.microsoft.com.

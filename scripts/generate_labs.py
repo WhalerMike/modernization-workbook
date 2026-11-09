@@ -65,6 +65,8 @@ WORKBOOKS = [
     Workbook("npi", "Building Non-Person Identity", "docs/project-plans/developer-workbooks/non-person-identity",
              "non-person-identity-code.zip", "docs/books/guides/non-person-identity-implementation.md",
              "docs/training/non-person-identity"),
+    Workbook("pn", "Building Provider Notices", "docs/project-plans/developer-workbooks/provider-notices",
+             "provider-notices-code.zip", "docs/books/guides/provider-notices-implementation.md"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",

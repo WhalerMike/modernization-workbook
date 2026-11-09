@@ -1,0 +1,8 @@
+PS> (Read-PnJson -Path out/aws/notices.json).notices | ForEach-Object { [pscustomobject]@{ title = $_.title; actionBasis = $_.actionBasis } } | Format-Table
+title                              actionBasis
+-----                              -----------
+EC2: Instance retirement scheduled provider: actionability ACTION_REQUIRED
+IAM: Security notification         provider: actionability ACTION_REQUIRED
+RDS: Maintenance scheduled         none
+S3: Operational issue              none
+LAMBDA: Planned lifecycle event    rule: AWS scheduled change whose event type code names a retirement; due at its start time

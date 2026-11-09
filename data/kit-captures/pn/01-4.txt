@@ -1,0 +1,8 @@
+PS> Import-Csv out/azure/notices.csv | Format-Table kind, status, actionRequired, actionRequiredBy, title
+kind        status actionRequired actionRequiredBy     title
+----        ------ -------------- ----------------     -----
+incident    open   false                               Virtual Machines - East US - Connectivity issues
+advisory    open   false                               Update clients to TLS 1.2 or later for Azure Storage
+maintenance open   false                               Planned maintenance: Virtual Machines in East US 2
+retirement  open   true           2027-09-30T00:00:00Z Retirement: Basic SKU public IP addresses
+security    open   true                                Security advisory: action recommended for Azure Kubernetes Service clusters

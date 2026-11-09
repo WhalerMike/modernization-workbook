@@ -1,0 +1,2 @@
+PS> Read-PnRouting -Path templates/routing.template.json
+Exception: Routing templates/routing.template.json still has a <placeholder>.

@@ -1,0 +1,21 @@
+PS> $p = Read-PnJson -Path out/day1-route/tasks/create-azure-RT5J-6KL.json
+PS> [pscustomobject]$p | Format-List action, dedupe_key, severity, priority, response_window_seconds, response_due, action_required, action_due, assignment_group, contingency_review, controls, ksis
+action                  : create
+dedupe_key              : azure|RT5J-6KL
+severity                : P3
+priority                : 3
+response_window_seconds : 86400
+response_due            : 2026-11-10T12:00:00Z
+action_required         : True
+action_due              : 2027-09-30T00:00:00Z
+assignment_group        : Cloud Platform Engineering (example)
+contingency_review      : True
+controls                : {CM-3, CM-4, CP-2, SI-5}
+ksis                    : {KSI-CMT-LMC, KSI-CMT-RVP, KSI-RPL-ARP, KSI-SCR-MON}
+PS> [pscustomobject]$p.ticket_to_machine | Format-List lane, c1_origin, c2_approver_role, c3_action, c4_reread_check, c5_evidence_kept
+lane             : Human decision
+c1_origin        : Provider notice azure:RT5J-6KL, read by the provider notices kit
+c2_approver_role : System owner
+c3_action        : Plan the change the notice calls for and run it under change control
+c4_reread_check  : The next collection shows the notice closed or no longer listed, or the named resources no longer affected
+c5_evidence_kept : notices.json and this payload from the run, the change or decision record, and the evidence chain

@@ -23,7 +23,10 @@ say how many paragraphs were added or removed and quote the added ones;
 PDFs and other files by sha256 and size.
 
 Then it polls the feeds in data/source-watch/feeds.json and keeps the new
-items whose title or summary matches a topic keyword (see feeds.py).
+items whose title or summary matches a topic keyword (see feeds.py), and
+lists the Microsoft Learn identity pages added to or removed from the
+Windows Server identity and Microsoft Entra folders since the previous run
+(see learn_pages.py; skipped by --no-learn-pages and on a filtered run).
 
 The first run (no state) is a baseline: it records everything and reports
 only "baseline established". A URL first cited since the last run, or a feed
@@ -61,6 +64,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import citations  # noqa: E402
 import feeds as feedlib  # noqa: E402
 import gitsource  # noqa: E402
+import learn_pages  # noqa: E402
 import register  # noqa: E402
 import report  # noqa: E402
 import review_dates  # noqa: E402
@@ -623,6 +627,8 @@ def main() -> int:
     parser.add_argument("--no-sources", action="store_true", help="skip the cited sources (feeds only)")
     parser.add_argument("--no-feeds", action="store_true", help="skip the feeds (sources only)")
     parser.add_argument("--only-feed", action="append", default=[], help="poll only this feed id; repeatable")
+    parser.add_argument("--no-learn-pages", action="store_true",
+                        help="skip the list of new and retired Learn identity pages (learn_pages.py)")
     parser.add_argument(
         "--since-days",
         type=int,
@@ -660,6 +666,11 @@ def main() -> int:
         feed_items, feed_errors, feed_counts = feedlib.poll_all(
             feeds_cfg, state.setdefault("feeds", {}), now, args.only_feed, args.since_days, log
         )
+    # New and retired Learn identity pages: skipped on a test run filtered to some sources,
+    # so a partial run never moves the saved page list.
+    learn = {"added": [], "removed": [], "errors": []}
+    if not (args.no_learn_pages or args.limit or args.only_domain or args.url):
+        learn = learn_pages.check(state, gitsource.api_get, log)
     state["last_run"] = now.isoformat(timespec="seconds")
 
     results = {
@@ -678,6 +689,7 @@ def main() -> int:
         "lifecycle_due": review_dates.lifecycle_due(now.date()),
         "review_gate": review_gate.waiting(),
         "register": register.proposals(events),
+        "learn_pages": learn,
         "books": citations.books(),
         "chapters": citations.chapter_titles(cited),
     }

@@ -1,0 +1,7 @@
+PS> Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+PS> Get-PnRequiredPermission -Provider aws | Format-Table Call, Permissions, Verified
+Call                           Permissions                     Verified
+----                           -----------                     --------
+aws-describe-events            health:DescribeEvents               True
+aws-describe-event-details     health:DescribeEventDetails         True
+aws-describe-affected-entities health:DescribeAffectedEntities     True

@@ -1,0 +1,4 @@
+PS> foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
+oc1 : oraclecloud.com
+oc2 : oraclegovcloud.com us-langley-1, us-luke-1
+oc3 : OCI realm oc3: the Announcements endpoint there is not yet specified (Oracle's page wasn't readable on November 9, 2026).

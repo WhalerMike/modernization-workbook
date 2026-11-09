@@ -1,0 +1,342 @@
+---
+title: "Chapter 03 — Oracle Cloud Infrastructure Announcements"
+description: "Oracle Cloud Infrastructure announcements read with Oracle's own CLI and the one policy statement Oracle documents for reading them: the latest announcement in each chain, the details call for affected resources, announcement types mapped to the record's kinds, Oracle's own ACTION_REQUIRED and ACTION_REQUIRED_BY kept as the provider's word, a rescheduled maintenance window replacing the original, and a realm guard that knows the US Government Cloud (OC2) endpoints and refuses OC3, whose endpoint is not yet specified. For an agency whose HR platform runs on OCI, this is how platform maintenance reaches the HR system's owners first. Labs against fixtures and a test tenancy."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-provider-notices
+part: How
+series-order: 3
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 03 — Oracle Cloud Infrastructure Announcements
+
+*When a platform the agency doesn't run is patched on a Saturday night, the people who own what runs on it should hear from the provider's own record, not from the help desk on Monday.*
+
+::: {.callout-note}
+## In this chapter
+The OCI collector behind the guide's [G3 Oracle Cloud Infrastructure](../../../books/guides/provider-notices-implementation.md#step-3-oracle-cloud-infrastructure-announcements). You start with what Oracle documents: the Announcements service, its `list` and `get` CLI commands, the `read announcements` policy, and the US Government Cloud endpoints. Then you read how the kit keeps the latest announcement in each chain, reads each one's affected resources, maps announcement types to kinds, and keeps Oracle's own action flag. Lab 1 collects both fixture weeks, so you see a rescheduled maintenance window replace the original; Lab 2 reads a test tenancy and removes the policy statement afterwards.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can read every announcement for a tenancy, the latest in each chain, with the affected resources, into records that carry Oracle's own action-required date. An agency whose HR platform runs on OCI can hand that platform's maintenance to the HR system's owners before it lands.
+
+**Audience.** Developers who maintain the kit, the OCI platform lead who owns G3, and the owners of systems that run on OCI. You should know Chapter 01's record.
+
+## Start with Oracle's documentation
+
+### What Oracle gives you
+
+Oracle's CLI reference documents `oci announce announcements list`, with `--compartment-id` (required), `--all` and `--should-show-only-latest-in-chain`, and the Announcement model's fields: `announcementType`, `timeOneType`/`timeOneValue`, `timeTwoType`/`timeTwoValue`, `lifecycleState`, `chainId` and the rest.[^pn03-cli] `oci announce announcements get --announcement-id` returns one announcement's details, including its affected resources.[^pn03-get] The policy reference makes `announcements` a resource type: `inspect` lists summaries, `read` adds the details, and Oracle's common policy is `Allow group AnnouncementReaders to read announcements in tenancy`.[^pn03-policy] Oracle's US Government Cloud page lists the Announcements API at `announcements.us-langley-1.oraclegovcloud.com` and `announcements.us-luke-1.oraclegovcloud.com`, in realm OC2.[^pn03-gov] The CLI is configured with `oci setup config`, which creates the configuration file and an API key pair.[^pn03-install]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Oracle Cloud Infrastructure announcements` block of `tests/Collectors.Tests.ps1`, or in `tests/Live.Tests.ps1`.
+
+| Oracle's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| A chain of updates to one announcement | A rescheduled window arrives as a new announcement; reading every one doubles the work and keeps the old date | `--should-show-only-latest-in-chain`, and the kit keeps only the latest by `timeUpdated` in each `chainId` as well; the record's ID is the chain's |
+| Announcement types (`*_MAINTENANCE*`, `*_CHANGE*`, `ACTION_REQUIRED`, `ACTION_RECOMMENDED`, `INFORMATION`, `PRODUCTION_EVENT_NOTIFICATION`) | Several types mean the same kind of news | Mapped to maintenance, change, advisory and incident |
+| Two generic time fields with a type each | The window and the deadline are in fields whose meaning is in another field | `START_TIME` and `NEW_START_TIME` start the window; the end-time types end it; `ACTION_REQUIRED_BY` is the provider's action date |
+| `ACTION_REQUIRED` as a type | The provider's own flag | Action required, with `actionBasis: provider: ...`; no kit rule needed for OCI |
+| Affected resources on the details call only | The list alone doesn't name the agency's resources | A `get` per announcement; `inspect` alone would give summaries without them |
+| CLI output keys not shown (camelCase or kebab-case) | A parser keyed to one casing reads nothing from the other | Both accepted (not yet specified which the CLI prints) |
+| OC2 endpoints; OC3 not readable | A reader pointed at the wrong realm | `oc1` and `oc2` known; a region outside the realm refused; `oc3` refused with the reason |
+
+**The verdict.** Use Oracle's `list` and `get` and its one policy statement as published. Build the chain handling, the time-field mapping and the realm guard.
+
+## The code
+
+`Get-PnProviderNotice -Provider oci` makes `oci-announcements-list`, then `oci-announcement-get` for each announcement. `ConvertTo-PnOciNotice` keeps the latest in each chain and maps it:
+
+| `announcementType` | Kind | Action required |
+|---|---|---|
+| Contains `MAINTENANCE` | maintenance | If a time is `ACTION_REQUIRED_BY` (provider) |
+| Contains `CHANGE`, or `ACTION_REQUIRED` | change | `ACTION_REQUIRED` always (provider) |
+| `PRODUCTION_EVENT_NOTIFICATION` | incident | No |
+| `ACTION_RECOMMENDED`, `INFORMATION` | advisory | If a time is `ACTION_REQUIRED_BY` (provider) |
+
+`lifecycleState` `INACTIVE` closes a notice. The summary is the details call's description where there is one. The source link is the announcement on `announcements.<region>.<realm domain>`. The live invoker runs `oci` with the tenancy and region from the settings, and refuses a region outside the realm: `us-langley-1` and `us-luke-1` are OC2, and naming them under `oc1` throws.
+
+### The tests
+
+The `Oracle Cloud Infrastructure announcements` block of `tests/Collectors.Tests.ps1` (7 tests), and the OCI rows of `tests/Live.Tests.ps1` (the list command and the realm guard).
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fictional announcements for a fictional tenancy; nothing signs in. The live reader has been tested against stand-in CLI output, not a live tenancy. Review it, and run Lab 2 in a test tenancy, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/provider-notices`. The lab settings name a fictional tenancy in realm `oc1`, region `us-ashburn-1`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/provider-notices`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List what OCI needs
+Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+Get-PnRequiredPermission -Provider oci | Format-Table Call, Permissions, Verified
+
+# Step 2: See the realms the kit knows
+foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
+
+# Step 3: Collect OCI from the day-one fixtures
+./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider oci -AsOf 2026-11-09T12:00:00Z -OutputPath out/oci-day1
+
+# Step 4: Read the records
+Import-Csv out/oci-day1/notices.csv | Format-Table noticeId, kind, status, actionRequired, actionRequiredBy, windowStart, resources
+
+# Step 5: Collect the second week
+./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -Provider oci -AsOf 2026-11-16T12:00:00Z -OutputPath out/oci-day2
+Import-Csv out/oci-day2/notices.csv | Format-Table noticeId, kind, status, windowStart, windowEnd
+
+# Step 6: Build the live list command without running it
+$s = Read-PnSettings -Path tests/fixtures/settings.lab.json
+(Get-PnLiveCommand -CallId oci-announcements-list -Settings $s).Arguments -join ' '
+
+# Step 7: Run this chapter's tests
+Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Oracle Cloud Infrastructure announcements*', '*OCI*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List what OCI needs:**
+
+   ```powershell
+   Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+   Get-PnRequiredPermission -Provider oci | Format-Table Call, Permissions, Verified
+   ```
+
+   <!-- capture:begin 03-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-1.txt))](captures/03-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   `inspect` is enough to list; `read` is what the details call needs.
+
+2. **See the realms the kit knows.** OC3 is refused with its reason:
+
+   ```powershell
+   foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
+   ```
+
+   <!-- capture:begin 03-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-2.txt))](captures/03-2.png){.lightbox fig-alt="Terminal window showing foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -C… and what it printed"}
+
+   <!-- capture:end -->
+
+3. **Collect OCI from the day-one fixtures:**
+
+   ```powershell
+   ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider oci -AsOf 2026-11-09T12:00:00Z -OutputPath out/oci-day1
+   ```
+
+   <!-- capture:begin 03-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-3.txt))](captures/03-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtur… and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Read the records.** The maintenance names a database system; the change is action required by December 15, by Oracle's own type:
+
+   ```powershell
+   Import-Csv out/oci-day1/notices.csv | Format-Table noticeId, kind, status, actionRequired, actionRequiredBy, windowStart, resources
+   ```
+
+   <!-- capture:begin 03-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-4.txt))](captures/03-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/oci-day1/notices.csv | Format-Table noticeId, kind, status, ac… and what it printed"}
+
+   <!-- capture:end -->
+
+5. **Collect the second week.** Oracle rescheduled the maintenance: the chain's latest announcement replaces the first, with the new window:
+
+   ```powershell
+   ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -Provider oci -AsOf 2026-11-16T12:00:00Z -OutputPath out/oci-day2
+   Import-Csv out/oci-day2/notices.csv | Format-Table noticeId, kind, status, windowStart, windowEnd
+   ```
+
+   <!-- capture:begin 03-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-5.txt))](captures/03-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtur… and what it printed"}
+
+   <!-- capture:end -->
+
+   `oci:chain-example-01` now starts November 29 instead of November 22. It is still one notice, so Chapter 06 updates its task instead of opening a second.
+
+6. **Build the live list command without running it:**
+
+   ```powershell
+   $s = Read-PnSettings -Path tests/fixtures/settings.lab.json
+   (Get-PnLiveCommand -CallId oci-announcements-list -Settings $s).Arguments -join ' '
+   ```
+
+   <!-- capture:begin 03-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-6.txt))](captures/03-6.png){.lightbox fig-alt="Terminal window showing $s = Read-PnSettings -Path tests/fixtures/settings.lab.json and what it printed"}
+
+   <!-- capture:end -->
+
+7. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Oracle Cloud Infrastructure announcements*', '*OCI*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 03-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-7.txt))](captures/03-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNam… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `PassedCount` 9 and `FailedCount` 0, and `out/oci-day1/raw/oci.json` holding the list and each announcement's details. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 03-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/pn/03-8.txt))](captures/03-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenancy
+
+Use an OCI test tenancy, never production. Work in `examples/provider-notices`. You'll replace: `<group>` (a test IAM group for the reader), `<tenancy-ocid>` (the test tenancy's OCID), `<home-region>` (its home region, such as `us-ashburn-1`) and `<settings-file>` (your copy of `deploy/settings.template.json` with `environment` `test`, only `oci` enabled, `realm` `oc1`, the region and the tenancy).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/provider-notices`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Add the policy statement
+Set-Content -Path statements.json -Value '["Allow group <group> to read announcements in tenancy"]'
+$policy = oci iam policy create --compartment-id <tenancy-ocid> --name ProviderNoticesRead --description "Provider notices kit: read announcements" --statements file://statements.json | ConvertFrom-Json
+$policy.data.id
+
+# Step 2: Configure the CLI as the reader
+oci setup config
+oci --version
+
+# Step 3: Cross-check the list with Oracle's command, then collect
+oci announce announcements list --compartment-id <tenancy-ocid> --all --should-show-only-latest-in-chain true --region <home-region> --query "length(data.items)"
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider oci -OutputPath out/oci-test
+Import-Csv out/oci-test/notices.csv | Format-Table noticeId, kind, status, actionRequiredBy, resources
+
+# Step 4: Back it out
+oci iam policy delete --policy-id $policy.data.id --force
+Remove-Item -Recurse -Force out/oci-test, statements.json
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Add the policy statement,** as an IAM administrator, in a policy in the tenancy (root compartment), for the reader's group.[^pn03-policy] The statement goes in a file, so the shell doesn't touch its quotes; the policy's ID is kept for the back-out:[^pn03-iam-cli]
+
+   ```powershell
+   Set-Content -Path statements.json -Value '["Allow group <group> to read announcements in tenancy"]'
+   $policy = oci iam policy create --compartment-id <tenancy-ocid> --name ProviderNoticesRead --description "Provider notices kit: read announcements" --statements file://statements.json | ConvertFrom-Json
+   $policy.data.id
+   ```
+
+2. **Configure the CLI as the reader** and check it. `oci setup config` prompts for the user, tenancy and region and creates the key pair; upload the public key in the Console as Oracle's page says:[^pn03-install]
+
+   ```powershell
+   oci setup config
+   oci --version
+   ```
+
+3. **Cross-check the list with Oracle's command, then collect.** The counts should agree:
+
+   ```powershell
+   oci announce announcements list --compartment-id <tenancy-ocid> --all --should-show-only-latest-in-chain true --region <home-region> --query "length(data.items)"
+   ./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider oci -OutputPath out/oci-test
+   Import-Csv out/oci-test/notices.csv | Format-Table noticeId, kind, status, actionRequiredBy, resources
+   ```
+
+   Look in `out/oci-test/raw/oci.json` at the key casing the CLI printed, and record it: Oracle's reference doesn't show it.
+
+4. **Back it out.** Delete the policy, as the IAM administrator, and the run, which names the tenancy's resources:
+
+   ```powershell
+   oci iam policy delete --policy-id $policy.data.id --force
+   Remove-Item -Recurse -Force out/oci-test, statements.json
+   ```
+
+## Verified facts
+
+| Item | Value | US Government | Source |
+|---|---|---|---|
+| List | `oci announce announcements list --compartment-id ... --all --should-show-only-latest-in-chain true` | — | [^pn03-cli] |
+| Details | `oci announce announcements get --announcement-id ...`; affected resources | — | [^pn03-get] |
+| Fields | `announcementType`, `timeOneType`, `timeTwoType`, `lifecycleState`, `chainId`; details `affectedResources` | — | [^pn03-cli] |
+| Policy | `Allow group <group> to read announcements in tenancy`; `inspect` lists only | — | [^pn03-policy] |
+| OC2 endpoints | `announcements.us-langley-1.oraclegovcloud.com`, `announcements.us-luke-1.oraclegovcloud.com` | US Government Cloud | [^pn03-gov] |
+| CLI setup | `oci setup config`; `oci --version` | — | [^pn03-install] |
+| Policy from the CLI | `oci iam policy create --compartment-id --name --description --statements` (a JSON array); `oci iam policy delete --policy-id --force` | — | [^pn03-iam-cli] |
+
+Not yet specified: the CLI's output key casing (the kit accepts camelCase and kebab-case), and the Announcements endpoint in realm OC3 (Oracle's page wasn't readable; the kit refuses `oc3`).
+
+## Federal requirements and evidence
+
+The collection is what the guide's [G3](../../../books/guides/provider-notices-implementation.md#step-3-oracle-cloud-infrastructure-announcements) checks. The mappings are the kit's `config/requirements.json`.[^pn03-oscal] [^pn03-ksi]
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The reader's group can read announcements and nothing else from this kit (Lab 1, step 1; Lab 2, step 1) | SA-9 c | KSI-SCR-MIT, KSI-SCR-MON | The OCI platform lead; the ISSO keeps the policy |
+| Every chain's latest announcement was read, with its details, in the tenancy's realm (Lab 1, steps 3 and 5; Lab 2, step 3: `raw/oci.json`, `notices.json`, `manifest.json`) | SA-9 c; SI-5 a | KSI-SCR-MIT, KSI-SCR-MON | The ISSO, with the run folder |
+| Maintenance that names the agency's resources is marked, so Chapter 06 asks for a contingency plan review (Lab 1, step 4) | CP-2 e | KSI-RPL-ARP | The owner of each system on OCI |
+| A rescheduled window replaces the original and stays one notice (Lab 1, step 5) | SI-5; CA-7 | KSI-SCR-MON, KSI-MLA-EVC | The repository's tests |
+
+KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). The kit's records support these controls; the agency's assessor decides them. Which output supports which indicator is the program's mapping *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| `inspect` granted instead of `read` | Summaries without affected resources; nothing routes as "names our resources" | `read announcements` in `config/calls.json`; an empty `resources` on every maintenance notice is the sign |
+| Every announcement in a chain read as its own notice | The old window lingers next to the new one | Latest in each chain, keyed by `chainId` |
+| A government tenancy read in the commercial realm | Nothing comes back | The settings name the realm; a region outside it is refused; OC3 is refused until its endpoint is known |
+| HR platform maintenance seen only by the help desk | The HR system's owners learn of it after it lands | Route OCI maintenance that names the HR system's resources to its owners (Chapter 06) *(design guidance)* |
+| The announcement email treated as the record | It can be spoofed and isn't in the evidence | The task links the announcement the kit read; the email is the interim path only |
+
+## Checklist
+
+- [ ] The policy statement grants `read announcements` to the reader's group, and nothing more for this kit.
+- [ ] The settings name the realm and home region; a government tenancy uses `oc2`.
+- [ ] Oracle's list and the kit's collection agree in the test tenancy.
+- [ ] Maintenance notices name the affected resources.
+- [ ] The CLI's key casing seen in the test tenancy is recorded.
+- [ ] The owners of systems on OCI (an HR platform among them, where the agency has one) are in the routing.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 02 — Microsoft 365 Message Center and Service Health](02-microsoft-365-message-center-and-service-health.md) · [Workbook index](index.md) · [Next: Chapter 04 — AWS Health →](04-aws-health.md)
+:::
+
+[^pn03-cli]: Oracle, OCI CLI command reference, `oci announce announcements list`, <https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/list.html>, and the Python SDK's Announcement model, <https://docs.oracle.com/en-us/iaas/tools/python/latest/api/announcements_service/models/oci.announcements_service.models.Announcement.html> (read November 9, 2026; carried from the provider notices guide's verification log).
+[^pn03-get]: Oracle, OCI CLI command reference, `oci announce announcements get`, <https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/get.html> (read November 9, 2026).
+[^pn03-policy]: Oracle, "Details for Announcements," <https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/announcementspolicyreference.htm>, and "Common Policies," <https://docs.oracle.com/iaas/Content/Identity/Concepts/commonpolicies.htm> (read November 9, 2026).
+[^pn03-gov]: Oracle, "Oracle US Government Cloud," <https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm> (read November 9, 2026).
+[^pn03-install]: Oracle, "Installing the CLI" (`oci setup config`; verifying with `oci --version`), <https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm> (read November 9, 2026).
+[^pn03-iam-cli]: Oracle, OCI CLI command reference, `oci iam policy create`, <https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/create.html>, and `oci iam policy delete`, <https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/delete.html> (read November 9, 2026).
+[^pn03-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026).
+[^pn03-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026).

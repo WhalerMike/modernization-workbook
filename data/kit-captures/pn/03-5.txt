@@ -1,0 +1,14 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -Provider oci -AsOf 2026-11-16T12:00:00Z -OutputPath out/oci-day2
+Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+oci      oc1                4      3        1  advisory 1, change 1, incident 1, maintenance 1
+
+4 notices, each valid against schema/notice.schema.json. Written to out/oci-day2: notices.json, notices.csv, raw/, manifest.json
+PS> Import-Csv out/oci-day2/notices.csv | Format-Table noticeId, kind, status, windowStart, windowEnd
+noticeId             kind        status windowStart          windowEnd
+--------             ----        ------ -----------          ---------
+oci:chain-example-01 maintenance open   2026-11-29T04:00:00Z 2026-11-29T08:00:00Z
+oci:chain-example-02 change      open
+oci:chain-example-03 advisory    open
+oci:chain-example-04 incident    closed                      2026-11-03T08:05:00Z

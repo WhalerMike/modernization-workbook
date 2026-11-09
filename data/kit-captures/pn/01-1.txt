@@ -1,0 +1,13 @@
+PS> Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+PS> Get-PnRequiredPermission -Provider azure | Format-List
+Call        : azure-service-health-events
+Permissions : Reader on each subscription in scope
+Elevated    : Service Health Security Reader (or a role with Microsoft.ResourceHealth/events/fetchEventDetails/action, .../listSecurityAdvisoryImpactedResources/action and .../events/action) to see the sensitive fields of security advisories; Reader and Monitoring Reader can't
+Verified    : True
+Doc         : https://learn.microsoft.com/azure/service-health/subscription-vs-tenant
+
+Call        : azure-impacted-resources
+Permissions : Reader on each subscription in scope
+Elevated    : Service Health Security Reader for the impacted resources of a security advisory, which Learn always treats as sensitive
+Verified    : True
+Doc         : https://learn.microsoft.com/azure/service-health/impacted-resources-security

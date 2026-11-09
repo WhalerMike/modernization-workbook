@@ -1,0 +1,6 @@
+PS> Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, steps
+sequence task    result steps
+-------- ----    ------ -----
+1        collect Pass   COL-AZURE COL-M365 COL-OCI COL-AWS COL-GOOGLE NORMALIZE EVIDENCE
+2        route   Pass   ROUTE CONTINGENCY EVIDENCE
+3        digest  Pass   DIGEST EVIDENCE

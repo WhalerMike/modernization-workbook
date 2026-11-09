@@ -1,0 +1,9 @@
+PS> Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+PS> Get-PnRequiredPermission -Provider google | Format-List Call, Permissions, Verified
+Call        : google-events
+Permissions : roles/servicehealth.viewer (Personalized Service Health Viewer) on the project: servicehealth.events.list
+Verified    : True
+
+Call        : google-organization-events
+Permissions : roles/servicehealth.viewer on the organization: servicehealth.organizationEvents.list
+Verified    : False

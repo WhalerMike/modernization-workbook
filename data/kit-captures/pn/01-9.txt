@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Normalizer.Tests.ps1 -FullNameFilter 'Azure Service Health*', 'The notice record*', 'The fingerprint*', 'Times and text*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         26           0

@@ -1,0 +1,15 @@
+PS> ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2 -AsOf 2026-11-16T12:00:00Z
+Record 1: Pass (COL-AZURE, COL-M365, COL-OCI, COL-AWS, COL-GOOGLE, NORMALIZE, EVIDENCE)
+Controls: AU-9, CA-7, SA-9, SI-5
+KSIs:     KSI-MLA-EVC, KSI-MLA-OSM, KSI-SCR-MIT, KSI-SCR-MON
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/day2-route -AsOf 2026-11-16T12:00:00Z
+Record 2: Pass (ROUTE, CONTINGENCY, EVIDENCE)
+Controls: AU-9, CA-7, CM-3, CM-4, CP-2, SI-5
+KSIs:     KSI-CMT-LMC, KSI-CMT-RVP, KSI-MLA-EVC, KSI-MLA-OSM, KSI-RPL-ARP, KSI-SCR-MON
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -RunPath out/digest -AsOf 2026-11-16T12:00:00Z
+Record 3: Pass (DIGEST, EVIDENCE)
+Controls: AU-9, CA-7, RA-3, SA-9, SI-5
+KSIs:     KSI-MLA-EVC, KSI-MLA-OSM, KSI-SCR-MIT, KSI-SCR-MON
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS

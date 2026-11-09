@@ -180,6 +180,8 @@ website:
             text: "Building Ticket-to-Machine"
           - href: docs/project-plans/developer-workbooks/hr-driven-identity/index.md
             text: "Building HR-Driven Identity"
+          - href: docs/project-plans/developer-workbooks/provider-notices/index.md
+            text: "Building Provider Notices"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -207,6 +209,8 @@ website:
             text: "M-19-17 and FICAM Crosswalk"
           - href: docs/reference/graph-practice-crosswalk.md
             text: "Microsoft Practice Crosswalk"
+          - href: docs/reference/learn-coverage.md
+            text: "Learn Coverage Map"
       - text: "About"
         menu:
           - href: docs/inspiration/index.md
@@ -314,6 +318,7 @@ website:
         - docs/reference/rmf-map.md
         - docs/reference/m-19-17-ficam-crosswalk.md
         - docs/reference/graph-practice-crosswalk.md
+        - docs/reference/learn-coverage.md
     - id: projects
       title: "Projects"
       style: docked
@@ -342,6 +347,10 @@ website:
               href: docs/project-plans/developer-workbooks/hr-driven-identity/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/hr-driven-identity/*-*.md"
+            - section: "Building Provider Notices"
+              href: docs/project-plans/developer-workbooks/provider-notices/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/provider-notices/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

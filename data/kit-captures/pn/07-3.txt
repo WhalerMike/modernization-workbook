@@ -1,0 +1,51 @@
+PS> Get-Content out/digest/digest.md
+# Provider notices: weekly digest
+
+As of 2026-11-16T12:00:00Z. New and closed cover the last 7 days; upcoming covers the next 30 days. Read from `day2/notices.json` (collected 2026-11-16T12:00:00Z, Fixture mode).
+
+## Open notices by provider
+
+| Provider | Open | Action required | Maintenance | Retirement | Advisory | Security | Change | Incident |
+|---|---|---|---|---|---|---|---|---|
+| Azure | 5 | 2 | 2 | 1 | 1 | 1 | 0 | 0 |
+| Microsoft 365 | 5 | 3 | 0 | 1 | 2 | 0 | 2 | 0 |
+| Oracle Cloud Infrastructure | 3 | 1 | 1 | 0 | 1 | 0 | 1 | 0 |
+| AWS | 3 | 2 | 1 | 2 | 0 | 0 | 0 | 0 |
+| Google Cloud | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+## Action required
+
+| Due | Provider | Kind | Title | Routed to | Notice |
+|---|---|---|---|---|---|
+| 2026-12-01 | AWS | retirement | EC2: Instance retirement scheduled | Cloud Platform Engineering (example) | `aws:arn:aws:health:us-east-1::event/EC2/AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED/AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED_EXAMPLE01` |
+| 2026-12-15 | Oracle Cloud Infrastructure | change | Action required: replace the certificate bundle on load balancers before it expires | Cloud Operations (example) | `oci:chain-example-02` |
+| 2027-01-15 | AWS | retirement | LAMBDA: Planned lifecycle event | Cloud Platform Engineering (example) | `aws:arn:aws:health:us-west-2::event/LAMBDA/AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT/AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT_EXAMPLE03` |
+| 2027-01-31 | Microsoft 365 | retirement | Retirement of Basic authentication for SMTP AUTH client submission | Cloud Platform Engineering (example) | `m365:MC900001` |
+| 2027-02-28 | Microsoft 365 | change | Action required: register your apps for the new mail sender policy | Cloud Operations (example) | `m365:MC900005` |
+| 2027-09-30 | Azure | retirement | Retirement: Basic SKU public IP addresses | Cloud Platform Engineering (example) | `azure:RT5J-6KL` |
+| not stated | Azure | security | Security advisory: action recommended for Azure Kubernetes Service clusters | Security Operations (example) | `azure:SA7M-8NP` |
+| not stated | Microsoft 365 | change | (Updated) Update SharePoint Framework solutions that use a deprecated library | Cloud Operations (example) | `m365:MC900003` |
+
+## Maintenance and changes starting in the next 30 days
+
+| Starts | Ends | Provider | Kind | Title | Regions |
+|---|---|---|---|---|---|
+| 2026-11-23T06:00:00Z | 2026-11-23T07:00:00Z | AWS | maintenance | RDS: Maintenance scheduled | us-east-1 |
+| 2026-11-24T02:00:00Z | 2026-11-25T02:00:00Z | Azure | maintenance | Planned maintenance: Virtual Machines in East US 2 | East US 2 |
+| 2026-11-28T04:00:00Z | 2026-11-28T08:00:00Z | Azure | maintenance | Planned maintenance: Azure SQL Database in Central US | Central US |
+| 2026-11-29T04:00:00Z | 2026-11-29T08:00:00Z | Oracle Cloud Infrastructure | maintenance | Rescheduled: maintenance for Base Database Service in US East (Ashburn) | us-ashburn-1 |
+| 2026-12-01T00:00:00Z |  | AWS | retirement | EC2: Instance retirement scheduled | us-east-1 |
+
+## New in the last 7 days
+
+- Azure maintenance: Planned maintenance: Azure SQL Database in Central US (`azure:NW1T-2UV`)
+- Microsoft 365 change: Action required: register your apps for the new mail sender policy (`m365:MC900005`)
+
+## Closed or no longer listed in the last 7 days
+
+- AWS security: IAM: Security notification, closed by the provider (`aws:arn:aws:health:us-east-1::event/IAM/AWS_IAM_SECURITY_NOTIFICATION/AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04`)
+- Google Cloud incident: Cloud SQL connection errors in us-east4, closed by the provider (`google:projects/contoso-example-prod/locations/global/events/example-incident-01`)
+- Microsoft 365 incident: Some users may see delays receiving external email, closed by the provider (`m365:EX900101`)
+- Azure incident: Virtual Machines - East US - Connectivity issues, no longer listed by the provider (`azure:AB1C-2DE`)
+
+Neutral by design: this digest holds what providers published and the routing the agency set. File it with the run's evidence.

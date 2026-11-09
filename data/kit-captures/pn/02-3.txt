@@ -1,0 +1,7 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider m365 -AsOf 2026-11-09T12:00:00Z -OutputPath out/m365
+Collected as of 2026-11-09T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+m365     gcc                6      5        2  advisory 3, change 1, incident 1, retirement 1
+
+6 notices, each valid against schema/notice.schema.json. Written to out/m365: notices.json, notices.csv, raw/, manifest.json
