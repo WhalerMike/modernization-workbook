@@ -93,3 +93,10 @@ Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; 
 | H2 | HISG expects agencies to keep onboarding through existing on-premises services and synchronizing to the cloud | Same | verified (added) | HISG §3.1.4, Identity Sync |
 | H3 | With an on-premises source of identity (federation, PTA, password sync), compromise there can reach the cloud | Same | verified (added) | HISG §3.1.1–3.1.3 security considerations |
 | H4 | Cloud-only landing, with AD accounts provisioned downstream from Entra ID, takes the on-premises directory out of that population's cloud sign-in | Same | restated-as-design | follows from c05-soa (Entra ID holds object SOA; provisioning to AD from Entra ID) and HISG §3.1.4 |
+
+## Learn gMSA coverage pass, November 9, 2026
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | The installer creates `provAgentgMSA$` in the host's domain, or uses a custom gMSA with listed permissions; the forest schema must be Windows Server 2012 or later | High availability bullet | verified (added) | Learn, Prerequisites for Microsoft Entra Cloud Sync (ms.date 2026-10-22); Group Managed Service Accounts, Cloud Sync (ms.date 2025-09-29) |
+| G2 | `Set-AADCloudSyncRestrictedPermissions` disables inheritance, removes default permissions except SELF, and sets full control for SYSTEM, Administrators, Domain Admins and Enterprise Admins | Same | verified (added) | Learn, Microsoft Entra provisioning agent gMSA PowerShell cmdlets (ms.date 2025-04-09) |

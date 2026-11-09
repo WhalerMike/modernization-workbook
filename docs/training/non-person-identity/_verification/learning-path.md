@@ -51,4 +51,12 @@ Method:
 | K3 | Module 6 names `D-NP5` in its enforcement step; Module 9 shows `D-NP6` and plan `5a800246…`; Module 6's sign-in summary hash is `da391f12…` | Modules 6 and 9 | matched against captures 08-6, 08-8, 09-5, 09-8 and 09-10, November 9, 2026 | Chapters 08 and 09, Lab 1 |
 | K4 | Module 11 says Conditional Access is enabled ring by ring; its rollback plan hash is `0cb6515f…` | Module 11, description, Unit 2, step 4 and 5, Knowledge check | re-run November 9, 2026; matched | Chapter 11 |
 
+
+## Learn gMSA coverage pass (November 9, 2026)
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | gMSA prerequisites now name one KDS root key for the forest, a forest-unique name and an interval set only at creation | Module 8, Unit 1 | verified November 9, 2026 | Non-Person Identity guide, Step 2 (Learn, Manage group Managed Service Accounts; Create gMSAs for Windows containers) |
+| G2 | Optional reading: the service account guide's Migrations A and B | Module 8, Unit 1 | link added | — |
+
 *For project use.*
