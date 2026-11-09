@@ -1,0 +1,8 @@
+"Rule ID","Rule name","Provider","Kind","Status","Action required","Names our resources","Service pattern","Region pattern","Route","Severity","Assignment group","Approver role","Contingency review","Owner","Notes"
+"R01","","","security","","","","","","task","P2","","","no","",""
+"R02","","","retirement","","","","","","task","P3","","","yes","",""
+"R03","","","maintenance","","","yes","","","task","P3","","","yes","",""
+"R04","","","incident","open","","yes","","","task","P2","","","no","",""
+"R05","","","","","yes","","","","task","P3","","","no","",""
+"R06","","","","","","","","","ignore","","","","","",""
+"default","","","","","","","","","digest","P4","","","no","",""

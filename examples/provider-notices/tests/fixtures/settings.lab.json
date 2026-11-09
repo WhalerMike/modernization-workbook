@@ -1,0 +1,14 @@
+{
+  "_comment": "Lab 1's settings: every provider enabled, read from the fixture folders, with fictional IDs (contoso.example). The same shape as deploy/settings.template.json.",
+  "environment": "lab",
+  "changeRecord": "LAB-0001",
+  "providers": {
+    "azure": { "enabled": true, "cloud": "AzureCloud", "subscriptions": ["00000000-0000-0000-0000-00000000aa01", "00000000-0000-0000-0000-00000000aa02"], "managementGroup": "" },
+    "m365": { "enabled": true, "cloud": "gcc", "tenantId": "00000000-0000-0000-0000-0000000000c0" },
+    "oci": { "enabled": true, "realm": "oc1", "region": "us-ashburn-1", "tenancyId": "ocid1.tenancy.oc1..aaaaaaaaexampletenancy" },
+    "aws": { "enabled": true, "partition": "aws", "accountId": "111122223333", "profile": "" },
+    "google": { "enabled": true, "scope": "project", "project": "contoso-example-prod", "organization": "" }
+  },
+  "routing": { "path": "config/routing.json", "send": false, "endpoint": "", "tokenVariable": "" },
+  "digest": { "days": 7, "upcomingDays": 30 }
+}

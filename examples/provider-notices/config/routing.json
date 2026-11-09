@@ -1,0 +1,19 @@
+{
+  "_comment": "The lab's routing: which notices become a task, for which assignment group, at which severity, and which only go in the weekly digest. Every team name here is fictional (contoso.example). An agency writes its own from templates/routing.template.json, at work, and keeps it inside its boundary. Rules are tried in order; the first whose every 'match' key matches wins. A notice no rule matches takes 'defaults'. Severities and response windows are the Ticket-to-Machine finding contract's (P1 immediate, P2 1 hour, P3 24 hours, P4 72 hours; program design, not a federal requirement).",
+  "version": 1,
+  "defaults": { "route": "digest", "severity": "P4", "assignmentGroup": "Cloud Operations (example)", "approverRole": "Service owner", "contingencyReview": false },
+  "rules": [
+    { "id": "R01", "name": "Security advisories go to security operations", "match": { "kind": ["security"] },
+      "route": "task", "severity": "P2", "assignmentGroup": "Security Operations (example)", "approverRole": "ISSO", "contingencyReview": false },
+    { "id": "R02", "name": "Retirements become a planned change", "match": { "kind": ["retirement"] },
+      "route": "task", "severity": "P3", "assignmentGroup": "Cloud Platform Engineering (example)", "approverRole": "System owner", "contingencyReview": true },
+    { "id": "R03", "name": "Maintenance that names our resources", "match": { "kind": ["maintenance"], "hasResources": true },
+      "route": "task", "severity": "P3", "assignmentGroup": "Cloud Platform Engineering (example)", "approverRole": "System owner", "contingencyReview": true },
+    { "id": "R04", "name": "Open incidents that name our resources", "match": { "kind": ["incident"], "status": ["open"], "hasResources": true },
+      "route": "task", "severity": "P2", "assignmentGroup": "Service Desk (example)", "approverRole": "Help desk supervisor", "contingencyReview": false },
+    { "id": "R05", "name": "Anything else the provider says needs action", "match": { "actionRequired": true },
+      "route": "task", "severity": "P3", "assignmentGroup": "Cloud Operations (example)", "approverRole": "Service owner", "contingencyReview": false },
+    { "id": "R06", "name": "Microsoft 365 stay-informed posts for a service the lab doesn't use", "match": { "provider": ["m365"], "servicePattern": "^Microsoft Viva$" },
+      "route": "ignore" }
+  ]
+}

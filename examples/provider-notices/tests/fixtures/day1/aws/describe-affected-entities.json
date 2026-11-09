@@ -1,0 +1,36 @@
+{
+  "entities": [
+    {
+      "entityArn": "arn:aws:ec2:us-east-1:111122223333:instance/i-0abc1234example",
+      "eventArn": "arn:aws:health:us-east-1::event/EC2/AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED/AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED_EXAMPLE01",
+      "entityValue": "i-0abc1234example",
+      "awsAccountId": "111122223333",
+      "lastUpdatedTime": 1793872800.0,
+      "statusCode": "PENDING"
+    },
+    {
+      "entityArn": "arn:aws:rds:us-east-1:111122223333:db:example-db-01",
+      "eventArn": "arn:aws:health:us-east-1::event/RDS/AWS_RDS_MAINTENANCE_SCHEDULED/AWS_RDS_MAINTENANCE_SCHEDULED_EXAMPLE02",
+      "entityValue": "example-db-01",
+      "awsAccountId": "111122223333",
+      "lastUpdatedTime": 1793959200.0,
+      "statusCode": "PENDING"
+    },
+    {
+      "entityArn": "arn:aws:lambda:us-west-2:111122223333:function:example-function",
+      "eventArn": "arn:aws:health:us-west-2::event/LAMBDA/AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT/AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT_EXAMPLE03",
+      "entityValue": "example-function",
+      "awsAccountId": "111122223333",
+      "lastUpdatedTime": 1793540653.0,
+      "statusCode": "PENDING"
+    },
+    {
+      "entityArn": "arn:aws:iam::111122223333:user/example-user",
+      "eventArn": "arn:aws:health:us-east-1::event/IAM/AWS_IAM_SECURITY_NOTIFICATION/AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04",
+      "entityValue": "example-user",
+      "awsAccountId": "111122223333",
+      "lastUpdatedTime": 1794139200.0,
+      "statusCode": "PENDING"
+    }
+  ]
+}

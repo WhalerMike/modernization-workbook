@@ -1,0 +1,19 @@
+{
+  "_comment": "Your routing, as a template. Copy it to routing.<environment>.json inside your agency's boundary (agency OneDrive, SharePoint or Teams, or a repository your agency hosts), replace every <placeholder>, and point the settings file's routing.path at it. Never commit a filled copy to a public or personal repository. Rules are tried in order; the first whose every 'match' key matches wins; a notice no rule matches takes 'defaults'. route: task (a Ticket-to-Machine task to the assignment group), digest (the weekly digest only) or ignore. severity: P1 to P4 (P1 immediate, P2 1 hour, P3 24 hours, P4 72 hours to triage; program design). match keys: provider (azure, m365, oci, aws, google), kind (maintenance, retirement, advisory, security, change, incident), status (open, closed), actionRequired (true or false), hasResources (true when the provider names your resources), servicePattern and regionPattern (regular expressions). copilot-prompts.md has prompts that draft this file from your own notes in Microsoft 365 Copilot Chat.",
+  "version": 1,
+  "defaults": { "route": "digest", "severity": "P4", "assignmentGroup": "<default-assignment-group>", "approverRole": "<default-approver-role>", "contingencyReview": false },
+  "rules": [
+    { "id": "R01", "name": "Security advisories", "match": { "kind": ["security"] },
+      "route": "task", "severity": "P2", "assignmentGroup": "<security-operations-group>", "approverRole": "<security-approver-role>", "contingencyReview": false },
+    { "id": "R02", "name": "Retirements", "match": { "kind": ["retirement"] },
+      "route": "task", "severity": "P3", "assignmentGroup": "<platform-engineering-group>", "approverRole": "<system-owner-role>", "contingencyReview": true },
+    { "id": "R03", "name": "Maintenance that names our resources", "match": { "kind": ["maintenance"], "hasResources": true },
+      "route": "task", "severity": "P3", "assignmentGroup": "<platform-engineering-group>", "approverRole": "<system-owner-role>", "contingencyReview": true },
+    { "id": "R04", "name": "Open incidents that name our resources", "match": { "kind": ["incident"], "status": ["open"], "hasResources": true },
+      "route": "task", "severity": "P2", "assignmentGroup": "<service-desk-group>", "approverRole": "<help-desk-supervisor-role>", "contingencyReview": false },
+    { "id": "R05", "name": "Anything else the provider says needs action", "match": { "actionRequired": true },
+      "route": "task", "severity": "P3", "assignmentGroup": "<cloud-operations-group>", "approverRole": "<service-owner-role>", "contingencyReview": false },
+    { "id": "R06", "name": "Services we don't use", "match": { "servicePattern": "<regex-of-services-not-in-use>" },
+      "route": "ignore" }
+  ]
+}

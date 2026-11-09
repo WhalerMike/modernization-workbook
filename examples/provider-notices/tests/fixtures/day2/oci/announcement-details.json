@@ -1,0 +1,170 @@
+{
+  "ocid1.announcement.oc1..aaaaaaaaexample01": {
+    "data": {
+      "id": "ocid1.announcement.oc1..aaaaaaaaexample01",
+      "type": "Announcement",
+      "referenceTicketNumber": "EXAMPLE-0001",
+      "summary": "Scheduled maintenance for Base Database Service in US East (Ashburn)",
+      "services": [
+        "Base Database Service"
+      ],
+      "affectedRegions": [
+        "us-ashburn-1"
+      ],
+      "announcementType": "SCHEDULED_MAINTENANCE",
+      "lifecycleState": "ACTIVE",
+      "isBanner": false,
+      "timeCreated": "2026-11-02T16:00:00Z",
+      "timeUpdated": "2026-11-02T16:00:00Z",
+      "environmentName": "PROD",
+      "platformType": "IAAS",
+      "chainId": "chain-example-01",
+      "timeOneTitle": "Start Time",
+      "timeOneType": "START_TIME",
+      "timeOneValue": "2026-11-22T04:00:00Z",
+      "timeTwoTitle": "End Time",
+      "timeTwoType": "END_TIME",
+      "timeTwoValue": "2026-11-22T08:00:00Z",
+      "description": "The database systems listed below will be patched during the window. Each node restarts once.",
+      "additionalInformation": null,
+      "affectedResources": [
+        {
+          "resourceId": "ocid1.dbsystem.oc1.iad.exampledb01",
+          "resourceName": "exampledb01",
+          "region": "us-ashburn-1",
+          "additionalProperties": []
+        }
+      ]
+    }
+  },
+  "ocid1.announcement.oc1..aaaaaaaaexample02": {
+    "data": {
+      "id": "ocid1.announcement.oc1..aaaaaaaaexample02",
+      "type": "Announcement",
+      "referenceTicketNumber": "EXAMPLE-0002",
+      "summary": "Action required: replace the certificate bundle on load balancers before it expires",
+      "services": [
+        "Load Balancer"
+      ],
+      "affectedRegions": [
+        "us-ashburn-1",
+        "us-phoenix-1"
+      ],
+      "announcementType": "ACTION_REQUIRED",
+      "lifecycleState": "ACTIVE",
+      "isBanner": false,
+      "timeCreated": "2026-11-04T14:00:00Z",
+      "timeUpdated": "2026-11-04T14:00:00Z",
+      "environmentName": "PROD",
+      "platformType": "IAAS",
+      "chainId": "chain-example-02",
+      "timeOneTitle": "Action Required By",
+      "timeOneType": "ACTION_REQUIRED_BY",
+      "timeOneValue": "2026-12-15T00:00:00Z",
+      "description": "Replace the certificate bundle on each listed load balancer listener before the date shown.",
+      "additionalInformation": null,
+      "affectedResources": [
+        {
+          "resourceId": "ocid1.loadbalancer.oc1.iad.examplelb01",
+          "resourceName": "examplelb01",
+          "region": "us-ashburn-1",
+          "additionalProperties": []
+        }
+      ]
+    }
+  },
+  "ocid1.announcement.oc1..aaaaaaaaexample03": {
+    "data": {
+      "id": "ocid1.announcement.oc1..aaaaaaaaexample03",
+      "type": "Announcement",
+      "referenceTicketNumber": "EXAMPLE-0003",
+      "summary": "New compute shapes are available in US West (Phoenix)",
+      "services": [
+        "Compute"
+      ],
+      "affectedRegions": [
+        "us-phoenix-1"
+      ],
+      "announcementType": "INFORMATION",
+      "lifecycleState": "ACTIVE",
+      "isBanner": false,
+      "timeCreated": "2026-11-05T12:00:00Z",
+      "timeUpdated": "2026-11-05T12:00:00Z",
+      "environmentName": "PROD",
+      "platformType": "IAAS",
+      "chainId": "chain-example-03",
+      "description": "New shapes are available. No action is needed.",
+      "additionalInformation": null,
+      "affectedResources": []
+    }
+  },
+  "ocid1.announcement.oc1..aaaaaaaaexample04": {
+    "data": {
+      "id": "ocid1.announcement.oc1..aaaaaaaaexample04",
+      "type": "Announcement",
+      "referenceTicketNumber": "EXAMPLE-0004",
+      "summary": "Object Storage requests returned errors in US East (Ashburn)",
+      "services": [
+        "Object Storage"
+      ],
+      "affectedRegions": [
+        "us-ashburn-1"
+      ],
+      "announcementType": "PRODUCTION_EVENT_NOTIFICATION",
+      "lifecycleState": "INACTIVE",
+      "isBanner": false,
+      "timeCreated": "2026-11-03T07:30:00Z",
+      "timeUpdated": "2026-11-03T09:00:00Z",
+      "environmentName": "PROD",
+      "platformType": "IAAS",
+      "chainId": "chain-example-04",
+      "timeOneTitle": "Time Detected",
+      "timeOneType": "TIME_DETECTED",
+      "timeOneValue": "2026-11-03T07:20:00Z",
+      "timeTwoTitle": "End Time",
+      "timeTwoType": "END_TIME",
+      "timeTwoValue": "2026-11-03T08:05:00Z",
+      "description": "Requests to Object Storage returned 503 errors for 45 minutes. The service has recovered.",
+      "additionalInformation": null,
+      "affectedResources": []
+    }
+  },
+  "ocid1.announcement.oc1..aaaaaaaaexample05": {
+    "data": {
+      "id": "ocid1.announcement.oc1..aaaaaaaaexample05",
+      "type": "Announcement",
+      "referenceTicketNumber": "EXAMPLE-0005",
+      "summary": "Rescheduled: maintenance for Base Database Service in US East (Ashburn)",
+      "services": [
+        "Base Database Service"
+      ],
+      "affectedRegions": [
+        "us-ashburn-1"
+      ],
+      "announcementType": "EMERGENCY_MAINTENANCE_RESCHEDULED",
+      "lifecycleState": "ACTIVE",
+      "isBanner": false,
+      "timeCreated": "2026-11-13T10:00:00Z",
+      "timeUpdated": "2026-11-13T10:00:00Z",
+      "environmentName": "PROD",
+      "platformType": "IAAS",
+      "chainId": "chain-example-01",
+      "timeOneTitle": "New Start Time",
+      "timeOneType": "NEW_START_TIME",
+      "timeOneValue": "2026-11-29T04:00:00Z",
+      "timeTwoTitle": "New End Time",
+      "timeTwoType": "NEW_END_TIME",
+      "timeTwoValue": "2026-11-29T08:00:00Z",
+      "description": "The maintenance moved one week. The database systems listed below will be patched during the new window.",
+      "additionalInformation": null,
+      "affectedResources": [
+        {
+          "resourceId": "ocid1.dbsystem.oc1.iad.exampledb01",
+          "resourceName": "exampledb01",
+          "region": "us-ashburn-1",
+          "additionalProperties": []
+        }
+      ]
+    }
+  }
+}

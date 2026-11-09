@@ -100,6 +100,7 @@ KIT_CAPTURES = {"ttm": ("docs/project-plans/developer-workbooks/ticket-to-machin
                 "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
                 "pa": ("docs/project-plans/developer-workbooks/privileged-access", "examples/privileged-access"),
                 "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "examples/non-person-identity"),
+                "pn": ("docs/project-plans/developer-workbooks/provider-notices", "examples/provider-notices"),
                 "adm": ("docs/books/b19-developer-workbook", "examples")}
 
 

@@ -1,0 +1,35 @@
+{
+  "count": 2,
+  "data": [
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa01",
+      "TrackingId": "PM3F-4GH",
+      "resourceName": "vm-db01",
+      "resourceGroup": "rg-data",
+      "resourceType": "Microsoft.Compute/virtualMachines",
+      "details": {
+        "resourceName": "vm-db01",
+        "resourceGroup": "rg-data",
+        "targetResourceType": "Microsoft.Compute/virtualMachines",
+        "targetResourceId": "/subscriptions/00000000-0000-0000-0000-00000000aa01/resourceGroups/rg-data/providers/Microsoft.Compute/virtualMachines/vm-db01"
+      },
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000aa01/providers/Microsoft.ResourceHealth/events/PM3F-4GH/impactedResources/vm-db01"
+    },
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa01",
+      "TrackingId": "RT5J-6KL",
+      "resourceName": "pip-legacy01",
+      "resourceGroup": "rg-net",
+      "resourceType": "Microsoft.Network/publicIPAddresses",
+      "details": {
+        "resourceName": "pip-legacy01",
+        "resourceGroup": "rg-net",
+        "targetResourceType": "Microsoft.Network/publicIPAddresses",
+        "targetResourceId": "/subscriptions/00000000-0000-0000-0000-00000000aa01/resourceGroups/rg-net/providers/Microsoft.Network/publicIPAddresses/pip-legacy01"
+      },
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000aa01/providers/Microsoft.ResourceHealth/events/RT5J-6KL/impactedResources/pip-legacy01"
+    }
+  ],
+  "skip_token": null,
+  "total_records": 2
+}
