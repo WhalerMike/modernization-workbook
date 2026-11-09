@@ -66,3 +66,11 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | Claim | Result | Source |
 |---|---|---|
 | CLM CA account scoped to its templates | corrected after the CyberArk implementation-guide research | Microsoft Learn: no WS2025 procedure for certificate-manager restrictions; positive and negative tests required |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| The vendor's documentation now opens at version 26.2, where the landing page is titled "Palo Alto Networks Certificate Manager - Self-Hosted Introduction" and the platform is "Palo Alto Networks Trust Protection Foundation"; the 26.1 page ("CyberArk Certificate Manager - Self-Hosted Introduction") is still at /Docs/26.1/. Discovery, renewal before expiry, multiple CAs and the four roles cited are unchanged in 26.2; the Microsoft CA account still needs Read, Issue and Manage Certificates, and Request Certificates. | Row 16's "built on the CyberArk Trust Protection Foundation" corrected to the 26.2 names; `[^c05-cyberark-sh]` now gives the 26.1 address and the 26.2 title. The program's product name in the text is unchanged (open question). |

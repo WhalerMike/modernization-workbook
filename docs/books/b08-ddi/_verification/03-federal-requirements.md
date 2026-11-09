@@ -90,3 +90,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | Explains how agencies meet M-22-09 while keeping Protective DNS upstream, | Explains how agencies can work toward M-22-09 while keeping Protective DNS upstream, | no source change |
 | Which log sources meet these requirements, DNS resolvers included, is set in that plan. | Which log sources count toward these requirements, DNS resolvers included, is set in that plan. | no source change |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| CIS Benchmarks list: Microsoft Windows Server 2025 is now 2.1.1 (row MS-3 recorded 2.1.0); Windows Server 2022 still 5.1.0; still no Infoblox NIOS benchmark, only the CIS-formatted Infoblox 8.x DNS STIG (1.0.0) | `[^c03-cisbench]` version updated; text unchanged |
