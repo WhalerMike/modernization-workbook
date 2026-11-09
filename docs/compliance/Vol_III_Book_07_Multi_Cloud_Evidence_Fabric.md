@@ -40,13 +40,6 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Provisional position.** This book was drafted at temporary series slot 23; its
-intended home is **Volume III (Security Operations)**, after the SIEM/XDR book.
-Cross-references name other books by **title and role**, not number, so the
-series-wide renumber does not break them.
-:::
-
-::: {.aan-important}
 **Series Context** — The Management-Plane Coordination Doctrine (Executive
 Summary) splits the management plane in two: actuation is platform-native;
 governance is unified. This book is the **unified-governance half made real** —

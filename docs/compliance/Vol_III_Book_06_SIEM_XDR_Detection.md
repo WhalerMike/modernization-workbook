@@ -181,7 +181,7 @@ Both Zscaler (ZIA) and Netskope have published Sentinel data connectors availabl
 
 ## Connector: SQL Audit Logs (Azure Monitor / Defender for SQL)
 
-SQL Server audit logs from Arc-connected instances flow through the Azure Monitor Agent (AMA) pipeline established in Vol II Book 02 (SQL Server Implementation Guide). Defender for SQL receives these logs through the AMA channel and surfaces findings as Microsoft Defender alerts in Sentinel.
+SQL Server audit logs from Arc-connected instances flow through the Azure Monitor Agent (AMA) pipeline. Vol II Book 02 (SQL Server Implementation Guide) establishes the Arc enrollment; the Azure Monitor Agent itself is deployed to each Arc-enrolled server as an Arc extension (through a data collection rule or Azure Policy), which this book assumes is in place. Defender for SQL receives these logs through the AMA channel and surfaces findings as Microsoft Defender alerts in Sentinel.
 
 **Table in Sentinel:** `AzureDiagnostics` (SQL audit logs from Arc-managed instances), `SecurityAlert` filtered by `ProductName == "Microsoft Defender for SQL"`.
 
@@ -208,7 +208,7 @@ All Sentinel connectors write to a single Log Analytics workspace. Retention mus
 : Log Analytics retention tier configuration {.striped .hover}
 
 ```powershell
-# Set 90-day interactive retention and 2-year archive for high-volume tables
+# Set 90-day interactive retention and 3-year total (archive after day 90) for high-volume tables
 $WorkspaceRg   = "<resource-group>"
 $WorkspaceName = "<workspace-name>"
 
@@ -224,7 +224,7 @@ foreach ($Table in $HighVolumeTables) {
         -WorkspaceName $WorkspaceName `
         -TableName $Table `
         -RetentionInDays 90 `
-        -TotalRetentionInDays 730
+        -TotalRetentionInDays 1095
 }
 
 # Set 90-day interactive + 3-year total for identity and audit tables
@@ -443,7 +443,7 @@ SigninLogs
 
 **Threat:** Re-enabling the SQL Server System Administrator (SA) account, which should be permanently disabled in any production SQL Server instance per the CIS Microsoft SQL Server benchmark and Microsoft's own SQL Server security guidance (Microsoft Learn, "SQL Server security best practices": the SA login "shouldn't be used or enabled", <https://learn.microsoft.com/sql/relational-databases/security/sql-server-security-best-practices>, accessed Oct 29, 2026) (the DISA SQL Server STIG check V-79075 says the same; High only: Defense or FedRAMP High material, not the Moderate civilian baseline this series targets, an optional reference). Re-enabling SA is a significant indicator of either unauthorized administrative access or a misconfiguration.
 
-**Detection logic:** Query `AzureDiagnostics` for SQL audit events where `event_class_s == "AUDIT_LOGIN_FAILED"` or `statement_s` contains `ALTER LOGIN sa ENABLE`. Alert on any occurrence with no suppression — this event should be zero-frequency in a properly configured environment.
+**Detection logic:** Query `AzureDiagnostics` for SQL audit events where `event_class_s == "AUDIT_LOGIN_FAILED"` or `statement_s` contains `ALTER LOGIN [disabled_sa_` together with `ENABLE`, or a rename of that login back to `sa` (Vol II Book 01 renames the disabled `sa` login to `disabled_sa_<instancename>`, so `ALTER LOGIN sa ENABLE` only matches an instance that has not yet been renamed). Alert on any occurrence with no suppression — this event should be zero-frequency in a properly configured environment.
 
 **Sentinel alert severity:** High.
 
@@ -553,7 +553,7 @@ Set-AzSentinelUeba `
 
 For agencies still operating on-premises Active Directory during the Entra ID migration — the hybrid state documented in Vol II Book 01 (SQL Server Authentication Modernization) of this series — Microsoft Defender for Identity (MDI) provides lateral movement detection, pass-the-hash/pass-the-ticket detection, and Golden Ticket attack detection against the on-premises domain controller. MDI alerts flow into Sentinel through the Microsoft 365 Defender connector and are automatically incorporated into the same entity pages and UEBA scores as Entra ID signals.
 
-During the hybrid transition period, MDI is required — Sentinel UEBA cannot see on-premises Kerberos/NTLM events without it. After the AD estate is fully decommissioned (Phase E of the migration), MDI can be removed and UEBA relies entirely on the Entra ID and Defender for Endpoint signals.
+During the hybrid transition period, MDI is required — Sentinel UEBA cannot see on-premises Kerberos/NTLM events without it. After the AD estate is fully decommissioned (the end of the Vol II Book 01 migration), MDI can be removed and UEBA relies entirely on the Entra ID and Defender for Endpoint signals.
 
 # Incident Automation and SOC Playbooks
 
@@ -735,7 +735,7 @@ The AU-11 retention requirement — preserve audit records for a period sufficie
 
 **Tier 1 — Interactive (90 days):** All ingested logs remain in the hot Log Analytics workspace for 90 days. Events in this tier are queryable in real-time via KQL, available for Sentinel analytics rules, and accessible to UEBA. This tier is the most expensive (per-GB ingestion plus per-GB retention) but is required for active detection operations. The 90-day window ensures that a detection rule authored today can look back through the full quarter without an archive retrieval delay.
 
-**Tier 2 — Archive (2 additional years, 90 days to 3 years total):** Log Analytics archive tier retains data at approximately 1/12th the hot tier cost. Archived data is not queryable in real-time — a query job must be submitted, which runs asynchronously and returns results to a temporary workspace. Archive tier satisfies the FedRAMP ConMon requirement for 3-year audit record availability at an operationally sustainable cost.
+**Tier 2 — Archive (day 90 to 3 years total, about 2 additional years):** Log Analytics archive tier retains data at approximately 1/12th the hot tier cost. Archived data is not queryable in real-time — a query job must be submitted, which runs asynchronously and returns results to a temporary workspace. Archive tier satisfies the FedRAMP ConMon requirement for 3-year audit record availability at an operationally sustainable cost.
 
 **Tier 3 — Immutable WORM Storage (3 years minimum, policy-driven):** Export daily snapshots from the Log Analytics workspace to Azure Blob Storage with legal hold (object immutability, WORM — Write Once Read Many). This tier satisfies the NARA General Records Schedule 3.2 requirement for disposition-controlled federal records. Legal hold prevents deletion even by subscription administrators until the hold is explicitly lifted through a documented process.
 
@@ -753,7 +753,7 @@ $ContainerName   = "sentinel-audit-worm"
 New-AzStorageAccount `
     -ResourceGroupName $StorageRg `
     -Name $StorageAccount `
-    -Location "usgovvirginia" `
+    -Location "East US 2" `
     -SkuName "Standard_GRS" `
     -Kind "StorageV2" `
     -AllowBlobPublicAccess $false `
@@ -786,7 +786,7 @@ Log Analytics pricing at scale is a primary budget consideration for SIEM deploy
 |---|---|---|
 | Ingestion (all connectors combined) | 50–150 GB/day | Per-GB ingestion charge |
 | Interactive retention (90 days) | Accumulating to 4,500–13,500 GB | Per-GB/day retention |
-| Archive retention (2 years beyond 90 days) | Policy tier activation | ~8% of interactive retention cost |
+| Archive retention (from day 90 to the 3-year total) | Policy tier activation | ~8% of interactive retention cost |
 | WORM Blob Storage (3 years, GRS) | Compressed export | Azure Blob GRS pricing |
 | Logic App playbook executions | Per-action billing | Minor relative to data costs |
 
@@ -809,7 +809,7 @@ The following table documents the NIST SP 800-53 Rev 5 controls addressed by thi
 | AU-6(4) | Central Review and Analysis | Log sources (InfoBlox, Entra, SQL, Defender) are in separate silos; no single review point | All log sources ingest to single Log Analytics workspace; all analytics rules query the unified workspace; all incidents appear in single Sentinel incident queue | NIST SP 800-53 Rev 5 AU-6(4) |
 | AU-7 | Audit Record Reduction and Report Generation | Analysts manually construct audit reports from raw log sources; no on-demand reporting | Sentinel workbooks provide pre-built operational dashboards; KQL-based report queries produce structured output on demand; Log Analytics export to CSV/JSON for evidence packaging | NIST SP 800-53 Rev 5 AU-7 |
 | AU-8 | Time Stamps | Log source timestamps may differ due to NTP drift; correlation across sources unreliable | Sentinel normalizes all event timestamps to UTC on ingestion; ASIM schema enforces canonical time field; NTP monitoring from InfoBlox NIOS provides network-wide time sync baseline | NIST SP 800-53 Rev 5 AU-8 |
-| AU-11 | Audit Record Retention | Logs retained in default Log Analytics 30-day window; no archive tier configured; no WORM copy | Three-tier retention: 90-day interactive, 2-year archive tier, 3-year WORM Blob with legal hold; per-table retention configured to meet NARA GRS 3.2 minimum | NIST SP 800-53 Rev 5 AU-11; NARA GRS 3.2 |
+| AU-11 | Audit Record Retention | Logs retained in default Log Analytics 30-day window; no archive tier configured; no WORM copy | Three-tier retention: 90-day interactive, archive tier to a 3-year total, 3-year WORM Blob with legal hold; per-table retention configured to meet NARA GRS 3.2 minimum | NIST SP 800-53 Rev 5 AU-11; NARA GRS 3.2 |
 | SI-4 | System Monitoring | No automated monitoring; network and endpoint telemetry not correlated; no anomaly detection | 20-rule priority detection library; UEBA behavioral baseline across all log sources; TIDE IOC auto-correlation; Defender for Endpoint real-time telemetry | NIST SP 800-53 Rev 5 SI-4 |
 | SI-4(2) | Automated Tools and Mechanisms for Real-time Analysis | Log data available but no automated analysis tools running against it | Sentinel analytics rules evaluate logs continuously at configurable frequency (5–60 min); UEBA models update hourly; TI indicator correlation runs every 15 min | NIST SP 800-53 Rev 5 SI-4(2) |
 | SI-4(4) | Inbound and Outbound Communications Traffic | No monitoring of DNS traffic patterns or SASE egress at user level | InfoBlox RPZ monitoring covers all DNS (inbound and internal); SASE connector covers all user egress with URL, user, and volume telemetry; Defender network events cover endpoint-level outbound | NIST SP 800-53 Rev 5 SI-4(4) |

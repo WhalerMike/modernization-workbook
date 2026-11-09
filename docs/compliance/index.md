@@ -45,9 +45,12 @@ working; application-aware networking itself remains a technical subject of
 Vol I, unchanged.
 :::
 
-Start with the **[two-page Executive Brief](../books/b14-compliance/01-proof-not-a-promise.md)**,
-then the **[Executive Summary and control compendium](../books/b14-compliance/02-the-federal-clock.md)**.
-Every book is browsable here and carries a Word download button.
+Start with **[Chapter 01 of Book 14, Proof, Not a Promise](../books/b14-compliance/01-proof-not-a-promise.md)**,
+then **[Chapter 02, The Federal Clock](../books/b14-compliance/02-the-federal-clock.md)**.
+The per-control index is **[Appendix A of Book 14](../books/b14-compliance/appendix-a-control-crosswalk.md)**.
+Volumes I, II and III are browsable here; Volumes 0 and IV now live in Book 14
+and Volume V in Book 16, as [the series map](../books/b14-compliance/12-the-series-as-a-map.md)
+shows. Each volume has a Word download in the table below.
 
 The series is engine-neutral by design: wherever a book needs evidence or
 authorization tooling, it speaks to the
@@ -62,8 +65,8 @@ still be there:
 
 | Entry point | For | Start here |
 |---|---|---|
-| **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](../books/b14-compliance/01-proof-not-a-promise.md), then the [Executive Summary](../books/b14-compliance/02-the-federal-clock.md) and the [Product Inventory Questionnaire](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md) |
-| **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the `<engine>` tooling note, and the deployable kits — the [ServiceNow compliance app](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
+| **Executive Brief** | Leadership, sponsors, procurement | [Book 14 Chapter 01, Proof, Not a Promise](../books/b14-compliance/01-proof-not-a-promise.md), then [Chapter 02, The Federal Clock](../books/b14-compliance/02-the-federal-clock.md), the [control index in Appendix A](../books/b14-compliance/appendix-a-control-crosswalk.md) and the [Product Inventory Questionnaire](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md) |
+| **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The compliance track of the training program ([Book 16, Chapter 03](../books/b16-people/03-the-compliance-track.md)) and its lab work ([Chapter 06](../books/b16-people/06-vendor-training-and-labs.md)), the `<engine>` tooling note, and the deployable kits — the [ServiceNow compliance app](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
 | **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](../books/b16-people/01-people-close-the-gap.md) and the two-track Compliance Training Program with its capstones and rubrics |
 
 ## One lifecycle, two pillars {#macdr}
@@ -78,13 +81,14 @@ attestation: drift against the compliance spine originates the work, the
 day-2 lanes carry the authorization and elevation discipline, and the
 closure stream is what the attestation pipeline (Vol VII Book 04) lifts
 into OSCAL and KSI evidence. Clause 1 is answered per object class by the
-**[SSOT Registry](../books/b14-compliance/02-the-federal-clock.md)**
+**SSOT Registry**
+([Book 14, Chapter 04](../books/b14-compliance/04-closure-with-proof.md#a-source-of-truth-for-every-object-class))
 — one designated source of truth for every class including the non-human
 ones (service accounts, devices, AI systems, declared infrastructure),
 each anchored to a human owner resolvable in the HR SSOT. The doctrine —
 including Closure Provenance ("no closure counts unless it carries its
 proof") — is stated in
-[Vol 0 Book 00](../books/b14-compliance/02-the-federal-clock.md).
+[Book 14, Chapter 04](../books/b14-compliance/04-closure-with-proof.md#no-closure-counts-without-its-proof).
 
 ::: {.callout-tip}
 ## Download the full series
@@ -122,14 +126,16 @@ boundary, and the published tree cannot render it.
 | **Vol X** | Governance-Substrate Integration (optional binding) | 1 | [`Vol_X-Governance-Substrate Integration-Bundle.docx`](<../../downloads/Vol_X-Governance-Substrate Integration-Bundle.docx>) |
 | **Total** | — | **60** | — |
 
-A companion **Training Academy** — 20 per-book courseware modules, 5 vendor labs,
-and two tracks (compliance and implementation) — is published alongside the series.
+A companion **Training Academy** — a compliance track, an implementation track,
+vendor training and labs, and end-user training — is published alongside the series
+as [Book 16](../books/b16-people/01-people-close-the-gap.md).
 
 ## How the series closes controls
 
-Each book generates its "Authorities Closed Here" table from a single compliance
+Each book's "Authorities Closed Here" table draws on a single compliance
 spine (`federal-compliance-compliance-spine.yml`): the SSOT that maps every NIST SP 800-53 Rev 5
 control the series closes to the book that closes it, the mechanism, the
-accreditation gate, the FedRAMP 20x KSI theme, and the evidence slot. The tables
-are generated, never hand-edited, so the series cannot claim a closure the spine
-does not record.
+accreditation gate, the FedRAMP 20x KSI theme, and the evidence slot. Where a
+book's table carries the generated marker, it is generated from the spine and
+never hand-edited; the tables in the other books are written by hand and are
+reconciled to the spine.

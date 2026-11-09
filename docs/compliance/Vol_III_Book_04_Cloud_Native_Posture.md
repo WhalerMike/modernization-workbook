@@ -40,13 +40,6 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Provisional position.** This book was drafted at temporary series slot 22; its
-intended home is **Volume III (Security Operations)**, alongside the Vulnerability
-Management and Patch & Systems Management books. Cross-references name other
-books by **title and role**, not number.
-:::
-
-::: {.aan-important}
 **Series Context** — The Vulnerability Management book finds missing patches on
 hosts; the Patch & Systems Management book applies them (SI-2) across platforms.
 Neither sees the risks that live *in the cloud control plane and the container
@@ -154,7 +147,7 @@ Containers add a layer host tools do not reach:
 
 - **Image scanning** — vulnerabilities and secrets caught in the registry at
   build time (CWPP/RA-5), so remediation is a rebuild, not a host patch (this is
-  the container path the Patch & Systems Management book explicitly defers here).
+  the container path the Vulnerability Management book lists among the surfaces that host patching does not reach).
 - **Admission control (CM-7)** — Kubernetes admission policy *denies* non-
   compliant workloads at deploy: no privileged pods, no unscanned images, no
   latest tags. Least functionality enforced at the gate.

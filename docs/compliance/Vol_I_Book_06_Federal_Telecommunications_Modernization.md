@@ -310,7 +310,7 @@ FedRAMP published its **Consolidated Rules for 2026** on June 25, 2026. Three ke
 | July 28, 2026 | FedRAMP Ready submissions cease | No new Ready pathway for Connect or SBC vendors |
 | August 3, 2026 | Class A pipeline opens | Evaluate whether Connect .com falls under Class A |
 | August 31, 2026 | Class B and C open | Multi-platform unified comms likely Class B or C |
-| January 1, 2027 | Consolidated Rules mandatory | All ConMon evidence must align to 20x KSI format |
+| January 1, 2027 | Consolidated Rules mandatory | The Key Security Indicators bind providers; the agency's own ConMon evidence is governed by OMB Circular A-130 and CA-7, and aligning it to the 20x KSI format is this program's design choice, not a federal deadline |
 | June 11, 2027 | No new Rev5 certification applications accepted | Plan for 20x pathway on next ATO cycle |
 
 **What 20x means for Amazon Connect continuous monitoring:** FedRAMP 20x replaces periodic evidence assembly with continuously-verified Key Security Indicators (KSIs) in machine-readable format. For Amazon Connect, this means:
@@ -320,7 +320,7 @@ FedRAMP published its **Consolidated Rules for 2026** on June 25, 2026. Three ke
 - **Boundary traffic logs** (SA-9): API calls crossing the .com boundary (CRM integration, recording access, contact flow analytics) must be captured in machine-readable format
 - **Region decision documentation**: The commercial-region decision must be maintained in a format compatible with 20x continuous review rather than point-in-time SSP snapshots
 
-**What 20x means for Teams Phone GCC Moderate:** Teams Phone in GCC Moderate inherits Microsoft's existing FedRAMP authorization. The 20x transition requires that the *agency's* continuous monitoring evidence — voice quality monitoring, E911 testing records, SBC boundary documentation — align to machine-readable KSI format.
+**What 20x means for Teams Phone GCC Moderate:** Teams Phone in GCC Moderate inherits Microsoft's existing FedRAMP authorization. The Key Security Indicators bind providers, not the agency. This program's design choice is to structure the *agency's* continuous monitoring evidence — voice quality monitoring, E911 testing records, SBC boundary documentation — on the same machine-readable KSI model, so that inherited and agency evidence can be read together; it is not a federal deadline.
 
 ::: {.aan-tip}
 **SD-WAN as 20x Evidence Generator:** The SD-WAN overlay that solves the G.114 latency problem also generates the machine-readable evidence 20x requires. Every path decision, every jitter measurement, every FEC activation is a logged, queryable event. **The network investment that enables Amazon Connect to meet G.114 is simultaneously the compliance evidence generator for FedRAMP 20x continuous monitoring.** These are not separate investments.
