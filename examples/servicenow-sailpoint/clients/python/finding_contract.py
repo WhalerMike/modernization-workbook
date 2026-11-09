@@ -48,8 +48,9 @@ KINDS = ["finding", "closure_signal"]
 # Keys of an intended state the re-read client knows how to check
 # (reread_verification.compare).
 # Classes Book 13, Appendix B routes to a human decision first (identity and
-# provenance drift): an empty intended state is expected until a person decides.
-HUMAN_DECISION_CLASSES = {"missing_identity", "unauthorized_write"}
+# provenance drift, and an orphan account, whose owner decides before the fix
+# runs gated): an empty intended state is expected until a person decides.
+HUMAN_DECISION_CLASSES = {"missing_identity", "orphan_account", "unauthorized_write"}
 CHECKABLE_KEYS = ("exists", "disabled", "accountEnabled", "locked", "attributes",
                   "entitlements_absent", "entitlements_present")
 

@@ -55,3 +55,11 @@ Writer: W4. Verified 2026-10-21. Built from the *Boundary Impact Model* ("What t
 | Before | After | Check |
 |---|---|---|
 | Adoption of the 2026 rules mandatory January 1, 2027 | Adds the December 7, 2026 date for the VDR and VER rules, linking Book 14 Chapter 02 | Decision of Nov 8, 2026; Book 14 Chapter 02 (FedRAMP NTC-0014: VDR and VER rules brought forward to December 7, 2026) |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged; the MSO365MT service description is unchanged ("leverages Azure Government as the IaaS/PaaS..."); the GCC SKU message is no longer present | GCC SKU statement dated October 21, 2026 and its absence on November 9 recorded; footnote [^c11-fr] updated |

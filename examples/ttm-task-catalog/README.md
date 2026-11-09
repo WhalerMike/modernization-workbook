@@ -38,7 +38,7 @@ examples/ttm-task-catalog/
   tests/python/           pytest
 ```
 
-The checker needs the integration kit's `finding_contract.py`, which the download includes at `servicenow-sailpoint/clients/python/`. The drift classes, default severities, priorities, response windows and re-read systems are read from that file, never retyped.
+The checker needs the integration kit's `finding_contract.py`, which the download includes at `servicenow-sailpoint/clients/python/`. The drift classes, default severities, priorities, response windows, re-read systems and the classes a person decides first (`HUMAN_DECISION_CLASSES`) are read from that file, never retyped.
 
 ## The workbook
 

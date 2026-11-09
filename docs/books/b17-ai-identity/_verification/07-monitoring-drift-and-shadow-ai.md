@@ -70,3 +70,11 @@ Writer W4. Source page: `docs/operational-guides/ai-identity-governance/governed
 | OSCAL evidence output and control map | Ch07 "From finding to evidence" | Mapped to Book 12's eight-field record; control map corrected (PT-2/AR-2 → RA-8; CA-8, SI-7 dropped). OSCAL assembly is Ch10's |
 | Callout: offering the script to OMB; schema-extension letter | — | Solicitation/advocacy framing and an inbox draft; not carried |
 | Normative references (internal specs) | — | Internal IDs; not carried |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| MDE local agent discovery page (ms.date Nov 2, 2026): process-based discovery plus installed VS Code extension data; "isn't a complete inventory of installed software" unchanged. Support matrix: discovery generally available on Windows and macOS except preview scenarios (macOS VS Code extensions; Windows Subsystem for Linux) | Row 26 superseded: shadow-AI paragraph and release-stage table row rewritten; new footnote [^c07-mde-matrix] |
