@@ -1,0 +1,23 @@
+# Book 15 Chapter 14 — a provider notice from the provider's own record to
+# closure (program design). Collection is read-only and at least weekly; rules
+# are tried in order, first match wins; a task carries the finding contract's
+# severity and the provider's own date; it closes only on the re-read (clause 4
+# of the request chain, Book 13 Appendix B); every run is kept as evidence.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+nodes:
+  src: {tone: slate, width: 470, tag: "Source of truth", title: "The provider's own record", body: ["=Azure Service Health, Microsoft 365 Message center and service health,", "=OCI Announcements, AWS Health, Google Cloud Personalized Service Health"], size: 11}
+  col: {tone: blue, width: 470, tag: "Weekly, read-only", title: "Collect", body: ["=One record per notice: kind, action required, due date, the agency's resources it names"], size: 11}
+  rt: {tone: amber, width: 470, tag: "Rules in order", title: "Route", body: ["=Security, retirement, maintenance naming our resources, open incidents, then any other action required"], size: 11}
+  task: {tone: green, width: 260, tag: "Needs action", title: "Typed task in the front door", body: ["=Owner, severity and window", "=The provider's own date", "=Contingency review flag"], size: 11}
+  dig: {tone: slate, width: 260, tag: "Everything else", title: "Weekly digest", body: ["=Open, action required, next 30 days, new, closed"], size: 11}
+  rr: {tone: violet, width: 300, tag: "Clause 4", title: "Re-read on the next collection", body: ["=Closes only when the provider's record shows it closed or no longer affecting us"], size: 11}
+  ev: {tone: violet, width: 300, title: "Evidence chain", body: ["=Hashed run records the ISSO keeps"], size: 11}
+edges:
+  - [src, col, {tone: blue}]
+  - [col, rt, {tone: amber}]
+  - [rt, task, {tone: green, label: "needs action"}]
+  - [rt, dig, {style: dashed, label: "everything else"}]
+  - [task, rr, {tone: violet}]
+  - [rr, task, {style: dashed, label: "still affected: stays open", attrs: "constraint=false"}]
+  - [rr, ev, {style: dashed, tone: violet}]

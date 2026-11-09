@@ -118,7 +118,7 @@ The source guidance told technicians to confirm the sender is exactly `MSSecurit
 | Admin consent request | Triage and record. Never approve from the email | Application owner, then the IGO ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#who-approves-admin-consent)) |
 | Sign-in risk alert | Check the sign-in log; if compromise is likely, place the account on hold | Security operations and the service desk supervisor |
 | Identity Protection detection | Record it. Don't change risk policies | Security operations or identity engineering |
-| Service health | Correlate with open tickets and add a known-issue note | Help desk supervisor |
+| Service health | Correlate with open tickets and add a known-issue note; every provider's notices are owned and closed as [Chapter 14](14-provider-notices.md) describes | Help desk supervisor |
 | An audit-log entry showing a consent, role assignment or access grant with no approved ticket behind it | Record and escalate immediately. Don't remediate without direction | The IGO and the security operations center |
 
 [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#the-help-desk-and-cloud-services-authority-split) sets the clocks for this lane: verify within four business hours and escalate within an hour if the event can't be matched to an approved ticket.

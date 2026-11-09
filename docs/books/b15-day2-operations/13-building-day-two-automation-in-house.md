@@ -255,7 +255,7 @@ The application's own output then joins the same pipeline as everything else: it
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 12 — The Day-Two Operator Runbook and Validation](12-the-day-two-runbook.md) · [Book index](index.md) · [Next: Appendix A — Help Desk Task Reference →](appendix-a-help-desk-task-reference.md)
+[← Previous: Chapter 12 — The Day-Two Operator Runbook and Validation](12-the-day-two-runbook.md) · [Book index](index.md) · [Next: Chapter 14 — Provider Notices in Day-Two Operations →](14-provider-notices.md)
 :::
 
 [^c13-snow-pcm]: ServiceNow, "Policy and Compliance Management," Zurich release documentation (the `com.sn_compliance` plugin "is available as a separate subscription and requires activation"), <https://www.servicenow.com/docs/r/DDKNGuzcS_gt6P_P4KM3Dg/eeRL8FMUVmmUbfaUseTLyA> (accessed Oct 28, 2026).
