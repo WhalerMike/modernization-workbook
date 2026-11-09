@@ -49,7 +49,7 @@ Duration 3 working days · wk 2 · total float 17 d · predecessors: IG0
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html",fmw,fmw-identity-lifecycle,fmw-id-i1.6,task,owner-piv-credentialing-office,,2027-01-11,2027-01-13,16,,,
 16,Task,7,IG1 Gate 1 — Authority and schema signed,"IG1 · Gate · owner or approver: ISSO
 Duration 0 working days · end of wk 5 · total float 0 · predecessors: I1.3, I1.4, I1.5, I1.6, I0.4
-Criteria: Identifier decision, authority map and schema signed; privacy basis (routine use, PIA update, minimized attribute set) in place; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list
+Criteria: Identifier decision, authority map and schema signed; privacy basis (routine use, PIA update, minimized attribute set) in place; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, ATG2); every enabled account correlated or on a dated exception list
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema",fmw,fmw-identity-lifecycle,fmw-id-ig1,gate,owner-isso,critical-path,2027-02-08,2027-02-05,21,24,39,
 17,Epic,,Identity Lifecycle & Provisioning: Phase 2 — Pipeline build and test,"Phase 2 — Pipeline build and test of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-01-26,2027-02-11,,,,

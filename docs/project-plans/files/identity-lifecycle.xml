@@ -381,7 +381,7 @@ Source: ../books/b03-hr-identity/09-credentials-and-certificates.md</Notes>
       <Milestone>1</Milestone>
       <Contact>ISSO</Contact>
       <Notes>Owner or approver: ISSO
-Criteria: Identifier decision, authority map and schema signed; privacy basis (routine use, PIA update, minimized attribute set) in place; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, AG2); every enabled account correlated or on a dated exception list
+Criteria: Identifier decision, authority map and schema signed; privacy basis (routine use, PIA update, minimized attribute set) in place; correlation measured on the pilot cohort (the threshold itself is decided and tested at Gate 2 of the Attribute-Driven Migration plan, ATG2); every enabled account correlated or on a dated exception list
 Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema</Notes>
       <PredecessorLink>
         <PredecessorUID>11</PredecessorUID>

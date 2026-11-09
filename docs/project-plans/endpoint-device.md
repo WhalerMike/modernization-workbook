@@ -109,7 +109,7 @@ A gate opens the work that names it as a predecessor, which is usually the next 
 | [Gate 1 — Policy library authored and reviewed](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 8 | CISO / ISSO | A decision record for every setting; every required setting owned by exactly one policy; peer review signed off; lab devices report Succeeded; pilot devices co-managed and syncing |
 | [Gate 2 — Pilot clean](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 16 | Endpoint engineering | No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; an NTLM restriction plan per application |
 | [Gate 3 — Workloads cut over](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 30 | Endpoint engineering | Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; evidence filed |
-| [Gate 4 — Servers under Arc](../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes) | end of wk 27 | CISO / ISSO | Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed |
+| [Gate 4 — Servers under Arc](../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes) | end of wk 27 | CISO / ISSO | Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage, a signed risk acceptance and a retirement date; rollback rehearsed |
 | [Gate 5 — GPOs retired](../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state) | end of wk 48 | CISO / ISSO | No GPO in scope linked to an OU with migrated devices; every retired GPO backed up with a decision record; only dated exceptions remain, each with an owner and review date; workload sliders at Intune |
 
 : Gates {.striped .hover}
@@ -129,11 +129,11 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
-| EG0  Gate 0 — Observation signed off | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-EG0) | Must finish A0.4 by it | 8 d margin |
-| E4.2  Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed | wk 5 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E42) | Must finish A5.3 by it | 6 d margin |
+| EG0  Gate 0 — Observation signed off | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-EG0) | Must finish AT0.4 by it | 8 d margin |
+| E4.2  Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed | wk 5 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E42) | Must finish AT5.3 by it | 6 d margin |
 | E1.4  Co-management on for the pilot collection; MDMWinsOverGP decided per population | wk 4–5 | [Content Delivery Modernization](content-delivery.md) (X-E14) | Waits for it | 63 d |
 | E1.5  Intune-first intake: procurement fields, Autopilot registration with group tags, enrollment restrictions | wk 5–6 | [Content Delivery Modernization](content-delivery.md) (X-E15) | Waits for it | 193 d |
-| start of E1.2  Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags | wk 5–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E12) | Must finish A5.2 by it | 4 d margin |
+| start of E1.2  Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags | wk 5–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E12) | Must finish AT5.2 by it | 4 d margin |
 | EG3  Gate 3 — Workloads cut over | end of wk 30 | [Content Delivery Modernization](content-delivery.md) (X-EG3) | Waits for it | 88 d |
 
 : Plans that take a date from this one {.striped .hover}
@@ -168,7 +168,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | E1.4 | [Co-management on for the pilot collection; MDMWinsOverGP decided per population](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-2-coexistence-planning) | Task | Endpoint engineering | 10 | E1.1, D-E1 | wk 4–5 | 37 d |
 | E1.5 | [Intune-first intake: procurement fields, Autopilot registration with group tags, enrollment restrictions](../books/b05-devices/04-intune-first-onboarding.md#the-five-phase-process) | Task | Endpoint engineering | 10 | D-E4 | wk 5–6 | 32 d |
 | EG1 | [Gate 1 — Policy library authored and reviewed](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | Gate | CISO / ISSO | — | E1.3, E1.4, E1.5 | end of wk 8 | 23 d |
-| X-G1 | [Program G1 — Foundation Complete](program-master-schedule.md) | External | Steward | — | E1.3 | end of wk 8 | fixed date |
+| X-G1 | [Program G1 — Foundation Complete](program-master-schedule.md) | External | Steward (program) | — | E1.3 | end of wk 8 | fixed date |
 
 : Phase 1 — Classify and author {.striped .hover}
 
@@ -176,7 +176,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-D06 | [Program decision D06: device pattern for each pilot cohort](program-master-schedule.md) | External | Program office | — | — | end of wk 8 | 22 d |
+| X-D06 | [Program decision D06: device pattern for each pilot cohort](program-master-schedule.md) | External | Program office (program) | — | — | end of wk 8 | 22 d |
 | D-E7 | [Cut date for each hybrid-joined pilot device](../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path) | Decision | Executive sponsor and CIO | — | X-D06 | end of wk 8 | 40 d |
 | E2.1 | [Pilot devices moved by pattern, with device attributes populated](../books/b05-devices/02-the-hybrid-join-trap.md#the-governed-path) | Task | Endpoint engineering | 8 | E2.2, EG1, X-G1, X-D06 | wk 12–13 | 7 d |
 | E2.2 | **[Sliders at Pilot Intune; policies assigned to the pilot cohort with a 7-day grace period; GPOs left linked](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot)** | Task | Endpoint engineering | 5 | X-G1 +10 d | wk 11 | 0 |
@@ -185,7 +185,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | E2.5 | **[First setting class retired: GPO backed up, evidence checked, links disabled on the pilot OUs](../books/b05-devices/07-the-gpo-sunset-program.md#freezing-and-unlinking-gpos)** | Task | Endpoint engineering | 5 | E2.3 | wk 16 | 0 |
 | E2.8 | [SPNs repaired for pilot applications; NTLM restriction plan per application](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-repair-spns-before-enforcing-kerberos) | Task | Application owners | 10 | E2.1, EG0 | wk 13–15 | 7 d |
 | EG2 | **[Gate 2 — Pilot clean](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate)** | Gate | Endpoint engineering | — | E2.5, E2.4, E2.8, D-E7 | end of wk 16 | 0 |
-| X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward and executive sponsor | — | EG2 | end of wk 16 | fixed date |
+| X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward and executive sponsor (co-signed; program) | — | EG2 | end of wk 16 | fixed date |
 
 : Phase 2 — Pilot {.striped .hover}
 
@@ -202,7 +202,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | E3.8 | [Residual cleanup: remaining links disabled after 7 clean days; tattooed preference items cleared or owned](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-6-verification-and-residual-cleanup) | Task | Endpoint engineering | 10 | E3.4 | wk 29–30 | 18 d |
 | X-P35 | [Program P3.5: GPO links off migrated OUs after 7 clean days](program-master-schedule.md) | External | Platform teams (program) | — | E3.8 | end of wk 34 | fixed date |
 | EG3 | [Gate 3 — Workloads cut over](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | Gate | Endpoint engineering | — | E3.8, E3.6, E3.7 | end of wk 30 | 18 d |
-| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee | — | — | end of wk 36 | 37 d |
+| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee (program) | — | — | end of wk 36 | 37 d |
 
 : Phase 3 — Workload cutover {.striped .hover}
 
@@ -216,7 +216,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | D-E5 | [Arc onboarding method](../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method) | Decision | Server infrastructure | — | EG0 | end of wk 4 | 10 d |
 | E4.4 | [Certificate-based onboarding service principal at resource-group scope, created as a recorded change and handed to the chosen tool](../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal) | Task | Server infrastructure | 2 | D-E5, E4.1 | wk 6 | 5 d |
 | E4.5 | [Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists](../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline) | Task | Server infrastructure | 10 | E4.2 | wk 6–7 | 1 d |
-| E4.6 | [Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist](../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates) | Task | Server infrastructure | 5 | — | wk 1 | 135 d |
+| E4.6 | [Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist; each with a signed risk acceptance and a retirement date](../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates) | Task | Server infrastructure | 5 | — | wk 1 | 135 d |
 | E4.7 | [Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set](../books/b05-devices/09-servers-under-azure-arc.md#connect) | Task | Server infrastructure | 4 | E4.3, E4.4 | wk 7 | 2 d |
 | E4.8 | [Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Servers Plan 2 onboarded](../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline) | Task | Server infrastructure | 4 | E4.7, E4.5 | wk 8 | 1 d |
 | X-P113 | [Pilot servers connected through Arc with machine configuration applied (program P1.13)](program-master-schedule.md) | External | Platform teams (program) | — | E4.8 | end of wk 8 | fixed date |
@@ -234,7 +234,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-D08 | [Program decision D08: end dates for legacy authentication and NTLM](program-master-schedule.md) | External | Authorizing official | — | — | end of wk 16 | 137 d |
+| X-D08 | [Program decision D08: end dates for legacy authentication and NTLM](program-master-schedule.md) | External | Authorizing official (program) | — | — | end of wk 16 | 137 d |
 | E5.1 | **[Migrated GPOs disabled and held 90 days as the rollback net](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement)** | Task | Endpoint engineering | 64 | EG3, X-P35 | wk 34–47 | 0 |
 | E5.2 | **[Backups restore-tested; GPOs archived and deleted; exception register closed](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement)** | Task | Endpoint engineering | 5 | E5.1, X-G3 | wk 47–48 | 0 |
 | E5.3 | [NTLM stage 3: deny all; exceptions removed as each dependency retires](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-restrict-ntlm-in-stages) | Task | Application owners | 20 | E3.6, X-D08, X-G3 | wk 37–40 | 37 d |
@@ -255,12 +255,12 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Application owners | 3 | — | — |
 | Platform teams (program) | 3 | — | — |
 | Executive sponsor and CIO | — | 2 | — |
-| Authorizing official | 1 | — | — |
-| Executive sponsor and steering committee | 1 | — | — |
+| Authorizing official (program) | 1 | — | — |
+| Executive sponsor and steering committee (program) | 1 | — | — |
 | Identity engineering | 1 | — | — |
-| Program office | 1 | — | — |
-| Steward | 1 | — | — |
-| Steward and executive sponsor | 1 | — | — |
+| Program office (program) | 1 | — | — |
+| Steward (program) | 1 | — | — |
+| Steward and executive sponsor (co-signed; program) | 1 | — | — |
 
 : Ownership {.striped .hover}
 

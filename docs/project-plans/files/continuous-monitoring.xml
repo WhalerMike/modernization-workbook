@@ -91,8 +91,8 @@
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Platform teams</Contact>
-      <Notes>Owner or approver: Platform teams
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: The contract has no record to be committed to; Gate 1 waits
 Source: ../books/b13-governance/03-one-authoritative-record.md#where-the-record-lives</Notes>
       <ConstraintType>4</ConstraintType>
@@ -109,8 +109,8 @@ Source: ../books/b13-governance/03-one-authoritative-record.md#where-the-record-
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward</Contact>
-      <Notes>Owner or approver: Steward
+      <Contact>Steward (backup: executive sponsor; program)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor; program)
 If decided late: This plan's Gate 0 should land before it; the pilot scope feeds the program's planning
 Source: ../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program</Notes>
       <ConstraintType>4</ConstraintType>
@@ -687,8 +687,8 @@ Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-mea
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Platform teams</Contact>
-      <Notes>Owner or approver: Platform teams
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: There is nothing to drift-check before G1; the drift run moves day for day
 Source: ../books/b13-governance/06-the-drift-engine.md#one-model-many-domain-checks</Notes>
       <ConstraintType>4</ConstraintType>
@@ -738,8 +738,8 @@ Source: ../books/b13-governance/06-the-drift-engine.md#what-is-built-today</Note
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward</Contact>
-      <Notes>Owner or approver: Steward
+      <Contact>Steward (program)</Contact>
+      <Notes>Owner or approver: Steward (program)
 If decided late: M4.1 must finish before it, or G1's drift-clean criterion rests on findings recorded by hand
 Source: ../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1010,8 +1010,8 @@ Source: ../books/b14-compliance/11-the-authorization-package.md#the-cadence</Not
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Platform teams</Contact>
-      <Notes>Owner or approver: Platform teams
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: Device-posture findings can't start; the margin to the G2 hold shrinks day for day
 Source: ../books/b13-governance/06-the-drift-engine.md#cadence</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1061,8 +1061,8 @@ Source: ../books/b13-governance/06-the-drift-engine.md#what-is-built-today</Note
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Program office</Contact>
-      <Notes>Owner or approver: Program office
+      <Contact>Program office (program)</Contact>
+      <Notes>Owner or approver: Program office (program)
 If decided late: The hold can't be measured from data, so G2 can't pass on evidence
 Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1085,8 +1085,8 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-cl
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward and executive sponsor</Contact>
-      <Notes>Owner or approver: Steward and executive sponsor
+      <Contact>Steward and executive sponsor (co-signed; program)</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor (co-signed; program)
 If decided late: M5.3 must finish before the 14-day hold that ends at G2
 Source: ../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project</Notes>
       <ConstraintType>4</ConstraintType>

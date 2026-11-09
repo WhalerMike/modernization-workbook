@@ -83,7 +83,7 @@
     <Task>
       <UID>2</UID>
       <ID>2</ID>
-      <Name>N0.1 AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target</Name>
+      <Name>NP0.1 AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target</Name>
       <OutlineNumber>1.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-04T08:00:00</Start>
@@ -106,8 +106,8 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#discovering-servic
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward (program)</Contact>
-      <Notes>Owner or approver: Steward (program)
+      <Contact>Steward (backup: executive sponsor; program)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor; program)
 If decided late: The program's assessment goes to G0 without the service account picture, and Phase 1 is sized without it
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -130,8 +130,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (Privileged Access plan)</Contact>
-      <Notes>Owner or approver: Identity engineering (Privileged Access plan)
+      <Contact>Identity engineering (Privileged Access &amp; Administrative Identity plan)</Contact>
+      <Notes>Owner or approver: Identity engineering (Privileged Access &amp; Administrative Identity plan)
 If decided late: The Entra side of the register has no app registration inventory to start from
 Source: privileged-access.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -140,7 +140,7 @@ Source: privileged-access.md</Notes>
     <Task>
       <UID>5</UID>
       <ID>5</ID>
-      <Name>N0.2 Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged</Name>
+      <Name>NP0.2 Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged</Name>
       <OutlineNumber>1.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-14T08:00:00</Start>
@@ -161,7 +161,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#a-read-on
     <Task>
       <UID>6</UID>
       <ID>6</ID>
-      <Name>N0.3 AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals</Name>
+      <Name>NP0.3 AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals</Name>
       <OutlineNumber>1.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-04T08:00:00</Start>
@@ -176,7 +176,7 @@ Source: ../books/b17-ai-identity/03-the-inventory-as-an-identity-source.md#using
     <Task>
       <UID>7</UID>
       <ID>7</ID>
-      <Name>N0.4 SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan</Name>
+      <Name>NP0.4 SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan</Name>
       <OutlineNumber>1.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-18T08:00:00</Start>
@@ -197,7 +197,7 @@ Source: ../books/b06-data-platform/09-what-arc-provides-to-sql-server.md#the-man
     <Task>
       <UID>8</UID>
       <ID>8</ID>
-      <Name>N0.5 One non-person identity register: type, host, workload location, risk and candidate target for every identity</Name>
+      <Name>NP0.5 One non-person identity register: type, host, workload location, risk and candidate target for every identity</Name>
       <OutlineNumber>1.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>
@@ -236,7 +236,7 @@ Source: ../books/guides/attribute-driven-migration.md#non-person-identity-track<
     <Task>
       <UID>9</UID>
       <ID>9</ID>
-      <Name>D-N1 Source of record for non-person identities</Name>
+      <Name>D-NP1 Source of record for non-person identities</Name>
       <OutlineNumber>1.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-15T17:00:00</Start>
@@ -259,7 +259,7 @@ Source: ../books/guides/attribute-driven-migration.md#non-person-identity-track<
     <Task>
       <UID>10</UID>
       <ID>10</ID>
-      <Name>NG0 Gate 0 — Non-person identities inventoried</Name>
+      <Name>NPG0 Gate 0 — Non-person identities inventoried</Name>
       <OutlineNumber>1.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T17:00:00</Start>
@@ -297,7 +297,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
     <Task>
       <UID>12</UID>
       <ID>12</ID>
-      <Name>N1.1 An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set</Name>
+      <Name>NP1.1 An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set</Name>
       <OutlineNumber>2.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T08:00:00</Start>
@@ -318,7 +318,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#ownership
     <Task>
       <UID>13</UID>
       <ID>13</ID>
-      <Name>N1.2 AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record</Name>
+      <Name>NP1.2 AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record</Name>
       <OutlineNumber>2.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T08:00:00</Start>
@@ -339,7 +339,7 @@ Source: ../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-program
     <Task>
       <UID>14</UID>
       <ID>14</ID>
-      <Name>D-N2 Orphan rule for identities nobody will own</Name>
+      <Name>D-NP2 Orphan rule for identities nobody will own</Name>
       <OutlineNumber>2.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T17:00:00</Start>
@@ -362,7 +362,7 @@ Source: ../books/b04-access/06-who-decides-access.md#ownership-changes-and-orpha
     <Task>
       <UID>15</UID>
       <ID>15</ID>
-      <Name>N1.3 Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window</Name>
+      <Name>NP1.3 Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window</Name>
       <OutlineNumber>2.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-04T08:00:00</Start>
@@ -389,7 +389,7 @@ Source: ../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsa
     <Task>
       <UID>16</UID>
       <ID>16</ID>
-      <Name>NG1 Gate 1 — Every non-person identity owned</Name>
+      <Name>NPG1 Gate 1 — Every non-person identity owned</Name>
       <OutlineNumber>2.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-10T17:00:00</Start>
@@ -427,7 +427,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#governing-service-
     <Task>
       <UID>18</UID>
       <ID>18</ID>
-      <Name>N2.1 Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement</Name>
+      <Name>NP2.1 Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement</Name>
       <OutlineNumber>3.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-11T08:00:00</Start>
@@ -448,7 +448,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#the-migration-path
     <Task>
       <UID>19</UID>
       <ID>19</ID>
-      <Name>D-N3 Retire, re-platform or keep, account by account</Name>
+      <Name>D-NP3 Retire, re-platform or keep, account by account</Name>
       <OutlineNumber>3.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-31T17:00:00</Start>
@@ -471,7 +471,7 @@ Source: ../books/guides/attribute-driven-migration.md#non-person-identity-track<
     <Task>
       <UID>20</UID>
       <ID>20</ID>
-      <Name>D-N4 Workload ID Premium licensing scope</Name>
+      <Name>D-NP4 Workload ID Premium licensing scope</Name>
       <OutlineNumber>3.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-31T17:00:00</Start>
@@ -494,7 +494,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#what-work
     <Task>
       <UID>21</UID>
       <ID>21</ID>
-      <Name>N2.2 Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave</Name>
+      <Name>NP2.2 Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave</Name>
       <OutlineNumber>3.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-01T08:00:00</Start>
@@ -515,7 +515,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
     <Task>
       <UID>22</UID>
       <ID>22</ID>
-      <Name>NG2 Gate 2 — Every account has a decision</Name>
+      <Name>NPG2 Gate 2 — Every account has a decision</Name>
       <OutlineNumber>3.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-07T17:00:00</Start>
@@ -571,7 +571,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>25</UID>
       <ID>25</ID>
-      <Name>N3.1 App management policy: new client secrets and symmetric keys blocked, certificates capped at 180 days for new apps; app instance property lock on owned apps</Name>
+      <Name>NP3.1 App management policy: new client secrets and symmetric keys blocked, certificates capped at 180 days for new apps; app instance property lock on owned apps</Name>
       <OutlineNumber>4.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T08:00:00</Start>
@@ -592,7 +592,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#enforcing
     <Task>
       <UID>26</UID>
       <ID>26</ID>
-      <Name>N3.2 Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested</Name>
+      <Name>NP3.2 Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested</Name>
       <OutlineNumber>4.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-08T08:00:00</Start>
@@ -625,7 +625,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#workload-identity-
     <Task>
       <UID>27</UID>
       <ID>27</ID>
-      <Name>N3.3 Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled</Name>
+      <Name>NP3.3 Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-29T08:00:00</Start>
@@ -646,7 +646,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
     <Task>
       <UID>28</UID>
       <ID>28</ID>
-      <Name>N3.4 Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled</Name>
+      <Name>NP3.4 Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled</Name>
       <OutlineNumber>4.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-13T08:00:00</Start>
@@ -667,7 +667,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
     <Task>
       <UID>29</UID>
       <ID>29</ID>
-      <Name>N3.5 Kerberos-only workloads: MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA</Name>
+      <Name>NP3.5 Kerberos-only workloads: MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA</Name>
       <OutlineNumber>4.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-08T08:00:00</Start>
@@ -712,7 +712,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>31</UID>
       <ID>31</ID>
-      <Name>N3.6 Kerberos accounts that stay: SPN owner and an end date within D08 recorded; the islanded list handed to the program's SPN retirement</Name>
+      <Name>NP3.6 Kerberos accounts that stay: SPN owner and an end date within D08 recorded; the islanded list handed to the program's SPN retirement</Name>
       <OutlineNumber>4.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-06T08:00:00</Start>
@@ -739,7 +739,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#what-still-needs-ad-
     <Task>
       <UID>32</UID>
       <ID>32</ID>
-      <Name>N3.7 Rotation in place: certificates in Key Vault, rotated by the pipeline, raised before expiry and approved by the owner</Name>
+      <Name>NP3.7 Rotation in place: certificates in Key Vault, rotated by the pipeline, raised before expiry and approved by the owner</Name>
       <OutlineNumber>4.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-29T08:00:00</Start>
@@ -760,7 +760,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#governing
     <Task>
       <UID>33</UID>
       <ID>33</ID>
-      <Name>NG3 Gate 3 — Credentials modernized</Name>
+      <Name>NPG3 Gate 3 — Credentials modernized</Name>
       <OutlineNumber>4.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-08-04T17:00:00</Start>
@@ -802,8 +802,8 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ISSO (Data Platform plan)</Contact>
-      <Notes>Owner or approver: ISSO (Data Platform plan)
+      <Contact>ISSO (Data Platform Identity Transformation plan)</Contact>
+      <Notes>Owner or approver: ISSO (Data Platform Identity Transformation plan)
 If decided late: The SQL Server accounts handed over in Phase 0 are still on Windows authentication
 Source: data-platform.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -846,7 +846,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>37</UID>
       <ID>37</ID>
-      <Name>N4.1 Permission sweep: owners review every grant; broad permissions such as Directory.ReadWrite.All replaced with application-specific roles and scopes</Name>
+      <Name>NP4.1 Permission sweep: owners review every grant; broad permissions such as Directory.ReadWrite.All replaced with application-specific roles and scopes</Name>
       <OutlineNumber>5.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-11T08:00:00</Start>
@@ -867,7 +867,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#governing-service-
     <Task>
       <UID>38</UID>
       <ID>38</ID>
-      <Name>N4.2 Managed identities' role assignments scoped to the resource and put on the app registrations' review cadence</Name>
+      <Name>NP4.2 Managed identities' role assignments scoped to the resource and put on the app registrations' review cadence</Name>
       <OutlineNumber>5.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-11T08:00:00</Start>
@@ -896,8 +896,8 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#managed-i
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity governance officer (Privileged Access plan)</Contact>
-      <Notes>Owner or approver: Identity governance officer (Privileged Access plan)
+      <Contact>Identity governance officer (Privileged Access &amp; Administrative Identity plan)</Contact>
+      <Notes>Owner or approver: Identity governance officer (Privileged Access &amp; Administrative Identity plan)
 If decided late: Privileged service principals are outside this plan's sweep, so the least-privilege gate can't pass
 Source: privileged-access.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -906,7 +906,7 @@ Source: privileged-access.md</Notes>
     <Task>
       <UID>40</UID>
       <ID>40</ID>
-      <Name>N4.3 First quarterly owner review of permissions closed; access reviews for service principals in privileged roles</Name>
+      <Name>NP4.3 First quarterly owner review of permissions closed; access reviews for service principals in privileged roles</Name>
       <OutlineNumber>5.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-15T08:00:00</Start>
@@ -939,7 +939,7 @@ Source: ../books/guides/attribute-driven-migration.md#service-principals-managed
     <Task>
       <UID>41</UID>
       <ID>41</ID>
-      <Name>NG4 Gate 4 — Least privilege</Name>
+      <Name>NPG4 Gate 4 — Least privilege</Name>
       <OutlineNumber>5.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-06-18T17:00:00</Start>
@@ -977,7 +977,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#governing-service-
     <Task>
       <UID>43</UID>
       <ID>43</ID>
-      <Name>N5.1 Scope set: R1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope</Name>
+      <Name>NP5.1 Scope set: R1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope</Name>
       <OutlineNumber>6.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-01T08:00:00</Start>
@@ -1010,7 +1010,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#conditional-access
     <Task>
       <UID>44</UID>
       <ID>44</ID>
-      <Name>N5.2 CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read</Name>
+      <Name>NP5.2 CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read</Name>
       <OutlineNumber>6.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-08T08:00:00</Start>
@@ -1031,7 +1031,7 @@ Source: ../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-r
     <Task>
       <UID>45</UID>
       <ID>45</ID>
-      <Name>D-N5 Enforce the workload identity policies</Name>
+      <Name>D-NP5 Enforce the workload identity policies</Name>
       <OutlineNumber>6.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-05T17:00:00</Start>
@@ -1054,7 +1054,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#condition
     <Task>
       <UID>46</UID>
       <ID>46</ID>
-      <Name>N5.3 Policies enforced ring by ring; block events alerted to security operations</Name>
+      <Name>NP5.3 Policies enforced ring by ring; block events alerted to security operations</Name>
       <OutlineNumber>6.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-06T08:00:00</Start>
@@ -1075,7 +1075,7 @@ Source: ../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-r
     <Task>
       <UID>47</UID>
       <ID>47</ID>
-      <Name>NG5 Gate 5 — Workload identities under Conditional Access</Name>
+      <Name>NPG5 Gate 5 — Workload identities under Conditional Access</Name>
       <OutlineNumber>6.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-19T17:00:00</Start>
@@ -1107,7 +1107,7 @@ Source: ../books/b04-access/05-applications-and-workload-identities.md#condition
     <Task>
       <UID>49</UID>
       <ID>49</ID>
-      <Name>D-N6 AI identity capabilities the program builds on in the agency's cloud</Name>
+      <Name>D-NP6 AI identity capabilities the program builds on in the agency's cloud</Name>
       <OutlineNumber>7.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-15T17:00:00</Start>
@@ -1130,7 +1130,7 @@ Source: ../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licens
     <Task>
       <UID>50</UID>
       <ID>50</ID>
-      <Name>N6.1 Creation closed: Users can create agent blueprints set to No; agent app registrations routed to the blueprint path; consent baseline applied to agents</Name>
+      <Name>NP6.1 Creation closed: Users can create agent blueprints set to No; agent app registrations routed to the blueprint path; consent baseline applied to agents</Name>
       <OutlineNumber>7.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T08:00:00</Start>
@@ -1151,7 +1151,7 @@ Source: ../books/b17-ai-identity/06-credentials-and-least-privilege.md#admin-con
     <Task>
       <UID>51</UID>
       <ID>51</ID>
-      <Name>N6.2 Production handshake: blueprint, sponsor, consent, Conditional Access coverage and placement confirmed; access through expiring access packages</Name>
+      <Name>NP6.2 Production handshake: blueprint, sponsor, consent, Conditional Access coverage and placement confirmed; access through expiring access packages</Name>
       <OutlineNumber>7.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-18T08:00:00</Start>
@@ -1184,7 +1184,7 @@ Source: ../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#creation</N
     <Task>
       <UID>52</UID>
       <ID>52</ID>
-      <Name>N6.3 Agent credentials: managed identity as the blueprint credential, else federation, else a certificate; no secret on a production blueprint</Name>
+      <Name>NP6.3 Agent credentials: managed identity as the blueprint credential, else federation, else a certificate; no secret on a production blueprint</Name>
       <OutlineNumber>7.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-04T08:00:00</Start>
@@ -1211,7 +1211,7 @@ Source: ../books/b17-ai-identity/06-credentials-and-least-privilege.md#no-stored
     <Task>
       <UID>53</UID>
       <ID>53</ID>
-      <Name>N6.4 Agent least privilege: access mode chosen first; narrow inheritance, never allAllowed for app roles; no standing privileged role</Name>
+      <Name>NP6.4 Agent least privilege: access mode chosen first; narrow inheritance, never allAllowed for app roles; no standing privileged role</Name>
       <OutlineNumber>7.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-04T08:00:00</Start>
@@ -1240,8 +1240,8 @@ Source: ../books/b17-ai-identity/06-credentials-and-least-privilege.md#privilege
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ISSO (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: ISSO (Identity Lifecycle plan)
+      <Contact>ISSO (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: ISSO (Identity Lifecycle &amp; Provisioning plan)
 If decided late: The sponsor's mover and leaver events have no HR-driven workflow to ride on
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1250,7 +1250,7 @@ Source: identity-lifecycle.md</Notes>
     <Task>
       <UID>55</UID>
       <ID>55</ID>
-      <Name>N6.5 Sponsorship tasks added to the HR-driven mover and leaver workflows; ten-business-day confirmation; human workflows kept off agents' user accounts</Name>
+      <Name>NP6.5 Sponsorship tasks added to the HR-driven mover and leaver workflows; ten-business-day confirmation; human workflows kept off agents' user accounts</Name>
       <OutlineNumber>7.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-26T08:00:00</Start>
@@ -1277,7 +1277,7 @@ Source: ../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sp
     <Task>
       <UID>56</UID>
       <ID>56</ID>
-      <Name>N6.6 Agent Conditional Access in report-only: block all agent identities except those approved by attribute; block high-risk agents (preview, watch item)</Name>
+      <Name>NP6.6 Agent Conditional Access in report-only: block all agent identities except those approved by attribute; block high-risk agents (preview, watch item)</Name>
       <OutlineNumber>7.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-04T08:00:00</Start>
@@ -1298,7 +1298,7 @@ Source: ../books/b17-ai-identity/06-credentials-and-least-privilege.md#the-token
     <Task>
       <UID>57</UID>
       <ID>57</ID>
-      <Name>N6.7 AI drift checks running: agentic system with no governed identity, shadow AI identity, no accountable human, credential added outside the pipeline</Name>
+      <Name>NP6.7 AI drift checks running: agentic system with no governed identity, shadow AI identity, no accountable human, credential added outside the pipeline</Name>
       <OutlineNumber>7.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-04T08:00:00</Start>
@@ -1319,7 +1319,7 @@ Source: ../books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md#drift-comp
     <Task>
       <UID>58</UID>
       <ID>58</ID>
-      <Name>NG6 Gate 6 — AI identities governed</Name>
+      <Name>NPG6 Gate 6 — AI identities governed</Name>
       <OutlineNumber>7.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-07T17:00:00</Start>
@@ -1375,7 +1375,7 @@ Source: ../books/b17-ai-identity/10-evidence-and-authorization.md#the-evidence-a
     <Task>
       <UID>60</UID>
       <ID>60</ID>
-      <Name>N7.1 Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline</Name>
+      <Name>NP7.1 Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline</Name>
       <OutlineNumber>8.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-08-05T08:00:00</Start>
@@ -1396,7 +1396,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#git-based-drift-dete
     <Task>
       <UID>61</UID>
       <ID>61</ID>
-      <Name>N7.2 A full review cycle: owners' quarterly permission review, sponsors' attestation, expiry-based recertification of agent access</Name>
+      <Name>NP7.2 A full review cycle: owners' quarterly permission review, sponsors' attestation, expiry-based recertification of agent access</Name>
       <OutlineNumber>8.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-06-21T08:00:00</Start>
@@ -1441,7 +1441,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>63</UID>
       <ID>63</ID>
-      <Name>N7.3 gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date</Name>
+      <Name>NP7.3 gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date</Name>
       <OutlineNumber>8.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-08-05T08:00:00</Start>
@@ -1492,7 +1492,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>65</UID>
       <ID>65</ID>
-      <Name>N7.4 Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled</Name>
+      <Name>NP7.4 Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled</Name>
       <OutlineNumber>8.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-08-19T08:00:00</Start>
@@ -1519,7 +1519,7 @@ Source: ../books/guides/attribute-driven-migration.md#federal-requirements</Note
     <Task>
       <UID>66</UID>
       <ID>66</ID>
-      <Name>NG7 Gate 7 — Steady state</Name>
+      <Name>NPG7 Gate 7 — Steady state</Name>
       <OutlineNumber>8.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-08-25T17:00:00</Start>

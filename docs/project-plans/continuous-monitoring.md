@@ -144,8 +144,8 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-P02 | [Platform host built and repository seeded](../books/b13-governance/03-one-authoritative-record.md#where-the-record-lives) | External | Platform teams | — | — | end of wk 2 | 8 d |
-| X-G0 | [Program G0: Ready to Plan](../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program) | External | Steward | — | — | end of wk 4 | fixed date |
+| X-P02 | [Platform host built and repository seeded](../books/b13-governance/03-one-authoritative-record.md#where-the-record-lives) | External | Platform teams (program) | — | — | end of wk 2 | 8 d |
+| X-G0 | [Program G0: Ready to Plan](../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program) | External | Steward (backup: executive sponsor; program) | — | — | end of wk 4 | fixed date |
 | M0.1 | [Sponsor, lead and the four domain leads named](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) | Task | Executive sponsor and CIO | 3 | — | wk 1 | 2 d |
 | D-M1 | [Where the record, schemas, rules and their code live](../books/b13-governance/12-governance-at-scale.md#one-repository-one-merge-gate) | Decision | Program office (steward) | — | M0.1 | end of wk 1 | 7 d |
 | M0.2 | [Record shape, pilot sources and naming-plane join key confirmed](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) | Task | Program office | 5 | M0.1 | wk 1–2 | 2 d |
@@ -196,9 +196,9 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-P12 | [Enterprise groups and administrative units built](../books/b13-governance/06-the-drift-engine.md#one-model-many-domain-checks) | External | Platform teams | — | — | end of wk 7 | 0 |
+| X-P12 | [Enterprise groups and administrative units built](../books/b13-governance/06-the-drift-engine.md#one-model-many-domain-checks) | External | Platform teams (program) | — | — | end of wk 7 | 0 |
 | M4.1 | **[Pilot groups and administrative units checked against the record; findings written in contract shape](../books/b13-governance/06-the-drift-engine.md#what-is-built-today)** | Task | Drift detection lead | 3 | X-P12, MG2, M1.3 | wk 7–8 | 0 |
-| X-G1 | [Program G1: Foundation Complete (groups and AUs drift-clean)](../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project) | External | Steward | — | M4.1 | end of wk 8 | fixed date |
+| X-G1 | [Program G1: Foundation Complete (groups and AUs drift-clean)](../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project) | External | Steward (program) | — | M4.1 | end of wk 8 | fixed date |
 | D-M4 | [Actuation ceiling for each pilot operation class](../books/b13-governance/10-ticket-to-machine.md#approval-gates-keep-humans-on-the-decisions-that-matter) | Decision | Authorizing official | — | M1.3 | end of wk 4 | 20 d |
 | M4.2 | **[Drift loop for identity attributes end to end: snapshot, compare, classify, alert, remediate, verify](../books/b13-governance/06-the-drift-engine.md#what-the-engine-remediates-and-what-it-doesnt)** | Task | Drift detection lead | 10 | M4.1, D-M4, MG3 | wk 8–10 | 0 |
 | D-M5 | [Engine that realizes the evidence contract and emits the package](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md#build-buy-or-both) | Decision | Program office (steward) | — | MG1 | end of wk 4 | 18 d |
@@ -215,10 +215,10 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | D-M6 | [Minimum monitoring frequencies in the continuous monitoring strategy](../books/b13-governance/09-who-governs.md#the-responsibility-matrix) | Decision | Senior accountable official for risk management | — | M0.3 | end of wk 3 | 33 d |
 | M5.1 | **[Daily triage, weekly evidence and drift review, and the human-only closure review running](../books/b13-governance/09-who-governs.md#cadence)** | Task | Program office | 5 | MG4, D-M6 | wk 10–11 | 0 |
 | M5.2 | **[Months 1 to 3: assessment results and the POA&M regenerated, POA&M reviewed, posture report to the AO](../books/b14-compliance/11-the-authorization-package.md#the-cadence)** | Task | ISSO | 60 | M5.1 (SS) | wk 10–22 | 0 |
-| X-P23 | [Pilot devices moved by pattern](../books/b13-governance/06-the-drift-engine.md#cadence) | External | Platform teams | — | — | end of wk 13 | 4 d |
+| X-P23 | [Pilot devices moved by pattern](../books/b13-governance/06-the-drift-engine.md#cadence) | External | Platform teams (program) | — | — | end of wk 13 | 4 d |
 | M5.3 | [Pilot devices' posture findings written in contract shape, before the program's drift-clean hold](../books/b13-governance/06-the-drift-engine.md#what-is-built-today) | Task | Platform teams | 3 | X-P23, M2.3, M1.3 | wk 13–14 | 4 d |
-| X-HOLD | [Program drift-clean hold begins (P2.11)](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean) | External | Program office | — | M5.3 | end of wk 14 | fixed date |
-| X-G2 | [Program G2: Pilot Clean (zero drift for the hold period)](../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project) | External | Steward and executive sponsor | — | — | end of wk 16 | 26 d |
+| X-HOLD | [Program drift-clean hold begins (P2.11)](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean) | External | Program office (program) | — | M5.3 | end of wk 14 | fixed date |
+| X-G2 | [Program G2: Pilot Clean (zero drift for the hold period)](../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project) | External | Steward and executive sponsor (co-signed; program) | — | — | end of wk 16 | 26 d |
 | M5.4 | [Federal senior information security official named to review each provider's Ongoing Certification Report](../books/b14-compliance/11-the-authorization-package.md#what-fedramps-2026-rules-expect) | Task | CISO | 3 | MG4 | wk 10 | 52 d |
 | D-M7 | [How the agency's decision reuses each external service's package](../books/b13-governance/11-reciprocity-and-one-authorization.md#one-package-for-a-shared-service) | Decision | Authorizing official | — | MG4 | end of wk 10 | 55 d |
 | M5.5 | [Reciprocity record per external service; first Ongoing Certification Report reviewed and recorded](../books/b13-governance/11-reciprocity-and-one-authorization.md#what-fedramps-2026-rules-add) | Task | ISSM | 10 | D-M7, M5.4 | wk 10–12 | 52 d |
@@ -234,23 +234,27 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Owner or approver | Tasks | Decisions | Gates |
 |---|---|---|---|
 | CISO | 2 | 1 | 5 |
-| Platform teams | 7 | — | — |
+| Platform teams | 4 | — | — |
 | Authorizing official | — | 2 | 1 |
 | Drift detection lead | 3 | — | — |
-| Program office | 3 | — | — |
-| Steward | 3 | — | — |
+| Platform teams (program) | 3 | — | — |
 | Aggregation lead | 2 | — | — |
 | Authorization package lead | 2 | — | — |
 | Evidence contract lead | 2 | — | — |
 | ISSM | 2 | — | — |
+| Program office | 2 | — | — |
 | Program office (steward) | — | 2 | — |
 | CISO's staff | 1 | — | — |
 | CMDB owner | 1 | — | — |
 | Executive sponsor and CIO | 1 | — | — |
 | ISSO | 1 | — | — |
+| Program office (program) | 1 | — | — |
 | Security operations | 1 | — | — |
 | Senior accountable official for risk management | — | 1 | — |
-| Steward and executive sponsor | 1 | — | — |
+| Steward | 1 | — | — |
+| Steward (backup: executive sponsor; program) | 1 | — | — |
+| Steward (program) | 1 | — | — |
+| Steward and executive sponsor (co-signed; program) | 1 | — | — |
 | Steward, after board review and an outside reviewer | — | 1 | — |
 
 : Ownership {.striped .hover}

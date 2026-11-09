@@ -53,3 +53,11 @@ Verified: 2026-11-02. A new section, "The authority register," adds applicabilit
 | 23 | FedRAMP changelog: RFC-0035 (Oct 14, 2026), RFC-0036 (Oct 15, 2026) | verified | fedramp.gov |
 | 24 | SP 800-37 r2, 800-53 r5 (5.2.0), 800-53A r5 (5.2.0), 800-60 v1 r1, 800-63-4, 800-137, 800-161 r1 upd1, 800-207, FIPS 199, 200, 201-3: current, no newer revision listed | verified | csrc.nist.gov publication pages |
 | 25 | Mandatory status, responsible roles, residual obligations, change triggers | inference (program reading of the sources) | — |
+
+## Additions, November 9, 2026
+
+Verified: 2026-11-09. A scripted pass matched each source-table row to the Source Register (`data/source-register.json`) by its labels and title, and a reviewer read every proposed match against the register row's title and URL. 64 rows gained a link, for 85 in all. Rows where the register holds only a related page (FIPS 140-3 and the CMVP; TIC 3.0 use cases and the Branch Office use case; RFC-0020 and Notice NTC-0004; the CISA SASE row, whose June 2026 date couldn't be matched to the register's SASE guide) were left unlinked. No claim on the page changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Every source-table row whose instrument has a register row links to it; 85 rows | Additions made, November 5, 2026 | verified (repository count) | `data/source-register.json`; the page's tables |
