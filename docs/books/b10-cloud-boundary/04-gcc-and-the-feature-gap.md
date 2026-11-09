@@ -122,6 +122,19 @@ The practical conclusions:
 4. Cite the Marketplace class for the package the agency actually uses, and plan for `MSO365MTA` as an open question, not a commitment.
 5. Never plan to recover a missing feature by waiting for a higher certification class. Ask the provider, per feature, what would move it.
 
+## A worked case: Global Secure Access's network and privacy facts
+
+A security service edge is where the boundary question gets concrete, because the agency's traffic, not only its data, passes through the provider. Microsoft's Global Secure Access shows what the register row has to carry ([Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#microsofts-security-service-edge-global-secure-access)).
+
+- **Environment.** "Global Secure Access is available in the US Government Community Cloud (GCC), but isn't yet supported in the US Government Community Cloud High (GCC-H), Department of Defense cloud, or other government or sovereign cloud environments."[^c04-gsa-limits] It is a row that differs between environments, as the conclusions above expect.
+- **Where traffic is processed.** Microsoft states that Private Access and Internet Access "are available in the same locations" and that "These locations are Microsoft data centers." Its North American list names commercial Azure regions, such as East US, Central US and West US 2, and no Azure Government region.[^c04-gsa-pop] The remote network region list likewise has no Azure Government region.[^c04-gsa-rnconfig] The inference, labeled as one: a GCC tenant's traffic through Global Secure Access is handled in the commercial regions on that list, which the agency records in its boundary description and confirms with the provider.
+- **Addresses.** Microsoft says the service "doesn't provide dedicated or static public IP addresses per individual data center or geographic location." Clients reach it on anycast ranges under `*.globalsecureaccess.microsoft.com`, and traffic leaves it from `128.94.0.0/19` and `151.206.0.0/16`, which any destination that filters by source address has to allow.[^c04-gsa-pop][^c04-gsa-egress] Location-based rules that key on the agency's own egress addresses stop matching unless source IP restoration is used for Microsoft Entra sign-in ([Book 09, Chapter 06](../b09-network/06-legacy-protocols-on-re-routed-paths.md)).
+- **Data handling.** For Microsoft 365 enriched logs, Microsoft states that a subset of audit logs is copied to the service, retained for 24 hours, and that processing "strictly occurs within the US or Europe," with customers outside Europe processed in the United States.[^c04-gsa-privacy] Traffic logs and remote network health logs are kept for 30 days unless exported.[^c04-gsa-logs]
+- **Certifications.** Microsoft's certifications page lists FedRAMP High and DoD SRG Level 2 for Global Secure Access, without saying which environment's authorization that is.[^c04-gsa-certs] That is a question for [Appendix A](appendix-a-what-to-ask-for.md): which package covers the GCC service, and at what class.
+- **Ciphers.** The private network connector supports TLS 1.2 and 1.3 with default Windows cipher suites, and Microsoft's own table marks the CBC and RSA key-exchange suites as weak.[^c04-gsa-ciphers] Connector hosts follow the agency's server hardening, which removes them.
+
+None of those facts is an impact level. They are what Microsoft documents about one service in one environment, which is the kind of row the register is built from.
+
 [Chapter 09](09-equivalents-and-exceptions.md) turns the register into decisions, and [Appendix A](appendix-a-what-to-ask-for.md) lists the specific questions to put to the provider.
 
 ::: {.callout-tip}
@@ -146,3 +159,11 @@ The practical conclusions:
 [^c04-tool]: Microsoft Learn, "Microsoft 365 network connectivity test tool" (version table; network egress distance insight), <https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-onboarding-tool?view=o365-worldwide> (accessed Oct 21, 2026).
 [^c04-scn]: FedRAMP, "Significant Change Notification," *FedRAMP Consolidated Rules for 2026* (SCN-CSO-EVA), <https://www.fedramp.gov/2026/reference/significant-change-notification/> (accessed Oct 21, 2026).
 [^c04-ntc0004]: FedRAMP, Notice NTC-0004, *Initial Outcome from RFC-0020 FedRAMP Authorization Designations*, February 25, 2026, <https://www.fedramp.gov/notices/0004/> (accessed Oct 21, 2026).
+[^c04-gsa-limits]: Microsoft Learn, "Known Limitations for Global Secure Access," section Global Secure Access In Government Cloud limitations, <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Nov 9, 2026).
+[^c04-gsa-pop]: Microsoft Learn, "Global Secure Access points of presence and IP addresses," <https://learn.microsoft.com/entra/global-secure-access/reference-points-of-presence> (accessed Nov 9, 2026).
+[^c04-gsa-rnconfig]: Microsoft Learn, "Global Secure Access remote network configurations" (valid regions), <https://learn.microsoft.com/entra/global-secure-access/reference-remote-network-configurations> (accessed Nov 9, 2026).
+[^c04-gsa-egress]: Microsoft Learn, "Global Secure Access egress IP ranges," <https://learn.microsoft.com/entra/global-secure-access/reference-egress-ip-ranges> (accessed Nov 9, 2026).
+[^c04-gsa-privacy]: Microsoft Learn, "Microsoft Entra Private Access and Microsoft Entra Internet Access data storage and privacy," <https://learn.microsoft.com/entra/global-secure-access/reference-data-storage-and-privacy> (accessed Nov 9, 2026).
+[^c04-gsa-logs]: Microsoft Learn, "Global Secure Access logs and monitoring," <https://learn.microsoft.com/entra/global-secure-access/concept-global-secure-access-logs-monitoring> (accessed Nov 9, 2026).
+[^c04-gsa-certs]: Microsoft Learn, "Global Secure Access Certifications," <https://learn.microsoft.com/entra/global-secure-access/reference-global-secure-access-certifications> (accessed Nov 9, 2026).
+[^c04-gsa-ciphers]: Microsoft Learn, "Ciphers for Microsoft Entra Private Access," <https://learn.microsoft.com/entra/global-secure-access/reference-ciphers> (accessed Nov 9, 2026).

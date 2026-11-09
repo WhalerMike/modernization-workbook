@@ -161,3 +161,18 @@ The program's editor decided on November 9, 2026 that the DISA IIS 10.0 STIGs ar
 | 1 | The DISA Microsoft IIS 10.0 Server and Site STIGs, at their current release, are the program's IIS baseline; the *High only* note names them as the exception | DP vs Intune, "Hardening baseline" row; note after the table | program decision (Nov 9, 2026) | `[^c11-stig]` |
 | 2 | The IIS 10.0 Server STIG has reached Version 3 Release 7 (Tenable audit library, updated July 28, 2026); DISA's own STIG library could not be reached from here, so the reader takes the current Server and Site releases from it | `[^c11-stig]` | verified (secondary source); DISA primary not reached | Tenable audit page |
 | 3 | Microsoft's IIS security guidance is the fallback where neither the STIG nor CIS settles a setting | Same row | program decision | none (direction, not a fact) |
+
+## Learn gaps, November 9, 2026
+
+New subsection "Remote networks to a security service edge". Microsoft Learn pages read Nov 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| GSA-1 | GCC available, GCC High and DoD not yet supported; 200 remote networks, 25 device links | Remote networks | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
+| GSA-2 | 50 combined P1 and Internet Access licenses | Remote networks | verified | Microsoft Learn "What is Global Secure Access?", read Nov 9, 2026 |
+| GSA-3 | Bandwidth pool by licenses; 1,000-1,499 licenses give 3,500 Mbps; tunnel sizes; two tunnels per location; profiles; baseline only; client for user-aware | Remote networks | verified | Microsoft Learn "Global Secure Access remote network connectivity", read Nov 9, 2026 |
+| GSA-4 | Cloud firewall linked to baseline profile | Remote networks | verified | Microsoft Learn "Configure cloud firewall for remote networks", read Nov 9, 2026 |
+| GSA-5 | Responder mode; IKEv2, BGP | Remote networks | verified | Microsoft Learn "How to Create Remote Networks", read Nov 9, 2026 |
+| GSA-6 | Device types include Cisco Meraki, Fortinet, Palo Alto Networks, VMware SD-WAN, Versa; no Azure Government region | Remote networks | verified | Microsoft Learn "Global Secure Access remote network configurations", read Nov 9, 2026 |
+| GSA-7 | Zone and geographic redundancy with BGP | Remote networks | verified | Microsoft Learn "Enhance Remote Network Resilience with Global Secure Access", read Nov 9, 2026 |
+| GSA-8 | 1,500 offices exceed the limit; hubs fit; client for parity; tunnel for printers and cameras | Remote networks | restated-as-design | restated-as-design from the limits above |
