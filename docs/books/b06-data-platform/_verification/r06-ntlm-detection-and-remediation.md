@@ -76,3 +76,16 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 |---|---|---|---|---|
 | CR2-1 | Linked-server remediation option 1 no longer offers the Entra password option: SQL Server 2025 managed identity; SQL Server 2022 access token generated from the application's client secret (Chapter 11's documented exception); the password option named and rejected as deprecated and incompatible with mandatory MFA, matching Chapter 14. New notes `[^r06-linked-token]`, `[^r06-entra-password]` | line 133; notes lines 176-177 | factual | <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server>; <https://learn.microsoft.com/sql/connect/oledb/features/using-azure-active-directory> |
 | CR2-2 | October 2026 NTLMv1 scope ("Windows 11 versions 24H2 to 26H2 and Windows Server 2025") verified correct; no change | line 143 | verified | <https://learn.microsoft.com/windows/release-health/windows-message-center> |
+
+## Learn additions, November 9, 2026 (SAM-R detection)
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service. Added from the Learn coverage review (Windows Server identity gap 9).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | SAM client event logging records SAM client operations (connections, handle operations, domain lookups, enumeration) with the calling process in the SAMLIB Debug channel (log name Microsoft-Windows-SAMLIB/Debug) | Phase 1, new subsection "Remote SAM enumeration" | verified (new) | `r06-samlib`, Learn "Enable SAM client logging and diagnostics" (read Nov 9, 2026) |
+| L2 | It records activity from any Windows system generating SAM traffic toward a DC, client and server SKUs, joined or not; prerequisite Windows 11 with KB5095093 (2026-06) or later | Same | verified; minimum Windows Server version written as "not yet specified" because Learn lists only the Windows 11 prerequisite | `r06-samlib` |
+| L3 | Event IDs 1000 SamConnect, 1010 domain lookup, 1012 domain enumeration, 1014 SamOpenDomain | Same | verified | `r06-samlib`, section "Review SAM client events" |
+| L4 | Command-line arguments omitted by default; `IncludeArguments` REG_DWORD 1 adds them; Microsoft cautions they can contain credentials | Same | verified; the runbook leaves it off (program design) | `r06-samlib`, section "Manage command-line argument logging" |
+| L5 | `wevtutil sl <log> /e:true|false` enables or disables a log; `qe` with `/q`, `/c`, `/rd:true`, `/f:text` | Same, command block | verified (syntax); Learn's SAM page gives Event Viewer steps, the wevtutil form is the equivalent from the wevtutil reference and hasn't been run against a device | `r06-wevtutil`, Learn "wevtutil" (read Nov 9, 2026) |
+| L6 | SAM-R callers are another AD dependency and a DC load source; they go into the same inventory as NTLM findings | Same | restated-as-design | Program design; load source from `r06-samlib` introduction |

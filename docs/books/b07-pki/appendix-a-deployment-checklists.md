@@ -1,6 +1,6 @@
 ---
 title: "Appendix A — Cloud PKI and CBA Deployment Checklists"
-description: "Two working checklists, verified against Microsoft documentation as of October 2026: deploying Microsoft Cloud PKI with Intune, and configuring Microsoft Entra certificate-based authentication through to domain cutover."
+description: "Two working checklists, verified against Microsoft documentation as of October 2026: deploying Microsoft Cloud PKI with Intune, and configuring Microsoft Entra certificate-based authentication through to domain cutover; and a read-only certificate store inspection for the servers the estate depends on."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b07-pki
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-Checklist A.1 deploys Microsoft Cloud PKI and the Intune profiles that use it, wave by wave. Checklist A.2 configures Microsoft Entra certificate-based authentication (CBA) from licensing through domain cutover and monitoring. Each line names an owner role and how to verify it. The reasoning behind each step is in [Chapter 06](06-device-and-user-certificates.md) and [Chapter 07](07-coexistence-and-migration.md); owner roles follow [Chapter 05](05-who-owns-the-certificate-estate.md).
+Checklist A.1 deploys Microsoft Cloud PKI and the Intune profiles that use it, wave by wave. Checklist A.2 configures Microsoft Entra certificate-based authentication (CBA) from licensing through domain cutover and monitoring. A.3 inspects the certificate stores on the servers the estate depends on. Each line names an owner role and how to verify it. The reasoning behind each step is in [Chapter 06](06-device-and-user-certificates.md) and [Chapter 07](07-coexistence-and-migration.md); owner roles follow [Chapter 05](05-who-owns-the-certificate-estate.md).
 :::
 
 The waves are those of [Chapter 07](07-coexistence-and-migration.md): Assess, Foundation, Pilot, Scale, Cutover, Decommission. Thresholds such as "99% of devices" are the program's gates, not Microsoft requirements.
@@ -39,7 +39,7 @@ The commands in this appendix are examples. They haven't been run against a prod
 | 4 | Fix each CA's properties before creating it: EKUs (no Any Purpose), subject, RSA key size; they can't be edited later[^aA-byoca] | Foundation | PKI architect | Properties reviewed against the issuance policy |
 | 5 | *Cloud root model:* create the Cloud PKI root CA, then the issuing CA under it, with a licensed tenant (HSM-backed keys), not during a trial (trial CAs keep software keys)[^aA-cpki] | Foundation | PKI admin | Both CAs show Active in Tenant administration > Cloud PKI |
 | 6 | *BYOCA model:* create the BYOCA issuing CA and download its certificate request[^aA-byoca] | Foundation | PKI admin | CA status reads Signing required; `.req` file saved |
-| 7 | *BYOCA model:* sign the request on the private CA with the Subordinate Certification Authority template (the program signs with the offline root); export the signed certificate and the full chain as `.p7b`[^aA-byoca] | Foundation | PKI admin | Signed `.cer` and chain file in the ceremony record |
+| 7 | *BYOCA model:* sign the request on the private CA with the Subordinate Certification Authority template (the program signs with the offline root); export the signed certificate and the full chain as `.p7b`[^aA-byoca][^aA-pkcs10] | Foundation | PKI admin | Signed `.cer` and chain file in the ceremony record |
 | 8 | *BYOCA model:* upload the signed certificate and chain to the BYOCA issuing CA[^aA-byoca] | Foundation | PKI admin | Status Active; root common name shows External root CA |
 | 9 | Record each CA's CRL distribution point and AIA URIs from its properties. Intune hosts them for Cloud PKI CAs; for BYOCA, the parent CRL and AIA come from the private CA, and AD CS defaults to an LDAP AIA location[^aA-byoca] | Foundation | PKI admin | URIs listed in the CA register |
 | 10 | Confirm every CRL and AIA URL is reachable over HTTP from inside the network and from the internet | Foundation | Network | HTTP 200 from both locations; private-CA LDAP-only locations replaced |
@@ -48,7 +48,7 @@ The commands in this appendix are examples. They haven't been run against a prod
 | 13 | Create a trusted certificate profile per platform for the root, for each intermediate, and for the issuing CA; for BYOCA, one for every CA in the private chain plus the BYOCA issuing CA[^aA-byoca][^aA-trusted-root] | Foundation | Intune admin | Profiles exist for Windows, iOS/iPadOS, Android and macOS as needed |
 | 14 | Assign the trusted certificate profiles to every group that will get a cloud SCEP profile or a Wi-Fi, VPN or email profile using one[^aA-trusted-root] | Foundation | Intune admin | Assignment report |
 | 15 | Confirm trusted certificate profile success on at least 99% of targeted devices | Foundation | Intune admin | Profile device status report |
-| 16 | Deploy the cloud chain to domain-joined relying parties (RADIUS, VPN, mTLS servers) by Group Policy or `certutil -dspublish <file> RootCA` ([Chapter 07](07-coexistence-and-migration.md)) | Foundation | AD admin | `certutil -verify` on a relying party builds the chain without errors |
+| 16 | Deploy the cloud chain to domain-joined relying parties (RADIUS, VPN, mTLS servers) by Group Policy or `certutil -dspublish <file> RootCA` ([Chapter 07](07-coexistence-and-migration.md))[^aA-certutil] | Foundation | AD admin | `certutil -verify` on a relying party builds the chain without errors |
 | 17 | Decide whether any cloud CA will issue logon certificates for the forest; publish to NTAuth (`certutil -dspublish <file> NTAuthCA`) only if so | Foundation | PKI architect | Decision record; NTAuth contents match it |
 | 18 | *Only if AD CS still serves SCEP or PKCS to Intune:* install the current Certificate Connector release on a domain-joined server that isn't the issuing CA, isn't a domain controller and doesn't host the Intune Connector for Active Directory; enable automatic updates[^aA-connector][^aA-scep-infra] | Foundation | Server admin | Connector listed under Tenant administration > Connectors and tokens > Certificate connectors |
 | 19 | Confirm connector health and version; alert on Warning or Action required status[^aA-connector] | Foundation | Intune admin | Status Active; version is a supported release |
@@ -62,7 +62,7 @@ The commands in this appendix are examples. They haven't been run against a prod
 | 27 | Extend SCEP profiles to production rings through dynamic groups | Scale | Intune admin | Issuance success per ring |
 | 28 | For each migrated ring, remove AD CS autoenrollment for its MIGRATE templates | Scale and Cutover | AD admin | GPO links and template permissions updated; change record |
 | 29 | Confirm no unexpired AD CS certificates remain on managed endpoints for MIGRATE use cases | Cutover | PKI admin | Inventory report shows zero |
-| 30 | Retire AD CS components that served only MIGRATE workloads (NDES and connector servers no longer needed, retired issuing CAs, their enrollment service objects and autoenrollment GPOs), following [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md); archive each CA's database and keys first | Decommission | PKI admin, server admin, AD admin | Decommission record committed to the evidence repository |
+| 30 | Retire AD CS components that served only MIGRATE workloads (NDES and connector servers no longer needed, retired issuing CAs, their enrollment service objects and autoenrollment GPOs), following [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md); archive each CA's database and keys first (`Backup-CARoleService`)[^aA-ca-backup] | Decommission | PKI admin, server admin, AD admin | Decommission record committed to the evidence repository |
 
 : Cloud PKI deployment checklist {.striped .hover}
 
@@ -103,6 +103,74 @@ Work through the steps in order.
 
 : Entra CBA configuration checklist {.striped .hover}
 
+## A.3 Certificate store inspection
+
+A read-only check of what a Windows server actually holds and trusts. Run it on every server the certificate estate depends on (domain controllers, AD CS servers, NDES and connector hosts, NPS and RADIUS servers, VPN and web servers) at the Foundation gate, at each later wave gate, and after any trust change such as step 16 or 17 of A.1. Owner: PKI admin with the server admin. Keep each run's output, dated, with the wave record.
+
+Windows keeps certificates in local computer, current user and service-account stores. Current-user stores other than Personal inherit the local computer's contents, and a logical store can show a certificate held in another physical store, so compare thumbprint and scope before deciding a certificate is duplicated or missing.[^aA-stores][^aA-inspect] A service uses the local computer or its own service-account store, not your user store.[^aA-inspect]
+
+1. **Open the store the workload uses.** `certlm.msc` opens the local computer store, `certmgr.msc` the current user store; for a service's store, run `mmc`, add the **Certificates** snap-in and choose **Service account**. On each certificate that matters, record subject, issuer, serial number, thumbprint, validity, subject alternative names and application policy from the **Details** tab, and check the chain on the **Certification Path** tab.[^aA-inspect]
+
+    ```cmd
+    certlm.msc
+    ```
+
+2. **List the computer's stores.** `-store` dumps a store without changing it; `-enterprise` reads the enterprise store, which is where NTAuth lives.[^aA-certutil]
+
+    ```cmd
+    certutil -store My
+    certutil -store Root
+    certutil -store CA
+    certutil -enterprise -store NTAuth
+    ```
+
+3. **Verify each certificate in a store.** `-verifystore` checks the certificates in the named store; run it for Personal and for the roots.[^aA-certutil]
+
+    ```cmd
+    certutil -verifystore My
+    certutil -verifystore Root
+    ```
+
+4. **Inventory expiry and private keys.** From an elevated PowerShell session; the second command lists what expires within `$days` days; set that to the certificate class's renewal window ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)).[^aA-path]
+
+    ```powershell
+    Get-ChildItem -Path Cert:\LocalMachine\My |
+        Select-Object Subject, Thumbprint, NotAfter, HasPrivateKey
+
+    $days = 60   # set to this class's renewal window
+    Get-ChildItem -Path Cert:\LocalMachine\My |
+        Where-Object { $_.NotAfter -lt (Get-Date).AddDays($days) } |
+        Select-Object Subject, Thumbprint, NotAfter
+    ```
+
+5. **Test a server certificate the way TLS clients see it.** `Test-Certificate` checks the SSL policy, the DNS name and revocation; replace `<server-fqdn>` with the name clients use. A pass in this chain context doesn't prove the relying application trusts it, so test the application too.[^aA-inspect]
+
+    ```powershell
+    Get-ChildItem -Path Cert:\LocalMachine\My |
+        Test-Certificate -Policy SSL -DNSName 'dns=<server-fqdn>'
+    ```
+
+6. **Check chain building and revocation from a client network.** Export the certificate (public part only) and run this from a client in the relevant network, not from the CA. `-urlfetch` contacts the AIA, CDP and OCSP URLs the certificate carries, so run it from an approved troubleshooting host.[^aA-path][^aA-inspect]
+
+    ```cmd
+    certutil -verify -urlfetch .\<certificate>.cer
+    ```
+
+7. **On disconnected servers, confirm the root lists are current.** Servers that can't reach Windows Update get trusted and untrusted certificate trust lists from an internal location; check when each last synchronized.[^aA-ctl]
+
+    ```cmd
+    certutil -verifyCTL AuthRoot | findstr /i "lastsynctime"
+    certutil -verifyCTL Disallowed | findstr /i "lastsynctime"
+    ```
+
+8. **Keep the evidence.** Save each run to a dated file, for example from PowerShell:
+
+    ```powershell
+    certutil -store My | Out-File "$env:COMPUTERNAME-My-$(Get-Date -Format yyyy-MM-dd).txt"
+    ```
+
+Don't change a store as part of this check. Adding or removing a certificate in the local computer's Trusted Root Certification Authorities store changes what the whole computer trusts, so any change found necessary goes through a change record, one certificate at a time, identified by thumbprint, with the relying application tested afterward.[^aA-inspect]
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](09-federal-workforce-credentials.md) · [Book index](index.md) · [Next: Appendix B — Certificate Template Migration Matrix →](appendix-b-template-migration-matrix.md)
@@ -124,3 +192,10 @@ Work through the steps in order.
 [^aA-sro]: Microsoft Learn, "Microsoft Entra Connect: Cloud authentication via Staged Rollout," <https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-staged-rollout> (accessed Oct 20, 2026).
 [^aA-feature-rollout]: Microsoft Learn, "featureRolloutPolicy resource type," properties, <https://learn.microsoft.com/graph/api/resources/featurerolloutpolicy?view=graph-rest-1.0#properties> (accessed Oct 20, 2026).
 [^aA-fed-migrate]: Microsoft Learn, "Migrate from federation to cloud authentication," <https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication> (accessed Oct 20, 2026).
+[^aA-pkcs10]: Microsoft Learn, "Submit certificate requests using a PKCS #10 or a PKCS #7 file" (on an enterprise CA the template defaults to Subordinate Certification Authority; download the certificate chain), <https://learn.microsoft.com/windows-server/identity/ad-cs/submit-pkcs-certificate-request> (accessed Nov 9, 2026).
+[^aA-certutil]: Microsoft Learn, "certutil" (`-dspublish`, `-store`, `-verifystore`, `-viewstore`, `-verify`, `-urlfetch`; the `-enterprise` and `-user` options; `-enterprise NTAuth` example), <https://learn.microsoft.com/windows-server/administration/windows-commands/certutil> (accessed Nov 9, 2026).
+[^aA-ca-backup]: Microsoft Learn, "CA Backup and Restore Windows PowerShell cmdlets," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/ca-backup-and-restore-windows-powershell-cmdlets> (accessed Nov 9, 2026).
+[^aA-stores]: Microsoft Learn, "Local machine and current user certificate stores" (all current user stores except Personal inherit the local machine stores), <https://learn.microsoft.com/windows-hardware/drivers/install/local-machine-and-current-user-certificate-stores> (accessed Nov 9, 2026).
+[^aA-inspect]: Microsoft Learn, "Inspect certificates and manage certificate store contents" (store scopes; `certlm.msc`, `certmgr.msc` and the service-account snap-in; Details and Certification Path; `Test-Certificate`; `certutil -urlfetch -verify`; controlled store changes), <https://learn.microsoft.com/windows-server/identity/ad-cs/inspect-certificates-manage-certificate-stores> (accessed Nov 9, 2026).
+[^aA-path]: Microsoft Learn, "Configure AIA issuer retrieval and validate certificate endpoints," section "Validate path and revocation retrieval" (`certutil -verify -urlfetch` from a client in scope, not only from the CA; Personal store inventory with `Get-ChildItem Cert:\LocalMachine\My`), <https://learn.microsoft.com/windows-server/identity/ad-cs/configure-certificate-path-validation-revocation-policy> (accessed Nov 9, 2026).
+[^aA-ctl]: Microsoft Learn, "Configure trusted roots and disallowed certificates in Windows," sections "Verify Trusted and Untrusted CTLs" and "Checking Last Sync Time," <https://learn.microsoft.com/windows-server/identity/ad-cs/configure-trusted-roots-disallowed-certificates> (accessed Nov 9, 2026).

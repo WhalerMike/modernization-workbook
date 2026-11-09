@@ -103,3 +103,11 @@ Item 263 of the Nov 7 sort: Appendix A row 37 named a setting ES-001 didn't have
 | H2 | Intune's Defender Antivirus policy exposes "Allow Intrusion Prevention System" (Not configured / No / Yes) | Row 37 | verified (new) | Learn, Settings for Microsoft Defender Antivirus policy for tenant attached devices, Real-time protection (accessed Nov 9, 2026) |
 | H3 | ES-001 sets network inspection to On | Row 37 | restated-as-design | Program decision (Nov 7 sort, item 263); value equals the default |
 
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Advanced audit subcategories and their events | Area table, Advanced audit policy | verified (added) | `aA-adv-audit`, Learn, "Advanced Audit Policy Configuration" (read 2026-11-09) |
+| L2 | Windows LAPS backs up to one directory at a time; a Windows LAPS policy always wins over legacy LAPS | Area table, LAPS | verified (added; supports the existing statement) | `aA-laps-faq`; `aA-laps-legacy` (read 2026-11-09) |

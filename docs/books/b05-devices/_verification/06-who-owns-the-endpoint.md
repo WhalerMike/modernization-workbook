@@ -47,3 +47,12 @@ approval model). Migration-wide roles and RMF definitions are linked to Book 02 
 | manual-path §1 Roles (least privilege) line | Chapter 05 Prerequisites; this chapter's role map | Intune Administrator line corrected |
 | governed-path §3 approval model (approval reference, ceiling) | Second approver; Chapter 05 ladder | — |
 | guides governed-and-retrofit — "AO must sign" | Roles (authorizing official); Chapter 05 How to choose | — |
+
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Device soft delete (preview): 30-day recovery for Entra joined, hybrid joined and registered devices with BitLocker keys and LAPS password; restore through Graph or PowerShell; non-persistent VDI hard deleted; hard delete loses keys | Lifecycle, Retirement | verified (added); government-cloud availability not stated on the page (written as not yet specified) | `c06-soft-delete`, Learn, "Device soft delete overview (preview)" (read 2026-11-09) |
+| L2 | By default only Global Administrator, Cloud Device Administrator and Intune Administrator can read the clear-text LAPS password in Entra ID | Three role systems, LAPS access paragraph | verified (citation added; supports the existing sentence) | `c06-laps-concepts`, Learn, "Key concepts in Windows LAPS," Microsoft Entra passwords (read 2026-11-09) |

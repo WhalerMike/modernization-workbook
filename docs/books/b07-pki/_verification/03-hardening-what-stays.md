@@ -134,3 +134,15 @@ Found by the workbook-wide sweep of federal citations for the Federal Framework 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | 'FIPS 140-2 or 140-3' modules for every CA | Protect the CA keys | corrected: 140-3 for new CAs; 140-2 modules on retained CAs are existing systems (Historical List after Sept 21, 2026) | NIST CMVP project page; B14 Ch02 |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Audit Directory Service Changes logs only for objects with SACLs, on DCs; Audit Certification Services makes the OS generate AD CS events | ESC4 detection; Turn on CA auditing step 1 | verified (citation added) | `c03-adv-audit`: Learn, "Advanced Audit Policy Configuration" (read Nov 9, 2026) |
+| L2 | The CA policy module evaluates every request (context for reading EditFlags) | ESC6 detection | verified (clause and citation added) | `c03-policy-module`: Learn, "Configure and govern certification authority policy and exit modules" (read Nov 9, 2026) |
+| L3 | CES must use HTTPS with a Server Authentication certificate; off-CA CES issuing new certificates has a service account trusted for delegation | ESC8 detection | verified (sentence added) | `c03-ces-config`: Learn, "Configure the Certificate Enrollment Web Service" (read Nov 9, 2026) |
+| L4 | NDES runs in IIS under a service account in IIS_IUSRS | ESC8 closing paragraph | verified (clause added) | `c03-ndes-account`: Learn, "Configure Network Device Enrollment Service to use a domain user account" (read Nov 9, 2026) |
+| L5 | `Restore-CARoleService` is the restore cmdlet; `-Password` protects the CA certificate and key, not the database | Back up before every change | verified (sentence added) | `c03-ca-backup`: Learn, "CA Backup and Restore Windows PowerShell cmdlets" (read Nov 9, 2026) |
