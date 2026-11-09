@@ -29,4 +29,10 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 11 | Knowledge-check answers | Unit 10 | verified against the sections each answer links | the page |
 | 12 | Unit and module times | Each unit | design (estimates) | — |
 
+## November 9, 2026: Learn citations
+
+| Learn page | URL | Date read | Supports |
+|---|---|---|---|
+| Use My Staff to delegate user management | <https://learn.microsoft.com/entra/identity/role-based-access-control/my-staff-configure> | 2026-11-09 | Unit 6: what My Staff is (delegated user management through administrative units); its availability stays with `m2-govfeatures` |
+
 *For project use.*

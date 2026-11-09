@@ -1159,7 +1159,6 @@ pages:
   note: SPN and UPN uniqueness checks
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
-  - docs/books/guides/attribute-driven-migration.md
   cited_by: []
 - path: WindowsServerDocs/identity/ad-ds/manage/component-updates/TPM-Key-Attestation.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/tpm-key-attestation
@@ -1659,7 +1658,6 @@ pages:
   note: GPO backup/export before migration
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
-  - docs/books/b19-developer-workbook/06-group-policy-as-code.md
   cited_by: []
 - path: WindowsServerDocs/identity/ad-ds/manage/group-policy/group-policy-management-console.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-management-console
