@@ -212,6 +212,20 @@ def register_rows(results: dict) -> list[str]:
     return [f"| [{md(r['title'][:120])}]({r['url']}) | {r['type']} | {md(r['fix'])} |" for r in results.get("register", [])]
 
 
+def learn_rows(results: dict) -> list[str]:
+    """New and retired Learn identity pages (learn_pages.py), one row each, then any listing that failed."""
+    lp = results.get("learn_pages") or {}
+    rows = []
+    for kind, label in (("added", "New"), ("removed", "Retired")):
+        for r in lp.get(kind, []):
+            src = f"https://github.com/{r['repo']}/blob/main/{quote(r['path'])}" if r.get("repo") else ""
+            path = f"[`{r['path']}`]({src})" if src else f"`{r['path']}`"
+            rows.append(f"| <{r['url']}> | {md(r['name'])} | {label} | {path} |")
+    for e in lp.get("errors", []):
+        rows.append(f"| {md(e['name'])}: couldn't list the pages | {md(e['name'])} | Not checked | {md(e['error'][:150])} |")
+    return rows
+
+
 def has_findings(results: dict) -> bool:
     return bool(
         results.get("baseline")
@@ -222,6 +236,7 @@ def has_findings(results: dict) -> bool:
         or lifecycle_rows(results)
         or gate_rows(results)
         or register_rows(results)
+        or learn_rows(results)
     )
 
 
@@ -292,6 +307,7 @@ def render(results: dict, budget: int | None = None) -> str:
     reviews = review_rows(results)
     lifecycle = lifecycle_rows(results)
     gated = gate_rows(results)
+    learn = learn_rows(results)
     events = [e for e in results.get("events", []) if e["type"] in TYPE_LABEL]
     n = {t: sum(1 for e in events if e["type"] == t) for t in TYPE_LABEL}
     c = results.get("counts", {})
@@ -299,7 +315,8 @@ def render(results: dict, budget: int | None = None) -> str:
         f"# {title_for(results)}",
         "",
         f"**{n['changed']} changed, {n['moved']} moved, {n['gone']} gone** of {c.get('checked', 0):,} cited sources checked; "
-        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} status-labeled pages due for review**; **{len(lifecycle)} pages past their lifecycle review date**; **{len(gated)} developer workbook pages awaiting review**.",
+        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} status-labeled pages due for review**; **{len(lifecycle)} pages past their lifecycle review date**; **{len(gated)} developer workbook pages awaiting review**; "
+        f"**{len(learn)} new or retired Learn identity pages**.",
         "",
         "Each run compares against the previous one, so each change is reported once. Review the chapters below, "
         "then close this issue. See [how to read this issue](https://github.com/"
@@ -312,7 +329,7 @@ def render(results: dict, budget: int | None = None) -> str:
         head += ["", f"Workflow run (full report attached as an artifact): {run_url()}"]
     parts = ["\n".join(head)]
     size = len(parts[0])
-    omitted = {"sources": 0, "publications": 0, "manual": 0, "reviews": 0, "lifecycle": 0, "gated": 0}
+    omitted = {"sources": 0, "publications": 0, "manual": 0, "reviews": 0, "lifecycle": 0, "gated": 0, "learn": 0}
 
     def add(text: str, key: str) -> bool:
         nonlocal size
@@ -377,7 +394,7 @@ def render(results: dict, budget: int | None = None) -> str:
             add(row, "lifecycle")
     if gated:
         add(
-            "\n## Gated pages awaiting review\n\nThese pages (the developer workbooks, the implementation guides, the training paths and the Source Register) are gated: each waits for the owner's review, and a page "
+            "\n## Gated pages awaiting review\n\nThese pages (the developer workbooks, the implementation guides, the training paths, the Source Register and the Learn Coverage Map) are gated: each waits for the owner's review, and a page "
             "changed after approval waits again. Work that builds on a page, such as its narrated chapter tour, waits too. "
             "After reading a page, approve it with `python scripts/source_watch/review_gate.py --approve <page>` in a reviewed pull request; "
             "it is listed every week until then.\n\n| Page | Why it is listed |\n|---|---|",
@@ -385,10 +402,22 @@ def render(results: dict, budget: int | None = None) -> str:
         )
         for row in gated:
             add(row, "gated")
+    if learn:
+        add(
+            "\n## New and retired Learn identity pages\n\nMicrosoft added these pages to, or removed them from, the Learn folders the "
+            "[Learn Coverage Map](https://github.com/" + REPO + "/blob/main/docs/reference/learn-coverage.md) tracks "
+            "(Windows Server identity and Microsoft Entra, without the per-application SaaS tutorials) since the previous run. "
+            "Run `python scripts/learn_coverage.py` to add the new pages to the map as not reviewed and mark the retired ones gone, "
+            "then review them. A retired page the workbook cites needs a new source.\n\n"
+            "| Learn page | Side | Change | Source file |\n|---|---|---|---|",
+            "learn",
+        )
+        for row in learn:
+            add(row, "learn")
     if any(omitted.values()):
         parts.append(
             f"\n---\n**Truncated to fit an issue:** {omitted['sources']} more source entries, "
-            f"{omitted['publications']} more publications, {omitted['manual']} more manual checks, {omitted['reviews']} more status-labeled pages, {omitted['lifecycle']} more pages past their lifecycle review date and {omitted['gated']} more gated pages are not shown. "
+            f"{omitted['publications']} more publications, {omitted['manual']} more manual checks, {omitted['reviews']} more status-labeled pages, {omitted['lifecycle']} more pages past their lifecycle review date, {omitted['gated']} more gated pages and {omitted['learn']} more new or retired Learn pages are not shown. "
             "The full report is attached to the workflow run as the `source-watch-report` artifact."
             + (f" {run_url()}" if run_url() else "")
         )

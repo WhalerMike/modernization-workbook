@@ -88,12 +88,13 @@ bundles:
     pages: [dp-consolidation-implementation.md]
   # ---------------------------------------------------------------------
   # Reference pages: one Word edition each, and the Reference Set with all six.
+  # The Learn Coverage Map (3,000+ table rows generated from data/learn-coverage/) is site only.
   - output: reference-set.docx
     title: "Reference Set"
     subtitle: "Commands, crosswalks, the RMF Map and the Source Register — Federal Modernization Workbook reference"
     root: docs/reference
     warn_unlisted: ["*.md"]
-    exclude: [index.md]
+    exclude: [index.md, learn-coverage.md]
     pages: [commands.md, federal-framework-crosswalk.md, source-register.md, rmf-map.md, m-19-17-ficam-crosswalk.md, graph-practice-crosswalk.md]
   - output: reference-commands.docx
     title: "Command Reference"
