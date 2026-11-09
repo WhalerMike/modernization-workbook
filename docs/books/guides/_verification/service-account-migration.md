@@ -104,7 +104,7 @@ Every Microsoft fact and command was read on Microsoft Learn on November 9, 2026
 | 12 | dMSA: machine-bound; gMSA password not machine-bound and can be stolen; helps prevent Kerberoasting; limits (no MSA/gMSA; 14/28 days; 10-hour renewal sites; RWDC; unconstrained delegation; every machine must support); what Start- and Complete- change; state 1 and 2 | Comparison; B | verified | `sam-dmsa-overview` |
 | 13 | dMSA set-up: Domain or Enterprise Admins or equivalent; create with `-CreateDelegatedServiceAccount` AES256; start; registry value; restart services; complete; never delete; update retrievers by hand for multi-device; undo; reset; events 307–309 | B | verified; the guide restarts only the one service, as Chapter 06 does | `sam-dmsa-setup` |
 | 14 | `Set-ADUser` and `Set-ADServiceAccount` `-ServicePrincipalNames` with `@{Add=…}` / `@{Remove=…}` | A5 | verified (cmdlet references) | `sam-set-aduser`, `sam-set-adsa` |
-| 15 | `setspn -L DOMAIN\gMSA$`; each SPN one owner | A5 | verified | `sam-sql-spn`; Book 06 Ch11 |
+| 15 | `setspn -L DOMAIN\gMSA$`; each SPN one owner | A5 | verified | `sam-sql-spn`; Book 02 Ch11 |
 | 16 | SQL quick validation: `sc.exe qc`, `Get-ADServiceAccount -Properties PrincipalsAllowedToRetrieveManagedPassword`, `Test-ADServiceAccount` True, `sc.exe qmanagedaccount` TRUE | A1; A4; A5; Special cases | verified | `sam-sql-gmsa` |
 | 17 | `sc.exe config obj= password=`; the API's password must be NULL for a managed service account | A5; What couldn't be verified | verified; the two pages differ, recorded | `sam-sc-config` |
 | 18 | Scheduled task principal: `New-ScheduledTaskPrincipal -UserId DOMAIN\gmsa$ -LogonType Password`; `Set-ScheduledTask -Principal` | A5 | verified (Learn sample) | `sam-task` |
