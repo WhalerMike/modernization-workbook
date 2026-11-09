@@ -175,3 +175,83 @@ Opened November 2, 2026: Microsoft Learn, "Change approval and requestor informa
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | memberOf operator preview ended Nov 3, 2026; rules that use it stopped updating | §Automatic assignment | corrected (Old: "time-sensitive caution ... preview". New: past tense) | Book 02 Chapter 09 §Dynamic group rule syntax; Microsoft Learn memberOf page |
+
+## Learn coverage pass, November 9, 2026
+
+Citations added from the Learn coverage map (covered-uncited pages). No content removed or changed in meaning. Pages were read with the Microsoft Learn MCP search (excerpts) or fetch on Nov 9, 2026.
+
+| Learn page | Where cited | Date read | Supports |
+|---|---|---|---|
+| [Request an access package](https://learn.microsoft.com/entra/id-governance/entitlement-management-request-access) | Intro, mechanism 1 | Nov 9, 2026 | users request access packages in My Access |
+| [What is the My Access portal?](https://learn.microsoft.com/entra/id-governance/my-access-portal-overview) | Intro, mechanism 1 | Nov 9, 2026 | My Access is where requests, approvals and reviews happen |
+| [Trigger Logic Apps with custom extensions](https://learn.microsoft.com/entra/id-governance/entitlement-management-logic-apps-integration) | Licensing table | Nov 9, 2026 | custom extensions in access package workflow |
+| [Externally determine approval requirements using custom extensions](https://learn.microsoft.com/entra/id-governance/entitlement-management-dynamic-approval) | Licensing table | Nov 9, 2026 | custom extensions used for approval |
+| [Request access packages on-behalf-of other identities](https://learn.microsoft.com/entra/id-governance/entitlement-management-request-behalf) | Licensing table | Nov 9, 2026 | managers request on behalf of direct reports |
+| [ID Governance licensing for guest users](https://learn.microsoft.com/entra/id-governance/microsoft-entra-id-governance-licensing-for-guest-users) | Licensing, guest bullet | Nov 9, 2026 | MAU billing for guests; linked Azure subscription |
+| [Manage access to apps](https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-access-management) | Group-based substrate | Nov 9, 2026 | group-based assignment needs P1/P2; nested groups not supported |
+| [Understand how users are assigned to apps](https://learn.microsoft.com/entra/identity/enterprise-apps/ways-users-get-assigned-to-applications) | Group-based substrate | Nov 9, 2026 | assignment through groups |
+| [Create and manage a catalog of resources](https://learn.microsoft.com/entra/id-governance/entitlement-management-catalog-create) | Catalogs and delegation | Nov 9, 2026 | catalog is a container; nonadministrator catalog owner and owned resources |
+| [Delegate access governance to catalog creators](https://learn.microsoft.com/entra/id-governance/entitlement-management-delegate-catalog) | Catalogs and delegation | Nov 9, 2026 | catalog creators add resources they own |
+| [Delegation and roles in entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-delegate) | Catalogs and delegation | Nov 9, 2026 | catalog owner, reader, access package manager, assignment manager rights |
+| [Change resource roles for an access package](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-resources) | Access packages | Nov 9, 2026 | group, Teams, application and site resource roles |
+| [Using groups managed by PIM with access packages](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-pim-reference) | Access packages | Nov 9, 2026 | eligible PIM for Groups membership through packages |
+| [Manage the lifecycle of group-based licenses](https://learn.microsoft.com/entra/id-governance/entitlement-management-group-licenses) | Access packages | Nov 9, 2026 | licensed group as a package resource |
+| [Assign Azure RBAC roles - Entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-azure-role-assignments) | Access packages | Nov 9, 2026 | Azure role assignments through packages |
+| [Troubleshoot entitlement management](https://learn.microsoft.com/entra/id-governance/entitlement-management-troubleshoot) | Policies, approval bullets | Nov 9, 2026 | a user can't approve their own request |
+| [Request process & notifications](https://learn.microsoft.com/entra/id-governance/entitlement-management-process) | Policies, approval bullets | Nov 9, 2026 | undecided request expires; user resubmits |
+| [Approve or deny access requests](https://learn.microsoft.com/entra/id-governance/entitlement-management-request-approve) | Policies, approval bullets | Nov 9, 2026 | one approver per stage decides; request expires if none does |
+| [Govern access with an organizational role model](https://learn.microsoft.com/entra/id-governance/identity-governance-organizational-roles) | Automatic assignment | Nov 9, 2026 | role model as packages with automatic assignment |
+| [Manage user access with access reviews](https://learn.microsoft.com/entra/id-governance/manage-user-access-with-access-reviews) | Access reviews intro | Nov 9, 2026 | recurring review of user access |
+| [Manage access with access reviews](https://learn.microsoft.com/entra/id-governance/manage-access-review) | Access reviews intro | Nov 9, 2026 | recurring review of user and guest access |
+| [Review access of an access package](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-review-access) | What can be reviewed table | Nov 9, 2026 | reviews of package assignments |
+| [Self-review of an access package](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-self-review) | What can be reviewed table | Nov 9, 2026 | self-review of package assignments |
+| [Deploying policies for governing access to applications](https://learn.microsoft.com/entra/id-governance/identity-governance-applications-deploy) | What can be reviewed | Nov 9, 2026 | review the groups the application uses |
+| [Complete an access review of Azure resource and Entra roles in PIM](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-complete-roles-and-resource-roles-review) | What can be reviewed | Nov 9, 2026 | privileged-role reviews run in PIM |
+| [Review your access to groups & apps](https://learn.microsoft.com/entra/id-governance/review-your-access) | Reviewers and fallback reviewers | Nov 9, 2026 | self-review |
+| [Review your access to resources](https://learn.microsoft.com/entra/id-governance/self-access-review) | Reviewers and fallback reviewers | Nov 9, 2026 | self-review |
+| [Using multi-stage reviews](https://learn.microsoft.com/entra/id-governance/using-multi-stage-reviews) | Reviewers and fallback reviewers | Nov 9, 2026 | up to three stages; reviewees to next stage; show earlier decisions |
+| [Manage users excluded from Conditional Access policies](https://learn.microsoft.com/entra/id-governance/conditional-access-exclusion) | Cadence table, CA-Exclude row | Nov 9, 2026 | access reviews of CA exclusion groups |
+| [Review recommendations for Access reviews](https://learn.microsoft.com/entra/id-governance/review-recommendations-access-reviews) | Upon completion, decision helpers | Nov 9, 2026 | 30-day inactivity and user-to-group affiliation recommendations |
+| [Manage guest access with access reviews](https://learn.microsoft.com/entra/id-governance/manage-guest-access-with-access-reviews) | Upon completion, guest reviews | Nov 9, 2026 | block 30 days then remove denied guests |
+| [Review and remove external users](https://learn.microsoft.com/entra/id-governance/access-reviews-external-users) | Upon completion, guest reviews | Nov 9, 2026 | disable and delete external identities after 30 days |
+| [Review access to groups & applications](https://learn.microsoft.com/entra/id-governance/perform-access-review) | Manual procedure table | Nov 9, 2026 | reviewers decide in My Access; accept recommendations |
+| [Manage inactive users using Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-inactive-users) | Lifecycle Workflows, inactivity | Nov 9, 2026 | sign-in inactivity trigger on lastSuccessfulSignInDateTime |
+| [How to manage inactive user accounts](https://learn.microsoft.com/entra/identity/monitoring-health/howto-manage-inactive-user-accounts) | Lifecycle Workflows, inactivity | Nov 9, 2026 | lastSuccessfulSignInDateTime for inactive accounts |
+| [Allow or block invitations](https://learn.microsoft.com/entra/external-id/allow-deny-list) | Guest access governance | Nov 9, 2026 | B2B allow and block lists |
+| [Deployment guide to govern guest and partner access](https://learn.microsoft.com/entra/architecture/governance-deployment-guest-access) | Guest access governance | Nov 9, 2026 | onboard external users through packages and connected organizations |
+| [Plan new governance scenarios for business partners](https://learn.microsoft.com/entra/id-governance/scenarios/govern-guest-lifecycle-new-project) | Guest access governance | Nov 9, 2026 | package policy with approval, reviews and expiry for partners |
+| [Add sponsors to a guest user](https://learn.microsoft.com/entra/external-id/b2b-sponsors) | Guest access governance | Nov 9, 2026 | sponsor field on guest users |
+| [Manage sponsored guests in My Account](https://learn.microsoft.com/entra/id-governance/manage-sponsored-guests-my-access) | Guest access governance | Nov 9, 2026 | sponsor attestation under guest lifecycle policies (preview) |
+| [Manage unsponsored guests using Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/how-to-lifecycle-workflow-unsponsored-guest-removal) | Guest access governance | Nov 9, 2026 | unsponsored guest cleanup (preview) |
+| [Monitor and clean up stale guest accounts](https://learn.microsoft.com/entra/identity/users/clean-up-stale-guest-accounts) | Guest access governance | Nov 9, 2026 | inactive guest review and removal |
+| [Govern access for applications in your environment](https://learn.microsoft.com/entra/id-governance/identity-governance-applications-prepare) | Retention | Nov 9, 2026 | audit events kept up to 30 days; send to Azure Monitor |
+| [ID Governance operations reference guide](https://learn.microsoft.com/entra/architecture/ops-guide-govern) | Governance alerts | Nov 9, 2026 | archive audit logs in the SIEM; owners of key tasks |
+| [Deployment guide to assign employee access](https://learn.microsoft.com/entra/architecture/governance-deployment-employee-access) | Records Entra ID produces | Nov 9, 2026 | downloadable review history reports |
+
+## Additions, November 9, 2026 (Learn gaps)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | ID Protection-based approvals (preview): user risk level vs admin threshold adds a first stage routed to Security Administrator | Policies, risk-based approval stages | verified | [Learn](https://learn.microsoft.com/entra/id-governance/entitlement-management-configure-id-protection-approvals) |
+| A2 | Insider Risk Management-based approvals (preview): Purview risk level adds a first stage routed to Compliance Administrator; needs Purview licensing and an IRM policy | Policies, risk-based approval stages | verified | [Learn](https://learn.microsoft.com/entra/id-governance/entitlement-management-configure-insider-risk-management-approvals) |
+| A3 | Both on: ID Protection approver, then Insider Risk approver, then policy approvers; denial closes request; actions audited; Governance or Suite license | Policies, risk-based approval stages | verified | both pages above |
+| A4 | Government-cloud availability of risk-based approvals | Policies, risk-based approval stages | not yet specified (neither page states it) | — |
+| A5 | Program evaluates for R1 packages at GA | Policies, risk-based approval stages | design position | — |
+| A6 | My Access delegation (preview): delegate answers approvals and multi-resource reviews; admin restrictions (manager, groups, unrestricted, max duration); direct assignments only, after-set items only, one level; original approver can still respond; Governance or Suite license | Policies, approval delegation | verified | [Learn](https://learn.microsoft.com/entra/id-governance/delegate-approvals-my-access) |
+| A7 | Government-cloud availability of approval delegation | Policies, approval delegation | not yet specified | — |
+| A8 | Delegates limited to backup-owner group, 30-day cap | Policies, approval delegation | design position | — |
+| A9 | Quarantine unsanctioned tenants: inventory first, reversible friction, cross-tenant access settings, TRv2 with Global Secure Access, multitenant app service principals, subscription cancellation; license per lever; HTTP query by appOwnerOrganizationId | Tenant hygiene, unsanctioned tenants | verified | [Learn](https://learn.microsoft.com/entra/fundamentals/quarantine-unsanctioned-tenants) |
+| A10 | Quarantine decided by governance office and recorded with partner tenant list | Tenant hygiene, unsanctioned tenants | design position | — |
+| A11 | M365 group expiration: one policy, 30+ days, All/Selected (500)/None, activity auto-renew ~35 days before, owner emails 30/15/1 days, deletion one day after expiry, 30-day restore not customizable, P1/P2 for members, Groups Administrator or User Administrator | Tenant hygiene, expiration | verified | [Learn](https://learn.microsoft.com/entra/identity/users/groups-lifecycle) |
+| A12 | Get-MgGroupLifecyclePolicy with Directory.Read.All (read-only) | Tenant hygiene, expiration | verified (cmdlet permissions table lists Directory.Read.All as least privileged; Learn's example connects with Directory.ReadWrite.All because it also writes) | [Learn cmdlet](https://learn.microsoft.com/powershell/module/microsoft.graph.groups/get-mggrouplifecyclepolicy?view=graph-powershell-1.0) |
+| A13 | Naming policy: prefix-suffix and up to 5,000 blocked words; M365 groups only, not distribution groups; Global Administrator and User Administrator exempt; view with Get-MgBetaDirectorySetting Group.Unified | Tenant hygiene, naming | verified | [Learn](https://learn.microsoft.com/entra/identity/users/groups-naming-policy) |
+| A14 | Naming policy license: P1 for each unique member (guests included) of M365 groups | Tenant hygiene, naming | verified | [Learn M365](https://learn.microsoft.com/microsoft-365/enterprise/groups-naming-policy) |
+| A15 | Connect scope Directory.Read.All for the view commands | Tenant hygiene, naming | restated: Learn's example uses Directory.ReadWrite.All because it then updates; read-only scope chosen for a view-only step | — |
+| A16 | A tenant with no Group.Unified settings object has no naming policy configured | Tenant hygiene, naming | inference from Learn's instruction to create group settings first | [Learn](https://learn.microsoft.com/entra/identity/users/groups-naming-policy) |
+| A17 | Naming policy can't enforce the APP- convention on security groups | Tenant hygiene, naming | design position (follows from M365-groups-only scope) | — |
+| A18 | Restore: M365 and cloud security groups 30 days; security group soft delete preview, public clouds only; Groups Administrator; owners; list with Get-MgBetaDirectoryDeletedGroup | Tenant hygiene, restore | verified | [Learn](https://learn.microsoft.com/entra/identity/users/groups-restore-deleted) |
+| A19 | Restoring role-assignable groups needs Privileged Role Administrator | Tenant hygiene, restore | verified | [Learn cmdlet](https://learn.microsoft.com/powershell/module/microsoft.entra.directorymanagement/restore-entradeleteddirectoryobject?view=entra-powershell) |
+| A20 | Listing with Group.Read.All | Tenant hygiene, restore | restated: Learn connects with Group.ReadWrite.All for the restore; listing scope narrowed | — |
+| A21 | Restored dynamic group repopulated, up to 24 hours | Tenant hygiene, restore | verified | [Learn](https://learn.microsoft.com/entra/identity/users/groups-lifecycle) |
+| A22 | Advanced group management (dynamic groups, naming policies, expiration) available in Azure Government; GCC pairs with Entra ID in commercial Azure, GCC High and DoD with Azure Government | Tenant hygiene, government cloud | verified | [Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability); [Azure feature availability](https://learn.microsoft.com/azure/security/fundamentals/feature-availability) |
+| A23 | Government-cloud availability for quarantine levers and M365 group restore | Tenant hygiene | not yet specified | — |

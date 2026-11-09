@@ -154,6 +154,17 @@ What changes is what happens after the ticket opens.
 
 [Book 10, Chapter 07](../b10-cloud-boundary/07-the-front-door.md) shows the same front door for provisioning, including two documented ways to build it on a service management platform and an infrastructure-as-code pipeline. Day-2 operations at the help desk, and the help desk's role in whether modernization sticks, are the subject of [Book 15, Compliance Automation & Day-2 Operations](../b15-day2-operations/index.md).
 
+### Entra entitlement management with ServiceNow, compared with the SailPoint path
+
+Microsoft offers two native ways to join Microsoft Entra entitlement management to ServiceNow. The first makes ServiceNow an alternative portal: users request access packages, see their request history, and approve or deny requests there, while entitlement management stays the system of record for catalogs, access packages, policies, approvers and assignments. It needs Entra ID P2 or Microsoft Entra Suite and is installed from the ServiceNow Store.[^c10-em-snow] The second is ticketed provisioning: a custom extension on an access package policy calls a Logic App when a request is approved, the Logic App opens a ServiceNow ticket for the manual provisioning, and entitlement management waits until the ticket's closure calls back to resume the assignment. A ticket that isn't closed within 14 days leaves the requester with a failed assignment.[^c10-em-ticketed]
+
+The workbook's example path, the [Ticket-to-Machine example guide](../guides/ttm-servicenow-sailpoint.md), puts SailPoint Identity Security Cloud in the governance slot and ServiceNow at the front door. The two approaches fit different agencies:
+
+- **The native integration fits** an agency whose access governance already runs on Entra ID Governance and whose access packages cover the resources that matter. It keeps one governance system of record and adds no second identity governance product to the authorization boundary.
+- **The SailPoint path fits** an agency that already governs identities and entitlements across many non-Microsoft systems in SailPoint, or whose source-of-authority design puts the governance platform upstream of Entra ID.
+
+Neither changes this chapter's rule. Ticketed provisioning resumes on the ticket's closure, and in this chapter's terms that closure is an assertion until the execution layer's re-read agrees with the record. Both paths support CM-3 and AC-2; the evidence still comes from the approval, the execution and the re-read, not from the product. Microsoft lists Entra ID Governance as available in GCC, GCC High and DoD;[^c10-idgov-avail] government-cloud availability of the ServiceNow Store integration and of the ticketed-provisioning path is not yet specified.
+
 ## The operations team's view
 
 For the team that runs the governance platform, the tempo shows up as four things:
@@ -212,3 +223,6 @@ Two more belong beside them. The **machine-closure share** is the share of closu
 [^c10-cisa]: Cybersecurity and Infrastructure Security Agency, "Federal Incident Notification Guidelines," <https://www.cisa.gov/federal-incident-notification-guidelines> (accessed Oct 21, 2026).
 [^c10-pim]: Microsoft Learn, "What is Microsoft Entra Privileged Identity Management?," sections "What does it do?" and "Assign," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure> (accessed Oct 21, 2026).
 [^c10-cabf]: CA/Browser Forum, "Ballot SC-081v3: Introduce Schedule of Reducing Validity and Data Reuse Periods," voting April 4–11, 2025, <https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/> (accessed Oct 21, 2026).
+[^c10-em-snow]: Microsoft Learn, "Microsoft Entra ID Entitlement Management integration with ServiceNow," sections "Overview," "Licensing requirements" and "Install and configure," <https://learn.microsoft.com/entra/id-governance/entitlement-management-servicenow-integration> (accessed Nov 9, 2026).
+[^c10-em-ticketed]: Microsoft Learn, "Tutorial: Automated ServiceNow Ticket Creation with Microsoft Entra Entitlement Management Integration," <https://learn.microsoft.com/entra/id-governance/entitlement-management-ticketed-provisioning> (accessed Nov 9, 2026).
+[^c10-idgov-avail]: Microsoft Learn, "Microsoft Entra feature availability," section "Other Microsoft Entra products," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).

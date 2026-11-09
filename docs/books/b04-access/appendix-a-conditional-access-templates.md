@@ -40,7 +40,7 @@ The methods are those of the `conditionalAccessPolicy` resource.[^aA-policy] The
 
 - **The file carries the approved state.** A new or changed policy is committed as `enabledForReportingButNotEnforced` (report-only). Enforcement is a separate, reviewed change that sets `enabled` ([Chapter 07](07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)), so the file, and therefore source control, always matches the tenant. The other value is `disabled`.[^aA-policy]
 - **Placeholders are in braces.** `{group:CA-Exclude-EmergencyAccess}` is the object ID of that group; `{location:NL-TrustedNetworks}` is a named location ID; `{tenant:partners}` is a list of partner tenant IDs. The deployment script substitutes them from a per-tenant map, so the same templates serve every tenant.
-- **Role IDs are role template IDs,** which are the same in every tenant. The admin role list used below is the fourteen roles in Microsoft's managed admin-MFA policy plus Hybrid Identity Administrator.[^aA-managed][^aA-roles]
+- **Role IDs are role template IDs,** which are the same in every tenant. The admin role list used below is the fourteen roles in Microsoft's managed admin-MFA policy plus Hybrid Identity Administrator.[^aA-managed][^aA-roles][^aA-tpl-admin]
 - **Built-in authentication strength IDs** are fixed: `…0002` multifactor authentication, `…0003` passwordless MFA, `…0004` phishing-resistant MFA.[^aA-strengths-list]
 - **No template uses `approvedApplication`.** That grant became read-only on June 30, 2026.[^aA-approved-app]
 
@@ -194,7 +194,7 @@ CA001, block legacy authentication (MS.AAD.1.1):
 }
 ```
 
-CA020, managed device to register security information. The `excludeGuestsOrExternalUsers` block is the "Members" scope used throughout:
+CA020, managed device to register security information.[^aA-tpl-security-info] The `excludeGuestsOrExternalUsers` block is the "Members" scope used throughout:
 
 ```json
 {
@@ -216,7 +216,7 @@ CA020, managed device to register security information. The `excludeGuestsOrExte
 }
 ```
 
-CA021, block device code flow and authentication transfer. If devices register through device code flow, add the Device Registration Service, `01cb2876-7ebd-4aa4-9cc9-d28bd4d359a9`, to `excludeApplications`.[^aA-flows]
+CA021, block device code flow and authentication transfer. If devices register through device code flow, add the Device Registration Service, `01cb2876-7ebd-4aa4-9cc9-d28bd4d359a9`, to `excludeApplications`.[^aA-flows][^aA-tpl-teams-dcf]
 
 ```json
 {
@@ -287,7 +287,7 @@ CA003, phishing-resistant separate-device MFA for administrators, by group and b
 
 The role IDs, in order: Global Administrator, Privileged Role Administrator, Privileged Authentication Administrator, Security Administrator, Conditional Access Administrator, User Administrator, Application Administrator, Cloud Application Administrator, Hybrid Identity Administrator, Exchange Administrator, SharePoint Administrator, Authentication Administrator, Helpdesk Administrator, Billing Administrator and Password Administrator.[^aA-roles] Role targeting applies to active assignments of built-in roles only.[^aA-users-concept]
 
-CA004, compliant device for administrators. Persistent browser control needs all resources:[^aA-session]
+CA004, compliant device for administrators.[^aA-tpl-admin-device] Persistent browser control needs all resources:[^aA-session]
 
 ```json
 {
@@ -335,7 +335,7 @@ CA025, block administration from anything that isn't a PAW. `797f4846-ba00-4fd7-
 }
 ```
 
-CA027, block the Azure management plane for everyone who doesn't manage Azure or the tenant:
+CA027, block the Azure management plane for everyone who doesn't manage Azure or the tenant:[^aA-tpl-azure-mgmt]
 
 ```json
 {
@@ -389,7 +389,7 @@ CA007, compliant or hybrid joined device, with the web-only exception:
 }
 ```
 
-CA008, United States only, with the travel exception:
+CA008, United States only, with the travel exception:[^aA-tpl-location]
 
 ```json
 {
@@ -434,7 +434,7 @@ CA009, MFA for partner users. The Externals scope is guest and member B2B users 
 }
 ```
 
-CA011, limited guest access. The Guests scope includes guest and other external users from all tenants and excludes the same types from the partner tenants in CA009's list, so Guests means "not from a partner." Guests who use email one-time passcode can't satisfy an authentication strength, so this policy uses `mfa`.[^aA-strengths] `00000003-0000-0ff1-ce00-000000000000` is SharePoint Online.[^aA-create]
+CA011, limited guest access. The Guests scope includes guest and other external users from all tenants and excludes the same types from the partner tenants in CA009's list, so Guests means "not from a partner." Guests who use email one-time passcode can't satisfy an authentication strength, so this policy uses `mfa`.[^aA-strengths][^aA-tpl-guest-mfa] `00000003-0000-0ff1-ce00-000000000000` is SharePoint Online.[^aA-create]
 
 ```json
 {
@@ -492,7 +492,7 @@ CA016, compliant device for desktop Office, Members only:
 }
 ```
 
-CA017, app protection on mobile. `compliantApplication` is the Graph built-in control that corresponds to "require app protection policy" (`approvedApplication` is the retired approved-client-app grant):[^aA-grant][^aA-approved-app]
+CA017, app protection on mobile. `compliantApplication` is the Graph built-in control that corresponds to "require app protection policy" (`approvedApplication` is the retired approved-client-app grant):[^aA-grant][^aA-approved-app][^aA-tpl-app-protection]
 
 ```json
 {
@@ -508,7 +508,7 @@ CA017, app protection on mobile. `compliantApplication` is the Graph built-in co
 }
 ```
 
-CA018, the catch-all MFA baseline, with no resource exclusions:[^aA-apps-concept]
+CA018, the catch-all MFA baseline, with no resource exclusions:[^aA-apps-concept][^aA-tpl-mfa-all]
 
 ```json
 {
@@ -541,7 +541,7 @@ CA013 in its block form, for tenants in BOD 25-01 scope (MS.AAD.2.1):
 }
 ```
 
-The policy keeps its Book 02 display name in both forms so that its history stays continuous; the deployed form is recorded in the change log. CA013 in its remediation form, for tenants outside BOD 25-01, scoped to Members because remediation isn't supported for guests and external users:[^aA-managed]
+The policy keeps its Book 02 display name in both forms so that its history stays continuous; the deployed form is recorded in the change log. CA013 in its remediation form,[^aA-tpl-user-risk] for tenants outside BOD 25-01, scoped to Members because remediation isn't supported for guests and external users:[^aA-managed]
 
 ```json
 {
@@ -609,7 +609,7 @@ CA015, workload identities only from their egress ranges. Service principals are
 
 CA037, high-risk workload identities, uses the same shape with `"servicePrincipalRiskLevels": ["high"]` in place of the location condition. Both need Workload ID Premium.[^aA-workload]
 
-CA036, elevated insider risk (Adaptive Protection integration is in preview):[^aA-adaptive]
+CA036, elevated insider risk (Adaptive Protection integration is in preview):[^aA-adaptive][^aA-tpl-insider]
 
 ```json
 {
@@ -656,7 +656,7 @@ CA022, the end state (MS.AAD.3.1):
 }
 ```
 
-CA024, browser-only limited session for web-only users:
+CA024, browser-only limited session for web-only users:[^aA-tpl-app-enforced][^aA-tpl-reauth]
 
 ```json
 {
@@ -751,3 +751,16 @@ CA030, block production applications for everyone but production operators. The 
 [^aA-workload]: Microsoft Learn, "Microsoft Entra Conditional Access for workload identities," <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 20, 2026).
 [^aA-adaptive]: Microsoft Learn, "Help dynamically mitigate risks with Adaptive Protection," <https://learn.microsoft.com/purview/insider-risk-management-adaptive-protection> (accessed Oct 20, 2026).
 [^aA-app-filter]: Microsoft Learn, "Filter for applications in Conditional Access policy," <https://learn.microsoft.com/entra/identity/conditional-access/concept-filter-for-applications> (accessed Oct 20, 2026).
+[^aA-tpl-admin]: Microsoft Learn, "Require multifactor authentication for admins accessing Microsoft admin portals," <https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin-portals>, and "Require MFA for administrators," <https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin>; both list the same fourteen roles (accessed Nov 9, 2026).
+[^aA-tpl-security-info]: Microsoft Learn, "Protect security info registration with Conditional Access policy," <https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration> (accessed Nov 9, 2026).
+[^aA-tpl-teams-dcf]: Microsoft Learn, "Restrict device code flow for Microsoft Teams devices with Conditional Access," <https://learn.microsoft.com/entra/identity/conditional-access/policy-teams-devices-device-code-flow> (accessed Nov 9, 2026).
+[^aA-tpl-admin-device]: Microsoft Learn, "Require compliant device or Microsoft Entra hybrid joined device for administrators," <https://learn.microsoft.com/entra/identity/conditional-access/policy-alt-admin-device-compliand-hybrid> (accessed Nov 9, 2026).
+[^aA-tpl-azure-mgmt]: Microsoft Learn, "Require MFA for Azure management," <https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-azure-mgmt> (accessed Nov 9, 2026).
+[^aA-tpl-location]: Microsoft Learn, "Block access by location," <https://learn.microsoft.com/entra/identity/conditional-access/policy-block-by-location> (accessed Nov 9, 2026).
+[^aA-tpl-guest-mfa]: Microsoft Learn, "Require multifactor authentication strength for external users," <https://learn.microsoft.com/entra/identity/conditional-access/policy-guests-mfa-strength>, and "Require multifactor authentication for guest access," <https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-guest> (accessed Nov 9, 2026).
+[^aA-tpl-app-protection]: Microsoft Learn, "Require approved client apps or app protection policy," <https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-approved-app-or-app-protection> (accessed Nov 9, 2026).
+[^aA-tpl-mfa-all]: Microsoft Learn, "Require multifactor authentication for all users," <https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength> (accessed Nov 9, 2026).
+[^aA-tpl-user-risk]: Microsoft Learn, "Require remediation for risky users," <https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-user> (accessed Nov 9, 2026).
+[^aA-tpl-insider]: Microsoft Learn, "Block access for users with insider risk," <https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-insider-block> (accessed Nov 9, 2026).
+[^aA-tpl-app-enforced]: Microsoft Learn, "Use application enforced restrictions for unmanaged devices," <https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-app-enforced-restrictions> (accessed Nov 9, 2026).
+[^aA-tpl-reauth]: Microsoft Learn, "Require reauthentication and disable browser persistence," <https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser> (accessed Nov 9, 2026).

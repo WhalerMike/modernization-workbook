@@ -40,7 +40,7 @@ Entra ID splits every application into two directory objects, and most governanc
 | Where you manage it | **App registrations** in the Microsoft Entra admin center | **Enterprise applications** |
 | Analogy | A class | An instance |
 
-Microsoft describes the application object as the global representation of an app, used as a template for the service principal, and the service principal as its local representation in a specific tenant.[^c05-app-sp] Registering an app in the admin center creates both objects in the home tenant; creating an app through Microsoft Graph makes creating the service principal a separate step. A multitenant app also gets a service principal in each tenant where a user or administrator consents to it. Changes to the application object reach only the home tenant's service principal, and deleting the application object deletes that service principal too. For an app that needs to stop working while it's investigated, Entra ID can deactivate it instead, which stops new tokens from being issued while keeping both objects intact.[^c05-app-sp]
+Microsoft describes the application object as the global representation of an app, used as a template for the service principal, and the service principal as its local representation in a specific tenant.[^c05-app-sp] Registering an app in the admin center creates both objects in the home tenant; creating an app through Microsoft Graph makes creating the service principal a separate step. A multitenant app also gets a service principal in each tenant where a user or administrator consents to it.[^c05-app-model] Changes to the application object reach only the home tenant's service principal, and deleting the application object deletes that service principal too. For an app that needs to stop working while it's investigated, Entra ID can deactivate it instead, which stops new tokens from being issued while keeping both objects intact.[^c05-app-sp]
 
 There are three types of service principal.[^c05-app-sp]
 
@@ -48,7 +48,7 @@ There are three types of service principal.[^c05-app-sp]
 - **Managed identity.** A service principal that represents an Azure managed identity. It has no application object, and it can be granted access but can't be modified directly.
 - **Legacy.** An app created before app registrations existed, or through a legacy experience. It can carry credentials and reply URLs but has no app registration, and it works only in the tenant where it was created.
 
-Service principals also appear without anyone registering anything. The first user who consents to a third-party app creates its service principal, and Microsoft services provision their own service principals just in time, sometimes with a directory role such as Directory Readers.[^c05-how-added] An inventory of enterprise applications is therefore always larger than the list of apps anyone asked for, which is why the program classifies an unclassified service principal as high risk until someone proves otherwise ([Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain)).
+Service principals also appear without anyone registering anything. The first user who consents to a third-party app creates its service principal, and Microsoft services provision their own service principals just in time, sometimes with a directory role such as Directory Readers.[^c05-how-added][^c05-sp-created] An inventory of enterprise applications is therefore always larger than the list of apps anyone asked for, which is why the program classifies an unclassified service principal as high risk until someone proves otherwise ([Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain)).
 
 ### Who can create applications
 
@@ -58,7 +58,7 @@ The program sets **Users can register applications** to **No** and routes every 
 
 ## Permissions: what an application can be granted
 
-An application asks for access to an API as permissions, and the two kinds carry very different risk.
+An application asks for access to an API as permissions, and the two kinds carry very different risk.[^c05-perms-overview]
 
 | | Delegated permission | Application permission (app role) |
 |---|---|---|
@@ -83,7 +83,7 @@ The program assigns every commonly requested Microsoft Graph permission a risk l
 
 Application permission names don't reliably end in `.All`: the application permission that reads and writes mail in all mailboxes is `Mail.ReadWrite`, and the one that sends mail as any user is `Mail.Send`, the same names as their delegated counterparts.[^c05-graph-perms] Review the permission type, not the suffix. For mail, Exchange Online can narrow an app with those permissions to specific mailboxes through an application access policy, which the program requires for any mail application permission it approves.[^c05-graph-perms]
 
-The low row is deliberately the minimum for sign-in: Microsoft lists `openid`, `profile`, `email` and `offline_access` as the delegated Graph permissions needed for basic sign-in, which also let an app keep access while the user isn't using it.[^c05-classify]
+The low row is deliberately the minimum for sign-in: Microsoft lists `openid`, `profile`, `email` and `offline_access` as the delegated Graph permissions needed for basic sign-in, which also let an app keep access while the user isn't using it.[^c05-classify][^c05-oidc-scopes]
 
 ## Consent
 
@@ -100,6 +100,20 @@ User consent settings apply to every user in the tenant and offer three built-in
 Microsoft says that by default all users can consent to permissions that don't require administrator consent, and recommends allowing user consent only for apps from verified publishers.[^c05-user-consent] Changing the setting affects only future consent; existing grants stay until they're revoked. Configuring it takes Privileged Role Administrator through Microsoft Graph, or Global Administrator in the admin center.[^c05-user-consent]
 
 Every tenant also has built-in app consent policies that can't be edited. Two of them, `microsoft-user-default-recommended` and `microsoft-user-default-allow-consent-apps`, are Microsoft-managed: Microsoft updates their conditions as its recommendations change. Organizations that need finer control can write custom app consent policies.[^c05-consent-policies]
+
+Verified publisher status is one of the conditions an app consent policy can test. A publisher is verified when Microsoft has checked the developer's organization through its Microsoft AI Cloud Partner Program account and that account is associated with the app registration; the consent prompt then shows a blue *verified* badge.[^c05-pub-verify] The badge says who published the app. It doesn't say the app is safe, certified or compliant, and Microsoft still advises reading the permissions on the consent prompt before accepting.[^c05-pub-verify][^c05-consent-phishing] In a custom app consent policy, each include or exclude condition set can require `clientApplicationsFromVerifiedPublisherOnly` or name specific publishers by their partner IDs; the built-in `microsoft-user-default-low` policy is the one that pairs verified-publisher and in-tenant apps with permissions classified as low.[^c05-consent-conditions][^c05-user-consent] Microsoft says publisher verification isn't supported in national clouds, and apps registered in national cloud tenants can't be publisher verified.[^c05-pub-verify] Beyond that statement, availability for GCC, GCC High and DoD tenants is not yet specified.
+
+The current setting is read-only to check. The first command shows which app consent policy governs user consent (an empty list means user consent is off); the second shows that policy's condition sets, including the verified-publisher condition:[^c05-consent-read][^c05-consent-conditions]
+
+```powershell
+Connect-MgGraph -Scopes 'Policy.Read.All', 'Policy.Read.PermissionGrant' -NoWelcome
+
+Get-MgPolicyAuthorizationPolicy |
+    Select-Object -ExpandProperty DefaultUserRolePermissions |
+    Format-Table PermissionGrantPoliciesAssigned
+
+Get-MgPolicyPermissionGrantPolicyInclude -PermissionGrantPolicyId 'microsoft-user-default-low' | Format-List
+```
 
 The program's setting is the middle option: user consent only for verified-publisher and in-tenant apps, only for permissions classified as low. Everything else goes to the admin consent workflow. One interaction makes this safer than it looks: an app configured to require user assignment always needs admin consent, even when the user consent policy would otherwise allow a user to consent for themselves.[^c05-user-consent] The program requires assignment on every enterprise application ([Chapter 06](06-who-decides-access.md#assignment)), so user consent in practice covers only a narrow set of sign-in permissions. This setting is one of the two ways CISA's Microsoft Entra ID baseline allows an agency to address MS.AAD.5.2v1, "User consent to applications SHALL be restricted": the baseline's more flexible option lets users consent to applications from Microsoft-verified publishers that use permissions an administrator has classified as low risk, and its stricter option allows no user consent at all.[^c05-scuba-consent]
 
@@ -139,7 +153,7 @@ Configuration details matter for the approval model in [Chapter 06](06-who-decid
 - Turning the workflow on requires Global Administrator. Changes can take up to an hour to apply.
 - Reviewers can be users, groups or roles. Being a reviewer doesn't grant any privilege: to approve, a reviewer must already hold a role that can grant the consent requested.
 - Reviewers can view, block or deny any request, but only Global Administrators can approve requests for apps asking for Microsoft Graph app roles.
-- Requests expire after a configured number of days, with reminder emails. Reviewers added later don't see requests made before they were added, and reviewers removed later keep the requests they already had.
+- Requests expire after a configured number of days, with reminder emails. Reviewers added later don't see requests made before they were added, and reviewers removed later keep the requests they already had.[^c05-review-requests]
 
 The program enables the workflow, names the identity governance office as reviewers, and treats the workflow as the intake for the admin consent approval chain, not as the approval itself. The tier decision and security review happen in the ticket; the workflow request is where the grant is finally executed by a holder of the right role. Requests for Microsoft Graph application permissions that arrive through the workflow need a Global Administrator to approve them there. Outside the workflow, Microsoft lists Privileged Role Administrator as the least privileged role for consenting to Microsoft Graph application permissions, but notes that in practice this typically requires Global Administrator, and that Privileged Role Administrator may not be enough depending on the tenant's consent policies, the permission scopes or Graph protection requirements.[^c05-graph-consent-practice] So the program plans for both: it grants those permissions once the ticket is approved, through the Enterprise applications pane, as Privileged Role Administrator activated through PIM ([Chapter 08](08-pim-self-request-with-approval.md)), with a PIM-activated Global Administrator as the fallback. Test the path in the pilot.
 
@@ -162,10 +176,10 @@ An application that isn't a public client needs a credential to prove its identi
 
 1. **A managed identity**, used directly or configured as the credential on an app registration. It's the most secure option and needs no credential management, but it's available only when the workload runs on Azure or on an Azure Arc-enabled server, where the server's managed identity is reachable locally to processes in the right local group.[^hc-arcmi]
 2. **A federated identity credential** that trusts the workload's own platform, such as a GitHub Actions workflow or a Kubernetes service account. Microsoft warns that an app is only as secure as the identity platform it trusts.
-3. **A certificate**, kept in a key vault and issued by a trusted certificate authority rather than self-signed, though a self-signed certificate is still better than a password.
-4. **Never a client secret.** Microsoft's guidance is not to use password credentials, because they're often mismanaged and easily compromised.
+3. **A certificate**, kept in a key vault and issued by a trusted certificate authority rather than self-signed, though a self-signed certificate is still better than a password.[^c05-add-creds]
+4. **Never a client secret.** Microsoft's guidance is not to use password credentials, because they're often mismanaged and easily compromised.[^c05-migrate-secrets]
 
-The same guidance says to keep no credentials on public clients, to remove unused credentials, to roll credentials over often, not to share them across apps or pile many onto one app, and to scan pipelines so credentials never reach a code repository.[^c05-best-practice]
+The same guidance says to keep no credentials on public clients, to remove unused credentials, to roll credentials over often, not to share them across apps or pile many onto one app, and to scan pipelines so credentials never reach a code repository.[^c05-best-practice][^c05-unused-creds]
 
 ### Enforcing the order with app management policies
 
@@ -177,7 +191,7 @@ Application management policies turn credential rules into tenant policy. A tena
 | `passwordLifetime` | Cap the lifetime of new secrets |
 | `symmetricKeyAddition`, `symmetricKeyLifetime` | Block or cap symmetric keys, which are effectively passwords |
 | `asymmetricKeyLifetime` | Cap the lifetime of new certificates |
-| `nonDefaultUriAddition` | Block identifier URIs other than `api://{appId}` or `api://{tenantId}/{appId}` |
+| `nonDefaultUriAddition` | Block identifier URIs other than `api://{appId}` or `api://{tenantId}/{appId}`[^c05-identifier-uri] |
 
 Each restriction can apply only to apps created after a chosen date, which lets a tenant enforce the rule for new registrations while it remediates old ones. Microsoft's recommended settings are to block client secrets and symmetric keys outright and to cap certificate lifetime at 180 days.[^c05-secret-tutorial] Application management policies are a free capability of Microsoft Entra Workload ID, not a Premium feature.[^c05-wid-faq]
 
@@ -185,19 +199,31 @@ The program adopts Microsoft's recommended policy for every app created after it
 
 ## Managed identities and workload identity federation
 
-Workload identity is Microsoft's term for any identity assigned to software: applications, service principals and managed identities.[^c05-wid-faq] [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts) maps each Active Directory service account type to one of them and covers the mechanics of federated identity credentials (issuer, subject, audience, and the 20-credential limit). This section adds what matters for access policy.
+Workload identity is Microsoft's term for any identity assigned to software: applications, service principals and managed identities.[^c05-wid-faq][^c05-wid-overview] [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts) maps each Active Directory service account type to one of them and covers the mechanics of federated identity credentials (issuer, subject, audience, and the 20-credential limit). This section adds what matters for access policy.
 
 ### Managed identities
 
-A managed identity is a service principal whose credential Azure manages. A system-assigned identity is created with an Azure resource, can be used only by that resource, and is deleted with it. A user-assigned identity is a standalone Azure resource that several resources can share and that must be deleted explicitly.[^c05-mi] Microsoft recommends user-assigned identities for most scenarios, partly because they let identity creation and role assignment be approved separately from resource deployment, and recommends system-assigned identities where audit logs must name the specific resource or where permissions must disappear with the resource.[^c05-mi-best]
+A managed identity is a service principal whose credential Azure manages. A system-assigned identity is created with an Azure resource, can be used only by that resource, and is deleted with it. A user-assigned identity is a standalone Azure resource that several resources can share and that must be deleted explicitly.[^c05-mi][^c05-uami-manage] Microsoft recommends user-assigned identities for most scenarios, partly because they let identity creation and role assignment be approved separately from resource deployment, and recommends system-assigned identities where audit logs must name the specific resource or where permissions must disappear with the resource.[^c05-mi-best]
 
 Microsoft suggests a managed identity instead of an app registration when the service runs in Azure, doesn't sign users in, isn't a web API that receives tokens, and doesn't operate across tenants.[^c05-best-practice] When those conditions hold, the program uses one.
 
 The access-policy consequence is that managed identities fall outside two controls this book relies on. Conditional Access for workload identities doesn't cover them, and Microsoft points to access reviews instead.[^c05-ca-wid] A managed identity's access therefore has to be governed through its role assignments and permission grants, reviewed on the same cadence as the app registrations they replace.
 
+Two settings on a user-assigned identity narrow which resources can hold it. Its isolation scope is `None` by default, which lets it be assigned to resources in any region, or `Regional`, which lets it be assigned only to source resources in its own region; those resources can still use it to reach target resources in other regions.[^c05-mi-isolation] Assignment restrictions, in preview, limit the resource providers or resource types the identity can be assigned to, such as `Microsoft.Web`. The default is an empty list, which leaves the identity assignable to any resource provider that supports managed identities.[^c05-mi-restrict] Both settings control where the identity can be assigned, not who may assign it; that stays with Azure role assignments, and changing the settings in the portal takes at least Managed Identity Contributor.[^c05-mi-restrict] Microsoft recommends `Regional` isolation, one identity per region, and separate identities per resource provider.[^c05-mi-isolation][^c05-mi-restrict] The program sets both on every new user-assigned identity, choosing the narrowest provider list the workload needs, and records them in the application registry. Government-cloud availability of isolation scope and assignment restrictions is not yet specified.
+
+The inventory below is read-only. The first command lists the user-assigned identities in a resource group (it needs Managed Identity Operator or Managed Identity Contributor); the second lists every Azure resource an identity is assigned to, which is how to find identities that are unused or more widely shared than intended.[^c05-uami-manage][^c05-mi-associated]
+
+```bash
+az identity list -g <RESOURCE GROUP>
+
+az identity list-resources --resource-group <RESOURCE GROUP> --name <IDENTITY NAME>
+```
+
+Microsoft documents the associated-resources view, in preview, as available in all public regions and in US Government, and notes it returns every associated resource regardless of the caller's permissions on those resources.[^c05-mi-associated]
+
 ### Workload identity federation
 
-Workload identity federation lets an app registration or a user-assigned managed identity trust tokens from an external identity provider, and exchange them for Microsoft Entra access tokens, so the workload holds no secret that could leak or expire. Microsoft supports it for Kubernetes clusters (in Azure, other clouds or on premises), GitHub Actions, Google Cloud, and Azure compute that uses an app identity through a user-assigned managed identity.[^c05-wif] Both managed identities and workload identity federation are free features.[^c05-wid-faq]
+Workload identity federation lets an app registration or a user-assigned managed identity trust tokens from an external identity provider, and exchange them for Microsoft Entra access tokens, so the workload holds no secret that could leak or expire. Microsoft supports it for Kubernetes clusters (in Azure, other clouds or on premises), GitHub Actions, Google Cloud, and Azure compute that uses an app identity through a user-assigned managed identity.[^c05-wif][^c05-wif-google] Both managed identities and workload identity federation are free features.[^c05-wid-faq]
 
 Federation moves the trust decision rather than removing it. Approving a federated credential is approving every workload the external issuer will vouch for under that subject, so the program treats a new federated credential as a change of credential that needs the owner's and the governance office's approval, and records the issuer and subject in the application registry.
 
@@ -377,4 +403,23 @@ None of this book's certificates is renewed by the CLM platform. App-registratio
 [^c05-ca-wid]: Microsoft Learn, "Conditional Access for workload identities," <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 20, 2026).
 [^c05-lock]: Microsoft Learn, "How to configure app instance property lock for your applications," <https://learn.microsoft.com/entra/identity-platform/howto-configure-app-instance-property-locks> (accessed Oct 20, 2026).
 [^c05-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, control AC-6, September 2020 (updated December 10, 2020), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
+[^c05-app-model]: Microsoft Learn, "Application model," section "Multitenant apps," <https://learn.microsoft.com/entra/identity-platform/application-model> (accessed Nov 9, 2026).
+[^c05-sp-created]: Microsoft Learn, "Understand why a service principal was created in your tenant," <https://learn.microsoft.com/entra/identity/monitoring-health/understand-service-principal-creation-with-new-audit-log-properties>, and "How to investigate why a service principal was created in your tenant," <https://learn.microsoft.com/entra/identity/monitoring-health/howto-view-service-principal-creation-with-audit-log-properties> (both accessed Nov 9, 2026).
+[^c05-perms-overview]: Microsoft Learn, "Overview of permissions and consent in the Microsoft identity platform," section "Types of permissions," <https://learn.microsoft.com/entra/identity-platform/permissions-consent-overview> (accessed Nov 9, 2026).
+[^c05-oidc-scopes]: Microsoft Learn, "Scopes and permissions in the Microsoft identity platform," section "OpenID Connect scopes," <https://learn.microsoft.com/entra/identity-platform/scopes-oidc> (accessed Nov 9, 2026).
+[^c05-review-requests]: Microsoft Learn, "Review and take action on admin consent requests," <https://learn.microsoft.com/entra/identity/enterprise-apps/review-admin-consent-requests> (accessed Nov 9, 2026).
+[^c05-add-creds]: Microsoft Learn, "Add and manage app credentials in Microsoft Entra ID," section "Add a credential to your application," <https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials> (accessed Nov 9, 2026).
+[^c05-migrate-secrets]: Microsoft Learn, "Migrate applications away from secret-based authentication," <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-applications-from-secrets> (accessed Nov 9, 2026).
+[^c05-unused-creds]: Microsoft Learn, "Recommendation to remove unused credentials from apps," <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-remove-unused-credential-from-apps> (accessed Nov 9, 2026).
+[^c05-identifier-uri]: Microsoft Learn, "Restrictions on identifier URIs of Microsoft Entra applications," section "Additional security settings," <https://learn.microsoft.com/entra/identity-platform/identifier-uri-restrictions> (accessed Nov 9, 2026).
+[^c05-wid-overview]: Microsoft Learn, "Workload identities," <https://learn.microsoft.com/entra/workload-id/workload-identities-overview>, and "Managed identities glossary," entry "Workload Identity," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/managed-identities-glossary> (both accessed Nov 9, 2026).
+[^c05-uami-manage]: Microsoft Learn, "Manage user-assigned managed identities using the Azure portal," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal>, and "Manage user-assigned managed identities using the Azure CLI," section "List user-assigned managed identities," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-cli> (both accessed Nov 9, 2026).
+[^c05-wif-google]: Microsoft Learn, "Federate a Google Cloud workload identity," <https://learn.microsoft.com/entra/workload-id/workload-identity-federation-google-cloud> (accessed Nov 9, 2026).
+[^c05-mi-isolation]: Microsoft Learn, "Isolation scope for user-assigned managed identities," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/managed-identities-isolation-scope> (accessed Nov 9, 2026).
+[^c05-mi-restrict]: Microsoft Learn, "Assignment restriction for user-assigned managed identities (preview)," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/managed-identities-assignment-restriction>, and "Configure assignment restriction for user-assigned managed identities (preview)," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/configure-managed-identities-assignment-restriction> (both accessed Nov 9, 2026).
+[^c05-mi-associated]: Microsoft Learn, "View associated resources for a user-assigned managed identity," sections "Command Line Interface" and "Limitations," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-to-view-associated-resources-for-an-identity> (accessed Nov 9, 2026).
+[^c05-pub-verify]: Microsoft Learn, "Publisher verification," sections "Benefits," "Publisher verification in national clouds" and "Frequently asked questions," <https://learn.microsoft.com/entra/identity-platform/publisher-verification-overview> (accessed Nov 9, 2026).
+[^c05-consent-phishing]: Microsoft Learn, "Protect against consent phishing," section "Best practices for hardening against consent phishing attacks," <https://learn.microsoft.com/entra/identity/enterprise-apps/protect-against-consent-phishing> (accessed Nov 9, 2026).
+[^c05-consent-conditions]: Microsoft Learn, "Manage app consent policies," sections "App consent policy segments" and "List existing app consent policies," <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-app-consent-policies> (accessed Nov 9, 2026).
+[^c05-consent-read]: Microsoft Learn, "Configure how users consent to applications," Microsoft Graph PowerShell tab (`Policy.Read.All` for reading the setting), <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-user-consent>, and "Manage app consent policies for group owners," section "Retrieve the current value for the group owner consent policy using PowerShell," <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-group-owner-consent-policies> (both accessed Nov 9, 2026).
 [^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).

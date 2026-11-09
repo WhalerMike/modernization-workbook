@@ -59,7 +59,7 @@ Several of these roles can do more than a help desk should, and the older design
 
 - **Authentication Administrator can delete, disable and enable users**, and update their user principal name, for the users in its table.[^c04-privileged] "The help desk doesn't delete accounts" is a procedural rule for any technician holding it.
 - **User Administrator can delete users, create guests and change licenses**[^c04-roles-ref][^c04-by-task] and can reset passwords for limited administrators.[^c04-privileged] The older design listed it as the broadest optional role for good reason.
-- **Application Administrator can grant consent** to delegated permissions and to application permissions outside Microsoft Graph, and can create enterprise applications.[^c04-by-task] A help desk that activates it can technically do the one thing the help desk must never do. [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#what-each-entra-role-can-actually-do) works through this case and replaces Application Administrator in the help desk with a custom role holding only `microsoft.directory/servicePrincipals/appRoleAssignedTo/update`, which manages user and group assignments to enterprise apps, scoped to one app or the whole tenant, and needs Entra ID P1 for each assignee.[^c04-custom-apps]
+- **Application Administrator can grant consent** to delegated permissions and to application permissions outside Microsoft Graph, and can create enterprise applications.[^c04-by-task] A help desk that activates it can technically do the one thing the help desk must never do. [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#what-each-entra-role-can-actually-do) works through this case and replaces Application Administrator in the help desk with a custom role holding only `microsoft.directory/servicePrincipals/appRoleAssignedTo/update`, which manages user and group assignments to enterprise apps, scoped to one app or the whole tenant, and needs Entra ID P1 for each assignee.[^c04-custom-apps][^c04-custom-roles]
 
 Where the platform can't enforce a boundary, the program enforces it twice: in the ticket, which must carry the approval, and in monitoring, which flags any audit event a help desk account produced outside an approved ticket ([Evidence every action leaves](#evidence-every-action-leaves)).
 
@@ -89,7 +89,7 @@ Some accounts should be out of the help desk's reach even when they hold no role
 
 The program's pattern for executive support:
 
-1. Put the executive accounts and their devices in a restricted management unit, decided at creation because the setting can't be changed later.[^c04-rmau]
+1. Put the executive accounts and their devices in a restricted management unit, decided at creation because the setting can't be changed later.[^c04-rmau][^c04-au-manage]
 2. Assign Authentication Administrator and Password Administrator over that unit to a small executive-support group, eligible through PIM, with approval required.
 3. Leave the general help desk without any assignment over it. A reset request for an executive reaches the help desk, fails the target check at the top of this chapter, and routes to executive support.
 
@@ -133,6 +133,8 @@ For a workforce that was proofed at hiring, the program's recovery rule follows 
 1. **Re-proof, don't interview.** The technician confirms identity against the record the agency already holds: in person with the PIV card, or by a supervised video session against the HR-sourced identity. Knowledge questions, the caller's own callback number, and email are never enough on their own.
 2. **Check the target before the method.** If the user holds any role, is a member or owner of a role-assignable group, or sits in a restricted management unit, the help desk stops and routes the request, as the first figure in this chapter shows.
 3. **Notify the user** through a channel other than the one the request came on, every time a credential or method changes.
+
+Microsoft Entra ID also offers self-service account recovery for a user who has lost every method: a third-party identity verification provider checks a government-issued ID, Verified ID Face Check matches the user to it, and the user is issued a Temporary Access Pass to register new methods.[^c04-account-recovery] The program holds it until it is available in GCC: Microsoft lists Verified ID itself as supported in GCC but not GCC High,[^c04-vid-gcc] and doesn't state government-cloud availability for account recovery, so for this feature it is not yet specified.
 
 ## Temporary Access Pass and MFA re-registration
 
@@ -255,3 +257,7 @@ Who staffs the help desk and cloud services tiers, and how their work is measure
 [^c04-audit-activities]: Microsoft Learn, "Microsoft Entra audit log activity reference," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-audit-activities> (accessed Oct 21, 2026).
 [^c04-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention> (accessed Oct 21, 2026).
 [^c04-ca-logs]: Microsoft Learn, "View applied Conditional Access details in the Microsoft Entra activity logs," section "Prerequisites," <https://learn.microsoft.com/entra/identity/monitoring-health/how-to-view-applied-conditional-access-policies> (accessed Oct 21, 2026).
+[^c04-custom-roles]: Microsoft Learn, "Create a custom role in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/custom-create>, and "Enterprise application permissions for custom roles in Microsoft Entra ID," section "Assigning users or groups to an application," <https://learn.microsoft.com/entra/identity/role-based-access-control/custom-enterprise-app-permissions> (accessed Nov 9, 2026).
+[^c04-au-manage]: Microsoft Learn, "Create or delete administrative units," section "Create an administrative unit" (the restricted management setting), <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-manage>, and "Add users, groups, or devices to an administrative unit," <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-add> (accessed Nov 9, 2026).
+[^c04-account-recovery]: Microsoft Learn, "Account recovery overview," <https://learn.microsoft.com/entra/identity/authentication/concept-account-recovery-overview>, and "Enable and configure account recovery in Microsoft Entra ID," section "Prerequisites," <https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-enable> (accessed Nov 9, 2026).
+[^c04-vid-gcc]: Microsoft Learn, "What's new in Microsoft Entra Verified ID," September 2025 ("Entra Verified ID is supported on Microsoft GCC environments ... GCC only and not GCC High"), <https://learn.microsoft.com/entra/verified-id/whats-new> (accessed Nov 9, 2026).
