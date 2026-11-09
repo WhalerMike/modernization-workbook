@@ -410,7 +410,7 @@ BOD 26-02, issued February 5, 2026, puts branch edge hardware on a directive clo
 
 For an agency with aging branch equipment, part of the capital it assumed it didn't have is going to be spent anyway, on a compliance basis, inside the window everyone calls years away. And a refresh is exactly the moment a branch architecture gets chosen again. The default choice is like-for-like, which spends the money and closes the question for the life of the new equipment.
 
-The recommendation is narrow and cheap. Tell whoever is scoping the replacements, in writing, what the eventual target needs from a branch device: application-aware steering and path measurement, deterministic egress, per-application telemetry the log pipeline can take, post-quantum key exchange under M-26-15, a management plane that satisfies BOD 23-02, and an explicit FIPS 140-3 expectation.
+The recommendation is narrow and cheap. Tell whoever is scoping the replacements, in writing, what the eventual target needs from a branch device: application-aware steering and path measurement, deterministic egress, per-application telemetry the log pipeline can take, post-quantum key exchange under M-26-15, a management plane built to BOD 23-02, and an explicit FIPS 140-3 expectation.
 
 Security architecture owns that decision, because the refresh row in the book's matrix fixes the branch design for years. Acquisition writes it into every order. It's needed before the replacements are scoped. It costs requirements-writing time, and not doing it spends the same money and closes the option.`,
   "Book 09, Chapter 10 — The Long Interim; Chapter 03 (BOD 26-02 milestones); Chapter 07 (access-switch scope); Chapter 09 — Who Owns the Network and Its Transport.");

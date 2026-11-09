@@ -876,8 +876,8 @@ Assignment filters evaluate Intune properties at check-in, operating-system vers
     { x: 0.6, y: 1.4, w: 12.15, h: 0.4, fontSize: 14, color: HEX.ink });
   table(s, "ArcCov", 1.85, [3.75, 8.4], ["Server or platform", "Coverage (Microsoft Learn, Oct. 29, 2026)"], [
     ["Windows Server 2016–2025", "Supported, Desktop Experience and Server Core; 2016 gets new agent versions until February 2030"],
-    ["Windows Server 2012 and 2012 R2", "Listed; no new agent versions after November 2026; their ESUs ended October 13, 2026, and Arc doesn't extend them"],
-    ["Linux: RHEL, Rocky, Alma, Oracle, SUSE, Ubuntu, Debian, Amazon, Azure Linux", "Supported, by listed version; several older versions get no new agent versions after November 2026"],
+    ["Windows Server 2012 and 2012 R2", "2012 got its last new agent version, 1.69, in October 2026, serviced 12 months; 2012 R2 still gets new versions; ESUs ended October 13, 2026, and Arc doesn't extend them"],
+    ["Linux: RHEL, Rocky, Alma, Oracle, SUSE, Ubuntu, Debian, Amazon, Azure Linux", "Supported, by listed version; several older versions got their last new agent version, 1.69, in October 2026"],
     ["Physical servers; VMs on any hypervisor", "Supported, with the Connected Machine agent"],
     ["VMware vSphere VMs, including Azure VMware Solution", "Supported through a resource bridge to vCenter 8, then the agent; ESXi hosts appear as inventory only"],
     ["System Center VMM VMs", "Retiring: new onboardings stop by October 2026, the service ends September 2029"],
@@ -890,9 +890,9 @@ Assignment filters evaluate Intune properties at check-in, operating-system vers
   notes(s,
 `Now the Arc track: servers. Arc isn't limited to Microsoft platforms either; it manages Linux servers, VMware virtual machines and AWS and Google Cloud instances. These are Microsoft Learn facts the guide verified on October 29, 2026, and the guide marks the two entries that are the program's reading.
 
-Windows Server 2016, 2019, 2022 and 2025, Desktop Experience and Server Core, are supported, and 2016 gets new agent versions until February 2030. Windows Server 2012 and 2012 R2 are listed with no new agent versions after November 2026; their Extended Security Updates ended October 13, 2026, and Arc support doesn't extend them. 2008 R2 and earlier, and any 32-bit OS, aren't supported, and machine configuration doesn't run on Arm64.
+Windows Server 2016, 2019, 2022 and 2025, Desktop Experience and Server Core, are supported, and 2016 gets new agent versions until February 2030. Windows Server 2012 got its last new agent version, 1.69, in October 2026, and Microsoft services a final agent version for 12 months after its release; Windows Server 2012 R2 is still listed for new agent versions. Their Extended Security Updates ended October 13, 2026, and Arc support doesn't extend them. 2008 R2 and earlier, and any 32-bit OS, aren't supported, and machine configuration doesn't run on Arm64.
 
-Linux: Red Hat Enterprise Linux 7 to 10, Rocky and AlmaLinux 8 and 9, Oracle Linux 7 to 10, SUSE 12 SP5 and 15, Ubuntu 18.04 to 26.04, Debian 11 to 13, Amazon Linux 2 and 2023, and Azure Linux 3.0. Several of the older ones get no new agent versions after November 2026, and the agent isn't tested on CIS-hardened systems.
+Linux: Red Hat Enterprise Linux 7 to 10, Rocky and AlmaLinux 8 and 9, Oracle Linux 7 to 10, SUSE 12 SP5 and 15, Ubuntu 18.04 to 26.04, Debian 11 to 13, Amazon Linux 2 and 2023, and Azure Linux 3.0. Several of the older ones, among them Red Hat 7, Oracle Linux 7, Amazon Linux 2, Debian 11 and 12, and Ubuntu 18.04 and 20.04, got their last new agent version, 1.69, in October 2026, and the agent isn't tested on CIS-hardened systems.
 
 Physical servers and VMs on any other hypervisor are supported with the agent. VMware vSphere VMs, including Azure VMware Solution, connect through an Arc resource bridge to vCenter Server 8, up to 9,500 VMs per bridge, then guest management installs the agent; ESXi hosts are discovered as inventory, and that the host itself takes no agent is the program's reading. VMs under System Center Virtual Machine Manager are retiring: new onboardings stop by October 2026 and the service ends in September 2029.
 

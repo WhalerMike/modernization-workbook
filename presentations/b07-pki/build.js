@@ -75,7 +75,7 @@ Workbook: Book 07, Chapter 01 — Why Certificates Outlive Every Migration.`);
     { x: 0.6, y: 4.1, w: 7.0, h: 0.75, fontSize: 12, italic: true, color: HEX.slate });
   const sides = [
     ["FaKey", "Mapping rules changed", "KB5014754: domain controllers in Full Enforcement since February 11, 2025, with no way back to compatibility mode after September 9, 2025.", HEX.amber, HEX.amberTint],
-    ["FaLock", "Algorithms have a horizon", "NIST's draft IR 8547: RSA-2048 deprecated after 2030, all RSA and ECDSA signatures disallowed after 2035.", HEX.red, HEX.redTint],
+    ["FaLock", "Algorithms have a horizon", "NIST IR 8547, final Oct. 2026: RSA, ECDSA and EdDSA signatures deprecated after 2030, disallowed after 2035.", HEX.red, HEX.redTint],
   ];
   sides.forEach((r, i) => {
     const y = 1.55 + i * 1.72;
@@ -86,7 +86,7 @@ Workbook: Book 07, Chapter 01 — Why Certificates Outlive Every Migration.`);
   });
   callout(s, "Own program", 5.3, 1.2, "FaRoute", HEX.navy, "So the PKI is its own program: ",
     "manual lifecycle management can't keep up. The replacement is discovery, ownership, automated issuance and renewal, and evidence, run apart from the directory move.");
-  sources(s, "Sources: CA/Browser Forum SC-081v3 and Baseline Requirements 2.3.1; Microsoft Support KB5014754; NIST IR 8547 (draft). Book 07, Chapter 01.");
+  sources(s, "Sources: CA/Browser Forum SC-081v3 and Baseline Requirements 2.3.1; Microsoft Support KB5014754; NIST IR 8547 (final, Oct. 27, 2026). Book 07, Chapter 01.");
   s.addNotes(
 `[1:50–2:59]  A certificate estate used to be something you could leave alone between renewals. Three changes have ended that.
 
@@ -94,7 +94,7 @@ First, public TLS lifetimes are shrinking on a fixed schedule. Under the CA/Brow
 
 Second, mapping rules changed under certificates already in use. Under KB5014754, domain controllers moved to Full Enforcement on February 11, 2025, with no way back after the September 9, 2025 update.
 
-Third, the algorithms have a horizon. NIST's draft transition plan would deprecate RSA-2048 after 2030 and disallow RSA and ECDSA signatures after 2035.
+Third, the algorithms have a horizon. NIST's transition plan, final on October 27, 2026, deprecates every quantum-vulnerable signature algorithm, RSA, ECDSA and EdDSA at every security strength, RSA-2048 included, after 2030, and disallows them after 2035. The final is stricter than the draft, which would have deprecated only the 112-bit level after 2030.
 
 So manual lifecycle management can't keep up, and the move off AD CS runs as its own program.
 
@@ -464,7 +464,7 @@ Workbook: Book 07, index; Chapters 04, 05 and 07; Appendices A and B.`);
     "Microsoft Learn: Defender for Identity certificate assessments; secure, delegate and audit CA administration; CRL operations; decommission an enterprise CA.  ·  KB5005413.",
     "Microsoft Learn: Cloud PKI overview, fundamentals, deployment models, BYOCA and CA renewal; Intune SCEP, PKCS and trusted certificate profiles; Certificate Connector.",
     "Microsoft Learn: Entra CBA technical concepts, CRL, setup and migration; staged rollout; migrate from federation.  ·  Microsoft Support: KB5014754.",
-    "CA/Browser Forum: Ballot SC-081v3 (April 2025); Baseline Requirements 2.3.1 (October 4, 2026).  ·  RFC 8555 (ACME).  ·  NIST IR 8547 (initial public draft).",
+    "CA/Browser Forum: Ballot SC-081v3 (April 2025); Baseline Requirements 2.3.1 (October 4, 2026).  ·  RFC 8555 (ACME).  ·  NIST IR 8547 (final, October 27, 2026).",
     "CyberArk: Certificate Manager Self-Hosted, Microsoft CA and ACME documentation.  ·  Palo Alto Networks; Thoma Bravo; FedRAMP Marketplace dataset.",
     "GSA: Federal PKI 101.  ·  NIST FIPS 201-3; SP 800-37 Rev. 2; SP 800-53 Rev. 5 (IA-5(2), SC-12, SC-17).  ·  OMB M-22-09.",
     "Full footnotes with links and access dates: Book 07, every chapter (whalermike.github.io/modernization-workbook/docs/books/b07-pki/).",

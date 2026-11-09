@@ -45,14 +45,23 @@ The last two run automatically,
 many times a day, in the pipeline.
 
 10
-00:00:33.438 --> 00:00:35.855
-And every gate leaves evidence behind,
+00:00:33.438 --> 00:00:37.708
+And all four run inside the
+system's own five life-cycle gates,
 
 11
-00:00:35.855 --> 00:00:40.538
+00:00:37.708 --> 00:00:40.526
+from concept to operate, not beside them.
+
+12
+00:00:40.526 --> 00:00:42.942
+And every gate leaves evidence behind,
+
+13
+00:00:42.942 --> 00:00:47.625
 so the authorization package is
 assembled from proof that already exists.
 
-12
-00:00:40.538 --> 00:00:41.690
+14
+00:00:47.625 --> 00:00:48.770
 Let's see it running.

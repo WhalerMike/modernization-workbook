@@ -141,16 +141,16 @@
   ],
   [
    43.163,
-   10.05,
-   "nist's draft plan would deprecate RSA-2048 after 2030 and disallow RSA and ECDSA signatures after 2035."
+   13.688,
+   "nist's final transition plan, published in October 2026, deprecates RSA, ECDSA and EdDSA signatures at every strength after 2030, and disallows them after 2035."
   ],
   [
-   53.212,
+   56.85,
    6.338,
    "Put together, manual renewal can't keep up, so the move off A D CS runs as its own program."
   ],
   [
-   59.55,
+   63.188,
    2.487,
    "First, what does A D CS hold up?"
   ]

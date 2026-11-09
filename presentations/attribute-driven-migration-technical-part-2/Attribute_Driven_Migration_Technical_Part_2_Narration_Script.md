@@ -30,7 +30,7 @@ Dynamic device groups have their own dangers, and a mistake here reaches the who
 
 ## Slide 8 — What Azure Arc covers
 
-Now the Arc track: servers. Arc isn't just for Windows either. It covers Windows Server 2016 through 2025, a long list of Linux distributions, physical servers and VMs on any hypervisor, VMware through vCenter, and AWS and Google Cloud instances. Two dates matter: Windows Server 2012 stops getting new agents in November 2026, and the SCVMM integration is retiring. Azure VMs don't need Arc at all, because they're already Azure resources. And Unix, mainframes, network devices and sealed appliances are out. So here's how Arc makes a server attribute-driven.
+Now the Arc track: servers. Arc isn't just for Windows either. It covers Windows Server 2016 through 2025, a long list of Linux distributions, physical servers and VMs on any hypervisor, VMware through vCenter, and AWS and Google Cloud instances. Two dates matter: Windows Server 2012 and several older Linux releases got their last new agent version, 1.69, in October 2026, while 2012 R2 still gets new versions, and the SCVMM integration is retiring. Azure VMs don't need Arc at all, because they're already Azure resources. And Unix, mainframes, network devices and sealed appliances are out. So here's how Arc makes a server attribute-driven.
 
 ## Slide 9 — Beyond users: Azure Arc servers, through Resource Manager
 

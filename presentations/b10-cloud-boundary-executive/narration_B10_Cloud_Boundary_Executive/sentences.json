@@ -730,56 +730,66 @@
   ],
   [
    24.775,
-   4.6,
-   "So a workload whose subscription isn't in the boundary record doesn't go live."
+   4.612,
+   "So a workload whose subscription isn't in the boundary record doesn't go lyve."
   ],
   [
-   29.375,
+   29.387,
    1.25,
    "Then the contract."
   ],
   [
-   30.625,
-   8.775,
-   "G C C coverage requires a G C C SKU, so a licensing choice is a boundary choice, and it belongs to the contracting officer."
+   30.637,
+   5.55,
+   "In October, the G C C listing said coverage requires a G C C SKU."
   ],
   [
-   39.4,
+   36.188,
+   7.037,
+   "That message is gone from the listing now, so the contracting officer confirms the condition with the provider and in the package."
+  ],
+  [
+   43.225,
+   5.088,
+   "A licensing choice is a boundary choice, and it belongs to the contracting officer."
+  ],
+  [
+   48.312,
    7.475,
    "Provider changes that might affect the agency's risk go to the authorizing official, not whoever is on the distribution list."
   ],
   [
-   46.875,
+   55.788,
    5.213,
    "And agencies can't demand more than fed-ramp requires without a formal finding of need."
   ],
   [
-   52.087,
+   61.0,
    4.075,
    "The landing zone makes these decisions checkable, but it doesn't make them."
   ],
   [
-   56.163,
+   65.075,
    1.925,
    "Two planning facts for leaders."
   ],
   [
-   58.087,
+   67.0,
    7.9,
    "Microsoft's landing-zone accelerators are supported only in public Azure, so an Azure Government build needs the code adapted by hand."
   ],
   [
-   65.987,
+   74.9,
    5.85,
    "And the pipeline that builds it is part of the boundary question too, because its state data is sensitive."
   ],
   [
-   71.838,
+   80.75,
    2.163,
    "Plan both; don't discover them."
   ],
   [
-   74.0,
+   82.912,
    3.138,
    "Next, what to do when a capability is outside."
   ]

@@ -176,8 +176,8 @@ So for years you'll hold two kinds of package at once. Rev5 packages describe a 
 {
   const s = D.content(S_WHAT, "\"The boundary\" is now four sets of obligations, and yours");
   tag(s, "What");
-  txt(s, "Count head", "IN RULESET 2026.10.13.01", { x: 0.6, y: 1.55, w: 6.3, h: 0.3, fontSize: 12, bold: true, color: HEX.slate });
-  [["0", "times: \"authorization boundary\"", HEX.red, HEX.redTint], ["8", "times: \"boundary\" (3 your system, 4 tags, 1 other)", HEX.navy, HEX.navyTint]].forEach((c, i) => {
+  txt(s, "Count head", "IN RULESET 2026.11.02.01", { x: 0.6, y: 1.55, w: 6.3, h: 0.3, fontSize: 12, bold: true, color: HEX.slate });
+  [["0", "times: \"authorization boundary\"", HEX.red, HEX.redTint], ["9", "times: \"boundary\" (3 your system, 4 tags, 2 other)", HEX.navy, HEX.navyTint]].forEach((c, i) => {
     const x = 0.6 + i * 3.2;
     box(s, `Count ${i + 1}`, x, 1.9, 3.05, 0.85, c[3]);
     txt(s, `Count ${i + 1} text`, [{ text: `${c[0]}  `, options: { bold: true, color: c[2], fontSize: 26, fontFace: "Cambria" } }, { text: c[1], options: { fontSize: 12.5 } }],
@@ -199,9 +199,9 @@ So for years you'll hold two kinds of package at once. Rev5 packages describe a 
   ]);
   decision(s, "Decide who owns each agent and client the provider delivers, and cover it in the agency's own authorization: its configuration, updates and the data it sends.",
     "Authorizing official draws the boundary; endpoint engineering does the work", "Next package update; rules mandatory January 1, 2027", HEX.teal);
-  sources(s, "Sources: FedRAMP Consolidated Rules for 2026 — machine-readable ruleset 2026.10.13.01, Minimum Assessment Scope (MAS-CSO-IIR, MAS-CSO-FLO), Cryptographic Module Use; NIST glossary. Book 10, Chapters 03, 08 and 09.");
+  sources(s, "Sources: FedRAMP Consolidated Rules for 2026 — machine-readable ruleset 2026.11.02.01, Minimum Assessment Scope (MAS-CSO-IIR, MAS-CSO-FLO), Cryptographic Module Use; NIST glossary. Book 10, Chapters 03, 08 and 09.");
   narrate(s,
-`The rules also changed what the word boundary means. They're published as one machine-readable ruleset, so the vocabulary can be counted rather than characterized. In version 2026.10.13.01, the phrase authorization boundary occurs zero times. The word boundary occurs eight times: three times about the agency's own system, four times as a tag on rule families, and once in supply-chain guidance.
+`The rules also changed what the word boundary means. They're published as one machine-readable ruleset, so the vocabulary can be counted rather than characterized. In version 2026.11.02.01, the current release, the phrase authorization boundary occurs zero times. The word boundary occurs nine times: once in the definition of Minimum Assessment Scope, added in that release, three times about the agency's own system, four times as a tag on rule families, and once in supply-chain guidance.
 
 Those four families say what a provider's boundary now is. Minimum Assessment Scope, what is in the offering. Cryptographic Module Use. Vulnerability Detection and Response. And Certification Data Sharing, how the evidence reaches you. Four sets of obligations, not a line on a diagram. The only boundary the rules name is the agency's own system.
 
@@ -388,7 +388,7 @@ FedRAMP is consulted, not in charge. Agencies notify it after authorizing, and w
     txt(s, `Panel head ${i + 1}`, p[1], { x: x + 0.95, y: 4.8, w: 4.9, h: 0.56, bold: true, color: p[2], fontSize: 17, fontFace: "Cambria", valign: "middle" });
     txt(s, `Panel text ${i + 1}`, bullets(p[4], 13.5), { x: x + 0.25, y: 5.45, w: 5.6, h: 0.98, paraSpaceAfter: 3 });
   });
-  sources(s, "Sources: FedRAMP Consolidated Rules for 2026 — Agency Use (AGU-AGC-NAR, -TPP); FedRAMP Marketplace (GCC SKU message); NIST SP 800-37 Rev. 2; Microsoft Learn — landing zones, Azure Policy; HashiCorp — sensitive data. Book 10, Chapters 05, 07, 08.");
+  sources(s, "Sources: FedRAMP Consolidated Rules for 2026 — Agency Use (AGU-AGC-NAR, -TPP); FedRAMP Marketplace (GCC SKU message, Oct. 21, 2026; gone Nov. 9); NIST SP 800-37 Rev. 2; Microsoft Learn — landing zones, Azure Policy; HashiCorp — sensitive data. Book 10, Chapters 05, 07, 08.");
   narrate(s,
 `The most consequential boundary decisions don't look like boundary decisions. They look like engineering tickets, and that's how they slip past the people who should make them.
 
@@ -396,7 +396,7 @@ Placement. Vending a new subscription is the platform team's mechanism, but whet
 
 Feature dependency. The system owner checks each feature a design depends on against what's been tested to work in your cloud, before the design is built.
 
-The contract. The GCC listing says customers must buy a GCC SKU to be covered by the GCC authorization, so a licensing choice is a boundary choice, and it belongs to the contracting officer.
+The contract. On October 21, 2026, the GCC listing said customers must buy a GCC SKU to be covered by the GCC authorization; the listing no longer carried that message on November 9, 2026, so the contracting officer confirms the condition with the provider and in the package. A licensing choice is a boundary choice, and it belongs to the contracting officer.
 
 Provider changes. When a provider notice might change the agency's risk, the authorizing official decides, not whoever happens to be on the distribution list.
 
@@ -633,7 +633,7 @@ The license says what you bought; the boundary says what you may use. Book 10 ha
   const src = [
     "FedRAMP Consolidated Rules for 2026: Using a FedRAMP Certified Cloud Service; Definitions (Certification Class, Cloud Service Offering, Federal Customer Data, Trust Center); Scope of FedRAMP (quoting OMB M-24-15); Minimum Assessment Scope (MAS-CSO-IIR, -FLO, -TPR, -MDI, -SUP); Cryptographic Module Use (CMU-CSO-CMD, -UVM, -CAT).",
     "FedRAMP Consolidated Rules for 2026, continued: Significant Change Notification (SCN-CSO-EVA, -HIS, -HRM, -NOM, -EMG; SCN-RTR-NNR; SCN-ADP-NTF; SCN-TRF-NIP, -NFP, -NAF, -NAV, -UPD); Certification Data Sharing (CDS-CSO-PUB, -SVC, -UTC; CDS-TRC-USH, -PAC, -AAI, -ACL, -HMR, -SSM); Agency Use; Collaborative Continuous Monitoring; Federal Agencies responsibilities; Certification Packages and Rev5 Certification Packages; Rev5 Rulesets and Rev5 Class C; Important Dates.",
-    "FedRAMP machine-readable ruleset fedramp-consolidated-rules.json, version 2026.10.13.01 (October 13, 2026).  ·  FedRAMP Notices NTC-0004 (February 25, 2026) and NTC-0013 (June 16, 2026).  ·  FedRAMP, \"Propelling Change: FedRAMP Launches Consolidated Rules for 2026\" (June 25, 2026), cited in Book 01, Chapter 12.",
+    "FedRAMP machine-readable ruleset fedramp-consolidated-rules.json, version 2026.11.02.01 (November 2, 2026; first read at 2026.10.13.01).  ·  FedRAMP Notices NTC-0004 (February 25, 2026) and NTC-0013 (June 16, 2026).  ·  FedRAMP, \"Propelling Change: FedRAMP Launches Consolidated Rules for 2026\" (June 25, 2026), cited in Book 01, Chapter 12.",
     "FedRAMP Marketplace dataset, products.json (last changed October 21, 2026): MSO365MT, MSO365MTA, FR1824057433, F1603087869, F1209051525, F1206081364, FR2604952026, FR1825941347A, F1511207635, FR1823447014, FR2230252267, F1212191840A; trust-center field count; HCP Terraform, GitHub Enterprise Cloud, GitLab Dedicated for Government.",
     "NIST SP 800-37 Rev. 2 (Tasks P-11, R-1, R-4; Appendices D, F, G); SP 800-53 Rev. 5, release 5.2.0 (PL-2, SA-4, SA-9, CA-3, CA-5, CA-7); NIST glossary, \"authorization boundary\"; OSCAL component definition model.  ·  FAR 1.602-1.",
   ];

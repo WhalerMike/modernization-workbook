@@ -752,7 +752,7 @@ Neither tool can design the Conditional Access set, the legacy-authentication re
 
 So the program's sequence, design guidance, puts the assessors at phase five. Understand gaps and root causes, design the closure pattern, implement it, govern it with owners, POA&Ms and risk acceptances, then validate with both tools, as confirmation rather than discovery, and authorize. A first read-only run can inform the phase-one gap list, but running the assessor as the program there only yields an unowned list. The RMF runs implement, assess, authorize, monitor, and BOD 25-01 itself requires a new tenant's baseline before its ATO.
 
-For the BOD 25-01 surface, closing first means four layers in order: naming, addressing and certificates; device and workload identity; legacy-authentication elimination in phases, so Book 04's CA001 meets MS.AAD.1.1v1 only after the last legacy client has moved; and governed exceptions, each open deviation remediated on a date or carried as a dated, owned risk acceptance.`,
+For the BOD 25-01 surface, closing first means four layers in order: naming, addressing and certificates; device and workload identity; legacy-authentication elimination in phases, so Book 04's CA001 addresses MS.AAD.1.1v1 only after the last legacy client has moved; and governed exceptions, each open deviation remediated on a date or carried as a dated, owned risk acceptance.`,
   "Book 11, Chapter 08 — Close Before You Assess, \"What the assessors can't do,\" \"The sequence: architecture before assessment,\" \"Closing findings first.\"");
 }
 

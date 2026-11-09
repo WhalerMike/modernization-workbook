@@ -58,7 +58,7 @@ A target architecture holds across hundreds of teams only if each decision has a
 
 ## Slide 15 — Four gates, and each one leaves proof
 
-Every application that changes passes four gates: its disposition, a design review, every pull request, and every release. Two are meetings and two are automation, and that's deliberate. The daily ones run in the pipeline, on protected branches that bind administrators too, because a gate that's run as a meeting gets skipped. Each gate leaves proof, so the evidence builds up as the work happens, instead of screenshots the month before an assessment. One threshold belongs to the authorizing official alone: when a change is significant enough to reopen the authorization. Set it early, and let design review apply it. Now, how it runs.
+Every application that changes passes four gates: its disposition, a design review, every pull request, and every release. Two are meetings and two are automation, and that's deliberate. The daily ones run in the pipeline, on protected branches that bind administrators too, because a gate that's run as a meeting gets skipped. Each gate leaves proof, so the evidence builds up as the work happens, instead of screenshots the month before an assessment. And the four run inside the system's own five life-cycle review gates, from concept through operate, not beside them. One threshold belongs to the authorizing official alone: when a change is significant enough to reopen the authorization. Set it early, and let design review apply it. Now, how it runs.
 
 ## Slide 16 — A reference implementation that states its limits
 

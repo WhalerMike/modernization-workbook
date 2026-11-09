@@ -482,233 +482,242 @@ The last two run automatically,
 many times a day, in the pipeline.
 
 102
-00:06:27.238 --> 00:06:29.655
-And every gate leaves evidence behind,
+00:06:27.238 --> 00:06:31.508
+And all four run inside the
+system's own five life-cycle gates,
 
 103
-00:06:29.655 --> 00:06:34.338
+00:06:31.508 --> 00:06:34.326
+from concept to operate, not beside them.
+
+104
+00:06:34.326 --> 00:06:36.742
+And every gate leaves evidence behind,
+
+105
+00:06:36.742 --> 00:06:41.425
 so the authorization package is
 assembled from proof that already exists.
 
-104
-00:06:34.338 --> 00:06:35.790
+106
+00:06:41.425 --> 00:06:42.870
 Let's see it running.
 
-105
-00:06:39.540 --> 00:06:43.527
+107
+00:06:46.620 --> 00:06:50.607
 Arguments about architecture are
 cheap; code that runs is not.
 
-106
-00:06:43.527 --> 00:06:48.856
+108
+00:06:50.607 --> 00:06:55.936
 So the workbook ships a small reference
 implementation: one mission application
 
-107
-00:06:48.856 --> 00:06:53.402
+109
+00:06:55.936 --> 00:07:00.482
 in miniature, with a service, a front
 end, a migration tool and an AI agent.
 
-108
-00:06:53.402 --> 00:06:55.514
+110
+00:07:00.482 --> 00:07:02.594
 Each part shows a pattern from the book.
 
-109
-00:06:55.514 --> 00:06:59.802
+111
+00:07:02.594 --> 00:07:06.882
 A test keeps the A P I contract
 and the code from drifting apart.
 
-110
-00:06:59.802 --> 00:07:02.974
+112
+00:07:06.882 --> 00:07:10.054
 The migration tool proves
 every load three ways,
 
-111
-00:07:02.974 --> 00:07:07.177
+113
+00:07:10.054 --> 00:07:14.257
 and its tests break a value on
 purpose to show the checks catch it.
 
-112
-00:07:07.177 --> 00:07:10.603
+114
+00:07:14.257 --> 00:07:17.683
 The agent can only file
 proposals a person approves.
 
-113
-00:07:10.603 --> 00:07:14.241
+115
+00:07:17.683 --> 00:07:21.321
 It's honest about its limits,
 too: it's illustrative,
 
-114
-00:07:14.241 --> 00:07:18.678
+116
+00:07:21.321 --> 00:07:25.758
 and it hasn't been run against a
 real D B two or Oracle database.
 
-115
-00:07:18.678 --> 00:07:21.410
+117
+00:07:25.758 --> 00:07:28.490
 How does this fit an architecture office?
 
-116
-00:07:25.160 --> 00:07:30.221
+118
+00:07:32.240 --> 00:07:37.301
 Many agencies have an enterprise architecture
 office that speaks TOGAF or Zachman,
 
-117
-00:07:30.221 --> 00:07:33.185
+119
+00:07:37.301 --> 00:07:40.265
 and this slide is about
 not making them translate.
 
-118
-00:07:33.185 --> 00:07:37.050
+120
+00:07:40.265 --> 00:07:44.130
 TOGAF gives the order to do the
 work in, and the book's triage,
 
-119
-00:07:37.050 --> 00:07:41.398
+121
+00:07:44.130 --> 00:07:48.478
 target architecture and wave plan
 drop straight into its phases.
 
-120
-00:07:41.398 --> 00:07:45.804
+122
+00:07:48.478 --> 00:07:52.884
 Zachman is a checklist: it shows
 whether you've described everything,
 
-121
-00:07:45.804 --> 00:07:48.510
+123
+00:07:52.884 --> 00:07:55.590
 and an empty cell is a
 question, not a defect.
 
-122
-00:07:48.510 --> 00:07:52.839
+124
+00:07:55.590 --> 00:07:59.919
 But the federal requirement behind
 both is the architecture itself,
 
-123
-00:07:52.839 --> 00:07:55.422
+125
+00:07:59.919 --> 00:08:02.502
 a baseline, a target
 and a plan to get there.
 
-124
-00:07:55.422 --> 00:07:57.972
+126
+00:08:02.502 --> 00:08:05.052
 No rule requires either framework.
 
-125
-00:07:57.972 --> 00:08:00.360
+127
+00:08:05.052 --> 00:08:07.440
 So file the book's artifacts as they are.
 
-126
-00:08:00.360 --> 00:08:03.160
+128
+00:08:07.440 --> 00:08:10.240
 That brings us to the plan: waves.
 
-127
-00:08:06.910 --> 00:08:10.998
+129
+00:08:13.990 --> 00:08:18.078
 A disposition for every
 application is a list, not a plan.
 
-128
-00:08:10.998 --> 00:08:13.527
+130
+00:08:18.078 --> 00:08:20.607
 Thousands of projects can't start at once,
 
-129
-00:08:13.527 --> 00:08:16.948
+131
+00:08:20.607 --> 00:08:24.028
 and one at a time keeps
 rediscovering the same problems.
 
-130
-00:08:16.948 --> 00:08:18.223
+132
+00:08:24.028 --> 00:08:25.303
 Waves solve both.
 
-131
-00:08:18.223 --> 00:08:22.352
+133
+00:08:25.303 --> 00:08:29.432
 Start with a pilot that includes
 one genuinely hard application,
 
-132
-00:08:22.352 --> 00:08:24.723
+134
+00:08:29.432 --> 00:08:31.803
 so the first real wave isn't a surprise.
 
-133
-00:08:24.723 --> 00:08:27.652
+135
+00:08:31.803 --> 00:08:34.732
 Then run factory waves that
 get cheaper each time,
 
-134
-00:08:27.652 --> 00:08:30.010
+136
+00:08:34.732 --> 00:08:37.090
 and actually switch the old systems off.
 
-135
-00:08:30.010 --> 00:08:32.242
+137
+00:08:37.090 --> 00:08:39.322
 Waves are also how you fund the work:
 
-136
-00:08:32.242 --> 00:08:35.398
+138
+00:08:39.322 --> 00:08:42.478
 one wave's retirement
 savings can pay for the next.
 
-137
-00:08:35.398 --> 00:08:39.631
+139
+00:08:42.478 --> 00:08:46.711
 Size waves by what the factory really
 delivers, not by the schedule,
 
-138
-00:08:39.631 --> 00:08:42.710
+140
+00:08:46.711 --> 00:08:49.790
 and count savings only once
 the old system is off.
 
-139
-00:08:42.710 --> 00:08:44.550
+141
+00:08:49.790 --> 00:08:51.630
 So, what should you decide?
 
-140
-00:08:48.300 --> 00:08:49.675
+142
+00:08:55.380 --> 00:08:56.755
 So, four decisions.
 
-141
-00:08:49.675 --> 00:08:52.205
+143
+00:08:56.755 --> 00:08:59.285
 Ask for the inventory before the program:
 
-142
-00:08:52.205 --> 00:08:55.850
+144
+00:08:59.285 --> 00:09:02.930
 an owner and a proposed
 disposition for every application.
 
-143
-00:08:55.850 --> 00:09:00.962
+145
+00:09:02.930 --> 00:09:08.042
 Approve the rubric once, rather than
 each decision, and fund the retirements.
 
-144
-00:09:00.962 --> 00:09:06.450
+146
+00:09:08.042 --> 00:09:13.530
 Before any cut-over, ask to see the three
 proof results, and forbid dual writes.
 
-145
-00:09:06.450 --> 00:09:09.095
+147
+00:09:13.530 --> 00:09:16.175
 And make sure every AI agent has a sponsor
 
-146
-00:09:09.095 --> 00:09:11.663
+148
+00:09:16.175 --> 00:09:18.743
 and no power to change
 a record on its own.
 
-147
-00:09:11.663 --> 00:09:13.276
+149
+00:09:18.743 --> 00:09:20.356
 The next step is small.
 
-148
-00:09:13.276 --> 00:09:17.980
+150
+00:09:20.356 --> 00:09:25.060
 Score a pilot set of applications your
 architects already know well, calibrate
 
-149
-00:09:17.980 --> 00:09:22.613
+151
+00:09:25.060 --> 00:09:29.693
 the rubric against their judgment, and pick
 a first wave with one hard case in it.
 
-150
-00:09:22.613 --> 00:09:27.287
+152
+00:09:29.693 --> 00:09:34.367
 Application Modernization has the
 detail, every claim footnoted.
 
-151
-00:09:27.287 --> 00:09:28.110
+153
+00:09:34.367 --> 00:09:35.190
 Thank you.

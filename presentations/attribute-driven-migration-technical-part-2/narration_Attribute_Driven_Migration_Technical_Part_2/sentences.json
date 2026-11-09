@@ -236,21 +236,21 @@
   ],
   [
    18.288,
-   9.188,
-   "Two dates matter: Windows Server 2012 stops getting new agents in November 2026, and the SCVMM integration is retiring."
+   16.613,
+   "Two dates matter: Windows Server 2012 and several older Linux releases got their last new agent version, 1.69, in October 2026, while 2012 R2 still gets new versions, and the SCVMM integration is retiring."
   ],
   [
-   27.475,
+   34.9,
    4.55,
    "Azure VMs don't need Arc at all, because they're already Azure resources."
   ],
   [
-   32.025,
+   39.45,
    4.825,
    "And Unix, mainframes, network devices and sealed appliances are out."
   ],
   [
-   36.85,
+   44.275,
    2.862,
    "So here's how Arc makes a server attribute-driven."
   ]

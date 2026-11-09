@@ -34,7 +34,7 @@ Compliance usually arrives as a package assembled at the end. Modernization is t
 
 ## Slide 9 — One owner per decision, four gates per change
 
-An architecture only holds across thousands of applications if every decision has an owner and every change passes the same few gates. In the book's design, the review board reviews; it doesn't vote. The chief architect owns standards, the application owner owns the disposition, the authorizing official alone accepts risk, and the C I O approves what the agency buys. Every change passes four gates. The first two need human judgment, once per application. The last two run automatically, many times a day, in the pipeline. And every gate leaves evidence behind, so the authorization package is assembled from proof that already exists. Let's see it running.
+An architecture only holds across thousands of applications if every decision has an owner and every change passes the same few gates. In the book's design, the review board reviews; it doesn't vote. The chief architect owns standards, the application owner owns the disposition, the authorizing official alone accepts risk, and the C I O approves what the agency buys. Every change passes four gates. The first two need human judgment, once per application. The last two run automatically, many times a day, in the pipeline. And all four run inside the system's own five life-cycle gates, from concept to operate, not beside them. And every gate leaves evidence behind, so the authorization package is assembled from proof that already exists. Let's see it running.
 
 ## Slide 10 — A reference implementation you can run
 
