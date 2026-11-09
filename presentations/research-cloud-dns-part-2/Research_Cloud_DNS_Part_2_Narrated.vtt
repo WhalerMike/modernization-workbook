@@ -765,364 +765,388 @@ Run named unprivileged, and
 keep the host to DNS only.
 
 161
-00:11:17.790 --> 00:11:24.764
-For a baseline, CIS has benchmarks
-only for BIND 9.11 and 9.9,
+00:11:17.790 --> 00:11:22.478
+For a baseline, CIS no longer
+lists a BIND benchmark of its own.
 
 162
-00:11:24.764 --> 00:11:26.990
-none for 9.20 or 9.18.
+00:11:22.478 --> 00:11:26.667
+On October 29, 2026 it listed
+two, for BIND 9.11 and 9.9;
 
 163
-00:11:26.990 --> 00:11:33.100
+00:11:26.667 --> 00:11:31.469
+by November 9 its BIND benchmark
+page returned not found,
+
+164
+00:11:31.469 --> 00:11:37.191
+and it points to CIS WorkBench for
+benchmarks it no longer supports.
+
+165
+00:11:37.191 --> 00:11:40.828
+There's none for 9.20 or 9.18.
+
+166
+00:11:40.828 --> 00:11:45.661
+The retired 9.11 benchmark can
+still be read for its intent,
+
+167
+00:11:45.661 --> 00:11:47.977
+checked against the 9.20 ARM.
+
+168
+00:11:47.977 --> 00:11:54.070
 So the agency states its own profile,
 approved by the CISO, as design guidance.
 
-164
-00:11:36.850 --> 00:11:39.575
+169
+00:11:57.820 --> 00:12:00.545
 Who owns a cloud BIND
 server's configuration?
 
-165
-00:11:39.575 --> 00:11:42.588
+170
+00:12:00.545 --> 00:12:03.558
 The workbook's Ansible
 guide manages such Linux
 
-166
-00:11:42.588 --> 00:11:45.450
+171
+00:12:03.558 --> 00:12:06.420
 hosts by playbook from
 a reviewed repository.
 
-167
-00:11:45.450 --> 00:11:48.588
+172
+00:12:06.420 --> 00:12:09.558
 Four practices make it
 work, as design guidance.
 
-168
-00:11:48.588 --> 00:11:52.392
+173
+00:12:09.558 --> 00:12:13.362
 Rendered, not typed: BIND's
 configuration is a template
 
-169
-00:11:52.392 --> 00:11:55.775
+174
+00:12:13.362 --> 00:12:16.745
 rendered from data the
 DDI policy plane exports.
 
-170
-00:11:55.775 --> 00:12:00.735
+175
+00:12:16.745 --> 00:12:21.705
 Checked before it lands: every change
 arrives by reviewed pull request,
 
-171
-00:12:00.735 --> 00:12:04.013
+176
+00:12:21.705 --> 00:12:24.983
 and CI and the playbook
 both run BIND's checkers.
 
-172
-00:12:04.013 --> 00:12:08.498
+177
+00:12:24.983 --> 00:12:29.468
 Git is the evidence: the commit
 and tag are the CM-2 baseline,
 
-173
-00:12:08.498 --> 00:12:14.200
+178
+00:12:29.468 --> 00:12:35.170
 the pull request is the CM-3 change
 record, and check-mode runs report drift.
 
-174
-00:12:14.200 --> 00:12:19.975
+179
+00:12:35.170 --> 00:12:40.945
 One owning tool: Ansible owns named.conf on
 these hosts, and nothing else writes it.
 
-175
-00:12:19.975 --> 00:12:22.550
+180
+00:12:40.945 --> 00:12:43.520
 A hand edit is drift, to be reverted.
 
-176
-00:12:22.550 --> 00:12:24.215
+181
+00:12:43.520 --> 00:12:45.185
 And secrets stay out of Git:
 
-177
-00:12:24.215 --> 00:12:28.440
+182
+00:12:45.185 --> 00:12:49.410
 keys and certificates come from
 the secrets store at run time.
 
-178
-00:12:32.190 --> 00:12:35.865
+183
+00:12:53.160 --> 00:12:56.835
 Here's the checklist, seven
 questions an agency asks
 
-179
-00:12:35.865 --> 00:12:39.540
+184
+00:12:56.835 --> 00:13:00.510
 of each BIND server it adds
 in AWS, as design guidance.
 
-180
-00:12:39.540 --> 00:12:45.040
+185
+00:13:00.510 --> 00:13:06.010
 First establish whether they're EC2
 instances or VMware guests on AWS.
 
-181
-00:12:45.040 --> 00:12:51.065
+186
+00:13:06.010 --> 00:13:12.035
 One, role: a forwarder, resolver or
 secondary aligns; a primary doesn't.
 
-182
-00:12:51.065 --> 00:12:56.715
+187
+00:13:12.035 --> 00:13:17.685
 Two, source of truth: no zones, or
 zones transferred from the DDI platform.
 
-183
-00:12:56.715 --> 00:13:02.290
+188
+00:13:17.685 --> 00:13:23.260
 Three, why BIND: a stated need from the
 criteria, or a bridge with an end date.
 
-184
-00:13:02.290 --> 00:13:04.439
+189
+00:13:23.260 --> 00:13:25.409
 Four, configuration: rendered,
 
-185
-00:13:04.439 --> 00:13:08.565
+190
+00:13:25.409 --> 00:13:29.535
 reviewed and applied by
 automation, not edited on the host.
 
-186
-00:13:08.565 --> 00:13:12.029
+191
+00:13:29.535 --> 00:13:32.999
 Five, placement: the
 hub VPC of each Region,
 
-187
-00:13:12.029 --> 00:13:15.290
+192
+00:13:32.999 --> 00:13:36.260
 at least two servers, rules shared once.
 
-188
-00:13:15.290 --> 00:13:20.372
+193
+00:13:36.260 --> 00:13:41.342
 Six, shared policy: logs in the
 SIEM with the M-26-14 retention,
 
-189
-00:13:20.372 --> 00:13:26.090
+194
+00:13:41.342 --> 00:13:47.060
 the same policy-zone feed, and
 Protective DNS as the only upstream.
 
-190
-00:13:26.090 --> 00:13:32.252
+195
+00:13:47.060 --> 00:13:53.222
 Seven: a supported branch, a stated
 baseline, a CMDB record and a named owner.
 
-191
-00:13:32.252 --> 00:13:35.089
+196
+00:13:53.222 --> 00:13:56.059
 Rows two and four are the serious signals.
 
-192
-00:13:35.089 --> 00:13:39.210
+197
+00:13:56.059 --> 00:14:00.180
 Row three alone means the
 servers may not be needed at all.
 
-193
-00:13:42.960 --> 00:13:48.899
+198
+00:14:03.930 --> 00:14:09.869
 The federal mapping reuses
 the NIST SP 800-53 controls
 
-194
-00:13:48.899 --> 00:13:52.173
+199
+00:14:09.869 --> 00:14:13.143
 that the workbook's DNS
 design has already verified.
 
-195
-00:13:52.173 --> 00:13:57.360
+200
+00:14:13.143 --> 00:14:18.330
 It's illustrative, so validate it against
 the system's own authorization boundary.
 
-196
-00:13:57.360 --> 00:13:59.935
+201
+00:14:18.330 --> 00:14:20.905
 Configuration and inventory first.
 
-197
-00:13:59.935 --> 00:14:03.113
+202
+00:14:20.905 --> 00:14:24.083
 CM-2, the baseline:
 the evidence is the Git
 
-198
-00:14:03.113 --> 00:14:06.773
+203
+00:14:24.083 --> 00:14:27.743
 commit and tag of the
 rendered configuration.
 
-199
-00:14:06.773 --> 00:14:11.648
+204
+00:14:27.743 --> 00:14:32.618
 CM-3, change control: pull
 requests with required review.
 
-200
-00:14:11.648 --> 00:14:18.248
+205
+00:14:32.618 --> 00:14:39.218
 CM-6, configuration settings: the agency's
 stated profile, plus drift reports.
 
-201
-00:14:18.248 --> 00:14:23.567
+206
+00:14:39.218 --> 00:14:44.537
 CM-7, least functionality: a dedicated
 DNS host, one role per server,
 
-202
-00:14:23.567 --> 00:14:28.197
+207
+00:14:44.537 --> 00:14:49.167
 the version hidden, and
 recursion and transfers limited.
 
-203
-00:14:28.197 --> 00:14:32.050
+208
+00:14:49.167 --> 00:14:53.020
 CM-8, inventory: a CMDB
 record for each server
 
-204
-00:14:32.050 --> 00:14:36.436
+209
+00:14:53.020 --> 00:14:57.406
 and an IPAM entry for each
 address, with an owner.
 
-205
-00:14:36.436 --> 00:14:40.400
+210
+00:14:57.406 --> 00:15:01.370
 And SI-2, flaw remediation:
 a supported BIND branch,
 
-206
-00:14:40.400 --> 00:14:44.461
+211
+00:15:01.370 --> 00:15:05.431
 ISC's announcement list
 and vulnerability matrix,
 
-207
-00:14:44.461 --> 00:14:51.110
+212
+00:15:05.431 --> 00:15:12.080
 and remediation inside the timelines of
 Binding Operational Directive 26-04.
 
-208
-00:14:54.860 --> 00:14:58.180
+213
+00:15:15.830 --> 00:15:19.150
 Then resolution, logging
 and Protective DNS.
 
-209
-00:14:58.180 --> 00:15:03.293
+214
+00:15:19.150 --> 00:15:24.263
 SC-20 asks for signed authoritative
 data: the zone's one owner signs it,
 
-210
-00:15:03.293 --> 00:15:07.510
+215
+00:15:24.263 --> 00:15:28.480
 and cloud secondaries serve
 signed data and hold no keys.
 
-211
-00:15:07.510 --> 00:15:13.761
+216
+00:15:28.480 --> 00:15:34.731
 SC-21 asks for validation: validation on,
 the exceptions list from the policy plane,
 
-212
-00:15:13.761 --> 00:15:17.897
+217
+00:15:34.731 --> 00:15:38.867
 and VPC Resolver validation
 where BIND forwards to it.
 
-213
-00:15:17.897 --> 00:15:23.134
+218
+00:15:38.867 --> 00:15:44.104
 SC-22: at least two servers
 per Region, roles separated.
 
-214
-00:15:23.134 --> 00:15:28.973
+219
+00:15:44.104 --> 00:15:49.943
 SI-4 treats DNS as a detection source,
 with every filter's hits in the SIEM.
 
-215
-00:15:28.973 --> 00:15:35.748
+220
+00:15:49.943 --> 00:15:56.718
 AU-2 and AU-12: BIND's logs beside
 the three clouds' resolver logs,
 
-216
-00:15:35.748 --> 00:15:38.936
+221
+00:15:56.718 --> 00:15:59.906
 kept for the M-26-14 retention.
 
-217
-00:15:38.936 --> 00:15:46.391
+222
+00:15:59.906 --> 00:16:07.361
 For M-22-09's encrypted DNS and resolver
 logging: encrypted DNS to clients,
 
-218
-00:15:46.391 --> 00:15:51.747
+223
+00:16:07.361 --> 00:16:12.717
 DNS over TLS upstream from BIND
 9.20, and logs at the BIND server.
 
-219
-00:15:51.747 --> 00:15:56.591
+224
+00:16:12.717 --> 00:16:17.561
 CISA's guidance: internet-bound
 forwarding only to Protective
 
-220
-00:15:56.591 --> 00:16:00.611
+225
+00:16:17.561 --> 00:16:21.581
 DNS or agency resolvers, and
 other DNS egress blocked.
 
-221
-00:16:00.611 --> 00:16:07.490
+226
+00:16:21.581 --> 00:16:28.460
 And Emergency Directive 19-01 is sunset,
 but its four actions remain sound practice.
 
-222
-00:16:11.240 --> 00:16:12.840
+227
+00:16:32.210 --> 00:16:33.810
 Where does Infoblox fit?
 
-223
-00:16:12.840 --> 00:16:17.284
+228
+00:16:33.810 --> 00:16:38.254
 Where the Grid already runs the
 agency's DNS, vNIOS is the choice,
 
-224
-00:16:17.284 --> 00:16:22.240
+229
+00:16:38.254 --> 00:16:43.210
 because it joins the same Grid and
 gets its policy from the Grid Master.
 
-225
-00:16:22.240 --> 00:16:24.702
+230
+00:16:43.210 --> 00:16:45.672
 The same criteria apply as for BIND.
 
-226
-00:16:24.702 --> 00:16:28.202
+231
+00:16:45.672 --> 00:16:49.172
 Confirm its failover in
 GovCloud and Azure Government.
 
-227
-00:16:28.202 --> 00:16:30.170
+232
+00:16:49.172 --> 00:16:51.140
 The open points for this part:
 
-228
-00:16:30.170 --> 00:16:35.091
+233
+00:16:51.140 --> 00:16:56.061
 whether Oracle's VCN resolver passes
 DNSSEC data to a resolver behind it,
 
-229
-00:16:35.091 --> 00:16:40.339
+234
+00:16:56.061 --> 00:17:01.309
 and whether CISA's Protective DNS
 returns DNSSEC data to agency forwarders.
 
-230
-00:16:40.339 --> 00:16:44.415
+235
+00:17:01.309 --> 00:17:05.385
 And the illustrative configuration
 hasn't yet run in a VPC.
 
-231
-00:16:44.415 --> 00:16:48.708
+236
+00:17:05.385 --> 00:17:09.678
 The next steps: ask the seven
 questions of every cloud BIND server,
 
-232
-00:16:48.708 --> 00:16:53.318
+237
+00:17:09.678 --> 00:17:14.288
 build the forwarder pattern in a test
 account in each Region and realm,
 
-233
-00:16:53.318 --> 00:16:57.452
+238
+00:17:14.288 --> 00:17:18.422
 and run the workbook's DNS
 validation matrix from every origin.
 
-234
-00:16:57.452 --> 00:17:02.378
+239
+00:17:18.422 --> 00:17:23.348
 This is research under review, not an
 endorsement by any federal agency.
 
-235
-00:17:02.378 --> 00:17:03.200
+240
+00:17:23.348 --> 00:17:24.170
 Thank you.

@@ -340,8 +340,8 @@ The responses are design guidance: a boundary probe that records functional, par
     ["Existing Rev5", "End date not final; \"likely no later than 2029\""],
   ], { fontSize: 12.5 });
   const im = img(s, "ch03-boundary-as-obligations", 6.8, 1.5, 5.95, 3.3);
-  noteBox(s, "Counted", 6.8, im.bottom + 0.2, 5.95, null, HEX.navy, HEX.navyTint, "THE RULESET, COUNTED (VERSION 2026.10.13.01)",
-    "\"Authorization boundary\": 0 times. \"Boundary\": 8 times: 3 in agency rules about the agency's own system, 4 as tags on the MAS, CMU, VDR and CDS families, 1 in SR-03 guidance.", 12);
+  noteBox(s, "Counted", 6.8, im.bottom + 0.2, 5.95, null, HEX.navy, HEX.navyTint, "THE RULESET, COUNTED (VERSION 2026.11.02.01)",
+    "\"Authorization boundary\": 0 times. \"Boundary\": 9 times: 1 in the MAS definition, 3 in agency rules about the agency's own system, 4 as tags on the MAS, CMU, VDR and CDS families, 1 in SR-03 guidance.", 12);
   sources(s, "Sources: FedRAMP NTC-0004 (Feb. 25, 2026), NTC-0013 (June 16, 2026); FedRAMP 2026 timeline, definitions, CMU; fedramp-consolidated-rules.json; NIST CSRC glossary. Book 10, Ch 03.");
   notes(s,
 `FedRAMP's 2026 rules rename the program's product. A cloud service offering is now FedRAMP Certified, at a Certification Class. FedRAMP announced the classes in Notice NTC-0004 in February 2026: Class B covers the former Li-SaaS and Low baselines, Class C includes the current Moderate baseline, Class D the current High baseline, and numbered levels were dropped to avoid confusion with the DoD impact level system. Two cautions. The class describes what FedRAMP assessed; the same notice lets agencies use a package at any security category they deem appropriate under the Risk Management Framework. And the Marketplace still shows the old word in parentheses, so cite the class.
@@ -350,7 +350,7 @@ Certification doesn't replace the agency's decision. Each agency still authorize
 
 The dates: optional early adoption July 4, 2026; Marketplace listings for Initial Implementation from July 6; mandatory adoption January 1, 2027; no new Rev5 certification requests after June 11, 2027. For existing Rev5 certifications the end date is not finalized but likely no later than 2029.
 
-Because the rules ship as one machine-readable ruleset, the vocabulary can be counted. In version 2026.10.13.01, authorization boundary occurs zero times. Boundary occurs eight times: three in agency rules about the agency's own system, four as tags on the MAS, CMU, VDR and CDS families, and once in SR-03 supply-chain guidance. CMU rises in force by class: MAY at A and B, SHOULD at C, MUST at D. The only boundary the rules name is the agency's, which NIST still defines from OMB Circular A-130.`,
+Because the rules ship as one machine-readable ruleset, the vocabulary can be counted. In version 2026.11.02.01, the current release, authorization boundary occurs zero times. Boundary occurs nine times: once in the definition of Minimum Assessment Scope, added in that release, three in agency rules about the agency's own system, four as tags on the MAS, CMU, VDR and CDS families, and once in SR-03 supply-chain guidance. CMU rises in force by class: MAY at A and B, SHOULD at C, MUST at D. The only boundary the rules name is the agency's, which NIST still defines from OMB Circular A-130.`,
   "Book 10, Chapter 03 — What Changed at FedRAMP, \"Certification replaces authorization,\" \"The rules have no provider authorization boundary.\"");
 }
 
@@ -858,7 +858,7 @@ endModule("Module 3");
 
 The matrix is design guidance; adapt it, but keep one decider per row. Five rows deserve comment. The boundary row goes to the authorizing official, with the system owner doing the work, because a boundary drawn by the team that builds the landing zone follows the landing zone rather than the mission. Placement goes to the system owner, not the platform team: vending a subscription nobody recorded is the cheapest way to make an authorized system unauthorized. Feature dependency is the row the invisible boundary punishes. Exceptions split: agency-side is a risk acceptance for the authorizing official; a provider-side request is the system owner's call. And only the agency head or a delegate can require more than FedRAMP does.
 
-Acquisition decides more than people expect: the GCC listing says customers must buy a GCC SKU to be covered, and only contracting officers can change the contract. Across the four dimensions, the CISO decides telemetry evidence and identity trust rules, the authorizing official enforcement, and the ISSO how derived evidence is labeled.`,
+Acquisition decides more than people expect: on October 21, 2026 the GCC listing said customers must buy a GCC SKU to be covered, a message the listing no longer carried on November 9, so confirm it with the provider and in the package, and only contracting officers can change the contract. Across the four dimensions, the CISO decides telemetry evidence and identity trust rules, the authorizing official enforcement, and the ISSO how derived evidence is labeled.`,
   "Book 10, Chapter 08 — Who Owns the Boundary, \"Where the roles come from,\" \"The responsibility matrix,\" \"An owner for each impact dimension.\"");
 }
 
@@ -910,7 +910,7 @@ The boundary record, kept by the system owner, holds in-scope services, tenants,
 
 The compensating pattern is easy to write badly. Naming the commercial capability as if it were in use, because it shows in the portal, is the invisible-boundary failure. Hiding the substitution is nearly as bad. A good one has the four sentences on the slide.
 
-Know whose package you're reading. The Marketplace record for GCC says it leverages Azure Government as the IaaS and PaaS, relies on Azure Government-inherited services and refers readers to that package, and says customers must buy a GCC SKU to be covered. So the chain runs through two provider packages before it reaches the agency; name both, and the SKU. The same record had empty trust-center and configuration-guide fields on October 21, 2026. That isn't evidence the guidance doesn't exist; get it through the package and record where it came from. And Microsoft says customers need their own authorizations for components outside its services, which is exactly what the boundary record lists.`,
+Know whose package you're reading. The Marketplace record for GCC says it leverages Azure Government as the IaaS and PaaS, relies on Azure Government-inherited services and refers readers to that package. On October 21, 2026 it also said customers must buy a GCC SKU to be covered, a message it no longer carried on November 9. So the chain runs through two provider packages before it reaches the agency; name both, and the SKU. The same record had empty trust-center and configuration-guide fields on October 21, 2026. That isn't evidence the guidance doesn't exist; get it through the package and record where it came from. And Microsoft says customers need their own authorizations for components outside its services, which is exactly what the boundary record lists.`,
   "Book 10, Chapter 11, \"Know whose package you are reading,\" \"Writing control narratives at the boundary.\"");
 }
 
@@ -1009,7 +1009,7 @@ const sourceSlide = (title, src) => {
 sourceSlide("Sources behind the orientation and Module 1", [
   "FedRAMP Consolidated Rules for 2026: Using a FedRAMP Certified Cloud Service; Definitions; Important Dates; Scope of FedRAMP (quoting OMB M-24-15); Minimum Assessment Scope (MAS-CSO-IIR, FLO, TPR, MDI, SUP).",
   "FedRAMP Consolidated Rules for 2026: Certification Data Sharing (CDS-CSO-PUB, SVC, UTC; CDS-TRC-USH, PAC, AAI, ACL, HMR, SSM; CDS-UTC-AAD); Significant Change Notification; Cryptographic Module Use; Rev5 rulesets.",
-  "FedRAMP machine-readable ruleset fedramp-consolidated-rules.json, version 2026.10.13.01.  ·  Notices NTC-0004 (Feb. 25, 2026) and NTC-0013 (June 16, 2026).  ·  FedRAMP Marketplace products.json (Oct. 21, 2026).",
+  "FedRAMP machine-readable ruleset fedramp-consolidated-rules.json, version 2026.11.02.01 (Nov. 2, 2026).  ·  Notices NTC-0004 (Feb. 25, 2026) and NTC-0013 (June 16, 2026).  ·  FedRAMP Marketplace products.json (Oct. 21, 2026; re-read Nov. 9, 2026).",
   "NIST CSRC glossary, \"authorization boundary\" (SP 800-37 Rev. 2 and SP 800-53 Rev. 5, from OMB Circular A-130).",
   "Microsoft Learn: network connectivity in the admin center; informed network routing; Adoption Score; Office 365 CDN quickstart; Windows release health; Office application availability in Government plans.",
   "Microsoft Learn: Azure, Dynamics 365, Microsoft 365 and Power Platform compliance scope; Office 365 GCC service description; Cloud feature availability for US Government; Intune for US Government GCC High and DoD.",

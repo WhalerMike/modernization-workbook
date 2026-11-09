@@ -246,13 +246,13 @@ In the program's model the sponsor and CIO set scope, funding and sequence, so t
   txt(s, "Life note", "Renewals column: the book's arithmetic, 250 working days, no early renewal.", { x: 0.6, y: 4.3, w: 6.3, h: 0.5, fontSize: 12, italic: true, color: HEX.slate });
   sideBox(s, "Moved", "FaArrowsRotate", HEX.amber, HEX.amberTint, "Other rules moved too", [
     "Strong mapping: full enforcement, no way back since Sep 2025",
-    "NIST draft: RSA and ECDSA signatures disallowed after 2035",
+    "NIST IR 8547 (final): RSA, ECDSA, EdDSA deprecated after 2030, disallowed after 2035",
     "M-26-15: TLS 1.3 by Jan 2, 2030; quantum risk cut by end of 2030",
     "A root built in 2026 for 20 years expires in 2046",
   ], 13.5, 7.1, 5.65);
   decision(s, "Set certificate lifetimes by policy, and require automated renewal for every class before its lifetime shortens",
     "CISO", "Before March 15, 2027 (the 100-day step)");
-  sources(s, "Sources: CA/Browser Forum Ballot SC-081v3 and Baseline Requirements 2.3.1; KB5014754; NIST IR 8547 (draft); OMB M-26-15. Book 07, Chapters 01, 05 and 08.");
+  sources(s, "Sources: CA/Browser Forum Ballot SC-081v3 and Baseline Requirements 2.3.1; KB5014754; NIST IR 8547 (final, Oct. 27, 2026); OMB M-26-15. Book 07, Chapters 01, 05 and 08.");
   narrate(s,
 `A certificate estate used to be something you could leave alone between renewals. Three changes have ended that.
 
@@ -260,7 +260,7 @@ Public TLS lifetimes are shrinking on a fixed schedule. In April 2025 the CA/Bro
 
 Mapping rules changed under certificates already in use. Microsoft moved domain controllers to full strong-mapping enforcement in February 2025, and since the September 9, 2025 update there's no supported way back.
 
-And the algorithms have a horizon. NIST's draft transition plan would deprecate RSA-2048 after 2030 and disallow RSA and ECDSA signatures after 2035. M-26-15 sets TLS 1.3 by January 2, 2030 and as much quantum risk mitigated as feasible by December 31, 2030. A root built this year with a twenty-year life outlives those dates.
+And the algorithms have a horizon. NIST's transition plan, final on October 27, 2026, deprecates every quantum-vulnerable signature algorithm, RSA, ECDSA and EdDSA, RSA-2048 included, after 2030, and disallows them after 2035. M-26-15 sets TLS 1.3 by January 2, 2030 and as much quantum risk mitigated as feasible by December 31, 2030. A root built this year with a twenty-year life outlives those dates.
 
 The matrix puts certificate policy, lifetimes included, with the CISO. The book's rule is that no class may depend on a person remembering a date; acting before the 100-day step is design guidance.`,
   "Book 07, Chapter 01 (The rules are moving under certificates already issued: lifetimes, mapping rules, algorithms; M-26-15); Chapter 05 (matrix: certificate and issuance policy); Chapter 08 (Renewal at scale as lifetimes shrink).");
@@ -672,7 +672,7 @@ None of this starts with a purchase; the program already has the platform. It st
 {
   const s = content("Backup", "Sources: federal, standards and vendor");
   const src = [
-    "Federal: OMB M-22-09; OMB M-26-15 (June 24, 2026).  ·  NIST SP 800-53 Rev. 5 (IA-5(2), SC-12, SC-17); SP 800-37 Rev. 2; IR 8547 (initial public draft); FIPS 201-3.  ·  GSA IDManagement.gov: FPKI 101; Network Smart Card Logon; Entra CBA guide v2.0 (March 17, 2026).  ·  NARA General Records Schedule 3.2, items 060–062.",
+    "Federal: OMB M-22-09; OMB M-26-15 (June 24, 2026).  ·  NIST SP 800-53 Rev. 5 (IA-5(2), SC-12, SC-17); SP 800-37 Rev. 2; IR 8547 (final, October 27, 2026); FIPS 201-3.  ·  GSA IDManagement.gov: FPKI 101; Network Smart Card Logon; Entra CBA guide v2.0 (March 17, 2026).  ·  NARA General Records Schedule 3.2, items 060–062.",
     "Standards: CA/Browser Forum Ballot SC-081v3 (April 2025) and Baseline Requirements 2.3.1 (October 4, 2026); RFC 8555 (ACME).",
     "Vendor: CyberArk Certificate Manager, Self-Hosted 26.1 documentation and installation guide; Palo Alto Networks press release (February 11, 2026) and Next-Generation Trust Security page; FedRAMP Marketplace product data (October 20, 2026).",
     "All accessed October 20–23, 2026. Full footnotes with links: Book 07, every chapter (whalermike.github.io/modernization-workbook/docs/books/b07-pki/). The Research page's lifecycle-platform implementation guide is a separate, under-review document.",

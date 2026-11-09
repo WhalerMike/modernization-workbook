@@ -26,7 +26,7 @@ No new test file this time: Chapter 2's call-list test covers SailPoint and Grap
 
 ## Slide 7 — The verified facts: ISC token, Search, Accounts
 
-The SailPoint facts, each read on November first. The token endpoint supports client credentials and personal access tokens, up to ten per user. A client-credentials token has no user context, and SailPoint warns that most admin APIs often return forbidden with one. Search needs the search read scope and pages past ten thousand with search-after. Its indexes include identities but no accounts. The Accounts list and get accept a read or manage scope, at most two hundred fifty a page. And creating a workflow needs the workflow manage scope.
+The SailPoint facts, each read on November first. The token endpoint supports client credentials and personal access tokens, up to ten per user. A client-credentials token has no user context, and SailPoint warns that most admin APIs often return forbidden with one. Search needs the search read scope and pages past ten thousand with search-after. Its indexes include identities but no accounts. The Accounts list and get accept a read or manage scope, at most two hundred fifty a page. And creating a workflow needs the workflow manage scope, and on a November ninth re-read, both workflow calls name the org admin user level.
 
 ## Slide 8 — The verified facts: Graph, GCC and FedRAMP
 
