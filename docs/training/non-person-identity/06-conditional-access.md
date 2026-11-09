@@ -1,6 +1,6 @@
 ---
 title: "Module 6: Conditional Access for workload identities"
-description: "Gate G4 and workbook Chapter 08: hold CA015 and CA037 as reviewed files, scoped to Tier 1 single-tenant service principals by object ID, ring by ring; check them before merge and against the tenant; create every policy report-only; summarize the service principal sign-ins; and enforce a ring only with D-N5, -AllowEnforce and the reviewed summary's hash. About 65 minutes, with a lab on fixtures and a test tenant lab."
+description: "Gate G4 and workbook Chapter 08: hold CA015 and CA037 as reviewed files, scoped to Tier 1 single-tenant service principals by object ID, ring by ring; check them before merge and against the tenant; create every policy report-only; summarize the service principal sign-ins; and enforce a ring only with D-NP5, -AllowEnforce and the reviewed summary's hash. About 65 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -22,7 +22,7 @@ last-reviewed: 2026-11-07
 
 Conditional Access for workload identities is narrow. Block is the only grant control. It covers single-tenant service principals registered in your tenant, and nothing else: not Microsoft or SaaS apps, not multitenant apps, not managed identities. A policy assigned to a group that holds a service principal isn't enforced for it. And Workload ID Premium is needed to create or change these policies.
 
-So the scope matters as much as the policy. In this module you hold the program's two policies, CA015 (location) and CA037 (high risk), as reviewed files, scoped by object ID ring by ring. Every policy is created report-only. A ring is enforced only after a person reviews its sign-ins, the CISO records decision D-N5, and the change says `-AllowEnforce`.
+So the scope matters as much as the policy. In this module you hold the program's two policies, CA015 (location) and CA037 (high risk), as reviewed files, scoped by object ID ring by ring. Every policy is created report-only. A ring is enforced only after a person reviews its sign-ins, the CISO records decision D-NP5, and the change says `-AllowEnforce`.
 
 **The federal requirement.** This is the Conditional Access part of Gate G4 (the guide's Step 4e). The guide's [Validate (G4 Least privilege)](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege) step names AC-6, AC-6(5) and IA-9, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#federal-requirements-and-evidence) table has a row for every lab step.
 
@@ -60,7 +60,7 @@ Read the guide's [Step 4](../../books/guides/non-person-identity-implementation.
 
 Read the workbook chapter in this order:
 
-- [The context the code depends on](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#the-context-the-code-depends-on): Learn's limits, CA015 and CA037, and decisions D-N4 and D-N5.
+- [The context the code depends on](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#the-context-the-code-depends-on): Learn's limits, CA015 and CA037, and decisions D-NP4 and D-NP5.
 - [The files](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#the-files): the scope file, and one policy per ring *(design guidance)*.
 - [The pre-merge check](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#the-pre-merge-check): NPI-WCA-01 to -09.
 
@@ -296,7 +296,7 @@ Remove-Item -Recurse -Force out
     c. Off
     d. Deleted
 4. Which of these is *not* one of the conditions for enforcing a ring?
-    a. A D-N5 record that marks the ring
+    a. A D-NP5 record that marks the ring
     b. `-AllowEnforce` on the run
     c. A sign-in summary whose SHA-256 the ring's record cites, showing the ring ready
     d. Deleting the portal-made policy that isn't in the repository
@@ -317,8 +317,8 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You checked the policy files and failed Learn's sample against the same rules, planned against a fictional tenant, created every policy report-only, summarized the service principal sign-ins, and saw a ring enforced only with D-N5, `-AllowEnforce` and the reviewed summary, and held again when the summary changed.
+You checked the policy files and failed Learn's sample against the same rules, planned against a fictional tenant, created every policy report-only, summarized the service principal sign-ins, and saw a ring enforced only with D-NP5, `-AllowEnforce` and the reviewed summary, and held again when the summary changed.
 
-**The evidence an ISSO keeps** for the Conditional Access part of G4: the scope file, the pre-merge check, `findings.json`, `plan.json` and `requests.json`, `signin-summary.json` with the hash the D-N5 record cites, `alert-rule.json` and each run's `manifest.json`, dated. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#checklist).
+**The evidence an ISSO keeps** for the Conditional Access part of G4: the scope file, the pre-merge check, `findings.json`, `plan.json` and `requests.json`, `signin-summary.json` with the hash the D-NP5 record cites, `alert-rule.json` and each run's `manifest.json`, dated. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#checklist).
 
 **Next:** [Module 7: Convert to managed identities and federation](07-federation-and-managed-identities.md).

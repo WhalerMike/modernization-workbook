@@ -587,8 +587,8 @@ Source: ../books/guides/dp-consolidation-implementation.md#step-5</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Endpoint &amp; Device project</Contact>
-      <Notes>Owner or approver: Endpoint &amp; Device project
+      <Contact>Endpoint engineering (Endpoint &amp; Device Modernization plan)</Contact>
+      <Notes>Owner or approver: Endpoint engineering (Endpoint &amp; Device Modernization plan)
 If decided late: Pilot devices have no Intune channel for Delivery Optimization policy
 Source: endpoint-device.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -724,8 +724,8 @@ Source: ../books/guides/dp-consolidation-implementation.md#go-no-go</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Network &amp; Access project</Contact>
-      <Notes>Owner or approver: Network &amp; Access project
+      <Contact>CISO (Network &amp; Access Modernization plan)</Contact>
+      <Notes>Owner or approver: CISO (Network &amp; Access Modernization plan)
 If decided late: The pilot offices are still on their old circuits, and the first wave of DP retirements waits
 Source: network-access.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1098,8 +1098,8 @@ Source: ../books/guides/dp-consolidation-implementation.md#step-8-2</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Endpoint &amp; Device project</Contact>
-      <Notes>Owner or approver: Endpoint &amp; Device project
+      <Contact>Endpoint engineering (Endpoint &amp; Device Modernization plan)</Contact>
+      <Notes>Owner or approver: Endpoint engineering (Endpoint &amp; Device Modernization plan)
 If decided late: Update content still comes from Configuration Manager, and retirement gate 2 can't close
 Source: endpoint-device.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1137,8 +1137,8 @@ Source: ../books/guides/dp-consolidation-implementation.md#step-8-3</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Endpoint &amp; Device project</Contact>
-      <Notes>Owner or approver: Endpoint &amp; Device project
+      <Contact>Endpoint engineering (Endpoint &amp; Device Modernization plan)</Contact>
+      <Notes>Owner or approver: Endpoint engineering (Endpoint &amp; Device Modernization plan)
 If decided late: There's no Autopilot path to move bare-metal provisioning onto
 Source: endpoint-device.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1571,8 +1571,8 @@ Source: ../books/guides/dp-consolidation-implementation.md#step-10-3</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Executive sponsor and steering committee</Contact>
-      <Notes>Owner or approver: Executive sponsor and steering committee
+      <Contact>Executive sponsor and steering committee (program)</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee (program)
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
       <ConstraintDate>2027-09-10T17:00:00</ConstraintDate>

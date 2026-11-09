@@ -77,3 +77,13 @@ New section, 13 rows, one for each Lab 1 and Lab 2 scripted action and each outp
 | F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-ELP, KSI-IAM-JIT and KSI-MLA-OSM; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa07-ksi` |
 | F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
 | F4 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |
+
+## The Tier 1 role owner (added November 9, 2026)
+
+Item 1596 of the crosswalk review. The fixture's Tier 1 series, `PAR-T1-ExchangeAdministrator-Quarterly`, now lists the Exchange role owner (an invented group, `aa000000-0000-4000-8000-000000000015`) beside `PIM-Approvers-T1` as reviewers, as Book 04, Chapter 09's schedule and Appendix B's review cadence table set for Tier 1. The fixture tenant is unchanged: its Exchange series still has the old reviewer group, so the dry run still says Replace. The same pass corrected the chapter's statement that Chapter 09 and Appendix B lack the Global Administrator "No change" exception: both now record it (read November 9, 2026), so the fixture differs from Book 04 in one place, the role series' scope.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Tier 1 role reviews: role owner and `PIM-Approvers-T1` | The reviewed JSON | verified by reading Book 04, Chapter 09 (schedule table) and Appendix B (Review cadence by tier), November 9, 2026 | Book 04 |
+| R2 | Chapter 09 and Appendix B record the emergency accounts' "No change" exception | The reviewed JSON | verified by reading the same two sections, November 9, 2026 | Book 04 |
+| R3 | Lab 1 output after the change | Lab 1 | verified by running the commands as written (`scripts/kit_captures.py pa`, November 9, 2026) | `data/kit-captures/pa/07-*.txt` |

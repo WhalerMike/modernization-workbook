@@ -184,7 +184,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 |---|---|---|---|---|---|---|---|
 | C3.1 | **[Boundary groups for the pilot wave: hub DPs added, peer options set, the other hubs as timed fallback, never to the default site group (Set-DpcBoundaryGroups.ps1 -Apply)](../books/guides/dp-consolidation-implementation.md#step-4-2)** | Task | Configuration Manager team | 15 | C2.2 | wk 15–18 | 0 |
 | D-C4 | [Client-to-client traffic on branch segments: TCP 8003, UDP 8004 and TCP 7680](../books/guides/dp-consolidation-implementation.md#step-5) | Decision | CISO | — | CG0 | end of wk 5 | 65 d |
-| X-E14 | [Co-management on for the pilot collection (Endpoint plan E1.4)](endpoint-device.md) | External | Endpoint & Device project | — | — | end of wk 5 | 63 d |
+| X-E14 | [Co-management on for the pilot collection (Endpoint plan E1.4)](endpoint-device.md) | External | Endpoint engineering (Endpoint & Device Modernization plan) | — | — | end of wk 5 | 63 d |
 | C3.2 | **[Peer cache sources chosen per pilot office (desktop chassis, disk, always on); client settings deployed; partial download on; BranchCache enabled](../books/guides/dp-consolidation-implementation.md#step-5-2)** | Task | Configuration Manager team | 10 | C3.1, D-C4 | wk 18–20 | 0 |
 | C3.3 | [Delivery Optimization through Intune: Group download mode with a group ID per office, or subnet restriction, for the pilot devices](../books/guides/dp-consolidation-implementation.md#step-5-3) | Task | Endpoint engineering | 10 | D-C4, X-E14 | wk 6–7 | 63 d |
 | C3.4 | **[Pilot measurement at the pilot offices: bytes from peers, from the hub and from the office DP, for a month of deployments](../books/guides/dp-consolidation-implementation.md#step-5-4)** | Task | Configuration Manager team | 20 | C3.2, C3.3, CG2 | wk 20–24 | 0 |
@@ -196,7 +196,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-NG3 | [Pilot sites governed and evidenced on new transport (Network plan Gate 3)](network-access.md) | External | Network & Access project | — | — | end of wk 22 | 11 d |
+| X-NG3 | [Pilot sites governed and evidenced on new transport (Network plan Gate 3)](network-access.md) | External | CISO (Network & Access Modernization plan) | — | — | end of wk 22 | 11 d |
 | C4.1 | **[Pilot wave: each office DP checked, drained, watched 30 days, removed with its site system; disks sanitized; inventory and SSP updated](../books/guides/dp-consolidation-implementation.md#step-6)** | Task | Configuration Manager team | 15 | CG3, X-NG3 | wk 24–27 | 0 |
 | D-C5 | [Wave plan: offices ordered by circuit readiness and renewal date](../books/guides/dp-consolidation-implementation.md#step-1-2) | Decision | Content delivery project lead | — | CG3, C0.3 | end of wk 24 | 15 d |
 | C4.2 | **[Wave 2, about 25% of offices: boundary groups moved, peers enabled, office DPs read-only, then retired after 30 clean days](../books/guides/dp-consolidation-implementation.md#step-6)** | Task | Configuration Manager team | 40 | C4.1, D-C5 | wk 27–35 | 0 |
@@ -225,9 +225,9 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 |---|---|---|---|---|---|---|---|
 | C6.1 | [Client apps and Office Click-to-Run apps workloads: Pilot Intune, then Intune; apps published as Win32 apps from the standard packages](../books/guides/dp-consolidation-implementation.md#step-8-1) | Task | Endpoint engineering | 20 | C5.3, X-E14 | wk 15–18 | 123 d |
 | C6.2 | [Configuration Manager required and available deployments withdrawn as each app moves; the count reported weekly](../books/guides/dp-consolidation-implementation.md#step-8-2) | Task | Configuration Manager team | 30 | C6.1, C5.4 | wk 23–28 | 113 d |
-| X-EG3 | [Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)](endpoint-device.md) | External | Endpoint & Device project | — | — | end of wk 30 | 88 d |
+| X-EG3 | [Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)](endpoint-device.md) | External | Endpoint engineering (Endpoint & Device Modernization plan) | — | — | end of wk 30 | 88 d |
 | C6.3 | [Configuration Manager software-update client setting turned off for every device on the Windows Update workload](../books/guides/dp-consolidation-implementation.md#step-8-3) | Task | Configuration Manager team | 5 | X-EG3 | wk 31 | 98 d |
-| X-E15 | [Intune-first intake with Autopilot registration (Endpoint plan E1.5)](endpoint-device.md) | External | Endpoint & Device project | — | — | end of wk 6 | 193 d |
+| X-E15 | [Intune-first intake with Autopilot registration (Endpoint plan E1.5)](endpoint-device.md) | External | Endpoint engineering (Endpoint & Device Modernization plan) | — | — | end of wk 6 | 193 d |
 | D-C7 | [OS provisioning for existing devices](../books/guides/dp-consolidation-implementation.md#step-8-4) | Decision | Endpoint lead | — | X-E15, C0.2 | end of wk 6 | 193 d |
 | C6.4 | [Bare-metal provisioning moved from task sequences to Autopilot; PXE turned off on every DP](../books/guides/dp-consolidation-implementation.md#step-8-4) | Task | Endpoint engineering | 30 | D-C7 | wk 7–12 | 193 d |
 | C6.5 | [Compliance and Endpoint Protection evidence sourced from Intune and Defender, not the Configuration Manager site database; ISSO confirms](../books/guides/dp-consolidation-implementation.md#step-8-5) | Task | ISSO | 15 | X-EG3 | wk 31–33 | 88 d |
@@ -258,7 +258,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | C8.1 | **[Hub and source DPs drained and removed with their site systems (Invoke-DpcOfficeRetirement.ps1 -GatesPath); media sanitized; inventory and SSP entries closed](../books/guides/dp-consolidation-implementation.md#step-10-2)** | Task | Configuration Manager team | 15 | D-C9 | wk 51–54 | 0 |
 | C8.2 | **[Cleanup: distribution point groups removed, boundary group site-system references cleared, peer cache client settings and deployments retired; no DP role left in the hierarchy](../books/guides/dp-consolidation-implementation.md#step-10-3)** | Task | Configuration Manager team | 5 | C8.1 | wk 54–55 | 0 |
 | CG8 | **[Gate 8 — Last distribution point retired, site roles cleaned up, evidence complete](../books/guides/dp-consolidation-implementation.md#step-10-3)** | Gate | CISO and ISSO | — | C8.2 | end of wk 55 | 0 |
-| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee | — | — | end of wk 36 | fixed date |
+| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee (program) | — | — | end of wk 36 | fixed date |
 
 : Phase 8 — The five retirement gates {.striped .hover}
 
@@ -273,18 +273,18 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Endpoint lead | — | 2 | 5 |
 | Executive sponsor and CIO | — | 3 | 2 |
 | Packaging team | 5 | — | — |
-| Endpoint & Device project | 3 | — | — |
+| Endpoint engineering (Endpoint & Device Modernization plan) | 3 | — | — |
 | Budget officer | 2 | — | — |
 | Content delivery project lead | 1 | 1 | — |
 | Content delivery project lead and ISSO | — | 1 | 1 |
 | Endpoint lead and ISSO | — | 1 | 1 |
 | ISSO | 1 | — | 1 |
 | CISO | — | 1 | — |
+| CISO (Network & Access Modernization plan) | 1 | — | — |
 | CISO and ISSO | — | — | 1 |
 | Configuration Manager lead and ISSO | — | — | 1 |
 | Endpoint lead and network engineering lead | — | 1 | — |
-| Executive sponsor and steering committee | 1 | — | — |
-| Network & Access project | 1 | — | — |
+| Executive sponsor and steering committee (program) | 1 | — | — |
 | Network engineering | 1 | — | — |
 
 : Ownership {.striped .hover}

@@ -24,7 +24,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 10 | v1.0 `conditionalAccessClientApplications`: IDs or `ServicePrincipalsInMyTenant`; `servicePrincipalFilter` | Gap table; Verified facts | verified | Learn, conditionalAccessClientApplications |
 | 11 | v1.0 condition set: users or clientApplications required; `servicePrincipalRiskLevels` values; `clientAppTypes` required | Gap table; NPI-WCA-07; Verified facts | verified; differs from the sample (row 72) | Learn, conditionalAccessConditionSet |
 | 12 | ID Protection workload detections; full details and risk-based controls with Premium; single, SaaS and multitenant detected; managed identities out | Context; Verified facts | verified | Learn, Securing workload identities |
-| 13 | Workload ID Premium standalone; only eligible identities licensed; no assignment; one license unlocks; Microsoft apps and managed identities ineligible; Azure Government via account manager; no trial there | Context (D-N4); Which cloud; Lab 2 | verified | Learn, Workload ID FAQ |
+| 13 | Workload ID Premium standalone; only eligible identities licensed; no assignment; one license unlocks; Microsoft apps and managed identities ineligible; Azure Government via account manager; no trial there | Context (D-NP4); Which cloud; Lab 2 | verified | Learn, Workload ID FAQ |
 | 14 | Conditional Access and Workload Identities Premium available in Azure for US Government; ID Protection table lists user detections only | Which cloud; Verified facts | verified; workload risk in US Government not stated (row 75) | Learn, Microsoft Entra feature availability |
 | 15 | GCC uses `graph.microsoft.com`; GCC High and DoD their own hosts | Which cloud | carried forward from Chapters 01 and 02 | Learn, national cloud deployments |
 | 16 | List, create, update policies: `Policy.Read.All`; create and update add `Policy.ReadWrite.ConditionalAccess`; L4 and L5 | Least privilege; Verified facts | carried forward from Building Privileged Access, Chapter 03 (same date) | Learn, List policies; Create; Update |
@@ -38,8 +38,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 24 | A log search alert rule can be created from a query | Block alert | verified (search excerpt) | Learn, Create or edit a log search alert rule |
 | 25 | Get and List servicePrincipals: `Application.Read.All` | Least privilege; Verified facts | carried forward from Chapters 01 and 02 | Learn, Get servicePrincipal; List servicePrincipals |
 | 26 | CA015 and CA037 definitions; Wave 4 two weeks report-only; rollout and never-delete rollback; Appendix A's CA015 JSON | Context; Enforcement; Dangers | carried forward from Book 04, Chapter 07 and Appendix A | Book 04 |
-| 27 | Tier 1 classification; D-N4 licenses Tier 1 single-tenant service principals | Context | carried forward from Book 04, Chapters 05 and 06, and the project plan | Book 04; project plan |
-| 28 | N5.1 to N5.3, D-N5's options, Gate 5's criteria | Goal; Context | restated from the project plan | project plan |
+| 27 | Tier 1 classification; D-NP4 licenses Tier 1 single-tenant service principals | Context | carried forward from Book 04, Chapters 05 and 06, and the project plan | Book 04; project plan |
+| 28 | NP5.1 to NP5.3, D-NP5's options, Gate 5's criteria | Goal; Context | restated from the project plan | project plan |
 | 29 | Per-ring policies; 14-day window; /16 and /32 limits; enforcement record; exclusions; alert cadence and triage | Code sections | restated-as-design (labeled) | — |
 | 30 | Lab 1 outputs (9 passed and 39 not run; permissions; 0/0/0; five Findings on the sample; 0/0/2 and the plan table; 14 GETs; the sign-in summary and its hash; 4 then 0 sent; Held, then the Ring 1 enforcement; the alert query; 145 tests) | Lab 1 | verified by running the commands as written, October 30, 2026 | local run |
 | 31 | Lab 2 behavior (v1.0 accepts the policies; `clientAppTypes`; the results Graph records; the permission returns the results; AADSTS53003 on enforcement; the alert query) | Lab 2 | not run against a tenant; rows 71, 72, 74, 77 and 79 | — |
@@ -50,7 +50,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N5.1, N5.2, D-N5, N5.3, Gate 5; D-N4 | Goal; scope file; enforcement; checklist | D-N4's licensing decision itself is Chapter 03's decision file; this chapter records only that it was made |
+| Project plan NP5.1, NP5.2, D-NP5, NP5.3, Gate 5; D-NP4 | Goal; scope file; enforcement; checklist | D-NP4's licensing decision itself is Chapter 03's decision file; this chapter records only that it was made |
 | Book 04, Chapter 07, Wave 4 (CA015, CA037), rollout, rollback | Policy templates; enforcement; plan | CA012, CA013, CA014, CA019 and CA036 target users; not this workbook's |
 | Book 04, Appendix A (CA015 JSON) | `workload-ca/policies/CA015-…json` | Placeholders renamed to this example's (`{scope:ring}`, `{location:…}`) |
 | Book 04, Chapter 05 (limits; Workload ID Premium table) | Context | — |

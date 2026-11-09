@@ -57,7 +57,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | Implementation guide: prerequisites (roles, licenses), the six gates, Step 5's parallel run, the rollback table, evidence, dangers, SQL Server, AI agents | Before you start; each step's gate; Step 1.8; Step 2.6; Evidence; Dangers | The guide's SQL Server work goes to the Data Platform plan (Step 1.1 lists the handoff file); AI agents stay with Chapter 09 (Step 1.5) |
 | Chapter 01, inventory | Step 1.1, Step 1.6 | — |
 | Chapter 02, ownership | Step 1.1 | The orphan plan isn't applied in this runbook |
-| Chapter 03, Workload ID plan IDs and D-N4 | PF-03; the scope file's licensing record | — |
+| Chapter 03, Workload ID plan IDs and D-NP4 | PF-03; the scope file's licensing record | — |
 | Chapter 04, the policy file, plan and write path | Step 1.2 (plan), Step 2.2 (apply); the pilot policy's restrictions | Rotation is Chapter 04's own process, not a deployment step |
 | Chapter 05, conversions, exchange test, parallel run and day-31 disable | Step 1.3, Step 2.2 | — |
 | Chapter 06, the Kerberos island plan | Named as the production path for existing accounts | The runbook installs one new gMSA with Learn's commands |

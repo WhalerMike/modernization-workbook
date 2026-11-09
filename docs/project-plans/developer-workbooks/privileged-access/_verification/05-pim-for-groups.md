@@ -68,3 +68,14 @@ New section, 14 rows, one for each Lab 1 and Lab 2 scripted action and each outp
 | F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
 | F4 | MS.AAD.7.4v1 and MS.AAD.7.5v1 are BOD 25-01 required configurations, with the policy text as the section states it | Federal requirements | verified November 2, 2026 on CISA's Required Configurations page | `pa05-bod` |
 | F5 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |
+
+## The authentication context on PIM for Groups (added November 9, 2026)
+
+Item 1603 of the crosswalk review: the chapter said Book 04 requires `c1` for PIM for Groups but the group rules didn't select it. `config/prv-group-policy.json` now sets `authenticationContext: "c1"` on every member and owner tier and drops `MultiFactorAuthentication` from the enablement rules, as Chapter 04's role files do; `New-PaPgRuleSet` builds a sixth rule, `AuthenticationContext_EndUser_Assignment`; PA-PG-08 also flags a context outside `c1` to `c99`; and `Invoke-PaPgPlan -Apply` (and `Invoke-PaPimGroups.ps1 -Apply`) refuses a plan that selects a context without `-ActivationGateChecked`. The fixture tenant's policies gained the sixth rule; every policy already selects `c1` except `PRV-T0-PrivRoleAdmin`'s member policy, so Lab 1 shows two more policy rule changes. Claim 24's "c1 deferred to Chapter 03" no longer holds; claim 26's Lab 1 counts are superseded by the captures regenerated on November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Book 04 requires the authentication context `c1` on activation for PIM role settings and PIM for Groups | Desired state | verified by reading Book 04, Chapter 10 (the object-class table) and Appendix B (Settings common to every role) on November 9, 2026 | Book 04 |
+| C2 | Create and enable the context's Conditional Access policy before PIM selects it; with no policy targeting the context, activation falls back to MFA; no fallback when the policy is off, report-only or excludes eligible users | Desired state; `-ActivationGateChecked` | verified November 9, 2026 through the Microsoft Learn MCP tools | Learn, Configure PIM for Groups settings (`pa05-settings-reauth`) |
+| C3 | Enablement rules without MFA when `c1` is selected | Desired state | restated-as-design: follows Chapter 04's role files (`requireMfa: false` with `c1`) and Book 04, Appendix B, which lists the context, not MFA, on activation | Book 04, Appendix B; Chapter 04 |
+| C4 | Lab 1 output after the change | Lab 1 | verified by running the commands as written (`scripts/kit_captures.py pa`, November 9, 2026); the Pester suite still runs 330 | `data/kit-captures/pa/05-*.txt` |

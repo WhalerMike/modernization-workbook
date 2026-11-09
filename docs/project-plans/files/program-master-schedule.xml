@@ -399,8 +399,8 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestone
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity Lifecycle project</Contact>
-      <Notes>Owner or approver: Identity Lifecycle project
+      <Contact>ISSO (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: ISSO (Identity Lifecycle &amp; Provisioning plan)
 If decided late: G1 fails its HR-feed criterion and waits
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>

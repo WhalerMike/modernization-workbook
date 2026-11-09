@@ -83,11 +83,11 @@ Duration 0 working days · end of wk 5 · total float 65 d · predecessors: CG0
 Options: Allow within each office's subnet only; allow for named peer cache sources only; block, and size circuits for hub pulls
 If decided late: Peer cache and Delivery Optimization peering can't be configured, and the pilot measures nothing
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#step-5",fmw,fmw-content-delivery,fmw-id-d-c4,decision,owner-ciso,,2027-02-04,2027-02-03,27,28,
-26,Task,23,X-E14 Co-management on for the pilot collection (Endpoint plan E1.4),"X-E14 · External · owner or approver: Endpoint & Device project
+26,Task,23,X-E14 Co-management on for the pilot collection (Endpoint plan E1.4),"X-E14 · External · owner or approver: Endpoint engineering (Endpoint & Device Modernization plan)
 Duration 0 working days · end of wk 5 · total float 63 d · predecessors: —
 If decided late: Pilot devices have no Intune channel for Delivery Optimization policy
 Comes from endpoint-device:E1.4 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-content-delivery,fmw-id-x-e14,external,owner-endpoint-device-project,,2027-02-08,2027-02-05,28,47,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-content-delivery,fmw-id-x-e14,external,owner-endpoint-engineering-endpoint-device-modernization-plan,,2027-02-08,2027-02-05,28,47,
 27,Task,23,"C3.2 Peer cache sources chosen per pilot office (desktop chassis, disk, always on); client settings deployed; partial download on; BranchCache enabled","C3.2 · Task · owner or approver: Configuration Manager team
 Duration 10 working days · wk 18–20 · total float 0 · predecessors: C3.1, D-C4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#step-5-2",fmw,fmw-content-delivery,fmw-id-c3.2,task,owner-configuration-manager-team,critical-path,2027-05-06,2027-05-19,29,,
@@ -103,11 +103,11 @@ Criteria: Pilot offices' content served by the hub and peers, with the office DP
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#go-no-go",fmw,fmw-content-delivery,fmw-id-cg3,gate,owner-endpoint-lead,critical-path,2027-06-17,2027-06-16,33,34,
 31,Epic,,Content Delivery Modernization: Phase 4 — Office waves,"Phase 4 — Office waves of the sample plan Content Delivery Modernization: Distribution Point Consolidation.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/content-delivery.html",fmw,fmw-content-delivery,phase,,,,2027-06-02,2027-12-22,,,
-32,Task,31,X-NG3 Pilot sites governed and evidenced on new transport (Network plan Gate 3),"X-NG3 · External · owner or approver: Network & Access project
+32,Task,31,X-NG3 Pilot sites governed and evidenced on new transport (Network plan Gate 3),"X-NG3 · External · owner or approver: CISO (Network & Access Modernization plan)
 Duration 0 working days · end of wk 22 · total float 11 d · predecessors: —
 If decided late: The pilot offices are still on their old circuits, and the first wave of DP retirements waits
 Comes from network-access:NG3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-content-delivery,fmw-id-x-ng3,external,owner-network-access-project,,2027-06-02,2027-06-01,33,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-content-delivery,fmw-id-x-ng3,external,owner-ciso-network-access-modernization-plan,,2027-06-02,2027-06-01,33,,
 33,Task,31,"C4.1 Pilot wave: each office DP checked, drained, watched 30 days, removed with its site system; disks sanitized; inventory and SSP updated","C4.1 · Task · owner or approver: Configuration Manager team
 Duration 15 working days · wk 24–27 · total float 0 · predecessors: CG3, X-NG3
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#step-6",fmw,fmw-content-delivery,fmw-id-c4.1,task,owner-configuration-manager-team,critical-path,2027-06-17,2027-07-07,35,,
@@ -160,19 +160,19 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp
 48,Task,46,C6.2 Configuration Manager required and available deployments withdrawn as each app moves; the count reported weekly,"C6.2 · Task · owner or approver: Configuration Manager team
 Duration 30 working days · wk 23–28 · total float 113 d · predecessors: C6.1, C5.4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#step-8-2",fmw,fmw-content-delivery,fmw-id-c6.2,task,owner-configuration-manager-team,,2027-06-07,2027-07-16,61,,
-49,Task,46,"X-EG3 Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)","X-EG3 · External · owner or approver: Endpoint & Device project
+49,Task,46,"X-EG3 Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)","X-EG3 · External · owner or approver: Endpoint engineering (Endpoint & Device Modernization plan)
 Duration 0 working days · end of wk 30 · total float 88 d · predecessors: —
 If decided late: Update content still comes from Configuration Manager, and retirement gate 2 can't close
 Comes from endpoint-device:EG3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-content-delivery,fmw-id-x-eg3,external,owner-endpoint-device-project,,2027-08-02,2027-07-30,50,54,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-content-delivery,fmw-id-x-eg3,external,owner-endpoint-engineering-endpoint-device-modernization-plan,,2027-08-02,2027-07-30,50,54,
 50,Task,46,C6.3 Configuration Manager software-update client setting turned off for every device on the Windows Update workload,"C6.3 · Task · owner or approver: Configuration Manager team
 Duration 5 working days · wk 31 · total float 98 d · predecessors: X-EG3
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#step-8-3",fmw,fmw-content-delivery,fmw-id-c6.3,task,owner-configuration-manager-team,,2027-08-02,2027-08-06,62,,
-51,Task,46,X-E15 Intune-first intake with Autopilot registration (Endpoint plan E1.5),"X-E15 · External · owner or approver: Endpoint & Device project
+51,Task,46,X-E15 Intune-first intake with Autopilot registration (Endpoint plan E1.5),"X-E15 · External · owner or approver: Endpoint engineering (Endpoint & Device Modernization plan)
 Duration 0 working days · end of wk 6 · total float 193 d · predecessors: —
 If decided late: There's no Autopilot path to move bare-metal provisioning onto
 Comes from endpoint-device:E1.5 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-content-delivery,fmw-id-x-e15,external,owner-endpoint-device-project,,2027-02-15,2027-02-12,52,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/endpoint-device.html",fmw,fmw-content-delivery,fmw-id-x-e15,external,owner-endpoint-engineering-endpoint-device-modernization-plan,,2027-02-15,2027-02-12,52,,
 52,Task,46,D-C7 OS provisioning for existing devices,"D-C7 · Decision · owner or approver: Endpoint lead
 Duration 0 working days · end of wk 6 · total float 193 d · predecessors: X-E15, C0.2
 Options: Windows Autopilot for every rebuild, with reset where it applies; keep task sequences for a named exception class on a hub DP until it can move
@@ -237,7 +237,7 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp
 Duration 0 working days · end of wk 55 · total float 0 · predecessors: C8.2
 Criteria: All five retirement gates closed in a gates run; no distribution point role left in Get-CMSiteRole; every DP's decommission record, sanitization record and SSP change filed; the content delivery evidence set in the guide's requirements table complete
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/dp-consolidation-implementation.html#step-10-3",fmw,fmw-content-delivery,fmw-id-cg8,gate,owner-ciso-and-isso,critical-path,2028-01-20,2028-01-19,,,
-70,Task,60,X-G3 Program G3 — Rollout Complete,"X-G3 · External · owner or approver: Executive sponsor and steering committee
+70,Task,60,X-G3 Program G3 — Rollout Complete,"X-G3 · External · owner or approver: Executive sponsor and steering committee (program)
 Duration 0 working days · end of wk 36 · total float fixed date · predecessors: —
 Comes from program-master-schedule:G3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-content-delivery,fmw-id-x-g3,external,owner-executive-sponsor-and-steering-committee,,2027-09-13,2027-09-10,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-content-delivery,fmw-id-x-g3,external,owner-executive-sponsor-and-steering-committee-program,,2027-09-13,2027-09-10,,,

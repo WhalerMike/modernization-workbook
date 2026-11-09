@@ -152,12 +152,13 @@ Describe 'Chapter 05: PimGroups' {
             $r = Get-Run -ChangeConfig { param($c) $c.groups[0].owner.eligible = @(@{ principalId = '0b000000-0000-4000-8000-000000000003'; principalName = 'cara'; principalType = 'user'; endDateTime = '2027-01-01T00:00:00Z'; ticket = 'CHG-9' }) }
             @($r.ConfigFindings | Where-Object Rule -EQ 'PA-PG-07').Count | Should -Be 2
         }
-        It 'flags a policy setting over eight hours, a missing approver group, and self-approval (PA-PG-08)' {
-            $pol = Get-PaPgPolicySetting; $pol.member.T1.activationMaxDuration = 'PT10H'
+        It 'flags a policy setting over eight hours, a context outside c1 to c99, a missing approver group, and self-approval (PA-PG-08)' {
+            $pol = Get-PaPgPolicySetting; $pol.member.T1.activationMaxDuration = 'PT10H'; $pol.owner.T1.authenticationContext = 'c100'
             $cfg = Read-PaPrvGroupConfig $script:DesiredPath
             $cfg.approverGroups.Remove('T2'); $cfg.approverGroups.T0 = $cfg.groups[0].id
             $f = @(Test-PaPrvGroupConfig -Config $cfg -PolicySetting $pol -AsOf $script:AsOf | Where-Object Rule -EQ 'PA-PG-08')
             ($f.Issue -join ';') | Should -Match 'PT10H'
+            ($f.Issue -join ';') | Should -Match "owner authentication context 'c100'"
             ($f.Issue -join ';') | Should -Match 'no approver group is set for T2'
             ($f.Issue -join ';') | Should -Match 'approves its own'
         }
@@ -178,9 +179,9 @@ Describe 'Chapter 05: PimGroups' {
             foreach ($c in $r.Fake.Calls | Where-Object Uri -Like '*privilegedAccess*') { [Uri]::UnescapeDataString($c.Uri) | Should -Match "groupId eq '" }
             foreach ($c in $r.Fake.Calls | Where-Object Uri -Like '*roleManagementPolicyAssignments*') { [Uri]::UnescapeDataString($c.Uri) | Should -Match "scopeType eq 'Group'" }
         }
-        It 'reports the fixture''s findings: 9 Finding, 3 Warn' {
+        It 'reports the fixture''s findings: 11 Finding, 3 Warn' {
             $f = (Get-Run).Findings
-            @($f | Where-Object Severity -EQ 'Finding').Count | Should -Be 9
+            @($f | Where-Object Severity -EQ 'Finding').Count | Should -Be 11
             @($f | Where-Object Severity -EQ 'Warn').Count | Should -Be 3
         }
         It 'flags a group that holds an Entra role but isn''t role-assignable, and warns for one that doesn''t (PA-PG-02)' {
@@ -209,22 +210,23 @@ Describe 'Chapter 05: PimGroups' {
         }
         It 'flags policy drift as a Finding on T0 and T1 (PA-PG-08)' {
             $f = @((Get-Run).Findings | Where-Object Rule -EQ 'PA-PG-08')
-            $f.Count | Should -Be 3
+            $f.Count | Should -Be 5
             ($f | Where-Object Issue -Match 'Approval_EndUser_Assignment').Severity | Should -Be 'Finding'
+            ($f | Where-Object Issue -Match 'AuthenticationContext_EndUser_Assignment').Issue | Should -Match 'context=off in the tenant, context=c1 reviewed'
         }
     }
 
     Context 'the plan, the guards and -Apply' {
-        It 'plans 8 changes in order: policy rules, then grants and updates, then removals' {
+        It 'plans 10 changes in order: policy rules, then grants and updates, then removals' {
             $ops = (Get-Run).Plan.Operations
-            $ops.Count | Should -Be 8
-            ($ops.Op -join ',') | Should -Be 'policy-rule,policy-rule,policy-rule,assignment-adminUpdate,assignment-adminAssign,assignment-adminRemove,eligibility-adminRemove,eligibility-adminRemove'
+            $ops.Count | Should -Be 10
+            ($ops.Op -join ',') | Should -Be 'policy-rule,policy-rule,policy-rule,policy-rule,policy-rule,assignment-adminUpdate,assignment-adminAssign,assignment-adminRemove,eligibility-adminRemove,eligibility-adminRemove'
             foreach ($o in $ops) { $o.Permissions.Count | Should -BeGreaterThan 0; $o.Uri | Should -BeLike 'https://graph.microsoft.com/v1.0/*' }
         }
         It 'plans nothing once the tenant matches the desired state' {
             $w = New-Writer
             $r = Get-Run
-            $null = Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply
+            $null = Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply -ActivationGateChecked
             # Bring the fixture to the desired state in memory, then plan again.
             $r2 = Get-Run -Change { param($t)
                 $t.eligibilitySchedules = @($t.eligibilitySchedules | Where-Object { $_.principalId -eq '0b000000-0000-4000-8000-000000000003' -and $_.accessId -eq 'member' })
@@ -238,6 +240,8 @@ Describe 'Chapter 05: PimGroups' {
                         if ($rule.id -eq 'Approval_EndUser_Assignment' -and $pa.scopeId -like '*0001' -and $pa.roleDefinitionId -eq 'member') { $rule.setting.isApprovalRequired = $true }
                         if ($rule.id -eq 'Expiration_EndUser_Assignment' -and $pa.scopeId -like '*0001' -and $pa.roleDefinitionId -eq 'member') { $rule.maximumDuration = 'PT4H' }
                         if ($rule.id -eq 'Expiration_Admin_Eligibility') { $rule.isExpirationRequired = $true }
+                        if ($rule.id -eq 'Enablement_EndUser_Assignment') { $rule.enabledRules = @('Justification', 'Ticketing') }
+                        if ($rule.id -eq 'AuthenticationContext_EndUser_Assignment') { $rule.isEnabled = $true; $rule.claimValue = 'c1' }
                     }
                 }
             }
@@ -259,15 +263,25 @@ Describe 'Chapter 05: PimGroups' {
         }
         It 'sends every operation with -Apply, through declared writes only, and the fake accepts each' {
             $w = New-Writer; $r = Get-Run
-            $run = Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply
-            @($run.Results | Where-Object Status -EQ 'Sent').Count | Should -Be 8
-            $w.Fake.Writes.Count | Should -Be 8
+            $run = Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply -ActivationGateChecked
+            @($run.Results | Where-Object Status -EQ 'Sent').Count | Should -Be 10
+            $w.Fake.Writes.Count | Should -Be 10
             ($w.Fake.Writes.Method | Sort-Object -Unique) -join ',' | Should -Be 'PATCH,POST'
         }
-        It 'refuses -Apply with a read client, or a plan for another cloud' {
+        It 'refuses -Apply with a read client, a plan for another cloud, or a plan that selects c1 without -ActivationGateChecked' {
             $r = Get-Run
             { Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $r.Client -Apply } | Should -Throw '*pim-groups-apply*'
             { Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client (New-Writer gcchigh).Client -Apply } | Should -Throw "*for 'gcc'*"
+            foreach ($a in 'member', 'owner') { foreach ($tier in 'T0', 'T1', 'T2', 'RO') {
+                    $rule = New-PaPgRuleSet -Setting $script:Policy[$a][$tier] -ApproverGroupId '5a000000-0000-4000-8000-0000000000a0' | Where-Object id -EQ 'AuthenticationContext_EndUser_Assignment'
+                    $rule.isEnabled | Should -BeTrue; $rule.claimValue | Should -Be 'c1'
+                    $rule['@odata.type'] | Should -Be '#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule'
+                    $script:Policy[$a][$tier].enabledRules | Should -Not -Contain 'MultiFactorAuthentication'
+                } }
+            $w = New-Writer
+            $r.Plan.NeedsActivationGate | Should -BeTrue
+            { Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply } | Should -Throw '*-ActivationGateChecked*'
+            $w.Fake.Writes.Count | Should -Be 0
         }
         It 'refuses a plan that drops approval on a T0 policy (G1) or allows permanent grants (G2)' {
             $pol = Get-PaPgPolicySetting; $pol.member.T0.approvalRequired = $false
@@ -294,9 +308,9 @@ Describe 'Chapter 05: PimGroups' {
         It 'stops at the first request the fake refuses' {
             $w = New-Writer; $r = Get-Run
             ($r.Plan.Operations | Where-Object Op -EQ 'assignment-adminAssign').Body.scheduleInfo.expiration.endDateTime = '2026-01-01T00:00:00Z'
-            $run = Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply
+            $run = Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $w.Client -Apply -ActivationGateChecked
             ($run.Results | Select-Object -Last 1).Status | Should -Match 'Failed'
-            @($run.Results).Count | Should -Be 5
+            @($run.Results).Count | Should -Be 7
         }
     }
 
@@ -304,7 +318,8 @@ Describe 'Chapter 05: PimGroups' {
         It 'writes findings, plan, diff and a manifest whose hashes match, in a dry run' {
             $out = Join-Path $TestDrive 'pg'
             $text = & $script:Entry -Cloud gcc -FixturePath $script:Fixture -DesiredPath $script:DesiredPath -AsOf $script:AsOf -OutputPath $out
-            $text[0] | Should -Be 'PIM for Groups: 9 Finding, 3 Warn, 0 Info'
+            $text[0] | Should -Be 'PIM for Groups: 11 Finding, 3 Warn, 0 Info'
+            $text | Should -Contain 'Activation gate: the plan selects an authentication context; -Apply also needs -ActivationGateChecked'
             $text | Should -Contain 'Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply'
             $m = Get-Content (Join-Path $out 'manifest.json') -Raw | ConvertFrom-Json
             $m.task | Should -Be 'pim-groups-read'

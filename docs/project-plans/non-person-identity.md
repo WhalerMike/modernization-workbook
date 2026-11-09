@@ -41,7 +41,7 @@ This plan runs the [non-person identity track](../books/guides/attribute-driven-
 
 ## Critical path
 
-The computed path starts in week 1 with the AD discovery and the [Privileged Access plan](privileged-access.md)'s app registration inventory (A0.3), which this plan extends rather than repeats. The register and Gate 0 land at the end of week 4, with the program's G0; the AD discovery reaches the program's assessment with ten working days to spare. From there the path runs through ownership. An application owner has to be found for every service account, and two human owners named on every app registration, before anything is touched, so the owner search, not the scripting, sets the pace to Gate 1 in week 10. Then come the target for each account, the disposition decision (D-N3, end of week 13), the wave plan and Gate 2 in week 14, and conversion: the high-risk wave, its 30-day parallel run, and the remaining waves with their own parallel runs, to Gate 3 in week 31. The register's drift checks, the gMSA and dMSA reconciliation, the evidence hand-off and Gate 7 follow, in week 34.
+The computed path starts in week 1 with the AD discovery and the [Privileged Access plan](privileged-access.md)'s app registration inventory (A0.3), which this plan extends rather than repeats. The register and Gate 0 land at the end of week 4, with the program's G0; the AD discovery reaches the program's assessment with ten working days to spare. From there the path runs through ownership. An application owner has to be found for every service account, and two human owners named on every app registration, before anything is touched, so the owner search, not the scripting, sets the pace to Gate 1 in week 10. Then come the target for each account, the disposition decision (D-NP3, end of week 13), the wave plan and Gate 2 in week 14, and conversion: the high-risk wave, its 30-day parallel run, and the remaining waves with their own parallel runs, to Gate 3 in week 31. The register's drift checks, the gMSA and dMSA reconciliation, the evidence hand-off and Gate 7 follow, in week 34.
 
 Conversion doesn't wait on the program: the program's G1 (week 8) has 28 working days of float against it. The Kerberos accounts that stay need the program's legacy-authentication end dates (D08, week 16) only for their own end dates, so D08 sits off the path. Gate 3 lands 57 working days before the program finishes retiring AD-bound service principal names (P4.6, week 42), and the islanded Kerberos list is what P4.6 works from. The reconciliation uses the provisional end state set at G0 (D11); when the program confirms or revises it (D09, week 36), the island list is re-run inside the 72-day margin before G5 in week 48. Least privilege, Conditional Access for workload identities and the AI phase carry float. Least privilege waits on the Privileged Access plan's sweep of privileged non-human identities (A3.4, week 24), and the AI phase on the [Identity Lifecycle](identity-lifecycle.md) plan's mover and leaver automation (its Gate 4, week 16), because the sponsor tasks ride on the HR-driven workflows.
 
@@ -49,26 +49,26 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 
 | # | ID | Item | Owner or approver | When |
 |---|---|---|---|---|
-| 1 | N0.1 | AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target | Identity engineering | wk 1–2 |
-| 2 | N0.2 | Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged | Identity engineering | wk 2–3 |
-| 3 | N0.4 | SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan | Identity engineering | wk 3 |
-| 4 | N0.5 | One non-person identity register: type, host, workload location, risk and candidate target for every identity | Identity engineering | wk 3–4 |
-| 5 | NG0 | Gate 0 — Non-person identities inventoried | ISSO | end of wk 4 |
-| 6 | N1.1 | An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set | Application owners | wk 4–9 |
-| 7 | N1.3 | Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window | Identity governance officer | wk 9–10 |
-| 8 | NG1 | Gate 1 — Every non-person identity owned | CISO | end of wk 10 |
-| 9 | N2.1 | Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement | Identity engineering, with application owners | wk 10–13 |
-| 10 | D-N3 | Retire, re-platform or keep, account by account | Application owners | end of wk 13 |
-| 11 | N2.2 | Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave | Identity engineering | wk 13–14 |
-| 12 | NG2 | Gate 2 — Every account has a decision | ISSO | end of wk 14 |
-| 13 | N3.2 | Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested | Identity engineering, with application owners | wk 14–17 |
-| 14 | N3.3 | Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled | Application owners | wk 17–21 |
-| 15 | N3.4 | Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled | Identity engineering, with application owners | wk 19–31 |
-| 16 | NG3 | Gate 3 — Credentials modernized | ISSO | end of wk 31 |
-| 17 | N7.1 | Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline | Identity engineering | wk 31–33 |
-| 18 | N7.3 | gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date | Identity engineering | wk 31–34 |
-| 19 | N7.4 | Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled | Identity governance officer | wk 33–34 |
-| 20 | NG7 | Gate 7 — Steady state | ISSO | end of wk 34 |
+| 1 | NP0.1 | AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target | Identity engineering | wk 1–2 |
+| 2 | NP0.2 | Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged | Identity engineering | wk 2–3 |
+| 3 | NP0.4 | SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan | Identity engineering | wk 3 |
+| 4 | NP0.5 | One non-person identity register: type, host, workload location, risk and candidate target for every identity | Identity engineering | wk 3–4 |
+| 5 | NPG0 | Gate 0 — Non-person identities inventoried | ISSO | end of wk 4 |
+| 6 | NP1.1 | An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set | Application owners | wk 4–9 |
+| 7 | NP1.3 | Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window | Identity governance officer | wk 9–10 |
+| 8 | NPG1 | Gate 1 — Every non-person identity owned | CISO | end of wk 10 |
+| 9 | NP2.1 | Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement | Identity engineering, with application owners | wk 10–13 |
+| 10 | D-NP3 | Retire, re-platform or keep, account by account | Application owners | end of wk 13 |
+| 11 | NP2.2 | Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave | Identity engineering | wk 13–14 |
+| 12 | NPG2 | Gate 2 — Every account has a decision | ISSO | end of wk 14 |
+| 13 | NP3.2 | Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested | Identity engineering, with application owners | wk 14–17 |
+| 14 | NP3.3 | Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled | Application owners | wk 17–21 |
+| 15 | NP3.4 | Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled | Identity engineering, with application owners | wk 19–31 |
+| 16 | NPG3 | Gate 3 — Credentials modernized | ISSO | end of wk 31 |
+| 17 | NP7.1 | Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline | Identity engineering | wk 31–33 |
+| 18 | NP7.3 | gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date | Identity engineering | wk 31–34 |
+| 19 | NP7.4 | Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled | Identity governance officer | wk 33–34 |
+| 20 | NPG7 | Gate 7 — Steady state | ISSO | end of wk 34 |
 
 : The critical path {.striped .hover}
 
@@ -76,8 +76,8 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 
 | ID | Item | Float | When |
 |---|---|---|---|
-| N0.3 | AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals | 3 d | wk 1–2 |
-| D-N4 | Workload ID Premium licensing scope | 5 d | end of wk 13 |
+| NP0.3 | AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals | 3 d | wk 1–2 |
+| D-NP4 | Workload ID Premium licensing scope | 5 d | end of wk 13 |
 
 : Near-critical items {.striped .hover}
 
@@ -87,12 +87,12 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 
 | ID | Decision | Decides | Needed by | Decide by | Float | Options | If it's late |
 |---|---|---|---|---|---|---|---|
-| D-N1 | Source of record for non-person identities | CIO | NG0 | end of wk 4 | 8 d | The owning workload's record (the system inventory or CMDB entry and the application registration) and, for AI, the AI use-case inventory, with the register keyed to them; a separate identity register kept by the identity team | The register has nothing to reconcile against, and owners and lifecycle have nothing to hang from |
-| D-N2 | Orphan rule for identities nobody will own | CISO | N1.3 | end of wk 9 | 25 d | Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (a non-person identity rule, not Book 04's, which gives the office 30 days and then suspends; applied at once to agents because they can act); retire at once; keep running on a dated exception | Unowned accounts can't be disposed of, and Gate 1 can't pass |
-| D-N3 | Retire, re-platform or keep, account by account | Application owners | N2.2 | end of wk 13 | **0 (critical)** | Retire (unused or unowned); re-platform to a managed identity, a gMSA or dMSA, or an app registration with a federated credential or certificate; keep on Kerberos with an SPN, islanded with an end date the authorizing official accepts | The conversion waves can't be built, and the program's SPN retirement (P4.6) has no list to work from |
-| D-N4 | Workload ID Premium licensing scope | CISO | NG2, N4.3, N5.1 | end of wk 14 | 5 d | License for the single-tenant service principals classified R1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access | Workload Conditional Access can't be created or changed, and privileged service principal reviews aren't available |
-| D-N6 | AI identity capabilities the program builds on in the agency's cloud | CIO, with the Chief AI Officer | N6.2 | end of wk 25 | 113 d | Agent identities where generally available in the agency's cloud, with GCC's documented subset; service principals and managed identities under the same governance where agent identities aren't available; preview capabilities as watch items | Agents are created with no decided identity type, and the production handshake can't be defined |
-| D-N5 | Enforce the workload identity policies | CISO | N5.3 | end of wk 32 | 70 d | Enforce; extend report-only; enforce with named exclusions, each recorded with its owner and end date | R1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass |
+| D-NP1 | Source of record for non-person identities | CIO | NPG0 | end of wk 4 | 8 d | The owning workload's record (the system inventory or CMDB entry and the application registration) and, for AI, the AI use-case inventory, with the register keyed to them; a separate identity register kept by the identity team | The register has nothing to reconcile against, and owners and lifecycle have nothing to hang from |
+| D-NP2 | Orphan rule for identities nobody will own | CISO | NP1.3 | end of wk 9 | 25 d | Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (a non-person identity rule, not Book 04's, which gives the office 30 days and then suspends; applied at once to agents because they can act); retire at once; keep running on a dated exception | Unowned accounts can't be disposed of, and Gate 1 can't pass |
+| D-NP3 | Retire, re-platform or keep, account by account | Application owners | NP2.2 | end of wk 13 | **0 (critical)** | Retire (unused or unowned); re-platform to a managed identity, a gMSA or dMSA, or an app registration with a federated credential or certificate; keep on Kerberos with an SPN, islanded with an end date the authorizing official accepts | The conversion waves can't be built, and the program's SPN retirement (P4.6) has no list to work from |
+| D-NP4 | Workload ID Premium licensing scope | CISO | NPG2, NP4.3, NP5.1 | end of wk 14 | 5 d | License for the single-tenant service principals classified R1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access | Workload Conditional Access can't be created or changed, and privileged service principal reviews aren't available |
+| D-NP6 | AI identity capabilities the program builds on in the agency's cloud | CIO, with the Chief AI Officer | NP6.2 | end of wk 25 | 113 d | Agent identities where generally available in the agency's cloud, with GCC's documented subset; service principals and managed identities under the same governance where agent identities aren't available; preview capabilities as watch items | Agents are created with no decided identity type, and the production handshake can't be defined |
+| D-NP5 | Enforce the workload identity policies | CISO | NP5.3 | end of wk 32 | 70 d | Enforce; extend report-only; enforce with named exclusions, each recorded with its owner and end date | R1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass |
 
 : Decision points, by decide-by date {.striped .hover}
 
@@ -115,23 +115,23 @@ A gate opens the work that names it as a predecessor, which is usually the next 
 
 ## Links to other plans
 
-- **X-G0, Program G0 — Ready to Plan: the read-only assessment committed,** is G0 in the [Program master schedule](program-master-schedule.md) plan (G0 — Ready to Plan), end of wk 4. This plan must finish N0.1 by then: a margin of 10 d. The program's assessment goes to G0 without the service account picture, and Phase 1 is sized without it.
+- **X-G0, Program G0 — Ready to Plan: the read-only assessment committed,** is G0 in the [Program master schedule](program-master-schedule.md) plan (G0 — Ready to Plan), end of wk 4. This plan must finish NP0.1 by then: a margin of 10 d. The program's assessment goes to G0 without the service account picture, and Phase 1 is sized without it.
 - **X-A03, App registrations, owners, credentials and granted permissions inventoried (Privileged Access plan, A0.3),** is A0.3 in the [Privileged Access & Administrative Identity](privileged-access.md) plan (App registrations, owners, credentials and granted permissions inventoried, read-only; automation on the protected permissions found), end of wk 2. This plan waits for it; it can slip 0 before it moves this plan. The Entra side of the register has no app registration inventory to start from.
 - **X-G1, Program G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced,** is G1 in the [Program master schedule](program-master-schedule.md) plan (G1 — Foundation Complete), end of wk 8. This plan waits for it; it can slip 28 d before it moves this plan. Conversion has no group and policy foundation to land on (Book 02 puts service accounts after group migration).
 - **X-D08, End dates for legacy authentication and NTLM (program D08),** is D08 in the [Program master schedule](program-master-schedule.md) plan (End dates for legacy authentication and NTLM), end of wk 16. This plan waits for it; it can slip 68 d before it moves this plan. Kerberos accounts that stay can't be given end dates, so the islanded list can't be handed to the program.
 - **X-DG4, SQL Server's application chain on Entra principals (Data Platform plan, Gate 4),** is DG4 in the [Data Platform Identity Transformation](data-platform.md) plan (Gate 4 — Application chain on Entra principals), end of wk 29. Shown for reference.
-- **X-P46, AD-bound service principal names migrated, retired or islanded (program P4.6),** is P4.6 in the [Program master schedule](program-master-schedule.md) plan (AD-bound service principal names migrated, retired or islanded, app by app), end of wk 42. This plan must finish NG3 by then: a margin of 57 d. The program measures AD authentication for G4 while converted workloads still hold AD credentials.
+- **X-P46, AD-bound service principal names migrated, retired or islanded (program P4.6),** is P4.6 in the [Program master schedule](program-master-schedule.md) plan (AD-bound service principal names migrated, retired or islanded, app by app), end of wk 42. This plan must finish NPG3 by then: a margin of 57 d. The program measures AD authentication for G4 while converted workloads still hold AD credentials.
 - **X-A34, Non-human privileged identities owned, off secrets, over-consented apps swept (Privileged Access plan, A3.4),** is A3.4 in the [Privileged Access & Administrative Identity](privileged-access.md) plan (Non-human privileged identities: two named owners each, credentials off secrets, over-consented apps swept), end of wk 24. This plan waits for it; it can slip 28 d before it moves this plan. Privileged service principals are outside this plan's sweep, so the least-privilege gate can't pass.
 - **X-IG4, Mover and leaver automation proven (Identity Lifecycle plan, Gate 4),** is IG4 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Gate 4 — Lifecycle automated), end of wk 16. This plan waits for it; it can slip 58 d before it moves this plan. The sponsor's mover and leaver events have no HR-driven workflow to ride on.
 - **X-D11, Provisional target end state: AD retired, or a dated Kerberos island (program D11),** is D11 in the [Program master schedule](program-master-schedule.md) plan (Provisional target end state: AD retired, or a dated Kerberos island), end of wk 4. This plan waits for it; it can slip 133 d before it moves this plan. The gMSA and dMSA reconciliation has no target to reconcile against.
-- **X-G5, Program G5 — AD Retired,** is G5 in the [Program master schedule](program-master-schedule.md) plan (G5 — AD Retired), end of wk 48. This plan must finish N7.3 by then: a margin of 72 d. A workload still running under a gMSA loses its credential when the last domain controller is demoted.
+- **X-G5, Program G5 — AD Retired,** is G5 in the [Program master schedule](program-master-schedule.md) plan (G5 — AD Retired), end of wk 48. This plan must finish NP7.3 by then: a margin of 72 d. A workload still running under a gMSA loses its credential when the last domain controller is demoted.
 
 Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
 
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
-| NG0  Gate 0 — Non-person identities inventoried | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-NG0) | Must finish A0.1 by it | 10 d margin |
-| start of N1.2  AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record | wk 4–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-N12) | Must finish A5.4 by it | 2 d margin |
+| NPG0  Gate 0 — Non-person identities inventoried | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-NPG0) | Must finish AT0.1 by it | 10 d margin |
+| start of NP1.2  AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record | wk 4–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-NP12) | Must finish AT5.4 by it | 2 d margin |
 
 : Plans that take a date from this one {.striped .hover}
 
@@ -143,15 +143,15 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| N0.1 | **[AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target](../books/b02-identity/09-building-the-entra-target.md#discovering-service-accounts)** | Task | Identity engineering | 10 | — | wk 1–2 | 0 |
-| X-G0 | [Program G0 — Ready to Plan: the read-only assessment committed](program-master-schedule.md) | External | Steward (program) | — | N0.1 | end of wk 4 | fixed date |
-| X-A03 | [App registrations, owners, credentials and granted permissions inventoried (Privileged Access plan, A0.3)](privileged-access.md) | External | Identity engineering (Privileged Access plan) | — | — | end of wk 2 | 0 |
-| N0.2 | **[Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged](../books/b04-access/05-applications-and-workload-identities.md#a-read-only-inventory-to-start-from)** | Task | Identity engineering | 5 | X-A03 | wk 2–3 | 0 |
-| N0.3 | [AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals](../books/b17-ai-identity/03-the-inventory-as-an-identity-source.md#using-the-inventory-as-the-seed-list) | Task | Identity engineering, with the Chief AI Officer's staff | 10 | — | wk 1–2 | 3 d |
-| N0.4 | **[SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan](../books/b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)** | Task | Identity engineering | 3 | N0.1 | wk 3 | 0 |
-| N0.5 | **[One non-person identity register: type, host, workload location, risk and candidate target for every identity](../books/guides/attribute-driven-migration.md#non-person-identity-track)** | Task | Identity engineering | 5 | N0.1, N0.2, N0.3, N0.4 | wk 3–4 | 0 |
-| D-N1 | [Source of record for non-person identities](../books/guides/attribute-driven-migration.md#non-person-identity-track) | Decision | CIO | — | N0.1 | end of wk 2 | 8 d |
-| NG0 | **[Gate 0 — Non-person identities inventoried](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Gate | ISSO | — | N0.5, D-N1 | end of wk 4 | 0 |
+| NP0.1 | **[AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target](../books/b02-identity/09-building-the-entra-target.md#discovering-service-accounts)** | Task | Identity engineering | 10 | — | wk 1–2 | 0 |
+| X-G0 | [Program G0 — Ready to Plan: the read-only assessment committed](program-master-schedule.md) | External | Steward (backup: executive sponsor; program) | — | NP0.1 | end of wk 4 | fixed date |
+| X-A03 | [App registrations, owners, credentials and granted permissions inventoried (Privileged Access plan, A0.3)](privileged-access.md) | External | Identity engineering (Privileged Access & Administrative Identity plan) | — | — | end of wk 2 | 0 |
+| NP0.2 | **[Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged](../books/b04-access/05-applications-and-workload-identities.md#a-read-only-inventory-to-start-from)** | Task | Identity engineering | 5 | X-A03 | wk 2–3 | 0 |
+| NP0.3 | [AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals](../books/b17-ai-identity/03-the-inventory-as-an-identity-source.md#using-the-inventory-as-the-seed-list) | Task | Identity engineering, with the Chief AI Officer's staff | 10 | — | wk 1–2 | 3 d |
+| NP0.4 | **[SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan](../books/b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)** | Task | Identity engineering | 3 | NP0.1 | wk 3 | 0 |
+| NP0.5 | **[One non-person identity register: type, host, workload location, risk and candidate target for every identity](../books/guides/attribute-driven-migration.md#non-person-identity-track)** | Task | Identity engineering | 5 | NP0.1, NP0.2, NP0.3, NP0.4 | wk 3–4 | 0 |
+| D-NP1 | [Source of record for non-person identities](../books/guides/attribute-driven-migration.md#non-person-identity-track) | Decision | CIO | — | NP0.1 | end of wk 2 | 8 d |
+| NPG0 | **[Gate 0 — Non-person identities inventoried](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Gate | ISSO | — | NP0.5, D-NP1 | end of wk 4 | 0 |
 
 : Phase 0 — Inventory {.striped .hover}
 
@@ -159,11 +159,11 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| N1.1 | **[An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set](../books/b04-access/05-applications-and-workload-identities.md#ownership)** | Task | Application owners | 25 | NG0 | wk 4–9 | 0 |
-| N1.2 | [AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-programs-rule-two-named-humans-and-a-record) | Task | Sponsoring offices, with the identity governance officer | 15 | NG0 | wk 4–7 | 15 d |
-| D-N2 | [Orphan rule for identities nobody will own](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps) | Decision | CISO | — | NG0 | end of wk 4 | 25 d |
-| N1.3 | **[Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window](../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)** | Task | Identity governance officer | 5 | N1.1, D-N2 | wk 9–10 | 0 |
-| NG1 | **[Gate 1 — Every non-person identity owned](../books/b02-identity/09-building-the-entra-target.md#governing-service-principals)** | Gate | CISO | — | N1.2, N1.3 | end of wk 10 | 0 |
+| NP1.1 | **[An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set](../books/b04-access/05-applications-and-workload-identities.md#ownership)** | Task | Application owners | 25 | NPG0 | wk 4–9 | 0 |
+| NP1.2 | [AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-programs-rule-two-named-humans-and-a-record) | Task | Sponsoring offices, with the identity governance officer | 15 | NPG0 | wk 4–7 | 15 d |
+| D-NP2 | [Orphan rule for identities nobody will own](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps) | Decision | CISO | — | NPG0 | end of wk 4 | 25 d |
+| NP1.3 | **[Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window](../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)** | Task | Identity governance officer | 5 | NP1.1, D-NP2 | wk 9–10 | 0 |
+| NPG1 | **[Gate 1 — Every non-person identity owned](../books/b02-identity/09-building-the-entra-target.md#governing-service-principals)** | Gate | CISO | — | NP1.2, NP1.3 | end of wk 10 | 0 |
 
 : Phase 1 — Ownership {.striped .hover}
 
@@ -171,11 +171,11 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| N2.1 | **[Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement](../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix)** | Task | Identity engineering, with application owners | 15 | NG1 | wk 10–13 | 0 |
-| D-N3 | **[Retire, re-platform or keep, account by account](../books/guides/attribute-driven-migration.md#non-person-identity-track)** | Decision | Application owners | — | N2.1 | end of wk 13 | 0 |
-| D-N4 | [Workload ID Premium licensing scope](../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds) | Decision | CISO | — | N2.1 | end of wk 13 | 5 d |
-| N2.2 | **[Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Task | Identity engineering | 5 | D-N3 | wk 13–14 | 0 |
-| NG2 | **[Gate 2 — Every account has a decision](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Gate | ISSO | — | N2.2, D-N4 | end of wk 14 | 0 |
+| NP2.1 | **[Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement](../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix)** | Task | Identity engineering, with application owners | 15 | NPG1 | wk 10–13 | 0 |
+| D-NP3 | **[Retire, re-platform or keep, account by account](../books/guides/attribute-driven-migration.md#non-person-identity-track)** | Decision | Application owners | — | NP2.1 | end of wk 13 | 0 |
+| D-NP4 | [Workload ID Premium licensing scope](../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds) | Decision | CISO | — | NP2.1 | end of wk 13 | 5 d |
+| NP2.2 | **[Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Task | Identity engineering | 5 | D-NP3 | wk 13–14 | 0 |
+| NPG2 | **[Gate 2 — Every account has a decision](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Gate | ISSO | — | NP2.2, D-NP4 | end of wk 14 | 0 |
 
 : Phase 2 — Decide per account {.striped .hover}
 
@@ -184,17 +184,17 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
 | X-G1 | [Program G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced](program-master-schedule.md) | External | Steward (program) | — | — | end of wk 8 | 28 d |
-| N3.1 | [App management policy: new client secrets and symmetric keys blocked, certificates capped at 180 days for new apps; app instance property lock on owned apps](../books/b04-access/05-applications-and-workload-identities.md#enforcing-the-order-with-app-management-policies) | Task | Identity engineering | 5 | NG0 | wk 4–5 | 45 d |
-| N3.2 | **[Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested](../books/b02-identity/09-building-the-entra-target.md#workload-identity-federation)** | Task | Identity engineering, with application owners | 15 | NG2, X-G1, N3.1 | wk 14–17 | 0 |
-| N3.3 | **[Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Task | Application owners | 22 | N3.2 | wk 17–21 | 0 |
-| N3.4 | **[Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Task | Identity engineering, with application owners | 60 | N3.3 (SS) +10 d | wk 19–31 | 0 |
-| N3.5 | [Kerberos-only workloads: MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA](../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) | Task | Server infrastructure | 20 | NG2, X-G1 | wk 14–18 | 60 d |
+| NP3.1 | [App management policy: new client secrets and symmetric keys blocked, certificates capped at 180 days for new apps; app instance property lock on owned apps](../books/b04-access/05-applications-and-workload-identities.md#enforcing-the-order-with-app-management-policies) | Task | Identity engineering | 5 | NPG0 | wk 4–5 | 45 d |
+| NP3.2 | **[Conversion wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested](../books/b02-identity/09-building-the-entra-target.md#workload-identity-federation)** | Task | Identity engineering, with application owners | 15 | NPG2, X-G1, NP3.1 | wk 14–17 | 0 |
+| NP3.3 | **[Conversion wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Task | Application owners | 22 | NP3.2 | wk 17–21 | 0 |
+| NP3.4 | **[Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Task | Identity engineering, with application owners | 60 | NP3.3 (SS) +10 d | wk 19–31 | 0 |
+| NP3.5 | [Kerberos-only workloads: MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA](../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) | Task | Server infrastructure | 20 | NPG2, X-G1 | wk 14–18 | 60 d |
 | X-D08 | [End dates for legacy authentication and NTLM (program D08)](program-master-schedule.md) | External | Authorizing official (program) | — | — | end of wk 16 | 68 d |
-| N3.6 | [Kerberos accounts that stay: SPN owner and an end date within D08 recorded; the islanded list handed to the program's SPN retirement](../books/b02-identity/10-migrating-and-governing.md#what-still-needs-ad-after-phase-10) | Task | Identity engineering | 5 | N3.5, X-D08 | wk 18–19 | 60 d |
-| N3.7 | [Rotation in place: certificates in Key Vault, rotated by the pipeline, raised before expiry and approved by the owner](../books/b04-access/05-applications-and-workload-identities.md#governing-app-registrations) | Task | Identity engineering | 10 | N3.2 | wk 17–19 | 60 d |
-| NG3 | **[Gate 3 — Credentials modernized](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Gate | ISSO | — | N3.4, N3.6, N3.7 | end of wk 31 | 0 |
-| X-DG4 | [SQL Server's application chain on Entra principals (Data Platform plan, Gate 4)](data-platform.md) | External | ISSO (Data Platform plan) | — | — | end of wk 29 | fixed date |
-| X-P46 | [AD-bound service principal names migrated, retired or islanded (program P4.6)](program-master-schedule.md) | External | Application owners (program) | — | NG3 | end of wk 42 | fixed date |
+| NP3.6 | [Kerberos accounts that stay: SPN owner and an end date within D08 recorded; the islanded list handed to the program's SPN retirement](../books/b02-identity/10-migrating-and-governing.md#what-still-needs-ad-after-phase-10) | Task | Identity engineering | 5 | NP3.5, X-D08 | wk 18–19 | 60 d |
+| NP3.7 | [Rotation in place: certificates in Key Vault, rotated by the pipeline, raised before expiry and approved by the owner](../books/b04-access/05-applications-and-workload-identities.md#governing-app-registrations) | Task | Identity engineering | 10 | NP3.2 | wk 17–19 | 60 d |
+| NPG3 | **[Gate 3 — Credentials modernized](../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)** | Gate | ISSO | — | NP3.4, NP3.6, NP3.7 | end of wk 31 | 0 |
+| X-DG4 | [SQL Server's application chain on Entra principals (Data Platform plan, Gate 4)](data-platform.md) | External | ISSO (Data Platform Identity Transformation plan) | — | — | end of wk 29 | fixed date |
+| X-P46 | [AD-bound service principal names migrated, retired or islanded (program P4.6)](program-master-schedule.md) | External | Application owners (program) | — | NPG3 | end of wk 42 | fixed date |
 
 : Phase 3 — Credential modernization {.striped .hover}
 
@@ -202,11 +202,11 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| N4.1 | [Permission sweep: owners review every grant; broad permissions such as Directory.ReadWrite.All replaced with application-specific roles and scopes](../books/b02-identity/09-building-the-entra-target.md#governing-service-principals) | Task | Application owners | 25 | NG1 | wk 10–15 | 60 d |
-| N4.2 | [Managed identities' role assignments scoped to the resource and put on the app registrations' review cadence](../books/b04-access/05-applications-and-workload-identities.md#managed-identities) | Task | Identity engineering | 10 | NG1 | wk 10–12 | 75 d |
-| X-A34 | [Non-human privileged identities owned, off secrets, over-consented apps swept (Privileged Access plan, A3.4)](privileged-access.md) | External | Identity governance officer (Privileged Access plan) | — | — | end of wk 24 | 28 d |
-| N4.3 | [First quarterly owner review of permissions closed; access reviews for service principals in privileged roles](../books/guides/attribute-driven-migration.md#service-principals-managed-identities-and-workload-identities) | Task | Identity governance officer | 15 | N4.1, N4.2, D-N4 | wk 15–18 | 60 d |
-| NG4 | [Gate 4 — Least privilege](../books/b02-identity/09-building-the-entra-target.md#governing-service-principals) | Gate | CISO | — | N4.3, X-A34 | end of wk 24 | 28 d |
+| NP4.1 | [Permission sweep: owners review every grant; broad permissions such as Directory.ReadWrite.All replaced with application-specific roles and scopes](../books/b02-identity/09-building-the-entra-target.md#governing-service-principals) | Task | Application owners | 25 | NPG1 | wk 10–15 | 60 d |
+| NP4.2 | [Managed identities' role assignments scoped to the resource and put on the app registrations' review cadence](../books/b04-access/05-applications-and-workload-identities.md#managed-identities) | Task | Identity engineering | 10 | NPG1 | wk 10–12 | 75 d |
+| X-A34 | [Non-human privileged identities owned, off secrets, over-consented apps swept (Privileged Access plan, A3.4)](privileged-access.md) | External | Identity governance officer (Privileged Access & Administrative Identity plan) | — | — | end of wk 24 | 28 d |
+| NP4.3 | [First quarterly owner review of permissions closed; access reviews for service principals in privileged roles](../books/guides/attribute-driven-migration.md#service-principals-managed-identities-and-workload-identities) | Task | Identity governance officer | 15 | NP4.1, NP4.2, D-NP4 | wk 15–18 | 60 d |
+| NPG4 | [Gate 4 — Least privilege](../books/b02-identity/09-building-the-entra-target.md#governing-service-principals) | Gate | CISO | — | NP4.3, X-A34 | end of wk 24 | 28 d |
 
 : Phase 4 — Least privilege {.striped .hover}
 
@@ -214,11 +214,11 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| N5.1 | [Scope set: R1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope](../books/b02-identity/09-building-the-entra-target.md#conditional-access-for-workload-identities) | Task | Identity engineering | 5 | D-N4, X-G1, NG1 | wk 13–14 | 70 d |
-| N5.2 | [CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read](../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities) | Task | Identity engineering | 20 | N5.1 | wk 14–18 | 70 d |
-| D-N5 | [Enforce the workload identity policies](../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities) | Decision | CISO | — | N5.2 | end of wk 18 | 70 d |
-| N5.3 | [Policies enforced ring by ring; block events alerted to security operations](../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities) | Task | Identity engineering | 10 | D-N5 | wk 18–20 | 70 d |
-| NG5 | [Gate 5 — Workload identities under Conditional Access](../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities) | Gate | CISO | — | N5.3 | end of wk 20 | 70 d |
+| NP5.1 | [Scope set: R1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope](../books/b02-identity/09-building-the-entra-target.md#conditional-access-for-workload-identities) | Task | Identity engineering | 5 | D-NP4, X-G1, NPG1 | wk 13–14 | 70 d |
+| NP5.2 | [CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read](../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities) | Task | Identity engineering | 20 | NP5.1 | wk 14–18 | 70 d |
+| D-NP5 | [Enforce the workload identity policies](../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities) | Decision | CISO | — | NP5.2 | end of wk 18 | 70 d |
+| NP5.3 | [Policies enforced ring by ring; block events alerted to security operations](../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities) | Task | Identity engineering | 10 | D-NP5 | wk 18–20 | 70 d |
+| NPG5 | [Gate 5 — Workload identities under Conditional Access](../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities) | Gate | CISO | — | NP5.3 | end of wk 20 | 70 d |
 
 : Phase 5 — Conditional Access for workload identities {.striped .hover}
 
@@ -226,16 +226,16 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| D-N6 | [AI identity capabilities the program builds on in the agency's cloud](../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) | Decision | CIO, with the Chief AI Officer | — | N0.3 | end of wk 2 | 113 d |
-| N6.1 | [Creation closed: Users can create agent blueprints set to No; agent app registrations routed to the blueprint path; consent baseline applied to agents](../books/b17-ai-identity/06-credentials-and-least-privilege.md#admin-consent-and-the-scuba-consent-baseline) | Task | Identity engineering | 3 | NG0 | wk 4–5 | 102 d |
-| N6.2 | [Production handshake: blueprint, sponsor, consent, Conditional Access coverage and placement confirmed; access through expiring access packages](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#creation) | Task | Identity engineering | 10 | D-N6, N6.1, N1.2 | wk 7–9 | 90 d |
-| N6.3 | [Agent credentials: managed identity as the blueprint credential, else federation, else a certificate; no secret on a production blueprint](../books/b17-ai-identity/06-credentials-and-least-privilege.md#no-stored-secrets) | Task | Identity engineering, with technical owners | 15 | N6.2, N3.1 | wk 9–12 | 90 d |
-| N6.4 | [Agent least privilege: access mode chosen first; narrow inheritance, never allAllowed for app roles; no standing privileged role](../books/b17-ai-identity/06-credentials-and-least-privilege.md#privileged-roles-for-ai-none-standing) | Task | Identity engineering | 10 | N6.2 | wk 9–11 | 95 d |
-| X-IG4 | [Mover and leaver automation proven (Identity Lifecycle plan, Gate 4)](identity-lifecycle.md) | External | ISSO (Identity Lifecycle plan) | — | — | end of wk 16 | 58 d |
-| N6.5 | [Sponsorship tasks added to the HR-driven mover and leaver workflows; ten-business-day confirmation; human workflows kept off agents' user accounts](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves) | Task | Identity engineering | 10 | N6.2, X-IG4 | wk 17–18 | 58 d |
-| N6.6 | [Agent Conditional Access in report-only: block all agent identities except those approved by attribute; block high-risk agents (preview, watch item)](../books/b17-ai-identity/06-credentials-and-least-privilege.md#the-token-subject-decides-which-policy-applies) | Task | Identity engineering | 10 | N6.2 | wk 9–11 | 95 d |
-| N6.7 | [AI drift checks running: agentic system with no governed identity, shadow AI identity, no accountable human, credential added outside the pipeline](../books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md#drift-comparing-what-was-declared-with-what-is-observed) | Task | Security operations | 10 | N6.2 | wk 9–11 | 95 d |
-| NG6 | [Gate 6 — AI identities governed](../books/b17-ai-identity/10-evidence-and-authorization.md#the-evidence-an-authorizing-official-needs) | Gate | CISO | — | N6.3, N6.4, N6.5, N6.6, N6.7 | end of wk 18 | 58 d |
+| D-NP6 | [AI identity capabilities the program builds on in the agency's cloud](../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) | Decision | CIO, with the Chief AI Officer | — | NP0.3 | end of wk 2 | 113 d |
+| NP6.1 | [Creation closed: Users can create agent blueprints set to No; agent app registrations routed to the blueprint path; consent baseline applied to agents](../books/b17-ai-identity/06-credentials-and-least-privilege.md#admin-consent-and-the-scuba-consent-baseline) | Task | Identity engineering | 3 | NPG0 | wk 4–5 | 102 d |
+| NP6.2 | [Production handshake: blueprint, sponsor, consent, Conditional Access coverage and placement confirmed; access through expiring access packages](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#creation) | Task | Identity engineering | 10 | D-NP6, NP6.1, NP1.2 | wk 7–9 | 90 d |
+| NP6.3 | [Agent credentials: managed identity as the blueprint credential, else federation, else a certificate; no secret on a production blueprint](../books/b17-ai-identity/06-credentials-and-least-privilege.md#no-stored-secrets) | Task | Identity engineering, with technical owners | 15 | NP6.2, NP3.1 | wk 9–12 | 90 d |
+| NP6.4 | [Agent least privilege: access mode chosen first; narrow inheritance, never allAllowed for app roles; no standing privileged role](../books/b17-ai-identity/06-credentials-and-least-privilege.md#privileged-roles-for-ai-none-standing) | Task | Identity engineering | 10 | NP6.2 | wk 9–11 | 95 d |
+| X-IG4 | [Mover and leaver automation proven (Identity Lifecycle plan, Gate 4)](identity-lifecycle.md) | External | ISSO (Identity Lifecycle & Provisioning plan) | — | — | end of wk 16 | 58 d |
+| NP6.5 | [Sponsorship tasks added to the HR-driven mover and leaver workflows; ten-business-day confirmation; human workflows kept off agents' user accounts](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves) | Task | Identity engineering | 10 | NP6.2, X-IG4 | wk 17–18 | 58 d |
+| NP6.6 | [Agent Conditional Access in report-only: block all agent identities except those approved by attribute; block high-risk agents (preview, watch item)](../books/b17-ai-identity/06-credentials-and-least-privilege.md#the-token-subject-decides-which-policy-applies) | Task | Identity engineering | 10 | NP6.2 | wk 9–11 | 95 d |
+| NP6.7 | [AI drift checks running: agentic system with no governed identity, shadow AI identity, no accountable human, credential added outside the pipeline](../books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md#drift-comparing-what-was-declared-with-what-is-observed) | Task | Security operations | 10 | NP6.2 | wk 9–11 | 95 d |
+| NPG6 | [Gate 6 — AI identities governed](../books/b17-ai-identity/10-evidence-and-authorization.md#the-evidence-an-authorizing-official-needs) | Gate | CISO | — | NP6.3, NP6.4, NP6.5, NP6.6, NP6.7 | end of wk 18 | 58 d |
 
 : Phase 6 — AI agents {.striped .hover}
 
@@ -243,13 +243,13 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| N7.1 | **[Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline](../books/b02-identity/10-migrating-and-governing.md#git-based-drift-detection)** | Task | Identity engineering | 10 | NG3 | wk 31–33 | 0 |
-| N7.2 | [A full review cycle: owners' quarterly permission review, sponsors' attestation, expiry-based recertification of agent access](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#recertification-expiry-is-the-review) | Task | Identity governance officer | 15 | NG4, NG6 | wk 25–27 | 28 d |
+| NP7.1 | **[Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline](../books/b02-identity/10-migrating-and-governing.md#git-based-drift-detection)** | Task | Identity engineering | 10 | NPG3 | wk 31–33 | 0 |
+| NP7.2 | [A full review cycle: owners' quarterly permission review, sponsors' attestation, expiry-based recertification of agent access](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#recertification-expiry-is-the-review) | Task | Identity governance officer | 15 | NPG4, NPG6 | wk 25–27 | 28 d |
 | X-D11 | [Provisional target end state: AD retired, or a dated Kerberos island (program D11)](program-master-schedule.md) | External | Executive sponsor and CIO (program) | — | — | end of wk 4 | 133 d |
-| N7.3 | **[gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date](../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)** | Task | Identity engineering | 15 | X-D11, NG3 | wk 31–34 | 0 |
-| X-G5 | [Program G5 — AD Retired](program-master-schedule.md) | External | Executive sponsor and CIO (program) | — | N7.3 | end of wk 48 | fixed date |
-| N7.4 | **[Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled](../books/guides/attribute-driven-migration.md#federal-requirements)** | Task | Identity governance officer | 5 | N7.1, N7.2 | wk 33–34 | 0 |
-| NG7 | **[Gate 7 — Steady state](../books/guides/attribute-driven-migration.md#non-person-identity-track)** | Gate | ISSO | — | N7.3, N7.4, NG5 | end of wk 34 | 0 |
+| NP7.3 | **[gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date](../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)** | Task | Identity engineering | 15 | X-D11, NPG3 | wk 31–34 | 0 |
+| X-G5 | [Program G5 — AD Retired](program-master-schedule.md) | External | Executive sponsor and CIO (program) | — | NP7.3 | end of wk 48 | fixed date |
+| NP7.4 | **[Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled](../books/guides/attribute-driven-migration.md#federal-requirements)** | Task | Identity governance officer | 5 | NP7.1, NP7.2 | wk 33–34 | 0 |
+| NPG7 | **[Gate 7 — Steady state](../books/guides/attribute-driven-migration.md#non-person-identity-track)** | Gate | ISSO | — | NP7.3, NP7.4, NPG5 | end of wk 34 | 0 |
 
 : Phase 7 — Steady state {.striped .hover}
 
@@ -266,20 +266,21 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Identity governance officer | 4 | — | — |
 | Identity engineering, with application owners | 3 | — | — |
 | Executive sponsor and CIO (program) | 2 | — | — |
-| Steward (program) | 2 | — | — |
 | Application owners (program) | 1 | — | — |
 | Authorizing official (program) | 1 | — | — |
 | CIO | — | 1 | — |
 | CIO, with the Chief AI Officer | — | 1 | — |
-| ISSO (Data Platform plan) | 1 | — | — |
-| ISSO (Identity Lifecycle plan) | 1 | — | — |
-| Identity engineering (Privileged Access plan) | 1 | — | — |
+| ISSO (Data Platform Identity Transformation plan) | 1 | — | — |
+| ISSO (Identity Lifecycle & Provisioning plan) | 1 | — | — |
+| Identity engineering (Privileged Access & Administrative Identity plan) | 1 | — | — |
 | Identity engineering, with technical owners | 1 | — | — |
 | Identity engineering, with the Chief AI Officer's staff | 1 | — | — |
-| Identity governance officer (Privileged Access plan) | 1 | — | — |
+| Identity governance officer (Privileged Access & Administrative Identity plan) | 1 | — | — |
 | Security operations | 1 | — | — |
 | Server infrastructure | 1 | — | — |
 | Sponsoring offices, with the identity governance officer | 1 | — | — |
+| Steward (backup: executive sponsor; program) | 1 | — | — |
+| Steward (program) | 1 | — | — |
 
 : Ownership {.striped .hover}
 
@@ -295,12 +296,12 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 
 | Risk | Effect on the schedule | Response |
 |---|---|---|
-| Nobody will own a large share of the service accounts | Gate 1 waits, and every later phase with it | Treat an account nobody will own as a retirement candidate: disable it under the orphan rule and give the office 30 days to claim it (D-N2; [Book 04, Chapter 06](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps)) |
+| Nobody will own a large share of the service accounts | Gate 1 waits, and every later phase with it | Treat an account nobody will own as a retirement candidate: disable it under the orphan rule and give the office 30 days to claim it (D-NP2; [Book 04, Chapter 06](../books/b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps)) |
 | A stale account is retired on a guess | A quarterly or annual job fails; the wave is rolled back | Confirm stale leads against domain controller and Entra ID sign-in logs before retiring anything, and disable before deleting ([Book 02, Chapter 09](../books/b02-identity/09-building-the-entra-target.md#discovering-service-accounts)) |
 | A federated credential's subject is wrong | It's accepted at creation and fails only at token exchange, during cutover | Test each federated credential's token exchange before the parallel run starts ([Book 02, Chapter 09](../books/b02-identity/09-building-the-entra-target.md#workload-identity-federation)) |
 | Workload Conditional Access is assigned through a group | The policy reports as configured but isn't enforced for the service principal | Assign each service principal to the policy directly, and read the service principal sign-in logs in report-only ([Book 04, Chapter 05](../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities)) |
 | An AI agent's sponsor leaves and the transfer isn't confirmed | The agent keeps running with nobody accountable for it | Add the sponsorship tasks to the HR-driven mover and leaver workflows, and treat an unconfirmed transfer after ten business days as an orphaned agent ([Book 17, Chapter 05](../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves)) |
-| A gMSA is left behind when AD is retired | The workload loses its credential at domain controller demotion | Reconcile every gMSA and dMSA with the target end state (N7.3) before G5; a gMSA works only while AD is authoritative ([companion guide](../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)) |
+| A gMSA is left behind when AD is retired | The workload loses its credential at domain controller demotion | Reconcile every gMSA and dMSA with the target end state (NP7.3) before G5; a gMSA works only while AD is authoritative ([companion guide](../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)) |
 
 : Schedule risks {.striped .hover}
 
