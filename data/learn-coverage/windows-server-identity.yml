@@ -127,12 +127,13 @@ pages:
   ms_date: '2025-03-27'
   ms_topic: how-to
   description: Learn how to configure the Certificate Enrollment Web Service role service to enable secure certificate enrollment over HTTPS.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Certificate Enrollment Web Service / Policy Service: hardening and Intune certificate paths'
   workbook:
   - docs/books/b07-pki/03-hardening-what-stays.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/03-hardening-what-stays.md
 - path: WindowsServerDocs/identity/ad-cs/configure-certificate-path-validation-revocation-policy.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/configure-certificate-path-validation-revocation-policy
   title: Configure AIA and Path Validation in AD CS
@@ -140,12 +141,14 @@ pages:
   ms_date: '2026-08-17'
   ms_topic: how-to
   description: Configure AIA issuer-certificate retrieval and validate certificate-path and revocation endpoints on Windows Server 2025.
-  coverage: covered-uncited
+  coverage: cited
   note: AIA, CDP and path validation
   workbook:
   - docs/books/b07-pki/02-what-ad-cs-holds-up.md
   - docs/books/b07-pki/04-the-target-pki.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/02-what-ad-cs-holds-up.md
+  - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: WindowsServerDocs/identity/ad-cs/configure-govern-ca-policy-exit-modules.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/configure-govern-ca-policy-exit-modules
   title: Configure AD CS Policy and Exit Modules
@@ -153,12 +156,13 @@ pages:
   ms_date: '2026-08-17'
   ms_topic: how-to
   description: Safely configure and govern AD CS certification authority (CA) policy and exit modules, including a tested change and rollback process, on Windows Server 2025.
-  coverage: covered-uncited
+  coverage: cited
   note: NDES and policy/exit modules
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/03-hardening-what-stays.md
 - path: WindowsServerDocs/identity/ad-cs/configure-key-archival-recover-private-keys.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/configure-key-archival-recover-private-keys
   title: Configure AD CS key archival and key recovery
@@ -177,12 +181,13 @@ pages:
   ms_date: '2026-05-12'
   ms_topic: how-to
   description: Learn how to configure AD CS certificate templates to use ML-DSA post-quantum cryptography for code signing, TLS, and client authentication.
-  coverage: covered-uncited
+  coverage: cited
   note: ML-DSA / post-quantum in AD CS
   workbook:
   - docs/books/b07-pki/01-why-certificates-outlive-every-migration.md
   - docs/books/b07-pki/02-what-ad-cs-holds-up.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/02-what-ad-cs-holds-up.md
 - path: WindowsServerDocs/identity/ad-cs/configure-ml-dsa-certification-authority.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/configure-ml-dsa-certification-authority
   title: Configure a certification authority to use ML-DSA in Windows Server
@@ -214,11 +219,12 @@ pages:
   ms_date: '2025-05-15'
   ms_topic: how-to
   description: Guidance on how to configure individual software updates for automatic daily Root Certificate Updates, including certificate trust lists (CTLs)
-  coverage: covered-uncited
+  coverage: cited
   note: Trusted roots, disallowed certificates and trust distribution
   workbook:
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: WindowsServerDocs/identity/ad-cs/create-domain-user-account-ndes-service-account.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/create-domain-user-account-ndes-service-account
   title: Configure Network Device Enrollment Service to use a domain user account for Active Directory Certificate Services
@@ -226,12 +232,14 @@ pages:
   ms_date: '2023-04-03'
   ms_topic: how-to
   description: Learn how to configure a service account for the Network Device Enrollment Service (NDES) as a role service with certificates based on Simple Certificate Enrollment Protocol (SCEP)
-  coverage: covered-uncited
+  coverage: cited
   note: NDES and policy/exit modules
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/03-hardening-what-stays.md
+  - docs/books/b07-pki/06-device-and-user-certificates.md
 - path: WindowsServerDocs/identity/ad-cs/disable-weak-cryptographic-algorithms.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/disable-weak-cryptographic-algorithms
   title: Disable weak cryptographic algorithms in certificate validation on Windows and Windows Server
@@ -285,9 +293,10 @@ pages:
   ms_date: '2026-08-17'
   ms_topic: how-to
   description: Inspect certificate stores and safely import or export public certificates on Windows Server 2025, including user, computer, service, logical, and physical stores.
-  coverage: not-covered
+  coverage: cited
   note: 'Certificate store inspection/management on servers: not covered as a procedure'
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: WindowsServerDocs/identity/ad-cs/install-policy-module-network-device-enrollment-service.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/install-policy-module-network-device-enrollment-service
   title: Install a policy module with the Network Device Enrollment Service in Windows Server
@@ -295,12 +304,13 @@ pages:
   ms_date: '2025-03-27'
   ms_topic: how-to
   description: Learn how to install, configure, and uninstall a policy module with the Network Device Enrollment Service.
-  coverage: covered-uncited
+  coverage: cited
   note: NDES and policy/exit modules
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/06-device-and-user-certificates.md
 - path: WindowsServerDocs/identity/ad-cs/manage-certificate-templates.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/manage-certificate-templates
   title: Manage Certificate Templates in Windows Server
@@ -334,12 +344,13 @@ pages:
   ms_date: '2026-05-12'
   ms_topic: overview
   description: Learn about ML-DSA support in Active Directory Certificate Services (AD CS), including supported parameter sets, scenarios, and configuration guidance.
-  coverage: covered-uncited
+  coverage: cited
   note: ML-DSA / post-quantum in AD CS
   workbook:
   - docs/books/b07-pki/01-why-certificates-outlive-every-migration.md
   - docs/books/b07-pki/02-what-ad-cs-holds-up.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/01-why-certificates-outlive-every-migration.md
 - path: WindowsServerDocs/identity/ad-cs/monitor-ad-cs-health-enterprise-pki.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/monitor-ad-cs-health-enterprise-pki
   title: Monitor AD CS Health with Enterprise PKI
@@ -387,11 +398,13 @@ pages:
   ms_date: '2023-08-09'
   ms_topic: concept-article
   description: Use this article to understand PKI design considerations for the Active Directory Certificate Services Certification Authority role.
-  coverage: covered-uncited
+  coverage: cited
   note: PKI design
   workbook:
   - docs/books/b07-pki/04-the-target-pki.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/04-the-target-pki.md
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
 - path: WindowsServerDocs/identity/ad-cs/post-quantum-cryptography-overview.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/post-quantum-cryptography-overview
   title: Post-Quantum Cryptography in AD CS overview
@@ -411,12 +424,13 @@ pages:
   ms_date: '2025-03-13'
   ms_topic: how-to
   description: This article describes how to renew a root CA certificate with existing key pair, and renew a CA certificate with new key pair.
-  coverage: covered-uncited
+  coverage: cited
   note: Root CA renewal
   workbook:
   - docs/books/b07-pki/04-the-target-pki.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
 - path: WindowsServerDocs/identity/ad-cs/request-certificate-windows-server.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/request-certificate-windows-server
   title: Request Certificates Using Web Enrollment in Active Directory Certificate Services
@@ -450,12 +464,13 @@ pages:
   ms_date: '2023-09-04'
   ms_topic: how-to
   description: Learn how to retrieve the current base and delta certificate revocation lists (CRLs) using Certification Authority Web Enrollment role service in Windows Server
-  coverage: covered-uncited
+  coverage: cited
   note: CRL publication and retrieval
   workbook:
   - docs/books/b07-pki/02-what-ad-cs-holds-up.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
 - path: WindowsServerDocs/identity/ad-cs/review-dispose-pending-certificate-requests.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/review-dispose-pending-certificate-requests
   title: Manage Pending Certificate Requests in AD CS
@@ -490,12 +505,14 @@ pages:
   ms_date: '2026-08-17'
   ms_topic: how-to
   description: Keep AD CS Online Responders protected and available on Windows Server 2025 by managing OCSP signing certificates, renewal, monitoring, and scale-out.
-  coverage: covered-uncited
+  coverage: cited
   note: Online Responder (OCSP) hardening and scale
   workbook:
   - docs/books/b07-pki/02-what-ad-cs-holds-up.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/02-what-ad-cs-holds-up.md
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
 - path: WindowsServerDocs/identity/ad-cs/submit-pkcs-certificate-request.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/submit-pkcs-certificate-request
   title: 'Submit certificate requests to AD CS using a PKCS #10 or PKCS #7 file in Windows Server'
@@ -503,12 +520,14 @@ pages:
   ms_date: '2023-09-09'
   ms_topic: how-to
   description: 'Learn how to submit a certificate in CA Web Enrollment role service by using a PKCS #10 file or a PKCS #7 file in Windows Server'
-  coverage: covered-uncited
+  coverage: cited
   note: Certificate request and enrollment paths
   workbook:
   - docs/books/b07-pki/03-hardening-what-stays.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/04-the-target-pki.md
+  - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: WindowsServerDocs/identity/ad-cs/use-policy-module-with-network-device-enrollment-service.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/use-policy-module-with-network-device-enrollment-service
   title: Use a policy module with Network Device Enrollment Service
@@ -516,12 +535,13 @@ pages:
   ms_date: '2025-02-06'
   ms_topic: how-to
   description: Learn about the policy module and how it works. Understand how to install and uninstall the policy module for the Network Device Enrollment Service.
-  coverage: covered-uncited
+  coverage: cited
   note: NDES and policy/exit modules
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/06-device-and-user-certificates.md
 - path: WindowsServerDocs/identity/ad-ds/32k-pages-optional-feature.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/32k-pages-optional-feature
   title: Database 32k pages for Active Directory on Windows Server
@@ -830,9 +850,10 @@ pages:
   ms_date: '2026-07-16'
   ms_topic: how-to
   description: Learn how to enable Security Account Manager (SAM) client event logging and tracing to diagnose SAM client activity in Windows 11.
-  coverage: not-covered
+  coverage: cited
   note: SAM client event logging (detecting SAM-R enumeration) not covered
-  cited_by: []
+  cited_by:
+  - docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.md
 - path: WindowsServerDocs/identity/ad-ds/get-started/adac/active-directory-recycle-bin.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/active-directory-recycle-bin
   title: Enable Active Directory Recycle Bin in Windows Server
@@ -1025,11 +1046,12 @@ pages:
   ms_date: '2025-08-26'
   ms_topic: concept-article
   description: This article describes the permissions required in Active Directory to successfully join computers to a Windows Server domain using a new computer account or an existing account.
-  coverage: covered-uncited
+  coverage: cited
   note: Domain join and its permissions in the device chapters
   workbook:
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/02-the-hybrid-join-trap.md
 - path: WindowsServerDocs/identity/ad-ds/manage/AD-DS-Simplified-Administration.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/ad-ds-simplified-administration
   title: AD DS Simplified Administration
@@ -1100,12 +1122,15 @@ pages:
   ms_date: '2023-05-16'
   ms_topic: how-to
   description: 'Learn more about: CA Backup and Restore Windows PowerShell cmdlets'
-  coverage: covered-uncited
+  coverage: cited
   note: CA backup and restore
   workbook:
   - docs/books/b07-pki/03-hardening-what-stays.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/03-hardening-what-stays.md
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
+  - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: WindowsServerDocs/identity/ad-ds/manage/component-updates/Command-line-process-auditing.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/command-line-process-auditing
   title: Command line process auditing
@@ -1113,10 +1138,8 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: Command line process auditing'
-  coverage: covered-uncited
-  note: Process-creation command-line auditing in the GPO crosswalk
-  workbook:
-  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
+  coverage: not-covered
+  note: Process-creation and command-line auditing isn't discussed in the workbook; the earlier Book 05 Ch08 mapping was wrong (Learn gaps pass, Nov 9, 2026)
   cited_by: []
 - path: WindowsServerDocs/identity/ad-ds/manage/component-updates/Directory-Services-component-updates.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/directory-services-component-updates
@@ -1168,9 +1191,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: 'Learn more about: TPM Key Attestation'
-  coverage: not-covered
+  coverage: cited
   note: TPM key attestation for certificates is only mentioned in device chapters
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/06-device-and-user-certificates.md
 - path: WindowsServerDocs/identity/ad-ds/manage/component-updates/Winlogon-Automatic-Restart-Sign-On--ARSO-.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/winlogon-automatic-restart-sign-on--arso-
   title: Winlogon automatic restart sign-on (ARSO)
@@ -1655,12 +1679,13 @@ pages:
   ms_date: '2025-07-10'
   ms_topic: how-to
   description: Learn how to back up, restore, migrate, and copy Group Policy Objects by using the Group Policy Management Console in Windows.
-  coverage: covered-uncited
+  coverage: cited
   note: GPO backup/export before migration
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b19-developer-workbook/06-group-policy-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/ad-ds/manage/group-policy/group-policy-management-console.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-management-console
   title: Group Policy Management Console in Windows
@@ -2119,6 +2144,7 @@ pages:
   cited_by:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: WindowsServerDocs/identity/ad-ds/plan/Assigning-Domain-Names.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/assigning-domain-names
   title: Assigning Domain Names
@@ -2660,12 +2686,15 @@ pages:
   ms_date: '2025-05-29'
   ms_topic: concept-article
   description: The Advanced Audit Policy Configuration settings in Group Policy allows admins to specify which security events are audited on Windows systems for tracking activities, security monitoring, and incident detection.
-  coverage: covered-uncited
+  coverage: cited
   note: Advanced audit policy in the GPO crosswalk and CA auditing
   workbook:
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
+  - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
+  - docs/books/b07-pki/03-hardening-what-stays.md
 - path: WindowsServerDocs/identity/ad-ds/plan/security-best-practices/Appendices.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/appendices
   title: Appendices
@@ -2790,12 +2819,13 @@ pages:
   ms_date: '2025-06-13'
   ms_topic: best-practice
   description: This article provides guidance on Windows audit policy settings, baseline recommendations, and advanced options for both workstations and Windows servers.
-  coverage: covered-uncited
+  coverage: cited
   note: Advanced audit policy in the GPO crosswalk and CA auditing
   workbook:
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b07-pki/03-hardening-what-stays.md
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: WindowsServerDocs/identity/ad-ds/plan/security-best-practices/Avenues-to-Compromise.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/avenues-to-compromise
   title: Avenues to Compromise
@@ -2873,6 +2903,7 @@ pages:
   cited_by:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: WindowsServerDocs/identity/ad-ds/plan/security-best-practices/Planning-for-Compromise.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/planning-for-compromise
   title: Planning for compromise
@@ -2912,6 +2943,7 @@ pages:
   cited_by:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
+  - docs/books/b12-security-operations/03-identity-telemetry.md
 - path: WindowsServerDocs/identity/ad-ds/plan/Selecting-the-Forest-Root-Domain.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain
   title: Selecting the Forest Root Domain
@@ -4439,12 +4471,14 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: how-to
   description: Learn about the Active Directory Federation Services (AD FS) Rapid Restore tool and restore AD FS data without a full backup or export an AD FS configuration.
-  coverage: covered-uncited
+  coverage: cited
   note: AD FS farm backup (Rapid Restore) before conversion
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/07-coexistence-and-migration.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/06-device-and-user-certificates.md
+  - docs/books/b07-pki/07-coexistence-and-migration.md
 - path: WindowsServerDocs/identity/ad-fs/operations/ad-fs-single-sign-on-settings.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/operations/ad-fs-single-sign-on-settings
   title: AD FS 2016 Single Sign On Settings
@@ -4744,11 +4778,12 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: how-to
   description: Learn how to enable and troubleshoot user certificate authentication as an intranet or extranet authentication method in Active Directory Federation Services.
-  coverage: covered-uncited
+  coverage: cited
   note: AD FS certificate authentication and its migration to Entra CBA
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/06-device-and-user-certificates.md
 - path: WindowsServerDocs/identity/ad-fs/operations/Configure_Claim_Rules.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/operations/configure_claim_rules
   title: Configure Claims Rules in AD FS
@@ -5018,12 +5053,13 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: how-to
   description: List of downloadable tools that were previously made available through the Active Directory Federation Services Help site.
-  coverage: covered-uncited
+  coverage: cited
   note: AD FS farm backup (Rapid Restore) before conversion
   workbook:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/07-coexistence-and-migration.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/06-device-and-user-certificates.md
 - path: WindowsServerDocs/identity/ad-fs/operations/Remove-the-Microsoft-copyright.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/operations/remove-the-microsoft-copyright
   title: Remove the Microsoft copyright
@@ -5541,9 +5577,10 @@ pages:
   ms_date: '2019-05-30'
   ms_topic: how-to
   description: 'Learn more about: Upgrading AD RMS to Windows Server 2016'
-  coverage: not-covered
+  coverage: cited
   note: 'AD RMS upgrade/migration: workbook covers Azure RMS/Purview labels only; AD RMS exit not covered'
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/09-data-protection-and-classification.md
 - path: WindowsServerDocs/identity/Additional-Resources_12.md
   url: https://learn.microsoft.com/windows-server/identity/additional-resources_12
   title: Additional Resources
@@ -5571,13 +5608,14 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: Documents account management modes for Windows Local Administrator Password Solution (Windows LAPS).
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-concepts-overview.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-overview
   title: Windows LAPS architecture
@@ -5585,13 +5623,15 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: Documents basic design concepts for Windows Local Administrator Password Solution (Windows LAPS).
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/06-who-owns-the-endpoint.md
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-concepts-passwords-passphrases.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-passwords-passphrases
   title: Windows LAPS passwords and passphrases
@@ -5599,13 +5639,14 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: Documents password and passphrase details for Windows Local Administrator Password Solution (Windows LAPS).
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-faq.yml
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-faq
   title: Windows LAPS frequently asked questions
@@ -5613,13 +5654,15 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: faq
   description: Get answers to frequently asked questions about Windows LAPS.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
+  - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
 - path: WindowsServerDocs/identity/laps/laps-management-event-log.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-management-event-log
   title: Use Windows LAPS event logs
@@ -5627,13 +5670,14 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: Learn about key events in Windows Local Administrator Password Solution (Windows LAPS) and how to view the logs.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-management-policy-settings.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-management-policy-settings
   title: Configure Policy Settings for Windows LAPS
@@ -5652,13 +5696,14 @@ pages:
   ms_date: '2025-05-06'
   ms_topic: concept-article
   description: Explore Windows LAPS PowerShell cmdlets to manage passwords securely. Learn key features, benefits, and usage.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-management-user-interface.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-management-user-interface
   title: Set up Windows LAPS in the LAPS properties dialog
@@ -5702,13 +5747,15 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: get-started
   description: Learn how to get started with Windows Local Administrator Password Solution (Windows LAPS) in legacy Microsoft LAPS emulation mode.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
+  - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
 - path: WindowsServerDocs/identity/laps/laps-scenarios-migration.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-scenarios-migration
   title: Prepare for Windows Local Administrator Password Solution (LAPS) Deployment and Migration
@@ -5716,13 +5763,14 @@ pages:
   ms_date: '2025-05-16'
   ms_topic: how-to
   description: Prepare to deploy and migrate Windows Local Administrator Password Solution (Windows LAPS) with recommended scenarios. Start your migration today.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Windows LAPS: GPO-to-Intune migration and endpoint ownership'
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
-  cited_by: []
+  cited_by:
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-scenarios-windows-server-active-directory.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-scenarios-windows-server-active-directory
   title: Get started with Windows LAPS and Windows Server Active Directory

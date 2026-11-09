@@ -66,3 +66,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | so the control is satisfied for its real population and not only for the Windows slice. | so the control covers its real population and not only the Windows slice. | no source change |
+
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | `dsregcmd /status` shows hybrid join complete when `AzureAdJoined` and `DomainJoined` are both YES; the admin center's Registered column moves from Pending to a date | Step 3 (registration) | verified (added) | `c02-verify`, Learn, "Verify Microsoft Entra hybrid join," <https://learn.microsoft.com/entra/identity/devices/how-to-hybrid-join-verify> (read 2026-11-09) |
+| L2 | The right to create computer accounts is delegated per OU or container | Classic AD governance paragraph | verified (added) | `c02-join-perms`, Learn, "Active Directory domain join permissions," Scenario 1 (read 2026-11-09) |
