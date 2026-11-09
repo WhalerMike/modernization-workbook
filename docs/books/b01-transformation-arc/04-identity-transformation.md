@@ -68,7 +68,7 @@ The four mechanisms apply mostly to the first two tracks: dynamic groups hold us
 
 ### Where this ends
 
-The goal is that every person, device, server and workload is governed by attributes that are true, owned by exactly one source, and read by policy. Joining, moving and leaving then change access automatically, with no ticket and no hand-edited group; delegation and policy follow facts about the object, not its place in a folder tree; every non-person identity has a named owner and a credential that expires or is managed; every access decision leaves evidence; and Active Directory can be reduced and retired without losing any of the four jobs the OU tree did. The companion guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes) sets out how the program knows each track is there *(design guidance)*. Among the federal requirements, this work supports account management (NIST SP 800-53 AC-2) for people and inventory and configuration (CM-8, CM-2, CM-6) for devices and servers, in the program's mapping in [Appendix A](appendix-a-requirements-mapping.md#requirements-mapping).
+The goal is that every person, device, server and workload is governed by attributes that are true, owned by exactly one source, and read by policy. Joining, moving and leaving then change access automatically, with no ticket and no hand-edited group; delegation and policy follow facts about the object, not its place in a folder tree; every non-person identity has a named owner and a credential that expires or is managed; every access decision leaves evidence; and Active Directory can be reduced and retired without losing any of the four jobs the OU tree did.[^c04-ad-min] The companion guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes) sets out how the program knows each track is there *(design guidance)*. Among the federal requirements, this work supports account management (NIST SP 800-53 AC-2) for people and inventory and configuration (CM-8, CM-2, CM-6) for devices and servers, in the program's mapping in [Appendix A](appendix-a-requirements-mapping.md#requirements-mapping).
 
 ## Organizational attributes
 
@@ -240,7 +240,7 @@ Every finding opens a tracked item with defined response expectations. [Book 03,
 
 ## Migration phases
 
-Moving an existing forest into the attribute-driven model is a phased runbook, not a flag-day cutover. They are the identity workstream's own phases, numbered within the workstream; [Chapter 12](12-migration-roadmap.md) places them in the program roadmap, whose phases are numbered separately (identity steady state arrives with the program's Phase 6), and [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) carries the identity migration in detail, under its own eleven-phase playbook numbered 0 to 10.
+Moving an existing forest into the attribute-driven model is a phased runbook, not a flag-day cutover.[^c04-road] They are the identity workstream's own phases, numbered within the workstream; [Chapter 12](12-migration-roadmap.md) places them in the program roadmap, whose phases are numbered separately (identity steady state arrives with the program's Phase 6), and [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) carries the identity migration in detail, under its own eleven-phase playbook numbered 0 to 10.
 
 ### Phase 0: assessment
 
@@ -264,7 +264,7 @@ Once every user has organizational attributes and every OU has a dynamic-group e
 
 ### Phase 5: steady state
 
-The daily assessment produces zero-action plans and the drift engine reports green. The forest may remain for a while (for DNS, DHCP, Kerberos-bound legacy applications, and as the source of synchronized attributes until HR-to-Entra provisioning writes them directly), but it is no longer the governance model. Chapters [06](06-network-services.md) and [07](07-compute-transformation.md) remove those remaining dependencies.
+The daily assessment produces zero-action plans and the drift engine reports green. The forest may remain for a while (for DNS, DHCP, Kerberos-bound legacy applications, and as the source of synchronized attributes until HR-to-Entra provisioning writes them directly)[^c04-establish], but it is no longer the governance model. Chapters [06](06-network-services.md) and [07](07-compute-transformation.md) remove those remaining dependencies.
 
 ## Verification
 
@@ -321,3 +321,6 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c04-passticket]: IBM Documentation, *CICS Transaction Server 5.4*, "Generating and using PassTickets for secure sign-on," <https://www.ibm.com/docs/en/SSGMCP_5.4.0/security/cics/dfht516.html> (accessed Oct 21, 2026).
 [^c04-hr]: Microsoft Learn, "Plan cloud HR application to Microsoft Entra user provisioning," <https://learn.microsoft.com/entra/identity/app-provisioning/plan-cloud-hr-provision> (accessed Oct 21, 2026).
 [^c04-lcw]: Microsoft Learn, "What are lifecycle workflows?," section "License requirements," <https://learn.microsoft.com/entra/id-governance/what-are-lifecycle-workflows> (accessed Oct 21, 2026).
+[^c04-ad-min]: Microsoft Learn, "Active Directory minimization case studies" (reducing dependency on on-premises Active Directory by moving identity and device management to the cloud), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-ad-minimization> (accessed Nov 9, 2026).
+[^c04-road]: Microsoft Learn, "Road to the cloud: Introduction," section "The AD minimization journey" (five stages from Cloud Attached to Cloud Only, with users and groups, applications and devices moving independently), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-introduction> (accessed Nov 9, 2026).
+[^c04-establish]: Microsoft Learn, "Establish a Microsoft Entra footprint," section "Required tasks" (hybrid identity synchronization with Microsoft Entra Connect or Connect cloud sync), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-establish> (accessed Nov 9, 2026).

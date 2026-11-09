@@ -60,6 +60,13 @@ Editor W4. Verified October 21, 2026. Sources: the series chapter as copied in (
 | 52 | Token access as part of interface consolidation; sequence by transaction type; validate per estate | Mainframe | restated-as-design | — |
 | 53 | Whitepaper framework-alignment rows for access (EO 14028, M-22-09 "§4", BOD 25-01, ZTMM) | Anchors table | corrected: M-22-09 has no §4 application-layer inspection requirement (networks section is DNS/HTTP encryption and isolation); rows rebuilt from verified sources | M-22-09 §III.C |
 | 54 | M-22-09: at least one device-level signal alongside identity | Anchors table | verified (new) | M-22-09 §III.A |
+| 55 | Global Secure Access unifies Internet Access (identity-centric secure web gateway) and Private Access (per-app access without a VPN) | SASE | verified | Microsoft Learn Global Secure Access documentation; Learn about Microsoft Entra Internet Access for all apps; Learn about Microsoft Entra Private Access, read Nov 9, 2026 |
+| 56 | ZTNA: client-routed traffic lets Conditional Access require compliance and MFA; forwarding profiles assigned to users and groups; Private Access apps targeted individually | SASE components table, ZTNA row | verified | Microsoft Learn Global Secure Access client overview; Global Secure Access traffic forwarding profiles; Universal Conditional Access through Global Secure Access, read Nov 9, 2026 |
+| 57 | Web filtering is assigned to users and groups through security profiles linked to Conditional Access | SASE components table, Secure Web Gateway row | verified | Microsoft Learn Web filtering in Global Secure Access (V2), read Nov 9, 2026 |
+| 58 | CBA, FIDO2 keys, Windows Hello for Business and Authenticator are Entra ID passwordless methods | Phishing-resistant MFA | verified | Microsoft Learn Passwordless authentication with Microsoft Entra ID, read Nov 9, 2026 |
+| 59 | CAE needs both a CAE-capable service and client; Exchange Online, Teams and SharePoint Online support it | Continuous access evaluation | verified | Microsoft Learn Build resilience by using Continuous Access Evaluation, read Nov 9, 2026 |
+| 60 | Universal CAE revalidates Global Secure Access network access on Entra ID signals (account disabled, password reset, high user risk) without the application being CAE-capable (sentence added) | Continuous access evaluation | verified | Microsoft Learn Universal Continuous Access Evaluation, read Nov 9, 2026 |
+| 61 | Zero Trust network recommendations cover the Global Secure Access client, Internet Access forwarding, web filtering and Private Access apps | Validation | verified | Microsoft Learn Configure Microsoft Entra for Zero Trust: Protect networks, read Nov 9, 2026 |
 
 ## Carry-forward ledger
 

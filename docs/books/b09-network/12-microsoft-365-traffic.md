@@ -83,7 +83,7 @@ Microsoft documents three ways to signal tenant restrictions v2 (TRv2):[^c12-trv
 | Signaling path | Authentication plane | Data plane | Needs a proxy |
 |---|---|---|---|
 | Corporate proxy header injection | Yes | No | Yes; Microsoft supports decrypting sign-in URLs for header insertion as an exception to its no-inspection guidance |
-| Universal tenant restrictions through Global Secure Access | Yes, all platforms | Microsoft Graph only | No |
+| Universal tenant restrictions through Global Secure Access[^c12-utr] | Yes, all platforms | Microsoft Graph only | No |
 | Windows device (Group Policy or Microsoft Entra–managed) | Yes | Yes, including SharePoint Online and Exchange Online | No |
 
 Two common misreadings follow from that table.
@@ -148,3 +148,4 @@ The exemption covers Optimize traffic at the listed branch circuits and nothing 
 [^c12-inr]: Microsoft Learn, "Microsoft 365 informed network routing," <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide> (accessed Oct 21, 2026).
 [^c12-netconn]: Microsoft Learn, "Network connectivity in the Microsoft 365 Admin Center," <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide> (accessed Oct 21, 2026).
 [^c12-fr]: FedRAMP Marketplace dataset, Cisco ThousandEyes for Government (FR2523656707): FedRAMP Certified, Class C (Moderate), <https://www.fedramp.gov/marketplace/products.json> (accessed Oct 21, 2026).
+[^c12-utr]: Microsoft Learn, "Turn on Universal Tenant Restrictions" (applies tenant restrictions v2 to devices with the Global Secure Access client or on a remote network without a company-managed proxy; requires the Microsoft traffic profile), <https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions>; and "Tutorial: Configure universal tenant restrictions" (tags authentication-plane traffic for Microsoft Entra ID and Microsoft Graph), <https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-tenant-restrictions> (both accessed Nov 9, 2026).

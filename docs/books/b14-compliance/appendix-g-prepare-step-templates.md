@@ -233,7 +233,7 @@ You are helping our risk executive prepare an optional impact-level prioritizati
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix F — Categorization Walk-Through](appendix-f-categorization-walkthrough.md) · [Book index](index.md)
+[← Previous: Appendix F — Categorization Walk-Through](appendix-f-categorization-walkthrough.md) · [Book index](index.md) · [Next: Appendix H — Recovering Active Directory During the Hybrid Period →](appendix-h-ad-forest-recovery.md)
 :::
 
 [^aG-37]: National Institute of Standards and Technology, SP 800-37 Rev. 2, *Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy*, December 2018, Chapter 3, Tasks P-2 (including footnote 54), P-6 (including footnotes 61 to 63) and P-14 (including footnotes 67 and 68), <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf> (accessed Nov 6, 2026).

@@ -75,6 +75,7 @@ Writer: W5. Verified 2026-10-21. Sources: `docs/operational-guides/network-trans
 | 67 | AC-17 row ("posture consistent across in-office and remote") | Controls | removed | Folded into "From port to token"; IA-3 for remote devices met at the broker |
 | 68 | FedRAMP 20x KSI alignment (KSI-SVC, KSI-MLA, KSI-IAM; KSI-001..010; "29 rules") | — | removed | Series-internal decomposition, not a FedRAMP fact; out of scope for the workbook chapter |
 | 69 | Cloud PKI licensing (Intune Suite add-on) | — | removed | Book 07 owns licensing; linked instead |
+| 70 | With the NPS extension, NPS verifies the username and password in AD before the extension requests Entra MFA (VPN and RD Gateway flows) | The RADIUS server is the AD dependency | verified | Microsoft Learn Integrate your VPN infrastructure with Microsoft Entra multifactor authentication by using the NPS extension for Azure; Integrate your Remote Desktop Gateway infrastructure using the NPS extension and Microsoft Entra ID, read Nov 9, 2026 |
 
 ## 2. Carry-forward ledger
 

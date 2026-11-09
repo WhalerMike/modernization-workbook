@@ -63,6 +63,9 @@ Sources: the series chapter itself (`04-identity-transformation.md`, upgraded in
 | 55 | Review fix 2, Oct 21, 2026 (revision-history trim): "Earlier versions of this chapter assigned the Tier 1 reader roles at the enterprise unit" | Three-tier model | wording-only | Now "Assign the Tier 1 reader roles at tenant scope"; existing [^c04-au-roles] (see #19-20). No new claim. |
 | 56 | Review fix 2, Oct 21, 2026 (revision-history trim): "Earlier versions said the two controls together preserve what OU access-control lists provided; that overstated restriction" | Restricted management | wording-only | Now "Dynamic membership and restriction together don't recreate what OU access-control lists provided", the program's reading of the limits cited in [^c04-rmau] (see #26). No new claim. |
 | 57 | Review fix 3, Oct 21, 2026 (revision-history trim): removed "(The whitepaper also dated these capabilities and described commercial banks' adoption under open-banking mandates; those history claims weren't verified and are omitted.)" | At the mainframe boundary | wording-only | The omission stands; the note about it lives here now. No claim added. |
+| 58 | AD minimization: reducing dependency on on-premises AD by moving identity and device management to the cloud | Where this ends | verified | Microsoft Learn Active Directory minimization case studies, read Nov 9, 2026 |
+| 59 | The move from AD runs in stages (Cloud Attached to Cloud Only), not a flag-day cutover | Migration phases | verified | Microsoft Learn Road to the cloud: Introduction, read Nov 9, 2026 |
+| 60 | Hybrid identity synchronization (Connect or cloud sync) keeps AD as the attribute source while users are synced | Phase 5: steady state | verified | Microsoft Learn Establish a Microsoft Entra footprint, read Nov 9, 2026 |
 
 ## Carry-forward ledger
 
