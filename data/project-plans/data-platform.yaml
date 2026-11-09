@@ -89,7 +89,7 @@ tasks:
      criteria: "Every retain instance and target audited and placed in Category 1, 2 or 3 with its blockers; failover cluster instances treated as Category 3; the Phase A NTLM baseline ingested by compliance monitoring; the authentication standard set",
      source: "../books/b06-data-platform/08-reading-the-audit.md"}
   # ------------------------------------------------- Phase 2 — the pilot instance
-  - {id: X-ARC, kind: external, phase: 2, name: "Pilot servers connected through Arc with machine configuration applied (program P1.13)", ref: "program-master-schedule:P1.13", owner: "Platform teams (program)",
+  - {id: X-ARC, kind: external, phase: 2, name: "Pilot servers connected through Arc with machine configuration applied (program P1.13)", ref: "program-master-schedule:P1.13",
      late: "The pilot SQL Server host has no Arc pattern to follow, and the pilot waits",
      source: "program-master-schedule.md"}
   - {id: D2.1, phase: 2, name: "Pilot host on Arc: egress confirmed, onboarding service principal, managed-identity token validated, SQL Server extension deployed", dur: 5, after: [DG1, X-ARC], owner: "Server infrastructure",
@@ -110,7 +110,7 @@ tasks:
      criteria: "Arc agent Connected; token audience https://database.windows.net/; SQL Server extension Succeeded; Entra admin set; every application and job seen on its Entra login; no remote NTLM rows; no connection arriving only on a legacy Windows login",
      source: "../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#verification-checklist"}
   # ------------------------------------------------- Phase 3 — the estate: logins, NTLM restriction, access layer
-  - {id: X-G1, kind: external, phase: 3, name: "G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced (program)", ref: "program-master-schedule:G1", owner: "Steward (program)",
+  - {id: X-G1, kind: external, phase: 3, name: "G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced (program)", ref: "program-master-schedule:G1",
      late: "The DBA administrative unit and the SQL group logins have no foundation to build on",
      source: "program-master-schedule.md"}
   - {id: D3.1, phase: 3, name: "DBA administrative unit with restricted management; Groups Administrator scoped to it, eligible through PIM", dur: 3, after: [X-G1, DG1], owner: "Identity engineering",
@@ -121,7 +121,7 @@ tasks:
      source: "../books/b06-data-platform/11-three-principal-types.md#the-parallel-run-migration-pattern"}
   - {id: D3.4, phase: 3, name: "Phase B, step 1: SPNs registered and collisions repaired, linked-server passthrough replaced, LM and NTLMv1 refused", dur: 20, after: [DG1], owner: "Data platform team",
      source: "../books/b06-data-platform/r06-ntlm-detection-and-remediation.md#phase-2-remediation-review-required-patterns"}
-  - {id: X-D08, kind: external, phase: 3, name: "End dates for legacy authentication and NTLM (program D08)", ref: "program-master-schedule:D08", owner: "Authorizing official (program)",
+  - {id: X-D08, kind: external, phase: 3, name: "End dates for legacy authentication and NTLM (program D08)", ref: "program-master-schedule:D08",
      late: "Phase B's deny step and the Phase C block have no date to plan against",
      source: "program-master-schedule.md"}
   - {id: D-D6, kind: decision, phase: 3, name: "Move Restrict NTLM from audit to deny, with exceptions from the Phase A baseline", after: [D3.4, X-D08], owner: "Authorizing official",
@@ -153,7 +153,7 @@ tasks:
   - {id: DG4, kind: gate, phase: 4, name: "Gate 4 — Application chain on Entra principals", after: [D4.3, D4.4], owner: "ISSO",
      criteria: "Every application in Classes 1 to 3 connects as its Entra principal, with no NTLM or KERBEROS rows; every Class 4 or deferred application's host instance carries a dated exception; no stored secret left in a production connection string outside a documented exception",
      source: "../books/b06-data-platform/r08-application-chain-and-connection-strings.md#verification-and-rollback"}
-  - {id: X-P46, kind: external, phase: 4, name: "AD-bound service principal names migrated, retired or islanded (program P4.6)", ref: "program-master-schedule:P4.6", after: [DG4], owner: "Application owners (program)",
+  - {id: X-P46, kind: external, phase: 4, name: "AD-bound service principal names migrated, retired or islanded (program P4.6)", ref: "program-master-schedule:P4.6", after: [DG4],
      late: "SQL Server's applications still hold Windows-authenticated connections when the program measures AD authentication for G4",
      source: "program-master-schedule.md"}
   # ------------------------------------------------- Phase 5 — elimination, closure and certificates

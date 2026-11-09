@@ -91,8 +91,8 @@
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward</Contact>
-      <Notes>Owner or approver: Steward
+      <Contact>Steward (backup: executive sponsor; program)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor; program)
 If decided late: The questionnaire should land before it; its answers feed the program's planning
 Source: ../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#why-the-questionnaire-comes-first</Notes>
       <ConstraintType>4</ConstraintType>
@@ -706,8 +706,8 @@ Source: ../books/b14-compliance/02-the-federal-clock.md#the-dates-still-ahead</N
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward</Contact>
-      <Notes>Owner or approver: Steward
+      <Contact>Steward (program)</Contact>
+      <Notes>Owner or approver: Steward (program)
 If decided late: The register's G1 re-verification moves with it
 Source: ../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock</Notes>
       <ConstraintType>4</ConstraintType>
@@ -807,8 +807,8 @@ Source: ../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Continuous Monitoring project</Contact>
-      <Notes>Owner or approver: Continuous Monitoring project
+      <Contact>CISO (Continuous Monitoring &amp; Evidence Fabric plan)</Contact>
+      <Notes>Owner or approver: CISO (Continuous Monitoring &amp; Evidence Fabric plan)
 If decided late: Supply chain records have no contract to emit to
 Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
       <ConstraintType>4</ConstraintType>
@@ -944,8 +944,8 @@ Source: ../books/b14-compliance/07-supply-chain-risk-management.md#supplier-disc
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Continuous Monitoring project</Contact>
-      <Notes>Owner or approver: Continuous Monitoring project
+      <Contact>CISO (Continuous Monitoring &amp; Evidence Fabric plan)</Contact>
+      <Notes>Owner or approver: CISO (Continuous Monitoring &amp; Evidence Fabric plan)
 If decided late: Supply chain findings can't appear in a generated POA&amp;M; Gate 4 waits
 Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
       <ConstraintType>4</ConstraintType>
