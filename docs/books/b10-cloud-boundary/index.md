@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 10 — Cloud Boundary & Landing Zone: What the Boundary Lets You Use {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book replaces the workbook's Boundary Impact Model, the cloud boundary case studies, the FedRAMP 20x feature-gap whitepaper, the Google Workspace collaboration path, the cloud modernization spec and the platform host's Git server interface paper. Every external claim was checked against a primary source from October 20, 2026 and carries a footnote with its date. The earlier pages are kept in the repository's [`archive/b10-cloud-boundary/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b10-cloud-boundary) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's Boundary Impact Model, the cloud boundary case studies, the FedRAMP 20x feature-gap whitepaper, the Google Workspace collaboration path, the cloud modernization spec and the platform host's Git server interface paper. Every external claim was checked against a primary source from October 20, 2026 and carries a footnote with its date. The earlier pages are kept in the repository's [`archive/b10-cloud-boundary/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b10-cloud-boundary) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

@@ -7,7 +7,7 @@ family: b02-identity
 book: B02
 part: Appendix
 series-order: 91
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

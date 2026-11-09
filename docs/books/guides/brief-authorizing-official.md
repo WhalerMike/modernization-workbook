@@ -5,7 +5,7 @@ description: "A one-page brief for the authorizing official: every risk the prog
 doc-type: workbook-guide
 audience: [Executive, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

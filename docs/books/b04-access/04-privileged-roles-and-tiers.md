@@ -7,7 +7,7 @@ family: b04-access
 book: B04
 part: What
 series-order: 4
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

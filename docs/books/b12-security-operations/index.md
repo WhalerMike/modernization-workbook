@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 12 — Security Operations & Telemetry: You Can't Defend What You Can't See {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book replaces the workbook's three-part SIEM telemetry emission guide and its telemetry specification, and draws on the Security Operations volumes of the Federal Compliance series, which stay in the repository for control-level depth. External claims were checked against primary sources beginning October 21, 2026; each carries a note with its own check date. The replaced pages are kept in the repository's [`archive/b12-security-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b12-security-operations) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book replaces the workbook's three-part SIEM telemetry emission guide and its telemetry specification, and draws on the Security Operations volumes of the Federal Compliance series, which stay in the repository for control-level depth. External claims were checked against primary sources beginning October 21, 2026; each carries a note with its own check date. The replaced pages are kept in the repository's [`archive/b12-security-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b12-security-operations) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

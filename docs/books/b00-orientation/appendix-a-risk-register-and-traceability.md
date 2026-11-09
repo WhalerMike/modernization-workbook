@@ -7,7 +7,7 @@ family: b00-orientation
 book: B00
 part: Appendix
 series-order: 90
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

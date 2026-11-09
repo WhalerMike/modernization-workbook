@@ -24,8 +24,8 @@ lifecycle_review: 2027-04-01
 # Book 02 — Identity & Directory: Active Directory to Entra ID {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book consolidates twenty-two earlier workbook pages on identity and directory modernization (whitepapers, operational guides, reference architecture, learning pages and framing case studies) into one ordered book. Every external claim was first checked against a primary source on October 20, 2026 and carries a footnote; later checks are dated in the footnotes. The earlier pages are kept in the repository's [`archive/b02-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b02-identity) folder, and their old addresses forward to the chapters that replaced them.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book consolidates twenty-two earlier workbook pages on identity and directory modernization (whitepapers, operational guides, reference architecture, learning pages and framing case studies) into one ordered book. Every external claim was first checked against a primary source on October 20, 2026 and carries a footnote; later checks are dated in the footnotes. The earlier pages are kept in the repository's [`archive/b02-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b02-identity) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
 ::: {.callout-tip}

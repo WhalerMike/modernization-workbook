@@ -7,7 +7,7 @@ family: b02-identity
 book: B02
 part: Why
 series-order: 2
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

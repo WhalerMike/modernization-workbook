@@ -5,7 +5,7 @@ description: "A one-page brief for the CISO: why orphaned accounts come from the
 doc-type: workbook-guide
 audience: [Executive, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

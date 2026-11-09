@@ -6,7 +6,7 @@ audience: [Technical]
 family: dw-privileged-access
 part: How
 series-order: 5
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

@@ -7,7 +7,7 @@ family: b13-governance
 book: B13
 part: How
 series-order: 13
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

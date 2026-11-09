@@ -4,7 +4,7 @@ description: "Where Ansible fits in a federal modernization program beside Intun
 doc-type: workbook-guide
 audience: [Executive, Technical, Customer]
 family: guides
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

@@ -7,7 +7,7 @@ family: b08-ddi
 book: B08
 part: What
 series-order: 7
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

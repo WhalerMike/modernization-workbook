@@ -7,7 +7,7 @@ family: b05-devices
 book: B05
 part: What
 series-order: 3
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01

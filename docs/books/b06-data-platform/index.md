@@ -25,8 +25,8 @@ lifecycle_review: 2027-04-01
 # Book 06 — Data Platform: SQL Server Identity {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book is the former SQL Server Identity Transformation narrative series and its Implementation Companion, combined into one ordered book that reads Why / What / Who / How, with a new chapter on who owns the data platform. Every external claim was checked against a primary source on or after October 20, 2026 and carries a footnote that gives its date. The previous pages are kept in the repository's [`archive/b06-data-platform/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b06-data-platform) folder, and their old addresses forward here. The old Word download names still work.
+## Status — baseline book
+This book is part of Release 2.0, the workbook's baseline edition: it is complete, checked against every other book and approved by the workbook's editor, and later changes are tracked against Release 2.0. Baseline is not a claim of independent peer review ([Status labels](../../about/sources-and-verification.md#status-labels)). This book is the former SQL Server Identity Transformation narrative series and its Implementation Companion, combined into one ordered book that reads Why / What / Who / How, with a new chapter on who owns the data platform. Every external claim was checked against a primary source on or after October 20, 2026 and carries a footnote that gives its date. The previous pages are kept in the repository's [`archive/b06-data-platform/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b06-data-platform) folder, and their old addresses forward here. The old Word download names still work.
 :::
 
 ::: {.callout-tip}

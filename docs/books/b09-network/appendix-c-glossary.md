@@ -7,7 +7,7 @@ family: b09-network
 book: B09
 part: Appendix
 series-order: 92
-status: draft
+status: baseline
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
