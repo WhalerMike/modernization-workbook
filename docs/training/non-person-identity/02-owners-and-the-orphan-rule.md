@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04, 17"
 series-order: 2
 review-status: approved
-reviewed-sha256: 28e34d95728e906feb949c8af3d0267e45420c7477912cae52205ec99e098450
-last-reviewed: 2026-11-07
+reviewed-sha256: 9a9744eeb1ef89a3e4109efc1f35f36ce6bd3078453ee0ca3e0802055963ceb0
+last-reviewed: 2026-11-09
 ---
 # Module 2: Owners, sponsors and the orphan rule {.unnumbered}
 
