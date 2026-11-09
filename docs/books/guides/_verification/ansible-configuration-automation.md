@@ -151,3 +151,11 @@ The guide was reframed for FedRAMP Moderate civilian agencies. "STIG content" be
 | Before | After | Source |
 |---|---|---|
 | Footnote ans-80053 listed IA-5 | IA-5 dropped; the evidence table has no IA-5 row | NIST SP 800-53 Rev. 5 (no source change) |
+
+## Source watch follow-up, November 9, 2026
+
+| Before | After | Source |
+|---|---|---|
+| Linux and Unix: listed Linux releases lose new agent versions "after November 2026" (row 2; RHEL 7 then dated February 2027) | Those releases plus RHEL 7 reached the end of new agent version support in October 2026, final compatible agent 1.69, serviced for 12 months | Microsoft Learn, "Connected Machine agent prerequisites," re-read Nov 9, 2026: "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation" |
+| Quote "If an OS version isn't listed, it's not supported." | The page no longer says this; replaced with its current sentence, "Operating system versions not listed in either table aren't supported by Azure Arc." | Same page, "Supported operating systems" |
+| 20 Ansible documentation footnote links under `docs.ansible.com/ansible/latest/` | Moved to `docs.ansible.com/projects/ansible/latest/` (same path after the prefix); each old address checked with `curl -sIL` on Nov 9, 2026 and redirects to the new one with HTTP 200. No anchors in these links. Accessed dates kept, as the content wasn't re-read. No Source Register row uses these addresses | docs.ansible.com redirects |
