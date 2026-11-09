@@ -29,7 +29,9 @@ have to reconcile "missing" GPOs against an external inventory.
 
 | Artifact | Version | SHA256 |
 |---|---|---|
-| `Invoke-GpoObsoleteAudit.ps1` | 1.0 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` |
+| `Invoke-GpoObsoleteAudit.ps1` | 1.1 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` (v1.0 base; no v1.1 hash is recorded) |
+
+This workbook's repository does not contain `Invoke-GpoObsoleteAudit.ps1`, and the [Downloads](../../downloads.md) page lists no CLI kit that includes it. Treat the page as a description of the script's design and output.
 
 Verify integrity after download:
 
@@ -84,8 +86,7 @@ processed.
 
 ### FMP.ConfigTools integration
 
-When the `FMP.ConfigTools` shared module (included in `fmp-cli.zip` under
-`scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
+When the `FMP.ConfigTools` shared module (not published in this workbook) is installed, the script uses it for structured
 coloured output and optional transcript logging. If the module is absent, the
 script falls back to plain `Write-Host` — no hard dependency.
 
@@ -259,7 +260,7 @@ $findings.Rules |
 | Field | Value |
 |---|---|
 | Script version | 1.1 |
-| Script SHA256 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` (v1.0 base) |
+| Script SHA256 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` (v1.0 base; the same hash as the Download table) |
 | Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
 | Output | JSON array; stdout by default, file via `-OutputPath` |
 | Optional module | `FMP.ConfigTools` v1.2.0 (prereq validation + transcript logging) |

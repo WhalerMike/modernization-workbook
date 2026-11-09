@@ -15,7 +15,7 @@ lifecycle_review: 2026-11-22
 # Modernization {.unnumbered}
 
 ::: {.callout-tip}
-## Download the full section
+## About this section
 These guides are the operational home of **OrgMod — Organizational
 Modernization**, one of the operational expressions of the Federal Modernization Program
 substrate (alongside Compliance, which proves
@@ -23,7 +23,6 @@ compliance, and OrgLink, which governs external interconnection) —
 adoptable together or entirely independently. The
 OrgMod hub is the pillar's front door.
 
-**[operational-guides-bundle.docx](../../downloads/operational-guides-bundle.docx)** — every page in this section (all sub-categories) concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ::: {.callout-note title="One sub-section here belongs to a sibling pillar"}
@@ -51,8 +50,8 @@ domain-joined devices — and governs its replacement in the Hybrid-Cloud
 target surface of Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust.
 
 ::: {.callout-note title="Narrative entry point"}
-New here? Start with Client-Server to Hybrid-Cloud
-— the 11-chapter narrative series that walks the full transformation arc,
+New here? Start with [Book 01, The Transformation Arc: Client-Server to Hybrid Cloud](../books/b01-transformation-arc/index.md)
+— the narrative series that walks the full transformation arc,
 from AD's hidden governance surface to the Hybrid-Cloud access plane.
 :::
 
@@ -86,7 +85,7 @@ inside one of them:
 
 ## Flagship narrative
 
-- Client-Server to Hybrid-Cloud — 11 chapters
+- [Book 01, The Transformation Arc: Client-Server to Hybrid Cloud](../books/b01-transformation-arc/index.md)
   covering the full modernization arc from AD forest to governed Hybrid-Cloud
   target surface.
 
