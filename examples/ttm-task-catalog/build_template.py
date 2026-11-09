@@ -120,7 +120,7 @@ def build_lists(ws) -> None:
     ws["D1"], ws["E1"] = "Default severity", "Goes to a person first"
     for i, drift in enumerate(cs.DRIFT_CLASSES, start=2):
         ws[f"D{i}"] = cs.fc.DEFAULT_SEVERITY.get(drift, "n/a")
-        ws[f"E{i}"] = "yes" if drift in cs.HUMAN_FIRST_CLASSES else "no"
+        ws[f"E{i}"] = "yes" if drift in cs.fc.HUMAN_DECISION_CLASSES else "no"
     # Beside the severities: priority, window in seconds, window in words.
     ws["H1"], ws["I1"], ws["J1"] = "Priority", "Window (seconds)", "Response window"
     for i, severity in enumerate(cs.SEVERITIES, start=2):
