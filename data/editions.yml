@@ -800,7 +800,7 @@ editions:
           - "Approve ten pages on Mike's word, and drop two names from the briefs (#360)"
   - id: edition-2026.11.5
     date: 2026-11-08
-    commit: 7aa71ba4ca28a83d23ef73818a2346007d4a229f
+    commit: 5396f2ca6dee6a634855ae3430b568473bbd203a
     summary: "Release 2.0 is the workbook's baseline edition: the nineteen topic books, and the guides, developer workbooks, training pages and Source Register approved by the workbook's editor, are complete and checked against every other book. From here every change is tracked against Release 2.0 (Version 2.1, 2.2 and on); Baseline is not a claim of independent peer review."
     baseline: true
     release: "2.0"
