@@ -21,21 +21,40 @@ The code takes the stricter
 reading and flags anything longer.
 
 5
-00:00:14.537 --> 00:00:19.149
-Then there's the authentication context
-from Chapter 3, which isn't built yet.
+00:00:14.537 --> 00:00:17.700
+Then there's the authentication
+context from Chapter 3.
 
 6
-00:00:19.149 --> 00:00:23.544
-When it arrives, it only forces a
-fresh sign-in on every activation
+00:00:17.700 --> 00:00:22.839
+Every member and owner policy selects
+it, as Book 04, Access and Privilege,
 
 7
-00:00:23.544 --> 00:00:27.613
-if its policy says so, and even
-then there's a ten-minute window.
+00:00:22.839 --> 00:00:27.892
+requires, so the rules ask for
+justification and a ticket instead of M F A.
 
 8
-00:00:27.613 --> 00:00:32.330
+00:00:27.892 --> 00:00:32.346
+Learn says to turn the context's
+policy on before PIM selects it,
+
+9
+00:00:32.346 --> 00:00:36.200
+so the apply refuses unless
+a person states that it's On.
+
+10
+00:00:36.200 --> 00:00:41.099
+And it only forces a fresh sign-in on
+every activation if its policy says so,
+
+11
+00:00:41.099 --> 00:00:43.750
+and even then there's a ten-minute window.
+
+12
+00:00:43.750 --> 00:00:48.460
 Learn also disagrees on whether it's preview,
 so the chapter treats it as preview.

@@ -70,14 +70,14 @@ Three labels apply. Facts come from the workbook: the implementation guide, the 
   const s = content("Orientation", "Gates 7 to 9 on one page");
   tag(s, "What");
   const tb = table(s, "Gates", 1.5, [1.95, 3.85, 2.75, 1.6, 2.0], ["Gate", "Done when", "Validate with", "Plan tasks", "Owner · lands before"], [
-    ["7 Mover proven", "One personnel action changes access only through the attributes", "VK-DG-05, VK-HR-03; the workflow's run history", "A7.1, AG7", "CISO · program G2"],
-    ["8 OU tree retired", "Every population cut over by query; nothing reads OU placement", "VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave", "A8.1–A8.4, AG8", "CISO · AD freeze (P5.1)"],
-    ["9 Attributes kept true", "Drift scans running, findings closed at the source, zero-action plan", "VK-HR-03, VK-DG-05 to 07, each track's standing checks", "A9.1–A9.3, D-A8, AG9", "CISO · program G5"],
+    ["7 Mover proven", "One personnel action changes access only through the attributes", "VK-DG-05, VK-HR-03; the workflow's run history", "AT7.1, ATG7", "CISO · program G2"],
+    ["8 OU tree retired", "Every population cut over by query; nothing reads OU placement", "VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave", "AT8.1–AT8.4, ATG8", "CISO · AD freeze (P5.1)"],
+    ["9 Attributes kept true", "Drift scans running, findings closed at the source, zero-action plan", "VK-HR-03, VK-DG-05 to 07, each track's standing checks", "AT9.1–AT9.3, D-AT8, ATG9", "CISO · program G5"],
   ], { fontSize: 12, limit: 4.0 });
   const y = tb + 0.25;
   const a = panel(s, "Schedule", 0.6, y, 6.0, null, HEX.navy, HEX.navyTint, "THE SCHEDULE (PROJECT PLAN)", null, [
     "Gate 7 waits on the HR plan's mover automation (I4.3, week 12) and closes 17 days before G2",
-    "Zero-float chain from G3 (week 36): A8.3, then A8.4 after P4.2 (week 38), last drift cycle in week 40",
+    "Zero-float chain from G3 (week 36): AT8.3, then AT8.4 after P4.2 (week 38), last drift cycle in week 40",
     "Gate 8 lands 20 working days before P5.1; Gate 9, 40 before G5",
   ], 12.5);
   const b = panel(s, "Example", 6.85, y, 5.9, null, HEX.teal, HEX.tealTint, "THE RUNNING EXAMPLE", null, [
@@ -86,11 +86,11 @@ Three labels apply. Facts come from the workbook: the implementation guide, the 
     "Gate 8: the analyst's division is in wave 2; Gate 9: the nightly join is on the key",
   ], 12.5);
   if (process.env.FIT) console.log(`  onepage: ${Math.max(a, b).toFixed(2)}`);
-  sources(s, "Sources: Implementation guide, \"The path on one page,\" \"One identifier through every gate\"; project plan, critical path note and tasks A7.1–AG9. Codes are placeholders.");
+  sources(s, "Sources: Implementation guide, \"The path on one page,\" \"One identifier through every gate\"; project plan, critical path note and tasks AT7.1–ATG9. Codes are placeholders.");
   notes(s,
-`Here are the three gates on one page, from the implementation guide's path table. Gate 7 is done when one personnel action changes access only through the attributes; VK-DG-05 and VK-HR-03 prove it, with the mover workflow's own run history; plan task A7.1 carries it, and the CISO owns gate AG7, which closes before the program's G2, Pilot Clean. Gate 8 is done when every population has cut over by query and nothing reads OU placement any more; VK-HR-01 to 06, VK-DG-04 and VK-DG-05 run for each wave; tasks A8.1 to A8.4 carry it, and it lands before the program freezes AD at P5.1. Gate 9 is done when drift scans run, findings close at the source and the nightly plan is zero-action; it is the plan's last gate, with decision D-A8, and it lands before G5, AD Retired.
+`Here are the three gates on one page, from the implementation guide's path table. Gate 7 is done when one personnel action changes access only through the attributes; VK-DG-05 and VK-HR-03 prove it, with the mover workflow's own run history; plan task AT7.1 carries it, and the CISO owns gate ATG7, which closes before the program's G2, Pilot Clean. Gate 8 is done when every population has cut over by query and nothing reads OU placement any more; VK-HR-01 to 06, VK-DG-04 and VK-DG-05 run for each wave; tasks AT8.1 to AT8.4 carry it, and it lands before the program freezes AD at P5.1. Gate 9 is done when drift scans run, findings close at the source and the nightly plan is zero-action; it is the plan's last gate, with decision D-AT8, and it lands before G5, AD Retired.
 
-The project plan's schedule matters here because this is where the critical path lives. Early gates carry float. The zero-float chain starts at the program's G3 at the end of week 36: the transitional sync rules come out (A8.3), then, once the program retires the OU-based groups at P4.2 in week 38, the tree is frozen (A8.4), and the last full drift cycle closes Gates 8 and 9 in week 40. The only way to finish sooner is a shorter rollout. The mover proof waits on the HR plan's mover automation, I4.3, in week 12, and closes 17 days before G2.
+The project plan's schedule matters here because this is where the critical path lives. Early gates carry float. The zero-float chain starts at the program's G3 at the end of week 36: the transitional sync rules come out (AT8.3), then, once the program retires the OU-based groups at P4.2 in week 38, the tree is frozen (AT8.4), and the last full drift cycle closes Gates 8 and 9 in week 40. The only way to finish sooner is a shorter rollout. The mover proof waits on the HR plan's mover automation, I4.3, in week 12, and closes 17 days before G2.
 
 The running example carries on from Parts 1 and 2: one budget analyst, keyed by an existing enterprise ID, with E0042137 as the placeholder value. The codes, FIN-LED and FIN-AP, stand in for the agency's own lists.`,
   `${IG}, "The path on one page," "One identifier through every gate"; project plan, critical path note, Phases 7–9.`);
@@ -102,7 +102,7 @@ section(M1);
 {
   const s = content(M1, "Gate 7: set up the mover proof");
   tag(s, "How");
-  const a = panel(s, "Steps", 0.6, 1.5, 5.75, null, HEX.amber, HEX.amberTint, "STEPS 1–3 (PLAN TASK A7.1)", null, [
+  const a = panel(s, "Steps", 0.6, 1.5, 5.75, null, HEX.amber, HEX.amberTint, "STEPS 1–3 (PLAN TASK AT7.1)", null, [
     "Before: Gates 4–6 on the pilot; the HR plan's joiner and mover automation (I4.3); pilot policies assigned (P2.2)",
     "Pick a pilot test user who sponsors a non-person identity and has a managed laptop",
     "Record the start: groups, unit, persona, access packages, the device's groups, the sponsorship",
@@ -252,19 +252,19 @@ section(M2);
     "revocation is where the risk and the evidence are.");
   sources(s, "Sources: Implementation guide, Gate 8 steps 1–2; Book 00, Ch 09, \"Waves defined by attribute values\"; Book 01, Ch 04; Book 03, Ch 12; kit fixture groups.json.");
   notes(s,
-`Gate 8 starts by writing each wave as an attribute query, plan task A8.1. Because waves are defined by attribute values rather than OUs, each wave's scope is a query on the authoritative source, and the dynamic groups that target it already exist.
+`Gate 8 starts by writing each wave as an attribute query, plan task AT8.1. Because waves are defined by attribute values rather than OUs, each wave's scope is a query on the authoritative source, and the dynamic groups that target it already exist.
 
 Each track selects its wave members from its own source of truth. Users by their HR-sourced attributes, so a division or a region code. Devices by the attributes provisioning writes on the device object, so a region's people and their workstations can move in the same wave without one reading the other. Servers by Azure resource group and tag, once they're Arc-enabled. And non-person identities move with their owning application, running old and new credentials in parallel before the legacy account is disabled.
 
 The pattern comes from Book 00 Chapter 09 and Book 01. Start with the lowest-risk region: a pilot division, then division by division, two or three at a time, each drift-clean before the next. Inside a wave every division follows the same sub-pattern: plan, in-division pilot, full availability, a drift-clean hold, and a weekly green, yellow or red report. Drift detection runs daily on the migrated scope from the first wave. GPO links stay in place during a wave and come off a migrated OU only after seven days of clean compliance.
 
 The rule shown is the kit's fixture form: a roll-up of codes with the in operator, and the two guards every access rule carries. Which divisions go in which order is the program's wave plan, decision D07. And step two: leaver automation goes first in every wave, because revocation is where the risk and the evidence are. In the running example, the analyst's division is in wave 2, selected by its division code.`,
-  `${IG}, Gate 8, steps 1–2 (A8.1); Book 00, Chapter 09 — "Waves defined by attribute values"; Book 01, Chapter 04 — "Migration phases"; Book 03, Chapter 12 — Phase 4; companion guide, Stage 7.`);
+  `${IG}, Gate 8, steps 1–2 (AT8.1); Book 00, Chapter 09 — "Waves defined by attribute values"; Book 01, Chapter 04 — "Migration phases"; Book 03, Chapter 12 — Phase 4; companion guide, Stage 7.`);
 }
 {
   const s = content(M2, "Gate 8: the per-wave attribute gate");
   tag(s, "How");
-  const tb = table(s, "WaveGate", 1.5, [1.9, 6.6, 3.65], ["Step (A8.2)", "What it takes", "Proof"], [
+  const tb = table(s, "WaveGate", 1.5, [1.9, 6.6, 3.65], ["Step (AT8.2)", "What it takes", "Proof"], [
     ["1 Validation report", "Acceptance results, open defects and their dispositions, the population's drift baseline, Appendix B checks, the rollback plan", "Signed before the cutover is scheduled"],
     ["2 Dry run", "Production data with writes disabled: the pipeline computes what it would do; every difference from the directory explained", "The dry-run differences"],
     ["3 Cutover", "One population; spot-check named records after the first cycle; rollback ready", "Spot checks"],
@@ -278,7 +278,7 @@ The rule shown is the kit's fixture form: a roll-up of codes with the in operato
 `));
   sources(s, "Sources: Implementation guide, Gate 8 step 3, Validate; Book 03, Appendix C (validation report; dry run; sole source; ticket path); validation kit README, \"Inputs.\"");
   notes(s,
-`Step three is the per-wave attribute gate, plan task A8.2, and it comes straight from Book 03's Appendix C.
+`Step three is the per-wave attribute gate, plan task AT8.2, and it comes straight from Book 03's Appendix C.
 
 First, a short validation report gates every cutover: the acceptance results, open defects and their dispositions, the drift baseline for the population, the privacy and security checks of Appendix B, and the rollback plan. It's signed before the cutover is scheduled.
 
@@ -291,7 +291,7 @@ Fourth, seven days in which every create, change and disable for the population 
 Fifth, only then, the ticket path for account creation closes for that population, and exceptions go through the governed exception process.
 
 The kit runs on every wave: the HR checks one to six, VK-DG-04 for each group the wave replaces, using shadow-pairs.csv with the current and proposed group IDs, and VK-DG-05 for the wave's membership change against the threshold. VK-HR-05 and 06 show the leaver path on time and the execution limits set.`,
-  `${IG}, Gate 8, step 3 (A8.2), "Validate (Gate 8)"; Book 03, Appendix C — "The validation report," "Dry run, cutover and rollback," "Proving HR is the sole source," "Closing the ticket path"; examples/validation-kit/README.md — "Inputs."`);
+  `${IG}, Gate 8, step 3 (AT8.2), "Validate (Gate 8)"; Book 03, Appendix C — "The validation report," "Dry run, cutover and rollback," "Proving HR is the sole source," "Closing the ticket path"; examples/validation-kit/README.md — "Inputs."`);
 }
 {
   const s = content(M2, "Gate 8: retarget provisioning; what still needs AD");
@@ -351,7 +351,7 @@ The kit checks two of these. VK-HR-05 reports a hire or leave date in the past w
 {
   const s = content(M2, "Retiring the OU tree: disable, never delete");
   tag(s, "How");
-  const a = panel(s, "Retire", 0.6, 1.5, 6.0, null, HEX.navy, HEX.navyTint, "STEPS 6–7 (A8.3, A8.4)", null, [
+  const a = panel(s, "Retire", 0.6, 1.5, 6.0, null, HEX.navy, HEX.navyTint, "STEPS 6–7 (AT8.3, AT8.4)", null, [
     "After G3: remove the account-type sync rule that reads OU placement, the OU-based scoping filters, and the provisioning OU computation",
     "After P4.2: remove the hand-made delegations Gate 0 found; confirm no OU drives access, scoping or policy",
     "Archive the tree's final export in Git. GPOs retire in the Endpoint plan; OUs go with the domain at G5",
@@ -370,7 +370,7 @@ Set-GPLink -Name $gpoName -Target $target -LinkEnabled No      # rollback: -Link
 `), { pt: 11 });
   sources(s, "Sources: Implementation guide, Gate 8 steps 6–7, Validate, Rollback; Book 00, Ch 10; Book 05, Ch 07, 08; Book 01, Ch 04 (Phase 4); Book 03, Ch 08.");
   notes(s,
-`Retiring the OU tree is two plan tasks, and both wait on the program. A8.3 comes after G3, once every population is cut over: remove the account-type sync rule that reads OU placement, the OU-based scoping filters, and the provisioning OU computation for cloud-mastered populations. A8.4 comes after the program retires the OU-based security groups at P4.2: remove the hand-made delegations Gate 0 found, confirm that no OU drives access, scoping or policy, and archive the tree's final export in Git as the record. The GPOs themselves are retired in the Endpoint plan, and the OUs go with the domain at G5. Legacy retirement is the only destructive phase, and it needs approval item by item.
+`Retiring the OU tree is two plan tasks, and both wait on the program. AT8.3 comes after G3, once every population is cut over: remove the account-type sync rule that reads OU placement, the OU-based scoping filters, and the provisioning OU computation for cloud-mastered populations. AT8.4 comes after the program retires the OU-based security groups at P4.2: remove the hand-made delegations Gate 0 found, confirm that no OU drives access, scoping or policy, and archive the tree's final export in Git as the record. The GPOs themselves are retired in the Endpoint plan, and the OUs go with the domain at G5. Legacy retirement is the only destructive phase, and it needs approval item by item.
 
 Validate it two ways. The sync configuration export shows no rule or scoping filter reading OU placement. And the final OU export shows no delegation that grants access and no GPO link the Endpoint plan hasn't retired. Book 00 Chapter 10's read-only script lists the domain root and every OU that still has a GPO linked directly to it; on a retired estate the list is short and expected.
 
@@ -399,21 +399,21 @@ section(M3);
     ["Role assignment not in the matrix", "Critical"],
     ["Restriction differs from its decision", "Critical"],
   ], { x: 7.95, fontSize: 11, limit: 4.4 });
-  const c = panel(s, "DA8", 7.95, b + 0.2, 4.8, null, HEX.teal, HEX.tealTint, "D-A8 (CISO): SEVERITY AND RESPONSE TIMES", null, [
+  const c = panel(s, "DA8", 7.95, b + 0.2, 4.8, null, HEX.teal, HEX.tealTint, "D-AT8 (CISO): SEVERITY AND RESPONSE TIMES", null, [
     "Option: high severity closed in days, the rest on a dated plan",
     "Each track's reconciliation feeds the same findings queue",
   ], 11.5);
   if (process.env.FIT) console.log(`  drift: ${Math.max(a, c).toFixed(2)}`);
-  sources(s, "Sources: Implementation guide, Gate 9 steps 1–2; Book 03, Ch 11, \"Drift between HR and the directory\"; Book 02, Ch 05, \"Drift detection\"; project plan, D-A8.");
+  sources(s, "Sources: Implementation guide, Gate 9 steps 1–2; Book 03, Ch 11, \"Drift between HR and the directory\"; Book 02, Ch 05, \"Drift detection\"; project plan, D-AT8.");
   notes(s,
 `Gate 9 keeps the attributes true. Without it, everything slowly decays. It starts with the pilot, not after cut-over, and it's the plan's last gate.
 
-Step one is decision D-A8: severity and response times, decided by the CISO. The plan's option is the program's classes with high severity closed in days and the rest on a dated plan, and possibly a stricter clock for unauthorized writes to the access slots. The severities on the slide are the program's defaults from Book 03, not an external standard.
+Step one is decision D-AT8: severity and response times, decided by the CISO. The plan's option is the program's classes with high severity closed in days and the rest on a dated plan, and possibly a stricter clock for unauthorized writes to the access slots. The severities on the slide are the program's defaults from Book 03, not an external standard.
 
-Step two schedules two comparisons, plan task A9.1. On the left, HR against the directory, Book 03's drift classes. Missing identity: an active HR record with no matching key. Stale access: the same key terminated in HR but enabled in the directory. Orphan account: an enabled account with no key. Attribute drift: a field-by-field comparison of the schema. Unauthorized write: an audit-log write to an HR-mastered attribute by anyone but the provisioning service. Credential drift: a valid PIV binding or certificate for a separated worker. And schema drift: a record that fails validation in the middleware. Expect a burst of high-severity findings in the first month; that's the measurement working.
+Step two schedules two comparisons, plan task AT9.1. On the left, HR against the directory, Book 03's drift classes. Missing identity: an active HR record with no matching key. Stale access: the same key terminated in HR but enabled in the directory. Orphan account: an enabled account with no key. Attribute drift: a field-by-field comparison of the schema. Unauthorized write: an audit-log write to an HR-mastered attribute by anyone but the provisioning service. Credential drift: a valid PIV binding or certificate for a separated worker. And schema drift: a record that fails validation in the middleware. Expect a burst of high-severity findings in the first month; that's the measurement working.
 
 On the right, the unit and role registry against the tenant, from Book 02 Chapter 05: a unit rule that differs from the registry, paused processing, a role assignment that isn't in the matrix, and a restriction setting that differs from its decision. Each track's own reconciliation, the Intune guide's Step 6.2, the Arc guide's Step 8 and the non-person guide's Step 6, sends findings to the same queue. In the running example, a second account carrying the analyst's key is a finding.`,
-  `${IG}, Gate 9, steps 1–2 (D-A8, A9.1); Book 03, Chapter 11 — "Drift between HR and the directory"; Book 02, Chapter 05 — "Drift detection"; project plan, D-A8.`);
+  `${IG}, Gate 9, steps 1–2 (D-AT8, AT9.1); Book 03, Chapter 11 — "Drift between HR and the directory"; Book 02, Chapter 05 — "Drift detection"; project plan, D-AT8.`);
 }
 {
   const s = content(M3, "Gate 9: fix at the source; logs; the limits register");
@@ -422,9 +422,9 @@ On the right, the unit and role registry against the tenant, from Book 02 Chapte
     "Close every finding in the HR record or the rule, never the copy: the next cycle overwrites the copy",
     "Access reviews don't change dynamic membership: review the rule and its inputs",
     "Logs leave Entra ID from day one, to Azure Monitor, a storage account or the SIEM; retention isn't retroactive",
-    "A9.3: a full cycle on the whole estate, closing at the source until the nightly plan is zero-action",
+    "AT9.3: a full cycle on the whole estate, closing at the source until the nightly plan is zero-action",
   ], 12);
-  const b = table(s, "Limits", 1.5, [3.4, 2.65], ["Limits register (A9.2)", "Value"], [
+  const b = table(s, "Limits", 1.5, [3.4, 2.65], ["Limits register (AT9.2)", "Value"], [
     ["Dynamic rule body", "3,072 characters"],
     ["Dynamic groups per tenant (units count)", "15,000"],
     ["Lifecycle Workflows; custom task extensions", "100 each"],
@@ -441,10 +441,10 @@ On the right, the unit and role registry against the tenant, from Book 02 Chapte
 
 Logs leave Entra ID from day one. Entra ID's own retention is far shorter than any federal records schedule and it isn't retroactive, so route the audit, sign-in and provisioning logs to Azure Monitor, a storage account or the agency's SIEM from the pilot's first day. That's AU-11 in Book 03's mapping.
 
-Step four keeps a limits register, plan task A9.2, reviewed with every design change. The values on the right are the companion guide's. A dynamic rule body is at most 3,072 characters. A tenant holds at most 15,000 dynamic groups, and dynamic units count against the same total. Lifecycle Workflows allow 100 workflows and 100 custom task extensions, with 25 tasks per workflow. There are at most 100 restricted management units. Dynamic administrative units run in the global cloud, which GCC uses, and not in GCC High or DoD. And the memberOf rule preview ends on November 3, 2026, after which groups that use it freeze in their last state.
+Step four keeps a limits register, plan task AT9.2, reviewed with every design change. The values on the right are the companion guide's. A dynamic rule body is at most 3,072 characters. A tenant holds at most 15,000 dynamic groups, and dynamic units count against the same total. Lifecycle Workflows allow 100 workflows and 100 custom task extensions, with 25 tasks per workflow. There are at most 100 restricted management units. Dynamic administrative units run in the global cloud, which GCC uses, and not in GCC High or DoD. And the memberOf rule preview ends on November 3, 2026, after which groups that use it freeze in their last state.
 
-Step five, plan task A9.3, runs a full drift cycle on the whole estate after cut-over and closes the findings at the source until the nightly plan is zero-action.`,
-  `${IG}, Gate 9, steps 3–5 (A9.2, A9.3); companion guide, "Limits," "Monitoring both"; Book 02, Chapter 10 — "The assessment pipeline"; Book 06, Chapter 17 — "Access reviews"; Book 03, Chapters 10 and 11; Book 02, Chapter 05.`);
+Step five, plan task AT9.3, runs a full drift cycle on the whole estate after cut-over and closes the findings at the source until the nightly plan is zero-action.`,
+  `${IG}, Gate 9, steps 3–5 (AT9.2, AT9.3); companion guide, "Limits," "Monitoring both"; Book 02, Chapter 10 — "The assessment pipeline"; Book 06, Chapter 17 — "Access reviews"; Book 03, Chapters 10 and 11; Book 02, Chapter 05.`);
 }
 {
   const s = content(M3, "Gate 9: the standing checks, track by track");
@@ -537,14 +537,14 @@ Third, the numbers are proposals. Ninety-nine percent correlation on the pilot i
   const s = content(M3, "Decisions, the checklist, and where to go next");
   tag(s, "Who");
   table(s, "Decisions", 1.45, [3.75, 2.35, 1.6], ["Decision (Gates 7–9)", "Who decides", "When"], [
-    ["Mover proven (AG7)", "CISO", "Before G2"],
-    ["Wave plan: divisions and order (D07)", "Executive sponsor", "After A8.1"],
+    ["Mover proven (ATG7)", "CISO", "Before G2"],
+    ["Wave plan: divisions and order (D07)", "Executive sponsor", "After AT8.1"],
     ["Each wave's go or no-go", "Identity engineering", "Every wave"],
     ["A population's cutover sign-off", "HR, identity owner, ISSO, business owner", "Per population"],
     ["Source-of-authority transfer in GCC", "An owner, with a decide-by date", "Before retargeting"],
     ["Release of a reorganization's quarantine", "Agreed in advance", "Per change event"],
     ["Each destructive retirement item", "Explicit approval per item", "Phase 4"],
-    ["Drift severity and response times (D-A8)", "CISO", "After Gate 2"],
+    ["Drift severity and response times (D-AT8)", "CISO", "After Gate 2"],
     ["Every drift finding; every wrong value", "CISO; HR fixes values", "Standing"],
   ], { fontSize: 11, limit: 6.6 });
   panel(s, "Next", 8.5, 1.45, 4.25, null, HEX.teal, HEX.tealTint, "CHECKLIST, THEN NEXT", null, [
@@ -553,16 +553,16 @@ Third, the numbers are proposals. Ninety-nine percent correlation on the pilot i
     "Gate 9: drift scans scheduled; findings closed at the source; limits register kept",
     "Next: the track guides (Intune Gate 5, Arc Step 3, non-person Step 5), the project plan, and the books",
   ], 11.5);
-  sources(s, "Sources: Implementation guide, \"Prerequisites,\" Gates 7–9, \"Checklist,\" \"Back to the books\"; project plan, D-A8, D07; Book 03, Appendix C; companion guide, Stage 7.");
+  sources(s, "Sources: Implementation guide, \"Prerequisites,\" Gates 7–9, \"Checklist,\" \"Back to the books\"; project plan, D-AT8, D07; Book 03, Appendix C; companion guide, Stage 7.");
   notes(s,
 `To close, the decisions in Gates 7 to 9 and who owns them, from the implementation guide's prerequisites and the two responsibility matrices.
 
-The CISO signs off the mover proof, before G2. The executive sponsor owns the program's wave plan, D07: which divisions, in which order. Identity engineering decides each wave's go or no-go. A population's cutover is signed by HR, the identity owner, the ISSO and the business owner of the population, per Book 03's Appendix C. Whether source-of-authority transfer works in GCC needs a named owner and a decide-by date, with the AD-mastered path as the default. Who releases a reorganization's quarantine is agreed in advance. Every destructive retirement item needs explicit approval. The CISO decides drift severity and response times, D-A8, and owns every drift finding, while HR fixes every wrong value. And one decision carried from Gate 6 still gates AD's end: the ICAM governance body decides who writes the PIV binding after AD, D-A7, by week 39.
+The CISO signs off the mover proof, before G2. The executive sponsor owns the program's wave plan, D07: which divisions, in which order. Identity engineering decides each wave's go or no-go. A population's cutover is signed by HR, the identity owner, the ISSO and the business owner of the population, per Book 03's Appendix C. Whether source-of-authority transfer works in GCC needs a named owner and a decide-by date, with the AD-mastered path as the default. Who releases a reorganization's quarantine is agreed in advance. Every destructive retirement item needs explicit approval. The CISO decides drift severity and response times, D-AT8, and owns every drift finding, while HR fixes every wrong value. And one decision carried from Gate 6 still gates AD's end: the ICAM governance body decides who writes the PIV binding after AD, D-AT7, by week 39.
 
 The checklist for these gates is three lines. Gate 7: one mover proved across the tracks with no ticket. Gate 8: waves by attribute query, leaver first, seven days of sole-source proof, the transitional rules removed, the OU tree frozen and archived. Gate 9: drift scans scheduled for HR, units and roles, findings closed at the source, and a limits register kept.
 
 Where next: each track's own wave runbook, the Intune guide's Gate 5, the Arc guide's Step 3 and the non-person guide's Step 5; the project plan for dates and margins; and the books behind every gate. Parts 1 and 2 of this series cover the gates that come before.`,
-  `${IG}, "Prerequisites," Gates 7–9, "Checklist," "Back to the books"; project plan, D-A7, D-A8, X-D07; Book 03, Appendix C — "Acceptance"; Book 01, Chapter 04 — "Phase 4"; companion guide, Stage 7.`);
+  `${IG}, "Prerequisites," Gates 7–9, "Checklist," "Back to the books"; project plan, D-AT7, D-AT8, X-D07; Book 03, Appendix C — "Acceptance"; Book 01, Chapter 04 — "Phase 4"; companion guide, Stage 7.`);
 }
 endModule("Module 3");
 
@@ -573,21 +573,21 @@ sourceSlide("Sources behind Module 1 — Gate 7: the mover proof", [
   "Companion guide: \"Worked example: one user and one mover event,\" \"Limits\" (latency).  ·  Non-person identity implementation guide, Step 6.",
   "Book 02, Ch 10 (Lifecycle Workflows, mover workflow).  ·  Book 03, Ch 05 (middleware duties), Ch 08 (personnel actions, mover), Ch 11 (evidence each event leaves).  ·  Book 06, Ch 16 (when a change takes effect).",
   "Validation kit (examples/validation-kit): README \"What a check returns,\" \"Run it,\" \"Inputs,\" \"What a run writes\"; Checks/DG.ps1 and HR.ps1; tests/fixtures/fail (the fictional contoso.example tenant).",
-  "Project plan (data/project-plans/attribute-driven-migration.yaml): A7.1, AG7, X-I43, X-G2; critical path note.",
+  "Project plan (data/project-plans/attribute-driven-migration.yaml): AT7.1, ATG7, X-I43, X-G2; critical path note.",
 ]);
 sourceSlide("Sources behind Module 2 — Gate 8: cut-over and the OU tree", [
   "Implementation guide: Gate 8 (steps 1–8, Validate, Rollback, Evidence), \"Rollback at a glance.\"",
   "Companion guide: Stage 7; \"Limits: Lifecycle Workflows\"; \"Lifecycle Workflows at scale\"; \"What still needs AD during hybrid\" (Microsoft source-of-authority guidance as the guide cites it).",
   "Book 00, Ch 09 (waves defined by attribute values), Ch 10 (GPO-link script).  ·  Book 01, Ch 04 (migration phases; Phase 4).  ·  Book 03, Ch 08, Ch 12 (Phase 4, Phase 5, open verification register), Appendix C.  ·  Book 05, Ch 07 (Set-GPLink, Backup-GPO), Ch 08 (rollback).",
   "Validation kit: README \"Inputs\" (shadow-pairs.csv), \"Known limits\" (VK-HR-05, VK-HR-06); Checks/HR.ps1; tests/fixtures/fail/groups.json (rule form).",
-  "Project plan: A8.1–A8.4, AG8, X-D07, X-G3, X-P42, X-P51; Identity Lifecycle plan I5.1, I5.2. Could not verify: user source-of-authority transfer in GCC (Book 03, Ch 12 register).",
+  "Project plan: AT8.1–AT8.4, ATG8, X-D07, X-G3, X-P42, X-P51; Identity Lifecycle plan I5.1, I5.2. Could not verify: user source-of-authority transfer in GCC (Book 03, Ch 12 register).",
 ]);
 sourceSlide("Sources behind Module 3 — Gate 9 and the close", [
   "Implementation guide: Gate 9 (steps, Validate, Rollback, Evidence), \"Where the kits stop,\" \"Prerequisites,\" \"Checklist,\" \"Back to the books.\"",
   "Companion guide: Stage 8, \"Limits,\" \"Dynamic group dangers and how to avoid them,\" \"Monitoring both.\"",
   "Book 00, Ch 01, Ch 10.  ·  Book 01, Ch 04 (verification), Ch 09 (authorizing official).  ·  Book 02, Ch 05 (drift detection), Ch 10 (assessment pipeline).  ·  Book 03, Ch 08, Ch 10, Ch 11, Ch 12, Appendix C.  ·  Book 05, Ch 07.  ·  Book 06, Ch 17.",
   "Validation kit: README \"Run it,\" permissions table; Private/Catalog.ps1 (check titles); Private/Core.ps1 (default options).",
-  "Project plan: D-A7, D-A8, A9.1–A9.3, AG9, X-G5.  ·  Program master schedule: D07, D09, D11. Non-person identity plan: X-D11.",
+  "Project plan: D-AT7, D-AT8, AT9.1–AT9.3, ATG9, X-G5.  ·  Program master schedule: D07, D09, D11. Non-person identity plan: X-D11.",
 ]);
 
 finish(OUT);

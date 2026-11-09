@@ -721,78 +721,6 @@
    "The record keeps the history."
   ]
  ],
- "12": [
-  [
-   0.05,
-   2.4,
-   "The third gate sets the credential rules."
-  ],
-  [
-   2.45,
-   1.975,
-   "They're design guidance from the books."
-  ],
-  [
-   4.425,
-   1.825,
-   "No long-lived secrets."
-  ],
-  [
-   6.25,
-   4.9,
-   "Managed identities first, then federated credentials, then certificates."
-  ],
-  [
-   11.15,
-   3.812,
-   "And every certificate in a vault, on a rotation calendar."
-  ],
-  [
-   14.963,
-   3.7,
-   "Step one turns on the tenant's default app management policy."
-  ],
-  [
-   18.663,
-   6.325,
-   "It blocks new password secrets and symmetric keys, and caps new certificates at a hundred and eighty days."
-  ],
-  [
-   24.988,
-   2.487,
-   "Those are Microsoft's recommended settings."
-  ],
-  [
-   27.475,
-   6.525,
-   "Each restriction applies only to apps created after a chosen date, so set it to the policy's effective date."
-  ],
-  [
-   34.0,
-   3.55,
-   "The panel shows the workbook's diff against a fictional tenant."
-  ],
-  [
-   37.55,
-   9.012,
-   "Its default policy is off, so turning it on is a change, and every restriction is an add, for both application and service principal objects."
-  ],
-  [
-   46.562,
-   3.75,
-   "A restriction the tenant already had is kept, never dropped."
-  ],
-  [
-   50.312,
-   3.962,
-   "Existing workloads rotate at least yearly while they're fixed."
-  ],
-  [
-   54.275,
-   4.237,
-   "New ones start under the cap, which meets the scuba certificate policy."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -912,58 +840,6 @@
    "Secrets are replaced, not rotated."
   ]
  ],
- "15": [
-  [
-   0.05,
-   4.15,
-   "On the federal side, authenticator management is the main requirement."
-  ],
-  [
-   4.2,
-   6.688,
-   "The evidence is the policy export, the kit runs for credentials and secrets, and the rotation calendar."
-  ],
-  [
-   10.887,
-   7.562,
-   "The policy also meets three scuba policies: no app passwords, and capped password and certificate lifetimes."
-  ],
-  [
-   18.45,
-   6.412,
-   "They're SHOULD policies in ScubaGear, not required configurations, and their report is filed with the gate."
-  ],
-  [
-   24.863,
-   6.162,
-   "Audit requirements cover credential changes, so the entries for added credentials are logged and reviewed."
-  ],
-  [
-   31.025,
-   6.225,
-   "To validate, the credential check shows nothing issued after the effective date that runs longer than the cap."
-  ],
-  [
-   37.25,
-   5.062,
-   "Every credential that expires within sixty days has an owner and a renewal date."
-  ],
-  [
-   42.312,
-   6.85,
-   "The secrets check shows each app still on a secret is in a conversion wave, or has an exception with an end date."
-  ],
-  [
-   49.163,
-   5.438,
-   "App management policies are free, and Microsoft lists their calls for the government clouds."
-  ],
-  [
-   54.6,
-   6.412,
-   "To roll back, give one application a policy exception with an end date, in the exception register."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -1019,6 +895,130 @@
    55.263,
    2.612,
    "Each has its labs and a narrated tour."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.4,
+   "The third gate sets the credential rules."
+  ],
+  [
+   2.45,
+   1.975,
+   "They're design guidance from the books."
+  ],
+  [
+   4.425,
+   1.825,
+   "No long-lived secrets."
+  ],
+  [
+   6.25,
+   4.9,
+   "Managed identities first, then federated credentials, then certificates."
+  ],
+  [
+   11.15,
+   3.812,
+   "And every certificate in a vault, on a rotation calendar."
+  ],
+  [
+   14.963,
+   3.7,
+   "Step one turns on the tenant's default app management policy."
+  ],
+  [
+   18.663,
+   6.325,
+   "It blocks new password secrets and symmetric keys, and caps new certificates at a hundred and eighty days."
+  ],
+  [
+   24.988,
+   2.487,
+   "Those are Microsoft's recommended settings."
+  ],
+  [
+   27.475,
+   6.525,
+   "Each restriction applies only to apps created after a chosen date, so set it to the policy's effective date."
+  ],
+  [
+   34.0,
+   3.55,
+   "The panel shows the workbook's diff against a fictional tenant."
+  ],
+  [
+   37.55,
+   9.012,
+   "Its default policy is off, so turning it on is a change, and every restriction is an add, for both application and service principal objects."
+  ],
+  [
+   46.562,
+   3.75,
+   "A restriction the tenant already had is kept, never dropped."
+  ],
+  [
+   50.312,
+   3.962,
+   "Existing workloads rotate at least yearly while they're fixed."
+  ],
+  [
+   54.275,
+   4.425,
+   "New ones start under the cap, which addresses the scuba certificate policy."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.15,
+   "On the federal side, authenticator management is the main requirement."
+  ],
+  [
+   4.2,
+   6.688,
+   "The evidence is the policy export, the kit runs for credentials and secrets, and the rotation calendar."
+  ],
+  [
+   10.887,
+   7.662,
+   "The policy also addresses three scuba policies: no app passwords, and capped password and certificate lifetimes."
+  ],
+  [
+   18.55,
+   6.412,
+   "They're SHOULD policies in ScubaGear, not required configurations, and their report is filed with the gate."
+  ],
+  [
+   24.962,
+   6.162,
+   "Audit requirements cover credential changes, so the entries for added credentials are logged and reviewed."
+  ],
+  [
+   31.125,
+   6.225,
+   "To validate, the credential check shows nothing issued after the effective date that runs longer than the cap."
+  ],
+  [
+   37.35,
+   5.062,
+   "Every credential that expires within sixty days has an owner and a renewal date."
+  ],
+  [
+   42.413,
+   6.85,
+   "The secrets check shows each app still on a secret is in a conversion wave, or has an exception with an end date."
+  ],
+  [
+   49.263,
+   5.438,
+   "App management policies are free, and Microsoft lists their calls for the government clouds."
+  ],
+  [
+   54.7,
+   6.412,
+   "To roll back, give one application a policy exception with an end date, in the exception register."
   ]
  ]
 }

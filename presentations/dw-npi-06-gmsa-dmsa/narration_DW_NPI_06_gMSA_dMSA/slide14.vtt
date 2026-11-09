@@ -6,43 +6,54 @@ Reading the findings is where
 the rules become concrete.
 
 2
-00:00:03.275 --> 00:00:07.027
+00:00:03.275 --> 00:00:06.725
+Every decision here is the
+owner's, from Chapter 3.
+
+3
+00:00:06.725 --> 00:00:10.798
 One web server account is trusted
 for unconstrained delegation,
 
-3
-00:00:07.027 --> 00:00:11.613
-which stops working after a delegated
-migration, so that conversion is blocked.
-
 4
-00:00:11.613 --> 00:00:15.946
-Another account's reviewed retrievers
-add a server that Active Directory
+00:00:10.798 --> 00:00:15.852
+which stops working after a delegated
+migration, so its owner kept it on Kerberos,
 
 5
-00:00:15.946 --> 00:00:19.650
-doesn't have yet, and its end date
-runs past the program's deadline.
+00:00:15.852 --> 00:00:20.000
+with the authorizing official's
+acceptance, but it has no S P N owner.
 
 6
-00:00:19.650 --> 00:00:23.491
-An intranet account has no
-owner and an end date years out,
+00:00:20.000 --> 00:00:22.497
+Another account's
+reviewed retrievers add a
 
 7
-00:00:23.491 --> 00:00:25.125
-so it can't be reconciled.
+00:00:22.497 --> 00:00:25.062
+server that Active
+Directory doesn't have yet.
 
 8
-00:00:25.125 --> 00:00:27.150
-One sits in Domain Admins.
+00:00:25.062 --> 00:00:28.525
+An intranet account being
+re-platformed has no owner
 
 9
-00:00:27.150 --> 00:00:31.367
+00:00:28.525 --> 00:00:31.674
+and an end date years out,
+so it can't be reconciled.
+
+10
+00:00:31.674 --> 00:00:33.700
+One sits in Domain Admins.
+
+11
+00:00:33.700 --> 00:00:37.917
 Meanwhile the plan completes a
 migration that started forty days ago,
 
-10
-00:00:31.367 --> 00:00:33.530
+12
+00:00:37.917 --> 00:00:40.080
 and creates two new group accounts.

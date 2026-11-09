@@ -33,7 +33,7 @@ const SS = "Check and summary";
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 4: PIM for Microsoft Entra roles as code", "Privileged Access learning path · Plan Phases 1 to 3 (A1.6, A2.1, A2.2, A3.1) · Chapter 04",
-    ["The lockout's two halves  ·  Seven managed rules  ·  The role files and the checks", "The waves and the conversion  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
+    ["The lockout's two halves  ·  Seven managed rules  ·  The role files, the checks and the alert check", "The waves and the conversion  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
 `Welcome to Module 4 of the Privileged Access learning path: PIM for Microsoft Entra roles as code. This module serves the project plan's task A1.6 in Phase 1, A2.1 and A2.2 in Phase 2, and A3.1 in Phase 3, with Chapter 04 of the developer workbook. Each Microsoft Entra role has its own PIM settings: how long an activation lasts, whether it needs approval, a ticket, an authentication context, and how long an assignment may last. Set by hand in the portal, they drift role by role. In this module you hold them as code, one reviewed file per role. You see exactly what a change will do before it happens, apply it to one rollout wave with the least privilege the writes need, and prove from a read-back that the tenant now matches the files. The code is illustrative: tested against fixtures and a fake.`,
   `${M} — Unit "Introduction"; learning path index.`);
@@ -67,6 +67,7 @@ const SS = "Check and summary";
     "Explain the documented lockout's two halves, and the check that refuses each",
     "Name the seven activation and assignment rules the code manages, and where their bounds come from",
     "Read a role's diff and the plan's findings, PA-PIM-01 to PA-PIM-09",
+    "Explain what the read-only alert check, PA-PIM-10 to PA-PIM-13, looks for and where each finding is fixed",
     "Explain the rollout waves, and why a later wave waits",
     "Explain the order for converting a standing assignment",
   ], [
@@ -76,7 +77,7 @@ const SS = "Check and summary";
   ], 55);
   sources(s, "Sources: Module 4, \"Learning objectives,\" \"Prerequisites\"; \"Exercise: Lab 2.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the documented lockout's two halves, and the check that refuses each. You'll name the seven activation and assignment rules the code manages, and where their bounds come from. You'll read a role's diff and the plan's findings, pim oh one to oh nine. You'll explain the rollout waves, and why a later wave waits for an earlier one. And you'll explain the order for converting a standing assignment. Before you start, finish Module 2, for the emergency accounts this module refuses to proceed without, and Module 3, for the activation gate and its policy. Lab 2 needs a worldwide or G C C test tenant, never production, with Microsoft Entra I D P2 or I D Governance licenses for the test users and approvers.`,
+`Here's what you'll be able to do by the end of this module, which takes about fifty-five minutes with the lab. You'll explain the documented lockout's two halves, and the check that refuses each. You'll name the seven activation and assignment rules the code manages, and where their bounds come from. You'll read a role's diff and the plan's findings, pim oh one to oh nine. You'll explain what the read-only alert check, pim ten to thirteen, looks for, and where each finding is fixed. You'll explain the rollout waves, and why a later wave waits for an earlier one. And you'll explain the order for converting a standing assignment. Before you start, finish Module 2, for the emergency accounts this module refuses to proceed without, and Module 3, for the activation gate and its policy. Lab 2 needs a worldwide or G C C test tenant, never production, with Microsoft Entra I D P2 or I D Governance licenses for the test users and approvers.`,
   `${M} — Unit "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -121,7 +122,7 @@ endModule(SI);
     "PA-PIM-07 refuses a wave until every earlier wave matches its files. The order after the first wave is design guidance.");
   sources(s, "Sources: Module 4, Units 1 and 2; Microsoft Learn, \"Configure Microsoft Entra role settings in PIM\"; config/pim-ch04/tiers.json.");
   notes(s,
-`Unit 2: the files, the checks and the conversion. The role files are twenty-two, one per role, with approvers named by alias. Beside them, a tiers file holds Microsoft Learn's bounds and the program's caps for each tier, which are this workbook's design guidance. Learn's pages disagree on how long an activation may last: the role settings page allows up to twenty-four hours, the PIM A P I overview at most eight. The code follows the stricter, eight hours. Active assignments are capped at fifteen days, the owner's decision. And the plan's order is fixed. The owner chose Tier 1 as the pilot class, so wave one is Tier 1, then Tier 0, Tier 2 and read-only. The order after the first wave is this workbook's design guidance. Rule pim oh seven refuses a wave until every earlier wave matches its files.`,
+`Unit 2: the files, the checks, the alert check and the conversion. The role files are twenty-two, one per role, with approvers named by alias. Beside them, a tiers file holds Microsoft Learn's bounds and the program's caps for each tier, which are this workbook's design guidance. Learn's pages disagree on how long an activation may last: the role settings page allows up to twenty-four hours, the PIM A P I overview at most eight. The code follows the stricter, eight hours. Active assignments are capped at fifteen days, the owner's decision. And the plan's order is fixed. The owner chose Tier 1 as the pilot class, so wave one is Tier 1, then Tier 0, Tier 2 and read-only. The order after the first wave is this workbook's design guidance. Rule pim oh seven refuses a wave until every earlier wave matches its files.`,
   `${M} — Units 1 and 2: workbook Chapter 04, "The role files"; examples/privileged-access/config/pim-ch04/tiers.json.`);
 }
 
@@ -145,6 +146,32 @@ endModule(SI);
   notes(s,
 `The checks, pim oh one to oh nine. Oh one and oh two are the lockout's two halves, from Microsoft Learn's PIM settings page: approval with no approver, and too few emergency accounts holding Global Administrator permanently. Oh three is the program's design: an approver group that's also the role's eligible group, so approval becomes self-approval. Oh four is a file outside Microsoft Learn's bounds or its tier's cap. Oh five warns on an authentication context, because its policy must be On first. Oh six is a role with no policy at tenant scope. Oh seven is the wave order. Oh eight is eligibility outside the role's P R V group, which the access review in Module 7 removes. And oh nine is a standing active assignment: a user to convert, or a service principal to document. Reads and writes are different tasks, and the code follows the Graph A P I reference pages, which name narrower permissions than Learn's how-to guides.`,
   `${M} — Unit 2: workbook Chapter 04, "The checks," "The calls and their permissions"; examples/privileged-access/powershell/PimEntraRoles/PimEntraRoles.psm1.`);
+}
+
+// ================================================================== 6b Alert check
+{
+  const s = content(SC, "The alert check: PA-PIM-10 to PA-PIM-13");
+  tag(s, "What");
+  const b = table(s, "Alert", 1.45, [1.6, 2.6, 7.95], ["Rule", "CISA baseline", "A Finding until the security monitoring mailbox is an additional recipient"], [
+    ["PA-PIM-10", "MS.AAD.7.7v1", "On a highly privileged role's assignment alert, for eligible or active assignments"],
+    ["PA-PIM-11", "MS.AAD.7.8v1", "On Global Administrator's activation alert"],
+    ["PA-PIM-12", "MS.AAD.7.7v1", "On the PIM for Groups member policy of a group that holds one of those roles"],
+    ["PA-PIM-13", "MS.AAD.7.8v1", "On the member policy of a group that holds Global Administrator"],
+  ], { fontSize: 12.5, limit: 4.0 });
+  const l = panel(s, "Read", 0.6, b + 0.25, 6.0, null, HEX.navy, HEX.navyTint, "READ-ONLY", "Invoke-PaPimAlertCheck.ps1", [
+    "Its own task, pim-alerts; it changes nothing",
+    "PIM's default recipients don't count",
+    "Fictional tenant: all 11 are Findings",
+  ], 12.5);
+  panel(s, "Fix", 6.85, b + 0.25, 5.9, null, HEX.teal, HEX.tealTint, "WHERE EACH IS FIXED", null, [
+    "A role: Role settings > Notifications",
+    "A group: PIM for Groups Settings > Member > Notifications",
+    "Its tests are a separate suite, baseline/tests",
+  ], 12.5);
+  sources(s, "Sources: Module 4, Unit 2; workbook Chapter 04, \"The alert check\"; CISA BOD 25-01 (MS.AAD.7.7v1, 7.8v1); ScubaGear; Invoke-PaPimAlertCheck.ps1.");
+  notes(s,
+`The alert check. CISA's baseline under B O D twenty-five oh-one asks for two alerts the role files don't set. M S A A D seven point seven: an alert on every eligible or active assignment to the eight highly privileged roles. And seven point eight: an alert on every Global Administrator activation. So a separate script reads them under its own read-only task, pim alerts, and changes nothing. Pim ten and pim eleven check each role's notification settings. Pim twelve and pim thirteen check the PIM for Groups member policy of each group that holds one of those roles. Each is a finding until an additional recipient, the security monitoring mailbox, is set: under the role's role settings, notifications, or the group's PIM for Groups settings, member, notifications. PIM's default recipients don't count. On the fictional tenant, all eleven are findings. Its tests are a separate suite, in the baseline tests folder.`,
+  `${M} — Unit 2: workbook Chapter 04, "The alert check"; examples/privileged-access/Invoke-PaPimAlertCheck.ps1.`);
 }
 
 // ================================================================== 7 Conversion
@@ -308,15 +335,16 @@ endModule(SL);
     ["AC-2, AC-3; MS.AAD.7.6v1: approval to activate Global Administrator", "KSI-IAM-JIT", "global-administrator.json and its diff.csv rows"],
     ["AC-5, AC-2: an approver, the emergency accounts kept, no self-approval", "KSI-IAM-JIT", "PA-PIM-01, 02 and 03"],
     ["AC-6(5); MS.AAD.7.4v1, 7.5v1: no standing assignment; only through PIM", "KSI-IAM-JIT", "PA-PIM-09 and PA-PIM-08"],
+    ["AU-6; MS.AAD.7.7v1, 7.8v1: alerts on highly privileged assignments and Global Administrator activation", "KSI-MLA-RVL", "PA-PIM-10 to 13 in out/pim-alerts, no Finding"],
     ["CM-3, CM-4(2): reviewed before, verified after", "KSI-CMT-LMC, -RMV, -VTD", "plan.json, diff.csv, before.json; verify.csv"],
     ["AC-6: least privilege for each identity", "KSI-IAM-ELP", "Three reads; each write task adds its own"],
   ], { fontSize: 11, limit: 5.3 });
   panel(s, "Keep", 0.6, b + 0.2, 12.15, null, HEX.teal, HEX.tealTint, "EVIDENCE AN ISSO KEEPS", null, [
     "The role files and tiers.json; each wave's plan.json, diff.csv and before.json; the apply's verify.csv and manifest.json; per conversion, confirmed-activations.csv with its ticket",
   ], 12);
-  sources(s, "Sources: Module 4, \"Introduction,\" \"Summary\"; NIST SP 800-53 Rev. 5; CISA BOD 25-01 (MS.AAD.7.4v1 to 7.6v1); FedRAMP, \"Key Security Indicators.\"");
+  sources(s, "Sources: Module 4, \"Introduction,\" \"Summary\"; NIST SP 800-53 Rev. 5; CISA BOD 25-01 (MS.AAD.7.4v1 to 7.8v1); FedRAMP, \"Key Security Indicators.\"");
   notes(s,
-`The federal requirement. The role files, the plan and the read-back are the evidence for the plan's tasks A1.6, A2.1 and A2.2. From NIST special publication eight hundred fifty-three they support A C six, least privilege in time; A C two and A C three, approval before activation; A C five, separation of duties; and A C six, enhancement five. And from CISA's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point four, no standing assignment; seven point five, provisioning only through PIM; and seven point six, approval to activate Global Administrator. C M three and C M four, enhancement two, cover the change: reviewed before, verified after. The evidence an ISSO keeps: the role files and the tiers file; each wave's plan, diff and before files; the apply's verify file and manifest; and, for each conversion, the confirmed activations with their tickets.`,
+`The federal requirement. The role files, the plan and the read-back are the evidence for the plan's tasks A1.6, A2.1 and A2.2. From NIST special publication eight hundred fifty-three they support A C six, least privilege in time; A C two and A C three, approval before activation; A C five, separation of duties; and A C six, enhancement five. And from CISA's B O D twenty-five oh-one and its ScubaGear baseline: M S A A D seven point four, no standing assignment; seven point five, provisioning only through PIM; and seven point six, approval to activate Global Administrator. The alert check's findings support A U six, audit record review, and seven point seven and seven point eight, the alerts on highly privileged assignments and on Global Administrator activation. C M three and C M four, enhancement two, cover the change: reviewed before, verified after. The evidence an ISSO keeps: the role files and the tiers file; each wave's plan, diff and before files; the apply's verify file and manifest; and, for each conversion, the confirmed activations with their tickets.`,
   `${M} — Unit "Introduction" (the federal requirement and its table); "Summary" (the evidence an ISSO keeps).`);
 }
 

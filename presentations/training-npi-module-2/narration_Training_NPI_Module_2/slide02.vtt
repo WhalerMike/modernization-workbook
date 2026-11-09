@@ -35,25 +35,25 @@ every Active Directory account,
 found before the account is touched.
 
 8
-00:00:25.837 --> 00:00:28.442
+00:00:25.837 --> 00:00:28.565
 An identity with no owner is an orphan,
 
 9
-00:00:28.442 --> 00:00:31.887
+00:00:28.565 --> 00:00:32.262
 and the plan's decision D N
-2 says what happens to it.
+P 2 says what happens to it.
 
 10
-00:00:31.887 --> 00:00:34.874
+00:00:32.262 --> 00:00:35.250
 Whatever happens, the
 rule is never delete.
 
 11
-00:00:34.874 --> 00:00:39.413
+00:00:35.250 --> 00:00:39.788
 In this module you check ownership as
 code, and you build the orphan rule
 
 12
-00:00:39.413 --> 00:00:43.940
+00:00:39.788 --> 00:00:44.300
 as a plan that a reviewer approves by
 its hash, before anything changes.

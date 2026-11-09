@@ -36,11 +36,11 @@ Here's how a proposal is made. First, scope: some accounts belong to another pla
 
 The decision check reads each owner's row and turns what's missing or wrong into findings with stable IDs. In plain terms: every account needs a decision; every account needs enough facts for a proposal; the target has to fit the decision, and Learn's delegated account limits are enforced; an owner who departs from the matrix has to say why; anything kept needs an end date, and anything kept on Kerberos needs an owner for its service principal name; high-risk accounts go first; every wave needs a way back; and the licensing scope has to make sense. The exact wording is on the slide.
 
-## Slide 10 — Waves and their rollback (N2.2)
+## Slide 10 — Waves and their rollback (NP2.2)
 
 A conversion with no way back turns a failed change into an outage, so the waves get as much attention as the targets. Every rollback owner and service principal name owner is looked up once, and counts only if they're an enabled member, the same rule as Chapter 2. An account the owner didn't place in a wave is proposed for the first wave if it's high-risk, the second otherwise. And each wave's rollback is assembled from its members' targets, including Learn's own undo for a delegated account migration, which keeps the old account rather than deleting it.
 
-## Slide 11 — The Workload ID Premium scope (D-N4) and Gate 2
+## Slide 11 — The Workload ID Premium scope (D-NP4) and Gate 2
 
 The licensing decision belongs to the chief information security officer, and the code makes it checkable. Premium adds things like Conditional Access for workload identities, but that only covers single-tenant service principals: not managed identities, and not multitenant apps. So the code works out who could be covered today and who will leave or join after conversion, reads the tenant's subscriptions once, and checks the decision file against both. It never buys or assigns anything. Then the gate check reports Gate 2's five criteria, and the gate is met only when no finding is open. Who's involved?
 
@@ -56,7 +56,7 @@ Lab 1 needs only a laptop with PowerShell 7 and Pester, and no tenant. First you
 
 Reading the output is where the rules turn real. Six accounts are proposed for retirement, the orphans and the disabled ones from Chapter 2. Others go to delegated or group managed accounts, some are kept, and one app has no proposal because nobody recorded where it runs. The findings tell the story: a high-risk account scheduled too late, a Kerberos account kept with no owner for its service principal name, an owner who overrode the matrix but gave a reason, and two apps on the licensing list that Conditional Access can't actually protect.
 
-## Slide 15 — Lab 1: the waves, the D-N4 scope, the tests
+## Slide 15 — Lab 1: the waves, the D-NP4 scope, the tests
 
 Next, the waves. The first wave has a named rollback owner and a clear way back. The second has an empty owner, which is exactly why it drew a finding a moment ago. Then the licensing scope: six apps could be covered by Conditional Access today, but only four after conversion, because one moves to a managed identity and one is retired. That's the kind of thing you'd want to know before buying licenses. Finally, run the whole suite: five hundred thirteen tests pass, and the run made just three requests, all reads.
 

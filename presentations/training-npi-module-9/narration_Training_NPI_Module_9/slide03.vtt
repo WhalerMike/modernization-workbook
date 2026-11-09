@@ -21,47 +21,47 @@ and why the blueprint is
 the credential boundary.
 
 5
-00:00:12.200 --> 00:00:14.776
-You'll explain decision D N six as data,
+00:00:12.200 --> 00:00:14.978
+You'll explain decision D N P six as data,
 
 6
-00:00:14.776 --> 00:00:18.100
+00:00:14.978 --> 00:00:18.450
 and what the code does in
 a cloud without Agent I D.
 
 7
-00:00:18.100 --> 00:00:21.614
+00:00:18.450 --> 00:00:21.964
 You'll run the A I identity
 check and read its findings,
 
 8
-00:00:21.614 --> 00:00:23.850
+00:00:21.964 --> 00:00:24.200
 including the top-priority drift.
 
 9
-00:00:23.850 --> 00:00:26.491
+00:00:24.200 --> 00:00:26.841
 You'll explain the
 ten-business-day sponsor rule,
 
 10
-00:00:26.491 --> 00:00:28.538
+00:00:26.841 --> 00:00:28.888
 and what happens to an orphaned agent.
 
 11
-00:00:28.538 --> 00:00:32.830
+00:00:28.888 --> 00:00:33.179
 And you'll show that the agent
 Conditional Access plan is report-only,
 
 12
-00:00:32.830 --> 00:00:34.938
+00:00:33.179 --> 00:00:35.287
 and runs only by its approved hash.
 
 13
-00:00:34.938 --> 00:00:40.300
+00:00:35.287 --> 00:00:40.650
 Before you start, finish Module 2, because
 the lab reads Chapter 2's ownership run,
 
 14
-00:00:40.300 --> 00:00:44.420
+00:00:40.650 --> 00:00:44.780
 and Module 6, on Conditional
 Access for workload identities.

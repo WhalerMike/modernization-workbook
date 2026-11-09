@@ -224,63 +224,6 @@
    "And one choice of the kit's own: activations aren't standing state, so the read leaves them out."
   ]
  ],
- "6": [
-  [
-   0.05,
-   3.825,
-   "Unit 2: the file, the findings and the guards."
-  ],
-  [
-   3.875,
-   9.463,
-   "The desired state is one file, P R V groups dot json, with the tier policy beside it; the values are this workbook's design guidance."
-  ],
-  [
-   13.338,
-   5.25,
-   "The read compares the tenant with it and raises rules P G oh one to oh nine."
-  ],
-  [
-   18.587,
-   4.825,
-   "Oh one is a name that doesn't follow the P R V pattern, the program's naming."
-  ],
-  [
-   23.413,
-   10.1,
-   "Oh two is a group that holds an Entra role but isn't role-assignable, and oh three a dynamic or synchronized group; Microsoft Learn says pim for Groups can't manage those."
-  ],
-  [
-   33.513,
-   5.062,
-   "Oh four counts role-assignable groups against Microsoft Learn's limit of five hundred."
-  ],
-  [
-   38.575,
-   4.75,
-   "Oh five is a group nested as a holder, or a service principal made eligible."
-  ],
-  [
-   43.325,
-   3.312,
-   "Oh six is an entry with no end or no ticket."
-  ],
-  [
-   46.638,
-   1.887,
-   "Oh seven is the owner trap."
-  ],
-  [
-   48.525,
-   3.562,
-   "Oh eight is a policy rule that differs from the reviewed setting."
-  ],
-  [
-   52.087,
-   6.912,
-   "And oh nine is anything the file doesn't grant or list: anything outside the file is unreviewed."
-  ]
- ],
  "7": [
   [
    0.05,
@@ -405,184 +348,6 @@
    "Samples are a starting point, not a desired state."
   ]
  ],
- "9": [
-  [
-   0.05,
-   2.987,
-   "Step three lists the permissions the read needs."
-  ],
-  [
-   3.038,
-   9.787,
-   "Four: Group dot Read Basic dot All, and the three pim for Groups reads, for assignment schedules, eligibility schedules and role management policies."
-  ],
-  [
-   12.825,
-   1.675,
-   "Nothing ends in ReadWrite."
-  ],
-  [
-   14.5,
-   3.913,
-   "Step four plans against the fictional tenant, as a dry run."
-  ],
-  [
-   18.413,
-   5.662,
-   "You give it the cloud, the fixture, the desired state file, the date and an output folder."
-  ],
-  [
-   24.075,
-   3.487,
-   "The read raises nine findings and three warnings."
-  ],
-  [
-   27.562,
-   5.95,
-   "The plan has eight changes: three assignments, two eligibilities and three policy rules."
-  ],
-  [
-   33.513,
-   3.125,
-   "The guards all passed, so the plan could be applied."
-  ],
-  [
-   36.638,
-   6.125,
-   "But it's a dry run, so nothing was sent: review the diff and the plan, then run again with Apply."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   2.112,
-   "Step five prints the findings."
-  ],
-  [
-   2.163,
-   7.85,
-   "Two warnings are P G oh nine for groups the file doesn't list: a legacy help desk group and an Intune administrators group."
-  ],
-  [
-   10.012,
-   3.3,
-   "Then P R V T0 Priv Role Admin."
-  ],
-  [
-   13.312,
-   5.3,
-   "It has a permanent active member the file doesn't grant, which is oh six and oh nine."
-  ],
-  [
-   18.613,
-   6.15,
-   "It has an eligible owner with no active owner, which is oh seven and oh nine: the owner trap."
-  ],
-  [
-   24.762,
-   6.562,
-   "And its member activation needs no approval and lasts eight hours instead of four, two oh eight findings."
-  ],
-  [
-   31.325,
-   14.025,
-   "On the Azure owner group, P R V T1 Azure Owner Sub Workload: it isn't role-assignable, which is a warning for a group that holds no Entra role, and it has a nested group, the legacy help desk group, as an eligible member."
-  ],
-  [
-   45.35,
-   4.037,
-   "That's oh five, oh nine, and an oh eight for a policy rule."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   3.263,
-   "Step six reads the diff, one line per change."
-  ],
-  [
-   3.312,
-   4.537,
-   "A tilde is a change, a plus an addition, a minus a removal."
-  ],
-  [
-   7.85,
-   1.913,
-   "The policy rules come first."
-  ],
-  [
-   9.762,
-   7.8,
-   "The Tier 0 group's member activation goes from eight hours to four, and from no approval to approval, by the same approver group."
-  ],
-  [
-   17.562,
-   3.688,
-   "The Azure owner group's eligible owners must now have an end."
-  ],
-  [
-   21.25,
-   1.137,
-   "Then the grants."
-  ],
-  [
-   22.387,
-   12.35,
-   "An Exchange admin member's end date moves out to April twenty twenty-seven, on change C H G ten oh two, and a new active member is added, on C H G ten oh five, each with its ticket."
-  ],
-  [
-   34.737,
-   7.812,
-   "Then the three removals: the Tier 0 group's ungranted active member, its eligible owner, and the nested legacy group."
-  ],
-  [
-   42.55,
-   6.588,
-   "Last, the plan names exactly the write permissions it would need: the three pim for Groups ReadWrite permissions."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   2.212,
-   "Step seven shows a guard refusing."
-  ],
-  [
-   2.263,
-   3.888,
-   "Run the same plan with Apply, but with Max Removals set to two."
-  ],
-  [
-   6.15,
-   7.075,
-   "Guard G six refuses: three removals is more than two; review them, and run again with a higher limit."
-  ],
-  [
-   13.225,
-   1.175,
-   "Nothing is sent."
-  ],
-  [
-   14.4,
-   3.038,
-   "Step eight applies to the fake with the default limit."
-  ],
-  [
-   17.438,
-   6.862,
-   "The same findings and the same eight changes, the guards all pass, and eight requests are sent, none failed."
-  ],
-  [
-   24.3,
-   3.388,
-   "The fake records the requests and doesn't change its tenant."
-  ],
-  [
-   27.688,
-   5.55,
-   "Step nine runs the tests, three hundred thirty pass, and you delete the output folder."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -704,6 +469,256 @@
    "The module page has two more questions, each linked to the section that answers it."
   ]
  ],
+ "6": [
+  [
+   0.05,
+   3.825,
+   "Unit 2: the file, the findings and the guards."
+  ],
+  [
+   3.875,
+   9.463,
+   "The desired state is one file, P R V groups dot json, with the tier policy beside it; the values are this workbook's design guidance."
+  ],
+  [
+   13.338,
+   11.75,
+   "Every member and owner policy selects Module 3's authentication context, c1, as the Federal Modernization Workbook's Book 04, Access and Privilege, requires."
+  ],
+  [
+   25.087,
+   8.438,
+   "So, as in Module 4, the Apply switch also needs the Activation Gate Checked switch, a person's statement that the gate's policy is On."
+  ],
+  [
+   33.525,
+   5.25,
+   "The read compares the tenant with it and raises rules P G oh one to oh nine."
+  ],
+  [
+   38.775,
+   4.825,
+   "Oh one is a name that doesn't follow the P R V pattern, the program's naming."
+  ],
+  [
+   43.6,
+   10.1,
+   "Oh two is a group that holds an Entra role but isn't role-assignable, and oh three a dynamic or synchronized group; Microsoft Learn says pim for Groups can't manage those."
+  ],
+  [
+   53.7,
+   5.062,
+   "Oh four counts role-assignable groups against Microsoft Learn's limit of five hundred."
+  ],
+  [
+   58.763,
+   4.75,
+   "Oh five is a group nested as a holder, or a service principal made eligible."
+  ],
+  [
+   63.513,
+   3.312,
+   "Oh six is an entry with no end or no ticket."
+  ],
+  [
+   66.825,
+   1.887,
+   "Oh seven is the owner trap."
+  ],
+  [
+   68.713,
+   3.562,
+   "Oh eight is a policy rule that differs from the reviewed setting."
+  ],
+  [
+   72.275,
+   6.912,
+   "And oh nine is anything the file doesn't grant or list: anything outside the file is unreviewed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.987,
+   "Step three lists the permissions the read needs."
+  ],
+  [
+   3.038,
+   9.787,
+   "Four: Group dot Read Basic dot All, and the three pim for Groups reads, for assignment schedules, eligibility schedules and role management policies."
+  ],
+  [
+   12.825,
+   1.675,
+   "Nothing ends in ReadWrite."
+  ],
+  [
+   14.5,
+   3.913,
+   "Step four plans against the fictional tenant, as a dry run."
+  ],
+  [
+   18.413,
+   5.662,
+   "You give it the cloud, the fixture, the desired state file, the date and an output folder."
+  ],
+  [
+   24.075,
+   3.5,
+   "The read raises eleven findings and three warnings."
+  ],
+  [
+   27.575,
+   5.975,
+   "The plan has ten changes: three assignments, two eligibilities and five policy rules."
+  ],
+  [
+   33.55,
+   10.113,
+   "The guards all passed, so the plan could be applied, but the run warns that it selects an authentication context, so the apply will also need the Activation Gate Checked switch."
+  ],
+  [
+   43.663,
+   6.1,
+   "And it's a dry run, so nothing was sent: review the diff and the plan, then run again with Apply."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.112,
+   "Step five prints the findings."
+  ],
+  [
+   2.163,
+   7.85,
+   "Two warnings are P G oh nine for groups the file doesn't list: a legacy help desk group and an Intune administrators group."
+  ],
+  [
+   10.012,
+   3.3,
+   "Then P R V T0 Priv Role Admin."
+  ],
+  [
+   13.312,
+   5.3,
+   "It has a permanent active member the file doesn't grant, which is oh six and oh nine."
+  ],
+  [
+   18.613,
+   6.15,
+   "It has an eligible owner with no active owner, which is oh seven and oh nine: the owner trap."
+  ],
+  [
+   24.762,
+   15.05,
+   "And its member policy activates without approval, for eight hours instead of four, and with M F A instead of the authentication context c1: four oh eight findings, for the duration, the enablement rules, the context and the approval."
+  ],
+  [
+   39.812,
+   14.025,
+   "On the Azure owner group, P R V T1 Azure Owner Sub Workload: it isn't role-assignable, which is a warning for a group that holds no Entra role, and it has a nested group, the legacy help desk group, as an eligible member."
+  ],
+  [
+   53.837,
+   4.037,
+   "That's oh five, oh nine, and an oh eight for a policy rule."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.263,
+   "Step six reads the diff, one line per change."
+  ],
+  [
+   3.312,
+   4.537,
+   "A tilde is a change, a plus an addition, a minus a removal."
+  ],
+  [
+   7.85,
+   1.913,
+   "The policy rules come first."
+  ],
+  [
+   9.762,
+   16.6,
+   "The Tier 0 group's member activation goes from eight hours to four; M F A leaves its enablement rules, which keep justification and a ticket; the authentication context goes from off to c1; and it goes from no approval to approval, by the same approver group."
+  ],
+  [
+   26.363,
+   3.688,
+   "The Azure owner group's eligible owners must now have an end."
+  ],
+  [
+   30.05,
+   1.137,
+   "Then the grants."
+  ],
+  [
+   31.188,
+   12.35,
+   "An Exchange admin member's end date moves out to April twenty twenty-seven, on change C H G ten oh two, and a new active member is added, on C H G ten oh five, each with its ticket."
+  ],
+  [
+   43.538,
+   7.812,
+   "Then the three removals: the Tier 0 group's ungranted active member, its eligible owner, and the nested legacy group."
+  ],
+  [
+   51.35,
+   6.588,
+   "Last, the plan names exactly the write permissions it would need: the three pim for Groups ReadWrite permissions."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.212,
+   "Step seven shows a guard refusing."
+  ],
+  [
+   2.263,
+   3.888,
+   "Run the same plan with Apply, but with Max Removals set to two."
+  ],
+  [
+   6.15,
+   7.075,
+   "Guard G six refuses: three removals is more than two; review them, and run again with a higher limit."
+  ],
+  [
+   13.225,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   14.4,
+   3.038,
+   "Step eight applies to the fake with the default limit."
+  ],
+  [
+   17.438,
+   11.713,
+   "The first command stops before any write: the plan sets an authentication context, so confirm its Conditional Access policy is On, from Module 3, then pass Activation Gate Checked."
+  ],
+  [
+   29.15,
+   11.3,
+   "The second has the same findings and the same ten changes, the guards all pass, and ten requests are sent, none failed: the policy rules first, then the grants and removals."
+  ],
+  [
+   40.45,
+   3.388,
+   "The fake records the requests and doesn't change its tenant."
+  ],
+  [
+   43.837,
+   5.55,
+   "Step nine runs the tests, three hundred thirty pass, and you delete the output folder."
+  ]
+ ],
  "16": [
   [
    0.05,
@@ -717,26 +732,26 @@
   ],
   [
    10.475,
-   8.325,
-   "You read the exact requests that would fix them, saw a guard refuse a plan with too many removals, and applied eight requests to the fake."
+   12.963,
+   "You read the exact requests that would fix them, saw a guard refuse a plan with too many removals, saw the apply refuse to select c1 until a person confirmed the gate, and applied ten requests to the fake."
   ],
   [
-   18.8,
+   23.438,
    3.788,
    "Next is Module 6: pim for Azure resources."
   ],
   [
-   22.587,
+   27.225,
    5.487,
    "Owner, Contributor and User Access Administrator on a subscription are privileged too."
   ],
   [
-   28.075,
+   32.712,
    8.537,
    "pim for Azure resources isn't in Microsoft Graph: it goes through Azure Resource Manager, with Azure roles instead of Graph permissions."
   ],
   [
-   36.612,
+   41.25,
    6.85,
    "In Module 6 you hold it as code, with the same discipline: read, diff, and send only with Apply."
   ]

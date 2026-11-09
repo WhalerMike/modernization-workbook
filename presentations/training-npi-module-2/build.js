@@ -52,14 +52,14 @@ const SS = "Check and summary";
   ], 13.5);
   const r = panel(s, "Orphan", 6.85, 1.45, 5.9, null, HEX.amber, HEX.amberTint, "AN IDENTITY WITH NO OWNER", "An orphan", [
     "Every AD account needs an application owner, found before the account is touched",
-    "Decision D-N2 says what happens to an orphan",
+    "Decision D-NP2 says what happens to an orphan",
     "Never delete",
   ], 13.5);
   callout(s, "Point", Math.max(l, r) + 0.3, 0.95, "FaUserShield", HEX.red, "This module: ",
     "check ownership as code, and build the orphan rule as a plan a reviewer approves by its hash before anything changes.");
   sources(s, "Sources: Module 2, \"Introduction\"; Learn, Overview of enterprise application ownership in Microsoft Entra ID; the program's design guidance.");
   notes(s,
-`Why does ownership matter so much? Because, as the program's guidance on app ownership warns, an owner can add a credential to an app, and then act as the app. So owners are a control, not a contact list. The program wants two human owners on every app registration and service principal, a record in the system inventory, and an application owner for every Active Directory account, found before the account is touched. An identity with no owner is an orphan, and the plan's decision D N 2 says what happens to it. Whatever happens, the rule is never delete. In this module you check ownership as code, and you build the orphan rule as a plan that a reviewer approves by its hash, before anything changes.`,
+`Why does ownership matter so much? Because, as the program's guidance on app ownership warns, an owner can add a credential to an app, and then act as the app. So owners are a control, not a contact list. The program wants two human owners on every app registration and service principal, a record in the system inventory, and an application owner for every Active Directory account, found before the account is touched. An identity with no owner is an orphan, and the plan's decision D N P 2 says what happens to it. Whatever happens, the rule is never delete. In this module you check ownership as code, and you build the orphan rule as a plan that a reviewer approves by its hash, before anything changes.`,
   `${M} — Unit "Introduction."`);
 }
 
@@ -67,7 +67,7 @@ const SS = "Check and summary";
 {
   const s = objectives(SI, "What you'll be able to do in Module 2", [
     "State the program's ownership rule, and which owners the code counts as valid",
-    "Explain D-N2, the orphan rule, and how it differs from the program's orphaned-app policy",
+    "Explain D-NP2, the orphan rule, and how it differs from the program's orphaned-app policy",
     "Run the ownership check and read its findings and its orphan plan",
     "Show that the write path dry-runs without -Apply and refuses a plan whose hash nobody approved",
   ], [
@@ -77,7 +77,7 @@ const SS = "Check and summary";
   ], 60);
   sources(s, "Sources: Module 2, \"Learning objectives,\" \"Prerequisites\"; learning path index, \"What you need for the labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab. You'll state the program's ownership rule, and which owners the code counts as valid. You'll explain D N 2, the orphan rule, and how it differs from the program's own policy for orphaned apps. You'll run the ownership check and read its findings and its orphan plan. And you'll show that the write path only dry-runs without the Apply switch, and refuses a plan whose hash nobody approved. Before you start, finish Module 1, because this module checks Module 1's register. And read the guide's record each identity joins to, for the owner and sponsor fields. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone of the repository. No tenant.`,
+`Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab. You'll state the program's ownership rule, and which owners the code counts as valid. You'll explain D N P 2, the orphan rule, and how it differs from the program's own policy for orphaned apps. You'll run the ownership check and read its findings and its orphan plan. And you'll show that the write path only dry-runs without the Apply switch, and refuses a plan whose hash nobody approved. Before you start, finish Module 1, because this module checks Module 1's register. And read the guide's record each identity joins to, for the owner and sponsor fields. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone of the repository. No tenant.`,
   `${M} — Unit "Learning objectives," "Prerequisites"; learning path index — "What you need for the labs."`);
 }
 endModule(SI);
@@ -108,7 +108,7 @@ endModule(SI);
   tag(s, "What");
   const b = table(s, "Rule", 1.45, [3.0, 4.35, 4.8], ["", "Learn", "The program (design guidance)"], [
     ["Owners", "At least two where possible; a service principal's owners are users or service principals", "Two human owners: a user, a member and enabled. Not service principals or guests"],
-    ["The record", "serviceManagementReference for the team contact from the asset database", "A reference that names a record in the system inventory (D-N1), not free text"],
+    ["The record", "serviceManagementReference for the team contact from the asset database", "A reference that names a record in the system inventory (D-NP1), not free text"],
     ["AD accounts", "No owners attribute the code can trust", "An application owner, from an owners file kept with the record"],
   ], { fontSize: 12.5, limit: 4.3 });
   callout(s, "Disable", b + 0.3, 0.95, "FaShieldHalved", HEX.navy, "Disable, never delete: ",
@@ -119,11 +119,11 @@ endModule(SI);
   `${M} — Unit 2 "The check and the plan": workbook Chapter 02, "The rule the code holds."`);
 }
 
-// ================================================================== 6 D-N2
+// ================================================================== 6 D-NP2
 {
-  const s = content(SC, "The orphan rule, D-N2, and the orphaned-app policy");
+  const s = content(SC, "The orphan rule, D-NP2, and the orphaned-app policy");
   tag(s, "What");
-  const l = panel(s, "DN2", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "D-N2  ·  THE PLAN'S DECISION, OWNED BY THE CISO", "What the code follows", [
+  const l = panel(s, "DN2", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "D-NP2  ·  THE PLAN'S DECISION, OWNED BY THE CISO", "What the code follows", [
     "Disable once the identity governance officer confirms the finding",
     "Then 30 days for the office to name an owner or retire it",
     "Never delete",
@@ -134,10 +134,10 @@ endModule(SI);
     "The program's rule for AI agents disables first",
   ], 13);
   callout(s, "Settled", Math.max(l, r) + 0.3, 0.95, "FaScaleBalanced", HEX.teal, "Settled: ",
-    "the program follows D-N2, the stricter rule: disable first, then the 30-day claim window. The guide and the code both follow it.");
-  sources(s, "Sources: Module 2, Unit 2; the program's decision D-N2 and governance policy (design guidance); Learn, Governing Microsoft Entra service accounts.");
+    "the program follows D-NP2, the stricter rule: disable first, then the 30-day claim window. The guide and the code both follow it.");
+  sources(s, "Sources: Module 2, Unit 2; the program's decision D-NP2 and governance policy (design guidance); Learn, Governing Microsoft Entra service accounts.");
   notes(s,
-`Now the orphan rule itself. The plan's decision D N 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it. Never delete. The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one. And the program's rule for AI agents disables first, because an agent can act. The program settled on D N 2, the stricter of the two: disable first, then thirty days to claim it. The guide's Orphans step and the code both follow it. Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete.`,
+`Now the orphan rule itself. The plan's decision D N P 2, which the C I S O owns, says: disable the identity once the identity governance officer confirms the finding, then allow thirty days for the office to name an owner or retire it. Never delete. The program's own governance policy for orphaned apps runs the other way round: thirty days to assign an owner, then access is suspended on day thirty-one. And the program's rule for AI agents disables first, because an agent can act. The program settled on D N P 2, the stricter of the two: disable first, then thirty days to claim it. The guide's Orphans step and the code both follow it. Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete.`,
   `${M} — Unit 2: workbook Chapter 02, "The rule the code holds"; the guide — Step 6, "Orphans"; Knowledge check answer 2.`);
 }
 

@@ -16,64 +16,74 @@ legacy credential, reverts the configuration
 and removes the federated credential.
 
 4
-00:00:13.587 --> 00:00:19.107
-Wave 2 holds svc hrsync, a managed
-service account and Payroll Export,
+00:00:13.587 --> 00:00:21.013
+Wave 2 holds svc hrsync, svc intranet, a
+managed service account and Payroll Export.
 
 5
-00:00:19.107 --> 00:00:21.625
-and its rollback owner is empty.
+00:00:21.013 --> 00:00:24.431
+svc intranet is there because
+its owner re-platforms it
 
 6
-00:00:21.625 --> 00:00:25.275
-That's the N P I M A T oh eight finding.
+00:00:24.431 --> 00:00:27.999
+to the group managed service
+account the matrix proposes.
 
 7
-00:00:25.275 --> 00:00:30.147
+00:00:27.999 --> 00:00:30.487
+And the wave's rollback owner is empty.
+
+8
+00:00:30.487 --> 00:00:34.138
+That's the N P I M A T oh eight finding.
+
+9
+00:00:34.138 --> 00:00:39.010
 Notice the delegated managed account's
 rollback is the undo command from Microsoft
 
-8
-00:00:30.147 --> 00:00:33.558
+10
+00:00:39.010 --> 00:00:42.421
 Learn's delegated managed
 service account documentation,
 
-9
-00:00:33.558 --> 00:00:36.412
+11
+00:00:42.421 --> 00:00:45.275
 and the superseded account
 is kept, never deleted.
 
-10
-00:00:36.412 --> 00:00:40.038
+12
+00:00:45.275 --> 00:00:48.900
 Step seven reads the
 Workload I D Premium scope.
 
-11
-00:00:40.038 --> 00:00:43.249
+13
+00:00:48.900 --> 00:00:52.111
 Six single-tenant app
 registrations can be covered by
 
-12
-00:00:43.249 --> 00:00:46.388
+14
+00:00:52.111 --> 00:00:55.250
 Conditional Access today,
 and four after conversion.
 
-13
-00:00:46.388 --> 00:00:50.187
+15
+00:00:55.250 --> 00:00:59.049
 Payroll Export is one that
 leaves: its owner's decision moves
 
-14
-00:00:50.187 --> 00:00:54.138
+16
+00:00:59.049 --> 00:01:03.000
 it to a managed identity, and
 managed identities aren't covered.
 
-15
-00:00:54.138 --> 00:00:58.351
+17
+00:01:03.000 --> 00:01:07.213
 Step eight runs every test:
 five hundred thirteen pass.
 
-16
-00:00:58.351 --> 00:01:01.780
+18
+00:01:07.213 --> 00:01:10.630
 Then delete the output, which
 names accounts and owners.

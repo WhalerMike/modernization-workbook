@@ -90,12 +90,12 @@ endModule(SI);
     ["2", "App management policy, pilot and synthetic app", "G3", "No report-only mode, but only a create or update that breaks it is refused: existing secrets keep working"],
     ["3", "Federated credential and managed identity", "G5", "On the pilot workload, beside the old secret"],
     ["4", "gMSA on a test host", "G5", "After the KDS root key has replicated"],
-    ["5", "Conditional Access for workload identities", "G4", "Report-only in test, to estimate its effect; production enables it wave by wave"],
+    ["5", "Conditional Access for workload identities", "G4", "Report-only in test, to estimate its effect; production enables it ring by ring"],
   ], { fontSize: 12.5, limit: 5.3 });
   line(s, "Gates", "The runbook decides nothing the gates decide: it deploys the controls that let each gate pass (design guidance).", b + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 11, \"Introduction,\" Unit 1; Learn, app management policies; Conditional Access for workload identities; Chapter 11, \"What the runbook depends on.\"");
   notes(s,
-`Unit 1 starts with the safe order. Inventory and owners come first, and they only read. Then the app management policy, scoped to a pilot application and a synthetic one. Microsoft Learn documents no report-only mode for these policies, but it says a policy refuses only a create or update that breaks it, so an existing secret keeps working while the pilot runs. Then a federated credential and a managed identity on the pilot workload, beside the old secret. Then a group managed service account on a test host, once the key distribution root key has replicated. And last, Conditional Access for workload identities, in report-only mode, which Learn's Conditional Access documentation lets you use to estimate a policy's effect. In production it's enabled wave by wave, after a reviewed sign-in summary. The runbook decides nothing the gates decide; it deploys the controls that let each gate pass.`,
+`Unit 1 starts with the safe order. Inventory and owners come first, and they only read. Then the app management policy, scoped to a pilot application and a synthetic one. Microsoft Learn documents no report-only mode for these policies, but it says a policy refuses only a create or update that breaks it, so an existing secret keeps working while the pilot runs. Then a federated credential and a managed identity on the pilot workload, beside the old secret. Then a group managed service account on a test host, once the key distribution root key has replicated. And last, Conditional Access for workload identities, in report-only mode, which Learn's Conditional Access documentation lets you use to estimate a policy's effect. In production it's enabled ring by ring, after a reviewed sign-in summary. The runbook decides nothing the gates decide; it deploys the controls that let each gate pass.`,
   `${M} — Unit 1 "What the runbook adds": workbook Chapter 11, "What the runbook depends on" (the safe order).`);
 }
 
@@ -133,10 +133,10 @@ endModule(SI);
     ["The same commands for both stages", "Every value comes from the file: moving from test to production changes the file and nothing else"],
   ], { fontSize: 12.5, limit: 4.6 });
   callout(s, "One", b + 0.3, 0.95, "FaFileShield", HEX.navy, "One JSON file per stage: ",
-    "the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the waves.");
+    "the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the rings.");
   sources(s, "Sources: Module 11, Unit 1; workbook Chapter 11, \"The environment settings file\"; examples/non-person-identity/deploy/settings.template.json.");
   notes(s,
-`The settings file is one JSON file per stage. It holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the waves. The kit checks it before any command runs, against four rules, which are this workbook's design. No secrets: a field whose name looks like a secret, or a value that looks like a client secret or a private key, stops the run. The identities are named by client I D and certificate thumbprint, and the private key stays in the operator's certificate store. No placeholders: a value still shaped like an angle-bracketed tenant I D stops the run. The stage it says it is: the file's environment must match the stage you tell the command to run. And the same commands for both stages: moving from test to production changes the file, and nothing else.`,
+`The settings file is one JSON file per stage. It holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the rings. The kit checks it before any command runs, against four rules, which are this workbook's design. No secrets: a field whose name looks like a secret, or a value that looks like a client secret or a private key, stops the run. The identities are named by client I D and certificate thumbprint, and the private key stays in the operator's certificate store. No placeholders: a value still shaped like an angle-bracketed tenant I D stops the run. The stage it says it is: the file's environment must match the stage you tell the command to run. And the same commands for both stages: moving from test to production changes the file, and nothing else.`,
   `${M} — Unit 1 "What the runbook adds": workbook Chapter 11, "The environment settings file."`);
 }
 
@@ -171,13 +171,13 @@ endModule(SI);
   const r = panel(s, "Prod", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "STAGE 2  ·  PRODUCTION", "Only after the go/no-go", [
     "Starts only when every go/no-go criterion is signed: nine rows",
     "PF-11: the test smoke test passed, in another tenant",
-    "Conditional Access enabled one wave at a time",
+    "Conditional Access enabled one ring at a time",
   ], 13);
   callout(s, "Expected", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "Not run live by anyone: ",
     "every live result in Stages 1 and 2 is labeled Expected. Lab 1 runs only the dry run.");
   sources(s, "Sources: Module 11, Unit 2; workbook Chapter 11, \"Stage 1: live test,\" \"Promotion go/no-go criteria,\" \"Stage 2: production.\"");
   notes(s,
-`Unit 2 is the stages. The live test stage prepares synthetic objects, runs the preflight, and deploys in the safe order, Steps 1.1 to 1.5. Then it runs the smoke test, captures the evidence, rehearses the rollback, and deploys again. Production starts only when every go or no-go criterion is signed, nine rows of them, and its preflight adds one check that runs only in production: P F eleven, which needs the test stage's smoke test to have passed every check, in another tenant. Then production enables Conditional Access for workload identities one wave at a time. Remember the status: nobody has run these stages against a live tenant, and every live result in them is labeled Expected. That's why Lab 1 runs only the dry run.`,
+`Unit 2 is the stages. The live test stage prepares synthetic objects, runs the preflight, and deploys in the safe order, Steps 1.1 to 1.5. Then it runs the smoke test, captures the evidence, rehearses the rollback, and deploys again. Production starts only when every go or no-go criterion is signed, nine rows of them, and its preflight adds one check that runs only in production: P F eleven, which needs the test stage's smoke test to have passed every check, in another tenant. Then production enables Conditional Access for workload identities one ring at a time. Remember the status: nobody has run these stages against a live tenant, and every live result in them is labeled Expected. That's why Lab 1 runs only the dry run.`,
   `${M} — Unit 2 "The stages and the promotion": workbook Chapter 11, "Stage 1: live test," "Promotion go/no-go criteria," "Stage 2: production."`);
 }
 endModule(SC);

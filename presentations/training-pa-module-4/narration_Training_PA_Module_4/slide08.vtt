@@ -1,66 +1,50 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.775
-Try it.
+00:00:00.050 --> 00:00:03.379
+Converting standing assignments
+goes in a fixed order,
 
 2
-00:00:00.775 --> 00:00:03.516
-Lab 1 runs in one PowerShell 7 session,
+00:00:03.379 --> 00:00:05.188
+and each row carries its state.
 
 3
-00:00:03.516 --> 00:00:08.025
-because steps four to six use
-the settings step three defines.
+00:00:05.188 --> 00:00:10.338
+Waiting For Eligibility: the role's
+P R V group is made eligible first.
 
 4
-00:00:08.025 --> 00:00:12.387
-Step one sends Microsoft Learn's
-samples to the fake, as published.
+00:00:10.338 --> 00:00:15.312
+Waiting For Confirmed Activation: the person
+activates the role through the group,
 
 5
-00:00:12.387 --> 00:00:13.962
-Thirteen tests pass.
+00:00:15.312 --> 00:00:18.051
+and the activation is
+confirmed, with a ticket.
 
 6
-00:00:13.962 --> 00:00:17.224
-The fourth shows that all
-six of Learn's updates apply,
+00:00:18.051 --> 00:00:21.925
+Confirmed: only now can the
+active assignment be removed.
 
 7
-00:00:17.224 --> 00:00:22.413
-and yet Application Administrator still
-differs from its file in six of seven rules.
+00:00:21.925 --> 00:00:25.839
+Only the Apply switch with the
+Convert switch removes anything,
 
 8
-00:00:22.413 --> 00:00:24.875
-Learn's samples aren't
-the program's settings.
+00:00:25.839 --> 00:00:30.788
+and only for confirmed rows; the
+confirmed-activations file carries each ticket.
 
 9
-00:00:24.875 --> 00:00:27.575
-Step two lists each task's permissions.
+00:00:30.788 --> 00:00:34.288
+So no one loses a role before
+they've shown they can activate it.
 
 10
-00:00:27.575 --> 00:00:31.043
-Planning needs three reads:
-role assignment schedules,
-
-11
-00:00:31.043 --> 00:00:34.737
-role eligibility schedules
-and role management policies.
-
-12
-00:00:34.737 --> 00:00:40.549
-Applying adds two writes: role eligibility
-schedules and role management policies.
-
-13
-00:00:40.549 --> 00:00:44.688
-And converting adds only one
-write: role assignment schedules.
-
-14
-00:00:44.688 --> 00:00:47.420
-The output on the slide is wrapped to fit.
+00:00:34.288 --> 00:00:39.020
+And as a backstop, PIM won't remove
+the last active Global Administrator.

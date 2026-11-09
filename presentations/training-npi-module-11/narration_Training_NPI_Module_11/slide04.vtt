@@ -60,16 +60,16 @@ Learn's Conditional Access documentation
 lets you use to estimate a policy's effect.
 
 13
-00:00:46.100 --> 00:00:50.863
-In production it's enabled wave by
-wave, after a reviewed sign-in summary.
+00:00:46.100 --> 00:00:50.775
+In production it's enabled ring by
+ring, after a reviewed sign-in summary.
 
 14
-00:00:50.863 --> 00:00:53.885
+00:00:50.775 --> 00:00:53.798
 The runbook decides
 nothing the gates decide;
 
 15
-00:00:53.885 --> 00:00:57.050
+00:00:53.798 --> 00:00:56.950
 it deploys the controls
 that let each gate pass.

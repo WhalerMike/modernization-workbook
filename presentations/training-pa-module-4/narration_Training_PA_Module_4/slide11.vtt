@@ -1,67 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.750
-Step five tries wave two, Tier
-0, before wave one is done.
+00:00:00.050 --> 00:00:04.225
+Step four reads the diff for one
+role, Exchange Administrator.
 
 2
-00:00:04.750 --> 00:00:09.320
-Five roles, nine findings, five
-warnings and two information items,
+00:00:04.225 --> 00:00:07.575
+It was partly set by hand,
+so its diff is short.
 
 3
-00:00:09.320 --> 00:00:13.225
-and the run is blocked: fix
-every finding before the apply.
+00:00:07.575 --> 00:00:10.425
+The authentication context goes to C one.
 
 4
-00:00:13.225 --> 00:00:15.593
-The nine findings are pim oh seven,
+00:00:10.425 --> 00:00:15.136
+Approval goes to required, single
+stage, with justification,
 
 5
-00:00:15.593 --> 00:00:19.313
-one for each Tier 1 role that
-doesn't match its file yet.
+00:00:15.136 --> 00:00:20.413
+one day to decide, and the approvers
+named: the group P I M Approvers T1.
 
 6
-00:00:19.313 --> 00:00:23.562
-The two Info rows are the emergency
-accounts, kept permanent active.
+00:00:20.413 --> 00:00:24.963
+And the active assignment maximum goes
+from a hundred eighty days to fifteen.
 
 7
-00:00:23.562 --> 00:00:26.187
-Step six applies wave one to the fake.
+00:00:24.963 --> 00:00:28.591
+Then the findings, leaving
+out the nine pim oh five rows,
 
 8
-00:00:26.187 --> 00:00:31.338
-The first command stops before any write:
-the plan sets an authentication context,
+00:00:28.591 --> 00:00:31.574
+which ask you to confirm
+the activation gate.
 
 9
-00:00:31.338 --> 00:00:36.488
-so confirm its Conditional Access policy
-is On, then pass Activation Gate Checked.
+00:00:31.574 --> 00:00:34.328
+Three are pim oh nine,
+standing assignments:
 
 10
-00:00:36.488 --> 00:00:38.287
-The second command passes it.
+00:00:34.328 --> 00:00:39.528
+Erin Patel on Application Administrator
+and Carl Ops on Exchange Administrator,
 
 11
-00:00:38.287 --> 00:00:42.892
-It sends the rule updates first and
-the eligibility requests second,
+00:00:39.528 --> 00:00:44.269
+both to convert through the P R V group,
+and an automation service principal
 
 12
-00:00:42.892 --> 00:00:47.738
-fifty-one requests, then reads back:
-zero differences from the role files.
+00:00:44.269 --> 00:00:49.087
+to document as an exception or replace,
+because this code removes users only.
 
 13
-00:00:47.738 --> 00:00:51.170
-Step seven runs the tests,
-three hundred thirty pass,
+00:00:49.087 --> 00:00:54.419
+And one is pim oh eight: Dana Reyes
+is eligible outside the P R V group,
 
 14
-00:00:51.170 --> 00:00:53.380
-and you delete the output folder.
+00:00:54.419 --> 00:00:58.587
+which Module 7's access review
+removes, not this code.
+
+15
+00:00:58.587 --> 00:01:00.500
+The slide trims the output.

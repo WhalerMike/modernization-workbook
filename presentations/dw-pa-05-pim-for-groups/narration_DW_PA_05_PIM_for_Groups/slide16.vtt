@@ -20,25 +20,30 @@ a reader and a writer,
 and plan as the reader.
 
 5
-00:00:14.400 --> 00:00:17.788
-Then apply as the writer and
-compare the portal with your file.
+00:00:14.400 --> 00:00:17.240
+Then confirm the activation
+gate's policy is On,
 
 6
-00:00:17.788 --> 00:00:22.706
+00:00:17.240 --> 00:00:20.663
+apply as the writer, and compare
+the portal with your file.
+
+7
+00:00:20.663 --> 00:00:25.581
 This lab also settles open questions:
 whether the narrower permissions are enough,
 
-7
-00:00:22.706 --> 00:00:25.200
+8
+00:00:25.581 --> 00:00:28.075
 and whether the policy update really took.
 
-8
-00:00:25.200 --> 00:00:27.938
+9
+00:00:28.075 --> 00:00:30.813
 Rerun to see zero
 changes, try one removal,
 
-9
-00:00:27.938 --> 00:00:32.900
+10
+00:00:30.813 --> 00:00:35.780
 and then back everything out, because
 the output names privileged people.

@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.813
-Unit 2: the files, the
-checks and the conversion.
+00:00:00.050 --> 00:00:04.800
+Unit 2: the files, the checks, the
+alert check and the conversion.
 
 2
-00:00:03.813 --> 00:00:08.862
+00:00:04.800 --> 00:00:09.850
 The role files are twenty-two, one per
 role, with approvers named by alias.
 
 3
-00:00:08.862 --> 00:00:12.864
+00:00:09.850 --> 00:00:13.851
 Beside them, a tiers file holds
 Microsoft Learn's bounds and the
 
 4
-00:00:12.864 --> 00:00:17.326
+00:00:13.851 --> 00:00:18.313
 program's caps for each tier, which
 are this workbook's design guidance.
 
 5
-00:00:17.326 --> 00:00:22.437
+00:00:18.313 --> 00:00:23.424
 Learn's pages disagree on how long an
 activation may last: the role settings
 
 6
-00:00:22.437 --> 00:00:27.137
+00:00:23.424 --> 00:00:28.124
 page allows up to twenty-four hours,
 the PIM A P I overview at most eight.
 
 7
-00:00:27.137 --> 00:00:29.887
+00:00:28.124 --> 00:00:30.875
 The code follows the
 stricter, eight hours.
 
 8
-00:00:29.887 --> 00:00:33.949
+00:00:30.875 --> 00:00:34.937
 Active assignments are capped at
 fifteen days, the owner's decision.
 
 9
-00:00:33.949 --> 00:00:35.813
+00:00:34.937 --> 00:00:36.801
 And the plan's order is fixed.
 
 10
-00:00:35.813 --> 00:00:39.095
+00:00:36.801 --> 00:00:40.083
 The owner chose Tier 1 as the pilot class,
 
 11
-00:00:39.095 --> 00:00:43.174
+00:00:40.083 --> 00:00:44.162
 so wave one is Tier 1, then
 Tier 0, Tier 2 and read-only.
 
 12
-00:00:43.174 --> 00:00:47.050
+00:00:44.162 --> 00:00:48.038
 The order after the first wave is
 this workbook's design guidance.
 
 13
-00:00:47.050 --> 00:00:52.300
+00:00:48.038 --> 00:00:53.280
 Rule pim oh seven refuses a wave until
 every earlier wave matches its files.

@@ -9728,11 +9728,11 @@
    ],
    [
     353,
-    "Waves and their rollback (N2.2)"
+    "Waves and their rollback (NP2.2)"
    ],
    [
     389,
-    "The Workload ID Premium scope (D-N4) and Gate 2"
+    "The Workload ID Premium scope (D-NP4) and Gate 2"
    ],
    [
     429,
@@ -9748,7 +9748,7 @@
    ],
    [
     537,
-    "Lab 1: the waves, the D-N4 scope, the tests"
+    "Lab 1: the waves, the D-NP4 scope, the tests"
    ],
    [
     573,
@@ -10001,7 +10001,7 @@
    ],
    [
     231,
-    "The code and its four reviewed inputs"
+    "The code, Chapter 03's decisions and three inputs"
    ],
    [
     266,
@@ -10270,11 +10270,11 @@
    ],
    [
     86,
-    "Release stage by cloud, and D-N6 as data"
+    "Release stage by cloud, and D-NP6 as data"
    ],
    [
     127,
-    "The program's rules, N6.1 to N6.7"
+    "The program's rules, NP6.1 to NP6.7"
    ],
    [
     167,
@@ -10310,7 +10310,7 @@
    ],
    [
     470,
-    "Lab 1: Learn's samples, D-N6, then the check"
+    "Lab 1: Learn's samples, D-NP6, then the check"
    ],
    [
     508,
@@ -14695,7 +14695,7 @@
    ],
    [
     265,
-    "The orphan rule, D-N2, and the orphaned-app policy"
+    "The orphan rule, D-NP2, and the orphaned-app policy"
    ],
    [
     320,
@@ -14787,7 +14787,7 @@
    ],
    [
     341,
-    "Waves and rollback, D-N4, and Gate 2"
+    "Waves and rollback, D-NP4, and Gate 2"
    ],
    [
     407,
@@ -14799,7 +14799,7 @@
    ],
    [
     537,
-    "Try it: the waves' rollback and the D-N4 scope"
+    "Try it: the waves' rollback and the D-NP4 scope"
    ],
    [
     603,
@@ -15231,7 +15231,7 @@
    ],
    [
     229,
-    "Four dispositions, and the program's four rules"
+    "Four dispositions from Module 3, and the program's rules"
    ],
    [
     287,
@@ -15247,7 +15247,7 @@
    ],
    [
     488,
-    "Try it: the register, Learn's steps, each task's calls"
+    "Try it: the runs it reads, Learn's steps, the tasks' calls"
    ],
    [
     548,
@@ -15323,11 +15323,11 @@
    ],
    [
     217,
-    "Decision D-N6 as data: AgentId or Fallback mode"
+    "Decision D-NP6 as data: AgentId or Fallback mode"
    ],
    [
     267,
-    "The program's rules the code holds, N6.1 to N6.7"
+    "The program's rules the code holds, NP6.1 to NP6.7"
    ],
    [
     325,
@@ -15339,7 +15339,7 @@
    ],
    [
     436,
-    "Try it: Learn's samples, permissions, D-N6 by cloud"
+    "Try it: Learn's samples, permissions, D-NP6 by cloud"
    ],
    [
     495,

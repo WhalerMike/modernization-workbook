@@ -190,641 +190,641 @@ and each service principal carries a
 type that tells you what it really is.
 
 40
-00:02:33.330 --> 00:02:37.738
+00:02:34.700 --> 00:02:39.108
 Put together, the register reads two
 collections from Active Directory,
 
 41
-00:02:37.738 --> 00:02:40.530
+00:02:39.108 --> 00:02:41.900
 nine from Graph, and one
 from Resource Manager.
 
 42
-00:02:40.530 --> 00:02:43.693
+00:02:41.900 --> 00:02:45.063
 The slide shows each read
 and why it was chosen.
 
 43
-00:02:43.693 --> 00:02:45.474
+00:02:45.063 --> 00:02:46.844
 The pattern is worth noticing:
 
 44
-00:02:45.474 --> 00:02:50.179
+00:02:46.844 --> 00:02:51.549
 one server-side query for the user accounts
 instead of reading every user three
 
 45
-00:02:50.179 --> 00:02:53.672
+00:02:51.549 --> 00:02:55.042
 times, owners and credentials
 read where they actually live,
 
 46
-00:02:53.672 --> 00:02:56.809
+00:02:55.042 --> 00:02:58.179
 on the app registration, and
 Graph's own app roles read
 
 47
-00:02:56.809 --> 00:03:00.017
+00:02:58.179 --> 00:03:01.387
 so a permission shows up by
 name rather than as a number.
 
 48
-00:03:00.017 --> 00:03:03.802
+00:03:01.387 --> 00:03:05.172
 And one read that people forget:
 a user-assigned identity's
 
 49
-00:03:03.802 --> 00:03:08.090
+00:03:05.172 --> 00:03:09.460
 federated credentials live in
 Resource Manager, not in Graph.
 
 50
-00:03:11.840 --> 00:03:15.077
+00:03:13.210 --> 00:03:16.447
 Here's an important line between
 Microsoft and the program.
 
 51
-00:03:15.077 --> 00:03:19.378
+00:03:16.447 --> 00:03:20.748
 Microsoft tells you how to find accounts;
 it doesn't tell you which ones are risky.
 
 52
-00:03:19.378 --> 00:03:24.100
+00:03:20.748 --> 00:03:25.470
 The risk rules, the candidate target and
 the stale threshold are the workbook's
 
 53
-00:03:24.100 --> 00:03:26.861
+00:03:25.470 --> 00:03:28.231
 design guidance, and the
 code keeps them in one
 
 54
-00:03:26.861 --> 00:03:30.203
+00:03:28.231 --> 00:03:31.573
 configuration file and labels
 them as design guidance.
 
 55
-00:03:30.203 --> 00:03:34.798
+00:03:31.573 --> 00:03:36.168
 And notice why stale is only ever
 a lead: the last logon attribute
 
 56
-00:03:34.798 --> 00:03:39.653
+00:03:36.168 --> 00:03:41.023
 isn't updated on every sign-in, so an
 account that looks idle may not be.
 
 57
-00:03:39.653 --> 00:03:44.560
+00:03:41.023 --> 00:03:45.930
 The plan says to confirm against the
 sign-in logs before retiring anything.
 
 58
-00:03:49.630 --> 00:03:51.517
+00:03:49.680 --> 00:03:51.567
 Now Microsoft's starting point.
 
 59
-00:03:51.517 --> 00:03:55.475
+00:03:51.567 --> 00:03:55.525
 Learn's service account series is
 Microsoft's procedure for this read:
 
 60
-00:03:55.475 --> 00:03:58.000
+00:03:55.525 --> 00:03:58.050
 a few PowerShell commands
 for user accounts,
 
 61
-00:03:58.000 --> 00:04:00.866
+00:03:58.050 --> 00:04:00.916
 managed service accounts
 and service principals,
 
 62
-00:04:00.866 --> 00:04:03.663
+00:04:00.916 --> 00:04:03.713
 a page that says what to
 record about each account,
 
 63
-00:04:03.663 --> 00:04:08.030
+00:04:03.713 --> 00:04:08.080
 and a script that exports every app
 registration's secrets and certificates.
 
 64
-00:04:08.030 --> 00:04:13.577
+00:04:08.080 --> 00:04:13.627
 Those commands live only inside web pages,
 so the repository pins the pages' source,
 
 65
-00:04:13.577 --> 00:04:18.130
+00:04:13.627 --> 00:04:18.180
 unchanged, with hashes a test checks
 and a weekly watch for changes.
 
 66
-00:04:18.130 --> 00:04:20.907
+00:04:18.180 --> 00:04:20.957
 A harness then runs them
 exactly as published,
 
 67
-00:04:20.907 --> 00:04:23.830
+00:04:20.957 --> 00:04:23.880
 against stand-ins built
 from a fictional estate.
 
 68
-00:04:23.830 --> 00:04:26.820
+00:04:23.880 --> 00:04:26.870
 Nothing is installed,
 and nothing signs in.
 
 69
-00:04:30.570 --> 00:04:32.945
+00:04:30.620 --> 00:04:32.995
 This is where running
 the samples pays off.
 
 70
-00:04:32.945 --> 00:04:37.357
+00:04:32.995 --> 00:04:37.407
 On the directory side, the criteria
 are right, so the code keeps them.
 
 71
-00:04:37.357 --> 00:04:40.450
+00:04:37.407 --> 00:04:40.500
 But the samples read
 every user three times and
 
 72
-00:04:40.450 --> 00:04:43.621
+00:04:40.500 --> 00:04:43.671
 give you three overlapping
 lists, not a register.
 
 73
-00:04:43.621 --> 00:04:46.783
+00:04:43.671 --> 00:04:46.833
 The never-expires query
 happily returns a person.
 
 74
-00:04:46.783 --> 00:04:49.445
+00:04:46.833 --> 00:04:49.495
 The delegation query returns servers.
 
 75
-00:04:49.445 --> 00:04:52.454
+00:04:49.495 --> 00:04:52.504
 Nothing reads last logon
 or group membership,
 
 76
-00:04:52.454 --> 00:04:55.383
+00:04:52.504 --> 00:04:55.433
 so you can't compute
 stale or over-privileged.
 
 77
-00:04:55.383 --> 00:04:58.961
+00:04:55.433 --> 00:04:59.011
 And a delegated managed service
 account comes back unlabeled,
 
 78
-00:04:58.961 --> 00:05:01.783
+00:04:59.011 --> 00:05:01.833
 while the group managed
 filter drops it entirely.
 
 79
-00:05:01.783 --> 00:05:04.830
+00:05:01.833 --> 00:05:04.880
 Each row on the slide is pinned by a test.
 
 80
-00:05:08.580 --> 00:05:11.697
+00:05:08.630 --> 00:05:11.747
 On the Entra side, the export
 script is a good model
 
 81
-00:05:11.697 --> 00:05:15.043
+00:05:11.747 --> 00:05:15.093
 for the credential columns,
 so the code keeps it as one.
 
 82
-00:05:15.043 --> 00:05:19.718
+00:05:15.093 --> 00:05:19.768
 But the multitenant filter it suggests
 actually returns single-tenant apps too.
 
 83
-00:05:19.718 --> 00:05:24.168
+00:05:19.768 --> 00:05:24.218
 The script stops to ask for an output
 path, so it can't run on a schedule.
 
 84
-00:05:24.168 --> 00:05:27.006
+00:05:24.218 --> 00:05:27.056
 It makes extra calls per
 app and per credential,
 
 85
-00:05:27.006 --> 00:05:30.792
+00:05:27.056 --> 00:05:30.842
 never counts owners, and misses
 an app with no credential at all.
 
 86
-00:05:30.792 --> 00:05:34.597
+00:05:30.842 --> 00:05:34.647
 And it ignores federated
 credentials, managed identities,
 
 87
-00:05:34.597 --> 00:05:38.480
+00:05:34.647 --> 00:05:38.530
 permissions and consent, which
 is most of what the gate needs.
 
 88
-00:05:38.480 --> 00:05:43.530
+00:05:38.530 --> 00:05:43.580
 So the verdict: use Learn's commands as
 the definition, not as the register.
 
 89
-00:05:47.280 --> 00:05:48.705
+00:05:47.330 --> 00:05:48.755
 So what does the code build?
 
 90
-00:05:48.705 --> 00:05:52.718
+00:05:48.755 --> 00:05:52.768
 It starts with one reader that every
 chapter in this workbook shares.
 
 91
-00:05:52.718 --> 00:05:56.503
+00:05:52.768 --> 00:05:56.553
 Its script blocks are the only
 things that touch the network,
 
 92
-00:05:56.503 --> 00:05:59.305
+00:05:56.553 --> 00:05:59.355
 a live one for real runs
 and a fake one for labs.
 
 93
-00:05:59.305 --> 00:06:01.522
+00:05:59.355 --> 00:06:01.572
 And it enforces five simple rules:
 
 94
-00:06:01.522 --> 00:06:05.799
+00:06:01.572 --> 00:06:05.849
 it makes only the calls the
 configuration declares, it only reads,
 
 95
-00:06:05.799 --> 00:06:08.729
+00:06:05.849 --> 00:06:08.779
 it sends the token only
 to the cloud's own host,
 
 96
-00:06:08.729 --> 00:06:13.005
+00:06:08.779 --> 00:06:13.055
 it checks it's signed in to the right
 tenant, and it reads every page.
 
 97
-00:06:13.005 --> 00:06:18.150
+00:06:13.055 --> 00:06:18.200
 The fake hands back tiny pages on purpose,
 so paging gets tested everywhere.
 
 98
-00:06:21.900 --> 00:06:26.083
+00:06:21.950 --> 00:06:26.133
 The register gives every identity
 one row with the same columns,
 
 99
-00:06:26.083 --> 00:06:28.925
+00:06:26.133 --> 00:06:28.975
 whatever its type, so it
 all lands in one file.
 
 100
-00:06:28.925 --> 00:06:34.108
+00:06:28.975 --> 00:06:34.158
 Directory accounts carry password age,
 last logon and privileged groups;
 
 101
-00:06:34.108 --> 00:06:38.187
+00:06:34.158 --> 00:06:38.237
 Entra objects carry owners,
 credentials and permissions.
 
 102
-00:06:38.187 --> 00:06:42.787
+00:06:38.237 --> 00:06:42.837
 An app's permissions are counted once,
 so nothing high risk is counted twice.
 
 103
-00:06:42.787 --> 00:06:46.431
+00:06:42.837 --> 00:06:46.481
 Then the program's rules apply:
 high, medium or low risk,
 
 104
-00:06:46.431 --> 00:06:50.901
+00:06:46.481 --> 00:06:50.951
 and a candidate target from the
 workbook's migration path matrix.
 
 105
-00:06:50.901 --> 00:06:55.300
+00:06:50.951 --> 00:06:55.350
 That target is only a candidate,
 Chapter 3 makes the decision.
 
 106
-00:06:55.300 --> 00:06:59.370
+00:06:55.350 --> 00:06:59.420
 And SQL Server accounts are
 handed to the Data Platform plan.
 
 107
-00:07:02.480 --> 00:07:05.914
+00:07:03.170 --> 00:07:06.604
 The register then becomes
 findings, nine rules,
 
 108
-00:07:05.914 --> 00:07:10.580
+00:07:06.604 --> 00:07:11.270
 each with a stable ID so the same
 gap keeps its name from run to run.
 
 109
-00:07:10.580 --> 00:07:13.905
+00:07:11.270 --> 00:07:14.595
 Only one is a hard finding:
 a high-risk identity.
 
 110
-00:07:13.905 --> 00:07:17.667
+00:07:14.595 --> 00:07:18.357
 The rest are warnings to act on,
 like a stale lead to confirm,
 
 111
-00:07:17.667 --> 00:07:20.802
+00:07:18.357 --> 00:07:21.492
 an app with fewer than two
 owners, a client secret,
 
 112
-00:07:20.802 --> 00:07:25.505
+00:07:21.492 --> 00:07:26.195
 consent granted for everyone, or an
 account that might really be a person.
 
 113
-00:07:25.505 --> 00:07:30.873
+00:07:26.195 --> 00:07:31.563
 The run writes a manifest with the tenant,
 every request and a hash of every file,
 
 114
-00:07:30.873 --> 00:07:34.755
+00:07:31.563 --> 00:07:35.445
 and Chapter 2 refuses a register
 whose hash doesn't match.
 
 115
-00:07:34.755 --> 00:07:38.060
+00:07:35.445 --> 00:07:38.750
 All of it is covered by
 tests that need no network.
 
 116
-00:07:41.810 --> 00:07:42.872
+00:07:42.500 --> 00:07:43.562
 Who is this for?
 
 117
-00:07:42.872 --> 00:07:47.598
+00:07:43.562 --> 00:07:48.288
 Developers build the read path, the
 identity and directory engineers run it,
 
 118
-00:07:47.598 --> 00:07:49.848
+00:07:48.288 --> 00:07:50.538
 and the security officers review it.
 
 119
-00:07:49.848 --> 00:07:53.373
+00:07:50.538 --> 00:07:54.063
 Nobody needs a tenant or a
 domain until the second lab.
 
 120
-00:07:53.373 --> 00:07:57.943
+00:07:54.063 --> 00:07:58.633
 What it may read is short: an ordinary
 domain user's read on the directory,
 
 121
-00:07:57.943 --> 00:08:01.273
+00:07:58.633 --> 00:08:01.963
 two Graph permissions and
 Reader on the identities.
 
 122
-00:08:01.273 --> 00:08:06.120
+00:08:01.963 --> 00:08:06.810
 One choice deserves attention: listing
 delegated consent grants needs the
 
 123
-00:08:06.120 --> 00:08:10.584
+00:08:06.810 --> 00:08:11.274
 broad directory read, and that's the
 only reason the inventory holds it.
 
 124
-00:08:10.584 --> 00:08:12.953
+00:08:11.274 --> 00:08:13.643
 Without permission to read users,
 
 125
-00:08:12.953 --> 00:08:17.030
+00:08:13.643 --> 00:08:17.720
 owners come back as bare IDs,
 which is all a count needs.
 
 126
-00:08:20.780 --> 00:08:26.980
+00:08:21.470 --> 00:08:27.670
 Lab 1 needs only a laptop with PowerShell
 7 and Pester: no tenant, no domain.
 
 127
-00:08:26.980 --> 00:08:30.025
+00:08:27.670 --> 00:08:30.715
 First, run Learn's own
 samples against the stand-ins,
 
 128
-00:08:30.025 --> 00:08:33.650
+00:08:30.715 --> 00:08:34.340
 and read the test for the
 delegated managed service account:
 
 129
-00:08:33.650 --> 00:08:37.130
+00:08:34.340 --> 00:08:37.820
 Microsoft's command returns it,
 and nothing says what it is.
 
 130
-00:08:37.130 --> 00:08:41.643
+00:08:37.820 --> 00:08:42.333
 Second, list what the inventory needs,
 and notice that nothing can write.
 
 131
-00:08:41.643 --> 00:08:45.255
+00:08:42.333 --> 00:08:45.945
 Third, run the inventory
 over the fictional estate.
 
 132
-00:08:45.255 --> 00:08:48.526
+00:08:45.945 --> 00:08:49.216
 You get thirty-five identities,
 eight of them high risk,
 
 133
-00:08:48.526 --> 00:08:53.468
+00:08:49.216 --> 00:08:54.158
 a set of findings and warnings, and three
 accounts handed to the Data Platform plan.
 
 134
-00:08:53.468 --> 00:08:55.280
+00:08:54.158 --> 00:08:55.970
 Next, we read them.
 
 135
-00:08:59.030 --> 00:09:02.392
+00:08:59.720 --> 00:09:03.082
 Reading the high-risk rows is
 where the rules become real.
 
 136
-00:09:02.392 --> 00:09:05.778
+00:09:03.082 --> 00:09:06.468
 Two accounts have passwords
 that haven't changed in years;
 
 137
-00:09:05.778 --> 00:09:10.222
+00:09:06.468 --> 00:09:10.912
 others sit in powerful groups or are
 trusted for unconstrained delegation;
 
 138
-00:09:10.222 --> 00:09:13.043
+00:09:10.912 --> 00:09:13.733
 one app holds a directory-wide
 write permission.
 
 139
-00:09:13.043 --> 00:09:17.930
+00:09:13.733 --> 00:09:18.620
 One account is also a stale lead, so
 the note says to verify use first.
 
 140
-00:09:17.930 --> 00:09:19.523
+00:09:18.620 --> 00:09:20.213
 And one looks like a person,
 
 141
-00:09:19.523 --> 00:09:23.505
+00:09:20.213 --> 00:09:24.195
 so it's flagged to confirm rather
 than treated as a service account.
 
 142
-00:09:23.505 --> 00:09:27.380
+00:09:24.195 --> 00:09:28.070
 Then you watch the reader refuse an
 undeclared call and a cloud name
 
 143
-00:09:27.380 --> 00:09:31.490
+00:09:28.070 --> 00:09:32.180
 in the wrong case, and you see who's
 handed to the Data Platform plan.
 
 144
-00:09:35.240 --> 00:09:40.902
+00:09:35.930 --> 00:09:41.592
 Lab 2 moves to a test tenant and a test
 domain, never production, and it only reads.
 
 145
-00:09:40.902 --> 00:09:44.693
+00:09:41.592 --> 00:09:45.383
 You register the app in the tenant's
 own cloud with a certificate,
 
 146
-00:09:44.693 --> 00:09:49.628
+00:09:45.383 --> 00:09:50.318
 grant exactly the two permissions, and give
 it Reader where one test identity lives.
 
 147
-00:09:49.628 --> 00:09:53.253
+00:09:50.318 --> 00:09:53.943
 Then you run it from a domain-joined
 host as an ordinary user.
 
 148
-00:09:53.253 --> 00:09:56.586
+00:09:53.943 --> 00:09:57.276
 The point of this lab is to check
 what the permissions assumed:
 
 149
-00:09:56.586 --> 00:10:01.229
+00:09:57.276 --> 00:10:01.919
 that federated credentials are actually
 readable, that a delegated managed service
 
 150
-00:10:01.229 --> 00:10:05.740
+00:10:01.919 --> 00:10:06.430
 account is recognized, and that an ordinary
 user can read the directory attributes.
 
 151
-00:10:05.740 --> 00:10:09.140
+00:10:06.430 --> 00:10:09.830
 Then cross-check the admin
 center, and back it all out.
 
 152
-00:10:12.890 --> 00:10:15.365
+00:10:13.580 --> 00:10:16.055
 Each of these dangers
 has a guard in the code.
 
 153
-00:10:15.365 --> 00:10:19.501
+00:10:16.055 --> 00:10:20.191
 The two that hurt people most: a
 person mistaken for a service account,
 
 154
-00:10:19.501 --> 00:10:23.927
+00:10:20.191 --> 00:10:24.617
 which the orphan rule could disable,
 and a stale account retired on a guess,
 
 155
-00:10:23.927 --> 00:10:26.902
+00:10:24.617 --> 00:10:27.592
 which breaks the job that
 only runs once a quarter.
 
 156
-00:10:26.902 --> 00:10:31.939
+00:10:27.592 --> 00:10:32.629
 The code flags the first, and never disables
 or deletes anything for the second.
 
 157
-00:10:31.939 --> 00:10:36.841
+00:10:32.629 --> 00:10:37.531
 Others are quieter: a broad permission
 granted just to make it work, the wrong
 
 158
-00:10:36.841 --> 00:10:39.331
+00:10:37.531 --> 00:10:40.021
 cloud, throttling on credential reads,
 
 159
-00:10:39.331 --> 00:10:42.365
+00:10:40.021 --> 00:10:43.055
 and the register itself
 as a map for an attacker.
 
 160
-00:10:42.365 --> 00:10:45.900
+00:10:43.055 --> 00:10:46.590
 Notice the guards are rules
 and tests, not memory.
 
 161
-00:10:49.650 --> 00:10:51.000
+00:10:50.340 --> 00:10:51.690
 Here's what done looks like.
 
 162
-00:10:51.000 --> 00:10:55.906
+00:10:51.690 --> 00:10:56.596
 On the register side: every account and
 every app in the test estate appears exactly
 
 163
-00:10:55.906 --> 00:10:59.177
+00:10:56.596 --> 00:10:59.867
 once, anything that might be
 a person has been confirmed,
 
 164
-00:10:59.177 --> 00:11:03.515
+00:10:59.867 --> 00:11:04.205
 every high-risk row is lined up for the
 first wave, every stale lead has been
 
 165
-00:11:03.515 --> 00:11:08.137
+00:11:04.205 --> 00:11:08.827
 checked against the logs, and the database
 accounts have gone to their own plan.
 
 166
-00:11:08.137 --> 00:11:12.171
+00:11:08.827 --> 00:11:12.861
 On the code side: exactly two Graph
 permissions with a certificate,
 
 167
-00:11:12.171 --> 00:11:16.570
+00:11:12.861 --> 00:11:17.260
 an explicit cloud, hashes that match
 what the security officer received,
 
 168
-00:11:16.570 --> 00:11:18.550
+00:11:17.260 --> 00:11:19.240
 and pinned pages still reviewed.
 
 169
-00:11:18.550 --> 00:11:23.888
+00:11:19.240 --> 00:11:24.578
 Next, Chapter 2 finds an owner for every
 account, and applies the orphan rule.
 
 170
-00:11:23.888 --> 00:11:25.050
+00:11:24.578 --> 00:11:25.740
 Thanks for watching.

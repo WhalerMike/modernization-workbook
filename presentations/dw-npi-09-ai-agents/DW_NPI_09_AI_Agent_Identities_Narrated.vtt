@@ -193,637 +193,637 @@ has ten business days to be confirmed.
 And drift is watched, with priorities.
 
 41
-00:02:46.520 --> 00:02:49.908
+00:02:48.010 --> 00:02:51.398
 Microsoft gives you more samples
 here than in most chapters.
 
 42
-00:02:49.908 --> 00:02:53.561
+00:02:51.398 --> 00:02:55.051
 There's a walk-through that
 creates a blueprint with a sponsor,
 
 43
-00:02:53.561 --> 00:02:57.358
+00:02:55.051 --> 00:02:58.848
 an owner and credentials; samples
 for inheritable permissions;
 
 44
-00:02:57.358 --> 00:02:59.865
+00:02:58.848 --> 00:03:01.355
 three agent Conditional Access policies;
 
 45
-00:02:59.865 --> 00:03:03.733
+00:03:01.355 --> 00:03:05.223
 and Graph requests to list
 blueprints, agents and their sponsors.
 
 46
-00:03:03.733 --> 00:03:07.637
+00:03:05.223 --> 00:03:09.127
 There's also a PowerShell module,
 but the chapter calls Graph
 
 47
-00:03:07.637 --> 00:03:11.307
+00:03:09.127 --> 00:03:12.797
 directly so every request sits
 in its reviewed call list.
 
 48
-00:03:11.307 --> 00:03:17.017
+00:03:12.797 --> 00:03:18.507
 Two sets of pages are pinned, eleven files
 in all, and a harness sends every sample,
 
 49
-00:03:17.017 --> 00:03:22.650
+00:03:18.507 --> 00:03:24.140
 unmodified, to a fake Graph so the
 chapter's own checks can run on the result.
 
 50
-00:03:26.400 --> 00:03:29.688
+00:03:27.890 --> 00:03:31.178
 The list requests are a good
 model, but they stop short.
 
 51
-00:03:29.688 --> 00:03:33.608
+00:03:31.178 --> 00:03:35.098
 They read one page, and a page
 holds at most a hundred agents,
 
 52
-00:03:33.608 --> 00:03:35.650
+00:03:35.098 --> 00:03:37.140
 so a bigger tenant is half-read.
 
 53
-00:03:35.650 --> 00:03:37.900
+00:03:37.140 --> 00:03:39.390
 They hard-code the worldwide host.
 
 54
-00:03:37.900 --> 00:03:40.561
+00:03:39.390 --> 00:03:42.051
 The agent sponsor
 request returns IDs only,
 
 55
-00:03:40.561 --> 00:03:43.665
+00:03:42.051 --> 00:03:45.155
 and names only a write
 permission for what is a read,
 
 56
-00:03:43.665 --> 00:03:48.100
+00:03:45.155 --> 00:03:49.590
 so the code expands sponsors on the
 list under a read permission instead.
 
 57
-00:03:48.100 --> 00:03:52.069
+00:03:49.590 --> 00:03:53.559
 And the blueprint sample makes
 the same person sponsor and owner,
 
 58
-00:03:52.069 --> 00:03:56.112
+00:03:53.559 --> 00:03:57.602
 meaning whoever decides an agent
 should exist also holds its keys.
 
 59
-00:03:56.112 --> 00:03:57.800
+00:03:57.602 --> 00:03:59.290
 The code flags that.
 
 60
-00:04:01.550 --> 00:04:03.662
+00:04:03.040 --> 00:04:05.152
 The rest of the gaps are about safety.
 
 61
-00:04:03.662 --> 00:04:07.503
+00:04:05.152 --> 00:04:08.993
 The blueprint sample adds a password
 next to the managed identity,
 
 62
-00:04:07.503 --> 00:04:10.575
+00:04:08.993 --> 00:04:12.065
 which Learn itself doesn't
 recommend for production.
 
 63
-00:04:10.575 --> 00:04:13.380
+00:04:12.065 --> 00:04:14.870
 The inheritance sample
 starts with allow-all,
 
 64
-00:04:13.380 --> 00:04:17.513
+00:04:14.870 --> 00:04:19.003
 so every future grant to the
 blueprint quietly reaches every agent.
 
 65
-00:04:17.513 --> 00:04:23.162
+00:04:19.003 --> 00:04:24.652
 The pages disagree on a path and a limit,
 so the code follows the API reference.
 
 66
-00:04:23.162 --> 00:04:26.215
+00:04:24.652 --> 00:04:27.705
 And the block-all-agents
 policy has no exclusion,
 
 67
-00:04:26.215 --> 00:04:29.725
+00:04:27.705 --> 00:04:31.215
 so if you enforced it, you'd
 block the approved agents too.
 
 68
-00:04:29.725 --> 00:04:33.094
+00:04:31.215 --> 00:04:34.584
 So the verdict: use the reads
 and the credential model,
 
 69
-00:04:33.094 --> 00:04:36.740
+00:04:34.584 --> 00:04:38.230
 and never enforce that
 block without its exclusion.
 
 70
-00:04:40.490 --> 00:04:41.715
+00:04:41.980 --> 00:04:43.205
 What does the code add?
 
 71
-00:04:41.715 --> 00:04:46.024
+00:04:43.205 --> 00:04:47.514
 Its own module, a read-only entry
 script and a separate write path,
 
 72
-00:04:46.024 --> 00:04:50.740
+00:04:47.514 --> 00:04:52.230
 plus the decision table, the program's
 rules and two reviewed policies.
 
 73
-00:04:50.740 --> 00:04:54.102
+00:04:52.230 --> 00:04:55.592
 It builds on Chapters 1
 and 2 and changes neither.
 
 74
-00:04:54.102 --> 00:04:56.824
+00:04:55.592 --> 00:04:58.314
 The inputs are where accountability lives:
 
 75
-00:04:56.824 --> 00:05:00.831
+00:04:58.314 --> 00:05:02.321
 the Chief AI Officer's use-case
 inventory, the handshake records,
 
 76
-00:05:00.831 --> 00:05:04.913
+00:05:02.321 --> 00:05:06.403
 HR's mover and leaver events with
 each new sponsor's confirmation,
 
 77
-00:05:04.913 --> 00:05:08.164
+00:05:06.403 --> 00:05:09.654
 and the change board's
 approved credential changes.
 
 78
-00:05:08.164 --> 00:05:10.618
+00:05:09.654 --> 00:05:12.108
 One setting has no Graph property at all,
 
 79
-00:05:10.618 --> 00:05:15.520
+00:05:12.108 --> 00:05:17.010
 so a person reads it in the admin center
 and records the reading with a date.
 
 80
-00:05:19.270 --> 00:05:22.708
+00:05:20.760 --> 00:05:24.198
 There are twenty-three rules, so
 let's take them in two halves.
 
 81
-00:05:22.708 --> 00:05:26.970
+00:05:24.198 --> 00:05:28.460
 The first half covers how an agent
 comes to exist and who answers for it.
 
 82
-00:05:26.970 --> 00:05:30.820
+00:05:28.460 --> 00:05:32.310
 Creation must be closed, with
 a recent reading to prove it.
 
 83
-00:05:30.820 --> 00:05:34.522
+00:05:32.310 --> 00:05:36.012
 Every identity with a record
 needs a complete handshake,
 
 84
-00:05:34.522 --> 00:05:37.357
+00:05:36.012 --> 00:05:38.847
 made before the agent
 was created, not after.
 
 85
-00:05:37.357 --> 00:05:41.960
+00:05:38.847 --> 00:05:43.450
 Every agent needs a real sponsor, an
 enabled employee, plus a group, and a
 
 86
-00:05:41.960 --> 00:05:47.357
+00:05:43.450 --> 00:05:48.847
 technical owner who isn't the sponsor, and
 the directory must agree with the record.
 
 87
-00:05:47.357 --> 00:05:50.410
+00:05:48.847 --> 00:05:51.900
 Then the credential rules:
 no production secrets,
 
 88
-00:05:50.410 --> 00:05:53.000
+00:05:51.900 --> 00:05:54.490
 and a certificate only with a reason.
 
 89
-00:05:56.750 --> 00:06:00.737
+00:05:58.240 --> 00:06:02.227
 The second half is about what an
 agent holds and how it's watched.
 
 90
-00:06:00.737 --> 00:06:03.364
+00:06:02.227 --> 00:06:04.854
 Inheritance and directory
 roles come first:
 
 91
-00:06:03.364 --> 00:06:07.340
+00:06:04.854 --> 00:06:08.830
 any directory role is a finding unless
 it's recorded with an end date,
 
 92
-00:06:07.340 --> 00:06:10.038
+00:06:08.830 --> 00:06:11.528
 because Microsoft's list
 of roles an agent may
 
 93
-00:06:10.038 --> 00:06:13.162
+00:06:11.528 --> 00:06:14.652
 hold includes some the
 program counts as privileged.
 
 94
-00:06:13.162 --> 00:06:17.900
+00:06:14.652 --> 00:06:19.390
 Then the sponsor clock: ten business
 days, counted around federal holidays,
 
 95
-00:06:17.900 --> 00:06:21.492
+00:06:19.390 --> 00:06:22.982
 and an unconfirmed transfer
 means the agent is orphaned
 
 96
-00:06:21.492 --> 00:06:24.625
+00:06:22.982 --> 00:06:26.115
 and goes to Chapter 2's
 rule, where a person decides.
 
 97
-00:06:24.625 --> 00:06:27.482
+00:06:26.115 --> 00:06:28.972
 Then the two policies,
 the approval attribute,
 
 98
-00:06:27.482 --> 00:06:30.310
+00:06:28.972 --> 00:06:31.800
 and the three top-priority drift checks.
 
 99
-00:06:34.060 --> 00:06:38.872
+00:06:35.550 --> 00:06:40.362
 The only thing this chapter ever writes
 is the two agent policies, report-only.
 
 100
-00:06:38.872 --> 00:06:41.895
+00:06:40.362 --> 00:06:43.385
 The plan compares the reviewed
 files with the tenant,
 
 101
-00:06:41.895 --> 00:06:45.124
+00:06:43.385 --> 00:06:46.614
 and where the program's
 decision says agent Conditional
 
 102
-00:06:45.124 --> 00:06:48.422
+00:06:46.614 --> 00:06:49.912
 Access isn't published, it
 simply marks them not available.
 
 103
-00:06:48.422 --> 00:06:52.975
+00:06:49.912 --> 00:06:54.465
 The write path refuses unless the plan
 is the approved one, recent, and for
 
 104
-00:06:52.975 --> 00:06:57.984
+00:06:54.465 --> 00:06:59.474
 this tenant, and every write creates a
 report-only block policy and nothing else.
 
 105
-00:06:57.984 --> 00:07:01.998
+00:06:59.474 --> 00:07:03.488
 It runs as a person with the
 Conditional Access administrator role.
 
 106
-00:07:01.998 --> 00:07:06.850
+00:07:03.488 --> 00:07:08.340
 And it never turns a policy on; that
 waits until the feature leaves preview.
 
 107
-00:07:10.600 --> 00:07:11.650
+00:07:12.090 --> 00:07:13.140
 Who's involved?
 
 108
-00:07:11.650 --> 00:07:13.037
+00:07:13.140 --> 00:07:14.527
 Developers build it.
 
 109
-00:07:13.037 --> 00:07:17.375
+00:07:14.527 --> 00:07:18.865
 The identity governance officer keeps
 the handshakes and confirms orphans.
 
 110
-00:07:17.375 --> 00:07:22.156
+00:07:18.865 --> 00:07:23.646
 The Chief AI Officer's staff keep the
 use-case inventory, security operations
 
 111
-00:07:22.156 --> 00:07:26.488
+00:07:23.646 --> 00:07:27.978
 own the drift findings, and the
 security officers review the evidence.
 
 112
-00:07:26.488 --> 00:07:29.850
+00:07:27.978 --> 00:07:31.340
 The read task holds ten read
 permissions and nothing
 
 113
-00:07:29.850 --> 00:07:32.600
+00:07:31.340 --> 00:07:34.090
 that ends in read-write;
 a test enforces that.
 
 114
-00:07:32.600 --> 00:07:36.444
+00:07:34.090 --> 00:07:37.934
 A person running it also needs a
 reader role for custom attributes,
 
 115
-00:07:36.444 --> 00:07:39.938
+00:07:37.934 --> 00:07:41.428
 and the agent administrator role
 unless they own the agents.
 
 116
-00:07:39.938 --> 00:07:45.360
+00:07:41.428 --> 00:07:46.850
 The write task holds only the policy
 permissions, in a person's signed-in session.
 
 117
-00:07:49.110 --> 00:07:53.873
+00:07:50.600 --> 00:07:55.363
 Lab 1 runs on a laptop, with
 Chapters 1 and 2's output in place.
 
 118
-00:07:53.873 --> 00:07:58.859
+00:07:55.363 --> 00:08:00.349
 First, send Learn's samples to the fake,
 and read the one test that matters most:
 
 119
-00:07:58.859 --> 00:08:03.134
+00:08:00.349 --> 00:08:04.624
 the block-all-agents policy has
 no exclusion for approved agents.
 
 120
-00:08:03.134 --> 00:08:08.531
+00:08:04.624 --> 00:08:10.021
 Then list each task's permissions, and
 read the decision table for each cloud:
 
 121
-00:08:08.531 --> 00:08:13.498
+00:08:10.021 --> 00:08:14.988
 agent mode in the worldwide and G C C
 clouds, fallback in the higher ones.
 
 122
-00:08:13.498 --> 00:08:15.327
+00:08:14.988 --> 00:08:16.817
 Then run the check in G C C.
 
 123
-00:08:15.327 --> 00:08:18.436
+00:08:16.817 --> 00:08:19.926
 Eight AI identities, twenty-two findings,
 
 124
-00:08:18.436 --> 00:08:23.730
+00:08:19.926 --> 00:08:25.220
 four of them top priority, and two
 orphan candidates for Chapter 2.
 
 125
-00:08:27.480 --> 00:08:32.467
+00:08:28.970 --> 00:08:33.957
 Reading the findings, the fictional tenant
 shows almost every way this can go wrong.
 
 126
-00:08:32.467 --> 00:08:37.011
+00:08:33.957 --> 00:08:38.501
 One agent's handshake is incomplete and
 was reviewed a month after the agent
 
 127
-00:08:37.011 --> 00:08:41.267
+00:08:38.501 --> 00:08:42.757
 already existed, and it holds a mail
 administrator role with no end date.
 
 128
-00:08:41.267 --> 00:08:44.954
+00:08:42.757 --> 00:08:46.444
 Its blueprint has a secret,
 inherits every Graph role,
 
 129
-00:08:44.954 --> 00:08:48.305
+00:08:46.444 --> 00:08:49.795
 and had a secret added
 outside any change window.
 
 130
-00:08:48.305 --> 00:08:50.883
+00:08:49.795 --> 00:08:52.373
 Another agent's sponsor left and nobody
 
 131
-00:08:50.883 --> 00:08:53.617
+00:08:52.373 --> 00:08:55.107
 confirmed a new one in
 time, so it's orphaned.
 
 132
-00:08:53.617 --> 00:08:56.165
+00:08:55.107 --> 00:08:57.655
 There's a shadow agent nobody declared,
 
 133
-00:08:56.165 --> 00:08:59.030
+00:08:57.655 --> 00:09:00.520
 and a piloted system
 with no identity at all.
 
 134
-00:08:59.030 --> 00:09:02.430
+00:09:00.520 --> 00:09:03.920
 One agent passes everything,
 which is the target.
 
 135
-00:09:06.180 --> 00:09:10.355
+00:09:07.670 --> 00:09:11.845
 Next, run the same estate as
 if it lived in G C C High.
 
 136
-00:09:10.355 --> 00:09:15.167
+00:09:11.845 --> 00:09:16.657
 The code switches to fallback mode and
 sends no agent identity read at all.
 
 137
-00:09:15.167 --> 00:09:20.125
+00:09:16.657 --> 00:09:21.615
 The one ordinary service principal gets
 the same credential and permission findings
 
 138
-00:09:20.125 --> 00:09:24.464
+00:09:21.615 --> 00:09:25.954
 it got before, and three records that
 name agent identities become findings,
 
 139
-00:09:24.464 --> 00:09:26.530
+00:09:25.954 --> 00:09:28.020
 because that cloud doesn't have them.
 
 140
-00:09:26.530 --> 00:09:30.762
+00:09:28.020 --> 00:09:32.252
 Back in G C C, the dry run
 would send exactly one request:
 
 141
-00:09:30.762 --> 00:09:35.667
+00:09:32.252 --> 00:09:37.157
 a report-only high-risk policy,
 since the other already exists.
 
 142
-00:09:35.667 --> 00:09:38.621
+00:09:37.157 --> 00:09:40.111
 Applying it to the fake
 creates it report-only,
 
 143
-00:09:38.621 --> 00:09:41.400
+00:09:40.111 --> 00:09:42.890
 and a hash nobody approved is refused.
 
 144
-00:09:45.150 --> 00:09:49.950
+00:09:46.640 --> 00:09:51.440
 Lab 2 uses a licensed test tenant with
 fictional people, never production.
 
 145
-00:09:49.950 --> 00:09:52.830
+00:09:51.440 --> 00:09:54.320
 Read the blueprint-creation
 setting yourself,
 
 146
-00:09:52.830 --> 00:09:57.187
+00:09:54.320 --> 00:09:58.677
 since there's no Graph property for it,
 set it to No, and record the reading.
 
 147
-00:09:57.187 --> 00:10:01.015
+00:09:58.677 --> 00:10:02.505
 Then build one properly governed
 agent from Learn's sample:
 
 148
-00:10:01.015 --> 00:10:04.842
+00:10:02.505 --> 00:10:06.332
 a sponsor who isn't the owner,
 a managed identity credential,
 
 149
-00:10:04.842 --> 00:10:08.513
+00:10:06.332 --> 00:10:10.003
 a handshake, an inventory row,
 and the approval attribute.
 
 150
-00:10:08.513 --> 00:10:11.026
+00:10:10.003 --> 00:10:12.516
 Run the check with read permissions only,
 
 151
-00:10:11.026 --> 00:10:14.574
+00:10:12.516 --> 00:10:16.064
 compare the policy shape with
 one made in the admin center,
 
 152
-00:10:14.574 --> 00:10:18.713
+00:10:16.064 --> 00:10:20.203
 apply the plan as a person, and
 confirm both policies are report-only.
 
 153
-00:10:18.713 --> 00:10:20.750
+00:10:20.203 --> 00:10:22.240
 Then remove it all by hand.
 
 154
-00:10:24.500 --> 00:10:27.337
+00:10:25.990 --> 00:10:28.827
 Agents make every familiar danger faster.
 
 155
-00:10:27.337 --> 00:10:32.038
+00:10:28.827 --> 00:10:33.528
 Open creation means whoever builds an
 agent becomes its sponsor and owner.
 
 156
-00:10:32.038 --> 00:10:36.938
+00:10:33.528 --> 00:10:38.428
 A secret on a blueprint isn't one
 credential, it's every agent made from it.
 
 157
-00:10:36.938 --> 00:10:42.113
+00:10:38.428 --> 00:10:43.603
 Allow-all inheritance turns one future
 grant into a grant to every agent.
 
 158
-00:10:42.113 --> 00:10:46.138
+00:10:43.603 --> 00:10:47.628
 A sponsor who leaves unnoticed
 leaves an agent nobody answers for.
 
 159
-00:10:46.138 --> 00:10:50.688
+00:10:47.628 --> 00:10:52.178
 And preview features bring their own risks:
 enforcing a policy on a feature that
 
 160
-00:10:50.688 --> 00:10:55.376
+00:10:52.178 --> 00:10:56.866
 can still change, or assuming the higher
 government clouds have objects they don't.
 
 161
-00:10:55.376 --> 00:10:58.610
+00:10:56.866 --> 00:11:00.100
 Each danger has a guard
 that runs every week.
 
 162
-00:11:02.360 --> 00:11:03.710
+00:11:03.850 --> 00:11:05.200
 Here's what done looks like.
 
 163
-00:11:03.710 --> 00:11:06.785
+00:11:05.200 --> 00:11:08.275
 Creation is closed and
 the reading is recent.
 
 164
-00:11:06.785 --> 00:11:11.059
+00:11:08.275 --> 00:11:12.549
 Every production agent had its
 handshake reviewed before it existed,
 
 165
-00:11:11.059 --> 00:11:14.522
+00:11:12.549 --> 00:11:16.012
 with a real employee sponsor,
 a group, and a separate owner.
 
 166
-00:11:14.522 --> 00:11:19.018
+00:11:16.012 --> 00:11:20.508
 No production blueprint holds a
 secret, nothing inherits every role,
 
 167
-00:11:19.018 --> 00:11:21.935
+00:11:20.508 --> 00:11:23.425
 and no agent holds a
 standing directory role.
 
 168
-00:11:21.935 --> 00:11:26.560
+00:11:23.425 --> 00:11:28.050
 Every sponsor transfer was confirmed
 on time, or handed to the orphan rule.
 
 169
-00:11:26.560 --> 00:11:31.985
+00:11:28.050 --> 00:11:33.475
 Both policies are report-only and reviewed,
 and no top-priority drift is open.
 
 170
-00:11:31.985 --> 00:11:34.605
+00:11:33.475 --> 00:11:36.095
 Next, Chapter 10 brings it all together:
 
 171
-00:11:34.605 --> 00:11:37.635
+00:11:36.095 --> 00:11:39.125
 drift and evidence for
 the security officer.
 
 172
-00:11:37.635 --> 00:11:38.790
+00:11:39.125 --> 00:11:40.280
 Thanks for watching.

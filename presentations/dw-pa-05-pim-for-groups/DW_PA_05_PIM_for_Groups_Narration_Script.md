@@ -34,7 +34,7 @@ Now the code. The chapter adds its own module, its own list of allowed calls, an
 
 ## Slide 9 — Activation limits and the authentication context
 
-Two details in the policy deserve a closer look. Learn's pages disagree on how long an activation may last: one says eight hours at most, another says up to twenty-four. The code takes the stricter reading and flags anything longer. Then there's the authentication context from Chapter 3, which isn't built yet. When it arrives, it only forces a fresh sign-in on every activation if its policy says so, and even then there's a ten-minute window. Learn also disagrees on whether it's preview, so the chapter treats it as preview.
+Two details in the policy deserve a closer look. Learn's pages disagree on how long an activation may last: one says eight hours at most, another says up to twenty-four. The code takes the stricter reading and flags anything longer. Then there's the authentication context from Chapter 3. Every member and owner policy selects it, as Book 04, Access and Privilege, requires, so the rules ask for justification and a ticket instead of M F A. Learn says to turn the context's policy on before PIM selects it, so the apply refuses unless a person states that it's On. And it only forces a fresh sign-in on every activation if its policy says so, and even then there's a ten-minute window. Learn also disagrees on whether it's preview, so the chapter treats it as preview.
 
 ## Slide 10 — The findings: PA-PG-01 to PA-PG-09
 
@@ -42,7 +42,7 @@ Before anything is planned, the code reads the tenant and checks it against nine
 
 ## Slide 11 — The plan, the dry run, -Apply and seven guards
 
-Once the differences are known, the plan turns them into requests in a fixed order: create any missing groups, then set the policy rules so they're in force before anyone is granted, then grants, and removals last. Each request carries its permission and a line of diff a reviewer can read. Nothing is sent unless you ask for it. And even then, seven guards can refuse the whole run: losing approval on a top tier, a permanent grant, a group approving itself, or suddenly removing more people than expected, which usually means a broken file.
+Once the differences are known, the plan turns them into requests in a fixed order: create any missing groups, then set the policy rules so they're in force before anyone is granted, then grants, and removals last. Each request carries its permission and a line of diff a reviewer can read. Nothing is sent unless you ask for it, and a plan that selects the authentication context also needs a person's statement that its policy is On. And even then, seven guards can refuse the whole run: losing approval on a top tier, a permanent grant, a group approving itself, or suddenly removing more people than expected, which usually means a broken file.
 
 ## Slide 12 — Where Learn's pages differ, recorded on purpose
 
@@ -58,11 +58,11 @@ Lab 1 runs on a laptop: PowerShell 7 and Pester, no tenant and no network. First
 
 ## Slide 15 — Lab 1: findings, the diff, a guard and -Apply
 
-Reading the results is where the rules become concrete. On the tier zero group, someone holds permanent membership the file never granted, and an owner is eligible with no active owner, which is exactly the trap where activation can't be undone. The policy also allows activation without approval and for twice as long as it should. On the Azure group, another group is nested inside. The diff shows each change in a line, removals last. Then set a tight removal limit and watch a guard refuse to run. Finally apply to the fake, and run the full suite.
+Reading the results is where the rules become concrete. On the tier zero group, someone holds permanent membership the file never granted, and an owner is eligible with no active owner, which is exactly the trap where activation can't be undone. The policy also allows activation without approval, for twice as long as it should, and with M F A instead of the activation gate. On the Azure group, another group is nested inside. The diff shows each change in a line, removals last. Then set a tight removal limit and watch a guard refuse to run. Finally apply to the fake: it refuses until you state the gate's policy is On, then sends ten requests. And run the full suite.
 
 ## Slide 16 — Lab 2: a test tenant, lab groups, two apps
 
-Lab 2 moves to a test tenant with fictional people, never production, and because a group can never leave PIM, you make groups just for the lab. Create them by hand, register two apps, a reader and a writer, and plan as the reader. Then apply as the writer and compare the portal with your file. This lab also settles open questions: whether the narrower permissions are enough, and whether the policy update really took. Rerun to see zero changes, try one removal, and then back everything out, because the output names privileged people.
+Lab 2 moves to a test tenant with fictional people, never production, and because a group can never leave PIM, you make groups just for the lab. Create them by hand, register two apps, a reader and a writer, and plan as the reader. Then confirm the activation gate's policy is On, apply as the writer, and compare the portal with your file. This lab also settles open questions: whether the narrower permissions are enough, and whether the policy update really took. Rerun to see zero changes, try one removal, and then back everything out, because the output names privileged people.
 
 ## Slide 17 — Dangers, and the guard for each
 
@@ -70,4 +70,4 @@ Each of these dangers has a matching rule or guard. The quietest is drift: someo
 
 ## Slide 18 — Done when: the chapter's checklist
 
-Here's what done looks like. On the group side: a file that passes its own check, with an end and a ticket on every entry; role-assignable groups wherever a role is held; no nesting, and no owners on tier zero; and policies that match the reviewed settings. On the run side: approver groups with at least two people, a plan reviewed by someone other than its author, a rerun that shows nothing left to change, apps holding exactly what they need, and pinned pages still matching. Next, Chapter 6 takes PIM to Azure resources. Thanks for watching.
+Here's what done looks like. On the group side: a file that passes its own check, with an end and a ticket on every entry; role-assignable groups wherever a role is held; no nesting, and no owners on tier zero; and policies that match the reviewed settings, with the activation gate selected once its policy is On. On the run side: approver groups with at least two people, a plan reviewed by someone other than its author, a rerun that shows nothing left to change, apps holding exactly what they need, and pinned pages still matching. Next, Chapter 6 takes PIM to Azure resources. Thanks for watching.

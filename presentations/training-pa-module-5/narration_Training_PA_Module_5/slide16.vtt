@@ -15,43 +15,48 @@ and found a standing member nobody granted,
 an owner trap, and a nested group.
 
 4
-00:00:10.475 --> 00:00:14.562
-You read the exact requests that
-would fix them, saw a guard refuse
+00:00:10.475 --> 00:00:13.577
+You read the exact requests
+that would fix them,
 
 5
-00:00:14.562 --> 00:00:18.800
-a plan with too many removals, and
-applied eight requests to the fake.
+00:00:13.577 --> 00:00:18.666
+saw a guard refuse a plan with too many
+removals, saw the apply refuse to select
 
 6
-00:00:18.800 --> 00:00:22.588
-Next is Module 6: PIM for Azure resources.
+00:00:18.666 --> 00:00:23.438
+c1 until a person confirmed the gate,
+and applied ten requests to the fake.
 
 7
-00:00:22.588 --> 00:00:25.744
+00:00:23.438 --> 00:00:27.226
+Next is Module 6: PIM for Azure resources.
+
+8
+00:00:27.226 --> 00:00:30.382
 Owner, Contributor and
 User Access Administrator
 
-8
-00:00:25.744 --> 00:00:28.074
+9
+00:00:30.382 --> 00:00:32.712
 on a subscription are privileged too.
 
-9
-00:00:28.074 --> 00:00:32.115
+10
+00:00:32.712 --> 00:00:36.752
 PIM for Azure resources isn't in
 Microsoft Graph: it goes through
 
-10
-00:00:32.115 --> 00:00:36.612
+11
+00:00:36.752 --> 00:00:41.249
 Azure Resource Manager, with Azure
 roles instead of Graph permissions.
 
-11
-00:00:36.612 --> 00:00:40.835
+12
+00:00:41.249 --> 00:00:45.473
 In Module 6 you hold it as
 code, with the same discipline:
 
-12
-00:00:40.835 --> 00:00:43.510
+13
+00:00:45.473 --> 00:00:48.170
 read, diff, and send only with Apply.

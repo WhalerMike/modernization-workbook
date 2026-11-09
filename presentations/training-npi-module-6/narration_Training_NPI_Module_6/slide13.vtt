@@ -5,60 +5,60 @@ WEBVTT
 Step eight tries to enforce Ring 1.
 
 2
-00:00:02.500 --> 00:00:07.820
+00:00:02.500 --> 00:00:07.934
 You copy the scope and add an enforcement
-record: D N five, outcome enforce,
+record: D N P five, outcome enforce,
 
 3
-00:00:07.820 --> 00:00:13.228
+00:00:07.934 --> 00:00:13.368
 decided by the CISO, and Ring 1 with the
 summary's hash, reviewed by the ISSO.
 
 4
-00:00:13.228 --> 00:00:17.838
+00:00:13.368 --> 00:00:18.000
 Plan without allow enforce, and
 Ring 1's location policy is held.
 
 5
-00:00:17.838 --> 00:00:22.807
+00:00:18.000 --> 00:00:22.970
 Plan again with allow enforce and the
 reviewed summary, and the held becomes
 
 6
-00:00:22.807 --> 00:00:27.224
+00:00:22.970 --> 00:00:27.387
 a second update: C A oh fifteen Ring
 1 goes from report-only to enabled.
 
 7
-00:00:27.224 --> 00:00:31.752
+00:00:27.387 --> 00:00:31.914
 Now add one byte to a copy of the summary
 and plan again, and it's held again,
 
 8
-00:00:31.752 --> 00:00:36.125
+00:00:31.914 --> 00:00:36.287
 because the edited summary's hash
 isn't the one the reviewer recorded.
 
 9
-00:00:36.125 --> 00:00:38.558
+00:00:36.287 --> 00:00:38.721
 Step nine reads the alert definition:
 
 10
-00:00:38.558 --> 00:00:43.661
+00:00:38.721 --> 00:00:43.824
 a query over the service principal sign-in
 logs for result type five three oh oh
 
 11
-00:00:43.661 --> 00:00:47.743
+00:00:43.824 --> 00:00:47.906
 three, which Microsoft Learn's
 error code list names as blocked
 
 12
-00:00:47.743 --> 00:00:51.275
+00:00:47.906 --> 00:00:51.438
 by Conditional Access, for the
 four in-scope object I D's.
 
 13
-00:00:51.275 --> 00:00:55.150
+00:00:51.438 --> 00:00:55.320
 Step ten runs the tests:
 five hundred thirteen pass.

@@ -1,44 +1,45 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.895
-Lab 1 needs only a laptop,
-PowerShell 7 and Pester,
+00:00:00.050 --> 00:00:06.322
+Lab 1 needs only a laptop, PowerShell 7
+and Pester, plus the runs of Chapters 1,
 
 2
-00:00:03.895 --> 00:00:06.587
-plus Chapter 1's inventory output.
+00:00:06.322 --> 00:00:10.975
+2 and 3: the register, the owners
+and the owners' decisions.
 
 3
-00:00:06.587 --> 00:00:10.754
+00:00:10.975 --> 00:00:15.141
 First you run Learn's own procedures
 against the stand-ins, and you can read
 
 4
-00:00:10.754 --> 00:00:15.125
+00:00:15.141 --> 00:00:19.512
 the test where the migration-state step
 fails, just as it would on a real server.
 
 5
-00:00:15.125 --> 00:00:20.237
+00:00:19.512 --> 00:00:24.624
 Then you list what each task is allowed
 to run: the read task is only lookups.
 
 6
-00:00:20.237 --> 00:00:22.913
+00:00:24.624 --> 00:00:27.300
 Then you run the check
 against a fictional estate.
 
 7
-00:00:22.913 --> 00:00:25.854
+00:00:27.300 --> 00:00:30.266
 Nine accounts are in
-scope, with six findings,
+scope, with five findings,
 
 8
-00:00:25.854 --> 00:00:29.351
+00:00:30.266 --> 00:00:33.700
 four planned writes, and a
 hand-off that isn't ready yet.
 
 9
-00:00:29.351 --> 00:00:30.460
+00:00:33.700 --> 00:00:34.800
 Let's see why.

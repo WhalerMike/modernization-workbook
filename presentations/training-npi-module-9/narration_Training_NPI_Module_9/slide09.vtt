@@ -48,21 +48,21 @@ The write task holds only
 the two policy permissions.
 
 11
-00:00:36.500 --> 00:00:40.450
+00:00:36.500 --> 00:00:40.900
 Step four reads decision
-D N six for each cloud.
+D N P six for each cloud.
 
 12
-00:00:40.450 --> 00:00:43.824
+00:00:40.900 --> 00:00:44.274
 The worldwide and G C C
 clouds run in Agent I D mode,
 
 13
-00:00:43.824 --> 00:00:49.813
+00:00:44.274 --> 00:00:50.263
 with agent identities generally available
 and agent Conditional Access in preview.
 
 14
-00:00:49.813 --> 00:00:54.720
+00:00:50.263 --> 00:00:55.180
 G C C High and D O D run in
 fallback mode: nothing published.

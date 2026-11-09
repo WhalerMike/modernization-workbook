@@ -20,36 +20,36 @@ and summarized the service
 principal sign-ins.
 
 5
-00:00:12.663 --> 00:00:17.287
-And you saw a ring enforced only with
-the D N five decision, the allow-enforce
+00:00:12.663 --> 00:00:17.438
+And you saw a ring enforced only with the
+D N P five decision, the allow-enforce
 
 6
-00:00:17.287 --> 00:00:21.762
+00:00:17.438 --> 00:00:21.987
 switch and the reviewed summary, and
 held again when the summary changed.
 
 7
-00:00:21.762 --> 00:00:27.221
+00:00:21.987 --> 00:00:27.536
 The evidence an ISSO keeps is the scope
 file, the pre-merge check, the findings,
 
 8
-00:00:27.221 --> 00:00:32.160
+00:00:27.536 --> 00:00:32.292
 the plan and its requests, the sign-in
-summary with the hash the D N five
+summary with the hash the D N P
 
 9
-00:00:32.160 --> 00:00:37.012
-record cites, the alert definition,
+00:00:32.292 --> 00:00:37.576
+five record cites, the alert definition,
 and each run's manifest, all dated.
 
 10
-00:00:37.012 --> 00:00:40.088
+00:00:37.576 --> 00:00:40.650
 Before you ship, work through
 the chapter's checklist.
 
 11
-00:00:40.088 --> 00:00:45.960
+00:00:40.650 --> 00:00:46.510
 Next is Module 7: convert to managed
 identities and federation, Gate 5.

@@ -1,50 +1,83 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.379
-Converting standing assignments
-goes in a fixed order,
+00:00:00.050 --> 00:00:01.163
+The alert check.
 
 2
-00:00:03.379 --> 00:00:05.188
-and each row carries its state.
+00:00:01.163 --> 00:00:04.664
+CISA's baseline under B
+O D twenty-five oh-one
 
 3
-00:00:05.188 --> 00:00:10.338
-Waiting For Eligibility: the role's
-P R V group is made eligible first.
+00:00:04.664 --> 00:00:07.975
+asks for two alerts the
+role files don't set.
 
 4
-00:00:10.338 --> 00:00:15.312
-Waiting For Confirmed Activation: the person
-activates the role through the group,
+00:00:07.975 --> 00:00:12.037
+M S A A D seven point seven:
+an alert on every eligible
 
 5
-00:00:15.312 --> 00:00:18.051
-and the activation is
-confirmed, with a ticket.
+00:00:12.037 --> 00:00:16.775
+or active assignment to the
+eight highly privileged roles.
 
 6
-00:00:18.051 --> 00:00:21.925
-Confirmed: only now can the
-active assignment be removed.
+00:00:16.775 --> 00:00:21.663
+And seven point eight: an alert on
+every Global Administrator activation.
 
 7
-00:00:21.925 --> 00:00:25.839
-Only the Apply switch with the
-Convert switch removes anything,
+00:00:21.663 --> 00:00:25.550
+So a separate script reads them
+under its own read-only task,
 
 8
-00:00:25.839 --> 00:00:30.788
-and only for confirmed rows; the
-confirmed-activations file carries each ticket.
+00:00:25.550 --> 00:00:27.613
+pim alerts, and changes nothing.
 
 9
-00:00:30.788 --> 00:00:34.288
-So no one loses a role before
-they've shown they can activate it.
+00:00:27.613 --> 00:00:31.663
+Pim ten and pim eleven check each
+role's notification settings.
 
 10
-00:00:34.288 --> 00:00:39.020
-And as a backstop, PIM won't remove
-the last active Global Administrator.
+00:00:31.663 --> 00:00:34.721
+Pim twelve and pim thirteen
+check the PIM for Groups
+
+11
+00:00:34.721 --> 00:00:38.063
+member policy of each group
+that holds one of those roles.
+
+12
+00:00:38.063 --> 00:00:43.468
+Each is a finding until an additional
+recipient, the security monitoring mailbox,
+
+13
+00:00:43.468 --> 00:00:46.887
+is set: under the role's role
+settings, notifications,
+
+14
+00:00:46.887 --> 00:00:50.862
+or the group's PIM for Groups
+settings, member, notifications.
+
+15
+00:00:50.862 --> 00:00:53.150
+PIM's default recipients don't count.
+
+16
+00:00:53.150 --> 00:00:56.588
+On the fictional tenant,
+all eleven are findings.
+
+17
+00:00:56.588 --> 00:01:00.600
+Its tests are a separate suite,
+in the baseline tests folder.

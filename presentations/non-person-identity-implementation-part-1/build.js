@@ -314,7 +314,7 @@ Step 3: twenty-two identities checked, seven orphan candidates, twenty Findings,
 
 Step 5 is the orphan rule as a plan: ten actions, three of them writes, two disables and one owner added from a claim. The Build Pipeline claim named a guest and is refused. A reviewer approves the plan by its hash, and the write path refuses any other.
 
-Two notes for the gate. The workbook follows the plan's decision D-N2, disable once the identity governance officer confirms, then a 30-day claim window; the guide's Step 6 states Book 04's order, 30 days and then suspension, and the workbook leaves that difference open for the CISO. And the writes belong to the orphan rule, which is G6, in Part 2.`,
+Two notes for the gate. The workbook follows the plan's decision D-NP2, disable once the identity governance officer confirms, then a 30-day claim window; the guide's Step 6 states Book 04's order, 30 days and then suspension, and the workbook leaves that difference open for the CISO. And the writes belong to the orphan rule, which is G6, in Part 2.`,
   `${WB}, Chapter 02 — "The rule the code holds," "The check," "The orphan rule as a plan," "Lab 1," steps 3–5; ${IG}, Step 6 — "Orphans."`);
 }
 
@@ -389,15 +389,15 @@ Order of work: high-risk accounts first, password never expires or over-privileg
   const c2 = code(s, "Find", 0.6, c1 + 0.15, 5.6, cap("03-5", [1, 2, 3, 4, 6, 9, 10, 12, 14]),
     { label: "STEP 5: THE SEVEN FINDINGS (WARN AND INFO ROWS LEFT OUT)", pt: 10.5 });
   panel(s, "Apart", 6.4, c1 + 0.15, 6.35, null, HEX.navy, HEX.navyTint, "THREE THINGS KEPT APART", null, [
-    "The proposal (N2.1): the matrix's target, by type, location and credential",
-    "The disposition (D-N3): the application owner's: retire, re-platform, keep with an end date, or keep on Kerberos with an SPN owner",
+    "The proposal (NP2.1): the matrix's target, by type, location and credential",
+    "The disposition (D-NP3): the application owner's: retire, re-platform, keep with an end date, or keep on Kerberos with an SPN owner",
     "The gate: every account decided, HIGH-risk in wave 1, a rollback per wave, the Premium scope decided",
     "Two reads (a user, the subscriptions); no writes",
   ], 11.5);
   if (process.env.FIT) console.log(`  matrix bottom ${c2.toFixed(2)}`);
   sources(s, "Sources: Developer workbook, Ch 03 (the decisions the code holds; the rules; Lab 1, steps 3 and 5); data/kit-captures/npi/03-3, 03-5.");
   notes(s,
-`Chapter 03 holds Book 02's matrix as reviewed data, config/migration-matrix.json, and keeps three things apart that are easy to blur. The proposal, plan task N2.1, comes from the matrix. The disposition, decision D-N3, is the application owner's, account by account: retire, re-platform, keep with an end date, or keep on Kerberos with an SPN owner and an end date the authorizing official accepts. An owner may choose a target the matrix didn't propose, with a reason. And the gate is the ISSO's.
+`Chapter 03 holds Book 02's matrix as reviewed data, config/migration-matrix.json, and keeps three things apart that are easy to blur. The proposal, plan task NP2.1, comes from the matrix. The disposition, decision D-NP3, is the application owner's, account by account: retire, re-platform, keep with an end date, or keep on Kerberos with an SPN owner and an end date the authorizing official accepts. An owner may choose a target the matrix didn't propose, with a reason. And the gate is the ISSO's.
 
 Step 3 runs Chapters 01 and 02, then the matrix. Twenty-one identities are in scope and twenty get a proposal; three are handed off, one waits for confirmation and ten are out of scope. Eighteen of twenty-two have a disposition. Two waves are planned. The Workload ID Premium decision is Tier 1, with two identities in scope and two units held. Seven Findings, four Warns, one Info, and the gate is not met, with the open findings counted per criterion.
 
@@ -430,7 +430,7 @@ The code reads two things, the SPN and rollback owners with User.Read.All, and t
     "Rollback: re-decide; the record keeps the history; each wave records its own rollback",
   ], 11.5);
   if (process.env.FIT) console.log(`  G2 panels bottom ${Math.max(p1, p2).toFixed(2)}`);
-  sources(s, "Sources: Implementation guide, \"Evidence,\" Step 2, Validate (G2), \"Licenses,\" \"Rollback\"; Developer workbook, Ch 03 (disposition, waves, D-N4, cloud).");
+  sources(s, "Sources: Implementation guide, \"Evidence,\" Step 2, Validate (G2), \"Licenses,\" \"Rollback\"; Developer workbook, Ch 03 (disposition, waves, D-NP4, cloud).");
   notes(s,
 `G2's federal side. The guide's evidence table maps by requirement, not by gate, so which rows G2 feeds is our reading, marked inference.
 
@@ -454,7 +454,7 @@ endModule(SG2);
   const tb = table(s, "Scuba", c1 + 0.2, [3.3, 5.0, 3.85], ["ScubaGear 2.0.0 (SHOULD)", "Checks", "The program's policy"], [
     ["MS.AAD.5.5v1", "Application password addition blocked", "New secrets blocked"],
     ["MS.AAD.5.6v1", "Password lifetime at most 180 days", "No new secrets at all"],
-    ["MS.AAD.5.7v1", "Certificate lifetime at most 365 days", "The 180-day cap meets it"],
+    ["MS.AAD.5.7v1", "Certificate lifetime at most 365 days", "The 180-day cap addresses it"],
   ], { fontSize: 11.5, limit: 5.95 });
   line(s, "Two", "Two rotation numbers: an existing workload moves onto a certificate rotated at least yearly while it's fixed; every new registration starts under the 180-day cap.",
     tb + 0.12, 0.55, 13.5);
@@ -468,7 +468,7 @@ The panel is the workbook's Chapter 04 diff, from Lab 1 against a fictional tena
 
 Step 2 reconciles two rotation numbers. Book 02 allows annual rotation for certificates on accounts being migrated, and Book 04 caps new ones at 180 days. An existing workload moves onto a certificate rotated at least yearly while it's fixed, and every new registration starts under the cap.
 
-Step 3 maps the policy to SCuBA. ScubaGear 2.0.0 checks three SHOULD policies, MS.AAD.5.5v1 to 5.7v1. None is a BOD 25-01 required configuration. The 180-day cap meets MS.AAD.5.7v1.`,
+Step 3 maps the policy to SCuBA. ScubaGear 2.0.0 checks three SHOULD policies, MS.AAD.5.5v1 to 5.7v1. None is a BOD 25-01 required configuration. The 180-day certificate cap addresses MS.AAD.5.7v1.`,
   `${IG}, Step 3 — the program's rules, steps 1–3; ${WB}, Chapter 04 — "The rules the code holds," "The policy: read, compare, plan," "Lab 1," step 4; Book 04, Chapter 05; Book 17, Chapter 06.`);
 }
 
@@ -615,7 +615,7 @@ sourceSlide("Sources: G2", [
   "Non-Person Identity: An Implementation Guide: Step 2 (the decision table, order of work, gMSA prerequisites, Validate); \"Licenses\" (Workload ID Premium in Azure Government); \"Evidence\"; \"Rollback.\"",
   "Microsoft Learn pages the guide footnotes for G2: Create a KDS root key; Secure group managed service accounts; Workload ID FAQ (all read October 29, 2026).",
   "Book 02, Ch 09 (the migration path matrix); Ch 10 (Phase 4, order of work); Book 04, Ch 05 (managed identities).",
-  "Developer workbook, Chapter 03 (the decisions the code holds; the proposal, N2.1; the disposition, D-N3, and the waves, N2.2; the Workload ID Premium scope, D-N4; Gate 2; which cloud; Lab 1, steps 3 and 5).",
+  "Developer workbook, Chapter 03 (the decisions the code holds; the proposal, NP2.1; the disposition, D-NP3, and the waves, NP2.2; the Workload ID Premium scope, D-NP4; Gate 2; which cloud; Lab 1, steps 3 and 5).",
   "examples/non-person-identity: Invoke-NpiMatrix.ps1, config/migration-matrix.json, config/calls-ch03.json, tests/fixtures/ch03. Captures: data/kit-captures/npi/03-3, 03-5.",
 ]);
 sourceSlide("Sources: G3 and the handoff", [

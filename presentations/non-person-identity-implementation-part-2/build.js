@@ -182,7 +182,7 @@ endModule(S0);
     "Ring2: not ready",
     "  Deploy Bot       WouldBlock   sign-ins 2; outside the egress ranges: 203.0.113.7",
   ], { label: "CHAPTER 08, LAB 1, STEPS 5–6 (COMMANDS WRAPPED AND SHORTENED; OUTPUT TRIMMED)", pt: 10 });
-  line(s, "Rule", "Remove the grant, never the app. Every workload policy is created report-only; a ring is enforced only after D-N5 and a reviewed sign-in summary.",
+  line(s, "Rule", "Remove the grant, never the app. Every workload policy is created report-only; a ring is enforced only after D-NP5 and a reviewed sign-in summary.",
     c2 + 0.12, 0.55, 13);
   sources(s, "Sources: Developer workbook, Ch 07 (the sweep, NPI-LP-01 to -09; Lab 1, steps 3–4) and Ch 08 (the plan; enforcement; Lab 1, steps 5–6); data/kit-captures/npi/07-4, 07-5, 08-5, 08-6.");
   notes(s,
@@ -194,7 +194,7 @@ Three service principals can grant themselves more or hold a privileged administ
 
 The plan has eleven actions and three writes: two app role removals, sent through Microsoft Graph's service principal, the resource, never the app; and one delegated grant narrowed to User.Read. Nothing is sent until a reviewer approves the plan's SHA-256, and the write path is a person's delegated session with Privileged Role Administrator.
 
-Chapter 08 holds CA015, the location restriction, and CA037, the high-risk block, as reviewed files, rendered once per ring and always created report-only. Here the plan creates three policies and updates the named location. The sign-in summary reads eighteen days of service principal sign-ins: Ring 1 is ready; Ring 2 isn't, because Deploy Bot signed in from outside the egress ranges. Enforcement needs the CISO's decision D-N5, the reviewed summary's hash, and the -AllowEnforce switch in that change.`,
+Chapter 08 holds CA015, the location restriction, and CA037, the high-risk block, as reviewed files, rendered once per ring and always created report-only. Here the plan creates three policies and updates the named location. The sign-in summary reads eighteen days of service principal sign-ins: Ring 1 is ready; Ring 2 isn't, because Deploy Bot signed in from outside the egress ranges. Enforcement needs the CISO's decision D-NP5, the reviewed summary's hash, and the -AllowEnforce switch in that change.`,
   `${WB}, Chapter 07 — "The sweep," "The check," "The plan," "Lab 1: fixtures, no tenant," steps 3–6; Chapter 08 — "The plan, the dry run and the writes," "Enforcement, ring by ring," "The sign-in reader," "Lab 1," steps 5–8.`);
 }
 
@@ -552,13 +552,13 @@ Two dangers belong to SQL Server. A renewed certificate nobody uploaded: the vau
   const c1 = code(s, "Agent", 0.6, top + 0.15, 12.15, [
     "PS> ./Invoke-NpiAgentId.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership `",
     ">>     -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id",
-    "D-N6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview",
+    "D-NP6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview",
     "AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2",
     "Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2",
   ], { label: "CHAPTER 09, LAB 1, STEP 4 (COMMAND WRAPPED; OUTPUT TRIMMED)", pt: 10 });
   line(s, "High", "GCC High and DoD: no published availability, so treat the agent features as unavailable and govern the service principals agents run as.",
     c1 + 0.1, 0.55, 13);
-  sources(s, "Sources: Implementation guide, \"AI agents\"; Book 17, Ch 04, 05, 06; Developer workbook, Ch 09 (D-N6 as data; NPI-AI-01 to -23; Lab 1, steps 4–7); data/kit-captures/npi/09-5.");
+  sources(s, "Sources: Implementation guide, \"AI agents\"; Book 17, Ch 04, 05, 06; Developer workbook, Ch 09 (D-NP6 as data; NPI-AI-01 to -23; Lab 1, steps 4–7); data/kit-captures/npi/09-5.");
   notes(s,
 `AI agents are non-person identities and follow this guide, with additions from Book 17.
 
@@ -568,8 +568,8 @@ Creation is gated. Set Users can create agent blueprints to No, the agent analog
 
 Availability, as Book 17 states it. The Agent ID platform has been generally available since April 2026, with a documented partial subset in GCC. Sponsor lifecycle workflows have been generally available since May 2026. Agent targeting in Conditional Access and the agent risk condition are preview, available in GCC for agents with delegated access. The agent's user account is preview in Frontier program tenants only, and Agent 365's FedRAMP High authorization was pending as of October 1, 2026. For GCC High and DoD, Microsoft has published no availability.
 
-The workbook's Chapter 09 holds that as decision D-N6, proposed, in data. In GCC it reads the blueprints and agents: here twenty-two Findings, four of them priority one drift, such as a shadow agent no record names. Run in GCC High, it falls back to the same rules on the service principals.`,
-  `${IG}, "AI agents"; Book 17, Chapter 04 — "The object model," "Release stage, licensing and government clouds"; Chapter 05 — "Creation," "Recertification: expiry is the review"; Chapter 06 — "No stored secrets"; ${WB}, Chapter 09 — "Decision D-N6 as data," "The checks," "Lab 1," steps 4–7.`);
+The workbook's Chapter 09 holds that as decision D-NP6, proposed, in data. In GCC it reads the blueprints and agents: here twenty-two Findings, four of them priority one drift, such as a shadow agent no record names. Run in GCC High, it falls back to the same rules on the service principals.`,
+  `${IG}, "AI agents"; Book 17, Chapter 04 — "The object model," "Release stage, licensing and government clouds"; Chapter 05 — "Creation," "Recertification: expiry is the review"; Chapter 06 — "No stored secrets"; ${WB}, Chapter 09 — "Decision D-NP6 as data," "The checks," "Lab 1," steps 4–7.`);
 }
 endModule(SX);
 
@@ -649,7 +649,7 @@ sourceSlide("Sources: G5 and G6", [
 sourceSlide("Sources: SQL Server, AI agents and the close", [
   "Non-Person Identity: An Implementation Guide: \"SQL Server service and application principals,\" \"AI agents,\" \"Dangers and how to avoid them,\" \"Evidence,\" \"Checklist,\" \"Back to the books.\" Learn, rotate certificates for SQL Server enabled by Azure Arc (as footnoted).",
   "Book 06, Ch 02, 09, 11, 19; Runbook R04. Book 17, Ch 04 (the object model; release stage, licensing and government clouds), Ch 05 (creation; recertification), Ch 06 (no stored secrets; enforcing the order), Appendix A.",
-  "Developer workbook, Chapter 09 (D-N6 as data; NPI-AI-01 to -23; Lab 1, steps 4–7); capture 09-5. The Labs page (docs/training/labs.md), Building Non-Person Identity: every chapter's Lab 1 and Lab 2.",
+  "Developer workbook, Chapter 09 (D-NP6 as data; NPI-AI-01 to -23; Lab 1, steps 4–7); capture 09-5. The Labs page (docs/training/labs.md), Building Non-Person Identity: every chapter's Lab 1 and Lab 2.",
   "Design guidance in this part: the done-when; owner reviews quarterly and the 90-day idle threshold; the Kerberos island interim; the plan approval by SHA-256 and the 7-day plan age; the 14-day ring window; the control mapping in the period summary.",
 ]);
 

@@ -9,74 +9,84 @@ These are the kit's design.
 Two outputs carry the chapter's end date.
 
 3
-00:00:04.087 --> 00:00:09.429
-The island list holds every account that
-stays on Kerberos, with its S P N owner,
+00:00:04.087 --> 00:00:07.886
+The island list holds every
+account that stays on Kerberos,
 
 4
-00:00:09.429 --> 00:00:13.101
-its end date, and whether it's
-ready for P four point six,
+00:00:07.886 --> 00:00:11.065
+with its disposition from
+Chapter 3, its S P N owner,
 
 5
-00:00:13.101 --> 00:00:15.438
-the program's S P N retirement work.
+00:00:11.065 --> 00:00:13.545
+its end date and the date that bounds it,
 
 6
-00:00:15.438 --> 00:00:18.425
+00:00:13.545 --> 00:00:18.119
+the authorizing official's acceptance
+for an account kept on Kerberos,
+
+7
+00:00:18.119 --> 00:00:22.925
+and whether it's ready for P four point
+six, the program's S P N retirement work.
+
+8
+00:00:22.925 --> 00:00:25.912
 The hand-off is ready
 only when every row is.
 
-7
-00:00:18.425 --> 00:00:22.607
+9
+00:00:25.912 --> 00:00:30.095
 The reconciliation covers
 every G M S A and D M S A,
 
-8
-00:00:22.607 --> 00:00:26.575
+10
+00:00:30.095 --> 00:00:34.063
 existing or planned, and
 says where it ends up.
 
-9
-00:00:26.575 --> 00:00:29.739
+11
+00:00:34.063 --> 00:00:37.226
 Writing to the domain
 lives in a separate script,
 
-10
-00:00:29.739 --> 00:00:34.721
+12
+00:00:37.226 --> 00:00:42.208
 and it refuses to run unless the plan's
 hash is the approved one, the plan is for
 
-11
-00:00:34.721 --> 00:00:37.489
+13
+00:00:42.208 --> 00:00:44.976
 this domain and no more
 than seven days old,
 
-12
-00:00:37.489 --> 00:00:39.862
+14
+00:00:44.976 --> 00:00:47.349
 and it's a person's session, never a job.
 
-13
-00:00:39.862 --> 00:00:43.962
+15
+00:00:47.349 --> 00:00:51.450
 Nothing that removes, undoes
 or resets is ever run.
 
-14
-00:00:43.962 --> 00:00:46.771
+16
+00:00:51.450 --> 00:00:54.259
 And the read holds no
 domain administration:
 
-15
-00:00:46.771 --> 00:00:52.009
+17
+00:00:54.259 --> 00:00:59.497
 Microsoft Learn's page for the root key
 class says its default security descriptor
 
-16
-00:00:52.009 --> 00:00:55.577
+18
+00:00:59.497 --> 00:01:03.065
 grants only Enterprise Admins,
 Domain Admins and SYSTEM,
 
-17
-00:00:55.577 --> 00:01:00.650
+19
+00:01:03.065 --> 00:01:08.140
 so the read gets a delegated read of the
 key's start and create times, nothing more.

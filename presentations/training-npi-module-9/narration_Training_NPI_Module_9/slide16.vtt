@@ -30,36 +30,36 @@ and applied a report-only agent policy
 to a fake by its approved hash.
 
 7
-00:00:18.313 --> 00:00:23.103
+00:00:18.313 --> 00:00:23.192
 The evidence an ISSO keeps from this
 module is the A I identities file,
 
 8
-00:00:23.103 --> 00:00:28.315
+00:00:23.192 --> 00:00:28.500
 the findings, the orphan candidates,
 the policy plan with its approved hash,
 
 9
-00:00:28.315 --> 00:00:32.434
+00:00:28.500 --> 00:00:32.696
 and the dry run's and apply's
 results and manifests, all dated;
 
 10
-00:00:32.434 --> 00:00:36.637
+00:00:32.696 --> 00:00:37.062
 the capability table for decision
-D N six; and the test result.
+D N P six; and the test result.
 
 11
-00:00:36.637 --> 00:00:41.026
+00:00:37.062 --> 00:00:41.450
 Next is Module 10: find
 drift and file the evidence.
 
 12
-00:00:41.026 --> 00:00:45.139
+00:00:41.450 --> 00:00:45.564
 It keeps every gate's state true
 against an approved baseline,
 
 13
-00:00:45.139 --> 00:00:48.910
+00:00:45.564 --> 00:00:49.340
 and hands the ISSO evidence
 they can verify themselves.

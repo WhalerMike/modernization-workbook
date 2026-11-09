@@ -5,60 +5,60 @@ WEBVTT
 Now the orphan rule itself.
 
 2
-00:00:01.750 --> 00:00:05.117
-The plan's decision D N 2,
+00:00:01.750 --> 00:00:05.296
+The plan's decision D N P 2,
 which the C I S O owns, says:
 
 3
-00:00:05.117 --> 00:00:10.988
+00:00:05.296 --> 00:00:11.325
 disable the identity once the identity
 governance officer confirms the finding,
 
 4
-00:00:10.988 --> 00:00:15.650
+00:00:11.325 --> 00:00:16.113
 then allow thirty days for the office
 to name an owner or retire it.
 
 5
-00:00:15.650 --> 00:00:16.662
+00:00:16.113 --> 00:00:17.125
 Never delete.
 
 6
-00:00:16.662 --> 00:00:21.662
+00:00:17.125 --> 00:00:22.124
 The program's own governance policy for
 orphaned apps runs the other way round:
 
 7
-00:00:21.662 --> 00:00:26.276
+00:00:22.124 --> 00:00:26.738
 thirty days to assign an owner, then
 access is suspended on day thirty-one.
 
 8
-00:00:26.276 --> 00:00:31.450
+00:00:26.738 --> 00:00:31.913
 And the program's rule for AI agents
 disables first, because an agent can act.
 
 9
-00:00:31.450 --> 00:00:35.206
-The program settled on D N
+00:00:31.913 --> 00:00:35.936
+The program settled on D N P
 2, the stricter of the two:
 
 10
-00:00:35.206 --> 00:00:38.413
+00:00:35.936 --> 00:00:39.288
 disable first, then
 thirty days to claim it.
 
 11
-00:00:38.413 --> 00:00:41.438
+00:00:39.288 --> 00:00:42.313
 The guide's Orphans step
 and the code both follow it.
 
 12
-00:00:41.438 --> 00:00:46.264
+00:00:42.313 --> 00:00:47.138
 Microsoft Learn's Governing Microsoft
 Entra service accounts documentation
 
 13
-00:00:46.264 --> 00:00:50.710
+00:00:47.138 --> 00:00:51.580
 agrees on the shape: disable, but don't
 delete until the review is complete.

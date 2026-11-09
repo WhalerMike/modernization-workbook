@@ -29,25 +29,44 @@ Step eight applies to the
 fake with the default limit.
 
 7
-00:00:17.438 --> 00:00:20.390
-The same findings and
-the same eight changes,
+00:00:17.438 --> 00:00:22.856
+The first command stops before any write:
+the plan sets an authentication context,
 
 8
-00:00:20.390 --> 00:00:24.300
-the guards all pass, and eight
-requests are sent, none failed.
+00:00:22.856 --> 00:00:25.964
+so confirm its Conditional
+Access policy is On,
 
 9
-00:00:24.300 --> 00:00:27.688
+00:00:25.964 --> 00:00:29.151
+from Module 3, then pass
+Activation Gate Checked.
+
+10
+00:00:29.151 --> 00:00:34.346
+The second has the same findings and the
+same ten changes, the guards all pass,
+
+11
+00:00:34.346 --> 00:00:36.903
+and ten requests are sent, none failed:
+
+12
+00:00:36.903 --> 00:00:40.450
+the policy rules first, then
+the grants and removals.
+
+13
+00:00:40.450 --> 00:00:43.838
 The fake records the requests
 and doesn't change its tenant.
 
-10
-00:00:27.688 --> 00:00:31.066
+14
+00:00:43.838 --> 00:00:47.215
 Step nine runs the tests,
 three hundred thirty pass,
 
-11
-00:00:31.066 --> 00:00:33.290
+15
+00:00:47.215 --> 00:00:49.440
 and you delete the output folder.

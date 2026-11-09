@@ -125,53 +125,6 @@
    "Module 10 matters most, for the evidence package and the first-week drift runs."
   ]
  ],
- "4": [
-  [
-   0.05,
-   2.188,
-   "Unit 1 starts with the safe order."
-  ],
-  [
-   2.237,
-   3.737,
-   "Inventory and owners come first, and they only read."
-  ],
-  [
-   5.975,
-   5.088,
-   "Then the app management policy, scoped to a pilot application and a synthetic one."
-  ],
-  [
-   11.062,
-   12.175,
-   "Microsoft Learn documents no report-only mode for these policies, but it says a policy refuses only a create or update that breaks it, so an existing secret keeps working while the pilot runs."
-  ],
-  [
-   23.238,
-   5.9,
-   "Then a federated credential and a managed identity on the pilot workload, beside the old secret."
-  ],
-  [
-   29.137,
-   6.438,
-   "Then a group managed service account on a test host, once the key distribution root key has replicated."
-  ],
-  [
-   35.575,
-   10.525,
-   "And last, Conditional Access for workload identities, in report-only mode, which Learn's Conditional Access documentation lets you use to estimate a policy's effect."
-  ],
-  [
-   46.1,
-   4.763,
-   "In production it's enabled wave by wave, after a reviewed sign-in summary."
-  ],
-  [
-   50.862,
-   6.125,
-   "The runbook decides nothing the gates decide; it deploys the controls that let each gate pass."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -212,48 +165,6 @@
    43.938,
    5.412,
    "Its number goes into the settings file, and every manifest the deploy scripts write repeats it."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   3.275,
-   "The settings file is one jay-son file per stage."
-  ],
-  [
-   3.325,
-   10.85,
-   "It holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the waves."
-  ],
-  [
-   14.175,
-   5.725,
-   "The kit checks it before any command runs, against four rules, which are this workbook's design."
-  ],
-  [
-   19.9,
-   8.062,
-   "No secrets: a field whose name looks like a secret, or a value that looks like a client secret or a private key, stops the run."
-  ],
-  [
-   27.962,
-   7.475,
-   "The identities are named by client I D and certificate thumbprint, and the private key stays in the operator's certificate store."
-  ],
-  [
-   35.438,
-   5.787,
-   "No placeholders: a value still shaped like an angle-bracketed tenant I D stops the run."
-  ],
-  [
-   41.225,
-   5.338,
-   "The stage it says it is: the file's environment must match the stage you tell the command to run."
-  ],
-  [
-   46.562,
-   6.275,
-   "And the same commands for both stages: moving from test to production changes the file, and nothing else."
   ]
  ],
  "7": [
@@ -306,43 +217,6 @@
    49.612,
    2.675,
    "And the evidence check is the go or no-go."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   1.913,
-   "Unit 2 is the stages."
-  ],
-  [
-   1.962,
-   8.65,
-   "The lyve test stage prepares synthetic objects, runs the preflight, and deploys in the safe order, Steps 1.1 to 1.5."
-  ],
-  [
-   10.613,
-   5.987,
-   "Then it runs the smoke test, captures the evidence, rehearses the rollback, and deploys again."
-  ],
-  [
-   16.6,
-   15.113,
-   "Production starts only when every go or no-go criterion is signed, nine rows of them, and its preflight adds one check that runs only in production: P F eleven, which needs the test stage's smoke test to have passed every check, in another tenant."
-  ],
-  [
-   31.712,
-   5.188,
-   "Then production enables Conditional Access for workload identities one wave at a time."
-  ],
-  [
-   36.9,
-   7.487,
-   "Remember the status: nobody has run these stages against a lyve tenant, and every live result in them is labeled Expected."
-  ],
-  [
-   44.388,
-   2.95,
-   "That's why Lab 1 runs only the dry run."
   ]
  ],
  "9": [
@@ -724,6 +598,132 @@
    44.7,
    4.912,
    "Go back to the learning path, or to the Labs page for every lab in the workbook."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.188,
+   "Unit 1 starts with the safe order."
+  ],
+  [
+   2.237,
+   3.737,
+   "Inventory and owners come first, and they only read."
+  ],
+  [
+   5.975,
+   5.088,
+   "Then the app management policy, scoped to a pilot application and a synthetic one."
+  ],
+  [
+   11.062,
+   12.175,
+   "Microsoft Learn documents no report-only mode for these policies, but it says a policy refuses only a create or update that breaks it, so an existing secret keeps working while the pilot runs."
+  ],
+  [
+   23.238,
+   5.9,
+   "Then a federated credential and a managed identity on the pilot workload, beside the old secret."
+  ],
+  [
+   29.137,
+   6.438,
+   "Then a group managed service account on a test host, once the key distribution root key has replicated."
+  ],
+  [
+   35.575,
+   10.525,
+   "And last, Conditional Access for workload identities, in report-only mode, which Learn's Conditional Access documentation lets you use to estimate a policy's effect."
+  ],
+  [
+   46.1,
+   4.675,
+   "In production it's enabled ring by ring, after a reviewed sign-in summary."
+  ],
+  [
+   50.775,
+   6.125,
+   "The runbook decides nothing the gates decide; it deploys the controls that let each gate pass."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.275,
+   "The settings file is one jay-son file per stage."
+  ],
+  [
+   3.325,
+   10.912,
+   "It holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the rings."
+  ],
+  [
+   14.238,
+   5.725,
+   "The kit checks it before any command runs, against four rules, which are this workbook's design."
+  ],
+  [
+   19.962,
+   8.062,
+   "No secrets: a field whose name looks like a secret, or a value that looks like a client secret or a private key, stops the run."
+  ],
+  [
+   28.025,
+   7.475,
+   "The identities are named by client I D and certificate thumbprint, and the private key stays in the operator's certificate store."
+  ],
+  [
+   35.5,
+   5.787,
+   "No placeholders: a value still shaped like an angle-bracketed tenant I D stops the run."
+  ],
+  [
+   41.288,
+   5.338,
+   "The stage it says it is: the file's environment must match the stage you tell the command to run."
+  ],
+  [
+   46.625,
+   6.275,
+   "And the same commands for both stages: moving from test to production changes the file, and nothing else."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.913,
+   "Unit 2 is the stages."
+  ],
+  [
+   1.962,
+   8.65,
+   "The lyve test stage prepares synthetic objects, runs the preflight, and deploys in the safe order, Steps 1.1 to 1.5."
+  ],
+  [
+   10.613,
+   5.987,
+   "Then it runs the smoke test, captures the evidence, rehearses the rollback, and deploys again."
+  ],
+  [
+   16.6,
+   15.113,
+   "Production starts only when every go or no-go criterion is signed, nine rows of them, and its preflight adds one check that runs only in production: P F eleven, which needs the test stage's smoke test to have passed every check, in another tenant."
+  ],
+  [
+   31.712,
+   5.287,
+   "Then production enables Conditional Access for workload identities one ring at a time."
+  ],
+  [
+   37.0,
+   7.487,
+   "Remember the status: nobody has run these stages against a lyve tenant, and every live result in them is labeled Expected."
+  ],
+  [
+   44.487,
+   2.95,
+   "That's why Lab 1 runs only the dry run."
   ]
  ]
 }

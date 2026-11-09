@@ -19,48 +19,48 @@ You'll state the program's ownership rule,
 and which owners the code counts as valid.
 
 5
-00:00:10.025 --> 00:00:12.325
-You'll explain D N 2, the orphan rule,
+00:00:10.025 --> 00:00:12.514
+You'll explain D N P 2, the orphan rule,
 
 6
-00:00:12.325 --> 00:00:16.762
+00:00:12.514 --> 00:00:17.150
 and how it differs from the program's
 own policy for orphaned apps.
 
 7
-00:00:16.762 --> 00:00:20.900
+00:00:17.150 --> 00:00:21.288
 You'll run the ownership check and
 read its findings and its orphan plan.
 
 8
-00:00:20.900 --> 00:00:25.240
+00:00:21.288 --> 00:00:25.628
 And you'll show that the write path
 only dry-runs without the Apply switch,
 
 9
-00:00:25.240 --> 00:00:27.988
+00:00:25.628 --> 00:00:28.376
 and refuses a plan whose
 hash nobody approved.
 
 10
-00:00:27.988 --> 00:00:33.613
+00:00:28.376 --> 00:00:34.000
 Before you start, finish Module 1, because
 this module checks Module 1's register.
 
 11
-00:00:33.613 --> 00:00:36.906
+00:00:34.000 --> 00:00:37.294
 And read the guide's record
 each identity joins to,
 
 12
-00:00:36.906 --> 00:00:39.075
+00:00:37.294 --> 00:00:39.463
 for the owner and sponsor fields.
 
 13
-00:00:39.075 --> 00:00:45.175
+00:00:39.463 --> 00:00:45.562
 Lab 1 needs PowerShell 7.1 or later with
 Pester 5, and a clone of the repository.
 
 14
-00:00:45.175 --> 00:00:46.150
+00:00:45.562 --> 00:00:46.540
 No tenant.

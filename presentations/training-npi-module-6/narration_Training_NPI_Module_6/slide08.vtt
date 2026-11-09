@@ -11,62 +11,62 @@ so the code asks for five things
 at once, or the ring stays held.
 
 3
-00:00:07.412 --> 00:00:09.850
-A D N five record marks the ring.
+00:00:07.412 --> 00:00:10.224
+A D N P five record marks the ring.
 
 4
-00:00:09.850 --> 00:00:11.763
+00:00:10.224 --> 00:00:12.138
 The change says allow enforce.
 
 5
-00:00:11.763 --> 00:00:15.912
+00:00:12.138 --> 00:00:16.287
 The run names a sign-in summary
 whose hash the ring's record cites.
 
 6
-00:00:15.912 --> 00:00:17.937
+00:00:16.287 --> 00:00:18.313
 That summary shows the ring ready.
 
 7
-00:00:17.937 --> 00:00:20.775
+00:00:18.313 --> 00:00:21.149
 And every earlier ring
 is already enforced.
 
 8
-00:00:20.775 --> 00:00:23.775
+00:00:21.149 --> 00:00:24.150
 The five conditions are the
 program's design guidance.
 
 9
-00:00:23.775 --> 00:00:26.137
+00:00:24.150 --> 00:00:26.512
 The evidence comes from
 the sign-in reader.
 
 10
-00:00:26.137 --> 00:00:29.228
+00:00:26.512 --> 00:00:29.603
 Following Microsoft Learn's
 List sign-ins reference,
 
 11
-00:00:29.228 --> 00:00:33.514
+00:00:29.603 --> 00:00:33.889
 it reads the beta sign-in list with a
 filter for service principal sign-ins,
 
 12
-00:00:33.514 --> 00:00:37.449
+00:00:33.889 --> 00:00:37.824
 and sends a header without which
 report-only results don't come back.
 
 13
-00:00:37.449 --> 00:00:40.472
+00:00:37.824 --> 00:00:40.847
 Each principal gets one of four statuses:
 
 14
-00:00:40.472 --> 00:00:43.850
+00:00:40.847 --> 00:00:44.225
 no sign-ins, not evaluated,
 would block, or clear.
 
 15
-00:00:43.850 --> 00:00:47.620
+00:00:44.225 --> 00:00:48.000
 A ring is ready only when
 every principal in it is clear.

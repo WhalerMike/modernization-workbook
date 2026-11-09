@@ -82,9 +82,9 @@ The labels are the series' usual ones. Facts come from the workbook's chapters a
   const s = content("Orientation", "Gates 4–6 at a glance, and the slots they read");
   tag(s, "What");
   const tb = table(s, "Glance", 1.45, [2.0, 4.2, 3.2, 1.45, 1.3], ["Gate", "Done when", "Validate with", "Plan", "Owner"], [
-    ["4  Group library and units", "Every rule on codes with guards, tested and shadowed; every unit mirrors its group", "VK-DG-01 to VK-DG-07", "A4.1–A4.4, D-A4", "Identity eng. lead"],
-    ["5  Targeting conventions", "Personas from codes, grants paired with blocks; device, server and non-person conventions handed off", "VK-CA-01, VK-HR-02; ca-export kept as the record; VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01", "A5.1–A5.4, D-A5", "CISO"],
-    ["6  PIV binding", "Every pilot card holder bound; high affinity piloted", "VK-PIV-01 (by account); the pilot's sign-in logs", "A6.1, A6.2, D-A6, D-A7", "CISO"],
+    ["4  Group library and units", "Every rule on codes with guards, tested and shadowed; every unit mirrors its group", "VK-DG-01 to VK-DG-07", "AT4.1–AT4.4, D-AT4", "Identity eng. lead"],
+    ["5  Targeting conventions", "Personas from codes, grants paired with blocks; device, server and non-person conventions handed off", "VK-CA-01, VK-HR-02; ca-export kept as the record; VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01", "AT5.1–AT5.4, D-AT5", "CISO"],
+    ["6  PIV binding", "Every pilot card holder bound; high affinity piloted", "VK-PIV-01 (by account); the pilot's sign-in logs", "AT6.1, AT6.2, D-AT6, D-AT7", "CISO"],
   ], { fontSize: 11.5, limit: 4.3 });
   const a = panel(s, "UserSlots", 0.6, tb + 0.25, 6.0, null, HEX.navy, HEX.navyTint, "USER SLOTS (PROGRAM ATTRIBUTE MAP)", null, [
     "extensionAttribute10: organization code (FIN-LED)",
@@ -102,11 +102,11 @@ The labels are the series' usual ones. Facts come from the workbook's chapters a
   notes(s,
 `What Part 2 delivers, gate by gate, from the implementation guide's path on one page.
 
-Gate 4, the group library and units, is done when every governed rule is written on codes with its guards, tested and shadowed, and every administrative unit's rule mirrors its group's. The validation kit's seven dynamic group checks, VK-DG-01 to 07, prove it. Plan tasks A4.1 to A4.4 and decision D-A4; the gate owner is the identity engineering lead.
+Gate 4, the group library and units, is done when every governed rule is written on codes with its guards, tested and shadowed, and every administrative unit's rule mirrors its group's. The validation kit's seven dynamic group checks, VK-DG-01 to 07, prove it. Plan tasks AT4.1 to AT4.4 and decision D-AT4; the gate owner is the identity engineering lead.
 
-Gate 5, the targeting conventions, is done when the personas come from codes, every grant has its paired block, and the device, server and non-person conventions are handed to their track guides. VK-CA-01 checks the personas on the users condition: the emergency-access exclusion, governed groups only, and grant and block pairs; the automation reference's ca-export stays the record, with VK-HR-02's empty-slot list. The track guides' checks measure the conventions: VK-INT-01 and 04 for devices, VK-ARC-01 for servers, VK-NPI-01 for owners. Tasks A5.1 to A5.4, decision D-A5; the CISO owns it.
+Gate 5, the targeting conventions, is done when the personas come from codes, every grant has its paired block, and the device, server and non-person conventions are handed to their track guides. VK-CA-01 checks the personas on the users condition: the emergency-access exclusion, governed groups only, and grant and block pairs; the automation reference's ca-export stays the record, with VK-HR-02's empty-slot list. The track guides' checks measure the conventions: VK-INT-01 and 04 for devices, VK-ARC-01 for servers, VK-NPI-01 for owners. Tasks AT5.1 to AT5.4, decision D-AT5; the CISO owns it.
 
-Gate 6, the PIV binding, is done when every pilot card holder is bound and high affinity has been piloted. VK-PIV-01 measures binding coverage and affinity for the pilot card holders, by account; the pilot's sign-in logs show the rest. Tasks A6.1 and A6.2, decisions D-A6 and D-A7; the CISO owns it.
+Gate 6, the PIV binding, is done when every pilot card holder is bound and high affinity has been piloted. VK-PIV-01 measures binding coverage and affinity for the pilot card holders, by account; the pilot's sign-in logs show the rest. Tasks AT6.1 and AT6.2, decisions D-AT6 and D-AT7; the CISO owns it.
 
 Below the table, the slots this part reads, from the program attribute map. On users: organization code in extensionAttribute10, worker type in 11, position category in 12, the division code in 6, and account type in 7, which the Admins persona reads. Devices have their own set: security tier in 11, device role in 12 and environment in 13, written by device provisioning. The codes are placeholders for the agency's own lists.`,
   `${IG}, "The path on one page," "Where the kits stop"; project plan, Phases 4–6; Book 03, Chapter 06 — "Program attribute map"; Book 02, Chapter 05 — "Division AUs"; Book 04, Chapter 03 — "Personas"; Book 05, Chapter 08 — "The device attribute schema."`);
@@ -142,7 +142,7 @@ section(M1);
   ], 12);
   sources(s, "Sources: Book 03, Ch 10 \"Rule patterns\"; Book 01, Ch 04 \"The two query patterns\"; Book 06, Ch 17 \"Choosing the attributes\"; implementation guide, Gate 4. Codes are placeholders.");
   notes(s,
-`Gate 4 starts with the rule text, because in this model a rule is an access grant. Plan task A4.1.
+`Gate 4 starts with the rule text, because in this model a rule is an access grant. Plan task AT4.1.
 
 Every governed group uses one of two patterns, from Book 01 Chapter 04. Pattern 1 is the node query: users at one place in the organization, by organization code in slot 10. A roll-up over several codes uses the in operator with a bracketed list rather than a chain of ors. Pattern 2 is the functional query: an organizational attribute crossed with another coded attribute, here position category in slot 12, which answers a question that isn't about position in the tree. The rule text on the slide is Book 03 Chapter 10's and Book 06 Chapter 17's.
 
@@ -179,7 +179,7 @@ Rules read codes, never display names: VK-DG-02 flags department, jobTitle and c
     "a new group grants nothing until assigned. Unassign it, keep the old group, revert the rule from Git.");
   sources(s, "Sources: Validation kit README (run, inputs, VK-DG-03 note) and Checks/DG.ps1; implementation guide, Gate 4 Validate and Rollback; Book 06, Ch 17 \"Writing, naming and testing rules.\"");
   notes(s,
-`Next, prove each rule before it grants anything: plan tasks A4.2 and A4.4. The validation kit is read-only. Run it as the README shows, with the HR and DG tracks, delegated sign-in with only the read scopes those checks need, and an input folder.
+`Next, prove each rule before it grants anything: plan tasks AT4.2 and AT4.4. The validation kit is read-only. Run it as the README shows, with the HR and DG tracks, delegated sign-in with only the read scopes those checks need, and an input folder.
 
 VK-DG-03 reads rule-tests.json. Each test has a label, the member's object ID, either the group ID or the proposed membership rule, and Expected, true or false. The kit calls Graph's beta evaluateDynamicMembership action, which evaluates a rule and changes nothing; it's the only non-GET call in the kit, and a test pins it there. Microsoft lists no application permission for it, so the check runs delegated only, as at least a Groups Administrator, the same role the portal's Validate rules tab needs; an app-only run reports Error. A result that differs from Expected is a Finding: "Rule evaluation differs from the expected membership." Test people who should match and people who shouldn't.
 
@@ -238,7 +238,7 @@ And plan around processing time. Membership is usually processed within a few ho
     "au-group-map.csv: AdministrativeUnitId,GroupId",
     "restricted-au-reasons.csv: AdministrativeUnitId,Reason,DecisionRef",
   ], { label: "SCOPED ROLE TO A ROLE-ASSIGNABLE GROUP (BOOK 02 CH 05) · VK-DG-07 INPUTS", pt: 11 });
-  const p = panel(s, "Restrict", 7.85, tb + 0.2, 4.9, null, HEX.red, HEX.redTint, "RESTRICTION: DECIDE BEFORE CREATION (D-A4)", null, [
+  const p = panel(s, "Restrict", 7.85, tb + 0.2, 4.9, null, HEX.red, HEX.redTint, "RESTRICTION: DECIDE BEFORE CREATION (D-AT4)", null, [
     "Default no; it can't be changed afterward",
     "Members leave PIM, entitlement management, Lifecycle Workflows and access reviews",
     "At most 100 restricted units",
@@ -247,16 +247,16 @@ And plan around processing time. Membership is usually processed within a few ho
   if (process.env.FIT) console.log(`  au: code ${c.toFixed(2)}, panel ${p.toFixed(2)}`);
   sources(s, "Sources: Book 02, Ch 05 (three tiers, registry, code, restriction); Book 03, Ch 10; implementation guide, Gate 4 steps 7–9; validation kit README and Checks/DG.ps1 (VK-DG-07).");
   notes(s,
-`Administrative units replace OU delegation, in Book 02 Chapter 05's three tiers. Plan task A4.3.
+`Administrative units replace OU delegation, in Book 02 Chapter 05's three tiers. Plan task AT4.3.
 
 Tier 1 is read-only visibility across the tenant. Its roles, Global Reader, Security Reader and Reports Reader, can't be assigned at unit scope, so they're assigned at tenant scope; units don't restrict reading anyway. Tier 2 is the department unit. Its rule lists every organization code in the department, the roll-up form of the node query, and it changes together with the matching group's rule when HR adds a code. Tier 3 is the division unit, created on demand. It reads the division code in slot 6, extensionAttribute6, a copy of the division that rules can read. Where division codes repeat across departments, add the department's organization codes to the rule.
 
 Scoped roles go to role-assignable groups whose members are eligible through PIM. The code is Book 02's illustrative assignment: the scope string slash administrativeUnits slash the unit's ID grants management of the unit's members, not of the unit itself. Create each unit and its scoped assignment before the groups it holds, per Book 06's Runbook R07.
 
-The decision that can't be undone is restriction, D-A4, owned by identity engineering. Decide it before the unit exists. The default is no: restriction can't be changed afterward, and it takes the unit's users and groups out of PIM, entitlement management, Lifecycle Workflows and access reviews. Reserve it for small sets, such as executives and break-glass accounts. A tenant can have at most 100.
+The decision that can't be undone is restriction, D-AT4, owned by identity engineering. Decide it before the unit exists. The default is no: restriction can't be changed afterward, and it takes the unit's users and groups out of PIM, entitlement management, Lifecycle Workflows and access reviews. Reserve it for small sets, such as executives and break-glass accounts. A tenant can have at most 100.
 
 VK-DG-07 reads au-group-map.csv and reports any mapped unit that isn't dynamic, or whose rule differs from its group's. It reads restricted-au-reasons.csv and reports any restricted unit with no recorded reason. Know what a unit doesn't do: units don't nest, they limit who can change members, not who can see them, and in GCC High and DoD, where dynamic units aren't available, an automation job keeps membership current.`,
-  `${IG}, Gate 4 steps 7–9, "Validate (Gate 4)"; project plan D-A4, A4.3; Book 02, Chapter 05 — "The three-tier model," "Administrative unit registry," "Illustrative code," "Restricted management: a per-AU decision"; Book 03, Chapter 10 — "Administrative units"; validation kit, Checks/DG.ps1 (VK-DG-07).`);
+  `${IG}, Gate 4 steps 7–9, "Validate (Gate 4)"; project plan D-AT4, AT4.3; Book 02, Chapter 05 — "The three-tier model," "Administrative unit registry," "Illustrative code," "Restricted management: a per-AU decision"; Book 03, Chapter 10 — "Administrative units"; validation kit, Checks/DG.ps1 (VK-DG-07).`);
 }
 endModule(M1);
 
@@ -296,7 +296,7 @@ section(M2);
   if (process.env.FIT) console.log(`  personas: code ${c.toFixed(2)}, table ${t.toFixed(2)}`);
   sources(s, "Sources: Book 04, Ch 03 (personas, pairs, exclusions); implementation guide, Gate 5 Validate; validation kit README, Checks/CA.ps1; ms-automation README, FmwGraph.psm1.");
   notes(s,
-`Gate 5 retires Group Policy inheritance for people, and the risk is policies that look strict but restrict nothing. Plan task A5.1.
+`Gate 5 retires Group Policy inheritance for people, and the risk is policies that look strict but restrict nothing. Plan task AT5.1.
 
 Personas come from coded attributes. The Internals persona group, CA-Persona-Internals, is dynamic on the worker type code in slot 11, EMP or CTR. The Admins group reads account type in slot 7, Privileged, or the PIM-eligible population; target administrators by group, because role targeting covers built-in roles only and doesn't reach roles scoped to a unit. The emergency-access group is assigned, with two members, and excluded from every policy that blocks or restricts sign-in.
 
@@ -304,12 +304,12 @@ Pair every grant with a block. Access tokens are issued when no policy's conditi
 
 Report empty slots before enforcement. A policy that includes a dynamic group silently misses every user whose attribute is empty, an exclusion nobody approved. VK-HR-02 lists users with an empty slot 11.
 
-The persona set is decision D-A5, and the CISO decides. Run report-only for two to four weeks, then enforce in waves behind a monitoring gate, with the emergency-access group excluded. Rollback is a policy back to report-only.
+The persona set is decision D-AT5, and the CISO decides. Run report-only for two to four weeks, then enforce in waves behind a monitoring gate, with the emergency-access group excluded. Rollback is a policy back to report-only.
 
 VK-CA-01 validates it. It reads every enabled and report-only policy that targets users, with Policy.Read.All, and reports three things. A policy that doesn't exclude a group in emergency-access-groups.csv. A policy that targets a group outside governed-groups.csv. And a grant on groups with no paired block, meaning no block on all users, for an overlapping application, that excludes every group the grant includes. Microsoft-managed policies are read like any other, because they need the emergency-access exclusion too.
 
 It reads the users condition only. It doesn't compare platforms, locations or client apps, so a block narrower than its grant passes. That's why the Microsoft automation reference's ca-export stays the record: it signs in as an application with a certificate or a managed identity, needs Policy.Read.All, and writes one sorted JSON file per policy plus the named locations, with a summary of state and grant controls. Read it for narrow blocks, keep the report-only review, and add VK-HR-02's list of users with an empty slot 11, who sit outside every persona built from it.`,
-  `${IG}, Gate 5 steps 1–5, "Validate (Gate 5)," "Where the kits stop," "Rollback"; project plan A5.1, D-A5; Book 04, Chapter 03 — "Users, groups, roles and workload identities," "Policies come in pairs," "Exclusions," "Personas"; validation kit README and Checks/CA.ps1 (VK-CA-01); examples/ms-automation README and powershell/FmwGraph.psm1 (ca-export).`);
+  `${IG}, Gate 5 steps 1–5, "Validate (Gate 5)," "Where the kits stop," "Rollback"; project plan AT5.1, D-AT5; Book 04, Chapter 03 — "Users, groups, roles and workload identities," "Policies come in pairs," "Exclusions," "Personas"; validation kit README and Checks/CA.ps1 (VK-CA-01); examples/ms-automation README and powershell/FmwGraph.psm1 (ca-export).`);
 }
 
 // 8 Devices
@@ -329,12 +329,12 @@ It reads the users condition only. It doesn't compare platforms, locations or cl
     '(device.deviceOwnership -eq "Corporate")',
     '(device.enrollmentProfileName -startsWith "FMP-Kiosk")',
   ], { label: "PROVISIONING WRITES THE SLOTS (APP-ONLY: Device.ReadWrite.All) · BOOK 05 CH 08", pt: 11 });
-  const p = panel(s, "Rules", 8.45, 1.45, 4.3, null, HEX.teal, HEX.tealTint, "THE CONVENTION (A5.2)", null, [
+  const p = panel(s, "Rules", 8.45, 1.45, 4.3, null, HEX.teal, HEX.tealTint, "THE CONVENTION (AT5.2)", null, [
     "A device rule can never read its owner's attributes",
     "A filter on a slot doesn't evaluate",
     "Time-sensitive: user group or All devices, plus a filter",
     "Never a dynamic device group as an exclusion",
-    "Servers (A5.3): Arc tags use the same codes; resource groups are the delegation scope",
+    "Servers (AT5.3): Arc tags use the same codes; resource groups are the delegation scope",
   ], 12);
   const tb = table(s, "IntChecks", Math.max(c, p) + 0.2, [1.3, 10.85], ["Check", "What a failing row says"], [
     ["VK-INT-01", "\"Managed device missing provisioning-written attributes\" (tier, role or environment; Device.Read.All)"],
@@ -343,7 +343,7 @@ It reads the users condition only. It doesn't compare platforms, locations or cl
   if (process.env.FIT) console.log(`  devices: table ${tb.toFixed(2)}`);
   sources(s, "Sources: Book 05, Ch 08 (device schema, assignment strategy, templates); implementation guide, Gate 5 steps 6–7; validation kit README, Catalog.ps1 and Checks/INT.ps1.");
   notes(s,
-`Gate 5 also sets the conventions the device and server tracks build their targeting on; the track guides run the targeting itself. Plan tasks A5.2 and A5.3.
+`Gate 5 also sets the conventions the device and server tracks build their targeting on; the track guides run the targeting itself. Plan tasks AT5.2 and AT5.3.
 
 Devices first. Device attributes come from device provisioning, never from the user's record, and a device rule can never read its owner's attributes. The convention: tier, role and environment are written to the device's own slots at registration by the device provisioning service. Book 05's sample is a delegated call by at least an Intune Administrator; an unattended provisioning service runs app-only with Device.ReadWrite.All, and app-only calls can update only extensionAttributes, which is all it writes. Note the device object ID, not the device ID.
 
@@ -352,7 +352,7 @@ Use dynamic device groups only where a rule must read those slots, and assignmen
 Two checks measure it. VK-INT-01 reports managed devices missing the provisioning-written slots. VK-INT-04 lists policy assignments on dynamic device groups against filters, and flags any exclusion that uses a dynamic device group.
 
 Servers: once connected, an Arc server is an Azure resource whose tags are its attributes, drawn from the asset record at onboarding. The tag taxonomy uses the same codes as the device slots where the fact is the same, and resource groups, not tags, are the delegation scope. Non-person identities record owners and sponsors by the enterprise person key.`,
-  `${IG}, Gate 5 steps 6–9, "Validate (Gate 5)"; project plan A5.2–A5.4; Book 05, Chapter 08 — "The device attribute schema," "Assignment strategy," "Writing a device attribute," "Assignment filter examples"; validation kit, Checks/INT.ps1 (VK-INT-01, VK-INT-04).`);
+  `${IG}, Gate 5 steps 6–9, "Validate (Gate 5)"; project plan AT5.2–AT5.4; Book 05, Chapter 08 — "The device attribute schema," "Assignment strategy," "Writing a device attribute," "Assignment filter examples"; validation kit, Checks/INT.ps1 (VK-INT-01, VK-INT-04).`);
 }
 
 // 9 Device GPOs: adopt
@@ -575,7 +575,7 @@ section(M3);
   ], { label: "CLOUD-ONLY WRITE PATH (GRAPH) · MICROSOFT ENTRA POWERSHELL", pt: 11 });
   sources(s, "Sources: Book 03, Ch 09 \"Binding the PIV certificate to the Entra user\"; companion guide, \"PIV and CAC certificates as attributes\"; implementation guide, Gate 6 step 1.");
   notes(s,
-`Gate 6 is the PIV and CAC binding. Certificate-based authentication is attribute-driven too: Entra ID finds the user by matching a field of the presented certificate to a field of the account, so who writes that field matters as much as any HR field. Plan task A6.1 measures coverage first.
+`Gate 6 is the PIV and CAC binding. Certificate-based authentication is attribute-driven too: Entra ID finds the user by matching a field of the presented certificate to a field of the account, so who writes that field matters as much as any HR field. Plan task AT6.1 measures coverage first.
 
 By default the SAN Principal Name maps to userPrincipalName. The stronger option is certificateUserIds, which holds explicit identifiers, each with an X509 prefix naming the field. The table is Book 03 Chapter 09's. Principal name, RFC822 name, subject and issuer-and-subject are low affinity: they're built on names and email addresses. Subject key identifier, SHA1 public key, and issuer and serial number are high affinity: identifiers that can't be reused. The consequence for lifecycle: a high-affinity value identifies one certificate, so a card reissue, and even a renewal on the same key, changes it.
 
@@ -590,12 +590,12 @@ Who can write it depends on where the user is mastered. For cloud-only users, at
   const s = content(M3, "Affinity, the binding's writer, and the open pilot");
   tag(s, "Who");
   const tb = table(s, "Gate6", 1.45, [2.5, 9.65], ["Step", "What it takes"], [
-    ["Measure coverage (A6.1)", "Per pilot card holder: certificateUserIds, or altSecurityIdentities for synced users. List gaps by account, never by certificate value"],
+    ["Measure coverage (AT6.1)", "Per pilot card holder: certificateUserIds, or altSecurityIdentities for synced users. List gaps by account, never by certificate value"],
     ["Name the writer", "The card management system writes the binding, not HR: a reissued card changes it. HR supplies the person"],
-    ["Decide affinity (D-A6)", "Tenant default is low; CBA is only as strong as the weakest binding allowed. Program position: high in production"],
-    ["Pilot high first (A6.2)", "A custom rule by issuer or policy OID before the tenant changes; raise the card to multifactor; require phishing-resistant strength"],
+    ["Decide affinity (D-AT6)", "Tenant default is low; CBA is only as strong as the weakest binding allowed. Program position: high in production"],
+    ["Pilot high first (AT6.2)", "A custom rule by issuer or policy OID before the tenant changes; raise the card to multifactor; require phishing-resistant strength"],
     ["Leaver", "Removes the binding as well as revoking the card"],
-    ["Writer after AD (D-A7)", "Design guidance, unverified: the card system writes certificateUserIds through Graph at issuance. Open pilot, issue #130"],
+    ["Writer after AD (D-AT7)", "Design guidance, unverified: the card system writes certificateUserIds through Graph at issuance. Open pilot, issue #130"],
   ], { fontSize: 11.5, limit: 6.5 });
   const a = panel(s, "Evidence", 0.6, tb + 0.2, 7.4, null, HEX.teal, HEX.tealTint, "VALIDATE: VK-PIV-01 (pilot-card-holders.csv: UserPrincipalName or Id)", null, [
     "Findings by account, never by value: not found or not readable; no value; only low-affinity values",
@@ -614,16 +614,16 @@ Measure coverage: for every pilot card holder, read certificateUserIds in Entra 
 
 Name the binding's writer: the card management system, not HR, because a reissued card changes the value. HR supplies the person: the record, the key and the joiner event.
 
-Decide the required affinity, D-A6, which the CISO owns. The tenant's required affinity binding defaults to low, and with several bindings, sign-in is only as secure as the lowest-affinity one allowed. The program's position is high affinity in production. The options in the plan: high in production with a custom rule per issuer during the pilot; low until coverage is complete, with a dated end; or mixed by issuer.
+Decide the required affinity, D-AT6, which the CISO owns. The tenant's required affinity binding defaults to low, and with several bindings, sign-in is only as secure as the lowest-affinity one allowed. The program's position is high affinity in production. The options in the plan: high in production with a custom rule per issuer during the pilot; low until coverage is complete, with a dated end; or mixed by issuer.
 
-Pilot high affinity before changing the tenant, A6.2. Switching the tenant to high affinity before every account's value is right locks people out. Use a custom rule on issuer or policy OID for the pilot cohort, raise the card's certificates from the single-factor default to multifactor with a binding rule, and require the phishing-resistant strength for CBA users.
+Pilot high affinity before changing the tenant, AT6.2. Switching the tenant to high affinity before every account's value is right locks people out. Use a custom rule on issuer or policy OID for the pilot cohort, raise the card's certificates from the single-factor default to multifactor with a binding rule, and require the phishing-resistant strength for CBA users.
 
 The leaver removes the binding as well as revoking the card.
 
-And decide the writer after AD, D-A7, owned by the ICAM governance body. Design guidance, unverified: after AD, the card management system writes certificateUserIds through Microsoft Graph at issuance. That's an open pilot, workbook issue 130, because Microsoft documents neither the permission a workload needs nor how the write behaves for cloud-mastered users. It has to be decided before the program moves issuance off AD CS.
+And decide the writer after AD, D-AT7, owned by the ICAM governance body. Design guidance, unverified: after AD, the card management system writes certificateUserIds through Microsoft Graph at issuance. That's an open pilot, workbook issue 130, because Microsoft documents neither the permission a workload needs nor how the write behaves for cloud-mastered users. It has to be decided before the program moves issuance off AD CS.
 
 VK-PIV-01 validates it. It reads certificateUserIds for every holder in pilot-card-holders.csv, by user principal name or ID, and reports holders not found or not readable, holders with no value, and holders with only low-affinity values, by account and binding type, never by certificate value. Affinity comes from each value's X509 prefix, and RequiredAffinity defaults to High. For a synced holder with no value, the row points at altSecurityIdentities in AD. A value matching no supported pattern is a Warn, since the prefixes are case-sensitive. Two limits: it can't tell whether a value belongs to a current card, so reconcile its rows with the card management system; and whether Global Reader can read authorizationInfo is unconfirmed, so run it app-only or confirm in a test tenant. Add the pilot's sign-in logs showing CBA succeeding under the high-affinity rule. Rollback is the affinity setting or the per-issuer rule; a binding value is restored from the card management system.`,
-  `${IG}, Gate 6 steps 1–6, "Validate (Gate 6)," "Rollback"; project plan A6.1, A6.2, D-A6, D-A7; companion guide, "PIV and CAC certificates as attributes"; Book 03, Chapter 09; Book 07, Chapter 06 — "Username bindings and affinity"; Book 04, Chapter 03 — "Authentication strengths."`);
+  `${IG}, Gate 6 steps 1–6, "Validate (Gate 6)," "Rollback"; project plan AT6.1, AT6.2, D-AT6, D-AT7; companion guide, "PIV and CAC certificates as attributes"; Book 03, Chapter 09; Book 07, Chapter 06 — "Username bindings and affinity"; Book 04, Chapter 03 — "Authentication strengths."`);
 }
 
 // 16 Decisions
@@ -631,50 +631,50 @@ VK-PIV-01 validates it. It reads certificateUserIds for every holder in pilot-ca
   const s = content(M3, "Decisions, owners, and on to Part 3");
   tag(s, "Who");
   const tb = table(s, "Decisions", 1.45, [1.0, 3.3, 2.2, 5.65], ["ID", "Decision", "Owner", "Options (project plan)"], [
-    ["D-A4", "Restricted management, unit by unit, before each unit exists", "Identity engineering", "No (default); yes for a small sensitive set, accepting they leave PIM, entitlement management, Lifecycle Workflows and reviews"],
-    ["D-A5", "The persona set the Conditional Access library targets", "CISO", "Worker type and account type personas; plus division overlays; fewer personas with more exclusions (not recommended)"],
-    ["D-A6", "Required affinity binding for PIV and CAC", "CISO", "High in production, custom rule per issuer in the pilot; low until coverage is complete, dated; mixed by issuer"],
-    ["D-A7", "Who writes the binding after AD", "ICAM governance body", "Card system through Graph (design guidance, open pilot); Connect while AD remains; manual entry (not at scale)"],
+    ["D-AT4", "Restricted management, unit by unit, before each unit exists", "Identity engineering", "No (default); yes for a small sensitive set, accepting they leave PIM, entitlement management, Lifecycle Workflows and reviews"],
+    ["D-AT5", "The persona set the Conditional Access library targets", "CISO", "Worker type and account type personas; plus division overlays; fewer personas with more exclusions (not recommended)"],
+    ["D-AT6", "Required affinity binding for PIV and CAC", "CISO", "High in production, custom rule per issuer in the pilot; low until coverage is complete, dated; mixed by issuer"],
+    ["D-AT7", "Who writes the binding after AD", "ICAM governance body", "Card system through Graph (design guidance, open pilot); Connect while AD remains; manual entry (not at scale)"],
   ], { fontSize: 11.5, limit: 6.5 });
   callout(s, "Next", tb + 0.3, 0.95, "FaRoute", HEX.teal, "Part 3, Gates 7–9: ",
     "prove one mover across the tracks, cut over by attribute query and retire the OU tree, then keep the attributes true.");
-  sources(s, "Sources: Project plan (data/project-plans/attribute-driven-migration.yaml), D-A4 to D-A7 and margins; implementation guide, Gates 4–6. Decisions and options: design guidance.");
+  sources(s, "Sources: Project plan (data/project-plans/attribute-driven-migration.yaml), D-AT4 to D-AT7 and margins; implementation guide, Gates 4–6. Decisions and options: design guidance.");
   notes(s,
 `The four decisions this part needs, each with one owner, from the project plan. All of them are the program's recommended model, design guidance.
 
-D-A4, restricted management unit by unit, before each unit exists. Identity engineering decides. The default is no; yes only for a small set of sensitive accounts, accepting they leave PIM, entitlement management, Lifecycle Workflows and access reviews. If it's late, a unit gets created without the decision, and restriction can't be changed afterward.
+D-AT4, restricted management unit by unit, before each unit exists. Identity engineering decides. The default is no; yes only for a small set of sensitive accounts, accepting they leave PIM, entitlement management, Lifecycle Workflows and access reviews. If it's late, a unit gets created without the decision, and restriction can't be changed afterward.
 
-D-A5, the persona set the Conditional Access library targets. The CISO decides: the program's personas from the worker type and account type codes, personas plus division overlays, or fewer personas with more exclusions, which isn't recommended. Late, and the Conditional Access design runs in report-only without the groups it will enforce on.
+D-AT5, the persona set the Conditional Access library targets. The CISO decides: the program's personas from the worker type and account type codes, personas plus division overlays, or fewer personas with more exclusions, which isn't recommended. Late, and the Conditional Access design runs in report-only without the groups it will enforce on.
 
-D-A6, the required affinity binding. The CISO decides. Late, and PIV sign-in reaches the pilot at the tenant default, low affinity.
+D-AT6, the required affinity binding. The CISO decides. Late, and PIV sign-in reaches the pilot at the tenant default, low affinity.
 
-D-A7, who writes the binding after AD. The ICAM governance body decides: the card management system through Graph at issuance, the open pilot; Entra Connect syncing from altSecurityIdentities while any AD remains; or manual entry by a Privileged Authentication Administrator, which doesn't scale. It can wait until the program moves issuance off AD CS, around week 39, and deciding earlier leaves time for the pilot to report.
+D-AT7, who writes the binding after AD. The ICAM governance body decides: the card management system through Graph at issuance, the open pilot; Entra Connect syncing from altSecurityIdentities while any AD remains; or manual entry by a Privileged Authentication Administrator, which doesn't scale. It can wait until the program moves issuance off AD CS, around week 39, and deciding earlier leaves time for the pilot to report.
 
 Watch the margins. The tightest in this part is two working days: the pilot's shadow comparison before the program assigns the pilot's policies. The device targeting conventions have four days before the Endpoint plan builds its policy library.
 
 Part 3 takes Gates 7 to 9: proving one mover across the tracks with no ticket, cutting over by attribute query and retiring the OU tree, and keeping the attributes true. Thank you.`,
-  `Project plan (data/project-plans/attribute-driven-migration.yaml), D-A4, D-A5, D-A6, D-A7, and the margins note; ${IG}, Gates 4–6, "Checklist."`);
+  `Project plan (data/project-plans/attribute-driven-migration.yaml), D-AT4, D-AT5, D-AT6, D-AT7, and the margins note; ${IG}, Gates 4–6, "Checklist."`);
 }
 endModule(M3);
 
 // ================================================================== Backup
 backup();
 sourceSlide("Sources behind Gate 4 — groups and units", [
-  "Implementation guide (docs/books/guides/attribute-driven-migration-implementation.md): \"The path on one page,\" Gate 4 steps, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: A4.1–A4.4, D-A4, AG4.",
+  "Implementation guide (docs/books/guides/attribute-driven-migration-implementation.md): \"The path on one page,\" Gate 4 steps, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: AT4.1–AT4.4, D-AT4, ATG4.",
   "Book 01, Ch 04 \"The two query patterns.\" Book 03, Ch 06 program attribute map; Ch 10 \"Rule patterns,\" \"Limits and efficiency,\" \"Administrative units,\" \"Where dynamic membership stops.\"",
   "Book 06, Ch 17 \"Choosing the attributes,\" \"Writing, naming and testing rules,\" \"Scoped delegation with administrative units.\" Book 02, Ch 05 (three tiers, registry, illustrative code, restriction); Ch 09 (nesting, memberOf, per-group decision).",
   "Companion guide (attribute-driven-migration.md): \"Limits\" (rule limits, latency, administrative units), dynamic group dangers.",
   "examples/validation-kit: README (run, inputs, known limits); Private/Core.ps1 default options; Checks/DG.ps1 (VK-DG-01 to VK-DG-07); fixture input shapes under tests/fixtures.",
 ]);
 sourceSlide("Sources behind Gate 5 — targeting and Group Policy", [
-  "Implementation guide, Gate 5 steps, Validate, Rollback. Project plan: A5.1–A5.4, D-A5, AG5. Book 04, Ch 03 (users and roles, policies in pairs, report-only, exclusions, personas); Ch 07.",
+  "Implementation guide, Gate 5 steps, Validate, Rollback. Project plan: AT5.1–AT5.4, D-AT5, ATG5. Book 04, Ch 03 (users and roles, policies in pairs, report-only, exclusions, personas); Ch 07.",
   "Book 05, Ch 07 \"Freezing and unlinking GPOs,\" \"Methodology principles\"; Ch 08 phases 1–7, \"Adopt, don't build,\" testing, rollback, device attribute schema, assignment strategy, templates (Microsoft Learn as footnoted, Oct. 2026).",
   "Book 05, Ch 09 \"Which servers Arc reaches,\" \"Azure Policy and machine configuration,\" \"Moving server GPOs: adopt Microsoft's path,\" \"Azure Update Manager.\" Book 02, Ch 09 \"The per-group decision.\"",
   "Ansible configuration automation guide: \"One owning tool per setting\" (rules 1–5), \"Arc onboarding at scale,\" \"Linux and Unix baselines,\" \"Cloud VMs,\" dangers. Arc track guide: Step 2.1 tag table, Step 5, Step 7. Intune track guide: Gates 2–3.",
   "examples/ms-automation README and FmwGraph.psm1 (ca-export); examples/ansible 03_linux_baseline_check.yml; validation kit README, Checks/CA.ps1 (VK-CA-01), Checks/INT.ps1 (VK-INT-01, 04, 07) and Checks/ARC.ps1 (VK-ARC-07, owner spellings normalized).",
 ]);
 sourceSlide("Sources behind Gate 6 — PIV and CAC binding", [
-  "Implementation guide, Gate 6 steps 1–6, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: A6.1, A6.2, D-A6, D-A7, AG6, and the margins note. Validation kit README and Checks/PIV.ps1 (VK-PIV-01).",
+  "Implementation guide, Gate 6 steps 1–6, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: AT6.1, AT6.2, D-AT6, D-AT7, ATG6, and the margins note. Validation kit README and Checks/PIV.ps1 (VK-PIV-01).",
   "Companion guide, \"PIV and CAC certificates as attributes\" (username binding, affinity, certificateUserIds limits and writers, authentication strength, where the binding comes from).",
   "Book 03, Ch 09 \"Binding the PIV certificate to the Entra user,\" \"The canonical leaver sequence.\" Book 07, Ch 06 \"Username bindings and affinity.\" Book 04, Ch 03 \"Authentication strengths.\"",
   "Unverified: certificateUserIds written through Graph by the card management system after AD (design guidance), workbook issue #130, an open pilot. Cloud Sync for certificateUserIds: not documented by Microsoft.",

@@ -6,40 +6,55 @@ Next you read the island list and
 the reconciliation side by side.
 
 2
-00:00:04.050 --> 00:00:07.761
-Two rows aren't ready for
-hand-off, so the flag stays false,
+00:00:04.050 --> 00:00:07.463
+Each row now carries its
+disposition from Chapter 3.
 
 3
-00:00:07.761 --> 00:00:10.988
-which is the point: an
-incomplete list never goes.
+00:00:07.463 --> 00:00:11.188
+Two rows aren't ready for
+hand-off, so the flag stays false.
 
 4
-00:00:10.988 --> 00:00:12.313
-Then the write path.
+00:00:11.188 --> 00:00:15.291
+The web front end carries the
+authorizing official's acceptance,
 
 5
-00:00:12.313 --> 00:00:16.525
+00:00:15.291 --> 00:00:17.951
+so it becomes ready once
+it has an S P N owner.
+
+6
+00:00:17.951 --> 00:00:22.338
+That's the point: which is the point:
+an incomplete list never goes.
+
+7
+00:00:22.338 --> 00:00:23.662
+Then the write path.
+
+8
+00:00:23.662 --> 00:00:27.876
 A dry run with the approved hash
 reports the four writes it would send.
 
-6
-00:00:16.525 --> 00:00:20.590
+9
+00:00:27.876 --> 00:00:31.940
 Applying it to the fake sends them,
 and the results tell the operator
 
-7
-00:00:20.590 --> 00:00:24.437
+10
+00:00:31.940 --> 00:00:35.787
 what comes next, such as installing
 each new account on its hosts.
 
-8
-00:00:24.437 --> 00:00:28.701
+11
+00:00:35.787 --> 00:00:40.051
 Finally you pass a hash nobody
 approved, and it refuses outright.
 
-9
-00:00:28.701 --> 00:00:32.180
+12
+00:00:40.051 --> 00:00:43.510
 The full suite is five hundred
 thirteen passing tests.

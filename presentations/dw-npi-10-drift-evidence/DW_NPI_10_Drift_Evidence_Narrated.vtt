@@ -50,754 +50,754 @@ One note before we begin: the code is
 illustrative, tested against fixtures.
 
 11
-00:00:45.020 --> 00:00:46.870
+00:00:44.030 --> 00:00:45.880
 Why does this chapter come last?
 
 12
-00:00:46.870 --> 00:00:49.662
+00:00:45.880 --> 00:00:48.672
 Because everything before
 it produces state,
 
 13
-00:00:49.662 --> 00:00:52.308
+00:00:48.672 --> 00:00:51.318
 and state proves only
 the moment it was read.
 
 14
-00:00:52.308 --> 00:00:55.358
+00:00:51.318 --> 00:00:54.368
 Four sources already say
 what the evidence is for.
 
 15
-00:00:55.358 --> 00:00:58.051
+00:00:54.368 --> 00:00:57.061
 The plan asks for scheduled drift checks,
 
 16
-00:00:58.051 --> 00:01:01.695
+00:00:57.061 --> 00:01:00.705
 a full review cycle, and
 evidence for specific controls.
 
 17
-00:01:01.695 --> 00:01:05.928
+00:01:00.705 --> 00:01:04.938
 The Identity and Directory book sets
 the pattern: commit a baseline,
 
 18
-00:01:05.928 --> 00:01:09.557
+00:01:04.938 --> 00:01:08.567
 compare every run with it, and
 close findings at the source.
 
 19
-00:01:09.557 --> 00:01:13.770
+00:01:08.567 --> 00:01:12.780
 The companion guide maps the
 controls, while the assessor decides.
 
 20
-00:01:13.770 --> 00:01:17.382
+00:01:12.780 --> 00:01:16.392
 And the AI Identity Governance
 book adds the AI side.
 
 21
-00:01:17.382 --> 00:01:19.471
+00:01:16.392 --> 00:01:18.481
 The code's job is to turn state,
 
 22
-00:01:19.471 --> 00:01:24.100
+00:01:18.481 --> 00:01:23.110
 events and an approved baseline
 into evidence with no gaps.
 
 23
-00:01:27.850 --> 00:01:30.363
+00:01:26.860 --> 00:01:29.373
 Learn gives the facts the design turns on.
 
 24
-00:01:30.363 --> 00:01:33.372
+00:01:29.373 --> 00:01:32.382
 A credential added to an
 existing app is high risk,
 
 25
-00:01:33.372 --> 00:01:37.337
+00:01:32.382 --> 00:01:36.347
 and one added outside the expected
 process could be an attacker's.
 
 26
-00:01:37.337 --> 00:01:42.697
+00:01:36.347 --> 00:01:41.707
 Learn names the exact audit events, keeps
 the log for thirty days with a premium
 
 27
-00:01:42.697 --> 00:01:47.974
+00:01:41.707 --> 00:01:46.984
 license, and defines expiring as within
 thirty days and unused as over ninety.
 
 28
-00:01:47.974 --> 00:01:51.500
+00:01:46.984 --> 00:01:50.510
 For this estate, Graph is
 the worldwide endpoint.
 
 29
-00:01:51.500 --> 00:01:56.878
+00:01:50.510 --> 00:01:55.888
 One report, the service principal sign-in
 activity, is beta and worldwide only,
 
 30
-00:01:56.878 --> 00:02:00.575
+00:01:55.888 --> 00:01:59.585
 so in the higher clouds the
 code records it as not read.
 
 31
-00:02:00.575 --> 00:02:04.080
+00:01:59.585 --> 00:02:03.090
 And the other chapters feed
 in through a small contract.
 
 32
-00:02:07.830 --> 00:02:12.305
+00:02:06.840 --> 00:02:11.315
 Microsoft's starting point is the security
 operations guide for applications.
 
 33
-00:02:12.305 --> 00:02:15.817
+00:02:11.315 --> 00:02:14.827
 It says what to watch, where
 to find it in the audit log,
 
 34
-00:02:15.817 --> 00:02:19.330
+00:02:14.827 --> 00:02:18.340
 and when to alert: outside
 normal hours or workflows.
 
 35
-00:02:19.330 --> 00:02:22.012
+00:02:18.340 --> 00:02:21.022
 And it links a ready-made
 Sentinel rule for new
 
 36
-00:02:22.012 --> 00:02:24.905
+00:02:21.022 --> 00:02:23.915
 credentials added to an
 app or service principal.
 
 37
-00:02:24.905 --> 00:02:28.281
+00:02:23.915 --> 00:02:27.291
 That rule lives in Microsoft's
 Sentinel repository,
 
 38
-00:02:28.281 --> 00:02:32.442
+00:02:27.291 --> 00:02:31.452
 so it's pinned unmodified, with
 checked hashes and a weekly watch.
 
 39
-00:02:32.442 --> 00:02:35.803
+00:02:31.452 --> 00:02:34.813
 A harness then splits
 the query into its twenty
 
 40
-00:02:35.803 --> 00:02:39.680
+00:02:34.813 --> 00:02:38.690
 stages and runs each one over
 ten fictional audit rows.
 
 41
-00:02:39.680 --> 00:02:41.473
+00:02:38.690 --> 00:02:40.483
 An unfamiliar stage throws,
 
 42
-00:02:41.473 --> 00:02:45.980
+00:02:40.483 --> 00:02:44.990
 so an upstream change fails the
 tests rather than being half-run.
 
 43
-00:02:49.730 --> 00:02:53.331
+00:02:48.740 --> 00:02:52.341
 Run over the fixture, the rule
 does catch the obvious case:
 
 44
-00:02:53.331 --> 00:02:57.392
+00:02:52.341 --> 00:02:56.402
 a person adding a secret to an app
 that already had a certificate.
 
 45
-00:02:57.392 --> 00:03:00.943
+00:02:56.402 --> 00:02:59.953
 But three filters make it
 blind in the riskiest places.
 
 46
-00:03:00.943 --> 00:03:05.242
+00:02:59.953 --> 00:03:04.252
 It only looks at initiators with
 an at sign, so a credential added
 
 47
-00:03:05.242 --> 00:03:09.704
+00:03:04.252 --> 00:03:08.714
 by an app is never seen, including
 an app abusing a broad permission.
 
 48
-00:03:09.704 --> 00:03:12.953
+00:03:08.714 --> 00:03:11.963
 It drops events where the
 old key list was empty,
 
 49
-00:03:12.953 --> 00:03:15.867
+00:03:11.963 --> 00:03:14.877
 so the very first secret
 on an app vanishes.
 
 50
-00:03:15.867 --> 00:03:18.244
+00:03:14.877 --> 00:03:17.254
 And it keeps only application targets,
 
 51
-00:03:18.244 --> 00:03:22.240
+00:03:17.254 --> 00:03:21.250
 so a credential added to a
 service principal is dropped too.
 
 52
-00:03:25.990 --> 00:03:29.390
+00:03:25.000 --> 00:03:28.400
 The other gaps are about
 noise, privacy and scope.
 
 53
-00:03:29.390 --> 00:03:31.972
+00:03:28.400 --> 00:03:30.982
 The rule knows nothing about the pipeline,
 
 54
-00:03:31.972 --> 00:03:36.252
+00:03:30.982 --> 00:03:35.262
 so every legitimate rotation alerts,
 and soon nobody reads the alerts.
 
 55
-00:03:36.252 --> 00:03:39.227
+00:03:35.262 --> 00:03:38.237
 It parses only the first key in an event.
 
 56
-00:03:39.227 --> 00:03:42.877
+00:03:38.237 --> 00:03:41.887
 It carries people's names into
 the alert, wherever that goes.
 
 57
-00:03:42.877 --> 00:03:46.750
+00:03:41.887 --> 00:03:45.760
 And it needs a Sentinel workspace
 before any evidence exists,
 
 58
-00:03:46.750 --> 00:03:50.091
+00:03:45.760 --> 00:03:49.101
 while covering only one of
 the plan's five drift items.
 
 59
-00:03:50.091 --> 00:03:53.715
+00:03:49.101 --> 00:03:52.725
 So the verdict: use the rule's
 activity names and its key
 
 60
-00:03:53.715 --> 00:03:57.870
+00:03:52.725 --> 00:03:56.880
 comparison as the model, and
 don't use it as the drift check.
 
 61
-00:04:01.620 --> 00:04:03.045
+00:04:00.630 --> 00:04:02.055
 So what does the code build?
 
 62
-00:04:03.045 --> 00:04:05.069
+00:04:02.055 --> 00:04:04.079
 One run, written as one folder:
 
 63
-00:04:05.069 --> 00:04:09.540
+00:04:04.079 --> 00:04:08.550
 Chapter 1's inventory and Chapter
 2's ownership check, unchanged,
 
 64
-00:04:09.540 --> 00:04:15.107
+00:04:08.550 --> 00:04:14.117
 plus this chapter's drift folder and a run
 record that ties them together by hash.
 
 65
-00:04:15.107 --> 00:04:19.682
+00:04:14.117 --> 00:04:18.692
 A task that fails is recorded as an
 error, never as an empty result.
 
 66
-00:04:19.682 --> 00:04:24.109
+00:04:18.692 --> 00:04:23.119
 The baseline is a fingerprint per
 identity over twenty governance columns,
 
 67
-00:04:24.109 --> 00:04:27.199
+00:04:23.119 --> 00:04:26.209
 leaving out things like last
 logon that change daily,
 
 68
-00:04:27.199 --> 00:04:30.220
+00:04:26.209 --> 00:04:29.230
 and it counts only once a
 reviewer approves its hash.
 
 69
-00:04:30.220 --> 00:04:33.686
+00:04:29.230 --> 00:04:32.696
 The audit read is narrow:
 declared calls only,
 
 70
-00:04:33.686 --> 00:04:37.610
+00:04:32.696 --> 00:04:36.620
 thirty days at most, and
 identifiers, not names.
 
 71
-00:04:41.360 --> 00:04:44.460
+00:04:40.370 --> 00:04:43.470
 Nine drift rules run against
 the approved baseline.
 
 72
-00:04:44.460 --> 00:04:49.310
+00:04:43.470 --> 00:04:48.320
 New and changed identities are warnings,
 with the exact columns that changed.
 
 73
-00:04:49.310 --> 00:04:52.488
+00:04:48.320 --> 00:04:51.498
 Ownerless identities,
 passwords that never expire,
 
 74
-00:04:52.488 --> 00:04:56.035
+00:04:51.498 --> 00:04:55.045
 and credentials added outside
 the pipeline are findings.
 
 75
-00:04:56.035 --> 00:05:00.022
+00:04:55.045 --> 00:04:59.032
 Unused and expiring use
 Learn's ninety and thirty days.
 
 76
-00:05:00.022 --> 00:05:02.134
+00:04:59.032 --> 00:05:01.144
 A new broad grant is a finding.
 
 77
-00:05:02.134 --> 00:05:04.574
+00:05:01.144 --> 00:05:03.584
 And the ninth rule is the honest one:
 
 78
-00:05:04.574 --> 00:05:08.610
+00:05:03.584 --> 00:05:07.620
 any gap in the evidence is
 reported, never treated as a pass.
 
 79
-00:05:08.610 --> 00:05:12.819
+00:05:07.620 --> 00:05:11.829
 The key rule is what counts as the
 pipeline: both a listed identity
 
 80
-00:05:12.819 --> 00:05:17.230
+00:05:11.829 --> 00:05:16.240
 and a logged key, so a stolen
 pipeline credential still shows up.
 
 81
-00:05:20.980 --> 00:05:24.080
+00:05:19.990 --> 00:05:23.090
 Two more kinds of evidence
 sit beside the drift.
 
 82
-00:05:24.080 --> 00:05:28.815
+00:05:23.090 --> 00:05:27.825
 The review cycle belongs to the identity
 governance officer: the reviews
 
 83
-00:05:28.815 --> 00:05:33.318
+00:05:27.825 --> 00:05:32.328
 are built in Chapters 7 and 9, and
 this chapter only reads their records.
 
 84
-00:05:33.318 --> 00:05:37.041
+00:05:32.328 --> 00:05:36.051
 It flags an app whose owners
 haven't reviewed it this quarter,
 
 85
-00:05:37.041 --> 00:05:42.030
+00:05:36.051 --> 00:05:41.040
 an agent whose sponsor hasn't attested this
 year, and agent access with no end date.
 
 86
-00:05:42.030 --> 00:05:45.555
+00:05:41.040 --> 00:05:44.565
 And crucially, a missing
 record isn't a passed review.
 
 87
-00:05:45.555 --> 00:05:49.888
+00:05:44.565 --> 00:05:48.898
 Then once a year, the AI use-case
 inventory is compared with last year's,
 
 88
-00:05:49.888 --> 00:05:52.320
+00:05:48.898 --> 00:05:51.330
 catching new systems with no identity,
 
 89
-00:05:52.320 --> 00:05:56.250
+00:05:51.330 --> 00:05:55.260
 and retired ones whose identities
 are still switched on.
 
 90
-00:06:00.000 --> 00:06:02.763
+00:05:59.010 --> 00:06:01.773
 Here's what the security
 officer actually receives.
 
 91
-00:06:02.763 --> 00:06:07.489
+00:06:01.773 --> 00:06:06.499
 Each run is packaged with a summary
 that carries rule IDs and fingerprints
 
 92
-00:06:07.489 --> 00:06:11.912
+00:06:06.499 --> 00:06:10.922
 but no names, and a checksum file
 anyone can verify with a standard tool.
 
 93
-00:06:11.912 --> 00:06:15.438
+00:06:10.922 --> 00:06:14.448
 Before packaging, the run
 itself is checked end to end.
 
 94
-00:06:15.438 --> 00:06:20.397
+00:06:14.448 --> 00:06:19.407
 Each package records the previous package's
 hash, so the packages form a chain,
 
 95
-00:06:20.397 --> 00:06:24.038
+00:06:19.407 --> 00:06:23.048
 and a replaced package or a
 missing day shows up as a break.
 
 96
-00:06:24.038 --> 00:06:27.090
+00:06:23.048 --> 00:06:26.100
 Then a period summary
 verifies every package,
 
 97
-00:06:27.090 --> 00:06:31.187
+00:06:26.100 --> 00:06:30.197
 checks for gaps, and maps findings
 to each control as evidence.
 
 98
-00:06:31.187 --> 00:06:35.170
+00:06:30.197 --> 00:06:34.180
 The assessor, not the
 code, decides each control.
 
 99
-00:06:38.920 --> 00:06:39.970
+00:06:37.930 --> 00:06:38.980
 Who's involved?
 
 100
-00:06:39.970 --> 00:06:43.770
+00:06:38.980 --> 00:06:42.780
 Developers and pipeline engineers
 own the scheduled checks.
 
 101
-00:06:43.770 --> 00:06:47.957
+00:06:42.780 --> 00:06:46.967
 The identity governance officer owns
 the review cycle and the evidence,
 
 102
-00:06:47.957 --> 00:06:49.632
+00:06:46.967 --> 00:06:48.642
 and signs the period summary.
 
 103
-00:06:49.632 --> 00:06:51.790
+00:06:48.642 --> 00:06:50.800
 And the security officer receives it,
 
 104
-00:06:51.790 --> 00:06:55.757
+00:06:50.800 --> 00:06:54.767
 verifies it with nothing more than
 a checksum tool, and signs the gate.
 
 105
-00:06:55.757 --> 00:06:57.945
+00:06:54.767 --> 00:06:56.955
 The permissions are deliberately small.
 
 106
-00:06:57.945 --> 00:07:01.324
+00:06:56.955 --> 00:07:00.334
 This chapter adds only the
 audit log read; the whole run,
 
 107
-00:07:01.324 --> 00:07:05.378
+00:07:00.334 --> 00:07:04.388
 together with Chapters 1 and 2,
 needs four Graph read permissions,
 
 108
-00:07:05.378 --> 00:07:09.433
+00:07:04.388 --> 00:07:08.443
 Reader on the managed identities,
 and the default directory read.
 
 109
-00:07:09.433 --> 00:07:10.920
+00:07:08.443 --> 00:07:09.930
 None of it can write.
 
 110
-00:07:14.670 --> 00:07:18.820
+00:07:13.680 --> 00:07:17.830
 Lab 1 needs PowerShell and Python
 on a laptop, and nothing else.
 
 111
-00:07:18.820 --> 00:07:21.822
+00:07:17.830 --> 00:07:20.832
 First, run Microsoft's
 rule over the fixture:
 
 112
-00:07:21.822 --> 00:07:25.658
+00:07:20.832 --> 00:07:24.668
 of four credentials added on
 the second day, it finds one.
 
 113
-00:07:25.658 --> 00:07:29.907
+00:07:24.668 --> 00:07:28.917
 Then confirm the run needs four read
 permissions and nothing that writes.
 
 114
-00:07:29.907 --> 00:07:32.151
+00:07:28.917 --> 00:07:31.161
 Run the first day with no baseline,
 
 115
-00:07:32.151 --> 00:07:35.357
+00:07:31.161 --> 00:07:34.367
 and it writes a baseline
 candidate with its hash.
 
 116
-00:07:35.357 --> 00:07:40.058
+00:07:34.367 --> 00:07:39.068
 In real life a second person reviews
 that candidate and passes you the hash.
 
 117
-00:07:40.058 --> 00:07:43.467
+00:07:39.068 --> 00:07:42.477
 Then run the second day
 against the approved baseline,
 
 118
-00:07:43.467 --> 00:07:47.990
+00:07:42.477 --> 00:07:47.000
 and the drift appears: more findings
 and more warnings than day one.
 
 119
-00:07:51.740 --> 00:07:56.899
+00:07:50.750 --> 00:07:55.909
 Reading day two's drift, the three credentials
 the rule couldn't see are all there:
 
 120
-00:07:56.899 --> 00:08:01.588
+00:07:55.909 --> 00:08:00.598
 one added by a person, one added by
 another app abusing a broad permission,
 
 121
-00:08:01.588 --> 00:08:03.777
+00:08:00.598 --> 00:08:02.787
 and the very first secret on an app.
 
 122
-00:08:03.777 --> 00:08:08.170
+00:08:02.787 --> 00:08:07.180
 Just as important is what's missing:
 the pipeline's own two rotations,
 
 123
-00:08:08.170 --> 00:08:11.228
+00:08:07.180 --> 00:08:10.238
 because both the identity
 and the key log agree.
 
 124
-00:08:11.228 --> 00:08:15.441
+00:08:10.238 --> 00:08:14.451
 An expiring certificate from day
 one is gone, because it was rotated.
 
 125
-00:08:15.441 --> 00:08:18.765
+00:08:14.451 --> 00:08:17.775
 A chapter file with a forged
 fingerprint is refused.
 
 126
-00:08:18.765 --> 00:08:23.355
+00:08:17.775 --> 00:08:22.365
 Then the vintage comparison finds a
 new deployed agent with no identity,
 
 127
-00:08:23.355 --> 00:08:26.770
+00:08:22.365 --> 00:08:25.780
 and a retired use case
 whose app is still enabled.
 
 128
-00:08:30.520 --> 00:08:32.345
+00:08:29.530 --> 00:08:31.355
 Now switch to the Python side.
 
 129
-00:08:32.345 --> 00:08:35.701
+00:08:31.355 --> 00:08:34.711
 Package both days, the
 second chained to the first:
 
 130
-00:08:35.701 --> 00:08:40.857
+00:08:34.711 --> 00:08:39.867
 nineteen findings opened on day two,
 and one closed, the rotated certificate.
 
 131
-00:08:40.857 --> 00:08:44.578
+00:08:39.867 --> 00:08:43.588
 Verify the package with the code
 and with a plain checksum tool,
 
 132
-00:08:44.578 --> 00:08:47.082
+00:08:43.588 --> 00:08:46.092
 and confirm no names
 appear in the summary.
 
 133
-00:08:47.082 --> 00:08:49.858
+00:08:46.092 --> 00:08:48.868
 Then assemble the period
 for the security officer.
 
 134
-00:08:49.858 --> 00:08:55.233
+00:08:48.868 --> 00:08:54.243
 It's honestly incomplete: some controls
 wait on other chapters, and Gate 7
 
 135
-00:08:55.233 --> 00:09:00.519
+00:08:54.243 --> 00:08:59.529
 isn't met yet, with passwords that
 never expire, orphans, and open reviews.
 
 136
-00:09:00.519 --> 00:09:03.470
+00:08:59.529 --> 00:09:02.480
 Finally, break it on purpose: edit a file,
 
 137
-00:09:03.470 --> 00:09:07.510
+00:09:02.480 --> 00:09:06.520
 or swap the order of days,
 and verification fails.
 
 138
-00:09:11.260 --> 00:09:16.098
+00:09:10.270 --> 00:09:15.108
 Lab 2 uses a test tenant with fictional
 people, and the run only reads.
 
 139
-00:09:16.098 --> 00:09:19.367
+00:09:15.108 --> 00:09:18.377
 Register a reader with
 exactly the four permissions,
 
 140
-00:09:19.367 --> 00:09:22.710
+00:09:18.377 --> 00:09:21.720
 run once, and have a second
 person approve the baseline.
 
 141
-00:09:22.710 --> 00:09:28.144
+00:09:21.720 --> 00:09:27.154
 Then make three changes by hand: a secret
 on an app that already has a certificate,
 
 142
-00:09:28.144 --> 00:09:31.685
+00:09:27.154 --> 00:09:30.695
 a first secret on an app with
 none, and a consent grant.
 
 143
-00:09:31.685 --> 00:09:36.039
+00:09:30.695 --> 00:09:35.049
 Run the drift run, and check what
 the fixture assumed against reality,
 
 144
-00:09:36.039 --> 00:09:37.948
+00:09:35.049 --> 00:09:36.958
 like the exact activity names.
 
 145
-00:09:37.948 --> 00:09:41.309
+00:09:36.958 --> 00:09:40.319
 Cross-check against Learn's
 own audit log procedure,
 
 146
-00:09:41.309 --> 00:09:44.170
+00:09:40.319 --> 00:09:43.180
 package and verify, then back it all out.
 
 147
-00:09:47.920 --> 00:09:51.608
+00:09:46.930 --> 00:09:50.618
 Evidence fails in quiet ways,
 so each of these has a guard.
 
 148
-00:09:51.608 --> 00:09:55.594
+00:09:50.618 --> 00:09:54.604
 A baseline nobody approved lets
 a malicious change become normal.
 
 149
-00:09:55.594 --> 00:10:00.608
+00:09:54.604 --> 00:09:59.618
 A failed read can look like a fix, because
 yesterday's findings simply disappear.
 
 150
-00:10:00.608 --> 00:10:04.458
+00:09:59.618 --> 00:10:03.468
 A day nobody read leaves a gap
 where a credential could be added.
 
 151
-00:10:04.458 --> 00:10:08.270
+00:10:03.468 --> 00:10:07.280
 Trusting the Sentinel rule
 misses the riskiest credentials,
 
 152
-00:10:08.270 --> 00:10:12.382
+00:10:07.280 --> 00:10:11.392
 while alerting on every rotation
 teaches people to ignore alerts.
 
 153
-00:10:12.382 --> 00:10:17.145
+00:10:11.392 --> 00:10:16.155
 And a package edited or swapped after the
 fact describes a run that never happened.
 
 154
-00:10:17.145 --> 00:10:22.320
+00:10:16.155 --> 00:10:21.330
 The hash chain, the approved baseline
 and honest gap reporting close each one.
 
 155
-00:10:26.070 --> 00:10:27.420
+00:10:25.080 --> 00:10:26.430
 Here's what done looks like.
 
 156
-00:10:27.420 --> 00:10:30.870
+00:10:26.430 --> 00:10:29.880
 Every run reads all
 three parts and says so.
 
 157
-00:10:30.870 --> 00:10:33.857
+00:10:29.880 --> 00:10:32.867
 The reader holds exactly
 four read permissions.
 
 158
-00:10:33.857 --> 00:10:38.461
+00:10:32.867 --> 00:10:37.471
 The baseline was approved by someone
 else, each window picks up where the last
 
 159
-00:10:38.461 --> 00:10:41.194
+00:10:37.471 --> 00:10:40.204
 ended, and every credential
 added outside the
 
 160
-00:10:41.194 --> 00:10:43.783
+00:10:40.204 --> 00:10:42.793
 pipeline has an
 explanation or an incident.
 
 161
-00:10:43.783 --> 00:10:47.081
+00:10:42.793 --> 00:10:46.091
 The review records arrive,
 every package verifies,
 
 162
-00:10:47.081 --> 00:10:50.694
+00:10:46.091 --> 00:10:49.704
 the chain has no breaks, and
 the evidence store is locked.
 
 163
-00:10:50.694 --> 00:10:53.407
+00:10:49.704 --> 00:10:52.417
 And the period summary
 is signed and reviewed.
 
 164
-00:10:53.407 --> 00:10:55.380
+00:10:52.417 --> 00:10:54.390
 That's the end of this workbook:
 
 165
-00:10:55.380 --> 00:10:58.932
+00:10:54.390 --> 00:10:57.942
 every chapter's checks now
 feed one verifiable period.
 
 166
-00:10:58.932 --> 00:11:00.100
+00:10:57.942 --> 00:10:59.110
 Thanks for watching.

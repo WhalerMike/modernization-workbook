@@ -75,7 +75,7 @@ const SC = "Close";
   notes(s,
 `This is Part 1 of the deeper dive implementation of the Attribute-Driven Migration to Entra ID. The two-part technical deep dive explained the model and the four tracks. This series goes one level down, to the work an engineer actually runs: the commands, the attribute slots, the validation checks and what their output looks like, and the rollback for each step.
 
-It follows the implementation guide's ten gates and the project plan that schedules them, with its task IDs, A zero point one onward, and its decisions, D-A1 onward. Part 1 covers Gates 0 to 3: reading the OU tree, fixing the schema and the coded slots, proving the attributes are true, and mapping them through sync. Before Gate 0 it adds something the guide assumes but doesn't spell out: a baseline of how joiners, movers and leavers are handled today, measured from real events. Part 2 covers Gates 4 to 6, and Part 3 Gates 7 to 9.
+It follows the implementation guide's ten gates and the project plan that schedules them, with its task IDs, A T zero point one onward, and its decisions, D-AT1 onward. Part 1 covers Gates 0 to 3: reading the OU tree, fixing the schema and the coded slots, proving the attributes are true, and mapping them through sync. Before Gate 0 it adds something the guide assumes but doesn't spell out: a baseline of how joiners, movers and leavers are handled today, measured from real events. Part 2 covers Gates 4 to 6, and Part 3 Gates 7 to 9.
 
 Two labels apply throughout. Facts come from the workbook's chapters, guides and example code, and the program's own recommendations are marked design guidance. The example code is illustrative and fixture-tested, not proven against a live tenant.`,
   `${IG}, "In this guide," "How to use this guide," "The path on one page"; project plan, Attribute-Driven Migration.`);
@@ -86,22 +86,22 @@ Two labels apply throughout. Facts come from the workbook's chapters, guides and
   const s = content(S0, "Gates 0–3 on one page: done when, proved by");
   tag(s, "What");
   const tb = table(s, "Gates", 1.45, [1.75, 3.55, 2.85, 1.6, 2.4], ["Gate", "Done when", "Validate with", "Plan tasks", "Rollback"], [
-    ["0 The tree read", "The tree's encoding in Git, split by track, with a decision for every group", "Start Kit counts; VK-INT-07 (beta, Intune track); VK-NPI-06 (non-person track)", "A0.1–A0.4, AG0", "Nothing: read-only"],
-    ["1 Schema and slots", "Every attribute that drives access has one store, one writer and one owner", "VK-HR-01 and VK-HR-04 (the key's carrier)", "A1.1–A1.4, D-A1, D-A2, AG1", "Change a slot only before a rule reads it"],
-    ["2 Attributes proven", "Threshold met on the pilot; other writers removed; logs leaving Entra ID", "VK-HR-01 to 04", "A2.1–A2.3, D-A3, AG2", "Restore a write permission by recorded change, with an end date"],
-    ["3 Attributes flowing", "Every slot arrives in Entra ID as HR sent it; shadow differences explained", "VK-SYNC-01 on a sample, with the sync reconciliation report", "A3.1, AG3", "Scope the population back out; never delete synced users"],
+    ["0 The tree read", "The tree's encoding in Git, split by track, with a decision for every group", "Start Kit counts; VK-INT-07 (beta, Intune track); VK-NPI-06 (non-person track)", "AT0.1–AT0.4, ATG0", "Nothing: read-only"],
+    ["1 Schema and slots", "Every attribute that drives access has one store, one writer and one owner", "VK-HR-01 and VK-HR-04 (the key's carrier)", "AT1.1–AT1.4, D-AT1, D-AT2, ATG1", "Change a slot only before a rule reads it"],
+    ["2 Attributes proven", "Threshold met on the pilot; other writers removed; logs leaving Entra ID", "VK-HR-01 to 04", "AT2.1–AT2.3, D-AT3, ATG2", "Restore a write permission by recorded change, with an end date"],
+    ["3 Attributes flowing", "Every slot arrives in Entra ID as HR sent it; shadow differences explained", "VK-SYNC-01 on a sample, with the sync reconciliation report", "AT3.1, ATG3", "Scope the population back out; never delete synced users"],
   ], { fontSize: 12, limit: 5.3 });
   callout(s, "Key", tb + 0.25, 0.95, "FaIdCard", HEX.navy, "The worked key: ",
     "an existing enterprise ID the agency already issues, carried in employeeId (at most 16 characters). The guide's placeholder value is E0042137.");
-  sources(s, "Sources: Implementation guide, \"The path on one page,\" \"Rollback at a glance,\" \"One identifier through every gate\"; project plan tasks A0.1–A3.1; Book 03, Ch 04.");
+  sources(s, "Sources: Implementation guide, \"The path on one page,\" \"Rollback at a glance,\" \"One identifier through every gate\"; project plan tasks AT0.1–AT3.1; Book 03, Ch 04.");
   notes(s,
 `Here are the four gates of Part 1 on one page, as the implementation guide lays them out. Each one has a done-when statement, a validation step, the plan tasks it carries out, and a rollback.
 
-Gate 0, the tree read, is done when the tree's encoding is in Git, split by track, with a decision for every group. The Start Kit's counts prove it. VK-INT-07, a beta check the Intune track runs, reads Group Policy analytics for the computer half of the GPO split, and VK-NPI-06, which the non-person track runs, lists the AD service accounts to hand over. Plan tasks A0.1 to A0.4, gate AG0. Nothing to roll back: it's read-only.
+Gate 0, the tree read, is done when the tree's encoding is in Git, split by track, with a decision for every group. The Start Kit's counts prove it. VK-INT-07, a beta check the Intune track runs, reads Group Policy analytics for the computer half of the GPO split, and VK-NPI-06, which the non-person track runs, lists the AD service accounts to hand over. Plan tasks AT0.1 to AT0.4, gate ATG0. Nothing to roll back: it's read-only.
 
-Gate 1, schema and slots, is done when every attribute that drives access has one store, one writer and one owner. VK-HR-01 and VK-HR-04 measure the key's carrier. Decisions D-A1, the schema, and D-A2, the slot register. Rollback: a slot can change only until a rule reads it.
+Gate 1, schema and slots, is done when every attribute that drives access has one store, one writer and one owner. VK-HR-01 and VK-HR-04 measure the key's carrier. Decisions D-AT1, the schema, and D-AT2, the slot register. Rollback: a slot can change only until a rule reads it.
 
-Gate 2, attributes proven, is done when the correlation threshold is met on the pilot, the other writers are removed and logs are leaving Entra ID. VK-HR-01 to 04 prove it, and D-A3 is the threshold. Rollback is a recorded change that restores a write permission, with an end date.
+Gate 2, attributes proven, is done when the correlation threshold is met on the pilot, the other writers are removed and logs are leaving Entra ID. VK-HR-01 to 04 prove it, and D-AT3 is the threshold. Rollback is a recorded change that restores a write permission, with an end date.
 
 Gate 3, attributes flowing, is done when every slot arrives in Entra ID as HR sent it and shadow differences are explained. VK-SYNC-01 compares the coded slots for a sample of users in AD with the same slots in Entra ID; it reads values, not the sync configuration, so the sync reconciliation report still covers the rest. Rollback: scope the population back out, and never delete synced users in Entra ID.
 
@@ -185,7 +185,7 @@ endModule(SB);
     "# A later run, compared with the first, file by file",
     "Compare-FMPAssessments -BaselinePath <run-1>\\<domain> `",
     "                       -CurrentPath  <run-2>\\<domain>",
-  ], { label: "COMMANDS (A0.1)" });
+  ], { label: "COMMANDS (AT0.1)" });
   code(s, "Tree", 0.6, c1 + 0.2, 7.55, [
     "<run-id>\\            YYYY-MM-DD-HHmm-<host>-tierA, in UTC",
     "├── AssessmentManifest.json    SHA-256 of every other file",
@@ -201,7 +201,7 @@ endModule(SB);
   ], 13);
   sources(s, "Sources: Start Kit README (Run it; rights each part needs; what a run writes); Compare-FMPAssessments help; Implementation guide, Gate 0; Book 02, Ch 07–08.");
   notes(s,
-`Gate 0, task A0.1: export the tree. The tool is the Start Kit, and the whole gate is read-only.
+`Gate 0, task AT0.1: export the tree. The tool is the Start Kit, and the whole gate is read-only.
 
 Start at Tier A: a dedicated standard account with no added rights. Every run starts with Test-FMPReadAccess, which records what this forest lets a default account read and writes the gaps out as a delegation request. Then the run itself: Invoke-FMPStartKit with an output path. Only if Tier A can't read what Gate 0 needs, for example OUs whose ACLs aren't readable by default, add Tier B, the narrow, read-only, time-bound delegations Book 02's Chapters 07 and 08 describe. The assessment never uses Domain Admins.
 
@@ -215,18 +215,18 @@ What to keep for Gate 0: every OU with its size and its non-inherited access-con
 {
   const s = content(SG0, "Gate 0: the decision record, one row per group");
   tag(s, "Who");
-  const tb = table(s, "Groups", 1.45, [3.6, 2.35, 1.95], ["Group characteristic (A0.2)", "Decision", "Why"], [
+  const tb = table(s, "Groups", 1.45, [3.6, 2.35, 1.95], ["Group characteristic (AT0.2)", "Decision", "Why"], [
     ["Used only for on-premises resource ACLs", "Keep in AD; don't sync", "A cloud copy adds nothing"],
     ["Used for on-premises and cloud resources", "Synchronize", "AD stays the source during transition"],
     ["Used only for cloud resources", "Convert to cloud-only", "Removes the AD dependency"],
     ["Membership follows attributes exactly", "Convert to dynamic", "No manual membership"],
     ["No members or no resource assignments", "Retire", "Shrinks the surface"],
   ], { fontSize: 11.5, limit: 6.6 });
-  const pb = panel(s, "Map", 8.75, 1.45, 4.0, null, HEX.teal, HEX.tealTint, "OU-TO-UNIT MAP (A0.3) AND TAGS", null, [
+  const pb = panel(s, "Map", 8.75, 1.45, 4.0, null, HEX.teal, HEX.tealTint, "OU-TO-UNIT MAP (AT0.3) AND TAGS", null, [
     "GPO scoping → Conditional Access and Intune",
     "Delegation → administrative units; over servers, Azure RBAC scopes",
     "Logical organization → attributes and dynamic groups",
-    "Tag every OU and GPO half with its track (A0.4)",
+    "Tag every OU and GPO half with its track (AT0.4)",
   ], 12.5);
   panel(s, "Traps", 0.6, Math.max(tb, pb) + 0.2, 12.15, null, HEX.red, HEX.redTint, "TRAPS TO RECORD; HANDOFFS", null, [
     "A site-linked GPO looks unlinked to an OU-only search. adminCount overstates privilege: it stays set after an account leaves a protected group.",
@@ -237,9 +237,9 @@ What to keep for Gate 0: every OU with its size and its non-inherited access-con
   notes(s,
 `The rest of Gate 0 is a decision record in Git, one row per group and one per GPO half. No kit check reads the decisions; the record is the evidence.
 
-Task A0.2 decides every security group, using Book 02's table. A group used only for on-premises resource ACLs stays in AD and isn't synced, because a cloud copy adds nothing. One used for both on-premises and cloud resources is synchronized, with AD as the source during the transition. One used only for cloud resources converts to cloud-only. One whose membership really follows department, location or role converts to dynamic. And one with no members or no resource assignments is retired. Convert to dynamic only when membership really follows the attributes, which matters on the next slide.
+Task AT0.2 decides every security group, using Book 02's table. A group used only for on-premises resource ACLs stays in AD and isn't synced, because a cloud copy adds nothing. One used for both on-premises and cloud resources is synchronized, with AD as the source during the transition. One used only for cloud resources converts to cloud-only. One whose membership really follows department, location or role converts to dynamic. And one with no members or no resource assignments is retired. Convert to dynamic only when membership really follows the attributes, which matters on the next slide.
 
-Task A0.3 drafts the OU-to-unit mapping. GPO scoping goes to Conditional Access and Intune, delegation to administrative units, and logical organization to attributes and dynamic groups. Delegation over servers becomes Azure RBAC scopes instead. In the running example, the export shows the finance OU's help desk was delegated password reset by hand; that's what Gate 4's division unit has to reproduce. Task A0.4 tags every OU and every GPO half with its track, because a GPO's user and computer halves can belong to different tracks.
+Task AT0.3 drafts the OU-to-unit mapping. GPO scoping goes to Conditional Access and Intune, delegation to administrative units, and logical organization to attributes and dynamic groups. Delegation over servers becomes Azure RBAC scopes instead. In the running example, the export shows the finance OU's help desk was delegated password reset by hand; that's what Gate 4's division unit has to reproduce. Task AT0.4 tags every OU and every GPO half with its track, because a GPO's user and computer halves can belong to different tracks.
 
 Record two traps. A GPO linked at a site looks unlinked to a search that only walks OUs. And adminCount overstates current privilege, because it stays set after an account leaves a protected group. Finally, the service accounts: VK-NPI-06 lists those with passwords that never expire, old passwords, SPNs or a type other than gMSA, and those rows go to the non-person guide's Step 1. For the computer half of the GPO split, the Intune track runs VK-INT-07, a beta check: it lists each GPO imported into Intune's Group Policy analytics with its migration readiness, flags those that aren't complete, and, with a gpo-scope.csv input, every in-scope GPO that was never imported. The gate owner is the identity engineering lead.`,
   `${IG}, Gate 0, steps 2–6, Validate and Evidence; Book 02, Chapter 09 — "The per-group decision," "Organizational units," "AdminSDHolder and protected groups."`);
@@ -301,7 +301,7 @@ endModule(SG0);
   ], { fontSize: 11, limit: 6.55 });
   sources(s, "Sources: Book 03, Ch 06, \"Program attribute map\" (slots 8, 13, 14 reserved; slots 4–9 and 15 proposed: design guidance); Ch 04 (employeeId limit).");
   notes(s,
-`Gate 1, decision D-A2: the coded slot register. This is Book 03's program attribute map for user objects, the one assignment the whole workbook uses.
+`Gate 1, decision D-AT2: the coded slot register. This is Book 03's program attribute map for user objects, the one assignment the whole workbook uses.
 
 The key comes first. employeeId carries the enterprise person key, at most 16 characters, written only by the provisioning service, and it's what matching and every join run on.
 
@@ -317,18 +317,18 @@ Slots 1 to 3 follow Microsoft's worksheet; the rest are the workbook's proposals
 {
   const s = content(SG1, "Gate 1: one store, one writer, one owner");
   tag(s, "Who");
-  const a = panel(s, "Store", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "D-A1  THE STORE, IN ORDER (DATA ARCHITECT)", null, [
+  const a = panel(s, "Store", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "D-AT1  THE STORE, IN ORDER (DATA ARCHITECT)", null, [
     "Native properties first",
     "extensionAttribute1–15 for what rules read",
     "Directory extensions when more slots are needed",
     "Custom security attributes for sensitive values rules don't need",
     "Devices: device properties; servers: Azure tags; PIV: certificateUserIds",
   ], 12.5);
-  const b = panel(s, "Writers", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "A1.3  ONE WRITER PER SLOT; LIST THE REST", null, [
+  const b = panel(s, "Writers", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "AT1.3  ONE WRITER PER SLOT; LIST THE REST", null, [
     "The provisioning service is the only writer of every schema field",
     "List for removal at Gate 2: help desk, self-service and Exchange-admin paths",
     "Codes, never display strings, in anything a rule reads; HR owns the code lists",
-    "Other tracks' authorities (A1.4): procurement record, asset record, owning system",
+    "Other tracks' authorities (AT1.4): procurement record, asset record, owning system",
   ], 12.5);
   const c = code(s, "Measure", 0.6, Math.max(a, b) + 0.2, 12.15, [
     "# Measure the key's carrier before anything depends on it. Expect findings: Gate 2 closes them.",
@@ -339,9 +339,9 @@ Slots 1 to 3 follow Microsoft's worksheet; the rest are the workbook's proposals
   notes(s,
 `The rest of Gate 1 is three rules: one store, one writer, one owner per attribute.
 
-Decision D-A1 picks the store, and the data architect decides it, using the store table in its order. Native properties first. Then extension attributes 1 to 15 for anything a rule has to read. Then directory extensions when more slots are needed. Custom security attributes hold sensitive values that rules don't need, because dynamic rules can't read them. Devices use device properties, servers Azure tags, and the PIV binding certificateUserIds. Pick the store by who has to read it.
+Decision D-AT1 picks the store, and the data architect decides it, using the store table in its order. Native properties first. Then extension attributes 1 to 15 for anything a rule has to read. Then directory extensions when more slots are needed. Custom security attributes hold sensitive values that rules don't need, because dynamic rules can't read them. Devices use device properties, servers Azure tags, and the PIV binding certificateUserIds. Pick the store by who has to read it.
 
-Task A1.3 names the single writer for every slot. The provisioning service is the only writer of every schema field: the API-driven inbound app for cloud-mastered users, and the provisioning agent plus sync for AD-mastered ones. Every other write path to the access slots, the help desk, self-service and Exchange administration, goes on a list for removal at Gate 2. Codes, never display strings, go in anything a rule reads, and HR owns the code lists. Task A1.4 names the other tracks' authorities: the procurement record for devices, the asset record for servers, and the owning system's record for non-person identities. None of them is HR.
+Task AT1.3 names the single writer for every slot. The provisioning service is the only writer of every schema field: the API-driven inbound app for cloud-mastered users, and the provisioning agent plus sync for AD-mastered ones. Every other write path to the access slots, the help desk, self-service and Exchange administration, goes on a list for removal at Gate 2. Codes, never display strings, go in anything a rule reads, and HR owns the code lists. Task AT1.4 names the other tracks' authorities: the procurement record for devices, the asset record for servers, and the owning system's record for non-person identities. None of them is HR.
 
 Validate with the kit: run VK-HR-01 and VK-HR-04 by check ID. Together they measure the key's carrier, enabled accounts without an employee I D and duplicate keys. Expect findings here; Gate 2 closes them. The rest of the evidence is the signed schema and slot register, and the gate owner is the ICAM governance body.
 
@@ -357,7 +357,7 @@ endModule(SG1);
   const c1 = code(s, "Run2", 0.6, 1.45, 12.15, [
     "# Delegated sign-in with only the read scopes these checks need (User.Read.All; Global Reader). -Cloud gcc is the default.",
     ".\\Invoke-ValidationKit.ps1 -OutputPath D:\\Validation -Track HR, DG -InputPath D:\\Inputs",
-  ], { label: "COMMAND (A2.1)", pt: 11 });
+  ], { label: "COMMAND (AT2.1)", pt: 11 });
   const c2 = code(s, "Inputs", 0.6, c1 + 0.2, 5.4, [
     "# D:\\Inputs\\exceptions.csv",
     "UserPrincipalName,Owner,Reason",
@@ -379,7 +379,7 @@ endModule(SG1);
   if (process.env.FIT) console.log(`  run2: inputs ${c2.toFixed(2)}, checks ${tb.toFixed(2)}`);
   sources(s, "Sources: Validation kit README (Run it; Inputs; permissions; -Cloud); Checks/HR.ps1; fixture tests/fixtures/fail; Implementation guide, Gate 2, step 1.");
   notes(s,
-`Gate 2, task A2.1: baseline coverage with the validation kit's HR checks, first on the pilot cohort and then on the estate.
+`Gate 2, task AT2.1: baseline coverage with the validation kit's HR checks, first on the pilot cohort and then on the estate.
 
 The command is the one the guide shows: Invoke-ValidationKit, with an output path, the HR and D G tracks, and an input path. It signs in with delegated permissions and asks for exactly the read scopes the selected checks need; for the HR checks that's User.Read.All, with Global Reader for the signed-in user. The cloud switch defaults to G C C, which uses the worldwide Graph endpoint. The D G checks belong to Gate 4; at this gate, read the HR rows.
 
@@ -444,19 +444,19 @@ The statuses: Fail means at least one Finding row. Warn means review, not a find
   const s = content(SG2, "Gate 2: threshold, writers out, logs out");
   tag(s, "Who");
   const w = 3.9, gap = 0.225;
-  const a = panel(s, "Threshold", 0.6, 1.45, w, null, HEX.navy, HEX.navyTint, "D-A3  AUTHORIZING OFFICIAL", "The threshold", [
+  const a = panel(s, "Threshold", 0.6, 1.45, w, null, HEX.navy, HEX.navyTint, "D-AT3  AUTHORIZING OFFICIAL", "The threshold", [
     "Set through the agency's risk governance",
     "99% of the pilot cohort: a proposed start, not a rule",
     "Risk-tiered is usually better",
     "Every enabled account correlated, or on a dated exception list with an owner",
   ], 12.5);
-  const b = panel(s, "Writers2", 0.6 + w + gap, 1.45, w, null, HEX.teal, HEX.tealTint, "A2.2  IDENTITY ENGINEERING", "The other writers", [
+  const b = panel(s, "Writers2", 0.6 + w + gap, 1.45, w, null, HEX.teal, HEX.tealTint, "AT2.2  IDENTITY ENGINEERING", "The other writers", [
     "AD: write rights on the target OUs",
     "AD: Exchange's custom-attribute cmdlets",
     "Entra ID: help desk and self-service paths to the access slots",
     "After this, any other write is drift",
   ], 12.5);
-  const c = panel(s, "Logs", 0.6 + 2 * (w + gap), 1.45, w, null, HEX.amber, HEX.amberTint, "A2.3  SECURITY OPERATIONS", "The logs", [
+  const c = panel(s, "Logs", 0.6 + 2 * (w + gap), 1.45, w, null, HEX.amber, HEX.amberTint, "AT2.3  SECURITY OPERATIONS", "The logs", [
     "Sign-in, audit and provisioning logs out before the pilot's first change",
     "To Azure Monitor, a storage account or the SIEM",
     "Audit: 30 days with P1 or P2; provisioning: 30 days with a premium edition",
@@ -464,20 +464,20 @@ The statuses: Fail means at least one Finding row. Warn means review, not a find
   ], 12.5);
   callout(s, "Example2", Math.max(a, b, c) + 0.25, 1.05, "FaUserCheck", HEX.navy, "Running example: ",
     "VK-HR-04 finds the analyst's key on an old test account too. HR confirms the real record; the test account is disabled and listed, not deleted.");
-  sources(s, "Sources: Implementation guide, Gate 2 (steps 3–5, example, Validate, Rollback); project plan D-A3; Book 03, Ch 06 (Writers), Ch 11 (evidence), Ch 12.");
+  sources(s, "Sources: Implementation guide, Gate 2 (steps 3–5, example, Validate, Rollback); project plan D-AT3; Book 03, Ch 06 (Writers), Ch 11 (evidence), Ch 12.");
   notes(s,
 `Three more steps close Gate 2, each with its own owner.
 
-Decision D-A3 is the correlation threshold, and the authorizing official sets it through the agency's risk governance. Ninety-nine percent of the pilot cohort is a proposed starting point, not a rule; a risk-tiered threshold, stricter for privileged and leaver-sensitive populations, is usually better. Either way, every enabled account is correlated or on a dated exception list, and every exception has an owner.
+Decision D-AT3 is the correlation threshold, and the authorizing official sets it through the agency's risk governance. Ninety-nine percent of the pilot cohort is a proposed starting point, not a rule; a risk-tiered threshold, stricter for privileged and leaver-sensitive populations, is usually better. Either way, every enabled account is correlated or on a dated exception list, and every exception has an owner.
 
-Task A2.2 removes the other writers. In AD, the write rights on the target OUs and Exchange's custom-attribute cmdlets. In Entra ID, the help desk and self-service paths to the access slots. From here on, any other write is drift: Book 03's unauthorized-write class, found in the Entra audit log and AD change auditing.
+Task AT2.2 removes the other writers. In AD, the write rights on the target OUs and Exchange's custom-attribute cmdlets. In Entra ID, the help desk and self-service paths to the access slots. From here on, any other write is drift: Book 03's unauthorized-write class, found in the Entra audit log and AD change auditing.
 
-Task A2.3 routes the logs out. Entra ID's sign-in, audit and provisioning logs go to Azure Monitor, a storage account or the agency's SIEM before the pilot's first change. The audit log keeps 30 days with P1 or P2, the provisioning log 30 days with a premium edition, and neither is retroactive.
+Task AT2.3 routes the logs out. Entra ID's sign-in, audit and provisioning logs go to Azure Monitor, a storage account or the agency's SIEM before the pilot's first change. The audit log keeps 30 days with P1 or P2, the provisioning log 30 days with a premium edition, and neither is retroactive.
 
 The running example: VK-HR-04 finds one other account carrying the analyst's key, an old test account. HR confirms which record is real, and the second account is disabled and listed. It isn't deleted.
 
 The gate owner is the CISO. Expect a burst of high-severity findings in the first month; that's the measurement working. Rollback: restore a removed write permission through a recorded change, for a named reason and an end date. A corrected HR value is corrected again at the source.`,
-  `${IG}, Gate 2, steps 3–5, running example, Validate, Rollback, Evidence; project plan, D-A3; Book 03, Chapter 06 — "Writers"; Chapter 11 — "The evidence each event leaves"; Chapter 12 — "Sequencing principle."`);
+  `${IG}, Gate 2, steps 3–5, running example, Validate, Rollback, Evidence; project plan, D-AT3; Book 03, Chapter 06 — "Writers"; Chapter 11 — "The evidence each event leaves"; Chapter 12 — "Sequencing principle."`);
 }
 endModule(SG2);
 
@@ -491,7 +491,7 @@ endModule(SG2);
     "Same carrier in both, so a rule never asks which zone",
     "Cloud Sync unless a Connect-only need applies; password hash sync everywhere",
   ], 12.5);
-  const tb = table(s, "Flow", 1.45, [1.75, 2.15, 3.0], ["A3.1 mapping", "From", "To, and the catch"], [
+  const tb = table(s, "Flow", 1.45, [1.75, 2.15, 3.0], ["AT3.1 mapping", "From", "To, and the catch"], [
     ["Hire date", "extensionAttribute2", "employeeHireDate; AD string format yyyyMMddHHmmss.fZ"],
     ["Leave date", "extensionAttribute3", "employeeLeaveDateTime; same format"],
     ["Account type", "OU placement", "extensionAttribute7: transitional; Gate 8 removes it"],
@@ -511,7 +511,7 @@ Know the two landing zones. For most users today, HR writes into AD through the 
 
 Identity engineering chooses the engine: Cloud Sync, unless a Connect-only requirement applies, such as more than 150,000 objects in a domain, groups over 50,000 members, advanced sync rules or cross-forest references. Password hash sync everywhere.
 
-Task A3.1 maps the slot register through sync. Put every carrier in the provisioning apps' target lists. Map the dates for AD-landed users: slot 2 to employeeHireDate and slot 3 to employeeLeaveDateTime. For an AD string attribute, Microsoft's required format is the compact one on the slide, and the example code's README shows the conversion expression for the AD app, labeled an inference to test in your tenant.
+Task AT3.1 maps the slot register through sync. Put every carrier in the provisioning apps' target lists. Map the dates for AD-landed users: slot 2 to employeeHireDate and slot 3 to employeeLeaveDateTime. For an AD string attribute, Microsoft's required format is the compact one on the slide, and the example code's README shows the conversion expression for the AD app, labeled an inference to test in your tenant.
 
 Add the transitional rule that derives account type, slot 7, from OU placement. Book 02 prints the expression: if the distinguished name contains the service accounts OU, Service, otherwise Standard. It's a bridge, not an end state, because it reads placement, exactly the habit the migration retires. Record that Gate 8 removes it.
 
@@ -607,7 +607,7 @@ The second trap is a date. Every server still running Connect Sync must be on ve
 {
   const s = content(SG3, "Gate 3: proving it flowed, and backing it out");
   tag(s, "How");
-  const tb = table(s, "Prove", 1.45, [2.75, 3.85, 1.3], ["Evidence (AG3)", "Pass when", "From"], [
+  const tb = table(s, "Prove", 1.45, [2.75, 3.85, 1.3], ["Evidence (ATG3)", "Pass when", "From"], [
     ["VK-SYNC-01 (slot values)", "No sample row missing in Entra, no key held twice, no slot that differs", "The kit"],
     ["Object counts; sync errors", "Within ±1%; none", "Book 02 Ph 1"],
     ["Initial full sync", "Reconciled before deltas", "Book 03 Ph 3"],
@@ -676,20 +676,20 @@ endModule(SC);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: orientation, baseline and Gate 0", [
-  "Attribute-Driven Migration implementation guide: \"How to use this guide,\" \"One identifier through every gate,\" \"The path on one page,\" \"Prerequisites,\" Gate 0, \"Where the kits stop,\" \"Rollback at a glance.\" Project plan: Attribute-Driven Migration (tasks A0.1–A0.4, AG0).",
+  "Attribute-Driven Migration implementation guide: \"How to use this guide,\" \"One identifier through every gate,\" \"The path on one page,\" \"Prerequisites,\" Gate 0, \"Where the kits stop,\" \"Rollback at a glance.\" Project plan: Attribute-Driven Migration (tasks AT0.1–AT0.4, ATG0).",
   "Book 03, Ch 04 (enterprise person key; employeeId at most 16 characters; worker-type boundary); Ch 08 (joiner, mover, leaver; three-day catch-up); Ch 11 (\"The measured lifecycle,\" evidence by event, drift classes, retention).",
   "Book 02, Ch 07 (recording what read-only discovery couldn't see); Ch 08 (OU hierarchy and delegation; what to collect); Ch 09 (per-group decision; converting static groups; organizational units; filtering; AdminSDHolder).",
   "examples/start-kit README (what it counts; rights each part needs; run it; what a run writes) and FMPADAssessment.psm1 (Compare-FMPAssessments). examples/validation-kit README (VK-INT-07, VK-NPI-06; inputs).",
   "Design guidance in this part: the baseline's 90-day sampling window and the \"show me the last one you did\" interview rule; the framing of \"What the overview simplified.\"",
 ]);
 sourceSlide("Sources: Gates 1 and 2", [
-  "Attribute-Driven Migration implementation guide: Gate 1 (steps, Validate, Rollback, Evidence); Gate 2 (steps, running example, Validate, Rollback, Evidence). Project plan: tasks A1.1–A1.4, A2.1–A2.3; decisions D-A1, D-A2, D-A3.",
+  "Attribute-Driven Migration implementation guide: Gate 1 (steps, Validate, Rollback, Evidence); Gate 2 (steps, running example, Validate, Rollback, Evidence). Project plan: tasks AT1.1–AT1.4, AT2.1–AT2.3; decisions D-AT1, D-AT2, D-AT3.",
   "Companion guide: \"The attribute stores, in the order to reach for them\"; Stage 1; Stage 2.",
   "Book 03, Ch 06 (\"Program attribute map\": user slots, reserved slots 8, 13, 14; device slots; \"Design rules\"; \"Writers\"); Ch 11; Ch 12 (sequencing principle; Phase 1 gate).",
   "examples/validation-kit: README (what a check returns; permissions; run it; inputs; what a run writes); powershell/ValidationKit/Checks/HR.ps1 (issue text); tests/fixtures/fail (exceptions.csv, hr-export.csv, users.json) and tests/powershell/Checks.Tests.ps1 (expected counts).",
 ]);
 sourceSlide("Sources: Gate 3 and the handoff", [
-  "Attribute-Driven Migration implementation guide: Gate 3 (steps 1–6, running example, Validate, Rollback, Evidence); Gate 4 prerequisites; \"Where the kits stop.\" Project plan: task A3.1, gate AG3.",
+  "Attribute-Driven Migration implementation guide: Gate 3 (steps 1–6, running example, Validate, Rollback, Evidence); Gate 4 prerequisites; \"Where the kits stop.\" Project plan: task AT3.1, gate ATG3.",
   "examples/validation-kit: README (VK-SYNC-01, ad-slot-export.csv, known limits; VK-INT-07, gpo-scope.csv) and powershell/ValidationKit/Checks/SYNC.ps1.",
   "Book 02, Ch 09: \"Cloud Sync or Connect Sync,\" \"Connect Sync deadline: April 7, 2027,\" \"Filtering,\" \"Attribute flow and transformations,\" \"One active Connect Sync server per tenant,\" \"Soft match and hard match.\" Ch 10: \"Phase 1: sync deployment and initial sync.\"",
   "Book 03, Ch 05 (two landing zones; the middleware's duties; complete record); Ch 08 (deletion); Ch 12 (Phase 3: hybrid go-live pilot).",

@@ -21,31 +21,36 @@ Conversion, with Chapter 6
 of the developer workbook.
 
 5
-00:00:15.262 --> 00:00:19.706
-You'll give every Kerberos
-account a reviewed disposition,
+00:00:15.262 --> 00:00:19.671
+You'll read each Kerberos
+account's reviewed disposition,
 
 6
-00:00:19.706 --> 00:00:24.330
-plan its move to a G M S A or, on a
-Windows Server 2025 domain, a D M S A,
+00:00:19.671 --> 00:00:24.080
+the owner's decision from Module
+3, plan its move to a G M S A or,
 
 7
-00:00:24.330 --> 00:00:29.590
-list what stays on the Kerberos island
-with an S P N owner and an end date,
+00:00:24.080 --> 00:00:26.927
+on a Windows Server
+2025 domain, a D M S A,
 
 8
-00:00:29.590 --> 00:00:34.487
-and reconcile every managed account
-with the program's end state.
+00:00:26.927 --> 00:00:32.622
+list what stays on the Kerberos island with
+an end date and, where it has S P N's,
 
 9
-00:00:34.487 --> 00:00:38.387
+00:00:32.622 --> 00:00:38.500
+an S P N owner, and reconcile every managed
+account with the program's end state.
+
+10
+00:00:38.500 --> 00:00:42.400
 Then you'll see the write path run
 a plan only by its approved hash.
 
-10
-00:00:38.387 --> 00:00:43.250
+11
+00:00:42.400 --> 00:00:47.280
 The domain is fictional, and the
 apply changes only a fake, in memory.

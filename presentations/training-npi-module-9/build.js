@@ -35,7 +35,7 @@ const SS = "Check and summary";
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 9: Govern AI agent identities", "Non-Person Identity learning path · The guide's AI agents section, with workbook Chapter 09",
-    ["What agents add  ·  Blueprints and sponsors  ·  D-N6 as data  ·  The program's rules", "The checks  ·  The agent CA plan  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
+    ["What agents add  ·  Blueprints and sponsors  ·  D-NP6 as data  ·  The program's rules", "The checks  ·  The agent CA plan  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
 `Welcome to Module 9 of the Non-Person Identity learning path: govern A I agent identities. This module teaches the guide's A I agents section, with Chapter 9 of the developer workbook. A I agents are non-person identities, and they follow every gate before this module. In it you'll check a fictional tenant's agents against the program's rules, see the same rules run in a cloud that has no agent identities, and plan two report-only Conditional Access policies for agents. Then you'll apply one of them to a fake, by its approved hash. The tenant and its agents are fictional, and the apply changes only a fake. The code is illustrative: tested against fixtures, not run against a live tenant.`,
   `${M} — Unit "Introduction"; learning path index.`);
@@ -62,7 +62,7 @@ const SS = "Check and summary";
 {
   const s = objectives(SI, "What you'll be able to do in Module 9", [
     "Describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary",
-    "Explain decision D-N6 as data, and what the code does in a cloud without Agent ID",
+    "Explain decision D-NP6 as data, and what the code does in a cloud without Agent ID",
     "Run the AI identity check and read its findings, including the P1 drift",
     "Explain the ten-business-day sponsor rule and what happens to an orphaned agent",
     "Show that the agent CA plan is report-only and runs only by its approved hash",
@@ -73,7 +73,7 @@ const SS = "Check and summary";
   ], 65);
   sources(s, "Sources: Module 9, \"Learning objectives,\" \"Prerequisites\"; learning path index, \"What you need for the labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab. You'll describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary. You'll explain decision D N six as data, and what the code does in a cloud without Agent I D. You'll run the A I identity check and read its findings, including the top-priority drift. You'll explain the ten-business-day sponsor rule, and what happens to an orphaned agent. And you'll show that the agent Conditional Access plan is report-only, and runs only by its approved hash. Before you start, finish Module 2, because the lab reads Chapter 2's ownership run, and Module 6, on Conditional Access for workload identities.`,
+`Here's what you'll be able to do by the end of this module, which takes about sixty-five minutes with the lab. You'll describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary. You'll explain decision D N P six as data, and what the code does in a cloud without Agent I D. You'll run the A I identity check and read its findings, including the top-priority drift. You'll explain the ten-business-day sponsor rule, and what happens to an orphaned agent. And you'll show that the agent Conditional Access plan is report-only, and runs only by its approved hash. Before you start, finish Module 2, because the lab reads Chapter 2's ownership run, and Module 6, on Conditional Access for workload identities.`,
   `${M} — Unit "Learning objectives," "Prerequisites"; learning path index — "What you need for the labs."`);
 }
 endModule(SI);
@@ -99,25 +99,25 @@ endModule(SI);
   `${M} — Unit 2 "The rules as code": workbook Chapter 09, "What Microsoft Entra Agent ID is, and its stage."`);
 }
 
-// ================================================================== 5 D-N6
+// ================================================================== 5 D-NP6
 {
-  const s = content(SC, "Decision D-N6 as data: AgentId or Fallback mode");
+  const s = content(SC, "Decision D-NP6 as data: AgentId or Fallback mode");
   tag(s, "What");
   const b = table(s, "DN6", 1.45, [2.4, 2.4, 7.35], ["Cloud", "Mode", "What the code does"], [
     ["global, gcc", "AgentId", "Reads blueprints and agent identities, and checks them against the rules"],
     ["gcchigh, dod", "Fallback", "No agent identity read; the same rules on the service principals the agents run as"],
   ], { fontSize: 13.5, limit: 3.2 });
-  callout(s, "Prev", b + 0.35, 0.95, "FaScaleBalanced", HEX.navy, "D-N6 is design guidance, status Proposed: ",
+  callout(s, "Prev", b + 0.35, 0.95, "FaScaleBalanced", HEX.navy, "D-NP6 is design guidance, status Proposed: ",
     "config/agent-id-capabilities-ch09.json holds each capability's stage by cloud. Preview is reported, never enforced.");
-  sources(s, "Sources: Module 9, Unit 2; Knowledge check, answer 2; the program's design guidance, D-N6; Microsoft Learn, Microsoft Entra feature availability.");
+  sources(s, "Sources: Module 9, Unit 2; Knowledge check, answer 2; the program's design guidance, D-NP6; Microsoft Learn, Microsoft Entra feature availability.");
   notes(s,
-`The program's decision D N six is held as data, in a configuration file with each capability's stage by cloud, and its status is proposed. The code reads it and picks a mode. In the worldwide and G C C clouds it runs in Agent I D mode: it reads blueprints and agent identities and checks them against the rules. In G C C High and D O D, where Microsoft Learn's feature availability page publishes no Agent I D availability, it runs in fallback mode. It sends no agent identity read at all, and applies the same rules to the service principals the agents run as. So the rules don't change by cloud; only what the code reads does. Preview features are reported, never enforced. That's design guidance.`,
-  `${M} — Unit 2 "The rules as code": workbook Chapter 09, "Decision D-N6 as data"; Knowledge check, answer 2.`);
+`The program's decision D N P six is held as data, in a configuration file with each capability's stage by cloud, and its status is proposed. The code reads it and picks a mode. In the worldwide and G C C clouds it runs in Agent I D mode: it reads blueprints and agent identities and checks them against the rules. In G C C High and D O D, where Microsoft Learn's feature availability page publishes no Agent I D availability, it runs in fallback mode. It sends no agent identity read at all, and applies the same rules to the service principals the agents run as. So the rules don't change by cloud; only what the code reads does. Preview features are reported, never enforced. That's design guidance.`,
+  `${M} — Unit 2 "The rules as code": workbook Chapter 09, "Decision D-NP6 as data"; Knowledge check, answer 2.`);
 }
 
 // ================================================================== 6 Rules
 {
-  const s = content(SC, "The program's rules the code holds, N6.1 to N6.7");
+  const s = content(SC, "The program's rules the code holds, NP6.1 to NP6.7");
   tag(s, "What");
   const b = table(s, "Rules", 1.45, [2.8, 9.35], ["Rule", "What it says (design guidance)"], [
     ["Creation closed", "Users can create agent blueprints: No"],
@@ -161,7 +161,7 @@ endModule(SI);
   tag(s, "What");
   const l = panel(s, "Plan", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "THE PLAN", "agent-ca-plan.json", [
     "Compares the two reviewed policies with the tenant's: Create, InPlace or Differs",
-    "NotAvailable where D-N6 says agent CA isn't published",
+    "NotAvailable where D-NP6 says agent CA isn't published",
     "Refuses a reviewed file that isn't report-only Block",
   ], 12.5);
   const r = panel(s, "Write", 6.85, 1.45, 5.9, null, HEX.red, HEX.redTint, "THE WRITE PATH REFUSES UNLESS", "Invoke-NpiAgentCaAction.ps1", [
@@ -173,14 +173,14 @@ endModule(SI);
     "that waits until the agent targets leave preview in the agency's cloud.");
   sources(s, "Sources: Module 9, Unit 2; the kit's design; Microsoft Learn, Conditional Access for agents; Create conditionalAccessPolicy. Chapter 09, the agent CA plan.");
   notes(s,
-`The only thing this chapter ever writes is the two agent policies, report-only, and that's the kit's design. The plan compares the two reviewed policies with the tenant's, and says create, in place, or differs for each. Where decision D N six says agent Conditional Access isn't published, it marks them not available. And it refuses a reviewed file that isn't report-only Block. The write path is a separate script. It refuses to run unless the plan's hash is the approved one, for this tenant and cloud, and no more than seven days old. Every write creates a report-only policy with Block as the only grant. It runs as a person with the Conditional Access Administrator role. And it never turns a policy on. Microsoft Learn's page on Conditional Access for agents lists the feature as preview, so that waits until the agent targets leave preview in the agency's cloud.`,
+`The only thing this chapter ever writes is the two agent policies, report-only, and that's the kit's design. The plan compares the two reviewed policies with the tenant's, and says create, in place, or differs for each. Where decision D N P six says agent Conditional Access isn't published, it marks them not available. And it refuses a reviewed file that isn't report-only Block. The write path is a separate script. It refuses to run unless the plan's hash is the approved one, for this tenant and cloud, and no more than seven days old. Every write creates a report-only policy with Block as the only grant. It runs as a person with the Conditional Access Administrator role. And it never turns a policy on. Microsoft Learn's page on Conditional Access for agents lists the feature as preview, so that waits until the agent targets leave preview in the agency's cloud.`,
   `${M} — Unit 2 "The rules as code": workbook Chapter 09, "The agent Conditional Access plan and the separate write path."`);
 }
 endModule(SC);
 
 // ================================================================== 9 Try it: steps 1-4
 {
-  const s = content(SL, "Try it: Learn's samples, permissions, D-N6 by cloud");
+  const s = content(SL, "Try it: Learn's samples, permissions, D-NP6 by cloud");
   tag(s, "How");
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
     "# Step 1 makes Chapter 01's register and Chapter 02's ownership run; its last line:",
@@ -200,7 +200,7 @@ endModule(SC);
   line(s, "Read", "agent-id holds ten read permissions, none ending in ReadWrite. Commands: the module page, steps 1 to 4.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 9, \"Exercise: Lab 1,\" steps 1 to 4; Microsoft Learn's Agent ID samples, pinned; examples/non-person-identity (NpiAgentId).");
   notes(s,
-`Try it. Lab 1 runs in the non-person identity folder of the examples, in PowerShell 7. Its step one makes Chapter 1's register and Chapter 2's ownership run, so the chapter's steps are one ahead here. The ownership run's last line is its plan's hash. Step two sends Microsoft Learn's Agent I D samples to the fake: thirteen pass, none fail, and forty-nine of the file's other tests aren't run. Step three lists what each task needs. The read task holds ten read permissions, and none ends in ReadWrite. The write task holds only the two policy permissions. Step four reads decision D N six for each cloud. The worldwide and G C C clouds run in Agent I D mode, with agent identities generally available and agent Conditional Access in preview. G C C High and D O D run in fallback mode: nothing published.`,
+`Try it. Lab 1 runs in the non-person identity folder of the examples, in PowerShell 7. Its step one makes Chapter 1's register and Chapter 2's ownership run, so the chapter's steps are one ahead here. The ownership run's last line is its plan's hash. Step two sends Microsoft Learn's Agent I D samples to the fake: thirteen pass, none fail, and forty-nine of the file's other tests aren't run. Step three lists what each task needs. The read task holds ten read permissions, and none ends in ReadWrite. The write task holds only the two policy permissions. Step four reads decision D N P six for each cloud. The worldwide and G C C clouds run in Agent I D mode, with agent identities generally available and agent Conditional Access in preview. G C C High and D O D run in fallback mode: nothing published.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 1 to 4.`);
 }
 
@@ -210,12 +210,12 @@ endModule(SC);
   tag(s, "How");
   const c = code(s, "Check", 0.6, 1.45, 12.15, [
     "# Step 5: ./Invoke-NpiAgentId.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership ...",
-    "D-N6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview",
+    "D-NP6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview",
     "AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields",
     "  filled: 2 of 2",
     "Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2",
     "Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent",
-    "Plan SHA-256: 754fda6b79d55b514ea438039da2ca764e14dc98a88f0c70a60f4ac9762ce450",
+    "Plan SHA-256: 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b",
     "# Step 6: the Findings grouped by rule (Name, Count): 16 rules, among them",
     "NPI-AI-10 2   NPI-AI-13 1   NPI-AI-16 1   NPI-AI-21 1   NPI-AI-22 2   NPI-AI-23 1   (and ten more: ...)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
@@ -242,7 +242,7 @@ endModule(SC);
     "Sandbox Helper                                 alice@contoso.example                   None",
     "  (and four blueprint and service principal rows: ...)",
     "# Step 8: Chapters 01, 02 and 09 again, with -Cloud gcchigh; the AI check prints",
-    "D-N6 (Proposed): Fallback mode in cloud 'gcchigh'; agent Conditional Access Not published; agent risk Not published",
+    "D-NP6 (Proposed): Fallback mode in cloud 'gcchigh'; agent Conditional Access Not published; agent risk Not published",
     "AI identities: 1 checked (1 ServicePrincipal); Chapter 02 sponsor fields filled: 0 of 2",
     "Agent CA plan: Unapproved NotAvailable, HighRisk NotAvailable; nothing sent   (...)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10 });
@@ -267,7 +267,7 @@ endModule(SC);
     "Apply: 1 Sent",
     "  Sent HighRisk Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results",
     "  before any change of state",
-    "The plan's SHA-256 is 754fda6b79d55b514ea438039da2ca764e14dc98a88f0c70a60f4ac9762ce450, not the approved",
+    "The plan's SHA-256 is 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
   line(s, "Tests", "Step 11: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
@@ -307,7 +307,7 @@ endModule(SL);
     ["IA-5(2); AC-6; AC-6(5)", "KSI-IAM-SNU, KSI-SVC-ASM; KSI-IAM-ELP, KSI-IAM-JIT", "findings.json, NPI-AI-10 to -15"],
     ["CM-8; AC-2(4)", "KSI-PIY-GIV; KSI-MLA-LET, KSI-MLA-RVL", "NPI-AI-21 to -23: no shadow AI identity"],
     ["AC-3; SCuBA MS.AAD.9.1v1; CM-3", "KSI-IAM-ELP, KSI-IAM-JIT; KSI-CMT-LMC, KSI-CMT-RVP", "agent-ca-plan.json; the dry run's and apply's results and manifest"],
-    ["SA-9 External System Services", "KSI-SCR-MIT, KSI-SCR-MON", "The D-N6 capabilities file; Get-NpiAgentCapability"],
+    ["SA-9 External System Services", "KSI-SCR-MIT, KSI-SCR-MON", "The D-NP6 capabilities file; Get-NpiAgentCapability"],
   ], { fontSize: 11, limit: 5.6 });
   line(s, "KSI", "KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them. The mapping is design guidance.", b + 0.2, 0.45, 12.5);
   sources(s, "Sources: Module 9, \"Introduction\"; NIST SP 800-53 Rev. 5; OMB M-25-21; CISA ScubaGear MS.AAD.9.1v1; FedRAMP, Key Security Indicators; the guide.");
@@ -343,10 +343,10 @@ endModule(SL);
     "Packages the ISSO verifies",
   ], 13);
   callout(s, "Keep", Math.max(l, r) + 0.3, 0.95, "FaFileShield", HEX.teal, "The evidence an ISSO keeps: ",
-    "the AI identities, findings, orphan candidates, the plan and its SHA-256, the runs' results and manifests, dated; D-N6; the tests.");
+    "the AI identities, findings, orphan candidates, the plan and its SHA-256, the runs' results and manifests, dated; D-NP6; the tests.");
   sources(s, "Sources: Module 9, \"Summary\"; Module 10, \"Introduction.\"");
   notes(s,
-`To sum up. You checked eight fictional A I identities, filled the sponsor fields Chapter 2 recorded, found an orphaned agent and four top-priority drift findings, ran the same rules in G C C High's fallback mode, and applied a report-only agent policy to a fake by its approved hash. The evidence an ISSO keeps from this module is the A I identities file, the findings, the orphan candidates, the policy plan with its approved hash, and the dry run's and apply's results and manifests, all dated; the capability table for decision D N six; and the test result. Next is Module 10: find drift and file the evidence. It keeps every gate's state true against an approved baseline, and hands the ISSO evidence they can verify themselves.`,
+`To sum up. You checked eight fictional A I identities, filled the sponsor fields Chapter 2 recorded, found an orphaned agent and four top-priority drift findings, ran the same rules in G C C High's fallback mode, and applied a report-only agent policy to a fake by its approved hash. The evidence an ISSO keeps from this module is the A I identities file, the findings, the orphan candidates, the policy plan with its approved hash, and the dry run's and apply's results and manifests, all dated; the capability table for decision D N P six; and the test result. Next is Module 10: find drift and file the evidence. It keeps every gate's state true against an approved baseline, and hands the ISSO evidence they can verify themselves.`,
   `${M} — Unit "Summary"; Module 10 — "Introduction."`);
 }
 endModule(SS);
@@ -355,7 +355,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 9 deck", [
   "Module page: docs/training/non-person-identity/09-ai-agent-identities.md (Non-Person Identity learning path, Module 9): Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary. The learning path index: what you need for the labs.",
-  "What the module links for the design and rules: Non-Person Identity: An Implementation Guide, \"AI agents,\" \"Orphans,\" \"Dangers\" and \"Evidence\"; workbook Chapter 09, \"What Microsoft Entra Agent ID is, and its stage,\" \"Decision D-N6 as data,\" \"The program's rules the code holds,\" \"The checks,\" \"The agent Conditional Access plan and the separate write path.\"",
+  "What the module links for the design and rules: Non-Person Identity: An Implementation Guide, \"AI agents,\" \"Orphans,\" \"Dangers\" and \"Evidence\"; workbook Chapter 09, \"What Microsoft Entra Agent ID is, and its stage,\" \"Decision D-NP6 as data,\" \"The program's rules the code holds,\" \"The checks,\" \"The agent Conditional Access plan and the separate write path.\"",
   "Kit: examples/non-person-identity (Invoke-NpiAgentId.ps1, Invoke-NpiAgentCaAction.ps1; powershell/NpiAgentId; config/agent-id-capabilities-ch09.json; tests/fixtures/ch09). Fictional tenant and agents; -Apply changes only a fake. Illustrative: tested against fixtures, not run against a live tenant.",
   "Lab output: run November 3, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity, with examples/third_party and examples/drift-pipeline beside it; output trimmed and wrapped where the slides say so. Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by the authors.",
 ]);

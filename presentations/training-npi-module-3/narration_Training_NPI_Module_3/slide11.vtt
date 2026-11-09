@@ -43,29 +43,29 @@ and each owner's decision.
 Run the matrix.
 
 10
-00:00:26.887 --> 00:00:28.890
+00:00:26.887 --> 00:00:28.919
 Record what the license read shows,
 
 11
-00:00:28.890 --> 00:00:32.964
+00:00:28.919 --> 00:00:33.052
 and check in the admin center which
 principals Conditional Access can
 
 12
-00:00:32.964 --> 00:00:36.762
+00:00:33.052 --> 00:00:36.975
 actually target, because that's the
-scope the D N 4 decision rests on.
+scope the D N P 4 decision rests on.
 
 13
-00:00:36.762 --> 00:00:41.375
+00:00:36.975 --> 00:00:41.587
 To back it out, step six removes the
 two permissions and deletes the output.
 
 14
-00:00:41.375 --> 00:00:43.525
+00:00:41.587 --> 00:00:43.737
 The authors haven't run Lab 2.
 
 15
-00:00:43.525 --> 00:00:46.730
+00:00:43.737 --> 00:00:46.940
 The workbook's Chapter 3
 has the exact commands.

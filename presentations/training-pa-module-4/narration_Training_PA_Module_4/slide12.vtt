@@ -1,71 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:06.112
-Lab 2 works one role in your own test
-tenant, worldwide or G C C, never production,
+00:00:00.050 --> 00:00:04.750
+Step five tries wave two, Tier
+0, before wave one is done.
 
 2
-00:00:06.112 --> 00:00:09.522
-with Microsoft Entra I
-D P2 or I D Governance
+00:00:04.750 --> 00:00:09.320
+Five roles, nine findings, five
+warnings and two information items,
 
 3
-00:00:09.522 --> 00:00:12.837
-licenses for the test users and approvers.
+00:00:09.320 --> 00:00:13.225
+and the run is blocked: fix
+every finding before the apply.
 
 4
-00:00:12.837 --> 00:00:14.747
-Use a test copy of the files,
+00:00:13.225 --> 00:00:15.593
+The nine findings are pim oh seven,
 
 5
-00:00:14.747 --> 00:00:18.825
-and the emergency access file
-you wrote in Module 2's Lab 2.
+00:00:15.593 --> 00:00:19.313
+one for each Tier 1 role that
+doesn't match its file yet.
 
 6
-00:00:18.825 --> 00:00:23.006
-Check the prerequisites first:
-Module 2's check with no finding,
+00:00:19.313 --> 00:00:23.562
+The two Info rows are the emergency
+accounts, kept permanent active.
 
 7
-00:00:23.006 --> 00:00:25.338
-and the activation gate's policy On.
+00:00:23.562 --> 00:00:26.187
+Step six applies wave one to the fake.
 
 8
-00:00:25.338 --> 00:00:27.686
-Then make the lab's role and groups,
+00:00:26.187 --> 00:00:31.338
+The first command stops before any write:
+the plan sets an authentication context,
 
 9
-00:00:27.686 --> 00:00:30.874
-dry-run as a reader app,
-and apply as a writer app.
+00:00:31.338 --> 00:00:36.488
+so confirm its Conditional Access policy
+is On, then pass Activation Gate Checked.
 
 10
-00:00:30.874 --> 00:00:35.325
-Then activate as a second test user,
-and convert their standing assignment.
+00:00:36.488 --> 00:00:38.287
+The second command passes it.
 
 11
-00:00:35.325 --> 00:00:39.920
-The reader gets the three plan permissions;
-the writer adds the two apply writes;
+00:00:38.287 --> 00:00:42.892
+It sends the rule updates first and
+the eligibility requests second,
 
 12
-00:00:39.920 --> 00:00:44.237
-and the role assignment schedule write
-is granted only for the conversion.
+00:00:42.892 --> 00:00:47.738
+fifty-one requests, then reads back:
+zero differences from the role files.
 
 13
-00:00:44.237 --> 00:00:48.171
-To back out, restore the rules
-from the apply run's before file,
+00:00:47.738 --> 00:00:51.170
+Step seven runs the tests,
+three hundred thirty pass,
 
 14
-00:00:48.171 --> 00:00:51.712
-remove what the apply added,
-and delete the lab folders.
-
-15
-00:00:51.712 --> 00:00:53.930
-The authors haven't run Lab 2.
+00:00:51.170 --> 00:00:53.380
+and you delete the output folder.
