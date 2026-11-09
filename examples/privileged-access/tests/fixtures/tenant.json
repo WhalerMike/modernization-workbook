@@ -93,11 +93,11 @@
     ]
   },
   "conditionalAccessPolicies": [
-    { "id": "ca000000-0000-4000-8000-000000000001", "displayName": "CA001-All-Block-legacy-authentication", "state": "enabled",
+    { "id": "ca000000-0000-4000-8000-000000000001", "displayName": "CA001-AllUsers-BlockLegacyAuth", "state": "enabled",
       "conditions": { "users": { "includeUsers": ["All"], "excludeUsers": [], "includeGroups": [], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"] } } },
-    { "id": "ca000000-0000-4000-8000-000000000004", "displayName": "CA004-Admins-Require-compliant-device", "state": "enabled",
+    { "id": "ca000000-0000-4000-8000-000000000004", "displayName": "CA004-Admins-RequireCompliantDevice", "state": "enabled",
       "conditions": { "users": { "includeUsers": [], "excludeUsers": [], "includeGroups": [], "excludeGroups": [], "includeRoles": ["62e90394-69f5-4237-9190-012177145e10"] } } },
-    { "id": "ca000000-0000-4000-8000-000000000090", "displayName": "CA090-Emergency-accounts-Report-sign-ins", "state": "enabledForReportingButNotEnforced",
+    { "id": "ca000000-0000-4000-8000-000000000090", "displayName": "CA090-AllUsers-ReportOnly-CoverageProbe", "state": "enabledForReportingButNotEnforced",
       "conditions": { "users": { "includeUsers": ["0e000000-0000-4000-8000-000000000001", "0e000000-0000-4000-8000-000000000002"], "excludeUsers": [], "includeGroups": [], "excludeGroups": [] } } },
     { "id": "ca000000-0000-4000-8000-000000000099", "displayName": "CA099-Retired-Pilot", "state": "disabled",
       "conditions": { "users": { "includeUsers": ["All"], "excludeUsers": [], "includeGroups": [], "excludeGroups": [] } } },

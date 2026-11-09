@@ -47,7 +47,7 @@
       "eligibleGroupIds": ["9e000000-0000-4000-8000-000000000003"],
       "assignments": "activeAndEligible",
       "cadence": "quarterly",
-      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000012" }],
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000012" }, { "group": "aa000000-0000-4000-8000-000000000015" }],
       "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
       "descriptionForReviewers": "Tier 1. Approve only assignments with a current need; unreviewed access is removed when the review ends. Questions: governance office."
     },

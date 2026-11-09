@@ -1,6 +1,8 @@
 PS> Get-Content out/pim-groups/diff.txt
-# PIM for Groups plan, cloud gcc, 8 change(s), dry run: nothing sent
+# PIM for Groups plan, cloud gcc, 10 change(s), dry run: nothing sent
 ~ PRV-T0-PrivRoleAdmin member Expiration_EndUser_Assignment: required=True max=PT8H -> required=True max=PT4H
+~ PRV-T0-PrivRoleAdmin member Enablement_EndUser_Assignment: enabled=Justification,MultiFactorAuthentication,Ticketing -> enabled=Justification,Ticketing
+~ PRV-T0-PrivRoleAdmin member AuthenticationContext_EndUser_Assignment: context=off -> context=c1
 ~ PRV-T0-PrivRoleAdmin member Approval_EndUser_Assignment: approval=False approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0 -> approval=True approvers=groupMembers:5a000000-0000-4000-8000-0000000000a0
 ~ PRV-T1-AzureOwner-SubWorkload owner Expiration_Admin_Eligibility: required=False max=P90D -> required=True max=P90D
 ~ active member PRV-T1-ExchangeAdmin eve.exch@contoso.example end 2026-12-31 -> 2027-04-28 (CHG-1002)
