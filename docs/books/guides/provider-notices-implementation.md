@@ -96,7 +96,7 @@ Each record says whether action is required and by when, and whether the provide
 | Azure | Reader on each subscription[^pn-sub-tenant] | Service Health Security Reader, to see a security advisory's sensitive fields and impacted resources; Reader and Monitoring Reader can't[^pn-sec-elevated] | Permission to create the policy assignment and the role assignment for its managed identity at the scope[^pn-remediate] |
 | Microsoft 365 | `ServiceMessage.Read.All`; `ServiceHealth.Read.All`; delegated sign-in also needs an admin role[^pn-graph-overview] | Global Administrator or Message Center Privacy Reader for data privacy messages[^pn-m365-roles] | None |
 | OCI | `Allow group <group> to read announcements in tenancy` (`inspect` lists summaries only)[^pn-oci-policy] | None | None |
-| AWS | A customer managed policy with `health:DescribeEvents`, `health:DescribeEventDetails`, `health:DescribeAffectedEntities`; AWS publishes no read-only managed policy for Health[^pn-aws-iam] | Business, Enterprise On-Ramp or Enterprise Support on the account[^pn-aws-plan] | None |
+| AWS | A customer managed policy with `health:DescribeEvents`, `health:DescribeEventDetails`, `health:DescribeAffectedEntities`; AWS publishes no read-only managed policy for Health[^pn-aws-iam] | A qualifying AWS Support plan on the account; AWS's pages name the plans differently[^pn-aws-plan] [^pn-aws-plan-ug] | None |
 | Google Cloud | `roles/servicehealth.viewer` (Personalized Service Health Viewer) on the project or organization[^pn-gcp-iam] | The Service Health API enabled on the project, once | None |
 
 : Permissions by provider {.striped .hover}
@@ -111,7 +111,7 @@ Each record says whether action is required and by when, and whether the provide
 | Security advisories | Yes; sensitive fields need an elevated role | No separate type | No separate type | No separate type; the kit uses the `SECURITY` persona | No |
 | Says action is required | No field the kit reads; the kit's rule for retirements and security advisories | `actionRequiredByDateTime` | `ACTION_REQUIRED`, `ACTION_REQUIRED_BY` | `actionability` | No |
 | Least-privileged reader | Reader | `ServiceMessage.Read.All`, `ServiceHealth.Read.All` | `read announcements` | Three `health:Describe*` actions | `roles/servicehealth.viewer` |
-| Cost or plan | None stated for Resource Graph | None stated | None stated | Business, Enterprise On-Ramp or Enterprise Support | None stated |
+| Cost or plan | None stated for Resource Graph | None stated | None stated | A qualifying AWS Support plan | None stated |
 | Push alternative | Service Health alerts, at scale through Azure Policy[^pn-policy] | Message center email | Announcement subscriptions (not used by the kit) | EventBridge `aws.health` events[^pn-aws-eb] | Not used by the kit |
 | Government cloud | Azure Government (`management.usgovcloudapi.net`); Learn's samples link the Azure Government portal[^pn-arg-samples] | GCC on the global endpoint; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us`[^pn-graph-overview][^pn-graph-deployments] | US Government Cloud (OC2) endpoints in us-langley-1 and us-luke-1; OC3 not yet specified[^pn-oci-gov] | GovCloud (US): one endpoint in us-gov-west-1[^pn-aws-gov] | Not in Assured Workloads' FedRAMP Moderate, High, IL4 or IL5 packages[^pn-gcp-aw] |
 
@@ -332,7 +332,7 @@ Four notices; the rescheduled maintenance replaces the original in its chain, wi
 
 AWS Health publishes issues, scheduled changes and account notifications per account, with the affected resources.[^pn-aws-events]
 
-**Prerequisites.** The account has a Business, Enterprise On-Ramp or Enterprise Support plan; without one the API answers `SubscriptionRequiredException`.[^pn-aws-plan] The reader holds a customer managed policy with the three read actions; AWS publishes no read-only managed policy for Health, and `AWSHealthFullAccess` includes writes.[^pn-aws-iam]
+**Prerequisites.** The account has a qualifying AWS Support plan; without one the API answers `SubscriptionRequiredException`. AWS's pages name the qualifying plans differently: the CLI reference names Business, Enterprise On-Ramp or Enterprise Support, the AWS Health User Guide names Business Support+, Enterprise Support or Unified Operations, and the GovCloud (US) guide names Business or Enterprise. Check the account's plan against the current pages.[^pn-aws-plan] [^pn-aws-plan-ug] The reader holds a customer managed policy with the three read actions; AWS publishes no read-only managed policy for Health, and `AWSHealthFullAccess` includes writes.[^pn-aws-iam]
 
 **Steps.**
 
@@ -695,6 +695,8 @@ The kit's records support these controls; they don't by themselves decide them, 
 [^pn-aws-events]: AWS, AWS Health API Reference, "Event" (fields, `eventTypeCategory`, `statusCode`, `actionability`, `personas`), <https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html>, and AWS CLI reference, `describe-events`, <https://docs.aws.amazon.com/cli/latest/reference/health/describe-events.html> (accessed Nov 9, 2026).
 [^pn-aws-details]: AWS, AWS Health API Reference, "DescribeEventDetails" (1 to 10 event ARNs; `eventDescription.latestDescription`) and "AffectedEntity," <https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html> and <https://docs.aws.amazon.com/health/latest/APIReference/API_AffectedEntity.html> (accessed Nov 9, 2026).
 [^pn-aws-plan]: AWS, AWS CLI reference, `health` (a Business, Enterprise On-Ramp or Enterprise Support plan; otherwise `SubscriptionRequiredException`), <https://docs.aws.amazon.com/cli/latest/reference/health/index.html> (accessed Nov 9, 2026).
+
+[^pn-aws-plan-ug]: AWS, AWS Health User Guide, "Concepts for AWS Health", AWS Health API (a Business Support+, Enterprise Support or Unified Operations plan; otherwise `SubscriptionRequiredException`), <https://docs.aws.amazon.com/health/latest/ug/aws-health-concepts-and-terms.html#aws-health-api> (accessed Nov 9, 2026); and AWS GovCloud (US) User Guide, "AWS Health in AWS GovCloud (US)" (the API for Business or Enterprise support plan customers), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html> (accessed Nov 9, 2026).
 [^pn-aws-iam]: AWS, AWS Health User Guide, "Identity-based policy examples" (`health:Describe*`) and "AWS managed policies for AWS Health" (no read-only policy), <https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html> and <https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html> (accessed Nov 9, 2026).
 [^pn-aws-endpoints]: AWS, AWS Health User Guide, "Accessing the AWS Health API" (the active endpoint in us-east-1), <https://docs.aws.amazon.com/health/latest/ug/health-api.html> (accessed Nov 9, 2026).
 [^pn-aws-gov]: AWS, AWS GovCloud (US) User Guide, "AWS Health" (a single regional endpoint in us-gov-west-1; EventBridge doesn't send public Service Health events), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html> (accessed Nov 9, 2026).
