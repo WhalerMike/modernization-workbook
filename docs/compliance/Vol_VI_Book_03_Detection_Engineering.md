@@ -53,7 +53,7 @@ The specific engineering problem it solves is this: the richest behavioral and r
 The rules in this book **reconstruct that analytic layer inside the agency's own boundary**. They run over the telemetry the Volume III connector fabric already lands — sign-in logs, unified audit, device events — and produce rule-and-baseline equivalents of the commercial ML outputs, feeding the result back into the agency's own access and response decisions.
 
 ::: {.aan-note}
-**Deployed example** — The rule library ships in the Microsoft Sentinel scheduled-analytics-rule format (`kind: Scheduled`), because Sentinel is the deployed example for the {{< meta agency.short >}} estate and its KQL runs directly over the Volume III tables. The *mechanism* — deterministic detections and baselines reconstructing a commercial ML output in-boundary — is portable; the same detections are portable to Splunk (SPL) and Elastic (EQL/ES|QL) so a different SIEM realizes them (the library README documents the portability; the shipped rules are authored in the Sentinel format). The mechanism is the invariant; the query language is the deployed example.
+**Deployed example** — The rule library ships in the Microsoft Sentinel scheduled-analytics-rule format (`kind: Scheduled`), because Sentinel is the deployed example for the {{< meta agency.short >}} estate and its KQL runs directly over the Volume III tables. The *mechanism* — deterministic detections and baselines reconstructing a commercial ML output in-boundary — is portable; the same detections are portable to Splunk (SPL) and Elastic (EQL/ES|QL) so a different SIEM realizes them (the portability is described in [Book 12, Chapter 11](../books/b12-security-operations/11-detection-engineering-and-response.md); the rules are authored in the Sentinel format). The mechanism is the invariant; the query language is the deployed example.
 :::
 
 # The In-Boundary Principle
@@ -62,7 +62,7 @@ The single fact that makes this library lawful where inheriting the commercial a
 
 # The Rule Library
 
-The library is a versioned set of analytics rules under `impl/detection-rules/`. Each rule carries entity mappings, MITRE ATT&CK tags, tuning thresholds flagged inline, and a cross-reference to the architecture book it implements and the controls it operationalizes.
+The library is a versioned set of analytics rules; the rules a reader can reach are in [Book 12, Chapter 11](../books/b12-security-operations/11-detection-engineering-and-response.md). Each rule carries entity mappings, MITRE ATT&CK tags, tuning thresholds flagged inline, and a cross-reference to the architecture book it implements and the controls it operationalizes.
 
 | Rule | Reconstructs (commercial signal) | Implements (Vol III) | Controls operationalized |
 |---|---|---|---|
@@ -80,7 +80,7 @@ Each rule is a scheduled KQL analytic over the Volume III tables. The impossible
 
 ```kql
 SigninLogs
-| where ResultType == 0
+| where ResultType == "0"
 | extend Lat = todouble(LocationDetails.geoCoordinates.latitude),
          Lon = todouble(LocationDetails.geoCoordinates.longitude)
 | sort by UserPrincipalName asc, TimeGenerated asc
@@ -93,11 +93,11 @@ SigninLogs
 | where Hours > 0 and (Km / Hours) > 900   // faster than a commercial flight — TUNE per estate
 ```
 
-The full, deployable rules — with entity mappings, ATT&CK tags, and per-rule tuning notes — are in the `impl/detection-rules/` catalog alongside this book.
+The deployable rules, with their entity mappings, ATT&CK tags and per-rule tuning notes, are in [Book 12, Chapter 11](../books/b12-security-operations/11-detection-engineering-and-response.md).
 
 # Deployment
 
-The rules use the Sentinel scheduled-analytics-rule YAML schema and deploy through the SIEM's repository connection (GitHub / Azure DevOps), a PowerShell module, or ARM conversion — through the change-controlled pipeline of Book VI-00, never by click-path. **Every threshold is a conservative starting point flagged `// TUNE:` and must be calibrated against the agency's own baseline before the rule is enabled.** The prerequisite is the Volume III connector fabric: the sign-in (interactive *and* non-interactive), unified-audit, and device-event tables the rules query must already be landing.
+The rules use the Sentinel scheduled-analytics-rule YAML schema and deploy through the SIEM's repository connection (GitHub / Azure DevOps), a PowerShell module, or ARM conversion — through the change-controlled pipeline ([Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model), never by click-path. **Every threshold is a conservative starting point flagged `// TUNE:` and must be calibrated against the agency's own baseline before the rule is enabled.** The prerequisite is the Volume III connector fabric: the sign-in (interactive *and* non-interactive), unified-audit, and device-event tables the rules query must already be landing.
 
 # Closure Necessity
 
@@ -114,16 +114,17 @@ Carry these into any assessment; the library does not pretend to commercial pari
 - These are **minutes-to-hours** detections, not the continuously-tuned commercial-minutes fidelity of the vendor's pipeline.
 - They carry **no global threat intelligence** — the agency sees only its own tenant. The atypical-IP and leaked-credential joins are bounded by whatever threat-intel feed the agency subscribes to.
 - The session-anomaly rule (`04`) triggers a response playbook (Book VI-04) that approximates real-time session revocation at **minutes, not sub-second**.
-- Detections **rot**: thresholds drift and sources silently stop emitting. The operate-and-tune capability — the standing detection- and data-engineering that maintains and re-tunes the library — is the real cost and the precondition for the maturity claim holding over time. Book VI-08 carries the validation harnesses that catch silent decay.
+- The DLP-override rule (`06`) watches override and near-miss events on the DLP policy packs; it does not reconstruct the content-fingerprint behavioral model of a commercial behavioral-DLP service, and the packs themselves restrict movement of *matched* content only (Book VI-05).
+- Detections **rot**: thresholds drift and sources silently stop emitting. The operate-and-tune capability — the standing detection- and data-engineering that maintains and re-tunes the library — is the real cost and the precondition for the maturity claim holding over time. The detection-efficacy and telemetry-completeness measures in [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) catch silent decay.
 
 # Cross-References
 
 - **Volume III — SIEM/XDR Detection** — the connector architecture and the AU-6 argument this library deploys.
 - **Book VI-04 — Response Automation (SOAR)** — the playbooks high-confidence firings trigger.
-- **Book VI-07 — Evidence & ConMon Pipeline** — where rule firings and incidents emit to the evidence contract.
-- **Book VI-08 — Validation & Test Harnesses** — detection-efficacy and telemetry-completeness testing.
-- **Rule catalog:** `impl/detection-rules/`.
+- [Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md) and [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) — the evidence contract and the continuous-monitoring pipeline, where rule firings and incidents emit to the evidence contract.
+- [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) — detection-efficacy and telemetry-completeness measures.
+- **Rule library:** [Book 12, Chapter 11](../books/b12-security-operations/11-detection-engineering-and-response.md).
 
 # Provenance
 
-This book operationalizes the detection layer of the Volume III SIEM/XDR architecture. Vendor-specific claims (table schemas, KQL functions, Sentinel rule format) are sourced to Microsoft Learn, whose links are carried in the briefing deck spec and the Volume III architecture book rather than inline here; the reconstruction logic and thresholds are agency-authored and must be tuned to the local estate. Products named are deployed examples of the deterministic-detection mechanism, not the mechanism itself.
+This book operationalizes the detection layer of the Volume III SIEM/XDR architecture. Vendor-specific claims (table schemas, KQL functions, Sentinel rule format) are sourced to Microsoft Learn, whose links are cited in [Book 12, Chapter 11](../books/b12-security-operations/11-detection-engineering-and-response.md) and the Volume III architecture book rather than inline here; the reconstruction logic and thresholds are agency-authored and must be tuned to the local estate. Products named are deployed examples of the deterministic-detection mechanism, not the mechanism itself.

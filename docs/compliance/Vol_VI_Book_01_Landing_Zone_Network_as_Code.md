@@ -27,7 +27,7 @@ Developed by the **CSI Team (Cloud Services Infrastructure)**; not yet reviewed 
 :::
 
 ::: {.aan-important}
-**Series Context** — Volume VI Book 01. This is the deployable realization of **Volume I (Foundation & Transport)**: the landing zone, IPAM/DDI naming-and-addressing plane, and the SASE/TIC distributed policy-enforcement edge, expressed as infrastructure-as-code applied through the Book VI-00 pipeline.
+**Series Context** — Volume VI Book 01. This is the deployable realization of **Volume I (Foundation & Transport)**: the landing zone, IPAM/DDI naming-and-addressing plane, and the SASE/TIC distributed policy-enforcement edge, expressed as infrastructure-as-code applied through the change-controlled pipeline described in [Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model.
 :::
 
 # What This Document Addresses
@@ -48,7 +48,7 @@ The deployment is a layered set of modules, each owning one plane and depending 
 | Transport | `network` | Hub-spoke, segmentation, NGFW/route intent | `ipam` |
 | Enforcement | `edge` | SASE/TIC 3.0 PEP capability set | `network`, `ddi` |
 
-Each module emits its state to the evidence contract (Book VI-07); the `ipam` module's output — the authoritative address plan — is the join key that later makes CM-8 inventory possible.
+Each module emits its state to the evidence contract ([Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md)); the `ipam` module's output — the authoritative address plan — is the join key that later makes CM-8 inventory possible.
 
 # Deployable Artifacts
 
@@ -91,7 +91,7 @@ The DHCP scopes and the address plan come from the same `ipam` source, so a devi
 
 # Deployment
 
-1. Apply `platform`, then `ipam`, then `ddi`/`network` in dependency order through the change-controlled pipeline (Book VI-00) — never a portal.
+1. Apply `platform`, then `ipam`, then `ddi`/`network` in dependency order through the change-controlled pipeline ([Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model) — never a portal.
 2. Run `ddi` in RPZ `log_only` mode first to baseline benign resolution, then flip to enforcing.
 3. Register the `ipam` output as the authoritative inventory source the CM-8 join reads.
 4. Point the `edge` (SASE/TIC PEP) at the `ddi` resolver so egress name resolution is governed at the enforcement point.
@@ -116,17 +116,17 @@ Volume I's claim is that no scanner *creates* authoritative naming or inventory 
 
 # Honest Limits
 
-- The IaC deploys the *mechanism*; it does not repeal operational discipline — an out-of-band portal change still causes drift, which is why Book VI-08's smoke tests re-assert the intended state.
+- The IaC deploys the *mechanism*; it does not repeal operational discipline — an out-of-band portal change still causes drift, which is why a post-deploy smoke test that re-reads the deployed state after each apply and on a schedule and diffs it against the source (the detection-efficacy and telemetry-completeness measures are in [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md)) re-asserts the intended state.
 - Protective-DNS efficacy is bounded by the threat-intelligence feed the agency subscribes to (the RPZ is only as current as its feed).
 - Multi-CSP substitution changes the module syntax and the connector estate; the naming/addressing/enforcement mechanism it realizes is invariant.
 
 # Cross-References
 
 - **Volume I — Foundation & Transport** — the architecture this book deploys.
-- **Book VI-00** — the pipeline and evidence-emission model.
+- [Book 15, Chapter 02](../books/b15-day2-operations/02-day-two-is-where-compliance-lives.md#the-deploy-model), The deploy model — the pipeline and evidence-emission model.
 - **Book VI-06** — the baselines that harden the deployed platform.
-- **Book VI-07** — where deployment state emits to the evidence contract.
-- **Book VI-08** — smoke tests that re-assert the deployed boundary.
+- [Book 12, Chapter 02](../books/b12-security-operations/02-the-evidence-contract.md) — where deployment state emits to the evidence contract.
+- [Book 12, Chapter 12](../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) — the detection-efficacy and telemetry-completeness measures; the post-deploy smoke test that re-asserts the deployed boundary is stated in Honest Limits above.
 
 # Provenance
 
