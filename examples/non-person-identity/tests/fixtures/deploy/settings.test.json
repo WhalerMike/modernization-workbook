@@ -62,6 +62,7 @@
   },
   "pilot": {
     "name": "Payroll Export",
+    "ownerUpn": "payroll.owner@test.contoso.example",
     "appObjectId": "0a000000-0000-4000-8000-0000000000e3",
     "appClientId": "1a000000-0000-4000-8000-0000000000e3",
     "spObjectId": "5b000000-0000-4000-8000-0000000000e3",
@@ -95,16 +96,16 @@
       {
         "id": "ca000000-0000-4000-8000-0000000e0015",
         "name": "CA015-ServiceAccounts-LocationRestriction-Ring1",
-        "wave": "Ring1"
+        "ring": "Ring1"
       },
       {
         "id": "ca000000-0000-4000-8000-0000000e0037",
         "name": "CA037-WorkloadIdentities-HighRisk-Block-Ring1",
-        "wave": "Ring1"
+        "ring": "Ring1"
       }
     ]
   },
-  "waves": [
+  "rings": [
     {
       "name": "Ring1",
       "servicePrincipals": [

@@ -16,7 +16,7 @@ param(
     [Parameter(Mandatory)][string]$RegisterRun,
     [Parameter(Mandatory)][string]$OutputPath,
     [ValidateSet('ReportOnly', 'Enabled')][string]$ExpectCaState = 'ReportOnly',
-    [string[]]$Wave,
+    [Alias('Wave')][string[]]$Ring,
     [int]$SignInHours = 24,
     [string]$FixturePath,
     [string]$Server,
@@ -39,10 +39,10 @@ if ($FixturePath) {
     if (-not $PSBoundParameters.ContainsKey('AsOf')) { $AsOf = [datetime]::UtcNow }
 }
 $client = New-NpiDeployClient -Cloud $s.cloud -Task deploy-smoke -Invoke $invoke -AdInvoke $adInvoke
-$r = Invoke-NpiDeploySmokeTest -Client $client -Settings $s -RegisterRun $RegisterRun -ExpectCaState $ExpectCaState -Wave $Wave -AsOf $AsOf -SignInHours $SignInHours -SkipAd:$SkipAd
+$r = Invoke-NpiDeploySmokeTest -Client $client -Settings $s -RegisterRun $RegisterRun -ExpectCaState $ExpectCaState -Ring $Ring -AsOf $AsOf -SignInHours $SignInHours -SkipAd:$SkipAd
 $null = Export-NpiDeployRun -OutputPath $OutputPath -Task deploy-smoke -Settings $s -Mode $mode -Evidence $client.Evidence.ToArray() -AsOf $AsOf.ToUniversalTime().ToString('o') `
-    -Extra @{ expectCaState = $ExpectCaState; waves = @($Wave); registerRunManifestSha256 = (Get-NpiFileHash -Path (Join-Path $RegisterRun 'manifest.json')) } -Files @{ 'results.json' = @($r.Results) }
-Write-NpiDeploySummary -Title "Smoke test ($mode, $Stage, Conditional Access expected $ExpectCaState$(if ($Wave) { " for $($Wave -join ', ')" }))" -Results $r.Results
+    -Extra @{ expectCaState = $ExpectCaState; rings = @($Ring); registerRunManifestSha256 = (Get-NpiFileHash -Path (Join-Path $RegisterRun 'manifest.json')) } -Files @{ 'results.json' = @($r.Results) }
+Write-NpiDeploySummary -Title "Smoke test ($mode, $Stage, Conditional Access expected $ExpectCaState$(if ($Ring) { " for $($Ring -join ', ')" }))" -Results $r.Results
 if (-not $EvidencePath) { $EvidencePath = Join-Path (Split-Path -Parent $OutputPath) 'evidence' }
 $e = Write-NpiDeployEvidence -EvidencePath $EvidencePath -Step SMOKE -Settings $s -Mode $mode -Command $MyInvocation.Line -Results $r.Results -RunPaths $OutputPath
 Write-Output ("Evidence: {0} ({1})" -f $e.Name, (Get-Content $e.FullName -Raw | ConvertFrom-Json).result)

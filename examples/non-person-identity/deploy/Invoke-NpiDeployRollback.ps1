@@ -19,7 +19,7 @@ param(
     [Parameter(Mandatory)][string]$OutputPath,
     [string]$SnapshotPath,
     [ValidateSet('ReportOnly', 'Disabled')][string]$To,
-    [string[]]$Wave,
+    [Alias('Wave')][string[]]$Ring,
     [switch]$IncludeSmokeCleanup,
     [string]$PlanPath,
     [string]$ApprovedSha256,
@@ -40,7 +40,7 @@ if (-not $PSBoundParameters.ContainsKey('AsOf')) {
 
 if ($Mode -eq 'Plan') {
     if (-not $SnapshotPath -or -not $To) { throw '-Mode Plan needs -SnapshotPath and -To.' }
-    $plan = New-NpiDeployRollbackPlan -Settings $s -SnapshotPath $SnapshotPath -To $To -Wave $Wave -IncludeSmokeCleanup:$IncludeSmokeCleanup -AsOf $AsOf
+    $plan = New-NpiDeployRollbackPlan -Settings $s -SnapshotPath $SnapshotPath -To $To -Ring $Ring -IncludeSmokeCleanup:$IncludeSmokeCleanup -AsOf $AsOf
     $OutputPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
     New-Item -ItemType Directory -Force -Path $OutputPath | Out-Null
     $p = Join-Path $OutputPath 'rollback-plan.json'

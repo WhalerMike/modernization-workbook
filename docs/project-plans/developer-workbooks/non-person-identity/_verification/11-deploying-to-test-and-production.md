@@ -66,3 +66,12 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | Chapter 09, AI agents | Named as out of scope for this runbook | Agent Conditional Access is preview |
 | Chapter 10, drift run and packages | Step 2.5 | — |
 | Validation kit, NPI track | Pre-flight checks, step 1; Step 1.8 | — |
+
+## Held items after the baseline (November 9, 2026)
+
+Test results on November 9, 2026, Windows 11, PowerShell 7 with Pester 5.9.0: `deploy/tests/NpiDeploy.Tests.ps1` 55 passed; the kit 513 passed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | Conditional Access is enabled ring by ring, Chapter 08's word; wave stays for a conversion wave (the pilot's `wave = 1`, ST-02, Chapter 04's fixes). The kit renamed with it: the settings file's `rings` and each policy's `ring`, `-Ring` on the smoke test and the rollback (`-Wave` kept as an alias), the manifests' `rings`, and Step 2.3's record, now `S2.3-staged-enable-by-ring.json`. Step 2.3's heading keeps its old anchor, `#step-23-staged-enable-by-wave`, as an explicit id | Throughout; Step 2.3 | restated-as-design (labeled) | Chapter 08; the project plan's N5.3 |
+| H2 | The pilot's application owner is a settings value, `pilot.ownerUpn`, which records the cutover and approves the day-31 disable; the settings check refuses a file without one or one that names an operator | Approvals; the settings file's rules; Steps 1.3 and 2.2 | restated-as-design (labeled): the Approvals table's owner, now separate from the operators in the file | Chapter 05, the cutover log |

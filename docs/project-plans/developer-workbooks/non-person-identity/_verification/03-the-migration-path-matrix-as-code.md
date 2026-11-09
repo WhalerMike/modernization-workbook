@@ -61,3 +61,13 @@ The chapter's new section has 13 rows: each Lab 1 and Lab 2 step that produces e
 | F2 | Each KSI named (KSI-CMT-LMC, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-OSM, KSI-SVC-VRI) lists the row's control, or one of its enhancements, among its related SP 800-53 controls | Federal requirements and evidence | verified against FedRAMP's page. Every ID was already cited in the repository (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Appendix A; Book 14, Chapter 03); none is new | [^np03-ksi], read November 2, 2026 |
 | F3 | KSIs are provider-side FedRAMP 20x indicators; the agency doesn't report them | The sentence under the table | carried forward | Book 00, Appendix B |
 | F4 | Which output supports which indicator, and how SCuBA or M-25-21 rows map through a control | The KSI column | restated-as-design (labeled) | the program's mapping |
+
+## Held items after the baseline (November 9, 2026)
+
+Done with Chapter 06's two held items. Test results on November 9, 2026, Windows 11, PowerShell 7 with Pester 5.9.0: `NpiMatrix.Tests.ps1` 43 passed; the kit 513 passed; the Lab 1 captures were regenerated with `python scripts/kit_captures.py npi`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | `program-dates.json` also holds D11 and is the one program dates file Chapter 06 reads; Lab 2 writes the island's end of life into it | The inputs; Lab 2, step 2 | restated-as-design (labeled) | Project plan, D08, D11 and G5 |
+| H2 | `decisions.json` carries `DecidedOn` and, for `KeepKerberos`, the authorizing official's acceptance (`AoAcceptedBy`), which Chapter 06 puts on its island list | The disposition (D-N3) and the waves (N2.2) | restated-as-design (labeled) | Project plan, D-N3 |
+| H3 | The fixture re-platforms `svc-intranet` to a gMSA in wave 2, the matrix's proposal (M07), so Chapter 06 has a gMSA conversion for an IIS application pool to plan; Lab 1's wave line and wave 2's members changed with it | Lab 1, steps 3 and 6 | updated by running the commands as written | local run, November 9, 2026 |

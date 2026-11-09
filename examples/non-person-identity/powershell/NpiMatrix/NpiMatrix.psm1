@@ -335,7 +335,7 @@ function Test-NpiMigrationDecision {
 
     foreach ($p in $Proposals) {
         $label = "$($p.Name) ($($p.Type))"
-        $r = [ordered]@{ IdentityId = $p.IdentityId; Name = $p.Name; Type = $p.Type; Risk = $p.Risk; Scope = $p.Scope; Proposed = $p.Proposed; MatrixRow = $p.MatrixRow; Disposition = ''; Target = ''; Wave = ''; WaveSource = ''; EndDate = ''; SpnOwner = ''; DecidedBy = ''; Decided = $false; Reason = '' }
+        $r = [ordered]@{ IdentityId = $p.IdentityId; Name = $p.Name; Type = $p.Type; Risk = $p.Risk; Scope = $p.Scope; Proposed = $p.Proposed; MatrixRow = $p.MatrixRow; Disposition = ''; Target = ''; Wave = ''; WaveSource = ''; EndDate = ''; SpnOwner = ''; AoAcceptedBy = ''; DecidedBy = ''; DecidedOn = ''; Decided = $false; Reason = '' }
         if ($p.Scope -eq 'OutOfScope') { continue }
         if ($p.Scope -eq 'HandedOff') { $r.Disposition = 'HandedOff'; $r.Reason = $p.Why; $dec.Add([pscustomobject]$r); continue }
         if ($p.Scope -eq 'ConfirmFirst') {
@@ -350,7 +350,7 @@ function Test-NpiMigrationDecision {
             $dec.Add([pscustomobject]$r); continue
         }
         $disp = "$($d.Disposition)".Trim()
-        $r.Disposition = $disp; $r.DecidedBy = "$($d.DecidedBy)"; $r.Reason = "$($d.Reason)"
+        $r.Disposition = $disp; $r.DecidedBy = "$($d.DecidedBy)"; $r.DecidedOn = "$($d.DecidedOn)"; $r.Reason = "$($d.Reason)"
         if (-not $Config.dispositions.ContainsKey($disp)) {
             $f.Add((New-NpiFinding 'NPI-MAT-01' 'Finding' $p.IdentityId $label "Unknown disposition '$disp'; use Retire, Replatform, Keep or KeepKerberos"))
             $dec.Add([pscustomobject]$r); continue
@@ -382,6 +382,7 @@ function Test-NpiMigrationDecision {
             elseif ($end -le $AsOf) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "The end date $($d.EndDate) has passed")) }
             elseif (-not $limit) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Warn' $p.IdentityId $label "End date $($d.EndDate) can't be checked: $limitName isn't in program-dates.json")) }
             elseif ($end -gt $limit) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "End date $($d.EndDate) is after $limitName, $($limit.ToString('yyyy-MM-dd'))")) }
+            if ($disp -eq 'KeepKerberos') { $r.AoAcceptedBy = "$($d.AoAcceptedBy)" }   # carried to Chapter 06's island list
             if ($disp -eq 'KeepKerberos' -and -not "$($d.AoAcceptedBy)") { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label 'Kept on Kerberos without the authorizing official''s acceptance recorded (D-N3)')) }
             if ($disp -eq 'KeepKerberos' -or $p.SpnCount -gt 0) {
                 $r.SpnOwner = "$($d.SpnOwnerUpn)"
