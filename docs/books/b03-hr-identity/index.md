@@ -93,6 +93,15 @@ The goal across all four is set out in the guide's [What this migration accompli
 
 Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Security and privacy assessment](appendix-b-security-and-privacy.md) · [C — Acceptance and cutover](appendix-c-acceptance-and-cutover.md) · [D — Partner identity record](appendix-d-partner-identity-record.md)
 
+## Reading paths
+
+- **Executives and sponsors:** Chapters 01, 02 and 07, or the 15-minute presentation or the executive briefing.
+- **HR and identity data owners:** Chapters 01 to 03, then 04 and 07; then [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) for who owns the migration.
+- **Architects:** Chapters 01 to 06, then 10 and 11.
+- **Identity engineers:** Chapters 04 to 06 for the model, then 08 to 13 with Appendices A and C at hand.
+- **Privacy officers, ISSOs and assessors:** Chapters 11 and 14, with Appendix B.
+- **Sponsors of external partners:** Chapter 15, with Appendix D.
+
 ## Chapters
 
 ::: {#chapters}

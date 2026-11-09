@@ -92,3 +92,14 @@ At the user's request, every certificate-dependent book maps its certificates to
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | PKI side pointed to Book 02 Ch04 | Wi-Fi, VPN and certificates row | corrected pointer to Book 07 Ch06 | Book 07 |
+
+## Additions, November 9, 2026 (held items after the baseline edition)
+
+Item 263 of the Nov 7 sort: Appendix A row 37 named a setting ES-001 didn't have, so its ID had been cleared to "Not yet specified." ES-001 now sets it and the ID is restored.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| H1 | `AllowIntrusionPreventionSystem` is deprecated in the Policy CSP, defaults to 1 (Allowed), and changes aren't applied with tamper protection on | Row 37 | verified (new) | Learn, Policy CSP - Defender, AllowIntrusionPreventionSystem (accessed Nov 9, 2026) |
+| H2 | Intune's Defender Antivirus policy exposes "Allow Intrusion Prevention System" (Not configured / No / Yes) | Row 37 | verified (new) | Learn, Settings for Microsoft Defender Antivirus policy for tenant attached devices, Real-time protection (accessed Nov 9, 2026) |
+| H3 | ES-001 sets network inspection to On | Row 37 | restated-as-design | Program decision (Nov 7 sort, item 263); value equals the default |
+
