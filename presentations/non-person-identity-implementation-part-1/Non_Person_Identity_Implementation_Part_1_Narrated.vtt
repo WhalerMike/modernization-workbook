@@ -697,592 +697,593 @@ High-risk accounts go first.
 And plan ahead for group managed accounts.
 
 147
-00:09:04.384 --> 00:09:06.582
+00:09:04.384 --> 00:09:08.686
 They need a key distribution root key,
+created once for the whole forest,
 
 148
-00:09:06.582 --> 00:09:10.780
+00:09:08.686 --> 00:09:12.980
 and domain controllers can wait up
 to ten hours after it's created.
 
 149
-00:09:14.530 --> 00:09:18.327
+00:09:16.730 --> 00:09:20.527
 The workbook's third chapter
 holds the matrix as reviewed data,
 
 150
-00:09:18.327 --> 00:09:20.080
+00:09:20.527 --> 00:09:22.280
 and keeps three things apart.
 
 151
-00:09:20.080 --> 00:09:23.355
+00:09:22.280 --> 00:09:25.555
 The proposal is the matrix's
 target for each account.
 
 152
-00:09:23.355 --> 00:09:27.184
+00:09:25.555 --> 00:09:29.384
 The disposition is the
 application owner's decision:
 
 153
-00:09:27.184 --> 00:09:30.230
+00:09:29.384 --> 00:09:32.430
 retire, re-platform, or
 keep, with an end date.
 
 154
-00:09:30.230 --> 00:09:32.842
+00:09:32.430 --> 00:09:35.042
 And the gate is the ISSO's.
 
 155
-00:09:32.842 --> 00:09:36.430
+00:09:35.042 --> 00:09:38.630
 The lab runs the first two
 chapters, then the matrix.
 
 156
-00:09:36.430 --> 00:09:40.142
+00:09:38.630 --> 00:09:42.342
 Twenty-one identities are in
 scope, and twenty get a proposal.
 
 157
-00:09:40.142 --> 00:09:43.718
+00:09:42.342 --> 00:09:45.918
 Eighteen of twenty-two have a
 decision, and two waves are planned.
 
 158
-00:09:43.718 --> 00:09:46.530
+00:09:45.918 --> 00:09:48.730
 The gate isn't met, and
 the findings say why.
 
 159
-00:09:46.530 --> 00:09:50.142
+00:09:48.730 --> 00:09:52.342
 A high-risk sync account sits
 in wave two, not wave one.
 
 160
-00:09:50.142 --> 00:09:51.918
+00:09:52.342 --> 00:09:54.118
 One account has no decision.
 
 161
-00:09:51.918 --> 00:09:56.168
+00:09:54.118 --> 00:09:58.368
 An account kept on Kerberos has no
 owner for its service principal name.
 
 162
-00:09:56.168 --> 00:10:01.018
+00:09:58.368 --> 00:10:03.218
 A kept delegated account has no end
 date before Active Directory retires.
 
 163
-00:10:01.018 --> 00:10:04.993
+00:10:03.218 --> 00:10:07.193
 One app has no proposal, because
 nobody recorded where it runs.
 
 164
-00:10:04.993 --> 00:10:07.181
+00:10:07.193 --> 00:10:09.381
 Wave two has no rollback owner.
 
 165
-00:10:07.181 --> 00:10:09.732
+00:10:09.381 --> 00:10:11.932
 And a multitenant app
 is on the premium list,
 
 166
-00:10:09.732 --> 00:10:12.500
+00:10:11.932 --> 00:10:14.700
 though Conditional Access can't cover it.
 
 167
-00:10:16.250 --> 00:10:19.987
+00:10:18.450 --> 00:10:22.187
 The guide's evidence table maps
 by requirement, not by gate.
 
 168
-00:10:19.987 --> 00:10:22.651
+00:10:22.187 --> 00:10:24.851
 So which rows this gate
 feeds is our reading.
 
 169
-00:10:22.651 --> 00:10:26.898
+00:10:24.851 --> 00:10:29.098
 The decisions set the order that
 authenticator management asks for:
 
 170
-00:10:26.898 --> 00:10:30.625
+00:10:29.098 --> 00:10:32.825
 managed identities and federation
 first, and no new secrets.
 
 171
-00:10:30.625 --> 00:10:35.475
+00:10:32.825 --> 00:10:37.675
 Retire decisions lead to disabled accounts,
 which account management asks for.
 
 172
-00:10:35.475 --> 00:10:38.179
+00:10:37.675 --> 00:10:40.379
 And the fourth phase of
 the workbook's directory
 
 173
-00:10:38.179 --> 00:10:40.613
+00:10:40.379 --> 00:10:42.813
 migration is its gate
 for service accounts.
 
 174
-00:10:40.613 --> 00:10:45.163
+00:10:42.813 --> 00:10:47.363
 To validate, every row in the record
 has a target and a decide-by date.
 
 175
-00:10:45.163 --> 00:10:48.280
+00:10:47.363 --> 00:10:50.480
 The kit check for Active
 Directory accounts shows
 
 176
-00:10:48.280 --> 00:10:51.175
+00:10:50.480 --> 00:10:53.375
 every high-risk one in the
 first wave, or retired.
 
 177
-00:10:51.175 --> 00:10:54.287
+00:10:53.375 --> 00:10:56.487
 The check for secrets lists
 each app that holds one.
 
 178
-00:10:54.287 --> 00:10:58.449
+00:10:56.487 --> 00:11:00.649
 Each has a credential target, or an
 exception that says why it can't move.
 
 179
-00:10:58.449 --> 00:11:01.729
+00:11:00.649 --> 00:11:03.929
 Workload ID Premium is
 available in Azure Government
 
 180
-00:11:01.729 --> 00:11:04.862
+00:11:03.929 --> 00:11:07.062
 through the account manager,
 but its free trial isn't.
 
 181
-00:11:04.862 --> 00:11:08.554
+00:11:07.062 --> 00:11:10.754
 The interim path is an account
 kept on Kerberos, islanded,
 
 182
-00:11:08.554 --> 00:11:12.638
+00:11:10.754 --> 00:11:14.838
 with an owner and an end date
 the authorizing official accepts.
 
 183
-00:11:12.638 --> 00:11:14.513
+00:11:14.838 --> 00:11:16.713
 To roll back, re-decide.
 
 184
-00:11:14.513 --> 00:11:16.640
+00:11:16.713 --> 00:11:18.840
 The record keeps the history.
 
 185
-00:11:20.390 --> 00:11:22.790
+00:11:22.590 --> 00:11:24.990
 The third gate sets the credential rules.
 
 186
-00:11:22.790 --> 00:11:24.765
+00:11:24.990 --> 00:11:26.965
 They're design guidance from the books.
 
 187
-00:11:24.765 --> 00:11:26.590
+00:11:26.965 --> 00:11:28.790
 No long-lived secrets.
 
 188
-00:11:26.590 --> 00:11:31.490
+00:11:28.790 --> 00:11:33.690
 Managed identities first, then federated
 credentials, then certificates.
 
 189
-00:11:31.490 --> 00:11:35.302
+00:11:33.690 --> 00:11:37.502
 And every certificate in a
 vault, on a rotation calendar.
 
 190
-00:11:35.302 --> 00:11:39.003
+00:11:37.502 --> 00:11:41.203
 Step one turns on the tenant's
 default app management policy.
 
 191
-00:11:39.003 --> 00:11:42.056
+00:11:41.203 --> 00:11:44.256
 It blocks new password
 secrets and symmetric keys,
 
 192
-00:11:42.056 --> 00:11:45.328
+00:11:44.256 --> 00:11:47.528
 and caps new certificates at
 a hundred and eighty days.
 
 193
-00:11:45.328 --> 00:11:47.815
+00:11:47.528 --> 00:11:50.015
 Those are Microsoft's
 recommended settings.
 
 194
-00:11:47.815 --> 00:11:51.940
+00:11:50.015 --> 00:11:54.140
 Each restriction applies only to
 apps created after a chosen date,
 
 195
-00:11:51.940 --> 00:11:54.340
+00:11:54.140 --> 00:11:56.540
 so set it to the policy's effective date.
 
 196
-00:11:54.340 --> 00:11:57.890
+00:11:56.540 --> 00:12:00.090
 The panel shows the workbook's
 diff against a fictional tenant.
 
 197
-00:11:57.890 --> 00:12:01.319
+00:12:00.090 --> 00:12:03.519
 Its default policy is off, so
 turning it on is a change,
 
 198
-00:12:01.319 --> 00:12:06.902
+00:12:03.519 --> 00:12:09.102
 and every restriction is an add, for both
 application and service principal objects.
 
 199
-00:12:06.902 --> 00:12:10.652
+00:12:09.102 --> 00:12:12.852
 A restriction the tenant already
 had is kept, never dropped.
 
 200
-00:12:10.652 --> 00:12:14.614
+00:12:12.852 --> 00:12:16.814
 Existing workloads rotate at
 least yearly while they're fixed.
 
 201
-00:12:14.614 --> 00:12:19.390
+00:12:16.814 --> 00:12:21.540
 New ones start under the cap, which
 addresses the SCuBA certificate policy.
 
 202
-00:12:22.970 --> 00:12:26.082
+00:12:25.170 --> 00:12:28.282
 The rest of the third gate is
 about where credentials live.
 
 203
-00:12:26.082 --> 00:12:31.221
+00:12:28.282 --> 00:12:33.421
 Keep private keys in Azure Key Vault or
 a hardware module, never on a file share.
 
 204
-00:12:31.221 --> 00:12:35.747
+00:12:33.421 --> 00:12:37.947
 Key Vault renews a certificate
 automatically only when it's self-signed,
 
 205
-00:12:35.747 --> 00:12:39.520
+00:12:37.947 --> 00:12:41.720
 or comes from a partnered
 authority, DigiCert or GlobalSign.
 
 206
-00:12:39.520 --> 00:12:43.047
+00:12:41.720 --> 00:12:45.247
 Certificates from an agency's
 own authority aren't renewed,
 
 207
-00:12:43.047 --> 00:12:45.783
+00:12:45.247 --> 00:12:47.983
 though the vault can
 email before they expire.
 
 208
-00:12:45.783 --> 00:12:47.932
+00:12:47.983 --> 00:12:50.132
 And a renewed certificate in the vault
 
 209
-00:12:47.932 --> 00:12:50.483
+00:12:50.132 --> 00:12:52.683
 doesn't change the app
 registration by itself.
 
 210
-00:12:50.483 --> 00:12:53.619
+00:12:52.683 --> 00:12:55.819
 Microsoft's own procedure
 for SQL Server on Arc
 
 211
-00:12:53.619 --> 00:12:56.532
+00:12:55.819 --> 00:12:58.732
 uploads the new certificate
 as a separate step.
 
 212
-00:12:56.532 --> 00:13:00.870
+00:12:58.732 --> 00:13:03.070
 So automate that upload, or make it
 a named owner's task with a date.
 
 213
-00:13:00.870 --> 00:13:03.133
+00:13:03.070 --> 00:13:05.333
 A client secret is an exception.
 
 214
-00:13:03.133 --> 00:13:05.951
+00:13:05.333 --> 00:13:08.151
 The governance office
 and the CISO approve it,
 
 215
-00:13:05.951 --> 00:13:09.782
+00:13:08.151 --> 00:13:11.982
 it lasts at most six months, and
 it's never renewed automatically.
 
 216
-00:13:09.782 --> 00:13:12.864
+00:13:11.982 --> 00:13:15.064
 A traditional account that
 has to stay gets a long
 
 217
-00:13:12.864 --> 00:13:15.795
+00:13:15.064 --> 00:13:17.995
 random password in the
 vault, an owner and a date.
 
 218
-00:13:15.795 --> 00:13:19.200
+00:13:17.995 --> 00:13:21.400
 And a new federated credential
 is a credential change,
 
 219
-00:13:19.200 --> 00:13:21.900
+00:13:21.400 --> 00:13:24.100
 approved and recorded like any other.
 
 220
-00:13:25.650 --> 00:13:29.404
+00:13:27.850 --> 00:13:31.604
 The workbook's fourth chapter holds
 the policy as a reviewed file,
 
 221
-00:13:29.404 --> 00:13:32.462
+00:13:31.604 --> 00:13:34.662
 compares it with the tenant,
 and plans the difference.
 
 222
-00:13:32.462 --> 00:13:37.012
+00:13:34.662 --> 00:13:39.212
 Against the fictional tenant, the
 diff has six adds and one change.
 
 223
-00:13:37.012 --> 00:13:39.934
+00:13:39.212 --> 00:13:42.134
 The plan has eight writes:
 the default policy,
 
 224
-00:13:39.934 --> 00:13:45.225
+00:13:42.134 --> 00:13:47.425
 one dated exception policy and its assignment,
 and the property lock on five apps.
 
 225
-00:13:45.225 --> 00:13:49.400
+00:13:47.425 --> 00:13:51.600
 Nothing is sent, and the write path
 can't loosen or drop a restriction.
 
 226
-00:13:49.400 --> 00:13:53.387
+00:13:51.600 --> 00:13:55.587
 Then the rotation plan joins Key
 Vault to the app registrations.
 
 227
-00:13:53.387 --> 00:13:58.175
+00:13:55.587 --> 00:14:00.375
 A rotation is raised sixty days before
 expiry, and an owner approves it.
 
 228
-00:13:58.175 --> 00:13:59.975
+00:14:00.375 --> 00:14:02.175
 The vault makes the next version.
 
 229
-00:13:59.975 --> 00:14:02.725
+00:14:02.175 --> 00:14:04.925
 The new certificate goes
 on beside the old one.
 
 230
-00:14:02.725 --> 00:14:05.739
+00:14:04.925 --> 00:14:07.939
 The owner confirms the
 workload signs in with it,
 
 231
-00:14:05.739 --> 00:14:08.300
+00:14:07.939 --> 00:14:10.500
 and seven days later
 the old one comes off.
 
 232
-00:14:08.300 --> 00:14:13.750
+00:14:10.500 --> 00:14:15.950
 Here, one certificate renews in the vault,
 one is attached, and one is removed.
 
 233
-00:14:13.750 --> 00:14:18.500
+00:14:15.950 --> 00:14:20.700
 One app's certificate isn't in the vault
 at all, and three apps still hold secrets.
 
 234
-00:14:18.500 --> 00:14:21.320
+00:14:20.700 --> 00:14:23.520
 Secrets are replaced, not rotated.
 
 235
-00:14:25.070 --> 00:14:29.220
+00:14:27.270 --> 00:14:31.420
 On the federal side, authenticator
 management is the main requirement.
 
 236
-00:14:29.220 --> 00:14:31.449
+00:14:31.420 --> 00:14:33.649
 The evidence is the policy export,
 
 237
-00:14:31.449 --> 00:14:35.908
+00:14:33.649 --> 00:14:38.108
 the kit runs for credentials and
 secrets, and the rotation calendar.
 
 238
-00:14:35.908 --> 00:14:39.167
+00:14:38.108 --> 00:14:41.367
 The policy also addresses
 three SCuBA policies:
 
 239
-00:14:39.167 --> 00:14:43.569
+00:14:41.367 --> 00:14:45.769
 no app passwords, and capped
 password and certificate lifetimes.
 
 240
-00:14:43.569 --> 00:14:47.650
+00:14:45.769 --> 00:14:49.850
 They're SHOULD policies in ScubaGear,
 not required configurations,
 
 241
-00:14:47.650 --> 00:14:49.982
+00:14:49.850 --> 00:14:52.182
 and their report is filed with the gate.
 
 242
-00:14:49.982 --> 00:14:52.652
+00:14:52.182 --> 00:14:54.852
 Audit requirements cover
 credential changes,
 
 243
-00:14:52.652 --> 00:14:56.144
+00:14:54.852 --> 00:14:58.344
 so the entries for added
 credentials are logged and reviewed.
 
 244
-00:14:56.144 --> 00:14:59.292
+00:14:58.344 --> 00:15:01.492
 To validate, the credential
 check shows nothing issued
 
 245
-00:14:59.292 --> 00:15:02.370
+00:15:01.492 --> 00:15:04.570
 after the effective date that
 runs longer than the cap.
 
 246
-00:15:02.370 --> 00:15:07.432
+00:15:04.570 --> 00:15:09.632
 Every credential that expires within sixty
 days has an owner and a renewal date.
 
 247
-00:15:07.432 --> 00:15:12.051
+00:15:09.632 --> 00:15:14.251
 The secrets check shows each app still
 on a secret is in a conversion wave,
 
 248
-00:15:12.051 --> 00:15:14.283
+00:15:14.251 --> 00:15:16.483
 or has an exception with an end date.
 
 249
-00:15:14.283 --> 00:15:16.260
+00:15:16.483 --> 00:15:18.460
 App management policies are free,
 
 250
-00:15:16.260 --> 00:15:19.721
+00:15:18.460 --> 00:15:21.921
 and Microsoft lists their calls
 for the government clouds.
 
 251
-00:15:19.721 --> 00:15:22.561
+00:15:21.921 --> 00:15:24.761
 To roll back, give one
 application a policy
 
 252
-00:15:22.561 --> 00:15:26.500
+00:15:24.761 --> 00:15:28.632
 exception with an end date,
 in the exception register.
 
 253
-00:15:30.150 --> 00:15:35.050
+00:15:32.350 --> 00:15:37.250
 To close Part 1, here's what each gate
 leaves behind, and where Part 2 picks it up.
 
 254
-00:15:35.050 --> 00:15:37.986
+00:15:37.250 --> 00:15:40.186
 The first gate leaves
 the record, with owners,
 
 255
-00:15:37.986 --> 00:15:42.350
+00:15:40.186 --> 00:15:44.550
 sponsors and risk, plus the register
 and the SQL Server hand-off.
 
 256
-00:15:42.350 --> 00:15:46.162
+00:15:44.550 --> 00:15:48.362
 Gate four restores a removed
 grant only from that export.
 
 257
-00:15:46.162 --> 00:15:48.387
+00:15:48.362 --> 00:15:50.587
 Gate six runs the orphan rule.
 
 258
-00:15:48.387 --> 00:15:51.673
+00:15:50.587 --> 00:15:53.873
 The second gate leaves a target
 and a date for every row,
 
 259
-00:15:51.673 --> 00:15:55.250
+00:15:53.873 --> 00:15:57.450
 the waves and their rollback,
 and the premium license scope.
 
 260
-00:15:55.250 --> 00:15:58.064
+00:15:57.450 --> 00:16:00.264
 Gate four puts the most
 important single-tenant
 
 261
-00:15:58.064 --> 00:16:00.737
+00:16:00.264 --> 00:16:02.937
 service principals
 under workload policies.
 
 262
-00:16:00.737 --> 00:16:05.200
+00:16:02.937 --> 00:16:07.400
 Gate five converts wave by wave,
 with a thirty-day parallel run.
 
 263
-00:16:05.200 --> 00:16:08.726
+00:16:07.400 --> 00:16:10.926
 The third gate leaves the
 policy, the rotation calendar,
 
 264
-00:16:08.726 --> 00:16:11.025
+00:16:10.926 --> 00:16:13.225
 the exceptions and the SCuBA result.
 
 265
-00:16:11.025 --> 00:16:15.774
+00:16:13.225 --> 00:16:17.974
 Gate five drops a secret only after the
 new credential carries real traffic,
 
 266
-00:16:15.774 --> 00:16:18.488
+00:16:17.974 --> 00:16:20.688
 and gate six checks
 credentials every week.
 
 267
-00:16:18.488 --> 00:16:21.842
+00:16:20.688 --> 00:16:24.042
 To build Part 1's code,
 use the developer workbook,
 
 268
-00:16:21.842 --> 00:16:25.363
+00:16:24.042 --> 00:16:27.563
 Building Non-Person Identity,
 chapters one to four.
 
 269
-00:16:25.363 --> 00:16:28.040
+00:16:27.563 --> 00:16:30.240
 Each has its labs and a narrated tour.

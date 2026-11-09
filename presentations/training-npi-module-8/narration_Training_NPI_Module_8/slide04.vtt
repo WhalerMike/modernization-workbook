@@ -19,70 +19,75 @@ days, then disable the legacy account.
 Never delete it.
 
 5
-00:00:13.725 --> 00:00:16.359
+00:00:13.725 --> 00:00:17.663
 Step 2 adds the
 prerequisites for a G M S A.
 
 6
-00:00:16.359 --> 00:00:21.626
-Microsoft Learn's page on creating a K D S
-root key says the key is created once per
+00:00:17.663 --> 00:00:20.602
+The forest needs one K D
+S root key, created once:
 
 7
-00:00:21.626 --> 00:00:24.978
-domain, and domain controllers
-wait up to ten hours
+00:00:20.602 --> 00:00:24.391
+Microsoft Learn calls it a
+one-time operation in the forest,
 
 8
-00:00:24.978 --> 00:00:27.772
-after it's created before
-they allow a G M S A.
+00:00:24.391 --> 00:00:28.335
+and its page on creating the
+key says domain controllers wait
 
 9
-00:00:27.772 --> 00:00:32.401
+00:00:28.335 --> 00:00:31.970
+up to ten hours after it's created
+before they allow a G M S A.
+
+10
+00:00:31.970 --> 00:00:36.456
 Step 3's seventh step covers the
 Active Directory side of credentials:
 
-10
-00:00:32.401 --> 00:00:38.147
+11
+00:00:36.456 --> 00:00:42.024
 Learn's guidance on securing group managed
 service accounts says Windows changes the
 
-11
-00:00:38.147 --> 00:00:40.701
+12
+00:00:42.024 --> 00:00:44.499
 password every thirty days by default,
 
-12
-00:00:40.701 --> 00:00:44.612
+13
+00:00:44.499 --> 00:00:48.288
 and the interval can be set only
 when the account is created.
 
-13
-00:00:44.612 --> 00:00:47.535
+14
+00:00:48.288 --> 00:00:51.211
 The rollback for Step 5 is
 to re-enable the legacy
 
-14
-00:00:47.535 --> 00:00:50.750
+15
+00:00:51.211 --> 00:00:54.426
 account and revert the
 application's configuration.
 
-15
-00:00:50.750 --> 00:00:53.467
+16
+00:00:54.426 --> 00:00:57.142
 A delegated account runs
 the same thirty days:
 
-16
-00:00:53.467 --> 00:00:58.329
+17
+00:00:57.142 --> 00:01:02.004
 Learn's overview of delegated managed
 service accounts recommends waiting four
 
-17
-00:00:58.329 --> 00:01:02.261
+18
+00:01:02.004 --> 00:01:05.936
 ticket lifetimes, and thirty days
 covers four seven-day lifetimes,
 
-18
-00:01:02.261 --> 00:01:05.110
+19
+00:01:05.936 --> 00:01:08.780
 so the program completes
 a migration only then.
