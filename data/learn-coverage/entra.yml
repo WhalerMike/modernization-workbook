@@ -87,6 +87,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
+  - docs/books/guides/service-account-migration.md
 - path: docs/agent-id/agent-lists.md
   url: https://learn.microsoft.com/entra/agent-id/agent-lists
   title: View and filter agent identities in your tenant
@@ -566,13 +567,14 @@ pages:
   ms_date: '2026-04-03'
   ms_topic: concept-article
   description: Discover the role of agent identities in AI authentication. Understand their unique identifiers, token usage, and how they enable secure access to systems.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Agent ID concepts and lifecycle: Book 17 Ch04-05, Non-Person Identity Ch09'
   workbook:
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md
   - docs/training/non-person-identity/09-ai-agent-identities.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/service-account-migration.md
 - path: docs/agent-id/manage-agent-blueprint.md
   url: https://learn.microsoft.com/entra/agent-id/manage-agent-blueprint
   title: Manage agent identity blueprints in the Microsoft Entra admin center
@@ -2427,6 +2429,8 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
   - docs/reference/source-register.md
@@ -2442,6 +2446,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
@@ -2470,6 +2475,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b01-transformation-arc/10-analyzing-the-estate.md
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - examples/third_party/entra-service-account-choice-pages/SNAPSHOT.md
@@ -2499,12 +2506,13 @@ pages:
   ms_date: '2023-02-08'
   ms_topic: concept-article
   description: Learn when to use, how to assess, and to secure standalone managed service accounts (sMSAs)
-  coverage: covered-uncited
+  coverage: cited
   note: On-premises managed service accounts; gMSA work in progress elsewhere
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/service-account-migration.md
 - path: docs/architecture/service-accounts-user-on-premises.md
   url: https://learn.microsoft.com/entra/architecture/service-accounts-user-on-premises
   title: Secure user-based service accounts in Active Directory
@@ -2516,6 +2524,9 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/reference/source-register.md
   - examples/third_party/entra-service-account-pages/SNAPSHOT.md
@@ -11430,6 +11441,7 @@ pages:
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
+  - docs/books/guides/service-account-migration.md
 - path: docs/identity-platform/how-to-add-redirect-uri.md
   url: https://learn.microsoft.com/entra/identity-platform/how-to-add-redirect-uri
   title: How to add a redirect URI to your application
@@ -13284,6 +13296,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
 - path: docs/identity-platform/security-best-practices-for-frontline-workers.md
   url: https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-frontline-workers
@@ -20365,13 +20378,15 @@ pages:
   ms_date: '2025-01-21'
   ms_topic: how-to
   description: Learn how to create a group managed service account (gMSA) for use with Microsoft Entra Domain Services managed domains
-  coverage: covered-uncited
+  coverage: cited
   note: gMSA topic covered in Book 02 and the Non-Person Identity training.
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/service-account-migration.md
 - path: docs/identity/domain-services/create-ou.md
   url: https://learn.microsoft.com/entra/identity/domain-services/create-ou
   title: Create an organizational unit (OU) in Microsoft Entra Domain Services | Microsoft Docs'
@@ -22753,13 +22768,15 @@ pages:
   ms_date: '2025-09-29'
   ms_topic: how-to
   description: This document details using a gMSA account with cloud sync
-  coverage: covered-uncited
+  coverage: cited
   note: gMSA topic covered in Book 02 and the Non-Person Identity training.
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/guides/service-account-migration.md
 - path: docs/identity/hybrid/cloud-sync/govern-on-premises-groups.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/govern-on-premises-groups
   title: Govern on-premises Active Directory Domain Services (Kerberos) application access with groups from the cloud
@@ -22890,13 +22907,15 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Learn how to use the Microsoft Entra provisioning agent gMSA PowerShell cmdlets.
-  coverage: covered-uncited
+  coverage: cited
   note: gMSA topic covered in Book 02 and the Non-Person Identity training.
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/guides/service-account-migration.md
 - path: docs/identity/hybrid/cloud-sync/how-to-inbound-synch-ms-graph.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-inbound-synch-ms-graph
   title: How to programmatically configure cloud sync using MS Graph API
@@ -23007,6 +23026,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/guides/service-account-migration.md
 - path: docs/identity/hybrid/cloud-sync/how-to-preserve-group-organizational-unit-entra-to-active-directory.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-preserve-group-organizational-unit-entra-to-active-directory
   title: Preserve a group's organizational unit (Preview)
@@ -24709,11 +24729,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: Learn about accounts that are used and created and the permissions that are required to install and use Microsoft Entra Connect.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/service-account-migration.md
 - path: docs/identity/hybrid/connect/reference-connect-adconnectivitytools.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adconnectivitytools
   title: 'Microsoft Entra Connect: ADConnectivityTools PowerShell Reference'
@@ -25966,6 +25987,7 @@ pages:
   - docs/books/b02-identity/_verification/08-assessing-the-forest.md
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
+  - docs/books/guides/service-account-migration.md
   - docs/training/ms-automation-foundations.md
 - path: docs/identity/managed-identities-azure-resources/reference-managed-identity-libraries.md
   url: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/reference-managed-identity-libraries
@@ -29979,6 +30001,7 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
   - docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
   - docs/reference/source-register.md
   - docs/training/ms-automation-foundations.md
@@ -30028,6 +30051,7 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
