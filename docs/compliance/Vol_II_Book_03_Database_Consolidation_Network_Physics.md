@@ -331,7 +331,7 @@ The perimeter is not eliminated — firewalls still exist and still block unauth
 | SA-8 | Security and Privacy Engineering Principles | Consistency class alignment | Physics-aligned consistency design eliminates implicit strong |
 | AU-9 | Protection of Audit Information | Append-only audit log, geo-replicated | Audit logs replicated asynchronously to immutable second region |
 | CP-9 | System Backup | Async DR replica + backup regime | Async replication to DR region, periodic backup to immutable store |
-| CP-10 | System Recovery and Reconstitution | DR replica promotion runbook | Documented failover procedure with RTO/RPO validated by test |
+| CP-10 | System Recovery and Reconstitution | DR replica promotion (design intent; the runbook is not yet written in this volume) | Failover procedure to be documented, with RTO/RPO validated by test |
 
 # Summary
 

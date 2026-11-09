@@ -37,7 +37,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 
 # How to Use This Guide
 
-This guide is organized as ten sequential books. Each book has a defined scope, prerequisites, and measurable completion criteria. Books must be run in order — later books depend on state established by earlier ones.
+This guide is organized as ten sequential books. Each book has a defined scope, prerequisites, and measurable completion criteria. Books must be run in order — later books depend on state established by earlier ones — with one exception: Book 08 (application chain and connection strings) is run for the applications that use a legacy login *before* that login's Phase 3 (Disable) in Book 05, so that the application cutover is validated first and the disable step is a confirmation, not a discovery.
 
 **The consolidation gate** at Book 02 is a real gate, not a formality. Instances that do not meet the retain criteria are decommissioned before migration resources are spent on them. An instance that is retired is not migrated — it is turned off, its databases are archived or transferred, and it is removed from the estate inventory.
 
@@ -271,7 +271,7 @@ Arc enrollment is performed per-server, not per-instance. A Windows Server with 
 # $env:SUBSCRIPTION_ID = "<subscription-id>"
 # $env:RESOURCE_GROUP  = "<resource-group>"
 # $env:TENANT_ID       = "<tenant-id>"
-# $env:LOCATION        = "usgovvirginia"
+# $env:LOCATION        = "eastus2"
 
 # Invoke-WebRequest -Uri "https://aka.ms/azcmagent-windows" -OutFile "$env:TEMP\install_windows_azcmagent.ps1"
 # & "$env:TEMP\install_windows_azcmagent.ps1"
@@ -306,7 +306,7 @@ az connectedmachine extension create `
     --type "WindowsAgent.SqlServer" `
     --machine-name "<servername>" `
     --resource-group "<resourcegroup>" `
-    --location "usgovvirginia" `
+    --location "eastus2" `
     --settings '{"SqlManagement":{"IsEnabled":true}}'
 ```
 
@@ -393,13 +393,15 @@ Expected output: `Authentication scheme: KERBEROS` (for Entra ID token-based con
 
 **Phase 3 — Disable legacy login:**
 
+Before this step, the applications that use the login must already have been inventoried and cut over to the Entra login in Book 08, and the Phase 2 validation must have covered their connection strings.
+
 ```sql
 -- Disable (not drop) the legacy login
 ALTER LOGIN [DOMAIN\username] DISABLE;
 
--- Document the action in the migration log:
-INSERT INTO dba_migration_log (login_name, action, action_date, performed_by)
-VALUES ('DOMAIN\username', 'DISABLED', GETDATE, SYSTEM_USER);
+-- Document the action in the migration log (table defined under "Migration Tracking Table" below):
+INSERT INTO dba.login_migration_log (legacy_login, legacy_type, entra_login, disabled_date, notes)
+VALUES ('DOMAIN\username', 'Windows', 'firstname.lastname@{{< meta agency.domain >}}', GETDATE, 'Disabled by ' + SYSTEM_USER);
 ```
 
 **Phase 4 — Drop after observation:**
@@ -410,9 +412,9 @@ VALUES ('DOMAIN\username', 'DISABLED', GETDATE, SYSTEM_USER);
 DROP LOGIN [DOMAIN\username];
 
 -- Update migration log:
-UPDATE dba_migration_log
+UPDATE dba.login_migration_log
 SET dropped_date = GETDATE
-WHERE login_name = 'DOMAIN\username';
+WHERE legacy_login = 'DOMAIN\username';
 ```
 
 ## sa Account Handling
@@ -603,6 +605,8 @@ Session: Sign-in frequency = 1 hour (persistent browser = disabled)
 ---
 
 # Book 08 — Application Chain and Connection Strings
+
+Run this book's inventory and cutover for the applications that use a legacy login before that login's Phase 3 (Disable) in Book 05.
 
 ## Connection String Inventory
 
