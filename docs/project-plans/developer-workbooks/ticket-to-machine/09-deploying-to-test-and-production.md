@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 788ea7ee9d0522a401a4d4e5b2d03b0b5bc6c137eb5e64d24a354bbada70f4be
-last-reviewed: 2026-11-07
+reviewed-sha256: d7af12e6b0151246ad1b680406658f42aef323940d9ed3da48cee7dcba04748d
+last-reviewed: 2026-11-09
 ---
 # Chapter 09 — Deploying to Test and Production
 

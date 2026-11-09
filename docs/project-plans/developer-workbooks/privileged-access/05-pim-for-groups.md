@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 2bfee6057e3e3fd88d6860b0822b78658bb29b0465e7cdee04adbce0be0c1eb1
-last-reviewed: 2026-11-08
+reviewed-sha256: c7f6ae5a3a35904487210582576cf9ccd2b8bff6495c0a3f47722cf91fb902b1
+last-reviewed: 2026-11-09
 ---
 # Chapter 05 — PIM for Groups and the PRV Groups
 
