@@ -447,10 +447,10 @@ format:
         <div class="book-links"><a href="docs/books/b14-compliance/index.html">Read</a><a href="downloads/b14-compliance-bundle.docx">Word</a><a href="docs/presentations/index.html#book-14">Deck</a></div>
       </div>
       <div class="book-card">
-        <div class="book-num">Book 15 · 13 chapters</div>
+        <div class="book-num">Book 15 · 14 chapters</div>
         <div class="book-title"><a href="docs/books/b15-day2-operations/index.html">Compliance Automation &amp; Day-2 Operations</a></div>
         <div class="book-q">Why does modernization succeed or fail at the help desk?</div>
-        <div class="book-desc">Help-desk authority and identity checks, intake and routing, the CMDB, control automation across clouds, attestation and the day-two runbook.</div>
+        <div class="book-desc">Help-desk authority and identity checks, intake and routing, the CMDB, control automation across clouds, attestation, the day-two runbook and provider notices.</div>
         <div class="book-links"><a href="docs/books/b15-day2-operations/index.html">Read</a><a href="downloads/b15-day2-operations-bundle.docx">Word</a><a href="docs/presentations/index.html#book-15">Deck</a><a href="https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6.2/helpdesk-entra-operations-kit.zip" title="Help Desk / Cloud Services Entra ID Operations Kit v1.6.2: five Word documents, the routing module and scripts">Help Desk Kit</a></div>
       </div>
       <div class="book-card">
