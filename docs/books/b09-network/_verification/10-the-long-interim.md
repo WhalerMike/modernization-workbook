@@ -134,6 +134,14 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 
 ## Source watch, November 9, 2026
 
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| The cited A-11 address now serves the November 2026 edition (Transmittal Memorandum No. 100, November 6, 2026). Section 51.1 still reads "Your initial budget submission to OMB (due in September)"; key dates for the FY 2028 budget put initial submissions on September 14 | `[^c10-a11]` notes the new edition; text unchanged |
+
+## Source watch, November 9, 2026 (issue #299)
+
 Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
 
 | Finding | Change |

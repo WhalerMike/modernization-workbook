@@ -136,3 +136,12 @@ Added at the author's request during the independent verification pass (`docs/ab
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Nature-of-action triggers, after the contractors paragraph | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported that OPM replaced the *Guide to Processing Personnel Actions* PDF at the same address. Checked November 9, 2026; no personal data sent to any site.
+
+| Claim | Result | Source |
+|---|---|---|
+| GPPA edition cited as "October 2026" | updated: the cover and page footers now read November 2026; footnote edition and access date changed | GPPA PDF, <https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf> |
+| Chapter list and codes this page relies on (Ch 1 §4 and §5, EHRI Data Standards codes only in coded blocks; Ch 9–11, 13 accessions and conversions; Ch 14; Ch 15: 430, 450–452, 460, 471, 473, 480, with 472 Furlough NTE in its tables; Ch 16: 280, 292; Ch 30; Ch 31; Ch 32: 001, 002) | re-verified in the November 2026 edition, no change | Same |

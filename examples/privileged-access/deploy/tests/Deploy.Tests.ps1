@@ -152,7 +152,7 @@ Describe 'Chapter 09: pre-flight' {
     It 'blocks a report-only policy without the exclusion (Chapter 02 reports it as Info)' {
         $p = New-TestTenant { param($t) $t.conditionalAccessPolicies[1].conditions.users.excludeGroups = @() }
         $f = Invoke-TestPreflight -Settings (Get-TestSettings -Root (Join-Path $TestDrive 'pf3')) -TenantPath $p
-        ($f | Where-Object Rule -EQ 'PA-DEP-05').Object | Should -Be 'CA090-Emergency-accounts-Report-sign-ins'
+        ($f | Where-Object Rule -EQ 'PA-DEP-05').Object | Should -Be 'CA090-AllUsers-ReportOnly-CoverageProbe'
     }
     It 'blocks when no subscription licenses PIM, or the license is suspended' {
         $p = New-TestTenant { param($t) $t.subscribedSkus[0].servicePlans = @($t.subscribedSkus[0].servicePlans[0]) }

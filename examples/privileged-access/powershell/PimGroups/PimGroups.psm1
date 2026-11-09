@@ -393,6 +393,7 @@ function Test-PaPrvGroupConfig {
         foreach ($a in $script:AccessIds) {
             $s = $PolicySetting[$a][$g.tier]
             if (-not $s) { $f.Add((New-PaPgFinding 'PA-PG-08' 'Finding' $n "No $a policy setting for tier $($g.tier)")); continue }
+            if ($s.Contains('authenticationContext') -and $s.authenticationContext -and [string]$s.authenticationContext -notmatch '^c([1-9]|[1-9][0-9])$') { $f.Add((New-PaPgFinding 'PA-PG-08' 'Finding' $n "$a authentication context '$($s.authenticationContext)' isn't one of c1 to c99")) }
             if ((ConvertTo-PaPgDuration $s.activationMaxDuration) -gt $max) { $f.Add((New-PaPgFinding 'PA-PG-08' 'Finding' $n "$a activation $($s.activationMaxDuration) is longer than $($PolicySetting.maxActivation)")) }
             if ($s.approvalRequired -and -not ($Config.approverGroups.ContainsKey($g.tier))) { $f.Add((New-PaPgFinding 'PA-PG-08' 'Finding' $n "$a activation needs approval but no approver group is set for $($g.tier)")) }
             if ($s.approvalRequired -and $Config.approverGroups[$g.tier] -eq $g.id) { $f.Add((New-PaPgFinding 'PA-PG-08' 'Finding' $n "The group approves its own $a activations")) }
@@ -530,8 +531,9 @@ function New-PaPgRuleTarget { param([string]$Caller, [string]$Level) [ordered]@{
 function New-PaPgRuleSet {
     <#
     .SYNOPSIS
-        The five rules the program sets on a PIM for Groups policy, in the shapes Learn's
-        "Update rules in PIM" examples use, from one tier's settings.
+        The six rules the program sets on a PIM for Groups policy, in the shapes Learn's
+        "Update rules in PIM" examples use, from one tier's settings. The sixth selects the tier's
+        authentication context (c1) on activation, as Chapter 04 does for Entra roles.
     .EXAMPLE
         # The member rules for a Tier 0 group, approved by the Tier 0 approver group.
         $policy = Get-PaPgPolicySetting
@@ -544,11 +546,13 @@ function New-PaPgRuleSet {
         if (-not $ApproverGroupId) { throw 'Approval is required but no approver group is set' }
         $approvers = @([ordered]@{ '@odata.type' = '#microsoft.graph.groupMembers'; groupId = $ApproverGroupId })
     }
+    $context = if ($Setting -is [Collections.IDictionary] -and $Setting.Contains('authenticationContext') -and $Setting['authenticationContext']) { [string]$Setting['authenticationContext'] } else { $null }
     @(
         [ordered]@{ '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'; id = 'Expiration_Admin_Eligibility'; isExpirationRequired = $true; maximumDuration = $Setting.eligibilityMaxDuration; target = (New-PaPgRuleTarget 'Admin' 'Eligibility') }
         [ordered]@{ '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'; id = 'Expiration_Admin_Assignment'; isExpirationRequired = $true; maximumDuration = $Setting.activeMaxDuration; target = (New-PaPgRuleTarget 'Admin' 'Assignment') }
         [ordered]@{ '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'; id = 'Expiration_EndUser_Assignment'; isExpirationRequired = $true; maximumDuration = $Setting.activationMaxDuration; target = (New-PaPgRuleTarget 'EndUser' 'Assignment') }
         [ordered]@{ '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyEnablementRule'; id = 'Enablement_EndUser_Assignment'; enabledRules = @($Setting.enabledRules); target = (New-PaPgRuleTarget 'EndUser' 'Assignment') }
+        [ordered]@{ '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule'; id = 'AuthenticationContext_EndUser_Assignment'; isEnabled = [bool]$context; claimValue = $context; target = (New-PaPgRuleTarget 'EndUser' 'Assignment') }
         [ordered]@{ '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyApprovalRule'; id = 'Approval_EndUser_Assignment'; target = (New-PaPgRuleTarget 'EndUser' 'Assignment')
             setting = [ordered]@{ isApprovalRequired = [bool]$Setting.approvalRequired; isApprovalRequiredForExtension = $false; isRequestorJustificationRequired = $true; approvalMode = 'SingleStage'
                 approvalStages = @([ordered]@{ approvalStageTimeOutInDays = 1; isApproverJustificationRequired = $true; escalationTimeInMinutes = 0; primaryApprovers = $approvers; isEscalationEnabled = $false; escalationApprovers = @() }) } }
@@ -562,6 +566,7 @@ function Get-PaPgRuleView {
     switch ($Rule.id) {
         { $_ -like 'Expiration_*' } { return "required=$([bool]$Rule.isExpirationRequired) max=$($Rule.maximumDuration)" }
         'Enablement_EndUser_Assignment' { return 'enabled=' + ((@($Rule.enabledRules) | Sort-Object) -join ',') }
+        'AuthenticationContext_EndUser_Assignment' { return $(if ($Rule.isEnabled -and $Rule.claimValue) { "context=$($Rule.claimValue)" } else { 'context=off' }) }
         'Approval_EndUser_Assignment' {
             $s = $Rule.setting
             $ids = @(foreach ($st in @($s.approvalStages)) { foreach ($p in @($st.primaryApprovers)) { if ($p) { "$($p['@odata.type'].Split('.')[-1]):$(if (Get-PaPgValue $p 'groupId') { $p['groupId'] } else { Get-PaPgValue $p 'userId' })" } } }) | Sort-Object
@@ -676,7 +681,9 @@ function New-PaPimGroupPlan {
     }
     foreach ($set in $creates, $rules, $grants, $removes) { foreach ($x in $set) { & $add @x } }
     $i = 0; foreach ($o in $ops) { $o.Seq = ++$i }
-    [pscustomobject]@{ Cloud = $Cloud; AsOf = $AsOf.ToUniversalTime().ToString('o'); Operations = $ops.ToArray(); Permissions = @($ops | ForEach-Object { $_.Permissions } | Sort-Object -Unique) }
+    # Learn: the authentication context's Conditional Access policy must be On before PIM selects it.
+    $gate = @($ops | Where-Object { $_.Op -eq 'policy-rule' -and $_.Body.id -eq 'AuthenticationContext_EndUser_Assignment' -and $_.Body.isEnabled }).Count -gt 0
+    [pscustomobject]@{ Cloud = $Cloud; AsOf = $AsOf.ToUniversalTime().ToString('o'); NeedsActivationGate = $gate; Operations = $ops.ToArray(); Permissions = @($ops | ForEach-Object { $_.Permissions } | Sort-Object -Unique) }
 }
 
 function Test-PaPgPlanGuard {
@@ -724,8 +731,10 @@ function Invoke-PaPgPlan {
     <#
     .SYNOPSIS
         Without -Apply, a dry run: returns each operation as 'DryRun' and sends nothing. With
-        -Apply, refuses if any guard fails, then sends each operation in order through declared
-        write calls on the cloud's own host, and stops at the first error.
+        -Apply, refuses if any guard fails, or if the plan selects an authentication context without
+        -ActivationGateChecked (a person's statement that its Conditional Access policy is On, as in
+        Chapter 04), then sends each operation in order through declared write calls on the cloud's
+        own host, and stops at the first error.
     .EXAMPLE
         # Dry run through an apply client: each operation comes back as DryRun, and nothing is sent.
         $writer = New-PaPgClient -Cloud gcc -Task pim-groups-apply -Invoke { throw 'A dry run sends nothing' }
@@ -733,7 +742,7 @@ function Invoke-PaPgPlan {
         $run.Guards
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)]$Plan, [Parameter(Mandatory)]$Config, [Parameter(Mandatory)]$Client, [switch]$Apply, [int]$MaxRemovals = 5)
+    param([Parameter(Mandatory)]$Plan, [Parameter(Mandatory)]$Config, [Parameter(Mandatory)]$Client, [switch]$Apply, [int]$MaxRemovals = 5, [switch]$ActivationGateChecked)
     if ($Client.Task -ne 'pim-groups-apply') { throw "The client is for '$($Client.Task)'; writing needs 'pim-groups-apply'" }
     if ($Plan.Cloud -ne $Client.Cloud.Name) { throw "The plan is for '$($Plan.Cloud)', the client for '$($Client.Cloud.Name)'" }
     $guards = Test-PaPgPlanGuard -Plan $Plan -Config $Config -MaxRemovals $MaxRemovals
@@ -743,6 +752,9 @@ function Invoke-PaPgPlan {
         return [pscustomobject]@{ Applied = $false; Guards = $guards; Results = $results.ToArray() }
     }
     if ($guards.Count) { throw "Refusing to apply: $($guards -join '; ')" }
+    if ($Plan.PSObject.Properties['NeedsActivationGate'] -and $Plan.NeedsActivationGate -and -not $ActivationGateChecked) {
+        throw 'The plan sets an authentication context: confirm its Conditional Access policy is On (Chapter 03), then pass -ActivationGateChecked'
+    }
     foreach ($o in $Plan.Operations) {
         $call = $Client.Calls | Where-Object { $_.id -eq $o.CallId }
         if (-not $call -or $call.method -ne $o.Method -or $call.method -eq 'GET') { throw "Operation $($o.Seq) isn't a declared write: $($o.CallId)" }

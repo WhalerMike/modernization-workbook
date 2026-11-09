@@ -168,6 +168,16 @@ ESU guidance reworded as the exception path; dates carried from row 44. The stan
 
 ## Source watch, November 9, 2026
 
+Re-checked after the weekly source watch (issue #499) reported a change in "Connected Machine agent prerequisites" (ms.date November 5, 2026). Checked November 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| SW1 | Windows Server 2012 got its last new agent version (1.69) in October 2026; 2012 R2 still listed for new agent versions; final agent version serviced for 12 months. Supersedes A2's "November 2026" | Coverage table | corrected | c09-arc-prereq, "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation" |
+| SW2 | Last new agent version (1.69) in October 2026 for RHEL 7, Oracle Linux 7, Amazon Linux 2, Debian 11 and 12, SLES 12 SP5 and 15 SP3–SP6, Ubuntu 18.04 and 20.04, and for Arm64 on AlmaLinux 8 and Oracle Linux 8; Azure Linux 3.0 new agent versions end February 2027. Supersedes A4's "November 2026" | Coverage table | corrected | c09-arc-prereq, same sections and "Supported operating systems" |
+| SW3 | The source no longer says "If an OS version isn't listed, it's not supported"; it lists the operating systems that get new agent versions. Row text now says 2008 R2 and 32-bit aren't on Microsoft's list. Updates A3 | Coverage table | corrected | c09-arc-prereq, "Supported operating systems" |
+
+## Source watch, November 9, 2026 (issue #299)
+
 Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
 
 | Finding | Change |
