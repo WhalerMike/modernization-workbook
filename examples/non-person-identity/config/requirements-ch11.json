@@ -32,7 +32,7 @@
     "S1.5": { "title": "Workload Conditional Access, report-only", "controls": ["AC-3", "AC-6", "CM-3(2)", "CM-4(2)"], "other": [], "ksis": ["KSI-IAM-ELP", "KSI-CMT-VTD"], "evidence": "Chapter 08's plan and apply run folders" },
     "SMOKE": { "title": "Smoke test", "controls": [], "other": [], "ksis": [], "evidence": "Invoke-NpiDeploySmokeTest.ps1: SMOKE-smoke.json", "fromChecks": "ST-" },
     "ROLLBACK": { "title": "Rollback", "controls": [], "other": [], "ksis": [], "evidence": "Invoke-NpiDeployRollback.ps1 -Mode Apply: ROLLBACK-rollback.json", "fromChecks": "RB" },
-    "S2.3": { "title": "Staged enable by wave", "controls": ["AC-6", "CM-3", "CM-4(2)"], "other": [], "ksis": ["KSI-IAM-ELP", "KSI-CMT-LMC"], "evidence": "Chapter 08's sign-in summary and enforce run folders" },
+    "S2.3": { "title": "Staged enable by ring", "controls": ["AC-6", "CM-3", "CM-4(2)"], "other": [], "ksis": ["KSI-IAM-ELP", "KSI-CMT-LMC"], "evidence": "Chapter 08's sign-in summary and enforce run folders" },
     "S2.5": { "title": "First-week drift monitoring", "controls": ["CA-7", "CM-3", "AU-6"], "other": [], "ksis": ["KSI-MLA-EVC", "KSI-CMT-LMC"], "evidence": "Chapter 10's drift run folders" },
     "EVIDENCE": { "title": "Evidence integrity", "controls": ["AU-9"], "other": [], "ksis": ["KSI-MLA-OSM"], "evidence": "SHA256SUMS over the evidence folder, checked by Test-NpiDeployEvidence.ps1" }
   },

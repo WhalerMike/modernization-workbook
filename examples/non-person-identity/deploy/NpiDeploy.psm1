@@ -71,7 +71,7 @@ function Test-NpiDeploySettings {
         if ($v -match '-----BEGIN' -or $v -match '^[A-Za-z0-9_.\-]{3,5}~[A-Za-z0-9_~.\-]{30,}$') { $p.Add("$($leaf.Path): looks like a key or a client secret") }
         if (-not $AllowPlaceholders -and $leaf.Name -ne '_comment' -and $v -match '<[a-z0-9-]+>') { $p.Add("$($leaf.Path): placeholder $($Matches[0]) not replaced") }
     }
-    $need = @('environment', 'cloud', 'tenantId', 'changeRecord', 'deployIdentity', 'readerIdentity', 'operators', 'azure', 'ad', 'pilot', 'smoke', 'conditionalAccess', 'appManagementPolicy', 'waves')
+    $need = @('environment', 'cloud', 'tenantId', 'changeRecord', 'deployIdentity', 'readerIdentity', 'operators', 'azure', 'ad', 'pilot', 'smoke', 'conditionalAccess', 'appManagementPolicy', 'rings')
     foreach ($k in $need) { if (-not $Settings.ContainsKey($k)) { $p.Add("$k`: missing") } }
     if ($p.Count -and @($p | Where-Object { $_ -match ': missing$' }).Count) { return $p.ToArray() }
     if ($Stage -and $Settings.environment -ne $Stage) { $p.Add("environment: the file is for '$($Settings.environment)', not '$Stage'") }
@@ -94,6 +94,11 @@ function Test-NpiDeploySettings {
     if ($Settings.deployIdentity.credential -eq 'certificate' -and -not $Settings.deployIdentity.certificateThumbprint) { $p.Add('deployIdentity.certificateThumbprint: missing') }
     if ($Settings.deployIdentity.credential -eq 'federated' -and -not $Settings.deployIdentity.federatedSubject) { $p.Add('deployIdentity.federatedSubject: missing') }
     if (-not @($Settings.operators).Count) { $p.Add('operators: name at least one person for each write step') }
+    # The pilot's application owner approves its parallel run and the legacy account's disable (Chapter 11's Approvals table); an operator applies them.
+    $owner = if ($Settings.pilot -is [Collections.IDictionary]) { "$($Settings.pilot['ownerUpn'])" } else { '' }
+    if (-not $owner) { $p.Add('pilot.ownerUpn: missing; name the pilot application''s owner, who approves its parallel run and the day-31 disable') }
+    elseif (-not $AllowPlaceholders -and $owner -notmatch '^[^@\s]+@[^@\s]+\.[^@\s]+$') { $p.Add("pilot.ownerUpn: '$owner' isn't a user principal name") }
+    elseif ($owner -in @(@($Settings.operators) | ForEach-Object { "$($_.upn)" })) { $p.Add("pilot.ownerUpn: $owner is an operator; the application owner approves, an operator applies") }
     $p.ToArray()
 }
 
@@ -369,8 +374,8 @@ function Invoke-NpiDeployPreflight {
     $skus = @(Invoke-NpiList -Reader $Client -CallId 'deploy-subscribed-skus' -Query '$select=skuId,skuPartNumber,capabilityStatus,prepaidUnits,servicePlans')
     $wid = @(Get-NpiDeployPlanIds -Skus $skus -PlanIds $script:Plans.WorkloadIdPremium)
     $units = 0; foreach ($x in $wid) { $units += [int]$x['prepaidUnits']['enabled'] }
-    $inScope = @($Settings.waves | ForEach-Object { $_.servicePrincipals } | Where-Object { $_ }).Count + 1
-    $out.Add((New-NpiDeployResult 'PF-03' 'G4' 'Workload ID Premium, to create or change workload Conditional Access' $(if (-not $wid.Count) { 'Fail' } elseif ($units -lt $inScope) { 'Warn' } else { 'Pass' }) "An enabled AAD_WRKLDID_P1 or P2 plan; $inScope workload identities in scope (waves and the synthetic)" $(if ($wid.Count) { "$(@($wid | ForEach-Object { $_['skuPartNumber'] }) -join ', '), $units enabled unit(s)" } else { 'none' })))
+    $inScope = @($Settings.rings | ForEach-Object { $_.servicePrincipals } | Where-Object { $_ }).Count + 1
+    $out.Add((New-NpiDeployResult 'PF-03' 'G4' 'Workload ID Premium, to create or change workload Conditional Access' $(if (-not $wid.Count) { 'Fail' } elseif ($units -lt $inScope) { 'Warn' } else { 'Pass' }) "An enabled AAD_WRKLDID_P1 or P2 plan; $inScope workload identities in scope (rings and the synthetic)" $(if ($wid.Count) { "$(@($wid | ForEach-Object { $_['skuPartNumber'] }) -join ', '), $units enabled unit(s)" } else { 'none' })))
     $p1 = @(Get-NpiDeployPlanIds -Skus $skus -PlanIds $script:Plans.EntraP1OrP2)
     $out.Add((New-NpiDeployResult 'PF-04' 'G6' 'Entra ID P1 or P2, for the service principal sign-in logs' $(if ($p1.Count) { 'Pass' } else { 'Fail' }) 'An enabled AAD_PREMIUM or AAD_PREMIUM_P2 plan' $(if ($p1.Count) { (@($p1 | ForEach-Object { $_['skuPartNumber'] }) -join ', ') } else { 'none' })))
 
@@ -475,19 +480,19 @@ function Invoke-NpiDeploySmokeTest {
         test host can retrieve the gMSA's password.
     .EXAMPLE
         $r = Invoke-NpiDeploySmokeTest -Client $client -Settings $s -RegisterRun tests/fixtures/deploy/register-run -ExpectCaState ReportOnly -AsOf ([datetime]'2026-11-02T12:00:00Z')
-        # After a production wave is enforced, check only that wave's policies:
-        # Invoke-NpiDeploySmokeTest -Client $client -Settings $s -RegisterRun $run -ExpectCaState Enabled -Wave Ring1
+        # After a production ring is enforced, check only that ring's policies:
+        # Invoke-NpiDeploySmokeTest -Client $client -Settings $s -RegisterRun $run -ExpectCaState Enabled -Ring Ring1
     #>
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]$Client, [Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$RegisterRun,
-        [ValidateSet('ReportOnly', 'Enabled')][string]$ExpectCaState = 'ReportOnly', [string[]]$Wave, [datetime]$AsOf = [datetime]::UtcNow, [int]$SignInHours = 24, [switch]$SkipAd
+        [ValidateSet('ReportOnly', 'Enabled')][string]$ExpectCaState = 'ReportOnly', [Alias('Wave')][string[]]$Ring, [datetime]$AsOf = [datetime]::UtcNow, [int]$SignInHours = 24, [switch]$SkipAd
     )
     $out = [Collections.Generic.List[object]]::new()
     $sm = $Settings.smoke
-    # -Wave checks only the policies of those waves (rings): a production wave enforced while the rest stay report-only.
+    # -Ring checks only the policies of those rings (Chapter 08's): a production ring enforced while the rest stay report-only.
     $policies = @($Settings.conditionalAccess.policies | Where-Object { $_ })
-    if ($Wave) { $policies = @($policies | Where-Object { $_.wave -in $Wave }) }
+    if ($Ring) { $policies = @($policies | Where-Object { $_.ring -in $Ring }) }
     $register = @(Get-Content -LiteralPath (Join-Path $RegisterRun 'register.json') -Raw | ConvertFrom-Json)
     $man = Get-Content -LiteralPath (Join-Path $RegisterRun 'manifest.json') -Raw | ConvertFrom-Json
     if ($man.tenantId -ne $Settings.tenantId) { throw "The register run is for tenant $($man.tenantId), not $($Settings.tenantId)." }
@@ -558,7 +563,7 @@ function New-NpiDeployRollbackPlan {
     <#
     .SYNOPSIS
         The rollback as a reviewed plan, from the settings and the preflight's snapshot: each workload
-        policy back to report-only (-To ReportOnly, a production wave) or off (-To Disabled, the test
+        policy back to report-only (-To ReportOnly, a production ring) or off (-To Disabled, the test
         stage); the tenant default app management policy restored from the snapshot; the pilot's
         app-specific policy turned off; each legacy account the conversion disabled re-enabled; and,
         with -IncludeSmokeCleanup, the synthetic service principal and account disabled. Nothing is
@@ -569,7 +574,7 @@ function New-NpiDeployRollbackPlan {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$SnapshotPath,
-        [Parameter(Mandatory)][ValidateSet('ReportOnly', 'Disabled')][string]$To, [string[]]$Wave, [switch]$IncludeSmokeCleanup, [datetime]$AsOf = [datetime]::UtcNow
+        [Parameter(Mandatory)][ValidateSet('ReportOnly', 'Disabled')][string]$To, [Alias('Wave')][string[]]$Ring, [switch]$IncludeSmokeCleanup, [datetime]$AsOf = [datetime]::UtcNow
     )
     $snap = Get-Content -LiteralPath $SnapshotPath -Raw | ConvertFrom-Json -AsHashtable -Depth 30
     if ($snap.tenantId -ne $Settings.tenantId) { throw "The snapshot is for tenant $($snap.tenantId), not $($Settings.tenantId)." }
@@ -577,11 +582,11 @@ function New-NpiDeployRollbackPlan {
     $actions = [Collections.Generic.List[object]]::new()
     $n = 0
     $policies = @($Settings.conditionalAccess.policies)
-    if ($Wave) { $policies = @($policies | Where-Object { $_.wave -in $Wave -or -not $_.wave }) }
+    if ($Ring) { $policies = @($policies | Where-Object { $_.ring -in $Ring -or -not $_.ring }) }
     foreach ($p in $policies) {
         $actions.Add([ordered]@{ id = ('RB-{0:00}' -f ++$n); gate = 'G4'; kind = 'ConditionalAccessState'; call = 'deploy-ca-policy-update'; bind = @{ id = $p.id }; body = @{ state = $state }; target = $p.name; why = "Learn's roll back for workload policies: disable (or keep report-only); never deleted" })
     }
-    if (-not $Wave) {
+    if (-not $Ring) {
         $t = $snap.tenantAppManagementPolicy
         if ($t) {
             $body = [ordered]@{ isEnabled = [bool]$t['isEnabled'] }
@@ -602,7 +607,7 @@ function New-NpiDeployRollbackPlan {
     [ordered]@{
         kind = 'npi-deploy-rollback'; environment = $Settings.environment; cloud = $Settings.cloud; tenantId = $Settings.tenantId
         changeRecord = $Settings.changeRecord; settingsSha256 = $Settings._sha256; snapshotSha256 = (Get-NpiFileHash -Path $SnapshotPath)
-        to = $To; waves = @($Wave); created = $AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ'); actions = $actions.ToArray()
+        to = $To; rings = @($Ring); created = $AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ'); actions = $actions.ToArray()
     }
 }
 

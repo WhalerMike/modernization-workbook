@@ -1,7 +1,8 @@
 #Requires -Version 7.1
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0.0' }
 # Chapter 06: the Kerberos accounts (gMSAs, dMSAs and the island), the plan and its separate write
-# path, against Chapter 01's register of the fictional estate and the fake Active Directory.
+# path, against Chapter 01's register of the fictional estate, Chapter 03's decisions on it and the
+# fake Active Directory.
 
 BeforeAll {
     Import-Module (Join-Path $PSScriptRoot '../powershell/NpiKerberosIsland/NpiKerberosIsland.psm1') -Force
@@ -13,6 +14,13 @@ BeforeAll {
     $script:InvRun = Join-Path $script:Tmp 'inventory'
     $null = & (Join-Path $script:Root 'Invoke-NpiInventory.ps1') -Cloud gcc -FixturePath $script:Estate -OutputPath $script:InvRun
     $script:Register = Import-NpiKrbRegister -RunPath $script:InvRun
+    # Chapter 03's run holds the owners' D-N3 dispositions this chapter reads (and Chapter 02's, which it needs).
+    $script:OwnRun = Join-Path $script:Tmp 'ownership'
+    $null = & (Join-Path $script:Root 'Invoke-NpiOwnership.ps1') -Cloud gcc -RegisterRun $script:InvRun -FixturePath $script:Estate -InputPath (Join-Path $PSScriptRoot 'fixtures/inputs') -OutputPath $script:OwnRun
+    $script:MatRun = Join-Path $script:Tmp 'matrix'
+    $script:Dates = (Resolve-Path (Join-Path $PSScriptRoot 'fixtures/ch03/inputs/program-dates.json')).Path
+    $null = & (Join-Path $script:Root 'Invoke-NpiMatrix.ps1') -Cloud gcc -RegisterRun $script:InvRun -OwnershipRun $script:OwnRun -InputPath (Join-Path $PSScriptRoot 'fixtures/ch03/inputs') -FixturePath $script:Estate -SkuFixturePath (Join-Path $PSScriptRoot 'fixtures/ch03/subscribed-skus.json') -OutputPath $script:MatRun
+    $script:Matrix = Import-NpiKrbMatrixRun -RunPath $script:MatRun -RegisterSha256 $script:Register.Sha256
     $script:AsOf = [datetime]::Parse('2026-10-30T12:00:00Z', [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal)
     $script:Tenant = $script:Register.Manifest.tenantId
     $script:Domain = 'corp.contoso.example'
@@ -25,7 +33,7 @@ BeforeAll {
         [IO.File]::WriteAllText($p, ($j | ConvertTo-Json -Depth 50)); $p
     }
     function Get-TestInputs([scriptblock]$Mutate) {
-        $i = Import-NpiKrbInput -InputPath $script:Inputs
+        $i = Import-NpiKrbInput -InputPath $script:Inputs -MatrixRun $script:Matrix -ProgramDatesPath $script:Dates
         if ($Mutate) { & $Mutate $i }
         $i
     }
@@ -87,18 +95,41 @@ Describe 'The call list (config/calls-ch06.json)' {
 }
 
 Describe 'The inputs' {
-    It 'refuses a register that changed since Chapter 01' {
+    It 'refuses a register that changed since Chapter 01, or Chapter 03''s run for another register or with changed decisions; reads its vocabulary and acceptance' {
         $copy = Join-Path $script:Tmp 'tampered'; Copy-Item -Recurse $script:InvRun $copy
         Add-Content -LiteralPath (Join-Path $copy 'register.json') -Value ' '
         { Import-NpiKrbRegister -RunPath $copy } | Should -Throw '*doesn''t match its manifest*'
+        { Import-NpiKrbMatrixRun -RunPath $script:MatRun -RegisterSha256 ('0' * 64) } | Should -Throw '*run Chapter 03 on this register*'
+        $copy = Join-Path $script:Tmp 'matrix-tampered'; Copy-Item -Recurse $script:MatRun $copy
+        Add-Content -LiteralPath (Join-Path $copy 'decisions.json') -Value ' '
+        { Import-NpiKrbMatrixRun -RunPath $copy -RegisterSha256 $script:Register.Sha256 } | Should -Throw '*doesn''t match its manifest*'
+        $i = Get-TestInputs
+        $w = @($i.Dispositions | Where-Object SamAccountName -EQ 'svc-webfront')[0]
+        $w.Disposition | Should -Be 'KeepKerberos'
+        $w.AoAcceptedBy | Should -Be 'ao@contoso.example'
+        (Get-NpiKrbPath $w) | Should -Be 'Island'
+        $h = @($i.Dispositions | Where-Object SamAccountName -EQ 'svc-hrsync')[0]
+        "$($h.Disposition) $($h.Target) $($h.NewAccount)" | Should -Be 'Replatform dMSA dmsa-hrsync$'
+        (Get-NpiKrbPath $h) | Should -Be 'Convert'
+        (Get-NpiKrbPath ([pscustomobject]@{ Disposition = 'Replatform'; Target = 'ManagedIdentity' })) | Should -Be 'WorkloadIdentity'
+        (Get-NpiKrbPath ([pscustomobject]@{ Disposition = 'Convert'; Target = 'gMSA' })) | Should -Be ''
+        $i.Hashes.Keys | Should -Be @('decisions.json', 'kerberos-replatform.csv', 'password-retrievers.json', 'program-dates.json')
     }
-    It 'refuses an end state that isn''t AdRetired or KerberosIsland, and has no default' {
-        $dir = Join-Path $script:Tmp ("in-{0}" -f [guid]::NewGuid()); Copy-Item -Recurse $script:Inputs $dir
-        $e = Get-Content (Join-Path $dir 'end-state.json') -Raw | ConvertFrom-Json -AsHashtable; $e.d11.decision = 'Undecided'
-        [IO.File]::WriteAllText((Join-Path $dir 'end-state.json'), ($e | ConvertTo-Json -Depth 10))
-        { Import-NpiKrbInput -InputPath $dir } | Should -Throw '*AdRetired or KerberosIsland*'
-        Remove-Item (Join-Path $dir 'end-state.json')
-        { Import-NpiKrbInput -InputPath $dir } | Should -Throw '*Missing reviewed input*'
+    It 'reads the one program-dates file Chapter 03''s run read, refuses any other, and refuses an end state that isn''t AdRetired or KerberosIsland, with no default' {
+        $dir = Join-Path $script:Tmp ("dates-{0}" -f [guid]::NewGuid()); New-Item -ItemType Directory -Force $dir | Out-Null
+        $other = Join-Path $dir 'program-dates.json'
+        $e = Get-Content $script:Dates -Raw | ConvertFrom-Json -AsHashtable; $e.d08LegacyAuthEndDate = '2027-12-31'
+        [IO.File]::WriteAllText($other, ($e | ConvertTo-Json -Depth 10))
+        { Import-NpiKrbInput -InputPath $script:Inputs -MatrixRun $script:Matrix -ProgramDatesPath $other } | Should -Throw '*not the*Chapter 03''s run read*'
+        (Get-TestInputs).ProgramDates.d08LegacyAuthEndDate | Should -Be '2027-06-30'
+        $dir = Join-Path $script:Tmp ("in-{0}" -f [guid]::NewGuid()); New-Item -ItemType Directory -Force $dir | Out-Null
+        $dates = Join-Path $dir 'program-dates.json'
+        $e = Get-Content $script:Dates -Raw | ConvertFrom-Json -AsHashtable; $e.d11.decision = 'Undecided'
+        [IO.File]::WriteAllText($dates, ($e | ConvertTo-Json -Depth 10))
+        $m = [pscustomobject]@{ Decisions = $script:Matrix.Decisions; Sha256 = $script:Matrix.Sha256; Manifest = @{ inputs = @{ 'program-dates.json' = (Get-NpiFileHash -Path $dates) } } }
+        { Import-NpiKrbInput -InputPath $script:Inputs -MatrixRun $m -ProgramDatesPath $dates } | Should -Throw '*AdRetired or KerberosIsland*'
+        Remove-Item $dates
+        { Import-NpiKrbInput -InputPath $script:Inputs -MatrixRun $m -ProgramDatesPath $dates } | Should -Throw '*Missing reviewed input*'
     }
 }
 
@@ -130,7 +161,7 @@ Describe 'The dispositions' {
     It 'scopes enabled traditional accounts with an SPN, MSAs, gMSAs and dMSAs' {
         @(Get-NpiKrbScope -Rows $script:Register.Rows).Name | Sort-Object | Should -Be @('dmsa-hrsync$', 'gmsa-ops$', 'gmsa-sql$', 'gmsa-web$', 'msa-print01$', 'svc-hrsync', 'svc-intranet', 'svc-sqlprod', 'svc-webfront')
     }
-    It 'NPI-KRB-02: a Kerberos account with no disposition gets no action but a finding' {
+    It 'NPI-KRB-02: a Kerberos account with no disposition in Chapter 03''s decisions gets no action but a finding' {
         $i = Get-TestInputs { param($x) $x.Dispositions = @($x.Dispositions | Where-Object SamAccountName -NE 'gmsa-web$') }
         $r = Invoke-TestCheck -Inputs $i
         (@($r.Findings | Where-Object Rule -EQ 'NPI-KRB-02')).ObjectKey | Should -Be 'gmsa-web$'
@@ -207,7 +238,9 @@ Describe 'dMSAs: Windows Server 2025 delegated MSA migration' {
         @($r.Plan.actions | Where-Object Account -EQ 'svc-hrsync')[0].Action | Should -Be 'AwaitMigrationWindow'
     }
     It 'NPI-KRB-04: unconstrained delegation, an MSA, a host or a domain without Windows Server 2025 block a dMSA' {
-        (Get-Rule 'NPI-KRB-04').Issue | Should -Match 'unconstrained delegation'
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ Disposition = 'Replatform'; Target = 'dMSA'; NewAccount = 'dmsa-webfront$'; Workload = 'IisAppPool'; Hosts = 'WEB03'; SpnOwnerUpn = 'web.owner@contoso.example'; EndDate = '2027-06-30' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'svc-webfront' })[0].Issue | Should -Match 'unconstrained delegation'
+        @($r.Reconciliation.Account) | Should -Not -Contain 'dmsa-webfront$'
         $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ Target = 'dMSA'; NewAccount = 'dmsa-print$' } })
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'msa-print01$' })[0].Issue | Should -Match "MSA or gMSA can't be migrated.*PRINT01 runs Windows Server 2019"
         $p = New-TestKrb { param($j) foreach ($dc in $j.domainControllers) { $dc.OperatingSystem = 'Windows Server 2022 Datacenter' } }
@@ -215,7 +248,7 @@ Describe 'dMSAs: Windows Server 2025 delegated MSA migration' {
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'svc-hrsync' })[0].Issue | Should -Match 'no Windows Server 2025 domain controller'
     }
     It 'one dMSA per service account, and a gMSA can''t be converted again' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ NewAccount = 'dmsa-hrsync$' }; Set-Row $x 'gmsa-web$' @{ Disposition = 'Convert'; Target = 'dMSA'; NewAccount = 'dmsa-web$' } })
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ Disposition = 'Replatform'; Target = 'dMSA'; NewAccount = 'dmsa-hrsync$'; Hosts = 'WEB03' }; Set-Row $x 'gmsa-web$' @{ Disposition = 'Replatform'; Target = 'dMSA'; NewAccount = 'dmsa-web$' } })
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'svc-hrsync' })[0].Issue | Should -Match 'more than one account'
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'gmsa-web$' })[0].Issue | Should -Match "already a gMSA"
     }
@@ -237,44 +270,58 @@ Describe 'PrincipalsAllowedToRetrieveManagedPassword as reviewed data' {
 
 Describe 'The island list (N3.6) and the SPN retirement hand-off (P4.6)' {
     It 'lists every account that stays on Kerberos under the name it will have, with its SPNs' {
-        @($script:Run.IslandList.Account) | Should -Be @('dmsa-hrsync$', 'gmsa-intranet$', 'gmsa-print$', 'gmsa-web$', 'svc-webfront')
+        @($script:Run.IslandList.Account) | Should -Be @('dmsa-hrsync$', 'gmsa-intranet$', 'gmsa-ops$', 'gmsa-print$', 'gmsa-web$', 'svc-webfront')
         @($script:Run.IslandList | Where-Object Account -EQ 'dmsa-hrsync$')[0].Spns | Should -Be 'HTTP/hrapp.corp.contoso.example'
     }
     It 'NPI-KRB-05 and NPI-KRB-06: an SPN owner and an end date within D08, or not ready' {
-        (Get-Rule 'NPI-KRB-05').ObjectKey | Should -Be 'svc-intranet'
-        @(Get-Rule 'NPI-KRB-06').ObjectKey | Sort-Object | Should -Be @('gmsa-web$', 'svc-intranet')
-        @($script:Run.IslandList | Where-Object ReadyForP46).Account | Should -Be @('dmsa-hrsync$', 'gmsa-print$', 'svc-webfront')
+        @(Get-Rule 'NPI-KRB-05').ObjectKey | Sort-Object | Should -Be @('gmsa-ops$', 'svc-intranet', 'svc-webfront')
+        @(Get-Rule 'NPI-KRB-06').ObjectKey | Sort-Object | Should -Be @('gmsa-ops$', 'gmsa-web$', 'svc-intranet')
+        @($script:Run.IslandList | Where-Object ReadyForP46).Account | Should -Be @('dmsa-hrsync$', 'gmsa-print$')
         $script:Run.HandoffReady | Should -BeFalse
     }
     It 'with no D08 date, nothing can be handed off' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.EndState.d08.kerberosEndDate = $null })
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.ProgramDates.d08LegacyAuthEndDate = $null })
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.Severity -eq 'Warn' }).Count | Should -BeGreaterThan 0
         $r.HandoffReady | Should -BeFalse
     }
     It 'is ready once every account has an owner and an end date within D08' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-intranet' @{ SpnOwnerUpn = 'intranet.owner@contoso.example'; EndDate = '2027-03-31' }; Set-Row $x 'gmsa-web$' @{ EndDate = '2027-06-30' } })
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-intranet' @{ SpnOwnerUpn = 'intranet.owner@contoso.example'; EndDate = '2027-03-31' }; Set-Row $x 'gmsa-web$' @{ EndDate = '2027-06-30' }; Set-Row $x 'gmsa-ops$' @{ SpnOwnerUpn = 'ops.owner@contoso.example'; EndDate = '2027-06-30' }; Set-Row $x 'svc-webfront' @{ SpnOwnerUpn = 'web.owner@contoso.example' } })
         $r.HandoffReady | Should -BeTrue
+        # Chapter 03's acceptance travels with an account kept on Kerberos: without it, it isn't ready.
+        @($script:Run.IslandList | Where-Object Account -EQ 'svc-webfront')[0].AoAcceptedBy | Should -Be 'ao@contoso.example'
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ SpnOwnerUpn = 'web.owner@contoso.example'; AoAcceptedBy = '' } })
+        @($r.IslandList | Where-Object Account -EQ 'svc-webfront')[0].ReadyForP46 | Should -BeFalse
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ SpnOwnerUpn = 'web.owner@contoso.example' } })
+        @($r.IslandList | Where-Object Account -EQ 'svc-webfront')[0].ReadyForP46 | Should -BeTrue
     }
 }
 
 Describe 'Reconciliation with the provisional end state (N7.3, D11, G5)' {
     It 'every gMSA and dMSA, existing or planned, has an outcome' {
-        @($script:Run.Reconciliation | ForEach-Object { "$($_.Account)=$($_.Outcome)" }) | Should -Be @('dmsa-hrsync$=OnIslandList', 'gmsa-ops$=MovesToWorkloadIdentity', 'gmsa-sql$=HandedOff', 'gmsa-web$=OnIslandList', 'gmsa-intranet$=Unreconciled', 'gmsa-print$=OnIslandList')
+        @($script:Run.Reconciliation | ForEach-Object { "$($_.Account)=$($_.Outcome)" }) | Should -Be @('dmsa-hrsync$=OnIslandList', 'gmsa-ops$=OnIslandList', 'gmsa-sql$=HandedOff', 'gmsa-web$=OnIslandList', 'gmsa-intranet$=Unreconciled', 'gmsa-print$=OnIslandList')
     }
     It 'NPI-KRB-07: an island account past the island''s end of life' {
         (Get-Rule 'NPI-KRB-07').ObjectKey | Should -Be 'gmsa-intranet$'
     }
     It 'NPI-KRB-07: when D11 retires AD, an island account past G5 loses its credential at demotion' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.EndState.d11.decision = 'AdRetired'; Set-Row $x 'gmsa-web$' @{ EndDate = '2027-12-31' } })
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.ProgramDates.d11.decision = 'AdRetired'; Set-Row $x 'gmsa-web$' @{ EndDate = '2027-12-31' } })
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-07' -and $_.ObjectKey -eq 'gmsa-web$' })[0].Issue | Should -Match 'loses its credential at domain controller demotion'
     }
     It 'NPI-KRB-07: a gMSA with no destination, or a workload identity move after G5' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.Dispositions = @($x.Dispositions | Where-Object SamAccountName -NE 'gmsa-web$'); Set-Row $x 'gmsa-ops$' @{ EndDate = '2027-12-31' } })
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.Dispositions = @($x.Dispositions | Where-Object SamAccountName -NE 'gmsa-web$'); Set-Row $x 'gmsa-ops$' @{ Disposition = 'Replatform'; Target = 'ManagedIdentity'; Reference = 'Chapter 05: user-assigned managed identity mi-ops-automation'; EndDate = '2027-12-31' } })
         @($r.Reconciliation | Where-Object Outcome -EQ 'Unreconciled').Account | Should -Contain 'gmsa-web$'
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-07' -and $_.ObjectKey -eq 'gmsa-ops$' })[0].Issue | Should -Match 'after G5'
+        # A gMSA re-platformed to a workload identity moves in Chapter 05, and needs the identity named.
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-ops$' @{ Disposition = 'Replatform'; Target = 'ManagedIdentity'; Reference = 'Chapter 05: user-assigned managed identity mi-ops-automation'; EndDate = '2027-03-31' } })
+        @($r.Plan.actions | Where-Object Account -EQ 'gmsa-ops$')[0].Action | Should -Be 'MovesToWorkloadIdentity'
+        @($r.Reconciliation | Where-Object Account -EQ 'gmsa-ops$')[0].Outcome | Should -Be 'MovesToWorkloadIdentity'
+        @($r.IslandList.Account) | Should -Not -Contain 'gmsa-ops$'
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-ops$' @{ Disposition = 'Replatform'; Target = 'ManagedIdentity'; EndDate = '2027-03-31' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-02' -and $_.ObjectKey -eq 'gmsa-ops$' })[0].Issue | Should -Match 'needs a Reference'
     }
-    It 'a blocked conversion plans no new account to reconcile' {
-        @($script:Run.Reconciliation.Account) | Should -Not -Contain 'dmsa-webfront$'
+    It 'a conversion with no row in kerberos-replatform.csv is blocked, not guessed' {
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ NewAccount = '' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'msa-print01$' })[0].Issue | Should -Match 'no row in kerberos-replatform.csv'
     }
 }
 
@@ -350,12 +397,13 @@ Describe 'The separate write path' {
 Describe 'The entry scripts' {
     It 'read, plan, dry-run and apply against the fixtures, with manifests' {
         $out = Join-Path $script:Tmp 'kerberos'
-        $lines = & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud gcc -RegisterRun $script:InvRun -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath $out
+        $lines = & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud gcc -RegisterRun $script:InvRun -MatrixRun $script:MatRun -ProgramDatesPath $script:Dates -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath $out
         $lines[0] | Should -Be 'Kerberos accounts: 9 in scope; KDS root key Ready'
         $m = Get-Content (Join-Path $out 'manifest.json') -Raw | ConvertFrom-Json
         $m.task | Should -Be 'kerberos-island'
         $m.files.'kerberos-plan.json' | Should -Be (Get-NpiFileHash -Path (Join-Path $out 'kerberos-plan.json'))
-        $m.inputs.'end-state.json' | Should -Not -BeNullOrEmpty
+        $m.inputs.'program-dates.json' | Should -Be (Get-NpiFileHash -Path $script:Dates)
+        $m.inputs.'decisions.json' | Should -Be $script:Matrix.Sha256
         $sha = Get-NpiFileHash -Path (Join-Path $out 'kerberos-plan.json')
         $dry = & (Join-Path $script:Root 'Invoke-NpiKerberosIslandAction.ps1') -PlanPath (Join-Path $out 'kerberos-plan.json') -ApprovedSha256 $sha -FixturePath $script:Estate -KerberosFixturePath $script:Krb -OutputPath (Join-Path $script:Tmp 'dry')
         $dry[0] | Should -Be 'DryRun: 4 WouldSend'
@@ -364,6 +412,6 @@ Describe 'The entry scripts' {
         (Get-Content (Join-Path $script:Tmp 'apply/manifest.json') -Raw | ConvertFrom-Json).planSha256 | Should -Be $sha
     }
     It 'refuses a register read in another cloud' {
-        { & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud gcchigh -RegisterRun $script:InvRun -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''gcchigh''*'
+        { & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud gcchigh -RegisterRun $script:InvRun -MatrixRun $script:MatRun -ProgramDatesPath $script:Dates -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''gcchigh''*'
     }
 }

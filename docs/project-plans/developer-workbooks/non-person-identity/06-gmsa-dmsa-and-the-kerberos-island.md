@@ -48,7 +48,7 @@ The Kerberos-only part of credential modernization (the project plan's NP3.5 and
 
 The program's rules for this chapter *(Design guidance)*:
 
-- **Every Kerberos account has a reviewed disposition:** `Convert` (to a gMSA or a dMSA), `Island` (it stays, with an SPN owner and an end date), `WorkloadIdentity` (Chapter 05 moves it) or `Retire`, in `kerberos-dispositions.csv`, kept with the application records. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
+- **Every Kerberos account has a reviewed disposition, and it is Chapter 03's:** the application owner's D-NP3 decision, `Retire`, `Replatform`, `Keep` or `KeepKerberos`, which this chapter reads from [Chapter 03](03-the-migration-path-matrix-as-code.md)'s run, never from a second list. `Replatform` to a gMSA or a dMSA is converted here; `Replatform` to a managed identity or an app registration moves in Chapter 05; `Keep` and `KeepKerberos` stay, with an SPN owner and an end date, and `KeepKerberos` carries the authorizing official's acceptance onto the island list; `Retire` goes through the decommission process. For each account it re-platforms, `kerberos-replatform.csv`, kept with the application records, names the new account, its workload and its hosts. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
 - **Who may retrieve a managed password is reviewed data**, in `password-retrievers.json`, not whatever AD holds today.
 - **A dMSA migration runs for 30 days before it completes.** That is the program's parallel run for every conversion, and it covers four 7-day ticket lifetimes, the wait Learn recommends before completing (at least two).[^np06-dmsa-overview]
 - **Every account that stays on Kerberos has an SPN owner and an end date no later than D08's;** every gMSA and dMSA ends no later than program G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
@@ -92,16 +92,17 @@ Each row is pinned by a test: in `tests/KerberosIslandSamples.Tests.ps1` for the
 
 ## The code: what `examples/non-person-identity` adds
 
-This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, two entry scripts (`Invoke-NpiKerberosIsland.ps1`, which only reads, and `Invoke-NpiKerberosIslandAction.ps1`, the write path), its own call list `config/calls-ch06.json` with the `kerberos-island` and `kerberos-apply` tasks, and three reviewed inputs. It builds on Chapter 01's register and NpiCore's findings, hashes and fixtures, and adds a fake Active Directory for this chapter's cmdlets.
+This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, two entry scripts (`Invoke-NpiKerberosIsland.ps1`, which only reads, and `Invoke-NpiKerberosIslandAction.ps1`, the write path), its own call list `config/calls-ch06.json` with the `kerberos-island` and `kerberos-apply` tasks, Chapter 03's decisions and three reviewed inputs. It builds on Chapter 01's register and NpiCore's findings, hashes and fixtures, and adds a fake Active Directory for this chapter's cmdlets.
 
 ### The inputs
 
 | File | Who keeps it | What it holds |
 |---|---|---|
 | Chapter 01's run folder | The pipeline | `register.json` and `manifest.json`; the run refuses a register whose SHA-256 isn't the manifest's |
-| `kerberos-dispositions.csv` | Application owners, through identity engineering | Per Kerberos account: `Disposition`; for `Convert`, `Target` (`gMSA` or `dMSA`), `NewAccount`, `Workload` (`Service`, `IisAppPool` or `ScheduledTask`) and `Hosts`; `SpnOwnerUpn`; `EndDate`; `Reference` for a workload identity; then `HostChangedOn` and `MigrationStartedOn` as the work happens |
+| Chapter 03's run folder | The pipeline | `decisions.json` and `manifest.json`: each account's D-NP3 `Disposition` (`Retire`, `Replatform`, `Keep`, `KeepKerberos`) and `Target`, and for a kept account its `EndDate`, `SpnOwner` and the authorizing official's acceptance (`AoAcceptedBy`); the run refuses a `decisions.json` whose SHA-256 isn't the manifest's, or one decided on a different register |
+| `kerberos-replatform.csv` | Application owners, through identity engineering | Per account Chapter 03 re-platforms: `NewAccount`, `Workload` (`Service`, `IisAppPool` or `ScheduledTask`) and `Hosts` for a gMSA or a dMSA, or `Reference` for a workload identity; the new account's `SpnOwnerUpn` and `EndDate`; then `HostChangedOn` and `MigrationStartedOn` as the work happens. A kept account's SPN owner and end date are Chapter 03's |
 | `password-retrievers.json` | Server and AD engineering, reviewed | Per gMSA and dMSA, the distinguished names allowed to retrieve its password; Learn recommends a security group of the hosts[^np06-gmsa-manage] |
-| `end-state.json` | Identity engineering lead, from the program master schedule | D11's decision (`AdRetired` or `KerberosIsland` with an end of life), D08's end date and program G5's date. There is no default; a missing or unknown decision stops the run |
+| `program-dates.json` | Identity engineering lead, from the program master schedule | The one program dates file, which Chapter 03 also reads: D08's end date (`d08LegacyAuthEndDate`), program G5's date (`g5AdRetired`) and D11's decision (`d11`: `AdRetired`, or `KerberosIsland` with an end of life). There is no default; a missing or unknown decision stops the run, and so does a copy whose SHA-256 isn't the one Chapter 03's run recorded |
 
 ### The check and the plan
 
@@ -110,7 +111,7 @@ This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, tw
 | Rule | Severity | What it flags | Source |
 |---|---|---|---|
 | NPI-KRB-01 | Finding / Warn | No KDS root key (no gMSA or dMSA can be created); or one usable less than 10 hours ago | Learn[^np06-kds] |
-| NPI-KRB-02 | Finding | A Kerberos account with no disposition, or an unknown one | Project plan, D-NP3 (*Design guidance*) |
+| NPI-KRB-02 | Finding | A Kerberos account with no disposition in Chapter 03's decisions, or one this chapter doesn't know; a move to a workload identity with no `Reference` | Project plan, D-NP3 (*Design guidance*) |
 | NPI-KRB-03 | Finding | A gMSA or dMSA whose retrievers in AD differ from the reviewed list, or that has no reviewed list, or an empty one | *Design guidance* |
 | NPI-KRB-04 | Finding | A target that can't be used: a dMSA from an MSA, or with unconstrained delegation, a host or a domain without Windows Server 2025, one dMSA for two accounts; a gMSA with no reviewed retrievers; a gMSA or dMSA converted again | Learn[^np06-dmsa-overview] [^np06-dmsa-faq] |
 | NPI-KRB-05 | Finding | An account that stays on Kerberos with no SPN owner | Project plan, NP3.6 |
@@ -123,10 +124,10 @@ Every finding has a stable ID, `<rule>:<account>`. The plan turns each account i
 
 | Action | When | Writes? |
 |---|---|---|
-| `CreateGmsa` | `Convert` to a gMSA, the gMSA doesn't exist, the root key is ready, the retrievers are reviewed: `New-ADServiceAccount -Name -DNSHostName -PrincipalsAllowedToRetrieveManagedPassword -KerberosEncryptionType AES256` | Yes, after review |
+| `CreateGmsa` | `Replatform` to a gMSA, the gMSA doesn't exist, the root key is ready, the retrievers are reviewed: `New-ADServiceAccount -Name -DNSHostName -PrincipalsAllowedToRetrieveManagedPassword -KerberosEncryptionType AES256` | Yes, after review |
 | `AwaitHostChange`, `AwaitParallelRun` | The gMSA exists; the server owner installs it on the hosts and changes the service, application pool or task identity, then records `HostChangedOn`; 30 days follow | No |
 | `DisableSuperseded` | 30 days after `HostChangedOn`, the old account still enabled: `Disable-ADAccount -Identity <objectGUID>` | Yes, after review |
-| `CreateDmsa` | `Convert` to a dMSA that passes every limit, and doesn't exist: `New-ADServiceAccount -CreateDelegatedServiceAccount -KerberosEncryptionType AES256` | Yes, after review |
+| `CreateDmsa` | `Replatform` to a dMSA that passes every limit, and doesn't exist: `New-ADServiceAccount -CreateDelegatedServiceAccount -KerberosEncryptionType AES256` | Yes, after review |
 | `StartDmsaMigration` | The dMSA exists with `msDS-DelegatedMSAState` 0: `Start-ADServiceAccountMigration -Identity <dMSA> -SupersededAccount <DN>` | Yes, after review |
 | `AwaitMigrationWindow` | In migration, less than 30 days since `MigrationStartedOn`, or no date recorded | No |
 | `CompleteDmsaMigration` | State 1 and 30 days passed: `Complete-ADServiceAccountMigration`, which disables the old account and moves its SPNs to the dMSA[^np06-dmsa-overview] | Yes, after review |
@@ -137,9 +138,9 @@ The plan is written as `kerberos-plan.json` with the register's SHA-256, the SHA
 
 ### The island list and the reconciliation
 
-`island-list.csv` holds every account that stays on Kerberos under the name it will have (the dMSA or gMSA a conversion creates, or the account itself), with its SPNs, SPN owner, end date, whether the date is within D08 and whether it is ready for the program's SPN retirement (P4.6). The run's manifest records `islandHandoffReady`, true only when D08 is set and every row is ready.
+`island-list.csv` holds every account that stays on Kerberos under the name it will have (the dMSA or gMSA a conversion creates, or the account itself), with its SPNs, its D-NP3 disposition, SPN owner, end date, whether the date is within D08, the authorizing official who accepted an account kept on Kerberos (`AoAcceptedBy`, carried from Chapter 03) and whether it is ready for the program's SPN retirement (P4.6). A `KeepKerberos` account without that acceptance isn't ready. The run's manifest records `islandHandoffReady`, true only when D08 is set and every row is ready.
 
-`reconciliation.json` holds every gMSA and dMSA, existing or planned, with its destination and outcome: `MovesToWorkloadIdentity`, `Retires`, `OnIslandList`, `HandedOff` or `Unreconciled`. When the program confirms or revises D11 (D09, week 36), `end-state.json` changes in a reviewed pull request and the run is repeated inside the 72-day margin before program G5.
+`reconciliation.json` holds every gMSA and dMSA, existing or planned, with its destination and outcome: `MovesToWorkloadIdentity`, `Retires`, `OnIslandList`, `HandedOff` or `Unreconciled`. When the program confirms or revises D11 (D09, week 36), `program-dates.json` changes in a reviewed pull request, and Chapter 03's run and this one are repeated inside the 72-day margin before program G5.
 
 ### The separate write path
 
@@ -164,7 +165,7 @@ The read task holds no domain administration. The write task does, because Learn
 Pester 5 under PowerShell 7. This chapter's are:
 
 - `tests/KerberosIslandSamples.Tests.ps1`, 17 tests: Learn's procedures, run as published against stand-ins.
-- `tests/NpiKerberosIsland.Tests.ps1`, 44 tests: the call list and its least-privilege check, the reader's refusals, the register's hash, the end state with no default, the KDS root key read, each rule, gMSA and dMSA paths step by step, the retrievers, the island list and its hand-off, the reconciliation under each D11 decision, the deterministic plan, the writer's refusals (hash, tenant, domain, age, delete, undeclared call, parameter, empty list, encryption type, distinguished name), dry run, `-Apply`, the prechecks that skip a write, and the entry scripts.
+- `tests/NpiKerberosIsland.Tests.ps1`, 44 tests: the call list and its least-privilege check, the reader's refusals, the register's hash, Chapter 03's run and the one program dates file, the end state with no default, the KDS root key read, each rule, gMSA and dMSA paths step by step, the retrievers, the island list and its hand-off, the reconciliation under each D11 decision, the deterministic plan, the writer's refusals (hash, tenant, domain, age, delete, undeclared call, parameter, empty list, encryption type, distinguished name), dry run, `-Apply`, the prechecks that skip a write, and the entry scripts.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -173,7 +174,7 @@ The commands below run Learn's pinned procedures against stand-ins, and run the 
 
 ## Lab 1: fixtures, no tenant
 
-You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-identity`. First make Chapter 01's `out/inventory` (Lab 1 of [Chapter 01](01-non-person-identity-inventory-as-code.md#lab-1-fixtures-no-tenant), step 3):
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-identity`. First make the runs this chapter reads: Chapter 01's `out/inventory`, Chapter 02's `out/ownership` and Chapter 03's `out/matrix`, with the commands of [Chapter 03](03-the-migration-path-matrix-as-code.md#lab-1-fixtures-no-tenant)'s Lab 1, step 3:
 
 <!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -181,7 +182,9 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
 Every command in this lab, in order, from `examples/non-person-identity`. Each step below says what it does and what to look for.
 
 ```powershell
-./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory
+./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory | Out-Null
+./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership | Out-Null
+./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership -InputPath tests/fixtures/ch03/inputs -FixturePath tests/fixtures/estate.json -SkuFixturePath tests/fixtures/ch03/subscribed-skus.json -OutputPath out/matrix | Out-Null
 
 # Step 1: Run Learn's procedures against the stand-ins
 Invoke-Pester -Path tests/KerberosIslandSamples.Tests.ps1 -Output None -PassThru |
@@ -192,7 +195,7 @@ Import-Module ./powershell/NpiKerberosIsland/NpiKerberosIsland.psm1
 foreach ($t in 'kerberos-island', 'kerberos-apply') { $r = Get-NpiKrbRequiredRight -Task $t; "$t : " + ($r.Cmdlets -join ', ') }
 
 # Step 3: Check the Kerberos accounts and build the plan
-./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
+./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -MatrixRun out/matrix -ProgramDatesPath tests/fixtures/ch03/inputs/program-dates.json -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
 
 # Step 4: Read the findings
 Get-Content out/kerberos/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
@@ -201,7 +204,7 @@ Get-Content out/kerberos/findings.json -Raw | ConvertFrom-Json | Sort-Object Rul
 Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
 
 # Step 6: Read the island list and the reconciliation
-Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, SpnOwnerUpn, EndDate, ReadyForP46
+Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, Disposition, SpnOwnerUpn, EndDate, AoAcceptedBy, ReadyForP46
 Get-Content out/kerberos/reconciliation.json -Raw | ConvertFrom-Json | Format-Table Account, Type, Planned, Destination, Outcome
 
 # Step 7: Dry-run the plan with its approved hash
@@ -224,7 +227,9 @@ Remove-Item -Recurse -Force out
 <!-- labs:end -->
 
 ```powershell
-./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory
+./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory | Out-Null
+./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership | Out-Null
+./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership -InputPath tests/fixtures/ch03/inputs -FixturePath tests/fixtures/estate.json -SkuFixturePath tests/fixtures/ch03/subscribed-skus.json -OutputPath out/matrix | Out-Null
 ```
 
 <!-- capture:begin 06-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
@@ -233,7 +238,7 @@ Remove-Item -Recurse -Force out
 
 <!-- capture:end -->
 
-It prints the three lines of Chapter 01's step 3, ending `Written to out/inventory`.
+It prints nothing. The three folders hold the register, the owners and the owners' D-NP3 decisions this chapter reads.
 
 1. **Run Learn's procedures against the stand-ins:**
 
@@ -271,21 +276,21 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 3. **Check the Kerberos accounts and build the plan:**
 
    ```powershell
-   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
+   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -MatrixRun out/matrix -ProgramDatesPath tests/fixtures/ch03/inputs/program-dates.json -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
    ```
 
    ```text
    Kerberos accounts: 9 in scope; KDS root key Ready
-   Findings: 6 Finding, 1 Warn, 2 Info
+   Findings: 8 Finding, 1 Warn, 2 Info
    Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
-   Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False
-   Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled
-   Plan SHA-256: 112f85a99407b2b256f7c520bf99245def7dcc8b2336726e4512e94b1624d94a
+   Island list: 6 accounts, 2 ready for P4.6; hand-off ready: False
+   Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
+   Plan SHA-256: b1019500744ecfb5d2c4e0a3f5ace7441e9c82cb931d7b5bd838961fedab5e0a
    ```
 
    <!-- capture:begin 06-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/06-4.txt))](captures/06-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -Fixture… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/06-4.txt))](captures/06-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -MatrixR… and what it printed"}
 
    <!-- capture:end -->
 
@@ -301,8 +306,10 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
    Rule       Severity ObjectKey
    ----       -------- ---------
    NPI-KRB-03 Finding  gmsa-web$
-   NPI-KRB-04 Finding  svc-webfront
+   NPI-KRB-05 Finding  gmsa-ops$
    NPI-KRB-05 Finding  svc-intranet
+   NPI-KRB-05 Finding  svc-webfront
+   NPI-KRB-06 Finding  gmsa-ops$
    NPI-KRB-06 Finding  gmsa-web$
    NPI-KRB-06 Finding  svc-intranet
    NPI-KRB-07 Finding  gmsa-intranet$
@@ -317,7 +324,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-   `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so its dMSA is blocked. `gmsa-web$`'s reviewed retrievers add `WEB03`, and its end date (September 30, 2027) is after D08's (June 30, 2027). `svc-intranet` has no SPN owner, and its end date (2028) is after D08 and after the island's end of life, so its planned gMSA isn't reconciled. `gmsa-ops$` is in Domain Admins.
+   Each disposition is Chapter 03's. `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so its owner kept it on Kerberos (`KeepKerberos`, with the authorizing official's acceptance) instead of the dMSA the matrix proposed; it has no SPN owner. Had the owner chosen the dMSA, this chapter would block it (NPI-KRB-04, pinned by the tests). `gmsa-web$`'s reviewed retrievers add `WEB03`, and the end date Chapter 03 records for it (August 31, 2027) is after D08's (June 30, 2027). `gmsa-ops$` has the same end date and no SPN owner, and is in Domain Admins. Chapter 03 re-platforms `svc-intranet` to a gMSA, but `kerberos-replatform.csv` names no SPN owner for it, and its end date (2028) is after D08 and after the island's end of life, so its planned gMSA isn't reconciled.
 
 5. **Read the plan:**
 
@@ -326,17 +333,17 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
    ```
 
    ```text
-   Action                  Account      Write Cmdlet
-   ------                  -------      ----- ------
-   MovesToWorkloadIdentity gmsa-ops$    False
-   HandedOff               gmsa-sql$    False
-   Island                  gmsa-web$    False
-   SetRetrievers           gmsa-web$     True Set-ADServiceAccount
-   CreateGmsa              msa-print01$  True New-ADServiceAccount
-   CompleteDmsaMigration   svc-hrsync    True Complete-ADServiceAccountMigration
-   CreateGmsa              svc-intranet  True New-ADServiceAccount
-   HandedOff               svc-sqlprod  False
-   Blocked                 svc-webfront False
+   Action                Account      Write Cmdlet
+   ------                -------      ----- ------
+   Island                gmsa-ops$    False
+   HandedOff             gmsa-sql$    False
+   Island                gmsa-web$    False
+   SetRetrievers         gmsa-web$     True Set-ADServiceAccount
+   CreateGmsa            msa-print01$  True New-ADServiceAccount
+   CompleteDmsaMigration svc-hrsync    True Complete-ADServiceAccountMigration
+   CreateGmsa            svc-intranet  True New-ADServiceAccount
+   HandedOff             svc-sqlprod  False
+   Island                svc-webfront False
    ```
 
    <!-- capture:begin 06-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
@@ -345,39 +352,42 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-   `svc-hrsync`'s migration to `dmsa-hrsync$` started on September 20, 40 days ago, so it can complete. The MSA `msa-print01$` gets a new gMSA for its scheduled task; the IIS application pool's account `svc-intranet` gets one whose retrievers are a group.
+   `svc-hrsync`'s migration to `dmsa-hrsync$` started on September 20, 40 days ago, so it can complete. The MSA `msa-print01$` gets a new gMSA for its scheduled task; the IIS application pool's account `svc-intranet` gets one whose retrievers are a group. `gmsa-ops$`, `gmsa-web$` and `svc-webfront` stay on the island, as Chapter 03 decided. An account Chapter 03 re-platforms to a managed identity or an app registration would show `MovesToWorkloadIdentity`, for Chapter 05.
 
 6. **Read the island list and the reconciliation:**
 
    ```powershell
-   Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, SpnOwnerUpn, EndDate, ReadyForP46
+   Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, Disposition, SpnOwnerUpn, EndDate, AoAcceptedBy, ReadyForP46
    Get-Content out/kerberos/reconciliation.json -Raw | ConvertFrom-Json | Format-Table Account, Type, Planned, Destination, Outcome
    ```
 
    ```text
-   Account        Type        SpnOwnerUpn                   EndDate    ReadyForP46
-   -------        ----        -----------                   -------    -----------
-   dmsa-hrsync$   dMSA        hr-apps.owner@contoso.example 2027-06-30 True
-   gmsa-intranet$ gMSA                                      2028-12-31 False
-   gmsa-print$    gMSA        print.owner@contoso.example   2027-06-30 True
-   gmsa-web$      gMSA        web.owner@contoso.example     2027-09-30 False
-   svc-webfront   Traditional web.owner@contoso.example     2027-06-30 True
+   Account        Type        Disposition  SpnOwnerUpn                   EndDate    AoAcceptedBy       ReadyForP46
+   -------        ----        -----------  -----------                   -------    ------------       -----------
+   dmsa-hrsync$   dMSA        Replatform   hr-apps.owner@contoso.example 2027-06-30                    True
+   gmsa-intranet$ gMSA        Replatform                                 2028-12-31                    False
+   gmsa-ops$      gMSA        Keep                                       2027-08-31                    False
+   gmsa-print$    gMSA        Replatform   print.owner@contoso.example   2027-06-30                    True
+   gmsa-web$      gMSA        Keep         erin@contoso.example          2027-08-31                    False
+   svc-webfront   Traditional KeepKerberos                               2027-05-31 ao@contoso.example False
 
-   Account        Type Planned Destination      Outcome
-   -------        ---- ------- -----------      -------
-   dmsa-hrsync$   dMSA   False Island           OnIslandList
-   gmsa-ops$      gMSA   False WorkloadIdentity MovesToWorkloadIdentity
-   gmsa-sql$      gMSA   False HandedOff        HandedOff
-   gmsa-web$      gMSA   False Island           OnIslandList
-   gmsa-intranet$ gMSA    True Island           Unreconciled
-   gmsa-print$    gMSA    True Island           OnIslandList
+   Account        Type Planned Destination Outcome
+   -------        ---- ------- ----------- -------
+   dmsa-hrsync$   dMSA   False Island      OnIslandList
+   gmsa-ops$      gMSA   False Island      OnIslandList
+   gmsa-sql$      gMSA   False HandedOff   HandedOff
+   gmsa-web$      gMSA   False Island      OnIslandList
+   gmsa-intranet$ gMSA    True Island      Unreconciled
+   gmsa-print$    gMSA    True Island      OnIslandList
    ```
 
    <!-- capture:begin 06-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/06-7.txt))](captures/06-7.png){.lightbox fig-alt="Terminal window showing Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, SpnOwne… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/06-7.txt))](captures/06-7.png){.lightbox fig-alt="Terminal window showing Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, Disposi… and what it printed"}
 
    <!-- capture:end -->
+
+   `svc-webfront` carries Chapter 03's acceptance by the authorizing official, so it becomes ready once it has an SPN owner; a `KeepKerberos` account without the acceptance stays not ready.
 
 7. **Dry-run the plan with its approved hash:**
 
@@ -413,7 +423,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is 112f85a9…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is b1019500…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 9. **Run the tests:**
 
@@ -427,7 +437,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register and each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done:
+**Expected result:** 513 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register, of Chapter 03's decisions and of each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -441,7 +451,7 @@ Remove-Item -Recurse -Force out
 
 ## Lab 2: test domain
 
-Use a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, and Chapter 01's Lab 2 run (`out/inventory-test`). The KDS root key must already exist; in a test domain with one domain controller, Learn's KDS page shows how to create one usable at once.[^np06-kds] Work in `examples/non-person-identity` on Chapter 01's test host. You'll replace: `<tenant-id>`, `<inventory-app-id>` and `<inventory-thumbprint>` (Chapter 01's tenant, reading app and certificate), `<test-domain>` (the test domain's DNS name), `<test-dc>` (a writable test domain controller), `<inputs>` (a folder for this lab's input files), `<test-account>` (the traditional test account's sAMAccountName), `<test-account-dn>` (its distinguished name), `<test-msa>` (the test MSA's name, without the `$`), `<new-dmsa>` and `<new-gmsa>` (names for the new dMSA and gMSA, without the `$`), `<msa-workload>` (`Service`, `IisAppPool` or `ScheduledTask`: what the MSA runs), `<member-server>` (the 2025 member server's name), `<retriever-dn>` (the distinguished name of the computer or group allowed to retrieve the gMSA's password), `<spn-owner-upn>` (a test SPN owner), `<end-date>` (an end date before your test D08), `<test-d08>`, `<test-g5>` and `<island-eol>` (your test program's dates), `<test-service>` (the test Windows service's name), and `<sha>`, `<sha2>`, `<sha3>` (each plan's SHA-256, as the reviewer passes it to you).
+Use a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, Chapter 01's Lab 2 test host, and the permissions Chapters 02 and 03's Lab 2 grant to Chapter 01's reading app, which this lab uses to run those chapters again over the test accounts. The KDS root key must already exist; in a test domain with one domain controller, Learn's KDS page shows how to create one usable at once.[^np06-kds] Work in `examples/non-person-identity` on Chapter 01's test host. You'll replace: `<tenant-id>`, `<inventory-app-id>` and `<inventory-thumbprint>` (Chapter 01's tenant, reading app and certificate), `<test-domain>` (the test domain's DNS name), `<test-dc>` (a writable test domain controller), `<inputs>`, `<ownership-inputs>` and `<matrix-inputs>` (folders for this lab's input files and for the ones it writes for Chapters 02 and 03), `<your-upn>` (your user principal name, as the owner who decides), `<test-account>` (the traditional test account's sAMAccountName), `<test-account-dn>` (its distinguished name), `<test-msa>` (the test MSA's name, without the `$`), `<new-dmsa>` and `<new-gmsa>` (names for the new dMSA and gMSA, without the `$`), `<msa-workload>` (`Service`, `IisAppPool` or `ScheduledTask`: what the MSA runs), `<member-server>` (the 2025 member server's name), `<retriever-dn>` (the distinguished name of the computer or group allowed to retrieve the gMSA's password), `<spn-owner-upn>` (a test SPN owner), `<end-date>` (an end date before your test D08), `<test-d08>`, `<test-g5>` and `<island-eol>` (your test program's dates, in the one `program-dates.json` both chapters read), `<test-service>` (the test Windows service's name), and `<sha>`, `<sha2>`, `<sha3>` (each plan's SHA-256, as the reviewer passes it to you).
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -449,18 +459,35 @@ Use a test Active Directory domain, never production, with at least one Windows 
 Every command in this lab, in order, from `examples/non-person-identity`. Each step below says what it does and what to look for.
 
 ```powershell
-# Step 1: Make two test accounts
-New-Item -ItemType Directory -Force <inputs> | Out-Null
-Get-Content tests/fixtures/ch06/inputs/kerberos-dispositions.csv -TotalCount 1 | Set-Content <inputs>/kerberos-dispositions.csv
-Add-Content <inputs>/kerberos-dispositions.csv '<test-account>,Convert,dMSA,<new-dmsa>$,Service,<member-server>,<spn-owner-upn>,<end-date>,,,', '<test-msa>$,Convert,gMSA,<new-gmsa>$,<msa-workload>,<member-server>,<spn-owner-upn>,<end-date>,,,'
-@{ accounts = @{ '<new-gmsa>$' = @('<retriever-dn>') } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/password-retrievers.json
-@{ d11 = @{ decision = 'KerberosIsland'; status = 'Provisional'; islandEndOfLife = '<island-eol>' }; d08 = @{ kerberosEndDate = '<test-d08>' }; g5 = @{ date = '<test-g5>' } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/end-state.json
+# Step 1: Make two test accounts, and record their dispositions in Chapter 03
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <inventory-app-id> -CertificateThumbprint <inventory-thumbprint>
 Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <inventory-app-id> -CertificateThumbprint <inventory-thumbprint>
 ./Invoke-NpiInventory.ps1 -Cloud gcc -TenantId <tenant-id> -Domain <test-domain> -OutputPath out/inventory-test
 
+# Step 1: Make two test accounts, and record their dispositions in Chapter 03
+New-Item -ItemType Directory -Force <inputs>, <ownership-inputs>, <matrix-inputs> | Out-Null
+foreach ($f in 'application-owners', 'igo-confirmations', 'owner-claims', 'service-records') { Get-Content tests/fixtures/inputs/$f.csv -TotalCount 1 | Set-Content <ownership-inputs>/$f.csv }
+Add-Content <ownership-inputs>/application-owners.csv '<test-account>,<your-upn>,TEST-0003', '<test-msa>$,<your-upn>,TEST-0003'
+Add-Content <ownership-inputs>/service-records.csv 'TEST-0003,NPI test Kerberos service,Active,false'
+./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <ownership-inputs> -OutputPath out/kerberos-test-ownership
+
+# Step 1: Make two test accounts, and record their dispositions in Chapter 03
+foreach ($f in 'workloads', 'dispositions', 'waves') { Get-Content tests/fixtures/ch03/inputs/$f.csv -TotalCount 1 | Set-Content <matrix-inputs>/$f.csv }
+$d = Get-Content tests/fixtures/ch03/inputs/program-dates.json -Raw | ConvertFrom-Json; $d.d08LegacyAuthEndDate = '<test-d08>'; $d.g5AdRetired = '<test-g5>'; $d.d11.islandEndOfLife = '<island-eol>'; $d | ConvertTo-Json -Depth 5 | Set-Content <matrix-inputs>/program-dates.json
+$reg = Get-Content out/inventory-test/register.json -Raw | ConvertFrom-Json; $today = Get-Date -Format yyyy-MM-dd
+$acct = ($reg | Where-Object Name -eq '<test-account>').IdentityId; $msa = ($reg | Where-Object Name -eq '<test-msa>$').IdentityId
+Add-Content <matrix-inputs>/workloads.csv "$acct,OnPremKerberos,,Yes,,<your-upn>", "$msa,OnPremKerberos,,Yes,,<your-upn>"
+Add-Content <matrix-inputs>/dispositions.csv "$acct,Replatform,dMSA,1,<your-upn>,$today,,,,", "$msa,Replatform,gMSA,1,<your-upn>,$today,,,,"
+Add-Content <matrix-inputs>/waves.csv "1,Test wave,$today,30,<spn-owner-upn>,$today"
+./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory-test -OwnershipRun out/kerberos-test-ownership -InputPath <matrix-inputs> -OutputPath out/kerberos-test-matrix
+
+# Step 1: Make two test accounts, and record their dispositions in Chapter 03
+Get-Content tests/fixtures/ch06/inputs/kerberos-replatform.csv -TotalCount 1 | Set-Content <inputs>/kerberos-replatform.csv
+Add-Content <inputs>/kerberos-replatform.csv '<test-account>,<new-dmsa>$,Service,<member-server>,<spn-owner-upn>,<end-date>,,,', '<test-msa>$,<new-gmsa>$,<msa-workload>,<member-server>,<spn-owner-upn>,<end-date>,,,'
+@{ accounts = @{ '<new-gmsa>$' = @('<retriever-dn>') } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/password-retrievers.json
+
 # Step 3: Run the check
-./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
+./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
 Get-Content out/kerberos-test/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
 
 # Step 3: Run the check
@@ -471,15 +498,15 @@ Get-Content out/kerberos-test/kerberos-plan.json -Raw | ConvertFrom-Json | Selec
 ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test/kerberos-plan.json -ApprovedSha256 <sha> -Server <test-dc> -OutputPath out/kerberos-test-apply -Apply
 
 # Step 5: Run the next plan
-./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-start
+./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-start
 Get-Content out/kerberos-test-start/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
 
 # Step 5: Run the next plan
 ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test-start/kerberos-plan.json -ApprovedSha256 <sha2> -Server <test-dc> -OutputPath out/kerberos-test-start-dry
 ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test-start/kerberos-plan.json -ApprovedSha256 <sha2> -Server <test-dc> -OutputPath out/kerberos-test-start-apply -Apply
-$d = Import-Csv <inputs>/kerberos-dispositions.csv
+$d = Import-Csv <inputs>/kerberos-replatform.csv
 ($d | Where-Object SamAccountName -eq '<test-account>').MigrationStartedOn = Get-Date -Format yyyy-MM-dd
-$d | Export-Csv <inputs>/kerberos-dispositions.csv -NoTypeInformation -UseQuotes AsNeeded
+$d | Export-Csv <inputs>/kerberos-replatform.csv -NoTypeInformation -UseQuotes AsNeeded
 
 # Step 5: Run the next plan
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters" -Name "DelegatedMSAEnabled" -Value "1" -PropertyType "DWORD" -Force
@@ -489,7 +516,7 @@ Restart-Service -Name <test-service>
 Get-ADServiceAccount -Identity <new-dmsa> -Properties msDS-DelegatedMSAState -Server <test-dc> | Select-Object Name, msDS-DelegatedMSAState
 
 # Step 6: Complete, or back out
-./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-complete
+./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-complete
 
 # Step 6: Complete, or back out
 ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test-complete/kerberos-plan.json -ApprovedSha256 <sha3> -Server <test-dc> -OutputPath out/kerberos-test-complete-dry
@@ -509,24 +536,50 @@ Remove-Item -Recurse -Force out/kerberos-test*
 
 <!-- labs:end -->
 
-1. **Make two test accounts:** a traditional test service account (`svc-` prefix) with an SPN, running a test Windows service on the 2025 member server, and a test MSA. Add both to `kerberos-dispositions.csv`: the first `Convert` to a dMSA on that host, the second `Convert` to a gMSA, each with a test SPN owner and an end date before your test D08. Add the gMSA's retrievers to `password-retrievers.json` and a test `end-state.json`. With the two accounts made, these commands write the three input files, in the fixture's formats, and read the register again so it holds them:
+1. **Make two test accounts, and record their dispositions in Chapter 03:** a traditional test service account (`svc-` prefix) with an SPN, running a test Windows service on the 2025 member server, and a test MSA. With the two accounts made, read the register again so it holds them:
 
    ```powershell
-   New-Item -ItemType Directory -Force <inputs> | Out-Null
-   Get-Content tests/fixtures/ch06/inputs/kerberos-dispositions.csv -TotalCount 1 | Set-Content <inputs>/kerberos-dispositions.csv
-   Add-Content <inputs>/kerberos-dispositions.csv '<test-account>,Convert,dMSA,<new-dmsa>$,Service,<member-server>,<spn-owner-upn>,<end-date>,,,', '<test-msa>$,Convert,gMSA,<new-gmsa>$,<msa-workload>,<member-server>,<spn-owner-upn>,<end-date>,,,'
-   @{ accounts = @{ '<new-gmsa>$' = @('<retriever-dn>') } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/password-retrievers.json
-   @{ d11 = @{ decision = 'KerberosIsland'; status = 'Provisional'; islandEndOfLife = '<island-eol>' }; d08 = @{ kerberosEndDate = '<test-d08>' }; g5 = @{ date = '<test-g5>' } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/end-state.json
    Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <inventory-app-id> -CertificateThumbprint <inventory-thumbprint>
    Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <inventory-app-id> -CertificateThumbprint <inventory-thumbprint>
    ./Invoke-NpiInventory.ps1 -Cloud gcc -TenantId <tenant-id> -Domain <test-domain> -OutputPath out/inventory-test
+   ```
+
+   Run Chapter 02 over it, with you as the two accounts' owner, in the fixture's formats:
+
+   ```powershell
+   New-Item -ItemType Directory -Force <inputs>, <ownership-inputs>, <matrix-inputs> | Out-Null
+   foreach ($f in 'application-owners', 'igo-confirmations', 'owner-claims', 'service-records') { Get-Content tests/fixtures/inputs/$f.csv -TotalCount 1 | Set-Content <ownership-inputs>/$f.csv }
+   Add-Content <ownership-inputs>/application-owners.csv '<test-account>,<your-upn>,TEST-0003', '<test-msa>$,<your-upn>,TEST-0003'
+   Add-Content <ownership-inputs>/service-records.csv 'TEST-0003,NPI test Kerberos service,Active,false'
+   ./Invoke-NpiOwnership.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <ownership-inputs> -OutputPath out/kerberos-test-ownership
+   ```
+
+   Record the D-NP3 decisions in Chapter 03's files: the first account `Replatform` to a dMSA, the MSA `Replatform` to a gMSA, both in wave 1, with your test program's dates in `program-dates.json`, then run Chapter 03:
+
+   ```powershell
+   foreach ($f in 'workloads', 'dispositions', 'waves') { Get-Content tests/fixtures/ch03/inputs/$f.csv -TotalCount 1 | Set-Content <matrix-inputs>/$f.csv }
+   $d = Get-Content tests/fixtures/ch03/inputs/program-dates.json -Raw | ConvertFrom-Json; $d.d08LegacyAuthEndDate = '<test-d08>'; $d.g5AdRetired = '<test-g5>'; $d.d11.islandEndOfLife = '<island-eol>'; $d | ConvertTo-Json -Depth 5 | Set-Content <matrix-inputs>/program-dates.json
+   $reg = Get-Content out/inventory-test/register.json -Raw | ConvertFrom-Json; $today = Get-Date -Format yyyy-MM-dd
+   $acct = ($reg | Where-Object Name -eq '<test-account>').IdentityId; $msa = ($reg | Where-Object Name -eq '<test-msa>$').IdentityId
+   Add-Content <matrix-inputs>/workloads.csv "$acct,OnPremKerberos,,Yes,,<your-upn>", "$msa,OnPremKerberos,,Yes,,<your-upn>"
+   Add-Content <matrix-inputs>/dispositions.csv "$acct,Replatform,dMSA,1,<your-upn>,$today,,,,", "$msa,Replatform,gMSA,1,<your-upn>,$today,,,,"
+   Add-Content <matrix-inputs>/waves.csv "1,Test wave,$today,30,<spn-owner-upn>,$today"
+   ./Invoke-NpiMatrix.ps1 -Cloud gcc -RegisterRun out/inventory-test -OwnershipRun out/kerberos-test-ownership -InputPath <matrix-inputs> -OutputPath out/kerberos-test-matrix
+   ```
+
+   Then this chapter's two files: `kerberos-replatform.csv` names the dMSA and the gMSA on that host, each with a test SPN owner and an end date before your test D08, and `password-retrievers.json` the gMSA's retrievers:
+
+   ```powershell
+   Get-Content tests/fixtures/ch06/inputs/kerberos-replatform.csv -TotalCount 1 | Set-Content <inputs>/kerberos-replatform.csv
+   Add-Content <inputs>/kerberos-replatform.csv '<test-account>,<new-dmsa>$,Service,<member-server>,<spn-owner-upn>,<end-date>,,,', '<test-msa>$,<new-gmsa>$,<msa-workload>,<member-server>,<spn-owner-upn>,<end-date>,,,'
+   @{ accounts = @{ '<new-gmsa>$' = @('<retriever-dn>') } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/password-retrievers.json
    ```
 
 2. **Grant the read:** give the account that runs the read a delegated read of `msKds-UseStartTime` and `msKds-CreateTime` on `CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,CN=Configuration,<forest>`, nothing else, and record whether the read works without access to the key data (research gaps, row 52). Record whether `PrincipalsAllowedToRetrieveManagedPassword` comes back for that account (row 53).
 3. **Run the check:**
 
    ```powershell
-   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
+   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
    Get-Content out/kerberos-test/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
    ```
 
@@ -546,7 +599,7 @@ Remove-Item -Recurse -Force out/kerberos-test*
 5. **Run the next plan:** the check now plans `StartDmsaMigration` for the dMSA and `AwaitHostChange` for the gMSA. Review, apply, record `MigrationStartedOn`. On the member server, set the host's registry value and restart only the test service, as Learn's procedure does for all services;[^np06-dmsa-setup] watch Kerberos events 307 to 309 in the Security-Kerberos Operational log. Record whether the dMSA's state is 1 without first setting it to 3 (row 51). Plan:
 
    ```powershell
-   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-start
+   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-start
    Get-Content out/kerberos-test-start/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
    ```
 
@@ -555,9 +608,9 @@ Remove-Item -Recurse -Force out/kerberos-test*
    ```powershell
    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test-start/kerberos-plan.json -ApprovedSha256 <sha2> -Server <test-dc> -OutputPath out/kerberos-test-start-dry
    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test-start/kerberos-plan.json -ApprovedSha256 <sha2> -Server <test-dc> -OutputPath out/kerberos-test-start-apply -Apply
-   $d = Import-Csv <inputs>/kerberos-dispositions.csv
+   $d = Import-Csv <inputs>/kerberos-replatform.csv
    ($d | Where-Object SamAccountName -eq '<test-account>').MigrationStartedOn = Get-Date -Format yyyy-MM-dd
-   $d | Export-Csv <inputs>/kerberos-dispositions.csv -NoTypeInformation -UseQuotes AsNeeded
+   $d | Export-Csv <inputs>/kerberos-replatform.csv -NoTypeInformation -UseQuotes AsNeeded
    ```
 
    On the member server, in an elevated PowerShell session, Learn's registry step, then a restart of the test service only:
@@ -576,7 +629,7 @@ Remove-Item -Recurse -Force out/kerberos-test*
 6. **Complete, or back out.** After 30 days the check plans `CompleteDmsaMigration`; apply it and confirm the old account is disabled and its SPNs are on the dMSA. To back out instead, run Learn's `Undo-ADServiceAccountMigration` by hand (this code never runs it),[^np06-dmsa-setup] re-enable the test account, then remove the test dMSA, gMSA, MSA and account by hand in the test domain, and delete the `out` folders. To complete, plan:
 
    ```powershell
-   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-complete
+   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test-complete
    ```
 
    The reviewer passes you `out/kerberos-test-complete/kerberos-plan.json`'s SHA-256 as `<sha3>`. Dry-run, apply, and read both accounts:
@@ -635,13 +688,13 @@ The Kerberos accounts are the on-premises part of the guide's [G5 Conversion](..
 | No root key, no disposition, an unusable target, no SPN owner, no end date or one past D08, an unreconciled account: each is a finding (Lab 1, step 4, and Lab 2, step 3: `findings.json`, NPI-KRB-01 to -07 and -09) | AC-2 Account Management; IA-5 | KSI-IAM-SNU | Identity engineering |
 | A managed service account in a privileged group is flagged (`findings.json`, NPI-KRB-08) | AC-6(5) Privileged Accounts | KSI-IAM-SNU, KSI-IAM-JIT | AD engineering, through the Privileged Access plan |
 | Only the reviewed hosts can retrieve each gMSA's and dMSA's password (`password-retrievers.json`; NPI-KRB-03; `SetRetrievers` in the plan) | AC-6 Least Privilege (who can retrieve a managed password) | KSI-IAM-ELP | Server and AD engineering |
-| Every account that stays on Kerberos is listed under its future name, with its SPNs, SPN owner and end date (Lab 1, step 6: `island-list.csv`) | CM-8 System Component Inventory; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | Identity engineering lead |
-| Every gMSA and dMSA has a destination under decision D11 (Lab 1, step 6: `reconciliation.json`; `end-state.json`) | CM-8; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | Identity engineering lead (NP7.3) |
+| Every account that stays on Kerberos is listed under its future name, with its SPNs, SPN owner, end date and, for one kept on Kerberos, the authorizing official's acceptance from Chapter 03 (Lab 1, step 6: `island-list.csv`) | CM-8 System Component Inventory; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | Identity engineering lead |
+| Every gMSA and dMSA has a destination under decision D11 (Lab 1, step 6: `reconciliation.json`; `program-dates.json`) | CM-8; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | Identity engineering lead (NP7.3) |
 | The write path stops after its prechecks without `-Apply`, and refuses a plan whose hash nobody approved (Lab 1, steps 7 and 8: `results.json` in the dry-run folder; the refusal text) | CM-3; CM-5 | KSI-CMT-RVP; KSI-IAM-JIT | The reviewer; the ISSO |
 | The approved creations, migrations and disables were run after fresh prechecks, and recorded; no cmdlet that removes or undoes was run (Lab 1, step 8, and Lab 2, steps 4 and 5: `results.json` and `manifest.json` in the apply folder) | CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | The ISSO, with the run's folder |
 | Every run records the tenant, the domain, every AD read, and the SHA-256 of the register, of each input and of each file (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
 | The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
-| The migration started on the recorded date, and after 30 days completed: the old account disabled, its SPNs on the dMSA (Lab 2, steps 5 and 6: `MigrationStartedOn` in `kerberos-dispositions.csv`; `CompleteDmsaMigration` in the plan; `Get-ADUser` and `Get-ADServiceAccount` after the apply) | AC-2(3); IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | Server owners; AD engineering |
+| The migration started on the recorded date, and after 30 days completed: the old account disabled, its SPNs on the dMSA (Lab 2, steps 5 and 6: `MigrationStartedOn` in `kerberos-replatform.csv`; `CompleteDmsaMigration` in the plan; `Get-ADUser` and `Get-ADServiceAccount` after the apply) | AC-2(3); IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | Server owners; AD engineering |
 | A back-out is a person's step, outside this code (Lab 2, step 6: Learn's `Undo-ADServiceAccountMigration`, run by hand) | CM-3 | KSI-CMT-LMC | AD engineering |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which output supports which indicator is the program's mapping (design guidance).[^np06-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Lab steps that only make test accounts, run Chapter 01 or delete `out` have no row. The track-wide mapping is the guide's [Evidence](../../../books/guides/non-person-identity-implementation.md#evidence) table.
@@ -669,8 +722,8 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] No dMSA was planned for an MSA, an account with unconstrained delegation, or a host without Windows Server 2025, and none was completed before 30 days.
 - [ ] Every plan's SHA-256 was approved by someone other than the person who applied it, and the write path's manifest is filed with the change record.
 - [ ] No old account was deleted; each superseded one is disabled and has a retirement decision.
-- [ ] Every account on the island list has an SPN owner and an end date within D08, and the list went to the program's SPN retirement (P4.6) only when `islandHandoffReady` was true.
-- [ ] Every gMSA and dMSA is `MovesToWorkloadIdentity`, `Retires`, `OnIslandList` or `HandedOff` against the current `end-state.json`, and the run was repeated after D11 was confirmed.
+- [ ] Every account on the island list has an SPN owner and an end date within D08, every `KeepKerberos` account carries the authorizing official's acceptance from Chapter 03, and the list went to the program's SPN retirement (P4.6) only when `islandHandoffReady` was true.
+- [ ] Every gMSA and dMSA is `MovesToWorkloadIdentity`, `Retires`, `OnIslandList` or `HandedOff` against the current `program-dates.json`, and Chapter 03's run and this one were repeated after D11 was confirmed.
 - [ ] The pinned Learn pages match their manifest, and every upstream commit since the pin has been reviewed.
 
 ::: {.callout-tip}

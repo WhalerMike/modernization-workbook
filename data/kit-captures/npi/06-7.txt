@@ -1,17 +1,18 @@
-PS> Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, SpnOwnerUpn, EndDate, ReadyForP46
-Account        Type        SpnOwnerUpn                   EndDate    ReadyForP46
--------        ----        -----------                   -------    -----------
-dmsa-hrsync$   dMSA        hr-apps.owner@contoso.example 2027-06-30 True
-gmsa-intranet$ gMSA                                      2028-12-31 False
-gmsa-print$    gMSA        print.owner@contoso.example   2027-06-30 True
-gmsa-web$      gMSA        web.owner@contoso.example     2027-09-30 False
-svc-webfront   Traditional web.owner@contoso.example     2027-06-30 True
+PS> Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, Disposition, SpnOwnerUpn, EndDate, AoAcceptedBy, ReadyForP46
+Account        Type        Disposition  SpnOwnerUpn                   EndDate    AoAcceptedBy       ReadyForP46
+-------        ----        -----------  -----------                   -------    ------------       -----------
+dmsa-hrsync$   dMSA        Replatform   hr-apps.owner@contoso.example 2027-06-30                    True
+gmsa-intranet$ gMSA        Replatform                                 2028-12-31                    False
+gmsa-ops$      gMSA        Keep                                       2027-08-31                    False
+gmsa-print$    gMSA        Replatform   print.owner@contoso.example   2027-06-30                    True
+gmsa-web$      gMSA        Keep         erin@contoso.example          2027-08-31                    False
+svc-webfront   Traditional KeepKerberos                               2027-05-31 ao@contoso.example False
 PS> Get-Content out/kerberos/reconciliation.json -Raw | ConvertFrom-Json | Format-Table Account, Type, Planned, Destination, Outcome
-Account        Type Planned Destination      Outcome
--------        ---- ------- -----------      -------
-dmsa-hrsync$   dMSA   False Island           OnIslandList
-gmsa-ops$      gMSA   False WorkloadIdentity MovesToWorkloadIdentity
-gmsa-sql$      gMSA   False HandedOff        HandedOff
-gmsa-web$      gMSA   False Island           OnIslandList
-gmsa-intranet$ gMSA    True Island           Unreconciled
-gmsa-print$    gMSA    True Island           OnIslandList
+Account        Type Planned Destination Outcome
+-------        ---- ------- ----------- -------
+dmsa-hrsync$   dMSA   False Island      OnIslandList
+gmsa-ops$      gMSA   False Island      OnIslandList
+gmsa-sql$      gMSA   False HandedOff   HandedOff
+gmsa-web$      gMSA   False Island      OnIslandList
+gmsa-intranet$ gMSA    True Island      Unreconciled
+gmsa-print$    gMSA    True Island      OnIslandList

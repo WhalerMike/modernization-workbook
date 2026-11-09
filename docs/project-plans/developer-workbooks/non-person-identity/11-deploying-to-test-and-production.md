@@ -1,6 +1,6 @@
 ---
 title: "Chapter 11 — Deploying to Test and Production"
-description: "A deployment runbook that takes the kit from the non-production environment of each chapter's second lab to a live test environment (an Entra test tenant, an Azure test subscription and an Active Directory test forest), then to production: one environment settings file with no secrets, a read-only preflight with the licenses, roles and VK-NPI baseline, a safe deployment order (inventory and owners, the app management policy scoped to a pilot, a federated credential and managed identity run in parallel with the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), a smoke test with a synthetic service principal and service account, the evidence, a rehearsed rollback, the promotion go/no-go criteria, then production with a change record, a staged enable by wave, first-week drift monitoring and a rollback, every step a copy-paste command linked to the implementation guide's gate. Nobody has run it against a live tenant."
+description: "A deployment runbook that takes the kit from the non-production environment of each chapter's second lab to a live test environment (an Entra test tenant, an Azure test subscription and an Active Directory test forest), then to production: one environment settings file with no secrets, a read-only preflight with the licenses, roles and VK-NPI baseline, a safe deployment order (inventory and owners, the app management policy scoped to a pilot, a federated credential and managed identity run in parallel with the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), a smoke test with a synthetic service principal and service account, the evidence, a rehearsed rollback, the promotion go/no-go criteria, then production with a change record, a staged enable by ring, first-week drift monitoring and a rollback, every step a copy-paste command linked to the implementation guide's gate. Nobody has run it against a live tenant."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-non-person-identity
@@ -20,7 +20,7 @@ last-reviewed: 2026-11-07
 
 ::: {.callout-note}
 ## In this chapter
-The runbook that takes the kit from the second lab of Chapters 01 to 10 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against an Entra test tenant, an Azure test subscription and an Active Directory test forest, and again, unchanged, against the production tenant, subscriptions and forest. Only the environment settings file changes between the two. You prepare the change record and the settings file, run a read-only preflight, deploy in a safe order (inventory and owners, the app management policy scoped to a pilot, a federated credential and a managed identity beside the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), run a smoke test with a synthetic service principal and service account, file the evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, enabling Conditional Access wave by wave and watching the first week with the drift run. Each step names the [implementation guide](../../../books/guides/non-person-identity-implementation.md)'s gate it fulfils. Each step has a table of the federal requirements it helps meet, the FedRAMP 20x KSI it aligns to and the evidence the ISSO keeps, and the kit writes that evidence as it runs. The chapter adds a preflight, a smoke test, a rollback and two evidence scripts to `examples/non-person-identity/deploy`, each with a fixture mode and tests.
+The runbook that takes the kit from the second lab of Chapters 01 to 10 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against an Entra test tenant, an Azure test subscription and an Active Directory test forest, and again, unchanged, against the production tenant, subscriptions and forest. Only the environment settings file changes between the two. You prepare the change record and the settings file, run a read-only preflight, deploy in a safe order (inventory and owners, the app management policy scoped to a pilot, a federated credential and a managed identity beside the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), run a smoke test with a synthetic service principal and service account, file the evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, enabling Conditional Access ring by ring and watching the first week with the drift run. Each step names the [implementation guide](../../../books/guides/non-person-identity-implementation.md)'s gate it fulfils. Each step has a table of the federal requirements it helps meet, the FedRAMP 20x KSI it aligns to and the evidence the ISSO keeps, and the kit writes that evidence as it runs. The chapter adds a preflight, a smoke test, a rollback and two evidence scripts to `examples/non-person-identity/deploy`, each with a fixture mode and tests.
 :::
 
 ::: {.callout-important}
@@ -48,7 +48,7 @@ This chapter is new and approved, and it has no narrated tour yet. Nobody has ru
 4. **A gMSA on a test host**, after the KDS root key has replicated.
 5. **Conditional Access for workload identities in report-only mode.** Learn lets a workload identity policy be saved in report-only mode to estimate its effect, and shows the result in the service principal sign-in logs.[^np11-wid]
 
-The policies that can block a sign-in come last, and only in report-only mode in the test stage; in production they are enabled wave by wave, after a reviewed sign-in summary.
+The policies that can block a sign-in come last, and only in report-only mode in the test stage; in production they are enabled ring by ring, after a reviewed sign-in summary.
 
 ### Which cloud, for these steps
 
@@ -99,10 +99,10 @@ Activate a role in the Microsoft Entra admin center: **ID Governance** > **Privi
 |---|---|---|---|
 | The change record for the stage | Change advisory board | Preflight | The change record |
 | The settings file for the stage | Identity governance officer | Preflight | Its SHA-256 in the preflight manifest |
-| The pilot workload and its 30-day parallel run | The pilot's application owner | Step 1.3 | Chapter 05's cutover log |
+| The pilot workload and its 30-day parallel run | The pilot's application owner, named in the settings file's `pilot.ownerUpn`, who is not an operator | Step 1.3 | Chapter 05's cutover log |
 | Each plan's SHA-256 (Chapters 04 and 05, the rollback) and Chapter 08's scope file | A reviewer who is not the operator | Each `-Apply` | The plan's manifest; the scope file's review |
 | Promotion to production | ISSO and the change advisory board | Stage 2 | The go/no-go record |
-| Each production wave's enforcement (D-NP5) | CISO | Step 2.3 | The scope file's enforcement record |
+| Each production ring's enforcement (D-NP5) | CISO | Step 2.3 | The scope file's enforcement record |
 
 ### The change record
 
@@ -116,12 +116,13 @@ Open one change record per stage. It names the stage, the window, the operators,
 
 ## The environment settings file
 
-One JSON file per stage holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the waves. The kit's template is [`deploy/settings.template.json`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/deploy/settings.template.json); the kit's fixture copies are `tests/fixtures/deploy/settings.test.json` and `settings.production.json`.
+One JSON file per stage holds every value the commands need: the tenant, the cloud, the identities, the operators, the pilot, the synthetic objects, the policies and the rings. The kit's template is [`deploy/settings.template.json`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/deploy/settings.template.json); the kit's fixture copies are `tests/fixtures/deploy/settings.test.json` and `settings.production.json`.
 
 The rules, which `Read-NpiDeploySettings` enforces before any command runs (*Design guidance*):
 
 - **No secrets.** A field whose name looks like a secret (`secret`, `password`, `token`, `privateKey`, `pfx`, `connectionString`) or a value that looks like a client secret or a PEM key stops the run. The deployment and reader identities are named by client ID and certificate thumbprint (or federated subject); the private key stays in the operator's certificate store, and `certificatePemPath` names a file the Azure CLI reads, never its content.
 - **No placeholders.** A value still shaped like `<tenant-id>` stops the run. The synthetic objects' IDs and the pilot policy's ID stay empty until the Prepare step creates the objects and writes their IDs into the file.
+- **An owner who approves, separate from the operators.** `pilot.ownerUpn` names the pilot application's owner, who records the cutover and approves the day-31 disable in Chapter 05's cutover log. The check refuses a file without one, or one that names an operator.
 - **The stage it says it is.** The file's `environment` must match the stage the command is told to run.
 - **The same commands for both stages.** The commands read every value from the file. Moving from test to production changes the file and nothing else.
 
@@ -138,7 +139,7 @@ These are the only values you replace in this chapter's commands:
 | `<microsoft-owner-tenant-id>` | The tenant ID Microsoft's first-party apps report as their owner, as Chapter 08 records it |
 | `<oos-object-id>`, `<oos-name>`, `<oos-class>`, `<oos-control>`, `<oos-reviewed-by>`, `<oos-reviewed-on>` | One identity that stays out of the Conditional Access scope (each managed identity and multitenant app in the tenant, including the pilot's managed identity) and the control that covers it, as Chapter 08's `outOfScope` entries have them; without a record for each, Chapter 08's check raises NPI-WCA-06 and the apply refuses to start |
 | `<d-n4-outcome>` | The CISO's Workload ID Premium decision (D-NP4), in words, with `<d-n4-by>` and `<d-n4-on>` |
-| `<d-n5-by>`, `<d-n5-on>` | Who decided D-NP5 (enforce a wave), and when |
+| `<d-n5-by>`, `<d-n5-on>` | Who decided D-NP5 (enforce a ring), and when |
 | `<reviewer-upn>` | The reviewer's user principal name: a reviewer who is not the operator, as the Approvals table requires |
 | `<sha>` | A plan's SHA-256, as the reviewer passes it back to you |
 | `<test-evidence>` | The test stage's smoke-test folder, `<outputRoot>/smoke-final` from the test settings file |
@@ -608,13 +609,13 @@ Fulfils [G5 Conversion](../../../books/guides/non-person-identity-implementation
    $mi = "/subscriptions/$($s.azure.subscriptionId)/resourceGroups/$($s.azure.resourceGroup)/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$($s.pilot.managedIdentityName)"
    $legacy = Get-ADUser -Identity $s.pilot.legacyAdAccounts[0] -Server $s.ad.server
    $conv = @{ version = 1; tenantId = $s.tenantId; conversions = @(
-       @{ id = 'pilot-01'; wave = 1; risk = 'HIGH'; owner = $s.operators[0].upn
+       @{ id = 'pilot-01'; wave = 1; risk = 'HIGH'; owner = $s.pilot.ownerUpn
           legacy = @{ kind = 'appSecret'; name = "$($s.pilot.name) secret"; applicationObjectId = $s.pilot.appObjectId; keyId = $old.keyId }
           host = @{ description = 'GitHub Actions workflow'; azureHosted = $false; oidcIssuer = $true }
           target = @{ kind = 'federatedCredential'; on = 'application'; applicationObjectId = $s.pilot.appObjectId; credentials = @(@{
               name = "pilot-$stage"; issuer = $s.pilot.federatedIssuer; subject = $s.pilot.federatedSubject; audiences = @('api://AzureADTokenExchange'); description = "Replaces $($old.keyId)"
               workload = @{ platform = 'github'; repository = $s.pilot.repository; entity = 'environment'; value = $stage; subjectFormat = 'name-based' } }) } },
-       @{ id = 'pilot-02'; wave = 1; risk = 'HIGH'; owner = $s.operators[0].upn
+       @{ id = 'pilot-02'; wave = 1; risk = 'HIGH'; owner = $s.pilot.ownerUpn
           legacy = @{ kind = 'adAccount'; name = $legacy.SamAccountName; objectId = "$($legacy.ObjectGUID)" }
           host = @{ description = 'Azure-hosted export job'; azureHosted = $true; oidcIssuer = $false }
           target = @{ kind = 'managedIdentity'; identityType = 'userAssigned'; createIfMissing = $false; location = $s.azure.location; resourceId = $mi; credentials = @() } }) }
@@ -644,8 +645,8 @@ Fulfils [G5 Conversion](../../../books/guides/non-person-identity-implementation
 4. **Start the parallel run.** The pilot's application owner switches the workflow to the federated credential and the job to the managed identity, then records the cutover:
 
    ```powershell
-   Add-Content $s.pilot.cutoverLogPath "pilot-01,$(Get-Date -Format yyyy-MM-dd),$($s.operators[0].upn),,"
-   Add-Content $s.pilot.cutoverLogPath "pilot-02,$(Get-Date -Format yyyy-MM-dd),$($s.operators[0].upn),,"
+   Add-Content $s.pilot.cutoverLogPath "pilot-01,$(Get-Date -Format yyyy-MM-dd),$($s.pilot.ownerUpn),,"
+   Add-Content $s.pilot.cutoverLogPath "pilot-02,$(Get-Date -Format yyyy-MM-dd),$($s.pilot.ownerUpn),,"
    ```
 
    **Expected:** in the test stage, the run lasts as long as the smoke test needs; the 30-day run and the disable belong to production (Step 2.2). The old secret stays on the app: the pilot's app management policy doesn't remove it, and the owner does, in a separate reviewed change made by hand (Chapter 04's write path accepts only certificates), after the run.
@@ -721,7 +722,7 @@ Fulfils the Conditional Access half of [G4 Least privilege](../../../books/guide
    ```powershell
    $pols = (Invoke-MgGraphRequest -Uri "$graph/v1.0/identity/conditionalAccess/policies?`$select=id,displayName,state").value | Where-Object { $_.displayName -match '^CA0(15|37)-' }
    $raw = Get-Content <settings-file> -Raw | ConvertFrom-Json -AsHashtable -Depth 20
-   $raw.conditionalAccess.policies = @($pols | ForEach-Object { @{ id = $_.id; name = $_.displayName; wave = $(if ($_.displayName -match '(Ring\d+)') { $Matches[1] } else { $null }) } })
+   $raw.conditionalAccess.policies = @($pols | ForEach-Object { @{ id = $_.id; name = $_.displayName; ring = $(if ($_.displayName -match '(Ring\d+)') { $Matches[1] } else { $null }) } })
    $raw | ConvertTo-Json -Depth 20 | Set-Content <settings-file>
    $s = Read-NpiDeploySettings -Path <settings-file> -Stage $stage
    $pols | Format-Table displayName, state
@@ -898,7 +899,7 @@ Production starts only when every row is met and signed. *Design guidance.*
 | 5 | The tenant-wide app management policy plan reviewed and its SHA-256 approved | `policy-plan/policy-plan.json` and the approval | Identity governance officer |
 | 6 | The production settings file reviewed, for a different tenant, with its own operators | Its SHA-256 | Identity governance officer |
 | 7 | Production licenses and PIM eligibility in place | A production preflight run before the window, no Fail | Identity engineer |
-| 8 | The change record approved, with the window, the waves and the rollback plan | The change record | Change advisory board |
+| 8 | The change record approved, with the window, the Conditional Access rings and the rollback plan | The change record | Change advisory board |
 | 9 | Every requirement row for the test stage has its evidence file present and passing, and every hash matches | `Test-NpiDeployEvidence.ps1` for the test stage, exit 0: `Result: every requirement row has its evidence, and every hash matches.` | ISSO |
 
 Check row 9 in a session started with the test settings file:
@@ -960,7 +961,7 @@ The pilot's parallel run lasts 30 days in production. On day 31, with the owner'
 
 ```powershell
 $log = Import-Csv $s.pilot.cutoverLogPath
-($log | Where-Object ConversionId -eq 'pilot-02').DisableApprovedBy = $s.operators[0].upn
+($log | Where-Object ConversionId -eq 'pilot-02').DisableApprovedBy = $s.pilot.ownerUpn
 $log | Export-Csv $s.pilot.cutoverLogPath -NoTypeInformation -UseQuotes AsNeeded
 ./Invoke-NpiFederation.ps1 -Cloud $s.cloud -TenantId $s.tenantId -Domain $s.ad.domain -ConversionsPath $s.pilot.conversionsPath -CutoverLogPath $s.pilot.cutoverLogPath -OutputPath "$out/federation-day31"
 (Get-FileHash "$out/federation-day31/plan.json" -Algorithm SHA256).Hash.ToLower()
@@ -980,17 +981,17 @@ Record the step's evidence:
 | IA-5; SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD) | The tenant-wide app management policy applied | KSI-IAM-SNU, KSI-CMT-LMC | Production's `S1.2` record over `policy-apply`; the ScubaGear result |
 | AC-2(3) Disable Accounts | The legacy account disabled on day 31, never deleted | KSI-IAM-AAM | Production's `S1.3` record, re-run with `-RunPath "$out/federation", "$out/federation-apply", "$out/federation-day31"` and the day-31 apply folder |
 
-### Step 2.3: Staged enable by wave
+### Step 2.3: Staged enable by ring {#step-23-staged-enable-by-wave}
 
-Each wave is one of Chapter 08's rings, listed in the settings file's `waves`. For each wave in turn, after its 14 days of report-only sign-ins:
+Conditional Access is enabled one of Chapter 08's rings at a time, as the settings file's `rings` lists them. For each ring in turn, after its 14 days of report-only sign-ins:
 
-1. **Summarize the wave's sign-ins**, signed in as the reader app, and hand the summary's SHA-256 to the CISO for D-NP5:
+1. **Summarize the ring's sign-ins**, signed in as the reader app, and hand the summary's SHA-256 to the CISO for D-NP5:
 
    ```powershell
    ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -From (Get-Date).AddDays(-14).ToUniversalTime() -To (Get-Date).ToUniversalTime() -OutputPath "$out/wca-signins-Ring1"
    ```
 
-2. **Record D-NP5 in the scope file** and enforce the wave, as the Conditional Access administrator:
+2. **Record D-NP5 in the scope file** and enforce the ring, as the Conditional Access administrator:
 
    ```powershell
    $sha = (Get-FileHash "$out/wca-signins-Ring1/signin-summary.json" -Algorithm SHA256).Hash.ToLower()
@@ -1002,7 +1003,7 @@ Each wave is one of Chapter 08's rings, listed in the settings file's `waves`. F
    ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -OutputPath "$out/wca-enforce-Ring1-2" -Apply -AllowEnforce -SignInSummaryPath "$out/wca-signins-Ring1/signin-summary.json"
    ```
 
-   **Expected:** the first apply turns CA015 for Ring 1 on and creates anything new report-only; the second turns the rest of Ring 1 on (Chapter 08 creates a policy report-only and enforces it on the next run). For the next wave, repeat with `Ring2` in place of `Ring1`, adding its entry to `rings` beside Ring 1's.
+   **Expected:** the first apply turns CA015 for Ring 1 on and creates anything new report-only; the second turns the rest of Ring 1 on (Chapter 08 creates a policy report-only and enforces it on the next run). For the next ring, repeat with `Ring2` in place of `Ring1`, adding its entry to `rings` beside Ring 1's.
 
 Record the step's evidence:
 
@@ -1012,25 +1013,25 @@ Record the step's evidence:
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
-| AC-6 Least Privilege; CM-3; CM-4(2) | Each wave enforced only after its reviewed 14-day summary and D-NP5, one wave at a time | KSI-IAM-ELP, KSI-CMT-LMC | `S2.3-staged-enable-by-wave.json` and `runs/S2.3/` (the sign-in summary and the enforce runs) |
+| AC-6 Least Privilege; CM-3; CM-4(2) | Each ring enforced only after its reviewed 14-day summary and D-NP5, one ring at a time | KSI-IAM-ELP, KSI-CMT-LMC | `S2.3-staged-enable-by-ring.json` and `runs/S2.3/` (the sign-in summary and the enforce runs) |
 
 ### Step 2.4: Smoke test in production
 
-Run Step 1.6 with the production settings, first before any wave is enforced (`-ExpectCaState ReportOnly`), then after each wave, for that wave only:
+Run Step 1.6 with the production settings, first before any ring is enforced (`-ExpectCaState ReportOnly`), then after each ring, for that ring only:
 
 ```powershell
-./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath <settings-file> -Stage $stage -RegisterRun "$out/inventory-smoke" -ExpectCaState Enabled -Wave Ring1 -OutputPath "$out/smoke-Ring1"
+./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath <settings-file> -Stage $stage -RegisterRun "$out/inventory-smoke" -ExpectCaState Enabled -Ring Ring1 -OutputPath "$out/smoke-Ring1"
 ```
 
 **Expected:** every check `Pass`. ST-05 shows Ring 1's policies `enabled`. ST-06 shows `failure` for CA015 from the outside run, which is now a block: the outside workflow run fails with the message Learn gives, "Access has been blocked due to Conditional Access policies",[^np11-wid] and the inside run succeeds with `notApplied`.
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
-| AC-2, CM-8, IA-4, IA-5, IA-9, AC-3, AC-6, AU-2, AU-12, CA-7 | The smoke test's checks in production, before and after each wave | KSI-PIY-GIV, KSI-IAM-SNU, KSI-IAM-ELP, KSI-MLA-LET, KSI-MLA-EVC | Production's `SMOKE-smoke-test.json` (each run replaces it; keep each wave's copy under `runs/SMOKE`) |
+| AC-2, CM-8, IA-4, IA-5, IA-9, AC-3, AC-6, AU-2, AU-12, CA-7 | The smoke test's checks in production, before and after each ring | KSI-PIY-GIV, KSI-IAM-SNU, KSI-IAM-ELP, KSI-MLA-LET, KSI-MLA-EVC | Production's `SMOKE-smoke-test.json` (each run replaces it; keep each ring's copy under `runs/SMOKE`) |
 
 ### Step 2.5: First-week monitoring with drift
 
-For the seven days after each wave, run Chapter 10's drift run once a day, as the reader app, and the sign-in summary for the enforced waves. The first day writes a baseline candidate; the identity governance officer approves its SHA-256, and each later day compares with it:
+For the seven days after each ring, run Chapter 10's drift run once a day, as the reader app, and the sign-in summary for the enforced rings. The first day writes a baseline candidate; the identity governance officer approves its SHA-256, and each later day compares with it:
 
 ```powershell
 ./Invoke-NpiDriftRun.ps1 -Cloud $s.cloud -TenantId $s.tenantId -Domain $s.ad.domain -InputPath $s.inputs.ownership -OutputPath "$out/drift" -PipelineIdentitiesPath $s.inputs.pipelineIdentities
@@ -1048,7 +1049,7 @@ Get-Content "$($last.FullName)/drift/findings.json" -Raw | ConvertFrom-Json | Fo
 ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -From (Get-Date).AddDays(-1).ToUniversalTime() -To (Get-Date).ToUniversalTime() -OutputPath "$out/wca-signins-$(Get-Date -Format yyyyMMdd)"
 ```
 
-**Expected:** no NPI-DRF finding for a credential added outside the pipeline, and no new consent grant; any finding goes to its owner the same day ([Chapter 10](10-drift-and-evidence.md)). In the sign-in summary, a principal with `failure` from inside the egress range means the egress list is wrong: roll the wave back to report-only (Step 2.6) and fix the scope file. Package each day with Chapter 10's evidence pipeline.
+**Expected:** no NPI-DRF finding for a credential added outside the pipeline, and no new consent grant; any finding goes to its owner the same day ([Chapter 10](10-drift-and-evidence.md)). In the sign-in summary, a principal with `failure` from inside the egress range means the egress list is wrong: roll the ring back to report-only (Step 2.6) and fix the scope file. Package each day with Chapter 10's evidence pipeline.
 
 Record the step's evidence:
 
@@ -1064,14 +1065,14 @@ Record the step's evidence:
 
 Two levels, both planned from the production preflight's snapshot and applied only with a reviewed hash:
 
-- **One wave back to report-only**, the first response to an unexpected block:
+- **One ring back to report-only**, the first response to an unexpected block:
 
   ```powershell
-  ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath <settings-file> -Stage $stage -SnapshotPath "$out/preflight/snapshot.json" -To ReportOnly -Wave Ring1 -OutputPath "$out/rollback-Ring1"
+  ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath <settings-file> -Stage $stage -SnapshotPath "$out/preflight/snapshot.json" -To ReportOnly -Ring Ring1 -OutputPath "$out/rollback-Ring1"
   ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath <settings-file> -Stage $stage -PlanPath "$out/rollback-Ring1/rollback-plan.json" -ApprovedSha256 <sha> -OutputPath "$out/rollback-Ring1-apply" -Apply
   ```
 
-  Then remove the wave from the scope file's `enforcement.rings` so the next Chapter 08 run doesn't enforce it again:
+  Then remove the ring from the scope file's `enforcement.rings` so the next Chapter 08 run doesn't enforce it again:
 
   ```powershell
   $sc = Get-Content $s.conditionalAccess.scopePath -Raw | ConvertFrom-Json -AsHashtable
@@ -1081,11 +1082,11 @@ Two levels, both planned from the production preflight's snapshot and applied on
 
 - **The whole stage**, with Step 1.8's commands and `-To Disabled`, without `-IncludeSmokeCleanup` until the synthetic objects are no longer needed.
 
-**Expected:** the wave rollback has two actions, both to `enabledForReportingButNotEnforced`; the dry-run and apply print them. The guide's [rollback](../../../books/guides/non-person-identity-implementation.md#rollback) for Step 4 is "workload identity policy back to report-only", and for Step 5 "re-enable the legacy account and revert the application's configuration": the full plan does the first and the re-enable; the owner reverts the configuration. Tokens issued before the rollback stay valid for their lifetime.
+**Expected:** the ring rollback has two actions, both to `enabledForReportingButNotEnforced`; the dry-run and apply print them. The guide's [rollback](../../../books/guides/non-person-identity-implementation.md#rollback) for Step 4 is "workload identity policy back to report-only", and for Step 5 "re-enable the legacy account and revert the application's configuration": the full plan does the first and the re-enable; the owner reverts the configuration. Tokens issued before the rollback stay valid for their lifetime.
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
-| CM-3; CP-10 | A wave back to report-only, or the whole stage back, by an approved plan; nothing deleted | KSI-CMT-RMV, KSI-RPL-ABO | `ROLLBACK-rollback.json` in production's evidence folder; the rollback run folders |
+| CM-3; CP-10 | A ring back to report-only, or the whole stage back, by an approved plan; nothing deleted | KSI-CMT-RMV, KSI-RPL-ABO | `ROLLBACK-rollback.json` in production's evidence folder; the rollback run folders |
 
 ## Evidence the ISSO keeps
 
@@ -1102,7 +1103,7 @@ Each stage's evidence folder, `<outputRoot>/evidence`, holds one record per requ
 | Both | `S1.5-workload-conditional-access-report-only.json` (`runs/S1.5/`), the scope file under `inputs/` | Workload policies created report-only, assigned directly | G4 | AC-3, AC-6, CM-3(2), CM-4(2) | KSI-IAM-ELP, KSI-CMT-VTD |
 | Both | `SMOKE-smoke-test.json` (`runs/SMOKE/`) | Every control worked on objects nobody depends on | G1, G3, G4, G5 | AC-2, AC-3, AC-6, AU-2, AU-12, CA-7, CM-8, IA-4, IA-5, IA-9 | KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV |
 | Test | `ROLLBACK-rollback.json` (`runs/ROLLBACK/`); `evidence-after-rollback/` | The rollback was rehearsed and returned the tenant to its starting state | All | CM-3, CP-10 | KSI-CMT-RMV, KSI-RPL-ABO |
-| Production | `S2.3-staged-enable-by-wave.json` (sign-in summaries, enforce runs), the D-NP5 record in the scope file | Each wave enforced only after a reviewed 14-day summary | G4 | AC-6, CM-3, CM-4(2) | KSI-IAM-ELP, KSI-CMT-LMC |
+| Production | `S2.3-staged-enable-by-ring.json` (sign-in summaries, enforce runs), the D-NP5 record in the scope file | Each ring enforced only after a reviewed 14-day summary | G4 | AC-6, CM-3, CM-4(2) | KSI-IAM-ELP, KSI-CMT-LMC |
 | Production | `S2.5-first-week-drift-monitoring.json` (`runs/S2.5/`) and Chapter 10's packages | No unreviewed change after the deployment | G6 | CA-7, CM-3, AU-6 | KSI-MLA-EVC, KSI-CMT-LMC |
 | Both | `SHA256SUMS`, checked by `Test-NpiDeployEvidence.ps1` | Nobody edited the evidence afterwards | All | AU-9 | KSI-MLA-OSM |
 
@@ -1146,7 +1147,7 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 | A tenant-wide policy on day one | Every app's owners blocked from adding a secret they still need | The pilot policy covers two apps; the tenant-wide policy binds only apps created after its date, and waits for Stage 2 |
 | An app management policy assumed to be report-only | It blocks at once | Learn documents no report-only mode; the scope is the safety, and the smoke test probes it on the synthetic app only |
 | The probe's secret left behind | A live secret on the synthetic app | Removed at once by key ID, ST-03 fails, and the value is never written; the synthetic holds no permission |
-| A workload policy enforced before its sign-ins are read | A production workload blocked | Created report-only; enforced only with `-AllowEnforce`, a D-NP5 record and the reviewed summary's SHA-256; one wave at a time |
+| A workload policy enforced before its sign-ins are read | A production workload blocked | Created report-only; enforced only with `-AllowEnforce`, a D-NP5 record and the reviewed summary's SHA-256; one ring at a time |
 | A gMSA used before the KDS root key replicates | The service fails to start on some hosts | The preflight's key check; 10 hours; the backdated key only in a one-DC test forest |
 | A rollback nobody has run | It fails when it is needed | Rehearsed in Stage 1 and filed; a go/no-go criterion |
 | A rollback plan from an old snapshot | It restores a state that no longer exists | Seven days at most; the snapshot's tenant must match; each policy re-read before it is changed |
@@ -1168,7 +1169,7 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 - [ ] The smoke test passed every check, and its expected results were written down before it ran.
 - [ ] The rollback was rehearsed in test and filed, and the after-rollback preflight matches the starting state.
 - [ ] Every go/no-go criterion is signed before production starts.
-- [ ] Production waves were enforced one at a time, each after its 14-day summary and D-NP5.
+- [ ] Production rings were enforced one at a time, each after its 14-day summary and D-NP5.
 - [ ] The first week's drift runs show no unreviewed change, and their packages are filed.
 - [ ] Every evidence folder checks with `sha256sum -c SHA256SUMS`, and `Test-NpiDeployEvidence.ps1` shows every requirement row present and passing for its stage.
 

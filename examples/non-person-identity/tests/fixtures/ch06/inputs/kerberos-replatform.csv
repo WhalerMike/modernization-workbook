@@ -1,0 +1,4 @@
+SamAccountName,NewAccount,Workload,Hosts,SpnOwnerUpn,EndDate,Reference,HostChangedOn,MigrationStartedOn
+svc-hrsync,dmsa-hrsync$,Service,HR01,hr-apps.owner@contoso.example,2027-06-30,,,2026-09-20
+svc-intranet,gmsa-intranet$,IisAppPool,INTRA01;INTRA02,,2028-12-31,,,
+msa-print01$,gmsa-print$,ScheduledTask,PRINT01,print.owner@contoso.example,2027-06-30,,,

@@ -62,6 +62,7 @@
   },
   "pilot": {
     "name": "<pilot-app-name>",
+    "ownerUpn": "<pilot-owner-upn>",
     "appObjectId": "<pilot-app-object-id>",
     "appClientId": "<pilot-app-client-id>",
     "spObjectId": "<pilot-sp-object-id>",
@@ -93,7 +94,7 @@
     "scopePath": "<wca-scope-file>",
     "policies": []
   },
-  "waves": [
+  "rings": [
     {
       "name": "Ring1",
       "servicePrincipals": [

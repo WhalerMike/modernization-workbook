@@ -225,13 +225,15 @@ Describe 'D-N3: the owner''s disposition' {
     }
     It 'NPI-MAT-05: an account kept in AD ends by G5, one kept on Kerberos by D08 and with the authorizing official''s acceptance' {
         (Get-F 'NPI-MAT-05').Object | Should -Be 'dmsa-hrsync$ (dMSA)'
-        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet @{ EndDate = '2027-07-31'; AoAcceptedBy = '' }
+        # svc-intranet, kept on Kerberos instead of its gMSA.
+        $keep = @{ Disposition = 'KeepKerberos'; Target = ''; Wave = ''; SpnOwnerUpn = 'erin@contoso.example'; AoAcceptedBy = 'ao@contoso.example'; EndDate = '2027-05-31' }
+        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2027-07-31'; $h.AoAcceptedBy = ''; $h })
         $f = @(Get-F 'NPI-MAT-05' (Get-TestDecision -Dispositions $d).Findings | Where-Object Object -Like 'svc-intranet*')
         ($f.Issue -join ' ') | Should -Match 'D08'
         ($f.Issue -join ' ') | Should -Match 'authorizing official'
-        $d2 = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet @{ EndDate = '2026-10-01' }
+        $d2 = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2026-10-01'; $h })
         (Get-F 'NPI-MAT-05' (Get-TestDecision -Dispositions $d2).Findings | Where-Object Object -Like 'svc-intranet*').Issue | Should -Match 'has passed'
-        (Get-F 'NPI-MAT-05' (Get-TestDecision -Dates $null).Findings | Where-Object Object -Like 'svc-intranet*').Severity | Should -Be 'Warn'
+        (Get-F 'NPI-MAT-05' (Get-TestDecision -Dates $null -Dispositions (Set-Row (Get-In 'dispositions.csv') $script:Id.intranet $keep)).Findings | Where-Object Object -Like 'svc-intranet*').Severity | Should -Be 'Warn'
     }
     It 'NPI-MAT-06: every account kept on Kerberos has an SPN owner who is an enabled member' {
         (Get-F 'NPI-MAT-06').Object | Should -Be 'svc-webfront (Traditional)'
@@ -269,7 +271,7 @@ Describe 'N2.2: waves, HIGH-risk first, a rollback per wave' {
     }
     It 'records each wave''s rollback from its members'' targets' {
         $w2 = @($script:Decision.Waves | Where-Object Wave -EQ 2)[0]
-        @($w2.Members.Name | Sort-Object) | Should -Be @('msa-print01$', 'Payroll Export', 'svc-hrsync')
+        @($w2.Members.Name | Sort-Object) | Should -Be @('msa-print01$', 'Payroll Export', 'svc-hrsync', 'svc-intranet')
         ($w2.Rollback -join ' ') | Should -Match 'Undo-ADServiceAccountMigration'
         ($w2.Rollback -join ' ') | Should -Match 'Re-enable the legacy account'
         $w2.High | Should -Be 1

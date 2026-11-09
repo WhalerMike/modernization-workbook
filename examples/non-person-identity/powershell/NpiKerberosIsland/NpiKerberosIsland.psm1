@@ -34,7 +34,9 @@ $script:LearnMinimumMigrationDays = 14
 $script:ParallelRunDays = 30
 $script:MaxPlanAgeDays = 7
 $script:ManagedTypes = @('gMSA', 'dMSA')
-$script:Dispositions = @('Convert', 'Island', 'WorkloadIdentity', 'Retire')
+# Chapter 03's D-N3 vocabulary, read from its decisions; Get-NpiKrbPath says what this chapter does with each.
+$script:Dispositions = @('Retire', 'Replatform', 'Keep', 'KeepKerberos')
+$script:WorkloadTargets = @('ManagedIdentity', 'AppRegistrationFederated', 'AppRegistrationCertificate')
 $script:Workloads = @('Service', 'IisAppPool', 'ScheduledTask')
 $script:NeverSent = '^(Remove|Uninstall|Undo|Reset|Clear)-'
 
@@ -183,31 +185,118 @@ function Import-NpiKrbRegister {
     [pscustomobject]@{ Rows = @(Get-Content -LiteralPath $reg -Raw | ConvertFrom-Json); Manifest = $manifest; Sha256 = $hash }
 }
 
+function Import-NpiKrbMatrixRun {
+    <#
+    .SYNOPSIS
+        Chapter 03's run, checked against its manifest: decisions.json must have the SHA-256 the
+        manifest records, and the run must have decided on this very register. Returns
+        @{ Decisions; Manifest; Sha256 }. The owners' D-N3 dispositions (Retire, Replatform, Keep,
+        KeepKerberos) and the authorizing official's acceptance come from here, not from a second file.
+    .EXAMPLE
+        # Load Chapter 03's fixture run for the register Chapter 01 wrote.
+        $register = Import-NpiKrbRegister -RunPath out/inventory
+        $matrix = Import-NpiKrbMatrixRun -RunPath out/matrix -RegisterSha256 $register.Sha256
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$RunPath, [Parameter(Mandatory)][string]$RegisterSha256)
+    $man = Join-Path $RunPath 'manifest.json'; $dec = Join-Path $RunPath 'decisions.json'
+    foreach ($p in $man, $dec) { if (-not (Test-Path -LiteralPath $p)) { throw "Missing $p; run Chapter 03's Invoke-NpiMatrix.ps1 first." } }
+    $manifest = Get-Content -LiteralPath $man -Raw | ConvertFrom-Json -AsHashtable
+    if ($manifest.task -ne 'migration-matrix') { throw "$man isn't a migration matrix run." }
+    if ($manifest.registerSha256 -ne $RegisterSha256) { throw "Chapter 03's run decided on register $($manifest.registerSha256), not $RegisterSha256; run Chapter 03 on this register." }
+    $hash = Get-NpiFileHash -Path $dec
+    if ($hash -ne $manifest.files['decisions.json']) { throw "decisions.json doesn't match its manifest (SHA-256 $hash); refusing to plan from changed decisions." }
+    [pscustomobject]@{ Decisions = @(Get-Content -LiteralPath $dec -Raw | ConvertFrom-Json); Manifest = $manifest; Sha256 = $hash }
+}
+
+function Get-NpiKrbPath {
+    <#
+    .SYNOPSIS
+        What this chapter does with a D-N3 disposition from Chapter 03: Convert (Replatform to a gMSA
+        or a dMSA), WorkloadIdentity (Replatform to a managed identity or an app registration, which
+        Chapter 05 moves), Island (Keep or KeepKerberos, or a gMSA kept beside an app registration:
+        it stays on Kerberos) or Retire. Empty for a disposition or target it doesn't know.
+    .EXAMPLE
+        # The path for one account record.
+        Get-NpiKrbPath ([pscustomobject]@{ Disposition = 'Replatform'; Target = 'dMSA' })
+    #>
+    param($Disposition)
+    if ($null -eq $Disposition) { return '' }
+    switch ("$($Disposition.Disposition)") {
+        'Retire' { 'Retire' }
+        'Keep' { 'Island' }
+        'KeepKerberos' { 'Island' }
+        'Replatform' {
+            if ("$($Disposition.Target)" -in $script:ManagedTypes) { 'Convert' }
+            elseif ("$($Disposition.Target)" -in $script:WorkloadTargets) { 'WorkloadIdentity' }
+            elseif ("$($Disposition.Target)" -eq 'GmsaPlusAppRegistration') { 'Island' }
+            else { '' }
+        }
+        default { '' }
+    }
+}
+
 function Import-NpiKrbInput {
     <#
     .SYNOPSIS
-        The three reviewed inputs: kerberos-dispositions.csv, password-retrievers.json and
-        end-state.json, each with its SHA-256. A missing input throws: there is no default end state.
+        The inputs: Chapter 03's decisions (the D-N3 disposition, target, end date, SPN owner and the
+        authorizing official's acceptance for each AD account), this chapter's two reviewed files
+        (kerberos-replatform.csv and password-retrievers.json) and the program's one
+        program-dates.json, each with its SHA-256. Returns @{ Dispositions; Retrievers; ProgramDates;
+        Hashes }, one Dispositions record per account. A missing input throws, and so does a
+        program-dates.json that isn't the one Chapter 03's run read: there is no default end state.
     .EXAMPLE
-        # Load the reviewed inputs from the Chapter 06 fixtures.
-        $inputs = Import-NpiKrbInput -InputPath tests/fixtures/ch06/inputs
-        $inputs.EndState.d11.decision
+        # Load the inputs for the Chapter 06 fixtures, after Chapter 03's fixture run.
+        $matrix = Import-NpiKrbMatrixRun -RunPath out/matrix -RegisterSha256 $register.Sha256
+        $inputs = Import-NpiKrbInput -InputPath tests/fixtures/ch06/inputs -MatrixRun $matrix -ProgramDatesPath tests/fixtures/ch03/inputs/program-dates.json
+        $inputs.ProgramDates.d11.decision
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)][string]$InputPath)
+    param([Parameter(Mandatory)][string]$InputPath, [Parameter(Mandatory)]$MatrixRun, [Parameter(Mandatory)][string]$ProgramDatesPath)
     $files = [ordered]@{
-        dispositions = Join-Path $InputPath 'kerberos-dispositions.csv'
+        replatform   = Join-Path $InputPath 'kerberos-replatform.csv'
         retrievers   = Join-Path $InputPath 'password-retrievers.json'
-        endState     = Join-Path $InputPath 'end-state.json'
+        programDates = $ProgramDatesPath
     }
     foreach ($k in $files.Keys) { if (-not (Test-Path -LiteralPath $files[$k])) { throw "Missing reviewed input $($files[$k])." } }
-    $end = Get-Content -LiteralPath $files.endState -Raw | ConvertFrom-Json -AsHashtable
-    if ($end.d11.decision -notin 'AdRetired', 'KerberosIsland') { throw "end-state.json: d11.decision must be AdRetired or KerberosIsland, not '$($end.d11.decision)'." }
-    if ($end.d11.decision -eq 'KerberosIsland' -and -not $end.d11.islandEndOfLife) { throw 'end-state.json: a Kerberos island needs d11.islandEndOfLife.' }
-    if (-not $end.g5.date) { throw 'end-state.json: g5.date is required.' }
+    $datesHash = Get-NpiFileHash -Path $files.programDates
+    $recorded = if ($MatrixRun.Manifest.inputs) { $MatrixRun.Manifest.inputs['program-dates.json'] } else { $null }
+    if (-not $recorded) { throw "Chapter 03's run read no program-dates.json; run it with the program's dates first." }
+    if ($datesHash -ne $recorded) { throw "program-dates.json has SHA-256 $datesHash, not the $recorded Chapter 03's run read: both chapters read one program-dates file. Re-run Chapter 03 with it." }
+    $dates = Get-Content -LiteralPath $files.programDates -Raw | ConvertFrom-Json -AsHashtable
+    if (-not $dates.d11 -or $dates.d11.decision -notin 'AdRetired', 'KerberosIsland') { throw "program-dates.json: d11.decision must be AdRetired or KerberosIsland, not '$(if ($dates.d11) { $dates.d11.decision })'." }
+    if ($dates.d11.decision -eq 'KerberosIsland' -and -not $dates.d11.islandEndOfLife) { throw 'program-dates.json: a Kerberos island needs d11.islandEndOfLife.' }
+    if (-not $dates.g5AdRetired) { throw 'program-dates.json: g5AdRetired is required.' }
     $ret = (Get-Content -LiteralPath $files.retrievers -Raw | ConvertFrom-Json -AsHashtable).accounts
-    $hashes = [ordered]@{}; foreach ($k in $files.Keys) { $hashes[(Split-Path $files[$k] -Leaf)] = Get-NpiFileHash -Path $files[$k] }
-    [pscustomobject]@{ Dispositions = @(Import-Csv -LiteralPath $files.dispositions); Retrievers = $ret; EndState = $end; Hashes = $hashes }
+    $hashes = [ordered]@{ 'decisions.json' = $MatrixRun.Sha256 }
+    foreach ($k in $files.Keys) { $hashes[(Split-Path $files[$k] -Leaf)] = Get-NpiFileHash -Path $files[$k] }
+
+    # One record per AD account: Chapter 03's decision and, for a re-platformed account, this chapter's work on it.
+    $work = @{}; foreach ($w in @(Import-Csv -LiteralPath $files.replatform)) { if ($w.SamAccountName) { $work[$w.SamAccountName] = $w } }
+    $records = [Collections.Generic.List[object]]::new(); $seen = @{}
+    foreach ($d in @($MatrixRun.Decisions | Where-Object { $_.Type -in 'Traditional', 'MSA', 'gMSA', 'dMSA' })) {
+        $w = if ($work.ContainsKey($d.Name)) { $work[$d.Name] } else { $null }
+        $replatform = "$($d.Disposition)" -eq 'Replatform'
+        $records.Add([pscustomobject][ordered]@{
+                SamAccountName = "$($d.Name)"; IdentityId = "$($d.IdentityId)"; Disposition = "$($d.Disposition)"; Target = "$($d.Target)"
+                DecidedBy = "$($d.DecidedBy)"; DecidedOn = $(if ($d.PSObject.Properties['DecidedOn']) { "$($d.DecidedOn)" } else { '' })
+                AoAcceptedBy = $(if ($d.PSObject.Properties['AoAcceptedBy']) { "$($d.AoAcceptedBy)" } else { '' })
+                # A kept account: Chapter 03's end date and SPN owner. A re-platformed one: this chapter's, for the account it moves to.
+                SpnOwnerUpn = $(if ($replatform) { if ($w) { "$($w.SpnOwnerUpn)" } else { '' } } else { "$($d.SpnOwner)" })
+                EndDate = $(if ($replatform) { if ($w) { "$($w.EndDate)" } else { '' } } else { "$($d.EndDate)" })
+                NewAccount = $(if ($w) { "$($w.NewAccount)" } else { '' }); Workload = $(if ($w) { "$($w.Workload)" } else { '' }); Hosts = $(if ($w) { "$($w.Hosts)" } else { '' })
+                Reference = $(if ($w) { "$($w.Reference)" } else { '' }); HostChangedOn = $(if ($w) { "$($w.HostChangedOn)" } else { '' }); MigrationStartedOn = $(if ($w) { "$($w.MigrationStartedOn)" } else { '' })
+            })
+        $seen[$d.Name] = $true
+    }
+    foreach ($name in ($work.Keys | Sort-Object)) {
+        if ($seen.ContainsKey($name)) { continue }
+        $w = $work[$name]   # a row for an account Chapter 03 has no decision for: it has no disposition
+        $records.Add([pscustomobject][ordered]@{ SamAccountName = $name; IdentityId = ''; Disposition = ''; Target = ''; DecidedBy = ''; DecidedOn = ''; AoAcceptedBy = ''
+                SpnOwnerUpn = "$($w.SpnOwnerUpn)"; EndDate = "$($w.EndDate)"; NewAccount = "$($w.NewAccount)"; Workload = "$($w.Workload)"; Hosts = "$($w.Hosts)"
+                Reference = "$($w.Reference)"; HostChangedOn = "$($w.HostChangedOn)"; MigrationStartedOn = "$($w.MigrationStartedOn)" })
+    }
+    [pscustomobject]@{ Dispositions = $records.ToArray(); Retrievers = $ret; ProgramDates = $dates; Hashes = $hashes }
 }
 
 # ----------------------------------------------------------------------------- reading the domain
@@ -265,7 +354,7 @@ function Read-NpiKrbDomain {
         # Read the fake domain for the fixture register and dispositions.
         $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
         $reader = New-NpiKrbReader -AdInvoke $fake.Invoke
-        $inputs = Import-NpiKrbInput -InputPath tests/fixtures/ch06/inputs
+        $inputs = Import-NpiKrbInput -InputPath tests/fixtures/ch06/inputs -MatrixRun (Import-NpiKrbMatrixRun -RunPath out/matrix -RegisterSha256 $register.Sha256) -ProgramDatesPath tests/fixtures/ch03/inputs/program-dates.json
         $state = Read-NpiKrbDomain -Reader $reader -Rows $register.Rows -Dispositions $inputs.Dispositions -Domain corp.contoso.example -AsOf '2026-10-30T12:00:00Z'
     #>
     [CmdletBinding()]
@@ -275,7 +364,7 @@ function Read-NpiKrbDomain {
     foreach ($m in @(Invoke-NpiKrbAdRead -Client $Reader -CallId 'krb-service-accounts' -Params @{ Filter = '*'; Properties = @('PrincipalsAllowedToRetrieveManagedPassword', 'msDS-DelegatedMSAState', 'msDS-ManagedAccountPrecededByLink') })) { $msas[$m.SamAccountName] = $m }
     $scope = Get-NpiKrbScope -Rows $Rows
     $users = @{}
-    $dmsaRows = @($Dispositions | Where-Object { $_.Disposition -eq 'Convert' -and $_.Target -eq 'dMSA' })
+    $dmsaRows = @($Dispositions | Where-Object { (Get-NpiKrbPath $_) -eq 'Convert' -and $_.Target -eq 'dMSA' })
     foreach ($d in $dmsaRows) {
         $row = @($scope | Where-Object { $_.Name -eq $d.SamAccountName -and $_.Type -eq 'Traditional' })
         if ($row.Count -eq 1) { $users[$d.SamAccountName] = @(Invoke-NpiKrbAdRead -Client $Reader -CallId 'krb-superseded-user' -Params @{ Identity = $row[0].ObjectId; Properties = @('Enabled') })[0] }
@@ -337,10 +426,10 @@ function Test-NpiKerberosIsland {
     $scope = Get-NpiKrbScope -Rows $Rows
     $byName = @{}; foreach ($r in $scope) { $byName[$r.Name] = $r }
     $disp = @{}; foreach ($d in $Inputs.Dispositions) { $disp[$d.SamAccountName] = $d }
-    $coveredBy = @{}; foreach ($d in $Inputs.Dispositions) { if ($d.Disposition -eq 'Convert' -and $d.NewAccount) { $coveredBy[$d.NewAccount] = $d } }
-    $end = $Inputs.EndState
-    $d08 = ConvertTo-NpiKrbDate "$($end.d08.kerberosEndDate)"
-    $g5 = ConvertTo-NpiKrbDate "$($end.g5.date)"
+    $coveredBy = @{}; foreach ($d in $Inputs.Dispositions) { if ((Get-NpiKrbPath $d) -eq 'Convert' -and $d.NewAccount) { $coveredBy[$d.NewAccount] = $d } }
+    $end = $Inputs.ProgramDates
+    $d08 = ConvertTo-NpiKrbDate "$($end.d08LegacyAuthEndDate)"
+    $g5 = ConvertTo-NpiKrbDate "$($end.g5AdRetired)"
     $islandEol = ConvertTo-NpiKrbDate "$($end.d11.islandEndOfLife)"
     $kdsReady = $Domain.Kds.State -eq 'Ready'
     $ws2025Dc = @($Domain.DomainControllers | Where-Object { Test-NpiWs2025 $_.OperatingSystem }).Count -gt 0
@@ -359,15 +448,17 @@ function Test-NpiKerberosIsland {
     # A stay-on-Kerberos entry: an SPN owner and an end date within D08 (N3.6).
     $stay = {
         param([string]$Name, [string]$Type, [string]$Source, [string]$Spns, $d, [string]$Status)
-        $owner = "$($d.SpnOwnerUpn)"; $endDate = ConvertTo-NpiKrbDate "$($d.EndDate)"
+        $owner = "$($d.SpnOwnerUpn)"; $endDate = ConvertTo-NpiKrbDate "$($d.EndDate)"; $ao = "$($d.AoAcceptedBy)"
         $key = $Source
-        if (-not $owner) { $f.Add((New-NpiFinding 'NPI-KRB-05' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no SPN owner: name the person who answers for its SPNs in kerberos-dispositions.csv')) }
+        if (-not $owner) { $f.Add((New-NpiFinding 'NPI-KRB-05' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no SPN owner: name the person who answers for its SPNs (Chapter 03''s dispositions.csv for a kept account, kerberos-replatform.csv for a converted one)')) }
         $within = $false
         if (-not $endDate) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no end date')) }
         elseif (-not $d08) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Warn' $key "$Name ($Type)" 'The program''s D08 end date isn''t set yet: the island list can''t be handed to the SPN retirement (P4.6)')) }
         elseif ($endDate -gt $d08) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" "End date $($endDate.ToString('yyyy-MM-dd')) is after D08's $($d08.ToString('yyyy-MM-dd'))")) }
         else { $within = $true }
-        $island.Add([pscustomobject][ordered]@{ Account = $Name; Type = $Type; Source = $Source; Spns = $Spns; SpnOwnerUpn = $owner; EndDate = "$($d.EndDate)"; WithinD08 = $within; Status = $Status; ReadyForP46 = [bool]($owner -and $within) })
+        # KeepKerberos is the islanding exception: Chapter 03's authorizing official's acceptance travels with it.
+        $needsAo = "$($d.Disposition)" -eq 'KeepKerberos'
+        $island.Add([pscustomobject][ordered]@{ Account = $Name; Type = $Type; Source = $Source; Spns = $Spns; Disposition = "$($d.Disposition)"; SpnOwnerUpn = $owner; EndDate = "$($d.EndDate)"; WithinD08 = $within; AoAcceptedBy = $ao; Status = $Status; ReadyForP46 = [bool]($owner -and $within -and ($ao -or -not $needsAo)) })
     }
 
     foreach ($r in ($scope | Sort-Object Name)) {
@@ -380,28 +471,29 @@ function Test-NpiKerberosIsland {
         if ($r.Type -in 'MSA', 'gMSA', 'dMSA' -and "$($r.PrivilegedGroups)") { $f.Add((New-NpiFinding 'NPI-KRB-08' 'Warn' $r.Name $lbl "Member of $($r.PrivilegedGroups): remove it and grant only the rights its service needs (Learn)")) }
 
         $d = if ($disp.ContainsKey($r.Name)) { $disp[$r.Name] } else { $null }
-        if (-not $d -and $coveredBy.ContainsKey($r.Name)) { continue }   # the dMSA or gMSA a conversion row names
-        if (-not $d -or $d.Disposition -notin $script:Dispositions) {
-            $why = if ($d) { "Unknown disposition '$($d.Disposition)'" } else { 'No row in kerberos-dispositions.csv' }
-            $f.Add((New-NpiFinding 'NPI-KRB-02' 'Finding' $r.Name $lbl "$why`: every Kerberos account is converted, kept on the island with an end date, moved to a workload identity or retired"))
+        if ($coveredBy.ContainsKey($r.Name)) { continue }   # the dMSA or gMSA a conversion names: planned under the account it replaces
+        $path = Get-NpiKrbPath $d
+        if (-not $d -or -not $path) {
+            $why = if (-not $d -or -not "$($d.Disposition)") { 'No disposition in Chapter 03''s decisions (D-N3)' } elseif ($d.Disposition -notin $script:Dispositions) { "Unknown disposition '$($d.Disposition)'" } else { "Unknown $($d.Disposition) target '$($d.Target)'" }
+            $f.Add((New-NpiFinding 'NPI-KRB-02' 'Finding' $r.Name $lbl "$why`: every Kerberos account is re-platformed (to a gMSA, a dMSA or a workload identity), kept on the island with an end date, or retired"))
             & $add @{ Account = $r.Name; Type = $r.Type; Action = 'AwaitDisposition'; Reason = $why }
             continue
         }
         if ($d.Workload -and $d.Workload -notin $script:Workloads) { $f.Add((New-NpiFinding 'NPI-KRB-02' 'Finding' $r.Name $lbl "Unknown workload '$($d.Workload)'; use Service, IisAppPool or ScheduledTask")) }
 
-        switch ($d.Disposition) {
+        switch ($path) {
             'Island' { & $stay $r.Name $r.Type $r.Name "$($r.Spns)" $d 'Island'; & $add @{ Account = $r.Name; Type = $r.Type; Action = 'Island'; Reason = "Stays on Kerberos until $($d.EndDate), SPN owner $(if ($d.SpnOwnerUpn) { $d.SpnOwnerUpn } else { 'none' })" } }
             'WorkloadIdentity' {
-                if (-not $d.Reference) { $f.Add((New-NpiFinding 'NPI-KRB-02' 'Finding' $r.Name $lbl 'WorkloadIdentity needs a Reference to the workload identity that replaces it (Chapter 05)')) }
-                & $add @{ Account = $r.Name; Type = $r.Type; Action = 'MovesToWorkloadIdentity'; Reason = "To $($d.Reference) by $($d.EndDate), with Chapter 05's token exchange test and 30-day parallel run" }
+                if (-not $d.Reference) { $f.Add((New-NpiFinding 'NPI-KRB-02' 'Finding' $r.Name $lbl "Replatform to $($d.Target) needs a Reference in kerberos-replatform.csv to the workload identity that replaces it (Chapter 05)")) }
+                & $add @{ Account = $r.Name; Type = $r.Type; Action = 'MovesToWorkloadIdentity'; Reason = "To $(if ($d.Reference) { $d.Reference } else { $d.Target }) by $($d.EndDate), with Chapter 05's token exchange test and 30-day parallel run" }
             }
             'Retire' { & $add @{ Account = $r.Name; Type = $r.Type; Action = 'RetireThroughDecommission'; Reason = 'Retire through the reviewed decommission process. This code disables at most; it never deletes' } }
             'Convert' {
                 $new = "$($d.NewAccount)"; $blocked = [Collections.Generic.List[string]]::new()
                 if ($r.Type -in $script:ManagedTypes) { $blocked.Add("it's already a $($r.Type); keep it on the island, or move it to a workload identity") }
-                if ($d.Target -notin $script:ManagedTypes) { $blocked.Add("unknown target '$($d.Target)'; use gMSA or dMSA") }
-                if ($new -notmatch '^[A-Za-z0-9-]{1,15}\$$') { $blocked.Add("NewAccount '$new' must be a SAM account name ending in `$, 15 characters or fewer before it") }
-                if (@($Inputs.Dispositions | Where-Object { $_.NewAccount -eq $new }).Count -gt 1) { $blocked.Add("$new is named by more than one account; each service account needs its own (Learn: one dMSA per service account)") }
+                if (-not $new) { $blocked.Add("no row in kerberos-replatform.csv naming the new $($d.Target), its workload and its hosts") }
+                elseif ($new -notmatch '^[A-Za-z0-9-]{1,15}\$$') { $blocked.Add("NewAccount '$new' must be a SAM account name ending in `$, 15 characters or fewer before it") }
+                if ($new -and @($Inputs.Dispositions | Where-Object { $_.NewAccount -eq $new }).Count -gt 1) { $blocked.Add("$new is named by more than one account; each service account needs its own (Learn: one dMSA per service account)") }
                 if ($d.Target -eq 'dMSA') {
                     if ($r.Type -eq 'MSA') { $blocked.Add('an MSA or gMSA can''t be migrated to a dMSA (Learn): upgrade it to a gMSA') }
                     if ($r.Delegation -eq 'Unconstrained') { $blocked.Add('unconstrained delegation stops working once the dMSA migration completes (Learn): use a gMSA, or keep it on the island') }
@@ -486,7 +578,7 @@ function Test-NpiKerberosIsland {
     # N7.3: every gMSA and dMSA, existing or planned, against the provisional end state (D11).
     $managed = [Collections.Generic.List[object]]::new()
     foreach ($r in @($scope | Where-Object { $_.Type -in $script:ManagedTypes } | Sort-Object Name)) { $managed.Add([pscustomobject]@{ Name = $r.Name; Type = $r.Type; Planned = $false; Handoff = $r.Handoff }) }
-    foreach ($d in @($Inputs.Dispositions | Where-Object { $_.Disposition -eq 'Convert' } | Sort-Object NewAccount)) {
+    foreach ($d in @($Inputs.Dispositions | Where-Object { (Get-NpiKrbPath $_) -eq 'Convert' -and $_.NewAccount } | Sort-Object NewAccount)) {
         if ($byName.ContainsKey($d.NewAccount) -or -not $byName.ContainsKey($d.SamAccountName)) { continue }
         if (@($actions | Where-Object { $_.Account -eq $d.SamAccountName -and $_.Action -eq 'Blocked' }).Count) { continue }
         $managed.Add([pscustomobject]@{ Name = $d.NewAccount; Type = $d.Target; Planned = $true; Handoff = '' })
@@ -494,15 +586,15 @@ function Test-NpiKerberosIsland {
     foreach ($m in $managed) {
         $lbl = "$($m.Name) ($($m.Type))"
         if ($m.Handoff -eq 'DataPlatform') { $recon.Add([pscustomobject][ordered]@{ Account = $m.Name; Type = $m.Type; Planned = $m.Planned; Destination = 'HandedOff'; EndDate = ''; Reference = ''; Outcome = 'HandedOff'; Reason = 'The Data Platform plan reconciles SQL Server''s accounts' }); continue }
-        $d = if ($disp.ContainsKey($m.Name)) { $disp[$m.Name] } elseif ($coveredBy.ContainsKey($m.Name)) { $coveredBy[$m.Name] } else { $null }
-        $dest = if (-not $d) { '' } elseif ($d.Disposition -eq 'Convert') { 'Island' } else { "$($d.Disposition)" }
+        $d = if ($coveredBy.ContainsKey($m.Name)) { $coveredBy[$m.Name] } elseif ($disp.ContainsKey($m.Name)) { $disp[$m.Name] } else { $null }
+        $dest = if (-not $d) { '' } elseif ((Get-NpiKrbPath $d) -eq 'Convert') { 'Island' } else { Get-NpiKrbPath $d }
         $endDate = if ($d) { ConvertTo-NpiKrbDate "$($d.EndDate)" } else { $null }
         $problem = $null
         if (-not $d -or $dest -notin 'Island', 'WorkloadIdentity', 'Retire') { $problem = 'no destination: it would lose its credential when the last domain controller is demoted' }
         elseif (-not $endDate) { $problem = "no end date for $dest" }
-        elseif ($dest -in 'WorkloadIdentity', 'Retire' -and $endDate -gt $g5) { $problem = "$dest by $($d.EndDate), after G5 ($($end.g5.date))" }
+        elseif ($dest -in 'WorkloadIdentity', 'Retire' -and $endDate -gt $g5) { $problem = "$dest by $($d.EndDate), after G5 ($($end.g5AdRetired))" }
         elseif ($dest -eq 'WorkloadIdentity' -and -not $d.Reference) { $problem = 'no workload identity named' }
-        elseif ($dest -eq 'Island' -and $end.d11.decision -eq 'AdRetired' -and $endDate -gt $g5) { $problem = "D11 retires AD at G5 ($($end.g5.date)); this account stays on Kerberos until $($d.EndDate) and loses its credential at domain controller demotion" }
+        elseif ($dest -eq 'Island' -and $end.d11.decision -eq 'AdRetired' -and $endDate -gt $g5) { $problem = "D11 retires AD at G5 ($($end.g5AdRetired)); this account stays on Kerberos until $($d.EndDate) and loses its credential at domain controller demotion" }
         elseif ($dest -eq 'Island' -and $end.d11.decision -eq 'KerberosIsland' -and $endDate -gt $islandEol) { $problem = "its end date $($d.EndDate) is after the island's end of life ($($end.d11.islandEndOfLife))" }
         if ($problem) { $f.Add((New-NpiFinding 'NPI-KRB-07' 'Finding' $m.Name $lbl "Not reconciled with the provisional end state (D11 $($end.d11.decision)): $problem")) }
         $recon.Add([pscustomobject][ordered]@{ Account = $m.Name; Type = $m.Type; Planned = $m.Planned; Destination = $(if ($dest) { $dest } else { 'None' }); EndDate = $(if ($d) { "$($d.EndDate)" } else { '' }); Reference = $(if ($d) { "$($d.Reference)" } else { '' })
@@ -876,5 +968,5 @@ function Invoke-NpiKrbFakeAd {
 }
 
 Export-ModuleMember -Function Get-NpiKrbCallList, Get-NpiKrbCall, Get-NpiKrbTask, Get-NpiKrbRequiredRight, New-NpiKrbReader, Invoke-NpiKrbAdRead,
-    Import-NpiKrbRegister, Import-NpiKrbInput, Get-NpiKdsRootKeyState, Get-NpiKrbScope, Read-NpiKrbDomain, Test-NpiKerberosIsland,
+    Import-NpiKrbRegister, Import-NpiKrbMatrixRun, Get-NpiKrbPath, Import-NpiKrbInput, Get-NpiKdsRootKeyState, Get-NpiKrbScope, Read-NpiKrbDomain, Test-NpiKerberosIsland,
     New-NpiKrbWriter, Assert-NpiKrbPlannedWrite, Invoke-NpiKrbPlan, Export-NpiKrbRun, New-NpiKrbLiveAdInvoker, New-NpiKrbFixtureAdInvoker, Invoke-NpiKrbFakeAd

@@ -100,6 +100,11 @@ Describe 'The settings file' {
         @(Test-NpiDeploySettings -Settings $s -Stage test) -join ';' | Should -Match 'federatedSubject: missing'
         $s = Get-Raw; $s.cloud = 'GCC'
         @(Test-NpiDeploySettings -Settings $s -Stage test) -join ';' | Should -Match "cloud: 'GCC'"
+        # The pilot's application owner approves its parallel run and the day-31 disable: a named person, not an operator.
+        $s = Get-Raw; $s.pilot.Remove('ownerUpn')
+        @(Test-NpiDeploySettings -Settings $s -Stage test) -join ';' | Should -Match 'pilot.ownerUpn: missing'
+        $s = Get-Raw; $s.pilot.ownerUpn = $s.operators[0].upn
+        @(Test-NpiDeploySettings -Settings $s -Stage test) -join ';' | Should -Match 'pilot.ownerUpn: .* is an operator'
     }
     It 'records the file''s SHA-256' {
         (Get-Settings)._sha256 | Should -Be (Get-NpiFileHash -Path $script:TestSettings)
@@ -252,7 +257,7 @@ Describe 'The smoke test' {
         @(Get-Status $r.Results 'ST-05') | Should -Be @('Fail', 'Fail')
         Get-Status $r.Results 'ST-06' | Should -Be 'Fail'
     }
-    It 'passes an enforced production wave with -ExpectCaState Enabled -Wave Ring1' {
+    It 'passes an enforced production ring with -ExpectCaState Enabled -Ring Ring1' {
         $s = Get-Settings $script:ProdSettings 'production'
         $raw = Get-Raw $script:ProdTenant
         $over = @{}
@@ -261,11 +266,11 @@ Describe 'The smoke test' {
         foreach ($x in $si.value) { foreach ($a in $x.appliedConditionalAccessPolicies) { $a.result = $a.result -replace '^reportOnlyFailure$', 'failure' -replace '^reportOnlyNotApplied$', 'notApplied' } }
         $over['GET /beta/auditLogs/signIns'] = $si
         $fake = New-NpiDeployFixtureInvoker -Path $script:ProdTenant -Override $over
-        $r = Invoke-NpiDeploySmokeTest -Client (New-Client 'deploy-smoke' $fake) -Settings $s -RegisterRun (Join-Path $script:Fx 'register-run-production') -AsOf $script:AsOf.AddDays(14) -ExpectCaState Enabled -Wave Ring1
+        $r = Invoke-NpiDeploySmokeTest -Client (New-Client 'deploy-smoke' $fake) -Settings $s -RegisterRun (Join-Path $script:Fx 'register-run-production') -AsOf $script:AsOf.AddDays(14) -ExpectCaState Enabled -Ring Ring1
         @($r.Results | Where-Object Status -NE 'Pass').Count | Should -Be 0
     }
-    It 'fails ST-05 for a wave with no policy recorded' {
-        $r = Invoke-NpiDeploySmokeTest -Client (New-Client 'deploy-smoke' (New-NpiDeployFixtureInvoker -Path $script:TestTenant)) -Settings (Get-Settings) -RegisterRun $script:Register -AsOf $script:AsOf -Wave Ring2
+    It 'fails ST-05 for a ring with no policy recorded' {
+        $r = Invoke-NpiDeploySmokeTest -Client (New-Client 'deploy-smoke' (New-NpiDeployFixtureInvoker -Path $script:TestTenant)) -Settings (Get-Settings) -RegisterRun $script:Register -AsOf $script:AsOf -Ring Ring2
         Get-Status $r.Results 'ST-05' | Should -Be 'Fail'
     }
     It 'warns ST-06 when the synthetic has no sign-ins in the window' {
@@ -297,8 +302,8 @@ Describe 'The rollback' {
         @($p.actions.kind) | Should -Be @('ConditionalAccessState', 'ConditionalAccessState', 'TenantAppPolicyRestore', 'AppPolicyOff', 'AdEnable', 'SpDisable', 'AdDisable')
         $p.actions[0].body.state | Should -Be 'disabled'
     }
-    It 'plans only report-only for one production wave' {
-        $p = New-NpiDeployRollbackPlan -Settings (Get-Settings) -SnapshotPath $script:Snapshot -To ReportOnly -Wave Ring1 -AsOf $script:AsOf
+    It 'plans only report-only for one production ring' {
+        $p = New-NpiDeployRollbackPlan -Settings (Get-Settings) -SnapshotPath $script:Snapshot -To ReportOnly -Ring Ring1 -AsOf $script:AsOf
         @($p.actions.kind | Sort-Object -Unique) | Should -Be @('ConditionalAccessState')
         $p.actions[0].body.state | Should -Be 'enabledForReportingButNotEnforced'
     }
