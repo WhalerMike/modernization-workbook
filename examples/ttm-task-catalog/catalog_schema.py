@@ -4,8 +4,7 @@ build_template.py writes the workbook from this module and check_catalog.py
 checks a CSV export against it, so the two can't disagree. The drift classes,
 default severities, priorities, response windows, re-read systems and the
 classes that go to a person first are read from the integration kit's
-finding_contract.py, not retyped; the catalog adds orphan_account to that last
-set (HUMAN_FIRST_CLASSES), as Book 13 does. The lanes and the five request-chain clauses
+finding_contract.py (HUMAN_DECISION_CLASSES), not retyped. The lanes and the five request-chain clauses
 are Book 13, Appendix B's. The control-to-indicator rows are Book 13,
 Appendix A's. Everything here is fictional or program design; nothing names an
 agency.
@@ -39,10 +38,6 @@ SEVERITIES = list(fc.PRIORITY)
 # Where the re-read happens, as the finding contract names it; "other" means the notes say where.
 OTHER_SYSTEM = "other"
 SYSTEMS = list(fc.SYSTEMS) + [OTHER_SYSTEM]
-# The classes a person decides first. Book 13, Chapter 06 files an orphan account as identity drift,
-# and Appendix B gives identity drift a human decision unless the claim is in active use, so the
-# catalog adds orphan_account to the finding contract's set: the owner decides, then the fix runs gated.
-HUMAN_FIRST_CLASSES = set(fc.HUMAN_DECISION_CLASSES) | {"orphan_account"}
 STATUSES = ["Draft", "In review", "Approved", "Retired"]
 # Who or what the executing identity is. An AI agent is a non-person identity with
 # extra rules (the ai_agent check).
@@ -273,13 +268,13 @@ def check_row(row: dict) -> dict:
         "owner_approver_reread": not (get("Owner") and get("C2 Approver role (who approves)")
                                       and get("C4 Re-read check (how closure is proven)")),
         "severity_note": bool(default) and get("Severity") != default and not get("Notes"),
-        "human_to_machine": drift in HUMAN_FIRST_CLASSES and get("Lane") in MACHINE_LANES,
+        "human_to_machine": drift in fc.HUMAN_DECISION_CLASSES and get("Lane") in MACHINE_LANES,
         "no_evidence": not get("C5 Evidence kept"),
         "no_control": not get("NIST SP 800-53 controls"),
         "high_impact_no_human": get("High impact") == "yes" and get("Human approval before action") != "yes",
         "ai_agent": get("Identity type") == AI_AGENT and (
             not get("Identity sponsor")
-            or ((get("High impact") == "yes" or drift in HUMAN_FIRST_CLASSES)
+            or ((get("High impact") == "yes" or drift in fc.HUMAN_DECISION_CLASSES)
                 and get("Human approval before action") != "yes")
             or get("Re-read by") != INDEPENDENT),
     }

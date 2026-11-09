@@ -102,7 +102,7 @@ You check payloads the way the Scripted REST resource would, then check every pa
    python -m pytest tests/python/test_finding_contract.py -q
    ```
 
-   Expected: `22 passed`.
+   Expected: `26 passed`.
 
 2. Check five sample payloads.
 
