@@ -14,7 +14,7 @@ last-reviewed: 2026-11-07
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 2, task A2.7, and Phase 3, task A3.7. Workbook [Chapter 07](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md). About 55 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_7.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_7_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_7_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_PA_Module_7.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_7_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_7_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-7/Training_PA_Module_7_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

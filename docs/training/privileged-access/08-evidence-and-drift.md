@@ -14,7 +14,7 @@ last-reviewed: 2026-11-08
 
 *Part of the [Privileged Access learning path](index.md). Plan Phase 3, task A3.6, and Phase 4, task A4.3, for Gate 4. Workbook [Chapter 08](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md). About 65 minutes.*
 
-**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Training_PA_Module_8.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_8_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narrated.vtt).
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_PA_Module_8.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_PA_Module_8_Narrated) (about 16 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pa-module-8/Training_PA_Module_8_Narrated.vtt).
 
 ## Introduction (3 minutes)
 

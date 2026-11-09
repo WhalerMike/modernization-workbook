@@ -248,10 +248,11 @@ This is a companion guide, not part of a numbered book. [← The Workbook Books]
 
 ## Version and revision history {#version-history}
 
-**Version 1.4**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/effective-meetings.md).
+**Version 2.0**, in [edition 2026.11.5](../../about/archive.md#edition-2026-11-5) (November 8, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/effective-meetings.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 2.0 | [2026.11.5](../../about/archive.md#edition-2026-11-5) | 2026-11-08 | Release 2.0, the baseline: checked against every other book; Draft becomes Baseline; Edition 2026.11.4: record the edition and point deck links at it ([#362](https://github.com/WhalerMike/modernization-workbook/pull/362)); Guides A: fix 14 inconsistency findings ([#441](https://github.com/WhalerMike/modernization-workbook/pull/441)); Approve 116 gated pages (Nov 7); fix RMF map stale-review test ([#457](https://github.com/WhalerMike/modernization-workbook/pull/457)); Release 2.0: Draft becomes Baseline ([#491](https://github.com/WhalerMike/modernization-workbook/pull/491)) |
 | 1.4 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Deck and audio links point at edition 2026.11.4 |
 | 1.3 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.2 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
