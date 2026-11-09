@@ -1,0 +1,57 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#admin/serviceAnnouncement/issues",
+  "value": [
+    {
+      "startDateTime": "2026-11-09T08:40:00Z",
+      "endDateTime": null,
+      "lastModifiedDateTime": "2026-11-09T11:00:00Z",
+      "title": "Some users may see delays receiving external email",
+      "id": "EX900101",
+      "impactDescription": "Users may see delays of up to 30 minutes receiving email from external senders.",
+      "classification": "Incident",
+      "origin": "Microsoft",
+      "status": "ServiceDegradation",
+      "service": "Exchange Online",
+      "feature": "Mail flow",
+      "featureGroup": "Mail flow",
+      "isResolved": false,
+      "details": [],
+      "posts": [
+        {
+          "createdDateTime": "2026-11-09T08:40:00Z",
+          "postType": "Regular",
+          "description": {
+            "contentType": "Html",
+            "content": "Title: Some users may see delays receiving external email"
+          }
+        }
+      ]
+    },
+    {
+      "startDateTime": "2026-11-06T13:00:00Z",
+      "endDateTime": "2026-11-06T16:30:00Z",
+      "lastModifiedDateTime": "2026-11-06T17:00:00Z",
+      "title": "Users couldn't load the Teams web app in some browsers",
+      "id": "TM900102",
+      "impactDescription": "Some users saw a blank page in the Teams web app.",
+      "classification": "Advisory",
+      "origin": "Microsoft",
+      "status": "ServiceRestored",
+      "service": "Microsoft Teams",
+      "feature": "Teams web client",
+      "featureGroup": "Teams web client",
+      "isResolved": true,
+      "details": [],
+      "posts": [
+        {
+          "createdDateTime": "2026-11-06T13:00:00Z",
+          "postType": "Regular",
+          "description": {
+            "contentType": "Html",
+            "content": "Title: Users couldn't load the Teams web app in some browsers"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "_comment": "Each step of the provider notices kit, with the NIST SP 800-53 Rev 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators whose 'Related SP 800-53 Controls' cite them. Control text read from NIST's OSCAL catalog (release 5.2.0) and the KSIs from fedramp.gov's 2026 KSI pages on November 9, 2026; SA-9 to KSI-SCR-MIT and KSI-SCR-MON, CM-3 to KSI-CMT-LMC and CA-7 to KSI-MLA-EVC are also Book 13, Appendix A's rows, and AU-9 to KSI-MLA-OSM is the privileged access guide's. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides. 'stages' lists the steps each stage's evidence must hold before the go/no-go (deploy/Test-PnEvidence.ps1).",
+  "version": 1,
+  "controls": {
+    "SA-9": { "title": "External System Services", "part": "c. monitor control compliance by external service providers on an ongoing basis" },
+    "SI-5": { "title": "Security Alerts, Advisories, and Directives", "part": "a. receive alerts and advisories from external organizations on an ongoing basis; c. disseminate them; d. implement directives in the established time frames" },
+    "CM-3": { "title": "Configuration Change Control", "part": "b. review proposed changes with security and privacy impact analysis; f. monitor and review activities associated with configuration-controlled changes" },
+    "CM-4": { "title": "Impact Analyses", "part": "analyze changes to determine potential security and privacy impacts before implementation" },
+    "CP-2": { "title": "Contingency Plan", "part": "e. update the plan to address changes to the organization, system or environment of operation" },
+    "SR-8": { "title": "Notification Agreements", "part": "establish agreements and procedures with entities in the supply chain for notification" },
+    "RA-3": { "title": "Risk Assessment", "part": "f. update the risk assessment when there are significant changes to the system or its environment of operation" },
+    "CA-7": { "title": "Continuous Monitoring", "part": "d. ongoing monitoring; e. correlation and analysis; f. response actions" },
+    "AU-9": { "title": "Protection of Audit Information", "part": "protect audit information from unauthorized modification" }
+  },
+  "ksis": {
+    "KSI-SCR-MON": "Monitoring Supply Chain Risk (cites SA-9, SI-5, SR-8, RA-3)",
+    "KSI-SCR-MIT": "Mitigating Supply Chain Risk (cites SA-9, RA-3)",
+    "KSI-CMT-LMC": "Logging Changes (cites CM-3)",
+    "KSI-CMT-RVP": "Reviewing Change Procedures (cites CM-3)",
+    "KSI-RPL-ARP": "Aligning Recovery Plan (cites CP-2)",
+    "KSI-MLA-EVC": "Evaluating Configurations (cites CA-7, RA-3)",
+    "KSI-MLA-OSM": "Operating SIEM Capability (the privileged access guide's mapping for AU-9)"
+  },
+  "steps": {
+    "COL-AZURE": { "title": "Collect Azure Service Health notices", "controls": ["SA-9", "SI-5"], "ksis": ["KSI-SCR-MIT", "KSI-SCR-MON"] },
+    "COL-M365": { "title": "Collect Microsoft 365 Message center posts and service health issues", "controls": ["SA-9", "SI-5"], "ksis": ["KSI-SCR-MIT", "KSI-SCR-MON"] },
+    "COL-OCI": { "title": "Collect Oracle Cloud Infrastructure announcements", "controls": ["SA-9", "SI-5"], "ksis": ["KSI-SCR-MIT", "KSI-SCR-MON"] },
+    "COL-AWS": { "title": "Collect AWS Health events", "controls": ["SA-9", "SI-5"], "ksis": ["KSI-SCR-MIT", "KSI-SCR-MON"] },
+    "COL-GOOGLE": { "title": "Collect Google Cloud Personalized Service Health events", "controls": ["SA-9", "SI-5"], "ksis": ["KSI-SCR-MIT", "KSI-SCR-MON"] },
+    "NORMALIZE": { "title": "Normalize every notice into one record", "controls": ["SI-5", "CA-7"], "ksis": ["KSI-SCR-MON", "KSI-MLA-EVC"] },
+    "ROUTE": { "title": "Route notices that need action to an owner as a task", "controls": ["SI-5", "CM-3", "CM-4"], "ksis": ["KSI-SCR-MON", "KSI-CMT-LMC", "KSI-CMT-RVP"] },
+    "CONTINGENCY": { "title": "Flag retirements and maintenance for a contingency plan review", "controls": ["CP-2"], "ksis": ["KSI-RPL-ARP"] },
+    "DIGEST": { "title": "Write the weekly digest", "controls": ["SI-5", "SA-9", "RA-3"], "ksis": ["KSI-SCR-MON", "KSI-SCR-MIT"] },
+    "EVIDENCE": { "title": "Record the run as hashed, chained evidence", "controls": ["CA-7", "AU-9"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-OSM"] },
+    "PRE": { "title": "Preflight: settings, tools, signed-in clouds and notification agreements", "controls": ["SA-9", "SR-8"], "ksis": ["KSI-SCR-MON"] },
+    "ALERTS": { "title": "Plan Azure Service Health alerts at scale with Azure Policy", "controls": ["SI-5", "CA-7"], "ksis": ["KSI-SCR-MON", "KSI-MLA-EVC"] },
+    "RUN": { "title": "Scheduled run: collect, route, digest", "controls": ["SA-9", "SI-5", "CA-7"], "ksis": ["KSI-SCR-MIT", "KSI-SCR-MON", "KSI-MLA-EVC"] },
+    "RB": { "title": "Rollback plan", "controls": ["CM-3", "CP-2"], "ksis": ["KSI-CMT-LMC", "KSI-RPL-ARP"] }
+  },
+  "stages": {
+    "test": ["PRE", "RUN", "ROUTE", "DIGEST"],
+    "production": ["PRE", "ALERTS", "RUN", "ROUTE", "DIGEST"]
+  }
+}

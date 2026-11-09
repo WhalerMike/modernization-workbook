@@ -1,0 +1,133 @@
+{
+  "count": 5,
+  "data": [
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa01",
+      "trackingId": "HA9Q-0RS",
+      "eventType": "HealthAdvisory",
+      "eventSubType": "",
+      "status": "Active",
+      "description": "Update clients to TLS 1.2 or later for Azure Storage",
+      "summary": "Azure Storage will stop accepting TLS 1.0 and 1.1. Most clients already use TLS 1.2; check older applications.",
+      "priority": 18,
+      "level": "Informational",
+      "impactStartTime": "2026-10-01T00:00:00Z",
+      "impactMitigationTime": "2027-02-01T00:00:00Z",
+      "lastUpdateTime": "2026-10-01T00:00:00Z",
+      "impact": [
+        {
+          "ImpactedService": "Storage",
+          "ImpactedRegions": [
+            {
+              "ImpactedRegion": "East US"
+            },
+            {
+              "ImpactedRegion": "East US 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa02",
+      "trackingId": "NW1T-2UV",
+      "eventType": "PlannedMaintenance",
+      "eventSubType": "",
+      "status": "Active",
+      "description": "Planned maintenance: Azure SQL Database in Central US",
+      "summary": "Azure SQL Database will apply a service update in Central US. Connections may drop briefly; retry logic handles it.",
+      "priority": 14,
+      "level": "Informational",
+      "impactStartTime": "2026-11-28T04:00:00Z",
+      "impactMitigationTime": "2026-11-28T08:00:00Z",
+      "lastUpdateTime": "2026-11-14T09:00:00Z",
+      "impact": [
+        {
+          "ImpactedService": "SQL Database",
+          "ImpactedRegions": [
+            {
+              "ImpactedRegion": "Central US"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa01",
+      "trackingId": "PM3F-4GH",
+      "eventType": "PlannedMaintenance",
+      "eventSubType": "",
+      "status": "Active",
+      "description": "Planned maintenance: Virtual Machines in East US 2",
+      "summary": "Rescheduled. Azure will perform host maintenance on virtual machines in East US 2. Virtual machines may pause for up to 30 seconds.",
+      "priority": 12,
+      "level": "Informational",
+      "impactStartTime": "2026-11-24T02:00:00Z",
+      "impactMitigationTime": "2026-11-25T02:00:00Z",
+      "lastUpdateTime": "2026-11-12T10:00:00Z",
+      "impact": [
+        {
+          "ImpactedService": "Virtual Machines",
+          "ImpactedRegions": [
+            {
+              "ImpactedRegion": "East US 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa01",
+      "trackingId": "RT5J-6KL",
+      "eventType": "HealthAdvisory",
+      "eventSubType": "Retirement",
+      "status": "Active",
+      "description": "Retirement: Basic SKU public IP addresses",
+      "summary": "Basic SKU public IP addresses will be retired on 30 September 2027. Upgrade to Standard SKU public IP addresses before then.",
+      "priority": 15,
+      "level": "Informational",
+      "impactStartTime": "2026-09-30T00:00:00Z",
+      "impactMitigationTime": "2027-09-30T00:00:00Z",
+      "lastUpdateTime": "2026-09-30T00:00:00Z",
+      "impact": [
+        {
+          "ImpactedService": "Virtual Network",
+          "ImpactedRegions": [
+            {
+              "ImpactedRegion": "East US"
+            },
+            {
+              "ImpactedRegion": "East US 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subscriptionId": "00000000-0000-0000-0000-00000000aa01",
+      "trackingId": "SA7M-8NP",
+      "eventType": "SecurityAdvisory",
+      "eventSubType": "",
+      "status": "Active",
+      "description": "Security advisory: action recommended for Azure Kubernetes Service clusters",
+      "summary": "A vulnerability affects some node images. Upgrade affected node pools to the latest node image.",
+      "priority": 4,
+      "level": "Warning",
+      "impactStartTime": "2026-11-05T00:00:00Z",
+      "impactMitigationTime": "2026-12-05T00:00:00Z",
+      "lastUpdateTime": "2026-11-05T18:00:00Z",
+      "impact": [
+        {
+          "ImpactedService": "Azure Kubernetes Service",
+          "ImpactedRegions": [
+            {
+              "ImpactedRegion": "East US"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "skip_token": null,
+  "total_records": 5
+}

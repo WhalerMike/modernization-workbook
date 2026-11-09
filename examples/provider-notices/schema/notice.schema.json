@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WhalerMike/modernization-workbook/examples/provider-notices/schema/notice.schema.json",
+  "title": "Provider notice",
+  "description": "One notice from a cloud provider, normalized: scheduled maintenance, a retirement, an advisory, a security advisory, an upcoming change or an incident. Neutral: it holds what the provider published about the tenant, account, tenancy or project, never an agency's routing or names. Times are UTC, ISO 8601 with a Z.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "noticeId", "provider", "cloud", "sourceId", "kind", "status", "title", "summary", "windowStart", "windowEnd",
+               "services", "regions", "resources", "actionRequired", "actionRequiredBy", "actionBasis", "providerSeverity",
+               "sourceUrl", "sourceRef", "published", "lastUpdated", "firstSeen", "fingerprint"],
+  "$defs": {
+    "utc": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" }
+  },
+  "properties": {
+    "schema": { "const": "fmp-provider-notice/1" },
+    "noticeId": { "type": "string", "pattern": "^(azure|m365|oci|aws|google):.+$", "description": "<provider>:<sourceId>; the de-duplication key across runs" },
+    "provider": { "enum": ["azure", "m365", "oci", "aws", "google"] },
+    "cloud": { "type": "string", "description": "The provider's cloud or partition the notice was read from, such as AzureUSGovernment, gcchigh, oc2 or aws-us-gov" },
+    "sourceId": { "type": "string", "minLength": 1, "description": "The provider's own identifier: tracking ID, MC or issue ID, announcement OCID, event ARN or event name" },
+    "kind": { "enum": ["maintenance", "retirement", "advisory", "security", "change", "incident"] },
+    "status": { "enum": ["open", "closed"] },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "description": "Plain text, at most 2,000 characters; markup removed" },
+    "windowStart": { "$ref": "#/$defs/utc" },
+    "windowEnd": { "$ref": "#/$defs/utc" },
+    "services": { "type": "array", "items": { "type": "string" } },
+    "regions": { "type": "array", "items": { "type": "string" } },
+    "resources": { "type": "array", "items": { "type": "string" }, "description": "Resource IDs, ARNs or OCIDs the provider names as affected" },
+    "actionRequired": { "type": "boolean" },
+    "actionRequiredBy": { "$ref": "#/$defs/utc" },
+    "actionBasis": { "type": "string", "description": "Why actionRequired is what it is: 'provider: <field and value>' when the provider says so, 'rule: <kit rule>' when the kit infers it, or 'none'" },
+    "providerSeverity": { "type": ["string", "null"], "description": "The provider's own severity, level or type, unchanged" },
+    "sourceUrl": { "type": ["string", "null"], "description": "The provider's API URL for the notice, where its documentation gives one" },
+    "sourceRef": { "type": "string", "description": "What a person searches for in the provider's console" },
+    "published": { "$ref": "#/$defs/utc" },
+    "lastUpdated": { "$ref": "#/$defs/utc" },
+    "firstSeen": { "$ref": "#/$defs/utc", "description": "When this kit first read the notice (the router keeps it across runs)" },
+    "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "SHA-256 of the record without firstSeen and fingerprint; a change means the provider updated the notice" }
+  }
+}

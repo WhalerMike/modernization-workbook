@@ -1,0 +1,80 @@
+{
+  "events": [
+    {
+      "name": "projects/contoso-example-prod/locations/global/events/example-incident-01",
+      "title": "Cloud SQL connection errors in us-east4",
+      "description": "",
+      "category": "INCIDENT",
+      "detailedCategory": "CONFIRMED_INCIDENT",
+      "state": "ACTIVE",
+      "detailedState": "CONFIRMED",
+      "eventImpacts": [
+        {
+          "product": {
+            "productName": "Google Cloud SQL",
+            "id": "example-product"
+          },
+          "location": {
+            "locationName": "us-east4"
+          }
+        }
+      ],
+      "relevance": "IMPACTED",
+      "updates": [
+        {
+          "updateTime": "2026-11-09T08:00:00Z",
+          "title": "Investigating",
+          "description": "We are investigating connection errors for Cloud SQL in us-east4.",
+          "symptom": "Connection timeouts",
+          "workaround": "Retry with backoff"
+        },
+        {
+          "updateTime": "2026-11-09T10:00:00Z",
+          "title": "Mitigation in progress",
+          "description": "A mitigation is rolling out. Error rates are falling.",
+          "symptom": "Connection timeouts",
+          "workaround": "Retry with backoff"
+        }
+      ],
+      "parentEvent": "",
+      "updateTime": "2026-11-09T10:00:00Z",
+      "startTime": "2026-11-09T07:45:00Z",
+      "nextUpdateTime": ""
+    },
+    {
+      "name": "projects/contoso-example-prod/locations/global/events/example-incident-02",
+      "title": "Cloud Storage latency in us-central1",
+      "description": "",
+      "category": "INCIDENT",
+      "detailedCategory": "CONFIRMED_INCIDENT",
+      "state": "CLOSED",
+      "detailedState": "RESOLVED",
+      "eventImpacts": [
+        {
+          "product": {
+            "productName": "Cloud Storage",
+            "id": "example-product"
+          },
+          "location": {
+            "locationName": "us-central1"
+          }
+        }
+      ],
+      "relevance": "RELATED",
+      "updates": [
+        {
+          "updateTime": "2026-11-04T13:30:00Z",
+          "title": "Resolved",
+          "description": "Latency returned to normal.",
+          "symptom": "",
+          "workaround": ""
+        }
+      ],
+      "parentEvent": "",
+      "updateTime": "2026-11-04T13:30:00Z",
+      "startTime": "2026-11-04T12:00:00Z",
+      "nextUpdateTime": "",
+      "endTime": "2026-11-04T13:20:00Z"
+    }
+  ]
+}

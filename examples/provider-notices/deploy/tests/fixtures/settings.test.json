@@ -1,0 +1,71 @@
+{
+  "_comment": "A fictional test environment (contoso.example) for the deploy tests: Azure, Microsoft 365 and OCI enabled, AWS and Google off.",
+  "environment": "test",
+  "changeRecord": "CHG-EXAMPLE-0101",
+  "outputRoot": "out/deploy-test",
+  "providers": {
+    "azure": {
+      "enabled": true,
+      "cloud": "AzureCloud",
+      "subscriptions": [
+        "00000000-0000-0000-0000-00000000aa01"
+      ],
+      "managementGroup": "",
+      "noticeContacts": [
+        "cloud-ops@contoso.example"
+      ]
+    },
+    "m365": {
+      "enabled": true,
+      "cloud": "gcc",
+      "tenantId": "00000000-0000-0000-0000-0000000000c0",
+      "noticeContacts": [
+        "m365-admins@contoso.example"
+      ]
+    },
+    "oci": {
+      "enabled": true,
+      "realm": "oc1",
+      "region": "us-ashburn-1",
+      "tenancyId": "ocid1.tenancy.oc1..aaaaaaaaexampletenancy",
+      "noticeContacts": [
+        "oci-admins@contoso.example"
+      ]
+    },
+    "aws": {
+      "enabled": false,
+      "partition": "aws",
+      "accountId": "<account-id>",
+      "profile": "",
+      "noticeContacts": []
+    },
+    "google": {
+      "enabled": false,
+      "scope": "project",
+      "project": "<project-id>",
+      "organization": "",
+      "noticeContacts": []
+    }
+  },
+  "routing": {
+    "path": "config/routing.json",
+    "send": false,
+    "endpoint": "",
+    "tokenVariable": ""
+  },
+  "digest": {
+    "days": 7,
+    "upcomingDays": 30,
+    "weekday": "Monday"
+  },
+  "azurePolicy": {
+    "enabled": false,
+    "scope": "",
+    "location": "",
+    "assignmentName": "pn-service-health-alerts",
+    "parametersPath": ""
+  },
+  "schedule": {
+    "taskName": "ProviderNotices-Weekly-Test"
+  }
+}

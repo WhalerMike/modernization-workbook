@@ -1,0 +1,128 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#admin/serviceAnnouncement/messages",
+  "value": [
+    {
+      "startDateTime": "2026-10-15T18:00:00Z",
+      "endDateTime": "2027-03-31T07:00:00Z",
+      "lastModifiedDateTime": "2026-10-15T18:00:00Z",
+      "title": "Retirement of Basic authentication for SMTP AUTH client submission",
+      "id": "MC900001",
+      "category": "PlanForChange",
+      "severity": "High",
+      "tags": [
+        "Retirement",
+        "Admin impact"
+      ],
+      "isMajorChange": true,
+      "actionRequiredByDateTime": "2027-01-31T08:00:00Z",
+      "services": [
+        "Exchange Online"
+      ],
+      "expiryDateTime": null,
+      "details": [],
+      "body": {
+        "contentType": "Html",
+        "content": "<p>We're retiring Basic authentication for <b>SMTP AUTH</b>. Move applications to OAuth before <i>January 31, 2027</i>.</p>"
+      },
+      "viewPoint": null
+    },
+    {
+      "startDateTime": "2026-11-01T18:00:00Z",
+      "endDateTime": "2026-12-31T08:00:00Z",
+      "lastModifiedDateTime": "2026-11-01T18:00:00Z",
+      "title": "New meeting recap features in Microsoft Teams",
+      "id": "MC900002",
+      "category": "StayInformed",
+      "severity": "Normal",
+      "tags": [
+        "New feature",
+        "User impact"
+      ],
+      "isMajorChange": false,
+      "actionRequiredByDateTime": null,
+      "services": [
+        "Microsoft Teams"
+      ],
+      "expiryDateTime": null,
+      "details": [],
+      "body": {
+        "contentType": "Html",
+        "content": "<p>Meeting recap adds chapters and speaker notes. No action is needed.</p>"
+      },
+      "viewPoint": null
+    },
+    {
+      "startDateTime": "2026-11-03T18:00:00Z",
+      "endDateTime": "2027-01-15T08:00:00Z",
+      "lastModifiedDateTime": "2026-11-12T18:00:00Z",
+      "title": "(Updated) Update SharePoint Framework solutions that use a deprecated library",
+      "id": "MC900003",
+      "category": "PreventOrFixIssue",
+      "severity": "Normal",
+      "tags": [
+        "Updated message",
+        "Admin impact"
+      ],
+      "isMajorChange": false,
+      "actionRequiredByDateTime": null,
+      "services": [
+        "SharePoint Online"
+      ],
+      "expiryDateTime": null,
+      "details": [],
+      "body": {
+        "contentType": "Html",
+        "content": "<p>Solutions built with an older library version may stop loading. Rebuild them with the current version.</p>"
+      },
+      "viewPoint": null
+    },
+    {
+      "startDateTime": "2026-11-04T18:00:00Z",
+      "endDateTime": "2026-12-15T08:00:00Z",
+      "lastModifiedDateTime": "2026-11-04T18:00:00Z",
+      "title": "Microsoft Viva: new insights dashboard",
+      "id": "MC900004",
+      "category": "StayInformed",
+      "severity": "Normal",
+      "tags": [
+        "New feature"
+      ],
+      "isMajorChange": false,
+      "actionRequiredByDateTime": null,
+      "services": [
+        "Microsoft Viva"
+      ],
+      "expiryDateTime": null,
+      "details": [],
+      "body": {
+        "contentType": "Html",
+        "content": "<p>A new dashboard is rolling out.</p>"
+      },
+      "viewPoint": null
+    },
+    {
+      "startDateTime": "2026-11-14T18:00:00Z",
+      "endDateTime": "2027-04-30T07:00:00Z",
+      "lastModifiedDateTime": "2026-11-14T18:00:00Z",
+      "title": "Action required: register your apps for the new mail sender policy",
+      "id": "MC900005",
+      "category": "PlanForChange",
+      "severity": "High",
+      "tags": [
+        "Admin impact"
+      ],
+      "isMajorChange": false,
+      "actionRequiredByDateTime": "2027-02-28T08:00:00Z",
+      "services": [
+        "Exchange Online"
+      ],
+      "expiryDateTime": null,
+      "details": [],
+      "body": {
+        "contentType": "Html",
+        "content": "<p>Register each application that sends mail as your domain before February 28, 2027.</p>"
+      },
+      "viewPoint": null
+    }
+  ]
+}

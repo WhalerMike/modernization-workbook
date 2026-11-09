@@ -1,0 +1,22 @@
+{
+  "_comment": "One environment's settings for the provider notices kit. Copy it once per environment (settings.test.json, settings.production.json), replace every <placeholder> in each enabled provider, and file each copy with the change record. Names and IDs only, never a secret: each provider's reader signs in through its own CLI or a managed identity, and the ServiceNow token is read from the environment variable named in routing.tokenVariable at run time. Read-PnSettings refuses a file with a secret-like value, or a placeholder left in an enabled provider. The commands are the same for test and production; only this file changes. Not run against a live tenant, account, tenancy or project.",
+  "environment": "<test-or-production>",
+  "changeRecord": "<change-record>",
+  "outputRoot": "<output-folder>",
+  "providers": {
+    "azure": { "enabled": true, "cloud": "AzureCloud", "subscriptions": ["<subscription-id>"], "managementGroup": "",
+               "noticeContacts": ["<who-receives-azure-service-health-email>"] },
+    "m365": { "enabled": true, "cloud": "gcc", "tenantId": "<tenant-id>",
+              "noticeContacts": ["<who-receives-message-center-email>"] },
+    "oci": { "enabled": true, "realm": "oc1", "region": "<home-region>", "tenancyId": "<tenancy-ocid>",
+             "noticeContacts": ["<who-receives-oci-announcement-email>"] },
+    "aws": { "enabled": false, "partition": "aws", "accountId": "<account-id>", "profile": "",
+             "noticeContacts": ["<who-receives-aws-health-email>"] },
+    "google": { "enabled": false, "scope": "project", "project": "<project-id>", "organization": "",
+                "noticeContacts": ["<who-receives-google-service-health-email>"] }
+  },
+  "routing": { "path": "<path-to-your-routing-json>", "send": false, "endpoint": "<servicenow-endpoint-url>", "tokenVariable": "PN_SERVICENOW_TOKEN" },
+  "digest": { "days": 7, "upcomingDays": 30, "weekday": "Monday" },
+  "azurePolicy": { "enabled": false, "scope": "<management-group-or-subscription-scope>", "location": "<azure-region>", "assignmentName": "pn-service-health-alerts", "parametersPath": "" },
+  "schedule": { "taskName": "ProviderNotices-Weekly" }
+}

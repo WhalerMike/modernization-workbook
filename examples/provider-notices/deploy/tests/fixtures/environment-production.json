@@ -1,0 +1,33 @@
+{
+  "_comment": "Fixture mode for the production environment. The policy definition holds only the fields the plan reads; its role ID is a made-up GUID, not the real definition's.",
+  "tools": {
+    "az": true,
+    "Microsoft.Graph.Authentication": true,
+    "oci": true,
+    "aws": true,
+    "gcloud": true
+  },
+  "contexts": {
+    "azure": "AzureCloud",
+    "m365": {
+      "Environment": "Global",
+      "TenantId": "00000000-0000-0000-0000-0000000000c0"
+    },
+    "aws": "arn:aws:iam::111122223333:role/example-notice-reader"
+  },
+  "readsFrom": "../../../tests/fixtures/day2",
+  "policyDefinition": {
+    "name": "98903777-a9f6-47f5-90a9-acaf62ab01a8",
+    "displayName": "Configure subscriptions to enable Service Health Monitoring Alert Rules",
+    "policyRule": {
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-00000000e001"
+          ]
+        }
+      }
+    }
+  }
+}

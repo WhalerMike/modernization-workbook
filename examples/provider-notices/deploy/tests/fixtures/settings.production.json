@@ -1,0 +1,73 @@
+{
+  "_comment": "A fictional production environment (contoso.example) for the deploy tests: every provider enabled, the Service Health alert policy at a management group.",
+  "environment": "production",
+  "changeRecord": "CHG-EXAMPLE-0202",
+  "outputRoot": "out/deploy-prod",
+  "providers": {
+    "azure": {
+      "enabled": true,
+      "cloud": "AzureCloud",
+      "subscriptions": [],
+      "managementGroup": "mg-contoso-example",
+      "noticeContacts": [
+        "cloud-ops@contoso.example"
+      ]
+    },
+    "m365": {
+      "enabled": true,
+      "cloud": "gcc",
+      "tenantId": "00000000-0000-0000-0000-0000000000c0",
+      "noticeContacts": [
+        "m365-admins@contoso.example"
+      ]
+    },
+    "oci": {
+      "enabled": true,
+      "realm": "oc1",
+      "region": "us-ashburn-1",
+      "tenancyId": "ocid1.tenancy.oc1..aaaaaaaaexampletenancy",
+      "noticeContacts": [
+        "oci-admins@contoso.example"
+      ]
+    },
+    "aws": {
+      "enabled": true,
+      "partition": "aws",
+      "accountId": "111122223333",
+      "profile": "",
+      "noticeContacts": [
+        "aws-admins@contoso.example"
+      ]
+    },
+    "google": {
+      "enabled": true,
+      "scope": "project",
+      "project": "contoso-example-prod",
+      "organization": "",
+      "noticeContacts": [
+        "gcp-admins@contoso.example"
+      ]
+    }
+  },
+  "routing": {
+    "path": "config/routing.json",
+    "send": true,
+    "endpoint": "https://instance.contoso.example/api/x_example/provider_notices",
+    "tokenVariable": "PN_SERVICENOW_TOKEN"
+  },
+  "digest": {
+    "days": 7,
+    "upcomingDays": 30,
+    "weekday": "Monday"
+  },
+  "azurePolicy": {
+    "enabled": true,
+    "scope": "/providers/Microsoft.Management/managementGroups/mg-contoso-example",
+    "location": "eastus",
+    "assignmentName": "pn-service-health-alerts",
+    "parametersPath": ""
+  },
+  "schedule": {
+    "taskName": "ProviderNotices-Weekly"
+  }
+}

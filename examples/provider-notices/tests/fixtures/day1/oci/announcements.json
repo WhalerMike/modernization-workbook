@@ -1,0 +1,103 @@
+{
+  "data": {
+    "items": [
+      {
+        "id": "ocid1.announcement.oc1..aaaaaaaaexample01",
+        "type": "Announcement",
+        "referenceTicketNumber": "EXAMPLE-0001",
+        "summary": "Scheduled maintenance for Base Database Service in US East (Ashburn)",
+        "services": [
+          "Base Database Service"
+        ],
+        "affectedRegions": [
+          "us-ashburn-1"
+        ],
+        "announcementType": "SCHEDULED_MAINTENANCE",
+        "lifecycleState": "ACTIVE",
+        "isBanner": false,
+        "timeCreated": "2026-11-02T16:00:00Z",
+        "timeUpdated": "2026-11-02T16:00:00Z",
+        "environmentName": "PROD",
+        "platformType": "IAAS",
+        "chainId": "chain-example-01",
+        "timeOneTitle": "Start Time",
+        "timeOneType": "START_TIME",
+        "timeOneValue": "2026-11-22T04:00:00Z",
+        "timeTwoTitle": "End Time",
+        "timeTwoType": "END_TIME",
+        "timeTwoValue": "2026-11-22T08:00:00Z"
+      },
+      {
+        "id": "ocid1.announcement.oc1..aaaaaaaaexample02",
+        "type": "Announcement",
+        "referenceTicketNumber": "EXAMPLE-0002",
+        "summary": "Action required: replace the certificate bundle on load balancers before it expires",
+        "services": [
+          "Load Balancer"
+        ],
+        "affectedRegions": [
+          "us-ashburn-1",
+          "us-phoenix-1"
+        ],
+        "announcementType": "ACTION_REQUIRED",
+        "lifecycleState": "ACTIVE",
+        "isBanner": false,
+        "timeCreated": "2026-11-04T14:00:00Z",
+        "timeUpdated": "2026-11-04T14:00:00Z",
+        "environmentName": "PROD",
+        "platformType": "IAAS",
+        "chainId": "chain-example-02",
+        "timeOneTitle": "Action Required By",
+        "timeOneType": "ACTION_REQUIRED_BY",
+        "timeOneValue": "2026-12-15T00:00:00Z"
+      },
+      {
+        "id": "ocid1.announcement.oc1..aaaaaaaaexample03",
+        "type": "Announcement",
+        "referenceTicketNumber": "EXAMPLE-0003",
+        "summary": "New compute shapes are available in US West (Phoenix)",
+        "services": [
+          "Compute"
+        ],
+        "affectedRegions": [
+          "us-phoenix-1"
+        ],
+        "announcementType": "INFORMATION",
+        "lifecycleState": "ACTIVE",
+        "isBanner": false,
+        "timeCreated": "2026-11-05T12:00:00Z",
+        "timeUpdated": "2026-11-05T12:00:00Z",
+        "environmentName": "PROD",
+        "platformType": "IAAS",
+        "chainId": "chain-example-03"
+      },
+      {
+        "id": "ocid1.announcement.oc1..aaaaaaaaexample04",
+        "type": "Announcement",
+        "referenceTicketNumber": "EXAMPLE-0004",
+        "summary": "Object Storage requests returned errors in US East (Ashburn)",
+        "services": [
+          "Object Storage"
+        ],
+        "affectedRegions": [
+          "us-ashburn-1"
+        ],
+        "announcementType": "PRODUCTION_EVENT_NOTIFICATION",
+        "lifecycleState": "INACTIVE",
+        "isBanner": false,
+        "timeCreated": "2026-11-03T07:30:00Z",
+        "timeUpdated": "2026-11-03T09:00:00Z",
+        "environmentName": "PROD",
+        "platformType": "IAAS",
+        "chainId": "chain-example-04",
+        "timeOneTitle": "Time Detected",
+        "timeOneType": "TIME_DETECTED",
+        "timeOneValue": "2026-11-03T07:20:00Z",
+        "timeTwoTitle": "End Time",
+        "timeTwoType": "END_TIME",
+        "timeTwoValue": "2026-11-03T08:05:00Z"
+      }
+    ],
+    "userStatuses": []
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "successfulSet": [
+    {
+      "event": {
+        "arn": "arn:aws:health:us-east-1::event/EC2/AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED/AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED_EXAMPLE01",
+        "service": "EC2",
+        "eventTypeCode": "AWS_EC2_INSTANCE_RETIREMENT_SCHEDULED",
+        "eventTypeCategory": "scheduledChange",
+        "region": "us-east-1",
+        "startTime": 1796083200.0,
+        "lastUpdatedTime": 1793872800.0,
+        "statusCode": "upcoming",
+        "eventScopeCode": "ACCOUNT_SPECIFIC",
+        "actionability": "ACTION_REQUIRED",
+        "personas": [
+          "OPERATIONS"
+        ]
+      },
+      "eventDescription": {
+        "latestDescription": "EC2 has detected degradation of the underlying hardware hosting your instance. The instance is scheduled for retirement; stop and start it before the date to move it to healthy hardware."
+      },
+      "eventMetadata": {}
+    },
+    {
+      "event": {
+        "arn": "arn:aws:health:us-east-1::event/RDS/AWS_RDS_MAINTENANCE_SCHEDULED/AWS_RDS_MAINTENANCE_SCHEDULED_EXAMPLE02",
+        "service": "RDS",
+        "eventTypeCode": "AWS_RDS_MAINTENANCE_SCHEDULED",
+        "eventTypeCategory": "scheduledChange",
+        "region": "us-east-1",
+        "startTime": 1795413600.0,
+        "lastUpdatedTime": 1793959200.0,
+        "statusCode": "upcoming",
+        "eventScopeCode": "ACCOUNT_SPECIFIC",
+        "endTime": 1795417200.0,
+        "actionability": "ACTION_MAY_BE_REQUIRED",
+        "personas": [
+          "OPERATIONS"
+        ]
+      },
+      "eventDescription": {
+        "latestDescription": "A required maintenance update is scheduled for your DB instance during its maintenance window."
+      },
+      "eventMetadata": {}
+    },
+    {
+      "event": {
+        "arn": "arn:aws:health:us-west-2::event/LAMBDA/AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT/AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT_EXAMPLE03",
+        "service": "LAMBDA",
+        "eventTypeCode": "AWS_LAMBDA_PLANNED_LIFECYCLE_EVENT",
+        "eventTypeCategory": "scheduledChange",
+        "region": "us-west-2",
+        "startTime": 1799971200.0,
+        "lastUpdatedTime": 1793540653.0,
+        "statusCode": "upcoming",
+        "eventScopeCode": "ACCOUNT_SPECIFIC",
+        "personas": [
+          "OPERATIONS"
+        ]
+      },
+      "eventDescription": {
+        "latestDescription": "The runtime your function uses reaches end of support. Update the function to a supported runtime before the date."
+      },
+      "eventMetadata": {}
+    },
+    {
+      "event": {
+        "arn": "arn:aws:health:us-east-1::event/IAM/AWS_IAM_SECURITY_NOTIFICATION/AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04",
+        "service": "IAM",
+        "eventTypeCode": "AWS_IAM_SECURITY_NOTIFICATION",
+        "eventTypeCategory": "accountNotification",
+        "region": "us-east-1",
+        "startTime": 1794096000.0,
+        "lastUpdatedTime": 1794441600.0,
+        "statusCode": "closed",
+        "eventScopeCode": "ACCOUNT_SPECIFIC",
+        "actionability": "ACTION_REQUIRED",
+        "personas": [
+          "SECURITY"
+        ],
+        "endTime": 1794441600.0
+      },
+      "eventDescription": {
+        "latestDescription": "We detected an access key for an IAM user in a public location. Rotate the key and review recent activity."
+      },
+      "eventMetadata": {}
+    },
+    {
+      "event": {
+        "arn": "arn:aws:health:us-east-1::event/S3/AWS_S3_OPERATIONAL_ISSUE/AWS_S3_OPERATIONAL_ISSUE_EXAMPLE05",
+        "service": "S3",
+        "eventTypeCode": "AWS_S3_OPERATIONAL_ISSUE",
+        "eventTypeCategory": "issue",
+        "region": "us-east-1",
+        "startTime": 1794060000.0,
+        "lastUpdatedTime": 1794065400.0,
+        "statusCode": "closed",
+        "eventScopeCode": "PUBLIC",
+        "endTime": 1794064200.0
+      },
+      "eventDescription": {
+        "latestDescription": "Between 14:00 and 15:10 UTC, some requests to Amazon S3 in US-EAST-1 returned errors. The issue is resolved."
+      },
+      "eventMetadata": {}
+    }
+  ],
+  "failedSet": []
+}
