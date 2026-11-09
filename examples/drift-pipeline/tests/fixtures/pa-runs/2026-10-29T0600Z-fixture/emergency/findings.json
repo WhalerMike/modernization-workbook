@@ -37,21 +37,21 @@
   {
     "Rule": "PA-EA-08",
     "Severity": "Finding",
-    "Object": "CA001-All-Block-legacy-authentication",
+    "Object": "CA001-AllUsers-BlockLegacyAuth",
     "ObjectId": "ca000000-0000-4000-8000-000000000001",
     "Issue": "Enforced policy doesn't exclude 1 emergency account(s) through the exclusion group or directly"
   },
   {
     "Rule": "PA-EA-08",
     "Severity": "Finding",
-    "Object": "CA004-Admins-Require-compliant-device",
+    "Object": "CA004-Admins-RequireCompliantDevice",
     "ObjectId": "ca000000-0000-4000-8000-000000000004",
     "Issue": "Enforced policy doesn't exclude 2 emergency account(s) through the exclusion group or directly"
   },
   {
     "Rule": "PA-EA-08",
     "Severity": "Info",
-    "Object": "CA090-Emergency-accounts-Report-sign-ins",
+    "Object": "CA090-AllUsers-ReportOnly-CoverageProbe",
     "ObjectId": "ca000000-0000-4000-8000-000000000090",
     "Issue": "Report-only and not excluding the group: allowed (it records emergency sign-ins), but excluding it before enforcement is required"
   },

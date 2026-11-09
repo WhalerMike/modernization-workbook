@@ -47,3 +47,11 @@ Writer: W4. Verified 2026-10-21. New chapter, following the pattern of Book 09 C
 | *What Changed at FedRAMP* — §5 MSO365MT / MSO365MTA | Sponsor role (one sentence) | Chapters 04 and 09 own it |
 | *What Changed at FedRAMP* — other sections (§2, §3, §6, §7) | Not carried here | Chapters 03, 04, 09, 11 and Appendix A |
 | Book 09 Ch09 / Book 07 Ch05 pattern (roles, matrix, role map, "what changes" table) | Whole chapter structure | — |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged; the MSO365MT listing message on GCC SKUs is no longer present | Contracting-officer paragraph: the SKU statement is dated October 21, 2026, the empty field on November 9 is noted, and the condition is to be confirmed with the provider and in the package; footnote [^c08-fr-mso365] updated |

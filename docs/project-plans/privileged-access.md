@@ -27,13 +27,13 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 | **Sponsor** | Executive sponsor and CIO; CISO |
 | **Plan manager** | Project lead, with the four domain leads: privileged roles, non-human identity, break-glass and separation of duties |
 | **Duration** | 39 weeks (195 working days), computed from the network |
-| **Work** | 28 tasks, 5 gates, 7 decision points, 4 milestones from other plans |
-| **Critical path** | 3 of 44 items; 1 more within 5 days of it |
+| **Work** | 28 tasks, 5 gates, 7 decision points, 5 milestones from other plans |
+| **Critical path** | 3 of 45 items; 1 more within 5 days of it |
 | **Calendar** | Week 1 = the program's Phase 0 approval; five working days a week |
 
 : Plan at a glance {.striped}
 
-This plan builds the privileged half of [Book 04](../books/b04-access/index.md): the privilege tiers in [Chapter 04](../books/b04-access/04-privileged-roles-and-tiers.md), the administrator policies in the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators), PIM self-request with approval in [Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md) and [Appendix B](../books/b04-access/appendix-b-pim-role-settings.md), the reviews in [Chapter 09](../books/b04-access/09-access-governance.md), and the repository and evidence in [Chapter 10](../books/b04-access/10-access-as-code-and-evidence.md). It follows the [charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md): inventory, elevate just-in-time for one role class, reduce, govern the exceptions, evidence. It feeds the [program master schedule](program-master-schedule.md): the emergency access accounts it builds and the phishing-resistant registration it opens to Tier 0 administrators are G1 criteria, and its pilot is the program's PIM milestone in Phase 2.
+This plan builds the privileged half of [Book 04](../books/b04-access/index.md): the privilege tiers in [Chapter 04](../books/b04-access/04-privileged-roles-and-tiers.md), the administrator policies in the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators), PIM self-request with approval in [Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md) and [Appendix B](../books/b04-access/appendix-b-pim-role-settings.md), the reviews in [Chapter 09](../books/b04-access/09-access-governance.md), and the repository and evidence in [Chapter 10](../books/b04-access/10-access-as-code-and-evidence.md). It follows the [charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md): inventory, elevate just-in-time for one role class, reduce, govern the exceptions, evidence. It feeds the [program master schedule](program-master-schedule.md): the emergency access accounts it builds and the phishing-resistant registration it opens to Tier 0 administrators are G1 criteria, and its pilot feeds the program's PIM milestone in Phase 2 without being the same thing. This plan's pilot takes one role class to just-in-time elevation, at its Gate 2 (end of week 14). The program's pilot goes further: its P2.5 (milestone M-026) makes every role a pilot administrator holds eligible, in week 11 ([Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#privileged-access-administrative-identity)). The link is shown under *Links to other plans* (X-P25).
 
 ## Schedule
 
@@ -97,6 +97,7 @@ A gate opens the work that names it as a predecessor, which is usually the next 
 
 - **X-G0, Program G0 — Ready to Plan,** is G0 in the [Program master schedule](program-master-schedule.md) plan (G0 — Ready to Plan), end of wk 4. This plan waits for it; it can slip 10 d before it moves this plan. The foundation work can't start.
 - **X-G1, Program G1 — Foundation Complete,** is G1 in the [Program master schedule](program-master-schedule.md) plan (G1 — Foundation Complete), end of wk 8. This plan must finish A1.1, A1.2 by then: a margin of 10 d. Later work in this plan waits for it. The pilot can't start.
+- **X-P25, PIM for every pilot administrator (program P2.5, M-026),** is P2.5 in the [Program master schedule](program-master-schedule.md) plan (PIM for every pilot administrator (M-026)), end of wk 11. Shown for reference.
 - **X-G2, Program G2 — Pilot Clean,** is G2 in the [Program master schedule](program-master-schedule.md) plan (G2 — Pilot Clean), end of wk 16. This plan must finish AG2 by then: a margin of 12 d. Later work in this plan waits for it. The remaining tiers can't start.
 - **X-G3, Program G3 — Rollout Complete,** is G3 in the [Program master schedule](program-master-schedule.md) plan (G3 — Rollout Complete), end of wk 36. This plan waits for it; it can slip 0 before it moves this plan. The access-related Group Policy can't be retired.
 
@@ -123,7 +124,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | A0.4 | [Existing emergency access accounts located and checked against the standard](../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts) | Task | Identity engineering | 3 | — | wk 1 | 32 d |
 | D-A1 | [Privilege tier model](../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers) | Decision | CISO | — | A0.1 | end of wk 2 | 36 d |
 | AG0 | [Gate 0 — Privilege inventoried](../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers) | Gate | CISO | — | A0.1, A0.2, A0.3, A0.4, D-A1 | end of wk 2 | 47 d |
-| X-G0 | [Program G0 — Ready to Plan](program-master-schedule.md) | External | Steward | — | — | end of wk 4 | 10 d |
+| X-G0 | [Program G0 — Ready to Plan](program-master-schedule.md) | External | Steward (backup: executive sponsor; program) | — | — | end of wk 4 | 10 d |
 
 : Phase 0 — Inventory {.striped .hover}
 
@@ -143,7 +144,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | D-A6 | [Access review cadence for privileged roles](../books/b04-access/08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility) | Decision | CISO | — | D-A1 | end of wk 2 | 62 d |
 | A1.6 | [Role settings for every tier written as code from Appendix B and reviewed](../books/b04-access/appendix-b-pim-role-settings.md#settings-common-to-every-role) | Task | Identity engineering | 8 | D-A4, A1.4, A1.5 | wk 7–9 | 14 d |
 | AG1 | [Gate 1 — Foundation ready](../books/b04-access/08-pim-self-request-with-approval.md#build) | Gate | CISO | — | A1.6, A1.3 | end of wk 9 | 14 d |
-| X-G1 | [Program G1 — Foundation Complete](program-master-schedule.md) | External | Steward | — | A1.1, A1.2 | end of wk 8 | fixed date |
+| X-G1 | [Program G1 — Foundation Complete](program-master-schedule.md) | External | Steward (program) | — | A1.1, A1.2 | end of wk 8 | fixed date |
 
 : Phase 1 — Foundation: emergency access and the activation gate {.striped .hover}
 
@@ -153,6 +154,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 |---|---|---|---|---|---|---|---|
 | A2.1 | [Pilot class's role settings applied; PRV role-assignable groups hold the eligible assignments](../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person) | Task | Identity engineering | 5 | AG1, X-G1, D-A5 | wk 9–10 | 14 d |
 | A2.2 | [Standing assignments in the pilot class converted: eligible first, activation confirmed, active removed](../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible) | Task | Identity engineering | 10 | A2.1 | wk 10–12 | 14 d |
+| X-P25 | [PIM for every pilot administrator (program P2.5, M-026)](program-master-schedule.md) | External | Platform teams (program) | — | — | end of wk 11 | fixed date |
 | A2.3 | [Protected actions with context c2 on the Conditional Access permissions](../books/b04-access/08-pim-self-request-with-approval.md#step-6-close-the-loop-with-protected-actions) | Task | Identity engineering | 5 | A2.1, A0.3 | wk 10–11 | 26 d |
 | A2.4 | [Notifications and PIM alerts routed; the assigned-outside-PIM alert reaches the SIEM](../books/b04-access/08-pim-self-request-with-approval.md#step-7-notifications-and-pim-alerts) | Task | Security operations | 3 | A2.1 | wk 10 | 28 d |
 | A2.5 | [Administrator policies (CA003 to CA005, CA025 to CA027) in report-only, then piloted on the identity team](../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators) | Task | Identity engineering | 15 | X-G1 | wk 9–11 | 12 d |
@@ -161,7 +163,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | A2.7 | [First monthly review of Tier 0 eligibility and PRV-T0 membership closed](../books/b04-access/09-access-governance.md#cadence) | Task | Identity governance officer | 10 | A2.2, D-A6 | wk 12–14 | 14 d |
 | A2.8 | [Validation test plan run for the pilot class](../books/b04-access/08-pim-self-request-with-approval.md#validation-test-plan) | Task | ISSO | 3 | A2.2, A2.3, A2.4, A2.6 | wk 14 | 12 d |
 | AG2 | [Gate 2 — Just-in-time in use for the pilot class](../books/b04-access/08-pim-self-request-with-approval.md#assessment-evidence) | Gate | CISO | — | A2.7, A2.8 | end of wk 14 | 12 d |
-| X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward and executive sponsor | — | AG2 | end of wk 16 | fixed date |
+| X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward and executive sponsor (co-signed; program) | — | AG2 | end of wk 16 | fixed date |
 
 : Phase 2 — Just-in-time pilot for one role class {.striped .hover}
 
@@ -177,7 +179,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | A3.6 | [Change control in force: two people per change, a security approver for Tier 0 objects, drift every six hours](../books/b04-access/10-access-as-code-and-evidence.md#change-control) | Task | Identity engineering | 15 | AG2 | wk 14–17 | 102 d |
 | A3.7 | [First quarterly review cycle closed for Tier 1, Tier 2 and read-only roles](../books/b04-access/appendix-b-pim-role-settings.md#review-cadence-by-tier) | Task | Identity governance officer | 15 | A3.1, A3.3 | wk 23–25 | 65 d |
 | AG3 | [Gate 3 — Every tier just-in-time](../books/b04-access/10-access-as-code-and-evidence.md#drift-detection-and-closure) | Gate | CISO | — | A3.2, A3.4, A3.5, A3.6, A3.7 | end of wk 25 | 65 d |
-| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee | — | — | end of wk 36 | 0 |
+| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee (program) | — | — | end of wk 36 | 0 |
 
 : Phase 3 — Every tier {.striped .hover}
 
@@ -202,10 +204,12 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | CISO | — | 6 | 5 |
 | Identity governance officer | 5 | — | — |
 | ISSO | 2 | — | — |
-| Steward | 2 | — | — |
-| Executive sponsor and steering committee | 1 | — | — |
+| Executive sponsor and steering committee (program) | 1 | — | — |
+| Platform teams (program) | 1 | — | — |
 | Security operations | 1 | — | — |
-| Steward and executive sponsor | 1 | — | — |
+| Steward (backup: executive sponsor; program) | 1 | — | — |
+| Steward (program) | 1 | — | — |
+| Steward and executive sponsor (co-signed; program) | 1 | — | — |
 
 : Ownership {.striped .hover}
 

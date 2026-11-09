@@ -150,3 +150,11 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 | — Audit trail and change control | "Audit trail and change control" paragraph | CM-3 made specific |
 | — NIOS change-control approval workflow | Same paragraph, generalized | vendor feature name dropped |
 | Footnote `ibr-adds2025` (Windows Server 2025 AD DS) | Not carried | AD DS support status is Chapter 04's claim; not needed here |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Ansible documentation for the `infoblox.nios_modules` collection now redirects (301) to docs.ansible.com/projects/ansible/latest/...; the new address answers 200 | `[^aA-ansible]` URL updated |

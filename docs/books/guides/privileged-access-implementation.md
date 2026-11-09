@@ -341,7 +341,7 @@ Two Microsoft features meet in a PRV group. Only a group created role-assignable
 3. **No group in a PRV group, and no eligible service principal.** An eligible group hides its people from the review; service principals can't activate.
 4. **No owners on a Tier 0 group,** because owners manage membership. Elsewhere, never eligible owners without an active owner: Learn says the last active owner can't be removed, so the activation can't be ended.[^pag-pim-groups]
 5. **Approval for Tier 0 and Tier 1 activation**, by the tier's group, at most four hours for Tier 0 and eight for Tier 1 *(design guidance, from Appendix B)*.
-6. **Plan, review, apply.** Rules go first, then grants, then removals. The apply refuses more than five removals by default, the sign of a truncated file.
+6. **Plan, review, apply.** Rules go first, then grants, then removals. The apply refuses more than five removals by default, the sign of a truncated file. Every member and owner policy selects the authentication context `c1`, the activation gate from G3, so `-Apply` also refuses a plan that selects it unless you pass `-ActivationGateChecked`, a person's statement that `PIM-Activation-c1` is On ([Chapter 05](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md)).
 7. **Defer access packages for PRV membership** (plan task A3.3). When they come, an access package's expiration must not exceed the group's own eligibility expiry ([Chapter 05](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#what-the-prv-groups-have-to-hold)).
 
 **Federal requirements and evidence.**

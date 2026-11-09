@@ -63,3 +63,12 @@ Added at the author's request during the independent verification pass (`docs/ab
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-3 | Open verification register: added the carriers for the personnel office input, supervisor group and location code as an open item for after the baseline | Open verification register | decision of Nov 8; labelling only | Mike's decision of Nov 8, 2026, item 3 |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported that OPM replaced the *Guide to Processing Personnel Actions* PDF at the same address. Checked November 9, 2026; no personal data sent to any site.
+
+| Claim | Result | Source |
+|---|---|---|
+| GPPA edition cited as "October 2026" | updated: the cover and page footers now read November 2026; footnote edition and access date changed | GPPA PDF, <https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf> |
+| Chapter list and codes this page relies on (Ch 1 §4 and §5, EHRI Data Standards codes only in coded blocks; Ch 9–11, 13 accessions and conversions; Ch 14; Ch 15: 430, 450–452, 460, 471, 473, 480, with 472 Furlough NTE in its tables; Ch 16: 280, 292; Ch 30; Ch 31; Ch 32: 001, 002) | re-verified in the November 2026 edition, no change | Same |

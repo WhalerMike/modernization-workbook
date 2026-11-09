@@ -30,6 +30,7 @@ Method:
 | 12 | Eight modules, one per chapter, and why none were merged | Path, "Why eight modules" | design | — |
 | 13 | Module and path times | Every module; the path | design (estimates) | — |
 | 14 | Narrated decks for the modules are planned | Path | design (the owner's plan; decks come in a separate step) | — |
+| 15 | The alert check: MS.AAD.7.7v1 and 7.8v1, the eight highly privileged roles, `Invoke-PaPimAlertCheck.ps1` under the read-only `pim-alerts` task, PA-PIM-10 to PA-PIM-13 (roles and the groups that hold them), where each is fixed, default recipients not counted, 11 Findings on the fictional tenant, the separate `baseline/tests` suite; the AU-6 row with KSI-MLA-RVL | Module 4: description, introduction, objectives, Unit 2, requirement table | carried (added 2026-11-09) | Workbook Chapter 04, The alert check and Federal requirements and evidence (the AU-6 row) |
 
 ## Found during the re-run
 

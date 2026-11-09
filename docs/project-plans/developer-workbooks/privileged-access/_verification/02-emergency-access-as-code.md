@@ -46,7 +46,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Book 04, Chapter 06 (emergency access procedure) | Not carried | The invocation procedure is operator material; this chapter alerts on its use |
 | Book 04, Chapter 08, Step 0 | Why this comes first | — |
 | Book 04, Chapter 10 (pre-merge exclusion check) | PA-EA-08; differences | The pre-merge check reads the repository's files; PA-EA-08 reads the tenant. Chapter 03 (planned) carries the pre-merge check |
-| Book 04, Chapter 07 (CA090 report-only emergency policy) | Fixture policy `CA090-Emergency-accounts-Report-sign-ins` | — |
+| Book 04, Chapter 07 (CA090 report-only emergency policy) | Fixture policy `CA090-AllUsers-ReportOnly-CoverageProbe` | — |
 
 ## Federal requirements and evidence (added November 2, 2026)
 
@@ -60,3 +60,7 @@ New section, 15 rows, one for each Lab 1 and Lab 2 scripted action and each outp
 | F4 | MS.AAD.3.6v1, MS.AAD.7.3v1 and MS.AAD.7.4v1 are BOD 25-01 required configurations, with the policy text as the section states it | Federal requirements | verified November 2, 2026 on CISA's Required Configurations page | `pa02-bod` |
 | F5 | MS.AAD.7.4v1 lists emergency access accounts that need perpetual access as an exception; highly privileged roles include Global Administrator | Federal requirements | verified November 2, 2026 in ScubaGear's `aad.md` | `pa02-scuba` |
 | F6 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |
+
+## Fixture policy names (added November 9, 2026)
+
+Item 1609 of the crosswalk review. The fixture tenants' Conditional Access policies now carry Book 04, Chapter 07's library names: `CA001-AllUsers-BlockLegacyAuth` (was `CA001-All-Block-legacy-authentication`), `CA004-Admins-RequireCompliantDevice` (was `CA004-Admins-Require-compliant-device`) and `CA090-AllUsers-ReportOnly-CoverageProbe` (was `CA090-Emergency-accounts-Report-sign-ins`), in `tests/fixtures/tenant.json`, `tests/fixtures/ch08/tenant-day2.json`, `deploy/tests/fixtures/tenant.json` and `tenant-ready.json`, and in the drift pipeline's committed PA runs (`examples/drift-pipeline/tests/fixtures/pa-runs`, with their manifest and run hashes recomputed). Names were checked against Book 04, Chapter 07's tables on November 9, 2026. Only names changed; IDs, states and conditions did not. Lab 1 captures were regenerated.

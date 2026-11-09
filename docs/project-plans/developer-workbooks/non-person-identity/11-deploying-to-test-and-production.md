@@ -102,7 +102,7 @@ Activate a role in the Microsoft Entra admin center: **ID Governance** > **Privi
 | The pilot workload and its 30-day parallel run | The pilot's application owner | Step 1.3 | Chapter 05's cutover log |
 | Each plan's SHA-256 (Chapters 04 and 05, the rollback) and Chapter 08's scope file | A reviewer who is not the operator | Each `-Apply` | The plan's manifest; the scope file's review |
 | Promotion to production | ISSO and the change advisory board | Stage 2 | The go/no-go record |
-| Each production wave's enforcement (D-N5) | CISO | Step 2.3 | The scope file's enforcement record |
+| Each production wave's enforcement (D-NP5) | CISO | Step 2.3 | The scope file's enforcement record |
 
 ### The change record
 
@@ -137,8 +137,8 @@ These are the only values you replace in this chapter's commands:
 | `<egress-range>` | The pilot's egress range for the workload location policy, in CIDR form (Chapter 08's `NL-WorkloadEgress`) |
 | `<microsoft-owner-tenant-id>` | The tenant ID Microsoft's first-party apps report as their owner, as Chapter 08 records it |
 | `<oos-object-id>`, `<oos-name>`, `<oos-class>`, `<oos-control>`, `<oos-reviewed-by>`, `<oos-reviewed-on>` | One identity that stays out of the Conditional Access scope (each managed identity and multitenant app in the tenant, including the pilot's managed identity) and the control that covers it, as Chapter 08's `outOfScope` entries have them; without a record for each, Chapter 08's check raises NPI-WCA-06 and the apply refuses to start |
-| `<d-n4-outcome>` | The CISO's Workload ID Premium decision (D-N4), in words, with `<d-n4-by>` and `<d-n4-on>` |
-| `<d-n5-by>`, `<d-n5-on>` | Who decided D-N5 (enforce a wave), and when |
+| `<d-n4-outcome>` | The CISO's Workload ID Premium decision (D-NP4), in words, with `<d-n4-by>` and `<d-n4-on>` |
+| `<d-n5-by>`, `<d-n5-on>` | Who decided D-NP5 (enforce a wave), and when |
 | `<reviewer-upn>` | The reviewer's user principal name: a reviewer who is not the operator, as the Approvals table requires |
 | `<sha>` | A plan's SHA-256, as the reviewer passes it back to you |
 | `<test-evidence>` | The test stage's smoke-test folder, `<outputRoot>/smoke-final` from the test settings file |
@@ -984,13 +984,13 @@ Record the step's evidence:
 
 Each wave is one of Chapter 08's rings, listed in the settings file's `waves`. For each wave in turn, after its 14 days of report-only sign-ins:
 
-1. **Summarize the wave's sign-ins**, signed in as the reader app, and hand the summary's SHA-256 to the CISO for D-N5:
+1. **Summarize the wave's sign-ins**, signed in as the reader app, and hand the summary's SHA-256 to the CISO for D-NP5:
 
    ```powershell
    ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud $s.cloud -ScopePath $s.conditionalAccess.scopePath -From (Get-Date).AddDays(-14).ToUniversalTime() -To (Get-Date).ToUniversalTime() -OutputPath "$out/wca-signins-Ring1"
    ```
 
-2. **Record D-N5 in the scope file** and enforce the wave, as the Conditional Access administrator:
+2. **Record D-NP5 in the scope file** and enforce the wave, as the Conditional Access administrator:
 
    ```powershell
    $sha = (Get-FileHash "$out/wca-signins-Ring1/signin-summary.json" -Algorithm SHA256).Hash.ToLower()
@@ -1012,7 +1012,7 @@ Record the step's evidence:
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
-| AC-6 Least Privilege; CM-3; CM-4(2) | Each wave enforced only after its reviewed 14-day summary and D-N5, one wave at a time | KSI-IAM-ELP, KSI-CMT-LMC | `S2.3-staged-enable-by-wave.json` and `runs/S2.3/` (the sign-in summary and the enforce runs) |
+| AC-6 Least Privilege; CM-3; CM-4(2) | Each wave enforced only after its reviewed 14-day summary and D-NP5, one wave at a time | KSI-IAM-ELP, KSI-CMT-LMC | `S2.3-staged-enable-by-wave.json` and `runs/S2.3/` (the sign-in summary and the enforce runs) |
 
 ### Step 2.4: Smoke test in production
 
@@ -1102,7 +1102,7 @@ Each stage's evidence folder, `<outputRoot>/evidence`, holds one record per requ
 | Both | `S1.5-workload-conditional-access-report-only.json` (`runs/S1.5/`), the scope file under `inputs/` | Workload policies created report-only, assigned directly | G4 | AC-3, AC-6, CM-3(2), CM-4(2) | KSI-IAM-ELP, KSI-CMT-VTD |
 | Both | `SMOKE-smoke-test.json` (`runs/SMOKE/`) | Every control worked on objects nobody depends on | G1, G3, G4, G5 | AC-2, AC-3, AC-6, AU-2, AU-12, CA-7, CM-8, IA-4, IA-5, IA-9 | KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-PIY-GIV |
 | Test | `ROLLBACK-rollback.json` (`runs/ROLLBACK/`); `evidence-after-rollback/` | The rollback was rehearsed and returned the tenant to its starting state | All | CM-3, CP-10 | KSI-CMT-RMV, KSI-RPL-ABO |
-| Production | `S2.3-staged-enable-by-wave.json` (sign-in summaries, enforce runs), the D-N5 record in the scope file | Each wave enforced only after a reviewed 14-day summary | G4 | AC-6, CM-3, CM-4(2) | KSI-IAM-ELP, KSI-CMT-LMC |
+| Production | `S2.3-staged-enable-by-wave.json` (sign-in summaries, enforce runs), the D-NP5 record in the scope file | Each wave enforced only after a reviewed 14-day summary | G4 | AC-6, CM-3, CM-4(2) | KSI-IAM-ELP, KSI-CMT-LMC |
 | Production | `S2.5-first-week-drift-monitoring.json` (`runs/S2.5/`) and Chapter 10's packages | No unreviewed change after the deployment | G6 | CA-7, CM-3, AU-6 | KSI-MLA-EVC, KSI-CMT-LMC |
 | Both | `SHA256SUMS`, checked by `Test-NpiDeployEvidence.ps1` | Nobody edited the evidence afterwards | All | AU-9 | KSI-MLA-OSM |
 
@@ -1146,7 +1146,7 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 | A tenant-wide policy on day one | Every app's owners blocked from adding a secret they still need | The pilot policy covers two apps; the tenant-wide policy binds only apps created after its date, and waits for Stage 2 |
 | An app management policy assumed to be report-only | It blocks at once | Learn documents no report-only mode; the scope is the safety, and the smoke test probes it on the synthetic app only |
 | The probe's secret left behind | A live secret on the synthetic app | Removed at once by key ID, ST-03 fails, and the value is never written; the synthetic holds no permission |
-| A workload policy enforced before its sign-ins are read | A production workload blocked | Created report-only; enforced only with `-AllowEnforce`, a D-N5 record and the reviewed summary's SHA-256; one wave at a time |
+| A workload policy enforced before its sign-ins are read | A production workload blocked | Created report-only; enforced only with `-AllowEnforce`, a D-NP5 record and the reviewed summary's SHA-256; one wave at a time |
 | A gMSA used before the KDS root key replicates | The service fails to start on some hosts | The preflight's key check; 10 hours; the backdated key only in a one-DC test forest |
 | A rollback nobody has run | It fails when it is needed | Rehearsed in Stage 1 and filed; a go/no-go criterion |
 | A rollback plan from an old snapshot | It restores a state that no longer exists | Seven days at most; the snapshot's tenant must match; each policy re-read before it is changed |
@@ -1168,7 +1168,7 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 - [ ] The smoke test passed every check, and its expected results were written down before it ran.
 - [ ] The rollback was rehearsed in test and filed, and the after-rollback preflight matches the starting state.
 - [ ] Every go/no-go criterion is signed before production starts.
-- [ ] Production waves were enforced one at a time, each after its 14-day summary and D-N5.
+- [ ] Production waves were enforced one at a time, each after its 14-day summary and D-NP5.
 - [ ] The first week's drift runs show no unreviewed change, and their packages are filed.
 - [ ] Every evidence folder checks with `sha256sum -c SHA256SUMS`, and `Test-NpiDeployEvidence.ps1` shows every requirement row present and passing for its stage.
 

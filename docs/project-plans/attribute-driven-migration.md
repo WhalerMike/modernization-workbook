@@ -43,19 +43,19 @@ It doesn't re-plan the four tracks. The HR track is the [Identity Lifecycle & Pr
 
 ## Critical path
 
-The computed critical path doesn't start in week 1. This plan's early work lands ahead of the program and track tasks that use it, so it carries float, and its finish is set by the program's rollout. The zero-float chain starts at the program's G3 (end of week 36). First the transitional sync rules that still read OU placement come out (A8.3). Once the program has retired the OU-based groups (P4.2, week 38), the OU tree is frozen (A8.4). The last full drift cycle then closes Gates 8 and 9 in week 40. The only way to finish sooner is a shorter rollout.
+The computed critical path doesn't start in week 1. This plan's early work lands ahead of the program and track tasks that use it, so it carries float, and its finish is set by the program's rollout. The zero-float chain starts at the program's G3 (end of week 36). First the transitional sync rules that still read OU placement come out (AT8.3). Once the program has retired the OU-based groups (P4.2, week 38), the OU tree is frozen (AT8.4). The last full drift cycle then closes Gates 8 and 9 in week 40. The only way to finish sooner is a shorter rollout.
 
-Before G3, the plan works against deadlines in the program and the track plans, and the margins are what to watch. The tightest are two working days each: the pilot's shadow comparison (A4.4) before the program assigns the pilot's policies (P2.2), and the non-person conventions (A5.4) before the [Non-Person Identity](non-person-identity.md) plan starts recording sponsors (N1.2). Next, with four days each, come the device targeting conventions (A5.2) before the [Endpoint](endpoint-device.md) plan builds its policy library (E1.2), and Gate 0 before the program's G0. The schema waits on the [Identity Lifecycle](identity-lifecycle.md) plan's person key (D-I1) and attribute authority map (I1.2, week 3), and Gate 1 still reaches the program's attribute taxonomy (P1.1) with eight days in hand. The group library and unit design reach the program's group design (P1.2) with eight, the persona set reaches the Conditional Access design (P1.5) with twelve, and the PIV binding pilot reaches the program's PIV sign-in (P2.8) with ten. The mover proof waits on the HR plan's mover automation (I4.3, week 12) and closes 17 days before the program's G2. Gate 8 lands 20 working days before the program freezes AD (P5.1), and Gate 9 40 before G5. The writer of the PIV binding after AD (D-A7) can wait until the end of week 36, because it must be decided before the program starts moving issuance off AD CS (P4.5, which follows G3). Deciding it earlier leaves time for the open pilot to report.
+Before G3, the plan works against deadlines in the program and the track plans, and the margins are what to watch. The tightest are two working days each: the pilot's shadow comparison (AT4.4) before the program assigns the pilot's policies (P2.2), and the non-person conventions (AT5.4) before the [Non-Person Identity](non-person-identity.md) plan starts recording sponsors (NP1.2). Next, with four days each, come the device targeting conventions (AT5.2) before the [Endpoint](endpoint-device.md) plan builds its policy library (E1.2), and Gate 0 before the program's G0. The schema waits on the [Identity Lifecycle](identity-lifecycle.md) plan's person key (D-I1) and attribute authority map (I1.2, week 3), and Gate 1 still reaches the program's attribute taxonomy (P1.1) with eight days in hand. The group library and unit design reach the program's group design (P1.2) with eight, the persona set reaches the Conditional Access design (P1.5) with twelve, and the PIV binding pilot reaches the program's PIV sign-in (P2.8) with ten. The mover proof waits on the HR plan's mover automation (I4.3, week 12) and closes 17 days before the program's G2. Gate 8 lands 20 working days before the program freezes AD (P5.1), and Gate 9 40 before G5. The writer of the PIV binding after AD (D-AT7) can wait until the end of week 36, because it must be decided before the program starts moving issuance off AD CS (P4.5, which follows G3). Deciding it earlier leaves time for the open pilot to report.
 
 The critical path, in order. Each item has zero total float: a day lost on any of them is a day lost at the finish.
 
 | # | ID | Item | Owner or approver | When |
 |---|---|---|---|---|
-| 1 | A8.3 | Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations | Identity engineering | wk 37–38 |
-| 2 | A8.4 | OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record | Identity engineering | wk 39–40 |
-| 3 | A9.3 | A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action | Security operations, with HR | wk 39–40 |
-| 4 | AG8 | Gate 8 — OU tree retired as a control | CISO | end of wk 40 |
-| 5 | AG9 | Gate 9 — Attributes kept true | CISO | end of wk 40 |
+| 1 | AT8.3 | Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations | Identity engineering | wk 37–38 |
+| 2 | AT8.4 | OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record | Identity engineering | wk 39–40 |
+| 3 | AT9.3 | A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action | Security operations, with HR | wk 39–40 |
+| 4 | ATG8 | Gate 8 — OU tree retired as a control | CISO | end of wk 40 |
+| 5 | ATG9 | Gate 9 — Attributes kept true | CISO | end of wk 40 |
 
 : The critical path {.striped .hover}
 
@@ -63,17 +63,17 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 
 | ID | Item | Float | When |
 |---|---|---|---|
-| D-A1 | Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks | 2 d | end of wk 3 |
-| A5.4 | Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined | 2 d | wk 3–4 |
-| AG3 | Gate 3 — Attributes flowing | 2 d | end of wk 8 |
-| A4.4 | Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on | 2 d | wk 9–10 |
-| A1.1 | AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes | 3 d | wk 1 |
-| A1.2 | AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table | 3 d | wk 2–3 |
-| A0.1 | OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track | 4 d | wk 1–2 |
-| A0.2 | A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire | 4 d | wk 2–4 |
-| D-A2 | The coded slot register: which extension attribute carries which code, on users and on devices | 4 d | end of wk 3 |
-| A5.2 | Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion | 4 d | wk 3–4 |
-| AG0 | Gate 0 — The tree read | 4 d | end of wk 4 |
+| D-AT1 | Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks | 2 d | end of wk 3 |
+| AT5.4 | Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined | 2 d | wk 3–4 |
+| ATG3 | Gate 3 — Attributes flowing | 2 d | end of wk 8 |
+| AT4.4 | Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on | 2 d | wk 9–10 |
+| AT1.1 | AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes | 3 d | wk 1 |
+| AT1.2 | AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table | 3 d | wk 2–3 |
+| AT0.1 | OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track | 4 d | wk 1–2 |
+| AT0.2 | A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire | 4 d | wk 2–4 |
+| D-AT2 | The coded slot register: which extension attribute carries which code, on users and on devices | 4 d | end of wk 3 |
+| AT5.2 | Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion | 4 d | wk 3–4 |
+| ATG0 | Gate 0 — The tree read | 4 d | end of wk 4 |
 
 : Near-critical items {.striped .hover}
 
@@ -83,14 +83,14 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 
 | ID | Decision | Decides | Needed by | Decide by | Float | Options | If it's late |
 |---|---|---|---|---|---|---|---|
-| D-A1 | Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks | Data architect | D-A2, A1.4, A5.4 | end of wk 3 | 2 d | Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need, device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start | No slot can be assigned, and every group rule, persona and targeting convention waits |
-| D-A2 | The coded slot register: which extension attribute carries which code, on users and on devices | Data architect, with HR for the code lists | A1.3, A5.1, A5.2 | end of wk 4 | 4 d | The program attribute map (organization, worker type and position category in extensionAttribute10 to 12; region, cost center, division, account type, clearance and DoNotSync in their slots; device tier, role and environment on the device object); or an agency map that keeps the same rule: codes, never names, one writer per slot | Rules and filters are written against slots that may move, and every one is rewritten later |
-| D-A4 | Restricted management, unit by unit, before each unit exists | Identity engineering | A4.3 | end of wk 6 | 16 d | No (the default): the unit scopes writes and stays in governance automation; yes, for a small set of sensitive accounts, accepting that they leave PIM, entitlement management, Lifecycle Workflows and access reviews | A unit is created without the decision, and restriction can't be changed afterward |
-| D-A5 | The persona set the Conditional Access library targets | CISO | X-P15, AG5 | end of wk 6 | 12 d | The program's personas, built from the worker type and account type codes; personas plus division-specific overlays; fewer personas with more exclusions (not recommended) | The Conditional Access design runs in report-only without the groups it will enforce on |
-| D-A3 | Correlation threshold before any rule grants access | Authorizing official, through the agency's risk governance | AG2 | end of wk 9 | 20 d | 99% of the pilot cohort correlated (a proposed starting point); a risk-tiered threshold, stricter for privileged and leaver-sensitive populations; 100% with a dated exception list | No group can be piloted, because nobody has said how true the attributes must be |
-| D-A6 | Required affinity binding for PIV and CAC | CISO | A6.2 | end of wk 11 | 8 d | High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer | PIV sign-in goes to the pilot at the tenant default, which is low affinity |
-| D-A8 | Drift severity and response times | CISO | A9.1 | end of wk 13 | 40 d | Book 03's classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, Book 13's five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots | Drift findings pile up with nobody obliged to close them |
-| D-A7 | Who writes the binding after AD | ICAM governance body | X-P45 | end of wk 36 | 130 d | The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale) | User issuance can't move off AD CS, because nothing writes the binding without AD |
+| D-AT1 | Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks | Data architect | D-AT2, AT1.4, AT5.4 | end of wk 3 | 2 d | Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need, device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start | No slot can be assigned, and every group rule, persona and targeting convention waits |
+| D-AT2 | The coded slot register: which extension attribute carries which code, on users and on devices | Data architect, with HR for the code lists | AT1.3, AT5.1, AT5.2 | end of wk 4 | 4 d | The program attribute map (organization, worker type and position category in extensionAttribute10 to 12; region, cost center, division, account type, clearance and DoNotSync in their slots; device tier, role and environment on the device object); or an agency map that keeps the same rule: codes, never names, one writer per slot | Rules and filters are written against slots that may move, and every one is rewritten later |
+| D-AT4 | Restricted management, unit by unit, before each unit exists | Identity engineering | AT4.3 | end of wk 6 | 16 d | No (the default): the unit scopes writes and stays in governance automation; yes, for a small set of sensitive accounts, accepting that they leave PIM, entitlement management, Lifecycle Workflows and access reviews | A unit is created without the decision, and restriction can't be changed afterward |
+| D-AT5 | The persona set the Conditional Access library targets | CISO | X-P15, ATG5 | end of wk 6 | 12 d | The program's personas, built from the worker type and account type codes; personas plus division-specific overlays; fewer personas with more exclusions (not recommended) | The Conditional Access design runs in report-only without the groups it will enforce on |
+| D-AT3 | Correlation threshold before any rule grants access | Authorizing official, through the agency's risk governance | ATG2 | end of wk 9 | 20 d | 99% of the pilot cohort correlated (a proposed starting point); a risk-tiered threshold, stricter for privileged and leaver-sensitive populations; 100% with a dated exception list | No group can be piloted, because nobody has said how true the attributes must be |
+| D-AT6 | Required affinity binding for PIV and CAC | CISO | AT6.2 | end of wk 11 | 8 d | High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer | PIV sign-in goes to the pilot at the tenant default, which is low affinity |
+| D-AT8 | Drift severity and response times | CISO | AT9.1 | end of wk 13 | 40 d | Book 03's classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, Book 13's five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots | Drift findings pile up with nobody obliged to close them |
+| D-AT7 | Who writes the binding after AD | ICAM governance body | X-P45 | end of wk 36 | 130 d | The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale) | User issuance can't move off AD CS, because nothing writes the binding without AD |
 
 : Decision points, by decide-by date {.striped .hover}
 
@@ -115,34 +115,34 @@ A gate opens the work that names it as a predecessor, which is usually the next 
 
 ## Links to other plans
 
-- **X-EG0, Device and server observation signed off (Endpoint plan, Gate 0),** is EG0 in the [Endpoint & Device Modernization](endpoint-device.md) plan (Gate 0 — Observation signed off), end of wk 4. This plan must finish A0.4 by then: a margin of 8 d. The Endpoint plan triages Group Policy without knowing which halves belong to people.
-- **X-NG0, Non-person identities inventoried (Non-Person Identity plan, Gate 0),** is NG0 in the [Non-Person Identity Modernization](non-person-identity.md) plan (Gate 0 — Non-person identities inventoried), end of wk 4. This plan must finish A0.1 by then: a margin of 10 d. Service accounts in the tree are inventoried without their OU placement and delegations.
-- **X-G0, Program G0 — Ready to Plan: the read-only assessment committed,** is G0 in the [Program master schedule](program-master-schedule.md) plan (G0 — Ready to Plan), end of wk 4. This plan must finish AG0 by then: a margin of 4 d. The program plans Phase 1 without knowing what the OU tree encodes.
+- **X-EG0, Device and server observation signed off (Endpoint plan, Gate 0),** is EG0 in the [Endpoint & Device Modernization](endpoint-device.md) plan (Gate 0 — Observation signed off), end of wk 4. This plan must finish AT0.4 by then: a margin of 8 d. The Endpoint plan triages Group Policy without knowing which halves belong to people.
+- **X-NPG0, Non-person identities inventoried (Non-Person Identity plan, Gate 0),** is NPG0 in the [Non-Person Identity Modernization](non-person-identity.md) plan (Gate 0 — Non-person identities inventoried), end of wk 4. This plan must finish AT0.1 by then: a margin of 10 d. Service accounts in the tree are inventoried without their OU placement and delegations.
+- **X-G0, Program G0 — Ready to Plan: the read-only assessment committed,** is G0 in the [Program master schedule](program-master-schedule.md) plan (G0 — Ready to Plan), end of wk 4. This plan must finish ATG0 by then: a margin of 4 d. The program plans Phase 1 without knowing what the OU tree encodes.
 - **X-DI1, Enterprise person key, and how source keys map to it (Identity Lifecycle plan, D-I1),** is D-I1 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Enterprise person key, and how source keys map to it), end of wk 1. This plan waits for it; it can slip 3 d before it moves this plan. The mapping has no key to carry in employeeId.
 - **X-I12, Attribute authority map signed (Identity Lifecycle plan, I1.2),** is I1.2 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Attribute authority map signed (HR's part is program decision D02)), end of wk 3. This plan waits for it; it can slip 2 d before it moves this plan. The schema can't name a writer for an attribute whose authority isn't decided.
-- **X-P11, Attribute taxonomy finalized (program P1.1),** is P1.1 in the [Program master schedule](program-master-schedule.md) plan (Attribute taxonomy finalized (M-014)), end of wk 5. This plan must finish AG1 by then: a margin of 8 d. The program's taxonomy is finalized without the cross-track slot register.
+- **X-P11, Attribute taxonomy finalized (program P1.1),** is P1.1 in the [Program master schedule](program-master-schedule.md) plan (Attribute taxonomy finalized (M-014)), end of wk 5. This plan must finish ATG1 by then: a margin of 8 d. The program's taxonomy is finalized without the cross-track slot register.
 - **X-I15, HR data baselined; employeeId populated; orphan candidates owned (Identity Lifecycle plan, I1.5),** is I1.5 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (HR data baselined; employeeId populated; orphan candidates owned), end of wk 4. This plan waits for it; it can slip 20 d before it moves this plan. The coverage baseline measures data the HR plan hasn't yet corrected.
-- **X-P17, Sync and DNS Private Resolver designs (program P1.7),** is P1.7 in the [Program master schedule](program-master-schedule.md) plan (Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019)), end of wk 6. This plan must finish A3.1 by then: a margin of 8 d. The sync design is approved without the attribute flow for the coded slots.
+- **X-P17, Sync and DNS Private Resolver designs (program P1.7),** is P1.7 in the [Program master schedule](program-master-schedule.md) plan (Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019)), end of wk 6. This plan must finish AT3.1 by then: a margin of 8 d. The sync design is approved without the attribute flow for the coded slots.
 - **X-IG3, HR feed live for the foundation scope, shadow differences explained (Identity Lifecycle plan, Gate 3),** is IG3 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Gate 3 — HR feed live for the foundation scope), end of wk 8. This plan waits for it; it can slip 2 d before it moves this plan. The coded slots have no live writer, so the group library can't be shadowed on real data.
-- **X-P12, Dynamic group design tested; enterprise groups and administrative units built (program P1.2),** is P1.2 in the [Program master schedule](program-master-schedule.md) plan (Dynamic group design tested; enterprise groups and administrative units built (M-015)), end of wk 7. This plan must finish AG4 by then: a margin of 8 d. The program builds groups and units from a design that hasn't been checked.
+- **X-P12, Dynamic group design tested; enterprise groups and administrative units built (program P1.2),** is P1.2 in the [Program master schedule](program-master-schedule.md) plan (Dynamic group design tested; enterprise groups and administrative units built (M-015)), end of wk 7. This plan must finish ATG4 by then: a margin of 8 d. The program builds groups and units from a design that hasn't been checked.
 - **X-P21S, Pilot attributes, groups and units going live (program P2.1, its start),** is the start of P2.1 in the [Program master schedule](program-master-schedule.md) plan (Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)), end of wk 8. This plan waits for it; it can slip 2 d before it moves this plan. There's no live pilot data to shadow the rules against.
-- **X-P22, Pilot Conditional Access and Intune policies assigned (program P2.2, its start),** is the start of P2.2 in the [Program master schedule](program-master-schedule.md) plan (Pilot Conditional Access and Intune policies assigned (M-024, M-025)), end of wk 10. This plan must finish A4.4 by then: a margin of 2 d. Later work in this plan waits for it. Policies are assigned to groups whose membership hasn't been reconciled.
-- **X-P15, Conditional Access design running in report-only (program P1.5),** is P1.5 in the [Program master schedule](program-master-schedule.md) plan (Conditional Access design running in report-only (M-017)), end of wk 6. This plan must finish D-A5 by then: a margin of 12 d. Report-only runs against personas that may change.
-- **X-E12, Intune policy library built unassigned, with groups, filters and scope tags (Endpoint plan, E1.2, its start),** is the start of E1.2 in the [Endpoint & Device Modernization](endpoint-device.md) plan (Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags), end of wk 4. This plan must finish A5.2 by then: a margin of 4 d. The policy library is built on targeting the foundation may change.
-- **X-E42, Tag taxonomy fixed from the asset record (Endpoint plan, E4.2),** is E4.2 in the [Endpoint & Device Modernization](endpoint-device.md) plan (Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed), end of wk 5. This plan must finish A5.3 by then: a margin of 6 d. Arc servers are tagged with a taxonomy the device and user sides don't share.
-- **X-N12, AI accountability: sponsors mastered in HR (Non-Person Identity plan, N1.2, its start),** is the start of N1.2 in the [Non-Person Identity Modernization](non-person-identity.md) plan (AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record), end of wk 4. This plan must finish A5.4 by then: a margin of 2 d. Sponsors are recorded by name rather than by key, and a sponsor's move or departure can't be matched.
-- **X-P28, Certificate-based authentication for PIV and CAC holders (program P2.8),** is P2.8 in the [Program master schedule](program-master-schedule.md) plan (Certificate-based authentication for PIV and CAC holders (M-029)), end of wk 12. This plan must finish A6.2 by then: a margin of 8 d. PIV sign-in reaches the pilot with bindings nobody has measured.
-- **X-P45, User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start),** is the start of P4.5 in the [Program master schedule](program-master-schedule.md) plan (User and device issuance off AD CS; smart-card logon GPO retired), end of wk 36. This plan must finish D-A7 by then: a margin of 130 d. Issuance moves off AD CS with no writer for the binding.
+- **X-P22, Pilot Conditional Access and Intune policies assigned (program P2.2, its start),** is the start of P2.2 in the [Program master schedule](program-master-schedule.md) plan (Pilot Conditional Access and Intune policies assigned (M-024, M-025)), end of wk 10. This plan must finish AT4.4 by then: a margin of 2 d. Later work in this plan waits for it. Policies are assigned to groups whose membership hasn't been reconciled.
+- **X-P15, Conditional Access design running in report-only (program P1.5),** is P1.5 in the [Program master schedule](program-master-schedule.md) plan (Conditional Access design running in report-only (M-017)), end of wk 6. This plan must finish D-AT5 by then: a margin of 12 d. Report-only runs against personas that may change.
+- **X-E12, Intune policy library built unassigned, with groups, filters and scope tags (Endpoint plan, E1.2, its start),** is the start of E1.2 in the [Endpoint & Device Modernization](endpoint-device.md) plan (Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags), end of wk 4. This plan must finish AT5.2 by then: a margin of 4 d. The policy library is built on targeting the foundation may change.
+- **X-E42, Tag taxonomy fixed from the asset record (Endpoint plan, E4.2),** is E4.2 in the [Endpoint & Device Modernization](endpoint-device.md) plan (Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed), end of wk 5. This plan must finish AT5.3 by then: a margin of 6 d. Arc servers are tagged with a taxonomy the device and user sides don't share.
+- **X-NP12, AI accountability: sponsors mastered in HR (Non-Person Identity plan, NP1.2, its start),** is the start of NP1.2 in the [Non-Person Identity Modernization](non-person-identity.md) plan (AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record), end of wk 4. This plan must finish AT5.4 by then: a margin of 2 d. Sponsors are recorded by name rather than by key, and a sponsor's move or departure can't be matched.
+- **X-P28, Certificate-based authentication for PIV and CAC holders (program P2.8),** is P2.8 in the [Program master schedule](program-master-schedule.md) plan (Certificate-based authentication for PIV and CAC holders (M-029)), end of wk 12. This plan must finish AT6.2 by then: a margin of 8 d. PIV sign-in reaches the pilot with bindings nobody has measured.
+- **X-P45, User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start),** is the start of P4.5 in the [Program master schedule](program-master-schedule.md) plan (User and device issuance off AD CS; smart-card logon GPO retired), end of wk 36. This plan must finish D-AT7 by then: a margin of 130 d. Issuance moves off AD CS with no writer for the binding.
 - **X-I43, Joiner and mover automation (Identity Lifecycle plan, I4.3),** is I4.3 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Joiner and mover automation; rehire and conversion matching validated), end of wk 12. This plan waits for it; it can slip 12 d before it moves this plan. There's no mover workflow to prove the foundation against.
-- **X-G2, Program G2 — Pilot Clean,** is G2 in the [Program master schedule](program-master-schedule.md) plan (G2 — Pilot Clean), end of wk 16. This plan must finish AG7 by then: a margin of 15 d. The pilot is called clean without a mover having been proved.
-- **X-D07, Wave plan: which divisions, in which order (program D07),** is D07 in the [Program master schedule](program-master-schedule.md) plan (Wave plan: which divisions, in which order), end of wk 16. This plan must finish A8.1 by then: a margin of 12 d. Waves are drawn by OU, not by attribute value.
-- **X-P31, Wave 1, first region (program P3.1),** is P3.1 in the [Program master schedule](program-master-schedule.md) plan (Wave 1, first region, about 25% (M-032)), end of wk 21. This plan must finish A8.2 by then: a margin of 29 d. Wave 1 closes with no attribute gate.
+- **X-G2, Program G2 — Pilot Clean,** is G2 in the [Program master schedule](program-master-schedule.md) plan (G2 — Pilot Clean), end of wk 16. This plan must finish ATG7 by then: a margin of 15 d. The pilot is called clean without a mover having been proved.
+- **X-D07, Wave plan: which divisions, in which order (program D07),** is D07 in the [Program master schedule](program-master-schedule.md) plan (Wave plan: which divisions, in which order), end of wk 16. This plan must finish AT8.1 by then: a margin of 12 d. Waves are drawn by OU, not by attribute value.
+- **X-P31, Wave 1, first region (program P3.1),** is P3.1 in the [Program master schedule](program-master-schedule.md) plan (Wave 1, first region, about 25% (M-032)), end of wk 21. This plan must finish AT8.2 by then: a margin of 29 d. Wave 1 closes with no attribute gate.
 - **X-IG5, Populations cloud-mastered (Identity Lifecycle plan, Gate 5),** is IG5 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Gate 5 — Populations cloud-mastered), end of wk 26. Shown for reference.
 - **X-G3, Program G3 — Rollout Complete,** is G3 in the [Program master schedule](program-master-schedule.md) plan (G3 — Rollout Complete), end of wk 36. This plan waits for it; it can slip 0 before it moves this plan. The transitional sync rules that read OU placement can't come out while any population still depends on them.
 - **X-P42, OU-based security groups retired (program P4.2),** is P4.2 in the [Program master schedule](program-master-schedule.md) plan (OU-based security groups retired), end of wk 38. This plan waits for it; it can slip 0 before it moves this plan. The OU tree still grants access through its groups.
-- **X-P51, AD changes frozen; final assessment (program P5.1, its start),** is the start of P5.1 in the [Program master schedule](program-master-schedule.md) plan (AD changes frozen; final assessment and evidence packet), end of wk 44. This plan must finish AG8 by then: a margin of 20 d. AD is frozen while something still reads the OU tree.
-- **X-P211, Drift-clean hold on the pilot (program P2.11, its start),** is the start of P2.11 in the [Program master schedule](program-master-schedule.md) plan (Drift-clean hold (14 days, illustrative); success criteria met (M-031)), end of wk 14. This plan must finish A9.1 by then: a margin of 25 d. The drift-clean hold has no scan to measure it.
-- **X-G5, Program G5 — AD Retired,** is G5 in the [Program master schedule](program-master-schedule.md) plan (G5 — AD Retired), end of wk 48. This plan must finish AG9 by then: a margin of 40 d. AD is retired with attribute drift still open.
+- **X-P51, AD changes frozen; final assessment (program P5.1, its start),** is the start of P5.1 in the [Program master schedule](program-master-schedule.md) plan (AD changes frozen; final assessment and evidence packet), end of wk 44. This plan must finish ATG8 by then: a margin of 20 d. AD is frozen while something still reads the OU tree.
+- **X-P211, Drift-clean hold on the pilot (program P2.11, its start),** is the start of P2.11 in the [Program master schedule](program-master-schedule.md) plan (Drift-clean hold (14 days, illustrative); success criteria met (M-031)), end of wk 14. This plan must finish AT9.1 by then: a margin of 25 d. The drift-clean hold has no scan to measure it.
+- **X-G5, Program G5 — AD Retired,** is G5 in the [Program master schedule](program-master-schedule.md) plan (G5 — AD Retired), end of wk 48. This plan must finish ATG9 by then: a margin of 40 d. AD is retired with attribute drift still open.
 
 ## Work breakdown and schedule
 
@@ -152,14 +152,14 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A0.1 | [OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track](../books/guides/attribute-driven-migration.md#stage-0-read-what-the-ou-tree-encodes) | Task | Identity engineering | 8 | — | wk 1–2 | 4 d |
-| A0.2 | [A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire](../books/b02-identity/09-building-the-entra-target.md#the-per-group-decision) | Task | Identity engineering, with application owners | 8 | A0.1 | wk 2–4 | 4 d |
-| A0.3 | [OU-to-unit mapping drafted: which OU delegations become administrative units, and which become Azure RBAC scopes for servers](../books/b02-identity/09-building-the-entra-target.md#organizational-units) | Task | Identity engineering | 4 | A0.1 | wk 2–3 | 8 d |
-| A0.4 | [GPO settings split by track: user halves to the HR track's policy design, computer halves to the Endpoint plan](../books/guides/attribute-driven-migration.md#four-tracks) | Task | Identity engineering, with the endpoint lead | 4 | A0.1 | wk 2–3 | 8 d |
-| X-EG0 | [Device and server observation signed off (Endpoint plan, Gate 0)](endpoint-device.md) | External | ISSO (Endpoint plan) | — | A0.4 | end of wk 4 | fixed date |
-| X-NG0 | [Non-person identities inventoried (Non-Person Identity plan, Gate 0)](non-person-identity.md) | External | ISSO (Non-Person Identity plan) | — | A0.1 | end of wk 4 | fixed date |
-| AG0 | [Gate 0 — The tree read](../books/b02-identity/10-migrating-and-governing.md#phase-0-assessment) | Gate | Identity engineering lead | — | A0.2, A0.3, A0.4 | end of wk 4 | 4 d |
-| X-G0 | [Program G0 — Ready to Plan: the read-only assessment committed](program-master-schedule.md) | External | Steward (program) | — | AG0 | end of wk 4 | fixed date |
+| AT0.1 | [OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track](../books/guides/attribute-driven-migration.md#stage-0-read-what-the-ou-tree-encodes) | Task | Identity engineering | 8 | — | wk 1–2 | 4 d |
+| AT0.2 | [A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire](../books/b02-identity/09-building-the-entra-target.md#the-per-group-decision) | Task | Identity engineering, with application owners | 8 | AT0.1 | wk 2–4 | 4 d |
+| AT0.3 | [OU-to-unit mapping drafted: which OU delegations become administrative units, and which become Azure RBAC scopes for servers](../books/b02-identity/09-building-the-entra-target.md#organizational-units) | Task | Identity engineering | 4 | AT0.1 | wk 2–3 | 8 d |
+| AT0.4 | [GPO settings split by track: user halves to the HR track's policy design, computer halves to the Endpoint plan](../books/guides/attribute-driven-migration.md#four-tracks) | Task | Identity engineering, with the endpoint lead | 4 | AT0.1 | wk 2–3 | 8 d |
+| X-EG0 | [Device and server observation signed off (Endpoint plan, Gate 0)](endpoint-device.md) | External | CISO / ISSO (Endpoint & Device Modernization plan) | — | AT0.4 | end of wk 4 | fixed date |
+| X-NPG0 | [Non-person identities inventoried (Non-Person Identity plan, Gate 0)](non-person-identity.md) | External | ISSO (Non-Person Identity Modernization plan) | — | AT0.1 | end of wk 4 | fixed date |
+| ATG0 | [Gate 0 — The tree read](../books/b02-identity/10-migrating-and-governing.md#phase-0-assessment) | Gate | Identity engineering lead | — | AT0.2, AT0.3, AT0.4 | end of wk 4 | 4 d |
+| X-G0 | [Program G0 — Ready to Plan: the read-only assessment committed](program-master-schedule.md) | External | Steward (backup: executive sponsor; program) | — | ATG0 | end of wk 4 | fixed date |
 
 : Phase 0 — Read the tree {.striped .hover}
 
@@ -167,16 +167,16 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A1.1 | [AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes](../books/guides/attribute-driven-migration.md#compared-with-active-directory) | Task | Identity engineering | 5 | — | wk 1 | 3 d |
-| X-DI1 | [Enterprise person key, and how source keys map to it (Identity Lifecycle plan, D-I1)](identity-lifecycle.md) | External | ICAM governance body (Identity Lifecycle plan) | — | — | end of wk 1 | 3 d |
-| A1.2 | [AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table](../books/guides/attribute-driven-migration.md#the-attribute-stores-in-the-order-to-reach-for-them) | Task | Data architect, with identity engineering | 7 | A1.1, X-DI1 | wk 2–3 | 3 d |
-| X-I12 | [Attribute authority map signed (Identity Lifecycle plan, I1.2)](identity-lifecycle.md) | External | ICAM governance body (Identity Lifecycle plan) | — | — | end of wk 3 | 2 d |
-| D-A1 | [Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks](../books/guides/attribute-driven-migration.md#attributes) | Decision | Data architect | — | A1.2, X-I12 | end of wk 3 | 2 d |
-| D-A2 | [The coded slot register: which extension attribute carries which code, on users and on devices](../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) | Decision | Data architect, with HR for the code lists | — | D-A1 | end of wk 3 | 4 d |
-| A1.3 | [Slot register published: one writer per slot, the code list owner, what reads it; the help desk, self-service and Exchange write paths listed for removal](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers) | Task | Data architect | 4 | D-A2 | wk 3–4 | 8 d |
-| A1.4 | [Device, server and non-person attribute authorities named: the procurement record through the Autopilot group tag, the asset record through Arc onboarding tags, the owning system's record](../books/guides/attribute-driven-migration.md#stage-1-source-the-attributes) | Task | Data architect, with the endpoint lead | 3 | D-A1 | wk 3–4 | 6 d |
-| AG1 | [Gate 1 — Schema and slots signed](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Gate | ICAM governance body | — | A1.3, A1.4 | end of wk 4 | 8 d |
-| X-P11 | [Attribute taxonomy finalized (program P1.1)](program-master-schedule.md) | External | Data architect (program) | — | AG1 | end of wk 5 | fixed date |
+| AT1.1 | [AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes](../books/guides/attribute-driven-migration.md#compared-with-active-directory) | Task | Identity engineering | 5 | — | wk 1 | 3 d |
+| X-DI1 | [Enterprise person key, and how source keys map to it (Identity Lifecycle plan, D-I1)](identity-lifecycle.md) | External | ICAM governance body, with HR and identity engineering (Identity Lifecycle & Provisioning plan) | — | — | end of wk 1 | 3 d |
+| AT1.2 | [AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table](../books/guides/attribute-driven-migration.md#the-attribute-stores-in-the-order-to-reach-for-them) | Task | Data architect, with identity engineering | 7 | AT1.1, X-DI1 | wk 2–3 | 3 d |
+| X-I12 | [Attribute authority map signed (Identity Lifecycle plan, I1.2)](identity-lifecycle.md) | External | ICAM governance body (Identity Lifecycle & Provisioning plan) | — | — | end of wk 3 | 2 d |
+| D-AT1 | [Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks](../books/guides/attribute-driven-migration.md#attributes) | Decision | Data architect | — | AT1.2, X-I12 | end of wk 3 | 2 d |
+| D-AT2 | [The coded slot register: which extension attribute carries which code, on users and on devices](../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) | Decision | Data architect, with HR for the code lists | — | D-AT1 | end of wk 3 | 4 d |
+| AT1.3 | [Slot register published: one writer per slot, the code list owner, what reads it; the help desk, self-service and Exchange write paths listed for removal](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers) | Task | Data architect | 4 | D-AT2 | wk 3–4 | 8 d |
+| AT1.4 | [Device, server and non-person attribute authorities named: the procurement record through the Autopilot group tag, the asset record through Arc onboarding tags, the owning system's record](../books/guides/attribute-driven-migration.md#stage-1-source-the-attributes) | Task | Data architect, with the endpoint lead | 3 | D-AT1 | wk 3–4 | 6 d |
+| ATG1 | [Gate 1 — Schema and slots signed](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Gate | ICAM governance body | — | AT1.3, AT1.4 | end of wk 4 | 8 d |
+| X-P11 | [Attribute taxonomy finalized (program P1.1)](program-master-schedule.md) | External | Platform teams (program) | — | ATG1 | end of wk 5 | fixed date |
 
 : Phase 1 — Schema and slots {.striped .hover}
 
@@ -184,12 +184,12 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-I15 | [HR data baselined; employeeId populated; orphan candidates owned (Identity Lifecycle plan, I1.5)](identity-lifecycle.md) | External | HR data steward (Identity Lifecycle plan) | — | — | end of wk 4 | 20 d |
-| A2.1 | [Coverage baseline across the tracks: uncorrelated accounts, empty coded slots, counts per organization code against an HR export, duplicate keys; device and server attribute coverage](../books/guides/attribute-driven-migration.md#stage-2-prove-the-attributes-are-true-before-anything-depends-on-them) | Task | Identity engineering | 5 | AG1, X-I15 | wk 4–5 | 20 d |
-| D-A3 | [Correlation threshold before any rule grants access](../books/b03-hr-identity/12-execution-plan.md#sequencing-principle) | Decision | Authorizing official, through the agency's risk governance | — | A2.1 | end of wk 5 | 20 d |
-| A2.2 | [Other write paths removed: help desk and self-service edits to the access slots, Exchange custom-attribute cmdlets, write rights on the target OUs](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers) | Task | Identity engineering, with security | 8 | A1.3 | wk 4–5 | 17 d |
-| A2.3 | [Entra ID sign-in, audit and provisioning logs routed outside Entra ID before the pilot's first change](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves) | Task | Security operations | 5 | AG1 | wk 4–5 | 20 d |
-| AG2 | [Gate 2 — Attributes proven for the pilot](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Gate | CISO | — | D-A3, A2.2, A2.3 | end of wk 5 | 17 d |
+| X-I15 | [HR data baselined; employeeId populated; orphan candidates owned (Identity Lifecycle plan, I1.5)](identity-lifecycle.md) | External | HR (Identity Lifecycle & Provisioning plan) | — | — | end of wk 4 | 20 d |
+| AT2.1 | [Coverage baseline across the tracks: uncorrelated accounts, empty coded slots, counts per organization code against an HR export, duplicate keys; device and server attribute coverage](../books/guides/attribute-driven-migration.md#stage-2-prove-the-attributes-are-true-before-anything-depends-on-them) | Task | Identity engineering | 5 | ATG1, X-I15 | wk 4–5 | 20 d |
+| D-AT3 | [Correlation threshold before any rule grants access](../books/b03-hr-identity/12-execution-plan.md#sequencing-principle) | Decision | Authorizing official, through the agency's risk governance | — | AT2.1 | end of wk 5 | 20 d |
+| AT2.2 | [Other write paths removed: help desk and self-service edits to the access slots, Exchange custom-attribute cmdlets, write rights on the target OUs](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers) | Task | Identity engineering, with security | 8 | AT1.3 | wk 4–5 | 17 d |
+| AT2.3 | [Entra ID sign-in, audit and provisioning logs routed outside Entra ID before the pilot's first change](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves) | Task | Security operations | 5 | ATG1 | wk 4–5 | 20 d |
+| ATG2 | [Gate 2 — Attributes proven for the pilot](../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema) | Gate | CISO | — | D-AT3, AT2.2, AT2.3 | end of wk 5 | 17 d |
 
 : Phase 2 — Prove the attributes {.striped .hover}
 
@@ -197,10 +197,10 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A3.1 | [Sync mapping for the slot register: carriers in the provisioning apps' target lists, date mappings, the transitional account-type rule, the DoNotSync filter; soft and hard match blocked](../books/guides/attribute-driven-migration.md#stage-3-map-the-attributes-through-sync) | Task | Identity engineering | 5 | AG1 | wk 4–5 | 8 d |
-| X-P17 | [Sync and DNS Private Resolver designs (program P1.7)](program-master-schedule.md) | External | Identity engineering (program) | — | A3.1 | end of wk 6 | fixed date |
-| X-IG3 | [HR feed live for the foundation scope, shadow differences explained (Identity Lifecycle plan, Gate 3)](identity-lifecycle.md) | External | ISSO (Identity Lifecycle plan) | — | — | end of wk 8 | 2 d |
-| AG3 | [Gate 3 — Attributes flowing](../books/b02-identity/10-migrating-and-governing.md#phase-1-sync-deployment-and-initial-sync) | Gate | Identity engineering lead | — | A3.1, X-IG3, AG2 | end of wk 8 | 2 d |
+| AT3.1 | [Sync mapping for the slot register: carriers in the provisioning apps' target lists, date mappings, the transitional account-type rule, the DoNotSync filter; soft and hard match blocked](../books/guides/attribute-driven-migration.md#stage-3-map-the-attributes-through-sync) | Task | Identity engineering | 5 | ATG1 | wk 4–5 | 8 d |
+| X-P17 | [Sync and DNS Private Resolver designs (program P1.7)](program-master-schedule.md) | External | Platform teams (program) | — | AT3.1 | end of wk 6 | fixed date |
+| X-IG3 | [HR feed live for the foundation scope, shadow differences explained (Identity Lifecycle plan, Gate 3)](identity-lifecycle.md) | External | ISSO (Identity Lifecycle & Provisioning plan) | — | — | end of wk 8 | 2 d |
+| ATG3 | [Gate 3 — Attributes flowing](../books/b02-identity/10-migrating-and-governing.md#phase-1-sync-deployment-and-initial-sync) | Gate | Identity engineering lead | — | AT3.1, X-IG3, ATG2 | end of wk 8 | 2 d |
 
 : Phase 3 — Sync {.striped .hover}
 
@@ -208,15 +208,15 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A4.1 | [Dynamic user group library: node and functional rules on codes; every access rule guarded by accountEnabled and userType and excluding agents' accounts; nesting flattened; no memberOf](../books/guides/attribute-driven-migration.md#stage-4-materialize-ou-subtrees-as-dynamic-groups) | Task | Identity engineering, with application owners | 5 | AG1, A0.2 | wk 4–5 | 8 d |
-| A4.2 | [Rules checked before they exist in production: guards, codes not names, paused processing; each rule tested against named users](../books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md#writing-naming-and-testing-rules) | Task | Identity engineering | 3 | A4.1 | wk 5 | 8 d |
-| D-A4 | [Restricted management, unit by unit, before each unit exists](../books/b02-identity/05-delegation-without-ous.md#restricted-management-a-per-au-decision) | Decision | Identity engineering | — | A0.3 | end of wk 3 | 16 d |
-| A4.3 | [Unit registry: tenant readers, department and division units whose rules mirror the group rules; scoped roles to PIM-eligible role-assignable groups; each unit created before the groups it holds](../books/guides/attribute-driven-migration.md#stage-5-delegate-with-administrative-units) | Task | Identity engineering | 5 | D-A4, AG1 | wk 4–5 | 11 d |
-| AG4 | [Gate 4 — Group library and units designed](../books/b01-transformation-arc/04-identity-transformation.md#verification) | Gate | Identity engineering lead | — | A4.2, A4.3 | end of wk 5 | 8 d |
-| X-P12 | [Dynamic group design tested; enterprise groups and administrative units built (program P1.2)](program-master-schedule.md) | External | Identity engineering (program) | — | AG4 | end of wk 7 | fixed date |
-| X-P21S | [Pilot attributes, groups and units going live (program P2.1, its start)](program-master-schedule.md) | External | Identity engineering (program) | — | — | end of wk 8 | 2 d |
-| A4.4 | [Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on](../books/guides/attribute-driven-migration.md#dynamic-user-groups-hr-track) | Task | Identity engineering, with application owners | 8 | X-P21S, AG3 | wk 9–10 | 2 d |
-| X-P22 | [Pilot Conditional Access and Intune policies assigned (program P2.2, its start)](program-master-schedule.md) | External | Identity engineering (program) | — | A4.4 | end of wk 10 | fixed date |
+| AT4.1 | [Dynamic user group library: node and functional rules on codes; every access rule guarded by accountEnabled and userType and excluding agents' accounts; nesting flattened; no memberOf](../books/guides/attribute-driven-migration.md#stage-4-materialize-ou-subtrees-as-dynamic-groups) | Task | Identity engineering, with application owners | 5 | ATG1, AT0.2 | wk 4–5 | 8 d |
+| AT4.2 | [Rules checked before they exist in production: guards, codes not names, paused processing; each rule tested against named users](../books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md#writing-naming-and-testing-rules) | Task | Identity engineering | 3 | AT4.1 | wk 5 | 8 d |
+| D-AT4 | [Restricted management, unit by unit, before each unit exists](../books/b02-identity/05-delegation-without-ous.md#restricted-management-a-per-au-decision) | Decision | Identity engineering | — | AT0.3 | end of wk 3 | 16 d |
+| AT4.3 | [Unit registry: tenant readers, department and division units whose rules mirror the group rules; scoped roles to PIM-eligible role-assignable groups; each unit created before the groups it holds](../books/guides/attribute-driven-migration.md#stage-5-delegate-with-administrative-units) | Task | Identity engineering | 5 | D-AT4, ATG1 | wk 4–5 | 11 d |
+| ATG4 | [Gate 4 — Group library and units designed](../books/b01-transformation-arc/04-identity-transformation.md#verification) | Gate | Identity engineering lead | — | AT4.2, AT4.3 | end of wk 5 | 8 d |
+| X-P12 | [Dynamic group design tested; enterprise groups and administrative units built (program P1.2)](program-master-schedule.md) | External | Platform teams (program) | — | ATG4 | end of wk 7 | fixed date |
+| X-P21S | [Pilot attributes, groups and units going live (program P2.1, its start)](program-master-schedule.md) | External | Platform teams (program) | — | — | end of wk 8 | 2 d |
+| AT4.4 | [Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on](../books/guides/attribute-driven-migration.md#dynamic-user-groups-hr-track) | Task | Identity engineering, with application owners | 8 | X-P21S, ATG3 | wk 9–10 | 2 d |
+| X-P22 | [Pilot Conditional Access and Intune policies assigned (program P2.2, its start)](program-master-schedule.md) | External | Platform teams (program) | — | AT4.4 | end of wk 10 | fixed date |
 
 : Phase 4 — Groups and administrative units {.striped .hover}
 
@@ -224,16 +224,16 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A5.1 | [Conditional Access personas from coded attributes (worker type for internals and externals); every grant paired with a block; empty-slot users reported; emergency access excluded](../books/guides/attribute-driven-migration.md#stage-6-replace-gpo-inheritance-with-conditional-access-and-intune-targeting) | Task | Identity engineering | 5 | D-A2 | wk 3–4 | 12 d |
-| D-A5 | [The persona set the Conditional Access library targets](../books/b04-access/03-the-conditional-access-model.md#naming-and-the-persona-model) | Decision | CISO | — | A5.1 | end of wk 4 | 12 d |
-| X-P15 | [Conditional Access design running in report-only (program P1.5)](program-master-schedule.md) | External | Identity engineering (program) | — | D-A5 | end of wk 6 | fixed date |
-| A5.2 | [Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion](../books/guides/attribute-driven-migration.md#intune-track) | Task | Endpoint lead, with the data architect | 3 | D-A2 | wk 3–4 | 4 d |
-| X-E12 | [Intune policy library built unassigned, with groups, filters and scope tags (Endpoint plan, E1.2, its start)](endpoint-device.md) | External | Endpoint lead (Endpoint plan) | — | A5.2 | end of wk 4 | fixed date |
-| A5.3 | [Server targeting conventions: the Arc tag taxonomy drawn from the asset record and aligned with the device slots; resource groups as the delegation scope](../books/guides/attribute-driven-migration.md#arc-track) | Task | Server infrastructure, with the data architect | 3 | A1.4 | wk 4 | 6 d |
-| X-E42 | [Tag taxonomy fixed from the asset record (Endpoint plan, E4.2)](endpoint-device.md) | External | Server infrastructure (Endpoint plan) | — | A5.3 | end of wk 5 | fixed date |
-| A5.4 | [Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined](../books/guides/attribute-driven-migration.md#what-microsoft-documents-for-targeting-service-principals-by-attribute-partly) | Task | Identity engineering, with the identity governance officer | 3 | D-A1 | wk 3–4 | 2 d |
-| X-N12 | [AI accountability: sponsors mastered in HR (Non-Person Identity plan, N1.2, its start)](non-person-identity.md) | External | Identity governance officer (Non-Person Identity plan) | — | A5.4 | end of wk 4 | fixed date |
-| AG5 | [Gate 5 — Targeting conventions set](../books/guides/attribute-driven-migration.md#attribute-to-mechanism-crosswalk) | Gate | CISO | — | D-A5, A5.2, A5.3, A5.4 | end of wk 4 | 53 d |
+| AT5.1 | [Conditional Access personas from coded attributes (worker type for internals and externals); every grant paired with a block; empty-slot users reported; emergency access excluded](../books/guides/attribute-driven-migration.md#stage-6-replace-gpo-inheritance-with-conditional-access-and-intune-targeting) | Task | Identity engineering | 5 | D-AT2 | wk 3–4 | 12 d |
+| D-AT5 | [The persona set the Conditional Access library targets](../books/b04-access/03-the-conditional-access-model.md#naming-and-the-persona-model) | Decision | CISO | — | AT5.1 | end of wk 4 | 12 d |
+| X-P15 | [Conditional Access design running in report-only (program P1.5)](program-master-schedule.md) | External | CISO (program) | — | D-AT5 | end of wk 6 | fixed date |
+| AT5.2 | [Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion](../books/guides/attribute-driven-migration.md#intune-track) | Task | Endpoint lead, with the data architect | 3 | D-AT2 | wk 3–4 | 4 d |
+| X-E12 | [Intune policy library built unassigned, with groups, filters and scope tags (Endpoint plan, E1.2, its start)](endpoint-device.md) | External | Endpoint engineering (Endpoint & Device Modernization plan) | — | AT5.2 | end of wk 4 | fixed date |
+| AT5.3 | [Server targeting conventions: the Arc tag taxonomy drawn from the asset record and aligned with the device slots; resource groups as the delegation scope](../books/guides/attribute-driven-migration.md#arc-track) | Task | Server infrastructure, with the data architect | 3 | AT1.4 | wk 4 | 6 d |
+| X-E42 | [Tag taxonomy fixed from the asset record (Endpoint plan, E4.2)](endpoint-device.md) | External | Server infrastructure (Endpoint & Device Modernization plan) | — | AT5.3 | end of wk 5 | fixed date |
+| AT5.4 | [Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined](../books/guides/attribute-driven-migration.md#what-microsoft-documents-for-targeting-service-principals-by-attribute-partly) | Task | Identity engineering, with the identity governance officer | 3 | D-AT1 | wk 3–4 | 2 d |
+| X-NP12 | [AI accountability: sponsors mastered in HR (Non-Person Identity plan, NP1.2, its start)](non-person-identity.md) | External | Sponsoring offices, with the identity governance officer (Non-Person Identity Modernization plan) | — | AT5.4 | end of wk 4 | fixed date |
+| ATG5 | [Gate 5 — Targeting conventions set](../books/guides/attribute-driven-migration.md#attribute-to-mechanism-crosswalk) | Gate | CISO | — | D-AT5, AT5.2, AT5.3, AT5.4 | end of wk 4 | 53 d |
 
 : Phase 5 — Personas and targeting conventions {.striped .hover}
 
@@ -241,13 +241,13 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A6.1 | [Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer](../books/guides/attribute-driven-migration.md#pki-binding) | Task | Identity engineering, with the PIV program office | 5 | AG3 | wk 9 | 8 d |
-| D-A6 | [Required affinity binding for PIV and CAC](../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity) | Decision | CISO | — | A6.1 | end of wk 9 | 8 d |
-| A6.2 | [High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID](../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-piv-certificate-to-the-entra-user) | Task | Identity engineering | 5 | D-A6 | wk 10 | 8 d |
-| X-P28 | [Certificate-based authentication for PIV and CAC holders (program P2.8)](program-master-schedule.md) | External | Identity engineering (program) | — | A6.2 | end of wk 12 | fixed date |
-| D-A7 | [Who writes the binding after AD](../books/guides/attribute-driven-migration.md#pki-binding) | Decision | ICAM governance body | — | A6.2 | end of wk 10 | 130 d |
-| X-P45 | [User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start)](program-master-schedule.md) | External | PKI lead (program) | — | D-A7 | end of wk 36 | fixed date |
-| AG6 | [Gate 6 — PIV binding proven on the pilot](../books/guides/attribute-driven-migration.md#pki-binding) | Gate | CISO | — | A6.2 | end of wk 10 | 27 d |
+| AT6.1 | [Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer](../books/guides/attribute-driven-migration.md#pki-binding) | Task | Identity engineering, with the PIV program office | 5 | ATG3 | wk 9 | 8 d |
+| D-AT6 | [Required affinity binding for PIV and CAC](../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity) | Decision | CISO | — | AT6.1 | end of wk 9 | 8 d |
+| AT6.2 | [High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID](../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-piv-certificate-to-the-entra-user) | Task | Identity engineering | 5 | D-AT6 | wk 10 | 8 d |
+| X-P28 | [Certificate-based authentication for PIV and CAC holders (program P2.8)](program-master-schedule.md) | External | Platform teams (program) | — | AT6.2 | end of wk 12 | fixed date |
+| D-AT7 | [Who writes the binding after AD](../books/guides/attribute-driven-migration.md#pki-binding) | Decision | ICAM governance body | — | AT6.2 | end of wk 10 | 130 d |
+| X-P45 | [User and device issuance off AD CS; smart-card logon GPO retired (program P4.5, its start)](program-master-schedule.md) | External | Platform teams (program) | — | D-AT7 | end of wk 36 | fixed date |
+| ATG6 | [Gate 6 — PIV binding proven on the pilot](../books/guides/attribute-driven-migration.md#pki-binding) | Gate | CISO | — | AT6.2 | end of wk 10 | 27 d |
 
 : Phase 6 — PIV and CAC binding {.striped .hover}
 
@@ -255,10 +255,10 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| X-I43 | [Joiner and mover automation (Identity Lifecycle plan, I4.3)](identity-lifecycle.md) | External | Identity engineering (Identity Lifecycle plan) | — | — | end of wk 12 | 12 d |
-| A7.1 | [Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean](../books/guides/attribute-driven-migration.md#worked-example-one-user-and-one-mover-event) | Task | Identity engineering, with HR | 5 | X-I43, X-P22, AG5 | wk 13 | 12 d |
-| AG7 | [Gate 7 — Mover proven across the tracks](../books/guides/attribute-driven-migration.md#worked-example-one-user-and-one-mover-event) | Gate | CISO | — | A7.1, AG6 | end of wk 13 | 12 d |
-| X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward (program) | — | AG7 | end of wk 16 | fixed date |
+| X-I43 | [Joiner and mover automation (Identity Lifecycle plan, I4.3)](identity-lifecycle.md) | External | Identity engineering (Identity Lifecycle & Provisioning plan) | — | — | end of wk 12 | 12 d |
+| AT7.1 | [Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean](../books/guides/attribute-driven-migration.md#worked-example-one-user-and-one-mover-event) | Task | Identity engineering, with HR | 5 | X-I43, X-P22, ATG5 | wk 13 | 12 d |
+| ATG7 | [Gate 7 — Mover proven across the tracks](../books/guides/attribute-driven-migration.md#worked-example-one-user-and-one-mover-event) | Gate | CISO | — | AT7.1, ATG6 | end of wk 13 | 12 d |
+| X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward and executive sponsor (co-signed; program) | — | ATG7 | end of wk 16 | fixed date |
 
 : Phase 7 — The mover proof {.striped .hover}
 
@@ -266,17 +266,17 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| A8.1 | [Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave](../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases) | Task | Identity engineering | 3 | AG7 | wk 14 | 12 d |
-| X-D07 | [Wave plan: which divisions, in which order (program D07)](program-master-schedule.md) | External | Executive sponsor (program) | — | A8.1 | end of wk 16 | fixed date |
-| A8.2 | [Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes](../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr-is-the-sole-source) | Task | Identity engineering | 5 | A8.1 | wk 14–15 | 29 d |
-| X-P31 | [Wave 1, first region (program P3.1)](program-master-schedule.md) | External | Identity engineering (program) | — | A8.2 | end of wk 21 | fixed date |
-| X-IG5 | [Populations cloud-mastered (Identity Lifecycle plan, Gate 5)](identity-lifecycle.md) | External | ISSO (Identity Lifecycle plan) | — | — | end of wk 26 | fixed date |
-| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Steward (program) | — | — | end of wk 36 | 0 |
-| A8.3 | **[Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations](../books/b02-identity/09-building-the-entra-target.md#attribute-flow-and-transformations)** | Task | Identity engineering | 10 | X-G3 | wk 37–38 | 0 |
-| X-P42 | [OU-based security groups retired (program P4.2)](program-master-schedule.md) | External | Identity engineering (program) | — | — | end of wk 38 | 0 |
-| A8.4 | **[OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record](../books/b01-transformation-arc/04-identity-transformation.md#phase-4-legacy-retirement)** | Task | Identity engineering | 10 | A8.3, X-P42 | wk 39–40 | 0 |
-| AG8 | **[Gate 8 — OU tree retired as a control](../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases)** | Gate | CISO | — | A8.4 | end of wk 40 | 0 |
-| X-P51 | [AD changes frozen; final assessment (program P5.1, its start)](program-master-schedule.md) | External | Steward (program) | — | AG8 | end of wk 44 | fixed date |
+| AT8.1 | [Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave](../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases) | Task | Identity engineering | 3 | ATG7 | wk 14 | 12 d |
+| X-D07 | [Wave plan: which divisions, in which order (program D07)](program-master-schedule.md) | External | Executive sponsor and steering committee (program) | — | AT8.1 | end of wk 16 | fixed date |
+| AT8.2 | [Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes](../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr-is-the-sole-source) | Task | Identity engineering | 5 | AT8.1 | wk 14–15 | 29 d |
+| X-P31 | [Wave 1, first region (program P3.1)](program-master-schedule.md) | External | Platform teams (program) | — | AT8.2 | end of wk 21 | fixed date |
+| X-IG5 | [Populations cloud-mastered (Identity Lifecycle plan, Gate 5)](identity-lifecycle.md) | External | ISSO (Identity Lifecycle & Provisioning plan) | — | — | end of wk 26 | fixed date |
+| X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee (program) | — | — | end of wk 36 | 0 |
+| AT8.3 | **[Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations](../books/b02-identity/09-building-the-entra-target.md#attribute-flow-and-transformations)** | Task | Identity engineering | 10 | X-G3 | wk 37–38 | 0 |
+| X-P42 | [OU-based security groups retired (program P4.2)](program-master-schedule.md) | External | Platform teams (program) | — | — | end of wk 38 | 0 |
+| AT8.4 | **[OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record](../books/b01-transformation-arc/04-identity-transformation.md#phase-4-legacy-retirement)** | Task | Identity engineering | 10 | AT8.3, X-P42 | wk 39–40 | 0 |
+| ATG8 | **[Gate 8 — OU tree retired as a control](../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases)** | Gate | CISO | — | AT8.4 | end of wk 40 | 0 |
+| X-P51 | [AD changes frozen; final assessment (program P5.1, its start)](program-master-schedule.md) | External | Program office (program) | — | ATG8 | end of wk 44 | fixed date |
 
 : Phase 8 — Cut-over and the OU tree {.striped .hover}
 
@@ -284,13 +284,13 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| D-A8 | [Drift severity and response times](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) | Decision | CISO | — | AG2 | end of wk 5 | 40 d |
-| A9.1 | [Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue](../books/guides/attribute-driven-migration.md#stage-8-detect-and-correct-drift) | Task | Security operations | 5 | AG4, AG3, D-A8 | wk 9 | 25 d |
-| X-P211 | [Drift-clean hold on the pilot (program P2.11, its start)](program-master-schedule.md) | External | Steward (program) | — | A9.1 | end of wk 14 | fixed date |
-| A9.2 | [Limits register: dynamic group and rule limits, the 100-workflow Lifecycle Workflows budget, administrative unit limits, dynamic units' cloud availability; reviewed with every design change](../books/guides/attribute-driven-migration.md#limits) | Task | Identity engineering | 3 | AG4 | wk 6 | 172 d |
-| A9.3 | **[A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action](../books/b01-transformation-arc/04-identity-transformation.md#verification)** | Task | Security operations, with HR | 10 | A9.1, A8.3 | wk 39–40 | 0 |
-| AG9 | **[Gate 9 — Attributes kept true](../books/b03-hr-identity/12-execution-plan.md#phase-6-sustained-posture)** | Gate | CISO | — | A9.2, A9.3, AG8 | end of wk 40 | 0 |
-| X-G5 | [Program G5 — AD Retired](program-master-schedule.md) | External | Executive sponsor and CIO (program) | — | AG9 | end of wk 48 | fixed date |
+| D-AT8 | [Drift severity and response times](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) | Decision | CISO | — | ATG2 | end of wk 5 | 40 d |
+| AT9.1 | [Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue](../books/guides/attribute-driven-migration.md#stage-8-detect-and-correct-drift) | Task | Security operations | 5 | ATG4, ATG3, D-AT8 | wk 9 | 25 d |
+| X-P211 | [Drift-clean hold on the pilot (program P2.11, its start)](program-master-schedule.md) | External | Program office (program) | — | AT9.1 | end of wk 14 | fixed date |
+| AT9.2 | [Limits register: dynamic group and rule limits, the 100-workflow Lifecycle Workflows budget, administrative unit limits, dynamic units' cloud availability; reviewed with every design change](../books/guides/attribute-driven-migration.md#limits) | Task | Identity engineering | 3 | ATG4 | wk 6 | 172 d |
+| AT9.3 | **[A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action](../books/b01-transformation-arc/04-identity-transformation.md#verification)** | Task | Security operations, with HR | 10 | AT9.1, AT8.3 | wk 39–40 | 0 |
+| ATG9 | **[Gate 9 — Attributes kept true](../books/b03-hr-identity/12-execution-plan.md#phase-6-sustained-posture)** | Gate | CISO | — | AT9.2, AT9.3, ATG8 | end of wk 40 | 0 |
+| X-G5 | [Program G5 — AD Retired](program-master-schedule.md) | External | Executive sponsor and CIO (program) | — | ATG9 | end of wk 48 | fixed date |
 
 : Phase 9 — Drift, limits and steady state {.striped .hover}
 
@@ -302,38 +302,40 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 |---|---|---|---|
 | Identity engineering | 14 | 1 | — |
 | CISO | — | 3 | 6 |
-| Identity engineering (program) | 8 | — | — |
-| Steward (program) | 5 | — | — |
+| Platform teams (program) | 9 | — | — |
 | Identity engineering lead | — | — | 3 |
 | Identity engineering, with application owners | 3 | — | — |
 | Data architect | 1 | 1 | — |
+| Executive sponsor and steering committee (program) | 2 | — | — |
 | ICAM governance body | — | 1 | 1 |
-| ICAM governance body (Identity Lifecycle plan) | 2 | — | — |
-| ISSO (Identity Lifecycle plan) | 2 | — | — |
+| ISSO (Identity Lifecycle & Provisioning plan) | 2 | — | — |
+| Program office (program) | 2 | — | — |
 | Security operations | 2 | — | — |
 | Authorizing official, through the agency's risk governance | — | 1 | — |
-| Data architect (program) | 1 | — | — |
+| CISO (program) | 1 | — | — |
+| CISO / ISSO (Endpoint & Device Modernization plan) | 1 | — | — |
 | Data architect, with HR for the code lists | — | 1 | — |
 | Data architect, with identity engineering | 1 | — | — |
 | Data architect, with the endpoint lead | 1 | — | — |
-| Endpoint lead (Endpoint plan) | 1 | — | — |
+| Endpoint engineering (Endpoint & Device Modernization plan) | 1 | — | — |
 | Endpoint lead, with the data architect | 1 | — | — |
-| Executive sponsor (program) | 1 | — | — |
 | Executive sponsor and CIO (program) | 1 | — | — |
-| HR data steward (Identity Lifecycle plan) | 1 | — | — |
-| ISSO (Endpoint plan) | 1 | — | — |
-| ISSO (Non-Person Identity plan) | 1 | — | — |
-| Identity engineering (Identity Lifecycle plan) | 1 | — | — |
+| HR (Identity Lifecycle & Provisioning plan) | 1 | — | — |
+| ICAM governance body (Identity Lifecycle & Provisioning plan) | 1 | — | — |
+| ICAM governance body, with HR and identity engineering (Identity Lifecycle & Provisioning plan) | 1 | — | — |
+| ISSO (Non-Person Identity Modernization plan) | 1 | — | — |
+| Identity engineering (Identity Lifecycle & Provisioning plan) | 1 | — | — |
 | Identity engineering, with HR | 1 | — | — |
 | Identity engineering, with security | 1 | — | — |
 | Identity engineering, with the PIV program office | 1 | — | — |
 | Identity engineering, with the endpoint lead | 1 | — | — |
 | Identity engineering, with the identity governance officer | 1 | — | — |
-| Identity governance officer (Non-Person Identity plan) | 1 | — | — |
-| PKI lead (program) | 1 | — | — |
 | Security operations, with HR | 1 | — | — |
-| Server infrastructure (Endpoint plan) | 1 | — | — |
+| Server infrastructure (Endpoint & Device Modernization plan) | 1 | — | — |
 | Server infrastructure, with the data architect | 1 | — | — |
+| Sponsoring offices, with the identity governance officer (Non-Person Identity Modernization plan) | 1 | — | — |
+| Steward (backup: executive sponsor; program) | 1 | — | — |
+| Steward and executive sponsor (co-signed; program) | 1 | — | — |
 
 : Ownership {.striped .hover}
 
@@ -349,12 +351,12 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 
 | Risk | Effect on the schedule | Response |
 |---|---|---|
-| A rule reads an attribute that more than one system writes | Access changes with whichever writer ran last, and drift can't be fixed at the source | One writer per attribute in the slot register; other write paths removed before the first rule grants access (A1.3, A2.2; [Book 03, Chapter 06](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers)) |
-| A dynamic rule is written on a display name, or without guards | The group breaks when someone retypes a name, or includes disabled accounts and guests | Rules on codes only, every rule with `accountEnabled` and `userType` guards, checked by the validation kit before any rule grants access (A4.2; [companion guide](../books/guides/attribute-driven-migration.md#dynamic-group-dangers)) |
-| A soft or hard match overwrites cloud values with stale AD values | Coded attributes revert across a population at the next sync | Clean AD first, keep both match types blocked outside a planned window (A3.1; [Book 02, Chapter 09](../books/b02-identity/09-building-the-entra-target.md#soft-match-and-hard-match)) |
-| A Conditional Access persona includes a group built from an empty attribute | Users whose attribute is empty are silently outside the policy | Pair every grant with a block, and report empty slots before enforcement (A5.1; [Book 04, Chapter 03](../books/b04-access/03-the-conditional-access-model.md#exclusions)) |
-| The tenant is set to high-affinity PIV binding before every account's value is right | Card holders are locked out | Measure binding coverage, then pilot high affinity before the tenant setting changes (A6.2; [companion guide](../books/guides/attribute-driven-migration.md#pki-binding)) |
-| Entra ID's logs expire before an assessor asks for them | The evidence for the pilot's changes is gone, and the logs aren't retroactive | Route logs outside Entra ID from the pilot's first day (A2.3; [Book 03, Chapter 11](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)) |
+| A rule reads an attribute that more than one system writes | Access changes with whichever writer ran last, and drift can't be fixed at the source | One writer per attribute in the slot register; other write paths removed before the first rule grants access (AT1.3, AT2.2; [Book 03, Chapter 06](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers)) |
+| A dynamic rule is written on a display name, or without guards | The group breaks when someone retypes a name, or includes disabled accounts and guests | Rules on codes only, every rule with `accountEnabled` and `userType` guards, checked by the validation kit before any rule grants access (AT4.2; [companion guide](../books/guides/attribute-driven-migration.md#dynamic-group-dangers)) |
+| A soft or hard match overwrites cloud values with stale AD values | Coded attributes revert across a population at the next sync | Clean AD first, keep both match types blocked outside a planned window (AT3.1; [Book 02, Chapter 09](../books/b02-identity/09-building-the-entra-target.md#soft-match-and-hard-match)) |
+| A Conditional Access persona includes a group built from an empty attribute | Users whose attribute is empty are silently outside the policy | Pair every grant with a block, and report empty slots before enforcement (AT5.1; [Book 04, Chapter 03](../books/b04-access/03-the-conditional-access-model.md#exclusions)) |
+| The tenant is set to high-affinity PIV binding before every account's value is right | Card holders are locked out | Measure binding coverage, then pilot high affinity before the tenant setting changes (AT6.2; [companion guide](../books/guides/attribute-driven-migration.md#pki-binding)) |
+| Entra ID's logs expire before an assessor asks for them | The evidence for the pilot's changes is gone, and the logs aren't retroactive | Route logs outside Entra ID from the pilot's first day (AT2.3; [Book 03, Chapter 11](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)) |
 
 : Schedule risks {.striped .hover}
 

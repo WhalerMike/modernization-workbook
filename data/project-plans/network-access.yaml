@@ -67,12 +67,12 @@ tasks:
      criteria: "AD DNS inventory dated, committed and reviewed (Decision 4); every branch's redirect-dns target read from the running configuration; platform model decided; one named decider for every row of the DNS and network matrices",
      source: "../books/b08-ddi/08-reference-architecture.md#decision-4-ad-dns-inventory-before-retirement"}
   # ------------------------------------------------- Phase 1 — naming and addressing
-  - {id: X-P17, kind: external, phase: 1, name: "Cloud DNS Private Resolver deployed (program P1.7)", ref: "program-master-schedule:P1.7", owner: "Platform teams (program)",
+  - {id: X-P17, kind: external, phase: 1, name: "Cloud DNS Private Resolver deployed (program P1.7)", ref: "program-master-schedule:P1.7",
      late: "Coexistence has no cloud resolver to forward to, and Phase 1 waits",
      source: "program-master-schedule.md"}
   - {id: N1.1, phase: 1, name: "Coexistence: DDI resolvers deployed, Microsoft DNS and DHCP synchronized read-only, forwarding both ways with one path per namespace", dur: 8, after: [NG0, X-P17], owner: "DNS/DDI team",
      source: "../books/b08-ddi/10-migration-sequence.md#phase-2-deploy-coexistence"}
-  - {id: X-P26S, kind: external, phase: 1, name: "Program starts the pilot division's DNS move (start of P2.6)", ref: "program-master-schedule:P2.6:start", after: [N1.1], owner: "Platform teams (program)",
+  - {id: X-P26S, kind: external, phase: 1, name: "Program starts the pilot division's DNS move (start of P2.6)", ref: "program-master-schedule:P2.6:start", after: [N1.1],
      late: "The pilot division's zones and scopes have no coexistence to move through, and the program's pilot slips",
      source: "program-master-schedule.md"}
   - {id: D-N2, kind: decision, phase: 1, name: "Resolver path: the redirect-dns target and the forwarding chain order (Decisions 1 and 2)", after: [NG0], owner: "DNS/DDI team",
@@ -85,7 +85,7 @@ tasks:
      options: "Per zone: split horizon, subdomain delegation, or progressive migration with conditional forwarding. AD locator records stay where domain controllers can register them, and move last",
      late: "Authority can't move zone by zone; the pilot division's zones wait",
      source: "../books/b08-ddi/10-migration-sequence.md#three-cutover-patterns"}
-  - {id: X-P26, kind: external, phase: 1, name: "Pilot division's DNS migrated and DHCP re-homed (program P2.6)", ref: "program-master-schedule:P2.6", owner: "Platform teams (program)",
+  - {id: X-P26, kind: external, phase: 1, name: "Pilot division's DNS migrated and DHCP re-homed (program P2.6)", ref: "program-master-schedule:P2.6",
      late: "The cutover loop hasn't been proven on a division, so the remaining zone moves wait",
      source: "program-master-schedule.md"}
   - {id: N1.3, phase: 1, name: "Non-AD zones, forwarders, GlobalNames and reverse zones moved through the cutover loop", dur: 15, after: [D-N3, X-P26], owner: "DNS/DDI team",
@@ -148,7 +148,7 @@ tasks:
      options: "NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access",
      late: "Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on",
      source: "../books/b09-network/07-network-access-control.md#what-can-replace-it"}
-  - {id: X-P27, kind: external, phase: 4, name: "Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7)", ref: "program-master-schedule:P2.7", owner: "Platform teams (program)",
+  - {id: X-P27, kind: external, phase: 4, name: "Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7)", ref: "program-master-schedule:P2.7",
      late: "Monitor mode has no device certificates to authenticate, and the NAC rollout waits",
      source: "program-master-schedule.md"}
   - {id: N4.1, phase: 4, name: "NAC platform registered for Intune compliance retrieval; policy tiers built; monitor mode on pilot ports with a baseline report", dur: 30, after: [D-N10, X-P27], owner: "Network engineering",
@@ -165,7 +165,7 @@ tasks:
      criteria: "Monitor-mode baseline report filed; wired and wireless enforcement live at the pilot sites; the three minimum detections alerting the SOC; RADIUS accounting, Intune compliance reports and DHCP audit logs kept for assessors; every MAB exception dated",
      source: "../books/b09-network/07-network-access-control.md#inventory-profiling-and-logs"}
   # ------------------------------------------------- Phase 5 — AD DNS and DHCP decommission
-  - {id: X-P43, kind: external, phase: 5, name: "AD-integrated zones moved, except the domain's own (program P4.3)", ref: "program-master-schedule:P4.3", owner: "Platform teams (program)",
+  - {id: X-P43, kind: external, phase: 5, name: "AD-integrated zones moved, except the domain's own (program P4.3)", ref: "program-master-schedule:P4.3",
      late: "The 30-day SRV hold and the decommission gates can't start",
      source: "program-master-schedule.md"}
   - {id: N5.1, phase: 5, name: "SRV hold: every critical locator record resolves from every VNet and site, every 15 minutes, for 30 clean days", dur: 22, after: [X-P43], owner: "DNS/DDI team",

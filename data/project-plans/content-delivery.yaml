@@ -122,7 +122,7 @@ tasks:
      options: "Allow within each office's subnet only; allow for named peer cache sources only; block, and size circuits for hub pulls",
      late: "Peer cache and Delivery Optimization peering can't be configured, and the pilot measures nothing",
      source: "../books/guides/dp-consolidation-implementation.md#step-5"}
-  - {id: X-E14, kind: external, phase: 3, name: "Co-management on for the pilot collection (Endpoint plan E1.4)", ref: "endpoint-device:E1.4", owner: "Endpoint & Device project",
+  - {id: X-E14, kind: external, phase: 3, name: "Co-management on for the pilot collection (Endpoint plan E1.4)", ref: "endpoint-device:E1.4",
      late: "Pilot devices have no Intune channel for Delivery Optimization policy",
      source: "endpoint-device.md"}
   - {id: C3.2, phase: 3, name: "Peer cache sources chosen per pilot office (desktop chassis, disk, always on); client settings deployed; partial download on; BranchCache enabled", dur: 10, after: [C3.1, D-C4], owner: "Configuration Manager team",
@@ -135,7 +135,7 @@ tasks:
      criteria: "Pilot offices' content served by the hub and peers, with the office DP in read-only fallback and serving under a threshold the endpoint lead sets; no deployment failure traced to content location; measurement report filed",
      source: "../books/guides/dp-consolidation-implementation.md#go-no-go"}
   # ------------------------------------------------- Phase 4 — office waves
-  - {id: X-NG3, kind: external, phase: 4, name: "Pilot sites governed and evidenced on new transport (Network plan Gate 3)", ref: "network-access:NG3", owner: "Network & Access project",
+  - {id: X-NG3, kind: external, phase: 4, name: "Pilot sites governed and evidenced on new transport (Network plan Gate 3)", ref: "network-access:NG3",
      late: "The pilot offices are still on their old circuits, and the first wave of DP retirements waits",
      source: "network-access.md"}
   - {id: C4.1, phase: 4, name: "Pilot wave: each office DP checked, drained, watched 30 days, removed with its site system; disks sanitized; inventory and SSP updated", dur: 15, after: [CG3, X-NG3], owner: "Configuration Manager team",
@@ -174,12 +174,12 @@ tasks:
      source: "../books/guides/dp-consolidation-implementation.md#step-8-1"}
   - {id: C6.2, phase: 6, name: "Configuration Manager required and available deployments withdrawn as each app moves; the count reported weekly", dur: 30, after: [C6.1, C5.4], owner: "Configuration Manager team",
      source: "../books/guides/dp-consolidation-implementation.md#step-8-2"}
-  - {id: X-EG3, kind: external, phase: 6, name: "Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)", ref: "endpoint-device:EG3", owner: "Endpoint & Device project",
+  - {id: X-EG3, kind: external, phase: 6, name: "Workloads cut over, including Windows Update policies and device configuration (Endpoint plan Gate 3)", ref: "endpoint-device:EG3",
      late: "Update content still comes from Configuration Manager, and retirement gate 2 can't close",
      source: "endpoint-device.md"}
   - {id: C6.3, phase: 6, name: "Configuration Manager software-update client setting turned off for every device on the Windows Update workload", dur: 5, after: [X-EG3], owner: "Configuration Manager team",
      source: "../books/guides/dp-consolidation-implementation.md#step-8-3"}
-  - {id: X-E15, kind: external, phase: 6, name: "Intune-first intake with Autopilot registration (Endpoint plan E1.5)", ref: "endpoint-device:E1.5", owner: "Endpoint & Device project",
+  - {id: X-E15, kind: external, phase: 6, name: "Intune-first intake with Autopilot registration (Endpoint plan E1.5)", ref: "endpoint-device:E1.5",
      late: "There's no Autopilot path to move bare-metal provisioning onto",
      source: "endpoint-device.md"}
   - {id: D-C7, kind: decision, phase: 6, name: "OS provisioning for existing devices", after: [X-E15, C0.2], owner: "Endpoint lead",
@@ -229,7 +229,7 @@ tasks:
      criteria: "All five retirement gates closed in a gates run; no distribution point role left in Get-CMSiteRole; every DP's decommission record, sanitization record and SSP change filed; the content delivery evidence set in the guide's requirements table complete",
      source: "../books/guides/dp-consolidation-implementation.md#step-10-3"}
   # ------------------------------------------------- reference
-  - {id: X-G3, kind: external, phase: 8, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3", owner: "Executive sponsor and steering committee",
+  - {id: X-G3, kind: external, phase: 8, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3",
      source: "program-master-schedule.md"}
 
 phases:
