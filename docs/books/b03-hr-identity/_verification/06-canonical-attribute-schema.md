@@ -86,3 +86,12 @@ Correction to the shared content (ATTRIBUTES.md): none beyond those already reco
 |---|---|---|---|---|
 | N8-2 | Duty station row: the region code derived from duty station is carried, in `extensionAttribute4`; only the location code itself is not yet carried | Standard-attribute table; paragraph after it; crosswalk row `extensionAttribute4` | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 2 |
 | N8-3 | Personnel office input, supervisor group and location code labelled open items for after the baseline; added to Chapter 12's open verification register | Standard-attribute table; Chapter 12 register | decision of Nov 8; labelling only | Mike's decision of Nov 8, 2026, item 3 |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported that OPM replaced the *Guide to Processing Personnel Actions* PDF at the same address. Checked November 9, 2026; no personal data sent to any site.
+
+| Claim | Result | Source |
+|---|---|---|
+| GPPA edition cited as "October 2026" | updated: the cover and page footers now read November 2026; footnote edition and access date changed | GPPA PDF, <https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf> |
+| Chapter list and codes this page relies on (Ch 1 §4 and §5, EHRI Data Standards codes only in coded blocks; Ch 9–11, 13 accessions and conversions; Ch 14; Ch 15: 430, 450–452, 460, 471, 473, 480, with 472 Furlough NTE in its tables; Ch 16: 280, 292; Ch 30; Ch 31; Ch 32: 001, 002) | re-verified in the November 2026 edition, no change | Same |

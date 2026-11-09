@@ -83,7 +83,7 @@
     <Task>
       <UID>2</UID>
       <ID>2</ID>
-      <Name>A0.1 OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track</Name>
+      <Name>AT0.1 OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track</Name>
       <OutlineNumber>1.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-04T08:00:00</Start>
@@ -98,7 +98,7 @@ Source: ../books/guides/attribute-driven-migration.md#stage-0-read-what-the-ou-t
     <Task>
       <UID>3</UID>
       <ID>3</ID>
-      <Name>A0.2 A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire</Name>
+      <Name>AT0.2 A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire</Name>
       <OutlineNumber>1.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-14T08:00:00</Start>
@@ -119,7 +119,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#the-per-group-deci
     <Task>
       <UID>4</UID>
       <ID>4</ID>
-      <Name>A0.3 OU-to-unit mapping drafted: which OU delegations become administrative units, and which become Azure RBAC scopes for servers</Name>
+      <Name>AT0.3 OU-to-unit mapping drafted: which OU delegations become administrative units, and which become Azure RBAC scopes for servers</Name>
       <OutlineNumber>1.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-14T08:00:00</Start>
@@ -140,7 +140,7 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#organizational-uni
     <Task>
       <UID>5</UID>
       <ID>5</ID>
-      <Name>A0.4 GPO settings split by track: user halves to the HR track's policy design, computer halves to the Endpoint plan</Name>
+      <Name>AT0.4 GPO settings split by track: user halves to the HR track's policy design, computer halves to the Endpoint plan</Name>
       <OutlineNumber>1.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-14T08:00:00</Start>
@@ -169,8 +169,8 @@ Source: ../books/guides/attribute-driven-migration.md#four-tracks</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ISSO (Endpoint plan)</Contact>
-      <Notes>Owner or approver: ISSO (Endpoint plan)
+      <Contact>CISO / ISSO (Endpoint &amp; Device Modernization plan)</Contact>
+      <Notes>Owner or approver: CISO / ISSO (Endpoint &amp; Device Modernization plan)
 If decided late: The Endpoint plan triages Group Policy without knowing which halves belong to people
 Source: endpoint-device.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -185,7 +185,7 @@ Source: endpoint-device.md</Notes>
     <Task>
       <UID>7</UID>
       <ID>7</ID>
-      <Name>X-NG0 Non-person identities inventoried (Non-Person Identity plan, Gate 0)</Name>
+      <Name>X-NPG0 Non-person identities inventoried (Non-Person Identity plan, Gate 0)</Name>
       <OutlineNumber>1.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T17:00:00</Start>
@@ -193,8 +193,8 @@ Source: endpoint-device.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ISSO (Non-Person Identity plan)</Contact>
-      <Notes>Owner or approver: ISSO (Non-Person Identity plan)
+      <Contact>ISSO (Non-Person Identity Modernization plan)</Contact>
+      <Notes>Owner or approver: ISSO (Non-Person Identity Modernization plan)
 If decided late: Service accounts in the tree are inventoried without their OU placement and delegations
 Source: non-person-identity.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -209,7 +209,7 @@ Source: non-person-identity.md</Notes>
     <Task>
       <UID>8</UID>
       <ID>8</ID>
-      <Name>AG0 Gate 0 — The tree read</Name>
+      <Name>ATG0 Gate 0 — The tree read</Name>
       <OutlineNumber>1.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-25T17:00:00</Start>
@@ -251,8 +251,8 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-0-assessment</
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward (program)</Contact>
-      <Notes>Owner or approver: Steward (program)
+      <Contact>Steward (backup: executive sponsor; program)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor; program)
 If decided late: The program plans Phase 1 without knowing what the OU tree encodes
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -277,7 +277,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>11</UID>
       <ID>11</ID>
-      <Name>A1.1 AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes</Name>
+      <Name>AT1.1 AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes</Name>
       <OutlineNumber>2.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-04T08:00:00</Start>
@@ -300,8 +300,8 @@ Source: ../books/guides/attribute-driven-migration.md#compared-with-active-direc
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ICAM governance body (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: ICAM governance body (Identity Lifecycle plan)
+      <Contact>ICAM governance body, with HR and identity engineering (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: ICAM governance body, with HR and identity engineering (Identity Lifecycle &amp; Provisioning plan)
 If decided late: The mapping has no key to carry in employeeId
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -310,7 +310,7 @@ Source: identity-lifecycle.md</Notes>
     <Task>
       <UID>13</UID>
       <ID>13</ID>
-      <Name>A1.2 AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table</Name>
+      <Name>AT1.2 AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table</Name>
       <OutlineNumber>2.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-11T08:00:00</Start>
@@ -345,8 +345,8 @@ Source: ../books/guides/attribute-driven-migration.md#the-attribute-stores-in-th
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ICAM governance body (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: ICAM governance body (Identity Lifecycle plan)
+      <Contact>ICAM governance body (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: ICAM governance body (Identity Lifecycle &amp; Provisioning plan)
 If decided late: The schema can't name a writer for an attribute whose authority isn't decided
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -355,7 +355,7 @@ Source: identity-lifecycle.md</Notes>
     <Task>
       <UID>15</UID>
       <ID>15</ID>
-      <Name>D-A1 Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks</Name>
+      <Name>D-AT1 Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks</Name>
       <OutlineNumber>2.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-20T17:00:00</Start>
@@ -384,7 +384,7 @@ Source: ../books/guides/attribute-driven-migration.md#attributes</Notes>
     <Task>
       <UID>16</UID>
       <ID>16</ID>
-      <Name>D-A2 The coded slot register: which extension attribute carries which code, on users and on devices</Name>
+      <Name>D-AT2 The coded slot register: which extension attribute carries which code, on users and on devices</Name>
       <OutlineNumber>2.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-20T17:00:00</Start>
@@ -407,7 +407,7 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attrib
     <Task>
       <UID>17</UID>
       <ID>17</ID>
-      <Name>A1.3 Slot register published: one writer per slot, the code list owner, what reads it; the help desk, self-service and Exchange write paths listed for removal</Name>
+      <Name>AT1.3 Slot register published: one writer per slot, the code list owner, what reads it; the help desk, self-service and Exchange write paths listed for removal</Name>
       <OutlineNumber>2.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>
@@ -428,7 +428,7 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md#writers</Notes
     <Task>
       <UID>18</UID>
       <ID>18</ID>
-      <Name>A1.4 Device, server and non-person attribute authorities named: the procurement record through the Autopilot group tag, the asset record through Arc onboarding tags, the owning system's record</Name>
+      <Name>AT1.4 Device, server and non-person attribute authorities named: the procurement record through the Autopilot group tag, the asset record through Arc onboarding tags, the owning system's record</Name>
       <OutlineNumber>2.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>
@@ -449,7 +449,7 @@ Source: ../books/guides/attribute-driven-migration.md#stage-1-source-the-attribu
     <Task>
       <UID>19</UID>
       <ID>19</ID>
-      <Name>AG1 Gate 1 — Schema and slots signed</Name>
+      <Name>ATG1 Gate 1 — Schema and slots signed</Name>
       <OutlineNumber>2.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-26T17:00:00</Start>
@@ -485,8 +485,8 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authorit
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Data architect (program)</Contact>
-      <Notes>Owner or approver: Data architect (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: The program's taxonomy is finalized without the cross-track slot register
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -519,8 +519,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>HR data steward (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: HR data steward (Identity Lifecycle plan)
+      <Contact>HR (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: HR (Identity Lifecycle &amp; Provisioning plan)
 If decided late: The coverage baseline measures data the HR plan hasn't yet corrected
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -529,7 +529,7 @@ Source: identity-lifecycle.md</Notes>
     <Task>
       <UID>23</UID>
       <ID>23</ID>
-      <Name>A2.1 Coverage baseline across the tracks: uncorrelated accounts, empty coded slots, counts per organization code against an HR export, duplicate keys; device and server attribute coverage</Name>
+      <Name>AT2.1 Coverage baseline across the tracks: uncorrelated accounts, empty coded slots, counts per organization code against an HR export, duplicate keys; device and server attribute coverage</Name>
       <OutlineNumber>3.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T08:00:00</Start>
@@ -556,7 +556,7 @@ Source: ../books/guides/attribute-driven-migration.md#stage-2-prove-the-attribut
     <Task>
       <UID>24</UID>
       <ID>24</ID>
-      <Name>D-A3 Correlation threshold before any rule grants access</Name>
+      <Name>D-AT3 Correlation threshold before any rule grants access</Name>
       <OutlineNumber>3.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-02T17:00:00</Start>
@@ -579,7 +579,7 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#sequencing-principle</Note
     <Task>
       <UID>25</UID>
       <ID>25</ID>
-      <Name>A2.2 Other write paths removed: help desk and self-service edits to the access slots, Exchange custom-attribute cmdlets, write rights on the target OUs</Name>
+      <Name>AT2.2 Other write paths removed: help desk and self-service edits to the access slots, Exchange custom-attribute cmdlets, write rights on the target OUs</Name>
       <OutlineNumber>3.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T08:00:00</Start>
@@ -600,7 +600,7 @@ Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md#writers</Notes
     <Task>
       <UID>26</UID>
       <ID>26</ID>
-      <Name>A2.3 Entra ID sign-in, audit and provisioning logs routed outside Entra ID before the pilot's first change</Name>
+      <Name>AT2.3 Entra ID sign-in, audit and provisioning logs routed outside Entra ID before the pilot's first change</Name>
       <OutlineNumber>3.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T08:00:00</Start>
@@ -621,7 +621,7 @@ Source: ../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-e
     <Task>
       <UID>27</UID>
       <ID>27</ID>
-      <Name>AG2 Gate 2 — Attributes proven for the pilot</Name>
+      <Name>ATG2 Gate 2 — Attributes proven for the pilot</Name>
       <OutlineNumber>3.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-05T17:00:00</Start>
@@ -665,7 +665,7 @@ Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authorit
     <Task>
       <UID>29</UID>
       <ID>29</ID>
-      <Name>A3.1 Sync mapping for the slot register: carriers in the provisioning apps' target lists, date mappings, the transitional account-type rule, the DoNotSync filter; soft and hard match blocked</Name>
+      <Name>AT3.1 Sync mapping for the slot register: carriers in the provisioning apps' target lists, date mappings, the transitional account-type rule, the DoNotSync filter; soft and hard match blocked</Name>
       <OutlineNumber>4.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T08:00:00</Start>
@@ -694,8 +694,8 @@ Source: ../books/guides/attribute-driven-migration.md#stage-3-map-the-attributes
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: The sync design is approved without the attribute flow for the coded slots
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -718,8 +718,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ISSO (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: ISSO (Identity Lifecycle plan)
+      <Contact>ISSO (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: ISSO (Identity Lifecycle &amp; Provisioning plan)
 If decided late: The coded slots have no live writer, so the group library can't be shadowed on real data
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -728,7 +728,7 @@ Source: identity-lifecycle.md</Notes>
     <Task>
       <UID>32</UID>
       <ID>32</ID>
-      <Name>AG3 Gate 3 — Attributes flowing</Name>
+      <Name>ATG3 Gate 3 — Attributes flowing</Name>
       <OutlineNumber>4.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-26T17:00:00</Start>
@@ -772,7 +772,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-1-sync-deploym
     <Task>
       <UID>34</UID>
       <ID>34</ID>
-      <Name>A4.1 Dynamic user group library: node and functional rules on codes; every access rule guarded by accountEnabled and userType and excluding agents' accounts; nesting flattened; no memberOf</Name>
+      <Name>AT4.1 Dynamic user group library: node and functional rules on codes; every access rule guarded by accountEnabled and userType and excluding agents' accounts; nesting flattened; no memberOf</Name>
       <OutlineNumber>5.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T08:00:00</Start>
@@ -799,7 +799,7 @@ Source: ../books/guides/attribute-driven-migration.md#stage-4-materialize-ou-sub
     <Task>
       <UID>35</UID>
       <ID>35</ID>
-      <Name>A4.2 Rules checked before they exist in production: guards, codes not names, paused processing; each rule tested against named users</Name>
+      <Name>AT4.2 Rules checked before they exist in production: guards, codes not names, paused processing; each rule tested against named users</Name>
       <OutlineNumber>5.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-03T08:00:00</Start>
@@ -820,7 +820,7 @@ Source: ../books/b06-data-platform/17-dynamic-membership-delegation-and-privileg
     <Task>
       <UID>36</UID>
       <ID>36</ID>
-      <Name>D-A4 Restricted management, unit by unit, before each unit exists</Name>
+      <Name>D-AT4 Restricted management, unit by unit, before each unit exists</Name>
       <OutlineNumber>5.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-19T17:00:00</Start>
@@ -843,7 +843,7 @@ Source: ../books/b02-identity/05-delegation-without-ous.md#restricted-management
     <Task>
       <UID>37</UID>
       <ID>37</ID>
-      <Name>A4.3 Unit registry: tenant readers, department and division units whose rules mirror the group rules; scoped roles to PIM-eligible role-assignable groups; each unit created before the groups it holds</Name>
+      <Name>AT4.3 Unit registry: tenant readers, department and division units whose rules mirror the group rules; scoped roles to PIM-eligible role-assignable groups; each unit created before the groups it holds</Name>
       <OutlineNumber>5.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T08:00:00</Start>
@@ -870,7 +870,7 @@ Source: ../books/guides/attribute-driven-migration.md#stage-5-delegate-with-admi
     <Task>
       <UID>38</UID>
       <ID>38</ID>
-      <Name>AG4 Gate 4 — Group library and units designed</Name>
+      <Name>ATG4 Gate 4 — Group library and units designed</Name>
       <OutlineNumber>5.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-05T17:00:00</Start>
@@ -906,8 +906,8 @@ Source: ../books/b01-transformation-arc/04-identity-transformation.md#verificati
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: The program builds groups and units from a design that hasn't been checked
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -930,8 +930,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: There's no live pilot data to shadow the rules against
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -940,7 +940,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>41</UID>
       <ID>41</ID>
-      <Name>A4.4 Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on</Name>
+      <Name>AT4.4 Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on</Name>
       <OutlineNumber>5.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-01T08:00:00</Start>
@@ -975,8 +975,8 @@ Source: ../books/guides/attribute-driven-migration.md#dynamic-user-groups-hr-tra
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: Policies are assigned to groups whose membership hasn't been reconciled
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1001,7 +1001,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>44</UID>
       <ID>44</ID>
-      <Name>A5.1 Conditional Access personas from coded attributes (worker type for internals and externals); every grant paired with a block; empty-slot users reported; emergency access excluded</Name>
+      <Name>AT5.1 Conditional Access personas from coded attributes (worker type for internals and externals); every grant paired with a block; empty-slot users reported; emergency access excluded</Name>
       <OutlineNumber>6.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>
@@ -1022,7 +1022,7 @@ Source: ../books/guides/attribute-driven-migration.md#stage-6-replace-gpo-inheri
     <Task>
       <UID>45</UID>
       <ID>45</ID>
-      <Name>D-A5 The persona set the Conditional Access library targets</Name>
+      <Name>D-AT5 The persona set the Conditional Access library targets</Name>
       <OutlineNumber>6.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T17:00:00</Start>
@@ -1053,8 +1053,8 @@ Source: ../books/b04-access/03-the-conditional-access-model.md#naming-and-the-pe
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>CISO (program)</Contact>
+      <Notes>Owner or approver: CISO (program)
 If decided late: Report-only runs against personas that may change
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1069,7 +1069,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>47</UID>
       <ID>47</ID>
-      <Name>A5.2 Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion</Name>
+      <Name>AT5.2 Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion</Name>
       <OutlineNumber>6.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>
@@ -1098,8 +1098,8 @@ Source: ../books/guides/attribute-driven-migration.md#intune-track</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Endpoint lead (Endpoint plan)</Contact>
-      <Notes>Owner or approver: Endpoint lead (Endpoint plan)
+      <Contact>Endpoint engineering (Endpoint &amp; Device Modernization plan)</Contact>
+      <Notes>Owner or approver: Endpoint engineering (Endpoint &amp; Device Modernization plan)
 If decided late: The policy library is built on targeting the foundation may change
 Source: endpoint-device.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1114,7 +1114,7 @@ Source: endpoint-device.md</Notes>
     <Task>
       <UID>49</UID>
       <ID>49</ID>
-      <Name>A5.3 Server targeting conventions: the Arc tag taxonomy drawn from the asset record and aligned with the device slots; resource groups as the delegation scope</Name>
+      <Name>AT5.3 Server targeting conventions: the Arc tag taxonomy drawn from the asset record and aligned with the device slots; resource groups as the delegation scope</Name>
       <OutlineNumber>6.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-26T08:00:00</Start>
@@ -1143,8 +1143,8 @@ Source: ../books/guides/attribute-driven-migration.md#arc-track</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Server infrastructure (Endpoint plan)</Contact>
-      <Notes>Owner or approver: Server infrastructure (Endpoint plan)
+      <Contact>Server infrastructure (Endpoint &amp; Device Modernization plan)</Contact>
+      <Notes>Owner or approver: Server infrastructure (Endpoint &amp; Device Modernization plan)
 If decided late: Arc servers are tagged with a taxonomy the device and user sides don't share
 Source: endpoint-device.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1159,7 +1159,7 @@ Source: endpoint-device.md</Notes>
     <Task>
       <UID>51</UID>
       <ID>51</ID>
-      <Name>A5.4 Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined</Name>
+      <Name>AT5.4 Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined</Name>
       <OutlineNumber>6.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>
@@ -1180,7 +1180,7 @@ Source: ../books/guides/attribute-driven-migration.md#what-microsoft-documents-f
     <Task>
       <UID>52</UID>
       <ID>52</ID>
-      <Name>X-N12 AI accountability: sponsors mastered in HR (Non-Person Identity plan, N1.2, its start)</Name>
+      <Name>X-NP12 AI accountability: sponsors mastered in HR (Non-Person Identity plan, NP1.2, its start)</Name>
       <OutlineNumber>6.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-27T17:00:00</Start>
@@ -1188,8 +1188,8 @@ Source: ../books/guides/attribute-driven-migration.md#what-microsoft-documents-f
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity governance officer (Non-Person Identity plan)</Contact>
-      <Notes>Owner or approver: Identity governance officer (Non-Person Identity plan)
+      <Contact>Sponsoring offices, with the identity governance officer (Non-Person Identity Modernization plan)</Contact>
+      <Notes>Owner or approver: Sponsoring offices, with the identity governance officer (Non-Person Identity Modernization plan)
 If decided late: Sponsors are recorded by name rather than by key, and a sponsor's move or departure can't be matched
 Source: non-person-identity.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1204,7 +1204,7 @@ Source: non-person-identity.md</Notes>
     <Task>
       <UID>53</UID>
       <ID>53</ID>
-      <Name>AG5 Gate 5 — Targeting conventions set</Name>
+      <Name>ATG5 Gate 5 — Targeting conventions set</Name>
       <OutlineNumber>6.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T17:00:00</Start>
@@ -1254,7 +1254,7 @@ Source: ../books/guides/attribute-driven-migration.md#attribute-to-mechanism-cro
     <Task>
       <UID>55</UID>
       <ID>55</ID>
-      <Name>A6.1 Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer</Name>
+      <Name>AT6.1 Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer</Name>
       <OutlineNumber>7.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-01T08:00:00</Start>
@@ -1275,7 +1275,7 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
     <Task>
       <UID>56</UID>
       <ID>56</ID>
-      <Name>D-A6 Required affinity binding for PIV and CAC</Name>
+      <Name>D-AT6 Required affinity binding for PIV and CAC</Name>
       <OutlineNumber>7.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-05T17:00:00</Start>
@@ -1298,7 +1298,7 @@ Source: ../books/b07-pki/06-device-and-user-certificates.md#username-bindings-an
     <Task>
       <UID>57</UID>
       <ID>57</ID>
-      <Name>A6.2 High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID</Name>
+      <Name>AT6.2 High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID</Name>
       <OutlineNumber>7.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-08T08:00:00</Start>
@@ -1327,8 +1327,8 @@ Source: ../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: PIV sign-in reaches the pilot with bindings nobody has measured
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1343,7 +1343,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>59</UID>
       <ID>59</ID>
-      <Name>D-A7 Who writes the binding after AD</Name>
+      <Name>D-AT7 Who writes the binding after AD</Name>
       <OutlineNumber>7.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-12T17:00:00</Start>
@@ -1374,8 +1374,8 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>PKI lead (program)</Contact>
-      <Notes>Owner or approver: PKI lead (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: Issuance moves off AD CS with no writer for the binding
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1390,7 +1390,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>61</UID>
       <ID>61</ID>
-      <Name>AG6 Gate 6 — PIV binding proven on the pilot</Name>
+      <Name>ATG6 Gate 6 — PIV binding proven on the pilot</Name>
       <OutlineNumber>7.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-12T17:00:00</Start>
@@ -1430,8 +1430,8 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: Identity engineering (Identity Lifecycle plan)
+      <Contact>Identity engineering (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: Identity engineering (Identity Lifecycle &amp; Provisioning plan)
 If decided late: There's no mover workflow to prove the foundation against
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1440,7 +1440,7 @@ Source: identity-lifecycle.md</Notes>
     <Task>
       <UID>64</UID>
       <ID>64</ID>
-      <Name>A7.1 Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean</Name>
+      <Name>AT7.1 Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean</Name>
       <OutlineNumber>8.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-29T08:00:00</Start>
@@ -1473,7 +1473,7 @@ Source: ../books/guides/attribute-driven-migration.md#worked-example-one-user-an
     <Task>
       <UID>65</UID>
       <ID>65</ID>
-      <Name>AG7 Gate 7 — Mover proven across the tracks</Name>
+      <Name>ATG7 Gate 7 — Mover proven across the tracks</Name>
       <OutlineNumber>8.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-02T17:00:00</Start>
@@ -1509,8 +1509,8 @@ Source: ../books/guides/attribute-driven-migration.md#worked-example-one-user-an
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward (program)</Contact>
-      <Notes>Owner or approver: Steward (program)
+      <Contact>Steward and executive sponsor (co-signed; program)</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor (co-signed; program)
 If decided late: The pilot is called clean without a mover having been proved
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1535,7 +1535,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>68</UID>
       <ID>68</ID>
-      <Name>A8.1 Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave</Name>
+      <Name>AT8.1 Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave</Name>
       <OutlineNumber>9.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-05T08:00:00</Start>
@@ -1564,8 +1564,8 @@ Source: ../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Executive sponsor (program)</Contact>
-      <Notes>Owner or approver: Executive sponsor (program)
+      <Contact>Executive sponsor and steering committee (program)</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee (program)
 If decided late: Waves are drawn by OU, not by attribute value
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1580,7 +1580,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>70</UID>
       <ID>70</ID>
-      <Name>A8.2 Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes</Name>
+      <Name>AT8.2 Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes</Name>
       <OutlineNumber>9.3</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-04-08T08:00:00</Start>
@@ -1609,8 +1609,8 @@ Source: ../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: Wave 1 closes with no attribute gate
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1633,8 +1633,8 @@ Source: program-master-schedule.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>ISSO (Identity Lifecycle plan)</Contact>
-      <Notes>Owner or approver: ISSO (Identity Lifecycle plan)
+      <Contact>ISSO (Identity Lifecycle &amp; Provisioning plan)</Contact>
+      <Notes>Owner or approver: ISSO (Identity Lifecycle &amp; Provisioning plan)
 If decided late: Shown for reference: the HR plan's own cut-over
 Source: identity-lifecycle.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1651,8 +1651,8 @@ Source: identity-lifecycle.md</Notes>
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward (program)</Contact>
-      <Notes>Owner or approver: Steward (program)
+      <Contact>Executive sponsor and steering committee (program)</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee (program)
 If decided late: The transitional sync rules that read OU placement can't come out while any population still depends on them
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1661,7 +1661,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>74</UID>
       <ID>74</ID>
-      <Name>A8.3 Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations</Name>
+      <Name>AT8.3 Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations</Name>
       <OutlineNumber>9.7</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-09-13T08:00:00</Start>
@@ -1690,8 +1690,8 @@ Source: ../books/b02-identity/09-building-the-entra-target.md#attribute-flow-and
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Identity engineering (program)</Contact>
-      <Notes>Owner or approver: Identity engineering (program)
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
 If decided late: The OU tree still grants access through its groups
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1700,7 +1700,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>76</UID>
       <ID>76</ID>
-      <Name>A8.4 OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record</Name>
+      <Name>AT8.4 OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record</Name>
       <OutlineNumber>9.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-09-27T08:00:00</Start>
@@ -1727,7 +1727,7 @@ Source: ../books/b01-transformation-arc/04-identity-transformation.md#phase-4-le
     <Task>
       <UID>77</UID>
       <ID>77</ID>
-      <Name>AG8 Gate 8 — OU tree retired as a control</Name>
+      <Name>ATG8 Gate 8 — OU tree retired as a control</Name>
       <OutlineNumber>9.10</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-10-08T17:00:00</Start>
@@ -1757,8 +1757,8 @@ Source: ../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward (program)</Contact>
-      <Notes>Owner or approver: Steward (program)
+      <Contact>Program office (program)</Contact>
+      <Notes>Owner or approver: Program office (program)
 If decided late: AD is frozen while something still reads the OU tree
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1783,7 +1783,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>80</UID>
       <ID>80</ID>
-      <Name>D-A8 Drift severity and response times</Name>
+      <Name>D-AT8 Drift severity and response times</Name>
       <OutlineNumber>10.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-05T17:00:00</Start>
@@ -1806,7 +1806,7 @@ Source: ../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-
     <Task>
       <UID>81</UID>
       <ID>81</ID>
-      <Name>A9.1 Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue</Name>
+      <Name>AT9.1 Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue</Name>
       <OutlineNumber>10.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-01T08:00:00</Start>
@@ -1847,8 +1847,8 @@ Source: ../books/guides/attribute-driven-migration.md#stage-8-detect-and-correct
       <Duration>PT0H0M0S</Duration>
       <DurationFormat>7</DurationFormat>
       <Milestone>1</Milestone>
-      <Contact>Steward (program)</Contact>
-      <Notes>Owner or approver: Steward (program)
+      <Contact>Program office (program)</Contact>
+      <Notes>Owner or approver: Program office (program)
 If decided late: The drift-clean hold has no scan to measure it
 Source: program-master-schedule.md</Notes>
       <ConstraintType>4</ConstraintType>
@@ -1863,7 +1863,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>83</UID>
       <ID>83</ID>
-      <Name>A9.2 Limits register: dynamic group and rule limits, the 100-workflow Lifecycle Workflows budget, administrative unit limits, dynamic units' cloud availability; reviewed with every design change</Name>
+      <Name>AT9.2 Limits register: dynamic group and rule limits, the 100-workflow Lifecycle Workflows budget, administrative unit limits, dynamic units' cloud availability; reviewed with every design change</Name>
       <OutlineNumber>10.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-02-08T08:00:00</Start>
@@ -1884,7 +1884,7 @@ Source: ../books/guides/attribute-driven-migration.md#limits</Notes>
     <Task>
       <UID>84</UID>
       <ID>84</ID>
-      <Name>A9.3 A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action</Name>
+      <Name>AT9.3 A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action</Name>
       <OutlineNumber>10.5</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-09-27T08:00:00</Start>
@@ -1911,7 +1911,7 @@ Source: ../books/b01-transformation-arc/04-identity-transformation.md#verificati
     <Task>
       <UID>85</UID>
       <ID>85</ID>
-      <Name>AG9 Gate 9 — Attributes kept true</Name>
+      <Name>ATG9 Gate 9 — Attributes kept true</Name>
       <OutlineNumber>10.6</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-10-08T17:00:00</Start>

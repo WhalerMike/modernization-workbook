@@ -6856,7 +6856,7 @@
    "id": "ir-8547",
    "title": "NIST IR 8547, Transition to Post-Quantum Cryptography Standards",
    "publisher": "NIST",
-   "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+   "url": "https://csrc.nist.gov/pubs/ir/8547/final",
    "status": "active",
    "added": "2026-11-05",
    "labels": [
@@ -6866,6 +6866,10 @@
     {
      "date": "2026-11-05",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-09",
+     "change": "Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft"
     }
    ]
   },

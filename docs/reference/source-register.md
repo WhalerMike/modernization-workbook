@@ -675,7 +675,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 |---|---|---|
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
-| November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Updated: NIST published IR 8547 final in October 2026, superseding the initial public draft (source watch 2026-11-02 new publication) |
+| November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |
 | November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
 | November 5, 2026 | 449 sources | Added: cited on the narrated deck slides |

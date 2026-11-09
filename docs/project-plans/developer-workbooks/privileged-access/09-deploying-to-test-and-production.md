@@ -397,11 +397,11 @@ Get-Content "$run/groups-plan/diff.txt"
 
 ```powershell
 Connect-MgGraph -Environment $c.GraphEnvironment -TenantId $t -ClientId $app.groupsWriter -CertificateThumbprint $tp -NoWelcome
-./Invoke-PaPimGroups.ps1 -Cloud $cfg.cloud -DesiredPath "$in/prv-groups.json" -OutputPath "$run/groups-apply" -TenantId $t -Apply
+./Invoke-PaPimGroups.ps1 -Cloud $cfg.cloud -DesiredPath "$in/prv-groups.json" -OutputPath "$run/groups-apply" -TenantId $t -Apply -ActivationGateChecked
 ./Invoke-PaPimGroups.ps1 -Cloud $cfg.cloud -DesiredPath "$in/prv-groups.json" -OutputPath "$run/groups-replan" -TenantId $t
 ```
 
-**Expected:** the apply reports `0 failed`, and the plan after it reports `Plan: 0 change(s)`. In **ID Governance** > **Privileged Identity Management** > **Groups** > `PRV-T1-TeamsAdmin`, the synthetic administrator is an active member until the end date in the settings file.
+`-ActivationGateChecked` is the same statement as in Step 1.3: the group policies select `c1` too, and the apply refuses to set it without that statement. **Expected:** the apply reports `0 failed`, and the plan after it reports `Plan: 0 change(s)`. In **ID Governance** > **Privileged Identity Management** > **Groups** > `PRV-T1-TeamsAdmin`, the synthetic administrator is an active member until the end date in the settings file.
 
 Record the step's evidence. The script judges the run folder as `deploy/requirements.json` says and writes the record to `<outputRoot>/evidence`:
 

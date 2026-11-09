@@ -124,3 +124,11 @@ The Start Kit gained transaction profiling. Microsoft source opened October 29, 
 |---|---|---|---|---|
 | T1 | N1's "transaction profiles remain separate" replaced: the kit builds them with `Invoke-FMPTransactionProfile` from a team-supplied catalog and measured round trips; budgets and target round-trip times stated as program inputs | Twelve domains, paragraph after the table | corrected | examples/start-kit (PR in this change); tests/powershell, 197 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 29, 2026; README "How it builds transaction profiles" |
 | T2 | G0 checklist transaction-profile item links Book 01 Ch10 and names the kit's output (`transaction-profiles\`, `SeparationGate.csv`) | Gate G0 | added | Same; `tests/powershell/TransactionProfile.Tests.ps1` |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change on CIS's Windows Server benchmarks page. Checked November 9, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| SW1 | The Windows Server 2025 benchmark is now listed at version 2.1.1 (it was 2.1.0 in September 2026); the page gives no release date, and CIS's October and November 2026 update posts don't name it, so the text says "listed at version 2.1.1 in November 2026" | Hardening baseline | updated | c08-cis, CIS Microsoft Windows Server Benchmarks, <https://www.cisecurity.org/benchmark/microsoft_windows_server> |

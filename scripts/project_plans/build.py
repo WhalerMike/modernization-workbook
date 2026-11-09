@@ -14,7 +14,8 @@ and a backward pass), then writes, for each plan:
 Predecessors are finish-to-start unless written "ID:SS" (start-to-start);
 "+N" adds N working days of lag ("P2.11:SS+5", "P3.1+2"). A task of kind
 "external" takes its date from another plan ("ref: other-slug:TASK"), the
-way an integrated master schedule links its projects.
+way an integrated master schedule links its projects, and its owner from
+that plan's YAML.
 
     python scripts/project_plans/build.py           # write every plan
     python scripts/project_plans/build.py --check   # exit 1 if any output is stale
@@ -86,6 +87,8 @@ def validate(plan: dict) -> None:
             raise PlanError(f"{name}: {t['id']}: a gate needs owner and criteria")
         if kind == "external" and ":" not in t.get("ref", ""):
             raise PlanError(f"{name}: {t['id']}: an external milestone needs ref: slug:ID")
+        if kind == "external" and "owner" in t:
+            raise PlanError(f"{name}: {t['id']}: an external milestone takes its owner from the other plan; remove owner")
         if t.get("phase") not in plan["phases"]:
             raise PlanError(f"{name}: {t['id']}: phase {t.get('phase')!r} isn't in phases")
         for p in t.get("after", []):
@@ -132,6 +135,14 @@ def dependency_order(plans: dict[str, dict]) -> list[str]:
     return order
 
 
+def external_owner(owner: str, slug: str, plans: dict[str, dict]) -> str:
+    """An external row's owner: the owner in the other plan's YAML, with the plan it belongs to."""
+    where = "program" if slug == "program-master-schedule" else f"{plans[slug]['short_title']} plan"
+    if owner.endswith(")"):
+        return f"{owner[:-1]}; {where})"
+    return f"{owner} ({where})" if owner else where
+
+
 # ------------------------------------------------------------------ CPM
 
 
@@ -167,6 +178,7 @@ def schedule(plan: dict, plans: dict[str, dict]) -> None:
             t["_es"] = other[ref]["_es"] if edge else other[ref]["_ef"]
             t["_ref_title"] = plans[slug]["short_title"]
             t["_ref_name"] = other[ref]["name"]
+            t["owner"] = external_owner(other[ref].get("owner", ""), slug, plans)
         else:
             es = 0
             for p, typ, lag in t["_preds"]:

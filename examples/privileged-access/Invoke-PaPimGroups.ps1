@@ -7,6 +7,8 @@
     Writes findings.json, plan.json, diff.txt and manifest.json to -OutputPath. Without -Apply
     nothing is sent to the tenant beyond the declared GETs. With -Apply, the plan's guards must all
     pass, and each request goes through a declared write call with its least-privileged permission.
+    A plan that selects the authentication context c1 also needs -ActivationGateChecked: a person's
+    statement that c1's Conditional Access policy is On (Chapter 03), which v1.0 can't read.
 .EXAMPLE
     # Lab 1: the fictional tenant, no sign-in, dry run.
     ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
@@ -22,6 +24,7 @@ param(
     [datetime]$AsOf = [datetime]::UtcNow,
     [int]$MaxRemovals = 5,
     [switch]$Apply,
+    [switch]$ActivationGateChecked,
     [string]$TenantId
 )
 $ErrorActionPreference = 'Stop'
@@ -40,7 +43,7 @@ $findings += @(Test-PaPgTenant -State $state -Config $config -PolicySetting $pol
 $plan = New-PaPimGroupPlan -State $state -Config $config -PolicySetting $policy -Cloud $Cloud -AsOf $AsOf
 
 $applyClient = if ($Apply) { $client } else { New-PaPgClient -Cloud $Cloud -Task 'pim-groups-apply' -Invoke { throw 'A dry run sends nothing' } }
-$run = Invoke-PaPgPlan -Plan $plan -Config $config -Client $applyClient -Apply:$Apply -MaxRemovals $MaxRemovals
+$run = Invoke-PaPgPlan -Plan $plan -Config $config -Client $applyClient -Apply:$Apply -MaxRemovals $MaxRemovals -ActivationGateChecked:$ActivationGateChecked
 
 $diff = @("# PIM for Groups plan, cloud $Cloud, $($plan.Operations.Count) change(s), $(if ($Apply) { 'applied' } else { 'dry run: nothing sent' })")
 $diff += @($plan.Operations | ForEach-Object { $_.Diff })
@@ -53,6 +56,7 @@ Write-Output ("PIM for Groups: {0} Finding, {1} Warn, {2} Info" -f (& $count 'Fi
 $byKind = $plan.Operations | Group-Object { $k = $_.Op.Split('-')[0]; if ($k -eq 'policy') { 'policy rule' } else { $k } } | Sort-Object Name | ForEach-Object { "$($_.Count) $($_.Name)" }
 Write-Output ("Plan: {0} change(s){1}" -f $plan.Operations.Count, $(if ($byKind) { " ($($byKind -join ', '))" } else { '' }))
 if ($run.Guards.Count) { Write-Output "Guards: $($run.Guards.Count) failed; -Apply would refuse (see diff.txt)" } else { Write-Output 'Guards: all passed' }
+if ($plan.NeedsActivationGate -and -not $ActivationGateChecked) { Write-Output 'Activation gate: the plan selects an authentication context; -Apply also needs -ActivationGateChecked' }
 if ($Apply) { Write-Output ("Applied: {0} sent, {1} failed" -f @($run.Results | Where-Object Status -EQ 'Sent').Count, @($run.Results | Where-Object Status -Like 'Failed*').Count) }
 else { Write-Output 'Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply' }
 Write-Output "Written to $OutputPath (manifest.json lists every request and file hash)"

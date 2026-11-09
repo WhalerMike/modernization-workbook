@@ -250,7 +250,7 @@ def render(entries: list[dict], plans: list[dict], titles: dict[str, str]) -> st
         "choice here unless a workbook decision above settles the workbook's own default; that decision is named in the "
         "last column. Each plan's **Decision points** section has the decide-by week and float, and the plan's YAML in "
         "`data/project-plans/` is where each one is defined. IDs repeat across plans, so cite a plan decision with its "
-        "plan, for example *Non-Person Identity Modernization, D-N2*.",
+        "plan, for example *Non-Person Identity Modernization, D-NP2*.",
         "",
     ]
     settled_by = {e["plan"]: e["id"] for e in entries if e.get("plan") and e["status"] != "superseded"}

@@ -84,3 +84,13 @@ A one-line link was added at the end of "What changes for the agency". It points
 | Before | After | Check |
 |---|---|---|
 | Date table had no December 7, 2026 row | Adds a December 7, 2026 row for the VDR and VER rules, linking Book 14 Chapter 02 | Decision of Nov 8, 2026; Book 14 Chapter 02 (FedRAMP NTC-0014: VDR and VER rules brought forward to December 7, 2026) |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| FedRAMP/rules release 2026.11.02.01 (commit 64fa769, Nov 2; release published Nov 5, 2026) added the definition FRD-MAS ("The boundary of the assessment and FedRAMP Certification for the cloud service offering..."). Whole-file count re-run on the new JSON: "authorization boundary" 0, "boundary" 9 (8 in 2026.10.13.01, commit 0735135). Rule-by-rule diff of 2026.10.13.01 against 2026.11.02.01: no change to the MAS-CSO-IIR, -FLO or -MDI statements or to the AGU, CCM, CDS, CMU, VDR or SCN rules cited here (MAS-CSO-MDI and -TPR changed terms only) | Current release and count updated (2026.11.02.01; nine occurrences); a bullet for the new definition added; footnote [^c03-crjson] updated |
+| MAS rules page (www.fedramp.gov/2026/reference/minimum-assessment-scope/): changelogs still dated 2026-10-13 and 2026-06-24; quoted text of MAS-CSO-IIR and its notes, the MAS-CSO-FLO note and MAS-CSO-MDI unchanged | No change |
+| FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged; MSO365MTA still FedRAMP In Process, Class D; 130 listings with a populated `trust_center` | No change: the chapter's counts are dated October 21, 2026 |

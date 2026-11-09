@@ -92,3 +92,11 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | CF-2 | LDAPS: removed "the Domain Controller template already has the right properties"; LDAPS uses the DC certificate from the Kerberos Authentication copy; Microsoft's LDAPS article uses the Domain Controller template only as its example | LDAPS | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates>; <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> |
 | CF-3 | Flagged a documented difference: the LDAPS article requires a Schannel-provider key, the Kerberos Authentication copy guidance sets a Key Storage Provider; program rule is an ldp.exe bind test on port 636 before unpublishing superseded templates, with a dedicated NTDS-store certificate as the recorded exception | LDAPS | verified (both requirements as stated by Microsoft); test step is program design | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates>; <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> |
 | CF-4 | Other server certificates: renewal through CyberArk Certificate Manager per Chapter 04 (was "AD CS auto-enrollment or manual enrollment"); cross-reference now Chapter 04 | Other server certificates | restated-as-design | Chapter 04 issuer decision |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Vendor landing page retitled "Palo Alto Networks Certificate Manager - Self-Hosted Introduction" in version 26.2; discovery and renewal before expiry unchanged | `[^c07-cyberark-names]` gives the 26.1 address and the 26.2 title; text unchanged |

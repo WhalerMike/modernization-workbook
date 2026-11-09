@@ -123,3 +123,11 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | AU-7 row in the controls table (item 599) | Controls this chapter makes assessable | verified (control text); restated-as-design (implementation and evidence) | NIST OSCAL SP 800-53 Rev. 5 catalog; Chapter 12 for the no-alteration fact |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Syslog channel page (docs.venafi.com, documentation 26.2, now branded Palo Alto Networks): "Starting in Trust Protection Foundation 26.2, the certificate is checked against the Host value exactly as you configured it"; dNSName for a host name, iPAddress for an address; earlier versions used the IP address the Host resolved to | Sentence on the collector certificate rewritten for 26.2 and the upgrade effect; footnote [^clm-syslog] updated |

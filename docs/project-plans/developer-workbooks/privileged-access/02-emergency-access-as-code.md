@@ -244,7 +244,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   `ea01` passes. `ea02` fails five ways: PA-EA-02 (it's on `contoso.example`), PA-EA-05 (its Global Administrator assignment ends on December 31), PA-EA-06 (a phone method), PA-EA-07 (not in the exclusion group) and PA-EA-09 (last validated May 1). PA-EA-08 names three enforced policies, `CA001-All-Block-legacy-authentication`, `CA004-Admins-Require-compliant-device` and `PIM-Activation-c1`, and reports the report-only `CA090-Emergency-accounts-Report-sign-ins` as Info. PA-EA-10 names `carl.ops@contoso.example`, who is in the exclusion group and shouldn't be.
+   `ea01` passes. `ea02` fails five ways: PA-EA-02 (it's on `contoso.example`), PA-EA-05 (its Global Administrator assignment ends on December 31), PA-EA-06 (a phone method), PA-EA-07 (not in the exclusion group) and PA-EA-09 (last validated May 1). PA-EA-08 names three enforced policies, `CA001-AllUsers-BlockLegacyAuth`, `CA004-Admins-RequireCompliantDevice` and `PIM-Activation-c1`, and reports the report-only `CA090-AllUsers-ReportOnly-CoverageProbe` as Info. PA-EA-10 names `carl.ops@contoso.example`, who is in the exclusion group and shouldn't be.
 
 5. **Match the same export with the example's rule:**
 

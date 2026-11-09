@@ -1,11 +1,11 @@
 ﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks
 1,Epic,,Supply Chain & SBOM: Phase 0 — Charter,"Phase 0 — Charter of the sample plan Supply Chain & Software Bill of Materials: From Inventory to Proof.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/supply-chain-sbom.html",fmw,fmw-supply-chain-sbom,phase,,,,2027-01-04,2027-02-03,,,,
-2,Task,1,X-G0 Program G0: Ready to Plan,"X-G0 · External · owner or approver: Steward
+2,Task,1,X-G0 Program G0: Ready to Plan,"X-G0 · External · owner or approver: Steward (backup: executive sponsor; program)
 Duration 0 working days · end of wk 4 · total float 3 d · predecessors: —
 If decided late: The questionnaire should land before it; its answers feed the program's planning
 Comes from program-master-schedule:G0 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html#why-the-questionnaire-comes-first",fmw,fmw-supply-chain-sbom,fmw-id-x-g0,external,owner-steward,,2027-02-01,2027-01-29,16,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html#why-the-questionnaire-comes-first",fmw,fmw-supply-chain-sbom,fmw-id-x-g0,external,owner-steward-backup-executive-sponsor-program,,2027-02-01,2027-01-29,16,,,
 3,Task,1,"S0.1 Charter drafted: pilot system, supply chain team, risk-acceptance owner, risk-based timelines","S0.1 · Task · owner or approver: CISO
 Duration 8 working days · wk 1–2 · total float 4 d · predecessors: —
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/07-supply-chain-risk-management.html#who-owns-what",fmw,fmw-supply-chain-sbom,fmw-id-s0.1,task,owner-ciso,,2027-01-04,2027-01-13,4,5,,
@@ -99,11 +99,11 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compl
 29,Task,24,S3.3 Each provider's VDR and VER status checked after FedRAMP's corrective-action window closes,"S3.3 · Task · owner or approver: ISSO
 Duration 3 working days · wk 10 · total float 7 d · predecessors: S0.2 (SS) +45 d, S2.4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/02-the-federal-clock.html#the-dates-still-ahead",fmw,fmw-supply-chain-sbom,fmw-id-s3.3,task,owner-isso,,2027-03-08,2027-03-10,32,,,
-30,Task,24,X-G1 Program G1: Foundation Complete,"X-G1 · External · owner or approver: Steward
+30,Task,24,X-G1 Program G1: Foundation Complete,"X-G1 · External · owner or approver: Steward (program)
 Duration 0 working days · end of wk 8 · total float 13 d · predecessors: —
 If decided late: The register's G1 re-verification moves with it
 Comes from program-master-schedule:G1 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/02-the-federal-clock.html#how-the-program-keeps-the-clock",fmw,fmw-supply-chain-sbom,fmw-id-x-g1,external,owner-steward,,2027-03-01,2027-02-26,31,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/02-the-federal-clock.html#how-the-program-keeps-the-clock",fmw,fmw-supply-chain-sbom,fmw-id-x-g1,external,owner-steward-program,,2027-03-01,2027-02-26,31,,,
 31,Task,24,S3.4 Dated register re-verified at the program's G1,"S3.4 · Task · owner or approver: Program office
 Duration 2 working days · wk 9 · total float 13 d · predecessors: X-G1, S1.4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/02-the-federal-clock.html#how-the-program-keeps-the-clock",fmw,fmw-supply-chain-sbom,fmw-id-s3.4,task,owner-program-office,,2027-03-01,2027-03-02,32,,,
@@ -113,11 +113,11 @@ Criteria: At least one finding tracked to closure on its risk-based deadline, wi
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/07-supply-chain-risk-management.html#who-owns-what",fmw,fmw-supply-chain-sbom,fmw-id-sg3,gate,owner-ciso,,2027-03-15,2027-03-12,42,,,
 33,Epic,,Supply Chain & SBOM: Phase 4 — Evidence,"Phase 4 — Evidence of the sample plan Supply Chain & Software Bill of Materials: From Inventory to Proof.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/supply-chain-sbom.html",fmw,fmw-supply-chain-sbom,phase,,,,2027-01-28,2027-03-19,,,,
-34,Task,33,X-CM1 Evidence contract published,"X-CM1 · External · owner or approver: Continuous Monitoring project
+34,Task,33,X-CM1 Evidence contract published,"X-CM1 · External · owner or approver: CISO (Continuous Monitoring & Evidence Fabric plan)
 Duration 0 working days · end of wk 4 · total float 27 d · predecessors: —
 If decided late: Supply chain records have no contract to emit to
 Comes from continuous-monitoring:MG1 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html#phases-and-success-measures",fmw,fmw-supply-chain-sbom,fmw-id-x-cm1,external,owner-continuous-monitoring-project,,2027-01-28,2027-01-27,35,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html#phases-and-success-measures",fmw,fmw-supply-chain-sbom,fmw-id-x-cm1,external,owner-ciso-continuous-monitoring-evidence-fabric-plan,,2027-01-28,2027-01-27,35,,,
 35,Task,33,"S4.1 SBOMs, reports and VEX statements signed, stored immutably and emitted in the contract's shape","S4.1 · Task · owner or approver: Engineering teams
 Duration 5 working days · wk 8 · total float 10 d · predecessors: SG2, X-CM1, D-S5
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/07-supply-chain-risk-management.html#the-evidence-pipeline",fmw,fmw-supply-chain-sbom,fmw-id-s4.1,task,owner-engineering-teams,,2027-02-22,2027-02-26,41,,,
@@ -135,11 +135,11 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compl
 39,Task,33,S4.4 Clauses written into the next acquisitions,"S4.4 · Task · owner or approver: Contracting officer
 Duration 25 working days · wk 6–10 · total float 5 d · predecessors: D-S7
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/07-supply-chain-risk-management.html#supplier-disclosure",fmw,fmw-supply-chain-sbom,fmw-id-s4.4,task,owner-contracting-officer,,2027-02-08,2027-03-12,42,,,
-40,Task,33,X-CM4 Package artifacts generated from the stream,"X-CM4 · External · owner or approver: Continuous Monitoring project
+40,Task,33,X-CM4 Package artifacts generated from the stream,"X-CM4 · External · owner or approver: CISO (Continuous Monitoring & Evidence Fabric plan)
 Duration 0 working days · end of wk 10 · total float 4 d · predecessors: —
 If decided late: Supply chain findings can't appear in a generated POA&M; Gate 4 waits
 Comes from continuous-monitoring:MG4 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html#phases-and-success-measures",fmw,fmw-supply-chain-sbom,fmw-id-x-cm4,external,owner-continuous-monitoring-project,,2027-03-09,2027-03-08,41,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/12-governance-at-scale.html#phases-and-success-measures",fmw,fmw-supply-chain-sbom,fmw-id-x-cm4,external,owner-ciso-continuous-monitoring-evidence-fabric-plan,,2027-03-09,2027-03-08,41,,,
 41,Task,33,S4.5 Pilot findings in the generated POA&M; a closure record per SR control naming what closes it,"S4.5 · Task · owner or approver: ISSO
 Duration 5 working days · wk 11 · total float 0 · predecessors: S4.1, S3.1, X-CM4
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b14-compliance/07-supply-chain-risk-management.html#the-closure-record",fmw,fmw-supply-chain-sbom,fmw-id-s4.5,task,owner-isso,critical-path,2027-03-15,2027-03-19,42,,,

@@ -108,11 +108,11 @@ tasks:
   - {id: EG1, kind: gate, phase: 1, name: "Gate 1 — Policy library authored and reviewed", after: [E1.3, E1.4, E1.5], owner: "CISO / ISSO",
      criteria: "A decision record for every setting; every required setting owned by exactly one policy; peer review signed off; lab devices report Succeeded; pilot devices co-managed and syncing",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate"}
-  - {id: X-G1, kind: external, phase: 1, name: "Program G1 — Foundation Complete", ref: "program-master-schedule:G1", after: [E1.3], owner: "Steward",
+  - {id: X-G1, kind: external, phase: 1, name: "Program G1 — Foundation Complete", ref: "program-master-schedule:G1", after: [E1.3],
      late: "The pilot can't start: groups, AUs and the Conditional Access baseline aren't in place",
      source: "program-master-schedule.md"}
   # ------------------------------------------------- Phase 2 — pilot
-  - {id: X-D06, kind: external, phase: 2, name: "Program decision D06: device pattern for each pilot cohort", ref: "program-master-schedule:D06", owner: "Program office",
+  - {id: X-D06, kind: external, phase: 2, name: "Program decision D06: device pattern for each pilot cohort", ref: "program-master-schedule:D06",
      late: "Pilot devices can't move, and this plan's pilot waits",
      source: "program-master-schedule.md"}
   - {id: D-E7, kind: decision, phase: 2, name: "Cut date for each hybrid-joined pilot device", after: [X-D06], owner: "Executive sponsor and CIO",
@@ -134,7 +134,7 @@ tasks:
   - {id: EG2, kind: gate, phase: 2, name: "Gate 2 — Pilot clean", after: [E2.5, E2.4, E2.8, D-E7], owner: "Endpoint engineering",
      criteria: "No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; an NTLM restriction plan per application",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate"}
-  - {id: X-G2, kind: external, phase: 2, name: "Program G2 — Pilot Clean", ref: "program-master-schedule:G2", after: [EG2], owner: "Steward and executive sponsor",
+  - {id: X-G2, kind: external, phase: 2, name: "Program G2 — Pilot Clean", ref: "program-master-schedule:G2", after: [EG2],
      late: "The workload waves can't start",
      source: "program-master-schedule.md"}
   # ------------------------------------------------- Phase 3 — workload cutover
@@ -152,13 +152,13 @@ tasks:
      source: "../books/b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation"}
   - {id: E3.8, phase: 3, name: "Residual cleanup: remaining links disabled after 7 clean days; tattooed preference items cleared or owned", dur: 10, after: [E3.4], owner: "Endpoint engineering",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-6-verification-and-residual-cleanup"}
-  - {id: X-P35, kind: external, phase: 3, name: "Program P3.5: GPO links off migrated OUs after 7 clean days", ref: "program-master-schedule:P3.5", after: [E3.8], owner: "Platform teams (program)",
+  - {id: X-P35, kind: external, phase: 3, name: "Program P3.5: GPO links off migrated OUs after 7 clean days", ref: "program-master-schedule:P3.5", after: [E3.8],
      late: "The 90-day hold on the disabled GPOs starts late, and so does their deletion",
      source: "program-master-schedule.md"}
   - {id: EG3, kind: gate, phase: 3, name: "Gate 3 — Workloads cut over", after: [E3.8, E3.6, E3.7], owner: "Endpoint engineering",
      criteria: "Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; evidence filed",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate"}
-  - {id: X-G3, kind: external, phase: 3, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3", owner: "Executive sponsor and steering committee",
+  - {id: X-G3, kind: external, phase: 3, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3",
      late: "Formal retirement and NTLM stage 3 can't close",
      source: "program-master-schedule.md"}
   # ------------------------------------------------- Phase 4 — servers under Azure Arc
@@ -176,13 +176,13 @@ tasks:
      source: "../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal"}
   - {id: E4.5, phase: 4, name: "Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists", dur: 10, after: [E4.2], owner: "Server infrastructure",
      source: "../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline"}
-  - {id: E4.6, phase: 4, name: "Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist", dur: 5, owner: "Server infrastructure",
+  - {id: E4.6, phase: 4, name: "Any Windows Server 2016 exception hosts: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist; each with a signed risk acceptance and a retirement date", dur: 5, owner: "Server infrastructure",
      source: "../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates"}
   - {id: E4.7, phase: 4, name: "Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set", dur: 4, after: [E4.3, E4.4], owner: "Server infrastructure",
      source: "../books/b05-devices/09-servers-under-azure-arc.md#connect"}
   - {id: E4.8, phase: 4, name: "Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Servers Plan 2 onboarded", dur: 4, after: [E4.7, E4.5], owner: "Server infrastructure",
      source: "../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline"}
-  - {id: X-P113, kind: external, phase: 4, name: "Pilot servers connected through Arc with machine configuration applied (program P1.13)", ref: "program-master-schedule:P1.13", after: [E4.8], owner: "Platform teams (program)",
+  - {id: X-P113, kind: external, phase: 4, name: "Pilot servers connected through Arc with machine configuration applied (program P1.13)", ref: "program-master-schedule:P1.13", after: [E4.8],
      late: "The program's pilot has no governed servers, and the Data Platform plan's pilot SQL Server host has no Arc pattern to follow",
      source: "program-master-schedule.md"}
   - {id: E4.9, phase: 4, name: "Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)", dur: 3, after: [E4.8], owner: "Server infrastructure",
@@ -196,13 +196,13 @@ tasks:
   - {id: E4.13, phase: 4, name: "Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported", dur: 5, after: [E4.10], owner: "Server infrastructure",
      source: "../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server-estate"}
   - {id: EG4, kind: gate, phase: 4, name: "Gate 4 — Servers under Arc", after: [E4.10, E4.11, E4.12, E4.13, E4.6], owner: "CISO / ISSO",
-     criteria: "Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage; rollback rehearsed",
+     criteria: "Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; no Windows Server 2016 host remains, or each one is a recorded exception with ESU coverage, a signed risk acceptance and a retirement date; rollback rehearsed",
      source: "../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes"}
-  - {id: X-P37, kind: external, phase: 4, name: "Every server Arc-connected or excepted (program P3.7)", ref: "program-master-schedule:P3.7", after: [EG4], owner: "Platform teams (program)",
+  - {id: X-P37, kind: external, phase: 4, name: "Every server Arc-connected or excepted (program P3.7)", ref: "program-master-schedule:P3.7", after: [EG4],
      late: "The program's G3 fails its every-server-Arc-connected-or-excepted criterion",
      source: "program-master-schedule.md"}
   # ------------------------------------------------- Phase 5 — formal retirement
-  - {id: X-D08, kind: external, phase: 5, name: "Program decision D08: end dates for legacy authentication and NTLM", ref: "program-master-schedule:D08", owner: "Authorizing official",
+  - {id: X-D08, kind: external, phase: 5, name: "Program decision D08: end dates for legacy authentication and NTLM", ref: "program-master-schedule:D08",
      late: "NTLM stage 3 has no date for application owners to plan against",
      source: "program-master-schedule.md"}
   - {id: E5.1, phase: 5, name: "Migrated GPOs disabled and held 90 days as the rollback net", dur: 64, after: [EG3, X-P35], owner: "Endpoint engineering",
