@@ -69,3 +69,11 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | CF-1 | Step 24 lists the same five CRL error codes as Chapter 08 (AADSTS220501, 500173, 500179, 2205012, 2205014); `[^aA-crl]` updated | A.2 #24 | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list#crl-error-reference>; <https://learn.microsoft.com/troubleshoot/entra/entra-id/app-integration/error-code-aadsts220501-unable-to-download-certificate-revocation-list> |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Certificate Connector overview, section "Connector status" (rewritten; page updated Oct 26, 2026): statuses are now Active, Warning (can issue, issue needs attention) and Action required (can't issue, or disconnected), with health messages for CA connectivity, disconnection, issuing and revocation permissions and template configuration; the page no longer describes Warning and Error statuses for deprecated versions | updated: step 19 alerts on Warning or Action required; done-when reads Status Active |

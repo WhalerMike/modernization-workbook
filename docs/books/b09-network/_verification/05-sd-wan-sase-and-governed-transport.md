@@ -151,3 +151,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 |---|---|---|
 | the boundary, flow and malware closures come from the services above it. | the boundary, flow and malware protections come from the services above it. | no source change |
 | A paper that credits the governor with closing controls owes the reader | A paper that credits the governor with providing controls owes the reader | no source change |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Cisco advisory cisco-sa-sdwan-rpa-EHchtZk version 2.1 (October 28, 2026) adds a Talos blog link; still limited exploitation; Validator and the FedRAMP deployment type still listed. KEV catalog 2026.11.06 adds no Cisco SD-WAN entries after September 30 | footnote version and date updated (was version 2.0, June 16, 2026); no change to the text |

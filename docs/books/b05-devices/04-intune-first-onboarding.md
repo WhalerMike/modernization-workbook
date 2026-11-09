@@ -120,7 +120,7 @@ Microsoft now ships two Windows provisioning solutions. Windows Autopilot device
 | User-driven | Yes | Yes |
 | Pre-provisioned and self-deploying | No | Yes |
 | Windows 10 | No | Yes |
-| More than 10 apps or 10 PowerShell scripts during setup | No | Yes |
+| More than 25 apps or 10 PowerShell scripts during setup | No | Yes |
 | Block the desktop until user-based configuration is applied | No | Yes |
 | What admins configure | Device preparation policy, plus a device security group owned by the Intune Provisioning Client | Deployment profile, plus the Enrollment Status Page |
 | GCC High and DoD | Yes | No |
@@ -181,7 +181,7 @@ The Enrollment Status Page (ESP) shows provisioning progress and can block the d
 
 For Intune-first, configure the ESP to block device use until the security-critical items are installed: the compliance-relevant configuration, Defender, BitLocker and any agent the validation phase checks for. Use the **Selected** blocking-apps list rather than **All**, so that a non-critical app's failure doesn't strand a device, and don't let users bypass the ESP on an installation error for the security-critical list. The ESP list filters which assigned apps are tracked; it doesn't itself assign them.[^c04-esp]
 
-Device preparation doesn't use the ESP. It applies only the apps and scripts selected in its policy during setup (up to 10 of each) and syncs policies assigned to the device group without tracking whether they've applied by the time the desktop appears.[^c04-ap-overview] On that path, the validation phase, not the setup screen, is what confirms the device reached its baseline.
+Device preparation doesn't use the ESP. It applies only the apps and scripts selected in its policy during setup (up to 25 apps and 10 PowerShell scripts) and syncs policies assigned to the device group without tracking whether they've applied by the time the desktop appears.[^c04-ap-overview][^c04-ap-compare] On that path, the validation phase, not the setup screen, is what confirms the device reached its baseline.
 
 ## The compliance and configuration baseline
 
@@ -273,7 +273,7 @@ The keys these checks join on, and a read-only script that finds three of the fi
 [^c04-mde-ssm]: Microsoft Learn, "Learn how to use Intune endpoint security policies to manage Microsoft Defender for Endpoint on devices that are not enrolled with Intune," <https://learn.microsoft.com/intune/device-security/microsoft-defender/security-settings-management> (accessed Oct 21, 2026).
 [^c04-ap-registration]: Microsoft Learn, "Windows Autopilot registration overview," <https://learn.microsoft.com/autopilot/registration-overview> (accessed Oct 20, 2026).
 [^c04-ap-faq]: Microsoft Learn, "Windows Autopilot device preparation FAQ," <https://learn.microsoft.com/autopilot/device-preparation/faq> (accessed Oct 20, 2026).
-[^c04-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Oct 20, 2026).
+[^c04-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Nov 9, 2026).
 [^c04-intune-gov]: Microsoft Learn, "Microsoft Intune Government Service overview," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026).
 [^c04-ap-overview]: Microsoft Learn, "Overview of Windows Autopilot device preparation," including section "Cloud environments," <https://learn.microsoft.com/autopilot/device-preparation/overview> (accessed Nov 9, 2026).
 [^c04-ap-assoc]: Microsoft Learn, "Overview of Windows Autopilot device association" (how device association works; key capabilities) and "Windows Autopilot device preparation: What's new" (device association, added August 27, 2026), <https://learn.microsoft.com/autopilot/device-preparation/device-association/overview>, <https://learn.microsoft.com/autopilot/device-preparation/whats-new> (accessed Oct 22, 2026).

@@ -158,3 +158,11 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | Ansible documentation for the `infoblox.nios_modules` collection now redirects (301) to docs.ansible.com/projects/ansible/latest/...; the new address answers 200 | `[^aA-ansible]` URL updated |
+
+## Source watch, November 9, 2026 (issue #299)
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| BIMI Internet-Draft revised to -15 (October 31, 2026, expires May 4, 2027); still an individual draft with no formal standing; DMARC enforcement on organizational and From domains, default._bimi selector and optional VMC/CMC evidence unchanged | updated: revision and date in text and footnote (was revision 14, May 2026) |
