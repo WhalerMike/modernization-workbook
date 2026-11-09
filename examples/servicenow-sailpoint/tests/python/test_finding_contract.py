@@ -97,6 +97,18 @@ def test_vacuous_intended_state_warns():
     assert "Book 13 routes this class to a person" in r["warnings"][0]
 
 
+@pytest.mark.parametrize("drift", ["missing_identity", "orphan_account", "unauthorized_write"])
+def test_human_decision_classes(drift):
+    assert fc.HUMAN_DECISION_CLASSES == {"missing_identity", "orphan_account", "unauthorized_write"}
+    r = fc.validate({**GOOD, "drift_class": drift, "intended_state": {}})
+    assert "Book 13 routes this class to a person" in r["warnings"][0]
+
+
+def test_machine_class_gets_no_human_note():
+    r = fc.validate({**GOOD, "drift_class": "stale_access", "intended_state": {}})
+    assert "Book 13 routes" not in r["warnings"][0]
+
+
 def test_due_at_follows_the_tempo():
     now = datetime(2026, 11, 1, 12, tzinfo=timezone.utc)
     assert fc.due_at("P1", now) == now
