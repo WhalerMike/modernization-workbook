@@ -38,7 +38,7 @@ This is where Ansible earns its keep. Because the inventory comes from the C M D
 
 ## Slide 10 — Tier 2: Unix, Linux beyond Arc, and network gear
 
-A good share of a federal estate sits outside Arc's support list: the Unix systems, and several older Linux releases that stop getting new agent versions in late 2026. Those are tier two, and Ansible reaches them over S S H. Two cautions. Privilege escalation can't be narrowed to specific commands, so that account has broad rights and has to be governed like a privileged identity. And check mode is only a simulation, so each drift check should stand on its own. Network gear is the easy win. A read-only facts run gives you the model, serial and version of every device, with nothing installed. Where a vendor controller exists, it owns the configuration.
+A good share of a federal estate sits outside Arc's support list: the Unix systems, and several older Linux releases that got their last new agent version in October 2026. Those are tier two, and Ansible reaches them over S S H. Two cautions. Privilege escalation can't be narrowed to specific commands, so that account has broad rights and has to be governed like a privileged identity. And check mode is only a simulation, so each drift check should stand on its own. Network gear is the easy win. A read-only facts run gives you the model, serial and version of every device, with nothing installed. Where a vendor controller exists, it owns the configuration.
 
 ## Slide 11 — VMware, Infoblox, Windows and cloud VMs: who owns what
 

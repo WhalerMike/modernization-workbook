@@ -24,25 +24,31 @@ VMware through vCenter, and
 AWS and Google Cloud instances.
 
 6
-00:00:18.287 --> 00:00:24.476
-Two dates matter: Windows Server 2012
-stops getting new agents in November 2026,
+00:00:18.287 --> 00:00:25.034
+Two dates matter: Windows Server 2012 and
+several older Linux releases got their
 
 7
-00:00:24.476 --> 00:00:27.476
-and the SCVMM integration is retiring.
+00:00:25.034 --> 00:00:28.558
+last new agent version,
+1.69, in October 2026,
 
 8
-00:00:27.476 --> 00:00:32.025
+00:00:28.558 --> 00:00:34.901
+while 2012 R2 still gets new versions,
+and the SCVMM integration is retiring.
+
+9
+00:00:34.901 --> 00:00:39.450
 Azure VMs don't need Arc at all,
 because they're already Azure resources.
 
-9
-00:00:32.025 --> 00:00:36.850
+10
+00:00:39.450 --> 00:00:44.275
 And Unix, mainframes, network devices
 and sealed appliances are out.
 
-10
-00:00:36.850 --> 00:00:39.770
+11
+00:00:44.275 --> 00:00:47.210
 So here's how Arc makes a
 server attribute-driven.

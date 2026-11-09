@@ -156,18 +156,18 @@ And FedRAMP's definition of federal customer data excludes the analytics and tel
   tag(s, "What");
   cards(s, "Rules", [
     ["FaLandmark", "Certified, Classes A to D", HEX.navy, HEX.navyTint, ["Class C includes the Moderate baseline", "Class D includes the High baseline", "Agencies authorize at the security category they deem appropriate"]],
-    ["FaFileShield", "No provider boundary", HEX.teal, HEX.tealTint, ["\"Authorization boundary\": zero times in ruleset 2026.10.13.01", "Families tagged boundary: MAS, CMU, VDR, CDS", "Security category may vary by resource"]],
+    ["FaFileShield", "No provider boundary", HEX.teal, HEX.tealTint, ["\"Authorization boundary\": zero times in ruleset 2026.11.02.01", "Families tagged boundary: MAS, CMU, VDR, CDS", "Security category may vary by resource"]],
     ["FaArrowsRotate", "Notice, in business days", HEX.amber, HEX.amberTint, ["Routine recurring: no notice", "Adaptive: within 10 after finishing", "Transformative: 30 and 10 before, 5 after", "Class change: a new assessment"]],
   ], 13);
   callout(s, "Vocabularies", 5.3, 1.2, "FaBook", HEX.navy, "Two vocabularies for years: ",
     "adoption is mandatory January 1, 2027; new Rev5 requests stop June 11, 2027; existing Rev5 certifications end \"likely no later than 2029.\" Rev5 packages describe boundaries; 20x packages describe scope.");
-  sources(s, "Sources: FedRAMP Consolidated Rules for 2026 — ruleset 2026.10.13.01, Minimum Assessment Scope, Significant Change Notification, Important Dates; Notices NTC-0004 and NTC-0013. Book 10, Chapter 03.");
+  sources(s, "Sources: FedRAMP Consolidated Rules for 2026 — ruleset 2026.11.02.01, Minimum Assessment Scope, Significant Change Notification, Important Dates; Notices NTC-0004 and NTC-0013. Book 10, Chapter 03.");
   narrate(s,
 `What changed at FedRAMP? Three things.
 
 First, services are now certified, in Classes A to D. FedRAMP's February 2026 notice says Class C includes the current Moderate baseline and Class D the current High, and that agencies may authorize at any security category they deem appropriate.
 
-Second, the rules have no provider authorization boundary. In the machine-readable ruleset, version 2026.10.13.01, that phrase occurs zero times. The word boundary appears eight times, four of them as a tag on rule families: minimum assessment scope, cryptographic module use, vulnerability detection and response, and certification data sharing. Security category may vary by resource.
+Second, the rules have no provider authorization boundary. In the machine-readable ruleset, version 2026.11.02.01, the current release, that phrase occurs zero times. The word boundary appears nine times, four of them as a tag on rule families: minimum assessment scope, cryptographic module use, vulnerability detection and response, and certification data sharing. Security category may vary by resource.
 
 Third, change is notified, not re-approved, and the deadlines are in business days. Routine recurring changes need no notice. Adaptive changes, within 10 business days after finishing. Transformative changes, initial plans 30 business days before.
 
@@ -329,7 +329,7 @@ The pipeline is inside the boundary question too. Terraform state is sensitive d
   const gates = [
     ["Placement", "the system owner decides; an unrecorded subscription makes an authorized system unauthorized", HEX.teal],
     ["Risk acceptance", "the authorizing official only; it can't be delegated, and the role is for government personnel", HEX.navy],
-    ["The contract", "the contracting officer; customers must buy a GCC SKU to be covered by the GCC authorization", HEX.red],
+    ["The contract", "the contracting officer; on Oct. 21, 2026 the GCC listing said a GCC SKU is needed for coverage; confirm it in the package", HEX.red],
   ];
   gates.forEach((c, i) => {
     const x = 0.6 + i * 4.1;
@@ -343,7 +343,7 @@ The pipeline is inside the boundary question too. Terraform state is sensitive d
 
 The authorizing official determines the boundary, signs every documented exception and decides whether a change requires reauthorization. Under SP 800-37, explicit risk acceptance can't be delegated, and for federal agencies the role is assigned to government personnel only. The system owner is the boundary owner: keeper of the boundary record and the package, and the decider on placing a new workload, because vending an unrecorded subscription is the cheapest way to turn an authorized system into an unauthorized one. The CISO sets control requirements, and the ISSO reads provider change notices against the record.
 
-The platform team builds the hierarchy, policy, vending and probe, but doesn't decide whether a gap is acceptable. And the contract is a boundary decision: the GCC listing says customers must buy a GCC SKU to be covered. Only a contracting officer changes what the agency bought.`,
+The platform team builds the hierarchy, policy, vending and probe, but doesn't decide whether a gap is acceptable. And the contract is a boundary decision: on October 21, 2026, the GCC listing said customers must buy a GCC SKU to be covered. The listing no longer carried that message on November 9, so the contracting officer confirms the condition with the provider and in the package. Only a contracting officer changes what the agency bought.`,
   "Book 10, Chapter 08 — Who Owns the Boundary (Where the roles come from; The roles; The responsibility matrix).");
 }
 
@@ -530,7 +530,7 @@ The license says what you bought; the boundary says what you may use. Book 10 ha
 {
   const s = D.content("Backup", "Sources behind the slides");
   const src = [
-    "FedRAMP Consolidated Rules for 2026: Using a FedRAMP Certified Cloud Service; Definitions; Minimum Assessment Scope; Significant Change Notification; Certification Data Sharing; Cryptographic Module Use; Agency Use; Collaborative Continuous Monitoring; Rev5 packages; Important Dates; ruleset 2026.10.13.01.",
+    "FedRAMP Consolidated Rules for 2026: Using a FedRAMP Certified Cloud Service; Definitions; Minimum Assessment Scope; Significant Change Notification; Certification Data Sharing; Cryptographic Module Use; Agency Use; Collaborative Continuous Monitoring; Rev5 packages; Important Dates; ruleset 2026.11.02.01 (November 2, 2026).",
     "FedRAMP Notices NTC-0004 (February 25, 2026) and NTC-0013 (June 16, 2026).  ·  FedRAMP Marketplace dataset, products.json (read October 21, 2026).",
     "NIST SP 800-37 Rev. 2; SP 800-53 Rev. 5 (release 5.2.0) and SP 800-53B; OSCAL component definition model.  ·  CISA BOD 23-01.  ·  FAR 1.602-1.",
     "Microsoft Learn, Microsoft 365: network connectivity, assessment, insights and provider attribution; informed network routing; Adoption Score; Office 365 CDN; IP Address and URL web service; ExpressRoute for Microsoft 365; Office and Intune government service descriptions.",

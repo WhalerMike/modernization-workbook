@@ -365,8 +365,8 @@ The example playbook, 02 Arc onboarding, spells those steps out with azcmagent, 
   const s = content(M1, "Tier 2: Unix, Linux beyond Arc, and network gear");
   tag(s, "What");
   const a = panel(s, "Arc", X3(0), 1.5, W3, null, HEX.red, HEX.redTint, "WHAT ARC DOESN'T COVER", null, [
-    "\"If an OS version isn't listed, it's not supported\": no AIX, Solaris or HP-UX",
-    "Nov. 2026: end of new agent versions for several Ubuntu, Debian, SUSE, Oracle Linux 7 and Amazon Linux 2 releases",
+    "\"Operating system versions not listed in either table aren't supported\": no AIX, Solaris or HP-UX",
+    "Oct. 2026: last new agent version, 1.69, for RHEL 7, Oracle Linux 7, Amazon Linux 2 and several Ubuntu, Debian and SUSE releases",
     "The agent isn't tested on CIS-hardened systems",
   ], 13);
   const b = panel(s, "Linux", X3(1), 1.5, W3, null, HEX.navy, HEX.navyTint, "LINUX AND UNIX BASELINES", null, [
@@ -383,7 +383,7 @@ The example playbook, 02 Arc onboarding, spells those steps out with azcmagent, 
   notes(s,
 `Now the populations Intune and Arc don't reach, starting with Unix, Linux beyond Arc, and the network.
 
-Arc supports the Windows and Linux versions on Microsoft's list, and if an OS version isn't listed, it's not supported. AIX, Solaris and HP-UX aren't on it. Neither, after November 2026, are new agent versions for several Linux releases still common in federal estates: Ubuntu 18.04 and 20.04, Debian 11 and 12, SUSE Linux Enterprise Server 12 SP5 and 15 SP3 through SP6, Oracle Linux 7 and Amazon Linux 2, with the final compatible agent serviced for 12 months after its release. Microsoft also says the agent isn't tested on CIS-hardened systems.
+Arc supports the Windows and Linux versions on Microsoft's list, and operating system versions not listed in either of its tables aren't supported by Azure Arc. AIX, Solaris and HP-UX aren't on it. Several Linux releases still common in federal estates no longer get new agent versions: Red Hat Enterprise Linux 7, Oracle Linux 7, Amazon Linux 2, Debian 11 and 12, SUSE Linux Enterprise Server 12 SP5 and 15 SP3 through SP6, and Ubuntu 18.04 and 20.04 reached the end of new agent version support in October 2026, with 1.69 their final compatible agent version, serviced for 12 months after its release. Microsoft also says the agent isn't tested on CIS-hardened systems.
 
 Those hosts are tier 2. Ansible reaches them over SSH and escalates with the host's own mechanism. Two cautions. Escalation can't be limited to particular commands, because modules run from temporary files whose names change every run, so the escalation account has broad rights and is governed as a privileged non-person identity. And check mode is just a simulation: a task that depends on an earlier task's result won't report, so the example baseline check writes each comparison to stand alone. For RHEL, Red Hat ships SCAP Security Guide content that turns a CIS profile into Ansible remediation; whatever content is adopted, the playbook version in Git is the baseline.
 

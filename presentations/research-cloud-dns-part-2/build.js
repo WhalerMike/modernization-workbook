@@ -357,7 +357,7 @@ Send them to the SIEM, where ASIM's DNS parser already handles BIND, according t
   panel(s, "Base", 8.9, 1.5, 3.85, 5.0, HEX.teal, HEX.tealTint, "BASELINES THAT EXIST", null, [
     "NIST SP 800-81r3 (March 2026), the deployment guide",
     "ISC's ARM security chapter and best-practice pages (the recursive page is marked stale)",
-    "CIS: BIND 9.11 v1.0.0 and 9.9 v3.0.1 only; none for 9.20 or 9.18; read 9.11 for intent",
+    "CIS: its 9.11 and 9.9 BIND benchmarks no longer listed (Nov. 9, 2026); none for 9.20 or 9.18; read 9.11 for intent",
     "So the agency's own profile, approved by the CISO, is the CM-6 baseline (design guidance)",
   ], 11.5);
   sources(s, "Sources: ISC KB (best practices, vulnerability matrix, disclosure policy); CISA BOD 26-04, BOD 23-01; BIND 9.20 ARM ch. 7; NIST SP 800-81r3; CIS Benchmarks: BIND.");
@@ -366,7 +366,7 @@ Send them to the SIEM, where ASIM's DNS parser already handles BIND, according t
 
 Version none hides the version. Query access defaults to all hosts, so restrict it, and restrict recursion to the agency's clients. Restrict zone transfers and authenticate them with TSIG keys. Run named unprivileged, and keep the host to DNS only.
 
-For a baseline, CIS has benchmarks only for BIND 9.11 and 9.9, none for 9.20 or 9.18. So the agency states its own profile, approved by the CISO, as design guidance.`,
+For a baseline, CIS no longer lists a BIND benchmark of its own. On October 29, 2026 it listed two, for BIND 9.11 and 9.9; by November 9 its BIND benchmark page returned not found, and it points to CIS WorkBench for benchmarks it no longer supports. There's none for 9.20 or 9.18. The retired 9.11 benchmark can still be read for its intent, checked against the 9.20 ARM. So the agency states its own profile, approved by the CISO, as design guidance.`,
   "ISC Knowledge Base: BIND Best Practices - Authoritative and Recursive; BIND 9 Software Vulnerability Matrix; bind-announce; Disclosure Policy. CISA BOD 26-04 (June 10, 2026); CISA BOD 23-01. BIND 9 ARM 9.20, reference and chapter 7; NIST SP 800-81r3, §2.3.1, §3.1; CIS Benchmarks: BIND.",
   `${EV}, Part 3, "Patching and configuration settings" and "Hardening baselines: what exists".`);
 }
@@ -527,7 +527,7 @@ srcSlide("Sources: ISC, NIST and CIS", [
   "ISC Knowledge Base: Software Support Policy and Version Numbering  ·  Software Defect and Vulnerability Disclosure Policy  ·  BIND 9 Software Vulnerability Matrix  ·  BIND Best Practices - Authoritative  ·  BIND Best Practices - Recursive (marked stale)  ·  ISC Download (9.20.30)  ·  bind-announce list.",
   "NIST SP 800-81r3, Secure Domain Name System (DNS) Deployment Guide, March 2026: §2.1 and §2.1.2 (protective DNS), §2.1.3 (logging), §2.3, §2.3.1 and §2.3.2 (dedicated, resilient servers), §3.1 (zone transfers), §3.8 and §3.8.6 (signing internal zones), §4.2.5, §4.2.6 and §4.3 (validation).",
   "NIST SP 800-53 Rev. 5 (release 5.2.0): CM-2, CM-3, CM-6, CM-7, CM-8, SC-20, SC-21, SC-22, SI-2, SI-4, AU-2, AU-12.",
-  "Center for Internet Security, CIS Benchmarks: BIND (ISC BIND DNS Server 9.11 v1.0.0; 9.9 v3.0.1).",
+  "Center for Internet Security, CIS Benchmarks: BIND (ISC BIND DNS Server 9.11 v1.0.0; 9.9 v3.0.1), read Oct. 29, 2026; no longer listed Nov. 9, 2026.",
   "All accessed Oct. 29, 2026, as footnoted on the evaluation page.",
 ], "Sources: the evaluation page's footnotes (cdns-bind-*, cdns-isc-*, cdns-nist81*, cdns-sp80053, cdns-cis).");
 srcSlide("Sources: AWS, Microsoft and Oracle (Part 2)", [

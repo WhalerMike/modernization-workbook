@@ -313,7 +313,7 @@ And Windows Server, printers, network gear, IoT and OT aren't Intune platforms. 
     ["Group tag on the registration", "Not applicable", "Yes"],
     ["Microsoft Entra hybrid join", "No", "Yes"],
     ["Pre-provisioned and self-deploying", "No", "Yes"],
-    ["More than 10 apps or 10 scripts in setup", "No", "Yes"],
+    ["More than 25 apps or 10 scripts in setup", "No", "Yes"],
     ["Block the desktop until user config applies", "No", "Yes"],
     ["Uses the Enrollment Status Page", "No", "Yes"],
     ["GCC High and DoD", "Yes", "No"],
@@ -329,7 +329,7 @@ And Windows Server, printers, network gear, IoT and OT aren't Intune platforms. 
   ], 12.5);
   sources(s, "Sources: Microsoft Learn — compare Autopilot device preparation and Autopilot; device preparation FAQ, overview and requirements; Intune Government Service overview. Book 05, Ch 04.");
   notes(s,
-`Microsoft now ships two Windows provisioning solutions. Windows Autopilot device preparation is a re-architecture with simpler configuration and near real-time reporting; classic Windows Autopilot remains more feature-rich. The rows on the left are the differences that matter. Device preparation needs no registration, so it has no group tag. It can't do hybrid join, pre-provisioning or self-deploying mode. It applies up to ten apps and ten scripts during setup, can't hold the desktop until user configuration lands, and doesn't use the Enrollment Status Page. But it's available in GCC High and DoD, where classic Autopilot isn't.
+`Microsoft now ships two Windows provisioning solutions. Windows Autopilot device preparation is a re-architecture with simpler configuration and near real-time reporting; classic Windows Autopilot remains more feature-rich. The rows on the left are the differences that matter. Device preparation needs no registration, so it has no group tag. It can't do hybrid join, pre-provisioning or self-deploying mode. It applies up to 25 apps and ten PowerShell scripts during setup, can't hold the desktop until user configuration lands, and doesn't use the Enrollment Status Page. But it's available in GCC High and DoD, where classic Autopilot isn't.
 
 The workbook assumes a Microsoft 365 GCC tenant. Intune has no separate GCC instance: GCC uses the commercial Intune service, so both solutions are available. Only GCC High and DoD use the separate government instance.
 
@@ -735,8 +735,8 @@ Plan cost by service, not by connection. If the Windows Server licenses carry So
   tag(s, "What");
   const b = table(s, "ArcCoverage", 1.45, [3.0, 4.3], ["Server or platform", "Arc coverage"], [
     ["Windows Server 2016–2025", "Supported: Desktop Experience and Server Core"],
-    ["Windows Server 2012, 2012 R2", "Listed; no new agents after Nov. 2026; ESUs ended Oct. 13, 2026"],
-    ["Linux: RHEL, Rocky, Alma, Oracle, SUSE, Ubuntu, Debian, Amazon, Azure Linux", "Supported; some versions get no new agents after Nov. 2026; no machine configuration on Arm64"],
+    ["Windows Server 2012, 2012 R2", "2012: last new agent 1.69, Oct. 2026; 2012 R2 still gets new agents; ESUs ended Oct. 13, 2026"],
+    ["Linux: RHEL, Rocky, Alma, Oracle, SUSE, Ubuntu, Debian, Amazon, Azure Linux", "Supported; some versions got their last new agent, 1.69, in Oct. 2026; no machine configuration on Arm64"],
     ["Physical; any other hypervisor", "Supported, with the Connected Machine agent"],
     ["VMware vSphere VMs", "Arc-enabled vSphere: vCenter 8, up to 9,500 VMs; agent in the guest only"],
     ["SCVMM-managed VMs", "Retiring: no new onboarding from Oct. 2026; ends Sept. 2029"],
@@ -757,7 +757,7 @@ Plan cost by service, not by connection. If the Windows Server licenses carry So
   notes(s,
 `Why this matters: the Arc track is servers wherever they run, and anything neither Intune nor Arc reaches still needs a home in the inventory.
 
-Per Chapter 09, as of October 29, 2026: Windows Server 2016 to 2025 is supported, Desktop Experience and Server Core. Windows Server 2012 and 2012 R2 are listed but get no new agent versions after November 2026, and their ESUs ended on October 13. The supported Linux distributions run the agent, though several versions also get no new agents after November 2026, and machine configuration doesn't run on Arm64. Physical servers and VMs on any hypervisor are supported. VMware vSphere VMs come in through Arc-enabled vSphere and vCenter 8, up to 9,500 VMs, with the agent in the guest only; ESXi hosts are discovered as inventory. SCVMM-managed VMs are retiring. AWS EC2 and Google Cloud VMs take the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc. And AIX, Solaris, HP-UX, mainframe operating systems and network devices aren't on Microsoft's list.
+Per Chapter 09, as of October 29, 2026: Windows Server 2016 to 2025 is supported, Desktop Experience and Server Core. Windows Server 2012 got its last new agent version, 1.69, in October 2026, which Microsoft services for 12 months after its release; Windows Server 2012 R2 is still listed for new agent versions, and the ESUs for both ended on October 13. The supported Linux distributions run the agent, though several older versions, such as Red Hat 7, Debian 11 and 12 and Ubuntu 18.04 and 20.04, also got their last new agent version, 1.69, in October 2026, and machine configuration doesn't run on Arm64. Physical servers and VMs on any hypervisor are supported. VMware vSphere VMs come in through Arc-enabled vSphere and vCenter 8, up to 9,500 VMs, with the agent in the guest only; ESXi hosts are discovered as inventory. SCVMM-managed VMs are retiring. AWS EC2 and Google Cloud VMs take the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc. And AIX, Solaris, HP-UX, mainframe operating systems and network devices aren't on Microsoft's list.
 
 For everything left out, the program's design guidance is four tiers, with the CMDB as the attribute source outside Intune and Arc. One, managed by Intune or Arc. Two, managed by the platform's own tool with an evidence feed. Three, discovered and monitored only. Four, segmented and isolated, or retired, with a risk acceptance and a date. That's how the inventory supports CM-8: every component, none counted twice. A device in no tier is a finding.`,
   "Book 05, Chapter 09 — Servers Under Azure Arc, \"Which servers Arc reaches\" (Microsoft Learn, checked October 29, 2026); Chapter 03, \"What Intune and Arc don't reach\" (the four tiers, design guidance); Chapter 10 (CM-8). The attribute-driven migration guide, Arc track.");
@@ -786,11 +786,11 @@ For everything left out, the program's design guidance is four tiers, with the C
     "Any Contributor on the Arc resource is an indirect server admin",
     "Install the agent in a golden image; never connect the image",
   ], 12);
-  sources(s, "Sources: Microsoft Learn — Arc RBAC roles; CAF identity and access for Arc servers; Arc network requirements; azcmagent check; Arc onboarding security; deployment options; agent overview. Book 05, Ch 09.");
+  sources(s, "Sources: Microsoft Learn — Arc RBAC roles; extension management; Arc security overview; Arc network requirements; azcmagent check; Arc onboarding security; deployment options; agent overview. Book 05, Ch 09.");
   notes(s,
 `Before the first server connects, settle roles, network, tags and images.
 
-Use the narrowest built-in roles. Azure Connected Machine Onboarding goes to the onboarding service principal only: it can read and create Arc server resources, but not delete them or manage extensions. Azure Connected Machine Resource Administrator is for the server operations team. And Virtual Machine Administrator Login or User Login are for people who sign in with Entra ID; Owner and Contributor don't confer sign-in. Then remember what extensions can do. They run arbitrary scripts with full privileges, so Microsoft says to treat any Contributor on the Arc resource as an indirect administrator of the server, and the Cloud Adoption Framework warns that Contributor, Owner and the resource administrator role can effectively delegate root access. Scope those roles to the resource groups a team owns, and hold them through Privileged Identity Management.
+Use the narrowest built-in roles. Azure Connected Machine Onboarding goes to the onboarding service principal only: it can read and create Arc server resources, but not delete them or manage extensions. Azure Connected Machine Resource Administrator is for the server operations team. And Virtual Machine Administrator Login or User Login are for people who sign in with Entra ID; Owner and Contributor don't confer sign-in. Then remember what extensions can do. They run arbitrary scripts with full privileges, so Microsoft says to treat any Contributor on the Arc resource as an indirect administrator of the server, and the same holds for the Arc-specific role: Azure Connected Machine Resource Administrator includes the permissions to deploy extensions, and the extension manager runs as Local System on Windows and root on Linux, so Contributor, Owner and the resource administrator role can each reach full control of the server through extension deployment. Scope those roles to the resource groups a team owns, and hold them through Privileged Identity Management.
 
 Network: the agent communicates outbound over TCP 443, with no inbound rule. Allow the Azure Active Directory, Traffic Manager, Resource Manager, Arc Infrastructure and Storage service tags and, as of April 2026, Azure Front Door Frontend. A proxy doesn't add security, because the traffic is already encrypted; a private link scope keeps it off public networks. Run azcmagent check from a representative server first, adding the cloud parameter for Azure Government.
 
@@ -1108,7 +1108,7 @@ So, from Monday: inventory and triage every GPO; set the tenant compliance defau
   const s = D.content("Backup", "Sources behind Part 2 — Servers and the run state");
   const src = [
     "Microsoft Learn: What is Azure Arc-enabled servers; Connected Machine agent overview; Arc security overview; identity and authorization (RBAC roles); managed identity; Windows Server Management enabled by Azure Arc.",
-    "Microsoft Learn: Cloud Adoption Framework identity, access and automation for Arc servers; Arc network requirements; azcmagent check, connect, config and disconnect; deployment options; extension security.",
+    "Microsoft Learn: plan and deploy Arc-enabled servers (formerly a Cloud Adoption Framework article); extension management; Arc network requirements; azcmagent check, connect, config and disconnect; deployment options; extension security.",
     "Microsoft Learn: connect hybrid machines at scale with a service principal; connect at scale using Group Policy; Arc onboarding security (credential and secrets); uninstall the agent.",
     "Microsoft Learn: machine configuration governance and security baselines; Azure Update Manager FAQ; Defender for Servers plans, onboarding and prerequisites; Defender security settings management.",
     "Microsoft Learn: prepare to deliver Windows Server ESUs; SQL Server ESU FAQ; agent release notes archive; Arc Entra ID sign-in (Windows); SSH to Arc servers; Entra sign-in for Linux.",
