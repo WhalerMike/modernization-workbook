@@ -847,7 +847,13 @@ Configuration Manager, its PowerShell module and the kit run on premises; nothin
 
 ## Version and revision history {#version-history}
 
-This guide has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/dp-consolidation-implementation.md).
+**Version 2.0**, in [edition 2026.11.5](../../about/archive.md#edition-2026-11-5) (November 8, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/dp-consolidation-implementation.md).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 2.0 | [2026.11.5](../../about/archive.md#edition-2026-11-5) | 2026-11-08 | Release 2.0, the baseline: checked against every other book; Draft becomes Baseline; Content Delivery Modernization: distribution point consolidation guides, plan and kit ([#468](https://github.com/WhalerMike/modernization-workbook/pull/468)); Approve the remaining 20 gated pages (Nov 8) ([#479](https://github.com/WhalerMike/modernization-workbook/pull/479)) |
+
+: Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->
 

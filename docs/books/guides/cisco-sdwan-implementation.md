@@ -31,8 +31,8 @@ This guide names one product to make Book 09's vendor-neutral design concrete. I
 | Edition | File |
 |---|---|
 | Video (MP4, 1080p, about 16 minutes) | [Research_Cisco_SDWAN_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Cisco_SDWAN_Narrated.mp4) |
-| Narrated, self-running deck (about 16 minutes, captions) | [Research_Cisco_SDWAN_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Research_Cisco_SDWAN_Narrated.pptx) |
-| Deck, for presenting live | [Research_Cisco_SDWAN.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.4/Research_Cisco_SDWAN.pptx) |
+| Narrated, self-running deck (about 16 minutes, captions) | [Research_Cisco_SDWAN_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Research_Cisco_SDWAN_Narrated.pptx) |
+| Deck, for presenting live | [Research_Cisco_SDWAN.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Research_Cisco_SDWAN.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.vtt) |
 
 ## What it covers
@@ -543,10 +543,11 @@ Related: [Book 09 — Network & Transport](../b09-network/index.md), [Book 07 �
 
 ## Version and revision history {#version-history}
 
-**Version 1.3**, in [edition 2026.11.4](../../about/archive.md#edition-2026-11-4) (November 5, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/cisco-sdwan-implementation.md).
+**Version 2.0**, in [edition 2026.11.5](../../about/archive.md#edition-2026-11-5) (November 8, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/cisco-sdwan-implementation.md).
 
 | Version | Edition | Date | Changes |
 |---|---|---|---|
+| 2.0 | [2026.11.5](../../about/archive.md#edition-2026-11-5) | 2026-11-08 | Release 2.0, the baseline: checked against every other book; Draft becomes Baseline; Edition 2026.11.4: record the edition and point deck links at it ([#362](https://github.com/WhalerMike/modernization-workbook/pull/362)); Review gate ignores the edition tag in deck links; four decks build again ([#363](https://github.com/WhalerMike/modernization-workbook/pull/363)) |
 | 1.3 | [2026.11.4](../../about/archive.md#edition-2026-11-4) | 2026-11-05 | Approve ten pages on Mike's word, and drop two names from the briefs ([#360](https://github.com/WhalerMike/modernization-workbook/pull/360)) |
 | 1.2 | [2026.11.3](../../about/archive.md#edition-2026-11-3) | 2026-11-05 | Review gate: Mike's approval of the 15 implementation guides gated on November 3 ([#348](https://github.com/WhalerMike/modernization-workbook/pull/348)) |
 | 1.1 | [2026.11.1](../../about/archive.md#edition-2026-11-1) | 2026-11-01 | Edition 2026.11: record the edition, and publish the four gate-level decks and videos ([#282](https://github.com/WhalerMike/modernization-workbook/pull/282)) |
