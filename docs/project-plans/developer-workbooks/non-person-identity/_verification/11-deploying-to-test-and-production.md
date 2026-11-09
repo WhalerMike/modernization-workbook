@@ -75,3 +75,12 @@ Test results on November 9, 2026, Windows 11, PowerShell 7 with Pester 5.9.0: `d
 |---|---|---|---|---|
 | H1 | Conditional Access is enabled ring by ring, Chapter 08's word; wave stays for a conversion wave (the pilot's `wave = 1`, ST-02, Chapter 04's fixes). The kit renamed with it: the settings file's `rings` and each policy's `ring`, `-Ring` on the smoke test and the rollback (`-Wave` kept as an alias), the manifests' `rings`, and Step 2.3's record, now `S2.3-staged-enable-by-ring.json`. Step 2.3's heading keeps its old anchor, `#step-23-staged-enable-by-wave`, as an explicit id | Throughout; Step 2.3 | restated-as-design (labeled) | Chapter 08; the project plan's NP5.3 |
 | H2 | The pilot's application owner is a settings value, `pilot.ownerUpn`, which records the cutover and approves the day-31 disable; the settings check refuses a file without one or one that names an operator | Approvals; the settings file's rules; Steps 1.3 and 2.2 | restated-as-design (labeled): the Approvals table's owner, now separate from the operators in the file | Chapter 05, the cutover log |
+
+## Kit follow-up (November 9, 2026)
+
+The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date and SPN-owner rules, and the captures were regenerated with `python scripts/kit_captures.py npi --images`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | Lab 2 names `D-NP4` and `D-NP5` in the scope commands, with `<d-np4-…>` and `<d-np5-…>` placeholders, the IDs the kit checks | Lab 2 | not run against a tenant; the kit's checks were read | `NpiWorkloadCa.psm1` |
+| K2 | The dry run's rollback plan SHA-256 is `0cb6515f…`; it changed with the settings fixtures in the ring and `pilot.ownerUpn` change, and is the same on every run | Dry run on the kit's fixtures | updated by running the commands as written, twice | local run, November 9, 2026 |

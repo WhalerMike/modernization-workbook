@@ -3,7 +3,7 @@
 .SYNOPSIS
     Chapter 06: read the Kerberos accounts in Chapter 01's register and the domain (the KDS root key,
     read-only; the managed service accounts and their retrievers; dMSA migration state; domain
-    controllers and hosts), check them against the owners' D-N3 dispositions from Chapter 03's run
+    controllers and hosts), check them against the owners' D-NP3 dispositions from Chapter 03's run
     (checked against its manifest) and the program's dates, and write the findings,
     the plan (dry run, for review), the island list for the program's SPN retirement (P4.6) and the
     reconciliation with the provisional end state (D11). Read only: the plan is applied, after

@@ -872,7 +872,7 @@
       "books": [
         "DW"
       ],
-      "source": "Commits to the Learn source page that holds Workload ID's Free and Premium capability table and its licensing answers, which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03, decision D-N4). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Learn source page that holds Workload ID's Free and Premium capability table and its licensing answers, which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03, decision D-NP4). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "npi-agent-create-blueprint-page-commits",

@@ -5,7 +5,7 @@
     "Severity": "Finding",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000003",
     "Object": "svc-backup (Traditional)",
-    "Issue": "No valid application owner (frank@contoso.example is disabled): an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid application owner (frank@contoso.example is disabled): an orphan candidate under the orphan rule (D-NP2)"
   },
   {
     "Id": "NPI-OWN-08:ad:ad000000-0000-4000-8000-000000000004",
@@ -13,7 +13,7 @@
     "Severity": "Finding",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
     "Object": "svc-oldftp (Traditional)",
-    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-NP2)"
   },
   {
     "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000004",
@@ -29,7 +29,7 @@
     "Severity": "Finding",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000005",
     "Object": "svc-reports (Traditional)",
-    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-NP2)"
   },
   {
     "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000005",
@@ -45,7 +45,7 @@
     "Severity": "Finding",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000006",
     "Object": "sa-printsvc (Traditional)",
-    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-NP2)"
   },
   {
     "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000006",
@@ -77,7 +77,7 @@
     "Severity": "Finding",
     "ObjectKey": "ad:ad000000-0000-4000-8000-000000000024",
     "Object": "gmsa-ops$ (gMSA)",
-    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-NP2)"
   },
   {
     "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000024",
@@ -109,7 +109,7 @@
     "Severity": "Finding",
     "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
     "Object": "Legacy Reports (AppRegistration)",
-    "Issue": "No valid human owner: an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid human owner: an orphan candidate under the orphan rule (D-NP2)"
   },
   {
     "Id": "NPI-OWN-06:app:1a000000-0000-4000-8000-000000000003",
@@ -189,6 +189,6 @@
     "Severity": "Finding",
     "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
     "Object": "Old SAML Connector (LegacyServicePrincipal)",
-    "Issue": "No valid human owner: an orphan candidate under the orphan rule (D-N2)"
+    "Issue": "No valid human owner: an orphan candidate under the orphan rule (D-NP2)"
   }
 ]

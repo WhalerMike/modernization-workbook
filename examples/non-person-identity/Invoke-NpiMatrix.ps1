@@ -3,9 +3,9 @@
 .SYNOPSIS
     Chapter 03: the migration path matrix as code. Reads Chapter 01's register and Chapter 02's
     ownership run (both checked against their manifests), proposes a target for every identity from
-    config/migration-matrix.json (N2.1), checks the application owners' dispositions (D-N3),
-    sequences the waves with HIGH-risk accounts first and a rollback per wave (N2.2), checks the
-    Workload ID Premium scope decision (D-N4) against the tenant's subscriptions, and reports
+    config/migration-matrix.json (NP2.1), checks the application owners' dispositions (D-NP3),
+    sequences the waves with HIGH-risk accounts first and a rollback per wave (NP2.2), checks the
+    Workload ID Premium scope decision (D-NP4) against the tenant's subscriptions, and reports
     Gate 2. Read only: two declared GETs (config/calls-ch03.json); nothing is written to the tenant.
 .EXAMPLE
     # Lab 1: Chapters 01 and 02 against the fixtures, then this one, no sign-in.
@@ -67,6 +67,6 @@ $inScope = @($proposals | Where-Object Scope -EQ 'Matrix')
 $fs = @($findings)
 Write-Output ("Matrix: {0} identities in scope, {1} proposed ({2}); {3} handed off, {4} to confirm first, {5} out of scope" -f $inScope.Count, @($inScope | Where-Object Proposed).Count, (($inScope | Where-Object Proposed | Group-Object Proposed | Sort-Object Name | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', '), @($proposals | Where-Object Scope -EQ 'HandedOff').Count, @($proposals | Where-Object Scope -EQ 'ConfirmFirst').Count, @($proposals | Where-Object Scope -EQ 'OutOfScope').Count)
 Write-Output ("Dispositions: {0} decided of {1}; waves {2}" -f $gate.decided, $gate.inScope, ((@($decision.Waves) | ForEach-Object { "$($_.Wave) ($(@($_.Members).Count), $($_.High) HIGH)" }) -join ', '))
-Write-Output ("Workload ID Premium (D-N4): {0}, {1} in scope; tenant holds {2} enabled units" -f $(if ($wid.Scope.decision) { $wid.Scope.decision } else { 'undecided' }), @($wid.Scope.scope).Count, $wid.Scope.tenant.enabledUnits)
+Write-Output ("Workload ID Premium (D-NP4): {0}, {1} in scope; tenant holds {2} enabled units" -f $(if ($wid.Scope.decision) { $wid.Scope.decision } else { 'undecided' }), @($wid.Scope.scope).Count, $wid.Scope.tenant.enabledUnits)
 Write-Output ("Findings: {0} Finding, {1} Warn, {2} Info" -f @($fs | Where-Object Severity -EQ 'Finding').Count, @($fs | Where-Object Severity -EQ 'Warn').Count, @($fs | Where-Object Severity -EQ 'Info').Count)
 Write-Output ("Gate 2: {0}" -f $(if ($gate.met) { 'met' } else { 'not met (' + ((@($gate.criteria) | Where-Object { -not $_.met } | ForEach-Object { "$($_.criterion): $($_.open)" }) -join '; ') + ')' }))

@@ -68,3 +68,12 @@ The chapter's new section has 15 rows: each Lab 1 and Lab 2 step that produces e
 | F2 | Each KSI named (KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS, KSI-MLA-EVC, KSI-MLA-OSM, KSI-MLA-RVL, KSI-PIY-GIV, KSI-SVC-ACM, KSI-SVC-EIS, KSI-SVC-VRI) lists the row's control, or one of its enhancements, among its related SP 800-53 controls | Federal requirements and evidence | verified against FedRAMP's page. IA-9 is in no NIST baseline; no indicator lists it, so its rows say so. Every ID was already cited in the repository (Book 02, Chapter 10; Book 04, Chapter 10; Book 13, Appendix A; Book 14, Chapter 03); none is new | [^np08-ksi], read November 2, 2026 |
 | F3 | KSIs are provider-side FedRAMP 20x indicators; the agency doesn't report them | The sentence under the table | carried forward | Book 00, Appendix B |
 | F4 | Which output supports which indicator, and how SCuBA or M-25-21 rows map through a control | The KSI column | restated-as-design (labeled) | the program's mapping |
+
+## Kit follow-up (November 9, 2026)
+
+The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date and SPN-owner rules, and the captures were regenerated with `python scripts/kit_captures.py npi --images`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | The kit checks for decision `D-NP5` (and `D-NP4` in the scope file), so Lab 1's enforcement step and Lab 2's scope commands name `D-NP5` and `D-NP4`, with `<d-np4-…>` and `<d-np5-…>` placeholders | Lab 1, step 8; Lab 2 | updated by running Lab 1's commands as written; Lab 2 not run against a tenant | local run and capture 08-8, November 9, 2026 |
+| K2 | The sign-in summary's SHA-256 is now `da391f12…`: the fixture scope file it records changed with the NP ID | Lab 1, step 6 and after | updated by running the commands as written | capture 08-6, November 9, 2026 |

@@ -1,7 +1,7 @@
 #Requires -Version 7.1
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0.0' }
 # Chapter 09: AI agent identities. Learn's Agent ID samples run as published against the fake, the
-# chapter's call list and its least-privilege test, each rule NPI-AI-01 to NPI-AI-23, the D-N6
+# chapter's call list and its least-privilege test, each rule NPI-AI-01 to NPI-AI-23, the D-NP6
 # fallback, the agent Conditional Access plan and its separate write path.
 
 BeforeAll {
@@ -180,7 +180,7 @@ Describe 'The Chapter 09 call list' {
     }
 }
 
-Describe 'Decision D-N6 as data' {
+Describe 'Decision D-NP6 as data' {
     It 'gcc builds on agent identities; GCC High and DoD fall back to service principals and managed identities' {
         (Get-NpiAgentCapability -Cloud gcc).Mode | Should -Be 'AgentId'
         (Get-NpiAgentCapability -Cloud gcchigh).Mode | Should -Be 'Fallback'
@@ -230,7 +230,7 @@ Describe 'The inputs: Chapters 01 and 02 and the records' {
     }
 }
 
-Describe 'N6.1: creation closed' {
+Describe 'NP6.1: creation closed' {
     It 'passes with a recent reading of No and a closed app registration setting' {
         @(Get-F 'NPI-AI-01').Count + @(Get-F 'NPI-AI-02').Count | Should -Be 0
     }
@@ -253,7 +253,7 @@ Describe 'N6.1: creation closed' {
     }
 }
 
-Describe 'N6.2: the production handshake' {
+Describe 'NP6.2: the production handshake' {
     It 'an agent with a complete handshake, sponsors, owner and record passes every identity rule' {
         @($script:Run.Result.Findings | Where-Object { $_.Object -like 'Benefits Q&A Agent*' -or $_.Object -like 'Benefits Agent Blueprint*' }).Count | Should -Be 0
     }
@@ -295,7 +295,7 @@ Describe 'Sponsors, technical owners and the record (the fields Chapter 02 recor
     }
 }
 
-Describe 'N6.3 and N6.4: credentials and least privilege' {
+Describe 'NP6.3 and NP6.4: credentials and least privilege' {
     It 'NPI-AI-10: a secret on a production blueprint is a finding; on a blueprint tagged Development, Info' {
         (Get-F 'NPI-AI-10' 'Case Triage Blueprint*').Severity | Should -Be 'Finding'
         (Get-F 'NPI-AI-10' 'Pilot Sandbox*').Severity | Should -Be 'Info'
@@ -328,7 +328,7 @@ Describe 'N6.3 and N6.4: credentials and least privilege' {
     }
 }
 
-Describe 'N6.5: sponsor movers and leavers, ten business days' {
+Describe 'NP6.5: sponsor movers and leavers, ten business days' {
     It 'counts business days, skipping weekends and federal holidays' {
         $h = (Get-NpiAgentConfig).Rules.federalHolidays
         $d = { param($s) [datetime]::Parse($s, [Globalization.CultureInfo]::InvariantCulture) }
@@ -353,7 +353,7 @@ Describe 'N6.5: sponsor movers and leavers, ten business days' {
     }
 }
 
-Describe 'N6.6: agent Conditional Access in report-only' {
+Describe 'NP6.6: agent Conditional Access in report-only' {
     It 'NPI-AI-18: the block-unapproved policy in place and matching gives no finding; enforced, a warning; changed, a finding' {
         @(Get-F 'NPI-AI-18').Count | Should -Be 0
         (@((Invoke-TestCheck -Mutate { param($e) $e.conditionalAccessPolicies[0].state = 'enabled' }).Result.Findings | Where-Object Rule -EQ 'NPI-AI-18')[0]).Severity | Should -Be 'Warn'
@@ -371,7 +371,7 @@ Describe 'N6.6: agent Conditional Access in report-only' {
     }
 }
 
-Describe 'N6.7: AI drift' {
+Describe 'NP6.7: AI drift' {
     It 'NPI-AI-21: an agentic system with no governed identity (P1); a generative chatbot isn''t' {
         (Get-F 'NPI-AI-21').Object | Should -Be 'Claims Summarizer (use case)'
         (Get-F 'NPI-AI-21').Priority | Should -Be 'P1'

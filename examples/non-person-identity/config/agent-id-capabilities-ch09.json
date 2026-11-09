@@ -1,6 +1,6 @@
 {
-  "_comment": "Decision D-N6 as data: which AI identity capabilities the program builds on, per cloud, with the release stage and US Government availability Learn gave on October 30, 2026. 'available' false means the agent-id reads aren't sent in that cloud and the D-N6 fallback applies: service principals and managed identities under the same governance. A capability whose stage is preview is a watch item: the code reports it, never enforces it. Status Proposed until the CIO, with the Chief AI Officer, decides; a change to this file is a reviewed pull request. Design guidance.",
-  "decision": "D-N6",
+  "_comment": "Decision D-NP6 as data: which AI identity capabilities the program builds on, per cloud, with the release stage and US Government availability Learn gave on October 30, 2026. 'available' false means the agent-id reads aren't sent in that cloud and the D-NP6 fallback applies: service principals and managed identities under the same governance. A capability whose stage is preview is a watch item: the code reports it, never enforces it. Status Proposed until the CIO, with the Chief AI Officer, decides; a change to this file is a reviewed pull request. Design guidance.",
+  "decision": "D-NP6",
   "status": "Proposed",
   "owner": "CIO, with the Chief AI Officer",
   "clouds": {

@@ -29,17 +29,17 @@
     "inventory": {
       "folder": "inventory",
       "status": "OK",
-      "manifestSha256": "c9f71a2f0be00c8f45f387c52997ddacc4e373e06ceca715596c866fb1ae8658"
+      "manifestSha256": "50221d40a80709c71cbd965a3f9149ec27dd857193d427da0dd3dae217cb78b1"
     },
     "ownership": {
       "folder": "ownership",
       "status": "OK",
-      "manifestSha256": "4aa1f7f9bc6fa7370976a168428d55c0d9e29018ab82647050df53f78c2243b7"
+      "manifestSha256": "314ffeb33fa5458dbffa2a61d551fe1d4b04fb29473232ab0270ea91e5e74e89"
     },
     "drift": {
       "folder": "drift",
       "status": "OK",
-      "manifestSha256": "4a20d7aa6714cb59c2a487bb87a41305c011ec0d77f54251ab9fc55fad2648a3"
+      "manifestSha256": "4cd94e9ed0340682ad03e7edc3dc269b892345547ac71c85de8f7ffadfae2c2c"
     }
   }
 }

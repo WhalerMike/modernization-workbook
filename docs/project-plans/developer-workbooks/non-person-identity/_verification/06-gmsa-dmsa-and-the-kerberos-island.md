@@ -72,3 +72,13 @@ Two items from the consistency read, held past the baseline edition and done tog
 | H3 | One program dates file, `program-dates.json`, holds D08, program G5 and D11 for both chapters; Chapter 06 refuses a copy whose SHA-256 isn't the one Chapter 03's run recorded | The inputs; the reconciliation; Lab 2, step 1; research gaps, row 59 | restated-as-design (labeled) | Project plan, D08, D11 and G5 |
 | H4 | Lab 1's output (findings, plan, island list, reconciliation, plan hash) | Lab 1, steps 3 to 8 | updated by running the commands as written on the changed fixtures: `svc-webfront` is now kept on Kerberos by Chapter 03's decision, so the dMSA block (NPI-KRB-04) is no longer in Lab 1's output and stays pinned by the tests; `gmsa-ops$` stays on the island, as Chapter 03 keeps it | local run, November 9, 2026 |
 | H5 | Lab 2 runs Chapters 02 and 03 over the test accounts before this chapter's check | Lab 2, step 1 | not run against a tenant or a domain; the commands follow Chapters 02 and 03's Lab 2 and the fixtures' formats | — |
+
+## Kit follow-up (November 9, 2026)
+
+The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date and SPN-owner rules, and the captures were regenerated with `python scripts/kit_captures.py npi --images`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| K1 | An end date's bound follows Chapter 03: D08 only for a `KeepKerberos` account (kept on Kerberos with the authorizing official's acceptance), program G5 for every other account that stays, a kept or planned gMSA or dMSA; the island list records `EndBound` and `WithinBound` | The program's rules; NPI-KRB-06; The island list and the reconciliation; Federal requirements and evidence; Checklist; Lab 2, step 3 | restated-as-design (labeled), matching Chapter 03's NPI-MAT-05 | Chapter 03; project plan, NP3.6 and NP7.3 |
+| K2 | An SPN owner is needed only for a `KeepKerberos` account or an account with SPNs; a kept account with no SPNs needs none, as in Chapter 03's NPI-MAT-06. `islandHandoffReady` is true when every row is ready, and a row whose bounding date isn't set isn't | The program's rules; NPI-KRB-05; The island list and the reconciliation | restated-as-design (labeled) | Chapter 03 |
+| K3 | Lab 1's output: 5 Finding, 1 Warn, 2 Info; NPI-KRB-05 on `svc-intranet` and `svc-webfront`, NPI-KRB-06 on `svc-intranet` only; four island rows ready for P4.6; plan SHA-256 `e8fb8355…` (the inputs' hashes changed with the NP IDs in `program-dates.json`'s comment) | Lab 1, steps 3, 4, 6 and 8 | updated by running the commands as written | local run and captures 06-4, 06-5, 06-7 and 06-9, November 9, 2026 |

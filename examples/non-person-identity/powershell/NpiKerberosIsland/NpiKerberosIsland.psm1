@@ -6,7 +6,8 @@
     accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA (Windows Server
     2025's delegated MSA migration); the KDS root key checked read-only; the principals allowed to
     retrieve each managed password held as reviewed data; the Kerberos accounts that stay recorded
-    with an SPN owner and an end date within the program's D08, and exported for the program's SPN
+    with an end date (within the program's D08 for an account kept on Kerberos, within G5 for a kept
+    gMSA or dMSA) and, where Chapter 03 requires one, an SPN owner, and exported for the program's SPN
     retirement (P4.6); and every gMSA and dMSA reconciled with the program's provisional end state
     (D11) before AD is retired at G5.
 
@@ -34,7 +35,7 @@ $script:LearnMinimumMigrationDays = 14
 $script:ParallelRunDays = 30
 $script:MaxPlanAgeDays = 7
 $script:ManagedTypes = @('gMSA', 'dMSA')
-# Chapter 03's D-N3 vocabulary, read from its decisions; Get-NpiKrbPath says what this chapter does with each.
+# Chapter 03's D-NP3 vocabulary, read from its decisions; Get-NpiKrbPath says what this chapter does with each.
 $script:Dispositions = @('Retire', 'Replatform', 'Keep', 'KeepKerberos')
 $script:WorkloadTargets = @('ManagedIdentity', 'AppRegistrationFederated', 'AppRegistrationCertificate')
 $script:Workloads = @('Service', 'IisAppPool', 'ScheduledTask')
@@ -190,7 +191,7 @@ function Import-NpiKrbMatrixRun {
     .SYNOPSIS
         Chapter 03's run, checked against its manifest: decisions.json must have the SHA-256 the
         manifest records, and the run must have decided on this very register. Returns
-        @{ Decisions; Manifest; Sha256 }. The owners' D-N3 dispositions (Retire, Replatform, Keep,
+        @{ Decisions; Manifest; Sha256 }. The owners' D-NP3 dispositions (Retire, Replatform, Keep,
         KeepKerberos) and the authorizing official's acceptance come from here, not from a second file.
     .EXAMPLE
         # Load Chapter 03's fixture run for the register Chapter 01 wrote.
@@ -212,7 +213,7 @@ function Import-NpiKrbMatrixRun {
 function Get-NpiKrbPath {
     <#
     .SYNOPSIS
-        What this chapter does with a D-N3 disposition from Chapter 03: Convert (Replatform to a gMSA
+        What this chapter does with a D-NP3 disposition from Chapter 03: Convert (Replatform to a gMSA
         or a dMSA), WorkloadIdentity (Replatform to a managed identity or an app registration, which
         Chapter 05 moves), Island (Keep or KeepKerberos, or a gMSA kept beside an app registration:
         it stays on Kerberos) or Retire. Empty for a disposition or target it doesn't know.
@@ -239,7 +240,7 @@ function Get-NpiKrbPath {
 function Import-NpiKrbInput {
     <#
     .SYNOPSIS
-        The inputs: Chapter 03's decisions (the D-N3 disposition, target, end date, SPN owner and the
+        The inputs: Chapter 03's decisions (the D-NP3 disposition, target, end date, SPN owner and the
         authorizing official's acceptance for each AD account), this chapter's two reviewed files
         (kerberos-replatform.csv and password-retrievers.json) and the program's one
         program-dates.json, each with its SHA-256. Returns @{ Dispositions; Retrievers; ProgramDates;
@@ -445,20 +446,27 @@ function Test-NpiKerberosIsland {
     if ($Domain.Kds.State -eq 'Missing') { $f.Add((New-NpiFinding 'NPI-KRB-01' 'Finding' 'forest' 'KDS root key' 'No KDS root key in the forest: no gMSA or dMSA can be created. Creating one is a one-time, reviewed change by a Domain Admin (Learn), not this code''s')) }
     elseif ($Domain.Kds.State -eq 'Replicating') { $f.Add((New-NpiFinding 'NPI-KRB-01' 'Warn' 'forest' 'KDS root key' "The root key became usable at $($Domain.Kds.EarliestUsable), less than $($script:KdsReplicationHours) hours ago; creations wait for replication (Learn)")) }
 
-    # A stay-on-Kerberos entry: an SPN owner and an end date within D08 (N3.6).
+    # A stay-on-Kerberos entry (NP3.6), by Chapter 03's rules: an end date within D08 for an account kept on
+    # Kerberos with the authorizing official's acceptance (KeepKerberos), within G5 for every other account
+    # that stays in Active Directory (a kept or planned gMSA or dMSA); and an SPN owner for a KeepKerberos
+    # account or any account with SPNs. A kept account with no SPNs needs no SPN owner.
     $stay = {
         param([string]$Name, [string]$Type, [string]$Source, [string]$Spns, $d, [string]$Status)
         $owner = "$($d.SpnOwnerUpn)"; $endDate = ConvertTo-NpiKrbDate "$($d.EndDate)"; $ao = "$($d.AoAcceptedBy)"
         $key = $Source
-        if (-not $owner) { $f.Add((New-NpiFinding 'NPI-KRB-05' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no SPN owner: name the person who answers for its SPNs (Chapter 03''s dispositions.csv for a kept account, kerberos-replatform.csv for a converted one)')) }
+        $keptOnKerberos = "$($d.Disposition)" -eq 'KeepKerberos'
+        $needsOwner = $keptOnKerberos -or [bool]$Spns
+        $bound = if ($keptOnKerberos) { 'D08' } else { 'G5' }
+        $limit = if ($keptOnKerberos) { $d08 } else { $g5 }
+        $limitName = if ($keptOnKerberos) { 'D08''s' } else { 'G5''s (AD retired)' }
+        if ($needsOwner -and -not $owner) { $f.Add((New-NpiFinding 'NPI-KRB-05' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no SPN owner: name the person who answers for its SPNs (Chapter 03''s dispositions.csv for a kept account, kerberos-replatform.csv for a converted one)')) }
         $within = $false
         if (-not $endDate) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no end date')) }
-        elseif (-not $d08) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Warn' $key "$Name ($Type)" 'The program''s D08 end date isn''t set yet: the island list can''t be handed to the SPN retirement (P4.6)')) }
-        elseif ($endDate -gt $d08) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" "End date $($endDate.ToString('yyyy-MM-dd')) is after D08's $($d08.ToString('yyyy-MM-dd'))")) }
+        elseif (-not $limit) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Warn' $key "$Name ($Type)" "The program's $bound date isn't set yet: the island list can't be handed to the SPN retirement (P4.6)")) }
+        elseif ($endDate -gt $limit) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" "End date $($endDate.ToString('yyyy-MM-dd')) is after $limitName $($limit.ToString('yyyy-MM-dd'))")) }
         else { $within = $true }
         # KeepKerberos is the islanding exception: Chapter 03's authorizing official's acceptance travels with it.
-        $needsAo = "$($d.Disposition)" -eq 'KeepKerberos'
-        $island.Add([pscustomobject][ordered]@{ Account = $Name; Type = $Type; Source = $Source; Spns = $Spns; Disposition = "$($d.Disposition)"; SpnOwnerUpn = $owner; EndDate = "$($d.EndDate)"; WithinD08 = $within; AoAcceptedBy = $ao; Status = $Status; ReadyForP46 = [bool]($owner -and $within -and ($ao -or -not $needsAo)) })
+        $island.Add([pscustomobject][ordered]@{ Account = $Name; Type = $Type; Source = $Source; Spns = $Spns; Disposition = "$($d.Disposition)"; SpnOwnerUpn = $owner; EndDate = "$($d.EndDate)"; EndBound = $bound; WithinBound = $within; AoAcceptedBy = $ao; Status = $Status; ReadyForP46 = [bool](($owner -or -not $needsOwner) -and $within -and ($ao -or -not $keptOnKerberos)) })
     }
 
     foreach ($r in ($scope | Sort-Object Name)) {
@@ -474,7 +482,7 @@ function Test-NpiKerberosIsland {
         if ($coveredBy.ContainsKey($r.Name)) { continue }   # the dMSA or gMSA a conversion names: planned under the account it replaces
         $path = Get-NpiKrbPath $d
         if (-not $d -or -not $path) {
-            $why = if (-not $d -or -not "$($d.Disposition)") { 'No disposition in Chapter 03''s decisions (D-N3)' } elseif ($d.Disposition -notin $script:Dispositions) { "Unknown disposition '$($d.Disposition)'" } else { "Unknown $($d.Disposition) target '$($d.Target)'" }
+            $why = if (-not $d -or -not "$($d.Disposition)") { 'No disposition in Chapter 03''s decisions (D-NP3)' } elseif ($d.Disposition -notin $script:Dispositions) { "Unknown disposition '$($d.Disposition)'" } else { "Unknown $($d.Disposition) target '$($d.Target)'" }
             $f.Add((New-NpiFinding 'NPI-KRB-02' 'Finding' $r.Name $lbl "$why`: every Kerberos account is re-platformed (to a gMSA, a dMSA or a workload identity), kept on the island with an end date, or retired"))
             & $add @{ Account = $r.Name; Type = $r.Type; Action = 'AwaitDisposition'; Reason = $why }
             continue
@@ -575,7 +583,7 @@ function Test-NpiKerberosIsland {
         }
     }
 
-    # N7.3: every gMSA and dMSA, existing or planned, against the provisional end state (D11).
+    # NP7.3: every gMSA and dMSA, existing or planned, against the provisional end state (D11).
     $managed = [Collections.Generic.List[object]]::new()
     foreach ($r in @($scope | Where-Object { $_.Type -in $script:ManagedTypes } | Sort-Object Name)) { $managed.Add([pscustomobject]@{ Name = $r.Name; Type = $r.Type; Planned = $false; Handoff = $r.Handoff }) }
     foreach ($d in @($Inputs.Dispositions | Where-Object { (Get-NpiKrbPath $_) -eq 'Convert' -and $_.NewAccount } | Sort-Object NewAccount)) {
@@ -612,7 +620,7 @@ function Test-NpiKerberosIsland {
         Findings       = $f.ToArray()
         Plan           = $plan
         IslandList     = $islandRows
-        HandoffReady   = [bool]($d08 -and $islandRows.Count -and -not @($islandRows | Where-Object { -not $_.ReadyForP46 }).Count)
+        HandoffReady   = [bool]($islandRows.Count -and -not @($islandRows | Where-Object { -not $_.ReadyForP46 }).Count)
         Reconciliation = $recon.ToArray()
     }
 }

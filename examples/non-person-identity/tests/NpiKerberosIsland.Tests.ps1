@@ -14,7 +14,7 @@ BeforeAll {
     $script:InvRun = Join-Path $script:Tmp 'inventory'
     $null = & (Join-Path $script:Root 'Invoke-NpiInventory.ps1') -Cloud gcc -FixturePath $script:Estate -OutputPath $script:InvRun
     $script:Register = Import-NpiKrbRegister -RunPath $script:InvRun
-    # Chapter 03's run holds the owners' D-N3 dispositions this chapter reads (and Chapter 02's, which it needs).
+    # Chapter 03's run holds the owners' D-NP3 dispositions this chapter reads (and Chapter 02's, which it needs).
     $script:OwnRun = Join-Path $script:Tmp 'ownership'
     $null = & (Join-Path $script:Root 'Invoke-NpiOwnership.ps1') -Cloud gcc -RegisterRun $script:InvRun -FixturePath $script:Estate -InputPath (Join-Path $PSScriptRoot 'fixtures/inputs') -OutputPath $script:OwnRun
     $script:MatRun = Join-Path $script:Tmp 'matrix'
@@ -268,24 +268,38 @@ Describe 'PrincipalsAllowedToRetrieveManagedPassword as reviewed data' {
     }
 }
 
-Describe 'The island list (N3.6) and the SPN retirement hand-off (P4.6)' {
+Describe 'The island list (NP3.6) and the SPN retirement hand-off (P4.6)' {
     It 'lists every account that stays on Kerberos under the name it will have, with its SPNs' {
         @($script:Run.IslandList.Account) | Should -Be @('dmsa-hrsync$', 'gmsa-intranet$', 'gmsa-ops$', 'gmsa-print$', 'gmsa-web$', 'svc-webfront')
         @($script:Run.IslandList | Where-Object Account -EQ 'dmsa-hrsync$')[0].Spns | Should -Be 'HTTP/hrapp.corp.contoso.example'
     }
-    It 'NPI-KRB-05 and NPI-KRB-06: an SPN owner and an end date within D08, or not ready' {
-        @(Get-Rule 'NPI-KRB-05').ObjectKey | Sort-Object | Should -Be @('gmsa-ops$', 'svc-intranet', 'svc-webfront')
-        @(Get-Rule 'NPI-KRB-06').ObjectKey | Sort-Object | Should -Be @('gmsa-ops$', 'gmsa-web$', 'svc-intranet')
-        @($script:Run.IslandList | Where-Object ReadyForP46).Account | Should -Be @('dmsa-hrsync$', 'gmsa-print$')
+    It 'NPI-KRB-05 and NPI-KRB-06: an SPN owner where Chapter 03 needs one, an end date within its bound, or not ready' {
+        @(Get-Rule 'NPI-KRB-05').ObjectKey | Sort-Object | Should -Be @('svc-intranet', 'svc-webfront')
+        @(Get-Rule 'NPI-KRB-06').ObjectKey | Sort-Object | Should -Be @('svc-intranet')
+        @($script:Run.IslandList | Where-Object ReadyForP46).Account | Should -Be @('dmsa-hrsync$', 'gmsa-ops$', 'gmsa-print$', 'gmsa-web$')
         $script:Run.HandoffReady | Should -BeFalse
+        # The end date's bound, as in Chapter 03: G5 for a kept or planned gMSA or dMSA, D08 only for a KeepKerberos account.
+        @($script:Run.IslandList | Where-Object Account -EQ 'svc-webfront')[0].EndBound | Should -Be 'D08'
+        @($script:Run.IslandList | Where-Object EndBound -EQ 'G5').Account | Should -Be @('dmsa-hrsync$', 'gmsa-intranet$', 'gmsa-ops$', 'gmsa-print$', 'gmsa-web$')
+        # gmsa-web$ ends 2027-08-31: after D08 (2027-06-30), within G5 (2027-09-30).
+        @($script:Run.IslandList | Where-Object Account -EQ 'gmsa-web$')[0].WithinBound | Should -BeTrue
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-web$' @{ EndDate = '2027-10-31' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'gmsa-web$' }).Issue | Should -Match 'after G5'
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ EndDate = '2027-08-31' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'svc-webfront' }).Issue | Should -Match 'after D08'
+        # An SPN owner only for a KeepKerberos account or one with SPNs: gmsa-ops$ is kept with no SPNs and needs none; gmsa-web$ has SPNs.
+        @($script:Run.IslandList | Where-Object Account -EQ 'gmsa-ops$')[0].ReadyForP46 | Should -BeTrue
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-web$' @{ SpnOwnerUpn = '' } })
+        @($r.Findings | Where-Object Rule -EQ 'NPI-KRB-05').ObjectKey | Should -Contain 'gmsa-web$'
+        @($r.IslandList | Where-Object Account -EQ 'gmsa-web$')[0].ReadyForP46 | Should -BeFalse
     }
     It 'with no D08 date, nothing can be handed off' {
         $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.ProgramDates.d08LegacyAuthEndDate = $null })
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.Severity -eq 'Warn' }).Count | Should -BeGreaterThan 0
         $r.HandoffReady | Should -BeFalse
     }
-    It 'is ready once every account has an owner and an end date within D08' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-intranet' @{ SpnOwnerUpn = 'intranet.owner@contoso.example'; EndDate = '2027-03-31' }; Set-Row $x 'gmsa-web$' @{ EndDate = '2027-06-30' }; Set-Row $x 'gmsa-ops$' @{ SpnOwnerUpn = 'ops.owner@contoso.example'; EndDate = '2027-06-30' }; Set-Row $x 'svc-webfront' @{ SpnOwnerUpn = 'web.owner@contoso.example' } })
+    It 'is ready once every account that needs one has an SPN owner and every end date is within its bound' {
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-intranet' @{ SpnOwnerUpn = 'intranet.owner@contoso.example'; EndDate = '2027-03-31' }; Set-Row $x 'svc-webfront' @{ SpnOwnerUpn = 'web.owner@contoso.example' } })
         $r.HandoffReady | Should -BeTrue
         # Chapter 03's acceptance travels with an account kept on Kerberos: without it, it isn't ready.
         @($script:Run.IslandList | Where-Object Account -EQ 'svc-webfront')[0].AoAcceptedBy | Should -Be 'ao@contoso.example'
@@ -296,7 +310,7 @@ Describe 'The island list (N3.6) and the SPN retirement hand-off (P4.6)' {
     }
 }
 
-Describe 'Reconciliation with the provisional end state (N7.3, D11, G5)' {
+Describe 'Reconciliation with the provisional end state (NP7.3, D11, G5)' {
     It 'every gMSA and dMSA, existing or planned, has an outcome' {
         @($script:Run.Reconciliation | ForEach-Object { "$($_.Account)=$($_.Outcome)" }) | Should -Be @('dmsa-hrsync$=OnIslandList', 'gmsa-ops$=OnIslandList', 'gmsa-sql$=HandedOff', 'gmsa-web$=OnIslandList', 'gmsa-intranet$=Unreconciled', 'gmsa-print$=OnIslandList')
     }

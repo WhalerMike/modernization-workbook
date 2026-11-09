@@ -103,7 +103,7 @@ Describe 'The ownership rule' {
     }
 }
 
-Describe 'The orphan rule as a plan (D-N2)' {
+Describe 'The orphan rule as a plan (D-NP2)' {
     It 'nothing is disabled until the identity governance officer confirms' {
         (Get-Act 'svc-oldftp' 'AwaitConfirmation').Count | Should -Be 1
         (Get-Act 'Old SAML Connector').Action | Should -Be 'AwaitConfirmation'

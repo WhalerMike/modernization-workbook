@@ -2,7 +2,7 @@
   "_comment": "Chapter 08's reviewed scope for the fictional contoso.example tenant: which service principals CA015 and CA037 cover, in which ring, the workload egress ranges (documentation ranges from RFC 5737 and RFC 3849, never real ones), the identities out of scope with the control that covers each instead, and the enforcement record. A real tenant keeps its own copy beside its decision records; every change is a reviewed pull request.",
   "tenantId": "c0ffee00-0000-4000-8000-000000000001",
   "cloud": "gcc",
-  "licensing": { "decision": "D-N4", "outcome": "License the Tier 1 single-tenant service principals", "decidedBy": "CISO", "decidedOn": "2026-10-02" },
+  "licensing": { "decision": "D-NP4", "outcome": "License the Tier 1 single-tenant service principals", "decidedBy": "CISO", "decidedOn": "2026-10-02" },
   "microsoftOwnerTenantIds": ["0e0e0e0e-0000-4000-8000-0000000000aa"],
   "egress": { "name": "NL-WorkloadEgress", "ranges": ["192.0.2.0/28", "198.51.100.32/29", "2001:db8:10::/48"] },
   "rings": [

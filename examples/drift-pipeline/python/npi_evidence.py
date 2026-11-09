@@ -298,7 +298,7 @@ def load_vintage(vintage_dir: Path, tenant_id: str) -> dict[str, Any]:
 # ---------------------------------------------------------------- a period, for the ISSO
 
 def period_npi(evidence_root: Path, since: str, until: str, out_root: Path, vintage_dir: Path | None = None) -> tuple[Path, dict[str, Any]]:
-    """Assemble a period's evidence (the plan's N7.4 and Gate 7): verify every package whose audit
+    """Assemble a period's evidence (the plan's NP7.4 and Gate 7): verify every package whose audit
     window falls in [since, until], check the hash chain between them and that their windows cover the
     period with no gap, list what opened and closed by fingerprint, and map the findings open at the
     end to AC-2, AC-6(5), IA-4, IA-5, IA-9 and M-25-21 and to the Gate 7 criteria. The packages stay

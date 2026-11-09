@@ -13,7 +13,7 @@ body:
     id: decision
     attributes:
       label: Decision ID
-      description: "A workbook decision, for example WD-131. For a project plan's decision point, give the plan and its ID, for example: Non-Person Identity Modernization, D-N2."
+      description: "A workbook decision, for example WD-131. For a project plan's decision point, give the plan and its ID, for example: Non-Person Identity Modernization, D-NP2."
       placeholder: WD-131
     validations:
       required: true

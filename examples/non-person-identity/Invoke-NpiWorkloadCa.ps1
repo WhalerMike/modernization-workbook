@@ -6,7 +6,7 @@
       -Mode Plan     check the scope against the tenant, plan CA015 and CA037 per ring, and write the
                      requests; a dry run unless -Apply, which needs a person's delegated sign-in and
                      -ApprovedPlanSha256, the SHA-256 of the reviewed dry run's plan.json. New policies are created report-only; a ring is
-                     enforced only with -AllowEnforce, a D-N5 record and the reviewed -SignInSummaryPath.
+                     enforced only with -AllowEnforce, a D-NP5 record and the reviewed -SignInSummaryPath.
       -Mode SignIns  read the service principal sign-in logs (Graph beta) and summarize the report-only
                      results per principal and ring; prints the summary's SHA-256 for the review record.
 .EXAMPLE
