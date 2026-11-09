@@ -238,6 +238,10 @@ def render_targets(pages: list[str], published_pages: Iterable[str]) -> list[str
     return out
 
 
+# A deck file the Learn coverage map scans for citations (scripts/learn_coverage.py).
+LEARN_SCANNED_DECK_FILE = re.compile(r"presentations/[^/]+/(build\.js|narration[^/]*\.json|[^/]*Narration_Script\.md)")
+
+
 def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit", "copilot-agent-pack",
                                                                      "app-modernization", "ansible"),
                    bundles: dict | None = None) -> dict:
@@ -281,6 +285,9 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
         if p.startswith(("data/project-plans/", "scripts/decisions/")) or p in (
                 "data/decisions.yml", "docs/about/decision-register.md") or re.fullmatch(r"docs/books/b\d\d-[^/]+/index\.md", p):
             add("decisions", p)
+        if p.startswith(("docs/", "examples/", "data/")) or LEARN_SCANNED_DECK_FILE.fullmatch(p) or p in (
+                "scripts/learn_coverage.py", "scripts/source_watch/learn_pages.py", "scripts/check_claims.py"):
+            add("learn-coverage", p)             # any of them can add or drop a Learn identity citation
         if p.startswith(("docs/project-plans/developer-workbooks/", "docs/books/b19-developer-workbook/",
                          "docs/training/", "docs/books/guides/")) or p == "scripts/generate_labs.py":
             add("labs", p)
@@ -1114,6 +1121,9 @@ class Checker:
             steps.append(("Project plans are current", self.simple([PY, "scripts/project_plans/build.py", "--check"])))
         if "decisions" in t:
             steps.append(("Decision register is current", self.simple([PY, "scripts/decisions/build.py", "--check"])))
+        if "learn-coverage" in t:
+            steps.append(("Learn coverage map is current",
+                          self.simple([PY, "scripts/learn_coverage.py", "--check"])))
         if "authorities" in t:
             steps.append(("Authorities tables match the spine",
                           self.simple([PY, "scripts/render_authorities_table.py", "--check"])))
