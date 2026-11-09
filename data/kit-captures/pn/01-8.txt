@@ -1,0 +1,2 @@
+PS> ./deploy/New-PnAlertPolicy.ps1 -SettingsPath deploy/tests/fixtures/settings.production.json -FixturePath deploy/tests/fixtures/environment-production.json -OutputPath out/alerts -AsOf 2026-11-16T12:00:00Z -Apply -ApprovedSha256 ('0' * 64)
+Exception: Fixture mode never applies.

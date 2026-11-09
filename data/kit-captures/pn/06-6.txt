@@ -1,0 +1,9 @@
+PS> Copy-Item out/state.json out/state-rerun.json
+PS> ./Invoke-PnRoute.ps1 -NoticesPath out/day1/notices.json -RoutingPath config/routing.json -StatePath out/state-rerun.json -OutputPath out/day1-rerun -AsOf 2026-11-09T13:00:00Z
+Notices: 0 new, 0 changed, 22 unchanged, 0 no longer listed
+Routes:  12 task, 9 digest only, 1 ignored
+Payloads: 0 create, 0 update, 0 close
+
+No payloads: nothing new or changed needs a task.
+
+Dry run: 0 payloads written to out/day1-rerun/tasks, nothing sent. State: out/state-rerun.json

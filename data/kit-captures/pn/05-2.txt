@@ -1,0 +1,7 @@
+PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider google -AsOf 2026-11-09T12:00:00Z -OutputPath out/google
+Collected as of 2026-11-09T12:00:00Z (Fixture mode, environment lab)
+
+Provider Cloud        Notices   Open   Action  By kind
+google   global             2      1        0  incident 2
+
+2 notices, each valid against schema/notice.schema.json. Written to out/google: notices.json, notices.csv, raw/, manifest.json

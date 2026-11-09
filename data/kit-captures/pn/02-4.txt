@@ -1,0 +1,9 @@
+PS> Import-Csv out/m365/notices.csv | Format-Table noticeId, kind, status, actionRequired, actionRequiredBy, title
+noticeId      kind       status actionRequired actionRequiredBy     title
+--------      ----       ------ -------------- ----------------     -----
+m365:EX900101 incident   open   false                               Some users may see delays receiving external email
+m365:MC900001 retirement open   true           2027-01-31T08:00:00Z Retirement of Basic authentication for SMTP AUTH client submission
+m365:MC900002 advisory   open   false                               New meeting recap features in Microsoft Teams
+m365:MC900003 change     open   true                                Update SharePoint Framework solutions that use a deprecated library
+m365:MC900004 advisory   open   false                               Microsoft Viva: new insights dashboard
+m365:TM900102 advisory   closed false                               Users couldn't load the Teams web app in some browsers

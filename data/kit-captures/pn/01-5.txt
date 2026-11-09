@@ -1,0 +1,9 @@
+PS> (Read-PnJson -Path out/azure/notices.json).notices | Where-Object { $_.kind -eq 'retirement' } | ForEach-Object { [pscustomobject]$_ } | Format-List noticeId, windowStart, windowEnd, actionRequiredBy, actionBasis, resources, sourceUrl, fingerprint
+noticeId         : azure:RT5J-6KL
+windowStart      : 2026-09-30T00:00:00Z
+windowEnd        : 2027-09-30T00:00:00Z
+actionRequiredBy : 2027-09-30T00:00:00Z
+actionBasis      : rule: Azure retirement (HealthAdvisory, EventSubType Retirement); due at the advisory end time
+resources        : {/subscriptions/00000000-0000-0000-0000-00000000aa01/resourcegroups/rg-net/providers/microsoft.network/publicipaddresses/pip-legacy01}
+sourceUrl        : https://management.azure.com/subscriptions/00000000-0000-0000-0000-00000000aa01/providers/Microsoft.ResourceHealth/events/RT5J-6KL?api-version=2025-05-01
+fingerprint      : 02f776686826535d3b3709afe9090e6a16346e1bd34f48c794b9cbfff7cf4f7d

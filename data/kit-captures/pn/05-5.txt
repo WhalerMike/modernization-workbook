@@ -1,0 +1,4 @@
+PS> Import-Csv out/google/notices.csv, out/google-day2/notices.csv | Group-Object kind | Format-Table Name, Count
+Name     Count
+----     -----
+incident     4

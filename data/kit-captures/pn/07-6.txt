@@ -1,0 +1,8 @@
+PS> ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check -Stage test
+SUMS           Pass  25 files match SHA256SUMS
+CHAIN          Pass  3 records, chain unbroken
+STEP-PRE       Fail  no passing record
+STEP-RUN       Fail  no passing record
+STEP-ROUTE     Pass  a passing record covers it
+STEP-DIGEST    Pass  a passing record covers it
+(exit code 1)

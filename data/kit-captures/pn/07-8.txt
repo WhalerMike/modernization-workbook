@@ -1,0 +1,5 @@
+PS> Add-Content -Path out/evidence/runs/0003-digest/digest.md -Value 'edited after it was recorded'
+PS> ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
+SUMS           Fail  runs/0003-digest/digest.md changed
+CHAIN          Fail  runs/0003-digest/digest.md doesn't match 0003-digest.json
+(exit code 1)

@@ -182,7 +182,8 @@ function New-PnRollbackPlan {
     param([Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$OutputPath)
     $steps = [Collections.Generic.List[object]]::new()
     $task = if ($Settings['schedule']) { "$($Settings.schedule['taskName'])" } else { '' }
-    if ($task) { $steps.Add([ordered]@{ id = 'RB-01'; kind = 'write'; tool = 'pwsh'; arguments = @('Unregister-ScheduledTask', '-TaskName', "'$task'", '-Confirm:$false'); why = 'Stop the weekly run' }) }
+    # Get-ScheduledTask first, so a stage where the task was never registered still rolls back the rest.
+    if ($task) { $steps.Add([ordered]@{ id = 'RB-01'; kind = 'write'; tool = 'pwsh'; arguments = @('Get-ScheduledTask', '-TaskName', "'$task'", '-ErrorAction', 'SilentlyContinue', '|', 'Unregister-ScheduledTask', '-Confirm:$false'); why = 'Stop the weekly run (nothing to do if the task was never registered)' }) }
     $ap = $Settings['azurePolicy']
     if ($ap -and $ap.enabled) {
         $steps.Add([ordered]@{ id = 'RB-02'; kind = 'write'; tool = 'az'; arguments = @('policy', 'assignment', 'delete', '--name', $ap.assignmentName, '--scope', $ap.scope); why = 'Remove the Service Health alert policy assignment' })

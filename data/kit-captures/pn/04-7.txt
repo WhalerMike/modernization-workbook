@@ -1,0 +1,2 @@
+PS> Get-PnLiveCommand -CallId aws-describe-event-details -Settings $s -Arguments @{ arns = @(1..11 | ForEach-Object { "arn:aws-us-gov:health:us-gov-west-1::event/EC2/EXAMPLE/$_" }) }
+Exception: aws-describe-event-details takes 1 to 10 event ARNs; got 11.

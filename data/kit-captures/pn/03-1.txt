@@ -1,0 +1,6 @@
+PS> Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
+PS> Get-PnRequiredPermission -Provider oci | Format-Table Call, Permissions, Verified
+Call                   Permissions                                                         Verified
+----                   -----------                                                         --------
+oci-announcements-list Allow group <group> to inspect announcements in tenancy (list only)     True
+oci-announcement-get   Allow group <group> to read announcements in tenancy                    True

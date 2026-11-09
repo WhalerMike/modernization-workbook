@@ -1,0 +1,531 @@
+---
+title: "Chapter 08 — Deploying to Test and Production"
+description: "A deployment runbook that takes the provider notices kit from the labs to a live test environment, then to production, with the same commands and one settings file per environment: a settings file with no secrets, a read-only pre-flight (PF-01 to PF-07), Stage 1 in a test environment with a staged enable (one provider at a time, each cross-checked against the provider's own command), a smoke test (ST-01 to ST-04), the Service Health alert policy applied with its approved hash, the weekly run on a schedule, the evidence and a rehearsed rollback; the go/no-go criteria; and Stage 2 in production, with routing as a dry run for the first week before sending, the alert policy at the management group, first-week monitoring and a rollback. Every step is a copy-paste command; the deploy scripts each have a dry run. Nobody has run it against a live tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-provider-notices
+part: How
+series-order: 8
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 08 — Deploying to Test and Production
+
+*Each chapter's second lab proves one provider in isolation. A deployment proves them together, on a schedule, with a rollback someone has already run.*
+
+::: {.callout-note}
+## In this chapter
+The runbook that takes the kit from the labs of Chapters 01 to 07 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against test tenants, accounts, tenancies and projects, and again, unchanged, against production. Only the settings file changes between the two. You prepare the change record and the settings file, run the read-only pre-flight, enable the providers one at a time, route as a dry run, run a smoke test, apply the Service Health alert policy with its approved hash, put the weekly run on a schedule, check the stage's evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, routing as a dry run for the first week before anything is sent. Each step names the [implementation guide](../../../books/guides/provider-notices-implementation.md)'s gate it moves forward, and has a table of the federal requirements it supports, the KSI it aligns to and the evidence the ISSO keeps; the kit writes that evidence as it runs.
+:::
+
+::: {.callout-important}
+## Status: a runbook nobody has run against a live tenant
+Nobody has run this runbook against a live tenant, account, tenancy or project. The commands that call each provider follow its own documentation and the earlier chapters' code; the `deploy/` scripts have been run only in fixture mode, against a fictional test and production environment. Every live result below is labeled **Expected**: it is what the code and the providers' pages say should happen, not something anyone has seen. The output labeled **Dry run, November 9, 2026** is real: the kit printed it on that date, on its fixtures.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can deploy the kit to a test environment and then to production, with a change record, an approval at each write, a smoke test whose expected result is written down before you run it, evidence the ISSO can check with a hash, and a rollback you have rehearsed. You can say, for each step, which of the guide's gates (G1 to G7) it moves forward.
+
+**Audience.** The operator who runs the deployment, the provider owners (cloud platform lead, Microsoft 365 service owner, OCI platform lead, AWS account owner, Google Cloud project owner), the change manager, and the ISSO who receives the evidence. You should have run Lab 1 of Chapters 01 to 07, and the second lab of each provider the agency enables.
+
+## What the runbook depends on
+
+**The guide's gates.** G1 to G5 are the providers, independent of each other; G6 routes what they collect; G7 is the digest and evidence. This runbook doesn't decide what the gates decide. It turns them on in an order where each step can be undone before the next depends on it: reads first, one provider at a time; routing as a dry run before anything is sent; the one write to a cloud (the alert policy) only after the reads work; the schedule last. *Design guidance.*
+
+**The kit's writes.** Every collector call is a read. The writes are the Azure Policy assignment and its remediation (`deploy/New-PnAlertPolicy.ps1`), the rollback (`deploy/Invoke-PnRollback.ps1`), registering the scheduled task, and sending payloads to the agency's own ServiceNow endpoint. Each runs only with `-Apply` and the plan's approved SHA-256, or with `-Send` and the settings' `routing.send`.
+
+**What isn't in the kit.** The kit doesn't register a schedule, doesn't sign in to any provider, and doesn't build the ServiceNow endpoint. This runbook gives the commands for the first two; the endpoint is the agency's (not yet specified here).
+
+### Which cloud, for these steps
+
+Every command reads the cloud from the settings file: `AzureCloud` or `AzureUSGovernment`; `gcc`, `gcchigh` or `dod`; `oc1` or `oc2`; `aws` or `aws-us-gov`; Google's `global`. Any other name throws, and the live invoker refuses a session signed in to another cloud, tenant, partition or realm. The estate this runbook writes for is Microsoft 365 GCC with commercial Azure: `graph.microsoft.com` and `management.azure.com`.[^pn08-deployments]
+
+## Requirements, KSIs and evidence
+
+Each step ends with the requirements it supports, the FedRAMP 20x KSI it aligns to, and the evidence the ISSO keeps. The mappings are the kit's [`config/requirements.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/provider-notices/config/requirements.json), verified for the guide against NIST's OSCAL catalog and FedRAMP's KSI pages on November 9, 2026.[^pn08-oscal] [^pn08-ksi]
+
+**KSIs belong to the cloud providers.** They are FedRAMP's 20x indicators for cloud service providers. The agency authorizes its own system, lines its evidence up with what its providers report against KSIs, and doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Every alignment below is the program's reading (*design guidance*); the kit's records support the controls, and the assessor and the authorizing official decide them.
+
+| KSI | Name, as FedRAMP gives it | Steps that align to it |
+|---|---|---|
+| KSI-SCR-MON | Monitoring Supply Chain Risk | 1.2 to 1.7, 2.2 to 2.5 |
+| KSI-SCR-MIT | Mitigating Supply Chain Risk | 1.3, 1.7, 2.4 |
+| KSI-CMT-LMC | Logging Changes | Before you start, 1.4, 1.9, 2.5, 2.6 |
+| KSI-CMT-RVP | Reviewing Change Procedures | Before you start, 1.4 |
+| KSI-RPL-ARP | Aligning Recovery Plan | 1.4, 1.9, 2.6 |
+| KSI-MLA-EVC | Evaluating Configurations | 1.5 to 1.8, 2.6, go/no-go |
+| KSI-MLA-OSM | Operating SIEM Capability (the privileged access guide's mapping for AU-9) | 1.8, 2.6 |
+
+: KSIs this runbook aligns to {.striped .hover}
+
+**The evidence is produced, not only named.** Every `deploy/` script and every entry script writes a run folder with a manifest. `Invoke-PnEvidence.ps1` records each one in `<outputRoot>/evidence` with its steps, controls and KSIs, every file's SHA-256 and the hash of the record before it (Chapter 07). `Invoke-PnEvidence.ps1 -Check -Stage <stage>` is the evidence half of the go/no-go.
+
+## Before you start
+
+### Roles
+
+| Who | Holds | Steps |
+|---|---|---|
+| Operator | Runs the commands; holds no write role in any cloud except as the steps below say | All |
+| Azure reader | Reader on each subscription, Service Health Security Reader | 1.1, 1.3, the weekly run |
+| Azure policy writer (a person) | Permission to create policy assignments and role assignments at the scope, activated for the change window | 1.6, 1.9, 2.3, 2.6 |
+| Microsoft 365 reader | `ServiceMessage.Read.All`, `ServiceHealth.Read.All` (application permissions for the scheduled run, with a certificate) | 1.1, 1.3, the weekly run |
+| OCI reader | A group with `read announcements in tenancy` | 1.1, 1.3, the weekly run |
+| AWS reader | A role with the three `health:Describe*` actions; the account has a qualifying support plan | 1.1, 1.3, the weekly run |
+| Google Cloud reader | `roles/servicehealth.viewer` on the project | 1.1, 1.3, the weekly run |
+| Change manager | Approves each plan's SHA-256 and the routing | Before you start, 1.6, 1.9, 2.3 |
+| ISSO | Approves promotion; keeps the evidence | Go/no-go, 2.7 |
+
+Each reader's grant is the second lab of its chapter: [01](01-the-notice-record-and-azure-service-health.md#lab-2-a-test-subscription), [02](02-microsoft-365-message-center-and-service-health.md#lab-2-a-test-tenant), [03](03-oracle-cloud-infrastructure-announcements.md#lab-2-a-test-tenancy), [04](04-aws-health.md#lab-2-a-test-account), [05](05-google-cloud-personalized-service-health.md#lab-2-a-test-project).
+
+### Approvals
+
+| Approval | By | Before | Recorded in |
+|---|---|---|---|
+| The change record for the stage | Change advisory board | Pre-flight | The change record; its number in the settings file |
+| The settings file and the routing file | Change manager; the ISSO for the security route | Pre-flight | Their SHA-256 in the pre-flight's `results.json` and the routing run's manifest |
+| The alert plan's SHA-256 | A reviewer who isn't the operator | Step 1.6, 2.3 | The change record |
+| The rollback plan's SHA-256 | A reviewer who isn't the operator | Step 1.9, 2.6 | The change record |
+| Promotion to production | ISSO and the change advisory board | Stage 2 | The go/no-go record |
+| Turning on sending | Change manager, after the first production week | Step 2.5 | The change record |
+
+### The change record
+
+Open one change record per stage, naming the stage, the window, the operator, the providers enabled, the rollback plan and the evidence folder. Its number goes in the settings file's `changeRecord`; every run folder's results and every evidence record repeat it.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3 b (review proposed changes) | One approved change record per stage; settings and routing reviewed | KSI-CMT-LMC, KSI-CMT-RVP | The change record; the settings file's SHA-256 in `results.json` |
+
+## The settings file
+
+One JSON file per stage holds every value the commands need. The template is [`deploy/settings.template.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/provider-notices/deploy/settings.template.json); the fictional copies the tests use are `deploy/tests/fixtures/settings.test.json` and `settings.production.json`. The rules, which `Read-PnSettings` enforces before any command runs:
+
+- **No secrets.** A secret-like name (`password`, `secret`, `clientSecret`, `apiKey`, `privateKey`, `token`) with a value stops the run. The ServiceNow token is read at run time from the environment variable `routing.tokenVariable` names.
+- **No placeholders in an enabled provider.** A value still shaped like `<tenant-id>` stops the run; a disabled provider may keep its placeholders.
+- **The stage it says it is.** The pre-flight fails if `environment` isn't the stage it is told to check (PF-01).
+- **Named contacts.** Each enabled provider names who receives its notices today, in `noticeContacts` (PF-05, for SR-8).
+- **The same commands for both stages.** Moving from test to production changes the file and nothing else.
+
+### Placeholders
+
+These are the only values you replace in this chapter's commands:
+
+| Placeholder | What it is |
+|---|---|
+| `<kit-folder>` | Your copy's `examples/provider-notices` folder |
+| `<stage>` | `test` in Stage 1, `production` in Stage 2 |
+| `<settings-file>` | That stage's settings file, kept with the change record |
+| `<test-settings-file>` | Stage 1's settings file, read again in Stage 2 |
+| `<tenant-id>`, `<reader-app-id>`, `<reader-thumbprint>` | The Microsoft 365 tenant, and the app and certificate the scheduled run signs in to Graph with |
+| `<subscription-id>` | An Azure subscription in scope, for the reader's cross-check |
+| `<tenancy-ocid>`, `<home-region>` | The OCI tenancy and its home region |
+| `<aws-profile>` | The AWS CLI profile the reader signs in with |
+| `<project-id>` | The Google Cloud project |
+| `<plan-sha256>`, `<rollback-sha256>` | The alert plan's and the rollback plan's SHA-256, as the reviewer approved them |
+| `<run-script>` | The path of the weekly run's sign-in script (Step 1.7) |
+| `<run-as-account>` | The Windows account the scheduled task runs as |
+
+### Create and check the file
+
+Copy the template, fill it in, then check it:
+
+```powershell
+Set-Location <kit-folder>
+Copy-Item deploy/settings.template.json <settings-file>
+Import-Module ./deploy/PnDeploy.psm1 -Force
+Read-PnSettings -Path <settings-file> | Select-Object environment, changeRecord, outputRoot, _sha256
+```
+
+**Expected:** one line with the stage, the change record, the output folder and the file's SHA-256. On the template itself, the check stops with `still has a <placeholder> in provider 'azure'`.
+
+### Start every session the same way
+
+Run this block at the start of every sitting. Later blocks use `$s`, `$out` and `$ev`:
+
+```powershell
+Set-Location <kit-folder>
+Import-Module ./deploy/PnDeploy.psm1 -Force
+$s = Read-PnSettings -Path <settings-file>
+$out = $s.outputRoot
+$ev = Join-Path $out 'evidence'
+```
+
+## The code this chapter uses
+
+The runbook's scripts are in [`examples/provider-notices/deploy`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/provider-notices/deploy), PowerShell like the rest of the kit, with 25 Pester tests in `deploy/tests/Deploy.Tests.ps1` (one runs only on Windows). Each has a dry run: the pre-flight and the scheduled run take `-FixturePath`; the alert policy and the rollback plan and change nothing without `-Apply`.
+
+| Script | What it does | Writes to a cloud |
+|---|---|---|
+| `Test-PnPreflight.ps1` | PF-01 to PF-07 below; `results.json` and a manifest; exits 1 on any Fail | Nothing |
+| `New-PnAlertPolicy.ps1` | Plans the Service Health alert policy (AL-01 assign, AL-02 remediate); applies with `-Apply -ApprovedSha256` | The policy assignment, its identity's role, the remediation |
+| `Invoke-PnScheduledRun.ps1` | Collect every enabled provider, route, digest, and record each as evidence under `<outputRoot>` | Only with `-Send` and `routing.send`: payloads to the agency's endpoint |
+| `Invoke-PnRollback.ps1` | Plans, in reverse order: RB-01 unregister the schedule (if it exists), RB-02 delete the policy assignment, RB-03 list what the remediation created, for the change record; applies with `-Apply -ApprovedSha256` | Deletes the assignment |
+| `PnDeploy.psm1` | The functions behind them, and the ServiceNow sender | — |
+
+::: {.callout-warning}
+## Illustrative code
+The scripts have been run against fictional environments in fixture mode, never against a live tenant, account, tenancy or project. Review the code and run Stage 1 in test before anything touches production.
+:::
+
+### Dry run on the kit's fixtures
+
+Run the stage end to end against the fictional test environment, then the production pre-flight with the test evidence. Nothing leaves the machine. From `<kit-folder>`:
+
+```powershell
+Import-Module ./deploy/PnDeploy.psm1 -Force
+./deploy/Test-PnPreflight.ps1 -SettingsPath deploy/tests/fixtures/settings.test.json -Stage test -FixturePath deploy/tests/fixtures/environment-test.json -OutputPath out/deploy-test/preflight -AsOf 2026-11-09T12:00:00Z
+./Invoke-PnEvidence.ps1 -EvidencePath out/deploy-test/evidence -RunPath out/deploy-test/preflight -AsOf 2026-11-09T12:00:00Z -ChangeRecord CHG-EXAMPLE-0101
+./deploy/Invoke-PnScheduledRun.ps1 -SettingsPath deploy/tests/fixtures/settings.test.json -FixturePath tests/fixtures/day1 -AsOf 2026-11-09T12:00:00Z
+./Invoke-PnEvidence.ps1 -EvidencePath out/deploy-test/evidence -Check -Stage test
+./deploy/Invoke-PnRollback.ps1 -SettingsPath deploy/tests/fixtures/settings.test.json -OutputPath out/deploy-test/rollback -AsOf 2026-11-09T12:00:00Z
+./deploy/Test-PnPreflight.ps1 -SettingsPath deploy/tests/fixtures/settings.production.json -Stage production -FixturePath deploy/tests/fixtures/environment-production.json -TestEvidencePath out/deploy-test/evidence -OutputPath out/deploy-prod/preflight -AsOf 2026-11-16T12:00:00Z
+./deploy/New-PnAlertPolicy.ps1 -SettingsPath deploy/tests/fixtures/settings.production.json -FixturePath deploy/tests/fixtures/environment-production.json -OutputPath out/deploy-prod/alerts -AsOf 2026-11-16T12:00:00Z
+./deploy/Invoke-PnRollback.ps1 -SettingsPath deploy/tests/fixtures/settings.production.json -OutputPath out/deploy-prod/rollback -AsOf 2026-11-16T12:00:00Z
+```
+
+**Dry run, November 9, 2026.** The test pre-flight passed 14 checks (PF-01, PF-02 to PF-05 for Azure, Microsoft 365 and OCI, PF-06). The scheduled run printed:
+
+```text
+RUN-COLLECT  Pass  15 notices from azure, m365, oci
+RUN-ROUTE    Pass  8 create, 0 update, 0 close; dry run
+RUN-DIGEST   Pass  13 open, 5 need action
+```
+
+The stage check printed:
+
+```text
+SUMS           Pass  31 files match SHA256SUMS
+CHAIN          Pass  5 records, chain unbroken
+STEP-PRE       Pass  a passing record covers it
+STEP-RUN       Pass  a passing record covers it
+STEP-ROUTE     Pass  a passing record covers it
+STEP-DIGEST    Pass  a passing record covers it
+```
+
+The test rollback planned one step, `RB-01 WouldApply pwsh Get-ScheduledTask -TaskName 'ProviderNotices-Weekly-Test' -ErrorAction SilentlyContinue | Unregister-ScheduledTask -Confirm:$false`. The production pre-flight passed 23 checks, ending `PF-07 Pass the test stage's evidence passes`. The alert plan's two steps were `WouldApply`, with `Plan SHA-256: 6a1ec6adbd50bc2cec2bcc803ee45629bc0a0d7de416fcafd3216db443a4a3b7`, and the production rollback planned RB-01 and RB-02 as `WouldApply` and RB-03 as `Manual`. Delete `out` afterwards: `Remove-Item -Recurse -Force out`.
+
+## Pre-flight checks
+
+The pre-flight reads only. Run it before each stage, after the readers sign in (Step 1.1):
+
+| Check | What it reads | Fails when |
+|---|---|---|
+| PF-01 | The settings and routing files | The stage is wrong, no provider is enabled, the routing doesn't pass `Read-PnRouting`, or sending is on without an endpoint and token variable |
+| PF-02-&lt;provider&gt; | The provider's tool: `az`, the `Microsoft.Graph.Authentication` module, `oci`, `aws`, `gcloud` | It isn't installed |
+| PF-03-&lt;provider&gt; | The signed-in cloud | The Azure CLI, the Graph session, the AWS caller or the OCI region is in another cloud, tenant, partition or realm |
+| PF-04-&lt;provider&gt; | The reader's first call; for AWS also the support plan | The call fails (for AWS, `SubscriptionRequiredException`) |
+| PF-05-&lt;provider&gt; | `noticeContacts` | Nobody is named to receive the provider's notices |
+| PF-06 | The output root | It can't be written |
+| PF-07 (production only) | The test stage's evidence | `Invoke-PnEvidence.ps1 -Check -Stage test` would fail |
+
+: Pre-flight checks {.striped .hover}
+
+## Stage 1: test
+
+### Step 1.1: Sign in each reader (G1 to G5)
+
+Sign in each enabled provider's reader in the cloud the settings file names. For a government cloud, use `AzureUSGovernment`, `-Environment USGov` (GCC High) or `USGovDoD` (DoD), and the OC2 region or `aws-us-gov` profile:
+
+```powershell
+az cloud set --name AzureCloud
+az login
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <reader-thumbprint> -NoWelcome
+oci --version
+aws sts get-caller-identity --profile <aws-profile> --query Arn --output text
+gcloud auth login
+```
+
+**Expected:** each command succeeds; the AWS caller's ARN starts with the partition's prefix. `Connect-MgGraph` with a client ID, tenant ID and certificate thumbprint is app-only access, the same sign-in the scheduled run uses.[^pn08-app-only]
+
+### Step 1.2: Pre-flight (G1 to G7)
+
+```powershell
+./deploy/Test-PnPreflight.ps1 -SettingsPath <settings-file> -Stage test -OutputPath "$out/preflight"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/preflight" -ChangeRecord $s.changeRecord
+```
+
+**Expected:** every check `Pass`, `0 failed`, and `Record 1: Pass (PRE, EVIDENCE)`. Fix any Fail before going on: the detail names what is missing.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SA-9 c; SR-8 (notification agreements) | Every reader works, in its own cloud, and each provider's notice contacts are named | KSI-SCR-MON | `preflight/results.json`, the evidence record |
+
+### Step 1.3: Staged enable, one provider at a time (G1 to G5)
+
+Read each enabled provider on its own, cross-check it against the provider's own command (each chapter's Lab 2, step 3, has the command), and record it, before the providers run together. Start with the one the agency relies on most. *Design guidance.*
+
+```powershell
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider azure -OutputPath "$out/stage/azure"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/stage/azure" -ChangeRecord $s.changeRecord
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider m365 -OutputPath "$out/stage/m365"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/stage/m365" -ChangeRecord $s.changeRecord
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider oci -OutputPath "$out/stage/oci"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/stage/oci" -ChangeRecord $s.changeRecord
+```
+
+For AWS and Google Cloud, where enabled:
+
+```powershell
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider aws -OutputPath "$out/stage/aws"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/stage/aws" -ChangeRecord $s.changeRecord
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider google -OutputPath "$out/stage/google"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/stage/google" -ChangeRecord $s.changeRecord
+```
+
+**Expected:** each collection prints its provider's row, and each count matches the provider's own command. An empty list is a valid result in a test environment; an empty list where the provider's command finds notices is a Fail. **Dry run, November 9, 2026:** the Azure step on the test fixture printed `azure AzureCloud 5 5 2 advisory 1, incident 1, maintenance 1, retirement 1, security 1` and recorded `Pass (COL-AZURE, NORMALIZE, EVIDENCE)`.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SA-9 c; SI-5 a | Each provider's notices read with the least-privileged reader, in its own cloud | KSI-SCR-MIT, KSI-SCR-MON | `stage/<provider>/` (raw, notices, manifest) and their records |
+
+### Step 1.4: Route as a dry run, and read the payloads (G6)
+
+Route the full collection with the agency's routing, and have the service desk read the payloads before anything is sent:
+
+```powershell
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -OutputPath "$out/stage/all"
+./Invoke-PnRoute.ps1 -NoticesPath "$out/stage/all/notices.json" -RoutingPath $s.routing.path -StatePath "$out/state.json" -OutputPath "$out/stage/route"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/stage/route" -ChangeRecord $s.changeRecord
+```
+
+**Expected:** `Dry run: N payloads written to .../tasks, nothing sent.` Every security advisory and retirement has a payload; each payload's assignment group is one the change manager recognizes.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SI-5 c, d; CM-3 b, f; CM-4; CP-2 e | Every notice that needs action has a task with an owner; retirements and maintenance ask for a plan review | KSI-SCR-MON, KSI-CMT-LMC, KSI-CMT-RVP, KSI-RPL-ARP | `stage/route/` (`tasks/`, `routing.csv`, `state.json`) and its record |
+
+### Step 1.5: Smoke test (G1 to G7)
+
+Four checks, each with its expected result written before you run it. The smoke test uses its own state file, so it doesn't touch the stage's routing state. *Design guidance.*
+
+| Check | Expected |
+|---|---|
+| ST-01 | The collection read every enabled provider |
+| ST-02 | A second routing of the same collection writes no payload |
+| ST-03 | Every payload passes `Test-PnTaskPayload` |
+| ST-04 | The evidence chain checks clean |
+
+```powershell
+./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -OutputPath "$out/smoke/collect"
+'ST-01 providers read: ' + ((Read-PnJson -Path "$out/smoke/collect/notices.json").providers.Keys -join ', ')
+./Invoke-PnRoute.ps1 -NoticesPath "$out/smoke/collect/notices.json" -RoutingPath $s.routing.path -StatePath "$out/smoke/state.json" -OutputPath "$out/smoke/route1"
+./Invoke-PnRoute.ps1 -NoticesPath "$out/smoke/collect/notices.json" -RoutingPath $s.routing.path -StatePath "$out/smoke/state.json" -OutputPath "$out/smoke/route2"
+'ST-03 invalid payloads: ' + @(Get-ChildItem "$out/smoke/route1/tasks" -Filter *.json | ForEach-Object { Test-PnTaskPayload -Payload (Read-PnJson -Path $_.FullName) }).Count
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/smoke/collect" -ChangeRecord $s.changeRecord
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -Check
+```
+
+**Expected:** ST-01 lists every enabled provider; the second routing prints `Payloads: 0 create, 0 update, 0 close`; `ST-03 invalid payloads: 0`; `SUMS Pass` and `CHAIN Pass`. **Dry run, November 9, 2026,** on the test fixture: `ST-01 providers read: azure, m365, oci`, the first routing `8 create`, the second `0 create, 0 update, 0 close`, and `ST-03 invalid payloads: 0`.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7; SI-5 | The pieces work together, de-duplicate and produce valid tasks | KSI-MLA-EVC, KSI-SCR-MON | `smoke/` and its record |
+
+### Step 1.6: Service Health alerts with Azure Policy, at the test subscription (G1)
+
+In the test settings, `azurePolicy` is enabled with `scope` `/subscriptions/<subscription-id>`. Read the real definition, plan, have the reviewer approve the hash, then apply as the policy writer:
+
+```powershell
+az policy definition show --name 98903777-a9f6-47f5-90a9-acaf62ab01a8 --query "{name: displayName, roles: policyRule.then.details.roleDefinitionIds}"
+./deploy/New-PnAlertPolicy.ps1 -SettingsPath <settings-file> -OutputPath "$out/alerts"
+./deploy/New-PnAlertPolicy.ps1 -SettingsPath <settings-file> -OutputPath "$out/alerts" -Apply -ApprovedSha256 <plan-sha256>
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/alerts" -ChangeRecord $s.changeRecord
+az policy remediation show --name pn-service-health-alerts-remediation
+az monitor activity-log alert list --resource-group rg-serviceHealthAlert --output table
+```
+
+**Expected:** `AL-01 Applied` and `AL-02 Applied`; the remediation completes; the alert rule `ServiceHealthSubscriptionAlertRule` is listed in `rg-serviceHealthAlert`, with the action group `ag-ServiceHealthAlertActionGroup` emailing the subscription owners, as Learn describes.[^pn08-policy] Don't edit the rule by hand: change the assignment's parameters and remediate again.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SI-5; CA-7 | The alert path between collections, applied with its approved hash | KSI-SCR-MON, KSI-MLA-EVC | `alerts/plan.json`, `results.json`, its record; the approved hash in the change record |
+
+### Step 1.7: The weekly run, on a schedule (G7)
+
+The scheduled run needs every reader's sign-in in its own session. Write a small sign-in script for the run-as account, run it once by hand, then register it. The kit doesn't register a schedule; this uses Windows Task Scheduler's own cmdlets, and the task name the rollback removes.[^pn08-tasks] *Design guidance.*
+
+```powershell
+Set-Content -Path <run-script> -Value @'
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <reader-thumbprint> -NoWelcome
+Set-Location '<kit-folder>'
+./deploy/Invoke-PnScheduledRun.ps1 -SettingsPath '<settings-file>'
+'@
+pwsh -NoProfile -File <run-script>
+$action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NoProfile -File "<run-script>"'
+$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 6am
+Register-ScheduledTask -TaskName $s.schedule.taskName -Action $action -Trigger $trigger -User '<run-as-account>'
+```
+
+**Expected:** the run prints `RUN-COLLECT`, `RUN-ROUTE` and `RUN-DIGEST`, each `Pass`, and the run and evidence folders under `outputRoot`; the task is registered for Mondays. The other providers' sign-ins (Azure CLI, OCI configuration, AWS profile, Google Cloud credentials) must already belong to the run-as account; how each signs in unattended is the provider's own procedure and is not yet specified in the kit. Send the digest (`runs/<time>/digest/digest.md`) to the owners.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SA-9 c; SI-5; CA-7; RA-3 f | Collection, routing and the digest every week, each recorded | KSI-SCR-MIT, KSI-SCR-MON, KSI-MLA-EVC | `runs/<time>/` and its four records; the weekly digest |
+
+### Step 1.8: The stage's evidence (G7)
+
+```powershell
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -Check -Stage test
+```
+
+**Expected:** `SUMS`, `CHAIN`, `STEP-PRE`, `STEP-RUN`, `STEP-ROUTE` and `STEP-DIGEST`, each `Pass`.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7; AU-9 | Every step the stage needs has a passing record, the chain is unbroken and every file matches `SHA256SUMS` | KSI-MLA-EVC, KSI-MLA-OSM | The evidence folder |
+
+### Step 1.9: Rehearse the rollback (G1, G7)
+
+Plan the rollback, have the reviewer approve its hash, apply it, and record it. Then register the schedule again (Step 1.7's last three lines) if the test stage keeps running:
+
+```powershell
+./deploy/Invoke-PnRollback.ps1 -SettingsPath <settings-file> -OutputPath "$out/rollback"
+./deploy/Invoke-PnRollback.ps1 -SettingsPath <settings-file> -OutputPath "$out/rollback" -Apply -ApprovedSha256 <rollback-sha256>
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/rollback" -ChangeRecord $s.changeRecord
+Get-ScheduledTask -TaskName $s.schedule.taskName -ErrorAction SilentlyContinue
+az policy assignment list --query "[?name=='pn-service-health-alerts']"
+```
+
+**Expected:** `RB-01 Applied`, `RB-02 Applied`, `RB-03 Manual`; no scheduled task; an empty assignment list. The resource group, alert rule and action group the remediation created stay until the change record decides on them; deleting the assignment doesn't remove them. The state, runs and evidence are kept.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CM-3; CP-2 | The deployment can be reversed by an approved plan, and was | KSI-CMT-LMC, KSI-RPL-ARP | `rollback/plan.json`, `results.json`, its record |
+
+## Promotion go/no-go criteria
+
+Promote to production only when every row passes. The ISSO and the change advisory board record the decision with the test stage's evidence folder.
+
+| # | Criterion | How it's checked |
+|---|---|---|
+| 1 | The test stage's evidence passes | Step 1.8: `-Check -Stage test`, every row `Pass` |
+| 2 | Every enabled provider's collection matched the provider's own command | Step 1.3, recorded in the change record |
+| 3 | The smoke test passed | Step 1.5: ST-01 to ST-04 |
+| 4 | The routing was reviewed, and every security advisory and retirement routed to a task | Step 1.4, read by the change manager and the ISSO |
+| 5 | The alert policy applied, and its rollback was rehearsed | Steps 1.6 and 1.9: `Applied` in both `results.json` |
+| 6 | Each provider's notice contacts are named | PF-05 in Step 1.2 |
+| 7 | The known gaps are recorded with the ISSO | Google's planned maintenance; any AWS account without a support plan; any workload in an Assured Workloads FedRAMP or IL package; the items the guide lists as not yet specified |
+
+: Promotion go/no-go criteria {.striped .hover}
+
+## Stage 2: production
+
+### Step 2.1: Change record, settings and pre-flight
+
+Open the production change record, fill the production settings file (with `routing.send` false for now and `azurePolicy.scope` the management group), start the session block with it, sign the readers in as in Step 1.1, and run the pre-flight with the test stage's evidence:
+
+```powershell
+$testOut = (Read-PnSettings -Path <test-settings-file>).outputRoot
+./deploy/Test-PnPreflight.ps1 -SettingsPath <settings-file> -Stage production -TestEvidencePath (Join-Path $testOut 'evidence') -OutputPath "$out/preflight"
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -RunPath "$out/preflight" -ChangeRecord $s.changeRecord
+```
+
+**Expected:** every check `Pass`, including `PF-07 Pass the test stage's evidence passes`.
+
+### Step 2.2: Staged enable in production (G1 to G6)
+
+Repeat Step 1.3, one provider at a time, then Step 1.4. For the first week the routing stays a dry run: the service desk works from `stage/route/tasks` and `routing.csv` by hand, which is the guide's interim path for G6. *Design guidance.*
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SA-9 c; SI-5 a, c, d | Production read, provider by provider, and routed without sending | KSI-SCR-MIT, KSI-SCR-MON | `stage/` and its records |
+
+### Step 2.3: Service Health alerts at the management group (G1)
+
+Repeat Step 1.6 with the production settings: the plan names the management group, and the remediation runs at the management group. **Expected:** as in Step 1.6, in every subscription under the management group once remediation finishes. Record the apply folder: production's evidence needs a passing `ALERTS` record.
+
+### Step 2.4: The weekly run and smoke test in production (G7)
+
+Repeat Step 1.7 with the production settings file and `run-script`, then Step 1.5. **Expected:** as in Stage 1. Send the first digest to every owner the routing names, and ask each to confirm they received it.
+
+### Step 2.5: Turn on sending, after the first week
+
+When the change manager approves, set `routing.send` to true in the production settings file, file the changed file with the change record, put the token in the run-as account's environment variable named by `routing.tokenVariable`, and add `-Send` to the run script:
+
+```powershell
+(Get-Content <run-script> -Raw).Replace("-SettingsPath '<settings-file>'", "-SettingsPath '<settings-file>' -Send") | Set-Content <run-script>
+pwsh -NoProfile -File <run-script>
+```
+
+**Expected:** `RUN-ROUTE Pass ...; sent`, and a `sent.json` in the route folder with each payload's result. A payload is created once: the state remembers what was routed. Notices routed during the dry-run week aren't sent again, because the service desk raised those tasks by hand from the payloads; only new and changed notices are sent from here on.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| SI-5 c, d; CM-3 | Tasks reach the queue automatically, once each | KSI-SCR-MON, KSI-CMT-LMC | `route/sent.json`, `state.json`, the record |
+
+### Step 2.6: First-week monitoring, the production evidence and the rollback
+
+Check the production stage's evidence after the first scheduled run, and every week after it:
+
+```powershell
+./Invoke-PnEvidence.ps1 -EvidencePath $ev -Check -Stage production
+```
+
+**Expected:** `STEP-PRE`, `STEP-ALERTS`, `STEP-RUN`, `STEP-ROUTE` and `STEP-DIGEST`, each `Pass`. A week with no new `RUN` record means the run stopped: check the scheduled task's last result and the run-as account's sign-ins. To roll production back, run Step 1.9 with the production settings file and a newly approved hash; the change record decides on the resources the remediation created, subscription by subscription.
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| CA-7; AU-9; CM-3; CP-2 | The production stage's steps each have a passing record; the rollback is ready | KSI-MLA-EVC, KSI-MLA-OSM, KSI-CMT-LMC, KSI-RPL-ARP | The production evidence folder |
+
+## Evidence the ISSO keeps
+
+| Stage | Folder | Steps recorded |
+|---|---|---|
+| Test | `<test outputRoot>/evidence` | PRE, COL-*, NORMALIZE, ROUTE, CONTINGENCY, ALERTS, RUN, DIGEST, RB, EVIDENCE |
+| Production | `<production outputRoot>/evidence` | PRE, COL-*, NORMALIZE, ROUTE, CONTINGENCY, ALERTS, RUN, DIGEST, EVIDENCE; RB if rolled back |
+
+Each folder holds `records/`, `runs/`, `records.csv` and `SHA256SUMS`, with the change record, the settings file and its SHA-256, the approved plan hashes and the weekly digests filed beside it, on agency storage.
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Alert policy | Built-in definition `98903777-a9f6-47f5-90a9-acaf62ab01a8`; management group or subscription; remediation for existing subscriptions; default resource group, alert rule and action group | [^pn08-policy] |
+| Assignment, remediation and checks from the CLI | `az policy assignment create` with `--mi-system-assigned`, `--location`, `--role`, `--identity-scope`; `az policy remediation create` and `show`; `az monitor activity-log alert list` | [^pn08-cli] |
+| App-only Graph | `Connect-MgGraph` with a client ID, tenant ID and certificate | [^pn08-app-only] |
+| Scheduled task | `New-ScheduledTaskAction`, `New-ScheduledTaskTrigger -Weekly -DaysOfWeek -At`, `Register-ScheduledTask`, `Unregister-ScheduledTask -Confirm:$false` | [^pn08-tasks] |
+| Each provider's reader, endpoint and government cloud | As Chapters 01 to 05 and the guide record them | Chapters 01 to 05 |
+
+Not yet specified: the ServiceNow endpoint's shape; how each provider's CLI signs in unattended under the run-as account; and the items each provider chapter lists.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Production deployed before test passed | Problems found by the people who rely on the notices | PF-07 refuses production without a passing test stage |
+| All providers enabled at once | A failure in one hides the others | Staged enable, one provider at a time, each cross-checked |
+| Sending on day one | Duplicate or misrouted tasks reach the queue | A dry-run week first; sending needs the settings flag and `-Send` |
+| A plan changed after approval | Different writes from the ones reviewed | `-Apply` refuses any hash but the plan's |
+| A secret in the settings file | Filed with the change record, readable by many | `Read-PnSettings` refuses secret-like values; the token is an environment variable |
+| The scheduled run loses a sign-in | The run stops silently | No new `RUN` record; the weekly `-Check -Stage production` fails |
+| Rollback stops at a missing schedule | The policy assignment stays | RB-01 unregisters only if the task exists, then RB-02 runs |
+| Remediation's resources deleted blindly | Alerts someone else relies on disappear | RB-03 is manual; the change record decides |
+
+## Checklist
+
+- [ ] One settings file per stage, no secrets, filed with the change record.
+- [ ] The test pre-flight passed, and every provider was enabled and cross-checked one at a time.
+- [ ] The smoke test passed: ST-01 to ST-04.
+- [ ] The alert plan and the rollback plan were each approved by hash, applied and recorded in test.
+- [ ] The test stage's evidence passed, and the go/no-go was recorded by the ISSO and the change advisory board.
+- [ ] Production's pre-flight passed PF-07.
+- [ ] Production routed as a dry run for a week before sending was turned on.
+- [ ] Production's evidence passes `-Check -Stage production` every week.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 07 — The Weekly Digest and Evidence](07-the-weekly-digest-and-evidence.md) · [Workbook index](index.md)
+:::
+
+[^pn08-deployments]: Microsoft Learn, "National cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 9, 2026).
+[^pn08-policy]: Microsoft Learn, "Deploy Service Health alerts at scale using Azure Policy," <https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy> (read November 9, 2026; carried from the provider notices guide's verification log).
+[^pn08-cli]: Microsoft Learn, "Remediate non-compliant resources with Azure Policy," <https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources>, and the Azure CLI references for `az policy assignment`, <https://learn.microsoft.com/cli/azure/policy/assignment>, `az policy remediation`, <https://learn.microsoft.com/cli/azure/policy/remediation>, and `az monitor activity-log alert`, <https://learn.microsoft.com/cli/azure/monitor/activity-log/alert> (read November 9, 2026).
+[^pn08-app-only]: Microsoft Learn, "Use app-only authentication with the Microsoft Graph PowerShell SDK," <https://learn.microsoft.com/powershell/microsoftgraph/app-only>, and "Connect-MgGraph," <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph> (read November 9, 2026).
+[^pn08-tasks]: Microsoft Learn, "New-ScheduledTaskTrigger" (example 4, a weekly trigger), <https://learn.microsoft.com/powershell/module/scheduledtasks/new-scheduledtasktrigger>, "New-ScheduledTaskAction," <https://learn.microsoft.com/powershell/module/scheduledtasks/new-scheduledtaskaction>, "Register-ScheduledTask," <https://learn.microsoft.com/powershell/module/scheduledtasks/register-scheduledtask>, and "Unregister-ScheduledTask" (example 2, `-Confirm:$false`), <https://learn.microsoft.com/powershell/module/scheduledtasks/unregister-scheduledtask> (read November 9, 2026).
+[^pn08-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026).
+[^pn08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026).

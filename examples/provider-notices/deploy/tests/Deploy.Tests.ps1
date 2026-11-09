@@ -140,6 +140,17 @@ Describe 'Rollback' {
         @($RbPlan.steps | ForEach-Object { $_.id }) | Should -Be @('RB-01', 'RB-02', 'RB-03')
         (@($RbPlan.steps[1].arguments) -join ' ') | Should -Be 'policy assignment delete --name pn-service-health-alerts --scope /providers/Microsoft.Management/managementGroups/mg-contoso-example'
     }
+    It 'unregisters the schedule only if it exists, so a stage without one still reaches the policy assignment' {
+        (@($RbPlan.steps[0].arguments) -join ' ') | Should -Be "Get-ScheduledTask -TaskName 'ProviderNotices-Weekly' -ErrorAction SilentlyContinue | Unregister-ScheduledTask -Confirm:`$false"
+    }
+    It 'on Windows, applies RB-01 for a task that was never registered and goes on to RB-02' -Skip:(-not $IsWindows) {
+        $null = Set-PnRunner -Native { param($Tool, $Arguments) @{ ExitCode = 0; Output = '' } }
+        $plan = Join-Path $TestDrive 'rb-missing/plan.json'
+        $null = New-Item -ItemType Directory -Force (Split-Path $plan)
+        Write-PnJson -Path $plan -Value ([ordered]@{ steps = @([ordered]@{ id = 'RB-01'; kind = 'write'; tool = 'pwsh'; arguments = @('Get-ScheduledTask', '-TaskName', "'pn-no-such-task-$([guid]::NewGuid())'", '-ErrorAction', 'SilentlyContinue', '|', 'Unregister-ScheduledTask', '-Confirm:$false') }, [ordered]@{ id = 'RB-02'; kind = 'write'; tool = 'az'; arguments = @('policy', 'assignment', 'delete') }) })
+        $r = @(Invoke-PnPlanSteps -PlanPath $plan -Apply -ApprovedSha256 (Get-PnFileHash -Path $plan))
+        @($r | ForEach-Object { $_.Status }) | Should -Be @('Applied', 'Applied')
+    }
     It 'leaves the remediation''s resources to the change record, and keeps the kit''s state and evidence' {
         $RbPlan.steps[2].kind | Should -Be 'manual'
         $RbPlan.keeps | Should -Match 'evidence are kept'

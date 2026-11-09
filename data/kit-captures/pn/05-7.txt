@@ -1,0 +1,2 @@
+PS> (Get-PnLiveCommand -CallId google-events -Settings $s).Arguments -join ' '
+service-health events list --project=contoso-example-prod --location=global --format=json

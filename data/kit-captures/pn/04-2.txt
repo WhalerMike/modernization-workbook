@@ -1,0 +1,3 @@
+PS> foreach ($p in 'aws', 'aws-us-gov') { $c = Get-PnCloud -Provider aws -Cloud $p; '{0,-11} {1,-14} {2}' -f $p, $c.Region, $c.ArnPrefix }
+aws         us-east-1      arn:aws:
+aws-us-gov  us-gov-west-1  arn:aws-us-gov:

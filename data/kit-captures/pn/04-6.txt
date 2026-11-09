@@ -1,0 +1,4 @@
+PS> $s = Read-PnSettings -Path tests/fixtures/settings.lab.json
+PS> $s.providers.aws.partition = 'aws-us-gov'
+PS> (Get-PnLiveCommand -CallId aws-describe-events -Settings $s).Arguments -join ' '
+health describe-events --region us-gov-west-1 --filter {"eventStatusCodes":["open","upcoming"]} --output json
