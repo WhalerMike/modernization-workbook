@@ -105,3 +105,11 @@ Re-checked after the weekly source watch (issue #499) reported changes in the de
 | Device preparation supports GCC High and DoD; device association isn't yet available in sovereign cloud environments, so a tenant moving to GCC High can't plan on association or the association-only name template | added (new statement in the source's "Cloud environments" section) | c04-ap-overview, "Overview of Windows Autopilot device preparation," Cloud environments |
 | Requirements: Windows 11 24H2, or 23H2/22H2 with KB5035942 (media dated April 2024 or later); Entra automatic enrollment; first user allowed to join devices | re-verified, no change | c04-ap-dp-req |
 | Name template up to 63 characters, only for associated devices | re-verified, no change | c04-ap-dp-name |
+
+## Source watch, November 9, 2026 (issue #299)
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Device preparation app limit is 25 managed apps (raised January 30, 2026), scripts still 10; the overview no longer gives the numbers (Microsoft Learn: Compare Windows Autopilot device preparation and Windows Autopilot; device preparation What's new) | corrected: "up to 10 of each" now "up to 25 apps and 10 PowerShell scripts", cited to the comparison page; comparison table row now "More than 25 apps or 10 PowerShell scripts" |

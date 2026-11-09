@@ -58,3 +58,11 @@ Re-checked after the weekly source watch (issue #499) reported that the A-11 PDF
 | SW3 | §55.4: "on a semi-annual basis" and CIO risk evaluations "conducted and reported once per quarter" (was "at least"). Replaces row 7 | Investment record | corrected | A-11 (Nov 6, 2026) §55.4 |
 | SW4 | "Major" factors moved to §55.5 and add "designated as a Major IT Investment in the previous budget submission, unless otherwise downgraded by the agency CIO." Updates row 9 | Major or non-major | corrected | A-11 (Nov 6, 2026) §55.5 |
 | SW5 | Capital Programming Guide is now V 3.1; §I.2 "clear line-of-sight relationships" quote unchanged. Updates row 14 | Enterprise architecture | updated (version) | CPG v3.1 §I.2 (in A-11, Nov 2026) |
+
+## Source watch, November 9, 2026 (issue #299)
+
+Re-checked after the weekly source watch (issue #299, week of November 2, 2026) reported a change in a cited source. Checked November 9, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| TMF fit page no longer says competitive projects "take no more than three years to implement"; it now says they "are typically less than $25M and use a five year repayment timeline, though the Board may consider outliers," and asks for measurable outcomes "ideally within 12 months of the project start date" (tmf.cio.gov/fit/) | quotation replaced; outcomes sentence extended; claim 18 superseded |
