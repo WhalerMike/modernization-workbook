@@ -46,3 +46,15 @@ New appendix, written October 23, 2026, closing the investment, enterprise archi
 | TMF AI and permitting priority tracks; EO 14409 | Not needed; EO not verified |
 | OMB M-26-12 (commercial products) | Related, out of scope for this appendix |
 | IT Dashboard content today | Not on a reachable primary source this session |
+
+## Source watch, November 9, 2026
+
+Re-checked after the weekly source watch (issue #499) reported that the A-11 PDF at the cited address changed. The file is now Circular A-11 with Transmittal Memorandum No. 100, November 6, 2026, which supersedes the 2025 edition. Checked November 9, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| SW1 | No Exhibit 300 or Section 300 in the November 2026 edition either (zero hits); §51.3 IT Resources Statement sentence unchanged; Part 7 still "Appendices A through K and the Capital Programming Guide." Updates row 5 | Investment record | updated (edition named) | A-11 (Nov 6, 2026) §51.3, Part 7 |
+| SW2 | §55.3(b) minimum documentation now: planned and actual costs, anticipated and achieved benefits, cost or benefit sharing with other federal, state or local governments, current performance, incremental or non-incremental approach and why, cost, schedule and performance risks, CIO risk rating. The 2025 list's projected costs, DME/O&M split, contract data, operational analysis, performance metrics and cybersecurity risks are gone. Replaces row 6 | Investment record | corrected | A-11 (Nov 6, 2026) §55.3(b) |
+| SW3 | §55.4: "on a semi-annual basis" and CIO risk evaluations "conducted and reported once per quarter" (was "at least"). Replaces row 7 | Investment record | corrected | A-11 (Nov 6, 2026) §55.4 |
+| SW4 | "Major" factors moved to §55.5 and add "designated as a Major IT Investment in the previous budget submission, unless otherwise downgraded by the agency CIO." Updates row 9 | Major or non-major | corrected | A-11 (Nov 6, 2026) §55.5 |
+| SW5 | Capital Programming Guide is now V 3.1; §I.2 "clear line-of-sight relationships" quote unchanged. Updates row 14 | Enterprise architecture | updated (version) | CPG v3.1 §I.2 (in A-11, Nov 2026) |
