@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 5
-review-status: pending
+review-status: approved
+reviewed-sha256: ea9fdc93e0894db162b9efb4964fcf7415be16008b3ed1c280dadbd575c15ccc
+last-reviewed: 2026-11-09
 ---
 # Module 5: AWS Health and the support plan {.unnumbered}
 

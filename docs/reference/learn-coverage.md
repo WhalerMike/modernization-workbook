@@ -5,8 +5,10 @@ description: "The Federal Modernization Workbook's map of every Microsoft Learn 
 doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
+review-status: approved
+reviewed-sha256: 6441266d6f87b1e7d48c2129814b4b7bb60f0ec47a5a342347f8a7f4c2047819
+last-reviewed: 2026-11-09
 ---
-
 # Learn Coverage Map {.unnumbered}
 
 The workbook leans on Microsoft Learn: an identity migration runs from Active Directory on Windows Server to Microsoft Entra, and Microsoft documents both sides. This page lists every Learn page in the two identity folders and says, for each one, where the workbook covers it. It makes two kinds of gap visible: a Learn topic the workbook should cover and doesn't, and a workbook page that covers a topic without linking Microsoft's own page for it.

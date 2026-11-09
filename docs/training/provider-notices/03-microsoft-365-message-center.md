@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 3
-review-status: pending
+review-status: approved
+reviewed-sha256: c0d1d4c4608bdb5184e7990b7a332fa5b23098f2a4270fffc0aa415f0623164f
+last-reviewed: 2026-11-09
 ---
 # Module 3: Microsoft 365 Message center {.unnumbered}
 

@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 918ab2aba0c959b7f8be623e64d3ef6f34efcb1d5ac2784092a38248d6a80600
+last-reviewed: 2026-11-09
 ---
 # Chapter 06 — Routing to Owners and Ticket-to-Machine Tasks
 
