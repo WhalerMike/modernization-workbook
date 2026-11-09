@@ -67,4 +67,4 @@ Re-checked after the weekly source watch (issue #499) reported a new commit in t
 
 | Finding | Change |
 |---|---|
-| ScubaGear baselines folder now also holds `si.md`, "CISA M365 Secure Configuration Baseline for Super Intelligence (SI) / SI Agents capabilities", added November 4, 2026 (commit `8c954fc`) as a shell: description, assumptions and policies marked TBD. Still no Intune baseline | The baseline list and footnote `gpc-scubarepo` name the placeholder; "ScubaGear has no Intune baseline" unchanged |
+| ScubaGear baselines folder now also holds `si.md`, "CISA M365 Secure Configuration Baseline for Super Intelligence (SI) / SI Agents capabilities", added November 4, 2026 (commit `8c954fc`) as a shell: description, assumptions and policies marked TBD. Still no Intune baseline | The baseline list and footnote `gpc-scubarepo` name the placeholder (row 16); "ScubaGear has no Intune baseline" unchanged |
