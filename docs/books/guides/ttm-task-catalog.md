@@ -54,7 +54,7 @@ Nothing comes back. Don't open an issue or a pull request with your rows, and do
 6. **Fix every row the Checks sheet marks FIX.** The seven checks need no macros and no code. A row needs a fix when:
    - the owner, the approver or the re-read check is blank;
    - the severity differs from its drift class's default and Notes doesn't say why;
-   - a class Book 13 sends to a person first (`missing_identity`, `unauthorized_write`) uses a machine lane;
+   - a class Book 13 sends to a person first (`missing_identity`, `orphan_account`, `unauthorized_write`) uses a machine lane;
    - no evidence is named;
    - no control is mapped;
    - a high-impact task has no human approval before it runs;

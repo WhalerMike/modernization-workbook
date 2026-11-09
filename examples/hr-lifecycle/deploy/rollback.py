@@ -80,7 +80,7 @@ def plan(settings: dict[str, Any], smoke: Path | None) -> tuple[list[dict[str, A
     for key, wid in settings["workflows"].items():
         gate = {"pre-hire": "G3", "day-one": "G3", "mover": "G4", "contractor-leaver": "G2"}.get(key, "G6")
         steps.append({"gate": gate,
-                      "say": f"Turn off scheduling for the {key} workflow (stays enabled for on-demand runs)",
+                      "say": f"Turn off scheduling for the {ds.workflow_label(key)} workflow (stays enabled for on-demand runs)",
                       "run": f"Update-MgIdentityGovernanceLifecycleWorkflow -WorkflowId {_q(wid)} -BodyParameter @{{ isSchedulingEnabled = $false }}"})
     for pid in settings.get("automaticAssignmentPolicies", []):
         steps.append({"gate": "G4", "say": f"Remove automatic assignment policy {pid} (keep the dynamic group)",
@@ -136,9 +136,9 @@ def verify(settings: dict[str, Any], exports: Path) -> list[dict[str, Any]]:
     for key, wid in settings["workflows"].items():
         w = by_id.get(wid, {})
         if w.get("isSchedulingEnabled"):
-            rows.append(finding("RB-02", "Finding", key, key, "scheduling is still on"))
+            rows.append(finding("RB-02", "Finding", key, ds.workflow_label(key), "scheduling is still on"))
         else:
-            rows.append(finding("RB-02", "Info", key, key, "scheduling is off"))
+            rows.append(finding("RB-02", "Info", key, ds.workflow_label(key), "scheduling is off"))
     return sort_findings(rows)
 
 

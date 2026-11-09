@@ -123,16 +123,17 @@ def check_workflows(settings: dict[str, Any], workflows: list[dict[str, Any]]) -
     rows = []
     by_id = {w.get("id"): w for w in workflows}
     for key, wid in settings.get("workflows", {}).items():
+        label = ds.workflow_label(key)
         w = by_id.get(wid)
         if not w:
-            rows.append(finding("PF-05", "Finding", key, key, f"workflow {wid} isn't in the tenant"))
+            rows.append(finding("PF-05", "Finding", key, label, f"workflow {wid} isn't in the tenant"))
             continue
         if w.get("isSchedulingEnabled"):
-            rows.append(finding("PF-05", "Finding", key, key, "scheduling is on; it stays off until the smoke test passes"))
+            rows.append(finding("PF-05", "Finding", key, label, "scheduling is on; it stays off until the smoke test passes"))
         elif not w.get("isEnabled"):
-            rows.append(finding("PF-05", "Warn", key, key, "disabled; enable it (scheduling off) before running it on demand"))
+            rows.append(finding("PF-05", "Warn", key, label, "disabled; enable it (scheduling off) before running it on demand"))
         else:
-            rows.append(finding("PF-05", "Info", key, key, f"enabled, scheduling off, version {w.get('version')}"))
+            rows.append(finding("PF-05", "Info", key, label, f"enabled, scheduling off, version {w.get('version')}"))
     return rows
 
 

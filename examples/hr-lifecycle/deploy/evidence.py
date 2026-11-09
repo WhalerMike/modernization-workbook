@@ -10,7 +10,8 @@ in `sha256sum -c` format, so the ISSO can check it with no tool of ours.
 
 KSIs are FedRAMP's indicators for cloud service providers. The agency doesn't report KSIs; these IDs
 line its own evidence up with what its providers report. The control-to-KSI pairs follow the
-program's crosswalk (Book 13, Appendix A; Book 04, Chapter 10).
+program's crosswalk (Book 13, Appendix A; Book 04, Chapter 10) and, for AC-2(1) and PS-4, the HR-driven
+identity implementation guide's Gate 3 and Gate 6 tables.
 
     python deploy/evidence.py check --evidence-dir evidence/test/records --stage test
     python deploy/evidence.py show --step smoke-leaver
@@ -50,15 +51,16 @@ STEPS: dict[str, dict[str, Any]] = {
                   "other": ["CISA BOD 25-01 MS.AAD.7.5v1", "FedRAMP AGU-USE-ABU"],
                   "ksi": ["KSI-IAM-JIT", "KSI-IAM-ELP", "KSI-CMT-VTD", "KSI-MLA-EVC"]},
     "workflows-recorded": {"gate": "G3, G6", "nist": ["AC-2(1)", "CM-3"], "other": [],
-                           "ksi": ["KSI-IAM-AAM", "KSI-CMT-RMV", "KSI-CMT-LMC"]},
+                           "ksi": ["KSI-IAM-JIT", "KSI-CMT-RMV", "KSI-CMT-LMC"]},
     "smoke-joiner": {"gate": "G2, G3", "nist": ["AC-2", "AC-2(1)", "IA-4(4)", "IA-5", "CM-4(2)"],
-                     "other": ["OMB M-22-09"], "ksi": ["KSI-IAM-AAM", "KSI-IAM-APM", "KSI-CMT-VTD"]},
+                     "other": ["OMB M-22-09"], "ksi": ["KSI-IAM-AAM", "KSI-IAM-JIT", "KSI-IAM-APM", "KSI-CMT-VTD"]},
     "smoke-mover": {"gate": "G4", "nist": ["AC-2", "AC-6", "PS-5", "CM-4(2)"], "other": [],
                     "ksi": ["KSI-IAM-AAM", "KSI-IAM-ELP", "KSI-CMT-VTD"]},
     "smoke-leaver": {"gate": "G6", "nist": ["PS-4", "AC-2(3)", "CM-4(2)"], "other": [],
-                     "ksi": ["KSI-IAM-AAM", "KSI-CMT-VTD"]},
+                     "ksi": ["KSI-IAM-ELP", "KSI-IAM-AAM", "KSI-IAM-JIT", "KSI-IAM-SUS", "KSI-CMT-VTD"]},
     "smoke-scope": {"gate": "G2 to G6", "nist": ["AC-2", "AC-2(1)", "PS-4", "PS-5", "CM-4(2)"],
-                    "other": ["OMB M-22-09"], "ksi": ["KSI-IAM-AAM", "KSI-CMT-VTD"]},
+                    "other": ["OMB M-22-09"],
+                    "ksi": ["KSI-IAM-AAM", "KSI-IAM-JIT", "KSI-IAM-ELP", "KSI-IAM-SUS", "KSI-CMT-VTD"]},
     "rollback-plan": {"gate": "Rollback", "nist": ["CM-3", "CM-5"], "other": [],
                       "ksi": ["KSI-CMT-RMV", "KSI-CMT-RVP", "KSI-IAM-JIT"]},
     "rollback-verify": {"gate": "Rollback", "nist": ["CM-3", "CM-4(2)"], "other": [],

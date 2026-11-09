@@ -56,7 +56,7 @@ The checker needs the integration kit's `finding_contract.py`, which the downloa
 
 1. Owner, C2 Approver role or C4 Re-read check is blank.
 2. The severity differs from the drift class's default and Notes is blank.
-3. A class Book 13 sends to a person first (`missing_identity`, `unauthorized_write`) uses a machine lane.
+3. A class Book 13 sends to a person first (`missing_identity`, `orphan_account`, `unauthorized_write`) uses a machine lane.
 4. C5 Evidence kept is blank.
 5. No NIST SP 800-53 control is mapped.
 6. High impact is yes, but Human approval before action isn't.

@@ -75,7 +75,7 @@ _ROWS = [
      "Re-read: the entitlement is absent from the account",
      "isc_account", "Review decision, removal run log, re-read result",
      "AC-2; AC-6", "Access Governance", "Approved", ""),
-    ("EX-07", "Orphan account: AD account with no HR record", "Machine, gated", "schedule",
+    ("EX-07", "Orphan account: AD account with no HR record", "Human decision", "schedule",
      "Drift reconciliation", "AD DS", "orphan_account", "P2",
      "Drift finding: an AD account with no matching HR record",
      "Application owner of the account confirms it has no owner",
