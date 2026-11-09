@@ -18,7 +18,9 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: ee289916eb360adc8926a9eedf8588783a03fb6f5c6787727678ed40b251fbb2
+last-reviewed: 2026-11-09
 ---
 # Building Provider Notices {.unnumbered}
 

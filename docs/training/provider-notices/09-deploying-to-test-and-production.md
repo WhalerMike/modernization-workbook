@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 9
-review-status: pending
+review-status: approved
+reviewed-sha256: 54b7932e1987eaa5d9134dd0ccebe8482a478aba92ebe8b511fba2e66267175d
+last-reviewed: 2026-11-09
 ---
 # Module 9: Deploying to test and production (optional) {.unnumbered}
 
