@@ -231,7 +231,7 @@
   choice: The series is framed as an opportunity to start HR-driven identity. The starting point is ticket-driven accounts, not an existing connector. Federal HR data standards supply the attribute layer for employees.
   rationale: The series had drifted toward 'implement' and was refocused on starting.
   basis: workbook-design
-  sources: ['https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-application-provisioning']
+  sources: ['https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision']
   pages: [docs/books/b03-hr-identity/index.md, docs/books/b03-hr-identity/04-attribute-authority.md]
   prs: [45, 46, 48]
   status: settled

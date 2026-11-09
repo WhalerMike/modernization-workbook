@@ -13960,6 +13960,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b01-transformation-arc/04-identity-transformation.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
