@@ -90,7 +90,7 @@ function Invoke-PnPreflight {
     $root = "$($Settings['outputRoot'])"
     if (-not $root) { $r.Add((New-PnDeployResult 'PF-06' 'Fail' 'no outputRoot')) }
     else {
-        try { New-Item -ItemType Directory -Force -Path $root | Out-Null; $probe = Join-Path $root '.pn-write-probe'; Set-Content -Path $probe -Value x; Remove-Item $probe; $r.Add((New-PnDeployResult 'PF-06' 'Pass' 'output root writable')) }
+        try { New-Item -ItemType Directory -Force -Path $root | Out-Null; $probe = Join-Path $root 'pn-write-probe.tmp'; Set-Content -LiteralPath $probe -Value x; Remove-Item -LiteralPath $probe -Force; $r.Add((New-PnDeployResult 'PF-06' 'Pass' 'output root writable')) }
         catch { $r.Add((New-PnDeployResult 'PF-06' 'Fail' $_.Exception.Message)) }
     }
     if ($Stage -eq 'production') {
@@ -233,4 +233,4 @@ function Write-PnDeployRun {
     $null = Write-PnManifest -OutputPath $OutputPath -Task $Task -AsOf (ConvertTo-PnUtc $AsOf) -Mode $Mode -Environment $Settings.environment -CallIds $CallIds
 }
 
-Export-ModuleMember -Function Invoke-PnPreflight, New-PnAlertPlan, Invoke-PnPlanSteps, New-PnRollbackPlan, New-PnServiceNowSender, Write-PnDeployRun, Use-PnDeployFixture, Test-PnToolPresent
+Export-ModuleMember -Function Invoke-PnPreflight, New-PnAlertPlan, Invoke-PnPlanSteps, New-PnRollbackPlan, New-PnServiceNowSender, Write-PnDeployRun, Use-PnDeployFixture

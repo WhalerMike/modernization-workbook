@@ -24,7 +24,7 @@ Describe 'Preflight' {
         $out = Join-Path $TestRoot 'preflight'
         & (Join-Path $Kit 'deploy/Test-PnPreflight.ps1') -SettingsPath $TestSettings -Stage test -FixturePath (Join-Path $Fx 'environment-test.json') -OutputPath $out -AsOf '2026-11-09T12:00:00Z' 6>$null
         $r = (Read-PnJson (Join-Path $out 'results.json')).results
-        @($r | Where-Object { $_.status -ne 'Pass' }) | Should -BeNullOrEmpty
+        (@($r | Where-Object { $_.status -ne 'Pass' } | ForEach-Object { "$($_.id) $($_.status): $($_.detail)" }) -join '; ') | Should -BeNullOrEmpty
         @($r).Count | Should -Be 14
         (Write-PnEvidence -EvidencePath (Join-Path $TestRoot 'evidence') -RunPath $out -AsOf '2026-11-09T12:00:00Z').Steps | Should -Contain 'PRE'
     }

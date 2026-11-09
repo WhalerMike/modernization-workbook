@@ -211,7 +211,13 @@ function ConvertTo-PnUtc {
 }
 
 function ConvertTo-PnPlainText {
-    # Markup removed, whitespace collapsed, at most SummaryMax characters.
+    <#
+    .SYNOPSIS
+        Text with markup removed, whitespace collapsed and spaces before punctuation dropped, at most
+        2,000 characters: the form of a notice's title and summary.
+    .EXAMPLE
+        ConvertTo-PnPlainText '<p>Move to <b>OAuth</b>.</p>'     # Move to OAuth.
+    #>
     param([AllowNull()]$Text)
     if ($null -eq $Text) { return '' }
     $t = "$Text" -replace '(?s)<(script|style)[^>]*>.*?</\1>', ' ' -replace '<[^>]+>', ' '
@@ -344,6 +350,13 @@ function Set-PnRunner {
 }
 
 function Invoke-PnNative {
+    <#
+    .SYNOPSIS
+        Runs a provider CLI through the native runner (a stand-in in tests) and returns its JSON output
+        parsed, or with -Raw its text. A non-zero exit code throws with the tool's message.
+    .EXAMPLE
+        Invoke-PnNative -Tool az -Arguments @('cloud', 'show', '--query', 'name', '--output', 'tsv') -Raw
+    #>
     param([Parameter(Mandatory)][string]$Tool, [string[]]$Arguments = @(), [switch]$Raw)
     $r = & $script:NativeRunner $Tool $Arguments
     if ($r.ExitCode -ne 0) { throw "$Tool exited $($r.ExitCode): $("$($r.Output)".Trim())" }
@@ -1414,6 +1427,13 @@ function Get-PnStepsForRun {
 }
 
 function Update-PnEvidenceSums {
+    <#
+    .SYNOPSIS
+        Rewrites SHA256SUMS in an evidence folder: one "sha256  relative/path" line per file, LF line
+        endings, so the ISSO can check it with sha256sum -c SHA256SUMS. Returns the line count.
+    .EXAMPLE
+        Update-PnEvidenceSums -EvidencePath out/evidence
+    #>
     param([Parameter(Mandatory)][string]$EvidencePath)
     $root = (Resolve-Path -LiteralPath $EvidencePath).Path.TrimEnd('\', '/')
     $lines = @(Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object Name -NE 'SHA256SUMS' |
@@ -1511,4 +1531,4 @@ function Test-PnEvidence {
     $rows.ToArray()
 }
 
-Export-ModuleMember -Function *-Pn*
+Export-ModuleMember -Function Get-PnCloud, Read-PnJson, Write-PnJson, Get-PnFileHash, Get-PnV, ConvertTo-PnUtc, ConvertTo-PnPlainText, Get-PnCall, Get-PnRequiredPermission, New-PnFixtureInvoker, Invoke-PnCall, Set-PnRunner, Invoke-PnNative, Get-PnAzureQuery, Get-PnLiveCommand, Assert-PnLiveContext, New-PnLiveInvoker, New-PnNotice, Test-PnNotice, ConvertTo-PnAzureNotice, ConvertTo-PnM365Notice, ConvertTo-PnOciNotice, ConvertTo-PnAwsNotice, ConvertTo-PnGoogleNotice, Read-PnSettings, Get-PnProviderNotice, Write-PnManifest, Invoke-PnCollection, Read-PnRouting, Resolve-PnRoute, New-PnTaskPayload, Test-PnTaskPayload, Invoke-PnRouting, New-PnDigest, Get-PnRequirements, Test-PnRunFolder, Update-PnEvidenceSums, Write-PnEvidence, Test-PnEvidence
