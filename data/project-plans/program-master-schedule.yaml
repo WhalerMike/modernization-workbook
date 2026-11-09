@@ -81,7 +81,7 @@ tasks:
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
   - {id: P1.3, phase: 1, name: "Intune policy design complete; pilot profiles staged (M-016)", dur: 5, after: [P1.2], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
-  - {id: X-IDL, kind: external, phase: 1, name: "HR-to-cloud provisioning live for the foundation scope", ref: "identity-lifecycle:IG3", owner: "Identity Lifecycle project",
+  - {id: X-IDL, kind: external, phase: 1, name: "HR-to-cloud provisioning live for the foundation scope", ref: "identity-lifecycle:IG3",
      late: "G1 fails its HR-feed criterion and waits",
      source: "identity-lifecycle.md"}
   - {id: P1.5, phase: 1, name: "Conditional Access design running in report-only (M-017)", dur: 10, after: [G0], owner: "CISO",

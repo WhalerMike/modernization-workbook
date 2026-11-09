@@ -228,7 +228,7 @@ Remove-Item -Recurse -Force out
 1. **b.** It's the broadest read the inventory holds, and the only reason it holds it. Taught in [The reader](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#the-reader).
 2. **c.** A stale account is a lead only, and the code never disables, moves or deletes anything. Taught in [Risk, targets, stale leads and the hand-off](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#risk-targets-stale-leads-and-the-hand-off).
 3. **a.** Learn's criteria can find people too. Taught in [The findings](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#the-findings) and the chapter's [Dangers](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#dangers).
-4. **b.** The plan's task N0.4. Taught in [Risk, targets, stale leads and the hand-off](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#risk-targets-stale-leads-and-the-hand-off).
+4. **b.** The plan's task NP0.4. Taught in [Risk, targets, stale leads and the hand-off](../../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md#risk-targets-stale-leads-and-the-hand-off).
 5. **b.** Taught in the guide's [Evidence](../../books/guides/non-person-identity-implementation.md#evidence) table.
 :::
 

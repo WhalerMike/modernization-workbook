@@ -4,16 +4,16 @@ Workbook folder: `docs/project-plans/developer-workbooks/non-person-identity/`. 
 
 | File | Title | Plan | Code | Research-gap rows |
 |---|---|---|---|---|
-| `01-non-person-identity-inventory-as-code.md` | Chapter 01 — Non-Person Identity Inventory as Code | N0.1, N0.2, N0.4, N0.5, Gate 0 | `examples/non-person-identity` (written) | 1 to 9 |
-| `02-ownership-and-the-orphan-rule.md` | Chapter 02 — Ownership and the Orphan Rule | N1.1, N1.3, D-N2, Gate 1 | `examples/non-person-identity` (written) | 11 to 19 |
-| `03-the-migration-path-matrix-as-code.md` | Chapter 03 — The Migration Path Matrix as Code | N2.1, D-N3, N2.2, D-N4, Gate 2 | new code | 21 to 29 |
-| `04-app-management-policies-and-certificate-rotation.md` | Chapter 04 — App Management Policies and Certificate Rotation | N3.1, N3.7 | new code | 31 to 39 |
-| `05-workload-identity-federation-and-managed-identities.md` | Chapter 05 — Workload Identity Federation and Managed Identities | N3.2 to N3.4 | new code | 41 to 49 |
-| `06-gmsa-dmsa-and-the-kerberos-island.md` | Chapter 06 — gMSAs, dMSAs and the Kerberos Island | N3.5, N3.6, N7.3 | new code | 51 to 59 |
-| `07-least-privilege-for-service-principals.md` | Chapter 07 — Least Privilege for Service Principals | N4.1 to N4.3, Gate 4 | new code | 61 to 69 |
-| `08-conditional-access-for-workload-identities.md` | Chapter 08 — Conditional Access for Workload Identities | N5.1 to N5.3, D-N5, Gate 5 | new code | 71 to 79 |
-| `09-ai-agent-identities.md` | Chapter 09 — AI Agent Identities | N6.1 to N6.7, D-N6, Gate 6 | new code; reads the sponsor fields Chapter 02 records | 81 to 89 |
-| `10-drift-and-evidence.md` | Chapter 10 — Drift and Evidence for the ISSO | N7.1, N7.2, N7.4, Gate 7 | `examples/drift-pipeline` (extend only in its own reviewed change) | 91 to 99 |
+| `01-non-person-identity-inventory-as-code.md` | Chapter 01 — Non-Person Identity Inventory as Code | NP0.1, NP0.2, NP0.4, NP0.5, Gate 0 | `examples/non-person-identity` (written) | 1 to 9 |
+| `02-ownership-and-the-orphan-rule.md` | Chapter 02 — Ownership and the Orphan Rule | NP1.1, NP1.3, D-NP2, Gate 1 | `examples/non-person-identity` (written) | 11 to 19 |
+| `03-the-migration-path-matrix-as-code.md` | Chapter 03 — The Migration Path Matrix as Code | NP2.1, D-NP3, NP2.2, D-NP4, Gate 2 | new code | 21 to 29 |
+| `04-app-management-policies-and-certificate-rotation.md` | Chapter 04 — App Management Policies and Certificate Rotation | NP3.1, NP3.7 | new code | 31 to 39 |
+| `05-workload-identity-federation-and-managed-identities.md` | Chapter 05 — Workload Identity Federation and Managed Identities | NP3.2 to NP3.4 | new code | 41 to 49 |
+| `06-gmsa-dmsa-and-the-kerberos-island.md` | Chapter 06 — gMSAs, dMSAs and the Kerberos Island | NP3.5, NP3.6, NP7.3 | new code | 51 to 59 |
+| `07-least-privilege-for-service-principals.md` | Chapter 07 — Least Privilege for Service Principals | NP4.1 to NP4.3, Gate 4 | new code | 61 to 69 |
+| `08-conditional-access-for-workload-identities.md` | Chapter 08 — Conditional Access for Workload Identities | NP5.1 to NP5.3, D-NP5, Gate 5 | new code | 71 to 79 |
+| `09-ai-agent-identities.md` | Chapter 09 — AI Agent Identities | NP6.1 to NP6.7, D-NP6, Gate 6 | new code; reads the sponsor fields Chapter 02 records | 81 to 89 |
+| `10-drift-and-evidence.md` | Chapter 10 — Drift and Evidence for the ISSO | NP7.1, NP7.2, NP7.4, Gate 7 | `examples/drift-pipeline` (extend only in its own reviewed change) | 91 to 99 |
 | `11-deploying-to-test-and-production.md` | Chapter 11 — Deploying to Test and Production | the guide's G1 to G6, rollback and evidence | `examples/non-person-identity/deploy` (new: preflight, smoke test, rollback) | 101 to 109 |
 
 ## Every chapter has

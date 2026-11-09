@@ -395,7 +395,7 @@ An owner who leaves or changes roles starts a transfer at least ten business day
 
 ### Orphans
 
-An application is orphaned when it has no named owner in the registry or the Owners list. The program's orphan rule is the project plan's decision D-N2 ([the plan's decision points](../../project-plans/non-person-identity.md#decision-points)): disable first, then a 30-day claim window. For an orphaned application:
+An application is orphaned when it has no named owner in the registry or the Owners list. The program's orphan rule is the project plan's decision D-NP2 ([the plan's decision points](../../project-plans/non-person-identity.md#decision-points)): disable first, then a 30-day claim window. For an orphaned application:
 
 1. it's reclassified as Tier 1;
 2. the identity governance office takes interim ownership and a ticket opens;

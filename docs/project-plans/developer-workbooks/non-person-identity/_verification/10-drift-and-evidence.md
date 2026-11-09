@@ -29,7 +29,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 13 | Disable, don't delete, until the review is complete | Where Learn's pages differ; row 95 | verified (carried from Chapter 02) | Learn, Governing Microsoft Entra service accounts |
 | 14 | Graph hosts per cloud | Which cloud; Verified facts | verified (carried from Chapter 01) | Learn, national cloud deployments |
 | 15 | Azure Login with OIDC; immutable storage, locked and unlocked policies | The schedule; package; Lab 2 | verified (carried from the first workbook's Chapter 09) | Learn |
-| 16 | The plan's N7.1, N7.2, N7.4 and Gate 7 wording | Goal; What the evidence has to show; Gate 7 table | restated from the project plan | project plan |
+| 16 | The plan's NP7.1, NP7.2, NP7.4 and Gate 7 wording | Goal; What the evidence has to show; Gate 7 table | restated from the project plan | project plan |
 | 17 | Committed baseline, later runs compared, drift closed at the source | What the evidence has to show; the approved baseline | carried forward from Book 02, Chapter 10 | Book 02 |
 | 18 | The control mapping for the non-person identity track | What the ISSO receives; row 98 | restated-as-design (labeled) from the companion guide | companion guide |
 | 19 | Expiry is the agent's review; no agent access without an end date | NPI-REV-03; row 97 | carried forward from Book 17, Chapter 05 | Book 17 |
@@ -46,7 +46,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N7.1, N7.2, N7.4, Gate 7 | Goal; the drift findings; the review cycle; the period and Gate 7 table | N7.3 (gMSA and dMSA reconciliation) is Chapter 06's; the period reads its findings through the contract |
+| Project plan NP7.1, NP7.2, NP7.4, Gate 7 | Goal; the drift findings; the review cycle; the period and Gate 7 table | NP7.3 (gMSA and dMSA reconciliation) is Chapter 06's; the period reads its findings through the contract |
 | Book 02, Chapter 10 (git-based drift detection) | The approved baseline; NPI-DRF-01, -02 | The Gitea issue flow; the sample workflow writes packages, and issue drafting stays the first two workbooks' |
 | The first workbook's Chapter 09 and `drift_pipeline.py` | Fingerprint, hashing, refusals, package shape, the workflow's sign-in and linting | Its kit-run loader: this run is not a validation kit run |
 | Building Privileged Access, Chapter 08 and `pa_evidence.py` | Run folder and `run.json` shape; task status; the chain and the period; its row reader and time helpers | Its tier logic and PIM audit classes; its issue drafter (tier and role titles don't fit non-person identities) |

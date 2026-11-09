@@ -42,7 +42,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Project plan N0.1, N0.2, N0.4, N0.5, Gate 0, risk register (stale leads) | Goal; In this chapter; stale lead | N0.3 (the AI use-case inventory seed list) is Chapter 09's |
+| Project plan NP0.1, NP0.2, NP0.4, NP0.5, Gate 0, risk register (stale leads) | Goal; In this chapter; stale lead | NP0.3 (the AI use-case inventory seed list) is Chapter 09's |
 | Book 02, Chapter 09 (account types, matrix, discovery function, 90/365 days) | Register; risk; targets | The function itself stays in Book 02's Appendix C |
 | Book 04, Chapter 05 (two objects, credentials order, read-only inventory) | What the register holds; NPI-INV-04, -05 | App management policies are Chapter 04's |
 | Book 06, Chapter 09 and the implementation guide (SQL Server hand-off; gMSA retrieval principals) | Hand-off; `Hosts` | Data Platform plan's own checks |

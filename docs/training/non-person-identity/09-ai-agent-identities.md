@@ -42,7 +42,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines th
 After this module, you'll be able to:
 
 - describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary;
-- explain decision D-N6 as data, and what the code does in a cloud without Agent ID;
+- explain decision D-NP6 as data, and what the code does in a cloud without Agent ID;
 - run the AI identity check and read its findings, including the P1 drift;
 - explain the ten-business-day sponsor rule and what happens to an orphaned agent;
 - show that the agent Conditional Access plan is report-only and runs only by its approved hash.
@@ -64,7 +64,7 @@ Read the guide's [AI agents](../../books/guides/non-person-identity-implementati
 Read the workbook chapter in this order:
 
 - [What Microsoft Entra Agent ID is, and its stage](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#what-microsoft-entra-agent-id-is-and-its-stage): which pieces are GA, which are preview, and what GCC lists.
-- [Decision D-N6 as data](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#decision-d-n6-as-data): AgentId mode and Fallback mode.
+- [Decision D-NP6 as data](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#decision-d-np6-as-data): AgentId mode and Fallback mode.
 - [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds) *(design guidance)*.
 - [The checks](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-checks): NPI-AI-01 to -23, the ten business days, and standing privileged roles.
 - [The agent Conditional Access plan and the separate write path](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-agent-conditional-access-plan-and-the-separate-write-path).
@@ -91,7 +91,7 @@ Invoke-Pester -Path tests/NpiAgentId.Tests.ps1 -FullNameFilter '*Learn*' -Output
 Import-Module ./powershell/NpiAgentId/NpiAgentId.psm1
 foreach ($t in 'agent-id', 'agent-ca-apply') { $p = Get-NpiAgentRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') }
 
-# Step 4: Read D-N6 for each cloud
+# Step 4: Read D-NP6 for each cloud
 'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
     [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
 
@@ -104,7 +104,7 @@ Get-Content out/agent-id/findings.json -Raw | ConvertFrom-Json | Where-Object Se
 # Step 7: Read the sponsor fields Chapter 02 recorded, filled
 Get-Content out/agent-id/ai-identities.json -Raw | ConvertFrom-Json | Format-Table Name, FederalSponsor, TechnicalOwner, InventoryRecord, Handshake, SponsorState
 
-# Step 8: Run the D-N6 fallback in GCC High
+# Step 8: Run the D-NP6 fallback in GCC High
 ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
 ./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
 ./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
@@ -155,7 +155,7 @@ Remove-Item -Recurse -Force out
 
     Expect ten read permissions for `agent-id`, none ending in `ReadWrite`, and `Policy.Read.All, Policy.ReadWrite.ConditionalAccess` for `agent-ca-apply`.
 
-4. **Read D-N6 for each cloud:**
+4. **Read D-NP6 for each cloud:**
 
     ```powershell
     'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
@@ -201,7 +201,7 @@ Remove-Item -Recurse -Force out
 
     Expect eight rows. Case Triage Agent has `carol@contoso.example` as both sponsor and technical owner. Records Search Agent is `Orphaned`. Sandbox Helper has no sponsor, record or handshake.
 
-8. **Run the D-N6 fallback in GCC High** (Chapters 01 and 02 again, in that cloud):
+8. **Run the D-NP6 fallback in GCC High** (Chapters 01 and 02 again, in that cloud):
 
     ```powershell
     ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
@@ -285,7 +285,7 @@ Remove-Item -Recurse -Force out
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** Taught in the guide's [AI agents](../../books/guides/non-person-identity-implementation.md#ai-agents) section and the chapter's [Dangers](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#dangers).
-2. **c.** Taught in [Decision D-N6 as data](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#decision-d-n6-as-data).
+2. **c.** Taught in [Decision D-NP6 as data](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#decision-d-np6-as-data).
 3. **c.** Taught in [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds) and [The checks](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-checks).
 4. **a.** Taught in [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds).
 5. **c.** Taught in [The agent Conditional Access plan and the separate write path](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-agent-conditional-access-plan-and-the-separate-write-path).
@@ -295,6 +295,6 @@ Remove-Item -Recurse -Force out
 
 You checked eight fictional AI identities, filled the sponsor fields Chapter 02 recorded, found an orphaned agent and four P1 drift findings, ran the same rules in GCC High's Fallback mode, and applied a report-only agent policy to a fake by its approved hash.
 
-**The evidence an ISSO keeps** from this module: `ai-identities.json`, `findings.json`, `orphan-candidates.json`, `agent-ca-plan.json` with its approved SHA-256, and the dry-run and apply folders' `results.json` and `manifest.json`, dated; the capability table for D-N6; and the test result. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#checklist).
+**The evidence an ISSO keeps** from this module: `ai-identities.json`, `findings.json`, `orphan-candidates.json`, `agent-ca-plan.json` with its approved SHA-256, and the dry-run and apply folders' `results.json` and `manifest.json`, dated; the capability table for D-NP6; and the test result. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#checklist).
 
 **Next:** [Module 10: Find drift and file the evidence](10-drift-and-evidence.md).

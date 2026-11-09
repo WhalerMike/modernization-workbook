@@ -75,7 +75,7 @@ If a lab step doesn't run as written, a page contradicts another, or something r
 
 **On a decision.** Open a [decision feedback issue](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml) on GitHub. Each entry in the register has a link that opens one with its ID filled in. The form asks for:
 
-- the decision's ID, for example `WD-131`; for a project plan's decision point, the plan and its ID, for example *Non-Person Identity Modernization, D-N2*;
+- the decision's ID, for example `WD-131`; for a project plan's decision point, the plan and its ID, for example *Non-Person Identity Modernization, D-NP2*;
 - whether you **agree**, **disagree**, or think it **needs evidence**;
 - the source or evidence behind your view, ideally a primary source with a link;
 - the pages affected, if you know them.
