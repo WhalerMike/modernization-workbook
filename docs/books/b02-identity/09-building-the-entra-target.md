@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-How each Active Directory object class and administrative construct maps to a Microsoft Entra ID construct, and which license tier each governance feature needs. The two decisions that shape the hybrid period: which sync engine to run and how users sign in. How to migrate groups and service accounts, how to rebuild privileged access on Privileged Identity Management (PIM), and the persona-based Conditional Access framework that replaces Group Policy logon restrictions. [Chapter 10](10-migrating-and-governing.md) covers governance, authentication modernization, monitoring, and the migration playbook.
+How each Active Directory object class and administrative construct maps to a Microsoft Entra ID construct, and which license tier each governance feature needs. The two decisions that shape the hybrid period: which sync engine to run and how users sign in. How to migrate groups and service accounts, how to rebuild privileged access on Privileged Identity Management (PIM), and the persona-based Conditional Access framework that replaces Group Policy logon restrictions. An operations reference for the Connect Sync servers that stay. [Chapter 10](10-migrating-and-governing.md) covers governance, authentication modernization, monitoring, and the migration playbook.
 :::
 
 ## Purpose and scope
@@ -103,7 +103,7 @@ Active Directory security groups are the authorization backbone. AD classifies t
 Distribution groups route mail. They're either mail-enabled security groups, which do both jobs, or pure distribution groups. In the cloud they become mail-enabled security groups or distribution groups managed through Exchange Online.
 
 - Mail-enabled security groups sync from AD and keep both their security and mail functions in Exchange Online.
-- On-premises dynamic distribution groups don't sync. Recreate them in Exchange Online as dynamic distribution groups, which use OPATH filter syntax.
+- On-premises dynamic distribution groups don't sync.[^c09-sync-groups] Recreate them in Exchange Online as dynamic distribution groups, which use OPATH filter syntax.
 - For each distribution group, decide whether it should become a Microsoft 365 group instead, to gain a shared mailbox, calendar, and file storage.
 
 ### Service accounts
@@ -203,7 +203,7 @@ The tenant is the security and administrative boundary. It's analogous to an AD 
 - One tenant is one trust boundary. There are no domain trusts inside it.
 - Cross-tenant access is governed by B2B collaboration, B2B direct connect, and cross-tenant access settings, which take the place of forest trusts ([Chapter 10](10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration)).
 - A tenant has no domain hierarchy. Verified domains are routing suffixes for sign-in names and mail, not security boundaries.
-- Several forests can sync into one tenant. Microsoft Entra Connect Sync handles connected forests from one server; Microsoft Entra Cloud Sync also handles disconnected forests, with agents in each.[^c09-cloud-sync-decision]
+- Several forests can sync into one tenant. Microsoft Entra Connect Sync handles connected forests from one server; Microsoft Entra Cloud Sync also handles disconnected forests, with agents in each.[^c09-cloud-sync-decision][^c09-topologies][^c09-what-cloud-sync]
 
 ### Licensing for governance features
 
@@ -255,7 +255,7 @@ Three cautions apply:
 
 ### Cloud Sync or Connect Sync
 
-Microsoft offers two engines for hybrid identity sync. Microsoft Entra Connect Sync is the long-standing, full-featured engine that runs on a Windows Server. Microsoft Entra Cloud Sync is a lightweight provisioning agent with its configuration held in the cloud. Microsoft now describes Cloud Sync as its strategic direction: new sync and provisioning features are built primarily on it, and it's the recommended path for most organizations.[^c09-cloud-sync-decision]
+Microsoft offers two engines for hybrid identity sync. Microsoft Entra Connect Sync is the long-standing, full-featured engine that runs on a Windows Server. Microsoft Entra Cloud Sync is a lightweight provisioning agent with its configuration held in the cloud.[^c09-what-cloud-sync] Microsoft now describes Cloud Sync as its strategic direction: new sync and provisioning features are built primarily on it, and it's the recommended path for most organizations.[^c09-cloud-sync-decision]
 
 The program's comparison draws on Microsoft's decision guide (as of its October 2026 revision):[^c09-cloud-sync-decision]
 
@@ -269,7 +269,7 @@ The program's comparison draws on Microsoft's decision guide (as of its October 
 | Group size | Up to 250,000 members | Up to 50,000 members |
 | Password hash sync and password writeback | Yes | Yes |
 | Exchange hybrid writeback | Yes | Yes |
-| Device sync for hybrid join | Yes | Yes (enabled separately) |
+| Device sync for hybrid join | Yes | Yes (enabled separately)[^c09-device-sync] |
 | OU-based filtering | Yes | Yes |
 | Attribute-based filtering | Yes | Limited |
 | Advanced sync rules | Yes (sync rules editor) | No (expression builder only) |
@@ -278,14 +278,14 @@ The program's comparison draws on Microsoft's decision guide (as of its October 
 | Group provisioning from Entra ID to AD | No | Yes |
 | Device writeback | Yes (discontinued in favor of Cloud Kerberos trust) | No |
 | Pass-through authentication or AD FS configured by the tool | Yes | No (configured separately; keeps working after migration) |
-| On-demand provisioning for testing | No | Yes |
+| On-demand provisioning for testing | No | Yes[^c09-on-demand] |
 | US Government clouds | Yes | Yes |
 
-Two corrections to older guidance matter here. First, Group Writeback v2 in Connect Sync was a preview that Microsoft discontinued on June 30, 2024; Connect Sync is no longer supported for provisioning cloud security groups to AD. Cloud Sync's group provisioning to AD replaces it, and it can run alongside Connect Sync for that one job. Group Writeback v1 remains only for writing Microsoft 365 groups back to AD.[^c09-gwb-v2] Second, Cloud Sync now handles Exchange hybrid writeback, so Exchange hybrid alone no longer forces Connect Sync.[^c09-cloud-sync-decision]
+Two corrections to older guidance matter here. First, Group Writeback v2 in Connect Sync was a preview that Microsoft discontinued on June 30, 2024; Connect Sync is no longer supported for provisioning cloud security groups to AD. Cloud Sync's group provisioning to AD replaces it, and it can run alongside Connect Sync for that one job. Group Writeback v1 remains only for writing Microsoft 365 groups back to AD.[^c09-gwb-v2][^c09-gwb-migrate] Second, Cloud Sync now handles Exchange hybrid writeback, so Exchange hybrid alone no longer forces Connect Sync.[^c09-cloud-sync-decision][^c09-exchange-hybrid]
 
 ::: {.callout-tip}
 ## Recommendation: Cloud Sync unless a Connect-only requirement applies
-Use Cloud Sync for new deployments and plan to migrate existing Connect Sync installations to it. Stay on Connect Sync, for now, only where a forest needs something Cloud Sync doesn't do: more than 150,000 objects in a domain, groups over 50,000 members, advanced sync rules, cross-forest references, attribute merging across domains, or Microsoft Entra Domain Services, which Cloud Sync doesn't support. Both engines can run in the same forest with mutually exclusive scopes, which lets you move populations in stages.[^c09-hybrid-scenarios]
+Use Cloud Sync for new deployments and plan to migrate existing Connect Sync installations to it.[^c09-migrate-cloud-sync] Stay on Connect Sync, for now, only where a forest needs something Cloud Sync doesn't do: more than 150,000 objects in a domain, groups over 50,000 members, advanced sync rules, cross-forest references, attribute merging across domains, or Microsoft Entra Domain Services, which Cloud Sync doesn't support. Both engines can run in the same forest with mutually exclusive scopes, which lets you move populations in stages.[^c09-hybrid-scenarios][^c09-coexist]
 :::
 
 ::: {.callout-important}
@@ -301,12 +301,12 @@ Filtering decides which AD objects reach Entra ID. Connect Sync applies four met
 
 1. **Domain-based.** Include or exclude whole domains, such as test or perimeter domains.
 2. **OU-based.** The most common method. Exclude OUs that hold service accounts, unneeded computer objects, or staging objects. Both engines support it.
-3. **Attribute-based.** Filter individual objects on attribute values with scoping conditions in sync rules; for example, exclude objects where `extensionAttribute15` equals `DoNotSync`. Cloud Sync supports only basic attribute filtering.
-4. **Group-based.** Sync only members of a named group. Use it for pilots only; it doesn't scale and it makes sync depend on group membership.
+3. **Attribute-based.** Filter individual objects on attribute values with scoping conditions in sync rules; for example, exclude objects where `extensionAttribute15` equals `DoNotSync`.[^c09-filtering] Cloud Sync supports only basic attribute filtering.
+4. **Group-based.** Sync only members of a named group. Use it for pilots only; it doesn't scale and it makes sync depend on group membership.[^c09-filtering]
 
 ### Attribute flow and transformations
 
-Attribute flow defines how AD attributes become Entra ID attributes. In Connect Sync, custom sync rules take precedence over the default rules by precedence number; Cloud Sync uses an expression builder for attribute mappings. Three transformations the program commonly needs, shown in Connect Sync's declarative provisioning expression language:
+Attribute flow defines how AD attributes become Entra ID attributes. In Connect Sync, custom sync rules take precedence over the default rules by precedence number;[^c09-sync-rule-precedence] Cloud Sync uses an expression builder for attribute mappings.[^c09-cloud-sync-expressions] Three transformations the program commonly needs, shown in Connect Sync's declarative provisioning expression language:[^c09-declarative-expr]
 
 | Scenario | Source expression | Target attribute | Purpose |
 |---|---|---|---|
@@ -318,17 +318,17 @@ The third rule is a bridge, not an end state. It derives a classification from p
 
 ### Staging mode and recovery
 
-Connect Sync's staging mode lets a second server import and synchronize without exporting to Entra ID. It serves three purposes:
+Connect Sync's staging mode lets a second server import and synchronize without exporting to Entra ID.[^c09-topologies] It serves three purposes:
 
 - **Recovery.** If the active server fails, disable staging mode on the standby to promote it. Microsoft recommends a staging-mode standby so that password hash sync isn't down for long.[^c09-choose-authn]
 - **Upgrade validation.** Test new sync rules or versions on the staging server before cutting over.
 - **Configuration verification.** Compare pending export counts between the active and staging servers to detect configuration drift.
 
-Cloud Sync has no staging mode. It gets availability from multiple active agents instead.
+Cloud Sync has no staging mode. It gets availability from multiple active agents instead.[^c09-what-cloud-sync] The [operations reference](#operations-reference-connect-sync) at the end of this chapter covers running the Connect Sync servers that stay: database, accounts, ports, upgrades, switching the active server, and government clouds.
 
 ::: {.callout-warning}
 ## One active Connect Sync server per tenant
-Never run two Connect Sync servers in active (non-staging) mode against the same tenant. Connect Sync supports one active instance; Cloud Sync is the engine that supports multiple active agents.[^c09-cloud-sync-decision] Two active Connect servers export conflicting changes that are hard to unwind.
+Never run two Connect Sync servers in active (non-staging) mode against the same tenant. Connect Sync supports one active instance; Cloud Sync is the engine that supports multiple active agents.[^c09-cloud-sync-decision][^c09-topologies] Two active Connect servers export conflicting changes that are hard to unwind.
 :::
 
 ### Choosing the sign-in method
@@ -338,18 +338,18 @@ The sign-in method decides where passwords are validated. Microsoft's comparison
 | Criterion | Password hash sync (PHS) | Pass-through authentication (PTA) | Federation (AD FS) |
 |---|---|---|---|
 | Where validation happens | In the cloud, against a synchronized hash of the password hash | In the cloud, after a check by an on-premises agent against AD | On-premises |
-| Extra on-premises infrastructure | None beyond the sync tool | Agent servers; Microsoft recommends at least three in production, treated as Tier 0[^c09-pta-agents] | Two or more AD FS servers and two or more Web Application Proxy servers, load balancing, and certificates |
+| Extra on-premises infrastructure | None beyond the sync tool | Agent servers; Microsoft recommends at least three in production, treated as Tier 0[^c09-pta-agents][^c09-pta-security] | Two or more AD FS servers and two or more Web Application Proxy servers, load balancing, and certificates |
 | Survives an on-premises outage | Yes | No | No |
-| Enforces on-premises account state at sign-in | Not immediately; changes arrive with the next sync | Yes (disabled, locked out, expired, logon hours) | Yes |
-| Leaked-credential detection | Yes; needs PHS | Only if PHS is also on | Only if PHS is also on |
-| Single sign-on from domain-joined devices | Entra joined or hybrid joined devices, or Seamless SSO | Same as PHS | Yes |
+| Enforces on-premises account state at sign-in | Not immediately; changes arrive with the next sync | Yes (disabled, locked out, expired, logon hours)[^c09-pta] | Yes |
+| Leaked-credential detection | Yes; needs PHS | Only if PHS is also on[^c09-pta-limits] | Only if PHS is also on |
+| Single sign-on from domain-joined devices | Entra joined or hybrid joined devices, or Seamless SSO[^c09-seamless-sso] | Same as PHS | Yes |
 | Program position | Preferred | Transitional | Legacy; decommission target |
 
-Microsoft recommends PHS for cloud authentication, and recommends enabling it whichever method you choose: it's the fallback if PTA agents or federation fail, it's required for ID Protection's leaked-credential detection, and organizations that had it on recovered from ransomware outages in hours rather than weeks.[^c09-choose-authn] Failover from PTA to PHS isn't automatic; an administrator switches the sign-in method in the sync tool.[^c09-choose-authn]
+Microsoft recommends PHS for cloud authentication, and recommends enabling it whichever method you choose: it's the fallback if PTA agents or federation fail, it's required for ID Protection's leaked-credential detection, and organizations that had it on recovered from ransomware outages in hours rather than weeks.[^c09-choose-authn] Failover from PTA to PHS isn't automatic; an administrator switches the sign-in method in the sync tool.[^c09-choose-authn][^c09-pta-failover]
 
 ::: {.callout-tip}
 ## Recommendation: PHS everywhere
-PHS is the program's sign-in method. Where PTA or federation is still in place, turn PHS on anyway so that the fallback and risk detections exist before they're needed.
+PHS is the program's sign-in method. Where PTA or federation is still in place, turn PHS on anyway so that the fallback and risk detections exist before they're needed.[^c09-phs-backup]
 :::
 
 #### What CISA's hybrid identity guidance adds
@@ -370,16 +370,16 @@ When the sync engine adds an object that might already exist in the cloud, Entra
 
 Either match overwrites the cloud object's attributes with the on-premises values, including the password hash under PHS, so clean up AD data first. Microsoft has hardened both paths:
 
-- Tenant settings `BlockSoftMatchEnabled` and `BlockCloudObjectTakeoverThroughHardMatchEnabled` disable each match type. Microsoft advises leaving both blocked except during a planned matching window.[^c09-existing-tenant]
+- Tenant settings `BlockSoftMatchEnabled` and `BlockCloudObjectTakeoverThroughHardMatchEnabled` disable each match type. Microsoft advises leaving both blocked except during a planned matching window.[^c09-existing-tenant][^c09-sync-features]
 - Since July 1, 2026, Entra ID blocks a hard match when the cloud account already has `onPremisesObjectIdentifier` set, or holds or is eligible for a privileged Entra role. The block is enforced in the cloud, so it applies to both sync engines.[^c09-existing-tenant] Don't plan to take over cloud-only administrator accounts by sync; Microsoft recommends against syncing on-premises accounts onto existing administrative cloud accounts at all.
 
 ### UPN suffixes and alternate login ID
 
 Many forests use non-routable UPN suffixes (`contoso.local`) or internal ones (`corp.contoso.com`) that can't be verified in the tenant. The remediation options, in order of preference:
 
-1. **Add a routable UPN suffix to the forest and update user UPNs.** This keeps the sign-in name consistent everywhere and is what Microsoft recommends; it also recommends matching the UPN to the primary SMTP address.[^c09-signin-options]
+1. **Add a routable UPN suffix to the forest and update user UPNs.** This keeps the sign-in name consistent everywhere and is what Microsoft recommends; it also recommends matching the UPN to the primary SMTP address.[^c09-signin-options][^c09-upn-changes]
 2. **Transform the UPN during sync** with a sync rule (see [Attribute flow](#attribute-flow-and-transformations)). AD keeps its UPN; Entra ID gets a constructed one. This creates a permanent mismatch that some applications notice.
-3. **Use an alternate login ID.** Connect Sync can use another attribute, such as `mail`, as the Entra ID sign-in name. Microsoft notes that alternate ID isn't compatible with all Microsoft 365 workloads.[^c09-signin-options] Separately, "email as an alternate login ID" lets cloud-authenticated users sign in with a proxy address in addition to the UPN; it remains a preview feature as of October 2026.[^c09-email-login]
+3. **Use an alternate login ID.** Connect Sync can use another attribute, such as `mail`, as the Entra ID sign-in name. Microsoft notes that alternate ID isn't compatible with all Microsoft 365 workloads.[^c09-signin-options][^c09-alt-login-id] Separately, "email as an alternate login ID" lets cloud-authenticated users sign in with a proxy address in addition to the UPN; it remains a preview feature as of October 2026.[^c09-email-login]
 
 DNS namespace alignment for new UPN suffixes is covered in the workbook's network and DNS material.
 
@@ -409,7 +409,7 @@ Every AD security group needs one of three decisions: keep it synchronized (hybr
 | Membership follows attributes exactly | Convert to dynamic group | Removes manual membership management |
 | No members or no resource assignments | Retire | Shrinks the identity surface |
 
-Where a cloud-only group still has to grant access to an AD-integrated (Kerberos) application, provision it back to AD with Cloud Sync's group provisioning, which writes cloud security groups to AD as universal groups.[^c09-gwb-cloud-sync]
+Where a cloud-only group still has to grant access to an AD-integrated (Kerberos) application, provision it back to AD with Cloud Sync's group provisioning, which writes cloud security groups to AD as universal groups.[^c09-gwb-cloud-sync][^c09-govern-onprem-groups]
 
 ### Converting static groups to dynamic groups
 
@@ -844,6 +844,114 @@ Conditional Access deployment follows three stages:
 Never switch a policy that targets all users from off straight to on. A misconfigured policy can lock out the whole organization, administrators included. Before enforcing any policy, confirm the break-glass exclusion group is excluded, and confirm both emergency accounts can still sign in.
 :::
 
+## Operations reference: the Connect Sync servers that stay {#operations-reference-connect-sync}
+
+Where Connect Sync stays through the migration, because a Connect-only requirement applies or until the move to Cloud Sync is finished, its servers are production Tier 0 systems that need running. This reference collects Microsoft's operating requirements for them: the server, the database, the accounts, the ports, upgrades, staging, configuration export, and government clouds. Cloud Sync agents have their own prerequisites; see [Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md#landing-in-active-directory).
+
+### The server
+
+- **Operating system.** A domain-joined Windows Server with the full GUI; Server Core isn't supported. Microsoft recommends Windows Server 2025 or 2022.[^c09-connect-prereq] The program's baseline is Windows Server 2019 at minimum, with 2016 gone by January 12, 2027 *(program assumption)*; a Connect server on 2016 moves to a new server by swing migration, below.
+- **Treat it as Tier 0.** Microsoft classifies the Connect server as a control-plane asset and lists hardening steps: deny NTLM, use Windows LAPS, require MFA for privileged users, and keep soft matching and hard-match takeover disabled.[^c09-connect-prereq] Anyone who administers the server can change what synced users look like in Entra ID.
+- **.NET Framework and TLS.** .NET Framework 4.7.2 and TLS 1.2 are the current minimums; from version 2.0, installation fails if TLS 1.2 isn't enabled.[^c09-connect-prereq][^c09-connect-hardening]
+- **Writable domain controllers.** The domain controllers Connect uses must be writable; read-only domain controllers aren't supported.[^c09-connect-prereq]
+- **Proxy.** Configure an outbound proxy in `machine.config`, not in `miiserver.exe.config`, which every upgrade overwrites.[^c09-connect-connectivity]
+
+### The database
+
+The default database, SQL Server 2019 Express LocalDB, has a 10 GB limit, enough for about 100,000 objects. From 100,000 objects, use full SQL Server (up to SQL Server 2022; Azure SQL Database and Managed Instance aren't supported), with a case-insensitive collation and one sync engine per SQL instance.[^c09-connect-prereq] Where the SQL team owns the instance, Microsoft's delegated install has the SQL administrator create the `ADSync` database (collation `Latin1_General_CI_AS` recommended) and grant the installer and the service account sign-in and `dbo`; nested group membership for those logins isn't supported.[^c09-connect-sql-delegation]
+
+A LocalDB that fills up stops the sync service (event 6323, or `stopped-database-disk-full`). Microsoft's recovery shrinks the database, clears the run history and shortens its retention; the lasting fix is a new server on full SQL Server, by swing migration, because LocalDB can't be swapped in place.[^c09-connect-localdb]
+
+```powershell
+# On the Connect server, as an administrator: keep two days of run history instead of the default
+Set-ADSyncScheduler -PurgeRunHistoryInterval 2.00:00:00
+Get-ADSyncScheduler | Select-Object PurgeRunHistoryInterval, SyncCycleEnabled, StagingModeEnabled
+```
+
+Moving an existing LocalDB database to a remote SQL Server means stopping the sync service, copying `ADSync.mdf` and `ADSync_log.ldf` from `%ProgramFiles%\Microsoft Azure AD Sync\Data`, attaching them on the SQL server, uninstalling Connect, and reinstalling it against the existing database. The reinstalled server comes up in staging mode, and the AD DS connector credentials have to be entered again, because only the earlier instance could decrypt them.[^c09-connect-move-db]
+
+```powershell
+# On the Connect server, after the database is attached on the SQL server and Connect has been reinstalled (exit at the Express page)
+cd "$env:ProgramFiles\Microsoft Azure AD Connect"
+.\AzureADConnect.exe /useexistingdatabase
+```
+
+### The accounts
+
+| Account | What it is | Rules |
+|---|---|---|
+| AD DS connector account | Reads, and for writeback writes, the forest | Express install creates `MSOL_<id>`; a custom install uses an account you create. It must be a normal user account: a virtual service account, managed service account or gMSA isn't supported. Since 1.4.18.0 it can't be an Enterprise or Domain Admin.[^c09-connect-accounts] Lock it down with `Set-ADSyncRestrictedPermissions` and grant only the features in use[^c09-adsyncconfig] |
+| ADSync service account | Runs the sync service | A virtual service account by default on a member server; a gMSA is recommended with remote SQL. It can be set only at installation: change its password if you must, never the account.[^c09-adsync-account] |
+| Entra ID role for configuration | Runs the wizard | Hybrid Identity Administrator (or Global Administrator), assigned directly rather than through a group[^c09-connect-prereq] |
+
+Current builds handle the ADSync service account's encryption keys themselves when its password changes; the manual "abandon the encryption key" procedure applies only to build 1.1.443.0 and older.[^c09-adsync-password]
+
+### The ports
+
+| From the Connect server to | Protocol and port | Purpose |
+|---|---|---|
+| Domain controllers | DNS 53 TCP/UDP; Kerberos 88 TCP/UDP | Name lookups and authentication to the forest |
+| Domain controllers | MS-RPC 135 TCP and RPC 49152–65535 TCP | The wizard's initial bind, and password hash sync |
+| Domain controllers | LDAP 389 TCP/UDP (or LDAPS 636) | Importing from AD; LDAP traffic is signed and sealed with Kerberos |
+| Domain controllers | SMB 445 TCP; Global Catalog 3268 TCP | Seamless SSO's computer account and password writeback; Seamless SSO |
+| Entra ID | HTTPS 443 TCP; HTTP 80 TCP | Synchronization; certificate revocation list downloads |
+
+: Source: Microsoft Learn's required ports for hybrid identity.[^c09-connect-ports] {.striped .hover}
+
+Test the connection to Entra ID from the server: a 403 response means the URL isn't open on the proxy, and a 407 means the proxy wants authentication.[^c09-connect-connectivity]
+
+```powershell
+Invoke-WebRequest -Uri https://adminwebservice.microsoftonline.com/ProvisioningService.svc
+```
+
+### Upgrades
+
+All Connect Sync 1.x versions are unsupported and no longer synchronize; each 2.x version retires 12 months after a newer one is released.[^c09-connect-versions] On top of that, the April 7, 2027 deadline in [Choosing and configuring the sync engine](#choosing-and-configuring-the-sync-engine) requires 2.6.84.0 or later and application-based authentication. Two upgrade methods:[^c09-connect-upgrade]
+
+- **In-place**, for a single server with fewer than about 100,000 objects. If it fails, it can't be rolled back.
+- **Swing migration**, Microsoft's safest method and the program's default: upgrade the staging server (or build a new one), import the configuration, run a full import and full synchronization, verify the pending exports, put the active server into staging mode, take the new server out of staging, then upgrade or retire the old one. It's also how the server's operating system changes. Retire old servers completely: a forgotten server that comes back out of staging mode can overwrite Entra ID.
+
+Automatic upgrade applies only to Express installs (LocalDB, the default `MSOL_` account, fewer than 100,000 metaverse objects). Check its state on every server:[^c09-connect-autoupgrade]
+
+```powershell
+Get-ADSyncAutoUpgrade -Detail
+```
+
+### Switching the active server
+
+Connect Sync can't run active-active. To switch, put the active server into staging mode first (the wizard's **Configure staging mode**), confirm it, then take the other server out of staging mode and start a cycle; two active servers at once break password writeback.[^c09-connect-staging] Before switching, read the pending exports on the server you're promoting:[^c09-connect-staging]
+
+```powershell
+# On the staging server: export and summarize what it would send to Entra ID
+cd "$env:ProgramFiles\Microsoft Azure AD Sync\bin"
+.\csexport.exe "<Entra ID connector name>" "$env:TEMP\export.xml" /f:x
+.\CSExportAnalyzer.exe "$env:TEMP\export.xml" > "$env:TEMP\export.csv"
+# After switching: confirm which server is active
+Import-Module ADSync
+Get-ADSyncScheduler | Select-Object StagingModeEnabled, SyncCycleEnabled
+Start-ADSyncSyncCycle -PolicyType Delta
+```
+
+When staging mode is turned off, password hash sync catches up from its watermark, which can take hours; don't restart the sync service during the catch-up.[^c09-connect-staging]
+
+### Exporting and importing the configuration
+
+Every change made through the wizard is exported automatically to `%ProgramData%\AADConnect\Applied-SynchronizationPolicy-*.JSON`. Changes made with PowerShell, the Synchronization Service Manager or the Synchronization Rules Editor have to be exported on demand from the wizard's **View or export current configuration** task. On a new server, **Import synchronization settings** applies the JSON; the server starts in staging mode, and the SQL and service account choices aren't imported. Custom rule precedence must be between 0 and 99, and device writeback, object-type and attribute filters and custom run profiles don't carry over.[^c09-connect-import-export] Commit each export to the program's identity baseline repository with the drift scans in [Chapter 10](10-migrating-and-governing.md#git-based-drift-detection).
+
+### Uninstalling
+
+When Connect Sync is retired (Cloud Sync has taken over, or the forest is gone), uninstall it from **Control Panel** > **Uninstall a program** > **Microsoft Entra Connect**, choose **Remove**, and refresh.[^c09-connect-uninstall] Then remove the server, its database and its accounts, so it can't come back as a rogue server.
+
+### Government clouds
+
+Connect Sync supports Azure Government (the cloud that GCC High and DoD tenants use) from build 1.1.180. It detects an Azure Government tenant automatically when `*.windows.net` is reachable; a server without internet access needs the registry value `HKLM\SOFTWARE\Microsoft\Azure AD Connect\AzureInstance` set to `4` before setup continues, and a custom installation.[^c09-connect-instances] The proxy has to allow the Azure Government endpoints (`*.microsoftonline.us`, `*.gov.us.microsoftonline.com`, `*.windows.net`, and the certificate revocation lists); password hash sync through a firewall needs 1.1.644.0 or later and `*.msappproxy.us` on 443.[^c09-connect-instances][^c09-connect-gov] GCC tenants use the commercial cloud and its endpoints. Learn doesn't distinguish GCC High from DoD for Connect Sync; that difference is not yet specified.
+
+```powershell
+# Only on a server that can't reach *.windows.net, before continuing setup (custom install path)
+New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Azure AD Connect' -Force | Out-Null
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Azure AD Connect' -Name AzureInstance -Value 4 -Type DWord
+```
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 08 — Assessing the Forest](08-assessing-the-forest.md) · [Book index](index.md) · [Next: Chapter 10 — Migrating and Governing →](10-migrating-and-governing.md)
@@ -905,3 +1013,43 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c09-ad-schema]: Microsoft Learn, "Impact of Schema Changes" (schema changes are global to the forest; additions can't be removed, only disabled), <https://learn.microsoft.com/windows/win32/ad/impact-of-schema-changes> (accessed Oct 29, 2026).
 [^c09-advanced-queries]: Microsoft Learn, "Advanced query capabilities on Microsoft Entra ID objects," section "User properties," <https://learn.microsoft.com/graph/aad-advanced-queries> (accessed Oct 29, 2026).
 [^c09-csa-roles]: Microsoft Learn, "What are custom security attributes in Microsoft Entra ID?," section "Custom security attribute roles," <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview> (accessed Oct 29, 2026).
+[^c09-topologies]: Microsoft Learn, "Microsoft Entra Connect: Supported topologies," sections "Multiple forests, single Microsoft Entra tenant," "Multiple forests, multiple sync servers to one Microsoft Entra tenant" and "Staging server," <https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-topologies> (accessed Nov 9, 2026).
+[^c09-what-cloud-sync]: Microsoft Learn, "What is Microsoft Entra Cloud Sync?," sections "Core architecture and components" and "Key capabilities," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/what-is-cloud-sync> (accessed Nov 9, 2026).
+[^c09-device-sync]: Microsoft Learn, "Configure device sync with Microsoft Entra Cloud Sync" (device sync is disabled by default and enabled per configuration), <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/device-sync> (accessed Nov 9, 2026).
+[^c09-on-demand]: Microsoft Learn, "On-demand provisioning using cloud sync" (available only in Cloud Sync, not Connect Sync), <https://learn.microsoft.com/entra/identity/hybrid/on-demand-provision>, and "On-demand provisioning in Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-on-demand-provision> (accessed Nov 9, 2026).
+[^c09-gwb-migrate]: Microsoft Learn, "Migrate Microsoft Entra Connect Sync Group Writeback v2 to Microsoft Entra Cloud Sync" (Cloud Sync can run side by side only to provision cloud security groups; Group Writeback v1 remains for Microsoft 365 groups), <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/migrate-group-writeback> (accessed Nov 9, 2026).
+[^c09-exchange-hybrid]: Microsoft Learn, "Exchange hybrid writeback with cloud sync," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/exchange-hybrid>, and "Exchange hybrid writeback with sync," <https://learn.microsoft.com/entra/identity/hybrid/exchange-hybrid-writeback> (accessed Nov 9, 2026).
+[^c09-migrate-cloud-sync]: Microsoft Learn, "Migrate to Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/migrate-azure-ad-connect-to-cloud-sync> (accessed Nov 9, 2026).
+[^c09-coexist]: Microsoft Learn, "Tutorial - Migrate to Microsoft Entra Cloud Sync for a Synced Active Directory Forest," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/tutorial-pilot-aadc-aadccp>, and "Microsoft Entra Cloud Sync supported topologies and scenarios," section "Piloting Microsoft Entra Cloud Sync in an existing hybrid AD forest," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/plan-cloud-sync-topologies> (accessed Nov 9, 2026).
+[^c09-filtering]: Microsoft Learn, "Microsoft Entra Connect Sync: Configure filtering," sections "Filtering options," "Attribute-based filtering" (the `extensionAttribute15` example) and "Group-based filtering" (intended for a pilot), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-configure-filtering> (accessed Nov 9, 2026).
+[^c09-sync-rule-precedence]: Microsoft Learn, "How to customize a synchronization rule in Microsoft Entra Connect," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-create-custom-sync-rule>; "Microsoft Entra Connect Sync: Understanding the default configuration" (a lower precedence value wins an attribute flow conflict), <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration>; and "Microsoft Entra Connect Sync: Make a change to the default configuration," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-the-configuration> (accessed Nov 9, 2026).
+[^c09-cloud-sync-expressions]: Microsoft Learn, "Use the expression builder with Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-expression-builder>; "Attribute mapping in Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-attribute-mapping>; and "Microsoft Entra Cloud Sync expressions and function reference," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/reference-expressions> (accessed Nov 9, 2026).
+[^c09-declarative-expr]: Microsoft Learn, "Microsoft Entra Connect: Declarative Provisioning Expressions," <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-declarative-provisioning-expressions>, and "Microsoft Entra Connect Sync: Functions Reference," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-sync-functions-reference> (accessed Nov 9, 2026).
+[^c09-pta-security]: Microsoft Learn, "Microsoft Entra pass-through authentication security deep dive," section "Pass-through authentication key security capabilities" (treat servers running authentication agents as Tier 0), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-security-deep-dive> (accessed Nov 9, 2026).
+[^c09-pta]: Microsoft Learn, "Microsoft Entra Connect: Pass-through Authentication" (validates passwords against on-premises Active Directory, for organizations that want to enforce on-premises security and password policies), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta> (accessed Nov 9, 2026).
+[^c09-pta-limits]: Microsoft Learn, "Microsoft Entra Connect: Pass-through Authentication - Current limitations," section "Unsupported scenarios" (leaked-credential detection), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-current-limitations> (accessed Nov 9, 2026).
+[^c09-seamless-sso]: Microsoft Learn, "Microsoft Entra Connect: Seamless single sign-on," sections "What is Microsoft Entra seamless single sign-on?" and "SSO via primary refresh token vs. Seamless SSO," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso> (accessed Nov 9, 2026).
+[^c09-pta-failover]: Microsoft Learn, "Microsoft Entra pass-through authentication: Frequently asked questions," "Does password hash synchronization act as a fallback to Pass-through Authentication?," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-faq> (accessed Nov 9, 2026).
+[^c09-phs-backup]: Microsoft Learn, "What is password hash synchronization with Microsoft Entra ID?," <https://learn.microsoft.com/entra/identity/hybrid/connect/whatis-phs>, and "Tutorial: Set up password hash sync as backup for AD FS in Microsoft Entra Connect," <https://learn.microsoft.com/entra/identity/hybrid/connect/tutorial-phs-backup> (accessed Nov 9, 2026).
+[^c09-sync-features]: Microsoft Learn, "Microsoft Entra Connect Sync service features and configuration," section "BlockSoftMatch," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-syncservice-features> (accessed Nov 9, 2026).
+[^c09-upn-changes]: Microsoft Learn, "Plan and troubleshoot User Principal Name changes in Microsoft Entra ID," section "UPN prefix and suffix changes" (keep emails and UPNs identical; add and verify a matching domain when the AD suffix changes), <https://learn.microsoft.com/entra/identity/hybrid/connect/howto-troubleshoot-upn-changes> (accessed Nov 9, 2026).
+[^c09-alt-login-id]: Microsoft Learn, "Configuring Alternate Login ID," <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/configuring-alternate-login-id> (accessed Nov 9, 2026).
+[^c09-govern-onprem-groups]: Microsoft Learn, "Govern on-premises Active Directory Domain Services (Kerberos) application access with groups from the cloud," section "Supported groups" (written back with universal scope), <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/govern-on-premises-groups>, and "Govern on-premises Active Directory based apps (Kerberos) with Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/id-governance/scenarios/provision-entra-to-active-directory-groups> (accessed Nov 9, 2026).
+[^c09-sync-groups]: Microsoft Learn, "Microsoft Entra Connect Sync: Understanding Users, Groups, and Contacts," section "Groups" (dynamic distribution group memberships aren't synchronized), <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-user-and-contacts> (accessed Nov 9, 2026).
+[^c09-connect-prereq]: Microsoft Learn, "Prerequisites for Microsoft Entra Connect" (installation prerequisites, SQL Server, hardware, accounts, Tier 0 hardening), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-prerequisites> (accessed Nov 9, 2026).
+[^c09-connect-connectivity]: Microsoft Learn, "Troubleshoot Microsoft Entra Connect connectivity issues," <https://learn.microsoft.com/entra/identity/hybrid/connect/tshoot-connect-connectivity> (accessed Nov 9, 2026).
+[^c09-connect-sql-delegation]: Microsoft Learn, "Install Microsoft Entra Connect using SQL delegated administrator permissions," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-sql-delegation> (accessed Nov 9, 2026).
+[^c09-connect-localdb]: Microsoft Learn, "Microsoft Entra Connect: How to recover from LocalDB 10-GB limit," <https://learn.microsoft.com/entra/identity/hybrid/connect/tshoot-connect-recover-from-localdb-10gb-limit> (accessed Nov 9, 2026).
+[^c09-connect-move-db]: Microsoft Learn, "Move Microsoft Entra Connect database from SQL Server Express to remote SQL Server," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-move-db> (accessed Nov 9, 2026).
+[^c09-connect-accounts]: Microsoft Learn, "Microsoft Entra Connect: Accounts and permissions," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-accounts-permissions>, and "Custom installation of Microsoft Entra Connect" (Enterprise and Domain Admin accounts not allowed as the connector account since 1.4.18.0), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-custom> (accessed Nov 9, 2026).
+[^c09-adsyncconfig]: Microsoft Learn, "Microsoft Entra Connect: ADSyncConfig PowerShell Reference," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsyncconfig> (accessed Nov 9, 2026).
+[^c09-adsync-account]: Microsoft Learn, "ADSync service account," <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-adsync-service-account> (accessed Nov 9, 2026).
+[^c09-adsync-password]: Microsoft Learn, "Changing the ADSync service account password," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-serviceacct-pass> (accessed Nov 9, 2026).
+[^c09-connect-ports]: Microsoft Learn, "Hybrid Identity Required Ports and Protocols," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-ports> (accessed Nov 9, 2026).
+[^c09-connect-upgrade]: Microsoft Learn, "Microsoft Entra Connect: Upgrade from a previous version to the latest," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-upgrade-previous-version> (accessed Nov 9, 2026).
+[^c09-connect-autoupgrade]: Microsoft Learn, "Microsoft Entra Connect: Automatic upgrade," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-automatic-upgrade> (accessed Nov 9, 2026).
+[^c09-connect-staging]: Microsoft Learn, "Microsoft Entra Connect: Staging server and disaster recovery," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-staging-server> (accessed Nov 9, 2026).
+[^c09-connect-import-export]: Microsoft Learn, "Import and export Microsoft Entra Connect configuration settings," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-import-export-config> (accessed Nov 9, 2026).
+[^c09-connect-uninstall]: Microsoft Learn, "Uninstall Microsoft Entra Connect," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-uninstall> (accessed Nov 9, 2026).
+[^c09-connect-instances]: Microsoft Learn, "Microsoft Entra Connect: Special considerations for instances," section "Microsoft Azure Government," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-instances> (accessed Nov 9, 2026).
+[^c09-connect-gov]: Microsoft Learn, "Hybrid identity considerations for the Azure Government cloud," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> (accessed Nov 9, 2026).

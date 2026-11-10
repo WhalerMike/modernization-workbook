@@ -139,3 +139,26 @@ New subsections "Dynamic Access Control on file servers: inventory it" (ws gap 5
 | G12 | Delete an empty server object in Sites and Services; remove A, CNAME, SRV records | §Removing DCs | verified | ad-ds-metadata-cleanup; <https://learn.microsoft.com/troubleshoot/windows-server/active-directory/domain-controllers-not-demote> |
 | G13 | `repadmin /viewlist *` and `nltest /DCList` validate metadata cleanup | §Removing DCs | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-initial-recovery> |
 | G14 | Windows Server 2019 minimum; 2016 gone by Jan 12, 2027 | §Removing DCs | restated-as-design (program assumption) | — |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Covered-but-uncited Learn pages cited where the chapter already says what they say. No wording changed.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | An Entra ID tenant has app registrations and service principals rather than Kerberos SPNs | Eleven object types | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/establish-applications> |
+| L2 | Cloud Kerberos trust needs no certificates | PKI adapter | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/authentication/kerberos-faq> |
+| L3 | Entra Domain Services supports LDAP bind and read, secure LDAP, Kerberos and NTLM | LDAP proxy | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/domain-services/scenarios>; <https://learn.microsoft.com/entra/identity/domain-services/compare-identity-solutions> |
+| L4 | LDAP writes only for objects created in the managed domain, not objects synced from Entra ID | LDAP proxy | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/domain-services/faqs> |
+| L5 | Application proxy SSO through KCD needs domain-joined connector servers | LDAP proxy | verified (Learn read Nov 9, 2026; the Domain Services pages show the connector VM joined to the managed domain and resource-based KCD) | <https://learn.microsoft.com/entra/identity/domain-services/deploy-azure-app-proxy>; <https://learn.microsoft.com/entra/identity/domain-services/deploy-kcd> |
+| L6 | Two sync clients: Connect Sync on premises; Cloud Sync with on-premises agents | Sync engine | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/sync-directory> |
+| L7 | Group SOA conversion: both sync clients stop syncing the group; reversible; applies object by object | Sync engine | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/hybrid/concept-group-source-of-authority-how-it-works>; <https://learn.microsoft.com/entra/identity/hybrid/how-to-group-source-of-authority-configure>; <https://learn.microsoft.com/entra/identity/hybrid/concept-group-source-of-authority-guidance> |
+| L8 | Entra Kerberos: cloud TGT, partial TGT exchanged at an on-premises DC; on-premises half needs users synced from AD | Kerberos for whatever remains | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/authentication/kerberos-faq>; <https://learn.microsoft.com/entra/identity/authentication/howto-authentication-passwordless-security-key-on-premises> |
+
+Not cited, for review: the sentence "neither client provisions users from the cloud to AD" (Sync engine, "Provisioning back to AD is asymmetric") is out of date. Learn's "Provision Microsoft Entra ID objects to AD" (read Nov 9, 2026) says Cloud Sync can provision users, groups and memberships from Entra ID to AD, with user provisioning in preview and group provisioning generally available. The Cloud Sync provisioning-to-AD pages were left uncited rather than attached to a sentence they contradict; the wording needs an editorial decision.
+
+## Revision 2026-11-09 — correction (provisioning from Entra ID to AD)
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| R1 | Old: "neither client provisions users from the cloud to AD." New: Cloud Sync provisions security groups and memberships to AD (generally available) and users (preview); Connect Sync doesn't provision cloud users to AD | §Sync engine, "Provisioning back to AD is asymmetric" | corrected (Learn read Nov 9, 2026; the user preview postdates the sentence) | <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/overview-provision-entra-id-to-active-directory> |

@@ -212,3 +212,77 @@ Track signposts added (HR track: user objects, groups, OUs; non-person identity 
 |---|---|---|---|---|
 | C1 | Access review cadence for app owners follows the application's risk tier, written R1 (quarterly) and R2 (semi-annually) | §Applications and service principals, Reviews | corrected (Old: "risk Tier 1" and "Tier 2". New: R1 and R2, the notation Book 04 now uses so a risk tier can't be read as a privilege tier) | Book 04 Chapter 04 §Three different tiers; Chapter 06 §Risk tiers set the approval chain; Chapter 09 §Cadence |
 | C2 | App ownership: registry owner (with backup by tier) plus two technical people on the Entra Owners list | §Governing service principals | corrected (Old: "at least two human owners") | Book 04 Chapter 05 §Ownership; Chapter 06 §Risk tiers |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Microsoft Learn pages the coverage map listed as covered but uncited, read on Nov 9, 2026 and attached as footnotes at the sentences they support. No text changed. Pages that only repeat an existing citation, landing pages, and pages that fit only code blocks stay uncited.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Connect Sync handles connected forests from one server; one active Connect Sync server per tenant, plus staging servers | Tenant boundary; One active Connect Sync server | verified (Learn read Nov 9, 2026) | c09-topologies <https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-topologies> |
+| L2 | A staging-mode server imports and synchronizes without exporting | Staging mode and recovery | verified (Learn read Nov 9, 2026) | c09-topologies <https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-topologies> |
+| L3 | Cloud Sync is a lightweight agent with cloud-held configuration; handles disconnected forests; multiple active agents give availability | Tenant boundary; Cloud Sync or Connect Sync; Staging mode | verified (Learn read Nov 9, 2026) | c09-what-cloud-sync <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/what-is-cloud-sync> |
+| L4 | Cloud Sync device sync for hybrid join is enabled separately | Engine comparison table | verified (Learn read Nov 9, 2026) | c09-device-sync <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/device-sync> |
+| L5 | On-demand provisioning exists in Cloud Sync, not Connect Sync | Engine comparison table | verified (Learn read Nov 9, 2026) | c09-on-demand <https://learn.microsoft.com/entra/identity/hybrid/on-demand-provision> |
+| L6 | Same | Engine comparison table | verified (Learn read Nov 9, 2026) | c09-on-demand <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-on-demand-provision> |
+| L7 | Cloud Sync replaces Group Writeback v2 and can run alongside Connect Sync for that job; v1 remains for Microsoft 365 groups | Corrections to older guidance | verified (Learn read Nov 9, 2026) | c09-gwb-migrate <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/migrate-group-writeback> |
+| L8 | Cloud Sync handles Exchange hybrid writeback | Corrections to older guidance | verified (Learn read Nov 9, 2026) | c09-exchange-hybrid <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/exchange-hybrid> |
+| L9 | Same (both engines can write back Exchange hybrid attributes) | Corrections to older guidance | verified (Learn read Nov 9, 2026) | c09-exchange-hybrid <https://learn.microsoft.com/entra/identity/hybrid/exchange-hybrid-writeback> |
+| L10 | Plan to migrate existing Connect Sync installations to Cloud Sync | Recommendation callout | verified (Learn read Nov 9, 2026) | c09-migrate-cloud-sync <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/migrate-azure-ad-connect-to-cloud-sync> |
+| L11 | Both engines can run in the same forest, moving populations in stages | Recommendation callout | verified (Learn read Nov 9, 2026) | c09-coexist <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/tutorial-pilot-aadc-aadccp> |
+| L12 | Same (piloting Cloud Sync in an existing hybrid forest) | Recommendation callout | verified (Learn read Nov 9, 2026) | c09-coexist <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/plan-cloud-sync-topologies> |
+| L13 | Attribute-based filtering with an `extensionAttribute15` scoping condition; group-based filtering is for pilots | Filtering | verified (Learn read Nov 9, 2026) | c09-filtering <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-configure-filtering> |
+| L14 | Custom sync rules take precedence over default rules by precedence number | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-sync-rule-precedence <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-create-custom-sync-rule> |
+| L15 | Same (lower value wins a conflict) | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-sync-rule-precedence <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration> |
+| L16 | Same | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-sync-rule-precedence <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-the-configuration> |
+| L17 | Cloud Sync uses an expression builder for attribute mappings | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-cloud-sync-expressions <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-expression-builder> |
+| L18 | Same | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-cloud-sync-expressions <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-attribute-mapping> |
+| L19 | Same | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-cloud-sync-expressions <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/reference-expressions> |
+| L20 | Connect Sync's declarative provisioning expression language (IIF, InStr, Replace, Join and other functions) | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-declarative-expr <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-declarative-provisioning-expressions> |
+| L21 | Same | Attribute flow and transformations | verified (Learn read Nov 9, 2026) | c09-declarative-expr <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-sync-functions-reference> |
+| L22 | PTA agent servers are treated as Tier 0 | Sign-in method table | verified (Learn read Nov 9, 2026) | c09-pta-security <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-security-deep-dive> |
+| L23 | PTA enforces on-premises account state at sign-in | Sign-in method table | verified (Learn read Nov 9, 2026) | c09-pta <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta> |
+| L24 | PTA alone doesn't support leaked-credential detection | Sign-in method table | verified (Learn read Nov 9, 2026) | c09-pta-limits <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-current-limitations> |
+| L25 | SSO from Entra joined or hybrid joined devices (PRT), or Seamless SSO with PHS or PTA | Sign-in method table | verified (Learn read Nov 9, 2026) | c09-seamless-sso <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso> |
+| L26 | PTA doesn't fail over to PHS automatically | Choosing the sign-in method | verified (Learn read Nov 9, 2026) | c09-pta-failover <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-faq> |
+| L27 | Turn PHS on as a fallback and for leaked-credential detection | Recommendation: PHS everywhere | verified (Learn read Nov 9, 2026) | c09-phs-backup <https://learn.microsoft.com/entra/identity/hybrid/connect/whatis-phs> |
+| L28 | Same (PHS as backup for AD FS) | Recommendation: PHS everywhere | verified (Learn read Nov 9, 2026) | c09-phs-backup <https://learn.microsoft.com/entra/identity/hybrid/connect/tutorial-phs-backup> |
+| L29 | Keep soft match blocked except during a planned matching window | Soft match and hard match | verified (Learn read Nov 9, 2026) | c09-sync-features <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-syncservice-features> |
+| L30 | Add a routable, verified suffix and match the UPN to the primary SMTP address | UPN suffixes and alternate login ID | verified (Learn read Nov 9, 2026) | c09-upn-changes <https://learn.microsoft.com/entra/identity/hybrid/connect/howto-troubleshoot-upn-changes> |
+| L31 | Alternate login ID isn't compatible with all Microsoft 365 workloads | UPN suffixes and alternate login ID | verified (Learn read Nov 9, 2026) | c09-alt-login-id <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/configuring-alternate-login-id> |
+| L32 | Cloud Sync group provisioning writes cloud security groups to AD as universal groups for Kerberos apps | The per-group decision | verified (Learn read Nov 9, 2026) | c09-govern-onprem-groups <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/govern-on-premises-groups> |
+| L33 | Same | The per-group decision | verified (Learn read Nov 9, 2026) | c09-govern-onprem-groups <https://learn.microsoft.com/entra/id-governance/scenarios/provision-entra-to-active-directory-groups> |
+| L34 | On-premises dynamic distribution groups don't sync | Distribution groups | verified (Learn read Nov 9, 2026) | c09-sync-groups <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-user-and-contacts> |
+
+## Revision 2026-11-09 — Learn gap additions (operations reference for the Connect Sync servers)
+
+New closing section "Operations reference: the Connect Sync servers that stay" (entra-core gap 2), with a pointer from "Staging mode and recovery". Learn pages read Nov 9, 2026.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| O1 | Domain-joined, full GUI, no Server Core; 2025 or 2022 recommended; writable DCs only | §The server | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-prerequisites> |
+| O2 | 2019 minimum, 2016 gone by Jan 12, 2027 | §The server | restated-as-design (program assumption) | — |
+| O3 | Tier 0; deny NTLM, Windows LAPS, MFA, soft/hard match takeover disabled | §The server | verified | how-to-connect-install-prerequisites |
+| O4 | .NET 4.7.2 and TLS 1.2 minimums; install fails without TLS 1.2 from 2.0 | §The server | verified (the prerequisites page also mentions 4.6.2 in one place; 4.7.2 from its banner and the hardening page) | how-to-connect-install-prerequisites; harden-update-ad-fs-pingfederate |
+| O5 | Proxy in machine.config, not miiserver.exe.config | §The server | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/tshoot-connect-connectivity> |
+| O6 | LocalDB 10 GB (~100,000 objects); full SQL from 100,000; up to SQL 2022; no Azure SQL; case-insensitive collation; one engine per instance | §The database | verified | how-to-connect-install-prerequisites |
+| O7 | SQL delegated install, collation, no nested logins | §The database | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-sql-delegation> |
+| O8 | LocalDB full symptoms, recovery, purge interval; swing migration as the lasting fix | §The database | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/tshoot-connect-recover-from-localdb-10gb-limit> |
+| O9 | Database move steps and `/useexistingdatabase`; staging mode after reinstall; credentials re-entered | §The database | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-move-db> |
+| O10 | AD DS connector account rules (MSOL_, no VSA/MSA/gMSA, no EA/DA since 1.4.18.0) | §The accounts | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-accounts-permissions>; how-to-connect-install-custom |
+| O11 | Set-ADSyncRestrictedPermissions | §The accounts | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsyncconfig> |
+| O12 | ADSync service account types; set only at install; password change only | §The accounts | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/concept-adsync-service-account> |
+| O13 | Encryption-key abandon procedure only for 1.1.443.0 and older | §The accounts | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-serviceacct-pass> |
+| O14 | Ports table | §The ports | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-ports> |
+| O15 | Connectivity test, 403 and 407 meanings | §The ports | verified | tshoot-connect-connectivity |
+| O16 | 1.x non-functional; 2.x retire 12 months after a newer release | §Upgrades | verified | reference-connect-version-history |
+| O17 | In-place (no rollback) vs swing (safest; OS changes; retire old servers) | §Upgrades | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-upgrade-previous-version> |
+| O18 | Swing migration as the program default | §Upgrades | restated-as-design | — |
+| O19 | Automatic upgrade conditions; Get-ADSyncAutoUpgrade -Detail | §Upgrades | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-automatic-upgrade> |
+| O20 | No active-active; order of the switch; writeback breaks with two active; csexport and CSExportAnalyzer; PHS catch-up, don't restart | §Switching | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-staging-server> |
+| O21 | Configuration export JSON path, on-demand export, import behavior and limitations | §Export and import | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-import-export-config> |
+| O22 | Uninstall from Control Panel | §Uninstalling | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-uninstall> |
+| O23 | Azure Government from 1.1.180; `*.windows.net` auto-detection; AzureInstance = 4 for offline servers with a custom install; endpoints | §Government clouds | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-instances> |
+| O24 | PHS through a firewall needs 1.1.644.0 and `*.msappproxy.us` on 443 | §Government clouds | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> |
+| O25 | GCC uses commercial; GCC High vs DoD not distinguished | §Government clouds | verified (absence); shown as not yet specified | reference-connect-instances; reference-connect-government-cloud |
+| O26 | Registry commands (New-Item, Set-ItemProperty DWord) | §Government clouds | restated-as-design (the page gives the value, not a command) | — |

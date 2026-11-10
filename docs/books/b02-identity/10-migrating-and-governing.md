@@ -54,7 +54,7 @@ Access packages bundle resources (group memberships, application assignments, Sh
 - **Project packages.** Time-bound access for a project, approved by the project lead and set to expire at the project end date.
 - **Cross-tenant packages.** Resources shared with partner organizations through B2B collaboration, with terms of use acceptance and sponsor approval.
 
-Expiration of assignments and separation-of-duties checks work with P2; automatic assignment policies, custom extensions, and Verified ID checks need Entra ID Governance.[^c10-entra-licensing] Don't use the preview `memberOf` operator in automatic assignment rules. Microsoft ended that preview on November 3, 2026, and rules that still use the operator stopped updating; replace them now.[^c10-memberof] Where an access package must grant access to an AD-integrated (Kerberos) application, include a cloud security group that Cloud Sync provisions to AD.[^c10-gwb-cloud-sync]
+Expiration of assignments and separation-of-duties checks work with P2; automatic assignment policies, custom extensions, and Verified ID checks need Entra ID Governance.[^c10-entra-licensing][^c10-verified-id] Don't use the preview `memberOf` operator in automatic assignment rules. Microsoft ended that preview on November 3, 2026, and rules that still use the operator stopped updating; replace them now.[^c10-memberof] Where an access package must grant access to an AD-integrated (Kerberos) application, include a cloud security group that Cloud Sync provisions to AD.[^c10-gwb-cloud-sync][^c10-gov-kerberos]
 
 ### Lifecycle Workflows
 
@@ -134,7 +134,7 @@ Five behaviors matter as much as the numbers:
 - **On-demand runs ignore the execution conditions.** The tasks apply to whoever is selected, whether or not they meet the trigger and scope.[^c10-lcw-understanding] On-demand runs also aren't subject to execution limits, so they bypass quarantine.[^c10-lcw-exec-limits]
 - **Execution limits quarantine a runaway scheduled run.** A tenant-wide or per-workflow threshold, set as a percentage of users, a number of users, or both (either one exceeded counts), quarantines a scheduled run that would exceed it and notifies the Lifecycle Workflows administrators. A quarantined workflow doesn't run until an administrator approves it, and quarantine can't be cleared automatically.[^c10-lcw-exec-limits]
 - **Late data has a three-day catch-up.** If the trigger or scope attributes are set after the intended processing time, for example because HR entered a hire late, the standard time-based trigger still processes the user if the setup is completed within three days of that time. The preview "Time based attribute V2" trigger doesn't do this catch-up.[^c10-lcw-understanding]
-- **Changes are new versions, not edits.** Changing an existing workflow's tasks or execution conditions creates a new version; only basic properties such as the name, description and the enabled and scheduling switches change in place.[^c10-lcw-versioning] Updating a workflow's execution limits also creates a new version.[^c10-lcw-exec-limits]
+- **Changes are new versions, not edits.** Changing an existing workflow's tasks or execution conditions creates a new version; only basic properties such as the name, description and the enabled and scheduling switches change in place.[^c10-lcw-versioning][^c10-lcw-manage-versions] Updating a workflow's execution limits also creates a new version.[^c10-lcw-exec-limits]
 
 The program's design response *(design guidance)*, with the full risk table in the [companion guide](../guides/attribute-driven-migration.md#lifecycle-workflows-at-scale):
 
@@ -159,17 +159,17 @@ Terms of use record compliance attestation and are enforced through Conditional 
 
 ### B2B collaboration
 
-B2B collaboration lets external users access resources in your tenant as guest users. The guest lifecycle has five steps:
+B2B collaboration lets external users access resources in your tenant as guest users.[^c10-b2b-plan] The guest lifecycle has five steps:
 
-- **Invitation.** Sent by an authorized internal sponsor, or generated when a partner user's access package request is approved.
-- **Redemption.** The guest redeems the invitation with home tenant credentials or another supported identity provider.
-- **Access.** Governed by group memberships, application assignments, and Conditional Access, like any other user.
+- **Invitation.** Sent by an authorized internal sponsor, or generated when a partner user's access package request is approved.[^c10-b2b-add-users]
+- **Redemption.** The guest redeems the invitation with home tenant credentials or another supported identity provider.[^c10-b2b-redemption]
+- **Access.** Governed by group memberships, application assignments, and Conditional Access, like any other user.[^c10-external-groups][^c10-external-ca]
 - **Review.** Quarterly review by the sponsor (see the access review schedule above).
 - **Offboarding.** Disabled or removed when collaboration ends. Guests added through entitlement management are removed automatically when their last assignment expires.[^c10-governance-overview]
 
 The program's invitation policies:
 
-- Only users with the Guest Inviter role or higher can invite guests.
+- Only users with the Guest Inviter role or higher can invite guests.[^c10-guest-quickstart][^c10-b2b-best-practices]
 - Invitations are limited to an allowlist of partner domains. This is a program setting; B2B collaboration supports allowlists and blocklists.[^c10-b2b-faq]
 - Self-service sign-up stays off, except for approved applications and identity providers.
 - Invitations across Microsoft clouds (for example, from a GCC High tenant into a commercial or GCC tenant) must use the user's UPN, not an email address.[^c10-b2b-faq]
@@ -178,7 +178,7 @@ People from partner organizations are the External Partner Person class, defined
 
 ### Cross-tenant access settings
 
-Cross-tenant access settings govern the relationship between your tenant and other Microsoft Entra tenants. By default, B2B collaboration with all other Entra organizations is allowed and B2B direct connect is blocked; organization-specific settings override the defaults.[^c10-cross-tenant]
+Cross-tenant access settings govern the relationship between your tenant and other Microsoft Entra tenants. By default, B2B collaboration with all other Entra organizations is allowed and B2B direct connect is blocked; organization-specific settings override the defaults.[^c10-cross-tenant][^c10-b2b-direct-setup]
 
 | Setting | Inbound (external users into your tenant) | Outbound (your users into other tenants) |
 |---|---|---|
@@ -187,7 +187,7 @@ Cross-tenant access settings govern the relationship between your tenant and oth
 | Trust settings | Trust MFA, compliant device, and hybrid joined device claims from the partner tenant | Not applicable |
 | Automatic redemption | Suppress the consent prompt for a trusted partner | Same, in the other direction |
 
-Trusting a partner's MFA claims means your Conditional Access MFA requirements are still enforced, but a user who already completed MFA at home isn't prompted again.[^c10-cross-tenant] For organizations that run several tenants of their own, cross-tenant synchronization creates and maintains B2B users across them automatically; syncing users within the same cloud needs P1, and syncing groups or syncing across clouds needs Entra ID Governance.[^c10-entra-licensing]
+Trusting a partner's MFA claims means your Conditional Access MFA requirements are still enforced, but a user who already completed MFA at home isn't prompted again.[^c10-cross-tenant] For organizations that run several tenants of their own, cross-tenant synchronization creates and maintains B2B users across them automatically;[^c10-cts-topology] syncing users within the same cloud needs P1, and syncing groups or syncing across clouds needs Entra ID Governance.[^c10-entra-licensing]
 
 ### B2B direct connect and B2B collaboration compared
 
@@ -204,7 +204,7 @@ Trusting a partner's MFA claims means your Conditional Access MFA requirements a
 
 For guests from organizations that don't use Entra ID, B2B collaboration supports:[^c10-identity-providers]
 
-- **Microsoft accounts**, built in.
+- **Microsoft accounts**, built in.[^c10-msa]
 - **Google federation**, for Google Workspace users.
 - **SAML/WS-Fed identity provider federation**, for partners with a non-Microsoft enterprise identity provider.
 - **Email one-time passcode**, the fallback for guests who can't use any of the above. It's on by default in new tenants. Conditional Access authentication strengths can't be applied to these guests; use the "require MFA" grant control instead.[^c10-email-otp]
@@ -224,7 +224,7 @@ Forest and external trusts don't migrate; each becomes a cross-tenant or federat
 
 ### Password hash sync as the foundation
 
-Whatever the sign-in method, password hash sync (PHS) stays on. It gives three things the other methods don't:
+Whatever the sign-in method, password hash sync (PHS) stays on.[^c10-road-establish] It gives three things the other methods don't:
 
 - **Leaked-credential detection.** ID Protection checks synced credentials against leaked credential lists. The detection itself isn't a premium feature, but its full reporting and risk-based Conditional Access require P2.[^c10-risk-detections][^c10-choose-authn]
 - **A fallback.** If pass-through agents or AD FS fail, an administrator can switch the sign-in method to PHS. The switch is manual.[^c10-choose-authn]
@@ -238,29 +238,29 @@ That changes the order of the program's roadmap. The earlier version treated cer
 
 | Phase | Population | Method | Prerequisites | Duration (program estimate) |
 |---|---|---|---|---|
-| 1 | Privileged accounts (PIM-eligible users) | FIDO2 security keys (passkeys), plus PIV/CAC through CBA where the admin holds a card | Keys procured; passkey profile with attestation enforced; CBA trusted certificate authorities configured | 4–6 weeks |
+| 1 | Privileged accounts (PIM-eligible users) | FIDO2 security keys (passkeys), plus PIV/CAC through CBA where the admin holds a card[^c10-admin-personas] | Keys procured; passkey profile with attestation enforced[^c10-fido2-attestation]; CBA trusted certificate authorities configured | 4–6 weeks |
 | 2 | PIV and CAC holders | Microsoft Entra certificate-based authentication | Certificate authorities and revocation checking configured; username bindings validated; workbook PKI material | 8–12 weeks |
 | 3 | Managed Windows devices | Windows Hello for Business | Intune enrollment; Windows Hello for Business policy; TPM 2.0 | 8–12 weeks |
-| 4 | Remaining users, including mobile | Passkeys in Microsoft Authenticator | Android 14 or iOS 17 or later; a passkey profile targeting the Authenticator AAGUIDs; registration campaign[^c10-authenticator-passkey] | 8–12 weeks |
+| 4 | Remaining users, including mobile | Passkeys in Microsoft Authenticator | Android 14 or iOS 17 or later; a passkey profile targeting the Authenticator AAGUIDs; registration campaign[^c10-authenticator-passkey][^c10-authenticator-passkey-register] | 8–12 weeks |
 
 Phase 1 runs first, so administrators are protected before anyone else. Phases 2 to 4 reach different populations with different methods and run in parallel once phase 1 is done, so the roadmap takes 12 to 18 weeks end to end, not the 28 to 42 weeks its rows would add up to in sequence. In the playbook below, Phase 5 carries roadmap phase 1, so administrators hold a phishing-resistant method before PIM and Conditional Access enforcement, and Phase 7 carries phases 2 to 4 (8–12 weeks).
 
-All four methods meet the built-in phishing-resistant MFA authentication strength (passkeys in Authenticator count as FIDO2 passkeys).[^c10-auth-strengths] Passkey profiles let you set different rules for different groups; for example, device-bound passkeys with attestation enforced for administrators, and synced passkeys allowed for lower-risk populations.[^c10-passkeys]
+All four methods meet the built-in phishing-resistant MFA authentication strength (passkeys in Authenticator count as FIDO2 passkeys).[^c10-auth-strengths] Passkey profiles let you set different rules for different groups; for example, device-bound passkeys with attestation enforced for administrators, and synced passkeys allowed for lower-risk populations.[^c10-passkeys][^c10-synced-passkeys]
 
 That split follows CISA's Hybrid Identity Solutions Guidance. CISA recommends that agencies support passkeys, synced or device-bound, in public-facing applications, and weigh synced passkeys for employees and contractors case by case: syncing puts the key material at more risk, but it also survives a lost device and can replace a password or another phishable method. CISA advises against synced authenticators for Authenticator Assurance Level 3 (AAL3) scenarios, which it notes require resident keys.[^c10-hisg] So the program's privileged population, and any system the agency rates at AAL3, uses device-bound passkeys or PIV, never synced passkeys.
 
 ### Authentication methods policy
 
-The Authentication methods policy decides which methods are available to which users. The program's configuration:
+The Authentication methods policy decides which methods are available to which users.[^c10-auth-methods-manage] The program's configuration:
 
 - **Passkeys (FIDO2).** Enabled for the Admins group in phase 1, then all users. Use passkey profiles: device-bound with attestation enforced for privileged users. Users must have completed MFA within the past five minutes before they can register a passkey.[^c10-passkeys]
 - **Certificate-based authentication.** Enabled for PIV and CAC holders in phase 2, configured as multifactor so that it meets the phishing-resistant strength.
-- **Microsoft Authenticator.** Enabled for all users during the transition. Number matching is always on for Authenticator push notifications and users can't opt out.[^c10-number-match] Turn on the additional context (application name and sign-in location). Authenticator push doesn't satisfy M-22-09 for staff on its own; Microsoft's guidance pairs it with managed-device Conditional Access during the transition.[^c10-memo-2209-ms]
+- **Microsoft Authenticator.** Enabled for all users during the transition. Number matching is always on for Authenticator push notifications and users can't opt out.[^c10-number-match] Turn on the additional context (application name and sign-in location).[^c10-additional-context] Authenticator push doesn't satisfy M-22-09 for staff on its own; Microsoft's guidance pairs it with managed-device Conditional Access during the transition.[^c10-memo-2209-ms]
 - **Windows Hello for Business.** Enabled for all users on managed devices.
 - **Temporary Access Pass (TAP).** Enabled for onboarding and credential replacement, issued by the help desk and by the pre-hire workflow. Microsoft's defaults are a 1-hour default lifetime (configurable from 10 minutes to 30 days) and multi-use allowed; the program sets one-time use and a 1-hour lifetime for passes the help desk issues, and a lifetime of up to 24 hours from the hire date for the new-hire pass the pre-hire workflow generates, which Learn recommends as the maximum for new hires ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#built-in-tasks-by-stage)). With a one-time TAP, the user has 10 minutes after sign-in to finish registering the new credential.[^c10-tap]
 - **SMS and voice.** Disabled for staff. M-22-09 requires discontinuing them for routine access.[^c10-m2209]
 - **Email one-time passcode.** Guests only.
-- **Registration campaigns.** On, to prompt users without a strong method to register one at sign-in. The program allows three snoozes.
+- **Registration campaigns.** On, to prompt users without a strong method to register one at sign-in. The program allows three snoozes.[^c10-registration-campaign]
 
 ### Banned passwords in the cloud and on the domain controllers
 
@@ -309,7 +309,7 @@ Three consequences for this program:
 
 - **Emergency access accounts are in scope.** Microsoft's guidance is a passkey (FIDO2) or certificate-based authentication for them, which is already the program's standard ([Chapter 09](09-building-the-entra-target.md#emergency-access-accounts)).[^c10-mandatory-mfa]
 - **User accounts used as service accounts are in scope; workload identities aren't.** A script that signs in to Azure as a user fails on its next write. Phase 4 below moves those scripts to managed identities or service principals.[^c10-mandatory-mfa]
-- **Federated sign-in needs an MFA claim Entra ID accepts.** While a domain is still federated, the identity provider must send the `multipleauthn` claim, or Entra ID has to perform MFA itself; setting `federatedIdpMfaBehavior` to `rejectMfaByFederatedIdp` ([Appendix D](appendix-d-migrating-ad-fs-applications.md#keeping-ad-fs-and-web-application-proxy-secure-until-they-retire)) does the latter.[^c10-mandatory-mfa]
+- **Federated sign-in needs an MFA claim Entra ID accepts.** While a domain is still federated, the identity provider must send the `multipleauthn` claim, or Entra ID has to perform MFA itself; setting `federatedIdpMfaBehavior` to `rejectMfaByFederatedIdp` ([Appendix D](appendix-d-migrating-ad-fs-applications.md#keeping-ad-fs-and-web-application-proxy-secure-until-they-retire)) does the latter.[^c10-mandatory-mfa][^c10-federated-mfa-claims]
 
 To prepare, find the users who sign in to these portals and tools without MFA (the sign-in logs, filtered by the portal and tool application IDs Microsoft lists), and put a Conditional Access policy requiring MFA on the "Microsoft Admin Portals" and "Windows Azure Service Management API" resources, in report-only mode first; use Azure CLI 2.76 or later and Azure PowerShell 14.3 or later.[^c10-mandatory-mfa][^c10-mandatory-mfa-howto] The program's CA003 (phishing-resistant MFA for administrators) goes further than Microsoft's requirement for the roles it targets.
 
@@ -328,7 +328,7 @@ The remediation sequence:
 1. **Discover** remaining legacy sign-ins with the sign-in logs, using the queries below or the "Sign-ins using legacy authentication" workbook.
 2. **Remediate** applications and devices onto modern authentication (OAuth 2.0), the Microsoft Graph mail APIs, or a supported relay.
 3. **Block** with policy CA001 from [Chapter 09](09-building-the-entra-target.md#the-policy-set).
-4. **Monitor** for 30 days after enforcement and confirm zero successful legacy sign-ins.
+4. **Monitor** for 30 days after enforcement and confirm zero successful legacy sign-ins.[^c10-secops-users]
 
 ### Passwords that remain: SSO first, then a password manager
 
@@ -403,7 +403,7 @@ The earlier version of this section described IA-2(6) as "access to privileged a
 
 - **PIV and CAC smart cards** through Entra certificate-based authentication are separate devices and the federal standard credential. They're the program's primary answer to IA-2(6) for staff who hold them.
 - **FIDO2 security keys** are roaming authenticators separate from the computer gaining access. They're the primary method for cloud administrators and for staff without a card. Microsoft notes that hardware security keys carrying certificates also meet the requirement for MFA on a separate device.[^c10-cba-ios] <!-- claims-ok: the vendor's statement, attributed -->
-- **Windows Hello for Business and platform passkeys** are phishing-resistant, but the key lives in the device that's gaining access. The program doesn't count them toward IA-2(6) for privileged accounts; it uses them for non-privileged access, where the organization's assessor accepts that.
+- **Windows Hello for Business and platform passkeys** are phishing-resistant, but the key lives in the device that's gaining access.[^c10-whfb][^c10-entra-passkey-windows] The program doesn't count them toward IA-2(6) for privileged accounts; it uses them for non-privileged access, where the organization's assessor accepts that.
 - **Passwords, SMS, and voice** aren't allowed for privileged roles.
 
 The FedRAMP 20x Key Security Indicator for this area, KSI-IAM-APM (Adopting Passwordless Methods), states the same direction: passwordless methods where feasible, otherwise strong passwords with phishing-resistant MFA.[^c10-ksi-iam]
@@ -440,7 +440,7 @@ Upgrading licenses doesn't recover older data: after moving from Free to P1, onl
 
 ### Log Analytics integration
 
-All Entra ID logs go to a Log Analytics workspace for retention, correlation, and detection:
+All Entra ID logs go to a Log Analytics workspace for retention, correlation, and detection:[^c10-secops-guide]
 
 1. Create a Log Analytics workspace in an Azure subscription. This is an Azure resource and the documented exception to the program's Microsoft 365 boundary.
 2. In Entra ID diagnostic settings, stream every log category to the workspace. You need at least Security Administrator in the tenant and access to the workspace.[^c10-azure-monitor]
@@ -499,6 +499,8 @@ The indicator IDs and titles are from FedRAMP's published indicator pages.[^c10-
 
 The migration runs in eleven phases, grouped into five stages. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The one exception is Phase 8, which can run in parallel with Phase 7. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
 
+Every rollback below assumes Active Directory itself is healthy: each one returns the tenant to a forest that still works. If the forest is lost (every domain controller compromised or unusable), no phase rollback applies; recover the forest first, pausing synchronization to Entra ID while you do, with [Book 14, Appendix H](../b14-compliance/appendix-h-ad-forest-recovery.md), the runbook for recovering Active Directory during the hybrid period. Rehearse it before Phase 1, because the hybrid period is when a forest failure also reaches the cloud.
+
 ![The eleven playbook phases in five stages: foundation, objects, privilege and policy, authentication, and sustain.](../../images/diagrams/b02-identity/svg/ch10-migration-waves.svg){#fig-ch10-migration-waves fig-alt="Five boxes in a left-to-right chain. Phases 0 to 2, foundation, in slate: assess, sync, PHS, Conditional Access in report-only. Phases 3 and 4, objects, in blue: groups, then service accounts. Phases 5 and 6, privilege and policy, in amber: PIM, then Conditional Access enforced in waves. Phases 7 to 9, authentication, in blue: phishing-resistant methods, legacy cutoff, AD FS out. Phase 10, sustain, in violet: lifecycle, reviews, drift detection."}
 
 ### Phase 0: Assessment
@@ -526,7 +528,7 @@ The migration runs in eleven phases, grouped into five stages. Each phase has pr
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 1 complete; emergency access accounts created with passkeys; Conditional Access policies drafted |
-| Steps | 1. Confirm PHS is active. 2. If PTA is kept for now, deploy at least three agents. 3. Configure Seamless SSO only for devices that are domain joined but not hybrid joined or Entra joined; Entra joined and hybrid joined devices already get single sign-on.[^c10-choose-authn] 4. Deploy every Conditional Access policy in report-only mode. 5. Create the break-glass exclusion group and confirm it's excluded from every policy. 6. Watch the Conditional Access insights workbook for 2–4 weeks. 7. Fix users and devices the policies would block. |
+| Steps | 1. Confirm PHS is active. 2. If PTA is kept for now, deploy at least three agents. 3. Configure Seamless SSO only for devices that are domain joined but not hybrid joined or Entra joined; Entra joined and hybrid joined devices already get single sign-on.[^c10-choose-authn][^c10-adfs-faq] 4. Deploy every Conditional Access policy in report-only mode. 5. Create the break-glass exclusion group and confirm it's excluded from every policy. 6. Watch the Conditional Access insights workbook for 2–4 weeks. 7. Fix users and devices the policies would block. |
 | Validation | PHS verified (a test password change propagates); PTA agents healthy; every policy shows the expected impact in report-only; an emergency account sign-in tested and logged |
 | Rollback | Remove PTA agents; return to PHS; set the policies off |
 | Duration | 3–4 weeks |
@@ -558,7 +560,7 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 4 complete; role mapping final ([Chapter 09](09-building-the-entra-target.md#privileged-access)); FIDO2 keys procured; CBA trusted certificate authorities configured |
-| Steps | 1. Issue FIDO2 keys and CBA to privileged accounts (roadmap phase 1) and register every administrator for a phishing-resistant method. 2. Configure PIM role settings per the standards. 3. Convert every permanent active assignment to eligible, except the emergency accounts. 4. Configure PIM for Groups for resource-level just-in-time access. 5. Create recurring access reviews for all eligible assignments: monthly for Tier 0 roles, quarterly for the rest. 6. Add protected actions for Conditional Access, cross-tenant settings, named locations, and hard deletion. 7. Train administrators on activation. 8. Watch the PIM audit log for the first two weeks. |
+| Steps | 1. Issue FIDO2 keys and CBA to privileged accounts (roadmap phase 1) and register every administrator for a phishing-resistant method.[^c10-admin-coverage] 2. Configure PIM role settings per the standards. 3. Convert every permanent active assignment to eligible, except the emergency accounts. 4. Configure PIM for Groups for resource-level just-in-time access. 5. Create recurring access reviews for all eligible assignments: monthly for Tier 0 roles, quarterly for the rest. 6. Add protected actions for Conditional Access, cross-tenant settings, named locations, and hard deletion. 7. Train administrators on activation. 8. Watch the PIM audit log for the first two weeks. |
 | Validation | 100% of privileged accounts on FIDO2 or CBA; zero permanent active assignments except the emergency accounts; every administrator can activate; the first review cycle started; protected actions enforced |
 | Rollback | Convert eligible assignments back to active, using an emergency account if activation fails |
 | Duration | 6–9 weeks (4–6 weeks of roadmap phase 1, then 2–3 weeks of PIM) |
@@ -598,7 +600,7 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 8 complete; PHS verified; every federated domain identified; staged rollout tested; every relying party other than Microsoft 365 migrated, retired or on a dated exception ([Appendix D](appendix-d-migrating-ad-fs-applications.md#retirement-criteria)) |
-| Steps | 1. Use staged rollout to move users from federation to PHS in waves; staged rollout tests cloud authentication but doesn't convert domains.[^c10-staged-rollout] 2. Wave 1: the IT team, one week. 3. Wave 2: a pilot group, two weeks. 4. Wave 3: everyone else. 5. Document and back up the federation settings (`Get-MgDomainFederationConfiguration`). 6. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`; conversion can take up to 60 minutes per domain.[^c10-federation-migration] The retired `Convert-MsolDomainToStandard` cmdlet must not be used. 7. Decommission AD FS (servers, Web Application Proxy, certificates) once Appendix D's retirement criteria are all true, including 30 days with no token issuance (event 1200) on any server in the farm. 8. Remove the AD FS DNS records. 9. Update documentation and the Git records. |
+| Steps | 1. Use staged rollout to move users from federation to PHS in waves; staged rollout tests cloud authentication but doesn't convert domains.[^c10-staged-rollout][^c10-adfs-faq] 2. Wave 1: the IT team, one week. 3. Wave 2: a pilot group, two weeks. 4. Wave 3: everyone else. 5. Document and back up the federation settings (`Get-MgDomainFederationConfiguration`). 6. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`; conversion can take up to 60 minutes per domain.[^c10-federation-migration] The retired `Convert-MsolDomainToStandard` cmdlet must not be used. 7. Decommission AD FS (servers, Web Application Proxy, certificates) once Appendix D's retirement criteria are all true, including 30 days with no token issuance (event 1200) on any server in the farm. 8. Remove the AD FS DNS records. 9. Update documentation and the Git records. |
 | Validation | Every domain managed; every user authenticating through PHS; AD FS decommissioned; no authentication failures from the cutover |
 | Rollback | Re-federate the domain with `New-MgDomainFederationConfiguration`, which needs the AD FS infrastructure, so keep it recoverable for 90 days after decommission[^c10-federation-migration] |
 | Duration | 4–8 weeks |
@@ -615,7 +617,7 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 
 ### What still needs AD after Phase 10
 
-Phase 10 ends with the target governed, not with AD retired. Hybrid lasts: retiring AD means clearing a list of named dependencies, not reaching a date. [Chapter 04](04-the-hidden-migration-surface.md) owns the infrastructure dependencies and the sync engine's retirement criteria. The playbook above leaves these open, each with the program's response *(design guidance)*:
+Phase 10 ends with the target governed, not with AD retired. Hybrid lasts: retiring AD means clearing a list of named dependencies, not reaching a date.[^c10-road-intro] [Chapter 04](04-the-hidden-migration-surface.md) owns the infrastructure dependencies and the sync engine's retirement criteria. The playbook above leaves these open, each with the program's response *(design guidance)*:
 
 | Still needs AD | Why | Response |
 |---|---|---|
@@ -662,15 +664,15 @@ The planned functions aren't in the module yet. Until they are, run the equivale
 |---|---|---|---|
 | Sync error `InvalidSoftMatch` | A soft match on UPN or primary SMTP address found a cloud object that already has a different `onPremisesImmutableId`, usually because it was synced from another AD object, or two AD objects share a UPN or proxy address[^c10-sync-errors] | Find the duplicate. If it's the same person being re-provisioned, set the AD object's `mS-DS-ConsistencyGuid` to the value matching the cloud object's ImmutableId so a hard match succeeds[^c10-existing-tenant] | Clean duplicate UPNs and proxy addresses in Phase 0; keep soft and hard match blocked outside planned matching windows |
 | Sync error `InvalidHardMatch` | Since July 1, 2026, Entra ID blocks a hard match to a cloud account that already has `onPremisesObjectIdentifier` set or holds or is eligible for a privileged role, or the tenant blocks hard-match takeover[^c10-sync-errors] | Don't take over privileged cloud accounts by sync. For a legitimate remap, clear `onPremisesObjectIdentifier` through Microsoft's documented Graph recovery call, then retry[^c10-existing-tenant] | Keep administrators cloud-only; don't sync AD accounts onto existing admin accounts |
-| "Unable to update userPrincipalName" | The suffix isn't a verified domain, or another object already uses the UPN | Verify the domain in the admin center; resolve the duplicate in AD or Entra ID | Verify every UPN suffix as a custom domain before sync; audit UPNs in Phase 0 |
+| "Unable to update userPrincipalName" | The suffix isn't a verified domain, or another object already uses the UPN | Verify the domain in the admin center;[^c10-custom-domain] resolve the duplicate in AD or Entra ID | Verify every UPN suffix as a custom domain before sync; audit UPNs in Phase 0 |
 | Cloud group not appearing in AD | Cloud Sync group provisioning isn't configured for the group or target OU, or the group isn't a cloud security group | Check the provisioning logs for the group; confirm the scoping and target OU | Configure group provisioning to AD before moving Kerberos applications onto cloud groups. (Connect Sync Group Writeback v2 is discontinued; don't troubleshoot it, migrate off it.) |
 | PIM activation fails: "user does not meet activation requirements" | The user hasn't registered a method that satisfies the activation authentication context, or Conditional Access blocks the request | Register a phishing-resistant method; check the sign-in logs for the blocking policy | Require registration before granting eligibility; test activation in the pilot |
 | Conditional Access blocks legitimate access | The user doesn't meet a grant control (device compliance, location, MFA) | Find the blocking policy in the sign-in log's Conditional Access tab; fix the specific condition | Report-only first; keep a documented exception process |
-| Password writeback fails | Writeback not enabled, or the AD DS connector account lacks permissions | Enable writeback; grant Reset password, Change password, Write `lockoutTime`, and Write `pwdLastSet` on descendant user objects, and Unexpire Password on each domain root; `Set-ADSyncPasswordWritebackPermissions` sets the core set for Connect Sync[^c10-sspr-writeback][^c10-adsync-permissions] | Set permissions during installation; test with a reset |
+| Password writeback fails | Writeback not enabled, or the AD DS connector account lacks permissions[^c10-sspr-writeback-tshoot] | Enable writeback; grant Reset password, Change password, Write `lockoutTime`, and Write `pwdLastSet` on descendant user objects, and Unexpire Password on each domain root; `Set-ADSyncPasswordWritebackPermissions` sets the core set for Connect Sync[^c10-sspr-writeback][^c10-adsync-permissions][^c10-cloud-sync-writeback] | Set permissions during installation; test with a reset |
 | Dynamic group not populating | Rule syntax error, or the attribute is empty for the expected users | Use rule validation in the admin center; check the attribute: `Get-MgUser -UserId <id> -Property onPremisesExtensionAttributes \| Select-Object -ExpandProperty OnPremisesExtensionAttributes` | Validate rules before deployment; populate attributes at the source before sync |
 | Service principal blocked by workload identity policy | The workload authenticates from an IP outside the trusted named location | Add the service's egress IP to the named location, or exclude that service principal with a documented exception | Record every workload's egress IPs before enforcing CA015 |
-| B2B guest can't reach shared resources | Invitation not redeemed, terms of use not accepted, or blocked by a guest policy | Check redemption; check Conditional Access evaluation in the sign-in log | Trust partner MFA in cross-tenant settings; make the terms of use reachable |
-| Lifecycle workflow doesn't fire for a new hire | `employeeHireDate` isn't populated in Entra ID (not mapped through provisioning or sync), or the sync cycle hasn't delivered it | Check the attribute on the user; check the workflow's run history in the admin center | Map the hire date from HR through provisioning; validate the format at the source |
+| B2B guest can't reach shared resources | Invitation not redeemed, terms of use not accepted, or blocked by a guest policy | Check redemption; check Conditional Access evaluation in the sign-in log[^c10-b2b-troubleshoot] | Trust partner MFA in cross-tenant settings; make the terms of use reachable |
+| Lifecycle workflow doesn't fire for a new hire | `employeeHireDate` isn't populated in Entra ID (not mapped through provisioning or sync), or the sync cycle hasn't delivered it[^c10-lcw-prepare-users] | Check the attribute on the user; check the workflow's run history in the admin center | Map the hire date from HR through provisioning; validate the format at the source |
 | No leaked-credential detections | PHS not active for the affected users, or no P2 licensing for the reports and risk policies | Confirm PHS is active (not only in staged rollout); confirm licensing; check ID Protection risk detections | Enable PHS before deploying risk policies |
 | Connect Sync staging server shows different counts | Configuration drift between active and staging servers | Export both configurations with `Get-ADSyncServerConfiguration -Path <folder>` and compare | After any change on the active server, apply it to staging; commit both exports to Git |
 
@@ -750,3 +752,37 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-mandatory-mfa]: Microsoft Learn, "Mandatory multifactor authentication for Azure and admin portals" (phases, accounts in scope, federated identity providers, postponement, sovereign clouds), <https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication> (accessed Nov 9, 2026).
 [^c10-mandatory-mfa-howto]: Microsoft Learn, "Verify that users are set up for mandatory MFA," <https://learn.microsoft.com/entra/identity/authentication/how-to-mandatory-multifactor-authentication> (accessed Nov 9, 2026).
 [^c10-adfs-app-migration]: Microsoft Learn, "Plan application migration to Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-apps-phases-overview> (accessed Nov 9, 2026).
+[^c10-verified-id]: Microsoft Learn, "Configure Verified ID settings for an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-verified-id-settings> (accessed Nov 9, 2026).
+[^c10-gov-kerberos]: Microsoft Learn, "Govern on-premises Active Directory based apps (Kerberos) with Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/id-governance/scenarios/provision-entra-to-active-directory-groups> (accessed Nov 9, 2026).
+[^c10-lcw-manage-versions]: Microsoft Learn, "Manage workflow versions," <https://learn.microsoft.com/entra/id-governance/manage-workflow-tasks> (accessed Nov 9, 2026).
+[^c10-b2b-plan]: Microsoft Learn, "Plan a Microsoft Entra B2B collaboration deployment," <https://learn.microsoft.com/entra/architecture/secure-external-access-resources> (accessed Nov 9, 2026).
+[^c10-b2b-add-users]: Microsoft Learn, "Add and manage B2B collaboration users in the Microsoft Entra admin center," <https://learn.microsoft.com/entra/external-id/add-users-administrator> (accessed Nov 9, 2026).
+[^c10-b2b-redemption]: Microsoft Learn, "Microsoft Entra B2B collaboration invitation redemption," <https://learn.microsoft.com/entra/external-id/redemption-experience> (accessed Nov 9, 2026).
+[^c10-external-groups]: Microsoft Learn, "Secure external access with groups in Microsoft Entra ID and Microsoft 365," <https://learn.microsoft.com/entra/architecture/4-secure-access-groups> (accessed Nov 9, 2026).
+[^c10-external-ca]: Microsoft Learn, "Manage external access to resources with Conditional Access," <https://learn.microsoft.com/entra/architecture/7-secure-access-conditional-access> (accessed Nov 9, 2026).
+[^c10-guest-quickstart]: Microsoft Learn, "Quickstart: Add a guest user and send an invitation," <https://learn.microsoft.com/entra/external-id/b2b-quickstart-add-guest-users-portal> (accessed Nov 9, 2026).
+[^c10-b2b-best-practices]: Microsoft Learn, "Microsoft Entra B2B best practices and recommendations," <https://learn.microsoft.com/entra/external-id/b2b-fundamentals> (accessed Nov 9, 2026).
+[^c10-b2b-direct-setup]: Microsoft Learn, "Set up B2B direct connect," <https://learn.microsoft.com/entra/external-id/cross-tenant-access-settings-b2b-direct-connect> (accessed Nov 9, 2026).
+[^c10-cts-topology]: Microsoft Learn, "Topologies for cross-tenant synchronization," <https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-topology> (accessed Nov 9, 2026).
+[^c10-msa]: Microsoft Learn, "Use Microsoft Accounts," <https://learn.microsoft.com/entra/external-id/microsoft-account> (accessed Nov 9, 2026).
+[^c10-road-establish]: Microsoft Learn, "Road to the cloud - Establish a footprint for moving identity and access management from Active Directory to Microsoft Entra ID," <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-establish> (accessed Nov 9, 2026).
+[^c10-admin-personas]: Microsoft Learn, "Considerations for specific personas in a phishing-resistant passwordless authentication deployment in Microsoft Entra ID," section "Deployment for Admins and Highly regulated users," <https://learn.microsoft.com/entra/identity/authentication/how-to-plan-persona-phishing-resistant-passwordless-authentication> (accessed Nov 9, 2026).
+[^c10-fido2-attestation]: Microsoft Learn, "Microsoft Entra ID attestation for FIDO2 security key vendors," <https://learn.microsoft.com/entra/identity/authentication/concept-fido2-hardware-vendor> (accessed Nov 9, 2026).
+[^c10-authenticator-passkey-register]: Microsoft Learn, "Register passkeys in Authenticator on Android and iOS devices," <https://learn.microsoft.com/entra/identity/authentication/how-to-register-passkey-authenticator> (accessed Nov 9, 2026).
+[^c10-synced-passkeys]: Microsoft Learn, "Enable synced passkeys in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/how-to-synced-passkeys> (accessed Nov 9, 2026).
+[^c10-auth-methods-manage]: Microsoft Learn, "Manage authentication methods," <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-methods-manage> (accessed Nov 9, 2026).
+[^c10-additional-context]: Microsoft Learn, "Use additional context in Authenticator notifications," <https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-additional-context> (accessed Nov 9, 2026).
+[^c10-registration-campaign]: Microsoft Learn, "Run a Registration Campaign to Set Up a Passkey or Microsoft Authenticator," section "Snooze experience," <https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-registration-campaign> (accessed Nov 9, 2026).
+[^c10-federated-mfa-claims]: Microsoft Learn, "Satisfy Microsoft Entra ID multifactor authentication (MFA) controls with MFA claims from a federated IdP," <https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-expected-inbound-assertions> (accessed Nov 9, 2026).
+[^c10-secops-users]: Microsoft Learn, "Microsoft Entra security operations for user accounts," section "Unusual sign-ins" (successful authentication after legacy authentication is disabled), <https://learn.microsoft.com/entra/architecture/security-operations-user-accounts> (accessed Nov 9, 2026).
+[^c10-whfb]: Microsoft Learn, "Windows Hello for Business authentication method in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-windows-hello> (accessed Nov 9, 2026).
+[^c10-entra-passkey-windows]: Microsoft Learn, "Enable Microsoft Entra passkey on Windows," <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-entra-passkeys-on-windows> (accessed Nov 9, 2026).
+[^c10-secops-guide]: Microsoft Learn, "Microsoft Entra security operations guide," section "Data sources," <https://learn.microsoft.com/entra/architecture/security-operations-introduction> (accessed Nov 9, 2026).
+[^c10-adfs-faq]: Microsoft Learn, "AD FS to Microsoft Entra FAQ," <https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/ad-fs-to-azure-ad-faq> (accessed Nov 9, 2026).
+[^c10-admin-coverage]: Microsoft Learn, "Find and address gaps in strong authentication coverage for your administrators in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-find-coverage-gaps> (accessed Nov 9, 2026).
+[^c10-road-intro]: Microsoft Learn, "Road to the cloud - Introduction to moving identity and access management from AD to Microsoft Entra ID," <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-introduction> (accessed Nov 9, 2026).
+[^c10-custom-domain]: Microsoft Learn, "Add your custom domain," <https://learn.microsoft.com/entra/fundamentals/add-custom-domain> (accessed Nov 9, 2026).
+[^c10-sspr-writeback-tshoot]: Microsoft Learn, "Troubleshoot self-service password reset writeback," <https://learn.microsoft.com/entra/identity/authentication/troubleshoot-sspr-writeback> (accessed Nov 9, 2026).
+[^c10-cloud-sync-writeback]: Microsoft Learn, "Enable Microsoft Entra Connect cloud sync password writeback," section "Troubleshooting" (Reset password, `lockoutTime`, `pwdLastSet` and Unexpire Password for the cloud sync gMSA), <https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-cloud-sync-sspr-writeback> (accessed Nov 9, 2026).
+[^c10-b2b-troubleshoot]: Microsoft Learn, "Troubleshoot B2B issues," <https://learn.microsoft.com/entra/external-id/troubleshoot> (accessed Nov 9, 2026).
+[^c10-lcw-prepare-users]: Microsoft Learn, "Tutorial: Preparing user accounts for Lifecycle workflows," <https://learn.microsoft.com/entra/id-governance/tutorial-prepare-user-accounts> (accessed Nov 9, 2026).

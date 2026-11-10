@@ -925,7 +925,9 @@ pages:
   - docs/books/b02-identity/08-assessing-the-forest.md
   cited_by:
   - docs/books/b02-identity/07-read-only-discovery.md
+  - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/_verification/07-read-only-discovery.md
+  - docs/books/b02-identity/_verification/08-assessing-the-forest.md
 - path: WindowsServerDocs/identity/ad-ds/get-started/virtual-dc/Active-Directory-Domain-Services-Overview.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
   title: Active Directory Domain Services overview
@@ -933,11 +935,13 @@ pages:
   ms_date: '2025-03-10'
   ms_topic: overview
   description: Find out about Active Directory Domain Services, a directory service that makes network resource data available to authorized network users and administrators.
-  coverage: covered-uncited
+  coverage: cited
   note: AD DS vs Entra side by side
   workbook:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/identity/ad-ds/get-started/virtual-dc/Active-Directory-Domain-Services-Virtualization.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-virtualization
   title: Active Directory Domain Services Virtualization
@@ -2619,11 +2623,13 @@ pages:
   ms_date: '2026-07-03'
   ms_topic: how-to
   description: Learn how to lower the domain or forest functional level in Active Directory Domain Services (AD DS) on Windows Server with PowerShell.
-  coverage: covered-uncited
+  coverage: cited
   note: Functional levels in the forest assessment
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/b02-identity/_verification/08-assessing-the-forest.md
 - path: WindowsServerDocs/identity/ad-ds/plan/Mapping-Design-Requirements-to-Forest-Design-Models.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/mapping-design-requirements-to-forest-design-models
   title: Mapping Design Requirements to Forest Design Models
@@ -2872,12 +2878,14 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: best-practice
   description: 'Learn more about: Attractive Accounts for Credential Theft'
-  coverage: covered-uncited
+  coverage: cited
   note: Protected accounts and privileged groups (Tier 0) in the privileged-access and forest-assessment chapters
   workbook:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b02-identity/08-assessing-the-forest.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/b02-identity/_verification/08-assessing-the-forest.md
 - path: WindowsServerDocs/identity/ad-ds/plan/security-best-practices/Audit-Policy-Recommendations.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations
   title: System Audit Policy recommendations
@@ -3208,12 +3216,14 @@ pages:
   ms_date: '2024-02-13'
   ms_topic: concept-article
   description: 'Learn more about: AD FS Overview'
-  coverage: covered-uncited
+  coverage: cited
   note: What AD FS is and why it is a decommission target
   workbook:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/identity/ad-fs/AD-FS-Technical-Reference.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/ad-fs-technical-reference
   title: AD FS Technical Reference
@@ -3238,6 +3248,8 @@ pages:
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   cited_by:
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: WindowsServerDocs/identity/ad-fs/decommission/adfs-decommission-guide.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/adfs-decommission-guide
   title: Active Directory Federation Services (AD FS) decommission guide
@@ -4874,11 +4886,13 @@ pages:
   ms_date: '2024-02-13'
   ms_topic: how-to
   description: 'Learn more about: Configuring Alternate Login ID'
-  coverage: covered-uncited
+  coverage: cited
   note: Alternate login ID
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: WindowsServerDocs/identity/ad-fs/operations/Create-a-Non-Claims-Aware-Relying-Party-Trust.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/operations/create-a-non-claims-aware-relying-party-trust
   title: Create a Non-Claims Aware Relying Party Trust
