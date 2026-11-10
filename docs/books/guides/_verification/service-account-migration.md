@@ -50,6 +50,7 @@ Every Microsoft fact and command was read on Microsoft Learn on November 9, 2026
 | PowerShell snap-in: changing application pool settings (IIS) | learn.microsoft.com/iis/manage/powershell/powershell-snap-in-making-simple-configuration-changes-to-web-sites-and-application-pools | 2008-04-14 |
 | sc.exe config; ChangeServiceConfigA | learn.microsoft.com/windows-server/administration/windows-commands/sc-config; learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga | 2018-06-05; 2018-12-05 |
 | Set-ADUser | learn.microsoft.com/powershell/module/activedirectory/set-aduser | 2016-12-27 |
+| Windows 2012 Active Directory Domain Services Videos (2) (archived blog; linked as background video only, November 10, 2026, at the program owner's request; no fact in the guide rests on it) | learn.microsoft.com/archive/blogs/nepapfe/windows-2012-active-directory-domain-services-videos-2 | posted 2014-02-05 |
 
 ## Learn coverage of gMSAs across the workbook (before and after November 9, 2026)
 
