@@ -37,7 +37,7 @@
  },
  {
   "slide": 5,
-  "title": "Four dispositions, and the program's four rules",
+  "title": "Four dispositions from Module 3, and the program's rules",
   "links": [
    {
     "text": "Chapter 06",
@@ -68,6 +68,14 @@
    {
     "text": "Chapter 06",
     "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
    }
   ]
  },

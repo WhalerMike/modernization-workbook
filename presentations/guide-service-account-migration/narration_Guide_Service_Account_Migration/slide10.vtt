@@ -1,0 +1,97 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.228
+Migration B moves the
+same kind of account to a
+
+2
+00:00:03.228 --> 00:00:07.325
+delegated managed service
+account, on Windows Server 2025.
+
+3
+00:00:07.325 --> 00:00:12.362
+A D M S A supersedes the old account:
+once the migration completes,
+
+4
+00:00:12.362 --> 00:00:17.874
+the old password can't be used, its
+S P Ns, delegation and authentication
+
+5
+00:00:17.874 --> 00:00:22.150
+policy move to the D M S A, and
+the old account is disabled.
+
+6
+00:00:22.150 --> 00:00:24.600
+Check Microsoft Learn's limits first.
+
+7
+00:00:24.600 --> 00:00:28.209
+At least one Windows Server
+2025 domain controller,
+
+8
+00:00:28.209 --> 00:00:32.741
+and every machine that uses the
+account updated to support D M S As;
+
+9
+00:00:32.741 --> 00:00:36.350
+one that isn't fails once
+the old account is disabled.
+
+10
+00:00:36.350 --> 00:00:40.161
+You can't migrate an M S A
+or a G M S A to a D M S A,
+
+11
+00:00:40.161 --> 00:00:44.550
+and unconstrained
+delegation stops working.
+
+12
+00:00:44.550 --> 00:00:45.891
+B1 creates the D M S A.
+
+13
+00:00:45.891 --> 00:00:51.505
+Learn's set-up page then sets a state
+attribute with a parameter the cmdlet doesn't
+
+14
+00:00:51.505 --> 00:00:56.700
+have; for a migration, skip it, because
+starting the migration sets the state.
+
+15
+00:00:56.700 --> 00:00:59.741
+B2 starts the migration,
+and on each host sets
+
+16
+00:00:59.741 --> 00:01:03.275
+Learn's registry value and
+restarts the one service.
+
+17
+00:01:03.275 --> 00:01:07.076
+B3: Learn says to wait at
+least two ticket lifetimes,
+
+18
+00:01:07.076 --> 00:01:09.700
+fourteen days, and recommends four.
+
+19
+00:01:09.700 --> 00:01:12.325
+The program's thirty days covers four.
+
+20
+00:01:12.325 --> 00:01:15.530
+Then complete it, and never
+delete the original account.

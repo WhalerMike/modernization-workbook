@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+The guide lists the dangers
+and the guard for each.
+
+2
+00:00:03.137 --> 00:00:08.529
+Create a G M S A before the K D S root
+key replicates, and password retrieval
+
+3
+00:00:08.529 --> 00:00:13.650
+fails on hosts that ask another domain
+controller: wait the ten hours.
+
+4
+00:00:13.650 --> 00:00:17.122
+Create a second root key,
+and G M S As fail after
+
+5
+00:00:17.122 --> 00:00:20.875
+their next password
+rotation: one key per forest.
+
+6
+00:00:20.875 --> 00:00:25.449
+Leave an S P N on the old account,
+and Kerberos to the service
+
+7
+00:00:25.449 --> 00:00:30.213
+fails or falls back to N T L M: move
+the S P Ns in the switch window.
+
+8
+00:00:30.213 --> 00:00:33.239
+Switch a host that can't
+retrieve the password,
+
+9
+00:00:33.239 --> 00:00:36.425
+and the service won't start:
+test every host first.
+
+10
+00:00:36.425 --> 00:00:38.700
+Put a G M S A in a privileged group,
+
+11
+00:00:38.700 --> 00:00:43.425
+and every host that retrieves its
+password holds that privilege.
+
+12
+00:00:43.425 --> 00:00:48.990
+Complete a D M S A migration too early, or
+with a host not on Windows Server 2025,
+
+13
+00:00:48.990 --> 00:00:52.700
+and the service fails on
+the hosts it hasn't learned.
+
+14
+00:00:52.700 --> 00:00:56.550
+Delete the old account during the
+migration, and there's no way back.
+
+15
+00:00:56.550 --> 00:00:59.381
+Put a client secret on
+the new app registration,
+
+16
+00:00:59.381 --> 00:01:02.575
+and you have a password in
+a configuration file again.
+
+17
+00:01:02.575 --> 00:01:06.338
+And a G M S A left behind
+when Active Directory retires
+
+18
+00:01:06.338 --> 00:01:10.250
+loses its credential with
+the last domain controller.

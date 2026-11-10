@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.579
+Migration C starts when the
+workload moves to Azure,
+
+2
+00:00:03.579 --> 00:00:08.750
+or gains a call to Graph or an Azure A P I,
+and only for what it reaches with OAuth.
+
+3
+00:00:08.750 --> 00:00:13.888
+Microsoft Learn's security best practices
+for application properties set the order:
+
+4
+00:00:13.888 --> 00:00:18.159
+a managed identity whenever possible;
+where the app doesn't run on Azure,
+
+5
+00:00:18.159 --> 00:00:22.067
+a platform that manages its own
+credentials, which is federation;
+
+6
+00:00:22.067 --> 00:00:25.902
+otherwise a certificate from a
+trusted certificate authority,
+
+7
+00:00:25.902 --> 00:00:28.725
+kept in a vault; and never
+a password credential.
+
+8
+00:00:28.725 --> 00:00:33.272
+C1: a workload moving to Azure gets
+a user-assigned managed identity,
+
+9
+00:00:33.272 --> 00:00:38.550
+created with the Azure C L I and given
+the narrowest role at the narrowest scope.
+
+10
+00:00:38.550 --> 00:00:41.713
+It outlives its resources,
+so it needs an owner.
+
+11
+00:00:41.713 --> 00:00:46.274
+C2: on an Arc-enabled server,
+use the server's own identity.
+
+12
+00:00:46.274 --> 00:00:50.561
+Learn says only local
+administrators and one local group
+
+13
+00:00:50.561 --> 00:00:54.312
+can request its tokens, so
+add the G M S A to that group.
+
+14
+00:00:54.312 --> 00:00:56.515
+C3: on a host with no Arc agent,
+
+15
+00:00:56.515 --> 00:01:01.400
+an app registration with a
+certificate, with two named owners.
+
+16
+00:01:01.400 --> 00:01:05.676
+C4: for C I C D or another
+cloud, a federated credential,
+
+17
+00:01:05.676 --> 00:01:10.150
+whose issuer, subject and
+audience must match exactly.
+
+18
+00:01:10.150 --> 00:01:15.530
+C5: after thirty days carrying traffic,
+retire what the cloud path replaced.

@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.626
+Migration A moves a user account to a
+G M S A, in Microsoft Learn's order:
+
+2
+00:00:06.626 --> 00:00:11.675
+K D S root key, create, install,
+switch, validate, retire.
+
+3
+00:00:11.675 --> 00:00:17.046
+A1: read the account with Get-A D User,
+its S P Ns, delegation and groups,
+
+4
+00:00:17.046 --> 00:00:22.613
+and on each host read the service's
+logon account with S C query config.
+
+5
+00:00:22.613 --> 00:00:26.388
+A2: the forest needs one K D S root key.
+
+6
+00:00:26.388 --> 00:00:30.995
+If there's none, a Domain Admin or
+Enterprise Admin creates it once,
+
+7
+00:00:30.995 --> 00:00:35.091
+and Learn's K D S page says
+domain controllers wait up to ten
+
+8
+00:00:35.091 --> 00:00:39.187
+hours before they allow a G M S
+A, so the key replicates first.
+
+9
+00:00:39.187 --> 00:00:42.752
+Learn offers a key backdated
+ten hours for a test domain
+
+10
+00:00:42.752 --> 00:00:46.238
+with one domain controller;
+never use it in production.
+
+11
+00:00:46.238 --> 00:00:49.568
+And Learn's containers
+page says more than one
+
+12
+00:00:49.568 --> 00:00:52.987
+key makes G M S As fail
+after a password rotation.
+
+13
+00:00:52.987 --> 00:00:58.358
+A3: create a group of the hosts, then
+the G M S A with A E S two-fifty-six,
+
+14
+00:00:58.358 --> 00:01:02.412
+which Learn's overview
+says to always configure.
+
+15
+00:01:02.412 --> 00:01:04.853
+Its name must be unique in the forest,
+
+16
+00:01:04.853 --> 00:01:07.863
+and its password interval
+can be set only now.
+
+17
+00:01:07.863 --> 00:01:12.325
+A4: after a restart, install
+it on each host and test it.
+
+18
+00:01:12.325 --> 00:01:17.110
+Test-A D Service Account must return
+true on every host before you switch.

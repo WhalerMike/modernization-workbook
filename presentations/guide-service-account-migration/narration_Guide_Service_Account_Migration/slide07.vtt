@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.228
+Every step carries its
+federal requirement,
+
+2
+00:00:03.228 --> 00:00:07.350
+the indicator it aligns to, and
+the evidence the I S S O keeps.
+
+3
+00:00:07.350 --> 00:00:11.010
+The inventory supports A
+C two, account management,
+
+4
+00:00:11.010 --> 00:00:13.712
+and C M eight, the component inventory.
+
+5
+00:00:13.712 --> 00:00:18.227
+The K D S root key supports I A
+five, authenticator management,
+
+6
+00:00:18.227 --> 00:00:22.651
+with event forty-oh-four and the
+key's start time as evidence.
+
+7
+00:00:22.651 --> 00:00:28.123
+Creating the account supports A C six,
+least privilege, I A five, and C M three,
+
+8
+00:00:28.123 --> 00:00:34.225
+configuration change control: the evidence
+is the approved plan and the read-back.
+
+9
+00:00:34.225 --> 00:00:39.164
+Installing and switching supports least
+privilege and privileged accounts:
+
+10
+00:00:39.164 --> 00:00:42.431
+Test-A D Service Account on
+each host, the S P N listing,
+
+11
+00:00:42.431 --> 00:00:44.938
+and the service's managed-account check.
+
+12
+00:00:44.938 --> 00:00:47.826
+The parallel run supports
+disabling accounts.
+
+13
+00:00:47.826 --> 00:00:53.419
+The cloud identities support I A nine,
+service identification and authentication,
+
+14
+00:00:53.419 --> 00:00:56.337
+which sits in no baseline
+and is tailored in.
+
+15
+00:00:56.337 --> 00:00:59.834
+The controls are from the NIST
+special publication eight
+
+16
+00:00:59.834 --> 00:01:03.112
+hundred fifty-three, revision
+five, Moderate baseline.
+
+17
+00:01:03.112 --> 00:01:07.270
+K S I's are fed-ramp twenty X
+indicators for cloud service providers;
+
+18
+00:01:07.270 --> 00:01:12.550
+which evidence supports which indicator is
+the program's mapping, design guidance.
