@@ -4678,8 +4678,8 @@ pages:
   ms_date: '2026-06-19'
   ms_topic: how-to
   description: Instructions about how to add an existing Azure subscription to your Microsoft Entra tenant.
-  coverage: covered-uncited
-  note: Tenant setup covered in the Entra target build.
+  coverage: not-covered
+  note: Chapter 09 doesn't cover associating Azure subscriptions with a tenant.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -4745,8 +4745,8 @@ pages:
   ms_date: '2025-01-14'
   ms_topic: how-to
   description: Instructions about how to find your Microsoft Entra tenant ID for an existing Azure subscription.
-  coverage: covered-uncited
-  note: Tenant setup covered in the Entra target build.
+  coverage: not-covered
+  note: Chapter 09 doesn't explain finding the tenant ID.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -24037,8 +24037,8 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how to upgrade your Microsoft Entra pass-through authentication configuration.
-  coverage: covered-uncited
-  note: Pass-through authentication.
+  coverage: not-covered
+  note: Chapter 09 doesn't cover upgrading preview PTA agents.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -24049,8 +24049,8 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article deals with Microsoft Entra pass-through authentication and GDPR compliance.
-  coverage: covered-uncited
-  note: Pass-through authentication.
+  coverage: not-covered
+  note: Chapter 09 doesn't cover PTA user privacy or log data.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -24133,8 +24133,8 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article deals with Microsoft Entra seamless SSO and GDPR compliance.
-  coverage: covered-uncited
-  note: Seamless single sign-on.
+  coverage: not-covered
+  note: Chapter 09 doesn't cover Seamless SSO user privacy or log data.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -24259,8 +24259,8 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Describes how to put your Microsoft 365 user resources close to the user with Microsoft Entra Connect Sync.
-  coverage: covered-uncited
-  note: Connect Sync architecture, rules, filtering and objects.
+  coverage: not-covered
+  note: Chapter 09 doesn't cover preferred data location.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -24725,8 +24725,8 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: This article lists all releases of the Microsoft Entra pass-through authentication agent
-  coverage: covered-uncited
-  note: Pass-through authentication.
+  coverage: not-covered
+  note: Chapter 09 doesn't track PTA agent versions.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []
@@ -24861,8 +24861,8 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: troubleshooting
   description: This topic provides the remediation steps for LargeObject errors caused by userCertificate attribute.
-  coverage: covered-uncited
-  note: Connect Sync architecture, rules, filtering and objects.
+  coverage: not-covered
+  note: Chapter 09 doesn't cover userCertificate LargeObject errors.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by: []

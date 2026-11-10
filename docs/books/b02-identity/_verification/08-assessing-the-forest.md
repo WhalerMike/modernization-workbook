@@ -229,3 +229,14 @@ Read on Microsoft Learn on November 9, 2026 through the Microsoft Learn document
 | Computer accounts (LocalSystem) act as `<domain>\<computer>$`; you can't tell which service used one | same sentence | Learn, Securing on-premises service accounts (ms.date 2022-08-26) |
 | Virtual accounts act on the network with the computer account's credentials | same sentence | Learn, Service accounts (AD DS) (ms.date 2026-09-14) |
 | Link to the service account comparison and migration guide | link added | — |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Microsoft Learn pages the coverage map listed as covered but uncited, read on Nov 9, 2026 and attached as footnotes at the sentences they support. No text changed.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | No standing Domain Admins account for assessment runs; privileged-group membership is needed only temporarily | Rights, DnsAdmins paragraph | verified (Learn read Nov 9, 2026) | c08-attractive <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/attractive-accounts-for-credential-theft> |
+| L2 | Functional levels tell you which DC operating systems the forest accepts and which features are available | Functional levels | verified (Learn read Nov 9, 2026) | c08-lower-fl <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/lower-domain-forest-functional-levels> |
+| L3 | Sites, site links and subnets make up the replication topology and the subnet-to-site map | Sites, site links and subnets | verified (Learn read Nov 9, 2026) | c08-replconcepts <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts> |
+| L4 | Services running as LocalSystem act on the network as the computer account | Service accounts | verified (Learn read Nov 9, 2026) | c08-computer-svc <https://learn.microsoft.com/entra/architecture/service-accounts-computer> |
