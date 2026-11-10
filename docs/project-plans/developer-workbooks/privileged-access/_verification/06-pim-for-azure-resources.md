@@ -71,3 +71,13 @@ New section, 11 rows, one for each Lab 1 and Lab 2 scripted action and each outp
 | F2 | KSI IDs used: KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP and KSI-IAM-JIT; each row's indicator lists at least one of the row's controls among its "Related SP 800-53 Controls" | Federal requirements | verified November 2, 2026 on FedRAMP's Key Security Indicators page, checked row by row by script; every ID was already cited in Book 04, Chapter 10, Book 02, Chapter 10, Book 13, Appendix A or Book 14, Chapter 03, so none is new to the repository | `pa06-ksi` |
 | F3 | KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them and doesn't report them | Under the table | carried forward from Book 00, Appendix B | Book 00 |
 | F4 | Which output supports which control, and who keeps it | Federal requirements | restated-as-design: the program's mapping, following Book 04, Chapters 02, 04, 08 and 10 | Book 04 |
+
+## Learn citations (added November 9, 2026)
+
+Microsoft Learn pages opened on November 9, 2026 through the Microsoft Learn MCP tools and cited where the chapter already said what they say. No claim changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | The chapter uses only the current PIM for Azure resources API; the old AzureADPreview cmdlets map to Az cmdlets on role management policies and schedule requests | The context the code depends on | verified | Learn, PIM PowerShell for Azure resources migration guidance (`pa06-ps-migration`) |
+| L2 | An eligible user activates an Azure resource role with a reason; a role that needs approval leaves the request pending | Lab 2, step 4 | verified | Learn, Activate my Azure resource roles in Privileged Identity Management (`pa06-activate`) |
+| L3 | Delegated approvers see and approve pending Azure resource role requests | Lab 2, step 4 | verified | Learn, Approve requests for Azure resource roles in PIM (`pa06-approve`) |

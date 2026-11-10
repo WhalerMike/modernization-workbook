@@ -119,3 +119,14 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | Microsoft Learn added "Authenticator app same-device number matching": in Microsoft mobile apps on the same phone, Approve/Deny without a number | exception sentence added; `c07-number-match` updated |
+
+## November 9, 2026: Learn citations
+
+Microsoft Learn pages the Learn coverage map marked as covered but uncited, read on November 9, 2026 with the Microsoft Learn fetch tool and cited where they support a specific sentence. No wording changed beyond the added footnotes.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 66 | Source guide ended Authenticator setup by turning on phone sign-in (phone sign-in is a step after registering Authenticator) | Module 1, corrections | verified | Learn, Enable passwordless sign-in with Authenticator, <https://learn.microsoft.com/entra/identity/authentication/howto-authentication-passwordless-phone> (`c07-phone-signin`) |
+| 67 | Agency sets how many SSPR methods are required; users reset at aka.ms/sspr | Module 2, Registering and resetting | verified | Learn, Tutorial: enable SSPR, <https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-sspr> (`c07-sspr-tutorial`) |
+| 68 | Combined registration: one registration for MFA and SSPR | Module 2, Registering and resetting | verified | Learn, Combined security information registration, <https://learn.microsoft.com/entra/identity/authentication/howto-registration-mfa-sspr-combined> (`c07-combined-howto`) |
+| 69 | In a hybrid estate the Active Directory password policy may still apply to synced passwords | Module 2, Corrections to the source password rules | verified | Learn, SSPR frequently asked questions, Password writeback, <https://learn.microsoft.com/entra/identity/authentication/passwords-faq> (`c07-sspr-faq`) |

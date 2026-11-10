@@ -60,7 +60,7 @@ In this module, you'll:
 
 *10 minutes*
 
-The provisioning service maps attributes, matches records to users, and writes. The middleware owns everything before the POST: what is sent, in what order, how fast, and what record is kept. The endpoint is asynchronous. A `202 Accepted` means the batch was staged, not that any user was written. Read:
+The provisioning service maps attributes, matches records to users, and writes. The middleware owns everything before the POST: what is sent, in what order, how fast, and what record is kept. The endpoint is asynchronous. A `202 Accepted` means the batch was staged, not that any user was written: Learn's [cURL quickstart for API-driven inbound provisioning](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-curl-tutorial) shows the 202 on upload, then each record's processing in the provisioning logs. Read:
 
 - [Chapter 01: where the middleware sits](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md#where-the-middleware-sits).
 - [Chapter 01: what CSV2SCIM leaves to you](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md#what-it-leaves-to-you), the table of gaps the hardened client closes.
