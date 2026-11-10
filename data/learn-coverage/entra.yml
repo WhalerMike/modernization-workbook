@@ -1094,12 +1094,13 @@ pages:
   ms_date: '2023-03-01'
   ms_topic: concept-article
   description: Microsoft Entra ID enables integration with passwordless authentication protocols that include certificate-based authentication, passwordless security key sign-in, Windows Hello for Business, and passwordless sign-in with Microsoft Authenticator.
-  coverage: covered-uncited
+  coverage: cited
   note: Passwordless authentication; access plane and Conditional Access model
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b04-access/03-the-conditional-access-model.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/architecture/auth-prov-overview.md
   url: https://learn.microsoft.com/entra/architecture/auth-prov-overview
   title: Microsoft Entra synchronization protocol overview
@@ -1254,9 +1255,10 @@ pages:
   ms_date: '2025-07-22'
   ms_topic: concept-article
   description: Explore the resilience features of Microsoft Entra ID's backup authentication system, designed to maintain authentication availability for users and services.
-  coverage: not-covered
+  coverage: cited
   note: Backup Authentication System (resilience); check government-cloud availability before adding
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/architecture/customize-tokens.md
   url: https://learn.microsoft.com/entra/architecture/customize-tokens
   title: Customize tokens
@@ -1903,6 +1905,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
   - docs/books/guides/non-person-identity-implementation.md
 - path: docs/architecture/recover-from-misconfigurations.md
   url: https://learn.microsoft.com/entra/architecture/recover-from-misconfigurations
@@ -1930,6 +1933,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/architecture/recoverability-tenant.md
   url: https://learn.microsoft.com/entra/architecture/recoverability-tenant
   title: Plan for tenant recoverability
@@ -2012,9 +2016,10 @@ pages:
   ms_date: '2025-02-19'
   ms_topic: how-to
   description: Resilience guidance for application deployments with orchestration of a relying party security token service to change its identity provider
-  coverage: not-covered
+  coverage: cited
   note: Resilience of federated apps (AD FS-adjacent); relevant to AD FS retirement
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/architecture/resilience-in-credentials.md
   url: https://learn.microsoft.com/entra/architecture/resilience-in-credentials
   title: Build resilience with credential management in Microsoft Entra ID
@@ -2022,9 +2027,10 @@ pages:
   ms_date: '2026-04-03'
   ms_topic: best-practice
   description: A guide for architects and IT administrators on building a resilient credential strategy.
-  coverage: not-covered
+  coverage: cited
   note: Entra resilience guidance (hybrid, credentials, on-premises access, device states); contingency chapter candidate (Book 14 Ch06)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/architecture/resilience-in-hybrid.md
   url: https://learn.microsoft.com/entra/architecture/resilience-in-hybrid
   title: Build more resilient hybrid authentication in Microsoft Entra ID
@@ -2032,9 +2038,10 @@ pages:
   ms_date: '2022-11-16'
   ms_topic: concept-article
   description: A guide for architects and IT administrators on building a resilient hybrid infrastructure.
-  coverage: not-covered
+  coverage: cited
   note: Entra resilience guidance (hybrid, credentials, on-premises access, device states); contingency chapter candidate (Book 14 Ch06)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/architecture/resilience-in-infrastructure.md
   url: https://learn.microsoft.com/entra/architecture/resilience-in-infrastructure
   title: Build resilience in your IAM infrastructure with Microsoft Entra ID
@@ -2078,6 +2085,7 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b04-access/03-the-conditional-access-model.md
   cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
 - path: docs/architecture/resilience-with-device-states.md
@@ -2087,9 +2095,10 @@ pages:
   ms_date: '2022-11-16'
   ms_topic: concept-article
   description: A guide for architects and IT administrators to building resilience by using device states
-  coverage: not-covered
+  coverage: cited
   note: Entra resilience guidance (hybrid, credentials, on-premises access, device states); contingency chapter candidate (Book 14 Ch06)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/architecture/resilience-with-monitoring-alerting.md
   url: https://learn.microsoft.com/entra/architecture/resilience-with-monitoring-alerting
   title: Resilience through monitoring and analytics using Azure AD B2C
@@ -2127,12 +2136,13 @@ pages:
   ms_date: '2026-01-04'
   ms_topic: how-to
   description: Learn about case studies to reduce your dependency on traditional on-premises Active Directory services.
-  coverage: covered-uncited
+  coverage: cited
   note: Road to the cloud AD minimization; identity transformation and migration chapters
   workbook:
   - docs/books/b01-transformation-arc/04-identity-transformation.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/04-identity-transformation.md
 - path: docs/architecture/road-to-the-cloud-establish.md
   url: https://learn.microsoft.com/entra/architecture/road-to-the-cloud-establish
   title: Road to the cloud - Establish a footprint for moving identity and access management from Active Directory to Microsoft Entra ID
@@ -2140,12 +2150,13 @@ pages:
   ms_date: '2023-07-27'
   ms_topic: how-to
   description: Establish a Microsoft Entra footprint as part of planning your migration of IAM from Active Directory to Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Road to the cloud AD minimization; identity transformation and migration chapters
   workbook:
   - docs/books/b01-transformation-arc/04-identity-transformation.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/04-identity-transformation.md
 - path: docs/architecture/road-to-the-cloud-implement.md
   url: https://learn.microsoft.com/entra/architecture/road-to-the-cloud-implement
   title: Road to the cloud - Implement a cloud-first approach when moving identity and access management from Active Directory Domain Services (AD DS) to Microsoft Entra ID
@@ -2167,12 +2178,13 @@ pages:
   ms_date: '2023-07-27'
   ms_topic: how-to
   description: Learn how to plan a migration of IAM from Active Directory to Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Road to the cloud AD minimization; identity transformation and migration chapters
   workbook:
   - docs/books/b01-transformation-arc/04-identity-transformation.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/04-identity-transformation.md
 - path: docs/architecture/road-to-the-cloud-migrate.md
   url: https://learn.microsoft.com/entra/architecture/road-to-the-cloud-migrate
   title: Road to the cloud - Move identity and access management from Active Directory Domain Services (AD DS) to a Microsoft Entra migration workstream
@@ -2685,9 +2697,10 @@ pages:
   ms_date: '2026-08-25'
   ms_topic: concept-article
   description: Understand how Microsoft Entra Backup and Recovery creates backups, generates difference reports, and recovers tenant objects to a previous state
-  coverage: not-covered
+  coverage: cited
   note: Entra Backup and Recovery (backup, difference reports, recovery, soft/hard deletion) is not covered; contingency text (B14 Ch06) does not name it.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/backup/configure-hard-deletion-protection.md
   url: https://learn.microsoft.com/entra/backup/configure-hard-deletion-protection
   title: Configure Hard Deletion Protection in Microsoft Entra (preview)
@@ -2695,9 +2708,10 @@ pages:
   ms_date: '2026-10-12'
   ms_topic: how-to
   description: Learn how to protect supported Microsoft Entra objects from permanent deletion during the first seven days after they're soft deleted.
-  coverage: not-covered
+  coverage: cited
   note: Entra Backup and Recovery (backup, difference reports, recovery, soft/hard deletion) is not covered; contingency text (B14 Ch06) does not name it.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/backup/create-review-difference-reports.md
   url: https://learn.microsoft.com/entra/backup/create-review-difference-reports
   title: Create and review difference reports in Microsoft Entra Backup and Recovery
@@ -2725,9 +2739,10 @@ pages:
   ms_date: '2026-03-02'
   ms_topic: overview
   description: Learn how Microsoft Entra Backup and Recovery helps you recover from malicious attacks or accidental changes to tenant objects
-  coverage: not-covered
+  coverage: cited
   note: Entra Backup and Recovery (backup, difference reports, recovery, soft/hard deletion) is not covered; contingency text (B14 Ch06) does not name it.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/backup/recover-applications.md
   url: https://learn.microsoft.com/entra/backup/recover-applications
   title: Recover application secrets using Microsoft Entra Backup and Recovery
@@ -2775,9 +2790,11 @@ pages:
   ms_date: '2026-10-16'
   ms_topic: concept-article
   description: Learn which Microsoft Entra Backup and Recovery object types and properties are supported, and understand current limitations
-  coverage: not-covered
+  coverage: cited
   note: Entra Backup and Recovery (backup, difference reports, recovery, soft/hard deletion) is not covered; contingency text (B14 Ch06) does not name it.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: docs/backup/soft-deletion.md
   url: https://learn.microsoft.com/entra/backup/soft-deletion
   title: Soft deletion in Microsoft Entra Backup and Recovery
@@ -2785,9 +2802,10 @@ pages:
   ms_date: '2026-03-02'
   ms_topic: concept-article
   description: Learn what soft deletion is, how it relates to Microsoft Entra Backup and Recovery, and what recovery can and can't do
-  coverage: not-covered
+  coverage: cited
   note: Entra Backup and Recovery (backup, difference reports, recovery, soft/hard deletion) is not covered; contingency text (B14 Ch06) does not name it.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/backup/troubleshooting.md
   url: https://learn.microsoft.com/entra/backup/troubleshooting
   title: Troubleshoot Microsoft Entra Backup and Recovery
@@ -5164,11 +5182,12 @@ pages:
   ms_date: '2026-04-30'
   ms_topic: concept-article
   description: Improve your security posture with the Microsoft Entra Zero Trust assessment to protect networks.
-  coverage: covered-uncited
+  coverage: cited
   note: Network protection in the access plane.
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/fundamentals/zero-trust-protect-tenants.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants
   title: Security guidance - Protect tenants and isolate production systems
@@ -5232,12 +5251,13 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: concept-article
   description: Learn about the Global Secure Access clients for Microsoft Entra Private Access and Microsoft Entra Internet Access.
-  coverage: covered-uncited
+  coverage: cited
   note: Global Secure Access, Private Access and ZTNA at overview level; SASE section of Book 01 Ch08
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/concept-connector-groups.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-connector-groups
   title: Microsoft Entra Private Network Connector Groups
@@ -5317,12 +5337,12 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: concept-article
   description: Learn about how Microsoft Entra Internet Access secures access to the Internet.
-  coverage: covered-uncited
+  coverage: cited
   note: Internet Access and Microsoft traffic at overview level; SASE section and Microsoft 365 traffic chapter
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
-  - docs/books/b09-network/12-microsoft-365-traffic.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/concept-microsoft-traffic-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-microsoft-traffic-profile
   title: Learn about the Microsoft Traffic Profile
@@ -5330,11 +5350,8 @@ pages:
   ms_date: '2024-10-11'
   ms_topic: concept-article
   description: Learn about the capabilities and traffic handling in the Microsoft traffic profile
-  coverage: covered-uncited
-  note: Internet Access and Microsoft traffic at overview level; SASE section and Microsoft 365 traffic chapter
-  workbook:
-  - docs/books/b01-transformation-arc/08-access-plane.md
-  - docs/books/b09-network/12-microsoft-365-traffic.md
+  coverage: not-covered
+  note: 'Checked Nov 9: Book 01 Ch08 and Book 09 Ch12 do not describe the Microsoft traffic profile.'
   cited_by: []
 - path: docs/global-secure-access/concept-netskope-integration.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-netskope-integration
@@ -5363,12 +5380,13 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: concept-article
   description: Learn about how Microsoft Entra Private Access secures access to your private corporate resources through the creation of Quick Access and Global Secure Access apps.
-  coverage: covered-uncited
+  coverage: cited
   note: Global Secure Access, Private Access and ZTNA at overview level; SASE section of Book 01 Ch08
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/concept-private-name-resolution.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-private-name-resolution
   title: Microsoft Entra Private DNS - Configure Secure Internal Name Resolution
@@ -5438,12 +5456,13 @@ pages:
   ms_date: '2026-09-20'
   ms_topic: concept-article
   description: Learn how Global Secure Access traffic forwarding profiles route traffic and how multiple Private Access profiles provide granular application and assignment control.
-  coverage: covered-uncited
+  coverage: cited
   note: Global Secure Access, Private Access and ZTNA at overview level; SASE section of Book 01 Ch08
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/concept-transport-layer-security.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-transport-layer-security
   title: What is Transport Layer Security Inspection?
@@ -5462,11 +5481,12 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: concept-article
   description: Learn about how Microsoft Entra Internet Access and Microsoft Entra Private Access secures access to your resources through Conditional Access.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Universal Conditional Access and CAE; CAE and location policy coverage. Learn pass Nov 9, 2026: no sentence in Book 04 Ch03 says what this page says.'
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/concept-universal-continuous-access-evaluation.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-universal-continuous-access-evaluation
   title: Learn about Universal Continuous Evaluation
@@ -5474,11 +5494,12 @@ pages:
   ms_date: '2026-09-16'
   ms_topic: concept-article
   description: Learn about Universal Continuous Evaluation concepts
-  coverage: covered-uncited
+  coverage: cited
   note: 'Universal Conditional Access and CAE; CAE and location policy coverage. Learn pass Nov 9, 2026: no sentence in Book 04 Ch03 says what this page says.'
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/concept-web-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-web-filtering
   title: Web filtering in Global Secure Access (V2)
@@ -5486,12 +5507,12 @@ pages:
   ms_date: '2026-10-29'
   ms_topic: concept-article
   description: Learn how the V2 web filtering object model works in Microsoft Entra Internet Access, including policies, rules, evaluation across security profiles, destination matching, and V1 coexistence.
-  coverage: covered-uncited
+  coverage: cited
   note: Internet Access and Microsoft traffic at overview level; SASE section and Microsoft 365 traffic chapter
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
-  - docs/books/b09-network/12-microsoft-365-traffic.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/enable-intelligent-local-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/enable-intelligent-local-access
   title: Enable Intelligent Local Network
@@ -6265,6 +6286,7 @@ pages:
   cited_by:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/how-to-target-resource-microsoft-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-microsoft-profile
   title: Microsoft traffic Conditional Access policies
@@ -6296,11 +6318,12 @@ pages:
   ms_date: '2026-08-28'
   ms_topic: how-to
   description: Learn how to create, deploy, and use a Microsoft-managed certificate for Transport Layer Security inspection.
-  coverage: covered-uncited
+  coverage: cited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/how-to-transport-layer-security-settings.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings
   title: Configure TLS inspection with your own certificate
@@ -6308,11 +6331,12 @@ pages:
   ms_date: '2026-08-28'
   ms_topic: how-to
   description: Learn how to bring your own certificate authority for Transport Layer Security inspection.
-  coverage: covered-uncited
+  coverage: cited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/how-to-transport-layer-security.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security
   title: Configure Transport Layer Security Inspection Policies
@@ -6320,11 +6344,12 @@ pages:
   ms_date: '2026-08-28'
   ms_topic: how-to
   description: Learn how to configure a Transport Layer Security inspection policy and assign it to users in your organization.
-  coverage: covered-uncited
+  coverage: cited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/how-to-universal-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions
   title: Global Secure Access and Universal Tenant Restrictions
@@ -6332,12 +6357,13 @@ pages:
   ms_date: '2026-07-29'
   ms_topic: how-to
   description: Learn about how Global Secure Access helps secure access to your corporate network by restricting access to external tenants.
-  coverage: covered-uncited
+  coverage: cited
   note: Universal tenant restrictions; Microsoft 365 traffic chapter and Entra target
   workbook:
   - docs/books/b09-network/12-microsoft-365-traffic.md
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/12-microsoft-365-traffic.md
 - path: docs/global-secure-access/how-to-use-private-link-with-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-use-private-link-with-private-access
   title: How to access an Azure Storage account behind Azure Private Link using Microsoft Entra Private Access
@@ -6435,11 +6461,12 @@ pages:
   ms_date: '2025-02-28'
   ms_topic: landing-page
   description: Explore documentation for Microsoft's Security Service Edge solution, Global Secure Access, which is composed of Microsoft Entra Internet Access and Microsoft Entra Private Access.
-  coverage: covered-uncited
+  coverage: cited
   note: Global Secure Access landing page; Book 01 Ch08 is the home
   workbook:
   - docs/books/b01-transformation-arc/08-access-plane.md
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/08-access-plane.md
 - path: docs/global-secure-access/overview-application-usage-analytics.md
   url: https://learn.microsoft.com/entra/global-secure-access/overview-application-usage-analytics
   title: Application Usage Analytics Overview
@@ -6818,8 +6845,6 @@ pages:
   description: Use this PowerShell script to create a TLS certificate using Active Directory Certificate Services (ADCS) in a test environment.
   coverage: covered-uncited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
-  workbook:
-  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by: []
 - path: docs/global-secure-access/scripts/powershell-add-internet-access-device-compliance-bypasses.md
   url: https://learn.microsoft.com/entra/global-secure-access/scripts/powershell-add-internet-access-device-compliance-bypasses
@@ -6910,8 +6935,6 @@ pages:
   description: Use this PowerShell script to generate and sign Transport Layer Security (TLS) certificates using OpenSSL in a test environment.
   coverage: covered-uncited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
-  workbook:
-  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by: []
 - path: docs/global-secure-access/scripts/powershell-start-entra-recovery-preview.md
   url: https://learn.microsoft.com/entra/global-secure-access/scripts/powershell-start-entra-recovery-preview
@@ -6970,12 +6993,13 @@ pages:
   ms_date: '2026-02-21'
   ms_topic: how-to
   description: Configure Microsoft Entra Private Access to tunnel specific application traffic through a private network for application's network-based access control policy.
-  coverage: covered-uncited
+  coverage: cited
   note: Source IP restoration and deterministic egress for location-based Conditional Access
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/b04-access/03-the-conditional-access-model.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/troubleshoot-app-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/troubleshoot-app-access
   title: Troubleshoot application access
@@ -7083,11 +7107,12 @@ pages:
   ms_date: '2026-08-28'
   ms_topic: troubleshooting-known-issue
   description: Learn how to troubleshoot and resolve Transport Layer Security (TLS) inspection errors in Global Secure Access.
-  coverage: covered-uncited
+  coverage: cited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/tutorial-internet-access-application-discovery.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-application-discovery
   title: 'Tutorial: Discover applications and shadow IT'
@@ -7145,11 +7170,12 @@ pages:
   ms_date: '2026-03-07'
   ms_topic: tutorial
   description: Learn how to enable TLS inspection in Microsoft Entra Internet Access to decrypt and inspect encrypted web traffic.
-  coverage: covered-uncited
+  coverage: cited
   note: TLS inspection and its certificate trust; legacy-protocol and PKI coexistence chapters
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/tutorial-internet-access-url-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-url-filtering
   title: 'Tutorial: Configure URL Filtering and Custom Block Pages'
@@ -7215,6 +7241,7 @@ pages:
   cited_by:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
+  - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-tenant-restrictions
   title: 'Tutorial: Configure universal tenant restrictions'
@@ -7222,12 +7249,13 @@ pages:
   ms_date: '2026-06-22'
   ms_topic: tutorial
   description: Learn how to configure universal tenant restrictions with Global Secure Access for Microsoft traffic.
-  coverage: covered-uncited
+  coverage: cited
   note: Universal tenant restrictions; Microsoft 365 traffic chapter and Entra target
   workbook:
   - docs/books/b09-network/12-microsoft-365-traffic.md
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/12-microsoft-365-traffic.md
 - path: docs/global-secure-access/tutorial-private-access-app-segmentation.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-private-access-app-segmentation
   title: 'Tutorial: Per-app access segmentation'
@@ -17286,6 +17314,7 @@ pages:
   - docs/books/b06-data-platform/appendix-c-applicability.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
@@ -18037,10 +18066,8 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: After you install the NPS extension, use these steps for advanced configuration like allowed IP lists and UPN replacement.
-  coverage: covered-uncited
-  note: NPS extension for Entra MFA.
-  workbook:
-  - docs/books/b09-network/07-network-access-control.md
+  coverage: not-covered
+  note: 'Checked Nov 9: alternate login ID and IP exceptions are not described in Book 09 Ch07.'
   cited_by: []
 - path: docs/identity/authentication/howto-mfa-nps-extension-rdg.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-mfa-nps-extension-rdg
@@ -18049,11 +18076,12 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Integrate your Remote Desktop Gateway infrastructure with Microsoft Entra multifactor authentication using the Network Policy Server extension for Microsoft Azure
-  coverage: covered-uncited
+  coverage: cited
   note: NPS extension for Entra MFA.
   workbook:
   - docs/books/b09-network/07-network-access-control.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/07-network-access-control.md
 - path: docs/identity/authentication/howto-mfa-nps-extension-vpn.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-mfa-nps-extension-vpn
   title: VPN with Microsoft Entra multifactor authentication using the NPS extension
@@ -18061,11 +18089,12 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Integrate your VPN infrastructure with Microsoft Entra multifactor authentication by using the Network Policy Server extension for Microsoft Azure.
-  coverage: covered-uncited
+  coverage: cited
   note: NPS extension for Entra MFA.
   workbook:
   - docs/books/b09-network/07-network-access-control.md
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/07-network-access-control.md
 - path: docs/identity/authentication/howto-mfa-nps-extension.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-mfa-nps-extension
   title: Use Microsoft Entra multifactor authentication with NPS
@@ -19537,6 +19566,7 @@ pages:
   cited_by:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
+  - docs/books/b14-compliance/06-contingency-and-continuity.md
 - path: docs/identity/conditional-access/service-dependencies.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/service-dependencies
   title: Conditional Access service dependencies
@@ -24472,11 +24502,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Explains how to configure filtering in Microsoft Entra Connect Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-endpoint-api-v2.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-endpoint-api-v2
   title: Microsoft Entra Connect Sync V2 endpoint
@@ -24537,6 +24568,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md

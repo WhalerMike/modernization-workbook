@@ -45,6 +45,7 @@ Alignment note: Chapter 05 (W3) places plan generation and approval (master plan
 | 35 | G0 authority: steward, backup sponsor; steering committee reviews | G0 | verified against settled facts | Book 01 Ch12, Ch09 |
 | 36 | Destroy assessment workstation after Phase 1 (R-021) | Deliverables | restated: rebuild or retire after initial assessment; continuous re-assessment from the platform host at Tier A | Book 01 Ch10 (settled) |
 | 37 | Week counts (3 weeks platform, 6 weeks assessment) | Where pre-flight sits | restated-as-design (illustrative), set beside Book 01's four-week Phase 0 | Book 01 Ch12 |
+| 38 | Schema version is read from the schema's objectVersion attribute and maps to a Windows Server version | Twelve domains table, Schema extensions row | verified | Microsoft Learn Find the current Active Directory schema version, read Nov 9, 2026 |
 
 | 38 | Addition, Oct 25, 2026: G0 checklist gains a Direction group: a provisional target end state, and the no-new-AD-dependency rule in the change process | G0 | verified against settled facts | Book 01 Ch12 Phase 0 (Microsoft Learn sources there); Book 13 Ch04 |
 

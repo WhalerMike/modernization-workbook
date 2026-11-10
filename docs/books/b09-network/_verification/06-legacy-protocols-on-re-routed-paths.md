@@ -58,6 +58,10 @@ Sources: *The Branch Edge Gap* v2 §4.1–4.3, §5.1–5.2 and the matching §10
 | 47 | Strict location enforcement requires dedicated enumerable egress (preview) | Transport matters | verified (added; preview status stated in footnote title) | cae-strict |
 | 48 | Token protection binds session tokens to device | Transport matters | verified (added); link to Book 04 Ch03 | token-protection |
 | 49 | "Sub-10 ms SD-WAN path selection"; "250–400 ms token-relay degradation" | Token access | removed (unsourced; already removed in v2, recorded here) | — |
+| 50 | TLS inspection terminates TLS and re-encrypts with a certificate chained to the enterprise CA; pinned and mutual-TLS destinations are bypassed | What actually breaks, certificate pinning | verified | Microsoft Learn Tutorial: Enable TLS inspection; Configure TLS inspection with your own certificate; Configure TLS inspection with a Microsoft-managed certificate (preview), read Nov 9, 2026 |
+| 51 | Global Secure Access creates a system bypass rule for destinations incompatible with TLS inspection; pinned mobile apps need a bypass rule | What actually breaks, certificate pinning | verified | Microsoft Learn Configure Transport Layer Security inspection policies; Troubleshoot Global Secure Access Transport Layer Security inspection errors, read Nov 9, 2026 |
+| 52 | Behind a cloud proxy the service sees the proxy's egress address, not the client's | What actually breaks, address-keyed applications | verified | Microsoft Learn Source IP restoration; Tutorial: Enable source IP restoration, read Nov 9, 2026 |
+| 53 | A deterministic egress for an address-keyed application can be provided by routing it through a private network connector | The corrected remediation, step 3 | verified | Microsoft Learn Source IP anchoring with Global Secure Access, read Nov 9, 2026 |
 
 ## 2. Carry-forward ledger
 

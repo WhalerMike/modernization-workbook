@@ -38,6 +38,10 @@ Writer: W5. Sources: `docs/operational-guides/program-management/master-project-
 | 30 | Scorecard measures and gate mapping | Scorecard | restated-as-design; gate mapping kept consistent with B00 Ch05 | Charter §6; PROJECT-PLAN §7; B00 Ch05 |
 | 31 | Outcome measures | Scorecard | restated-as-design | Book 01 Ch12 finish line; master plan §9 |
 | 32 | `Get-ADDomain`, `Get-ADOrganizationalUnit`, `Get-GPInheritance`, `GpoLinks.DisplayName` | Code | verified (Get-GPInheritance doc shows GpoLink objects with DisplayName); AD module cmdlets are standard | MS Learn, Get-GPInheritance |
+| 33 | AD FS decommission resources: decommission guide, FAQ, and migration of authentication and applications to Entra ID | Retirement actions, M-038 | verified | Microsoft Learn AD FS Decommission, read Nov 9, 2026 |
+| 34 | Switching a domain from federated to managed can take up to 4 hours to fully cut over (sentence added beside the existing 60-minute figure from the federation migration guide) | Retirement actions, M-038 | verified | Microsoft Learn Active Directory Federation Server to Microsoft Entra FAQ, read Nov 9, 2026 |
+| 35 | Normal demotion removes the DC's metadata; forced removal leaves orphaned metadata, loses unreplicated changes, needs FSMO seizure and immediate metadata cleanup; last DC needs Enterprise Admins; Uninstall-ADDSDomainController with -ForceRemoval, -DemoteOperationMasterRole, -LastDomainControllerInDomain, -RemoveApplicationPartitions (subsection added) | Removing each domain controller cleanly | verified | Microsoft Learn Demote domain controllers and domains, read Nov 9, 2026 |
+| 36 | Metadata cleanup after forced removal: ADUC deletion does it automatically; ntdsutil commands verbatim; replication partner; Access is denied fix; verification in ADUC and Sites and Services (subsection added) | Removing each domain controller cleanly | verified | Microsoft Learn Clean up Active Directory Domain Controller server metadata, read Nov 9, 2026 |
 
 ## Carry-forward ledger
 

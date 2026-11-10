@@ -123,7 +123,7 @@ The master plan organizes the assessment into twelve Active Directory domains, e
 | Trust relationships | `Export-FMPTrustMap` | TrustMap.json | 1 (trusts are collected with the topology) | `Get-FMPTrustMap` |
 | Service accounts | `Export-FMPServiceAccountInventory` | ServiceAccounts.csv | 5, Service accounts and SPNs | `Get-FMPUserInventory`, `Get-FMPKerberosSpnMap` |
 | ACL and delegation | `Export-FMPACLReport` | OUDelegation.json | 2 (delegation ACLs are part of the OU stream) | `Get-FMPOUHierarchy` |
-| Schema extensions | `Export-FMPSchemaExtensions` | SchemaExtensions.json | 1 (schema version); also feeds the attribute design | `Get-FMPSchemaExtensions` |
+| Schema extensions | `Export-FMPSchemaExtensions` | SchemaExtensions.json | 1 (schema version[^c08-schema]); also feeds the attribute design | `Get-FMPSchemaExtensions` |
 
 : The twelve assessment domains and the Book 01 streams that carry them {.striped .hover}
 
@@ -288,3 +288,4 @@ Three pieces of the master plan's assessment phase come after G0, in Book 01's P
 [^c08-mdi-certs]: Microsoft Learn, "Security assessment: Certificates" (ESC1, ESC4, ESC8 and ESC15 assessments), <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/certificates> (accessed Oct 21, 2026).
 [^c08-sp80088]: NIST, SP 800-88 Rev. 2, *Guidelines for Media Sanitization*, September 2025 (final September 26, 2025; supersedes Rev. 1, December 2014), <https://csrc.nist.gov/pubs/sp/800/88/r2/final> (accessed Oct 21, 2026).
 [^c08-mdi-posture]: Microsoft Learn, "Microsoft Defender for Identity's security posture assessments" (available in Microsoft Secure Score; six categories; license and sensor prerequisites), <https://learn.microsoft.com/defender-for-identity/security-assessment> (accessed Oct 21, 2026).
+[^c08-schema]: Microsoft Learn, "Find the current Active Directory schema version" (the schema's `objectVersion` attribute, read with ADSI Edit, `dsquery` or `Get-ItemProperty`, and its mapping to Windows Server versions), <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/find-active-directory-schema> (accessed Nov 9, 2026).
