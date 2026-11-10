@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The three Intune certificate profile types: trusted certificate, SCEP (issued by Microsoft Cloud PKI, or by AD CS through NDES and the Certificate Connector) and PKCS. Which profile fits which use. Strong certificate mapping under KB5014754, where its enforcement stands today, and what Intune profiles need in order to meet it. Then Microsoft Entra certificate-based authentication (CBA): the sign-in flow, the trust store and revocation, username bindings and affinity, single-factor and multifactor certificates, staged rollout, and the move off AD FS.
+The three Intune certificate profile types: trusted certificate, SCEP (issued by Microsoft Cloud PKI, or by AD CS through NDES and the Certificate Connector) and PKCS. Which profile fits which use, and what TPM key attestation adds. Strong certificate mapping under KB5014754, where its enforcement stands today, and what Intune profiles need in order to meet it. Then Microsoft Entra certificate-based authentication (CBA): the sign-in flow, the trust store and revocation, username bindings and affinity, single-factor and multifactor certificates, staged rollout, and the move off AD FS.
 :::
 
 ## Two jobs, two failure modes
@@ -61,7 +61,7 @@ Licensing changed in 2026. Cloud PKI requires a subscription on top of Intune Pl
 
 ### SCEP with AD CS through NDES and the Certificate Connector
 
-When the issuer is an AD CS CA, the path runs through two pieces of on-premises software. NDES is the SCEP registration authority; the Certificate Connector for Microsoft Intune installs on the same server, adds the Intune policy module that validates the challenge, and reports results to Intune.[^c06-scep-infra] The infrastructure rules are strict:
+When the issuer is an AD CS CA, the path runs through two pieces of on-premises software. NDES is the SCEP registration authority; the Certificate Connector for Microsoft Intune installs on the same server, adds the Intune policy module that validates the challenge, and reports results to Intune.[^c06-scep-infra] An NDES policy module is what checks that a SCEP request matches the user, purpose and certificate type its challenge was issued for; NDES supports only one registered policy module, and removing the NDES role service doesn't uninstall it.[^c06-ndes-policy] The infrastructure rules are strict:
 
 | Component | Requirement |
 |---|---|
@@ -69,7 +69,7 @@ When the issuer is an AD CS CA, the path runs through two pieces of on-premises 
 | NDES and connector server | Domain-joined, same forest as the enterprise CA; not a domain controller; not the issuing CA |
 | Publishing to the internet | A reverse proxy (Microsoft Entra application proxy, Web Application Proxy or a third-party proxy) with preauthentication set to passthrough, because SCEP can't preauthenticate |
 | Direct browsing of the NDES URL | Returns 403 once the policy module is installed |
-| SCEP template | Subject **supplied in the request**; Client Authentication in application policies; NDES service account has Read and Enroll |
+| SCEP template | Subject **supplied in the request**; Client Authentication in application policies; NDES service account has Read and Enroll[^c06-ndes-account] |
 | Revocation | The connector's account needs Issue and Manage Certificates on the CA |
 
 : AD CS requirements for Intune SCEP[^c06-scep-infra] {.striped .hover}
@@ -89,6 +89,59 @@ A PKCS profile doesn't use NDES. The Certificate Connector receives the request 
 Microsoft's template guidance for PKCS has the same hardening shape as for SCEP: subject supplied in the request, the connector's computer account given Read and Enroll, and **Domain Users removed** from the template's permissions.[^c06-pkcs] A PKCS template with Domain Users still enrolled is an ESC1 finding (Chapter 03).
 
 Imported PKCS profiles distribute certificates that were issued elsewhere, typically S/MIME encryption certificates whose keys are archived so old mail stays readable; the connector handles the imported PFX files.[^c06-connector] For S/MIME with AD CS, Microsoft notes that many administrators use the Exchange Signature Only template for signing and the Exchange User template for encryption.[^c06-pkcs]
+
+## TPM key attestation
+
+A TPM-backed key and a TPM-*attested* key are different claims. Intune's Windows SCEP profile can put the key in the TPM with **Enroll to Trusted Platform Module (TPM) KSP, otherwise fail**, the setting [Chapter 03](03-hardening-what-stays.md#hardening-microsoft-cloud-pki) uses,[^c06-scep-ksp] but that's the device choosing a provider; the CA doesn't check it. TPM key attestation is the AD CS feature in which the requester proves to the CA, cryptographically, that the RSA key in the request is protected by a TPM the CA trusts, and the CA writes the result into the certificate as an issuance policy OID.[^c06-tpm-attest] A relying party can then act on it: Microsoft's example is a VPN or Wi-Fi access policy that admits only certificates carrying the endorsement-key OID.[^c06-tpm-attest]
+
+The template carries the setting, on a **Key Attestation** tab that appears only when compatibility is Windows Server 2012 R2 for the CA and Windows 8.1 / Windows Server 2012 R2 for the recipient, the provider is **Microsoft Platform Crypto Provider** with RSA, and the private key is neither exportable nor archived:[^c06-tpm-attest]
+
+| Setting | Options | What it means |
+|---|---|---|
+| Attestation | None; Required, if client is capable; Required | "Required" fails any request that can't attest; "if client is capable" still enrolls devices without a capable TPM, and marks the ones that attested with the OID |
+| Trust model: user credentials | OID `1.3.6.1.4.1.311.21.32`, low assurance | The CA accepts the EKpub on the user's domain credentials; nothing else is checked |
+| Trust model: endorsement certificate | OID `1.3.6.1.4.1.311.21.31`, medium assurance | The CA validates the TPM maker's EK certificate chain against EKCA and EKROOT stores the administrator creates on the CA; every TPM from that maker is trusted |
+| Trust model: endorsement key | OID `1.3.6.1.4.1.311.21.30`, high assurance | The CA checks the EKpub against an allow list of files named for each device's SHA-256 EKpub hash; each device is listed individually |
+| Include Issuance Policies | On by default | Puts the OIDs in the issued certificate so relying parties can see them |
+
+: TPM key attestation settings on an AD CS template[^c06-tpm-attest] {.striped .hover}
+
+Attestation works only with an enterprise CA (not standalone), RSA keys and the Microsoft Platform Crypto Provider, and it doesn't support non-persistent certificate processing.[^c06-tpm-attest]
+
+**How it relates to the Intune paths.** Microsoft's attestation procedure is written for Windows clients enrolling against an enterprise CA's templates. Microsoft Learn doesn't say whether a SCEP request relayed by NDES and the Certificate Connector, or a Cloud PKI SCEP request, carries the attestation the CA needs, so whether an Intune-delivered certificate can carry the attestation OIDs is not yet specified; prove it in a lab before any relying party depends on the OID. PKCS can't carry it: the connector generates the key on the connector server, not in the device's TPM.[^c06-pkcs] So the program uses the TPM KSP setting for Intune SCEP, and where a relying party must *know* the key is in a TPM, it uses an AD CS template with attestation **Required** for the Windows devices that still enroll from AD CS and gates the relying party on the OID *(design guidance)*.
+
+**Government clouds.** Attestation runs on the organization's own CA and doesn't depend on a cloud service. For attested certificates delivered through Intune or Cloud PKI in GCC, GCC High or DoD, availability is not yet specified.
+
+The endorsement-key trust model, illustrated (run it first in a test scope). On the device, from an elevated session, read its EKpub hash:
+
+```powershell
+# On the device: SHA-256 hash of this TPM's endorsement key (EKpub)
+$ek = Get-TpmEndorsementKeyInfo -HashAlgorithm sha256
+$ek.PublicKeyHash
+```
+
+On the issuing CA, register the allow-list folder once, then add each device as an empty file named for its hash and confirm the CA trusts it. Only administrators get write access to the folder; the CA's computer account needs Read only.[^c06-tpm-attest]
+
+```powershell
+# On the issuing CA, once: register the EKpub allow-list folder, then restart the service
+certutil -setreg CA\EndorsementKeyListDirectories +"D:\ekpub"
+Restart-Service -Name certsvc
+
+# For each device: an empty file named for its EKpub hash
+New-Item -Path "D:\ekpub\<PublicKeyHash>" -ItemType File
+
+# Confirm the CA trusts that EKpub for attestation
+Confirm-CAEndorsementKeyInfo -PublicKeyHash "<PublicKeyHash>"
+```
+
+For the endorsement-certificate model, create the two stores on the CA and import the TPM maker's root and issuing CA certificates:[^c06-tpm-attest]
+
+```powershell
+New-Item -Path Cert:\LocalMachine\EKROOT
+New-Item -Path Cert:\LocalMachine\EKCA
+Import-Certificate -FilePath .\<tpm-maker-root>.cer -CertStoreLocation Cert:\LocalMachine\EKROOT
+Import-Certificate -FilePath .\<tpm-maker-issuing-ca>.cer -CertStoreLocation Cert:\LocalMachine\EKCA
+```
 
 ## Which profile for which use
 
@@ -274,11 +327,11 @@ One trap at the end: when you remove a user from a CBA staged-rollout group afte
 
 Many agencies run AD FS only to do certificate authentication. Entra CBA removes that dependency; the credential and the PKI don't change, and the PKI owners keep control of issuance and revocation. Only the place where revocation and authentication are checked moves.[^c06-cba-migrate]
 
-- **Trust parity.** Every CA AD FS trusts for user certificates goes into the Entra trust store, with internet-reachable CRLs. AD FS may have been reading LDAP CRL locations that Entra ID can't use; [Chapter 07](07-coexistence-and-migration.md) covers the fix.
+- **Trust parity.** Every CA AD FS trusts for user certificates goes into the Entra trust store, with internet-reachable CRLs. AD FS may have been reading LDAP CRL locations that Entra ID can't use (AD FS checks revocation over HTTP, HTTPS, LDAP or OCSP, and needs the user certificate chain trusted on every AD FS and WAP server and its root in NTAuth);[^c06-adfs-certauth] [Chapter 07](07-coexistence-and-migration.md) covers the fix.
 - **Binding parity.** Translate each AD FS certificate claim rule into a username binding, and test certificates with several SANs and certificates from each CA. Where AD FS mapped through `altSecurityIdentities`, sync those values to `certificateUserIds` with Entra Connect sync rules, which needs the Hybrid Identity Administrator role.[^c06-cba-migrate]
 - **Protect the sync path.** If a binding uses a synced attribute, anyone with administrative access to the Entra Connect server can change the value; keep that access tight and privileged accounts cloud-only.[^c06-cba-migrate]
 - **Federation risk during the move.** Users in a federated domain who are on staged rollout are still exposed to a compromise of the federation server until the whole domain is converted.[^c06-cba-migrate] That argues for a short staged-rollout period, not a long one.
-- **Record the federation configuration before conversion.** `Get-MgDomainFederationConfiguration` captures it, along with customized settings such as `federatedIdpMfaBehavior` and `PromptLoginBehavior`; back up the AD FS farm (the AD FS Rapid Restore Tool) and the Microsoft 365 relying party trust and its claim rules.[^c06-fed-migrate]
+- **Record the federation configuration before conversion.** `Get-MgDomainFederationConfiguration` captures it, along with customized settings such as `federatedIdpMfaBehavior` and `PromptLoginBehavior`; back up the AD FS farm (the AD FS Rapid Restore Tool) and the Microsoft 365 relying party trust and its claim rules.[^c06-fed-migrate][^c06-adfs-rrt]
 - **Conversion isn't one-way.** The PKI guide called it one-way. `Update-MgDomain -AuthenticationType "Managed"` converts a domain, and Microsoft's rollback is to re-federate with `New-MgDomainFederationConfiguration` and restore claim rules.[^c06-fed-migrate] Rollback is possible, but only while the AD FS farm can still be brought back, which is why [Chapter 07](07-coexistence-and-migration.md) keeps it restorable through a defined window.
 
 ## What Chapter 07 takes from here
@@ -318,3 +371,9 @@ The device side leaves a list of certificates Intune can't deliver: domain contr
 [^c06-sro]: Microsoft Learn, "Microsoft Entra Connect: Cloud authentication via Staged Rollout," <https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-staged-rollout> (accessed Oct 20, 2026).
 [^c06-fed-migrate]: Microsoft Learn, "Migrate from federation to cloud authentication" (prerequisites; plan the project; implement your solution), <https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication> (accessed Oct 20, 2026).
 [^c06-ocsp]: Microsoft Learn, "What is Microsoft Entra certificate-based authentication?" section "Unsupported scenarios" ("We don't support Online Certificate Status Protocol (OCSP) or Lightweight Directory Access Protocol (LDAP) URLs"), <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication> (accessed Oct 21, 2026); the CRL page gives the reason, "We don't support Online Certificate Status Protocol (OCSP) because of performance and reliability reasons," <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> (accessed Oct 21, 2026).
+[^c06-ndes-policy]: Microsoft Learn, "Use a policy module with Network Device Enrollment Service" (the policy module builds a challenge that binds the request to a user, purpose and certificate type, and verifies the request against it), <https://learn.microsoft.com/windows-server/identity/ad-cs/use-policy-module-with-network-device-enrollment-service>; and "Install a policy module with the Network Device Enrollment Service" (one registered policy module; removing the NDES role service doesn't uninstall it), <https://learn.microsoft.com/windows-server/identity/ad-cs/install-policy-module-network-device-enrollment-service> (both accessed Nov 9, 2026).
+[^c06-ndes-account]: Microsoft Learn, "Configure Network Device Enrollment Service to use a domain user account," section "Prerequisites" (Read and Enroll on the NDES certificate template; Request permission on the CA; member of IIS_IUSRS), <https://learn.microsoft.com/windows-server/identity/ad-cs/create-domain-user-account-ndes-service-account> (accessed Nov 9, 2026).
+[^c06-adfs-certauth]: Microsoft Learn, "Configure AD FS support for user certificate authentication," sections "Prerequisites" and "Check CRL connectivity" (chain trusted on all AD FS and WAP servers; root in NTAuth; CRL validation over HTTPS, HTTP, LDAP or OCSP), <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/configure-user-certificate-authentication> (accessed Nov 9, 2026).
+[^c06-adfs-rrt]: Microsoft Learn, "Active Directory Federation Services Rapid Restore tool" (`Backup-ADFS` backs up the configuration database, configuration file, DKM keys and certificates; a restore needs the same AD FS version and service account), <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/ad-fs-rapid-restore-tool>; listed among the AD FS downloadable tools in "Active Directory Federation Services: Offline tools," <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/offline-tools> (both accessed Nov 9, 2026).
+[^c06-scep-ksp]: Microsoft Learn, "Create and assign SCEP certificate profiles in Intune," section "Create a SCEP certificate profile," Key storage provider (KSP) (Windows only), <https://learn.microsoft.com/intune/device-configuration/certificates/scep-profiles#create-a-scep-certificate-profile> (accessed Nov 9, 2026).
+[^c06-tpm-attest]: Microsoft Learn, "TPM Key Attestation," sections "Overview," "Deployment overview," "Deployment details" (certificate template, CA configuration, issuance policy OIDs) and "Troubleshooting" (`Confirm-CAEndorsementKeyInfo`), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/tpm-key-attestation> (accessed Nov 9, 2026).

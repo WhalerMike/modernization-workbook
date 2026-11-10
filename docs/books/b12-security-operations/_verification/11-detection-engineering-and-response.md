@@ -129,3 +129,14 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 | 2 | Microsoft's "Exchange AuditLog Disabled" template queries `OfficeActivity` for `Set-AdminAuditLogConfig` by an admin with auditing `False`; tagged defense evasion | Library note | verified | Azure-Sentinel repository, `exchange_auditlogdisabled.yaml` |
 | 3 | Activity log records create, update and delete operations; exported to Log Analytics it lands in `AzureActivity`; `OperationNameValue` names the operation; compare case-insensitively | Library note | verified | Learn, Activity log in Azure Monitor; AzureActivity table reference |
 | 4 | `Microsoft.Insights/DiagnosticSettings/Delete` is the operation that deletes a resource diagnostic setting | Library note | verified | Learn, Azure permissions for Monitor |
+
+## Learn citations, November 9, 2026
+
+Page read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage pass.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Microsoft's Zero Trust guidance asks for automated, risk-based responses that shorten time from detection to containment; three checks: risk-based CA for workload identities, MFA for elevated sign-in risk, secure password change or block for elevated user risk | Response ladder, new paragraph after the opening | verified (new) | `c11-zt-response`, Learn "Configure Microsoft Entra for Zero Trust: Accelerate response and remediation" |
+| L2 | Those policies act at sign-in and belong to Book 04; the ladder governs post-alert response | Same | restated-as-design | Program design |
+
+Left listed but uncited in the coverage map: zero-trust-monitor-detect (no sentence that says only what it says).

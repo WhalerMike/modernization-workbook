@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 6
-review-status: pending
+review-status: approved
+reviewed-sha256: 7f77116bfc3829af231cff6f185d73435d109da6a0c3f6ce7a918a06b0dca1b7
+last-reviewed: 2026-11-09
 ---
 # Module 6: Google incidents and the maintenance gap {.unnumbered}
 

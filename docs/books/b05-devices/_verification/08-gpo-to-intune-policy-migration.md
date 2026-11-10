@@ -195,3 +195,21 @@ Item 263 of the Nov 7 sort: Appendix A row 37 named a setting ES-001 didn't have
 | H2 | Intune's Defender Antivirus policy exposes "Allow Intrusion Prevention System" (Not configured / No / Yes) | ES-001 table, footnote c08-ips | verified (new) | Learn, Settings for Microsoft Defender Antivirus policy for tenant attached devices, Real-time protection (accessed Nov 9, 2026) |
 | H3 | ES-001 sets network inspection to On | ES-001 table, footnote c08-ips | restated-as-design | Program decision (Nov 7 sort, item 263); value equals the default |
 
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | GPMC restores a backup only into its original domain; a deleted GPO is restored from Manage Backups | Phase 7 | verified (added) | `c08-gpo-backup`, Learn, "Back up, restore, migrate, and copy Group Policy Objects" (read 2026-11-09) |
+| L2 | Advanced audit subcategories and the events and volume each generates | SC-001, Audit policy | verified (added) | `c08-adv-audit`, Learn, "Advanced Audit Policy Configuration" (read 2026-11-09) |
+| L3 | Windows LAPS backs up to one directory at a time; default clear-text readers in Entra ID are Global Administrator, Cloud Device Administrator, Intune Administrator | ES-006, Windows LAPS | verified (added) | `c08-laps-concepts`; `c08-laps-faq` (read 2026-11-09) |
+| L4 | Password length 8 to 64; complexity 4 is large and small letters, numbers and specials | ES-006, Windows LAPS | verified (added) | `c08-laps-passwords` (read 2026-11-09) |
+| L5 | Microsoft recommends automatic account management (24H2 and later) with a custom account and the built-in Administrator disabled; the program's profile keeps the built-in account; program decision not yet specified | ES-006, Windows LAPS | verified (added); program decision open | `c08-laps-modes` (read 2026-11-09) |
+| L6 | Immediate transition from legacy LAPS: disable legacy, apply Windows LAPS together, monitor, uninstall; a Windows LAPS policy always takes precedence; the first policy rotates at once; MSI uninstall command | ES-006, Windows LAPS | verified (added) | `c08-laps-migration`; `c08-laps-legacy` (read 2026-11-09) |
+| L7 | Event 10022 policy to Entra ID, 10029 Entra ID password update, 10018 AD password update; `Invoke-LapsPolicyProcessing`; channel `Microsoft-Windows-LAPS/Operational` | ES-006, Windows LAPS command block | verified (added). The channel name is the Event Viewer path Applications and Services > Microsoft > Windows > LAPS > Operational; the block hasn't been run against a device | `c08-laps-events`; `c08-laps-ps` (read 2026-11-09) |
+| L8 | Enterprise State Roaming roams supported Windows settings, stores them in the Microsoft cloud; UE-V is the on-premises option and can complement it | SC-004, Windows settings roaming | verified (added) | `c08-esr-faq` (read 2026-11-09) |
+| L9 | Since July 2026 ESR is managed through Windows settings backup and restore (Intune, MDM or Group Policy), not the Entra admin center; one-year grace; Entra joined and hybrid joined; Edge separate; use GP or CSP, not both | SC-004, Windows settings roaming | verified (added) | `c08-esr` (read 2026-11-09) |
+| L10 | Settings catalog Sync your settings > Enable Windows Backup; CSP `./Device/Vendor/MSFT/Policy/Config/SettingsSync/EnableWindowsBackup`, string `<enabled/>` | SC-004, Windows settings roaming | verified (added) | `c08-win-backup` (read 2026-11-09) |
+| L11 | Windows Backup for Organizations isn't available in GCC High or DoD (no plan); GCC not stated | SC-004, Windows settings roaming | verified (added); GCC written as not yet specified | `c08-gov-backup`, Learn, "Microsoft Intune for US Government GCC High and DoD service description" (read 2026-11-09) |
+| L12 | Whether the program enables ESR is not yet specified; privacy review in Book 14 | SC-004, Windows settings roaming | restated-as-design | Program decision open |

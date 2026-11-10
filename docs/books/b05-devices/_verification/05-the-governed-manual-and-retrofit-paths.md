@@ -140,3 +140,11 @@ The body now states the guidance directly. These were the earlier positions it u
 - The source runbook protected emergency accounts with long unique passwords.
 - A source draft described the governed path as five products (table header was "Source draft term").
 - An earlier version of these guides used "retrofit" for domain-bound devices.
+
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | `AzureAdJoined` YES with `DomainJoined` YES is the hybrid joined state | Phase 2, after the `dsregcmd` block | verified (citation added) | `c05-dsregcmd`, Learn, "Troubleshoot devices by using the dsregcmd command," Device state (read 2026-11-09) |

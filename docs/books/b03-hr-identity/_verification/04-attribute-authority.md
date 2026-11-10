@@ -73,3 +73,11 @@ Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; 
 | 1 | "E911 records" replaced with "the fallback emergency address and emergency-notification scoping (never the caller's 911 location)", linked to Chapter 10 | Authority table, Duty location row | corrected: the 911 rules ask for the caller's dispatchable location (47 CFR 9.3, 9.16), and Teams screens calls that rely on an address assigned to the user's number; the HR duty station can only select that fallback | Chapter 10 c10-cfr93, c10-cfr916, c10-remote-loc |
 | H1 | HISG's "source of identity" is the directory governing sign-in: on-premises under federation, PTA and password sync; the cloud identity service under cloud primary | System of record versus identity provider | verified (added Oct 31, 2026) | c04-hisg, HISG §3.1.1–3.1.4 <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> |
 | H2 | HISG doesn't address HR; in this book's terms its source of identity is the object SOA and identity platform | Same | restated-as-design | book's terminology mapping; HISG scope §1.2 |
+
+## Revision 2026-11-09 — Learn citation pass
+
+One Learn page the coverage map listed as covered but uncited for this chapter is now cited, as new footnote `c04-soa-prep` (name grepped unique in the book folder). No wording changed. The map's other page for this chapter, "How to audit and monitor User Source of Authority (SOA) in Microsoft Entra ID," supports no sentence here (the chapter doesn't discuss auditing SOA changes); it stays covered-uncited because Chapter 05 is also listed for it.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | HR can be the source of authority for a person while the person's account has its object SOA in Active Directory or in Entra ID | System of record versus identity provider | verified (Learn read Nov 9, 2026): the page has HR provisioning continue for users whose SOA moves to Entra ID, into Entra ID directly | <https://learn.microsoft.com/en-us/entra/identity/hybrid/prepare-user-source-of-authority-environment> |

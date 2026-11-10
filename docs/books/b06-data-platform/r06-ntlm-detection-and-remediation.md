@@ -91,6 +91,23 @@ setspn -X -F                                     # duplicate SPNs across the for
 
 The `setspn` switches are Microsoft's: `-L` lists, `-Q` queries, `-X` searches for duplicates and `-F` queries at forest level.[^r06-setspn] To measure NTLM itself, rather than its causes, enable logon success auditing on domain controllers and read the NTLM version in Event ID 4624,[^r06-ntlmv1-audit] and turn on the *Restrict NTLM* audit policies, which record would-be-blocked requests in the NTLM Operational log.[^r06-csp]
 
+### Remote SAM enumeration: SAM client logging
+
+NTLM isn't the only legacy call that discovery turns up. Applications and scripts that look up accounts and enumerate domains over the Security Account Manager remote protocol (SAM-R) are another AD dependency, and on a busy domain controller another source of load. Windows records them on the client side: SAM client event logging writes connections, domain lookups and enumeration requests, with the calling process, to the **Microsoft-Windows-SAMLIB/Debug** channel (Event Viewer: **Applications and Services Logs** > **Microsoft** > **Windows** > **SAMLIB** > **Debug**).[^r06-samlib] It records activity from any Windows system that sends SAM traffic toward a domain controller, client or server, joined or not. Learn lists Windows 11 with the June 2026 security update (KB5095093) or later as the prerequisite; a minimum Windows Server version for the channel is not yet specified.[^r06-samlib] Enable it on a suspected caller, for example the SQL Server host or the application server in front of it, for the collection window only:
+
+```powershell
+# Run elevated on the suspected client. Read-only on the directory; it only adds a local log.
+wevtutil sl Microsoft-Windows-SAMLIB/Debug /e:true
+
+# After the collection window: the 50 most recent SamConnect (1000) and SamEnumerateDomainsInSamServer (1012) events
+wevtutil qe Microsoft-Windows-SAMLIB/Debug /q:"*[System[(EventID=1000 or EventID=1012)]]" /c:50 /rd:true /f:text
+
+# Turn it off again
+wevtutil sl Microsoft-Windows-SAMLIB/Debug /e:false
+```
+
+The `sl /e:` switch enables or disables a log, and `qe` reads it with an XPath filter, a count and newest-first ordering.[^r06-wevtutil] The events to read are 1000 (`SamConnect`, with the target server and calling process), 1010 (domain lookup), 1012 (domain enumeration) and 1014 (`SamOpenDomain`).[^r06-samlib] Each calling process named there goes into the same inventory as the NTLM findings. By default the events omit command-line arguments; the `IncludeArguments` registry value adds them, but Microsoft cautions that arguments can contain credentials, so the runbook doesn't turn it on.[^r06-samlib]
+
 ## Phase 2 — Remediation (review-required patterns)
 
 ::: {.callout-warning}
@@ -175,3 +192,5 @@ NTLM elimination is sequenced, not a single cutover. Two different policy famili
 [^r06-klist]: Microsoft Learn, "klist" (`purge`, `tickets`, `get`), <https://learn.microsoft.com/windows-server/administration/windows-commands/klist> (accessed Oct 20, 2026).
 [^r06-linked-token]: Microsoft Learn, "Linked server for SQL Server with Microsoft Entra authentication," section "Linked server configuration using access token authentication" (provider string `AccessToken=%s`; remote user is the application's client ID; "The application must have a secret assigned to it, which will be used by S1 to generate the access token"), <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server> (accessed Oct 21, 2026).
 [^r06-entra-password]: Microsoft Learn, "Use Microsoft Entra ID" (OLE DB Driver for SQL Server), section "Microsoft Entra username and password authentication" ("The ActiveDirectoryPassword authentication option ... is deprecated in the Microsoft SQL drivers"; incompatible with mandatory Microsoft Entra multifactor authentication), <https://learn.microsoft.com/sql/connect/oledb/features/using-azure-active-directory> (accessed Oct 21, 2026).
+[^r06-samlib]: Microsoft Learn, "Enable SAM client logging and diagnostics," sections "Prerequisites," "Enable the SAM client event log," "Review SAM client events" and "Manage command-line argument logging," <https://learn.microsoft.com/windows-server/identity/ad-ds/enable-sam-client-logging-diagnostics> (accessed Nov 9, 2026).
+[^r06-wevtutil]: Microsoft Learn, "wevtutil," sections "Parameters" (`set-log`, `query-events`) and "Options" (`/e`, `/q`, `/c`, `/rd`, `/f`), <https://learn.microsoft.com/windows-server/administration/windows-commands/wevtutil> (accessed Nov 9, 2026).

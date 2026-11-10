@@ -130,3 +130,15 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | Certificate Connector overview, section "Connector status" (rewritten; page updated Oct 26, 2026): statuses are now Active, Warning (can issue, issue needs attention) and Action required (can't issue, or disconnected), with health messages for CA connectivity, disconnection, issuing and revocation permissions and template configuration; the page no longer describes Warning and Error statuses for deprecated versions | updated: the connector log row now describes the three statuses and health messages; the unsupported-connector indicator now compares the installed version with the supported releases; the troubleshooting row lists the health-message causes and points to the details pane |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Root CA renewal starts with a backup; new key pair means a new CRL and cross-certificates; distribute the new root | Renewal at scale | verified (sentence added) | `c08-root-renew`: Learn, "Renew root CA certificate" (read Nov 9, 2026) |
+| L2 | Latest base CRL must be installed for a delta CRL to work | CRL publication | verified (clause added) | `c08-crl-retrieve`: Learn, "Retrieve base and delta CRLs using CA Web Enrollment" (read Nov 9, 2026) |
+| L3 | Avoid delta CRLs on offline roots | CRL publication | verified (second citation added) | `c08-pki-design`: Learn, "PKI design considerations using AD CS" (read Nov 9, 2026) |
+| L4 | Backup-CARoleService for database and key | Decommissioning step 3 | verified (second citation added) | `c08-ca-backup`: Learn, "CA Backup and Restore Windows PowerShell cmdlets" (read Nov 9, 2026) |
+| L5 | Retiring an Online Responder is a lifecycle change; keep its URL until the last certificate carrying it is gone | Decommissioning step 5 | verified (clause added) | `c08-ocsp-retire`: Learn, "Secure, monitor, renew, and scale Online Responders" (read Nov 9, 2026) |

@@ -141,6 +141,30 @@ New-LabelPolicy -Name 'FMP-CUI-Labels-Pilot' `
 
 Four corrections to the program's earlier scripts are built into that block. `-LabelActions` is "reserved for internal Microsoft use," so content marking uses the `-ApplyContentMarking*` parameters instead.[^c09-new-label] `New-Label` requires `-Tooltip` as well as `-Name` and `-DisplayName`.[^c09-new-label] `-ParentId` accepts the parent label's name, so the parent's GUID isn't needed.[^c09-new-label] And a label policy is scoped to users through `-ExchangeLocation` (mailboxes, or `All`); its `-SharePointLocation` parameter is "reserved for internal Microsoft use" and there is no Teams location on a label policy.[^c09-new-labelpolicy] Labels appear in SharePoint, OneDrive and Teams for the users the policy covers.
 
+### Labels on Teams, groups and sites
+
+A label on a document travels with the document. A label on a container does something different: applied to a Microsoft 365 group, a team or a SharePoint site, it sets the container's privacy, whether owners can add guests, and how unmanaged devices reach the content, but the files inside don't inherit it. Content taken out of a labeled site is unprotected unless it carries its own label.[^c09-container-labels] That is how the program answers the "sharing is set per container" gap above: CUI lives in sites and teams whose container label blocks guests, and the files in them still carry item labels from auto-labeling. Container labels depend on group label support being turned on in Entra ID (the `EnableMIPLabels` directory setting, which needs at least one Entra ID P1 license) and on the labels being synchronized to Entra ID, which can take up to 24 hours to show.[^c09-group-labels] Microsoft advises against changing a published label's group settings afterwards, because the change isn't applied to groups that already carry the label.[^c09-group-labels] Automatic classification and labeling for Teams, Microsoft 365 groups and SharePoint sites is listed as available in GCC and GCC High;[^c09-gcc][^c09-gcch] its DoD status is not yet specified on the pages the program checked.
+
+To turn on label support for groups (Microsoft's steps; run once per tenant by an administrator):
+
+```powershell
+Install-Module Microsoft.Graph.Authentication -Scope CurrentUser
+Install-Module Microsoft.Graph.Beta.Identity.DirectoryManagement -Scope CurrentUser
+Connect-MgGraph -Scopes "Directory.ReadWrite.All"
+
+# Read the current group settings. If nothing comes back, create the Group.Unified settings first.
+$grpUnifiedSetting = Get-MgBetaDirectorySetting | Where-Object { $_.Values.Name -eq "EnableMIPLabels" }
+$grpUnifiedSetting.Values
+
+$params = @{ Values = @( @{ Name = "EnableMIPLabels"; Value = "True" } ) }
+Update-MgBetaDirectorySetting -DirectorySettingId $grpUnifiedSetting.Id -BodyParameter $params
+
+# Then, in Security & Compliance PowerShell, synchronize the labels to Entra ID.
+Execute-AzureAdLabelSync
+```
+
+Container labels govern a site's settings; they don't replace the tenant's sharing settings. Entra ID's external collaboration settings sit above Microsoft 365's: if external sharing is disabled or restricted in Entra ID, that overrides SharePoint's own settings, and Teams can be more restrictive than Entra ID but not less. Microsoft recommends integrating SharePoint and OneDrive with Entra B2B so every external recipient becomes a guest account that Entra policies govern, sharing with "New and existing guests" rather than "Anyone" links, defaulting file and folder links to people in the organization, and limiting guest invitations to the Guest Inviter role.[^c09-teams-sp-external] Guest access itself, and the partner route into the tenant, are [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md).
+
 ## Automatic labeling
 
 Manual labeling puts the classification decision on the author. Authors label the obviously sensitive document correctly and miss the routine one: a spreadsheet of Social Security numbers extracted for a workflow, or a chat message with a taxpayer number sent while answering a question. Automatic labeling classifies on content, whether or not the author recognized it as sensitive.
@@ -289,6 +313,10 @@ Customer Key has rules that an ordinary key-rotation policy would break:
 - Microsoft keeps an availability key that lets the service recover if both customer keys are lost; its use is logged in the unified audit log as `CustomerKeyServiceEncryption` with the activity "Fallback to availability key."[^c09-availability-key]
 
 A rotation policy that sets an expiry, appropriate for an Azure SQL protector, will cause an outage if applied to a Customer Key key.
+
+### AD RMS has to leave before the domain does
+
+An agency that still runs Active Directory Rights Management Services has encryption whose keys live in the forest. AD RMS is no longer in active development, and Microsoft points its customers to Azure Information Protection, now Purview's Azure Rights Management service, through a migration that doesn't require re-protecting content.[^c09-adrms] The migration moves the AD RMS trusted publishing domains, keys, templates and URLs into the tenant, reconfigures Windows clients, Exchange and SharePoint to use the cloud service. Every trusted publishing domain has to be exported and imported, not only the active one, or content protected under an archived key can't be opened afterwards; and partner organizations that exchanged AD RMS content must plan their own migration in step.[^c09-adrms-migrate][^c09-adrms-phase2] If AD RMS uses an HSM-protected key that can't be exported, the cluster can stay in read-only mode for old content while new content is protected under the tenant key.[^c09-adrms-phase2] The program treats an AD RMS cluster as a dependency that blocks domain retirement: it is migrated, with its old keys imported, before the last domain controller goes. The key choice for the imported keys is the BYOK decision above.
 
 ### Azure workloads: Key Vault and TDE with a customer-managed key
 
@@ -452,3 +480,9 @@ The control-level depth for this chapter is in two Federal Compliance volumes: [
 [^c09-audit]: Microsoft Learn, "Learn about auditing solutions in Microsoft Purview," section "Audit (Premium)," <https://learn.microsoft.com/purview/audit-solutions-overview> (accessed Oct 21, 2026).
 [^c09-baselines]: National Institute of Standards and Technology, SP 800-53B, *Control Baselines for Information Systems and Organizations*, Moderate and High baseline profiles, release 5.2.0, OSCAL content, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 21, 2026). AU-10 and SC-12(1) appear in the High profile only; AC-16 appears in neither.
 [^c09-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://fedramp.gov/2026/reference/key-security-indicators/> (accessed Oct 21, 2026).
+[^c09-container-labels]: Microsoft Learn, "Control external access to resources in Microsoft Entra ID with sensitivity labels," sections "Assign classification and enforce protection settings" and "Sensitivity labels on containers," <https://learn.microsoft.com/entra/architecture/8-secure-access-sensitivity-labels> (accessed Nov 9, 2026).
+[^c09-group-labels]: Microsoft Learn, "Assign sensitivity labels to Microsoft 365 groups in Microsoft Entra ID," sections "Enable sensitivity label support in PowerShell" and "Troubleshoot issues," <https://learn.microsoft.com/entra/identity/users/groups-assign-sensitivity-labels> (accessed Nov 9, 2026).
+[^c09-teams-sp-external]: Microsoft Learn, "Secure external access to Microsoft Teams, SharePoint, and OneDrive with Microsoft Entra ID," sections "External Identities settings and Microsoft Entra ID," "Guest invite settings," "External users and guest users in Teams," "Integrating SharePoint and OneDrive with Microsoft Entra B2B," "External sharing settings recommendations" and "File and folder links," <https://learn.microsoft.com/entra/architecture/9-secure-access-teams-sharepoint> (accessed Nov 9, 2026).
+[^c09-adrms]: Microsoft Learn, "Upgrading AD RMS to Windows Server 2016," introduction (AD RMS no longer in active development; migrate to Azure Information Protection without re-protecting content), <https://learn.microsoft.com/windows-server/identity/ad-rms/adrms-deploy> (accessed Nov 9, 2026).
+[^c09-adrms-migrate]: Microsoft Learn, "Migrating from AD RMS to Azure Information Protection," sections "Overview of the steps for migrating AD RMS to Azure Information Protection" and "Migration planning if you collaborate with external partners," <https://learn.microsoft.com/azure/information-protection/migrate-from-ad-rms-to-azure-rms> (accessed Nov 9, 2026).
+[^c09-adrms-phase2]: Microsoft Learn, "Migration phase 2 - server-side configuration for AD RMS," section "Step 4: Export configuration data from AD RMS and import it to Azure Information Protection," <https://learn.microsoft.com/azure/information-protection/migrate-from-ad-rms-phase2> (accessed Nov 9, 2026).

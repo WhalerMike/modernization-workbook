@@ -64,3 +64,20 @@ VK-INT-01 to VK-INT-06; VK-DG-01 to VK-DG-06 (VK-DG-01 and VK-DG-02 only for the
 - Which Microsoft 365 Government bundle carries Intune Plan 1 and Defender for Endpoint in a GCC tenant: the guide tells the reader to confirm with licensing; the Learn licensing page names only commercial bundles.
 - Whether Microsoft Graph exposes dynamic-rule validation in v1.0: the guide cites the portal feature and leaves the kit to state the release stage of its Graph form (VK-DG-03).
 - The illustrative app-only PowerShell sample hasn't been run against a tenant; it's labelled illustrative.
+
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Windows apps using MSAL reach the PRT through WAM, which carries FIDO2; WebView2 and the system browser next; Android: MSAL with browser or broker; iOS: ASWebAuthenticationSession or broker; Apple associated-domain validation must not be blocked | Step 3.7, single sign-on | verified (added) | `iti-fido2-apps`; `iti-wam` (read 2026-11-09) |
+| L2 | Enterprise SSO plug-in: built into Authenticator on iOS/iPadOS; iOS 13+; MDM enrollment; profile pushed; works for non-MSAL apps on the allow list; Apple CDN URLs excluded from TLS inspection | Step 3.7, single sign-on | verified (added) | `iti-apple-sso` (read 2026-11-09) |
+| L3 | Intune profile path, SSO app extension type Microsoft Entra ID, shared device mode Not configured, recommended keys `AppPrefixAllowList` com.apple., `browser_sso_interaction_enabled` 1, `disable_explicit_app_prompt` 1 | Step 3.7, procedure | verified (added) | `iti-apple-sso-intune` (read 2026-11-09) |
+| L4 | Global Secure Access available in GCC; not yet supported in GCC High or DoD | Step 3.7, Global Secure Access client | verified (added) | `iti-gsa-limits` (read 2026-11-09) |
+| L5 | Windows client prerequisites; Win32 packaging, install and uninstall commands, return codes, detection rule; DoH off for Edge and Chrome; `RestrictNonPrivilegedUsers` registry value | Step 3.7, Windows | verified (added) | `iti-gsa-win` (read 2026-11-09) |
+| L6 | Remediations not available in GCC High and DoD | Step 3.7, Windows | verified (added) | `iti-gov-features` (read 2026-11-09) |
+| L7 | iOS client through Defender for Endpoint: store app, VPN profile values, `EnableGSA`, `SilentOnboard`; iOS 16+; not on userless or shared devices | Step 3.7, iOS | verified (added) | `iti-gsa-ios` (read 2026-11-09) |
+| L8 | Android client through Defender for Endpoint app configuration (`Global Secure Access` key); Android 11+; Entra registered; Private DNS off; no Go edition or shared devices; no Tunnel coexistence on iOS or Android | Step 3.7, Android | verified (added) | `iti-gsa-android`; `iti-gsa-limits` (read 2026-11-09) |
+| L9 | `dsregcmd /status` reports `AzureAdPrt` | Step 3.7, Validate | verified (added) | `iti-dsregcmd` (read 2026-11-09) |
+| L10 | macOS out of scope; no validation kit check yet for Step 3.7; pilot in the Gate 3 rings | Step 3.7 | restated-as-design | Program scope decision (Nov 9, 2026); design guidance |

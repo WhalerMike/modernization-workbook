@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 4a78f69e90f6703aecc323400a5589987e6e3ded6ae21c3d7873b85a01b31df6
+last-reviewed: 2026-11-09
 ---
 # Chapter 01 — The Notice Record and Azure Service Health
 

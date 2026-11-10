@@ -77,3 +77,22 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | Certificate Connector overview, section "Connector status" (rewritten; page updated Oct 26, 2026): statuses are now Active, Warning (can issue, issue needs attention) and Action required (can't issue, or disconnected), with health messages for CA connectivity, disconnection, issuing and revocation permissions and template configuration; the page no longer describes Warning and Error statuses for deprecated versions | updated: step 19 alerts on Warning or Action required; done-when reads Status Active |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Sign BYOCA request with the Subordinate Certification Authority template through Web Enrollment | A.1 row 7 | verified (citation added) | `aA-pkcs10`: Learn, "Submit certificate requests using a PKCS #10 or a PKCS #7 file" (read Nov 9, 2026) |
+| L2 | `certutil -dspublish` | A.1 row 16 | verified (citation added) | `aA-certutil`: Learn, "certutil" (read Nov 9, 2026) |
+| L3 | Archive CA database and keys with Backup-CARoleService | A.1 row 30 | verified (citation added) | `aA-ca-backup`: Learn, "CA Backup and Restore Windows PowerShell cmdlets" (read Nov 9, 2026) |
+| L4 | Store scopes; current-user stores except Personal inherit local machine; logical vs physical stores; services use computer or service-account stores | New section A.3 | verified (new) | `aA-stores`: Learn, "Local machine and current user certificate stores"; `aA-inspect`: Learn, "Inspect certificates and manage certificate store contents" (read Nov 9, 2026) |
+| L5 | certlm.msc, certmgr.msc, service-account snap-in; Details and Certification Path | A.3 step 1 | verified (new) | `aA-inspect` |
+| L6 | `certutil -store`, `-enterprise -store NTAuth`, `-verifystore` syntax | A.3 steps 2 and 3 | verified (new) | `aA-certutil` |
+| L7 | Get-ChildItem Cert:\LocalMachine\My inventory | A.3 step 4 | verified (new); the `$days` filter is the program's | `aA-path` |
+| L8 | Test-Certificate -Policy SSL -DNSName; pass doesn't prove application trust | A.3 step 5 | verified (new) | `aA-inspect` |
+| L9 | `certutil -verify -urlfetch` from a client network, approved troubleshooting host | A.3 step 6 | verified (new) | `aA-path`; `aA-inspect` |
+| L10 | `certutil -verifyCTL AuthRoot` / `Disallowed` with lastsynctime | A.3 step 7 | verified (new) | `aA-ctl`: Learn, "Configure trusted roots and disallowed certificates in Windows" (read Nov 9, 2026) |
+| L11 | Root-store changes change what the whole computer trusts; controlled, one at a time, by thumbprint | A.3 closing | verified (new) | `aA-inspect` |
+| L12 | Run cadence (Foundation and each wave gate), owners, dated evidence file | A.3 intro and step 8 | restated-as-design | Program design |
