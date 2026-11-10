@@ -1511,9 +1511,10 @@ pages:
   ms_date: '2025-01-06'
   ms_topic: concept-article
   description: Learn how to deploy Microsoft Global Secure Access for Microsoft Entra Private Access, Microsoft Entra Internet Access, and Microsoft Traffic
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/architecture/gsa-deployment-guide-microsoft-traffic.md
   url: https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-microsoft-traffic
   title: Microsoft Global Secure Access deployment guide for Microsoft Traffic
@@ -1531,9 +1532,10 @@ pages:
   ms_date: '2025-01-06'
   ms_topic: how-to
   description: Learn how to deploy Microsoft Global Secure Access for Microsoft Entra Private Access
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/architecture/gsa-poc-guidance-intro.md
   url: https://learn.microsoft.com/entra/architecture/gsa-poc-guidance-intro
   title: Introduction to Microsoft Global Secure Access Proof-of-Concept Guidance
@@ -1541,9 +1543,10 @@ pages:
   ms_date: '2025-01-22'
   ms_topic: concept-article
   description: Learn how to deploy and test Microsoft Global Secure Access as a proof of concept with Microsoft Entra Internet Access, Microsoft Entra Private Access, and the Microsoft traffic profile.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/architecture/gsa-poc-internet-access.md
   url: https://learn.microsoft.com/entra/architecture/gsa-poc-internet-access
   title: Microsoft Global Secure Access Proof-of-Concept Guidance - Configure Microsoft Entra Internet Access
@@ -1561,9 +1564,10 @@ pages:
   ms_date: '2025-01-22'
   ms_topic: concept-article
   description: Learn how to deploy and test Microsoft Global Secure Access as a proof of concept with Microsoft Entra Private Access.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/architecture/guide-for-independent-software-developers.md
   url: https://learn.microsoft.com/entra/architecture/guide-for-independent-software-developers
   title: Microsoft Entra ID Guide for independent software developers
@@ -4640,9 +4644,10 @@ pages:
   ms_date: '2023-01-31'
   ms_topic: concept-article
   description: Learn how
-  coverage: not-covered
+  coverage: cited
   note: Entra data residency, operations and protection considerations are not summarized for the authorization package.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/08-privacy-pii-processing.md
 - path: docs/fundamentals/data-protection-considerations.md
   url: https://learn.microsoft.com/entra/fundamentals/data-protection-considerations
   title: Data protection considerations
@@ -4660,9 +4665,10 @@ pages:
   ms_date: '2025-11-06'
   ms_topic: concept-article
   description: Use residency data to manage access, achieve mobility scenarios, and secure your organization.
-  coverage: not-covered
+  coverage: cited
   note: Entra data residency, operations and protection considerations are not summarized for the authorization package.
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/08-privacy-pii-processing.md
 - path: docs/fundamentals/data-storage-australia-newzealand.md
   url: https://learn.microsoft.com/entra/fundamentals/data-storage-australia-newzealand
   title: Customer data storage for Australian and New Zealand customers
@@ -5278,6 +5284,7 @@ pages:
   coverage: cited
   note: Private network connector deployment and operation
   cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
 - path: docs/global-secure-access/concept-explicit-forward-proxy-session-management.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-explicit-forward-proxy-session-management
@@ -5327,9 +5334,11 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: concept-article
   description: Learn about the available Global Secure Access logs and monitoring options.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access logs, alerts and Sentinel integration; fits Book 12 Ch03
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/concept-internet-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-internet-access
   title: Learn about Microsoft Entra Internet Access
@@ -5343,6 +5352,7 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/concept-microsoft-traffic-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-microsoft-traffic-profile
   title: Learn about the Microsoft Traffic Profile
@@ -5387,6 +5397,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/concept-private-name-resolution.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-private-name-resolution
   title: Microsoft Entra Private DNS - Configure Secure Internal Name Resolution
@@ -5394,9 +5405,10 @@ pages:
   ms_date: '2026-03-25'
   ms_topic: how-to
   description: Learn how to configure Microsoft Entra Private DNS for secure and efficient internal DNS query resolution, replacing legacy VPNs with granular access.
-  coverage: not-covered
+  coverage: cited
   note: Private Access features (DNS, local access, sign-in frequency, PIM, Conditional Access, SSH)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/concept-proxy-automatic-configuration-files.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-proxy-automatic-configuration-files
   title: Proxy Automatic Configuration (PAC)
@@ -5414,9 +5426,11 @@ pages:
   ms_date: '2026-04-15'
   ms_topic: concept-article
   description: Learn how remote network connectivity in Global Secure Access allows users to connect to your corporate network from a remote location, such as a branch office.
-  coverage: not-covered
+  coverage: cited
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/11-field-office-wan-transformation.md
 - path: docs/global-secure-access/concept-secure-web-ai-gateway-agents.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-secure-web-ai-gateway-agents
   title: Learn about Secure Web and AI Gateway for Microsoft Copilot Studio agents
@@ -5520,9 +5534,10 @@ pages:
   ms_date: '2026-06-03'
   ms_topic: how-to
   description: Learn how to enable the Intelligent Local Access (ILA) capability for Microsoft Entra Private Access, which optimizes traffic flow for clients accessing Entra apps via private networks.
-  coverage: not-covered
+  coverage: cited
   note: Private Access features (DNS, local access, sign-in frequency, PIM, Conditional Access, SSH)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/faq-transport-layer-security.yml
   url: https://learn.microsoft.com/entra/global-secure-access/faq-transport-layer-security
   title: Frequently asked questions for Transport Layer Security inspection
@@ -5562,9 +5577,10 @@ pages:
   ms_date: '2026-04-16'
   ms_topic: how-to
   description: Use Application discovery to detect the applications accessed by users and create separate private applications.
-  coverage: not-covered
+  coverage: cited
   note: Internet Access policy (web filtering, threat intelligence, firewall, DLP)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-apply-security-policies-remote-network.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-apply-security-policies-remote-network
   title: Apply security policies to remote network traffic
@@ -5602,9 +5618,10 @@ pages:
   ms_date: '2026-05-27'
   ms_topic: how-to
   description: Deploy Global Secure Access alongside Cisco Umbrella with DNS security. Includes step-by-step configuration for both platforms to support private access, Microsoft 365 traffic, and internet access.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-cisco-secure-access-coexistence.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-cisco-secure-access-coexistence
   title: Security Service Edge (SSE) Coexistence With Microsoft and Cisco Secure Access
@@ -5612,9 +5629,10 @@ pages:
   ms_date: '2026-03-25'
   ms_topic: how-to
   description: Configure Microsoft Global Secure Access and Cisco Secure Access for unified SASE capabilities. Covers deployment steps, FQDN and IP bypasses, and client configuration.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-cisco-vpn-coexistence.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-cisco-vpn-coexistence
   title: Security Service Edge (SSE) Coexistence With Microsoft and Cisco VPNs
@@ -5622,9 +5640,10 @@ pages:
   ms_date: '2026-05-26'
   ms_topic: how-to
   description: Configure Microsoft Global Secure Access alongside Cisco AnyConnect and ASA VPNs for unified SASE. Covers deployment scenarios with step-by-step configuration for private access, Microsoft 365 traffic, and internet access.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-compliant-network.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network
   title: Enable Compliant Network Check with Conditional Access
@@ -5644,9 +5663,10 @@ pages:
   ms_date: '2026-10-27'
   ms_topic: how-to
   description: Learn how to configure cloud firewall for traffic from Global Secure Access clients and verify Allow and Block decisions in Microsoft Entra Internet Access.
-  coverage: not-covered
+  coverage: cited
   note: Internet Access policy (web filtering, threat intelligence, firewall, DLP)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-configure-cloud-firewall.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall
   title: Configure cloud firewall for remote networks
@@ -5654,9 +5674,11 @@ pages:
   ms_date: '2026-04-17'
   ms_topic: how-to
   description: Learn how to configure and use cloud firewall to protect against unauthorized internet access from branch offices using Remote Networks for Internet Access.
-  coverage: not-covered
+  coverage: cited
   note: Internet Access policy (web filtering, threat intelligence, firewall, DLP)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/11-field-office-wan-transformation.md
 - path: docs/global-secure-access/how-to-configure-conditional-access-policy-for-explicit-forward-proxy.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-conditional-access-policy-for-explicit-forward-proxy
   title: Configure a Conditional Access Policy for Explicit Forward Proxy
@@ -5676,9 +5698,10 @@ pages:
   ms_date: '2026-05-26'
   ms_topic: how-to
   description: Set up private network connectors that enable outbound connections from your private network to Global Secure Access. Includes installation, connector groups, and high availability.
-  coverage: not-covered
+  coverage: cited
   note: Private network connector deployment and operation
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-configure-custom-headers.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-custom-headers
   title: How to configure custom HTTP headers in Global Secure Access
@@ -5792,9 +5815,10 @@ pages:
   ms_date: '2026-04-29'
   ms_topic: how-to
   description: Learn how to configure per-app access to your private, internal resources using Global Secure Access applications for Microsoft Entra Private Access.
-  coverage: not-covered
+  coverage: cited
   note: Private Access per-app segmentation; workbook names Private Access only as the Kerberos bridge
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-configure-quick-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-quick-access
   title: How to configure Quick Access for Global Secure Access
@@ -5802,9 +5826,10 @@ pages:
   ms_date: '2026-03-25'
   ms_topic: how-to
   description: Learn how to specify the internal resources to secure with Microsoft Entra Private Access using a Quick Access app.
-  coverage: not-covered
+  coverage: cited
   note: VPN and DirectAccess replacement with Private Access; central to remote-access retirement
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-configure-sign-in-every-time.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-sign-in-every-time
   title: Configure Microsoft Entra Private Access sign-in every time
@@ -5822,9 +5847,10 @@ pages:
   ms_date: '2026-04-18'
   ms_topic: how-to
   description: Learn how to configure threat intelligence in Microsoft Entra Internet Access.
-  coverage: not-covered
+  coverage: cited
   note: Internet Access policy (web filtering, threat intelligence, firewall, DLP)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-configure-web-content-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-web-content-filtering
   title: How to configure Global Secure Access web content filtering
@@ -5872,9 +5898,11 @@ pages:
   ms_date: '2026-04-15'
   ms_topic: how-to
   description: Learn how to create remote networks, for remote locations such as branch offices, for Global Secure Access.
-  coverage: not-covered
+  coverage: cited
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/11-field-office-wan-transformation.md
 - path: docs/global-secure-access/how-to-create-traffic-forwarding-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-create-traffic-forwarding-profile
   title: Create a Microsoft Entra Private Access traffic forwarding profile
@@ -5922,9 +5950,10 @@ pages:
   ms_date: '2025-03-28'
   ms_topic: concept-article
   description: Learn about endpoint detection and response and antivirus solution coexistence with Global Secure Access client.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-enable-multi-geo.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-enable-multi-geo
   title: Multi-Geo for Microsoft Entra Private Access
@@ -5972,9 +6001,10 @@ pages:
   ms_date: '2026-10-21'
   ms_topic: how-to
   description: Learn how to configure Microsoft Entra Private Access and Infoblox Threat Defense together for private application access and DNS security.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-install-android-client.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-install-android-client
   title: Install the Global Secure Access Client for Android
@@ -6105,9 +6135,10 @@ pages:
   ms_date: '2026-03-27'
   ms_topic: how-to
   description: Learn how to migrate client devices from DirectAccess to Microsoft Entra Private Access with a phased approach that avoids tunnel conflicts and connectivity failures.
-  coverage: not-covered
+  coverage: cited
   note: VPN and DirectAccess replacement with Private Access; central to remote-access retirement
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-migrate-web-content-filtering-policies.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies
   title: Migrate web content filtering policies from V1 to V2
@@ -6125,9 +6156,10 @@ pages:
   ms_date: '2026-10-18'
   ms_topic: concept-article
   description: Learn how to configure and deploy Microsoft Entra and Netskope Security Service Edge (SSE) solutions together for optimized security and connectivity across private applications, Microsoft 365, and internet access.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-network-content-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-network-content-filtering
   title: Create content policies for network content filtering
@@ -6135,9 +6167,10 @@ pages:
   ms_date: '2026-06-30'
   ms_topic: how-to
   description: Discover how to configure network content filtering with Global Secure Access to enforce data protection policies for files and text content in real time.
-  coverage: not-covered
+  coverage: cited
   note: Internet Access policy (web filtering, threat intelligence, firewall, DLP)
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-operate-internet-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access
   title: Operate Microsoft Entra Internet Access
@@ -6195,9 +6228,10 @@ pages:
   ms_date: '2026-05-26'
   ms_topic: how-to
   description: Deploy Microsoft Entra Private Access alongside Palo Alto Prisma Access. Includes configuration steps for secure internet access and private application connectivity.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-private-access-segmentation-strategies.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-private-access-segmentation-strategies
   title: Private Access segmentation strategies for Global Secure Access
@@ -6215,9 +6249,10 @@ pages:
   ms_date: '2026-05-26'
   ms_topic: how-to
   description: Create a PowerShell script for unattended installation and registration of the Microsoft Entra private network connector for bulk deployments or servers without a UI.
-  coverage: not-covered
+  coverage: cited
   note: Private network connector deployment and operation
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-remote-network-health-logs.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-remote-network-health-logs
   title: How to use the remote network health logs
@@ -6311,6 +6346,7 @@ pages:
   cited_by:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-transport-layer-security-settings-managed-certificate.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings-managed-certificate
   title: Configure TLS inspection with a Microsoft-managed certificate
@@ -6349,6 +6385,7 @@ pages:
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/global-secure-access/how-to-universal-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions
@@ -6451,9 +6488,10 @@ pages:
   ms_date: '2026-05-26'
   ms_topic: how-to
   description: Learn how to deploy Microsoft Global Secure Access alongside Zscaler Private Access and Internet Access. Covers four integration scenarios with step-by-step configuration, verification, and traffic testing procedures.
-  coverage: not-covered
+  coverage: cited
   note: Coexistence with other SSE, VPN, DNS and EDR products; Book 09 Ch05 names the vendors but not the coexistence
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/index.yml
   url: https://learn.microsoft.com/entra/global-secure-access
   title: Global Secure Access documentation
@@ -6500,6 +6538,8 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/11-field-office-wan-transformation.md
   - docs/books/explainers/hybrid-credentials.md
 - path: docs/global-secure-access/partner-ecosystems-overview.md
   url: https://learn.microsoft.com/entra/global-secure-access/partner-ecosystems-overview
@@ -6511,6 +6551,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/cisco-sdwan-implementation.md
   - docs/evaluations/sdwan-platform-deep-dive.md
 - path: docs/global-secure-access/powershell-samples.md
@@ -6600,9 +6641,10 @@ pages:
   ms_date: '2026-03-09'
   ms_topic: reference
   description: Learn about the supported cryptographic algorithms, or ciphers, used for Microsoft Entra Private Access.
-  coverage: not-covered
+  coverage: cited
   note: Network and privacy reference (egress IPs, ciphers, data handling); relevant to boundary and firewall allow-listing
-  cited_by: []
+  cited_by:
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-communication-plan.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-communication-plan
   title: Global Secure Access change communication plan template
@@ -6627,8 +6669,11 @@ pages:
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/11-field-office-wan-transformation.md
   - docs/books/b09-network/12-microsoft-365-traffic.md
   - docs/books/b09-network/appendix-a-optimize-exemption-instruments.md
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
   - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
@@ -6653,9 +6698,10 @@ pages:
   ms_date: '2026-03-13'
   ms_topic: reference
   description: Global Secure Access includes Microsoft Entra Private Access and Microsoft Entra Internet Access. This article outlines data storage and privacy information.
-  coverage: not-covered
+  coverage: cited
   note: Network and privacy reference (egress IPs, ciphers, data handling); relevant to boundary and firewall allow-listing
-  cited_by: []
+  cited_by:
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-egress-ip-ranges.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-egress-ip-ranges
   title: Global Secure Access egress IP ranges
@@ -6663,9 +6709,10 @@ pages:
   ms_date: '2025-08-28'
   ms_topic: reference
   description: Reference list of the egress IP ranges that Global Secure Access uses for outbound internet traffic, so you can allowlist them on target services.
-  coverage: not-covered
+  coverage: cited
   note: Network and privacy reference (egress IPs, ciphers, data handling); relevant to boundary and firewall allow-listing
-  cited_by: []
+  cited_by:
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-event-enrichment-logs.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-event-enrichment-logs
   title: Event enrichment in Microsoft 365 enriched logs
@@ -6683,9 +6730,11 @@ pages:
   ms_date: '2026-03-30'
   ms_topic: reference
   description: Global Secure Access maintains a compliance portfolio. This article lists the current, supported certifications.
-  coverage: not-covered
+  coverage: cited
   note: GSA certifications (FedRAMP, FIPS) not covered; workbook states only GCC availability and the GCC High gap
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-ip-addresses-advertised-by-remote-network-connectivity.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-ip-addresses-advertised-by-remote-network-connectivity
   title: IP addresses advertised over BGP by remote network connectivity
@@ -6715,7 +6764,8 @@ pages:
   description: This article tracks the release notes and download instructions for the Global Secure Access client for macOS.
   coverage: out-of-scope
   note: Release notes change continuously; Learn is the system of record
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/reference-microsoft-defender-cloud-apps-coexistence.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-microsoft-defender-cloud-apps-coexistence
   title: Global Secure Access and Microsoft Defender for Cloud Apps coexistence
@@ -6733,9 +6783,10 @@ pages:
   ms_date: '2026-03-13'
   ms_topic: reference
   description: Global Secure Access points of presence and IP addresses for Microsoft Entra Internet Access and Microsoft Entra Private Access.
-  coverage: not-covered
+  coverage: cited
   note: Network and privacy reference (egress IPs, ciphers, data handling); relevant to boundary and firewall allow-listing
-  cited_by: []
+  cited_by:
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-private-access-health-check.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-private-access-health-check
   title: Private Access health check checklist
@@ -6763,9 +6814,12 @@ pages:
   ms_date: '2026-03-13'
   ms_topic: reference
   description: Valid Global Secure Access configurations for custom remote network device links settings, including IKE, ASN, IPSec, and DH group.
-  coverage: not-covered
+  coverage: cited
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/11-field-office-wan-transformation.md
+  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-role-based-permissions.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-role-based-permissions
   title: Microsoft Global Secure Access built-in roles
@@ -6823,9 +6877,10 @@ pages:
   ms_date: '2025-09-02'
   ms_topic: best-practice
   description: This article provides techniques to improve remote network resilience with Global Secure Access.
-  coverage: not-covered
+  coverage: cited
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/11-field-office-wan-transformation.md
 - path: docs/global-secure-access/resource-faq.yml
   url: https://learn.microsoft.com/entra/global-secure-access/resource-faq
   title: Global Secure Access Frequently asked questions
@@ -7313,9 +7368,10 @@ pages:
   ms_date: '2026-03-11'
   ms_topic: tutorial
   description: Learn how to configure Quick Access for VPN-like connectivity to on-premises resources using Microsoft Entra Private Access.
-  coverage: not-covered
+  coverage: cited
   note: VPN and DirectAccess replacement with Private Access; central to remote-access retirement
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
 - path: docs/id-governance/access-reviews-application-preparation.md
   url: https://learn.microsoft.com/entra/id-governance/access-reviews-application-preparation
   title: Preparing for an access review of users' access to an application
@@ -17312,6 +17368,7 @@ pages:
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b06-data-platform/appendix-c-applicability.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b14-compliance/06-contingency-and-continuity.md
@@ -24931,6 +24988,7 @@ pages:
   coverage: cited
   note: Connect in government clouds and required ports not covered.
   cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b18-application-modernization/03-the-target-reference-architecture.md

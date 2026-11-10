@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What SD-WAN's differentiated transport buys: path classes, route-inflation recovery, tail-latency tools such as forward error correction and packet duplication, and protection of latency-critical traffic from bulk transfers, with the hard ceiling it can't pass. How SASE security services sit above SD-WAN in CISA's model and in the TIC 3.0 Branch Office Use Case, and why a SASE or VPN path must not break Teams emergency calling. The program's proposed governed-path model, in which the path is leased per intent and bound to a short-lived token. The decision records the fabric must emit, and the controls the controller and edges need before they're credited with closing anything.
+What SD-WAN's differentiated transport buys: path classes, route-inflation recovery, tail-latency tools such as forward error correction and packet duplication, and protection of latency-critical traffic from bulk transfers, with the hard ceiling it can't pass. How SASE security services sit above SD-WAN in CISA's model and in the TIC 3.0 Branch Office Use Case, and why a SASE or VPN path must not break Teams emergency calling. Microsoft's Global Secure Access as one SASE candidate, with its government-cloud and licensing gates first: Private Access as the VPN and DirectAccess replacement, deployment, remote networks, Internet Access policy and coexistence with other vendors. The program's proposed governed-path model, in which the path is leased per intent and bound to a short-lived token. The decision records the fabric must emit, and the controls the controller and edges need before they're credited with closing anything.
 :::
 
 [Chapter 02](02-transport-is-physics-control-is-compliance.md) separated the pipe from the governor: transport is a physics decision, and control is a compliance decision. This chapter is about the governor. It has three layers, and each answers a different question. SD-WAN decides which traffic takes which path and measures how each path is doing. SASE decides whether a flow is allowed and inspects it at a policy enforcement point (PEP). The governed path, which is still a proposal in the program, decides whether the path itself was authorized for this caller and this intent, and records the answer as evidence. Sitting over all three is a question the sources answered only briefly: who protects the governor?
@@ -134,6 +134,144 @@ Before a requirement names a SASE or SD-WAN service, check what each candidate's
 | Cisco Meraki US Government Region | FedRAMP Certified, Class C (Moderate) | February 18, 2025 | Cloud-managed networking, including MX security and SD-WAN appliances |
 
 These are examples, not a market survey or a recommendation. Three cautions apply. A listing covers the cloud-delivered management and service plane; the edge appliances in each office are agency-operated equipment inside the agency's own boundary. Nor does a FedRAMP-certified, vendor-hosted controller move directive obligations off the agency: ED 26-03 V1 has separate required actions for off-premises (cloud) deployments, under which the agency obtains forensic images and cloud logs from the vendor, and Cisco's 2026 SD-WAN advisories list its FedRAMP environment among the affected deployment types.[^c05-edv1cloud][^c05-ciscorpa2] Several vendors carry both a Moderate and a High listing for different offerings, so cite the offering, not the vendor. Zscaler is one: the High offering in the table (FR2227062482, Class D, certified July 2, 2022) and Zscaler Internet Access – Government (FR1720454205, Class C (Moderate), certified December 14, 2018) are two separate Marketplace listings.[^c05-fr-zia] And statuses change; read them from the Marketplace data at the time the requirement is written. On the acquisition side, GSA lists SD-WAN among the Enterprise Infrastructure Solutions (EIS) services for the non-traditional TIC 3.0 use cases, as fully managed, co-managed or do-it-yourself implementations.[^c05-gsatic] [Chapter 09](09-who-owns-the-network.md) covers who orders it.
+
+## Microsoft's security service edge: Global Secure Access
+
+Many agencies already license part of Microsoft's security service edge, Global Secure Access, through Microsoft Entra ID, so it is often the first candidate a program evaluates. It has three parts. Microsoft Entra Private Access is the ZTNA function, Microsoft Entra Internet Access is the secure web gateway, and the Microsoft traffic profile carries traffic to Microsoft's own services. Microsoft states that all three are generally available.[^c05-gsa-overview] This section covers what each part does, where the program's gates are, and how it coexists with the vendors listed above. It assumes the identity design in [Book 02](../b02-identity/index.md) and the access plane in [Book 01, Chapter 08](../b01-transformation-arc/08-access-plane.md).
+
+### The gates come first
+
+**Government cloud.** Learn's only statement on government availability covers the whole product: "Global Secure Access is available in the US Government Community Cloud (GCC), but isn't yet supported in the US Government Community Cloud High (GCC-H), Department of Defense cloud, or other government or sovereign cloud environments."[^c05-gsa-limits] The Microsoft Entra feature availability page for Azure Government doesn't list Global Secure Access at all.[^c05-gsa-featavail] Learn breaks GCC availability down by feature nowhere, so this section treats each feature as available in GCC only on the strength of that product-wide sentence, and as not yet specified where the feature's own page says nothing more. For a GCC High or DoD tenant, none of this section applies until Microsoft changes that sentence. Those tenants keep the vendor offerings in the table above, or an existing VPN. Learn also documents installing the private network connector in Azure Government, with `ENVIRONMENTNAME="AzureUSGovernment"`, but that procedure is for Application Proxy, not Private Access.[^c05-gsa-connector-gov]
+
+**Licensing.** Private Access and Internet Access are each sold standalone and in Microsoft Entra Suite, and their users also need Microsoft Entra ID P1 or P2. The Microsoft traffic profile is included in P1 or P2. Most Global Secure Access services are licensed per user.[^c05-gsa-overview]
+
+**Authorization.** Microsoft's certifications page for Global Secure Access lists FedRAMP High and DoD SRG Level 2. It doesn't say which cloud environment that authorization covers, and it lists no higher DoD impact level.[^c05-gsa-certs] The agency reads the authorization package before a requirement names the service, as it would for any offering in the table above. [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md#a-worked-case-global-secure-accesss-network-and-privacy-facts) records its network and data-handling facts for the boundary.
+
+| Capability | GCC | GCC High | DoD | License | Status on Learn |
+|---|---|---|---|---|---|
+| Private Access: Quick Access, per-app access, private DNS, application discovery | Available (product-wide statement) | Not yet supported | Not yet supported | Private Access, plus P1 or P2 | Generally available; Intelligent Local Access is labeled preview in the macOS client release notes |
+| Microsoft traffic profile, universal tenant restrictions, compliant network check | Available (product-wide statement) | Not yet supported | Not yet supported | P1 or P2 | Generally available |
+| Internet Access: web content filtering, threat intelligence, TLS inspection | Available (product-wide statement); feature pages say nothing more | Not yet supported | Not yet supported | Internet Access, plus P1 or P2 | Generally available |
+| Cloud firewall for clients; Purview data loss prevention integration; Netskope integration | Not yet specified | Not yet supported | Not yet supported | Internet Access; Purview DLP also needs Microsoft 365 E5 or the Purview DLP add-on | Preview |
+| Remote networks (branch IPsec tunnels) | Available (product-wide statement) | Not yet supported | Not yet supported | At least 50 P1 and Internet Access licenses combined | Generally available |
+
+Sources: the known limitations, overview, client and feature pages cited in this section, read November 9, 2026.[^c05-gsa-limits][^c05-gsa-overview][^c05-gsa-ia]
+
+### Private Access as the VPN and DirectAccess replacement
+
+Private Access lets a remote user reach private applications by fully qualified domain name (FQDN) or IP address, without a VPN, on a device running the Global Secure Access client. There are two ways to publish applications. **Quick Access** is one group of FQDNs, IP addresses and ranges that is always tunneled. **Per-app access** publishes each application separately, with its own assignment and its own Conditional Access policy. Each becomes an enterprise application, is reached through a private network connector group, and is assigned to users or groups.[^c05-gsa-pa]
+
+Traffic flows from the user's device to the client, then to Microsoft's service edge, then to a private network connector inside the agency's network, and on to the application. The service edge checks the user's assignment and Conditional Access before it brokers the connection, and the connector does the DNS lookup and opens the connection to the target.[^c05-gsa-perapp][^c05-gsa-vpnrepl] The difference from a VPN is the scope. A VPN puts the device on a network. Private Access gives an assigned user a path to a named application and port, and nothing else.
+
+**Start broad, then narrow.** Microsoft's own advice is to treat Quick Access as a migration bridge: "Use Quick Access as a transition state in your Zero Trust journey. After Quick Access has enabled you to replace your VPN, configure per-app access to achieve application segmentation and per-app granular controls."[^c05-gsa-quick] Its VPN-replacement tutorial publishes a whole address range in Quick Access, for example `10.0.0.0/24` on ports `0-52,54-65535` for TCP and UDP. Port 53 is left out because private DNS handles name resolution.[^c05-gsa-vpnrepl] Application discovery then lists the FQDNs, addresses and ports actually used through Quick Access in the last 30 days, with users and devices, so each can be moved into its own application.[^c05-gsa-discovery]
+
+Microsoft's deployment guide describes the move as creating a per-app application scoped to the Quick Access users, adding segments to it gradually, and watching the traffic leave Quick Access, "until no app segments appear in Quick Access." Then Quick Access is turned off.[^c05-gsa-dg-pa] Two rules matter during the move:
+
+- Segments may not overlap between Private Access applications. The one exception is between a per-app application and Quick Access, where the per-app segment wins.
+- Moving a segment out of Quick Access doesn't move its assignments, and clients take up to 15 minutes to pick up the change.[^c05-gsa-perapp]
+
+Users must be assigned directly, or through a group assigned to the application, because nested groups aren't supported.[^c05-gsa-quick] The segmentation that results is the program's least-privilege evidence for remote access: an assignment list for each application, in place of a VPN address pool.
+
+**Conditional Access on the application.** Policies target each Private Access application. Learn's example grant requires multifactor authentication and a compliant or hybrid-joined device, starts in report-only mode, and excludes the emergency access and service accounts.[^c05-gsa-ca] Learn also lists two limitations. Conditional Access can't be applied to Private Access traffic as a whole, only at the application level for Quick Access and Global Secure Access apps. And the compliant network check isn't supported for Private Access applications.[^c05-gsa-limits] Microsoft's VPN-replacement tutorial advises against requiring multifactor authentication with a sign-in frequency on Quick Access, because DNS queries can trigger unexpected prompts.[^c05-gsa-vpnrepl]
+
+**Connectors.** A private network connector is a lightweight agent on Windows Server that makes only outbound connections ("You don't have to open inbound ports"). Each connector group should have at least two connectors. Microsoft's sizing guidance is 8 GiB of memory and 4 cores, with peak CPU and memory kept under 70 percent.[^c05-gsa-concept-conn] The connector supports Windows Server 2016 or later, which the program's standard narrows to 2019 or later (2016 is gone by January 12, 2027). It needs TLS 1.2 enabled before installation, and it shouldn't share a server with the Microsoft Entra Password Protection proxy. Microsoft says to avoid any inline inspection or termination of the connector's outbound TLS. The minimum connector version for Private Access is 1.5.3417.0.[^c05-gsa-conn][^c05-gsa-quick] Its outbound requirements in a commercial or GCC tenant are:[^c05-gsa-conn]
+
+```text
+80   Downloading certificate revocation lists (CRLs) while validating the TLS/SSL certificate
+443  All outbound communication with the Application Proxy service
+```
+
+These go to `*.msappproxy.net` and `*.servicebus.windows.net` on 443. The certificate revocation and registration endpoints the page lists include `crl3.digicert.com`, `crl4.digicert.com`, `ocsp.digicert.com`, `crl.microsoft.com`, `oneocsp.microsoft.com` and `ocsp.msocsp.com` on 80, and `login.windows.net`, `*.microsoftonline.com` and `management.azure.com` on 443. The full list is on the page and belongs in the firewall request.[^c05-gsa-conn] For an unattended installation, install without registering, then register with a token:[^c05-gsa-unattended]
+
+```cmd
+MicrosoftEntraPrivateNetworkConnectorInstaller.exe REGISTERCONNECTOR="false" /q
+```
+
+```powershell
+.\RegisterConnector.ps1 `
+    -modulePath "C:\Program Files\Microsoft Entra private network connector\Modules\" `
+    -moduleName "MicrosoftEntraPrivateNetworkConnectorPSModule" `
+    -Authenticationmode Token `
+    -Token $SecureToken `
+    -TenantId <tenant GUID> `
+    -Feature ApplicationProxy
+```
+
+Microsoft warns: "Store the script or code in a secure location as it contains sensitive credential information."[^c05-gsa-unattended] After installation, the "Microsoft Entra private network connector" and "Microsoft Entra private network connector updater" services should both be running. The updater updates one connector in each group at a time, and a connector inactive for 10 days is removed.[^c05-gsa-conn][^c05-gsa-concept-conn] For patching, Microsoft suggests moving a connector into a maintenance group assigned only to a test application, draining it, patching it, and moving it back.[^c05-gsa-conn]
+
+**DNS.** Private DNS sends queries for the DNS suffixes added in Quick Access through the service edge to the connector group's DNS servers, and the client gives the application a synthetic address. Microsoft says to add the Active Directory forest name among the suffixes.[^c05-gsa-dns][^c05-gsa-vpnrepl] Single-label names get a synthetic suffix appended, and Microsoft warns that this "might break Kerberos flow," so applications that use Kerberos should be published and reached by FQDN.[^c05-gsa-dns] Two client limits follow. The client doesn't support DNS over HTTPS, which has to be disabled for FQDN-based tunneling. And name resolution policy table rules delivered by Group Policy override the client's own rules and break private DNS.[^c05-gsa-limits] Domain-joined devices that still carry a DirectAccess or VPN name resolution policy from Group Policy therefore have to lose it before Private Access works. Kerberos single sign-on through Private Access, which publishes the domain controllers as an application, is in [Chapter 06](06-legacy-protocols-on-re-routed-paths.md#ways-to-provide-the-path).
+
+**Retiring DirectAccess.** Microsoft is explicit that "DirectAccess and Microsoft Entra Private Access can't coexist on the same device." The migration has four phases:[^c05-gsa-da]
+
+1. Deploy the client without assigning Private Access. The client shows "Disabled by your organization."
+2. Remove DirectAccess from the pilot devices.
+3. Turn on Private Access forwarding for the pilot users. The tunnel takes 10 to 15 minutes to come up.
+4. Expand in waves.
+
+Microsoft says not to decommission the DirectAccess servers until every user is confirmed on Private Access.[^c05-gsa-da] For phase 2, remove each device from the security group that filters the DirectAccess client Group Policy object, let replication finish, and then run on the device:[^c05-gsa-da]
+
+```powershell
+gpupdate /force
+shutdown /r /t 0
+```
+
+Microsoft says to restart twice. Then confirm that no DirectAccess name resolution policy entries remain (`DirectAccess-NLS.*`) and that `ipconfig` no longer shows the IP-HTTPS tunnel adapter:[^c05-gsa-da]
+
+```powershell
+Get-DnsClientNrptPolicy
+```
+
+**Local access.** Intelligent Local Access lets a device on the corporate network reach selected Private Access applications directly while Conditional Access still applies. It detects the corporate network with a DNS probe.[^c05-gsa-ila] The macOS client's release notes call it preview, so the program treats it as preview until Learn says otherwise.[^c05-gsa-ila]
+
+### Deployment and proof of concept
+
+The licensing and government-cloud gates above come before any pilot. Microsoft's deployment guide sets out three scenarios: replace the VPN with ZTNA, secure Microsoft traffic, and secure internet traffic. It budgets "up to seven hours" for a proof of concept and runs the project in initiate, plan, execute, monitor and close phases, with a pilot of "fewer than 20" users before production waves.[^c05-gsa-dg] The proof-of-concept guidance asks for a test tenant, a Windows 11 test device that is joined or hybrid-joined and has no direct path to the private network, and a Windows Server 2019 or 2022 connector host that can reach the test applications.[^c05-gsa-poc] The guide also gives an emergency path to plan for: "When Global Secure Access is down, users can't access resources that the Global Secure Access-compliant network check secures." Microsoft publishes break-glass and recovery scripts that switch those policies to report-only and back.[^c05-gsa-dg] The program records that procedure in the identity runbook of the contingency plan ([Book 14, Chapter 06](../b14-compliance/06-contingency-and-continuity.md)).
+
+### Remote networks for branches
+
+The licensing and government-cloud gates above apply. Remote networks also need at least 50 Microsoft Entra ID P1 and Internet Access licenses combined, and bandwidth grows with the license count.[^c05-gsa-overview][^c05-gsa-rn] A remote network is a clientless IPsec tunnel from the branch's customer premises equipment (CPE) to Global Secure Access. It carries the Microsoft traffic and Internet Access profiles, but not Private Access, which needs the client.[^c05-gsa-rn] The CPE must support IKEv2 and BGP, must initiate the tunnel, and needs UDP 500, UDP 4500 and TCP 179 open.[^c05-gsa-rn-create] User-aware policy and Conditional Access apply only to devices running the client. Tunnel traffic gets the tenant's baseline profile.[^c05-gsa-rn][^c05-gsa-limits] The listed remote network regions include no Azure Government region.[^c05-gsa-rn-config] [Chapter 11](11-field-office-wan-transformation.md#remote-networks-to-a-security-service-edge) applies this to the field offices.
+
+### Internet Access policy
+
+The licensing and government-cloud gates above apply. Several Internet Access features are still in preview. Internet Access is an identity-aware secure web gateway. Its web content filtering, threat intelligence filtering, TLS inspection and file and data loss prevention policies are grouped into security profiles, which Conditional Access applies to users. A baseline profile applies to all traffic, even without a policy.[^c05-gsa-ia] Microsoft lists the order in which the controls run: "(1) TLS inspection > (2) Web content filtering > (3) Threat intelligence > (4) File type > (5) Data loss prevention > (6) Third-party".[^c05-gsa-ti]
+
+- **Web content filtering** blocks or allows by web category or FQDN. For HTTPS it sees only the server name unless TLS inspection is on.[^c05-gsa-ia]
+- **Threat intelligence filtering** blocks "high-severity known malicious internet destinations" from Microsoft and third-party feeds.[^c05-gsa-ti]
+- **Cloud firewall** applies 5-tuple rules to remote network traffic through the baseline profile. For clients it is in preview.[^c05-gsa-fw]
+- **Data loss prevention.** Basic content policies, which block by file type, don't need Purview. Inline Purview data loss prevention is in preview, needs TLS inspection, and needs Microsoft 365 E5 or the Purview DLP add-on.[^c05-gsa-dlp]
+- **TLS inspection** decrypts at the service edge with a Microsoft-managed certificate or the agency's own intermediate. Clients must trust it. Microsoft says to establish and communicate a TLS policy to users first. It creates an editable bypass rule that excludes the Education, Finance, Government, and Health & Medicine categories.[^c05-gsa-tls] [Chapter 06](06-legacy-protocols-on-re-routed-paths.md) covers what inspection breaks.
+
+These controls overlap with the campus web gateway the TIC 3.0 parity requirement compares against. Choosing Internet Access, or a partner's gateway, is the decision this chapter's SASE table frames, not a separate one.
+
+### Coexistence with Cisco, Zscaler, Palo Alto Networks, Netskope and Infoblox
+
+Microsoft documents splitting traffic between Global Secure Access and another security service edge. The Microsoft traffic, internet traffic and private-application traffic can each go to one or the other.[^c05-gsa-partners] The tested combinations include:
+
+- Zscaler: Private Access alongside Zscaler Internet Access, and Microsoft traffic through Global Secure Access with Zscaler Private Access and Internet Access.[^c05-gsa-zscaler]
+- Palo Alto Networks Prisma Access, in the same four scenarios.[^c05-gsa-paloalto]
+- Netskope steering configurations.[^c05-gsa-netskope]
+- Cisco: Umbrella, Secure Access, and the ASA and Secure Access VPNs in split-include mode.[^c05-gsa-cisco]
+- Infoblox Threat Defense, where Global Secure Access handles private applications and Infoblox handles DNS security for internet sites.[^c05-gsa-infoblox]
+
+Each scenario needs the same two things. The partner client has to bypass Global Secure Access's own addresses and names, and Global Secure Access has to bypass the partner's. The Global Secure Access side, as Microsoft lists it:[^c05-gsa-zscaler]
+
+```text
+150.171.15.0/24, 150.171.18.0/24, 150.171.19.0/24, 150.171.20.0/24,
+13.107.232.0/24, 13.107.233.0/24, 151.206.0.0/16, 6.6.0.0/16
+*.globalsecureaccess.microsoft.com
+```
+
+`6.6.0.0/16` is the client's synthetic address range for private DNS. Where Quick Access is used, the partner also bypasses the Quick Access application's `.globalsecureaccess.local` name and the private DNS suffixes.[^c05-gsa-zscaler][^c05-gsa-cisco] Endpoint protection may need the client's processes excluded if it causes CPU problems, and Microsoft lists those processes.[^c05-gsa-edr] None of the coexistence pages mentions a government cloud. Their availability is the product's: GCC only.[^c05-gsa-limits] Coexistence is how a program that already holds a FedRAMP High SSE from the table above can add Private Access for the Kerberos and VPN-replacement cases without giving up its authorized gateway.
+
+| Requirement | What Global Secure Access supports | Evidence |
+|---|---|---|
+| NIST SP 800-53 AC-17 (remote access) | Private Access per application, with assignment and Conditional Access on each | Application segments and assignments; Conditional Access policies; sign-in logs |
+| AC-3, AC-6 (access enforcement, least privilege) | Segmentation from Quick Access to per-app access | Application discovery report; per-app assignment lists |
+| SC-7 (boundary protection) | Internet Access policy; remote network baseline profile | Security profiles and policies; traffic logs |
+| SI-4 (system monitoring) | Traffic and remote network health logs exported to the SIEM | Diagnostic settings; retained logs |
+| TIC 3.0 Branch Office policy enforcement parity | Identical security profiles for client and remote network paths, where the features exist | Profile assignments for each path |
+
+The rows say what the service supports. The agency still sets each control's parameters and owns its policy and procedures, and the assessor decides whether each is satisfied. Traffic logs and remote network health logs are kept for 30 days and are exported through diagnostic settings.[^c05-gsa-logs]
 
 ## The governed path
 
@@ -296,3 +434,39 @@ None of this argues against SD-WAN. The branch already has a router with a manag
 [^c05-teams-remote]: Microsoft Learn, "Emergency addresses for remote locations," sections Location precedence and Emergency address classification and routing, <https://learn.microsoft.com/microsoftteams/emergency-calling-dispatchable-location> (accessed Oct 30, 2026).
 [^c05-vpn-split]: Microsoft Learn, "Implementing VPN split tunneling for Microsoft 365," sections Identify the endpoints to optimize and Implementing split tunnel for Microsoft 365 endpoints, <https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-vpn-implement-split-tunnel> (accessed Oct 30, 2026).
 [^c05-fr-zia]: FedRAMP Marketplace product data, packages FR2227062482, "Zscaler Internet Access - Government (Secure Web Gateway - vTIC) - High" (FedRAMP Certified; Class D; impact level High; JAB path; certified July 2, 2022), and FR1720454205, "Zscaler Internet Access - Government (Secure Web Gateway - vTIC)" (FedRAMP Certified; Class C; impact level Moderate; agency path; certified December 14, 2018), <https://www.fedramp.gov/marketplace/products.json> (accessed Oct 21, 2026).
+[^c05-gsa-overview]: Microsoft Learn, "What is Global Secure Access?," (general availability; licensing; feature comparison; remote network licensing), <https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access> (accessed Nov 9, 2026).
+[^c05-gsa-limits]: Microsoft Learn, "Known Limitations for Global Secure Access," (Government Cloud limitations; Private Access, traffic forwarding, remote network and client limitations), <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Nov 9, 2026).
+[^c05-gsa-featavail]: Microsoft Learn, "Microsoft Entra feature availability in Azure for US Government," (Azure for US Government; no Global Secure Access entry), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
+[^c05-gsa-connector-gov]: Microsoft Learn, "Microsoft Entra Connect: Hybrid identity considerations for Azure Government cloud," (install the agent for the Azure Government cloud), <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> (accessed Nov 9, 2026).
+[^c05-gsa-certs]: Microsoft Learn, "Global Secure Access Certifications," <https://learn.microsoft.com/entra/global-secure-access/reference-global-secure-access-certifications> (accessed Nov 9, 2026).
+[^c05-gsa-pa]: Microsoft Learn, "Learn about Microsoft Entra Private Access," <https://learn.microsoft.com/entra/global-secure-access/concept-private-access> (accessed Nov 9, 2026).
+[^c05-gsa-perapp]: Microsoft Learn, "How to configure per-app access using Global Secure Access applications," (segments, overlap, traffic flow), <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-per-app-access> (accessed Nov 9, 2026).
+[^c05-gsa-vpnrepl]: Microsoft Learn, "Tutorial: VPN replacement with Quick Access," <https://learn.microsoft.com/entra/global-secure-access/tutorial-private-access-vpn-replacement> (accessed Nov 9, 2026).
+[^c05-gsa-quick]: Microsoft Learn, "How to configure Quick Access for Global Secure Access," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-quick-access> (accessed Nov 9, 2026).
+[^c05-gsa-discovery]: Microsoft Learn, "Application Discovery for Global Secure Access," <https://learn.microsoft.com/entra/global-secure-access/how-to-application-discovery> (accessed Nov 9, 2026).
+[^c05-gsa-dg-pa]: Microsoft Learn, "Microsoft Global Secure Access Deployment Guide for Microsoft Entra Private Access," <https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-private-access> (accessed Nov 9, 2026).
+[^c05-gsa-ca]: Microsoft Learn, "How to Apply Conditional Access Policies to Microsoft Entra Private Access Apps," <https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-private-access-apps> (accessed Nov 9, 2026).
+[^c05-gsa-concept-conn]: Microsoft Learn, "Microsoft Entra Private Network Connectors," (outbound only; two per group; sizing; updater; inactive connectors), <https://learn.microsoft.com/entra/global-secure-access/concept-connectors> (accessed Nov 9, 2026).
+[^c05-gsa-conn]: Microsoft Learn, "How to configure connectors for Microsoft Entra Private Access," (server and TLS requirements; outbound ports and URLs; services; maintenance), <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-connectors> (accessed Nov 9, 2026).
+[^c05-gsa-unattended]: Microsoft Learn, "Silent install Microsoft Entra private network connector," <https://learn.microsoft.com/entra/global-secure-access/how-to-register-connector-powershell> (accessed Nov 9, 2026).
+[^c05-gsa-dns]: Microsoft Learn, "Microsoft Entra Private DNS - Configure Secure Internal Name Resolution," <https://learn.microsoft.com/entra/global-secure-access/concept-private-name-resolution> (accessed Nov 9, 2026).
+[^c05-gsa-da]: Microsoft Learn, "Migrate from DirectAccess to Microsoft Entra Private Access," <https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-direct-access-to-private-access> (accessed Nov 9, 2026).
+[^c05-gsa-ila]: Microsoft Learn, "Enable Intelligent Local Network" and "Global Secure Access Client for macOS Release Notes," <https://learn.microsoft.com/entra/global-secure-access/enable-intelligent-local-access> and <https://learn.microsoft.com/entra/global-secure-access/reference-macos-client-release-history> (accessed Nov 9, 2026).
+[^c05-gsa-dg]: Microsoft Learn, "Introduction to Microsoft Global Secure Access Deployment Guide," <https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-intro> (accessed Nov 9, 2026).
+[^c05-gsa-poc]: Microsoft Learn, "Introduction to Microsoft Global Secure Access Proof-of-Concept Guidance" and "Microsoft Global Secure Access Proof-of-Concept Guidance - Configure Microsoft Entra Private Access," <https://learn.microsoft.com/entra/architecture/gsa-poc-guidance-intro> and <https://learn.microsoft.com/entra/architecture/gsa-poc-private-access> (accessed Nov 9, 2026).
+[^c05-gsa-rn]: Microsoft Learn, "Global Secure Access remote network connectivity," (profiles; baseline profile; bandwidth and licenses), <https://learn.microsoft.com/entra/global-secure-access/concept-remote-network-connectivity> (accessed Nov 9, 2026).
+[^c05-gsa-rn-create]: Microsoft Learn, "How to Create Remote Networks," (CPE requirements; responder mode; firewall ports), <https://learn.microsoft.com/entra/global-secure-access/how-to-create-remote-networks> (accessed Nov 9, 2026).
+[^c05-gsa-rn-config]: Microsoft Learn, "Global Secure Access remote network configurations," (device types, regions, IKE parameters), <https://learn.microsoft.com/entra/global-secure-access/reference-remote-network-configurations> (accessed Nov 9, 2026).
+[^c05-gsa-ia]: Microsoft Learn, "Learn about Microsoft Entra Internet Access," (security profiles; baseline profile; web content filtering), <https://learn.microsoft.com/entra/global-secure-access/concept-internet-access> (accessed Nov 9, 2026).
+[^c05-gsa-ti]: Microsoft Learn, "How to configure Global Secure Access threat intelligence," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-threat-intelligence> (accessed Nov 9, 2026).
+[^c05-gsa-fw]: Microsoft Learn, "Configure cloud firewall for remote networks" and "Configure cloud firewall for Global Secure Access clients (preview)," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall> and <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall-clients> (accessed Nov 9, 2026).
+[^c05-gsa-dlp]: Microsoft Learn, "Create content policies for network content filtering," <https://learn.microsoft.com/entra/global-secure-access/how-to-network-content-filtering> (accessed Nov 9, 2026).
+[^c05-gsa-tls]: Microsoft Learn, "Configure Transport Layer Security Inspection Policies," <https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security> (accessed Nov 9, 2026).
+[^c05-gsa-partners]: Microsoft Learn, "Partner Ecosystem Overview," <https://learn.microsoft.com/entra/global-secure-access/partner-ecosystems-overview> (accessed Nov 9, 2026).
+[^c05-gsa-zscaler]: Microsoft Learn, "Configure Microsoft and Zscaler for a Unified SASE Solution," (scenarios; Global Secure Access service FQDNs and IPs bypasses), <https://learn.microsoft.com/entra/global-secure-access/how-to-zscaler-coexistence> (accessed Nov 9, 2026).
+[^c05-gsa-paloalto]: Microsoft Learn, "Security Service Edge (SSE) coexistence with Microsoft and Palo Alto Networks," <https://learn.microsoft.com/entra/global-secure-access/how-to-palo-alto-coexistence> (accessed Nov 9, 2026).
+[^c05-gsa-netskope]: Microsoft Learn, "Security Service Edge (SSE) Coexistence With Microsoft and Netskope," <https://learn.microsoft.com/entra/global-secure-access/how-to-netskope-coexistence> (accessed Nov 9, 2026).
+[^c05-gsa-cisco]: Microsoft Learn, "Security Service Edge (SSE) Coexistence With Microsoft and Cisco Umbrella," "... and Cisco Secure Access" and "... and Cisco VPNs," <https://learn.microsoft.com/entra/global-secure-access/how-to-cisco-coexistence>, <https://learn.microsoft.com/entra/global-secure-access/how-to-cisco-secure-access-coexistence> and <https://learn.microsoft.com/entra/global-secure-access/how-to-cisco-vpn-coexistence> (accessed Nov 9, 2026).
+[^c05-gsa-infoblox]: Microsoft Learn, "Configure Microsoft Entra Global Secure Access with Infoblox," <https://learn.microsoft.com/entra/global-secure-access/how-to-infoblox-coexistence> (accessed Nov 9, 2026).
+[^c05-gsa-edr]: Microsoft Learn, "EDR and antivirus coexistence with Global Secure Access client," <https://learn.microsoft.com/entra/global-secure-access/how-to-edr-antivirus-coexistence> (accessed Nov 9, 2026).
+[^c05-gsa-logs]: Microsoft Learn, "Global Secure Access logs and monitoring," <https://learn.microsoft.com/entra/global-secure-access/concept-global-secure-access-logs-monitoring> (accessed Nov 9, 2026).

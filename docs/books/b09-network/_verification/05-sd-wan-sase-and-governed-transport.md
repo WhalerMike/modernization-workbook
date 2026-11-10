@@ -159,3 +159,52 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | Cisco advisory cisco-sa-sdwan-rpa-EHchtZk version 2.1 (October 28, 2026) adds a Talos blog link; still limited exploitation; Validator and the FedRAMP deployment type still listed. KEV catalog 2026.11.06 adds no Cisco SD-WAN entries after September 30 | footnote version and date updated (was version 2.0, June 16, 2026); no change to the text |
+
+## Learn gaps, November 9, 2026
+
+New section "Microsoft's security service edge: Global Secure Access" (Learn gaps: Private Access as VPN and DirectAccess replacement, deployment, remote networks, Internet Access policy, coexistence). Pages read with the Learn fetch tool; the Palo Alto, Netskope, Cisco, Infoblox, EDR, threat intelligence, content filtering and cloud firewall for clients pages from Learn search excerpts of the same pages. Microsoft Learn pages read Nov 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| GSA-1 | Three parts; all generally available; licensing (standalone or Entra Suite, plus P1/P2; Microsoft traffic in P1/P2; per user); remote networks need 50 combined licenses | Gates; licensing | verified | Microsoft Learn "What is Global Secure Access?", read Nov 9, 2026 |
+| GSA-2 | "Global Secure Access is available in the US Government Community Cloud (GCC), but isn't yet supported in..." (quoted); no per-feature GCC statement | Gates | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
+| GSA-3 | Feature availability page for Azure Government doesn't list Global Secure Access | Gates | verified | Microsoft Learn "Microsoft Entra feature availability in Azure for US Government", read Nov 9, 2026 |
+| GSA-4 | Connector install in Azure Government with ENVIRONMENTNAME="AzureUSGovernment" is an Application Proxy procedure | Gates | verified | Microsoft Learn Microsoft Entra Connect: Hybrid identity considerations for Azure Government cloud; How to configure connectors, read Nov 9, 2026 |
+| GSA-5 | FedRAMP High and DoD SRG Level 2 listed; environment not stated; no IL4/IL5 | Gates | verified | Microsoft Learn "Global Secure Access Certifications", read Nov 9, 2026 |
+| GSA-6 | Gate table rows; preview labels (cloud firewall for clients, Purview DLP integration, Netskope integration, ILA per macOS release notes) | Gates | verified | Microsoft Learn the pages cited in the section; "not yet specified" where a feature page says nothing, read Nov 9, 2026 |
+| GSA-7 | Quick Access and per-app access; enterprise application, connector group, assignment | Private Access | verified | Microsoft Learn "Learn about Microsoft Entra Private Access", read Nov 9, 2026 |
+| GSA-8 | Traffic flow client, service edge, connector; assignment and CA checked before brokering; connector does DNS | Private Access | verified | Microsoft Learn How to configure per-app access; Tutorial: VPN replacement with Quick Access, read Nov 9, 2026 |
+| GSA-9 | Quick Access as a transition state (quoted); 10.0.0.0/24 ports 0-52,54-65535 example; MFA with sign-in frequency on Quick Access advice; add AD forest name to suffixes | Private Access | verified | Microsoft Learn How to configure Quick Access; Tutorial: VPN replacement with Quick Access, read Nov 9, 2026 |
+| GSA-10 | Application discovery, last 30 days | Private Access | verified | Microsoft Learn "Application Discovery for Global Secure Access", read Nov 9, 2026 |
+| GSA-11 | Move from Quick Access to per-app until no segments remain (quoted) | Private Access | verified | Microsoft Learn "Deployment Guide for Microsoft Entra Private Access", read Nov 9, 2026 |
+| GSA-12 | No overlapping segments except per-app over Quick Access; assignments not moved; 15 minutes | Private Access | verified | Microsoft Learn "How to configure per-app access", read Nov 9, 2026 |
+| GSA-13 | Nested groups not supported; minimum connector 1.5.3417.0 | Private Access | verified | Microsoft Learn "How to configure Quick Access", read Nov 9, 2026 |
+| GSA-14 | CA example grant, report-only, exclusions | Private Access | verified | Microsoft Learn "How to Apply Conditional Access Policies to Microsoft Entra Private Access Apps", read Nov 9, 2026 |
+| GSA-15 | CA on Private Access traffic not supported (app level only); compliant network check not supported for Private Access; DoH unsupported; GPO NRPT breaks private DNS | Private Access | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
+| GSA-16 | Outbound only (quoted); two connectors per group; 8 GiB, 4 cores, under 70 percent; updater one per group; inactive removed after 10 days | Connectors | verified | Microsoft Learn "Microsoft Entra Private Network Connectors", read Nov 9, 2026 |
+| GSA-17 | Windows Server 2016 or later; TLS 1.2 before install; not with Password Protection proxy; avoid inline TLS inspection; ports 80 and 443 table; URLs; services; maintenance group | Connectors | verified | Microsoft Learn "How to configure connectors for Microsoft Entra Private Access", read Nov 9, 2026 |
+| GSA-18 | Server 2019 minimum, 2016 gone by Jan 12, 2027 | Connectors | restated-as-design | program assumption (restated-as-design) |
+| GSA-19 | Unattended install and RegisterConnector.ps1 commands; secure-storage warning (quoted) | Connectors | verified | Microsoft Learn "Silent install Microsoft Entra private network connector", read Nov 9, 2026 |
+| GSA-20 | Private DNS suffix flow, synthetic IP, single-label warning (quoted), Kerberos by FQDN | DNS | verified | Microsoft Learn "Microsoft Entra Private DNS", read Nov 9, 2026 |
+| GSA-21 | DirectAccess can't coexist (quoted); four phases; don't decommission early; gpupdate/shutdown commands; restart twice; NRPT and IP-HTTPS checks; Get-DnsClientNrptPolicy | DirectAccess | verified | Microsoft Learn "Migrate from DirectAccess to Microsoft Entra Private Access", read Nov 9, 2026 |
+| GSA-22 | ILA DNS probe; CA still applies; preview in macOS release notes | Local access | verified | Microsoft Learn Enable Intelligent Local Network; Global Secure Access Client for macOS Release Notes, read Nov 9, 2026 |
+| GSA-23 | Deployment guide scenarios, seven hours (quoted), phases, fewer than 20 pilot users (quoted); break-glass sentence (quoted) and scripts | Deployment | verified | Microsoft Learn "Introduction to Microsoft Global Secure Access Deployment Guide", read Nov 9, 2026 |
+| GSA-24 | PoC prerequisites: test tenant, Windows 11 device without direct path, Server 2019/2022 connector host | Deployment | verified | Microsoft Learn "Proof-of-Concept Guidance intro and Private Access PoC", read Nov 9, 2026 |
+| GSA-25 | Remote networks: IPsec from CPE; Microsoft traffic and Internet Access profiles, not Private Access; baseline profile; client needed for user-aware policy | Remote networks | verified | Microsoft Learn Global Secure Access remote network connectivity; Known Limitations, read Nov 9, 2026 |
+| GSA-26 | CPE IKEv2, BGP, initiates; UDP 500, UDP 4500, TCP 179 | Remote networks | verified | Microsoft Learn "How to Create Remote Networks", read Nov 9, 2026 |
+| GSA-27 | No Azure Government region in the remote network region list | Remote networks | verified | Microsoft Learn "Global Secure Access remote network configurations", read Nov 9, 2026 |
+| GSA-28 | Security profiles via CA; baseline profile applies without a policy; web filtering by category/FQDN; SNI only without TLS inspection | Internet Access | verified | Microsoft Learn "Learn about Microsoft Entra Internet Access", read Nov 9, 2026 |
+| GSA-29 | Control order (quoted); threat intelligence blocks high-severity destinations (quoted) | Internet Access | verified | Microsoft Learn "How to configure Global Secure Access threat intelligence", read Nov 9, 2026 |
+| GSA-30 | Cloud firewall for remote networks via baseline profile; client version preview | Internet Access | verified | Microsoft Learn Configure cloud firewall for remote networks; for clients (preview), read Nov 9, 2026 |
+| GSA-31 | Basic content policies without Purview; Purview DLP preview, TLS inspection, E5 or add-on | Internet Access | verified | Microsoft Learn "Create content policies for network content filtering", read Nov 9, 2026 |
+| GSA-32 | TLS inspection certificates, trust, communicate policy first, recommended bypass categories | Internet Access | verified | Microsoft Learn "Configure Transport Layer Security Inspection Policies", read Nov 9, 2026 |
+| GSA-33 | Coexistence splits Microsoft, internet and private traffic | Coexistence | verified | Microsoft Learn "Partner Ecosystem Overview", read Nov 9, 2026 |
+| GSA-34 | Zscaler scenarios; bypass IPs and FQDN list; 6.6.0.0/16 synthetic range | Coexistence | verified | Microsoft Learn "Configure Microsoft and Zscaler for a Unified SASE Solution", read Nov 9, 2026 |
+| GSA-35 | Palo Alto Prisma Access four scenarios | Coexistence | verified | Microsoft Learn "SSE coexistence with Microsoft and Palo Alto Networks", read Nov 9, 2026 |
+| GSA-36 | Netskope steering configurations | Coexistence | verified | Microsoft Learn "SSE Coexistence With Microsoft and Netskope", read Nov 9, 2026 |
+| GSA-37 | Cisco Umbrella, Secure Access, ASA and Secure Access VPN split-include; Quick Access name and suffix bypass | Coexistence | verified | Microsoft Learn SSE Coexistence With Microsoft and Cisco Umbrella / Secure Access / VPNs, read Nov 9, 2026 |
+| GSA-38 | Infoblox: GSA for private apps, Infoblox DNS security for internet | Coexistence | verified | Microsoft Learn "Configure Microsoft Entra Global Secure Access with Infoblox", read Nov 9, 2026 |
+| GSA-39 | EDR process exclusions | Coexistence | verified | Microsoft Learn "EDR and antivirus coexistence with Global Secure Access client", read Nov 9, 2026 |
+| GSA-40 | Coexistence pages name no government cloud | Coexistence | verified | Microsoft Learn "the coexistence pages above (absence checked)", read Nov 9, 2026 |
+| GSA-41 | Traffic and remote network health logs 30 days; diagnostic settings export | Requirements table | verified | Microsoft Learn "Global Secure Access logs and monitoring", read Nov 9, 2026 |
+| GSA-42 | Requirements table rows | Requirements table | restated-as-design | program design (restated-as-design) |

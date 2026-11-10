@@ -121,3 +121,15 @@ Checked October 21, 2026 by writer W4. Source: `docs/compliance/Vol_IV_Book_04_P
 | Before | After | Check |
 |---|---|---|
 | Chapter named PM-18, PM-19 and PM-5(1) as program controls in the privacy baseline | Adds the eight privacy-baseline PM controls that Chapter 05 covers: PM-4, PM-6, PM-7, PM-9, PM-10, PM-11, PM-14, PM-31 | Decision of Nov 8, 2026; NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json, version 5.2.0, last modified 2026-10-22, read Nov 8, 2026: all eight present, with pm-3, pm-5.1, pm-8, pm-13, pm-17 to pm-22 and others |
+
+## Learn gaps, November 9, 2026
+
+New subsection "Where the directory keeps its data" (Learn gaps: Entra data residency). Microsoft Learn pages read Nov 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| DR-1 | National cloud: at rest in target location, no exceptions (quoted); US government datacenters operated by Microsoft | Where the directory keeps its data | verified | Microsoft Learn "Microsoft Entra ID and data residency", read Nov 9, 2026 |
+| DR-2 | Public geo-located model; North America; exceptions per component; MFA logs UPN and phone numbers, "North America and/or in geo location" (quoted); B2B copies (quoted) | Where the directory keeps its data | verified | Microsoft Learn "Microsoft Entra ID and data residency", read Nov 9, 2026 |
+| DR-3 | GCC paired with Entra ID in Azure Commercial | Where the directory keeps its data | verified | Microsoft Learn "carried from Chapter 06 (Azure feature availability, Microsoft 365 integration)", read Nov 9, 2026 |
+| DR-4 | Logs copied to reporting and ML systems in the continental United States (quoted) | Where the directory keeps its data | verified | Microsoft Learn "Data operational considerations", read Nov 9, 2026 |
+| DR-5 | Three map rows | Where the directory keeps its data | restated-as-design | restated-as-design |
