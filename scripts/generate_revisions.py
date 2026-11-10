@@ -27,7 +27,11 @@ sets every book, guide and developer workbook to version 2.0, whether or not
 the edition touched it, and a later edition that touches one goes 2.1, 2.2 and
 so on from there. The 2.0 row says "Release 2.0, the baseline: ..." and then lists any merged
 changes the edition carries for that item. Earlier rows are not touched.
-Without a baseline edition nothing changes.
+Without a baseline edition nothing changes. "Every" means every item that was
+in the baseline: one whose page or folder exists at the edition's tagged commit
+(`commit:` in the record, read with git). An item created after it gets no 2.0
+row; like any item, it starts at 1.0 in the first edition that carries it. An
+item that was in the baseline and only gained pages since keeps its 2.0 row.
 
     python scripts/generate_revisions.py           # write the sections
     python scripts/generate_revisions.py --check   # exit 1 if a section is stale or the record is wrong
@@ -200,13 +204,44 @@ def baseline_change(ed: dict) -> str:
     return f"{name}, the baseline: checked against every other book; Draft becomes Baseline" if name else BASELINE_CHANGE
 
 
-def versions(editions: list[dict], uid: str) -> list[tuple[str, dict, dict]]:
+def members_at(commit: str, found: dict[str, Unit]) -> set[str]:
+    """The units whose page or folder (their first path) exists at `commit`."""
+    try:
+        out = subprocess.run(["git", "ls-tree", "-r", "--name-only", commit, "--", "docs"], cwd=ROOT,
+                             capture_output=True, text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        raise RecordError(f"data/editions.yml: can't read commit {commit} with git, so can't tell which books, "
+                          "guides and developer workbooks were in the baseline; fetch the full history "
+                          "(git fetch --unshallow --tags)") from None
+    files = set(out.splitlines())
+    dirs = {f.rsplit("/", i)[0] for f in files for i in range(1, f.count("/") + 1)}
+    return {uid for uid, u in found.items() if u.page.relative_to(ROOT).as_posix() in files or u.paths[0] in dirs}
+
+
+def baseline_members(editions: list[dict], found: dict[str, Unit]) -> dict[str, set[str]]:
+    """For the baseline edition: the units that existed at its tagged commit."""
+    out = {}
+    for ed in editions:
+        if ed.get("baseline") is True:
+            if not ed.get("commit"):
+                raise RecordError(f"data/editions.yml: edition {ed['id']}: the baseline needs its `commit:`")
+            out[ed["id"]] = members_at(str(ed["commit"]), found)
+    return out
+
+
+def versions(editions: list[dict], uid: str,
+             members: dict[str, set[str]] | None = None) -> list[tuple[str, dict, dict]]:
     """(version, edition, the unit's entry) for each edition that changed the unit.
-    The baseline edition (`baseline: true`) counts for every unit and sets it to 2.0."""
+    The baseline edition (`baseline: true`) counts for every unit that was in it and sets it to 2.0.
+    `members` maps the baseline edition's id to the units that existed at its commit
+    (baseline_members); a unit not among them, and not named in the edition, gets no row there.
+    Without `members`, every unit counts as in the baseline."""
     rows, major, minor = [], 0, -1
     for ed in editions:
         entry = (ed.get("units") or {}).get(uid)
         if ed.get("baseline") is True:
+            if members is not None and ed["id"] in members and uid not in members[ed["id"]] and not entry:
+                continue
             entry = {"changes": [baseline_change(ed)] + list((entry or {}).get("changes") or [])}
             rows.append(("2.0", ed, entry))
             major, minor = 2, 0
@@ -236,11 +271,11 @@ def kind_name(unit: Unit) -> str:
     return {"book": "book", "guide": "guide", "workbook": "workbook"}[unit.kind]
 
 
-def revisions_section(unit: Unit, editions: list[dict]) -> str:
+def revisions_section(unit: Unit, editions: list[dict], members: dict[str, set[str]] | None = None) -> str:
     rel = posixpath.relpath(ARCHIVE.relative_to(ROOT).as_posix(), unit.page.parent.relative_to(ROOT).as_posix())
     history = f"{GH}/commits/main/{unit.paths[0]}"
     lines = [REV_START, "", "## Version and revision history {#version-history}", ""]
-    rows = versions(editions, unit.id)
+    rows = versions(editions, unit.id, members)
     if not rows:
         lines += [
             f"This {kind_name(unit)} has not been published in an edition yet. Each edition is kept, with its "
@@ -364,10 +399,11 @@ def place(text: str, section: str) -> str:
 def outputs() -> dict[Path, str]:
     found = units()
     editions, releases = load(found)
+    members = baseline_members(editions, found)
     out = {}
     for unit in found.values():
         text = unit.page.read_bytes().decode("utf-8")
-        out[unit.page] = place(text, revisions_section(unit, editions))
+        out[unit.page] = place(text, revisions_section(unit, editions, members))
     text = ARCHIVE.read_bytes().decode("utf-8")
     out[ARCHIVE] = place(text, archive_section(editions, releases, found))
     return out
