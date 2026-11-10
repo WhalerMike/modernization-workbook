@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: bc5d94a917ce3aeec8ffb30e99a371cd48391e06e1776f37e3d2762ef285943d
+last-reviewed: 2026-11-09
 ---
 # Chapter 05 — Google Cloud Personalized Service Health
 
