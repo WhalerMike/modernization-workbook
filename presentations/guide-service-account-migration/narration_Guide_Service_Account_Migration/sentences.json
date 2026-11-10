@@ -1,0 +1,683 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   12.55,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Service Accounts, from user accounts to group managed service accounts to Microsoft Entra workload identities."
+  ],
+  [
+   13.312,
+   2.562,
+   "The guide's idea fits in one line."
+  ],
+  [
+   15.875,
+   5.037,
+   "A service account's password is the one nobody changes, because changing it breaks something."
+  ],
+  [
+   20.913,
+   7.963,
+   "Every step in the guide replaces a password someone has to keep with a credential that Windows, or Microsoft Entra I D, keeps instead."
+  ],
+  [
+   28.875,
+   9.125,
+   "Every fact and command in this deck comes from Microsoft Learn, read on November ninth, 2026, and the guide footnotes each one."
+  ],
+  [
+   38.0,
+   4.737,
+   "Rules that are the program's own, not Microsoft's, are called design guidance."
+  ],
+  [
+   42.737,
+   9.137,
+   "We'll go in four parts: why this matters, what the kinds of service identity are, who decides and what they keep, and how each migration runs."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Here's the problem."
+  ],
+  [
+   1.087,
+   6.362,
+   "The most common service account in an older estate is an ordinary user account that a service runs as."
+  ],
+  [
+   7.45,
+   7.862,
+   "An administrator sets its password by hand, under the domain's password policy, and it's rotated only if someone remembers to."
+  ],
+  [
+   15.312,
+   6.3,
+   "When that account holds a service principal name, an S P N, it's highly exposed to Kerberoasting."
+  ],
+  [
+   21.613,
+   7.95,
+   "Microsoft Learn's overview of delegated managed service accounts names Kerberoasting as the common issue with traditional service accounts."
+  ],
+  [
+   29.562,
+   10.95,
+   "Learn's Entra guidance on securing user-based service accounts gives three ways to find them: an S P N on a user account, delegation, and a password that never expires."
+  ],
+  [
+   40.513,
+   9.713,
+   "Once you've found one, record every host, service, application pool and scheduled task that uses it, every S P N, and every group it belongs to."
+  ],
+  [
+   50.225,
+   2.788,
+   "That record is what the migration has to carry."
+  ],
+  [
+   53.013,
+   1.387,
+   "So what could it become?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.575,
+   "The guide compares twelve kinds of service identity in one table; here's the short form."
+  ],
+  [
+   5.625,
+   13.787,
+   "On premises, Microsoft Learn names the user account used as a service, the standalone managed service account, the group managed service account, and, new in Windows Server 2025, the delegated managed service account."
+  ],
+  [
+   19.413,
+   15.438,
+   "A standalone or group account has a two-hundred-forty-byte random password that Windows changes every thirty days by default; for a G M S A, the domain controllers compute it from the K D S root key, and the hosts allowed to retrieve it hold it."
+  ],
+  [
+   34.85,
+   6.1,
+   "A D M S A ties its secret to the machine, and Learn says it helps prevent Kerberoasting."
+  ],
+  [
+   40.95,
+   6.013,
+   "Virtual and computer accounts act as the computer on the network, so you can't tell which service used them."
+  ],
+  [
+   46.962,
+   21.125,
+   "In Microsoft Entra I D: an app registration with a certificate you keep in a vault; system- and user-assigned managed identities, whose credentials Azure keeps; an Azure Arc-enabled server's own managed identity; a federated credential, signed by an outside issuer; and agent identities, which take their credentials from a blueprint."
+  ],
+  [
+   68.088,
+   2.612,
+   "None of the cloud kinds speaks Kerberos."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.825,
+   "Three things follow from that table."
+  ],
+  [
+   1.875,
+   4.65,
+   "First, nothing in Microsoft Entra I D speaks Kerberos for a service."
+  ],
+  [
+   6.525,
+   15.838,
+   "A workload that authenticates with Kerberos or N T L M to an on-premises resource, a file share, a sequel Server login mapped to a Windows account, or a Kerberos-only application, keeps an Active Directory identity until that resource changes."
+  ],
+  [
+   22.363,
+   4.862,
+   "Second, a G M S A is a better password, not a different protocol."
+  ],
+  [
+   27.225,
+   9.225,
+   "It's long, random and rotated, but it still exists, every host allowed to retrieve it holds it, and it works only while Active Directory does."
+  ],
+  [
+   36.45,
+   5.763,
+   "Third, managed identities are the end state only on Azure or on an Arc-enabled server."
+  ],
+  [
+   42.212,
+   6.638,
+   "So a hybrid workload keeps its G M S A for Kerberos and gets a cloud identity for its cloud calls."
+  ],
+  [
+   48.85,
+   2.275,
+   "Learn also documents special cases."
+  ],
+  [
+   51.125,
+   6.65,
+   "Failover clusters don't support G M S As, though services on the Cluster service can use one."
+  ],
+  [
+   57.775,
+   4.525,
+   "In Entra Domain Services, the K D S root key is pre-created."
+  ],
+  [
+   62.3,
+   7.162,
+   "Cloud Sync's agent runs as a G M S A, and Connect Sync's account can be chosen only at installation."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.337,
+   "Now, who decides."
+  ],
+  [
+   1.387,
+   6.188,
+   "The guide's decision path is nine questions, asked in order, and the first yes is the target."
+  ],
+  [
+   7.575,
+   6.5,
+   "Each target lines up with a disposition the application owner records in the Non-Person Identity track."
+  ],
+  [
+   14.075,
+   4.25,
+   "One: is the account disabled, unused or without an owner?"
+  ],
+  [
+   18.325,
+   1.0,
+   "Retire it."
+  ],
+  [
+   19.325,
+   4.662,
+   "Two: does the workload run on an Azure resource, or is it moving to one?"
+  ],
+  [
+   23.988,
+   2.938,
+   "A managed identity, user-assigned preferred."
+  ],
+  [
+   26.925,
+   5.888,
+   "Three: does it run in C I C D or on a platform with its own O I D C issuer?"
+  ],
+  [
+   32.812,
+   1.525,
+   "A federated credential."
+  ],
+  [
+   34.337,
+   4.875,
+   "Four: does it stay on premises but call Graph or Azure A P I's?"
+  ],
+  [
+   39.212,
+   4.825,
+   "The Arc-enabled server's identity, or an app registration with a certificate."
+  ],
+  [
+   44.038,
+   9.938,
+   "Five: does it need Kerberos, with a Windows Server 2025 domain controller, every host on 2025, and no unconstrained delegation?"
+  ],
+  [
+   53.975,
+   9.575,
+   "A D M S A. Six: otherwise, a G M S A. Seven and eight keep what must stay, with an owner and an end date."
+  ],
+  [
+   63.55,
+   1.875,
+   "Nine is the Kerberos island."
+  ],
+  [
+   65.425,
+   9.012,
+   "This lines up with Microsoft Learn: use a G M S A unless the service doesn't support one, then a standalone account, then a user account."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.138,
+   "These are the program's rules, design guidance, and they apply to a hand migration too."
+  ],
+  [
+   5.188,
+   10.963,
+   "Every identity has two named technical owners and a sponsor who is a federal employee mastered in H R; a contractor can build or run a workload but can't be its only sponsor."
+  ],
+  [
+   16.15,
+   3.138,
+   "No account moves without its reviewed disposition."
+  ],
+  [
+   19.288,
+   7.938,
+   "The old account runs in parallel for thirty days, then it's disabled, and it's deleted only later, through the decommission process."
+  ],
+  [
+   27.225,
+   11.012,
+   "No client secrets: a cloud identity is a managed identity, a federated credential or a certificate, in that order, and Microsoft Learn says not to use password credentials."
+  ],
+  [
+   38.237,
+   7.338,
+   "No privileged groups: Learn says service accounts shouldn't be members of them, and each service should have its own account."
+  ],
+  [
+   45.575,
+   5.362,
+   "And changes are reviewed: in production, each write is a plan approved by its hash."
+  ],
+  [
+   50.938,
+   2.375,
+   "One place where Learn's own pages differ."
+  ],
+  [
+   53.312,
+   10.012,
+   "Learn's Entra page on group managed service accounts ends its move by deleting the old account, while its page on setting up delegated accounts says never to delete the original."
+  ],
+  [
+   63.325,
+   2.362,
+   "The program follows the stricter reading."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.3,
+   "Every step carries its federal requirement, the indicator it aligns to, and the evidence the I S S O keeps."
+  ],
+  [
+   7.35,
+   6.362,
+   "The inventory supports A C two, account management, and C M eight, the component inventory."
+  ],
+  [
+   13.713,
+   8.938,
+   "The K D S root key supports I A five, authenticator management, with event forty-oh-four and the key's start time as evidence."
+  ],
+  [
+   22.65,
+   11.575,
+   "Creating the account supports A C six, least privilege, I A five, and C M three, configuration change control: the evidence is the approved plan and the read-back."
+  ],
+  [
+   34.225,
+   10.713,
+   "Installing and switching supports least privilege and privileged accounts: Test-A D Service Account on each host, the S P N listing, and the service's managed-account check."
+  ],
+  [
+   44.938,
+   2.888,
+   "The parallel run supports disabling accounts."
+  ],
+  [
+   47.825,
+   8.512,
+   "The cloud identities support I A nine, service identification and authentication, which sits in no baseline and is tailored in."
+  ],
+  [
+   56.337,
+   6.775,
+   "The controls are from the nist special publication eight hundred fifty-three, revision five, Moderate baseline."
+  ],
+  [
+   63.112,
+   9.375,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; which evidence supports which indicator is the program's mapping, design guidance."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   11.625,
+   "Migration A moves a user account to a G M S A, in Microsoft Learn's order: K D S root key, create, install, switch, validate, retire."
+  ],
+  [
+   11.675,
+   10.938,
+   "A1: read the account with Get-A D User, its S P Ns, delegation and groups, and on each host read the service's logon account with S C query config."
+  ],
+  [
+   22.613,
+   3.775,
+   "A2: the forest needs one K D S root key."
+  ],
+  [
+   26.387,
+   12.8,
+   "If there's none, a Domain Admin or Enterprise Admin creates it once, and Learn's K D S page says domain controllers wait up to ten hours before they allow a G M S A, so the key replicates first."
+  ],
+  [
+   39.188,
+   7.05,
+   "Learn offers a key backdated ten hours for a test domain with one domain controller; never use it in production."
+  ],
+  [
+   46.237,
+   6.75,
+   "And Learn's containers page says more than one key makes G M S As fail after a password rotation."
+  ],
+  [
+   52.987,
+   9.425,
+   "A3: create a group of the hosts, then the G M S A with A E S two-fifty-six, which Learn's overview says to always configure."
+  ],
+  [
+   62.413,
+   5.45,
+   "Its name must be unique in the forest, and its password interval can be set only now."
+  ],
+  [
+   67.862,
+   4.463,
+   "A4: after a restart, install it on each host and test it."
+  ],
+  [
+   72.325,
+   4.737,
+   "Test-A D Service Account must return true on every host before you switch."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   9.613,
+   "A5 happens in one change window, because an S P N left on the old account while the service runs as the G M S A breaks Kerberos to the service."
+  ],
+  [
+   9.662,
+   2.987,
+   "Each S P N must have exactly one owner."
+  ],
+  [
+   12.65,
+   6.15,
+   "Remove it from the old account, add it to the G M S A, and list it with set S P N."
+  ],
+  [
+   18.8,
+   1.988,
+   "Then change the workload's identity."
+  ],
+  [
+   20.788,
+   6.8,
+   "A G M S A logs on with a blank password, which Windows fills in, as Learn's Entra page says."
+  ],
+  [
+   27.587,
+   6.275,
+   "For a Windows service, S C config sets the account, and the managed-account query must report true."
+  ],
+  [
+   33.862,
+   10.925,
+   "A scheduled task gets a new principal with the password logon type, as Learn's assessment pages do it, and an I I S application pool gets identity type three with the blank password."
+  ],
+  [
+   44.788,
+   5.825,
+   "The guide notes that Learn has no single page showing that last one end to end, so verify it."
+  ],
+  [
+   50.612,
+   7.487,
+   "A6 is the thirty-day parallel run: test end to end, keep the old account enabled, and watch its logons stop."
+  ],
+  [
+   58.1,
+   5.688,
+   "A7 disables the old account; deletion comes later, through the decommission process."
+  ],
+  [
+   63.788,
+   6.388,
+   "To roll back, switch the workload back with the old password from the vault, and move the S P Ns back."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.275,
+   "Migration B moves the same kind of account to a delegated managed service account, on Windows Server 2025."
+  ],
+  [
+   7.325,
+   14.825,
+   "A D M S A supersedes the old account: once the migration completes, the old password can't be used, its S P Ns, delegation and authentication policy move to the D M S A, and the old account is disabled."
+  ],
+  [
+   22.15,
+   2.45,
+   "Check Microsoft Learn's limits first."
+  ],
+  [
+   24.6,
+   11.75,
+   "At least one Windows Server 2025 domain controller, and every machine that uses the account updated to support D M S As; one that isn't fails once the old account is disabled."
+  ],
+  [
+   36.35,
+   8.2,
+   "You can't migrate an M S A or a G M S A to a D M S A, and unconstrained delegation stops working."
+  ],
+  [
+   44.55,
+   12.15,
+   "B1 creates the D M S A. Learn's set-up page then sets a state attribute with a parameter the cmdlet doesn't have; for a migration, skip it, because starting the migration sets the state."
+  ],
+  [
+   56.7,
+   6.575,
+   "B2 starts the migration, and on each host sets Learn's registry value and restarts the one service."
+  ],
+  [
+   63.275,
+   6.425,
+   "B3: Learn says to wait at least two ticket lifetimes, fourteen days, and recommends four."
+  ],
+  [
+   69.7,
+   2.625,
+   "The program's thirty days covers four."
+  ],
+  [
+   72.325,
+   3.15,
+   "Then complete it, and never delete the original account."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.7,
+   "Migration C starts when the workload moves to Azure, or gains a call to Graph or an Azure A P I, and only for what it reaches with OAuth."
+  ],
+  [
+   8.75,
+   19.975,
+   "Microsoft Learn's security best practices for application properties set the order: a managed identity whenever possible; where the app doesn't run on Azure, a platform that manages its own credentials, which is federation; otherwise a certificate from a trusted certificate authority, kept in a vault; and never a password credential."
+  ],
+  [
+   28.725,
+   9.825,
+   "C1: a workload moving to Azure gets a user-assigned managed identity, created with the Azure C L I and given the narrowest role at the narrowest scope."
+  ],
+  [
+   38.55,
+   3.163,
+   "It outlives its resources, so it needs an owner."
+  ],
+  [
+   41.712,
+   4.562,
+   "C2: on an Arc-enabled server, use the server's own identity."
+  ],
+  [
+   46.275,
+   8.037,
+   "Learn says only local administrators and one local group can request its tokens, so add the G M S A to that group."
+  ],
+  [
+   54.312,
+   7.088,
+   "C3: on a host with no Arc agent, an app registration with a certificate, with two named owners."
+  ],
+  [
+   61.4,
+   8.75,
+   "C4: for C I C D or another cloud, a federated credential, whose issuer, subject and audience must match exactly."
+  ],
+  [
+   70.15,
+   5.312,
+   "C5: after thirty days carrying traffic, retire what the cloud path replaced."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.087,
+   "The guide lists the dangers and the guard for each."
+  ],
+  [
+   3.138,
+   10.512,
+   "Create a G M S A before the K D S root key replicates, and password retrieval fails on hosts that ask another domain controller: wait the ten hours."
+  ],
+  [
+   13.65,
+   7.225,
+   "Create a second root key, and G M S As fail after their next password rotation: one key per forest."
+  ],
+  [
+   20.875,
+   9.338,
+   "Leave an S P N on the old account, and Kerberos to the service fails or falls back to N T L M: move the S P Ns in the switch window."
+  ],
+  [
+   30.212,
+   6.213,
+   "Switch a host that can't retrieve the password, and the service won't start: test every host first."
+  ],
+  [
+   36.425,
+   7.0,
+   "Put a G M S A in a privileged group, and every host that retrieves its password holds that privilege."
+  ],
+  [
+   43.425,
+   9.275,
+   "Complete a D M S A migration too early, or with a host not on Windows Server 2025, and the service fails on the hosts it hasn't learned."
+  ],
+  [
+   52.7,
+   3.85,
+   "Delete the old account during the migration, and there's no way back."
+  ],
+  [
+   56.55,
+   6.025,
+   "Put a client secret on the new app registration, and you have a password in a configuration file again."
+  ],
+  [
+   62.575,
+   7.612,
+   "And a G M S A left behind when Active Directory retires loses its credential with the last domain controller."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.625,
+   "In production, the same moves run as reviewed code, in the Non-Person Identity developer workbook."
+  ],
+  [
+   6.675,
+   3.0,
+   "Chapter 3 records each account's disposition."
+  ],
+  [
+   9.675,
+   10.162,
+   "Chapter 6 does Migration A as a plan: create the G M S A, wait for the host change and the thirty days, then disable the superseded account."
+  ],
+  [
+   19.837,
+   8.713,
+   "It does Migration B as three planned actions, create, start and complete, with every limit Microsoft Learn sets checked first."
+  ],
+  [
+   28.55,
+   8.863,
+   "Chapter 5 does Migration C, the identity and its credential, and tests a real token exchange, and Chapter 7 cuts its permissions."
+  ],
+  [
+   37.413,
+   5.662,
+   "Chapter 6 also keeps the island list and the reconciliation for what stays on Kerberos."
+  ],
+  [
+   43.075,
+   2.575,
+   "What the code never does matters as much."
+  ],
+  [
+   45.65,
+   5.362,
+   "It never runs a plan nobody approved, because each plan is sent only by its hash."
+  ],
+  [
+   51.013,
+   7.25,
+   "And it never creates a K D S root key, never runs undo or reset, and never deletes an account."
+  ],
+  [
+   58.263,
+   9.6,
+   "To try it, take Module 12 of the Non-Person Identity learning path, which runs Learn's steps on stand-ins and the kit's plans on fixtures, with no tenant."
+  ],
+  [
+   67.862,
+   5.4,
+   "Then Chapter 6's second lab, in a test domain, and the guide's checklist."
+  ],
+  [
+   73.263,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

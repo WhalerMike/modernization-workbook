@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: e86a2a3c616df43ca550d458e0c1baae713e2b1fe3989e1354b1f1474167da83
+last-reviewed: 2026-11-09
 ---
 # Chapter 04 — AWS Health
 

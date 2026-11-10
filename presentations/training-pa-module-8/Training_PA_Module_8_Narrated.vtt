@@ -774,395 +774,395 @@ the previous package's hash is
 day one's: that's the chain.
 
 162
-00:10:35.760 --> 00:10:38.777
+00:10:35.590 --> 00:10:38.607
 Step nine assembles the
 period for the ISSO,
 
 163
-00:10:38.777 --> 00:10:42.297
+00:10:38.607 --> 00:10:42.127
 from the twenty-eighth to
 the thirtieth of October.
 
 164
-00:10:42.297 --> 00:10:46.215
+00:10:42.127 --> 00:10:46.045
 Two packages, no chain breaks,
 no audit coverage gaps,
 
 165
-00:10:46.215 --> 00:10:48.948
+00:10:46.045 --> 00:10:48.778
 six incidents, and complete is false.
 
 166
-00:10:48.948 --> 00:10:54.613
+00:10:48.778 --> 00:10:54.443
 The summary counts three activations,
 two Tier 0 and one Tier 1; four requests,
 
 167
-00:10:54.613 --> 00:11:00.548
+00:10:54.443 --> 00:11:00.378
 two approved and one denied; and one Tier
 0 or Tier 1 activation without approval.
 
 168
-00:11:00.548 --> 00:11:02.160
+00:11:00.378 --> 00:11:01.990
 Then the Gate 4 table.
 
 169
-00:11:02.160 --> 00:11:04.211
+00:11:01.990 --> 00:11:04.041
 Residual standing privilege:
 
 170
-00:11:04.211 --> 00:11:08.722
+00:11:04.041 --> 00:11:08.552
 one on the exceptions list with a
 reason, eight outside it, so not met.
 
 171
-00:11:08.722 --> 00:11:11.783
+00:11:08.552 --> 00:11:11.613
 Evidence for every
 elevation in the period:
 
 172
-00:11:11.783 --> 00:11:15.098
+00:11:11.613 --> 00:11:14.928
 not met, because one
 activation had no approval.
 
 173
-00:11:15.098 --> 00:11:19.477
+00:11:14.928 --> 00:11:19.307
 Whether the exception register is
 current, and whether the access-related
 
 174
-00:11:19.477 --> 00:11:23.998
+00:11:19.307 --> 00:11:23.828
 group policy settings are retired, are
 left to people: not decided by this code.
 
 175
-00:11:23.998 --> 00:11:25.723
+00:11:23.828 --> 00:11:25.553
 The period exits with two.
 
 176
-00:11:25.723 --> 00:11:28.835
+00:11:25.553 --> 00:11:28.665
 Object I D's only; the
 packages hold the names,
 
 177
-00:11:28.835 --> 00:11:32.220
+00:11:28.665 --> 00:11:32.050
 under the evidence store's access control.
 
 178
-00:11:35.970 --> 00:11:37.958
+00:11:35.800 --> 00:11:37.788
 Step ten breaks it on purpose.
 
 179
-00:11:37.958 --> 00:11:41.775
+00:11:37.788 --> 00:11:41.605
 Append a word to the drift
 summary inside day two's package,
 
 180
-00:11:41.775 --> 00:11:45.195
+00:11:41.605 --> 00:11:45.025
 and verify it: the file doesn't
 match its hash, an error.
 
 181
-00:11:45.195 --> 00:11:48.042
+00:11:45.025 --> 00:11:47.872
 Compare the days the
 wrong way round: refused,
 
 182
-00:11:48.042 --> 00:11:51.658
+00:11:47.872 --> 00:11:51.488
 because the current run isn't
 later than the previous one.
 
 183
-00:11:51.658 --> 00:11:53.720
+00:11:51.488 --> 00:11:53.550
 Each refusal exits with one.
 
 184
-00:11:53.720 --> 00:11:57.720
+00:11:53.550 --> 00:11:57.550
 And the sample workflow that would run
 all this on a schedule lints clean.
 
 185
-00:11:57.720 --> 00:12:00.508
+00:11:57.550 --> 00:12:00.338
 Step eleven runs the tests in both shells.
 
 186
-00:12:00.508 --> 00:12:03.912
+00:12:00.338 --> 00:12:03.742
 In PowerShell, the evidence
 tests, thirty-two pass,
 
 187
-00:12:03.912 --> 00:12:06.819
+00:12:03.742 --> 00:12:06.649
 then the whole suite,
 three hundred thirty.
 
 188
-00:12:06.819 --> 00:12:11.795
+00:12:06.649 --> 00:12:11.625
 In the POSIX shell, pytest in the drift
 pipeline: a hundred forty-two pass.
 
 189
-00:12:11.795 --> 00:12:16.320
+00:12:11.625 --> 00:12:16.150
 The path's verification log notes that
 this suite needs the whole repository,
 
 190
-00:12:16.320 --> 00:12:18.370
+00:12:16.150 --> 00:12:18.200
 not just the drift pipeline folder.
 
 191
-00:12:18.370 --> 00:12:20.920
+00:12:18.200 --> 00:12:20.750
 Then delete the output
 folder in both places,
 
 192
-00:12:20.920 --> 00:12:24.240
+00:12:20.750 --> 00:12:24.070
 because they hold the
 fixture's privileged holders.
 
 193
-00:12:27.990 --> 00:12:33.445
+00:12:27.820 --> 00:12:33.275
 Lab 2 runs in a worldwide or G C C test
 tenant with Microsoft Entra I D P2 or I D
 
 194
-00:12:33.445 --> 00:12:39.615
+00:12:33.275 --> 00:12:39.445
 Governance and a test Azure subscription,
 never production, with fictional people.
 
 195
-00:12:39.615 --> 00:12:41.353
+00:12:39.445 --> 00:12:41.183
 The run only reads.
 
 196
-00:12:41.353 --> 00:12:44.733
+00:12:41.183 --> 00:12:44.563
 It uses the emergency
 access files from Module
 
 197
-00:12:44.733 --> 00:12:48.027
+00:12:44.563 --> 00:12:47.857
 2's Lab 2 and the exceptions
 file from Module 4's.
 
 198
-00:12:48.027 --> 00:12:53.652
+00:12:47.857 --> 00:12:53.482
 Register a reader app, make one test
 activation, and run twice, before and after it.
 
 199
-00:12:53.652 --> 00:12:55.885
+00:12:53.482 --> 00:12:55.715
 Check the fields the fixture assumed,
 
 200
-00:12:55.885 --> 00:12:59.702
+00:12:55.715 --> 00:12:59.532
 and cross-check against PIM's
 resource audit in the admin center.
 
 201
-00:12:59.702 --> 00:13:03.414
+00:12:59.532 --> 00:13:03.244
 Then compare, package and
 verify the two live runs.
 
 202
-00:13:03.414 --> 00:13:07.001
+00:13:03.244 --> 00:13:06.831
 The reader app needs the nine
 read permissions from step two,
 
 203
-00:13:07.001 --> 00:13:11.090
+00:13:06.831 --> 00:13:10.920
 with admin consent, and Reader on
 the test subscription, nothing else.
 
 204
-00:13:11.090 --> 00:13:15.885
+00:13:10.920 --> 00:13:15.715
 The back-out ends the test activation
 and eligibility, removes the permissions,
 
 205
-00:13:15.885 --> 00:13:20.462
+00:13:15.715 --> 00:13:20.292
 the Reader assignment and the app, and
 deletes the test runs and the packages,
 
 206
-00:13:20.462 --> 00:13:23.078
+00:13:20.292 --> 00:13:22.908
 which hold the tenant's
 privileged holders.
 
 207
-00:13:23.078 --> 00:13:25.580
+00:13:22.908 --> 00:13:25.410
 The authors haven't run Lab 2.
 
 208
-00:13:29.330 --> 00:13:30.717
+00:13:29.160 --> 00:13:30.547
 The federal requirement.
 
 209
-00:13:30.717 --> 00:13:36.359
+00:13:30.547 --> 00:13:36.189
 The runs, the packages and the period
 are the evidence for the plan's tasks
 
 210
-00:13:36.359 --> 00:13:41.718
+00:13:36.189 --> 00:13:41.548
 A3.6 and A4.3, and for Gate 4's evidence
 for every elevation in the period.
 
 211
-00:13:41.718 --> 00:13:47.414
+00:13:41.548 --> 00:13:47.244
 From NIST special publication eight
 hundred fifty-three they support C A seven,
 
 212
-00:13:47.414 --> 00:13:50.867
+00:13:47.244 --> 00:13:50.697
 continuous monitoring; A
 C six, enhancement nine,
 
 213
-00:13:50.867 --> 00:13:55.182
+00:13:50.697 --> 00:13:55.012
 logging the use of privileged
 functions; A U six, audit review;
 
 214
-00:13:55.182 --> 00:13:59.843
+00:13:55.012 --> 00:13:59.673
 A U nine, protection of audit
 information; and A U eleven, retention.
 
 215
-00:13:59.843 --> 00:14:03.442
+00:13:59.673 --> 00:14:03.272
 Drift as an incident adds
 S I four and I R four.
 
 216
-00:14:03.442 --> 00:14:08.503
+00:14:03.272 --> 00:14:08.333
 And from CISA's B O D twenty-five
 oh-one and its ScubaGear baseline:
 
 217
-00:14:08.503 --> 00:14:12.814
+00:14:08.333 --> 00:14:12.644
 M S A A D seven point five,
 roles assigned only through PIM,
 
 218
-00:14:12.814 --> 00:14:17.781
+00:14:12.644 --> 00:14:17.611
 and seven point six, approval to
 activate Global Administrator.
 
 219
-00:14:17.781 --> 00:14:21.818
+00:14:17.611 --> 00:14:21.648
 The evidence an ISSO keeps
 for Gate 4: each run's folder;
 
 220
-00:14:21.818 --> 00:14:26.865
+00:14:21.648 --> 00:14:26.695
 each package's manifest and sums,
 in the evidence store; the period's
 
 221
-00:14:26.865 --> 00:14:33.180
+00:14:26.695 --> 00:14:33.010
 manifest and summary; and the incident
 record each Tier 0 fingerprint matches.
 
 222
-00:14:36.930 --> 00:14:38.905
+00:14:36.760 --> 00:14:38.735
 Check yourself with two questions.
 
 223
-00:14:38.905 --> 00:14:41.578
+00:14:38.735 --> 00:14:41.408
 First: why does the audit
 read refuse a window
 
 224
-00:14:41.578 --> 00:14:44.467
+00:14:41.408 --> 00:14:44.297
 that starts more than
 thirty days before the run?
 
 225
-00:14:44.467 --> 00:14:49.989
+00:14:44.297 --> 00:14:49.819
 The answer is b: Microsoft Entra audit logs
 are kept for thirty days with P1 or P2,
 
 226
-00:14:49.989 --> 00:14:55.255
+00:14:49.819 --> 00:14:55.085
 so older events can't be read, and the
 window would look complete when it isn't.
 
 227
-00:14:55.255 --> 00:14:58.605
+00:14:55.085 --> 00:14:58.435
 Second: what does the hash
 chain between packages show?
 
 228
-00:14:58.605 --> 00:15:02.893
+00:14:58.435 --> 00:15:02.723
 The answer is b: a replaced package
 or a missing day, as a break,
 
 229
-00:15:02.893 --> 00:15:07.793
+00:15:02.723 --> 00:15:07.623
 because each package records the
 previous package's manifest hash.
 
 230
-00:15:07.793 --> 00:15:12.793
+00:15:07.623 --> 00:15:12.623
 You saw the chain in Lab 1, step eight,
 and an edited package fail in step ten.
 
 231
-00:15:12.793 --> 00:15:18.050
+00:15:12.623 --> 00:15:17.880
 The module page has two more questions,
 each linked to the section that answers it.
 
 232
-00:15:21.800 --> 00:15:22.625
+00:15:21.630 --> 00:15:22.455
 To sum up.
 
 233
-00:15:22.625 --> 00:15:26.741
+00:15:22.455 --> 00:15:26.571
 You ran two days of privileged
 reads against a fictional tenant,
 
 234
-00:15:26.741 --> 00:15:31.246
+00:15:26.571 --> 00:15:31.076
 found a role assigned outside PIM
 and an unapproved Tier 0 activation,
 
 235
-00:15:31.246 --> 00:15:34.275
+00:15:31.076 --> 00:15:34.105
 and compared the days into
 six Tier 0 incidents.
 
 236
-00:15:34.275 --> 00:15:39.303
+00:15:34.105 --> 00:15:39.133
 You drafted issues with no names, packaged
 and chained both runs, assembled a
 
 237
-00:15:39.303 --> 00:15:44.650
+00:15:39.133 --> 00:15:44.480
 period that shows Gate 4 isn't met yet, and
 saw an edited package fail verification.
 
 238
-00:15:44.650 --> 00:15:46.138
+00:15:44.480 --> 00:15:45.968
 And you've finished the path.
 
 239
-00:15:46.138 --> 00:15:49.830
+00:15:45.968 --> 00:15:49.660
 Across eight modules you listed
 every privileged assignment,
 
 240
-00:15:49.830 --> 00:15:53.026
+00:15:49.660 --> 00:15:52.856
 checked the emergency accounts
 before anything else,
 
 241
-00:15:53.026 --> 00:15:57.074
+00:15:52.856 --> 00:15:56.905
 kept Conditional Access and PIM
 settings for roles, groups and Azure
 
 242
-00:15:57.074 --> 00:16:01.762
+00:15:56.905 --> 00:16:01.592
 resources as reviewed code, reviewed
 privileged access, and filed the evidence.
 
 243
-00:16:01.762 --> 00:16:06.890
+00:16:01.592 --> 00:16:06.720
 Go back to the learning path, or find
 every lab in one place on the Labs page.

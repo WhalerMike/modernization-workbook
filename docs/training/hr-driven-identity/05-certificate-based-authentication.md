@@ -158,7 +158,7 @@ rm -rf out
 
 *Not run by the authors.* Follow the workbook's [Lab 2](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#lab-2-test-tenant) in a test tenant with certificate-based authentication configured for a test CA, never production.
 
-- **What you do:** export the configuration, measure the real CRLs from outside the agency network, run the check with your test PKI's thumbprints and OIDs, then revoke a test certificate and confirm Entra refuses it after the next CRL publication.
+- **What you do:** export the configuration, measure the real CRLs from outside the agency network, run the check with your test PKI's thumbprints and OIDs, then revoke a test certificate and confirm Entra refuses it after the next CRL publication (Learn's [certificate-based authentication FAQ](https://learn.microsoft.com/entra/identity/authentication/certificate-based-authentication-faq): a revoked certificate on the CRL fails sign-in, and the sign-in logs show why).
 - **Permissions:** a reader app with a certificate holding the three application permissions from step 1, with admin consent, and nothing else.
 - **Back-out:** remove the permissions, delete the reader app and its certificate, reissue the test user's certificate if you need it, and delete the export and output folders.
 

@@ -100,3 +100,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | So the requirement and the configuration meet in one place: | So the requirement and the configuration come together in one place: | no source change |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Entra CBA on Android supports on-device and derived PIV certificates in MSAL or Authenticator apps; smart cards and security keys from supported vendors only | Derived PIV, Entra ID accepts it | verified (sentence added) | `c09-cba-android`: Learn, "Microsoft Entra certificate-based authentication on Android devices" (read Nov 9, 2026) |
+| L2 | FIDO2 security keys are device-bound passkeys; the private key never leaves the key | Require the phishing-resistant strength | verified (sentence added) | `c09-passkeys`: Learn, "Authentication methods in Microsoft Entra ID - passkeys (FIDO2)" and "Sign in with a FIDO2 security key" (read Nov 9, 2026) |

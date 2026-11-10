@@ -79,3 +79,24 @@ Done for the chapter and profile drafts (Book 03 chapter 15, Book 04 Appendix C,
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | Worker type values: employee, contractor, intern, volunteer, vendor, external | §Class, worker type and persona | corrected (Old list omitted vendor and external) | Chapter 04 §The worker-type boundary; Chapter 06 crosswalk |
+
+## Revision 2026-11-09 — Learn citation pass
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | The partner usually proofs the person and issues the primary credential | §Why a partner is not an employee or a contractor | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/external-id/what-is-b2b |
+| L2 | The partner is authoritative for the person's affiliation and the credential's lifecycle, including when either ends | §Why a partner is not an employee or a contractor | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/1-secure-access-posture |
+| L3 | User type is where the class, worker type and persona views can diverge | §Class, worker type and persona | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/multi-tenant-common-considerations |
+| L4 | The sponsor vouches for its partner persons and reviews their access | §Who does what: partner and agency | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/external-id/b2b-sponsors |
+| L5 | Every partner relationship has at least one sponsor | §Who does what: partner and agency | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/id-governance/how-to-lifecycle-workflow-unsponsored-guest-removal |
+| L6 | Authorization is separate from authentication; only an agency assignment opens the application | §The standard, in nine control areas | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/11-onboard-external-user |
+| L7 | When a partner agreement ends, the accounts are removed, not left disabled | §The standard, in nine control areas | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/id-governance/scenarios/govern-guest-lifecycle-new-project |
+| L8 | Assurance is recorded per protected transaction, not one level per partner | §Assurance by transaction risk | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/3-secure-access-plan |
+| L9 | The partner's identity service is trusted only through a setting scoped to that partner | §The route into the tenant, step 1 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/external-id/what-is-b2b |
+| L10 | The partner's identity service is trusted only through a setting scoped to that partner (invitation allow list) | §The route into the tenant, step 1 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/external-id/allow-deny-list |
+| L11 | Approval creates the account and assigns the access; no partner account without an approved request | §The route into the tenant, step 2 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/id-governance/entitlement-management-onboard-external-user |
+| L12 | Approval creates the account and assigns the access in one step | §The route into the tenant, step 2 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/governance-deployment-guest-access |
+| L13 | When the last assignment expires or is removed, the account is blocked and then removed | §The route into the tenant, step 4 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/id-governance/entitlement-management-onboard-external-user |
+| L14 | When the last assignment expires or is removed, the account is removed from the tenant | §The route into the tenant, step 4 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/id-governance/scenarios/govern-guest-lifecycle-new-project |
+| L15 | Automatic provisioning moves the eligibility decision to whoever controls the partner's groups | §The route into the tenant | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-governance |
+| L16 | Automatic provisioning moves the eligibility decision to whoever controls the source groups in synchronization scope | §The route into the tenant | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/multi-tenant-common-considerations |

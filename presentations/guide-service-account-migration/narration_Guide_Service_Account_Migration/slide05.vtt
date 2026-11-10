@@ -1,0 +1,100 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+Now, who decides.
+
+2
+00:00:01.387 --> 00:00:04.439
+The guide's decision
+path is nine questions,
+
+3
+00:00:04.439 --> 00:00:07.575
+asked in order, and the
+first yes is the target.
+
+4
+00:00:07.575 --> 00:00:11.127
+Each target lines up with a
+disposition the application
+
+5
+00:00:11.127 --> 00:00:14.075
+owner records in the
+Non-Person Identity track.
+
+6
+00:00:14.075 --> 00:00:18.325
+One: is the account disabled,
+unused or without an owner?
+
+7
+00:00:18.325 --> 00:00:19.325
+Retire it.
+
+8
+00:00:19.325 --> 00:00:23.987
+Two: does the workload run on an Azure
+resource, or is it moving to one?
+
+9
+00:00:23.987 --> 00:00:26.926
+A managed identity,
+user-assigned preferred.
+
+10
+00:00:26.926 --> 00:00:32.813
+Three: does it run in C I C D or on a
+platform with its own O I D C issuer?
+
+11
+00:00:32.813 --> 00:00:34.337
+A federated credential.
+
+12
+00:00:34.337 --> 00:00:39.212
+Four: does it stay on premises
+but call Graph or Azure A P I's?
+
+13
+00:00:39.212 --> 00:00:44.037
+The Arc-enabled server's identity, or
+an app registration with a certificate.
+
+14
+00:00:44.037 --> 00:00:49.827
+Five: does it need Kerberos, with a
+Windows Server 2025 domain controller,
+
+15
+00:00:49.827 --> 00:00:53.976
+every host on 2025, and no
+unconstrained delegation?
+
+16
+00:00:53.976 --> 00:00:54.622
+A D M S A.
+
+17
+00:00:54.622 --> 00:00:56.822
+Six: otherwise, a G M S A.
+
+18
+00:00:56.822 --> 00:01:03.550
+Seven and eight keep what must
+stay, with an owner and an end date.
+
+19
+00:01:03.550 --> 00:01:05.425
+Nine is the Kerberos island.
+
+20
+00:01:05.425 --> 00:01:09.889
+This lines up with Microsoft Learn:
+use a G M S A unless the service
+
+21
+00:01:09.889 --> 00:01:14.500
+doesn't support one, then a standalone
+account, then a user account.

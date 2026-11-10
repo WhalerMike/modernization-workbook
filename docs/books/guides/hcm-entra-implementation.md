@@ -105,9 +105,9 @@ Two gallery applications expose the endpoint: *API-driven provisioning to on-pre
 | Start | *Start provisioning* puts the job in listen mode; *Restart provisioning* purges payloads waiting to be processed; *Provision on demand* "is not supported for API-driven inbound provisioning"[^he-ms-config] |
 | Endpoint | Copied from **View technical information**; the portal shows a `beta` URL, and the Graph reference documents `POST /servicePrincipals/{servicePrincipalId}/synchronization/jobs/{jobId}/bulkUpload` in v1.0[^he-ms-faq][^he-ms-bulk] |
 | Custom attributes | Add SCIM extension URNs to the app's attribute list, then map them; for 20 or more, Microsoft's CSV2SCIM script has an `UpdateSchema` mode[^he-ms-custom] |
-| Matching | By default `externalId` matches `employeeId`; if no user matches, the job creates one[^he-ms-faq] |
+| Matching | By default `externalId` matches `employeeId`; if no user matches, the job creates one[^he-ms-faq] [^he-ms-index-empid] |
 | Deletion | `/bulkUpload` doesn't delete users; Microsoft points to the Lifecycle Workflows delete task. Microsoft also advises turning off the **Delete** target action; in AD a delete is a hard delete[^he-ms-faq] |
-| Clearing values | A preview; send the complete record every time, because an omitted mapped attribute can clear the target[^he-ms-concepts] |
+| Clearing values | A preview; send the complete record every time, because an omitted mapped attribute can clear the target[^he-ms-concepts] [^he-ms-clear] |
 
 ### The contract
 
@@ -145,7 +145,7 @@ The client reads `GET /auditLogs/provisioning`, filtered on `jobId`, `cycleId`, 
 | Disables and deletions over the threshold | Quarantine until an administrator allows or rejects them; held objects appear as `StagedAction` or `StagedDelete` | [^he-ms-accdel] |
 | While quarantined | Incremental cycles slow to once a day; after more than four weeks the job is disabled | [^he-ms-quar] |
 
-Set the deletion threshold on both apps, watch the notification mailbox, and poll the job's status *(design guidance)*.
+Set the deletion threshold on both apps, watch the notification mailbox, and poll the job's status *(design guidance)*.[^he-ms-graph-config]
 
 ### Lifecycle Workflows
 
@@ -156,7 +156,7 @@ Set the deletion threshold on both apps, watch the notification mailbox, and pol
 | Time of day | Hire early in the day (1 AM or 5 AM), leave late (9 PM or 11 PM); the tenant schedule (default every 3 hours) can delay a run; a new hire's Temporary Access Pass lifetime of 24 hours; know how the source gives time zones[^he-lcw-sync] |
 | Triggers | Time based (0 to 180 days), attribute change, group membership change, sign-in inactivity, on-demand; a preview *Time based attribute V2* allows 0 to 365 days but "doesn't have a three-day catch-up window"[^he-lcw-exec] |
 | Catch-up | Users whose trigger date passed no more than three days ago are still processed; each user is re-evaluated just before processing[^he-lcw-exec] |
-| Synced AD users | Enable, disable and delete tasks act in AD when the task argument is set and the provisioning agent (1.1.1586.0 or later) is installed; deletes need the AD Recycle Bin[^he-lcw-tasks][^he-lcw-onprem] |
+| Synced AD users | Enable, disable and delete tasks act in AD when the task argument is set and the provisioning agent (1.1.1586.0 or later) is installed; deletes need the AD Recycle Bin[^he-lcw-tasks][^he-lcw-onprem][^he-ms-agent-history] |
 | Temporary Access Pass task | The user must have no other authentication methods, sign-ins or Entra role assignments[^he-lcw-tasks] |
 
 ### Microsoft's Oracle pattern
@@ -234,7 +234,7 @@ The FedRAMP Marketplace lists Oracle's "Fusion Cloud" (package F1603257882) as F
 | Cost center code | Cost center | Code list; a mirror, because dynamic membership rules can't read `employeeOrgData` | extension `costCenterCode` | `extensionAttribute5` | `extensionAttribute5` |
 | Division code | Business unit | Code list; a mirror, because administrative-unit rules and the mover trigger can't read `employeeOrgData` | extension `divisionCode` | `extensionAttribute6` | `extensionAttribute6` |
 | Legal employer | Legal employer | At most 64 characters[^he-ms-user] | enterprise `organization` | `company` | `companyName` |
-| Manager | Manager's person number | Not self; unresolved never blocks a joiner; a separated manager is a finding | enterprise `manager.value` | `manager` (DN) | `manager` |
+| Manager | Manager's person number | Not self; unresolved never blocks a joiner; a separated manager is a finding | enterprise `manager.value` | `manager` (DN)[^he-ms-hr-manager] | `manager` |
 | Worker type | `WorkerType` | Unknown refused; pending and nonworker scoped separately | extension `workerType` | `employeeType` | `employeeType` |
 | Worker type code | same | `EMP`, `CTR` | extension `workerTypeCode` | `extensionAttribute11` | `extensionAttribute11` |
 | Job code | Job code | | extension `JobCode` | `extensionAttribute1` | `extensionAttribute1` |
@@ -246,7 +246,7 @@ The FedRAMP Marketplace lists Oracle's "Fusion Cloud" (package F1603257882) as F
 | UPN, `samAccountName` | — | Generated in the app on create only, or by the middleware; the service doesn't resolve UPN conflicts[^he-ms-faq] | `userName` (optional) | `userPrincipalName`, `sAMAccountName` | `userPrincipalName` |
 | Email | — | Not sent; the directory generates it | — | generated | `mail` |
 
-The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md)); Microsoft's Oracle worksheets supply slots 1 to 3.[^he-ms-oracle] Slots 4 to 6 mirror region, cost center and division as codes, because rules can read an extension attribute but not `employeeOrgData`; the SCIM names `regionCode`, `costCenterCode` and `divisionCode` are this guide's proposal *(design guidance)*. For AD-landed users, convert the ISO dates in the AD app's mapping expression to the format Microsoft requires *(inference: test the expression in the tenant)*.[^he-lcw-sync]
+The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md)); Microsoft's Oracle worksheets supply slots 1 to 3.[^he-ms-oracle] Slots 4 to 6 mirror region, cost center and division as codes, because rules can read an extension attribute but not `employeeOrgData`; the SCIM names `regionCode`, `costCenterCode` and `divisionCode` are this guide's proposal *(design guidance)*. For AD-landed users, convert the ISO dates in the AD app's mapping expression to the format Microsoft requires *(inference: test the expression in the tenant)*.[^he-lcw-sync] [^he-ms-expr]
 
 ### The sequences
 
@@ -416,6 +416,12 @@ Related: [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md), [Book 02
 [^he-lcw-exec]: Microsoft Learn, "Lifecycle workflow execution conditions and scheduling" (trigger types; 0–180 days; V2 preview 0–365 days without the catch-up window; three-day catch-up; schedule every three hours by default; re-evaluation before processing), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-execution-conditions>, accessed October 25, 2026.
 [^he-lcw-tasks]: Microsoft Learn, "Lifecycle Workflows tasks and definitions" (Enable, Disable and Delete user with `enableOnPremisesAccount`, `disableOnPremisesAccount` and `deleteOnPremisesAccount`; users with Entra role assignments not supported; Temporary Access Pass task requirements), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks>, accessed October 25, 2026.
 [^he-lcw-onprem]: Microsoft Learn, "Managing Users synchronized from Active Directory Domain Services to Microsoft Entra ID with Lifecycle Workflows" (user account tasks need the provisioning agent, at least 1.1.1586.0, with the HR-driven provisioning extension; gMSA permissions; AD Recycle Bin for deletes), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-on-premises>, accessed October 25, 2026.
+[^he-ms-index-empid]: Microsoft Learn, "Index the employeeId attribute in Active Directory to improve provisioning performance" (`employeeId` is the default matching property for inbound provisioning to AD, including API-driven provisioning; it isn't indexed by default), <https://learn.microsoft.com/entra/identity/app-provisioning/index-employeeid-attribute-entra-id-to-active-directory>, accessed November 9, 2026.
+[^he-ms-clear]: Microsoft Learn, "Clear attribute values" (preview for API-driven inbound provisioning; with **Flow null values** on, an omitted attribute clears the mapped target value; include the complete source record in every bulk request), <https://learn.microsoft.com/entra/identity/app-provisioning/clear-attribute-values>, accessed November 9, 2026.
+[^he-ms-graph-config]: Microsoft Learn, "Configure provisioning using Microsoft Graph APIs," Step 5, "Monitor provisioning" (each synchronization job returned by `GET /servicePrincipals/{id}/synchronization/jobs` carries the status of the current cycle; provisioning logs for events), <https://learn.microsoft.com/entra/identity/app-provisioning/application-provisioning-configuration-api>, accessed November 9, 2026.
+[^he-ms-agent-history]: Microsoft Learn, "Microsoft Entra Connect Provisioning Agent: Version release history" (1.1.1586.0, released May 13, 2024), <https://learn.microsoft.com/entra/identity/app-provisioning/provisioning-agent-release-version-history>, accessed November 9, 2026.
+[^he-ms-hr-manager]: Microsoft Learn, "Troubleshoot HR manager update issues with HR user provisioning" (in on-premises AD the `manager` attribute stores the manager's distinguished name; the page is written for the Workday and SAP SuccessFactors apps), <https://learn.microsoft.com/entra/identity/app-provisioning/hr-manager-update-issues>, accessed November 9, 2026.
+[^he-ms-expr]: Microsoft Learn, "Reference for writing expressions for attribute mappings in Microsoft Entra ID," `FormatDateTime` (converts a date string from one format to another, with an example using `yyyyMMddHHmmss.fZ`), <https://learn.microsoft.com/entra/identity/app-provisioning/functions-for-customizing-application-data>, accessed November 9, 2026.
 [^he-ms-la-sec]: Microsoft Learn, "Secure access and data for workflows in Azure Logic Apps" (Secure Inputs and Secure Outputs; built-in operations that don't support them, including Parse JSON, Compose and For each; IP restriction on run-history content), <https://learn.microsoft.com/en-us/azure/logic-apps/set-up-security-permissions>, accessed October 25, 2026.
 [^he-ora-ems]: Oracle, *Oracle Fusion Cloud HCM Integration with External Entitlement Management Systems* (PersonNumber over PersonID; `empassignment` configured with `PeriodOfServiceId`; joiner, mover and leaver feed samples; pending workers; rehire by existing PersonNumber; work relationship cancellation; "Do not use REST API to sync data from HCM"; JWT for feeds and SCIM; SCIM privilege `ASE_REST_SERVICE_ACCESS_IDENTITY_INTEGRATION_PRIV`; SCIM only for username or email), <https://docs.oracle.com/en/applications/fusion-apps/fusion-human-capital-management/hcmintegration/index.html>, accessed October 25, 2026.
 [^he-ora-feeds]: Oracle, *REST API for Oracle Fusion Cloud HCM*, "Employee Feeds" (URL format; collections and triggers; "Feeds are triggered only for employee, contingent worker, and pending worker types"), <https://docs.oracle.com/en/cloud/saas/human-resources/farws/Employee_Atom_Feeds.html>; and "Working with Atom," <https://docs.oracle.com/en/cloud/saas/human-resources/farws/Working_with_Atom.html>, accessed October 25, 2026.

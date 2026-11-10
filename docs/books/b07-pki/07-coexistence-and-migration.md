@@ -222,11 +222,11 @@ AD CS autoenrollment stays on for pilot devices throughout the wave. That's what
 **Work.**
 
 1. Confirm there are no unexpired AD CS certificates left on managed devices for MIGRATE use cases.
-2. Record each federated domain's configuration with `Get-MgDomainFederationConfiguration`, export the Microsoft 365 relying party trust and claim rules, and back up the AD FS farm.[^c07-fed-migrate]
+2. Record each federated domain's configuration with `Get-MgDomainFederationConfiguration`, export the Microsoft 365 relying party trust and claim rules, and back up the AD FS farm.[^c07-fed-migrate] The AD FS Rapid Restore tool's `Backup-ADFS` captures the configuration database, configuration file, certificates and, with `-BackupDKM`, the DKM keys; `Restore-ADFS` rebuilds the farm on a server of the same AD FS version with the same service account.[^c07-adfs-rrt]
 3. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`, starting with a test domain or the domain with the fewest users, and confirm with `Get-MgDomain`.[^c07-fed-migrate][^c07-mig-best]
 4. Remove staged rollout groups for converted domains.
 5. Turn off AD FS certificate authentication for any relying parties that stay on AD FS.
-6. Keep AD FS restorable but out of the sign-in path for the rollback window (the program uses 30 days).
+6. Keep AD FS restorable but out of the sign-in path for the rollback window (the program uses 30 days); a cold standby built from the Rapid Restore backup is the documented way to bring it back quickly.[^c07-adfs-rrt]
 7. Keep BRIDGE and RETAIN templates on AD CS: domain controllers, LDAPS, NPS, internal web and SQL Server TLS, and other servers.
 8. Revise AD CS operating procedures to cover BRIDGE and RETAIN scope only.
 
@@ -293,3 +293,4 @@ For the federal policy context behind the move to phishing-resistant, certificat
 [^c07-fed-migrate]: Microsoft Learn, "Migrate from federation to cloud authentication" (document and back up federation settings; plan the rollback; convert domains from federated to managed), <https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication> (accessed Oct 20, 2026).
 [^c07-mig-best]: Microsoft Learn, "Best practices to migrate applications and authentication to Microsoft Entra ID," Staged authentication migration testing and cutover, <https://learn.microsoft.com/entra/architecture/migration-best-practices#migrate-authentication> (accessed Oct 20, 2026).
 [^c07-adfs-decom]: Microsoft Learn, "Active Directory Federation Services (AD FS) decommission guide," Pre-requisites for decommissioning AD FS servers, <https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/adfs-decommission-guide#pre-requisites-for-decommissioning-ad-fs-servers> (accessed Oct 20, 2026).
+[^c07-adfs-rrt]: Microsoft Learn, "Active Directory Federation Services Rapid Restore tool," sections "Use case scenarios," "Backup contents," "Get started" and "Restore backups: Restore-ADFS," <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/ad-fs-rapid-restore-tool> (accessed Nov 9, 2026).

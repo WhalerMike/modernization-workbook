@@ -83,3 +83,16 @@ New guide, first pass of 2026-10-29. The guide is a step-by-step layer over Book
 | Before | After | Check |
 |---|---|---|
 | The 180-day certificate cap "meets MS.AAD.5.7v1" | "addresses MS.AAD.5.7v1" | Decision of Nov 8, 2026; claim language |
+
+## Learn gMSA coverage pass (November 9, 2026)
+
+Read on Microsoft Learn on November 9, 2026 through the Microsoft Learn documentation service. The coverage table and the pages' `ms.date` values are in the [service account guide's verification log](service-account-migration.md).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | One KDS root key per forest; more than one makes gMSAs fail after a rotation | Step 2, prerequisites for a gMSA | verified (ms.date 2025-01-23) | `npi-containers` |
+| G2 | gMSA names unique in the forest; interval only at creation; delegated right to create `msDS-GroupManagedServiceAccount` objects; `Test-ADServiceAccount` on each host | Step 2 | verified (ms.date 2026-04-16) | `npi-gmsa-manage` |
+| G3 | Entra Domain Services: KDS root key pre-created; gMSAs in a custom OU | Step 2 | verified (ms.date 2025-01-21) | `npi-aadds` |
+| G4 | Find user accounts used as services by SPN, delegation and password never expires; privileged group membership a security issue | Step 1a | verified (ms.dates 2023-02-09) | `npi-user-svc`, `npi-gmsa-secure` |
+| G5 | Link to the service account comparison and migration guide | Step 2 | link added | — |
+| G6 | The KDS root key is created once for the forest (was "once per domain"): a one-time operation in the forest, stored in the Configuration partition | Step 2 | corrected by meaning | `npi-gmsa-secure`, `npi-containers`, `npi-kds` |

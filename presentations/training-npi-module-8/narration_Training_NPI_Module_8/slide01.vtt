@@ -51,6 +51,6 @@ Then you'll see the write path run
 a plan only by its approved hash.
 
 11
-00:00:42.400 --> 00:00:47.280
+00:00:42.400 --> 00:00:47.212
 The domain is fictional, and the
 apply changes only a fake, in memory.

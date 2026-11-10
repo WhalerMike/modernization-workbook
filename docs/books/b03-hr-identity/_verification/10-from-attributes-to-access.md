@@ -129,3 +129,13 @@ The "Exclusion" row's `(user.extensionAttribute11 -ne "CTR")` also matched a per
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 4 | A null check is written `-ne null`, without quotes; an `-ne "CTR"` comparison alone admits an empty value | Rule pattern table, row "Exclusion" | corrected (owner's decision, October 30, 2026) | Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026) |
+## Revision 2026-11-09 — Learn citation pass
+
+Four Learn pages the coverage map listed as covered but uncited for this chapter are now cited, as new footnotes `c10-org-roles`, `c10-em-process`, `c10-em-behalf` and `c10-em-resources` (names grepped unique in the book folder). No wording changed. The other entitlement management and My Access pages on the map's list for this chapter aren't the best source for any sentence here; each also lists Book 04 Chapter 09, so they stay covered-uncited.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Roles define what a position may touch; attributes prove which position the person holds | The derivation chain, "Roles and attributes stop competing" | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-organizational-roles> |
+| L2 | Entitlement management has a built-in separation-of-duties check for incompatible access packages and groups | Access packages and access reviews, separation-of-duties bullet | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-process> |
+| L3 | Managers requesting access on behalf of their employees needs ID Governance (or the Entra Suite) rather than P2 | Licensing | verified (Learn read Nov 9, 2026): requestor and target both need ID Governance or the Entra Suite | <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-request-behalf> |
+| L4 | An access package can grant eligibility for a privileged role, which is then activated just in time through PIM | Where dynamic membership stops, "Position decides eligibility" | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-resources> |

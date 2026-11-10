@@ -108,7 +108,7 @@ The program doesn't block inheritance on migrated OUs: blocking inheritance stop
 
 ### Phase 7: formal retirement
 
-Disable each GPO object rather than deleting it and keep it for 90 days as a rollback net. After 90 days without a regression, back it up, archive the backup, and delete the GPO from Active Directory. Update the program's documentation so Intune is recorded as the authority for every migrated setting, and close the exception register with an owner and review date on every entry that remains.
+Disable each GPO object rather than deleting it and keep it for 90 days as a rollback net. After 90 days without a regression, back it up, archive the backup, and delete the GPO from Active Directory. The Group Policy Management Console restores a backed-up GPO only into the domain it was backed up from, and a deleted GPO comes back through **Manage Backups**, so keep the archive where the domain's administrators can reach it until the domain itself retires.[^c08-gpo-backup] Update the program's documentation so Intune is recorded as the authority for every migrated setting, and close the exception register with an owner and review date on every entry that remains.
 
 ### Adopt, don't build: Microsoft's tools for this migration {#adopt-dont-build}
 
@@ -363,6 +363,8 @@ The three values travel as one string in the DeviceLock `AccountLockoutPolicy` s
 
 #### Audit policy
 
+Each row is an advanced audit policy subcategory. Microsoft's reference for the subcategories lists the events each one generates and their volume, which is what the log pipeline in [Chapter 10](10-operating-and-evidencing-the-fleet.md) has to size for.[^c08-adv-audit]
+
 | GPO path | GPO setting | Settings catalog | Value |
 |---|---|---|---|
 | Computer Configuration > Windows Settings > Security Settings > Advanced Audit Policy Configuration > Logon/Logoff | Audit Logon | Auditing > Account Logon Logoff Audit Logon | Success and Failure |
@@ -421,6 +423,22 @@ Replaces GPO Folder Redirection and logon-script drive maps with OneDrive Known 
 ## Folder Redirection to a file share doesn't move by itself
 Known Folder Move doesn't carry redirected folders from a network share into OneDrive, though it is often expected to. Known Folder Move doesn't work while Windows Folder Redirection still points Documents, Pictures or Desktop somewhere other than OneDrive. Where the folders are redirected to a network share, Microsoft's sequence is: copy the share contents into each user's OneDrive with Migration Manager, disable the Folder Redirection policy while leaving the content on the share, then enable Known Folder Move, which merges with the copied folders. Microsoft also recommends moving no more than 1,000 existing devices a day, and 4,000 a week, with the silent policy.[^c08-kfm] Provision OneDrive storage before the move. Replace `net use` drive-map logon scripts with SharePoint libraries and OneDrive shortcuts.
 :::
+
+#### Windows settings roaming (Enterprise State Roaming)
+
+Known Folder Move carries files; Enterprise State Roaming carries supported Windows settings across the devices tied to a user's Entra ID account, and stores them in the Microsoft cloud. On premises the equivalent was User Experience Virtualization (UE-V), which Microsoft names as the on-premises roaming option and which can run alongside Enterprise State Roaming for Win32 application settings.[^c08-esr-faq] Since July 2026 Enterprise State Roaming is no longer managed in the Entra admin center: it is part of Windows settings backup and restore, configured by Intune, another MDM or Group Policy. Devices that had it on keep roaming for one year, after which roaming stops unless the backup policy is set. It supports Entra joined and hybrid joined devices, and Microsoft Edge sync is managed separately.[^c08-esr] In Intune the policy is one settings catalog entry:[^c08-win-backup]
+
+| Settings catalog | Setting | Value | GPO equivalent |
+|---|---|---|---|
+| Administrative Templates > Windows Components > Sync your settings | Enable Windows Backup | Enabled | Computer Configuration > Administrative Templates > Windows Components > Sync your settings > Enable Windows Backup |
+
+```text
+OMA-URI:   ./Device/Vendor/MSFT/Policy/Config/SettingsSync/EnableWindowsBackup
+Data type: String
+Value:     <enabled/>
+```
+
+Configure it through either Group Policy or the CSP, not both.[^c08-esr] Windows Backup for Organizations isn't available in GCC High or DoD, and Microsoft doesn't plan it there; for GCC it is not yet specified.[^c08-gov-backup] Whether the program enables it, and for which populations, is not yet specified; the settings it roams are user data, so the decision sits with the privacy review in [Book 14](../b14-compliance/index.md) as well as the device owner.
 
 ### SC-005: Windows updates
 
@@ -610,6 +628,23 @@ Replaces the LAPS GPO (Computer Configuration > Administrative Templates > Syste
 | Administrator account name | Default (built-in Administrator) |
 
 The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program sets 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] Windows Server 2025 isn't a target; servers don't enroll, so server LAPS stays with the server toolchain; Chapter 09 doesn't yet specify it.
+
+Windows LAPS keeps a managed account's password in one directory at a time, so a hybrid-joined device backs up to Entra ID or to Active Directory, never both; when passwords go to Entra ID, only Global Administrator, Cloud Device Administrator and Intune Administrator can read the clear-text password by default.[^c08-laps-concepts][^c08-laps-faq] Passwords can be 8 to 64 characters, so the program's 24 is inside the range; complexity 4 is large and small letters, numbers and specials.[^c08-laps-passwords] Microsoft recommends automatic account management (Windows 11, version 24H2 and later), with a custom account and the built-in Administrator left disabled; the profile above keeps the built-in account, and whether the program moves to automatic mode is not yet specified.[^c08-laps-modes]
+
+Moving off the legacy LAPS GPO (Microsoft LAPS, the `AdmPwd` client-side extension) follows Microsoft's immediate transition: disable the legacy policy and apply ES-006's Windows LAPS profile together, confirm the transition on the device, then uninstall the legacy software. A Windows LAPS policy always takes precedence over a legacy LAPS policy on the same device, and the first Windows LAPS policy rotates the password at once.[^c08-laps-migration][^c08-laps-legacy] Confirm on a pilot device with the Windows LAPS event log: 10022 records a policy backing up to Entra ID, 10029 a successful password update in Entra ID, and 10018 the same for Active Directory.[^c08-laps-events]
+
+```powershell
+# On the device, elevated: process the policy now, then read the result.
+Invoke-LapsPolicyProcessing
+Get-WinEvent -LogName 'Microsoft-Windows-LAPS/Operational' -MaxEvents 50 |
+  Where-Object Id -in 10018, 10022, 10029 |
+  Format-Table TimeCreated, Id, Message -Wrap
+
+# Then remove the legacy client-side extension if it was installed from the MSI.
+msiexec.exe /q /uninstall '{97E2CA7B-B657-4FF7-A6DB-30ECC73E1E28}'
+```
+
+`Invoke-LapsPolicyProcessing` and the event IDs are in Microsoft's LAPS PowerShell and event log references; the uninstall command is the one Microsoft gives for an MSI-installed legacy client.[^c08-laps-ps]
 
 ## App protection policies
 
@@ -939,6 +974,20 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-bitlocker]: Microsoft Learn, "Encrypt Windows devices with BitLocker using Intune," sections "Configure silent BitLocker encryption" and "Troubleshooting," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/encrypt-bitlocker-windows> (accessed Oct 20, 2026).
 [^c08-laps]: Microsoft Learn, "Configure policy settings for Windows LAPS," sections "PostAuthenticationResetDelay" and "PostAuthenticationActions," <https://learn.microsoft.com/windows-server/identity/laps/laps-management-policy-settings> (accessed Oct 20, 2026).
 [^c08-laps-intune]: Microsoft Learn, "Microsoft Intune support for Windows LAPS," <https://learn.microsoft.com/intune/device-security/laps/overview> (accessed Oct 20, 2026).
+[^c08-laps-concepts]: Microsoft Learn, "Key concepts in Windows LAPS," sections "Basic scenario flow" and "Microsoft Entra passwords," <https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-overview> (accessed Nov 9, 2026).
+[^c08-laps-faq]: Microsoft Learn, "Windows LAPS frequently asked questions," section "Windows LAPS and Microsoft Entra ID" (a hybrid-joined device backs up to only one directory at a time), <https://learn.microsoft.com/windows-server/identity/laps/laps-faq> (accessed Nov 9, 2026).
+[^c08-laps-passwords]: Microsoft Learn, "Windows LAPS passwords and passphrases," section "Password character sets," <https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-passwords-passphrases> (accessed Nov 9, 2026).
+[^c08-laps-modes]: Microsoft Learn, "Windows LAPS account management modes," sections "Automatic account management mode" and "Choosing a mode," <https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-account-management-modes> (accessed Nov 9, 2026).
+[^c08-laps-migration]: Microsoft Learn, "Migrate to Windows LAPS from legacy LAPS," sections "Immediate transition approach," "Monitor a successful transition" and "Remove the legacy LAPS software from a managed device," <https://learn.microsoft.com/windows-server/identity/laps/laps-scenarios-migration> (accessed Nov 9, 2026).
+[^c08-laps-legacy]: Microsoft Learn, "Get started with Windows LAPS in legacy Microsoft LAPS emulation mode," section "Requirements and limitations" (a Windows LAPS policy always takes precedence over a legacy LAPS policy), <https://learn.microsoft.com/windows-server/identity/laps/laps-scenarios-legacy> (accessed Nov 9, 2026).
+[^c08-laps-events]: Microsoft Learn, "Use Windows LAPS event logs," sections "Policy configuration details" and "Password update confirmation events," <https://learn.microsoft.com/windows-server/identity/laps/laps-management-event-log> (accessed Nov 9, 2026).
+[^c08-laps-ps]: Microsoft Learn, "Overview of Windows LAPS PowerShell cmdlets," <https://learn.microsoft.com/windows-server/identity/laps/laps-management-powershell> (accessed Nov 9, 2026).
+[^c08-gpo-backup]: Microsoft Learn, "Back up, restore, migrate, and copy Group Policy Objects," sections "Back up GPOs and view GPO backups" and "Restore GPOs," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-backup-restore> (accessed Nov 9, 2026).
+[^c08-adv-audit]: Microsoft Learn, "Advanced Audit Policy Configuration," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration> (accessed Nov 9, 2026).
+[^c08-esr]: Microsoft Learn, "Migrate Enterprise State Roaming from Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/devices/enterprise-state-roaming-enable> (accessed Nov 9, 2026).
+[^c08-esr-faq]: Microsoft Learn, "Settings and data roaming FAQ for administrators," sections "Can I store synced settings and data on-premises?" and "What is Microsoft's recommendation for enabling roaming in Windows 10 or newer?," <https://learn.microsoft.com/entra/identity/devices/enterprise-state-roaming-faqs> (accessed Nov 9, 2026).
+[^c08-win-backup]: Microsoft Learn, "Windows settings backup and restore overview," section "Configure Windows settings backup and restore," <https://learn.microsoft.com/windows/configuration/windows-backup/> (accessed Nov 9, 2026).
+[^c08-gov-backup]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," section "Intune features not available in GCC High and DoD" (Windows Backup for Organizations), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 9, 2026).
 [^c08-ips]: Microsoft Learn, "Policy CSP - Defender," section "AllowIntrusionPreventionSystem" (deprecated; default 1, Allowed; changes not applied when tamper protection is enabled), <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-defender#allowintrusionpreventionsystem>; and "Settings for Microsoft Defender Antivirus policy for tenant attached devices in Microsoft Intune," section "Real-time protection" (Allow Intrusion Prevention System), <https://learn.microsoft.com/intune/device-configuration/endpoint-security/ref-antivirus-defender-settings-windows-tenant-attach#real-time-protection> (both accessed Nov 9, 2026).
 [^c08-tamper]: Microsoft Learn, "Antivirus policy for endpoint security in Microsoft Intune," section "Prerequisites for antivirus policy," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus>; and "Tamper protection overview," section "Requirements for tamper protection," <https://learn.microsoft.com/defender-endpoint/tamper-protection-overview> (both accessed Oct 20, 2026).
 [^c08-edr]: Microsoft Learn, "Configure Microsoft Defender for Endpoint with Intune and onboard devices," section "Onboard devices," <https://learn.microsoft.com/intune/device-security/microsoft-defender/configure-integration> (accessed Oct 20, 2026).

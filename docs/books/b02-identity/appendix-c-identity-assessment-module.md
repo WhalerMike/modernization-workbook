@@ -283,6 +283,22 @@ The module uses the `ActiveDirectory` module for the forest and the Microsoft Gr
 
 Role reporting uses the PIM schedule APIs. Active assignments, including activated ones, come from role assignment schedules, whose `assignmentType` is `Assigned` for a standing assignment or `Activated` for one made through PIM;[^aC-assignment-schedule] eligible assignments come from `Get-MgRoleManagementDirectoryRoleEligibilitySchedule` in the `Microsoft.Graph.Identity.Governance` module.[^aC-eligibility-cmdlet] An earlier version of this module tried to tell eligible from active assignments by looking for a `ScheduleInfo` property on `Get-MgRoleManagementDirectoryRoleAssignment` output; that property doesn't exist there, so every assignment was reported as active. The version below fixes it.
 
+### One more retired product to check for: MFA Server
+
+Microsoft retired Azure MFA Server on September 30, 2024; from that date its deployments no longer service MFA requests, so anything still pointed at one fails or falls back.[^aC-mfa-server-rec][^aC-mfa-server-mim] The assessment checks two places for it: Entra ID's `mfaServerDeprecation` recommendation, which flags tenants with MFA Server activity in the last seven days and lists the affected client integrations, and the AD FS farm's additional authentication rules, which name the `AzureMfaServerAuthentication` provider where AD FS still calls MFA Server.[^aC-mfa-server-rec][^aC-mfa-server-migrate]
+
+```powershell
+# Read-only: Entra recommendation (Microsoft Graph beta) and, on an AD FS server, the MFA rules
+Connect-MgGraph -Scopes "DirectoryRecommendations.Read.All"
+(Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/directory/recommendations").value |
+  Where-Object { $_.recommendationType -eq 'mfaServerDeprecation' } |
+  ForEach-Object { [pscustomobject]$_ } | Select-Object displayName, status, impactType
+Get-AdfsAdditionalAuthenticationRule
+Get-AdfsRelyingPartyTrust | Where-Object AdditionalAuthenticationRules -match 'AzureMfaServerAuthentication' | Select-Object Name
+```
+
+Any hit is a finding: move those users and applications to Entra MFA and an Entra ID authentication method before anything else in Phase 2.
+
 ### Module manifest
 
 Generate a fresh GUID for your copy with `New-Guid`; the one shown is a placeholder.
@@ -858,7 +874,7 @@ The comparison covers user additions and removals only. Attribute-level drift an
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix B — Forest Assessment Module](appendix-b-forest-assessment-module.md) · [Book index](index.md)
+[← Previous: Appendix B — Forest Assessment Module](appendix-b-forest-assessment-module.md) · [Book index](index.md) · [Next: Appendix D — Migrating AD FS Applications →](appendix-d-migrating-ad-fs-applications.md)
 :::
 
 [^aC-synced-attributes]: Microsoft Learn, "Microsoft Entra Connect Sync: Attributes synchronized to Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-sync-attributes-synchronized> (accessed Oct 20, 2026).
@@ -879,3 +895,6 @@ The comparison covers user additions and removals only. Attribute-level drift an
 [^aC-gitea-api]: Gitea, "API Usage," <https://docs.gitea.com/development/api-usage> (accessed Oct 20, 2026).
 [^aC-gitea-swagger]: Gitea, API specification (`CreateIssueOption`), <https://gitea.com/swagger.v1.json> (accessed Oct 20, 2026).
 [^aC-assignment-schedule]: Microsoft Learn, "unifiedRoleAssignmentSchedule resource type," <https://learn.microsoft.com/graph/api/resources/unifiedroleassignmentschedule?view=graph-rest-1.0> (accessed Oct 20, 2026).
+[^aC-mfa-server-rec]: Microsoft Learn, "Microsoft Entra recommendation: Migrate from MFA Server to Microsoft Entra multifactor authentication" (`mfaServerDeprecation`; retirement September 30, 2024), <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-migrate-to-microsoft-entra-mfa> (accessed Nov 9, 2026).
+[^aC-mfa-server-mim]: Microsoft Learn, "Deprecated features in Microsoft Identity Manager 2016" (from September 30, 2024, MFA Server deployments no longer service MFA requests), <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016-deprecated-features> (accessed Nov 9, 2026).
+[^aC-mfa-server-migrate]: Microsoft Learn, "MFA Server migration" (checking AD FS for the `AzureMfaServerAuthentication` provider), <https://learn.microsoft.com/entra/identity/authentication/how-to-migrate-mfa-server-to-azure-mfa> and <https://learn.microsoft.com/entra/identity/authentication/how-to-migrate-mfa-server-to-mfa-user-authentication> (accessed Nov 9, 2026).

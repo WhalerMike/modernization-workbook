@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Here's the problem.
+
+2
+00:00:01.088 --> 00:00:04.306
+The most common service
+account in an older estate
+
+3
+00:00:04.306 --> 00:00:07.449
+is an ordinary user account
+that a service runs as.
+
+4
+00:00:07.449 --> 00:00:12.460
+An administrator sets its password by
+hand, under the domain's password policy,
+
+5
+00:00:12.460 --> 00:00:15.312
+and it's rotated only if
+someone remembers to.
+
+6
+00:00:15.312 --> 00:00:18.667
+When that account holds
+a service principal name,
+
+7
+00:00:18.667 --> 00:00:21.612
+an S P N, it's highly
+exposed to Kerberoasting.
+
+8
+00:00:21.612 --> 00:00:25.654
+Microsoft Learn's overview of delegated
+managed service accounts names
+
+9
+00:00:25.654 --> 00:00:29.563
+Kerberoasting as the common issue
+with traditional service accounts.
+
+10
+00:00:29.563 --> 00:00:35.200
+Learn's Entra guidance on securing user-based
+service accounts gives three ways to
+
+11
+00:00:35.200 --> 00:00:37.407
+find them: an S P N on a user account,
+
+12
+00:00:37.407 --> 00:00:40.512
+delegation, and a password
+that never expires.
+
+13
+00:00:40.512 --> 00:00:45.456
+Once you've found one, record every
+host, service, application pool and
+
+14
+00:00:45.456 --> 00:00:50.226
+scheduled task that uses it, every S
+P N, and every group it belongs to.
+
+15
+00:00:50.226 --> 00:00:53.013
+That record is what the
+migration has to carry.
+
+16
+00:00:53.013 --> 00:00:54.460
+So what could it become?

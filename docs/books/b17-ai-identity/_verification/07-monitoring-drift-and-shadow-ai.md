@@ -78,3 +78,15 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | MDE local agent discovery page (ms.date Nov 2, 2026): process-based discovery plus installed VS Code extension data; "isn't a complete inventory of installed software" unchanged. Support matrix: discovery generally available on Windows and macOS except preview scenarios (macOS VS Code extensions; Windows Subsystem for Linux) | Row 26 superseded: shadow-AI paragraph and release-stage table row rewritten; new footnote [^c07-mde-matrix] |
+
+## November 9, 2026: Learn citations and Generative AI Insights
+
+Learn coverage pass and a small addition from the Learn gap review. Pages read November 9, 2026 with the Microsoft Learn MCP tools; no personal data sent to any site.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Entra Health monitoring (preview) has Agent ID autonomous sign-ins (service principal sign-ins) and Agent ID interactive sign-ins (agent's user account subject, non-interactive user sign-ins) scenarios alerting on a large increase in failures; failure volume alone doesn't establish an outage or attack; P1/P2 needed for signals | Where AI sign-ins land; release table | verified | Learn, "How to investigate Agent ID autonomous sign-ins"; "How to investigate Agent ID interactive sign-ins" (search excerpts) |
+| L2 | Generative AI Insights (preview): TLS inspection logs prompt content and MCP operations; protocol-based MCP detection finds private and shadow servers; `NetworkAccessGenerativeAIInsights` diagnostic category; local MCP servers not visible | Finding what nobody declared; release table | verified (search excerpts of the page) | Learn, "Generative AI Insights in Global Secure Access (preview)" |
+| L3 | Generative AI Insights in GCC / GCC High | Release table | inferred from the Global Secure Access government-cloud limitation (row c07-gsa-limits) | Learn, "Known limitations for Global Secure Access" |
+
+Left uncited but listed for this chapter in the coverage map: secure-mcp-server-with-entra-id (cited in Chapter 06) and architecture/secure-generative-ai (topic-level match).

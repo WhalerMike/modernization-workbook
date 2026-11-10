@@ -89,3 +89,14 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | CF-4 | S/MIME encryption: MIGRATE (delivery); RETAIN (issuer), matching Appendix B and Chapter 04 | Use-case map | restated-as-design | Program classification; imported-PKCS facts already cited |
 | CF-5 | NPS/RADIUS delivery: requested and renewed through CyberArk Certificate Manager (Chapter 04 decision), not autoenrollment | Use-case map | restated-as-design | Chapter 04 issuer decision |
 | CF-6 | LDAPS template: the Kerberos Authentication copy (the DC certificate), which carries Server Authentication and the DNS name in the SAN and supersedes the Domain Controller template | Use-case map, LDAPS row | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates> (LDAPS requirements); <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> (Kerberos Authentication copy: Server Authentication EKU, DNS name in SAN; supersedes Domain Controller and Domain Controller Authentication) |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Online Responder answers OCSP with a signed status | AD CS components table | verified (second citation added) | `c02-ocsp-ops`: Learn, "Secure, monitor, renew, and scale Online Responders" (read Nov 9, 2026) |
+| L2 | OCSP signing certificates carry the OCSP Signing EKU | Template category table | verified (citation added; RFC 6960 requirement as Learn states it) | `c02-ocsp-ops` |
+| L3 | PQC in AD CS needs CNG providers, not legacy CSPs | Inventory template note | verified (second citation added) | `c02-mldsa-templates`: Learn, "Configure certificate templates for ML-DSA" (read Nov 9, 2026) |
+| L4 | Test the URL in an issued certificate, not the CA's configured value | Publication health | verified (second citation added) | `c02-path-validation`: Learn, "Configure AIA issuer retrieval and validate certificate endpoints" (read Nov 9, 2026) |

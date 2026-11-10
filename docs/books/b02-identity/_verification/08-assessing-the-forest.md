@@ -217,3 +217,15 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | MS-ADTS trustAttributes also defines 0x00001000, TRUST_ATTRIBUTE_DISABLE_AUTH_TARGET_VALIDATION (NTLM pass-through domain name validation disabled) | sentence extended |
+
+## Learn gMSA coverage pass, November 9, 2026
+
+Read on Microsoft Learn on November 9, 2026 through the Microsoft Learn documentation service; the pages' `ms.date` values are in the [service account guide's verification log](../../guides/_verification/service-account-migration.md).
+
+| Claim | Change | Source |
+|---|---|---|
+| Four kinds of on-premises service account (gMSA, sMSA, computer, user) | sentence added after the service account table | Learn, Govern on-premises service accounts (ms.date 2023-02-10) |
+| User accounts used as services are found by SPN, delegation, or password never expires | same sentence | Learn, Secure user-based service accounts (ms.date 2023-02-09) |
+| Computer accounts (LocalSystem) act as `<domain>\<computer>$`; you can't tell which service used one | same sentence | Learn, Securing on-premises service accounts (ms.date 2022-08-26) |
+| Virtual accounts act on the network with the computer account's credentials | same sentence | Learn, Service accounts (AD DS) (ms.date 2026-09-14) |
+| Link to the service account comparison and migration guide | link added | — |

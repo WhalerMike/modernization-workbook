@@ -99,7 +99,7 @@ Detection:
 
 - Defender for Identity assessments *Edit misconfigured certificate templates ACL (ESC4)* and *Edit misconfigured certificate templates owner (ESC4)*.[^c03-mdi-certs]
 - Review each template's **Security** tab and owner for write-type rights (Full Control, Write, Write DACL, Write Owner) held by anyone other than the PKI administrators.
-- Template objects live in the forest configuration partition. Changes to them are logged as event 5136 (directory service object modified) on domain controllers, but only when Audit Directory Service Changes is enabled and the objects carry a matching SACL.[^c03-ds-audit]
+- Template objects live in the forest configuration partition. Changes to them are logged as event 5136 (directory service object modified) on domain controllers, but only when Audit Directory Service Changes is enabled and the objects carry a matching SACL.[^c03-ds-audit][^c03-adv-audit]
 
 Remediation: remove every ACE that gives an unprivileged group the ability to modify the template, change the owner to a privileged, monitored account, and unpublish templates that aren't needed.[^c03-mdi-certs] Microsoft also advises separating template administration from enrollment and not granting administrators broad enrollment rights just to test a change.[^c03-templates] When you remove Authenticated Users from a template ACL, grant each issuing CA's computer account **Read**, or the CA can no longer read the template.[^c03-templates]
 
@@ -124,7 +124,7 @@ The CA-wide `EDITF_ATTRIBUTESUBJECTALTNAME2` policy flag is on, which lets any r
 Detection:
 
 - Defender for Identity assessment *Edit vulnerable Certificate Authority setting (ESC6)* (needs the sensor on the CA).[^c03-mdi-certs]
-- On each CA, read the policy module's edit flags and look for the flag in the output:
+- On each CA, read the policy module's edit flags and look for the flag in the output (the CA policy module is the component that evaluates every request and decides whether the CA issues it):[^c03-policy-module]
 
 ```powershell
 # Read-only: list the policy module EditFlags on this CA
@@ -161,7 +161,7 @@ An AD CS web enrollment endpoint accepts NTLM without HTTPS or without Extended 
 Detection:
 
 - Defender for Identity assessment *Edit insecure ADCS certificate enrollment IIS endpoints (ESC8)* lists the problem endpoints (needs the sensor on the CA).[^c03-mdi-certs] Defender for Identity also raises a detection alert for suspicious machine-certificate issuance consistent with this pattern.[^c03-mdi-alerts]
-- Inventory every server running Certification Authority Web Enrollment or the Certificate Enrollment Web Service, and check each IIS site for an HTTP binding, **Require SSL**, and the EPA setting.
+- Inventory every server running Certification Authority Web Enrollment or the Certificate Enrollment Web Service, and check each IIS site for an HTTP binding, **Require SSL**, and the EPA setting. Microsoft's configuration guidance for the Certificate Enrollment Web Service requires it to use HTTPS with a Server Authentication certificate, and when it runs on a server other than the CA and issues new certificates (not renewal-only mode), its service account is trusted for delegation to the CA, so record that account with the site.[^c03-ces-config]
 
 Remediation, from Microsoft's advisory for these two roles:[^c03-kb5005413]
 
@@ -170,7 +170,7 @@ Remediation, from Microsoft's advisory for these two roles:[^c03-kb5005413]
 3. Restart IIS.
 4. Where you can, go further: restrict NTLM in the domain, block incoming NTLM on the AD CS servers, or set the sites' Windows authentication to Kerberos only.
 
-Better still, remove Web Enrollment wherever nothing depends on it. The Network Device Enrollment Service (NDES) also runs in IIS; the program applies the same HTTPS and NTLM restrictions to NDES sites, and retires NDES altogether for devices that move to Cloud PKI, which needs no NDES server or connector ([Chapter 04](04-the-target-pki.md)).[^c03-cpki-overview]
+Better still, remove Web Enrollment wherever nothing depends on it. The Network Device Enrollment Service (NDES) also runs in IIS, under a service account in the local IIS_IUSRS group;[^c03-ndes-account] the program applies the same HTTPS and NTLM restrictions to NDES sites, and retires NDES altogether for devices that move to Cloud PKI, which needs no NDES server or connector ([Chapter 04](04-the-target-pki.md)).[^c03-cpki-overview]
 
 ### Beyond ESC8
 
@@ -183,7 +183,7 @@ Defender for Identity also assesses two later classes that belong on the same ch
 
 Every detection above depends on evidence, and AD CS produces none by default. Two settings are needed, and neither works without the other: the CA's audit filter selects which CA operations are audited, and the **Audit Certification Services** advanced audit subcategory lets the operating system generate the events.[^c03-ca-audit]
 
-1. In a dedicated GPO linked to the CA servers, set **Computer Configuration** → **Policies** → **Windows Settings** → **Security Settings** → **Advanced Audit Policy Configuration** → **Audit Policies** → **Object Access** → **Audit Certification Services** to Success and Failure.[^c03-ca-audit]
+1. In a dedicated GPO linked to the CA servers, set **Computer Configuration** → **Policies** → **Windows Settings** → **Security Settings** → **Advanced Audit Policy Configuration** → **Audit Policies** → **Object Access** → **Audit Certification Services** to Success and Failure.[^c03-ca-audit][^c03-adv-audit]
 2. Set the CA audit filter, either on the CA's **Auditing** tab or from an elevated session, then restart the service in a maintenance window:[^c03-ca-audit]
 
 ```powershell
@@ -238,7 +238,7 @@ Templates classified BRIDGE or RETAIN ([Chapter 02](02-what-ad-cs-holds-up.md)) 
 - **Lock the templates.** Remove every template that no BRIDGE or RETAIN workload needs from each CA's issuance list, and remove autoenrollment permissions from the rest except where a workload still depends on them. Removing a template from the issuance list is also Microsoft's usual first rollback step, so it's reversible.[^c03-templates]
 - **Alert on unauthorized requests.** With auditing on, alert on 4886 and 4887 for templates that should no longer be requested, and on 4888 spikes.[^c03-ca-audit]
 - **Keep CRL publication on schedule.** A lapsed CRL breaks validation for every certificate the CA issued. Entra certificate-based authentication fails when it can't retrieve a configured CRL,[^c03-cba-crl] and Microsoft recommends reviewing CRL next-update times and running `certutil -verify -urlfetch` from representative client networks on a schedule shorter than your shortest renewal window.[^c03-pki-containers]
-- **Back up before every change.** Run `Backup-CARoleService` from an elevated session as a CA administrator before changing permissions, templates or audit settings; it backs up the database and the CA private key, so protect the output as recovery material and test restoration only on an isolated system.[^c03-ca-audit]
+- **Back up before every change.** Run `Backup-CARoleService` from an elevated session as a CA administrator before changing permissions, templates or audit settings; it backs up the database and the CA private key, so protect the output as recovery material and test restoration only on an isolated system.[^c03-ca-audit] `Restore-CARoleService` is the matching restore cmdlet, and `-Password` protects the CA certificate and private key in the backup, not the database.[^c03-ca-backup]
 - **Treat CA servers as Tier 0.** Patch them, administer them only from a hardened management host, avoid routine interactive sign-in, and keep CA private keys, backups and key recovery agent keys under separate custody.[^c03-ca-audit] The Tier 0 designation is the program's; it follows from the fact that the CA can mint domain authentication credentials.
 - **Isolate the network.** Allow RPC enrollment to the CA only from the endpoints that need it (domain members for autoenrollment, the Intune Certificate Connector, NDES, and lifecycle tooling) and block everything else at the host and network firewall. This is a program control; the exact port set depends on your RPC configuration.
 - **Protect the CA keys.** The program requires FIPS 140-3 validated cryptographic modules for every new CA; a retained CA whose hardware security module holds a FIPS 140-2 validation keeps it as an existing system, since NIST moved 140-2 certificates to its Historical List after September 21, 2026, for existing systems only, and records that status ([Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md#fips-140-2-modules-moved-to-the-historical-list)).[^c03-cmvp] The program also requires CA private keys generated and held non-exportable in a hardware security module, and dual control with split knowledge for root CA ceremonies (NIST SP 800-53 `SC-12`, `SC-13`). Record the module validation certificates as assessment evidence.
@@ -295,3 +295,8 @@ Entra CBA is a relying party, not a CA ([Book 02, Chapter 04](../b02-identity/04
 [^c03-cba-overview]: Microsoft Learn, "What is Microsoft Entra certificate-based authentication?" (unsupported scenarios), <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication> (accessed Oct 20, 2026).
 [^c03-entra-whatsnew]: Microsoft Learn, "Microsoft Entra releases and announcements" (April 2026: Entra CBA Certificate Authority scoping), <https://learn.microsoft.com/entra/fundamentals/whats-new> (accessed Oct 20, 2026).
 [^c03-cmvp]: National Institute of Standards and Technology, Cryptographic Module Validation Program, project page (FIPS 140-2 to FIPS 140-3 transition; Historical List after September 21, 2026), <https://csrc.nist.gov/projects/cryptographic-module-validation-program> (accessed Oct 23, 2026).
+[^c03-adv-audit]: Microsoft Learn, "Advanced Audit Policy Configuration," Object Access, "Audit Certification Services" (whether the OS generates events when AD CS operations are performed), and DS Access, "Audit Directory Service Changes" (events only for objects with configured SACLs; logged only on domain controllers), <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration> (accessed Nov 9, 2026).
+[^c03-policy-module]: Microsoft Learn, "Configure and govern certification authority policy and exit modules" (the CA policy module evaluates certificate requests and issues, denies or holds them; configuring it needs Manage CA; an enterprise CA keeps the Microsoft enterprise policy module; NDES policy modules are a separate component), <https://learn.microsoft.com/windows-server/identity/ad-cs/configure-govern-ca-policy-exit-modules> (accessed Nov 9, 2026).
+[^c03-ces-config]: Microsoft Learn, "Configure the Certificate Enrollment Web Service," sections "Configure a service account" and "Select a server certificate" (the service account is trusted for delegation to the CA's HOST and RPCSS services when the service is on a different computer and issues new certificates; CES and CEP must use SSL with a Server Authentication certificate), <https://learn.microsoft.com/windows-server/identity/ad-cs/configure-certificate-enrollment-web-service> (accessed Nov 9, 2026).
+[^c03-ndes-account]: Microsoft Learn, "Configure Network Device Enrollment Service to use a domain user account" (the NDES service account is a domain user in the local IIS_IUSRS group with Request permission on the CA and Read and Enroll on the NDES template), <https://learn.microsoft.com/windows-server/identity/ad-cs/create-domain-user-account-ndes-service-account> (accessed Nov 9, 2026).
+[^c03-ca-backup]: Microsoft Learn, "CA Backup and Restore Windows PowerShell cmdlets" (`Backup-CARoleService` and `Restore-CARoleService`; `-Password` protects the CA certificate and private key and isn't valid with `-DatabaseOnly`), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/ca-backup-and-restore-windows-powershell-cmdlets> (accessed Nov 9, 2026).

@@ -42,7 +42,7 @@ The code behind the guide's Gate 3, "pre-hire and day-one workflows run with lim
 
 ## Why this gate needs code
 
-The guide's [Step 3](../../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one) asks for few workflows scoped by code, a pass that bridges to the card, baseline access by package, execution limits on every scheduled workflow and a measured readiness rate. Book 03, Chapter 08 explains why: its [guardrails at agency scale](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale) and its [triggers and schedule](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule). Each of those is a property of a workflow definition, and Learn makes a definition change a new version rather than an in-place update.[^hw03-api] That is what makes code the right home for them: the file is the version, and the plan is the diff.
+The guide's [Step 3](../../../books/guides/hr-driven-identity-implementation.md#step-3-make-joiners-ready-on-day-one) asks for few workflows scoped by code, a pass that bridges to the card, baseline access by package, execution limits on every scheduled workflow and a measured readiness rate. Book 03, Chapter 08 explains why: its [guardrails at agency scale](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale) and its [triggers and schedule](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule). Each of those is a property of a workflow definition, and Learn makes a definition change a new version rather than an in-place update.[^hw03-api][^hw03-versions] That is what makes code the right home for them: the file is the version, and the plan is the diff.
 
 ### Which cloud, for these reads and writes
 
@@ -81,7 +81,7 @@ Much of the joiner's code exists. The HR feed that sends the account early and d
 
 ### The workflow files
 
-`config/workflows` holds six files: a pre-hire workflow that sends the pass seven days before day one, a day-one workflow that requests the onboarding package, a mover on the organization code, a leaver, a post-separation delete 30 days after the leave date, and a contractor leaver. All of them scope on `employeeType` and the worker type code in `extensionAttribute11`, never on a name. The day-one workflow doesn't enable the account: in this program the pipeline's `active` value is the writer at hire, as the register in [Chapter 01](01-the-writer-register-as-code.md) records. Each file's `_program` block holds its version, its owner and its execution limit (*Design guidance*: a little above a normal week's volume).
+`config/workflows` holds six files: a pre-hire workflow that sends the pass seven days before day one, a day-one workflow that requests the onboarding package, a mover on the organization code,[^hw03-customtrigger] a leaver, a post-separation delete 30 days after the leave date,[^hw03-postleaver] and a contractor leaver. All of them scope on `employeeType` and the worker type code in `extensionAttribute11`, never on a name. The day-one workflow doesn't enable the account: in this program the pipeline's `active` value is the writer at hire, as the register in [Chapter 01](01-the-writer-register-as-code.md) records. Each file's `_program` block holds its version, its owner and its execution limit (*Design guidance*: a little above a normal week's volume).
 
 ### The lint
 
@@ -108,7 +108,7 @@ Much of the joiner's code exists. The HR feed that sends the account early and d
 
 ### Day-one readiness
 
-`readiness` counts the hires whose hire date is the day of `--as-of`, and calls a hire ready when the account exists and is enabled, holds a license, has the onboarding package delivered and has a completed pre-hire run. It reads the hires from HR and three exports: the users with their hire date and licenses, the pre-hire workflow's user processing results, and the onboarding package's assignments. Run it on an export taken at the start of the day, because it measures state, not timestamps. The reads are task `joiner-readiness`:
+`readiness` counts the hires whose hire date is the day of `--as-of`, and calls a hire ready when the account exists and is enabled, holds a license, has the onboarding package delivered and has a completed pre-hire run. It reads the hires from HR and three exports: the users with their hire date and licenses, the pre-hire workflow's user processing results,[^hw03-status] and the onboarding package's assignments. Run it on an export taken at the start of the day, because it measures state, not timestamps. The reads are task `joiner-readiness`:
 
 | Call | Least-privileged permission | Delegated role |
 |---|---|---|
@@ -324,7 +324,7 @@ rm -rf out/ch03
 
 ## Lab 2: test tenant
 
-*Not run by the authors.* Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID Governance trial or test licenses, never production, and test users whose hire date is a few days away. Work in `examples/hr-lifecycle`. You'll need `my-hires.csv`: the test hires, in the layout of `tests/fixtures/ch03/hr-hires.csv`. You'll replace: `<graph-token>` (a bearer token for `graph.microsoft.com` issued to the reader app), `<tenant-id>` (the test tenant's ID), `<file>` (a body file the plan wrote, such as `pre-hire.json`), `<workflow-id>` (the ID of the workflow in the tenant), `<prehire-workflow-id>` (the pre-hire workflow's ID) and `<start-date>` (the test hire's start date and time, such as `2026-11-09T08:00:00Z`).
+*Not run by the authors.* Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID Governance trial or test licenses, never production, and test users whose hire date is a few days away.[^hw03-prepare] Work in `examples/hr-lifecycle`. You'll need `my-hires.csv`: the test hires, in the layout of `tests/fixtures/ch03/hr-hires.csv`. You'll replace: `<graph-token>` (a bearer token for `graph.microsoft.com` issued to the reader app), `<tenant-id>` (the test tenant's ID), `<file>` (a body file the plan wrote, such as `pre-hire.json`), `<workflow-id>` (the ID of the workflow in the tenant), `<prehire-workflow-id>` (the pre-hire workflow's ID) and `<start-date>` (the test hire's start date and time, such as `2026-11-09T08:00:00Z`).
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -443,7 +443,7 @@ rm -rf exports out/ch03 out/ch03-vk
    ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath out/ch03-vk -CheckId VK-HR-06
    ```
 
-5. **Check the pass.** Confirm the tenant's Temporary Access Pass policy allows the file's lifetime and one-time use;[^hw03-tap] run the pre-hire workflow on demand for one test user with no methods; confirm the manager's mailbox receives the pass.
+5. **Check the pass.** Confirm the tenant's Temporary Access Pass policy allows the file's lifetime and one-time use;[^hw03-tap] run the pre-hire workflow on demand for one test user with no methods; confirm the manager's mailbox receives the pass.[^hw03-prehire]
 6. **Measure.** On the test hire's start date, export the users, the pre-hire results and the onboarding assignments, and run `readiness`:
 
    ```bash
@@ -453,7 +453,7 @@ rm -rf exports out/ch03 out/ch03-vk
        --workflows config/workflows --as-of <start-date> --cloud gcc --out out/ch03/readiness-test
    ```
 
-7. **Back it out.** Delete a workflow the lab created (it can be restored for 30 days):[^hw03-remove]
+7. **Back it out.** Delete a workflow the lab created (it can be restored for 30 days):[^hw03-remove][^hw03-delete]
 
    ```powershell
    Remove-MgIdentityGovernanceLifecycleWorkflow -WorkflowId <workflow-id>
@@ -516,7 +516,7 @@ This chapter supports the guide's Gate 3. The [Gate 3 requirements table](../../
 | IA-5, the initial authenticator | KSI-IAM-APM | The lint's clean run: a one-time pass of at most 24 hours, and an execution limit on every scheduled workflow (the guardrails) | The lint output, filed with the change, and the TAP policy export |
 | OMB M-22-09, phishing-resistant MFA, which the pass bridges to | KSI-IAM-APM, as [Book 02, Chapter 10](../../../books/b02-identity/10-migrating-and-governing.md) maps it | The pass ends when the card is bound (Chapter 05) | Accounts still on a pass past the agreed window, as findings |
 | AC-2(1) and CA-7, the day-one readiness rate Book 03, Chapter 11 measures | KSI-IAM-JIT; KSI-MLA-EVC | The readiness summary per start date | `summary.json` per start date |
-| AC-2(1), run history | KSI-IAM-JIT | None: this code doesn't keep it | The run history the workflows leave, exported past Entra's 30-day view (the guide's evidence list says where it goes) |
+| AC-2(1), run history | KSI-IAM-JIT | None: this code doesn't keep it | The run history the workflows leave, exported past Entra's 30-day view[^hw03-audits] (the guide's evidence list says where it goes) |
 
 Each scripted step in the labs, and each file the code writes, with the evidence it leaves:
 
@@ -587,4 +587,12 @@ Accounts still on a pass after the agreed window, when the card should have been
 [^hw03-tap]: Microsoft Learn, "Configure Temporary Access Pass to register passwordless authentication methods," enable the Temporary Access Pass policy, <https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw03-cmdlets]: Microsoft Learn, "New-MgIdentityGovernanceLifecycleWorkflow," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/new-mgidentitygovernancelifecycleworkflow?view=graph-powershell-1.0>, and "New-MgIdentityGovernanceLifecycleWorkflowNewVersion," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/new-mgidentitygovernancelifecycleworkflownewversion?view=graph-powershell-1.0> (read November 1, 2026).
 [^hw03-remove]: Microsoft Learn, "Remove-MgIdentityGovernanceLifecycleWorkflow," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/remove-mgidentitygovernancelifecycleworkflow?view=graph-powershell-1.0> (read November 1, 2026).
+[^hw03-versions]: Microsoft Learn, "Manage workflow versions," changing a workflow's tasks or execution conditions requires a new version, <https://learn.microsoft.com/entra/id-governance/manage-workflow-tasks> (read November 9, 2026).
+[^hw03-customtrigger]: Microsoft Learn, "Use custom attribute triggers in lifecycle workflows," on-premises extension attributes (1-15) as attribute-change triggers, <https://learn.microsoft.com/entra/id-governance/workflow-custom-triggers> (read November 9, 2026).
+[^hw03-postleaver]: Microsoft Learn, "Automate employee offboarding tasks after their last day of work with the Microsoft Entra admin center," the post-offboarding template's scheduled delete after the leave date, <https://learn.microsoft.com/entra/id-governance/tutorial-scheduled-leaver-portal> (read November 9, 2026).
+[^hw03-prepare]: Microsoft Learn, "Tutorial: Preparing user accounts for Lifecycle workflows," a workflow doesn't trigger for a hire date before the workflow's creation, so set `employeeHireDate` in the future, <https://learn.microsoft.com/entra/id-governance/tutorial-prepare-user-accounts> (read November 9, 2026).
+[^hw03-prehire]: Microsoft Learn, "Automate employee onboarding tasks before their first day of work with the Microsoft Entra admin center," run the pre-hire workflow on demand and check its tasks, <https://learn.microsoft.com/entra/id-governance/tutorial-onboard-custom-workflow-portal> (read November 9, 2026).
+[^hw03-status]: Microsoft Learn, "Check status of a Lifecycle workflow," user workflow history and user processing results, <https://learn.microsoft.com/entra/id-governance/check-status-workflow> (read November 9, 2026).
+[^hw03-audits]: Microsoft Learn, "Auditing Lifecycle Workflows," audit logs record Lifecycle Workflows actions within a timeframe of up to 30 days, <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-audits> (read November 9, 2026).
+[^hw03-delete]: Microsoft Learn, "Delete a lifecycle workflow," soft delete, restore, and permanent removal after 30 days, <https://learn.microsoft.com/entra/id-governance/delete-lifecycle-workflow> (read November 9, 2026).
 [^hw03-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).
