@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -119,6 +120,88 @@ class Baseline(unittest.TestCase):
         self.assertIn("(Release 2.0, the baseline)", text)
         self.assertIn("### Edition 2026.12 (Release 2.0, the baseline)", text)
         self.assertNotIn("the baseline", gr.archive_section(self.EDS, [], {}))
+
+
+class BaselineMembers(unittest.TestCase):
+    """Only what existed at the baseline's tagged commit gets the 2.0 row."""
+    EDS = Baseline.EDS
+    BASELINE = Baseline.BASELINE
+    AFTER = Baseline.AFTER
+    # b02 and b04 were in the baseline; guides/new-guide was created after it.
+    MEMBERS = {"edition-2026.12": {"b02-identity", "b04-access"}}
+
+    def versions(self, uid, eds=None):
+        return [(v, ed["id"]) for v, ed, _ in gr.versions(eds or self.EDS + [self.BASELINE, self.AFTER], uid,
+                                                           self.MEMBERS)]
+
+    def test_unit_that_existed_at_the_baseline_keeps_its_2_0_row(self):
+        self.assertEqual(self.versions("b02-identity"),
+                         [("1.0", "edition-2026.10"), ("2.0", "edition-2026.12"), ("2.1", "edition-2027.01")])
+        self.assertEqual(self.versions("b04-access")[-1], ("2.0", "edition-2026.12"))
+
+    def test_unit_created_after_the_baseline_has_no_row_yet(self):
+        self.assertEqual(self.versions("guides/new-guide"), [])
+        unit = gr.Unit("guides/new-guide", "guide", gr.ROOT / "docs/books/guides/new-guide.md",
+                       ["docs/books/guides/new-guide.md"])
+        text = gr.revisions_section(unit, self.EDS + [self.BASELINE, self.AFTER], self.MEMBERS)
+        self.assertIn("has not been published in an edition yet", text)
+        self.assertNotIn("Version 2.0", text)
+        self.assertNotIn("Draft becomes Baseline", text)
+
+    def test_unit_created_after_the_baseline_starts_at_1_0_in_its_first_edition(self):
+        later = edition("edition-2027.02", "2027-02-28", {"guides/new-guide": {"changes": ["New guide (#4)"]}})
+        self.assertEqual(self.versions("guides/new-guide", self.EDS + [self.BASELINE, self.AFTER, later]),
+                         [("1.0", "edition-2027.02")])
+
+    def test_unit_the_baseline_edition_names_counts_even_if_not_found(self):
+        self.assertEqual(self.versions("b04-access", self.EDS + [self.BASELINE]), self.versions("b04-access"))
+        named = {**self.BASELINE, "units": {"guides/new-guide": {"changes": ["Added (#5)"]}}}
+        self.assertEqual(self.versions("guides/new-guide", [named]), [("2.0", "edition-2026.12")])
+
+
+class MembersAtCommit(unittest.TestCase):
+    """members_at reads the tree of a real commit: a page added later to an existing unit
+    doesn't matter (the unit's index or folder was there); a unit whose page wasn't there is out."""
+
+    def setUp(self):
+        try:
+            self.head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=gr.ROOT, capture_output=True,
+                                       text=True, check=True).stdout.strip()
+        except (OSError, subprocess.CalledProcessError):
+            self.skipTest("no git checkout")
+
+    def test_existing_unit_is_in_and_a_unit_not_in_the_tree_is_out(self):
+        found = {
+            "b15-day2-operations": gr.Unit("b15-day2-operations", "book",
+                                           gr.ROOT / "docs/books/b15-day2-operations/index.md",
+                                           ["docs/books/b15-day2-operations"]),
+            "guides/not-in-the-tree": gr.Unit("guides/not-in-the-tree", "guide",
+                                              gr.ROOT / "docs/books/guides/not-in-the-tree.md",
+                                              ["docs/books/guides/not-in-the-tree.md"]),
+        }
+        self.assertEqual(gr.members_at(self.head, found), {"b15-day2-operations"})
+
+    def test_page_added_to_an_existing_unit_after_the_baseline_keeps_the_2_0_row(self):
+        """Book 15 Chapter 14 was added after Release 2.0; Book 15 was in it, so it keeps 2.0."""
+        base = "5396f2ca6dee6a634855ae3430b568473bbd203a"   # edition-2026.11.5, Release 2.0
+        ch14 = "docs/books/b15-day2-operations/14-provider-notices.md"
+        if subprocess.run(["git", "cat-file", "-e", base], cwd=gr.ROOT, capture_output=True).returncode:
+            self.skipTest("Release 2.0's commit isn't in this clone")
+        if subprocess.run(["git", "cat-file", "-e", f"{base}:{ch14}"], cwd=gr.ROOT, capture_output=True).returncode == 0:
+            self.skipTest("expected the chapter to postdate the baseline")
+        found = gr.units()
+        members = gr.members_at(base, found)
+        self.assertIn("b15-day2-operations", members)
+        self.assertNotIn("guides/service-account-migration", members)
+        editions, _ = gr.load(found)
+        b15 = gr.versions(editions, "b15-day2-operations", gr.baseline_members(editions, found))
+        self.assertIn("2.0", [v for v, _, _ in b15])
+        self.assertNotIn("2.0", [v for v, _, _ in gr.versions(
+            editions, "guides/service-account-migration", gr.baseline_members(editions, found))])
+
+    def test_unreadable_commit_is_a_record_error(self):
+        with self.assertRaises(gr.RecordError):
+            gr.members_at("0" * 40, {})
 
 
 class Place(unittest.TestCase):
