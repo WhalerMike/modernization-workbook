@@ -573,8 +573,8 @@
   ],
   [
    54.125,
-   6.025,
-   "They need a key distribution root key, and domain controllers can wait up to ten hours after it's created."
+   8.238,
+   "They need a key distribution root key, created once for the whole forest, and domain controllers can wait up to ten hours after it's created."
   ]
  ],
  "10": [

@@ -48,7 +48,7 @@ The master plan's seven cutover milestones can run in parallel after the last ro
 
 | Milestone | Action | Owner | What the program does differently |
 |---|---|---|---|
-| M-038 — AD FS out of the path (if present) | Convert federated domains to managed authentication; take the AD FS farm out of the sign-in path | Identity lead | Convert with the Microsoft Graph PowerShell cmdlets; conversion can take up to 60 minutes per domain.[^c10-fed-migrate] Before decommissioning, Microsoft says to test cloud authentication for at least a week and confirm with Connect Health and the sign-in logs that no relying party still uses the farm.[^c10-adfs-decom] Procedure: [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) and [Book 07, Chapter 07](../b07-pki/07-coexistence-and-migration.md) |
+| M-038 — AD FS out of the path (if present) | Convert federated domains to managed authentication; take the AD FS farm out of the sign-in path[^c10-adfs-hub] | Identity lead | Convert with the Microsoft Graph PowerShell cmdlets; conversion can take up to 60 minutes per domain,[^c10-fed-migrate] and Microsoft's AD FS FAQ allows up to 4 hours for the change to take full effect.[^c10-adfs-faq] Before decommissioning, Microsoft says to test cloud authentication for at least a week and confirm with Connect Health and the sign-in logs that no relying party still uses the farm.[^c10-adfs-decom] Procedure: [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md) and [Book 07, Chapter 07](../b07-pki/07-coexistence-and-migration.md) |
 | M-039 — AD CS issuance stopped | Disable auto-enrollment and lock templates | PKI lead | Stop issuance for user and device templates that have moved to Cloud PKI; keep domain controller and LDAPS templates enrolling, because those certificates stay on AD CS until AD retires ([Book 07, Chapter 07](../b07-pki/07-coexistence-and-migration.md#what-stays-on-ad-cs-until-active-directory-retires)) |
 | M-040 — DNS forwarders migrated | Hybrid forwarding through Azure DNS Private Resolver; remove on-premises forwarders | DNS lead | Remove forwarders only for zones that have moved; the AD domain's own zones, including `_msdcs`, stay on a DNS service that accepts secure dynamic registration from domain controllers and move last ([Book 08, Chapter 10](../b08-ddi/10-migration-sequence.md)) |
 | M-041 — GPO links removed | Remove the remaining GPO links from every OU (each link disabled first); keep the objects for audit | Endpoint lead | Not every link can go while domain controllers run: domain controllers take their password, lockout and Kerberos policy only from a GPO linked at the domain root.[^c10-dc-gpo] What remains is the minimum set the running domain and any Kerberos island need |
@@ -148,6 +148,46 @@ Two steps are easy to forget because no technical check fails without them:
 
 - **Records before hardware.** Domain controllers, AD FS farms, sync servers and SIEM connectors hold years of access records with retention rules of their own. The program consults the agency records officer before any of them is decommissioned, and archives what the schedule requires first; the checklist below sets out the steps ([Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md#records-management-and-privacy)).
 - **Sanitize what you retire.** Domain controllers store the password hashes of every account in the domain,[^c10-dc-hashes] so a retired domain controller's disks hold them until they're sanitized. The program sanitizes retired hosts and their storage under the agency's media sanitization procedure; NIST's current guidance is SP 800-88 Rev. 2, *Guidelines for Media Sanitization*, published in September 2025.[^c10-sp80088]
+
+### Removing each domain controller cleanly
+
+Each domain controller leaves Active Directory by demotion, not by being switched off. A normal demotion removes the domain controller's metadata from Active Directory as part of the operation. Forced removal demotes it without removing that metadata, and Microsoft reserves it for a domain controller that can't contact other domain controllers when there's no reasonable way to fix the network problem: it leaves orphaned metadata on the remaining domain controllers and loses any changes that hadn't replicated.[^c10-demote] Metadata cleanup is then required.[^c10-metadata]
+
+1. **Demote normally wherever the domain controller can reach a partner.** On the domain controller, run the demotion cmdlet; adding `-WhatIf` first shows the values it will use. For the last domain controller in a domain, Microsoft's example adds `-LastDomainControllerInDomain` and `-RemoveApplicationPartitions`, and the demotion needs Enterprise Admins membership because it removes the domain.[^c10-demote]
+
+    ```powershell
+    Uninstall-ADDSDomainController
+    ```
+
+2. **Force removal only when a graceful demotion can't work.** Microsoft's forced-demotion example uses `-ForceRemoval` and `-DemoteOperationMasterRole`. Any operations master roles the domain controller holds must be seized from another domain controller immediately afterwards, and metadata cleanup must follow at once.[^c10-demote] A domain controller that is permanently offline skips this step and goes straight to cleanup.[^c10-metadata]
+3. **Clean up the metadata after any forced removal or permanently offline domain controller.** Work on a domain controller in the same domain that is a replication partner of the removed one, with Domain Admins rights at least (the command prompt may ask for Enterprise Admin credentials). Deleting the removed domain controller's computer object from the Domain Controllers OU in Active Directory Users and Computers, and confirming that it is permanently offline, does the cleanup automatically. From the command line, type each command at the prompt that follows the one before; in `connect to server`, `<ServerName>` is the domain controller doing the cleanup:[^c10-metadata]
+
+    ```cmd
+    ntdsutil
+    ```
+
+    ```cmd
+    metadata cleanup
+    ```
+
+    ```cmd
+    connections
+    ```
+
+    ```cmd
+    connect to server <ServerName>
+    ```
+
+    ```cmd
+    quit
+    ```
+
+    ```cmd
+    remove selected server <ServerName>
+    ```
+
+    Confirm the removal in the Server Remove Configuration dialog, then type `quit` at the `metadata cleanup:` and `ntdsutil:` prompts. If cleanup returns "Access is denied," clear **Protect object from accidental deletion** on the computer object and the NTDS Settings object.[^c10-metadata]
+4. **Verify and record.** The removed domain controller no longer appears under Domain Controllers in Active Directory Users and Computers, and its server object in Active Directory Sites and Services has no NTDS Settings object.[^c10-metadata] The result goes into the Phase 5 evidence packet with the retirement record.
 
 ### Records before hardware: the decommissioning checklist
 
@@ -296,3 +336,7 @@ The operating cadence's certificate row therefore watches three engines, not one
 [^c10-m2307]: Office of Management and Budget and National Archives, M-23-07, *Update to Transition to Electronic Records*, December 23, 2022, §1.2 ("After June 30, 2024, Federal agencies must transfer all permanent records in an electronic format and with appropriate metadata"), <https://www.archives.gov/files/records-mgmt/policy/m-23-07.pdf> (accessed Oct 23, 2026).
 [^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
 [^clm-revmon]: CyberArk, 26.1, "Selecting components" (Certificate Revocation Monitoring checks CRL distribution points at least daily and monitors OCSP), <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-select-components.php> (accessed Oct 23, 2026).
+[^c10-adfs-hub]: Microsoft Learn, "AD FS Decommission" (the decommission guide, the AD FS to Microsoft Entra FAQ, and the resources for migrating authentication and applications from AD FS to Microsoft Entra ID), <https://learn.microsoft.com/windows-server/identity/ad-fs/ad-fs-decommission> (accessed Nov 9, 2026).
+[^c10-adfs-faq]: Microsoft Learn, "Active Directory Federation Server to Microsoft Entra FAQ," entry "When switching a domain from federated to managed how long does it take for the change to take place?" (up to 4 hours to fully cut over), <https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/ad-fs-to-azure-ad-faq> (accessed Nov 9, 2026).
+[^c10-demote]: Microsoft Learn, "Demote domain controllers and domains," sections "Demotion and role removal by using PowerShell," "Credentials," "Warnings," "Confirmation" and "Demotion," <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-> (accessed Nov 9, 2026).
+[^c10-metadata]: Microsoft Learn, "Clean up Active Directory Domain Controller server metadata," sections "Clean up server metadata using Active Directory Users and Computers" and "Clean up server metadata using the command line," <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup> (accessed Nov 9, 2026).

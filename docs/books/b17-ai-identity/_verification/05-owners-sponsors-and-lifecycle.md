@@ -60,3 +60,16 @@ Checked October 21–22, 2026 by writer W3. No source page was assigned to this 
 - **Book 04 Ch03 (line 50)** — the preview/Block-only statement still holds; see the Chapter 06 log. No stale line found in this chapter's scope.
 - **Overlap with Chapter 04** — the general Agent ID availability table was removed from this chapter per the editor's note and replaced by a link to Chapter 04's "Release stage, licensing and government clouds" section; the remaining rows are lifecycle-specific and match Chapter 04 (GA months, GCC subset, licensing wording).
 - **Not verified:** whether the automatic sponsor transfer to the manager happens without a configured workflow, or only through the "Transfer agent identity sponsorships to manager" task. Microsoft's pages describe both; the chapter states both and makes the program configure the workflow explicitly.
+
+## November 9, 2026: Learn citations
+
+Microsoft Learn pages the Learn coverage map marked as covered but uncited, read on November 9, 2026 with the Microsoft Learn fetch tool and cited where they support a specific sentence. No wording changed beyond the added footnotes.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 43 | Agent ID separates technical administration (owners) from business accountability (sponsors) | Three accountable relationships | verified | Learn, Agent ID key concepts, <https://learn.microsoft.com/entra/agent-id/key-concepts> (`c05-key-concepts`) |
+| 44 | Sponsors can disable but not re-enable; need an owner or admin to recover; My Account Manage agents for owners and sponsors | Three accountable relationships; release-stage table | verified | Learn, Manage Agents in end user experience, <https://learn.microsoft.com/entra/agent-id/manage-agent-identities-end-user> (`c05-my-account`) |
+| 45 | Blueprint owners create agent identities without an Agent ID role | What creation sets automatically | verified | Learn, How are agent identities created?, <https://learn.microsoft.com/entra/agent-id/agent-id-creation-channels> (`c05-creation-channels`) |
+| 46 | Dynamic membership groups can be sponsors | The program's rule | verified | Learn, Add and manage owners and sponsors, <https://learn.microsoft.com/entra/agent-id/manage-owners-sponsors-agents> (`c05-owners-sponsors-howto`) |
+| 47 | Legacy Copilot Studio service principals and custom app registrations: agents without agent-specific behavior; migration guidance | Agents that aren't agent identities | verified | Learn, Recreate Copilot Studio agents; Migrate custom app registrations, <https://learn.microsoft.com/entra/agent-id/migrate-copilot-studio-agents-to-agent-id>, <https://learn.microsoft.com/entra/agent-id/migrate-custom-app-registrations-to-agent-id> (`c05-migrate-cs`, `c05-migrate-custom`) |
+| 48 | 30-day restore window, restore before or after cascade cleanup, 250-identity quota | Retirement | verified | Learn, How to delete and restore agent identity objects, <https://learn.microsoft.com/entra/agent-id/howto-delete-agent-identity> (`c05-delete-howto`) |

@@ -628,8 +628,10 @@ pages:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   cited_by:
+  - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/adprep/Changes-Made-by-Adprep.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/adprep/changes-made-by-adprep
   title: Changes Made by Adprep.exe
@@ -671,6 +673,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b01-transformation-arc/12-migration-roadmap.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
@@ -691,12 +694,13 @@ pages:
   ms_date: '2025-07-08'
   ms_topic: how-to
   description: This article describes how to find the current schema version in Active Directory for Windows Server.
-  coverage: covered-uncited
+  coverage: cited
   note: Schema version is recorded in the forest assessment
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b00-orientation/08-pre-flight-and-assessment.md
-  cited_by: []
+  cited_by:
+  - docs/books/b00-orientation/08-pre-flight-and-assessment.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/Install-a-New-Windows-Server-2012-Active-Directory-Child-or-Tree-Domain--Level-200-.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/install-a-new-windows-server-2012-active-directory-child-or-tree-domain--level-200-
   title: Install a New Windows Server 2012 Active Directory Child or Tree Domain (Level 200)
@@ -814,9 +818,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: install-set-up-deploy
   description: How to create a new Active Directory forest on a virtual machine (VM) on an Azure virtual machine.
-  coverage: not-covered
+  coverage: cited
   note: 'AD DS on an Azure VM: DCs in Azure for the coexistence period are mentioned but not covered'
-  cited_by: []
+  cited_by:
+  - docs/books/b01-transformation-arc/06-network-services.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/virtual-dc/Virtualized-Domain-Controller-Technical-Reference--Level-300-.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/virtual-dc/virtualized-domain-controller-technical-reference--level-300-
   title: Virtualized Domain Controller Technical Reference (Level 300)
@@ -994,9 +999,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: concept-article
   description: USN Rollback and safe virtualization of Active Directory
-  coverage: out-of-scope
-  note: DC virtualization and cloning internals; the program does not build or clone DCs
-  cited_by: []
+  coverage: cited
+  note: Safe virtualization of DCs; Book 01 Ch06 cites it for domain controllers in Azure during coexistence (Nov 9)
+  cited_by:
+  - docs/books/b01-transformation-arc/06-network-services.md
 - path: WindowsServerDocs/identity/ad-ds/ldap-channel-binding.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/ldap-channel-binding
   title: LDAP Channel Binding in Active Directory
@@ -1194,7 +1200,6 @@ pages:
   note: SPN and UPN uniqueness checks
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
-  - docs/books/guides/attribute-driven-migration.md
   cited_by: []
 - path: WindowsServerDocs/identity/ad-ds/manage/component-updates/TPM-Key-Attestation.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/tpm-key-attestation
@@ -1323,9 +1328,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Adding the GC'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-authoritative-recovery-sysvol.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-authoritative-recovery-sysvol
   title: AD Forest Recovery - Performing an authoritative synchronization of DFSR-replicated SYSVOL
@@ -1333,9 +1339,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: There are different ways to perform an authoritative restore of SYSVOL. You can either edit the **msDFSR-Options** attribute or perform a system state restore using wbadmin –authsysvol. If you have the option to restore a system state backup (that is, you're restoring AD DS to the same hardware and operating system instance) then using wbadmin –authsysvol is simpler. But if you need to perform a bare metal restore, then you need to edit the **msDFSR-Options** attribute.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-backing-up-a-full-server.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-backing-up-a-full-server
   title: AD Forest Recovery - Backing up a full server
@@ -1343,9 +1350,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: A Bare Metal Recovery (BMR) backup is recommended to prepare for a forest recovery because it can be restored to different hardware or a different operating system instance. Using Windows Server Backup you can perform a Bare-Metal Recovery (BMR) backup of your server.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-backing-up-system-state.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-backing-up-system-state
   title: AD Forest Recovery - Backing up the System State data
@@ -1353,9 +1361,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Backing up the System State data'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-cleaning-metadata-of-removed-dcs.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-cleaning-metadata-of-removed-dcs
   title: AD Forest Recovery - Cleaning metadata of removed writable domain controllers
@@ -1363,9 +1372,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: Metadata cleanup removes Active Directory data that identifies a DC to the replication system. Note that outside of a Forest Recovery, metadata cleanup is part of the demotion process of domain controllers, however, when they aren't reachable anymore, this process also applies. Use the following procedure to delete the DC objects for DCs that you plan to add back to the network by reinstalling AD DS.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-cleanup.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-cleanup
   title: AD Forest Recovery - Cleanup
@@ -1373,9 +1383,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Cleanup'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-configure-dns.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-configure-dns
   title: AD Forest Recovery - Configure DNS Server service
@@ -1383,9 +1394,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Configuring the DNS Server service'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-determine-how-to-recover.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-determine-how-to-recover
   title: Active Directory Forest Recovery - Determine how to recover the forest
@@ -1393,9 +1405,10 @@ pages:
   ms_date: '2023-07-10'
   ms_topic: how-to
   description: Recovering an entire Active Directory forest involves restoring at least one Domain Controller (DC) in every domain from available backup. Recovering the forest restores each domain in the forest to its state at the time of the last trusted backup. Consequently, the restore operation will result in the loss of at least the following Active Directory data...
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-devise-a-plan.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-devise-a-plan
   title: AD Forest Recovery - Devising an AD Forest Recovery Plan
@@ -1403,9 +1416,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Devising an AD Forest Recovery Plan'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-faq.yml
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-faq
   title: AD Forest Recovery - FAQ
@@ -1413,9 +1427,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: faq
   description: 'Learn more about: AD Forest Recovery - FAQ'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-guide.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-guide
   title: Active Directory Forest Recovery Guide
@@ -1423,9 +1438,10 @@ pages:
   ms_date: '2025-07-09'
   ms_topic: troubleshooting
   description: This guide contains recommendations for recovering an Active Directory forest if a forest-wide failure renders all DCs in the forest incapable of functioning normally.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-identify-the-problem.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-identify-the-problem
   title: Active Directory Forest Recovery - Identify the problem
@@ -1433,9 +1449,10 @@ pages:
   ms_date: '2023-06-10'
   ms_topic: troubleshooting
   description: When symptoms of a forest-wide failure appear, such as in event logs or other monitoring solutions, work with Microsoft Support to determine the cause of the failure and evaluate any possible remedies.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-invaildate-rid-pool.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-invaildate-rid-pool
   title: AD Forest Recovery - Invalidating the RID Pool
@@ -1443,9 +1460,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Invalidating the current RID pool'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-full-server-recovery.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-full-server-recovery
   title: AD Forest Recovery - Performing a full server recovery
@@ -1453,9 +1471,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: A full server recovery is necessary if you're restoring to different hardware or a different operating system instance. Bare-Metal recovery is a supported method of backup.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-initial-recovery.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-initial-recovery
   title: Active Directory Forest Recovery - Perform initial recovery
@@ -1468,6 +1487,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-nonauthoritative-restore.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-nonauthoritative-restore
   title: Active Directory Forest Recovery - Performing a nonauthoritative restore of Active Directory Domain Services
@@ -1475,9 +1495,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: The following procedures use the wbadmin.exe to perform a nonauthoritative restore of Active Directory or Active Directory Domain Services (AD DS). If you're using a different backup solution or if you intend to complete the authoritative restore of SYSVOL later in the forest recovery process...
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-prerequisites.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-prerequisites
   title: Active Directory Forest Recovery - Prerequisites
@@ -1485,9 +1506,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: concept-article
   description: The following document discusses prerequisites that you should be familiar with before devising a forest recovery plan or attempting a recovery.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-procedures.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-procedures
   title: Active Directory Forest Recovery - Procedures
@@ -1505,9 +1527,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Raising the value of available RID pools'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-recover-single-domain-multidomain-forest.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-recover-single-domain-multidomain-forest
   title: Active Directory Forest Recovery - Recovering a single domain in a multidomain forest
@@ -1515,9 +1538,10 @@ pages:
   ms_date: '2023-07-10'
   ms_topic: how-to
   description: In certain scenarios, it may be necessary to recover only a single domain within a forest that has multiple domains, rather than a full forest recovery. This topic covers considerations for recovering a single domain and possible strategies for recovery.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-remove-gc.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-remove-gc
   title: AD Forest Recovery - Remove the global catalog
@@ -1525,9 +1549,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Removing the global catalog'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-computer-account-dc.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-computer-account-dc
   title: AD Forest Recovery - Resetting the computer account on the recovered DC
@@ -1535,9 +1560,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Resetting the computer account on the recovered DC'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-the-krbtgt-password.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-the-krbtgt-password
   title: AD Forest Recovery - Reset the krbtgt password
@@ -1545,12 +1571,13 @@ pages:
   ms_date: '2025-05-21'
   ms_topic: how-to
   description: How to reset the krbtgt password for the domain.
-  coverage: covered-uncited
+  coverage: cited
   note: krbtgt handling in the build and discovery chapters
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/07-read-only-discovery.md
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-trust.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-trust
   title: AD Forest Recovery - Resetting a trust password
@@ -1558,9 +1585,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: Resetting a trust password on one side of the trust'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-restore-additional-dcs.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-restore-additional-dcs
   title: AD Forest Recovery - Redeploy remaining DCs
@@ -1568,9 +1596,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Redeploy remaining DCs'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-seizing-operations-master-role.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-seizing-operations-master-role
   title: AD Forest Recovery - Seizing an Operations Master Role
@@ -1578,9 +1607,10 @@ pages:
   ms_date: '2025-05-12'
   ms_topic: how-to
   description: 'Learn more about: AD Forest Recovery - Seizing an operations master role'
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-steps-for-restoring-the-forest.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-steps-for-restoring-the-forest
   title: AD Forest Recovery - Steps for Restoring the forest
@@ -1588,9 +1618,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: This section provides an overview of the recommended path for recovering a forest. The forest recovery steps are described in detail later.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-verify-replication.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-verify-replication
   title: AD Forest Recovery - Verify Replication
@@ -1598,9 +1629,10 @@ pages:
   ms_date: '2025-09-25'
   ms_topic: how-to
   description: Learn more about resources to verify replication.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-virtualization.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-virtualization
   title: Active Directory Forest Recovery - Virtualization
@@ -1608,9 +1640,10 @@ pages:
   ms_date: '2023-06-21'
   ms_topic: how-to
   description: Virtualized domain controller (DC) cloning simplifies and expedites the process for installing additional virtualized DCs in a domain, especially in centralized locations such as datacenters where several DCs run on hypervisors. After you restore one virtual DC in each domain from backup, additional DCs in each domain can be rapidly brought online by using the virtualized DC cloning process. You can prepare the first virtualized DC that you recover, shut it down, and then copy that virtual hard disk as many times as is necessary to create cloned virtualized DCs and build out the domain.
-  coverage: not-covered
+  coverage: cited
   note: Part of the AD forest recovery runbook; not covered anywhere (see gaps)
-  cited_by: []
+  cited_by:
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
 - path: WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/active-directory-domain-services-overview.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/active-directory-domain-services-overview
   title: Overview of Active Directory Domain Services
@@ -1707,7 +1740,6 @@ pages:
   note: GPO backup/export before migration
   workbook:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
-  - docs/books/b19-developer-workbook/06-group-policy-as-code.md
   cited_by:
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/ad-ds/manage/group-policy/group-policy-management-console.md
@@ -3130,12 +3162,13 @@ pages:
   ms_date: '2025-04-08'
   ms_topic: upgrade-and-migration-article
   description: 'Learn more about: AD FS Decommission'
-  coverage: covered-uncited
+  coverage: cited
   note: AD FS decommission steps and FAQ
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
-  cited_by: []
+  cited_by:
+  - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
 - path: WindowsServerDocs/identity/ad-fs/AD-FS-Deployment.md
   url: https://learn.microsoft.com/windows-server/identity/ad-fs/ad-fs-deployment
   title: AD FS 2016 Deployment
@@ -3214,6 +3247,7 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   cited_by:
+  - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: WindowsServerDocs/identity/ad-fs/decommission/adfs-decommission-guide.md

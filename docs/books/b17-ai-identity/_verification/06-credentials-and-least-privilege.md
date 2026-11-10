@@ -101,3 +101,21 @@ ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160).
 | 4 | MS.AAD.9.1v1 not on CISA's Required Configurations page on Oct 26, 2026 | Same | verified | Required Configurations page (20 Entra IDs; no 9.1) |
 | 5 | Program treats 9.1v1 as notice; records ScubaGear result per tenant; blocks when the agent risk condition is GA in the agency's cloud | Same | restated-as-design | Book 17 Ch04 position (preview capabilities are watch items; agent risk condition in preview; GCC licensing and availability rows) |
 | 6 | MS.AAD.5.2v1 wording and the two compliant options unchanged at v2.0.0 (`c06-scuba-main` renamed `c06-scuba-v2` and pinned to the tag) | Admin consent | verified | v2.0.0 `aad.md` |
+
+## November 9, 2026: Learn citations and Global Secure Access for AI
+
+Learn coverage pass (citations for pages the coverage map marked covered-uncited) and a small addition from the Learn gap review: Global Secure Access controls for generative AI. All pages read November 9, 2026 with the Microsoft Learn MCP tools; no personal data sent to any site.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Sidecar is a container beside the agent; acquires and caches tokens through client credentials or FIC (autonomous) and OBO (user context); no host port | No stored secrets, item 2 | verified | Learn, "Authentication with Microsoft Entra ID Auth SDK (sidecar)" |
+| L2 | Three agent modes: on behalf of a user, autonomous through the agent identity's service principal, agent's user account | Choose the access mode first | verified | Learn, "Authentication protocols in agents" |
+| L3 | Inherited permissions aren't visible on agent identities in the admin center or Graph; only in the token at runtime | Inherited permissions | verified | Learn, "Inheritable permissions and required resource access in Microsoft Entra Agent ID" |
+| L4 | MCP server validates signature, issuer, tenant, audience, expiry on every request before any tool runs, then roles/scopes; use tested libraries | Layer 1 | verified | Learn, "Secure a Model Context Protocol (MCP) server with Microsoft Entra ID" |
+| L5 | Prompt injection protection: blocks adversarial prompts and jailbreaks; preconfigured models incl. ChatGPT, Claude, Gemini; custom JSON model by URL and JSON path; Internet Access license, TLS inspection, client on Entra joined/hybrid joined Windows; text only, 64,000 characters | Network edge | verified; page not labeled preview | Learn, "Protect enterprise generative AI applications with prompt injection protection" |
+| L6 | MCP firewall (preview): remote MCP servers; allow/block servers, tools, resources, prompts, methods, transports, versions; default-Block-with-allow-list example; TLS inspection required; stdio/local servers and JSON-RPC batches not inspected | Network edge | verified | Learn, "Configure Global Secure Access MCP firewall to secure MCP traffic (preview)" |
+| L7 | Secure Web and AI Gateway: Copilot Studio agent traffic (HTTP node, custom connectors, MCP server connector) forwarded per Power Platform environment; web content, threat intelligence and file filtering; requires Agent 365 | Network edge | verified; page not labeled preview | Learn, "Learn about Secure Web And AI Gateway for Microsoft Copilot Studio agents" |
+| L8 | Global Secure Access available in GCC, not yet supported in GCC High, DoD or other government clouds | Network edge; release table | verified | Learn, "Known limitations for Global Secure Access" |
+| L9 | Default-Block MCP posture from the identity records; block event as drift signal; GCC/GCC High consequences | Network edge | restated-as-design | Program design from L6, L8 and the Agent 365 service description |
+
+Learn pages left uncited but listed for this chapter in the coverage map: the individual agent OAuth flow pages, the sidecar setup and local-development pages, control-user-access, grant-agent-access-microsoft-365, manage-owners-sponsors, manage-agents-without-identity, the Bedrock and n8n pages and fundamentals/zero-trust-ai (topic-level matches; the chapter cites the more specific pages).

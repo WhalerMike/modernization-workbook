@@ -68,3 +68,17 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | Amazon Bedrock AgentCore in AWS GovCloud (US): still US-West only; differences now Bedrock Guardrails Policy, Temporal Policy, AgentCore payments and AgentCore optimization; unavailable CloudFormation resources listed as AWS::AgentRegistry::Registry and ::RegistryRecord only (the OAuth2 and API key credential providers are no longer named) | Row 43 updated in the AWS paragraph; footnote [^c04-aws-gov] updated |
+
+## November 9, 2026: Learn citations
+
+Microsoft Learn pages the Learn coverage map marked as covered but uncited, read on November 9, 2026 with the Microsoft Learn fetch tool and cited where they support a specific sentence. No wording changed beyond the added footnotes.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 47 | Three token subjects Entra ID can see: user (on-behalf-of), own identity (autonomous), own user account | Opening | verified | Learn, Authentication protocols in agents, <https://learn.microsoft.com/entra/agent-id/agent-oauth-protocols> (`c04-protocols`) |
+| 48 | Legacy Copilot Studio and app-registration agents are treated as standard applications | Workload identities | verified | Learn, Recreate Copilot Studio agents; Migrate custom app registrations, <https://learn.microsoft.com/entra/agent-id/migrate-copilot-studio-agents-to-agent-id>, <https://learn.microsoft.com/entra/agent-id/migrate-custom-app-registrations-to-agent-id> (`c04-migrate-cs`, `c04-migrate-custom`) |
+| 49 | Agent ID object model: blueprint, blueprint principal, agent identity, agent user account | The object model | verified | Learn, Agent ID key concepts, <https://learn.microsoft.com/entra/agent-id/key-concepts> (`c04-key-concepts`) |
+| 50 | Blueprint is a template holding credentials, app roles, verified publisher and inheritable permissions | The object model | verified | Learn, Agent identity blueprints, <https://learn.microsoft.com/entra/agent-id/agent-blueprint> (`c04-blueprint`) |
+| 51 | Products and channels that create agent identities (Copilot Studio, Foundry, consent to non-Microsoft agents) | Which products create agent identities | verified | Learn, How are agent identities created?, <https://learn.microsoft.com/entra/agent-id/agent-id-creation-channels> (`c04-creation-channels`) |
+| 52 | Non-Microsoft agents (Bedrock, n8n) given agent identities through the sidecar or workload identity federation | Which products create agent identities | verified | Learn, What is the Microsoft agent identity platform; Secure an Amazon Bedrock agent, <https://learn.microsoft.com/entra/agent-id/what-is-agent-id-platform>, <https://learn.microsoft.com/entra/agent-id/integrate-aws-bedrock-agent> (`c04-platform`, `c04-bedrock`) |
+| 53 | Agent 365 becomes the unified registry; Entra continues to provide agent identities | Which products create agent identities | verified | Learn, Agent Registry convergence with Microsoft Agent 365, <https://learn.microsoft.com/entra/agent-id/agent-registry-convergence> (`c04-registry-convergence`) |

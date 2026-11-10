@@ -66,11 +66,11 @@ For running the engine, Learn publishes five PowerShell samples for an incident:
 
 | Sample | What it does |
 |---|---|
-| Pause all | Pauses every dynamic group and dynamic administrative unit that is `On` |
-| Pause specific | Pauses the IDs you type |
-| Pause all except | Pauses everything that is `On` except the IDs you type |
-| Resume specific critical | Resumes the IDs you type; run it first |
-| Resume noncritical | Resumes up to 100 paused groups and 100 paused administrative units per run, after the critical ones |
+| Pause all | Pauses every dynamic group and dynamic administrative unit that is `On`[^c04-pause-all] |
+| Pause specific | Pauses the IDs you type[^c04-pause-specific] |
+| Pause all except | Pauses everything that is `On` except the IDs you type[^c04-pause-except] |
+| Resume specific critical | Resumes the IDs you type; run it first[^c04-resume-critical] |
+| Resume noncritical | Resumes up to 100 paused groups and 100 paused administrative units per run, after the critical ones[^c04-resume-noncritical] |
 
 Each script runs in two phases (groups, then administrative units), asks for `yes` before each, asks for the cloud, and requests only the scopes for the phases you choose: `Group.ReadWrite.All` with Groups Administrator, `AdministrativeUnit.ReadWrite.All` with Privileged Role Administrator.[^c04-samples]
 
@@ -131,7 +131,7 @@ The evaluator is for tests and reviews, and it isn't the engine. It refuses `mem
 
 `Test-DrRule` applies eleven rules (DR-01 to DR-11; the [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules#linter-rules) lists them). Two matter most. DR-03 and DR-04 require the guards to be ANDed at the top of the rule: a guard inside an `-or` protects nothing, and a regular expression over the rule text can't tell the difference, which is why the linter works on the parsed tree. DR-10 notes that `-ne` or `-notIn` on a coded slot also admits someone whose slot is empty; add `(… -ne null)` if an empty slot must not qualify (*design guidance*).
 
-Run against Book 03, Chapter 10's own rule pattern table, the linter found three things. The **Legal employer** pattern had no `userType` guard, so a guest whose `companyName` matched would have qualified (DR-04); it now has the guard, fixed in the same change as this chapter. It still reads `companyName`, a display-name attribute (DR-05), because the row exists to show that case. The **Exclusion** pattern admitted a worker whose type slot was empty (DR-10). The owner decided that an empty worker type must not qualify, so the pattern now ends `-and (user.extensionAttribute11 -ne null)`, as this library's entry already did, and the linter finds nothing in it. The **Direct reports** pattern can't carry guards at all, because Learn says that rule can't be combined with any other, so the linter only notes it (DR-03, Info).[^c04-rules]
+Run against Book 03, Chapter 10's own rule pattern table, the linter found three things. The **Legal employer** pattern had no `userType` guard, so a guest whose `companyName` matched would have qualified (DR-04);[^c04-guest-tutorial] it now has the guard, fixed in the same change as this chapter. It still reads `companyName`, a display-name attribute (DR-05), because the row exists to show that case. The **Exclusion** pattern admitted a worker whose type slot was empty (DR-10). The owner decided that an empty worker type must not qualify, so the pattern now ends `-and (user.extensionAttribute11 -ne null)`, as this library's entry already did, and the linter finds nothing in it. The **Direct reports** pattern can't carry guards at all, because Learn says that rule can't be combined with any other, so the linter only notes it (DR-03, Info).[^c04-rules]
 
 ### The shadow diff
 
@@ -547,6 +547,12 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c04-evaluate]: Microsoft Learn, "group: evaluateDynamicMembership," <https://learn.microsoft.com/graph/api/group-evaluatedynamicmembership?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c04-samples]: Microsoft Learn, "PowerShell samples for dynamic membership processing," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples>, and its five sample pages (accessed Oct 30, 2026).
 [^c04-samples-code]: Microsoft, MicrosoftDocs/entra-docs, `docs/identity/users/scripts` and `docs/identity/users/groups-dynamic-membership-powershell-samples.md` at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026), code under the MIT License, <https://github.com/MicrosoftDocs/entra-docs/tree/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/identity/users/scripts> (accessed Oct 30, 2026); pinned copy in `examples/third_party/dynamic-membership-samples`.
+[^c04-pause-all]: Microsoft Learn, "PowerShell sample - Pause all groups and administrative units with dynamic membership," <https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-dynamic-membership> (accessed Nov 9, 2026).
+[^c04-pause-specific]: Microsoft Learn, "PowerShell sample - Pause specific groups and administrative units with dynamic membership" (skips collections that aren't dynamic or are already paused), <https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-specific-dynamic-membership> (accessed Nov 9, 2026).
+[^c04-pause-except]: Microsoft Learn, "PowerShell sample - Pause all groups and administrative units with dynamic membership except specified," <https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-except-dynamic-membership> (accessed Nov 9, 2026).
+[^c04-resume-critical]: Microsoft Learn, "PowerShell sample - Resume specific critical groups and administrative units with dynamic membership" (use it first when recovering from a pause), <https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-specific-critical-dynamic-membership> (accessed Nov 9, 2026).
+[^c04-resume-noncritical]: Microsoft Learn, "PowerShell sample - Resume noncritical groups and administrative units with dynamic membership in batches" (up to 100 groups and 100 administrative units per run, after the critical collections), <https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-noncritical-dynamic-membership> (accessed Nov 9, 2026).
+[^c04-guest-tutorial]: Microsoft Learn, "Add or remove group members automatically" (tutorial; its rule selects guest users by `userType` and `companyName`, so a guest can carry a partner's `companyName`), <https://learn.microsoft.com/entra/identity/users/groups-dynamic-tutorial> (accessed Nov 9, 2026).
 [^c04-create]: Microsoft Learn, "Create or update a dynamic membership group in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-create-rule> (accessed Oct 30, 2026).
 [^c04-group]: Microsoft Learn, "group resource type," <https://learn.microsoft.com/graph/api/resources/group?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^c04-newgroup]: Microsoft Learn, "New-MgGroup," <https://learn.microsoft.com/powershell/module/microsoft.graph.groups/new-mggroup?view=graph-powershell-1.0> (accessed Oct 30, 2026).

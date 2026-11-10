@@ -62,3 +62,16 @@ The section is agency-neutral: its pattern was observed in a public, independent
 | Before | After | Check |
 |---|---|---|
 | Mission value axis inputs "mission criticality, cost of the function if lost, and the number and kind of users" | "Mission criticality and cost", two of the six criteria in the table above (so five of six combine into two axes: two for value, three for health) | Decision of Nov 8, 2026; matches the six-criteria table |
+
+## November 9, 2026: legacy identity libraries and APIs (Learn gap review)
+
+Small addition from the Learn coverage review: the app inventory asks about ADAL, Azure AD Graph and the implicit grant. Pages read November 9, 2026 with the Microsoft Learn MCP tools.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | ADAL support including security fixes ended June 30, 2023; existing apps keep working; MSAL gets tokens from AD FS 2019 or later only | Six triage criteria, notes | verified | Learn, "Migrate applications to the Microsoft Authentication Library (MSAL)" |
+| L2 | Sign-ins workbook lists ADAL apps active in the last 30 days, with sign-in count and ADAL version, after sign-in logs are sent to Azure Monitor | Same | verified | Learn, "Get a complete list of apps using ADAL in your tenant" |
+| L3 | Extended access to Azure AD Graph ended August 31, 2025; apps using it stop functioning after retirement; migrate to Microsoft Graph | Same | verified | Learn (Graph docs), "Migrate your apps from Azure AD Graph to Microsoft Graph"; "Configure Azure AD Graph permissions" (caution) |
+| L4 | Entra recommendations list applications and service principals still calling Azure AD Graph; service principals usually need a vendor update | Same | verified | Learn, "Microsoft Entra recommendation: Migrate from Azure AD Graph APIs to Microsoft Graph" |
+| L5 | Implicit grant no longer a suitable method (third-party cookie blocking breaks silent SSO); MSAL.js 2.x doesn't support it; three migration steps; disabling it affects every app sharing the registration | Same | verified | Learn, "Migrate a JavaScript single-page app from implicit grant to auth code flow"; "Microsoft identity platform and OAuth 2.0 implicit grant flow" |
+| L6 | Questions lower technical condition; measured vs attested flag | Same | restated-as-design | Program design (this chapter's rubric) |

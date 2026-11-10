@@ -59,3 +59,19 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md`, ยง2, ย
 
 - `docs/images/diagrams/b10-cloud-boundary/src/ch04-exclusions-both-ways.flow.yaml`
 - `docs/images/diagrams/b10-cloud-boundary/src/ch04-three-packages.flow.yaml`
+
+## Learn gaps, November 9, 2026
+
+New section "A worked case: Global Secure Access's network and privacy facts". Microsoft Learn pages read Nov 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| GSA-1 | GCC availability sentence (quoted) | Worked case | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
+| GSA-2 | Same locations, Microsoft datacenters (quoted); North America list of commercial regions, no Azure Government; no dedicated or static IPs (quoted); anycast ingress | Worked case | verified | Microsoft Learn "Global Secure Access points of presence and IP addresses", read Nov 9, 2026 |
+| GSA-3 | No Azure Government region in the remote network list | Worked case | verified | Microsoft Learn "Global Secure Access remote network configurations", read Nov 9, 2026 |
+| GSA-4 | GCC traffic handled in commercial regions | Worked case | restated-as-design | inference, labeled in the text |
+| GSA-5 | Egress ranges 128.94.0.0/19 and 151.206.0.0/16 | Worked case | verified | Microsoft Learn "Global Secure Access egress IP ranges", read Nov 9, 2026 |
+| GSA-6 | Enriched logs subset, 24 hours, processing in the US or Europe (quoted) | Worked case | verified | Microsoft Learn "Microsoft Entra Private Access and Microsoft Entra Internet Access data storage and privacy", read Nov 9, 2026 |
+| GSA-7 | Traffic and remote network health logs 30 days | Worked case | verified | Microsoft Learn "Global Secure Access logs and monitoring", read Nov 9, 2026 |
+| GSA-8 | FedRAMP High and DoD SRG Level 2; environment not stated | Worked case | verified | Microsoft Learn "Global Secure Access Certifications", read Nov 9, 2026 |
+| GSA-9 | Connector TLS 1.2 and 1.3, default Windows ciphers; CBC and RSA suites marked weak | Worked case | verified | Microsoft Learn "Ciphers for Microsoft Entra Private Access", read Nov 9, 2026 |

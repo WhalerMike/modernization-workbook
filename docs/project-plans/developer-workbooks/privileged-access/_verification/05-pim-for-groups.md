@@ -79,3 +79,13 @@ Item 1603 of the crosswalk review: the chapter said Book 04 requires `c1` for PI
 | C2 | Create and enable the context's Conditional Access policy before PIM selects it; with no policy targeting the context, activation falls back to MFA; no fallback when the policy is off, report-only or excludes eligible users | Desired state; `-ActivationGateChecked` | verified November 9, 2026 through the Microsoft Learn MCP tools | Learn, Configure PIM for Groups settings (`pa05-settings-reauth`) |
 | C3 | Enablement rules without MFA when `c1` is selected | Desired state | restated-as-design: follows Chapter 04's role files (`requireMfa: false` with `c1`) and Book 04, Appendix B, which lists the context, not MFA, on activation | Book 04, Appendix B; Chapter 04 |
 | C4 | Lab 1 output after the change | Lab 1 | verified by running the commands as written (`scripts/kit_captures.py pa`, November 9, 2026); the Pester suite still runs 330 | `data/kit-captures/pa/05-*.txt` |
+
+## Learn citations (added November 9, 2026)
+
+Microsoft Learn pages opened on November 9, 2026 through the Microsoft Learn MCP tools and cited where the chapter already said what they say. No claim changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | A PIM eligibility shorter than the access package's expiration revokes access while the package still shows assigned | Access packages paragraph | verified | Learn, Using groups managed by Privileged Identity Management with access packages (`pa05-em-pim`) |
+| L2 | An administrator can extend a group membership or ownership assignment | Microsoft's samples | verified | Learn, Extend or renew PIM for groups assignments (`pa05-renew`) |
+| L3 | A user activates an eligible membership; the last active owner can't be removed, so an activated owner's deactivation is retried for up to 30 days | Microsoft's samples; PA-PG-07 | verified | Learn, Activate your group membership or ownership in Privileged Identity Management (`pa05-activate`) |

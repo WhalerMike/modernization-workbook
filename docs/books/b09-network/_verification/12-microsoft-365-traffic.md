@@ -55,6 +55,7 @@ Checked 2026-10-21 against Microsoft Learn (network connectivity principles; Man
 | 44 | DNS resolution close to the egress | GCC-Moderate | verified | principles |
 | 45 | Agency resolver as first hop, Protective DNS upstream | GCC-Moderate | consistent with Book 08 Ch05 (linked, not re-footnoted) | B08 Ch05 |
 | 46 | Telemetry is a condition of fleet rollout, not pilot cutover | What the exemption doesn't settle | restated-as-design | — |
+| 47 | Universal tenant restrictions apply TRv2 through the Global Secure Access client or remote networks, tagging authentication-plane traffic for Entra ID and Microsoft Graph, with no corporate proxy | Tenant restrictions table | verified | Microsoft Learn Turn on Universal Tenant Restrictions; Tutorial: Configure universal tenant restrictions, read Nov 9, 2026 |
 
 ## 2. Carry-forward ledger
 

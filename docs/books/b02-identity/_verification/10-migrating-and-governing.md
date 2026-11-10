@@ -264,3 +264,9 @@ Learn pages the coverage map listed as covered but uncited were read on Nov 9, 2
 | L32 | Writeback permissions (Reset password, `lockoutTime`, `pwdLastSet`, Unexpire Password) also apply to the cloud sync gMSA | Troubleshooting, password writeback | verified (Learn read Nov 9, 2026) | c10-cloud-sync-writeback <https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-cloud-sync-sspr-writeback> |
 | L33 | Check redemption when a guest can't reach resources | Troubleshooting, B2B guest | verified (Learn read Nov 9, 2026) | c10-b2b-troubleshoot <https://learn.microsoft.com/entra/external-id/troubleshoot> |
 | L34 | A workflow doesn't fire when `employeeHireDate` isn't populated | Troubleshooting, Lifecycle workflow | verified (Learn read Nov 9, 2026) | c10-lcw-prepare-users <https://learn.microsoft.com/entra/id-governance/tutorial-prepare-user-accounts> |
+
+## Revision 2026-11-09 — pointer to the forest recovery runbook
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | Phase rollbacks assume a healthy forest; a lost forest is recovered first, with synchronization paused, using Book 14 Appendix H; rehearse before Phase 1 | §The migration execution playbook | restated-as-design (cross-reference; the runbook's own claims log carries the Microsoft sources) | Book 14, Appendix H |

@@ -35,6 +35,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 23 | Processing state values On and Paused; Update complete status | Lab 2; Verified facts | verified | Learn, group resource type; create or update a dynamic group |
 | 24 | Guards ANDed at the top; `-ne` on coded slots and empty slots; 24-hour default | Lint; pause manifest; Dangers | restated-as-design (labeled where stated) | — |
 | 25 | Lab 1 outputs (both groups On; Graph host for GCCHigh; two lint rows after the Legal employer and Exclusion fixes; members u01, u02, u06, u08, u09; exit 0 then 2 with adds u06) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+| 26 | Each of the five samples does what its table row says (pause all, pause specific, pause all except, resume specific critical first, resume noncritical up to 100 of each per run) (Learn citations added November 9, 2026) | What Learn gives you | verified | Learn, the five sample pages under https://learn.microsoft.com/entra/identity/users/scripts/ (powershell-pause-all-dynamic-membership, powershell-pause-specific-dynamic-membership, powershell-pause-all-except-dynamic-membership, powershell-resume-specific-critical-dynamic-membership, powershell-resume-noncritical-dynamic-membership), read November 9, 2026 |
+| 27 | A guest can carry a partner's `companyName`, so a `companyName` rule without a `userType` guard can admit guests (Learn citation added November 9, 2026) | Lint (Book 03 table, Legal employer) | verified | Learn, "Add or remove group members automatically" (tutorial rule on `userType` Guest and `companyName`), https://learn.microsoft.com/entra/identity/users/groups-dynamic-tutorial, read November 9, 2026 |
 
 ## Carry-forward ledger
 

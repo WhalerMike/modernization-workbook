@@ -6889,6 +6889,81 @@
   "sources": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated_sources.json"
  },
  {
+  "id": "Guide_Service_Account_Migration_Narrated",
+  "title": "Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Service_Account_Migration_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/guide-service-account-migration/Guide_Service_Account_Migration_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-service-account-migration/Guide_Service_Account_Migration_Narration_Script.md",
+  "page": "docs/books/guides/service-account-migration.html",
+  "source": "docs/books/guides/service-account-migration.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Service accounts: from user accounts to gMSAs and Entra ID"
+   ],
+   [
+    55,
+    "Why this matters: the password nobody changes"
+   ],
+   [
+    114,
+    "Twelve kinds of service identity, compared"
+   ],
+   [
+    189,
+    "What can move to Microsoft Entra ID, and what can't"
+   ],
+   [
+    262,
+    "The decision path: the first yes is the target"
+   ],
+   [
+    341,
+    "The program's rules for every migration"
+   ],
+   [
+    410,
+    "Requirements, KSIs and the evidence the ISSO keeps"
+   ],
+   [
+    487,
+    "Migration A: a user account to a gMSA, steps A1 to A4"
+   ],
+   [
+    568,
+    "Migration A: switch, move the SPNs, run 30 days, disable"
+   ],
+   [
+    642,
+    "Migration B: a user account to a Windows Server 2025 dMSA"
+   ],
+   [
+    722,
+    "Migration C: to a Microsoft Entra workload identity"
+   ],
+   [
+    801,
+    "Dangers, and how to avoid them"
+   ],
+   [
+    876,
+    "Where the kit and the labs take over"
+   ]
+  ],
+  "sources": "presentations/guide-service-account-migration/Guide_Service_Account_Migration_Narrated_sources.json"
+ },
+ {
   "id": "Guide_DP_Consolidation_Executive_Narrated",
   "title": "Content Delivery Modernization (DP Consolidation): executive decision deck",
   "group": "book",
@@ -7241,31 +7316,31 @@
     "G2: five targets, decided by type and where it runs"
    ],
    [
-    554,
+    556,
     "G2 in code: propose, check each decision, plan waves"
    ],
    [
-    616,
+    618,
     "G2: requirement, evidence, availability, rollback"
    ],
    [
-    680,
+    682,
     "G3: the tenant policy blocks secrets, caps certificates"
    ],
    [
-    743,
+    745,
     "G3: the vault, the upload, and secrets by exception"
    ],
    [
-    805,
+    807,
     "G3 in code: compare the policy, plan the rotation"
    ],
    [
-    865,
+    867,
     "G3: requirement, evidence, availability, rollback"
    ],
    [
-    930,
+    932,
     "Handing G1–G3 to Part 2"
    ]
   ],
@@ -15192,7 +15267,7 @@
   "id": "Training_NPI_Module_8_Narrated",
   "title": "Non-Person Identity learning path, Module 8: Convert Kerberos accounts to gMSAs and dMSAs",
   "group": "training",
-  "minutes": 17,
+  "minutes": 16,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_8_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-npi-module-8/Training_NPI_Module_8_Narrated.vtt",
@@ -15218,63 +15293,63 @@
     "Module 8: Convert Kerberos accounts to gMSAs and dMSAs"
    ],
    [
-    51,
+    47,
     "Why converting a Kerberos account isn't the end"
    ],
    [
-    115,
+    109,
     "What you'll be able to do in Module 8"
    ],
    [
-    166,
+    160,
     "The gate: a parallel run, then disable, never delete"
    ],
    [
-    235,
+    232,
     "Four dispositions from Module 3, and the program's rules"
    ],
    [
-    315,
+    291,
     "The check: NPI-KRB-01 to NPI-KRB-09"
    ],
    [
-    396,
+    367,
     "The plan: one action per account, approved by hash"
    ],
    [
-    456,
+    427,
     "The island list, the reconciliation, the write path"
    ],
    [
-    528,
+    492,
     "Try it: the runs it reads, Learn's steps, the tasks' calls"
    ],
    [
-    599,
+    552,
     "Try it: check nine Kerberos accounts, read the findings"
    ],
    [
-    687,
+    613,
     "Try it: the plan, the island list, the reconciliation"
    ],
    [
-    754,
+    669,
     "Try it: dry-run, apply to the fake, and a refusal"
    ],
    [
-    803,
+    719,
     "Lab 2: a test domain, and a real migration"
    ],
    [
-    863,
+    779,
     "The federal requirement and evidence for Gate G5"
    ],
    [
-    923,
+    838,
     "Check yourself: two questions on the Kerberos island"
    ],
    [
-    991,
+    892,
     "Summary, and next: Module 9, AI agent identities"
    ]
   ],

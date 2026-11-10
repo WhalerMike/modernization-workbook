@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.986
+A5 happens in one change window,
+because an S P N left on the old account
+
+2
+00:00:04.986 --> 00:00:09.663
+while the service runs as the G M
+S A breaks Kerberos to the service.
+
+3
+00:00:09.663 --> 00:00:12.649
+Each S P N must have exactly one owner.
+
+4
+00:00:12.649 --> 00:00:18.800
+Remove it from the old account, add it to
+the G M S A, and list it with set S P N.
+
+5
+00:00:18.800 --> 00:00:20.788
+Then change the workload's identity.
+
+6
+00:00:20.788 --> 00:00:23.646
+A G M S A logs on with a blank password,
+
+7
+00:00:23.646 --> 00:00:27.588
+which Windows fills in, as
+Learn's Entra page says.
+
+8
+00:00:27.588 --> 00:00:30.764
+For a Windows service, S
+C config sets the account,
+
+9
+00:00:30.764 --> 00:00:33.862
+and the managed-account
+query must report true.
+
+10
+00:00:33.862 --> 00:00:37.978
+A scheduled task gets a new principal
+with the password logon type,
+
+11
+00:00:37.978 --> 00:00:41.420
+as Learn's assessment pages do
+it, and an I I S application
+
+12
+00:00:41.420 --> 00:00:44.787
+pool gets identity type three
+with the blank password.
+
+13
+00:00:44.787 --> 00:00:47.740
+The guide notes that
+Learn has no single page
+
+14
+00:00:47.740 --> 00:00:50.613
+showing that last one
+end to end, so verify it.
+
+15
+00:00:50.613 --> 00:00:54.088
+A6 is the thirty-day parallel
+run: test end to end,
+
+16
+00:00:54.088 --> 00:00:58.099
+keep the old account enabled,
+and watch its logons stop.
+
+17
+00:00:58.099 --> 00:01:03.788
+A7 disables the old account; deletion comes
+later, through the decommission process.
+
+18
+00:01:03.788 --> 00:01:07.103
+To roll back, switch the
+workload back with the old
+
+19
+00:01:07.103 --> 00:01:10.220
+password from the vault,
+and move the S P Ns back.

@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.877
+The guide compares twelve kinds of service
+
+2
+00:00:02.877 --> 00:00:05.625
+identity in one table;
+here's the short form.
+
+3
+00:00:05.625 --> 00:00:10.040
+On premises, Microsoft Learn names
+the user account used as a service,
+
+4
+00:00:10.040 --> 00:00:14.920
+the standalone managed service account,
+the group managed service account,
+
+5
+00:00:14.920 --> 00:00:19.412
+and, new in Windows Server 2025, the
+delegated managed service account.
+
+6
+00:00:19.412 --> 00:00:24.665
+A standalone or group account has a
+two-hundred-forty-byte random password that
+
+7
+00:00:24.665 --> 00:00:29.917
+Windows changes every thirty days by default;
+for a G M S A, the domain controllers
+
+8
+00:00:29.917 --> 00:00:34.851
+compute it from the K D S root key, and
+the hosts allowed to retrieve it hold it.
+
+9
+00:00:34.851 --> 00:00:37.502
+A D M S A ties its secret to the machine,
+
+10
+00:00:37.502 --> 00:00:40.950
+and Learn says it helps
+prevent Kerberoasting.
+
+11
+00:00:40.950 --> 00:00:44.682
+Virtual and computer accounts act
+as the computer on the network,
+
+12
+00:00:44.682 --> 00:00:46.963
+so you can't tell which service used them.
+
+13
+00:00:46.963 --> 00:00:52.088
+In Microsoft Entra I D: an app registration
+with a certificate you keep in a vault;
+
+14
+00:00:52.088 --> 00:00:57.059
+system- and user-assigned managed
+identities, whose credentials Azure keeps;
+
+15
+00:00:57.059 --> 00:01:01.874
+an Azure Arc-enabled server's own
+managed identity; a federated credential,
+
+16
+00:01:01.874 --> 00:01:05.058
+signed by an outside issuer;
+and agent identities,
+
+17
+00:01:05.058 --> 00:01:08.087
+which take their credentials
+from a blueprint.
+
+18
+00:01:08.087 --> 00:01:10.750
+None of the cloud kinds speaks Kerberos.

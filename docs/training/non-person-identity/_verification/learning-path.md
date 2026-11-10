@@ -1,6 +1,6 @@
 # Verification — Learning path: Non-Person Identity in Microsoft Entra ID
 
-Files: `docs/training/non-person-identity/index.md` and its eleven modules, `01-inventory.md` to `11-deploying-to-test-and-production.md`.
+Files: `docs/training/non-person-identity/index.md` and its twelve modules, `01-inventory.md` to `12-service-account-migration.md` (Module 12 added November 9, 2026; see its section below).
 Example code: `examples/non-person-identity` (with `deploy/` for Module 11), and `examples/drift-pipeline` for Module 10.
 Verified: 2026-11-02
 
@@ -58,5 +58,23 @@ Method:
 |---|---|---|---|---|
 | G1 | gMSA prerequisites now name one KDS root key for the forest, a forest-unique name and an interval set only at creation | Module 8, Unit 1 | verified November 9, 2026 | Non-Person Identity guide, Step 2 (Learn, Manage group Managed Service Accounts; Create gMSAs for Windows containers) |
 | G2 | Optional reading: the service account guide's Migrations A and B | Module 8, Unit 1 | link added | — |
+
+## Module 12: Migrate a service account (November 9, 2026)
+
+Added at the program owner's request of November 9, 2026 for a training module for the guide *Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities* (`docs/books/guides/service-account-migration.md`). It joins this path as Module 12, a companion to Module 8, rather than a standalone module, because its lab is Chapters 06 and 05's kit and its prerequisites are Modules 3 and 8. It adds no gate, so its row in the index names no G number, and the guide's Validate boxes don't list it. The module adds no new facts: its units are reading lists of the guide's sections, which rely on the guide's own verification log (`docs/books/guides/_verification/service-account-migration.md`) and footnotes.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| M1 | The requirement table: each step's controls, KSIs and evidence | Module 12, Introduction | carried | The guide's "Federal requirements and evidence" table, rows A3/B1, A4, A6/B3, C1 to C4, Island |
+| M2 | Lab 1, step 2: the 17 Learn sample tests, by name, all Passed | Module 12, Lab 1 | run November 9, 2026; matched | `tests/KerberosIslandSamples.Tests.ps1`; Chapter 06, Lab 1, step 1 (`PassedCount 17`) |
+| M3 | Lab 1, steps 3 and 5: the Kerberos plan summary (plan `e8fb8355…`) and `DryRun: 4 WouldSend` | Module 12, Lab 1 | run November 9, 2026; matched | Module 8, steps 4 and 8; Chapter 06, Lab 1 |
+| M4 | Lab 1, step 4: `CreateGmsa` for `svc-intranet` sends `New-ADServiceAccount` with a name, DNS host name, a hosts group and `AES256`; `CompleteDmsaMigration` for `svc-hrsync` sends the dMSA and the superseded account's DN, 40 days after it started | Module 12, Lab 1 | run November 9, 2026; observed in `kerberos-plan.json` | Chapter 06, "The check and the plan"; the guide's A3 and B3 |
+| M5 | Lab 1, steps 6 and 7: the conversion plan summary (plan `5ec0a52c…`) and the eight conversions with their legacy credential, target and parallel run | Module 12, Lab 1 | run November 9, 2026; matched | Module 7, steps 3 and 6; Chapter 05, Lab 1 |
+| M6 | `svc-intranet` runs an IIS application pool on INTRA01 and INTRA02 in Chapter 06's fixture and deploys the intranet site from GitHub Actions in Chapter 05's; `msa-print01$` is an sMSA | Module 12, Lab 1, steps 5 and 7 | observed in the fixtures | `kerberos-plan.json` reason; `tests/fixtures/ch05/conversions.json`; `tests/fixtures/estate.json` |
+| M7 | The step-2 tests map to the guide's B1 (state step fails as published), B2 (one service restarted), A3 (AES256 added), A4 (a person's step on each host) and A7 (disable, not delete) | Module 12, Lab 1, step 2 | carried | The guide's Migrations A and B; the test names |
+| M8 | Knowledge-check answers | Module 12 | checked against the linked sections | The guide's comparison, decision path, rules, Migrations A to C, Dangers |
+| M9 | Time, 65 minutes; path total 12 hours 25 minutes | Module 12; index | design (planning figures) | — |
+
+The Lab 1 commands were run on November 9, 2026 (Windows 11, PowerShell 7 with Pester 5.9.0) in a scratch copy of `examples/non-person-identity`, with `examples/third_party` and `examples/drift-pipeline` beside it, outside the repository; the full suite passed 513 tests in the same copy. Lab 2 is a pointer to the guide's Migration A and Chapter 06's Lab 2, and wasn't run.
 
 *For project use.*

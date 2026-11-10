@@ -162,7 +162,7 @@ If any Priority 1 or 2 system won't meet its MTD, the coordinator escalates to t
 
 ### Section 5: Recovery
 
-The recovery section summarizes each component's procedure, its acceptance criteria and its expected duration, and points to the appendix that holds the runbook. The appendices are the runbooks from the technical books: network recovery (SD-WAN path verification and name resolution failover), database recovery (availability group failover and point-in-time restore), identity recovery (emergency access and Conditional Access adjustment), application and cloud service recovery, logging recovery, notification templates, and the after-action report template.
+The recovery section summarizes each component's procedure, its acceptance criteria and its expected duration, and points to the appendix that holds the runbook. The appendices are the runbooks from the technical books: network recovery (SD-WAN path verification and name resolution failover), database recovery (availability group failover and point-in-time restore), identity recovery (emergency access and Conditional Access adjustment, and while Active Directory remains, the forest recovery runbook in [Appendix H](appendix-h-ad-forest-recovery.md)), application and cloud service recovery, logging recovery, notification templates, and the after-action report template.
 
 | Component | Expected duration | Acceptance criteria |
 |---|---|---|
@@ -277,6 +277,24 @@ Once a year, for each data category, the system security officer:
 5. Updates the plan with the date and results.
 
 That record is the CP-9(1) evidence and part of the CP-4 test.
+
+## Identity recovery during the hybrid period
+
+Until the migration ends, the identity tier is two directories, and each recovers differently. Microsoft Entra ID is a provider service: Microsoft keeps it running, and the agency recovers its own objects and configuration in it. Active Directory is the agency's own system, and a forest-wide failure is the agency's to recover from backup.
+
+### Microsoft Entra ID
+
+**Sign-in during an outage.** Microsoft runs a backup authentication system that issues tokens to supported applications when the primary authentication service is unavailable, for a user who used the same application on the same device within the last three days. Microsoft states that it is supported in every cloud environment except the one operated by 21Vianet, and lists Azure Government, which serves Microsoft 365 GCC High and DoD, at `login.microsoftonline.us`, protecting users and managed identities; Microsoft 365 GCC tenants sit in Azure Commercial, where it also protects users and managed identities.[^c06-bas] It extends existing sessions only: it "doesn't support new sessions or authentications by guest users," and it can't evaluate group or role membership, sign-in risk or user risk in real time. Conditional Access resilience defaults are on for every policy, and disabling them on a policy reduces resilience for everyone that policy covers.[^c06-resdefaults] The plan's position is to leave them on, and to read the sign-in log filter "Token issuer type == Microsoft Entra Backup Auth" as the record of when the backup system carried sign-in.[^c06-bas]
+
+**Fewer things that can fail.** Microsoft's resilience guidance comes down to dependencies. Phishing-resistant passwordless methods have the fewest; each method should be backed by another that doesn't share its dependencies (voice calls and text messages share theirs); and certificate-based authentication depends on its revocation list being reachable.[^c06-res-cred] A device's Primary Refresh Token is valid for 14 days and carries device and multifactor claims, so a joined device keeps meeting Conditional Access without a fresh multifactor prompt through a telecom or multifactor outage.[^c06-res-device] Password hash synchronization is the simplest hybrid option, depending on Active Directory only while it synchronizes, and Microsoft recommends enabling it alongside federation or pass-through authentication as a fallback.[^c06-res-hybrid] For sites that must keep signing in to local applications while cut off from the cloud, Microsoft describes a relying-party token service in front of those applications that trusts Microsoft Entra ID normally and the local Active Directory during a disconnection;[^c06-res-colocated] in this program that pattern can only be a bridge, because both of its local pieces are on the retirement list. [Book 02](../b02-identity/index.md) covers the authentication design these choices sit in.
+
+**Recovering the agency's own objects.** Microsoft Entra Backup and Recovery takes a backup of a workforce tenant's supported objects once a day and keeps seven days of history; no administrator can disable, delete or change the backups. It compares a backup with the current state in a difference report and recovers all objects, a type, or listed objects: an object added since the backup is soft-deleted, a changed one reverted and a soft-deleted one restored, and Microsoft "never hard deletes customer objects as part of the recovery process." It covers users, groups, applications, service principals, Conditional Access policies, named locations and the authentication methods policies, and it requires Microsoft Entra ID P1 or P2. It doesn't recover hard-deleted objects, passwords, or objects synchronized from Active Directory, whose changes appear in difference reports but are excluded from recovery. Hard Deletion Protection, which blocks permanent deletion for seven days and can't be turned off once enabled, is in preview.[^c06-entrabackup][^c06-entrabackup-scope]
+
+Learn doesn't say whether Backup and Recovery is available in government clouds. Its pages name no cloud, and the Microsoft Entra feature availability page for Azure Government has no row for it.[^c06-entra-gov] Microsoft 365 GCC is paired with Microsoft Entra ID in Azure, and GCC High and DoD with Microsoft Entra ID in Azure Government,[^c06-m365-pairing] so for GCC High and DoD its availability is not yet specified, and for GCC the plan confirms it in the tenant before relying on it. Where it isn't available, Microsoft's recoverability guidance is the interim path: restore soft-deleted objects within their 30 days, and keep a documented known-good configuration (configuration snapshots or exports kept in version control) to reapply from.[^c06-recoverability]
+
+### Active Directory
+
+While domain controllers remain, a forest-wide failure stops sign-in for everything that hasn't moved, and Microsoft's answer is a forest recovery from backup. [Appendix H](appendix-h-ad-forest-recovery.md) is the runbook: the backups and passwords to hold, the recovery of the first writable domain controller in each domain, the resets that cut off whatever caused the failure, the redeployment, and the hybrid period's addition, pausing Microsoft Entra Connect so the restored forest's state isn't carried into the cloud before it has been checked.
 
 ## Alternate processing (CP-7)
 
@@ -446,6 +464,7 @@ FedRAMP's 2026 rules include four Recovery Planning indicators: KSI-RPL-ABO (bac
 | CP-7, CP-7(1)–(3) | Alternate region for processing; tested failover; priority terms | Test failover records with times; support terms |
 | CP-8, CP-8(1), CP-8(2) | Two carriers under an overlay; priority terms; path diversity | Circuit inventory; carrier terms; observed failover time; path-quality records |
 | CP-9, CP-9(1), CP-9(8) | Point-in-time backups including Microsoft 365 content and configuration; encrypted; tested | Backup reports; immutability and soft-delete settings; restore test results |
+| CP-9, CP-10 (identity tier) | Microsoft Entra Backup and Recovery where available, or a known-good configuration kept in version control; the Active Directory forest recovery runbook while domain controllers remain | Difference reports and recovery history; configuration exports; forest recovery drill records ([Appendix H](appendix-h-ad-forest-recovery.md)) |
 | CP-10, CP-10(2) | Reconstitution procedures, data synchronization before failback, validation checklist, written deactivation | Section 6 of the plan; failback test records; deactivation notices |
 
 ## What is requirement and what is design
@@ -464,6 +483,8 @@ FedRAMP's 2026 rules include four Recovery Planning indicators: KSI-RPL-ABO (bac
 | The 5-day after-action review and 30-day plan update | Program design | — |
 | The yearly cycle of tabletop, then functional exercises | Program design, within SP 800-34's recommendation | — |
 | The SD-WAN overlay as the CP-8 mechanism | Program design | [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md) |
+| Microsoft Entra Backup and Recovery's availability in GCC High and DoD | Not yet specified on Learn | Microsoft Learn[^c06-entra-gov] |
+| Leave Conditional Access resilience defaults on; pause directory synchronization before reconnecting a recovered forest | Program design, using Microsoft's guidance | [Appendix H](appendix-h-ad-forest-recovery.md)[^c06-resdefaults] |
 | Native recovery per platform, unified by the evidence contract | Program design | [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md) |
 
 ::: {.callout-tip}
@@ -498,3 +519,14 @@ FedRAMP's 2026 rules include four Recovery Planning indicators: KSI-RPL-ABO (bac
 [^c06-oci]: Oracle, *OCI Full Stack Disaster Recovery*, "Overview of Disaster Recovery Plans," <https://docs.oracle.com/en-us/iaas/disaster-recovery/doc/overview-dr-plans.html> (accessed Oct 26, 2026; the page moved from its earlier address under docs.oracle.com/en/cloud/iaas/disaster-recovery/cssgm/).
 [^c06-vmware]: Broadcom, "Build numbers and versions of VMware Live Site Recovery / VMware Site Recovery Manager," knowledge base article 313905 (VMware Live Recovery renamed and integrated into VMware Cloud Foundation as VCF Protection and Recovery; VMware Live Recovery 9.0.5.1, April 20, 2026), <https://knowledge.broadcom.com/external/article/313905> (accessed Oct 21, 2026).
 [^c06-fr-ksi]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, machine-readable ruleset `fedramp-consolidated-rules.json`, version 2026.10.13.01, Key Security Indicators KSI-RPL-ABO, KSI-RPL-ARP, KSI-RPL-RRO and KSI-RPL-TRC, statements and related controls, <https://github.com/FedRAMP/rules> (accessed Oct 21, 2026).
+[^c06-bas]: Microsoft Learn, "Microsoft Entra ID's backup authentication system" (conditions for protected sessions; cloud environments that support it; the sign-in log filter), <https://learn.microsoft.com/entra/architecture/backup-authentication-system> (accessed Nov 9, 2026).
+[^c06-resdefaults]: Microsoft Learn, "Conditional Access: Resilience defaults," <https://learn.microsoft.com/entra/identity/conditional-access/resilience-defaults> (accessed Nov 9, 2026).
+[^c06-res-cred]: Microsoft Learn, "Build resilience with credential management," <https://learn.microsoft.com/entra/architecture/resilience-in-credentials> (accessed Nov 9, 2026).
+[^c06-res-device]: Microsoft Learn, "Build resilience with device states," <https://learn.microsoft.com/entra/architecture/resilience-with-device-states> (accessed Nov 9, 2026).
+[^c06-res-hybrid]: Microsoft Learn, "Build resilience in your hybrid architecture," <https://learn.microsoft.com/entra/architecture/resilience-in-hybrid> (accessed Nov 9, 2026).
+[^c06-res-colocated]: Microsoft Learn, "Resilience for federated applications with colocated users," <https://learn.microsoft.com/entra/architecture/resilience-for-federated-applications-with-colocated-users> (accessed Nov 9, 2026).
+[^c06-entrabackup]: Microsoft Learn, "Microsoft Entra Backup and Recovery overview," "Backup, difference report, and recovery model," "Soft deletion" and "Configure Hard Deletion Protection," <https://learn.microsoft.com/entra/backup/overview>, <https://learn.microsoft.com/entra/backup/backup-difference-report-recovery-model>, <https://learn.microsoft.com/entra/backup/soft-deletion> and <https://learn.microsoft.com/entra/backup/configure-hard-deletion-protection> (accessed Nov 9, 2026).
+[^c06-entrabackup-scope]: Microsoft Learn, "Supported objects and recoverable properties," <https://learn.microsoft.com/entra/backup/scope-supported-objects-limitations> (accessed Nov 9, 2026).
+[^c06-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026; no entry for Backup and Recovery).
+[^c06-m365-pairing]: Microsoft Learn, "Azure feature availability in US Government," section "Microsoft 365 integration," <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Nov 9, 2026).
+[^c06-recoverability]: Microsoft Learn, "Recoverability best practices" and "Recover from deletions," <https://learn.microsoft.com/entra/architecture/recoverability-overview> and <https://learn.microsoft.com/entra/architecture/recover-from-deletions> (accessed Nov 9, 2026).

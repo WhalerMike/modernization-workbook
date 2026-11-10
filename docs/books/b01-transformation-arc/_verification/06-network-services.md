@@ -40,6 +40,10 @@ Microsoft sources opened through the Microsoft Learn MCP tools on October 21, 20
 | 31 | "Phase 2 never comes" | §Phase 2 | restated-as-design | Program observation |
 | 32 | Source footnote `cs06-adidns` (DNS overview page), `cs06-pdnslink` (VNet links page) | — | removed (source) | Replaced by pages opened this session (rows 6, 14) |
 | 33 | Review fix 3, Oct 21, 2026 (revision-history trim): "Earlier versions of this chapter called authorization 'rogue-server detection'" | DHCP authorization | wording-only | Now "Authorization isn't rogue-server detection; it is narrower than that", kept as a short correction of a common misreading. Facts unchanged under [^c06-dhcpauth] and [^c06-dhcpquick]. |
+| 34 | Azure DCs: own subnet and NSG, AD DS site and site link, static private IP, NTDS/logs/SYSVOL on a data disk with host caching None, don't copy VHDs as backup (paragraph added) | Domain controllers in Azure during coexistence | verified | Microsoft Learn (Azure Architecture Center) Deploy AD DS in an Azure virtual network, read Nov 9, 2026 |
+| 35 | Extending an existing domain: on-premises DNS in the VNet settings before promotion; the new DCs become the VNet's DNS servers after (paragraph added) | Domain controllers in Azure during coexistence | verified | Microsoft Learn Install a new Active Directory forest using Azure CLI, read Nov 9, 2026 |
+| 36 | Restoring a DC from a VM snapshot isn't recommended in place of backup; USN rollback; VM-GenerationID safeguards (paragraph added) | Domain controllers in Azure during coexistence | verified | Microsoft Learn Safely virtualizing Active Directory Domain Services (AD DS), read Nov 9, 2026 |
+| 37 | Azure DCs follow the server standard (2016 gone by Jan 12, 2027; 2019 minimum) and retire in Phase 5 (paragraph added) | Domain controllers in Azure during coexistence | restated-as-design | Program assumption; Book 00 Ch01 server standard; Book 01 Ch12 Phase 5 |
 
 ## 2. Carry-forward ledger
 

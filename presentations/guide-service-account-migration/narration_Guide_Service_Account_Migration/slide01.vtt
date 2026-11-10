@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.782
+This is the narrated briefing for a
+companion guide in the Federal Modernization
+
+3
+00:00:05.782 --> 00:00:09.178
+Workbook: Service Accounts,
+from user accounts to group
+
+4
+00:00:09.178 --> 00:00:13.312
+managed service accounts to
+Microsoft Entra workload identities.
+
+5
+00:00:13.312 --> 00:00:15.874
+The guide's idea fits in one line.
+
+6
+00:00:15.874 --> 00:00:18.819
+A service account's password
+is the one nobody changes,
+
+7
+00:00:18.819 --> 00:00:20.912
+because changing it breaks something.
+
+8
+00:00:20.912 --> 00:00:25.042
+Every step in the guide replaces a
+password someone has to keep with
+
+9
+00:00:25.042 --> 00:00:28.876
+a credential that Windows, or
+Microsoft Entra I D, keeps instead.
+
+10
+00:00:28.876 --> 00:00:33.527
+Every fact and command in this
+deck comes from Microsoft Learn,
+
+11
+00:00:33.527 --> 00:00:38.000
+read on November ninth, 2026,
+and the guide footnotes each one.
+
+12
+00:00:38.000 --> 00:00:42.737
+Rules that are the program's own, not
+Microsoft's, are called design guidance.
+
+13
+00:00:42.737 --> 00:00:47.923
+We'll go in four parts: why this matters,
+what the kinds of service identity are,
+
+14
+00:00:47.923 --> 00:00:51.940
+who decides and what they keep,
+and how each migration runs.
