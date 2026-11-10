@@ -63,3 +63,15 @@ Verified: 2026-10-20
 | H4 | M-22-09 not rescinded, FY 2024 deadlines passed, treated as in force | Same, second table | verified (added) | consistent with Book 11 Ch03 (c03-omb-index) |
 | H5 | ZTMM June 2021 draft superseded by v2.0 April 2023; HISG's draft link returned HTTP 404 on Oct 31, 2026 | Same, second table | verified (added) | aA-ztmm; curl check Oct 31, 2026 |
 | H6 | NIST SP 800-207, August 2020, current | Same, second table | verified (added) | aA-sp800207; consistent with Book 11 citations |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Microsoft Learn pages listed as covered but uncited for this appendix were read on Nov 9, 2026 and cited where they support a specific sentence. No sentence was reworded. The FedRAMP pages are cited as Microsoft's own guidance for the same control families; the appendix's mapping stays the program's. The NIST overview, authentication basics, AAL1, authenticator types, AAL concepts, M-22-09 other areas and standards overview pages stay uncited: they are landing or background pages that no single sentence here rests on.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | M-22-09 sets the goal of enterprise-managed identities (consolidated, enterprise-wide identity system) (aA-m2209-ems) | OMB M-22-09 section | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/memo-22-09-enterprise-wide-identity-management-system> |
+| L2 | Entra ID configuration guidance exists for AC-2 and AC-6 (aA-fedramp-entra) | NIST control mapping, intro | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/fedramp-access-controls> |
+| L3 | Entra ID configuration guidance exists for IA-2 and enhancements, IA-3, IA-5, IA-8 (aA-fedramp-entra) | NIST control mapping, intro | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/fedramp-identification-and-authentication-controls> |
+| L4 | Entra ID configuration guidance exists for AU-2, AU-6, SI-4 (aA-fedramp-entra) | NIST control mapping, intro | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/fedramp-other-controls> |
+| L5 | Certificate-based and FIDO2 credentials are replay resistant (nonce or challenge) and phishing resistant, addressing IA-2(8) (aA-aal2) | NIST control mapping, IA-2(8) row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/nist-authenticator-assurance-level-2> |

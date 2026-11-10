@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 4
-review-status: pending
+review-status: approved
+reviewed-sha256: 37eb7109bb77f009a93dd9b67a86b21c75867590f029612fc6fe1e6919fefa0b
+last-reviewed: 2026-11-09
 ---
 # Module 4: Oracle Cloud Infrastructure announcements {.unnumbered}
 

@@ -668,7 +668,7 @@
   "id": "Attribute_Driven_Migration_Technical_Part_2_Narrated",
   "title": "Attribute-Driven Migration to Entra ID — technical deep dive, Part 2: devices, servers, non-person identities, and running it",
   "group": "book",
-  "minutes": 18,
+  "minutes": 19,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Technical_Part_2_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narrated.vtt",
@@ -711,83 +711,83 @@
     "What Azure Arc covers"
    ],
    [
-    312,
+    320,
     "Beyond users: Azure Arc servers, through Resource Manager"
    ],
    [
-    352,
+    360,
     "Devices neither covers: the strategy"
    ],
    [
-    397,
+    405,
     "Module 2: The non-person track and PIV"
    ],
    [
-    420,
+    428,
     "Non-person track: service accounts, MSAs and gMSAs"
    ],
    [
-    466,
+    473,
     "Non-person track: workload identities and AI agents"
    ],
    [
-    513,
+    521,
     "Beyond users: service principals and custom attributes"
    ],
    [
-    556,
+    564,
     "The object-type crosswalk: stores, writers, consumers"
    ],
    [
-    596,
+    603,
     "PIV and CAC: the certificate binding is an attribute"
    ],
    [
-    635,
+    643,
     "certificateUserIds: who writes it, and the open pilot"
    ],
    [
-    681,
+    689,
     "Module 3: Running the migration"
    ],
    [
-    700,
+    707,
     "Worked example: one analyst, every mechanism"
    ],
    [
-    738,
+    745,
     "The mover event: one personnel action, no ticket"
    ],
    [
-    774,
+    781,
     "Stage 7: cut over in phases, wave by wave"
    ],
    [
-    814,
+    822,
     "Stage 8: detect drift and fix it at the source"
    ],
    [
-    853,
+    861,
     "Limits: administrative units"
    ],
    [
-    893,
+    900,
     "Lifecycle Workflows: the pieces and the limits"
    ],
    [
-    935,
+    942,
     "Lifecycle Workflows at our scale: what could break"
    ],
    [
-    980,
+    988,
     "What still needs AD during hybrid"
    ],
    [
-    1022,
+    1030,
     "The checklist, stage by stage"
    ],
    [
-    1063,
+    1070,
     "Decisions, owners, and where to start"
    ]
   ],
@@ -2882,43 +2882,43 @@
     "The rules are moving under certificates already issued"
    ],
    [
-    168,
+    172,
     "What AD CS holds up, and the four verdicts"
    ],
    [
-    229,
+    232,
     "Harden what stays before anything moves"
    ],
    [
-    284,
+    287,
     "Four issuers, each for what only it can serve"
    ],
    [
-    351,
+    354,
     "One lifecycle platform: CyberArk Certificate Manager"
    ],
    [
-    412,
+    416,
     "Who decides, who does the work for certificates"
    ],
    [
-    475,
+    478,
     "Intune delivers the certificate, strongly mapped"
    ],
    [
-    539,
+    542,
     "Entra CBA validates certificates; it issues none"
    ],
    [
-    603,
+    606,
     "Run both PKIs, then migrate in six gated waves"
    ],
    [
-    663,
+    667,
     "Keep it renewed and checkable, then retire AD CS last"
    ],
    [
-    729,
+    733,
     "Decisions to make, and next steps"
    ]
   ],
@@ -3924,27 +3924,27 @@
     "Five decisions that look like engineering tickets"
    ],
    [
-    818,
+    827,
     "Three honest responses when a capability is outside"
    ],
    [
-    901,
+    910,
     "Exceptions: the provider's path, and the rules' limits"
    ],
    [
-    986,
+    994,
     "The alternative path: change the suite, keep the identity plane"
    ],
    [
-    1074,
+    1082,
     "What to ask a cloud provider for"
    ],
    [
-    1161,
+    1170,
     "Evidence the boundary in your own package"
    ],
    [
-    1242,
+    1251,
     "Five decisions, five owners, and the next step"
    ]
   ],
@@ -6265,23 +6265,23 @@
     "Four gates, and each one leaves proof"
    ],
    [
-    638,
+    646,
     "A reference implementation that states its limits"
    ],
    [
-    680,
+    687,
     "TOGAF is the order; Zachman is the checklist"
    ],
    [
-    722,
+    729,
     "Run the portfolio in waves on the program's gates"
    ],
    [
-    764,
+    771,
     "Fund by wave, and measure from records"
    ],
    [
-    807,
+    814,
     "Decisions to make, owners and timing"
    ]
   ],
@@ -6344,19 +6344,19 @@
     "One owner per decision, four gates per change"
    ],
    [
-    399,
+    406,
     "A reference implementation you can run"
    ],
    [
-    445,
+    452,
     "TOGAF gives the order; Zachman, the checklist"
    ],
    [
-    486,
+    493,
     "Run the portfolio in waves"
    ],
    [
-    528,
+    535,
     "Decisions to make, and next steps"
    ]
   ],
@@ -6713,7 +6713,7 @@
     "Module 2: Ansible Automation Platform in a federal setting"
    ],
    [
-    452,
+    453,
     "Versions, and authorization status as published"
    ],
    [
@@ -6721,7 +6721,7 @@
     "FIPS mode and baseline content: what's published"
    ],
    [
-    553,
+    554,
     "Where the controller can run"
    ],
    [
@@ -6729,7 +6729,7 @@
     "Sign-in, logging and content: the controls to set"
    ],
    [
-    642,
+    643,
     "The controller is a non-person identity"
    ],
    [
@@ -6741,31 +6741,31 @@
     "Evidence for CM-2, CM-3, CM-6, CM-7 and CM-8"
    ],
    [
-    747,
+    748,
     "Audit, privilege, supply chain, and the evidence store"
    ],
    [
-    783,
+    784,
     "Dangers: blast radius, inventory drift, credential sprawl"
    ],
    [
-    829,
+    830,
     "Dangers: two tools, Galaxy content, root and idempotence"
    ],
    [
-    872,
+    873,
     "Module 4: Adoption and the example playbooks"
    ],
    [
-    896,
+    897,
     "A phased path: read-only first, enforcement later"
    ],
    [
-    939,
+    940,
     "The CMDB-driven inventory: groups from attributes"
    ],
    [
-    979,
+    980,
     "Four example playbooks, and what each one proves"
    ],
    [
@@ -6773,11 +6773,11 @@
     "How the examples are tested, and what they don't prove"
    ],
    [
-    1060,
+    1061,
     "The adoption checklist, area by area"
    ],
    [
-    1096,
+    1097,
     "Decisions, owners, and where to start"
    ]
   ],
@@ -7253,7 +7253,7 @@
     "G3: the tenant policy blocks secrets, caps certificates"
    ],
    [
-    742,
+    743,
     "G3: the vault, the upload, and secrets by exception"
    ],
    [
@@ -8182,23 +8182,23 @@
     "Patching, settings and hardening baselines"
    ],
    [
-    696,
+    717,
     "Who owns the configuration: Git and Ansible"
    ],
    [
-    752,
+    773,
     "The alignment checklist: seven questions"
    ],
    [
-    822,
+    843,
     "Federal mapping: configuration and inventory"
    ],
    [
-    894,
+    915,
     "Federal mapping: resolution, logging and Protective DNS"
    ],
    [
-    971,
+    992,
     "Where Infoblox fits, and what to confirm"
    ]
   ],
@@ -9959,7 +9959,7 @@
   "id": "DW_NPI_06_gMSA_dMSA_Narrated",
   "title": "Building Non-Person Identity, Chapter 06 — gMSAs, dMSAs and the Kerberos Island: narrated tour",
   "group": "developer",
-  "minutes": 11,
+  "minutes": 12,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_06_gMSA_dMSA_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narrated.vtt",
@@ -9984,67 +9984,67 @@
     "Why every gMSA and dMSA needs an end date"
    ],
    [
-    82,
+    89,
     "What gMSAs and dMSAs are, and where the code runs"
    ],
    [
-    122,
+    129,
     "Learn's four procedures, pinned and run"
    ],
    [
-    159,
+    166,
     "What the procedures leave to you: the key and the steps"
    ],
    [
-    194,
+    201,
     "What they leave to you: limits, waits and deletes"
    ],
    [
-    231,
+    239,
     "The code, Chapter 03's decisions and three inputs"
    ],
    [
-    266,
+    284,
     "The check: nine rules, NPI-KRB-01 to NPI-KRB-09"
    ],
    [
-    307,
+    324,
     "The plan: one action per account"
    ],
    [
-    344,
+    362,
     "The island list and the reconciliation"
    ],
    [
-    382,
+    410,
     "The separate write path, and its refusals"
    ],
    [
-    418,
+    446,
     "Who builds, runs and reviews it, and with what rights"
    ],
    [
-    457,
+    486,
     "Lab 1: Learn's procedures, then the check"
    ],
    [
-    492,
+    524,
     "Lab 1: reading the findings and the plan"
    ],
    [
-    529,
+    569,
     "Lab 1: the island list, a dry run and a refusal"
    ],
    [
-    566,
+    616,
     "Lab 2: a test domain, a real migration"
    ],
    [
-    604,
+    659,
     "Dangers, and the guard for each"
    ],
    [
-    641,
+    695,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -10807,7 +10807,7 @@
   "id": "DW_PA_05_PIM_for_Groups_Narrated",
   "title": "Building Privileged Access, Chapter 05 — PIM for Groups and the PRV Groups: narrated tour",
   "group": "developer",
-  "minutes": 11,
+  "minutes": 12,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_05_PIM_for_Groups_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.vtt",
@@ -10860,39 +10860,39 @@
     "Activation limits and the authentication context"
    ],
    [
-    332,
+    348,
     "The findings: PA-PG-01 to PA-PG-09"
    ],
    [
-    370,
+    386,
     "The plan, the dry run, -Apply and seven guards"
    ],
    [
-    407,
+    430,
     "Where Learn's pages differ, recorded on purpose"
    ],
    [
-    444,
+    466,
     "Who builds it, and the least privilege per call"
    ],
    [
-    482,
+    504,
     "Lab 1: Microsoft's samples, then a dry run"
    ],
    [
-    519,
+    541,
     "Lab 1: findings, the diff, a guard and -Apply"
    ],
    [
-    557,
+    587,
     "Lab 2: a test tenant, lab groups, two apps"
    ],
    [
-    594,
+    627,
     "Dangers, and the guard for each"
    ],
    [
-    630,
+    663,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12310,39 +12310,39 @@
     "The verified facts: ISC token, Search, Accounts"
    ],
    [
-    255,
+    260,
     "The verified facts: Graph, GCC and FedRAMP"
    ],
    [
-    295,
+    300,
     "What couldn't be verified on SailPoint and Graph"
    ],
    [
-    328,
+    333,
     "What the scopes prove, and for whom"
    ],
    [
-    368,
+    373,
     "Who owns the SailPoint side"
    ],
    [
-    402,
+    407,
     "Lab 1: what the drift client needs from ISC"
    ],
    [
-    435,
+    440,
     "Lab 1: two jobs, two clients; the Graph app"
    ],
    [
-    467,
+    472,
     "Lab 2: two API clients in a sandbox tenant"
    ],
    [
-    503,
+    508,
     "Dangers, and the guard for each"
    ],
    [
-    540,
+    545,
     "Done when: the SailPoint and Graph checklist"
    ]
   ],
@@ -14686,51 +14686,51 @@
     "What you'll be able to do in Module 2"
    ],
    [
-    144,
+    145,
     "Owners and sponsors in the guide: Step 1f and Step 6"
    ],
    [
-    203,
+    204,
     "The rule the code holds: stricter than Learn's"
    ],
    [
-    265,
+    266,
     "The orphan rule, D-NP2, and the orphaned-app policy"
    ],
    [
-    320,
+    321,
     "The check: NPI-OWN-01 to NPI-OWN-09"
    ],
    [
-    377,
+    379,
     "The orphan plan, and the separate write path"
    ],
    [
-    445,
+    446,
     "Try it: the permissions, and the ownership check"
    ],
    [
-    505,
+    506,
     "Try it: read the findings and the orphan plan"
    ],
    [
-    555,
+    556,
     "Try it: dry-run, apply, and a hash nobody approved"
    ],
    [
-    608,
+    609,
     "Lab 2: two test orphans in your own tenant"
    ],
    [
-    662,
+    663,
     "The federal requirement and evidence: G1 and G6"
    ],
    [
-    720,
+    721,
     "Check yourself: two questions on owners"
    ],
    [
-    762,
+    764,
     "Summary, and next: Module 3, decide the target"
    ]
   ],
@@ -14740,7 +14740,7 @@
   "id": "Training_NPI_Module_3_Narrated",
   "title": "Non-Person Identity learning path, Module 3: Decide each identity's target",
   "group": "training",
-  "minutes": 13,
+  "minutes": 14,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_3_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-npi-module-3/Training_NPI_Module_3_Narrated.vtt",
@@ -14798,23 +14798,23 @@
     "Try it: read the proposals and the findings"
    ],
    [
-    537,
+    538,
     "Try it: the waves' rollback and the D-NP4 scope"
    ],
    [
-    603,
+    612,
     "Lab 2: run the matrix on your own test tenant"
    ],
    [
-    654,
+    663,
     "The federal requirement and evidence for Gate G2"
    ],
    [
-    712,
+    721,
     "Check yourself: two questions on the decision"
    ],
    [
-    758,
+    768,
     "Summary, and next: Module 4, the credential rules"
    ]
   ],
@@ -15046,11 +15046,11 @@
     "Two policies, two decisions, one policy per ring"
    ],
    [
-    277,
+    278,
     "The pre-merge check: NPI-WCA-01 to NPI-WCA-09"
    ],
    [
-    342,
+    343,
     "The plan: six actions, and no delete"
    ],
    [
@@ -15058,39 +15058,39 @@
     "Enforcement, ring by ring, and the sign-in reader"
    ],
    [
-    447,
+    448,
     "Try it: the permissions, and two pre-merge checks"
    ],
    [
-    504,
+    505,
     "Try it: check the tenant and plan, sending nothing"
    ],
    [
-    550,
+    551,
     "Try it: read and summarize the sign-ins"
    ],
    [
-    595,
+    596,
     "Try it: apply against the fake, twice"
    ],
    [
-    641,
+    642,
     "Try it: enforce Ring 1, then edit one byte"
    ],
    [
-    700,
+    701,
     "Lab 2: report-only, then one ring, in a test tenant"
    ],
    [
-    755,
+    756,
     "The federal requirement and evidence for this part"
    ],
    [
-    814,
+    815,
     "Check yourself: two questions on workload policies"
    ],
    [
-    860,
+    861,
     "Summary, and next: Module 7, conversions"
    ]
   ],
@@ -15192,7 +15192,7 @@
   "id": "Training_NPI_Module_8_Narrated",
   "title": "Non-Person Identity learning path, Module 8: Convert Kerberos accounts to gMSAs and dMSAs",
   "group": "training",
-  "minutes": 16,
+  "minutes": 17,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_8_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-npi-module-8/Training_NPI_Module_8_Narrated.vtt",
@@ -15218,63 +15218,63 @@
     "Module 8: Convert Kerberos accounts to gMSAs and dMSAs"
    ],
    [
-    47,
+    51,
     "Why converting a Kerberos account isn't the end"
    ],
    [
-    109,
+    115,
     "What you'll be able to do in Module 8"
    ],
    [
-    160,
+    166,
     "The gate: a parallel run, then disable, never delete"
    ],
    [
-    229,
+    235,
     "Four dispositions from Module 3, and the program's rules"
    ],
    [
-    287,
+    315,
     "The check: NPI-KRB-01 to NPI-KRB-09"
    ],
    [
-    364,
+    396,
     "The plan: one action per account, approved by hash"
    ],
    [
-    423,
+    456,
     "The island list, the reconciliation, the write path"
    ],
    [
-    488,
+    528,
     "Try it: the runs it reads, Learn's steps, the tasks' calls"
    ],
    [
-    548,
+    599,
     "Try it: check nine Kerberos accounts, read the findings"
    ],
    [
-    609,
+    687,
     "Try it: the plan, the island list, the reconciliation"
    ],
    [
-    666,
+    754,
     "Try it: dry-run, apply to the fake, and a refusal"
    ],
    [
-    715,
+    803,
     "Lab 2: a test domain, and a real migration"
    ],
    [
-    775,
+    863,
     "The federal requirement and evidence for Gate G5"
    ],
    [
-    834,
+    923,
     "Check yourself: two questions on the Kerberos island"
    ],
    [
-    889,
+    991,
     "Summary, and next: Module 9, AI agent identities"
    ]
   ],
@@ -15318,11 +15318,11 @@
     "What you'll be able to do in Module 9"
    ],
    [
-    155,
+    156,
     "Agent ID: blueprints, agent identities, and the stage"
    ],
    [
-    217,
+    218,
     "Decision D-NP6 as data: AgentId or Fallback mode"
    ],
    [
@@ -15330,43 +15330,43 @@
     "The program's rules the code holds, NP6.1 to NP6.7"
    ],
    [
-    325,
+    326,
     "The checks: NPI-AI-01 to NPI-AI-23"
    ],
    [
-    378,
+    379,
     "The agent CA plan and the separate write path"
    ],
    [
-    436,
+    437,
     "Try it: Learn's samples, permissions, D-NP6 by cloud"
    ],
    [
-    495,
+    497,
     "Try it: check eight AI identities, read the findings"
    ],
    [
-    555,
+    557,
     "Try it: the sponsor fields, and the GCC High fallback"
    ],
    [
-    606,
+    608,
     "Try it: dry-run, apply to the fake, and a refusal"
    ],
    [
-    660,
+    661,
     "Lab 2: one governed agent in your test tenant"
    ],
    [
-    717,
+    719,
     "The federal requirement and evidence for AI agents"
    ],
    [
-    781,
+    783,
     "Check yourself: two questions on agents"
    ],
    [
-    833,
+    835,
     "Summary, and next: Module 10, drift and evidence"
    ]
   ],
@@ -15459,7 +15459,7 @@
   "id": "Training_PA_Module_2_Narrated",
   "title": "Privileged Access learning path, Module 2: Emergency access first",
   "group": "training",
-  "minutes": 14,
+  "minutes": 13,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_2_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-pa-module-2/Training_PA_Module_2_Narrated.vtt",
@@ -15496,43 +15496,43 @@
     "PA-EA-08: enforced policies, and report-only ones"
    ],
    [
-    291,
+    286,
     "The alert: three tables, matched on object IDs"
    ],
    [
-    349,
+    345,
     "Try it: Learn's queries, and six read permissions"
    ],
    [
-    399,
+    394,
     "Try it: check the accounts and write the alert template"
    ],
    [
-    449,
+    445,
     "Try it: read the findings for ea02 and the policies"
    ],
    [
-    507,
+    503,
     "Try it: the example's rule finds five events, not two"
    ],
    [
-    552,
+    548,
     "Try it: see the guards, then run the tests"
    ],
    [
-    597,
+    593,
     "Lab 2: check your test tenant and fire the alert"
    ],
    [
-    656,
+    652,
     "The federal requirement and evidence for Gate 1"
    ],
    [
-    721,
+    717,
     "Check yourself: two questions on emergency access"
    ],
    [
-    766,
+    762,
     "Summary, and next: Module 3, the activation gate"
    ]
   ],
@@ -15625,7 +15625,7 @@
   "id": "Training_PA_Module_4_Narrated",
   "title": "Privileged Access learning path, Module 4: PIM for Microsoft Entra roles as code",
   "group": "training",
-  "minutes": 14,
+  "minutes": 15,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_4_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-pa-module-4/Training_PA_Module_4_Narrated.vtt",
@@ -15654,51 +15654,55 @@
     "What you'll be able to do in Module 4"
    ],
    [
-    162,
+    169,
     "Settings per role, which Graph calls rules"
    ],
    [
-    228,
+    235,
     "The role files, the bounds and the waves"
    ],
    [
-    284,
+    292,
     "The checks: PA-PIM-01 to PA-PIM-09"
    ],
    [
-    348,
+    356,
+    "The alert check: PA-PIM-10 to PA-PIM-13"
+   ],
+   [
+    420,
     "Converting a standing assignment, in order"
    ],
    [
-    391,
+    463,
     "Try it: Learn's samples, and each task's permissions"
    ],
    [
-    442,
+    515,
     "Try it: dry-run wave 1, the pilot class"
    ],
    [
-    488,
+    561,
     "Try it: read a role's diff, and the findings"
    ],
    [
-    553,
+    625,
     "Try it: wave 2 waits, and the apply needs the gate"
    ],
    [
-    610,
+    683,
     "Lab 2: one role in your test tenant"
    ],
    [
-    668,
+    740,
     "The federal requirement and the evidence for Module 4"
    ],
    [
-    737,
+    821,
     "Check yourself: two questions on PIM role settings"
    ],
    [
-    779,
+    864,
     "Summary, and next: Module 5, PIM for Groups"
    ]
   ],
@@ -15708,7 +15712,7 @@
   "id": "Training_PA_Module_5_Narrated",
   "title": "Privileged Access learning path, Module 5: PIM for Groups and the PRV groups",
   "group": "training",
-  "minutes": 14,
+  "minutes": 15,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PA_Module_5_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-pa-module-5/Training_PA_Module_5_Narrated.vtt",
@@ -15749,43 +15753,43 @@
     "The file and the findings: PA-PG-01 to PA-PG-09"
    ],
    [
-    334,
+    354,
     "The plan's order, the guards, and who creates the groups"
    ],
    [
-    394,
+    414,
     "Try it: Microsoft's samples, and Learn's Example 1"
    ],
    [
-    445,
+    465,
     "Try it: four read permissions, and a dry run"
    ],
    [
-    492,
+    519,
     "Try it: read the findings"
    ],
    [
-    545,
+    581,
     "Try it: read the diff, rule by rule"
    ],
    [
-    599,
+    643,
     "Try it: a guard refuses, then apply to the fake"
    ],
    [
-    636,
+    697,
     "Lab 2: lab groups in your own test tenant"
    ],
    [
-    684,
+    745,
     "The federal requirement and the evidence for Module 5"
    ],
    [
-    742,
+    803,
     "Check yourself: two questions on the PRV groups"
    ],
    [
-    784,
+    845,
     "Summary, and next: Module 6, PIM for Azure resources"
    ]
   ],

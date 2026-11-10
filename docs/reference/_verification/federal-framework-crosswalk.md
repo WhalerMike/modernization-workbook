@@ -61,3 +61,9 @@ Verified: 2026-11-09. A scripted pass matched each source-table row to the Sourc
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Every source-table row whose instrument has a register row links to it; 85 rows | Additions made, November 5, 2026 | verified (repository count) | `data/source-register.json`; the page's tables |
+
+## Learn citations, November 9, 2026
+
+| Learn page | URL | Date read | Supports |
+|---|---|---|---|
+| Memo 22-09 enterprise-wide identity management system | <https://learn.microsoft.com/entra/standards/memo-22-09-enterprise-wide-identity-management-system> | 2026-11-09 | The authority register's M-22-09 row: the memo's enterprise identity scope (consolidating agency identity platforms), as Microsoft reads it for Entra ID; the primary source stays `reg-m2209` |

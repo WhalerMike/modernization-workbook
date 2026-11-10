@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The governance machinery of the target: access reviews, access packages, and Lifecycle Workflows. Cross-tenant collaboration and how it replaces forest trusts. Authentication modernization toward phishing-resistant MFA, checked against OMB M-22-09 and NIST SP 800-53 Rev. 5. Monitoring and the compliance evidence it produces, the eleven-phase migration playbook, Git-based drift detection, and a troubleshooting reference. It builds on the target designed in [Chapter 09](09-building-the-entra-target.md).
+The governance machinery of the target: access reviews, access packages, and Lifecycle Workflows. Cross-tenant collaboration and how it replaces forest trusts. Authentication modernization toward phishing-resistant MFA, checked against OMB M-22-09 and NIST SP 800-53 Rev. 5, with banned-password protection, Microsoft's mandatory MFA for the admin portals, and the applications still on AD FS. Monitoring and the compliance evidence it produces, the eleven-phase migration playbook, Git-based drift detection, and a troubleshooting reference. It builds on the target designed in [Chapter 09](09-building-the-entra-target.md).
 :::
 
 ## Identity governance and lifecycle
@@ -261,6 +261,63 @@ The Authentication methods policy decides which methods are available to which u
 - **SMS and voice.** Disabled for staff. M-22-09 requires discontinuing them for routine access.[^c10-m2209]
 - **Email one-time passcode.** Guests only.
 - **Registration campaigns.** On, to prompt users without a strong method to register one at sign-in. The program allows three snoozes.
+
+### Banned passwords in the cloud and on the domain controllers
+
+Smart lockout slows an attacker down; Microsoft Entra Password Protection stops users from choosing the passwords attackers try first. It replaces the third-party or home-grown password filters some forests run, and it matters for as long as AD passwords exist, because during the hybrid period a weak AD password is also the cloud password through PHS.
+
+- **The global banned password list** applies to every tenant automatically and can't be turned off. Microsoft builds it from Entra ID telemetry and doesn't publish it.[^c10-pwd-protection]
+- **The custom banned password list** holds up to 1,000 terms of 4 to 16 characters, set under **Entra ID** > **Authentication methods** > **Password protection** by an Authentication Policy Administrator; changes can take several hours to apply.[^c10-pwd-custom] Put the organization's name, its abbreviations, and its building and program names in it. Passwords are normalized (lowercase, and common substitutions such as `0` for `o` and `@` for `a`) and fuzzy-matched before they're scored, so the list doesn't need every variant.[^c10-pwd-protection]
+- **Licensing.** For cloud-only users the global list is free and the custom list needs P1 or P2; for users synced from AD, both lists need P1 or P2.[^c10-pwd-protection]
+
+On premises, the same lists reach the domain controllers through two components: a **proxy service** on a domain-joined member server, which fetches the policy from Entra ID, and a **DC agent** (a password filter DLL and a service) on every writable domain controller, which checks each password change or reset against a cached copy of the policy. The domain controllers never talk to the internet, no new ports open on them, no schema change is needed, and the policy is stored in SYSVOL; the DC agent reaches the proxy over RPC (the endpoint mapper, TCP 135, and the RPC port).[^c10-pwd-onprem][^c10-pwd-deploy] Microsoft's requirements and practice:[^c10-pwd-deploy]
+
+- The DC agent runs on Windows Server 2012 R2 or later, needs .NET Framework 4.7.2, and requires SYSVOL replicated by DFSR, not FRS. Installing or upgrading it always needs a reboot. Don't install it on read-only domain controllers.
+- The proxy runs on Windows Server 2012 R2 or later with .NET Framework 4.7.2 and outbound TLS 1.2. It's required even if the domain controllers have internet access. Two proxies per forest is usually enough. Don't install it on a server that runs the Application Proxy connector. In the program, both proxies are Tier 0 member servers, and the Windows Server baseline (2019 minimum) applies to them *(program assumption)*.
+- Start in **audit mode**: rejected passwords are logged but accepted. Test at least one domain controller promotion and one demotion while in audit mode, then switch to **enforced**. Existing passwords are checked only at their next change, and accounts set to "password never expires" aren't checked at all.
+
+Install and register in this order. Run the first `Register-` cmdlet on each proxy and the second once per forest; the forest registration also needs Enterprise Admin rights in the forest.[^c10-pwd-deploy]
+
+```powershell
+# On each proxy server, as a local administrator
+.\AzureADPasswordProtectionProxySetup.exe /quiet
+Import-Module AzureADPasswordProtection
+Get-Service AzureADPasswordProtectionProxy | Format-List
+Register-AzureADPasswordProtectionProxy -AccountUpn '<admin>@<tenant>.onmicrosoft.com'
+# Once per forest, from a proxy server, as a Domain Admin of the forest root domain
+Register-AzureADPasswordProtectionForest -AccountUpn '<admin>@<tenant>.onmicrosoft.com'
+Test-AzureADPasswordProtectionProxyHealth -TestAll
+```
+
+```powershell
+# On each writable domain controller (a reboot is required; schedule it)
+msiexec.exe /i AzureADPasswordProtectionDCAgentSetup.msi /quiet /qn /norestart
+# Afterwards, from a proxy server: confirm every agent reports in, and read the results
+Get-AzureADPasswordProtectionDCAgent
+Get-AzureADPasswordProtectionSummaryReport
+```
+
+On a Server Core proxy, add `-AuthenticateUsingDeviceCode` to both `Register-` commands; interactive sign-in doesn't work there.[^c10-pwd-deploy] Turn on-premises enforcement on under **Entra ID** > **Authentication methods** > **Password protection** > "Enable password protection on Windows Server Active Directory," in audit mode first.[^c10-pwd-enable] The DC agent writes to `Applications and Services Logs\Microsoft\AzureADPasswordProtection\DCAgent\Admin`: events 10014 and 10015 are accepted changes and sets, 10016 and 10017 are rejections, and 10024 and 10025 are passwords accepted in audit mode that enforced mode would reject.[^c10-pwd-monitor] The audit-mode count of 10024 and 10025 is the number to bring down before enforcing.
+
+**Government clouds.** On-premises Password Protection is supported in Azure Government as well as the commercial cloud, and Microsoft's feature-availability page lists the global and custom banned password lists as available in Azure Government; GCC tenants use the commercial service.[^c10-pwd-faq][^c10-feature-avail] The deployment page lists only the commercial endpoints the proxy needs (`login.microsoftonline.com`, `enterpriseregistration.windows.net`, `autoupdate.msappproxy.net`); the Azure Government equivalents are not yet specified there, so confirm them for a GCC High or DoD forest before opening the proxy's firewall rules.[^c10-pwd-deploy]
+
+### Mandatory MFA for Azure and the admin portals
+
+Microsoft now requires MFA, outside any tenant policy, for user sign-ins to Azure and its admin portals. Phase 1 (from October 2024) covers the Azure portal, the Microsoft Entra admin center and the Intune admin center, and from February 2025 the Microsoft 365 admin center. Phase 2 (from October 1, 2025) covers create, update and delete operations through Azure CLI, Azure PowerShell, the Azure mobile app, infrastructure-as-code tools and the Azure Resource Manager REST API; read operations don't require MFA. The latest a tenant could postpone Phase 2 to was July 1, 2026, and there's no opt-out.[^c10-mandatory-mfa] As of November 2026, then, both phases apply to every tenant in the public Azure cloud, which includes the commercial Entra ID that GCC tenants use.
+
+Three consequences for this program:
+
+- **Emergency access accounts are in scope.** Microsoft's guidance is a passkey (FIDO2) or certificate-based authentication for them, which is already the program's standard ([Chapter 09](09-building-the-entra-target.md#emergency-access-accounts)).[^c10-mandatory-mfa]
+- **User accounts used as service accounts are in scope; workload identities aren't.** A script that signs in to Azure as a user fails on its next write. Phase 4 below moves those scripts to managed identities or service principals.[^c10-mandatory-mfa]
+- **Federated sign-in needs an MFA claim Entra ID accepts.** While a domain is still federated, the identity provider must send the `multipleauthn` claim, or Entra ID has to perform MFA itself; setting `federatedIdpMfaBehavior` to `rejectMfaByFederatedIdp` ([Appendix D](appendix-d-migrating-ad-fs-applications.md#keeping-ad-fs-and-web-application-proxy-secure-until-they-retire)) does the latter.[^c10-mandatory-mfa]
+
+To prepare, find the users who sign in to these portals and tools without MFA (the sign-in logs, filtered by the portal and tool application IDs Microsoft lists), and put a Conditional Access policy requiring MFA on the "Microsoft Admin Portals" and "Windows Azure Service Management API" resources, in report-only mode first; use Azure CLI 2.76 or later and Azure PowerShell 14.3 or later.[^c10-mandatory-mfa][^c10-mandatory-mfa-howto] The program's CA003 (phishing-resistant MFA for administrators) goes further than Microsoft's requirement for the roles it targets.
+
+**Government clouds.** Microsoft enforces mandatory MFA only in the public Azure cloud; it doesn't currently enforce it in Azure for US Government or other sovereign clouds, so GCC High and DoD tenants aren't subject to it.[^c10-mandatory-mfa] That isn't an exemption from MFA: the program's own policies require it for those portals in every cloud ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md)).
+
+### Applications that still sign in through AD FS
+
+Converting the federated domains in [Phase 9](#phase-9-federation-decommission-if-applicable) moves Microsoft 365 off AD FS, but not the other relying parties: SaaS and line-of-business applications that trust the farm's signing certificate keep using it until each one is moved. [Appendix D](appendix-d-migrating-ad-fs-applications.md) is that migration: the relying-party and claim-rule inventory, how to read a claim rule and what it becomes in Entra ID, Microsoft's AD FS application migration tool and plan, how each kind of relying party moves, claims and signing certificates in Entra ID, the AD FS audit events that measure what's left, and how to keep AD FS and Web Application Proxy secure until the last application is gone.[^c10-adfs-app-migration]
 
 ### Blocking legacy authentication
 
@@ -540,8 +597,8 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 
 | Element | Detail |
 |---|---|
-| Prerequisites | Phase 8 complete; PHS verified; every federated domain identified; staged rollout tested |
-| Steps | 1. Use staged rollout to move users from federation to PHS in waves; staged rollout tests cloud authentication but doesn't convert domains.[^c10-staged-rollout] 2. Wave 1: the IT team, one week. 3. Wave 2: a pilot group, two weeks. 4. Wave 3: everyone else. 5. Document and back up the federation settings (`Get-MgDomainFederationConfiguration`). 6. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`; conversion can take up to 60 minutes per domain.[^c10-federation-migration] The retired `Convert-MsolDomainToStandard` cmdlet must not be used. 7. Decommission AD FS (servers, Web Application Proxy, certificates). 8. Remove the AD FS DNS records. 9. Update documentation and the Git records. |
+| Prerequisites | Phase 8 complete; PHS verified; every federated domain identified; staged rollout tested; every relying party other than Microsoft 365 migrated, retired or on a dated exception ([Appendix D](appendix-d-migrating-ad-fs-applications.md#retirement-criteria)) |
+| Steps | 1. Use staged rollout to move users from federation to PHS in waves; staged rollout tests cloud authentication but doesn't convert domains.[^c10-staged-rollout] 2. Wave 1: the IT team, one week. 3. Wave 2: a pilot group, two weeks. 4. Wave 3: everyone else. 5. Document and back up the federation settings (`Get-MgDomainFederationConfiguration`). 6. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`; conversion can take up to 60 minutes per domain.[^c10-federation-migration] The retired `Convert-MsolDomainToStandard` cmdlet must not be used. 7. Decommission AD FS (servers, Web Application Proxy, certificates) once Appendix D's retirement criteria are all true, including 30 days with no token issuance (event 1200) on any server in the farm. 8. Remove the AD FS DNS records. 9. Update documentation and the Git records. |
 | Validation | Every domain managed; every user authenticating through PHS; AD FS decommissioned; no authentication failures from the cutover |
 | Rollback | Re-federate the domain with `New-MgDomainFederationConfiguration`, which needs the AD FS infrastructure, so keep it recoverable for 90 days after decommission[^c10-federation-migration] |
 | Duration | 4–8 weeks |
@@ -682,3 +739,14 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-lcw-understanding]: Microsoft Learn, "Understanding lifecycle workflows," sections "Scheduling" and "On-demand scheduling," <https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows> (accessed Oct 29, 2026).
 [^c10-lcw-exec-limits]: Microsoft Learn, "Configure execution limits and quarantine for Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-limits> (accessed Oct 29, 2026).
 [^c10-lcw-versioning]: Microsoft Learn, "Lifecycle Workflows Versioning," section "Workflow properties and versions," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-versioning> (accessed Oct 29, 2026).
+[^c10-pwd-protection]: Microsoft Learn, "Eliminate bad passwords using Microsoft Entra Password Protection," sections "Global banned password list," "Custom banned password list," "How are passwords evaluated" and "License requirements," <https://learn.microsoft.com/entra/identity/authentication/concept-password-ban-bad> (accessed Nov 9, 2026).
+[^c10-pwd-custom]: Microsoft Learn, "Tutorial: Configure custom banned passwords for Microsoft Entra password protection," <https://learn.microsoft.com/entra/identity/authentication/tutorial-configure-custom-password-protection> (accessed Nov 9, 2026).
+[^c10-pwd-onprem]: Microsoft Learn, "Enforce on-premises Microsoft Entra Password Protection for Active Directory Domain Services," <https://learn.microsoft.com/entra/identity/authentication/concept-password-ban-bad-on-premises> (accessed Nov 9, 2026).
+[^c10-pwd-deploy]: Microsoft Learn, "Plan and deploy on-premises Microsoft Entra Password Protection," sections on deployment strategy, requirements, the proxy service and the DC agent, <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-deploy> (accessed Nov 9, 2026).
+[^c10-pwd-enable]: Microsoft Learn, "Enable on-premises Microsoft Entra Password Protection," <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-operations> (accessed Nov 9, 2026).
+[^c10-pwd-monitor]: Microsoft Learn, "Monitor and review logs for on-premises Microsoft Entra Password Protection environments," <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-monitor> (accessed Nov 9, 2026).
+[^c10-pwd-faq]: Microsoft Learn, "On-premises Microsoft Entra Password Protection FAQ" (supported in both Azure Global and Azure Government clouds), <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-faq> (accessed Nov 9, 2026).
+[^c10-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
+[^c10-mandatory-mfa]: Microsoft Learn, "Mandatory multifactor authentication for Azure and admin portals" (phases, accounts in scope, federated identity providers, postponement, sovereign clouds), <https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication> (accessed Nov 9, 2026).
+[^c10-mandatory-mfa-howto]: Microsoft Learn, "Verify that users are set up for mandatory MFA," <https://learn.microsoft.com/entra/identity/authentication/how-to-mandatory-multifactor-authentication> (accessed Nov 9, 2026).
+[^c10-adfs-app-migration]: Microsoft Learn, "Plan application migration to Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-apps-phases-overview> (accessed Nov 9, 2026).

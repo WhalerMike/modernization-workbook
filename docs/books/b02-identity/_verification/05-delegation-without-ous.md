@@ -108,3 +108,24 @@ Added "What the limits mean for the design" (limit, implication, response) under
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-1 | Example group `PRV-T2-UserAdmin-AU-Finance` renamed `PRV-T2-UserAdmin-Finance` (and `PRV-T2-GroupsAdmin-AU-Finance` to `PRV-T2-GroupsAdmin-Finance`) to match the AU `AU-Department-Finance` | Role assignment matrix note (naming paragraph) | decision of Nov 8; design naming | Mike's decision of Nov 8, 2026, item 1 |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Microsoft Learn pages listed as covered but uncited for this chapter were read on Nov 9, 2026 and cited where they support a specific sentence. No sentence was reworded.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | In AD, delegation was granting a group rights on an OU (c05-ad-delegation) | Opening | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegation-control-wizard> |
+| L2 | Same (account OU structure delegated to data administrators) | Opening | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/delegating-administration-of-account-ous-and-resource-ous> |
+| L3 | Same (create OUs and delegate control over them, not the default containers) | Opening | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/delegating-administration-of-default-containers-and-ous> |
+| L4 | Over-delegating tenant-wide roles breaks least privilege (c05-admin-practices) | Opening, over-delegate | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/security-planning> |
+| L5 | AUs create scope boundaries inside the flat directory (c05-isolation) | Opening | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/secure-introduction> |
+| L6 | Same (use AUs for administrative separation in a single tenant) | Opening | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/secure-single-tenant> |
+| L7 | A group in an AU brings the group, not its members (c05-au-members-add) | What AUs are | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-add> |
+| L8 | Custom roles can carry user management permissions (c05-custom-perms) | What AUs are | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/custom-user-permissions> |
+| L9 | Custom roles can carry group management permissions (c05-custom-perms) | What AUs are | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/custom-group-permissions> |
+| L10 | Custom roles can carry device management permissions (c05-custom-perms) | What AUs are | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/custom-device-permissions> |
+| L11 | P1 for each AU administrator, Free for members (c05-au-manage, Prerequisites) | What AUs are, Licensing | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-manage> |
+| L12 | Custom security attributes protect sensitive values: Global Administrator can't read them by default (c05-csa) | Limits table | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-add> |
+| L13 | Arc-enabled servers are delegated with Azure RBAC, a separate system from Entra roles (c05-azure-rbac) | Tracks line | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/concept-understand-roles> |
+| L14 | Same (Azure RBAC assignments for scoped administration of Azure resources) | Tracks line | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/secure-single-tenant> |

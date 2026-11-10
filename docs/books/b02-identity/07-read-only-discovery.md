@@ -39,7 +39,7 @@ Taken together, these mean that in most domains a standard account can read most
 
 | Area | Typical read-only result | What it contributes to the plan |
 |---|---|---|
-| Forest and domain topology, domain controllers, sites, subnets, site links | Readable | Scope, functional levels, and the shape of replication |
+| Forest and domain topology, domain controllers, sites, subnets, site links | Readable | Scope, functional levels, and the shape of replication[^c07-repl-concepts] |
 | OU hierarchy and Group Policy links | Readable | The structure that attribute-driven targeting replaces (Chapters 02 and 05) |
 | Group Policy objects and settings reports | Usually readable, unless security filtering restricts a GPO | The GPO-to-Intune inventory |
 | Users, groups, computers and service principal names | Readable | The identity inventory and service account discovery (Chapter 09) |
@@ -81,11 +81,11 @@ Each gap is recorded with four facts: what is missing, the narrowest right or ex
 
 | Gap | Narrowest way to close it | Why the plan needs it | Read-only substitute |
 |---|---|---|---|
-| Replication health and convergence | An administrator-run replication summary, or SIEM data | Cutover sequencing; domain controllers that fail to converge | None reliable |
+| Replication health and convergence | An administrator-run replication summary, or SIEM data[^c07-repl-status] | Cutover sequencing; domain controllers that fail to converge | None reliable |
 | Domain controller event logs | A log export or SIEM read access, including NTLM audit data | Authentication patterns, including NTLM use (Chapter 03) | None |
 | DNS server settings (aging, scavenging, forwarders) | DNS administrator export | Stale records that block the DNS adapter (Chapter 04) | Zone object reads cover records, not server settings |
 | Issued-certificate database | CA administrator export | Which certificates must be reissued from the target issuers ([Book 07](../b07-pki/04-the-target-pki.md)) | Template permissions and enrollment services |
-| Deleted Objects | Read on the container for one named account | Audit trail of recent deletions | Recycle Bin status only |
+| Deleted Objects | Read on the container for one named account | Audit trail of recent deletions | Recycle Bin status only[^c07-ad-recyclebin] |
 | Fine-grained password policies | Domain Admin export | Password policy mapping for Entra ID | None |
 | Confidential attributes (LAPS, BitLocker recovery) | Not requested; coverage only | Deployment coverage, not secrets | Expiration and child-object presence |
 
@@ -157,3 +157,6 @@ The workbook ships the read-only collectors for this stage as the tested Start K
 [^c07-recyclebin]: Microsoft Learn, "Advanced AD DS Management using Active Directory Administrative Center (Level 200)" (Active Directory Recycle Bin; tombstoneLifetime), <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/advanced-ad-ds-management-using-active-directory-administrative-center--level-200-> (accessed Oct 20, 2026).
 [^c07-fgpp]: Microsoft Learn, "Configure fine grained password policies for Active Directory Domain Services," <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/fine-grained-password-policies> (accessed Oct 20, 2026).
 [^c07-mdi-recon]: Microsoft Learn, "Microsoft Defender for Identity alerts in Microsoft Defender format" (discovery alerts, including Active Directory enumeration and LDAP queries targeting sensitive attributes), <https://learn.microsoft.com/defender-for-identity/alerts-xdr> (accessed Oct 20, 2026).
+[^c07-repl-concepts]: Microsoft Learn, "Active Directory Replication Concepts" (sites, subnets and site links as the objects the KCC uses to build the replication topology), <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts> (accessed Nov 9, 2026).
+[^c07-repl-status]: Microsoft Learn, "Troubleshooting Active Directory Replication Problems," section "Using Repadmin to retrieve replication status" (`repadmin /showrepl * /csv`; Enterprise Admins or equivalent is the minimum required), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/troubleshoot/troubleshooting-active-directory-replication-problems> (accessed Nov 9, 2026).
+[^c07-ad-recyclebin]: Microsoft Learn, "Enable and use Active Directory Recycle Bin" (not enabled by default; enabling it is irreversible), <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/active-directory-recycle-bin> (accessed Nov 9, 2026).

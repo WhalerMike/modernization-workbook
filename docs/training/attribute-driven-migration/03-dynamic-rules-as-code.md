@@ -60,7 +60,7 @@ In this module, you'll:
 
 *8 minutes*
 
-Every governed rule uses one of two patterns, requires `accountEnabled`, excludes guests, and reads codes, never display names. Learn's dynamic membership processing samples pause and resume groups in an incident, but record nothing about what they paused, resume a group that was held for review, and fall back to the worldwide endpoint on an answer they don't recognize. Read:
+Every governed rule uses one of two patterns, requires `accountEnabled`, excludes guests, and reads codes, never display names. Learn's dynamic membership processing samples (pause [all](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-dynamic-membership), [all except some](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-except-dynamic-membership) or [specific](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-specific-dynamic-membership) collections; resume the [noncritical](https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-noncritical-dynamic-membership) or [specific critical](https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-specific-critical-dynamic-membership) ones) pause and resume groups in an incident, but record nothing about what they paused, resume a group that was held for review, and fall back to the worldwide endpoint on an answer they don't recognize. Read:
 
 - The guide's [Gate 4](../../books/guides/attribute-driven-migration-implementation.md#gate-4-the-dynamic-group-library-and-administrative-units), steps 1 to 6.
 - [Chapter 04: where the rules sit](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#where-the-rules-sit).

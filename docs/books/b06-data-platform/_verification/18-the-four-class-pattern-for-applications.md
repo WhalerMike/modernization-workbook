@@ -51,3 +51,15 @@ Checked October 20, 2026. Sources: the existing page (former Book 08, Chapter 1)
 | Book_08 "Continue the series" | Continue the book | edited |
 
 Diagram source edited: `book-08-application-chain.flow.yaml` ("Chapter 1/2" → "Chapter 18/19"). Needs re-render. `book-08-ch01-four-class-pattern` and `book-08-ch01-two-axis-matrix` checked, no change.
+
+## Learn citations, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage citation pass. No meaning changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Entra ID is the SAML identity provider for an enterprise SAML application and the assertion carries claims about the user | Class 2 | verified (citation added) | `c18-auth-saml`, Learn "SAML authentication with Microsoft Entra ID," <https://learn.microsoft.com/entra/architecture/auth-saml> (read Nov 9, 2026) |
+| L2 | Entra ID as the OIDC provider authenticates the user and issues tokens the application trusts | Class 3 | verified (citation added) | `c18-auth-oidc`, Learn "OpenID Connect authentication with Microsoft Entra ID," <https://learn.microsoft.com/entra/architecture/auth-oidc> (read Nov 9, 2026) |
+| L3 | Microsoft's architecture guidance names Domain Services as Entra ID's pattern for applications that need LDAP authentication | Class 4 (one sentence added) | verified (new sentence) | `c18-auth-ldap`, Learn "LDAP authentication with Microsoft Entra ID," <https://learn.microsoft.com/entra/architecture/auth-ldap> (read Nov 9, 2026) |
+
+Left listed but uncited in the coverage map: auth-header-based, auth-oauth2 and auth-remote-desktop-gateway (no sentence that says only what they say).

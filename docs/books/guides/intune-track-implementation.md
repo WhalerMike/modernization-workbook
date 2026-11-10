@@ -9,8 +9,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 9086e5956bad8186876f71ea3be036b4c9fb3ffada9e759901433ed01c72e1ac
-last-reviewed: 2026-11-08
+reviewed-sha256: 231874e148b8299c8045c3ae99452def0e8155d0fd9bea5da28e20168be708a1
+last-reviewed: 2026-11-09
 ---
 # Intune Track Implementation: Attribute-Driven Management of End-User Devices
 
@@ -280,6 +280,47 @@ For each population, once the owning Intune policy reports success on it, freeze
 
 **Validate Gate 3.** No migrated device processes an in-scope GPO (a device-side check); every preference item cleared or owned; **VK-INT-04** shows every library policy assigned as the setting register says; **VK-INT-05** is clean fleet-wide for migrated populations; backups restore in a test domain before any deletion ([testing at each gate](../b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate), Phases 6 and 7).
 
+### Step 3.7: sign-in and network clients on managed devices
+
+Two things reach the device through Intune but aren't Group Policy settings, so they get their own step: single sign-on for apps, and the Global Secure Access client. Build both into the library unassigned with the rest of Gate 3, and pilot them in the same rings.
+
+**Single sign-on.** On Windows, Entra joined and hybrid joined devices sign apps in through the Primary Refresh Token ([Book 05, Chapter 02](../b05-devices/02-the-hybrid-join-trap.md)). Apps that use the Microsoft Authentication Library reach it through the Windows broker, Web Account Manager (WAM), which also carries passkey (FIDO2) sign-in; an embedded WebView2 or the system browser are Microsoft's next choices, so ask application owners which their in-house apps use.[^iti-fido2-apps][^iti-wam] On Android, passkeys work in apps that use the Microsoft Authentication Library with the browser or a broker (Microsoft Authenticator or Company Portal); on iOS, with `ASWebAuthenticationSession` or the Authenticator broker.[^iti-fido2-apps] For iOS and iPadOS, deploy the Microsoft Enterprise SSO plug-in, which is built into Microsoft Authenticator and extends single sign-on to apps that don't use the library. It needs iOS 13 or later, MDM enrollment, Authenticator installed, and a configuration profile pushed to the device.[^iti-apple-sso] In Intune:[^iti-apple-sso-intune]
+
+1. **Devices** > **Manage devices** > **Configuration** > **Create** > **New policy**; platform **iOS/iPadOS**, profile type **Templates** > **Device features**.
+2. **Single sign-on app extension**: **SSO app extension type** = **Microsoft Entra ID**; **Enable shared device mode** = **Not configured** unless the devices use Entra shared device mode.
+3. **Additional configuration**, Microsoft's recommended values:
+
+```text
+AppPrefixAllowList              String   com.apple.
+browser_sso_interaction_enabled Integer  1
+disable_explicit_app_prompt     Integer  1
+```
+
+4. Assign the profile to the iOS device groups from Gate 2, with Microsoft Authenticator assigned as a required app to the same groups.
+
+Exclude Apple's associated-domain URLs (`app-site-association.cdn-apple.com`, `app-site-association.networking.apple`) from TLS inspection; the plug-in and passkey sign-in both fail intermittently when a proxy intercepts them.[^iti-apple-sso][^iti-fido2-apps] macOS is outside the program's scope, so its Platform SSO isn't part of this track.
+
+**Global Secure Access client.** Where the tenant licenses Microsoft Entra Private Access or Internet Access, the client sends the traffic named by the forwarding profiles to the service and everything else directly to the network. Global Secure Access is available in GCC; it isn't yet supported in GCC High or DoD.[^iti-gsa-limits]
+
+- **Windows**: the device must be Entra joined, hybrid joined or, in preview, registered (registered devices carry Private Access traffic only), on 64-bit Windows 10 LTSC 2021 or later or Windows 11; Azure Virtual Desktop multi-session isn't supported, and Arm64 devices take a separate installer.[^iti-gsa-win] Deploy it as a Win32 app: package Microsoft's install script with the installer (renamed `GlobalSecureAccessClient.exe`) using the Win32 Content Prep Tool, then add it in Intune with these values:[^iti-gsa-win]
+
+  ```text
+  Install command:    powershell.exe -ExecutionPolicy Bypass -File <install-script>.ps1
+  Uninstall command:  "GlobalSecureAccessClient.exe" /uninstall /quiet /norestart
+  Install behavior:   System
+  Return codes:       0 Success · 3010 Soft reboot · 1618 Retry
+  Detection rule:     File · C:\Program Files\Global Secure Access Client\TrayApp
+                      GlobalSecureAccessClient.exe · String (version) · >= <client version>
+  ```
+
+  Secure DNS (DNS over HTTPS) must be off in browsers for traffic acquisition, which Microsoft sets with a settings catalog profile for Edge and Chrome. To stop users turning the client off, set `RestrictNonPrivilegedUsers` = 1 under `HKLM\SOFTWARE\Microsoft\Global Secure Access Client` with a Remediation, after a pilot shows nobody needs to disable it.[^iti-gsa-win] Remediations aren't available in GCC High or DoD.[^iti-gov-features]
+- **iOS and iPadOS**: the client is part of Microsoft Defender for Endpoint. Deploy the Defender app as a required iOS store app, then an iOS VPN profile (custom VPN, server `127.0.0.1`, identifier `com.microsoft.scmx`, on-demand rule **Connect VPN** for all domains) with the keys `EnableGSA` and `SilentOnboard` = `True`. The device needs iOS 16 or later and Authenticator or Company Portal; Defender for Endpoint on iOS doesn't support userless or shared devices.[^iti-gsa-ios]
+- **Android**: also through Defender for Endpoint, configured by an Android Enterprise app configuration policy for the Defender app with the `Global Secure Access` key; Android 11 or later, Entra registered. Private DNS must be off, and Android (Go edition) and shared devices aren't supported.[^iti-gsa-android][^iti-gsa-limits]
+
+On iOS and Android the client doesn't coexist with Microsoft Tunnel, so a mobile population uses one or the other.[^iti-gsa-limits]
+
+**Validate.** On a pilot Windows device, `dsregcmd /status` shows `AzureAdPrt : YES` for the signed-in user,[^iti-dsregcmd] and the Global Secure Access client reports **Connected**; on a pilot iPhone, the SSO profile reports **Succeeded** in Intune and a non-library app on the allow list signs in without a prompt. *(Design guidance: no validation kit check covers this step yet; record the pilot results with the Gate 3 evidence.)*
+
 ## Gate 4: dangers and mitigations
 
 The companion guide lists the ways a dynamic device group goes wrong and how to avoid each ([Dynamic device groups (Intune track)](attribute-driven-migration.md#dynamic-device-groups-intune-track)). Its table is the reference; this one says where each mitigation sits in this guide and which check proves it's in place.
@@ -394,7 +435,7 @@ The M-22-09 rows follow [Book 11, Appendix A](../b11-zero-trust/appendix-a-requi
 | 0 | Intune and Entra ID P1 entitlements confirmed for the tenant's cloud · Device-only licensing decided for userless devices, knowing it excludes Conditional Access · Least-privileged Intune roles assigned; Intune Administrator PIM-eligible, break-fix only · Every platform in the coverage matrix or a tier (VK-INT-06) · Windows 10 and path D devices as dated exceptions |
 | 1 | Value lists and group-tag vocabulary published under change control · Suppliers register with tags · Personal Windows enrollment blocked · Provisioning service is the only writer, app-only with `Device.ReadWrite.All` and a certificate · Other write paths removed or recorded · VK-INT-01 and VK-INT-03 clean on the pilot · First VK-DG-05 snapshot |
 | 2 | Device rules on device attributes only, with the `accountEnabled` guard · Tiers mutually exclusive, unpositioned matches none · Filters for time-sensitive assignment; no dynamic device group exclusions · User settings to user groups · Setting register with one owner per setting · VK-DG-03, VK-DG-04, VK-DG-06, VK-INT-04, VK-INT-05 clean |
-| 3 | Every GPO exported, analysed, tagged and disposed · User and computer halves split · Library built unassigned and peer reviewed · Report-only ring on Windows; Apple and Android excluded from report-only compliance policies · Pilot conflicts explained · Links disabled, not GPOs deleted · Preference items cleared or owned |
+| 3 | Every GPO exported, analysed, tagged and disposed · User and computer halves split · Library built unassigned and peer reviewed · Report-only ring on Windows; Apple and Android excluded from report-only compliance policies · Pilot conflicts explained · Links disabled, not GPOs deleted · Preference items cleared or owned · iOS SSO profile and, where licensed, the Global Secure Access client piloted in the same rings |
 | 4 | Every danger in the companion table mitigated and checked · Membership-delta alerts on · Bulk-change pause procedure written |
 | 5 | Entry criteria met per wave · 72-hour watch per ring · Rollback written per wave and tested once on the pilot · Sliders at Intune when every division is in |
 | 6 | Stale-device procedure on Microsoft's guidance, keys exported before deletes · Drift checks scheduled and routed to source owners · Evidence for CM-2, CM-6, CM-7, CM-8 and M-22-09 produced and retained |
@@ -443,3 +484,13 @@ The M-22-09 rows follow [Book 11, Appendix A](../b11-zero-trust/appendix-a-requi
 [^iti-ca-report-only]: Microsoft Learn, "Analyze Conditional Access policy impact," "Overview" (report-only policies requiring a compliant device can prompt macOS, iOS and Android users to select a device certificate; exclude those platforms), <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only> (accessed Oct 29, 2026).
 [^iti-stale-devices]: Microsoft Learn, "How To: Manage stale devices in Microsoft Entra ID" (activity timestamp and the 21-day caution; disable before delete; retire MDM-controlled devices first; hybrid-joined devices cleaned up in AD and synced; don't delete system-managed Autopilot devices; BitLocker keys deleted with the device), <https://learn.microsoft.com/entra/identity/devices/manage-stale-devices> (accessed Oct 29, 2026, as verified in the companion guide).
 [^iti-intune-cleanup]: Microsoft Learn, "Device cleanup rules" (hide devices that haven't checked in for 30 to 270 days; hidden devices aren't removed from Microsoft Entra ID), <https://learn.microsoft.com/intune/governance/configure-cleanup-rules> (accessed Oct 29, 2026, as verified in the companion guide).
+[^iti-fido2-apps]: Microsoft Learn, "Support passwordless authentication with FIDO2 keys in apps you develop," section "Platform-specific best practices," <https://learn.microsoft.com/entra/identity-platform/support-fido2-authentication> (accessed Nov 9, 2026).
+[^iti-wam]: Microsoft Learn, "Microsoft Entra ID Windows Account Manager (WAM) API reference," <https://learn.microsoft.com/entra/identity-platform/reference-entra-id-wam-api> (accessed Nov 9, 2026).
+[^iti-apple-sso]: Microsoft Learn, "Microsoft Enterprise SSO plug-in for Apple devices," sections "Requirements," "iOS requirements" and "Enable SSO for apps that don't use MSAL," <https://learn.microsoft.com/entra/identity-platform/apple-sso-plugin> (accessed Nov 9, 2026).
+[^iti-apple-sso-intune]: Microsoft Learn, "Use the Microsoft Enterprise SSO plug-in on iOS/iPadOS devices," section "Create a single sign-on app extension configuration policy," <https://learn.microsoft.com/intune/device-configuration/settings-catalog/configure-enterprise-sso-plugin-ios> (accessed Nov 9, 2026).
+[^iti-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access," sections "Global Secure Access client limitations" and "Global Secure Access In Government Cloud limitations," <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Nov 9, 2026).
+[^iti-gsa-win]: Microsoft Learn, "Install the Global Secure Access client for Windows," sections "Prerequisites," "Use Microsoft Intune to deploy the Global Secure Access client," "Configure settings for Microsoft Entra Internet Access by using Intune" and "Client registry keys," <https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client> (accessed Nov 9, 2026).
+[^iti-gsa-ios]: Microsoft Learn, "Install the Global Secure Access client for iOS," sections "Prerequisites," "Requirements" and "Installation steps," <https://learn.microsoft.com/entra/global-secure-access/how-to-install-ios-client> (accessed Nov 9, 2026).
+[^iti-gov-features]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," section "Intune features not available in GCC High and DoD" (Remediations), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 9, 2026).
+[^iti-dsregcmd]: Microsoft Learn, "Troubleshoot devices by using the dsregcmd command," section "SSO state" (`AzureAdPrt`), <https://learn.microsoft.com/entra/identity/devices/troubleshoot-device-dsregcmd> (accessed Nov 9, 2026).
+[^iti-gsa-android]: Microsoft Learn, "Install the Global Secure Access client for Android," sections "Prerequisites" and "Deploy Microsoft Defender for Endpoint on Android," <https://learn.microsoft.com/entra/global-secure-access/how-to-install-android-client> (accessed Nov 9, 2026).

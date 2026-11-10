@@ -63,7 +63,7 @@ In both patterns the group's own state has to be governed: who is a member or ow
 
 Three facts from Learn shape the code. Eligible membership doesn't appear in the group's `members` list; only active membership does.[^pa05-overview] PIM onboards a group the first time you create a schedule or update its policy, the policy IDs change when it does, and a group can't be taken back out of PIM.[^pa05-overview] And administrators with group management roles, or group owners, can change membership through the groups API and override what PIM set.[^pa05-elig-req] [^pa05-discover] So the code reads the tenant before every plan, takes policy IDs from that read, and treats anything it didn't put there as drift.
 
-The workbook's outline also names the access packages that grant PRV membership with approval, expiry and review, the plan's task A3.3. They aren't built here (research gaps, row 58). The eligibility expiry this chapter sets matters to them: Learn warns that an access package's expiration must not exceed the PIM group's own expiry for eligible assignments, or people lose access while entitlement management still shows them assigned.[^pa05-em-eligible]
+The workbook's outline also names the access packages that grant PRV membership with approval, expiry and review, the plan's task A3.3. They aren't built here (research gaps, row 58). The eligibility expiry this chapter sets matters to them: Learn warns that an access package's expiration must not exceed the PIM group's own expiry for eligible assignments, or people lose access while entitlement management still shows them assigned.[^pa05-em-eligible][^pa05-em-pim]
 
 ### Which cloud, for these calls
 
@@ -75,8 +75,8 @@ For Microsoft 365 GCC (Moderate), every call goes to `graph.microsoft.com`, the 
 
 Learn has no end-to-end tutorial for PIM for Groups in Microsoft Graph. Its tutorial for roles ends by noting that you can assign an active role to the group and make members eligible through the PIM for Groups APIs, and leaves it there.[^pa05-roles-tutorial] What Microsoft publishes is a set of HTTP requests in the API reference and one how-to:
 
-- *Create eligibilityScheduleRequest*: an administrator makes a principal eligible (Example 1), or extends an eligibility (Example 2).[^pa05-elig-req]
-- *Create assignmentScheduleRequest*: an administrator assigns active membership for two hours (Example 1), or a user activates an eligible membership (Example 2).[^pa05-asg-req]
+- *Create eligibilityScheduleRequest*: an administrator makes a principal eligible (Example 1), or extends an eligibility (Example 2).[^pa05-elig-req][^pa05-renew]
+- *Create assignmentScheduleRequest*: an administrator assigns active membership for two hours (Example 1), or a user activates an eligible membership (Example 2).[^pa05-asg-req][^pa05-activate]
 - *Update rules in PIM by using Microsoft Graph*: six rule updates (activation duration, enablement rules, approval, and expiration for eligible and active assignments), with the permission for groups, `RoleManagementPolicy.ReadWrite.AzureADGroup`.[^pa05-rules-howto]
 
 ### The pinned copy
@@ -126,7 +126,7 @@ This chapter adds its own module, `powershell/PimGroups/PimGroups.psm1`, its own
 | PA-PG-04 | Warn; Finding | 450 or more role-assignable groups (Warn); 500 (Finding) | Learn: at most 500;[^pa05-rag] the Warn threshold is *Design guidance* |
 | PA-PG-05 | Finding | A group as a member or owner, or a service principal made eligible | Learn: no active nesting in a role-assignable group,[^pa05-rag] nesting in PIM for Groups not recommended, and service principals can't be eligible;[^pa05-pim-plan] *Design guidance* to allow no group at all, because an eligible group hides its people from the review |
 | PA-PG-06 | Finding; Warn | An entry with no end, or one already ended (Finding); one with no ticket (Warn) | Learn: zero permanently active assignments except emergency accounts;[^pa05-pim-plan] *Design guidance* for eligibility and tickets |
-| PA-PG-07 | Finding | Eligible owners with no active owner; any owner on a T0 group | Learn: the last active owner can't be removed, so an activated owner's deactivation fails and, after 30 days, PIM stops trying;[^pa05-concept] *Design guidance* that T0 groups have no owners, since owners manage membership |
+| PA-PG-07 | Finding | Eligible owners with no active owner; any owner on a T0 group | Learn: the last active owner can't be removed, so an activated owner's deactivation fails and, after 30 days, PIM stops trying;[^pa05-concept][^pa05-activate] *Design guidance* that T0 groups have no owners, since owners manage membership |
 | PA-PG-08 | Finding; Warn | A policy rule that differs from the reviewed setting (Finding on T0 and T1 and on any expiration rule, Warn otherwise); activation over 8 hours; an authentication context outside `c1` to `c99`; approval with no approver group; a group approving itself; eligible members activating into an Entra role without approval (Warn) | Learn: approval recommended for groups that elevate into Entra roles;[^pa05-rag] approvers can't approve their own requests;[^pa05-approval] *Design guidance* for the settings |
 | PA-PG-09 | Finding; Warn | A schedule the file doesn't grant (Finding); a role-assignable or `PRV-*` group the file doesn't list (Warn) | *Design guidance*: anything outside the file is unreviewed |
 
@@ -650,6 +650,9 @@ KSIs are FedRAMP 20x indicators for cloud service providers.[^pa05-ksi] The agen
 [^pa05-pim-plan]: Microsoft Learn, "Plan a Privileged Identity Management deployment," understand PIM and plan and implement PIM for Groups, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan> (accessed Oct 30, 2026).
 [^pa05-discover]: Microsoft Learn, "Bring groups into Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-discover-groups> (accessed Oct 30, 2026).
 [^pa05-em-eligible]: Microsoft Learn, "Assign eligible group membership and ownership in access packages via Privileged Identity Management for Groups," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-eligible> (accessed Oct 30, 2026).
+[^pa05-em-pim]: Microsoft Learn, "Using groups managed by Privileged Identity Management with access packages," shorter PIM duration, <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-pim-reference> (accessed Nov 9, 2026).
+[^pa05-renew]: Microsoft Learn, "Extend or renew PIM for groups assignments," admin initiated extension, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-renew-extend> (accessed Nov 9, 2026).
+[^pa05-activate]: Microsoft Learn, "Activate your group membership or ownership in Privileged Identity Management," activate a role, and PIM for Groups and ownership deactivation, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-activate-roles> (accessed Nov 9, 2026).
 [^pa05-roles-tutorial]: Microsoft Learn, "Assign privileged roles using PIM for Microsoft Entra roles APIs," conclusion, <https://learn.microsoft.com/graph/tutorial-assign-azureadroles> (accessed Oct 30, 2026).
 [^pa05-cmdlet]: Microsoft Learn, "Update-MgPolicyRoleManagementPolicyRule" (Microsoft Graph PowerShell v1.0), <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.signins/update-mgpolicyrolemanagementpolicyrule?view=graph-powershell-1.0> (accessed Oct 30, 2026).
 [^pa05-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).

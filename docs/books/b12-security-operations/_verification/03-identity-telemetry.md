@@ -112,3 +112,30 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 | 2 | Workload identity risk: managed identities not in scope; tenants without Workload Identities Premium still receive detections with limited detail | Verify emission | verified | Learn, Securing workload identities |
 | 3 | Expected-quiet exception for the two workload-identity tables | Verify emission | restated-as-design | - |
 | 4 | AU-3(1) control text; High value and Conditional categories named as the identity plane's additional information (item 599) | Categories | verified (control); restated-as-design | NIST OSCAL SP 800-53 Rev. 5 catalog |
+
+## Learn citations and additions, November 9, 2026
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service, for the Learn coverage pass (Entra core gaps 11 and 19, Entra governance gap 4, Windows Server identity gap 2). The citations add sources to existing sentences without changing their meaning; the new section "Signals beyond the diagnostic setting" is new text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Service principals sign in with their own certificate or secret; managed identity sign-ins are only in the managed identity log | Why all four sign-in streams are core | verified (clause and citation added) | `c03-sp-signins`, Learn "What are service principal sign-ins in Microsoft Entra?" |
+| L2 | First-time setup: about 24 hours for a new storage account or SIEM; up to three days for Log Analytics | Path A | verified (sentence added; agrees with the existing three-day statement) | `c03-latency`, Learn "Log latency in Microsoft Entra ID" |
+| L3 | Entra Health scenarios (MFA, compliant/managed device, SAML, Conditional Access block); anomaly detection; preview | New section, Entra Health | verified | `c03-health-scenarios`; `c03-health-alerts`; Learn "What is Microsoft Entra Health monitoring?" read for the scenario list |
+| L4 | P1/P2 to view signals; non-trial P1/P2 and 100 MAU for alerts; about 30 days of data before alerts; Reports Reader views, Helpdesk Administrator updates; `HealthMonitoringAlert.Read.All`; the active-alerts Graph beta request | Same | verified | `c03-health-alerts`, sections "Prerequisites" and Microsoft Graph tab |
+| L5 | Recommendations: daily comparison with best practices, action plan and affected resources, read roles; hybrid recommendations (DCSync, Connector account password, certificate templates, Print Spooler on DCs), most in preview | Same | verified | `c03-recommendations` |
+| L6 | Entra Health and recommendations availability in GCC High and DoD | Same | not yet specified (Learn's feature-availability page for Azure Government doesn't list them) | Learn "Microsoft Entra feature availability" (searched Nov 9, 2026) |
+| L7 | Monthly review of recommendations; open Health alerts pulled into the evidence record | Same | restated-as-design | Program design |
+| L8 | Global Secure Access diagnostic categories and tables (traffic, connection events, remote network health, generative AI insights, alerts); Sentinel solution with three workbooks and seven analytics rules | New section, Global Secure Access | verified | `c03-gsa-sentinel` |
+| L9 | Alert types Token/Device Inconsistency, Increased External Tenant Activity, Unhealthy Remote Network; schema aligned to Sentinel's security alert schema | Same | verified | `c03-gsa-alerts` |
+| L10 | Global Secure Access available in GCC, not yet supported in GCC High or DoD | Same | verified | `c03-gsa-gov` |
+| L11 | Connect Sync admin audit logging from 2.4.129.0, on by default, Application log source "Entra Connect Admin Actions", event IDs 2603 to 2626, log size advice, `AuditEventLogging` registry value (0 off, 1 on) | New section, Entra Connect server | verified | `c03-connect-audit` |
+| L12 | The read-only check commands (`Get-ItemProperty`, `Get-WinEvent` by provider name) | Same | restated-as-design; standard cmdlets, not run against a Connect server; the provider name is the event source Learn names | `c03-connect-audit` |
+| L13 | Administration Agent: deprecated, can't be used with 2.1.12.0 or later; support engineer sees AD data, connector spaces and metaverse for a user; `UserDataEnabled` | Same | verified | `c03-admin-agent` |
+| L14 | DC compromise means the forest can't be trusted without recovery from a known good backup; secure DCs separately; Defender for Identity sensors on DCs and AD FS servers in hybrid; no browsing; block outbound internet | New section, domain controllers | verified | `c03-dc-secure` |
+| L15 | Use advanced audit subcategories, force subcategory override, check effective policy with auditpol because Group Policy doesn't always report it accurately | Same | verified | `c03-dc-monitor` |
+| L16 | High-criticality events 4618, 4649, 4719, 4765, 4766, 4794, 4897, 4964, 5124; 1102 Medium to High | Same | verified | `c03-events-l` |
+| L17 | Single-occurrence alert example: Domain Admins logon to a workstation surfaced by 4964 | Same | verified | `c03-audit-rec` |
+| L18 | "In this chapter" callout extended to name the new section | Callout | restated-as-design | - |
+
+Left listed but uncited in the coverage map: most monitoring-health concept, how-to and workbook pages, the ID Protection guide pages and the operations-guide pages (the chapter covers them at the level of the diagnostic setting; no sentence says only what one of them says).

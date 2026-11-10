@@ -63,3 +63,18 @@ FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/
 | K3 | IA-5 is related to KSI-IAM-APM | Both tables | verified (new pair) | same |
 | K4 | M-22-09's phishing-resistant MFA lines up with KSI-IAM-APM | Requirement table | carried forward (program mapping) | Book 02, Chapter 10 |
 | K5 | A workflow change is a new version, not an edit in place, so the plan supports KSI-CMT-RMV | Lab table | design guidance (labeled), on CM-3's pairing in Book 13, Appendix A | — |
+
+## November 9, 2026: Learn citations
+
+Microsoft Learn pages opened on November 9, 2026 through the Microsoft Learn MCP tools and cited where the chapter already said what they say. No claim changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Changing tasks or execution conditions makes a new version | Why this gate needs code | verified | Learn, Manage workflow versions (`manage-workflow-tasks`) |
+| L2 | On-premises extension attributes 1 to 15 can trigger a workflow on attribute change (the mover file) | The workflow files | verified; the trigger's attribute name for an extension attribute is still not given | Learn, Use custom attribute triggers in lifecycle workflows |
+| L3 | A post-offboarding template deletes the account on a schedule after the leave date | The workflow files | verified (the tutorial uses seven days; the program uses 30) | Learn, Automate employee offboarding tasks after their last day of work |
+| L4 | Test hires need a hire date in the future: a workflow doesn't trigger for one before its creation | Lab 2 | verified | Learn, Tutorial: Preparing user accounts for Lifecycle workflows |
+| L5 | Run the pre-hire workflow on demand; the pass goes to the manager by email | Lab 2, step 5 | verified | Learn, Automate employee onboarding tasks before their first day of work |
+| L6 | User processing results are the per-user history of a workflow | Day-one readiness | verified | Learn, Check status of a Lifecycle workflow |
+| L7 | Lifecycle Workflows audit logs cover up to 30 days | Federal requirements, run history | verified | Learn, Auditing Lifecycle Workflows |
+| L8 | A deleted workflow can be restored for 30 days | Lab 2, step 7 | verified | Learn, Delete a lifecycle workflow |

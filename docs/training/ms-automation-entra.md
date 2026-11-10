@@ -165,7 +165,7 @@ Reading one user's registered methods needs `UserAuthenticationMethod.Read.All`.
   - ID Protection's risky-account reports.
 - **Partial:** HR-driven provisioning, which depends on the HR app.
 - **Not available:**
-  - the My Staff delegated user management portal;
+  - the My Staff delegated user management portal;[^m2-mystaff]
   - the *Microsoft Entra threat intelligence* risk detection.
 
 A GCC tenant uses the commercial Entra ID service, so this table doesn't apply to it.
@@ -587,3 +587,4 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), the [Microsoft p
 [^m2-risky]: Microsoft Learn, "List riskyUsers" (updated October 17, 2024), <https://learn.microsoft.com/en-us/graph/api/riskyuser-list>, accessed October 25, 2026.
 [^m2-govfeatures]: Microsoft Learn, "Microsoft Entra feature availability" in Azure for US Government (updated January 15, 2026), <https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability>, accessed October 25, 2026.
 [^m2-trustedips]: Microsoft Learn, "Compare Azure Government and global Azure," section "Identity" (limitations with multifactor authentication: Trusted IPs isn't supported; use Conditional Access policies with named locations), <https://learn.microsoft.com/en-us/azure/azure-government/compare-azure-government-global-azure#identity>, read November 1, 2026.
+[^m2-mystaff]: Microsoft Learn, "Use My Staff to delegate user management," how My Staff delegates common user tasks to managers through administrative units, <https://learn.microsoft.com/entra/identity/role-based-access-control/my-staff-configure>, accessed November 9, 2026. The availability itself is from the feature table cited above.

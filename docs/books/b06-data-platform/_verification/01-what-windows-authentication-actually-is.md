@@ -57,3 +57,9 @@ Checked October 20, 2026. Sources: the existing page (former Book 01, Chapter 1)
 | Ch1 Why This Was Correct | Why this was correct | kept |
 | Ch1 "What Book 01 establishes" callout | "What this chapter establishes" | edited (Why point added) |
 | Diagrams `book-01-ch01-kerberos-sspi-ntlm-fallback`, `book-01-ch01-engine-identity-anchors` | Same positions | kept; sources unchanged (no wrong facts found) |
+
+## Learn gMSA coverage pass, November 9, 2026
+
+| Claim | Where | Verdict | Source |
+|---|---|---|---|
+| SQL Server supports gMSAs for standalone instances from SQL Server 2014, and for failover cluster instances and availability groups from SQL Server 2016; the domain administrator creates the gMSA before setup uses it | The service account, gMSA bullet | verified (added) | Learn, Configure Windows service accounts and permissions (ms.date 2025-10-14), read Nov 9, 2026 |

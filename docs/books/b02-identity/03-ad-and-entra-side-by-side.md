@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The two identity worlds at a glance, and the protocols each one speaks. Where the old protocols stand in Windows as of late 2026, and how the cryptography changes. Which languages and tools carry over and which modules are gone. The eight core concepts the program uses to frame directory migration, and why treating the move as a tooling swap keeps the old failure modes alive.
+The two identity worlds at a glance, the security identifiers AD authorizes by and what replaces them, and the protocols each one speaks. Where the old protocols stand in Windows as of late 2026, and how the cryptography changes. Which languages and tools carry over and which modules are gone. The eight core concepts the program uses to frame directory migration, and why treating the move as a tooling swap keeps the old failure modes alive.
 :::
 
 ## The shift in one paragraph
@@ -51,6 +51,20 @@ The figure carries the chapter's main point. A Kerberos ticket or an NTLM exchan
 : The two identity worlds at a glance {.striped .hover}
 
 Each row is covered in the sections below or in a later chapter. Two rows need a caveat now. Entra ID stores a password hash only for users in scope of password hash synchronization: Microsoft Entra Connect never sends the original MD4 hash; it sends a PBKDF2 derivation of it, salted per user and run through 1,000 iterations of HMAC-SHA256.[^c03-phs] And the policy plane doesn't map one to one. Group Policy configures domain-joined machines. Conditional Access decides whether a sign-in gets a token. Device configuration moves to a device-management service, part of the target build in [Chapter 09](09-building-the-entra-target.md).
+
+## Security identifiers, and what replaces them {#security-identifiers-and-what-replaces-them}
+
+Active Directory doesn't grant access to a name; it grants it to a security identifier (SID). Every *security principal*, anything the operating system can authenticate (a user, a computer, or a security group they belong to), has one, and the SIDs in a user's access token are what Windows compares with the access control entries on a file, a share or a registry key.[^c03-principals] A domain account's SID is the domain's identifier followed by a relative identifier (RID) from a block the RID master hands each domain controller; it's unique in its domain and never reused, so a deleted and recreated user gets a new SID and none of the old access.[^c03-sids] The forms worth recognizing in a migration inventory:[^c03-sids][^c03-special-identities]
+
+| SID | What it is | Why the migration cares |
+|---|---|---|
+| `S-1-5-21-<domain>-500` | The domain's built-in Administrator | Never synced; its rights don't carry over |
+| `S-1-5-21-<domain>-512`, `-519`, `-518` | Domain Admins, Enterprise Admins, Schema Admins | The privileged groups [Chapter 09](09-building-the-entra-target.md#mapping-ad-privileged-groups-to-entra-roles) maps to Entra roles |
+| `S-1-5-21-<domain>-513`, `-515` | Domain Users, Domain Computers | Broad grants on file shares and applications that have to be re-expressed |
+| `S-1-5-32-544` | Builtin\Administrators on a machine | Local admin rights; on Entra-joined devices this is set by policy |
+| `S-1-1-0` Everyone, `S-1-5-11` Authenticated Users | Special identity groups: membership is computed by the operating system and can't be viewed or edited | A permission granted to them means "anyone the domain authenticated", and has no Entra ID group to map to |
+
+Three facts follow for the migration. First, an object's SID changes when it moves between domains; AD keeps the old one in the multi-valued `sIDHistory` attribute and puts every SID, history included, into the token, so old ACLs keep working.[^c03-sids] SID history is a convenience that becomes a risk: across a forest trust without SID filtering, SIDs from another forest can be injected, so inventory `sIDHistory` and remove what's no longer needed.[^c03-sid-history] Second, Entra ID doesn't use SIDs to authorize cloud resources, but it records them: a synced user or group carries its AD SID in `onPremisesSecurityIdentifier`, and an Entra ID group has a `securityIdentifier` for Windows scenarios.[^c03-graph-user][^c03-graph-group] That's how an Entra-joined device grants local administrator rights to an Entra group: the device policy names the group by an `S-1-12-1-…` SID derived from its object ID.[^c03-local-admin][^c03-lug-csp] Third, every permission in the [inventory](04-the-hidden-migration-surface.md#the-transformation-inventory) that names a domain SID stops resolving when the domain goes; the resource has to be re-permissioned with the target's own model, not with the SID.
 
 ## Protocols: what each side speaks
 
@@ -246,3 +260,11 @@ The languages mostly carry over. The protocols, the cryptography, the session un
 [^c03-oscal]: National Institute of Standards and Technology, "OSCAL: Layers and Models," <https://pages.nist.gov/OSCAL/learn/concepts/layer/> (accessed Oct 20, 2026).
 [^c03-kerberos-skew]: Microsoft Learn, "Kerberos protocol registry entries and KDC configuration keys in Windows," <https://learn.microsoft.com/troubleshoot/windows-server/windows-security/kerberos-protocol-registry-kdc-configuration-keys> (accessed Oct 20, 2026).
 [^c03-sync-scheduler]: Microsoft Learn, "Microsoft Entra Connect Sync: Scheduler," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-feature-scheduler> (accessed Oct 20, 2026).
+[^c03-principals]: Microsoft Learn, "Security principals," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-security-principals> (accessed Nov 9, 2026).
+[^c03-sids]: Microsoft Learn, "Security identifiers," sections "How SIDs work," "SID architecture," "SIDs and globally unique identifiers" and "Well-known SIDs," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-security-identifiers> (accessed Nov 9, 2026).
+[^c03-special-identities]: Microsoft Learn, "Special identity groups," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-special-identities-groups> (accessed Nov 9, 2026).
+[^c03-sid-history]: Microsoft Learn, "Security assessment: Unsecure SID History attributes," <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts>, and "netdom trust" (`/quarantine` accepts only SIDs from the directly trusted domain), <https://learn.microsoft.com/windows-server/administration/windows-commands/netdom-trust> (accessed Nov 9, 2026).
+[^c03-graph-user]: Microsoft Learn, "user resource type," `onPremisesSecurityIdentifier`, <https://learn.microsoft.com/graph/api/resources/user?view=graph-rest-1.0> (accessed Nov 9, 2026).
+[^c03-graph-group]: Microsoft Learn, "group resource type," `securityIdentifier` and `onPremisesSecurityIdentifier`, <https://learn.microsoft.com/graph/api/resources/group?view=graph-rest-1.0> (accessed Nov 9, 2026).
+[^c03-local-admin]: Microsoft Learn, "Manage local administrators on Microsoft Entra joined devices," <https://learn.microsoft.com/entra/identity/devices/assign-local-admin> (accessed Nov 9, 2026).
+[^c03-lug-csp]: Microsoft Learn, "Policy CSP - LocalUsersAndGroups" (Entra group SIDs of the form `S-1-12-1-…`), <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-localusersandgroups> (accessed Nov 9, 2026).

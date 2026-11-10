@@ -87,3 +87,13 @@ Item 1596 of the crosswalk review. The fixture's Tier 1 series, `PAR-T1-Exchange
 | R1 | Tier 1 role reviews: role owner and `PIM-Approvers-T1` | The reviewed JSON | verified by reading Book 04, Chapter 09 (schedule table) and Appendix B (Review cadence by tier), November 9, 2026 | Book 04 |
 | R2 | Chapter 09 and Appendix B record the emergency accounts' "No change" exception | The reviewed JSON | verified by reading the same two sections, November 9, 2026 | Book 04 |
 | R3 | Lab 1 output after the change | Lab 1 | verified by running the commands as written (`scripts/kit_captures.py pa`, November 9, 2026) | `data/kit-captures/pa/07-*.txt` |
+
+## Learn citations (added November 9, 2026)
+
+Microsoft Learn pages opened on November 9, 2026 through the Microsoft Learn MCP tools and cited where the chapter already said what they say. No claim changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | A role held by a group shows the group in the review, not its members | Why reviews, and why as code | verified (the Results note on role-assignable groups) | Learn, Complete an access review of Azure resource and Microsoft Entra roles in PIM (`pa07-complete`) |
+| L2 | A reviewer approves in My Access with a justification | Lab 2, step 4 | verified | Learn, Review access to groups & applications in access reviews (`pa07-perform`) |
+| L3 | Stopping an instance completes it; with auto-apply the results apply without the Apply button | Lab 2, step 4 | verified | Learn, Complete an access review of Azure resource and Microsoft Entra roles in PIM (`pa07-complete`) |

@@ -24,7 +24,7 @@ The question that sorts every AI system: when it calls a resource, whose token d
 
 [Chapter 03](03-the-inventory-as-an-identity-source.md) ended with a list of AI use cases and a gap: the inventory says what each AI system is for, but not what it signs in as. Closing that gap starts with knowing what to look for. An AI system's identity isn't a property of the model. A large language model has no account. The identity belongs to the software around it: the application that calls the model, the orchestration that decides which tool to use next, and the connector that reads the mailbox. When any of those makes a call, it presents a token, and the token says on whose authority the call is made.
 
-There are three answers that Microsoft Entra ID can see, and one it can't.
+There are three answers that Microsoft Entra ID can see, and one it can't.[^c04-protocols]
 
 ![When an AI system calls a resource it presents a signed-in user's token, its own identity's token, or a token for its own user account; a stored API key that bypasses Entra ID is invisible to Conditional Access and the sign-in logs.](../../images/diagrams/b17-ai-identity/svg/ch04-whose-token.svg){#fig-ch04-whose-token fig-alt="A top-to-bottom diagram. A slate card at the top asks: when the AI system calls a resource, whose token does it present? Three cards branch from it. A blue card labeled delegated, a signed-in user's: on-behalf-of flow; the user is the subject and the agent is the actor; the user's policies and consent apply. A blue card labeled autonomous, its own identity: a workload identity or agent identity; client credentials, app-only; its own grants, with a Block-only policy for agents. An amber card labeled agent user, its own user account: paired one to one with an agent identity; mailbox, licenses and groups; preview, with separate policies. A dashed red arrow labeled if it skips Entra ID runs from the autonomous card to a red card at the bottom: a stored API key or secret outside Entra ID, with no token issuance, so no Conditional Access and no sign-in log in Entra ID."}
 
@@ -37,7 +37,7 @@ The first three are identities the program can govern. The fourth is a finding: 
 
 ## Workload identities: what most AI runs as today
 
-Microsoft's term for any identity assigned to software is a workload identity: in Entra ID, applications, service principals and managed identities.[^c04-mi] Before any AI-specific identity existed, AI systems ran as these, and most still do. Microsoft says agents created in earlier versions of Copilot Studio and Azure AI Foundry may exist as classic applications and service principals, possibly tagged as AI agents but without agent identities, and that they're subject to the same policies and governance as any other application.[^c04-disable] [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md) governs these objects in general; what follows is what matters when the workload is an AI system.
+Microsoft's term for any identity assigned to software is a workload identity: in Entra ID, applications, service principals and managed identities.[^c04-mi] Before any AI-specific identity existed, AI systems ran as these, and most still do. Microsoft says agents created in earlier versions of Copilot Studio and Azure AI Foundry may exist as classic applications and service principals, possibly tagged as AI agents but without agent identities, and that they're subject to the same policies and governance as any other application.[^c04-disable][^c04-migrate-cs][^c04-migrate-custom] [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md) governs these objects in general; what follows is what matters when the workload is an AI system.
 
 ### Service principals
 
@@ -65,9 +65,9 @@ Workload identities were designed, in Microsoft's words, for services built and 
 
 ### The object model
 
-Agent ID adds four kinds of directory object.[^c04-governance]
+Agent ID adds four kinds of directory object.[^c04-governance][^c04-key-concepts]
 
-- **Agent identity blueprint.** A template that defines a kind of agent. It holds the credentials (federated identity credentials, certificates or client secrets), the inheritable permissions that every agent created from it starts with, app roles and the verified publisher. For agents running on Azure, the blueprint can be federated to a managed identity so no secret is stored on it.[^c04-a365-identity]
+- **Agent identity blueprint.** A template that defines a kind of agent. It holds the credentials (federated identity credentials, certificates or client secrets), the inheritable permissions that every agent created from it starts with, app roles and the verified publisher. For agents running on Azure, the blueprint can be federated to a managed identity so no secret is stored on it.[^c04-a365-identity][^c04-blueprint]
 - **Agent identity blueprint principal.** The object created when a blueprint is added to a tenant. It acquires tokens, creates agent identities and appears in the audit logs on the blueprint's behalf.[^c04-patterns]
 - **Agent identity.** The account an individual agent runs as: a special service principal with its own object ID, display name, sponsor and permissions. It has no credentials of its own; the blueprint acquires tokens on its behalf. Agent identities are single-tenant, while a blueprint can be multitenant, which is how a published agent is added to a customer tenant that then creates its own agent identities.[^c04-agent-identities][^c04-a365-identity]
 - **Agent's user account.** An optional second account, a user account marked in the directory as an AI agent, for agents that need a mailbox, licenses or access to systems that only accept user identities. It's paired one-to-one with a single agent identity, the pairing can't be changed once made, and it can only authenticate with a token issued to its agent identity.[^c04-agent-users]
@@ -84,15 +84,15 @@ Three consequences of this model matter for governance.
 
 ### Which products create agent identities
 
-Agent identities appear in a tenant whether or not anyone planned for them. Microsoft documents several sources:[^c04-governance][^c04-what-agent]
+Agent identities appear in a tenant whether or not anyone planned for them. Microsoft documents several sources:[^c04-governance][^c04-what-agent][^c04-creation-channels]
 
 - **Microsoft Copilot Studio.** Agents can be configured to get an agent identity automatically; Microsoft labels the automatic creation setting as preview.
 - **Microsoft Foundry.** The first agent in a project gets a default blueprint and agent identity shared by the project's agents; publishing an agent gives it its own blueprint and agent identity. Until an agent is published, its activity is attributed to an identity it shares with its neighbors.
 - **Azure App Service and Azure Functions** can be configured to run an app as an agent with an agent identity.
 - **Microsoft's own agents**, such as the Conditional Access optimization agent, run under agent identities in the tenant.
-- **Non-Microsoft agents**, such as agents on Amazon Bedrock or n8n, can be given agent identities through Microsoft's authentication sidecar or through workload identity federation.[^c04-agent-id]
+- **Non-Microsoft agents**, such as agents on Amazon Bedrock or n8n, can be given agent identities through Microsoft's authentication sidecar or through workload identity federation.[^c04-agent-id][^c04-platform][^c04-bedrock]
 
-The agent inventory itself has moved. Microsoft announced in March 2026 that the agent registry and agent collections views in the Entra admin center would be retired on May 1, 2026, with Microsoft Agent 365 becoming the single registry and Entra continuing to provide the identities.[^c04-registry]
+The agent inventory itself has moved. Microsoft announced in March 2026 that the agent registry and agent collections views in the Entra admin center would be retired on May 1, 2026, with Microsoft Agent 365 becoming the single registry and Entra continuing to provide the identities.[^c04-registry][^c04-registry-convergence]
 
 ## Delegated and autonomous access
 
@@ -190,8 +190,16 @@ The last two rows are where most of the risk sits. A vendor-hosted AI service re
 [^c04-wid-faq]: Microsoft Learn, "Frequently asked questions about Microsoft Entra Workload ID," free and Premium capabilities, <https://learn.microsoft.com/entra/workload-id/workload-identities-faqs> (accessed Oct 21, 2026).
 [^c04-mi]: Microsoft Learn, "What is managed identities for Azure resources?," sections What are managed identities, Managed identity types, and Use managed identity as a Federated Identity Credential, <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview> (accessed Oct 21, 2026).
 [^c04-wif]: Microsoft Learn, "Workload identity federation concepts," sections Supported scenarios and How it works, <https://learn.microsoft.com/entra/workload-id/workload-identity-federation> (accessed Oct 21, 2026).
+[^c04-migrate-cs]: Microsoft Learn, "Recreate Copilot Studio agents in Microsoft Entra Agent ID," introduction (legacy Copilot Studio service principals treated as standard applications), <https://learn.microsoft.com/entra/agent-id/migrate-copilot-studio-agents-to-agent-id> (accessed Nov 9, 2026).
+[^c04-migrate-custom]: Microsoft Learn, "Migrate custom app registrations to Agent ID," introduction (agents on standard app registrations authenticate like any other application), <https://learn.microsoft.com/entra/agent-id/migrate-custom-app-registrations-to-agent-id> (accessed Nov 9, 2026).
 [^c04-disable]: Microsoft Learn, "Disable agent identities in your tenant," Types of identities used by AI agents, <https://learn.microsoft.com/entra/agent-id/disable-agent-identities> (accessed Oct 21, 2026).
 [^c04-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability," Azure for US Government, including Other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 21, 2026).
+[^c04-protocols]: Microsoft Learn, "Authentication protocols in agents," sections "Core protocol patterns" (on behalf of users, as their own agent identity, as their own user account) and "Oauth protocols," <https://learn.microsoft.com/entra/agent-id/agent-oauth-protocols> (accessed Nov 9, 2026).
+[^c04-key-concepts]: Microsoft Learn, "Microsoft Entra Agent ID key concepts," sections "Core identity concepts" and "Agent's user account," <https://learn.microsoft.com/entra/agent-id/key-concepts> (accessed Nov 9, 2026).
+[^c04-blueprint]: Microsoft Learn, "Agent identity blueprints in Microsoft Entra Agent ID," sections "Agent identity blueprints," "Credentials" and "Inheritable permissions and required resource access," <https://learn.microsoft.com/entra/agent-id/agent-blueprint> (accessed Nov 9, 2026).
+[^c04-creation-channels]: Microsoft Learn, "How are agent identities created?," sections "Overview of creation channels," "Microsoft product integrations" and "Microsoft Entra ID consent experience," <https://learn.microsoft.com/entra/agent-id/agent-id-creation-channels> (accessed Nov 9, 2026).
+[^c04-platform]: Microsoft Learn, "What is the Microsoft agent identity platform," section "Integration and interoperability" (non-Microsoft platforms such as AWS Bedrock and n8n onboarded through the Auth SDK sidecar or workload identity federation), <https://learn.microsoft.com/entra/agent-id/what-is-agent-id-platform> (accessed Nov 9, 2026).
+[^c04-bedrock]: Microsoft Learn, "Secure an Amazon Bedrock agent with Microsoft Entra Agent ID," sections "Architecture" and "Understand the token flow," <https://learn.microsoft.com/entra/agent-id/integrate-aws-bedrock-agent> (accessed Nov 9, 2026).
 [^c04-what-agent]: Microsoft Learn, "What are agent identities," sections Agent identities versus application identities and Agent identities in practice, <https://learn.microsoft.com/entra/agent-id/what-are-agent-identities> (accessed Oct 21, 2026).
 [^c04-agent-id]: Microsoft Learn, "What is Microsoft Entra Agent ID?," sections Agent identity platform and How to get started, <https://learn.microsoft.com/entra/agent-id/identity-professional/microsoft-entra-agent-identities-for-ai-agents> (accessed Oct 21, 2026).
 [^c04-whatsnew]: Microsoft Learn, "Microsoft Entra releases and announcements," April 2026, General Availability – Microsoft Entra Agent ID platform, <https://learn.microsoft.com/entra/fundamentals/whats-new> (accessed Oct 21, 2026); Microsoft Learn, "What's new in Microsoft Entra Agent ID," <https://learn.microsoft.com/entra/agent-id/whats-new-agent-id> (accessed Oct 21, 2026).
@@ -203,6 +211,7 @@ The last two rows are where most of the risk sits. A vendor-hosted AI service re
 [^c04-a365-identity]: Microsoft Learn, "Agent 365 identity," sections Identity objects, Blueprint-to-agent relationship, Credentials, Agent's user account, Permissions and runtime flow, and Sponsor and auditing, <https://learn.microsoft.com/microsoft-agent-365/developer/identity> (accessed Oct 21, 2026).
 [^c04-sponsors]: Microsoft Learn, "Administrative relationships in Microsoft Entra Agent ID (Owners, sponsors, and managers)," <https://learn.microsoft.com/entra/agent-id/agent-owners-sponsors-managers> (accessed Oct 21, 2026).
 [^c04-registry]: Microsoft Learn, "Microsoft Entra releases and announcements," March 2026, Plan for change – Agent Registry consolidation into Microsoft Agent 365, <https://learn.microsoft.com/entra/fundamentals/whats-new> (accessed Oct 21, 2026).
+[^c04-registry-convergence]: Microsoft Learn, "Agent Registry convergence with Microsoft Agent 365," sections "Registry convergence" and "Frequently asked questions," <https://learn.microsoft.com/entra/agent-id/agent-registry-convergence> (accessed Nov 9, 2026).
 [^c04-foundry]: Microsoft Learn, "Agent identity concepts in Microsoft Foundry," Authentication capabilities, <https://learn.microsoft.com/azure/foundry/agents/concepts/agent-identity> (accessed Oct 21, 2026).
 [^c04-risky-agents]: Microsoft Learn, "ID Protection for agents," sections Licensing and Activities contributing to risk, <https://learn.microsoft.com/entra/id-protection/concept-risky-agents> (accessed Oct 21, 2026).
 [^c04-a365-sd]: Microsoft Learn, "Microsoft Agent 365" (service description), Feature availability, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365> (accessed Oct 21, 2026).

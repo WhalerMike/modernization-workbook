@@ -81,3 +81,15 @@ Covers every section of the shared source. Rows marked Ch01 or Ch05 are the othe
 | §3 "none of this substitutes for agency-level reconciliation" | "Each provider's tool answers for its own platform" | — |
 | §4 Conclusion ("horse before the cart") | Final paragraph ("Unify first; then let assessment confirm it") | Idiom dropped |
 | Sources list | Footnotes, each re-opened | Office 365 GCC service description and CSRB report not cited here (Ch05 and Ch01 respectively) |
+
+## Learn additions, November 9, 2026 (tenant isolation and engineering systems)
+
+Pages read on 2026-11-09 through the Microsoft Learn documentation service. Added from the Learn coverage review (Entra core gap 16).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | The guidance comes from the Secure Future Initiative; by default a user who creates a tenant becomes its Global Administrator, outside the organization's governance and visibility | New subsection "Tenants and engineering systems are part of the estate" | verified (new) | `c06-ms-tenants`, Learn "Protect tenants and isolate production systems" (read Nov 9, 2026) |
+| L2 | Remediation: restrict non-admin users from creating tenants, assign Tenant Creator, review tenant creation events in the audit log | Same | verified | `c06-ms-tenants` |
+| L3 | Keep production isolated from test and pre-production; guest access limited to approved tenants; protected actions for Conditional Access, cross-tenant access settings and other high-impact tasks | Same | verified | `c06-ms-tenants` |
+| L4 | GA activation requires approval; no standing GA access to Azure subscriptions; app and service principal creation restricted to privileged users; workload identities not assigned privileged roles | Same | verified | `c06-ms-engineering`, Learn "Protect engineering systems" (read Nov 9, 2026) |
+| L5 | Unmanaged tenants and deployment pipelines belong in the one inventory and under the Tier 0 controls | Same | restated-as-design | Program design, tied to the chapter's inventory and unification-layer sections |

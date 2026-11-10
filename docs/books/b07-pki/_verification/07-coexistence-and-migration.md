@@ -100,3 +100,12 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | Vendor landing page retitled "Palo Alto Networks Certificate Manager - Self-Hosted Introduction" in version 26.2; discovery and renewal before expiry unchanged | `[^c07-cyberark-names]` gives the 26.1 address and the 26.2 title; text unchanged |
+
+## Learn citations, November 9, 2026
+
+Learn coverage pass (citations for Microsoft Learn identity pages the chapter already covered, plus small additions). Pages read on 2026-11-09 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Backup-ADFS captures configuration database, file, certificates and (with -BackupDKM) DKM keys; Restore-ADFS needs same version and service account; cold standby use case | Cutover steps 2 and 6 | verified (sentences added) | `c07-adfs-rrt`: Learn, "AD FS Rapid Restore tool" (read Nov 9, 2026) |
+| L2 | Global Secure Access TLS inspection pages were mapped to this chapter | Coverage map | not cited: the chapter doesn't discuss Global Secure Access TLS inspection (reported to the coordinator) | Learn coverage data |
