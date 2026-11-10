@@ -160,7 +160,7 @@ Two of these interact with Active Directory directly. MS.AAD.7.3v1, cloud-only p
 
 ### OMB M-22-09
 
-OMB M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, sets the identity goals that the phishing-resistant rows serve: enterprise-managed identities for agency staff, protected by phishing-resistant multifactor authentication.[^aA-m2209][^aA-ms-m2209]
+OMB M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, sets the identity goals that the phishing-resistant rows serve: enterprise-managed identities for agency staff, protected by phishing-resistant multifactor authentication.[^aA-m2209][^aA-ms-m2209][^aA-m2209-ems]
 
 ### CISA Hybrid Identity Solutions Guidance
 
@@ -213,7 +213,7 @@ The program's identity modernization specification is the cross-adapter contract
 
 ## NIST SP 800-53 Rev. 5 control mapping
 
-The specification supports account management, access enforcement, and continuous monitoring controls by making access a computed property that can be regenerated from the authoritative attributes. The table maps the specification and the crosswalk to SP 800-53 Rev. 5 controls. Control identifiers and titles are checked against Release 5.2.0 of the catalog, issued August 27, 2025.[^aA-sp80053][^aA-oscal-catalog] The mapping itself is the program's: it shows where identity evidence supports a control, not a claim that any configuration satisfies a control by itself. The agency's authorizing official and assessors decide that.
+The specification supports account management, access enforcement, and continuous monitoring controls by making access a computed property that can be regenerated from the authoritative attributes. The table maps the specification and the crosswalk to SP 800-53 Rev. 5 controls.[^aA-fedramp-entra] Control identifiers and titles are checked against Release 5.2.0 of the catalog, issued August 27, 2025.[^aA-sp80053][^aA-oscal-catalog] The mapping itself is the program's: it shows where identity evidence supports a control, not a claim that any configuration satisfies a control by itself. The agency's authorizing official and assessors decide that.
 
 | Control | Title | What the identity work contributes |
 |---|---|---|
@@ -234,7 +234,7 @@ The specification supports account management, access enforcement, and continuou
 | IA-2 | Identification and Authentication (Organizational Users) | Cloud authentication to Entra ID for all workforce users |
 | IA-2(1) | Multi-factor Authentication to Privileged Accounts | Phishing-resistant methods required for privileged roles |
 | IA-2(2) | Multi-factor Authentication to Non-privileged Accounts | Phishing-resistant or alternative MFA for all users |
-| IA-2(8) | Access to Accounts — Replay Resistant | Certificate-based authentication and FIDO2 credentials |
+| IA-2(8) | Access to Accounts — Replay Resistant | Certificate-based authentication and FIDO2 credentials[^aA-aal2] |
 | IA-2(12) | Acceptance of PIV Credentials | Entra certificate-based authentication with PIV/CAC |
 | IA-3 | Device Identification and Authentication | Managed-device and token-protection requirements |
 | IA-5 | Authenticator Management | Authentication methods policy; legacy methods retired |
@@ -269,3 +269,6 @@ The specification supports account management, access enforcement, and continuou
 [^aA-sync-scheduler]: Microsoft Learn, "Microsoft Entra Connect Sync: Scheduler," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-feature-scheduler> (accessed Oct 20, 2026).
 [^aA-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; Release 5.2.0, August 27, 2025), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
 [^aA-oscal-catalog]: National Institute of Standards and Technology, *NIST SP 800-53 Rev. 5 catalog* (OSCAL JSON, Release 5.2.0), usnistgov/oscal-content, <https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Oct 20, 2026).
+[^aA-m2209-ems]: Microsoft Learn, "Memo 22-09 enterprise-wide identity management system" (consolidating agency identity platforms into an enterprise-wide identity system), <https://learn.microsoft.com/entra/standards/memo-22-09-enterprise-wide-identity-management-system> (accessed Nov 9, 2026).
+[^aA-fedramp-entra]: Microsoft's own Entra ID configuration guidance for the same control families, written for the FedRAMP High baseline: Microsoft Learn, "Configure identity access controls to meet FedRAMP High Impact level" (AC-2, AC-6), <https://learn.microsoft.com/entra/standards/fedramp-access-controls> (accessed Nov 9, 2026); Microsoft Learn, "Configure identification and authentication controls to meet FedRAMP High Impact level with Microsoft Entra ID" (IA-2 and enhancements, IA-3, IA-5, IA-8), <https://learn.microsoft.com/entra/standards/fedramp-identification-and-authentication-controls> (accessed Nov 9, 2026); Microsoft Learn, "Configure additional controls to meet FedRAMP High Impact level" (AU-2, AU-6, SI-4), <https://learn.microsoft.com/entra/standards/fedramp-other-controls> (accessed Nov 9, 2026). The program's mapping is its own and is not taken from these pages.
+[^aA-aal2]: Microsoft Learn, "NIST authenticator assurance level 2 with Microsoft Entra ID," sections "Permitted AAL2 authenticator types" (multi-factor certificates and FIDO2 security keys, phishing resistant) and "Replay resistance" (methods use nonce or challenges), <https://learn.microsoft.com/entra/standards/nist-authenticator-assurance-level-2> (accessed Nov 9, 2026).

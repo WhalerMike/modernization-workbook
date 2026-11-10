@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The eleven types of object that depend on Active Directory, and why most of them fail without an error when AD goes away. The eight adapter interfaces the Federal Modernization Program uses to move those services off AD, ranked by risk, with what Microsoft's products do and don't replace. The six-phase adapter model, how adapters register, how a migration is validated before AD is decommissioned, and the inventory categories that feed the whole effort.
+The eleven types of object that depend on Active Directory, and why most of them fail without an error when AD goes away. The eight adapter interfaces the Federal Modernization Program uses to move those services off AD, ranked by risk, with what Microsoft's products do and don't replace. The six-phase adapter model, how adapters register, how a migration is validated before AD is decommissioned, how domain controllers are removed and their metadata cleaned up, and the inventory categories that feed the whole effort.
 :::
 
 When an organization plans its move from Active Directory to Microsoft Entra ID, it plans for users and groups. It rarely plans for everything else AD was holding together. For twenty years AD was the implicit governance model for name resolution, certificates, network access, application sign-in, time, and file paths. None of those services were designed as "AD projects"; they simply assumed a domain controller would always be there.
@@ -288,6 +288,37 @@ Migration targets:
 
 Drive mappings delivered by Group Policy move with the device management adapter.
 
+### Dynamic Access Control on file servers: inventory it
+
+Dynamic Access Control (DAC) is a file-server authorization model that runs on Active Directory, so it belongs in this adapter's discovery even though few forests use it. With DAC, a file server grants access by expressions over *claims*, user and device attributes read from AD, and *resource properties*, classifications stamped on files. Central access rules hold the expressions, central access policies group the rules, and Group Policy publishes the policies to file servers, where they apply alongside, not instead of, the share and NTFS permissions. Device claims and compound identity depend on Kerberos armoring, turned on for the domain controllers by the policy setting "KDC support for claims, compound authentication and Kerberos armoring." Claims can also cross a forest trust, filtered or transformed by claim transformation policies.[^c04-dac-overview][^c04-kdc-csp]
+
+Why it matters here: every one of those pieces stops working when the domain does. A file server that enforces a central access policy reads claims from a domain controller's Kerberos ticket; there is no Entra ID equivalent of a central access policy on a Windows file server, and Learn doesn't name a replacement. The file's protection has to be rebuilt elsewhere before the share moves or the domain retires.
+
+**What to find.** Run these read-only queries with the ActiveDirectory module. Empty results mean DAC isn't in use and this item closes.[^c04-dac-cmdlets]
+
+```powershell
+# Read-only: Dynamic Access Control objects in the forest
+Import-Module ActiveDirectory
+Get-ADCentralAccessPolicy -Filter * | Select-Object Name, Members
+Get-ADCentralAccessRule -Filter * | Select-Object Name, ResourceCondition
+Get-ADClaimType -Filter * | Select-Object Name, SourceAttribute, Enabled
+Get-ADResourceProperty -Filter * | Select-Object Name, Enabled
+Get-ADClaimTransformPolicy -Filter * | Select-Object Name, Rule
+```
+
+```powershell
+# Read-only, illustrative: list GPOs whose report mentions the KDC claims setting or a central access policy
+Import-Module GroupPolicy
+Get-GPO -All | ForEach-Object {
+  $xml = Get-GPOReport -Guid $_.Id -ReportType Xml
+  if ($xml -match 'Kerberos armoring|CentralAccessPolic') { $_.DisplayName }
+}
+```
+
+For each central access policy, record the file servers and shares it's published to, the claims and resource properties its rules read, and the data owner. A share that DAC protects is a data-protection decision, not a file move.
+
+**Where the replacement lives.** Learn doesn't describe a direct successor to DAC, so the program treats it as a redesign, owned with the data owner: the classification moves to Microsoft Purview sensitivity labels, which the Purview information protection scanner can discover and apply on SMB file shares on a schedule, and which Microsoft lists as available in GCC, GCC High and DoD;[^c04-purview-scanner][^c04-purview-gov] the access decision moves to the target's own model, which for Azure Files is Azure RBAC at the share and Windows ACLs on directories and files, with Entra Kerberos as one of the identity sources;[^c04-azfiles-overview] and attribute-driven access to the content moves to Entra ID groups built from the same attributes ([Chapter 09](09-building-the-entra-target.md#converting-static-groups-to-dynamic-groups)). Azure Files' Entra Kerberos support for hybrid identities is available in Azure US Government; for cloud-only identities it's in preview and not supported there.[^c04-azfiles-kerb] [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md) owns the data-protection side of that redesign.
+
 ### Kerberos for whatever remains
 
 Every adapter above shrinks the set of resources that still need an AD Kerberos ticket, but rarely to zero during the transition. Microsoft Entra Kerberos bridges the gap for Entra-joined and hybrid-joined Windows devices: Entra ID issues a cloud ticket-granting ticket for cloud resources such as Azure Files and a partial ticket that an on-premises domain controller exchanges for a full one. The on-premises half requires users synchronized from AD.[^c04-entra-kerberos] It's a bridge for the transition, not a target state.
@@ -337,7 +368,56 @@ After all adapters have moved, the program's validation checklist (DM_090) is th
 | Sync engine | All six retirement criteria true |
 | Devices | Every end-user device on Intune and every server under Azure Arc; no GPO setting left without a decision |
 | Time | Every device and server has an explicit, policy-set time source |
-| File services | No domain-based namespace path in use |
+| File services | No domain-based namespace path in use; no central access policy published to a file server that stays |
+
+### Removing domain controllers
+
+Domain controllers leave one at a time, long before the last one goes: sites close, the count shrinks with the user population, and 2016-era servers leave under the program's baseline (Windows Server 2019 minimum; 2016 gone by January 12, 2027) *(program assumption)*. Every removal is a planned demotion with a cleanup check, not a server shut down and forgotten. A domain controller that disappears without demotion leaves its metadata behind, and other domain controllers keep trying to replicate with it.
+
+Before each demotion, move any operations master roles the server holds to a domain controller that stays, and confirm replication is healthy:[^c04-fsmo-move]
+
+```powershell
+# Read-only: which roles does the leaving DC hold, and is replication healthy?
+netdom query fsmo
+repadmin /replsummary
+# Transfer the roles it holds to a DC that stays (list only the roles it holds)
+$target = Get-ADDomainController -Identity "<staying DC FQDN>"
+Move-ADDirectoryServerOperationMasterRole -Identity $target -OperationMasterRole PDCEmulator,RIDMaster,InfrastructureMaster
+```
+
+Then demote it. `Test-ADDSDomainControllerUninstallation` runs the prerequisite checks; `Uninstall-ADDSDomainController` demotes; after the restart, remove the role binaries. The last domain controller in a domain takes `-LastDomainControllerInDomain -RemoveApplicationPartitions` and Enterprise Admin rights.[^c04-demote]
+
+```powershell
+# On the DC being removed, as a Domain Admin
+Test-ADDSDomainControllerUninstallation
+Uninstall-ADDSDomainController
+# After the restart
+Uninstall-WindowsFeature AD-Domain-Services -IncludeManagementTools
+```
+
+If a domain controller can't be demoted (it's dead, or can't reach any other domain controller), it's removed by force, and metadata cleanup is then required, immediately; any changes it hadn't replicated are lost.[^c04-demote][^c04-metadata-cleanup] Delete its computer object from the Domain Controllers OU in Active Directory Users and Computers and confirm that it's permanently offline, which runs the cleanup; or run `ntdsutil` against one of its replication partners:[^c04-metadata-cleanup]
+
+```text
+ntdsutil
+metadata cleanup
+connections
+connect to server <replication partner of the removed DC>
+quit
+remove selected server <removed DC>
+quit
+quit
+```
+
+Seize any roles the dead server held (`Move-ADDirectoryServerOperationMasterRole ... -Force`).[^c04-fsmo-move] Cleanup doesn't remove everything: delete the server object in Active Directory Sites and Services if it has no child objects left, and remove the server's A, CNAME and SRV records from DNS.[^c04-metadata-cleanup][^c04-forced-demotion] Then confirm the forest no longer knows the server:[^c04-recovery-checks]
+
+```powershell
+repadmin /viewlist *
+nltest /DCList:<domain>
+repadmin /replsummary
+dcdiag /v
+```
+
+Record each removal (the server, the date, the roles moved, and the output of these checks) in the baseline repository with the rest of the adapter evidence.
 
 ## The transformation inventory
 
@@ -353,6 +433,7 @@ The adapters need data, and that data comes from the identity and directory tran
 | Applications | Apps that require AD, LDAP, or Kerberos |
 | Group Policy | Count, high-risk settings, link structure |
 | DNS and PKI | Zones, CAs, templates, issued certificates |
+| File authorization | Dynamic Access Control: central access policies and rules, claim types, resource properties, and the file servers they're published to ([DFS and file services](#dynamic-access-control-on-file-servers-inventory-it)) |
 | Dependencies | Systems that break if a domain controller, GPO, or trust is removed |
 
 The output is a decision-ready inventory that feeds identity transformation sequencing, GPO sunset planning, application remediation, and residual-risk acceptance. [Chapter 07](07-read-only-discovery.md) explains how to collect it without changing the forest, and [Chapter 08](08-assessing-the-forest.md) turns it into an assessment.
@@ -411,3 +492,14 @@ There is no single replacement CA. Book 07 keeps AD CS for domain controllers an
 [^c04-azfiles-dfs]: Microsoft Learn, "How to use DFS Namespaces with Azure Files," <https://learn.microsoft.com/azure/storage/files/files-manage-namespaces> (accessed Oct 20, 2026).
 [^c04-entra-kerberos]: Microsoft Learn, "Introduction to Microsoft Entra Kerberos," <https://learn.microsoft.com/entra/identity/authentication/kerberos> (accessed Oct 20, 2026).
 [^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
+[^c04-dac-overview]: Microsoft Learn, "Dynamic Access Control Overview" (claims, central access rules and policies, Kerberos armoring and compound authentication, claims across forest trusts), <https://learn.microsoft.com/windows-server/identity/solution-guides/dynamic-access-control-overview> (accessed Nov 9, 2026).
+[^c04-kdc-csp]: Microsoft Learn, "Policy CSP - ADMX_kdc," `CbacAndArmor` ("KDC support for claims, compound authentication and Kerberos armoring"), <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-admx-kdc> (accessed Nov 9, 2026).
+[^c04-dac-cmdlets]: Microsoft Learn, ActiveDirectory module reference: "Get-ADCentralAccessPolicy," <https://learn.microsoft.com/powershell/module/activedirectory/get-adcentralaccesspolicy>; "Get-ADClaimType," <https://learn.microsoft.com/powershell/module/activedirectory/get-adclaimtype>; "Get-ADResourceProperty," <https://learn.microsoft.com/powershell/module/activedirectory/get-adresourceproperty>; and "Deploy Claims Across Forests (Demonstration Steps)" (claim transformation policies), <https://learn.microsoft.com/windows-server/identity/solution-guides/deploy-claims-across-forests--demonstration-steps-> (accessed Nov 9, 2026).
+[^c04-purview-scanner]: Microsoft Learn, "Learn about the information protection scanner," <https://learn.microsoft.com/purview/deploy-scanner> (accessed Nov 9, 2026).
+[^c04-purview-gov]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions" for GCC, GCC High and DoD deployments ("Unified labeling client and scanner: Available" in each), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments>, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> and <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 9, 2026).
+[^c04-azfiles-overview]: Microsoft Learn, "Overview of Azure Files identity-based authentication for SMB access," <https://learn.microsoft.com/azure/storage/files/storage-files-active-directory-overview> (accessed Nov 9, 2026).
+[^c04-fsmo-move]: Microsoft Learn, "Move-ADDirectoryServerOperationMasterRole" (transfer, or seize with `-Force`), <https://learn.microsoft.com/powershell/module/activedirectory/move-addirectoryserveroperationmasterrole> (accessed Nov 9, 2026).
+[^c04-demote]: Microsoft Learn, "Demote domain controllers and domains," <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-> (accessed Nov 9, 2026).
+[^c04-metadata-cleanup]: Microsoft Learn, "Clean up Active Directory Domain Controller server metadata," <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup> (accessed Nov 9, 2026).
+[^c04-forced-demotion]: Microsoft Learn, "Domain controllers don't demote gracefully" (after a forced demotion, remove the DC's A, CNAME and SRV records), <https://learn.microsoft.com/troubleshoot/windows-server/active-directory/domain-controllers-not-demote> (accessed Nov 9, 2026).
+[^c04-recovery-checks]: Microsoft Learn, "AD Forest Recovery - Perform initial recovery" (`repadmin /viewlist *` and `nltest /DCList` to validate metadata cleanup), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-initial-recovery> (accessed Nov 9, 2026).

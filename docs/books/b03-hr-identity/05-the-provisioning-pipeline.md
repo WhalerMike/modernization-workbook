@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The logical architecture and its Microsoft realization: where provisioning sits between the governed identity model and the directories, and why API-driven inbound provisioning is the Microsoft implementation. The Oracle HCM source surfaces. What the middleware must do for every event, including reconciliation. The `bulkUpload` contract and its limits. The two landing zones and what each one does with structure. Native connectors and writeback.
+The logical architecture and its Microsoft realization: where provisioning sits between the governed identity model and the directories, and why API-driven inbound provisioning is the Microsoft implementation. The Oracle HCM source surfaces. What the middleware must do for every event, including reconciliation. The `bulkUpload` contract and its limits. The two landing zones and what each one does with structure. Provisioning to on-premises applications when Microsoft Identity Manager retires. Native connectors and writeback.
 :::
 
 ## Logical architecture and Microsoft realization
@@ -135,6 +135,61 @@ Microsoft's path to the cloud moves users' **object SOA** (Microsoft's *Source o
 
 This is the move CISA's Hybrid Identity Solutions Guidance recommends from the authentication side: shift the primary source of identity from on-premises to cloud identity services, ending in cloud primary authentication with modern, passwordless authenticators such as PIV or FIDO2.[^c05-hisg] The guidance expects agencies to keep onboarding new identities through their existing on-premises services and synchronizing them to the cloud for some time, which is the Active Directory landing zone above. It also names the cost: while the on-premises directory is the source of identity, under federation, pass-through authentication or password synchronization, a compromise there can reach the cloud.[^c05-hisg] Landing a population in Entra ID as cloud-only users, with any AD account it still needs provisioned downstream from Entra ID, takes the on-premises directory out of that population's cloud sign-in. [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#choosing-the-sign-in-method) covers the sign-in side.
 
+## Provisioning to on-premises applications: retiring MIM
+
+Some agencies run Microsoft Identity Manager (MIM) to carry the worker record further than Active Directory: into an application's own SQL user table, an LDAP directory that isn't AD, or an application with a web service or a PowerShell-driven account process. MIM 2016's support ends January 9, 2029, the same date as Windows Server 2019,[^c05-mim-support] so those connections need a new engine before then. Entra ID's provisioning service can take them over, with the user lifecycle driven from Entra ID, which is where this chapter's pipeline lands the person.
+
+**How it works.** Three components: the **Microsoft Entra provisioning service** in the cloud (the same engine that drives SaaS provisioning); the **Microsoft Entra provisioning agent** on a Windows server inside the network; and, for an application that doesn't speak SCIM, the **ECMA Connector Host**, a gateway on the same server that turns the service's requests into calls to the application through an ECMA2 connector, the connector type MIM uses. The connections are outbound only: no inbound ports and nothing in a DMZ. An application that already has a SCIM endpoint needs only the agent.[^c05-onprem-arch][^c05-onprem-scim]
+
+**Connectors.** Microsoft's guides cover:[^c05-ecma-sql][^c05-ecma-ldap][^c05-ecma-ps][^c05-ecma-ws]
+
+| Target | Connector | Notes |
+|---|---|---|
+| SQL user table | Generic SQL | SQL Server and Azure SQL, IBM DB2, Oracle, MySQL and PostgreSQL, through the database's ODBC driver |
+| LDAP directory | Generic LDAP | AD LDS, OpenLDAP, Oracle Directory Server and others; **not** Active Directory Domain Services, which HR provisioning and the sync engine own; group membership isn't provisioned |
+| Application with a PowerShell account process | PowerShell | The application's scripts behind an ECMA2 interface; samples from Microsoft |
+| SOAP or REST application | Web services | Templates include Oracle E-Business Suite; SAP ECC uses the same connector but is out of scope for this program |
+| Application with a SCIM endpoint on premises | None (agent only) | The "On-premises SCIM app" gallery application |
+| Any other application with an ECMA2 connector built for MIM | The exported MIM connector | See below |
+
+**Limits that shape the design.** On-premises application provisioning handles users only: groups, reference attributes (so not `manager`) and multivalued attributes aren't supported, and passwords aren't synced, though a one-time initial password is.[^c05-prov-known-issues] An application whose access is group-driven therefore needs its role or group logic re-expressed, usually as an attribute the application reads, or as an app role assignment fed by an access package ([Chapter 10](10-from-attributes-to-access.md)). The provisioning cycle runs every 40 minutes after the initial cycle, and the interval isn't configurable.[^c05-prov-interval][^c05-prov-known-issues] The agent isn't updated automatically for this scenario, so updating it is a scheduled task with an owner, and Microsoft supports the latest version and the one before.[^c05-onprem-arch][^c05-prov-known-issues] **The agent that provisions on-premises applications can't be the same agent that does Cloud Sync or HR-driven provisioning to AD**, so plan separate servers from the provisioning agents in [Landing in Active Directory](#landing-in-active-directory).[^c05-prov-known-issues][^c05-ecma-ldap]
+
+**Servers.** Each ECMA host server needs Windows Server 2016 or later (the program's baseline is 2019 or later *(program assumption)*), at least 3 GB of RAM and .NET Framework 4.7.2, plus the target's client software (the ODBC driver, for SQL).[^c05-ecma-sql] The host listens locally on HTTPS port 8585; its self-signed certificate is for testing only and expires in two years, so use a certificate from the program's CA in production, with a subject that matches the host name ([Book 07](../b07-pki/index.md) issues it).[^c05-onprem-arch] For high availability, Microsoft's pattern is one active and one passive agent per data center, with a manual failover.[^c05-onprem-arch]
+
+**Licensing and roles.** Provisioning to on-premises applications is included in Entra ID P1 and above.[^c05-ecma-sql][^c05-gov-licensing] A Hybrid Identity Administrator installs and registers the agent; an Application Administrator or Cloud Application Administrator configures the application's provisioning.[^c05-ecma-sql]
+
+**Government clouds.** GCC tenants use the commercial service. For Azure Government (GCC High and DoD), Microsoft's feature-availability page lists automated user provisioning to applications and provisioning-agent registration as available, and its known-issues page states that custom applications and the ECMA connector are available for provisioning in the US Government cloud, while not every gallery application is.[^c05-feature-avail][^c05-prov-known-issues] Learn doesn't break this down by GCC High and DoD separately; treat the DoD case as not yet specified and confirm it with Microsoft before planning on it.
+
+### Moving a MIM connector
+
+A connector that runs in MIM Sync today moves without rebuilding it. Export it from MIM, then import it into the ECMA Connector Host:[^c05-mim-export]
+
+1. In the MIM Synchronization Service Manager, open **Management Agents**, select the connector, and choose **Export Management Agent**. Save the XML file.
+2. Copy the XML file, the connector's DLL and any DLLs it depends on to the ECMA host server. After this, MIM Sync isn't needed for this connector.
+3. Signed in as the account the ECMA host runs as, copy the DLLs into the host's connector folder:
+
+```powershell
+# On the ECMA host server, from the folder holding the exported files
+Copy-Item -Path .\*.dll -Destination 'C:\Program Files\Microsoft ECMA2Host\Service\ECMA'
+```
+
+4. Run the configuration wizard, choose a new connector, and point it at the exported XML file:
+
+```powershell
+& 'C:\Program Files\Microsoft ECMA2Host\Wizard\Microsoft.ECMA2Host.ConfigWizard.exe'
+```
+
+5. In the Entra admin center, add the **On-premises ECMA app** gallery application, set provisioning to automatic, assign the agent, and set the tenant URL to `https://localhost:8585/ecma2host_<connector name>/scim` (the name is case-sensitive); then map attributes and assign users.[^c05-ecma-sql]
+6. Test before the first cycle. Both the "Microsoft Entra Connect Provisioning Agent" and "Microsoft ECMA2Host" services must be running, and an agent can take 10 to 20 minutes to be ready after assignment:[^c05-ecma-troubleshoot]
+
+```powershell
+# On the ECMA host server: confirm the services, then test the host's connection to the target
+Get-Service -DisplayName 'Microsoft*Provisioning Agent', 'Microsoft ECMA2Host' | Select-Object DisplayName, Status
+& 'C:\Program Files\Microsoft ECMA2Host\Troubleshooting\TestECMA2HostConnection.ps1'
+```
+
+Microsoft's custom-connector guidance lists what the host doesn't use from a MIM connector: one object type and one partition only, no hierarchies, no full export and no concurrent operations.[^c05-ecma-custom] Check each exported connector against that list before retiring its MIM management agent, and run MIM and the host in parallel against a test copy of the target until the exports match.
+
 ## Native connectors
 
 Where an HR source has a native connector (Workday, SAP SuccessFactors), it's an acceptable accelerator. The API-driven pattern stays the reference implementation because it works for any source and because its middleware is where validation, provenance and reconciliation happen before the identity platform sees the record. A native connector bypasses that middleware, so those duties have to be supplied another way.
@@ -180,3 +235,17 @@ Once inbound provisioning is proven, an optional outbound job can write identity
 [^c05-lcw-exec]: Microsoft Learn, "Lifecycle workflow execution conditions and scheduling" (three-day catch-up window for time-based triggers), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-execution-conditions> (accessed Oct 25, 2026).
 [^c05-pws-appb]: Office of Personnel Management, Solicitation 24322626R0007, *Federal HRIT Modernization*, Amendment 4 (December 11, 2025), Performance Work Statement Appendix B, *Required Data Migration and System Integrations* (pp. 82–83: persistent system connections integrated with the OPM-hosted API Management solution, enforcing OAuth 2.0, rate limiting and IP filtering; exceptions approved in writing by the CO and COR), SAM.gov, <https://sam.gov/workspace/contract/opp/8cfe1844758c4fb2b10f5ef192b62f89/view> (accessed Oct 25, 2026).
 [^c05-provlist]: Microsoft Learn, "List provisioningObjectSummary," Microsoft Graph v1.0 (`GET /auditLogs/provisioning`; least-privileged application permissions `AuditLog.Read.All` and `Directory.Read.All`), <https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0> (accessed Oct 25, 2026).
+[^c05-mim-support]: Microsoft Learn, "Microsoft Identity Manager 2016 news and updates" (end of support moved from January 13, 2026 to January 9, 2029), <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016> (accessed Nov 9, 2026).
+[^c05-onprem-arch]: Microsoft Learn, "Microsoft Entra on-premises application identity provisioning architecture" (components, outbound-only connections, the host's HTTPS endpoint and certificate, high availability, agent updates), <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-application-provisioning-architecture> (accessed Nov 9, 2026).
+[^c05-onprem-scim]: Microsoft Learn, "Microsoft Entra on-premises application provisioning to SCIM-enabled apps," <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-scim-provisioning> (accessed Nov 9, 2026).
+[^c05-ecma-sql]: Microsoft Learn, "Provisioning users into SQL based applications" (prerequisites, supported databases, licensing, roles, gallery application and tenant URL), <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-sql-connector-configure> (accessed Nov 9, 2026).
+[^c05-ecma-ldap]: Microsoft Learn, "Configuring Microsoft Entra ID to provision users into LDAP directories" (supported directories; AD DS not supported; groups not provisioned; separate agents for cloud sync), <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ldap-connector-configure> (accessed Nov 9, 2026).
+[^c05-ecma-ps]: Microsoft Learn, "Provisioning users into applications using PowerShell," <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-powershell-connector> (accessed Nov 9, 2026).
+[^c05-ecma-ws]: Microsoft Learn, "Provisioning with the web services connector," <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-web-services-connector> (accessed Nov 9, 2026).
+[^c05-prov-known-issues]: Microsoft Learn, "Known issues for provisioning in Microsoft Entra ID" (on-premises application provisioning: unsupported attributes and objects, fixed interval, agent updates, agent sharing; US Government availability of custom applications and the ECMA connector), <https://learn.microsoft.com/entra/identity/app-provisioning/known-issues> (accessed Nov 9, 2026).
+[^c05-prov-interval]: Microsoft Learn, "Configure automatic user provisioning to an application" (later cycles every 40 minutes), <https://learn.microsoft.com/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal> (accessed Nov 9, 2026).
+[^c05-gov-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals" ("Automated provisioning to on-prem apps" included from P1), <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Nov 9, 2026).
+[^c05-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure Government: automated user provisioning to apps; provisioning agent configuration and registration), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
+[^c05-mim-export]: Microsoft Learn, "Export a Microsoft Identity Manager connector for use with the Microsoft Entra ECMA Connector Host," <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-migrate-microsoft-identity-manager> (accessed Nov 9, 2026).
+[^c05-ecma-troubleshoot]: Microsoft Learn, "Troubleshoot on-premises application provisioning," <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ecma-troubleshoot> (accessed Nov 9, 2026).
+[^c05-ecma-custom]: Microsoft Learn, "Provisioning with the custom connectors" (capabilities that differ between MIM and the provisioning agent), <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-custom-connector> (accessed Nov 9, 2026).

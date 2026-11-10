@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 1
-review-status: pending
+review-status: approved
+reviewed-sha256: f96afccbef01b13c713503378840244b0c1294dc3bafb801d33a119e176d7e97
+last-reviewed: 2026-11-09
 ---
 # Module 1: Why provider notices go unread {.unnumbered}
 

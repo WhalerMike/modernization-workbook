@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 21cf6a32ce6056a9b236166c94afe899cddc0c6df9c0da848300bb9ae0298a21
+last-reviewed: 2026-11-09
 ---
 # Chapter 07 — The Weekly Digest and Evidence
 
