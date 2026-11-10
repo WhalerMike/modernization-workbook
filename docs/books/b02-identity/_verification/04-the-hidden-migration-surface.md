@@ -118,3 +118,24 @@ Checked October 27, 2026; no personal data sent to any site.
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | K1 | DM_030 step 1 points at the Start Kit's `Invoke-FMPNpsInventory`: NPS servers from each domain's RAS and IAS Servers group (RID 553), clients, network and connection request policies, the policy-to-AD-group map (`PolicyGroups.csv`) for step 2, certificates and EAP methods; secrets never written | RADIUS and Network Policy Server (DM_030) | added | examples/start-kit (PR in this change); tests/powershell, 152 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026; `NpsInventory.Tests.ps1` checks no fixture secret reaches any output file |
+
+## Revision 2026-11-09 — Learn gap additions (Dynamic Access Control; removing domain controllers)
+
+New subsections "Dynamic Access Control on file servers: inventory it" (ws gap 5, inventory only) and "Removing domain controllers" (ws gap 13); a transformation-inventory row and a validation-gate clause. Learn pages read Nov 9, 2026.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| G1 | DAC: claims, resource properties, central access rules and policies published by GPO; apply alongside share and NTFS permissions; Kerberos armoring and compound identity; claims across forest trusts | §DAC | verified | <https://learn.microsoft.com/windows-server/identity/solution-guides/dynamic-access-control-overview> |
+| G2 | KDC setting name "KDC support for claims, compound authentication and Kerberos armoring" | §DAC | verified (the overview page uses an older label) | <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-admx-kdc> |
+| G3 | Inventory cmdlets exist (Get-ADCentralAccessPolicy, Get-ADCentralAccessRule, Get-ADClaimType, Get-ADResourceProperty, Get-ADClaimTransformPolicy) | §DAC | verified (ActiveDirectory module reference) | Learn PowerShell reference |
+| G4 | GPO search by report text | §DAC | restated-as-design (illustrative heuristic) | — |
+| G5 | No Entra ID equivalent of a central access policy on a file server; Learn names no replacement | §DAC | verified (absence: no Learn page states a replacement or Azure Files DAC support) | dynamic-access-control-overview; storage-files-active-directory-overview |
+| G6 | Purview scanner discovers and labels SMB shares on a schedule; available in GCC, GCC High and DoD | §DAC | verified | <https://learn.microsoft.com/purview/deploy-scanner>; Purview GCC, GCC High and DoD planning pages |
+| G7 | Azure Files: share-level RBAC, file-level Windows ACLs, Entra Kerberos as an identity source; hybrid identities in Azure US Gov, cloud-only preview not supported there | §DAC | verified | <https://learn.microsoft.com/azure/storage/files/storage-files-active-directory-overview>; storage-files-identity-auth-hybrid-identities-enable |
+| G8 | Redesign owned with the data owner; Book 12 Chapter 09 owns data protection | §DAC | restated-as-design | — |
+| G9 | Transfer roles before demotion; seize with -Force | §Removing DCs | verified | <https://learn.microsoft.com/powershell/module/activedirectory/move-addirectoryserveroperationmasterrole> |
+| G10 | Test-ADDSDomainControllerUninstallation, Uninstall-ADDSDomainController, last-DC switches, Enterprise Admin for the last DC; remove binaries after restart | §Removing DCs | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-> |
+| G11 | Forced removal requires immediate metadata cleanup; unreplicated changes lost; ADUC delete or ntdsutil steps | §Removing DCs | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup> |
+| G12 | Delete an empty server object in Sites and Services; remove A, CNAME, SRV records | §Removing DCs | verified | ad-ds-metadata-cleanup; <https://learn.microsoft.com/troubleshoot/windows-server/active-directory/domain-controllers-not-demote> |
+| G13 | `repadmin /viewlist *` and `nltest /DCList` validate metadata cleanup | §Removing DCs | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-initial-recovery> |
+| G14 | Windows Server 2019 minimum; 2016 gone by Jan 12, 2027 | §Removing DCs | restated-as-design (program assumption) | — |

@@ -813,13 +813,15 @@ pages:
   ms_date: '2023-02-23'
   ms_topic: how-to
   description: Learn about governance of external access and assessing collaboration needs, by scenario
-  coverage: covered-uncited
+  coverage: cited
   note: 'Securing external collaboration (B2B posture, groups, Conditional Access); partner identity chapter and partner access profile. Learn pass Nov 9, 2026: B2B posture series belongs with Book 02 Ch10 cross-tenant and B2B collaboration, not Book 04 Ch09.'
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b02-identity/10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/architecture/10-secure-local-guest.md
   url: https://learn.microsoft.com/entra/architecture/10-secure-local-guest
   title: Convert local guest accounts to Microsoft Entra B2B guest accounts
@@ -840,12 +842,14 @@ pages:
   ms_date: '2024-08-25'
   ms_topic: how-to
   description: Learn how to onboard external users to line of business applications using Microsoft Entra B2B
-  coverage: covered-uncited
+  coverage: cited
   note: Guest and external user onboarding; partner identity chapter
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/architecture/2-secure-access-current-state.md
   url: https://learn.microsoft.com/entra/architecture/2-secure-access-current-state
   title: Discover the current state of external collaboration in your organization
@@ -867,13 +871,15 @@ pages:
   ms_date: '2023-02-23'
   ms_topic: how-to
   description: Plan the security for external access to your organization's resources.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Securing external collaboration (B2B posture, groups, Conditional Access); partner identity chapter and partner access profile. Learn pass Nov 9, 2026: B2B posture series belongs with Book 02 Ch10 cross-tenant and B2B collaboration, not Book 04 Ch09.'
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b02-identity/10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/architecture/4-secure-access-groups.md
   url: https://learn.microsoft.com/entra/architecture/4-secure-access-groups
   title: Secure external access with groups in Microsoft Entra ID and Microsoft 365
@@ -1397,12 +1403,14 @@ pages:
   ms_date: '2025-04-17'
   ms_topic: concept-article
   description: Learn how to deploy employee lifecycle automation in Microsoft Entra ID Governance.
-  coverage: covered-uncited
+  coverage: cited
   note: Employee lifecycle governance deployment; joiner/mover/leaver
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/architecture/governance-deployment-guest-access.md
   url: https://learn.microsoft.com/entra/architecture/governance-deployment-guest-access
   title: Microsoft Entra ID Governance deployment guide to govern guest and partner access
@@ -1416,6 +1424,8 @@ pages:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/architecture/governance-deployment-intro.md
@@ -1644,13 +1654,15 @@ pages:
   ms_date: '2026-02-04'
   ms_topic: concept-article
   description: Learn about the common design considerations for user access across Microsoft Entra tenants with guest accounts
-  coverage: covered-uncited
+  coverage: cited
   note: Multitenant user management (cross-tenant sync, B2B); partner access profile and external partner chapter
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/architecture/multi-tenant-common-solutions.md
   url: https://learn.microsoft.com/entra/architecture/multi-tenant-common-solutions
   title: Common solutions for multitenant user management in Microsoft Entra ID
@@ -2225,6 +2237,8 @@ pages:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
 - path: docs/architecture/secure-multiple-tenants.md
@@ -2278,6 +2292,8 @@ pages:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
 - path: docs/architecture/security-copilot-entra-proof-of-concept.md
@@ -2798,6 +2814,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/external-id/api-connectors-overview.md
@@ -2918,6 +2936,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/external-id/b2b-tutorial-require-mfa.md
@@ -4392,13 +4412,15 @@ pages:
   ms_date: '2026-04-24'
   ms_topic: overview
   description: Learn about B2B collaboration for sharing apps with external identities, business partners, and guests, using External ID for authentication and identity access management.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/external-id/whats-new-docs.md
   url: https://learn.microsoft.com/entra/external-id/whats-new-docs
   title: What's new in Microsoft Entra External ID
@@ -4505,12 +4527,16 @@ pages:
   ms_date: '2025-05-30'
   ms_topic: how-to
   description: Learn how to add new custom security attribute definitions or deactivate custom security attribute definitions in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Custom security attributes are used for delegation and the attribute schema.
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
+  - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
+  - docs/books/b03-hr-identity/_verification/06-canonical-attribute-schema.md
 - path: docs/fundamentals/custom-security-attributes-manage.md
   url: https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-manage
   title: Manage access to custom security attributes in Microsoft Entra ID
@@ -4543,12 +4569,14 @@ pages:
   ms_date: '2024-11-27'
   ms_topic: troubleshooting
   description: Learn how to troubleshoot custom security attributes in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Custom security attributes are used for delegation and the attribute schema.
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
+  - docs/books/b03-hr-identity/_verification/06-canonical-attribute-schema.md
 - path: docs/fundamentals/data-operational-considerations.md
   url: https://learn.microsoft.com/entra/fundamentals/data-operational-considerations
   title: Data operational considerations
@@ -7405,13 +7433,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: This article guides a user on checking the status of a Lifecycle workflow
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/check-workflow-execution-scope.md
   url: https://learn.microsoft.com/entra/id-governance/check-workflow-execution-scope
   title: Check execution user scope of a workflow - Microsoft Entra ID
@@ -7419,13 +7449,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: Describes how to check the users who fall into the execution scope of a Lifecycle Workflow.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/complete-access-review.md
   url: https://learn.microsoft.com/entra/id-governance/complete-access-review
   title: Complete an access review of groups & applications
@@ -7817,6 +7849,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   cited_by:
+  - docs/books/b03-hr-identity/10-from-attributes-to-access.md
+  - docs/books/b03-hr-identity/_verification/10-from-attributes-to-access.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/entitlement-management-access-package-settings.md
@@ -8095,12 +8129,14 @@ pages:
   ms_date: '2024-07-15'
   ms_topic: tutorial
   description: Step-by-step tutorial for how to create an access package for external users requiring approvals in entitlement management.
-  coverage: covered-uncited
+  coverage: cited
   note: External user onboarding through access packages; partner identity chapter and partner access profile
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/id-governance/entitlement-management-onboard.md
   url: https://learn.microsoft.com/entra/id-governance/entitlement-management-onboard
   title: Onboard external users with entitlement management
@@ -8151,6 +8187,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   cited_by:
+  - docs/books/b03-hr-identity/10-from-attributes-to-access.md
+  - docs/books/b03-hr-identity/_verification/10-from-attributes-to-access.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/entitlement-management-reports.md
@@ -8231,6 +8269,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   cited_by:
+  - docs/books/b03-hr-identity/10-from-attributes-to-access.md
+  - docs/books/b03-hr-identity/_verification/10-from-attributes-to-access.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/entitlement-management-roles.md
@@ -8424,6 +8464,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/how-to-lifecycle-workflow-update-user-attributes.md
@@ -8433,13 +8475,15 @@ pages:
   ms_date: '2026-05-01'
   ms_topic: how-to
   description: Learn how to update user attributes using the Update user attributes task in Lifecycle Workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/identity-governance-applications-define.md
   url: https://learn.microsoft.com/entra/id-governance/identity-governance-applications-define
   title: Define organizational policies for governing access to applications in your environment
@@ -8547,6 +8591,8 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   cited_by:
+  - docs/books/b03-hr-identity/10-from-attributes-to-access.md
+  - docs/books/b03-hr-identity/_verification/10-from-attributes-to-access.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/identity-governance-overview.md
@@ -8589,10 +8635,12 @@ pages:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   - docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md
   - docs/books/b03-hr-identity/12-execution-plan.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
@@ -8621,13 +8669,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: concept-article
   description: Information about audit logs with Lifecycle Workflows
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/lifecycle-workflow-execution-conditions.md
   url: https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions
   title: Lifecycle workflow execution conditions and scheduling
@@ -8926,13 +8976,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: A how to article on how to edit a user account related task to run for users synchronized from Active Directory Domain Services (AD DS) with Lifecycle workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/manage-workflow-properties.md
   url: https://learn.microsoft.com/entra/id-governance/manage-workflow-properties
   title: Manage workflow properties
@@ -8940,13 +8992,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: This article guides a user to editing a workflow's properties using Lifecycle Workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/manage-workflow-tasks.md
   url: https://learn.microsoft.com/entra/id-governance/manage-workflow-tasks
   title: Manage workflow versions
@@ -9669,6 +9723,8 @@ pages:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/scenarios/govern-the-employee-lifecycle.md
@@ -9678,12 +9734,14 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: overview
   description: Describes overview of identity lifecycle management and what is meant by governing the employee lifecycle.
-  coverage: covered-uncited
+  coverage: cited
   note: Employee lifecycle governance; joiner/mover/leaver chapter
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/scenarios/identity-governance-use-cases.md
   url: https://learn.microsoft.com/entra/id-governance/scenarios/identity-governance-use-cases
   title: Microsoft Entra ID Governance use cases
@@ -10202,13 +10260,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: tutorial
   description: Tutorial for moving users that change jobs using Lifecycle workflows with the Microsoft Entra admin center.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/tutorial-offboard-custom-workflow-portal.md
   url: https://learn.microsoft.com/entra/id-governance/tutorial-offboard-custom-workflow-portal
   title: Execute employee termination tasks by using lifecycle workflows
@@ -10228,13 +10288,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: tutorial
   description: Tutorial for onboarding users to an organization using Lifecycle workflows with the Microsoft Entra admin center.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/tutorial-prepare-user-accounts.md
   url: https://learn.microsoft.com/entra/id-governance/tutorial-prepare-user-accounts
   title: 'Tutorial: Preparing user accounts for Lifecycle workflows'
@@ -10256,13 +10318,15 @@ pages:
   ms_date: '2024-11-25'
   ms_topic: tutorial
   description: Tutorial for post off-boarding users from an organization using Lifecycle workflows with the Microsoft Entra admin center.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/understanding-lifecycle-workflows.md
   url: https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows
   title: Understanding lifecycle workflows
@@ -10333,13 +10397,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: This article discusses how to use Custom Attribute Triggers as an attribute change trigger within a workflow in Lifecycle Workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-governance/workflow-sensitivity-labels.md
   url: https://learn.microsoft.com/entra/id-governance/workflow-sensitivity-labels
   title: Sensitivity Labels in Lifecycle Workflows
@@ -10357,13 +10423,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: faq
   description: Frequently asked questions about Lifecycle workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+  - docs/books/b03-hr-identity/_verification/08-joiner-mover-leaver.md
 - path: docs/id-protection/concept-identity-protection-b2b.md
   url: https://learn.microsoft.com/entra/id-protection/concept-identity-protection-b2b
   title: Microsoft Entra ID Protection for B2B Users
@@ -11027,6 +11095,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b12-security-operations/11-detection-engineering-and-response.md
 - path: docs/identity-platform/configure-app-multi-instancing.md
   url: https://learn.microsoft.com/entra/identity-platform/configure-app-multi-instancing
@@ -11339,9 +11409,11 @@ pages:
   ms_date: '2024-10-01'
   ms_topic: concept-article
   description: This article describes the federation metadata document that Microsoft Entra ID publishes for services that accept Microsoft Entra tokens.
-  coverage: not-covered
+  coverage: cited
   note: App-side migration and claims/SAML detail needed when moving AD FS and legacy apps (ADAL, AAD Graph, claims rules, token lifetimes); not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity-platform/how-applications-are-added.md
   url: https://learn.microsoft.com/entra/identity-platform/how-applications-are-added
   title: How and why apps are added to Microsoft Entra ID
@@ -12786,9 +12858,11 @@ pages:
   ms_date: '2023-01-19'
   ms_topic: reference
   description: Claims reference with details on the claims included in SAML 2.0 tokens issued by the Microsoft identity platform, including their JWT equivalents.
-  coverage: not-covered
+  coverage: cited
   note: App-side migration and claims/SAML detail needed when moving AD FS and legacy apps (ADAL, AAD Graph, claims rules, token lifetimes); not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity-platform/reference-third-party-cookies-spas.md
   url: https://learn.microsoft.com/entra/identity-platform/reference-third-party-cookies-spas
   title: How to handle third-party cookie blocking in browsers
@@ -12846,9 +12920,11 @@ pages:
   ms_date: '2025-05-14'
   ms_topic: how-to
   description: Learn how to customize the claims issued by Microsoft identity platform in the SAML token for enterprise applications.
-  coverage: not-covered
+  coverage: cited
   note: App-side migration and claims/SAML detail needed when moving AD FS and legacy apps (ADAL, AAD Graph, claims rules, token lifetimes); not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity-platform/saml-protocol-reference.md
   url: https://learn.microsoft.com/entra/identity-platform/saml-protocol-reference
   title: How the Microsoft identity platform uses the SAML protocol
@@ -13250,9 +13326,11 @@ pages:
   ms_date: '2024-10-28'
   ms_topic: concept-article
   description: This article discusses the best practices for signing key rollover in Microsoft Entra ID.
-  coverage: not-covered
+  coverage: cited
   note: App-side migration and claims/SAML detail needed when moving AD FS and legacy apps (ADAL, AAD Graph, claims rules, token lifetimes); not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity-platform/single-and-multi-tenant-apps.md
   url: https://learn.microsoft.com/entra/identity-platform/single-and-multi-tenant-apps
   title: Single and multitenant apps in Microsoft Entra ID
@@ -14665,6 +14743,7 @@ pages:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
   cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
   - docs/books/b15-day2-operations/_verification/06-saas-integration-governance.md
 - path: docs/identity/app-provisioning/configure-successfactors-api-user.md
@@ -15135,13 +15214,15 @@ pages:
   ms_date: '2026-03-31'
   ms_topic: troubleshooting
   description: Learn about known issues when you work with automated application provisioning or cross-tenant synchronization in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Provisioning scoping, mappings, expressions, logs and troubleshooting: Book 03 Ch05, HCM guide, Book 15 Ch06'
   workbook:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/manage-object-connections.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/manage-object-connections
   title: Manage Object Connections - Microsoft Graph
@@ -15178,6 +15259,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
 - path: docs/identity/app-provisioning/on-premises-custom-connector.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-custom-connector
@@ -15186,9 +15269,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This document describes how to configure Microsoft Entra ID to provision users with external systems that offer REST and SOAP APIs.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-ecma-troubleshoot.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ecma-troubleshoot
   title: Troubleshooting issues with provisioning to on-premises applications
@@ -15196,9 +15281,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: troubleshooting
   description: Describes how to troubleshoot various issues you might encounter when you install and use the ECMA Connector Host.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-ldap-connector-configure.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ldap-connector-configure
   title: Microsoft Entra provisioning to LDAP directories
@@ -15206,9 +15293,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This document describes how to configure Microsoft Entra ID to provision users into an LDAP directory.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-ldap-connector-linux.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ldap-connector-linux
   title: Microsoft Entra provisioning to LDAP directories for Linux authentication
@@ -15236,9 +15324,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Describes how to create and export a connector from MIM Sync to be used with the Microsoft Entra ECMA Connector Host.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-powershell-connector.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-powershell-connector
   title: Microsoft Entra provisioning to applications via PowerShell
@@ -15246,9 +15336,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This document describes how to configure Microsoft Entra ID to provision users with external systems that offer Windows PowerShell based APIs.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-sap-connector-configure.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-sap-connector-configure
   title: Microsoft Entra provisioning into SAP ERP Central Component (SAP ECC, formerly SAP R/3) with NetWeaver AS ABAP 7.0 or later.
@@ -15266,9 +15357,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how to use the Microsoft Entra provisioning service to provision users into an on-premises app that's SCIM enabled.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-sql-connector-configure.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-sql-connector-configure
   title: Provisioning users into SQL based applications using the ECMA Connector host
@@ -15276,9 +15368,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Provisioning users into SQL based applications using the ECMA Connector host
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/on-premises-web-services-connector.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-web-services-connector
   title: Microsoft Entra provisioning to applications via web services connector
@@ -15286,9 +15379,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This document describes how to configure Microsoft Entra ID to provision users with external systems that offer web services based APIs.
-  coverage: not-covered
+  coverage: cited
   note: On-premises provisioning (ECMA host, SQL, LDAP, SCIM, web services, PowerShell connectors) for legacy apps; not in the workbook
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/partner-driven-integrations.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/partner-driven-integrations
   title: Use partner driven integrations to provision accounts into all your applications
@@ -16814,6 +16908,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
 - path: docs/identity/authentication/concept-mfa-authprovider.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-mfa-authprovider
@@ -16908,9 +17004,10 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Ban weak passwords in on-premises Active Directory Domain Services environments by using Microsoft Entra Password Protection
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
 - path: docs/identity/authentication/concept-password-ban-bad.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-password-ban-bad
   title: Password protection in Microsoft Entra ID
@@ -16918,9 +17015,11 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn how to dynamically ban weak passwords from your environment with Microsoft Entra Password Protection
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/concept-phone-providers.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-phone-providers
   title: Choose your own telephony provider for SMS and voice authentication
@@ -17106,7 +17205,12 @@ pages:
   - data/source-register.json
   - docs/books/b01-transformation-arc/appendix-b-applicability.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/12-execution-plan.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
@@ -17364,9 +17468,11 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: Verify that your users meet mandatory MFA requirements for Azure and admin portals. Check and enable MFA for Microsoft Entra ID P1, P2, and Free licenses.
-  coverage: not-covered
+  coverage: cited
   note: Mandatory MFA enforcement for Azure and admin portals not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-mfa-additional-context.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-additional-context
   title: Use additional context in Authenticator notifications
@@ -17475,9 +17581,11 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Step-by-step guidance to migrate from MFA Server on-premises to Microsoft Entra multifactor authentication
-  coverage: not-covered
+  coverage: cited
   note: MFA Server to Entra MFA migration not covered (product retired 2024).
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-c-identity-assessment-module.md
+  - docs/books/b02-identity/appendix-c-identity-assessment-module.md
 - path: docs/identity/authentication/how-to-migrate-mfa-server-to-mfa-user-authentication.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-migrate-mfa-server-to-mfa-user-authentication
   title: Migrate to Microsoft Entra multifactor authentication and Microsoft Entra user authentication
@@ -17485,9 +17593,10 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Guidance to move from MFA Server on-premises to Microsoft Entra multifactor authentication and Microsoft Entra user authentication
-  coverage: not-covered
+  coverage: cited
   note: MFA Server to Entra MFA migration not covered (product retired 2024).
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/appendix-c-identity-assessment-module.md
 - path: docs/identity/authentication/how-to-migrate-mfa-server-to-mfa-with-federation.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-migrate-mfa-server-to-mfa-with-federation
   title: Migrate to Microsoft Entra multifactor authentication with federations
@@ -17971,9 +18080,10 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn how to plan and deploy Microsoft Entra Password Protection in an on-premises Active Directory Domain Services environment
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
 - path: docs/identity/authentication/howto-password-ban-bad-on-premises-faq.yml
   url: https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-faq
   title: Microsoft Entra Password Protection on-premises frequently asked questions
@@ -17981,9 +18091,11 @@ pages:
   ms_date: '2025-01-14'
   ms_topic: how-to
   description: Review frequently asked questions for Microsoft Entra Password Protection in an on-premises Active Directory Domain Services environment
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/howto-password-ban-bad-on-premises-monitor.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-monitor
   title: Monitor on-premises Microsoft Entra Password Protection
@@ -17991,9 +18103,11 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn how to monitor and review logs for Microsoft Entra Password Protection for an on-premises Active Directory Domain Services environment
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/howto-password-ban-bad-on-premises-operations.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-operations
   title: Enable on-premises Microsoft Entra Password Protection
@@ -18001,9 +18115,11 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn how to enable Microsoft Entra Password Protection for an on-premises Active Directory Domain Services environment
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/howto-password-ban-bad-on-premises-troubleshoot.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-troubleshoot
   title: Troubleshoot on-premises Microsoft Entra Password Protection
@@ -18288,9 +18404,11 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: tutorial
   description: In this tutorial, you learn how to configure custom banned password protection lists for Microsoft Entra ID to restrict common words in your environment.
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/tutorial-enable-azure-mfa.md
   url: https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-azure-mfa
   title: Enable Microsoft Entra multifactor authentication
@@ -19459,12 +19577,14 @@ pages:
   ms_date: '2026-06-17'
   ms_topic: how-to
   description: Learn how to assign Azure roles to the local administrators group of a Windows device.
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid join, device registration and troubleshooting.
   workbook:
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: docs/identity/devices/browser-access-guidance-third-party-devices.md
   url: https://learn.microsoft.com/entra/identity/devices/browser-access-guidance-third-party-devices
   title: Browser access guidance for third party mobile device management providers
@@ -21786,9 +21906,10 @@ pages:
   ms_date: '2025-06-20'
   ms_topic: concept-article
   description: Learn how to use the AD FS application migration to migrate AD FS relying party applications from ADFS to Microsoft Entra ID. This guided experience provides one-click configuration for basic SAML URLs, claims mapping, and user assignments to integrate the application with Microsoft Entra ID.
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-ad-fs-application-overview.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-ad-fs-application-overview
   title: Overview of AD FS application migration
@@ -21796,9 +21917,11 @@ pages:
   ms_date: '2024-06-10'
   ms_topic: concept-article
   description: Learn about the capabilities of the AD FS application migration wizard and the migration status available on its dashboard. Learn the various validation tests that the application migration generates and how to resolve the validation issues.
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-apps-phases-overview.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-apps-phases-overview
   title: Plan application migration to Microsoft Entra ID
@@ -21806,9 +21929,13 @@ pages:
   ms_date: '2023-05-31'
   ms_topic: concept-article
   description: This article discusses the advantages of Microsoft Entra ID and provides a four-phase guide for planning and executing a migration strategy with detailed planning and exit criteria.
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-apps-stages.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-apps-stages
   title: Understand the stages of migrating application authentication from AD FS to Microsoft Entra ID
@@ -21816,9 +21943,11 @@ pages:
   ms_date: '2025-04-29'
   ms_topic: concept-article
   description: Migrating application authentication from AD FS to Microsoft Entra ID in four stages. Plan your move, test configurations, and secure apps.
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-classify-apps-plan-pilot.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-classify-apps-plan-pilot
   title: 'Phase 2: Classify apps and plan pilot'
@@ -21826,9 +21955,11 @@ pages:
   ms_date: '2024-08-25'
   ms_topic: concept-article
   description: This article describes phase 2 of planning migration of applications from AD FS to Microsoft Entra ID
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-discover-scope-apps.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-discover-scope-apps
   title: 'Phase 1: Discover and scope apps'
@@ -21836,9 +21967,11 @@ pages:
   ms_date: '2025-01-31'
   ms_topic: concept-article
   description: This article describes phase 1 of planning migration of applications from AD FS to Microsoft Entra ID
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-plan-management-insights.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-plan-management-insights
   title: 'Phase 4: Plan management and insights'
@@ -21856,9 +21989,11 @@ pages:
   ms_date: '2023-05-30'
   ms_topic: concept-article
   description: This article describes phase 3 of planning migration of applications from AD FS to Microsoft Entra ID
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-represent-security-policies.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-represent-security-policies
   title: 'Represent AD FS security policies in Microsoft Entra ID: Mappings and examples'
@@ -21866,9 +22001,11 @@ pages:
   ms_date: '2023-05-31'
   ms_topic: concept-article
   description: Learn how to map AD FS security policies to Microsoft Entra ID when migrating app authentication, including authorization and multifactor authentication rules.
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-adfs-saml-based-sso.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-saml-based-sso
   title: 'SAML-based single sign-on: Configuration and Limitations'
@@ -21876,9 +22013,11 @@ pages:
   ms_date: '2024-08-20'
   ms_topic: concept-article
   description: Learn concepts around configuring SAML-based SSO with Microsoft Entra ID such as user mapping, limitations, SAML certificates, token encryption, signature verification, and custom claims.
-  coverage: not-covered
+  coverage: cited
   note: AD FS application (relying party) migration to Entra; workbook covers the AD FS authentication cutover (Book 02 Ch10) but not moving AD FS-secured applications
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/enterprise-apps/migrate-applications-from-okta.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-applications-from-okta
   title: Migrate applications from Okta to Microsoft Entra ID
@@ -22313,6 +22452,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
 - path: docs/identity/enterprise-apps/understand-microsoft-sso-model.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/understand-microsoft-sso-model
@@ -23617,11 +23758,13 @@ pages:
   ms_date: '2026-09-10'
   ms_topic: how-to
   description: This is the Microsoft Entra Connect Health page that will discuss how to monitor AD DS.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Entra Connect Health. Learn pass Nov 9, 2026: Book 15 Ch12 doesn''t discuss Connect Health for AD DS.'
   workbook:
   - docs/books/b02-identity/06-who-owns-the-migration.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-adfs-risky-ip-workbook.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs-risky-ip-workbook
   title: Microsoft Entra Connect Health with AD FS risky IP report workbook
@@ -23651,7 +23794,9 @@ pages:
   description: This is the Microsoft Entra Connect Health page how to monitor your on-premises AD FS infrastructure.
   coverage: out-of-scope
   note: AD FS Connect Health; AD FS is retired.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-agent-install.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-agent-install
   title: Install the Microsoft Entra Connect Health agents in Microsoft Entra ID
@@ -23665,6 +23810,8 @@ pages:
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
   cited_by:
+  - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-alert-catalog.md
@@ -23700,12 +23847,14 @@ pages:
   ms_date: '2026-09-10'
   ms_topic: how-to
   description: This page describes how to retrieve data from Microsoft Entra Connect Health.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra Connect Health.
   workbook:
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-diagnose-sync-errors.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-diagnose-sync-errors
   title: Microsoft Entra Connect Health - Diagnose duplicated attribute synchronization errors
@@ -24499,7 +24648,9 @@ pages:
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b02-identity/appendix-c-identity-assessment-module.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/07-coexistence-and-migration.md
   - docs/books/b07-pki/appendix-a-deployment-checklists.md
@@ -25243,12 +25394,14 @@ pages:
   ms_date: '2025-08-14'
   ms_topic: how-to
   description: Learn the steps to prepare your environment to use Source of Authority (SOA) for users.
-  coverage: covered-uncited
+  coverage: cited
   note: User source of authority.
   workbook:
   - docs/books/b03-hr-identity/04-attribute-authority.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/04-attribute-authority.md
+  - docs/books/b03-hr-identity/_verification/04-attribute-authority.md
 - path: docs/identity/hybrid/prerequisites.md
   url: https://learn.microsoft.com/entra/identity/hybrid/prerequisites
   title: Prerequisites for integrating with Active Directory
@@ -25958,11 +26111,13 @@ pages:
   ms_date: '2026-02-09'
   ms_topic: how-to
   description: Learn how to use the Identity Secure Score to improve the security posture of your Microsoft Entra tenant.
-  coverage: covered-uncited
+  coverage: cited
   note: Identity Secure Score.
   workbook:
   - docs/books/b02-identity/06-who-owns-the-migration.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
 - path: docs/identity/monitoring-health/concept-interactive-sign-ins.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/concept-interactive-sign-ins
   title: Interactive user sign-in logs
@@ -26474,11 +26629,13 @@ pages:
   ms_date: '2026-04-28'
   ms_topic: how-to
   description: Learn about the recommendation to migrate application authentication from AD FS to Microsoft Entra ID
-  coverage: covered-uncited
+  coverage: cited
   note: Moving applications off AD FS.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
+  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/monitoring-health/recommendation-migrate-to-authenticator.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-migrate-to-authenticator
   title: Recommendation to migrate to Microsoft authenticator
@@ -26498,11 +26655,13 @@ pages:
   ms_date: '2026-04-28'
   ms_topic: how-to
   description: Learn about the Microsoft Entra recommendation to migrate to Microsoft Entra multifactor authentication from MFA server
-  coverage: covered-uncited
+  coverage: cited
   note: MFA recommendations.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-c-identity-assessment-module.md
+  - docs/books/b02-identity/appendix-c-identity-assessment-module.md
 - path: docs/identity/monitoring-health/recommendation-migrate-to-microsoft-graph-api.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-migrate-to-microsoft-graph-api
   title: Recommendation to migrate to Microsoft Graph API
@@ -26937,13 +27096,15 @@ pages:
   ms_date: '2026-03-18'
   ms_topic: concept-article
   description: Learn to govern and manage identity and access lifecycles across multitenant organizations.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Cross-tenant synchronization: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/identity/multi-tenant-organizations/cross-tenant-synchronization-overview.md
   url: https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview
   title: What is cross-tenant synchronization in Microsoft Entra ID?
@@ -27105,6 +27266,8 @@ pages:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
 - path: docs/identity/role-based-access-control/admin-units-members-add.md
@@ -27120,6 +27283,8 @@ pages:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
 - path: docs/identity/role-based-access-control/admin-units-members-dynamic.md
@@ -27255,6 +27420,8 @@ pages:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b02-identity/05-delegation-without-ous.md
   cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
 - path: docs/identity/role-based-access-control/custom-available-permissions.md
@@ -27308,12 +27475,14 @@ pages:
   ms_date: '2024-07-18'
   ms_topic: reference
   description: Device management permissions for Microsoft Entra custom roles in the Microsoft Entra admin center, PowerShell, or Microsoft Graph API.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Custom Entra roles and their permissions: Book 02 Ch05, Book 04 Ch04, Book 15 Ch04. Learn pass Nov 9, 2026: Book 15 Ch04''s only custom role is app assignment; custom-role permissions belong with Book 04 Ch04.'
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
 - path: docs/identity/role-based-access-control/custom-enterprise-app-permissions.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/custom-enterprise-app-permissions
   title: App permissions for custom roles in Microsoft Entra ID
@@ -27350,13 +27519,15 @@ pages:
   ms_date: '2024-08-25'
   ms_topic: reference
   description: Group management permissions for Microsoft Entra custom roles in the Microsoft Entra admin center, PowerShell, or Microsoft Graph API.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Custom Entra roles and their permissions: Book 02 Ch05, Book 04 Ch04, Book 15 Ch04'
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
 - path: docs/identity/role-based-access-control/custom-overview.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/custom-overview
   title: Overview of Microsoft Entra role-based access control (RBAC)
@@ -27375,13 +27546,15 @@ pages:
   ms_date: '2023-06-09'
   ms_topic: reference
   description: User management permissions for Microsoft Entra custom roles in the Microsoft Entra admin center, PowerShell, or Microsoft Graph API.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Custom Entra roles and their permissions: Book 02 Ch05, Book 04 Ch04, Book 15 Ch04'
   workbook:
   - docs/books/b02-identity/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
 - path: docs/identity/role-based-access-control/delegate-app-roles.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/delegate-app-roles
   title: Delegate application and agent management administrator permissions
@@ -27689,6 +27862,8 @@ pages:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b02-identity/05-delegation-without-ous.md
   cited_by:
+  - docs/books/b02-identity/05-delegation-without-ous.md
+  - docs/books/b02-identity/_verification/05-delegation-without-ous.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
 - path: docs/identity/role-based-access-control/view-assignments.md
@@ -27758,10 +27933,8 @@ pages:
   ms_date: '2024-12-13'
   ms_topic: overview
   description: The relationship between older delegated admin permissions and new granular delegated admin permissions in Microsoft Entra ID
-  coverage: covered-uncited
-  note: Delegated administration without OUs.
-  workbook:
-  - docs/books/b02-identity/05-delegation-without-ous.md
+  coverage: not-covered
+  note: Page covers Cloud Solution Provider partner relationships (DAP and GDAP), which the workbook doesn't discuss; Book 02 Ch05 covers in-tenant delegation with administrative units, not partner delegation.
   cited_by: []
 - path: docs/identity/users/directory-delete-howto.md
   url: https://learn.microsoft.com/entra/identity/users/directory-delete-howto
@@ -28820,12 +28993,14 @@ pages:
   ms_date: '2023-05-23'
   ms_topic: how-to
   description: Detailed guidance on how to configure Microsoft Entra ID access controls to meet FedRAMP High Impact level.
-  coverage: covered-uncited
+  coverage: cited
   note: Federal identity authorities mapped in the crosswalks.
   workbook:
   - docs/reference/federal-framework-crosswalk.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md
+  - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
 - path: docs/standards/fedramp-identification-and-authentication-controls.md
   url: https://learn.microsoft.com/entra/standards/fedramp-identification-and-authentication-controls
   title: Configure identification and authentication controls to meet FedRAMP High Impact level with Microsoft Entra ID
@@ -28833,12 +29008,14 @@ pages:
   ms_date: '2023-05-23'
   ms_topic: how-to
   description: Detailed guidance on how to configure identification and authentication controls to meet FedRAMP High Impact level.
-  coverage: covered-uncited
+  coverage: cited
   note: Federal identity authorities mapped in the crosswalks.
   workbook:
   - docs/reference/federal-framework-crosswalk.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md
+  - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
 - path: docs/standards/fedramp-other-controls.md
   url: https://learn.microsoft.com/entra/standards/fedramp-other-controls
   title: Configure additional controls to meet FedRAMP High Impact level
@@ -28846,12 +29023,14 @@ pages:
   ms_date: '2023-05-23'
   ms_topic: how-to
   description: Detailed guidance on how to configure additional controls to meet FedRAMP High Impact levels.
-  coverage: covered-uncited
+  coverage: cited
   note: Federal identity authorities mapped in the crosswalks.
   workbook:
   - docs/reference/federal-framework-crosswalk.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md
+  - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
 - path: docs/standards/hipaa-access-controls.md
   url: https://learn.microsoft.com/entra/standards/hipaa-access-controls
   title: Configure Microsoft Entra HIPAA access control safeguards
@@ -28940,12 +29119,14 @@ pages:
   ms_date: '2025-02-10'
   ms_topic: how-to
   description: Guidance on meeting enterprise-wide identity management system requirements outlined in OMB memorandum 22-09.
-  coverage: covered-uncited
+  coverage: cited
   note: Federal identity authorities mapped in the crosswalks.
   workbook:
   - docs/reference/federal-framework-crosswalk.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md
+  - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
 - path: docs/standards/memo-22-09-meet-identity-requirements.md
   url: https://learn.microsoft.com/entra/standards/memo-22-09-meet-identity-requirements
   title: Memo 22-09 identity requirements overview
@@ -29035,12 +29216,14 @@ pages:
   ms_date: '2024-09-27'
   ms_topic: how-to
   description: Guidance on achieving NIST authenticator assurance level 2 (AAL2) with Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Federal identity authorities mapped in the crosswalks.
   workbook:
   - docs/reference/federal-framework-crosswalk.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md
+  - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
 - path: docs/standards/nist-authenticator-assurance-level-3.md
   url: https://learn.microsoft.com/entra/standards/nist-authenticator-assurance-level-3
   title: Achieve NIST AAL3 by using Microsoft Entra ID

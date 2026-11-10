@@ -141,3 +141,14 @@ Checked October 20, 2026. Sources: `docs/whitepapers/fmp-vs-native-tools.md` (ma
 | Restricted management | Roles section (claim 17) | Owned by Chapter 05; Learn wording noted |
 | Drift detection | — | Owned by Chapter 05 |
 | Source callout (FMP_154) | — | Owned by Chapter 05 |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Microsoft Learn pages listed as covered but uncited for this chapter were read on Nov 9, 2026 and cited where they support a specific sentence. No sentence was reworded.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Connect Health monitors through an agent on each targeted server; a feature of Entra ID P1 or P2 (c06-connect-health) | Tool table, Connect Health row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-agent-install> |
+| L2 | Connect Health monitors AD DS (c06-connect-health) | Tool table, Connect Health row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adds> |
+| L3 | Secure Score covers identity, devices and apps; Identity Secure Score is its identity part (c06-identity-securescore) | Tool table, Secure Score row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/monitoring-health/concept-identity-secure-score> |
+| L4 | Entra Connect Health has an export (sync errors to CSV), a candidate adapter input (c06-connect-health-export) | Import adapters | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-data-retrieval> |

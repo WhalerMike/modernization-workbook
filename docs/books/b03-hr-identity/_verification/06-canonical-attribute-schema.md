@@ -95,3 +95,12 @@ Re-checked after the weekly source watch (issue #499) reported that OPM replaced
 |---|---|---|
 | GPPA edition cited as "October 2026" | updated: the cover and page footers now read November 2026; footnote edition and access date changed | GPPA PDF, <https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf> |
 | Chapter list and codes this page relies on (Ch 1 §4 and §5, EHRI Data Standards codes only in coded blocks; Ch 9–11, 13 accessions and conversions; Ch 14; Ch 15: 430, 450–452, 460, 471, 473, 480, with 472 Furlough NTE in its tables; Ch 16: 280, 292; Ch 30; Ch 31; Ch 32: 001, 002) | re-verified in the November 2026 edition, no change | Same |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Two Learn pages the coverage map listed as covered but uncited for this chapter are now cited. New footnotes `c06-csa-add` and `c06-csa-roles` (names grepped unique in the book folder). No wording changed.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | Custom security attributes are typed attributes held in attribute sets | Attribute stores table, custom security attributes row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-add> |
+| L2 | Custom security attributes are readable and writable only through their own roles | Attribute stores table, custom security attributes row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-troubleshoot> |
