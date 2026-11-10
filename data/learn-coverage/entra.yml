@@ -887,13 +887,15 @@ pages:
   ms_date: '2023-02-09'
   ms_topic: how-to
   description: Microsoft Entra ID and Microsoft 365 Groups can be used to increase security when external users access your resources.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Securing external collaboration (B2B posture, groups, Conditional Access); partner identity chapter and partner access profile. Learn pass Nov 9, 2026: B2B posture series belongs with Book 02 Ch10 cross-tenant and B2B collaboration, not Book 04 Ch09.'
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b02-identity/10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/5-secure-access-b2b.md
   url: https://learn.microsoft.com/entra/architecture/5-secure-access-b2b
   title: Transition to governed collaboration with Microsoft Entra B2B collaboration
@@ -923,13 +925,15 @@ pages:
   ms_date: '2023-02-23'
   ms_topic: how-to
   description: Learn to use Conditional Access policies to secure external access to resources.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Securing external collaboration (B2B posture, groups, Conditional Access); partner identity chapter and partner access profile. Learn pass Nov 9, 2026: B2B posture series belongs with Book 02 Ch10 cross-tenant and B2B collaboration, not Book 04 Ch09.'
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b02-identity/10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/8-secure-access-sensitivity-labels.md
   url: https://learn.microsoft.com/entra/architecture/8-secure-access-sensitivity-labels
   title: Control external access to resources in Microsoft Entra ID with sensitivity labels
@@ -969,10 +973,8 @@ pages:
   ms_date: '2026-05-07'
   ms_topic: concept-article
   description: Learn about the architecture of Microsoft Entra ID, including service design, scalability, availability, and data consistency.
-  coverage: covered-uncited
-  note: Entra architecture overview; AD and Entra side by side
-  workbook:
-  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  coverage: not-covered
+  note: Entra service internals (partitions, replicas, datacenters, consistency); Book 02 Ch03 doesn't describe the service architecture
   cited_by: []
 - path: docs/architecture/auth-header-based.md
   url: https://learn.microsoft.com/entra/architecture/auth-header-based
@@ -1175,11 +1177,13 @@ pages:
   ms_date: '2022-09-23'
   ms_topic: overview
   description: Learn to design solutions to automatically provision identities in hybrid environments to provide application access.
-  coverage: covered-uncited
+  coverage: cited
   note: SCIM and automated app provisioning; provisioning pipeline
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/architecture/automate-provisioning-to-applications-solutions.md
   url: https://learn.microsoft.com/entra/architecture/automate-provisioning-to-applications-solutions
   title: Solutions to automate identity provisioning to applications
@@ -1187,11 +1191,13 @@ pages:
   ms_date: '2022-09-29'
   ms_topic: overview
   description: Learn to design solutions to automatically provision identities based on various scenarios.
-  coverage: covered-uncited
+  coverage: cited
   note: SCIM and automated app provisioning; provisioning pipeline
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/architecture/b2c-deployment-plans.md
   url: https://learn.microsoft.com/entra/architecture/b2c-deployment-plans
   title: Azure Active Directory B2C deployment plans
@@ -1354,12 +1360,14 @@ pages:
   ms_date: '2024-03-14'
   ms_topic: concept-article
   description: Use Microsoft Entra ID to help establish identity for applications to request tokens and for APIs to access resources.
-  coverage: covered-uncited
+  coverage: cited
   note: Authorizing apps and workloads; applications and workload identities chapter
   workbook:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/architecture/external-identity-deployment-architectures.md
   url: https://learn.microsoft.com/entra/architecture/external-identity-deployment-architectures
   title: Microsoft Entra External ID deployment architectures with Microsoft Entra
@@ -2104,12 +2112,14 @@ pages:
   ms_date: '2023-07-27'
   ms_topic: how-to
   description: Establish a Microsoft Entra footprint as part of planning your migration of IAM from Active Directory to Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Road to the cloud AD minimization; identity transformation and migration chapters
   workbook:
   - docs/books/b01-transformation-arc/04-identity-transformation.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/road-to-the-cloud-implement.md
   url: https://learn.microsoft.com/entra/architecture/road-to-the-cloud-implement
   title: Road to the cloud - Implement a cloud-first approach when moving identity and access management from Active Directory Domain Services (AD DS) to Microsoft Entra ID
@@ -2131,12 +2141,14 @@ pages:
   ms_date: '2023-07-27'
   ms_topic: how-to
   description: Learn how to plan a migration of IAM from Active Directory to Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Road to the cloud AD minimization; identity transformation and migration chapters
   workbook:
   - docs/books/b01-transformation-arc/04-identity-transformation.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/road-to-the-cloud-migrate.md
   url: https://learn.microsoft.com/entra/architecture/road-to-the-cloud-migrate
   title: Road to the cloud - Move identity and access management from Active Directory Domain Services (AD DS) to a Microsoft Entra migration workstream
@@ -2190,13 +2202,15 @@ pages:
   ms_date: '2023-04-28'
   ms_topic: concept-article
   description: A guide for architects and IT administrators on securing and governing external access to internal resources
-  coverage: covered-uncited
+  coverage: cited
   note: 'Securing external collaboration (B2B posture, groups, Conditional Access); partner identity chapter and partner access profile. Learn pass Nov 9, 2026: B2B posture series belongs with Book 02 Ch10 cross-tenant and B2B collaboration, not Book 04 Ch09.'
   workbook:
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b02-identity/10-migrating-and-governing.md#cross-tenant-and-b2b-collaboration
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/secure-fundamentals.md
   url: https://learn.microsoft.com/entra/architecture/secure-fundamentals
   title: Fundamentals of securing with Microsoft Entra ID
@@ -2362,12 +2376,14 @@ pages:
   ms_date: '2022-09-06'
   ms_topic: overview
   description: Learn to monitor, identify, and alert on security issues with accounts, applications, devices, and infrastructure in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra security operations signals; identity telemetry and migration chapters
   workbook:
   - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/security-operations-privileged-accounts.md
   url: https://learn.microsoft.com/entra/architecture/security-operations-privileged-accounts
   title: Security operations for privileged accounts in Microsoft Entra ID
@@ -2399,12 +2415,14 @@ pages:
   ms_date: '2022-09-06'
   ms_topic: concept-article
   description: Guidance to establish baselines and how to monitor and alert on potential security issues with user accounts.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra security operations signals; identity telemetry and migration chapters
   workbook:
   - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/architecture/service-accounts-computer.md
   url: https://learn.microsoft.com/entra/architecture/service-accounts-computer
   title: Secure on-premises computer accounts with Active Directory
@@ -2412,12 +2430,14 @@ pages:
   ms_date: '2023-02-03'
   ms_topic: how-to
   description: A guide to help secure on-premises computer accounts, or LocalSystem accounts, with Active Directory
-  coverage: covered-uncited
+  coverage: cited
   note: On-premises managed service accounts; gMSA work in progress elsewhere
   workbook:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/b02-identity/_verification/08-assessing-the-forest.md
 - path: docs/architecture/service-accounts-govern-on-premises.md
   url: https://learn.microsoft.com/entra/architecture/service-accounts-govern-on-premises
   title: Govern on-premises service accounts
@@ -2538,12 +2558,14 @@ pages:
   ms_date: '2023-03-01'
   ms_topic: concept-article
   description: Architectural guidance on achieving directory synchronization with Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Directory synchronization protocols; Entra target chapter covers Connect Sync and Cloud Sync
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/architecture/sync-ldap.md
   url: https://learn.microsoft.com/entra/architecture/sync-ldap
   title: LDAP synchronization with Microsoft Entra ID
@@ -2564,11 +2586,13 @@ pages:
   ms_date: '2023-01-10'
   ms_topic: concept-article
   description: Architectural guidance on achieving SCIM synchronization with Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: SCIM and automated app provisioning; provisioning pipeline
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/architecture/tenant-estate-business-partner.md
   url: https://learn.microsoft.com/entra/architecture/tenant-estate-business-partner
   title: Microsoft Entra tenants for business partner access guidance
@@ -2779,13 +2803,15 @@ pages:
   ms_date: '2026-03-20'
   ms_topic: how-to
   description: Learn how to add B2B collaboration users in the Microsoft Entra admin center. Invite guest users to the directory, groups, or applications, and manage their access to resources.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/add-users-information-worker.md
   url: https://learn.microsoft.com/entra/external-id/add-users-information-worker
   title: Add B2B collaboration users as an information worker
@@ -2873,13 +2899,15 @@ pages:
   ms_date: '2025-05-07'
   ms_topic: concept-article
   description: Learn best practices and recommendations for business-to-business (B2B) guest user access in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/b2b-government-national-clouds.md
   url: https://learn.microsoft.com/entra/external-id/b2b-government-national-clouds
   title: Microsoft Entra B2B in government and national clouds
@@ -2901,13 +2929,15 @@ pages:
   ms_date: '2026-04-24'
   ms_topic: quickstart
   description: Use this quickstart to learn how Microsoft Entra admins can add B2B guest users in the Microsoft Entra admin center and walk through the B2B invitation workflow.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/b2b-quickstart-invite-powershell.md
   url: https://learn.microsoft.com/entra/external-id/b2b-quickstart-invite-powershell
   title: 'Quickstart: Add a guest user with PowerShell'
@@ -3058,12 +3088,14 @@ pages:
   ms_date: '2026-09-08'
   ms_topic: how-to
   description: Learn how to configure B2B direct connect with other Microsoft Entra organizations, using cross-tenant access settings to manage outbound and inbound access.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Cross-tenant access settings and tenant restrictions: Book 04 Appendix C, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/current-limitations.md
   url: https://learn.microsoft.com/entra/external-id/current-limitations
   title: Limitations of B2B collaboration
@@ -4154,13 +4186,15 @@ pages:
   ms_date: '2026-03-27'
   ms_topic: how-to
   description: Enable your external business partners and guest users to use their Microsoft Account (MSA) to sign in to your apps for B2B collaboration.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/migrate-to-xtap-v2-api.md
   url: https://learn.microsoft.com/entra/external-id/migrate-to-xtap-v2-api
   title: Migrate to CrossTenantAccessPolicy Microsoft Graph API v2
@@ -4192,13 +4226,15 @@ pages:
   ms_date: '2026-04-21'
   ms_topic: concept-article
   description: Learn how Microsoft Entra B2B invitation redemption works, including guest sign-in, consent process, and privacy terms. Ensure secure access for your organization’s resources.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/reference-cross-tenant-custom-roles.md
   url: https://learn.microsoft.com/entra/external-id/reference-cross-tenant-custom-roles
   title: Custom roles for cross-tenant access settings
@@ -4337,13 +4373,15 @@ pages:
   ms_date: '2025-02-19'
   ms_topic: troubleshooting
   description: Learn how to troubleshoot common issues with Microsoft Entra B2B collaboration. Resolve guest sign-in errors, direct connect access problems, policy update failures, and encrypted email access issues.
-  coverage: covered-uncited
+  coverage: cited
   note: 'B2B collaboration administration and troubleshooting: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/external-id/tutorial-bulk-invite.md
   url: https://learn.microsoft.com/entra/external-id/tutorial-bulk-invite
   title: Bulk invite B2B users
@@ -4438,11 +4476,13 @@ pages:
   ms_date: '2026-06-18'
   ms_topic: how-to
   description: Instructions about how to add your custom domain name to your tenant.
-  coverage: covered-uncited
+  coverage: cited
   note: Custom domain onboarding is part of the target build.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/fundamentals/bulk-operations-service-limitations.md
   url: https://learn.microsoft.com/entra/fundamentals/bulk-operations-service-limitations
   title: Bulk operations service limitations
@@ -4470,11 +4510,13 @@ pages:
   ms_date: '2022-08-17'
   ms_topic: concept-article
   description: This document compares Active Directory Domain Services (AD DS) to Microsoft Entra ID. It outlines key concepts in both identity solutions and explains how it's different or similar.
-  coverage: covered-uncited
+  coverage: cited
   note: Side-by-side AD and Entra comparison.
   workbook:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b02-identity/_verification/03-ad-and-entra-side-by-side.md
 - path: docs/fundamentals/concept-learn-about-groups.md
   url: https://learn.microsoft.com/entra/fundamentals/concept-learn-about-groups
   title: Learn About Groups, Group Membership, and Access
@@ -8375,12 +8417,14 @@ pages:
   ms_date: '2024-10-17'
   ms_topic: how-to
   description: Learn how to configure verified ID settings for an access package in entitlement management.
-  coverage: covered-uncited
+  coverage: cited
   note: Verified ID in access packages; Verified ID covered in the Entra target and migration chapters
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/id-governance/governance-custom-alerts.md
   url: https://learn.microsoft.com/entra/id-governance/governance-custom-alerts
   title: Identity Governance custom alerts
@@ -9008,13 +9052,15 @@ pages:
   ms_date: '2026-03-12'
   ms_topic: how-to
   description: This article guides a user on managing workflow versions with Lifecycle Workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/id-governance/microsoft-entra-id-governance-licensing-for-guest-users.md
   url: https://learn.microsoft.com/entra/id-governance/microsoft-entra-id-governance-licensing-for-guest-users
   title: Microsoft Entra ID Governance licensing for guest users
@@ -9812,12 +9858,16 @@ pages:
   ms_date: '2025-06-09'
   ms_topic: how-to
   description: This article a tutorial on how to provision users and groups from and managed in Microsoft Entra ID to Active Directory.
-  coverage: covered-uncited
+  coverage: cited
   note: Group writeback for Kerberos apps; Entra target and migration chapters
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/id-governance/scenarios/provision-ldap.md
   url: https://learn.microsoft.com/entra/id-governance/scenarios/provision-ldap
   title: Govern provisioning to on-premises LDAP based apps
@@ -9875,12 +9925,14 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: This article a tutorial on how to provision users and groups to AD with Workday.
-  coverage: covered-uncited
+  coverage: cited
   note: HR-driven provisioning (Workday pattern); the provisioning pipeline covers the same flow
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/id-governance/scenarios/provision-workday-to-entra.md
   url: https://learn.microsoft.com/entra/id-governance/scenarios/provision-workday-to-entra
   title: Govern cloud users that are provisioned from and managed in Workday.
@@ -9888,12 +9940,14 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: This article a tutorial on how to provision users and groups from and managed in Workday.
-  coverage: covered-uncited
+  coverage: cited
   note: HR-driven provisioning (Workday pattern); the provisioning pipeline covers the same flow
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/id-governance/scenarios/sap-template.md
   url: https://learn.microsoft.com/entra/id-governance/scenarios/sap-template
   title: Author SAP ECC 7 Template for ECMA2Host
@@ -10304,13 +10358,15 @@ pages:
   ms_date: '2025-08-27'
   ms_topic: tutorial
   description: Tutorial for preparing user accounts for Lifecycle workflows.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/id-governance/tutorial-scheduled-leaver-portal.md
   url: https://learn.microsoft.com/entra/id-governance/tutorial-scheduled-leaver-portal
   title: Automate employee offboarding tasks after their last day of work with the Microsoft Entra admin center
@@ -10385,11 +10441,13 @@ pages:
   ms_date: '2024-12-30'
   ms_topic: overview
   description: Describes overview of identity provisioning and the ILM scenarios.
-  coverage: covered-uncited
+  coverage: cited
   note: Provisioning overview; Book 03 Ch05 provisioning pipeline
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/id-governance/workflow-custom-triggers.md
   url: https://learn.microsoft.com/entra/id-governance/workflow-custom-triggers
   title: Use custom attribute triggers in lifecycle workflows
@@ -14722,13 +14780,15 @@ pages:
   ms_date: '2026-08-20'
   ms_topic: how-to
   description: Learn how to clear target attribute values when a source attribute has a null or empty value in Microsoft Entra provisioning.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Provisioning scoping, mappings, expressions, logs and troubleshooting: Book 03 Ch05, HCM guide, Book 15 Ch06'
   workbook:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/configure-automatic-user-provisioning-portal.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal
   title: User provisioning management for enterprise apps in Microsoft Entra ID
@@ -14908,13 +14968,15 @@ pages:
   ms_date: '2026-10-02'
   ms_topic: reference
   description: Learn how to use expression mappings to transform attribute values into an acceptable format during automated provisioning of SaaS app objects in Microsoft Entra ID. Includes a reference list of functions.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Provisioning scoping, mappings, expressions, logs and troubleshooting: Book 03 Ch05, HCM guide, Book 15 Ch06'
   workbook:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/how-provisioning-works.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/how-provisioning-works
   title: Understand how Application Provisioning in Microsoft Entra ID
@@ -14960,12 +15022,14 @@ pages:
   ms_date: '2026-10-22'
   ms_topic: troubleshooting-general
   description: Diagnose intermittent timeouts and slow Microsoft Entra HR provisioning to on-premises Active Directory by checking matching attributes, agents, and connectivity.
-  coverage: covered-uncited
+  coverage: cited
   note: HR-driven provisioning troubleshooting and attribute reference; Workday/SuccessFactors specifics differ from the program HR platform but the pipeline pattern is the same
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/guides/hcm-entra-implementation.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/hr-manager-update-issues.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/hr-manager-update-issues
   title: Troubleshoot manager update issues with HR provisioning
@@ -14973,12 +15037,14 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: troubleshooting
   description: This article provides potential issues and resolutions that show you how to troubleshoot manager update issues with HR provisioning
-  coverage: covered-uncited
+  coverage: cited
   note: HR-driven provisioning troubleshooting and attribute reference; Workday/SuccessFactors specifics differ from the program HR platform but the pipeline pattern is the same
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/guides/hcm-entra-implementation.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/hr-user-creation-issues.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/hr-user-creation-issues
   title: Troubleshoot user creation issues with HR provisioning
@@ -15058,13 +15124,15 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: This tutorial provides step-by-step instructions so you can get started with API-driven inbound provisioning using cURL.
-  coverage: covered-uncited
+  coverage: cited
   note: 'API-driven inbound provisioning and Graph configuration: HCM guide, Attribute-Driven Migration Ch01'
   workbook:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/training/attribute-driven-migration/01-the-hr-middleware.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-custom-attributes.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-custom-attributes
   title: Extend API-driven provisioning to sync custom attributes
@@ -15114,13 +15182,15 @@ pages:
   ms_date: '2025-07-24'
   ms_topic: how-to
   description: Learn how to get started quickly with API-driven inbound provisioning using Graph Explorer
-  coverage: covered-uncited
+  coverage: cited
   note: 'API-driven inbound provisioning and Graph configuration: HCM guide, Attribute-Driven Migration Ch01'
   workbook:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/training/attribute-driven-migration/01-the-hr-middleware.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-issues.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-issues
   title: Troubleshoot issues with inbound provisioning API
@@ -15167,12 +15237,14 @@ pages:
   ms_date: '2025-07-24'
   ms_topic: how-to
   description: Learn how to get index the employeeId attribute to automate user account creation and updates from Inbound Provisioning to Active Directory
-  coverage: covered-uncited
+  coverage: cited
   note: 'Provisioning scoping, mappings, expressions, logs and troubleshooting: Book 03 Ch05, HCM guide, Book 15 Ch06. Learn pass Nov 9, 2026: not covered by Book 15 Ch06; better home the HCM guide or Book 03 Ch05.'
   workbook:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/index.yml
   url: https://learn.microsoft.com/entra/identity/app-provisioning
   title: Application and HR provisioning documentation
@@ -15718,12 +15790,14 @@ pages:
   ms_date: '2025-08-12'
   ms_topic: reference
   description: A comprehensive guide to commonly used expression mapping functions when configuring Workday to on-premises Active Directory/Microsoft Entra ID user provisioning. These functions help transform and map data from Workday to create appropriate user attributes in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: HR-driven provisioning troubleshooting and attribute reference; Workday/SuccessFactors specifics differ from the program HR platform but the pipeline pattern is the same
   workbook:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/guides/hcm-entra-implementation.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
 - path: docs/identity/app-provisioning/workday-integration-reference.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/workday-integration-reference
   title: Microsoft Entra ID and Workday integration reference
@@ -16533,12 +16607,14 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: concept-article
   description: Learn about the authentication methods policy and different ways to manage authentication methods.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra MFA, Authenticator and authentication-methods policy.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b16-people/07-end-user-training.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/concept-authentication-oath-tokens.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-authentication-oath-tokens
   title: OATH tokens authentication method
@@ -16702,12 +16778,14 @@ pages:
   ms_date: '2025-11-01'
   ms_topic: concept-article
   description: Learn about using Windows Hello for Business authentication in Microsoft Entra ID to help improve and secure sign-in events
-  coverage: covered-uncited
+  coverage: cited
   note: Windows Hello for Business.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list
   title: Understand Microsoft Entra certificate-based authentication Certificate revocation list
@@ -16892,12 +16970,14 @@ pages:
   ms_date: '2026-10-06'
   ms_topic: concept-article
   description: Learn about requirements to prepare FIDO2 hardware for attestation with Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: FIDO2 and passkeys as phishing-resistant methods.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/concept-mandatory-multifactor-authentication.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication
   title: Plan for mandatory Microsoft Entra multifactor authentication (MFA)
@@ -17298,12 +17378,14 @@ pages:
   ms_date: '2026-07-05'
   ms_topic: how-to
   description: Learn how Microsoft Entra passkey on Windows enables phishing-resistant authentication with work or school accounts by using Windows Hello as a FIDO2 passkey provider.
-  coverage: covered-uncited
+  coverage: cited
   note: FIDO2 and passkeys as phishing-resistant methods.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-authentication-external-method-manage.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-external-method-manage
   title: How to manage external MFA in Microsoft Entra ID
@@ -17323,12 +17405,14 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn how to find and address gaps in strong authentication coverage for your administrators in Microsoft Entra ID
-  coverage: covered-uncited
+  coverage: cited
   note: Entra MFA, Authenticator and authentication-methods policy.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b16-people/07-end-user-training.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-authentication-methods-manage.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-methods-manage
   title: How to migrate to the Authentication methods policy
@@ -17480,12 +17564,14 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Learn how to use additional context in multifactor authentication (MFA) notifications.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra MFA, Authenticator and authentication-methods policy.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b16-people/07-end-user-training.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-mfa-authenticator-lite.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-authenticator-lite
   title: Enable Authenticator Lite for Outlook mobile
@@ -17506,12 +17592,14 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: how-to
   description: Explains Microsoft Entra ID multifactor authentication (MFA) SAML/WSFed assertions.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra MFA, Authenticator and authentication-methods policy.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b16-people/07-end-user-training.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-mfa-manage-oath-tokens.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-manage-oath-tokens
   title: How to manage OATH tokens in Microsoft Entra ID (Preview)
@@ -17545,12 +17633,14 @@ pages:
   ms_date: '2026-09-15'
   ms_topic: how-to
   description: Learn how to run a registration campaign in Microsoft Entra ID to nudge users toward passkeys or Microsoft Authenticator for stronger sign-in security.
-  coverage: covered-uncited
+  coverage: cited
   note: Combined registration and the registration campaign.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b16-people/07-end-user-training.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-mfa-server-migration-utility.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-server-migration-utility
   title: How to use the MFA Server Migration Utility to migrate to Microsoft Entra multifactor authentication
@@ -17627,12 +17717,14 @@ pages:
   ms_date: '2025-10-30'
   ms_topic: how-to
   description: Persona-specific guidance to deploy passwordless and phishing-resistant authentication for organizations that use Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Phishing-resistant passwordless planning and resilient access control.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b04-access/03-the-conditional-access-model.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication
   title: Get started with a phishing-resistant passwordless authentication deployment in Microsoft Entra ID
@@ -17681,12 +17773,14 @@ pages:
   ms_date: '2026-07-05'
   ms_topic: how-to
   description: Learn how to register passkeys in Microsoft Authenticator on Android and iOS. Sign in to the app, use Security info, or register cross-device.
-  coverage: covered-uncited
+  coverage: cited
   note: FIDO2 and passkeys as phishing-resistant methods.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-register-passkey-with-security-key.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-register-passkey-with-security-key
   title: Register a passkey with a FIDO2 security key
@@ -17769,12 +17863,14 @@ pages:
   ms_date: '2026-07-05'
   ms_topic: how-to
   description: Learn about synced passkeys in Microsoft Entra ID, including how to configure, register, and sign in with synced passkeys.
-  coverage: covered-uncited
+  coverage: cited
   note: FIDO2 and passkeys as phishing-resistant methods.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/how-to-transfer-authenticator-new-phone.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-transfer-authenticator-new-phone
   title: Transfer Microsoft Authenticator to a new phone
@@ -17842,12 +17938,14 @@ pages:
   ms_date: '2025-07-13'
   ms_topic: how-to
   description: Learn how to enable passwordless security key sign-in to on-premises resources by using Microsoft Entra ID
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid FIDO2 sign-in to on-premises resources.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/authentication/howto-authentication-passwordless-security-key-windows.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-authentication-passwordless-security-key-windows
   title: FIDO2 Security Key Sign-in to Windows
@@ -18237,12 +18335,14 @@ pages:
   ms_date: '2025-11-04'
   ms_topic: faq
   description: Frequently asked questions and answers for Microsoft Entra Kerberos.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Kerberos trust.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/authentication/kerberos.md
   url: https://learn.microsoft.com/entra/identity/authentication/kerberos
   title: Introduction to Microsoft Entra Kerberos
@@ -18368,12 +18468,14 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: troubleshooting
   description: Learn how to troubleshoot common problems and resolution steps for self-service password reset writeback in Microsoft Entra ID
-  coverage: covered-uncited
+  coverage: cited
   note: Self-service password reset.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b16-people/07-end-user-training.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/troubleshoot-sspr.md
   url: https://learn.microsoft.com/entra/identity/authentication/troubleshoot-sspr
   title: Troubleshoot self-service password reset
@@ -18429,11 +18531,13 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: tutorial
   description: In this tutorial, you learn how to enable Microsoft Entra self-service password reset writeback using Microsoft Entra Connect cloud sync to synchronize changes back to an on-premises Active Directory Domain Services environment.
-  coverage: covered-uncited
+  coverage: cited
   note: Password writeback for SSPR.
   workbook:
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/authentication/tutorial-enable-security-notifications-for-audit-logs.md
   url: https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-security-notifications-for-audit-logs
   title: Enable security notifications for audit log events
@@ -20321,11 +20425,13 @@ pages:
   ms_date: '2025-06-30'
   ms_topic: overview
   description: In this overview, you compare the different identity offerings for Active Directory Domain Services, Microsoft Entra ID, and Microsoft Entra Domain Services.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/domain-services/concepts-custom-attributes.md
   url: https://learn.microsoft.com/entra/identity/domain-services/concepts-custom-attributes
   title: Create and manage custom attributes for Microsoft Entra Domain Services | Microsoft Docs
@@ -20333,10 +20439,8 @@ pages:
   ms_date: '2025-03-07'
   ms_topic: how-to
   description: Learn how to create and manage custom attributes in a Domain Services managed domain.
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services custom attributes; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge
   cited_by: []
 - path: docs/identity/domain-services/concepts-forest-trust.md
   url: https://learn.microsoft.com/entra/identity/domain-services/concepts-forest-trust
@@ -20356,10 +20460,8 @@ pages:
   ms_date: '2025-01-21'
   ms_topic: concept-article
   description: Learn what replica sets are in Microsoft Entra Domain Services and how they provide redundancy to applications that require identity services.
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services replica sets; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge
   cited_by: []
 - path: docs/identity/domain-services/create-forest-trust-powershell.md
   url: https://learn.microsoft.com/entra/identity/domain-services/create-forest-trust-powershell
@@ -20424,11 +20526,13 @@ pages:
   ms_date: '2025-01-21'
   ms_topic: how-to
   description: Learn how to provide secure access to internal applications for remote workers by deploying and configuring Microsoft Entra application proxy in a Microsoft Entra Domain Services managed domain
-  coverage: covered-uncited
+  coverage: cited
   note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/domain-services/deploy-kcd.md
   url: https://learn.microsoft.com/entra/identity/domain-services/deploy-kcd
   title: Kerberos constrained delegation for Microsoft Entra Domain Services | Microsoft Docs
@@ -20436,11 +20540,13 @@ pages:
   ms_date: '2025-01-21'
   ms_topic: how-to
   description: Learn how to enable resource-based Kerberos constrained delegation (KCD) in a Microsoft Entra Domain Services managed domain.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/domain-services/deploy-sp-profile-sync.md
   url: https://learn.microsoft.com/entra/identity/domain-services/deploy-sp-profile-sync
   title: Enable SharePoint User Profile service with Domain Services | Microsoft Docs
@@ -20458,11 +20564,13 @@ pages:
   ms_date: '2025-01-21'
   ms_topic: faq
   description: Read and understand some of the frequently asked questions around configuration, administration, and availability for Microsoft Entra Domain Services
-  coverage: covered-uncited
+  coverage: cited
   note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/domain-services/feature-availability.md
   url: https://learn.microsoft.com/entra/identity/domain-services/feature-availability
   title: Microsoft Entra Domain Services feature availability in Azure Government
@@ -20470,10 +20578,8 @@ pages:
   ms_date: '2025-01-21'
   ms_topic: concept-article
   description: Learn which Domain Services features are available in Azure Government.
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services availability in Azure Government; no workbook page states it (candidate for Book 02 Ch04 if the bridge is planned)
   cited_by: []
 - path: docs/identity/domain-services/fleet-metrics.md
   url: https://learn.microsoft.com/entra/identity/domain-services/fleet-metrics
@@ -20502,10 +20608,8 @@ pages:
   ms_date: '2025-02-05'
   ms_topic: how-to
   description: Learn how to retrieve data from Microsoft Entra Domain Services.
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services data retrieval; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge
   cited_by: []
 - path: docs/identity/domain-services/index.yml
   url: https://learn.microsoft.com/entra/identity/domain-services
@@ -20648,10 +20752,8 @@ pages:
   ms_date: '2025-02-05'
   ms_topic: how-to
   description: Learn how and why to use fine-grained password policies to secure and control account passwords in a Domain Services managed domain.
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services password and lockout policies; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge
   cited_by: []
 - path: docs/identity/domain-services/policy-reference.md
   url: https://learn.microsoft.com/entra/identity/domain-services/policy-reference
@@ -20690,10 +20792,8 @@ pages:
   ms_date: '2026-07-01'
   ms_topic: how-to
   description: Learn what the RC4 deprecation advance dependency test is, when it runs, and how to prepare for and recover from it in Microsoft Entra Domain Services.
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services RC4 dependency test; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge
   cited_by: []
 - path: docs/identity/domain-services/reference-domain-services-tls-enforcement.md
   url: https://learn.microsoft.com/entra/identity/domain-services/reference-domain-services-tls-enforcement
@@ -20712,11 +20812,13 @@ pages:
   ms_date: '2025-02-05'
   ms_topic: concept-article
   description: Learn about some of the common scenarios and use-cases for Microsoft Entra Domain Services to provide value and meet business needs.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/domain-services/scoped-synchronization.md
   url: https://learn.microsoft.com/entra/identity/domain-services/scoped-synchronization
   title: Scoped synchronization for Microsoft Entra Domain Services | Microsoft Docs
@@ -20754,10 +20856,8 @@ pages:
   ms_date: '2026-08-18'
   ms_topic: concept-article
   description: SAM Account Name support for Entra Domain Services
-  coverage: covered-uncited
-  note: Entra Domain Services as a bridge for LDAP/Kerberos dependencies.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Domain Services SAM account names; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge
   cited_by: []
 - path: docs/identity/domain-services/security-audit-events.md
   url: https://learn.microsoft.com/entra/identity/domain-services/security-audit-events
@@ -22744,11 +22844,13 @@ pages:
   ms_date: '2026-10-21'
   ms_topic: how-to
   description: Learn how to configure Microsoft Entra Cloud Sync to synchronize Active Directory computer objects to Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/exchange-hybrid.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/exchange-hybrid
   title: Exchange hybrid writeback with cloud sync
@@ -22756,11 +22858,13 @@ pages:
   ms_date: '2026-08-25'
   ms_topic: how-to
   description: This article describes how to enable exchange hybrid writeback scenarios.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/gmsa-cloud-sync.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/gmsa-cloud-sync
   title: Use a group managed service account with Microsoft Entra Cloud Sync
@@ -22784,12 +22888,14 @@ pages:
   ms_date: '2025-09-04'
   ms_topic: concept-article
   description: This article provides an overview of how to use cloud sync to govern on-premises application access using groups.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync group provisioning to AD and source-of-authority transfer.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/how-provisioning-to-active-directory-works.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-provisioning-to-active-directory-works
   title: Microsoft Entra provisioning behavior (Preview)
@@ -22835,11 +22941,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how to use the cloud sync feature of Microsoft Entra Connect to map attributes.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/how-to-automatic-upgrade.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-automatic-upgrade
   title: 'Microsoft Entra Connect cloud provisioning agent: Automatic upgrade'
@@ -22895,11 +23003,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how to use the expression builder with cloud sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/how-to-gmsa-cmdlets.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-gmsa-cmdlets
   title: Microsoft Entra provisioning Agent gMSA PowerShell cmdlets
@@ -22996,11 +23106,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how to use the cloud sync feature of Microsoft Entra Connect to test configuration changes.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/how-to-prerequisites-provision-entra-to-active-directory.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-prerequisites-provision-entra-to-active-directory
   title: Microsoft Entra prerequisites for AD (Preview)
@@ -23096,11 +23208,13 @@ pages:
   ms_date: '2026-10-21'
   ms_topic: how-to
   description: Learn how to plan a phased migration from Microsoft Entra Connect to Microsoft Entra Cloud Sync, including device synchronization and prerequisite checks.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/migrate-connect-sync-cloud-sync-tool.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/migrate-connect-sync-cloud-sync-tool
   title: Migrate to Microsoft Entra Cloud Sync with the Migration Tool
@@ -23120,12 +23234,14 @@ pages:
   ms_date: '2025-09-29'
   ms_topic: how-to
   description: This article describes how to migrate groups that were initially set up for Group Writeback by using Microsoft Entra Connect Sync to Microsoft Entra Cloud Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync group provisioning to AD and source-of-authority transfer.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/overview-provision-entra-id-to-active-directory.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/overview-provision-entra-id-to-active-directory
   title: Provision Microsoft Entra ID objects to AD
@@ -23133,12 +23249,14 @@ pages:
   ms_date: '2026-08-10'
   ms_topic: concept-article
   description: Learn how Microsoft Entra Cloud Sync provisions users, groups, and memberships from Microsoft Entra ID to Active Directory and review supported scenarios.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync group provisioning to AD and source-of-authority transfer.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/hybrid/cloud-sync/plan-cloud-sync-topologies.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/plan-cloud-sync-topologies
   title: Microsoft Entra Cloud Sync supported topologies and scenarios
@@ -23146,11 +23264,13 @@ pages:
   ms_date: '2026-10-21'
   ms_topic: concept-article
   description: Learn about various on-premises and Microsoft Entra topologies that use Microsoft Entra Cloud Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/reference-cloud-sync-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/reference-cloud-sync-faq
   title: Microsoft Entra Cloud Sync FAQ
@@ -23183,11 +23303,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: reference
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/reference-powershell.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/reference-powershell
   title: AADCloudSyncTools PowerShell module for Microsoft Entra Cloud Sync
@@ -23267,11 +23389,13 @@ pages:
   ms_date: '2026-10-21'
   ms_topic: tutorial
   description: Learn how to migrate to Microsoft Entra Cloud Sync for a synced Active Directory forest.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/tutorial-single-forest.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/tutorial-single-forest
   title: Tutorial - Integrate a single forest with a single Microsoft Entra tenant
@@ -23304,11 +23428,13 @@ pages:
   ms_date: '2026-10-21'
   ms_topic: overview
   description: Learn how Microsoft Entra Cloud Sync synchronizes users, groups, and contacts from Active Directory to Microsoft Entra ID, and how enabled device sync supports hybrid join.
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/what-is-provisioning-agent.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/what-is-provisioning-agent
   title: What is the provisioning agent?
@@ -23339,11 +23465,13 @@ pages:
   ms_date: '2026-08-10'
   ms_topic: concept-article
   description: Discover how to manage and transition Active Directory groups to Microsoft Entra ID using Group Source of Authority (SOA). Learn best practices for group management, provisioning, restoring, and rolling back changes in hybrid and cloud environments.
-  coverage: covered-uncited
+  coverage: cited
   note: Group source of authority moves object by object.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/hybrid/concept-group-source-of-authority-how-it-works.md
   url: https://learn.microsoft.com/entra/identity/hybrid/concept-group-source-of-authority-how-it-works
   title: How to use group Source of Authority (SOA) to manage Active Directory Domain Services (AD DS) groups in Microsoft Entra ID
@@ -23351,11 +23479,13 @@ pages:
   ms_date: '2025-08-01'
   ms_topic: concept-article
   description: Learn how to convert group management from Active Directory Domain Services (AD DS) to Microsoft Entra ID using group source of authority (SOA).
-  coverage: covered-uncited
+  coverage: cited
   note: Group source of authority moves object by object.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/hybrid/concept-source-of-authority-overview.md
   url: https://learn.microsoft.com/entra/identity/hybrid/concept-source-of-authority-overview
   title: Embrace cloud-first posture and convert Group Source of Authority (SOA) to the cloud
@@ -23439,6 +23569,8 @@ pages:
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/concept-azure-ad-connect-sync-architecture.md
@@ -23460,11 +23592,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: Explains the declarative provisioning expressions.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/concept-azure-ad-connect-sync-declarative-provisioning.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-declarative-provisioning
   title: 'Microsoft Entra Connect: Understanding Declarative Provisioning'
@@ -23484,11 +23618,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: This article describes the default configuration in Microsoft Entra Connect Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/concept-azure-ad-connect-sync-user-and-contacts.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-user-and-contacts
   title: 'Microsoft Entra Connect Sync: Understanding Users, Groups, and Contacts'
@@ -23496,11 +23632,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: Explains users, groups, and contacts in Microsoft Entra Connect Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/deprecated-azure-ad-connect.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/deprecated-azure-ad-connect
   title: Using a deprecated version of Microsoft Entra Connect
@@ -23587,11 +23725,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Learn how to use the synchronization rule editor to edit or create a new synchronization rule.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-device-options.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-device-options
   title: 'Microsoft Entra Connect: Device options'
@@ -23906,6 +24046,8 @@ pages:
   coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-install-automatic-upgrade.md
@@ -23918,6 +24060,8 @@ pages:
   coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-install-custom.md
@@ -23927,9 +24071,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article explains the custom installation options for Microsoft Entra Connect. Use these instructions to install Active Directory through Microsoft Entra Connect.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-install-existing-database.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-database
   title: Install Microsoft Entra Connect by using an existing ADSync database
@@ -23975,9 +24120,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Learn how to move the Microsoft Entra Connect database from the default local SQL Server Express server to a computer running remote SQL Server.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-install-multiple-domains.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains
   title: Multiple Domain Support for Federating with Microsoft Entra ID
@@ -23999,6 +24146,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-install-roadmap.md
@@ -24028,9 +24177,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This topic describes an update to Microsoft Entra Connect that allows for installation using an account that only has SQL dbo permissions.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-installation-wizard.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-installation-wizard
   title: Re-running the Microsoft Entra Connect install wizard
@@ -24115,11 +24266,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes the current limitations of Microsoft Entra pass-through authentication
-  coverage: covered-uncited
+  coverage: cited
   note: Pass-through authentication.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-pta-disable-do-not-configure.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-disable-do-not-configure
   title: Disable pass-through authentication by using Microsoft Entra Connect or PowerShell
@@ -24139,11 +24292,13 @@ pages:
   ms_date: '2024-12-20'
   ms_topic: faq
   description: Answers to frequently asked questions about Microsoft Entra pass-through authentication
-  coverage: covered-uncited
+  coverage: cited
   note: Pass-through authentication.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-pta-how-it-works.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-how-it-works
   title: 'Microsoft Entra Connect: Pass-through Authentication - How it works'
@@ -24174,11 +24329,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Learn how Microsoft Entra pass-through authentication protects your on-premises accounts.
-  coverage: covered-uncited
+  coverage: cited
   note: Pass-through authentication.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-pta-upgrade-preview-authentication-agents.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-upgrade-preview-authentication-agents
   title: Microsoft Entra Connect - Pass-through Authentication - Upgrade auth agents
@@ -24210,11 +24367,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes Microsoft Entra pass-through authentication and how it allows Microsoft Entra sign-ins by validating users' passwords against on-premises Active Directory.
-  coverage: covered-uncited
+  coverage: cited
   note: Pass-through authentication.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-selective-password-hash-synchronization.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-selective-password-hash-synchronization
   title: Selective Password Hash Synchronization for Microsoft Entra Connect
@@ -24294,11 +24453,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This topic describes Microsoft Entra seamless single sign-on and how it allows you to provide true single sign-on for corporate desktop users inside your corporate network.
-  coverage: covered-uncited
+  coverage: cited
   note: Seamless single sign-on.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-staged-rollout.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-staged-rollout
   title: 'Microsoft Entra Connect: Cloud authentication via Staged Rollout'
@@ -24351,6 +24512,8 @@ pages:
   coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-change-the-configuration.md
@@ -24360,11 +24523,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Walks you through how to make a change to the configuration in Microsoft Entra Connect Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-configure-filtering.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-configure-filtering
   title: 'Microsoft Entra Connect Sync: Configure filtering'
@@ -24372,11 +24537,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Explains how to configure filtering in Microsoft Entra Connect Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-endpoint-api-v2.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-endpoint-api-v2
   title: Microsoft Entra Connect Sync V2 endpoint
@@ -24527,6 +24694,8 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-technical-concepts.md
@@ -24573,11 +24742,13 @@ pages:
   ms_date: '2026-10-30'
   ms_topic: how-to
   description: Describes service side features for Microsoft Entra Connect Sync service.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-syncservice-shadow-attributes.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-syncservice-shadow-attributes
   title: Microsoft Entra Connect Sync service shadow attributes
@@ -24597,9 +24768,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This document describes how to uninstall Microsoft Entra Connect.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-dirsync-upgrade-get-started.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-dirsync-upgrade-get-started
   title: 'Microsoft Entra Connect: Upgrade from DirSync'
@@ -24620,6 +24793,8 @@ pages:
   coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/howto-troubleshoot-upn-changes.md
@@ -24629,11 +24804,13 @@ pages:
   ms_date: '2024-04-29'
   ms_topic: troubleshooting
   description: Understand known issues and mitigations for User Principal Name (UPN) changes.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication
   title: Migrate from federation to cloud authentication in Microsoft Entra ID
@@ -24695,11 +24872,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: This topic details supported and unsupported topologies for Microsoft Entra Connect
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/plan-connect-user-signin.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-user-signin
   title: 'Microsoft Entra Connect: User sign-in'
@@ -24734,6 +24913,8 @@ pages:
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/guides/service-account-migration.md
 - path: docs/identity/hybrid/connect/reference-connect-adconnectivitytools.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adconnectivitytools
@@ -24766,9 +24947,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: This document provides reference information for the ADSyncConfig.psm1 PowerShell module.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/reference-connect-adsynctools.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsynctools
   title: 'Microsoft Entra Connect: ADSyncTools PowerShell Reference'
@@ -24799,6 +24982,8 @@ pages:
   coverage: cited
   note: Connect in government clouds and required ports not covered.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/reference-connect-health-faq.yml
@@ -24845,6 +25030,8 @@ pages:
   coverage: out-of-scope
   note: Release history, privacy notice, deprecated-version, DirSync-era or Exchange-migration page; no program procedure.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/reference-connect-msexchuserholdpolicies.md
@@ -24867,6 +25054,8 @@ pages:
   coverage: cited
   note: Connect in government clouds and required ports not covered.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/reference-connect-pta-version-history.md
@@ -24902,11 +25091,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: Reference of declarative provisioning expressions in Microsoft Entra Connect Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Connect Sync architecture, rules, filtering and objects.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/reference-connect-tls-enforcement.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-tls-enforcement
   title: 'Microsoft Entra Connect: TLS 1.2 enforcement for Microsoft Entra Connect| Microsoft Docs'
@@ -24992,9 +25183,11 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: troubleshooting
   description: Learn how to troubleshoot connectivity issues with Microsoft Entra Connect.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/tshoot-connect-install-issues.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/tshoot-connect-install-issues
   title: Troubleshoot Microsoft Entra Connect install issues'
@@ -25075,6 +25268,8 @@ pages:
   coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/tshoot-connect-source-anchor.md
@@ -25163,11 +25358,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: tutorial
   description: Learn how to turn on password hash sync as a backup for Azure Directory Federation Services (AD FS) in Microsoft Entra Connect.
-  coverage: covered-uncited
+  coverage: cited
   note: Password hash synchronization.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/whatis-aadc-admin-agent.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/whatis-aadc-admin-agent
   title: What is the Microsoft Entra Connect Administration Agent - Microsoft Entra Connect
@@ -25219,11 +25416,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: overview
   description: Describes password hash synchronization.
-  coverage: covered-uncited
+  coverage: cited
   note: Password hash synchronization.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/decommission-connect-sync-v1.md
   url: https://learn.microsoft.com/entra/identity/hybrid/decommission-connect-sync-v1
   title: Decommissioning Azure AD Connect V1
@@ -25243,11 +25442,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: This article describes the Exchange hybrid writeback feature with sync clients.
-  coverage: covered-uncited
+  coverage: cited
   note: Exchange hybrid writeback.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/get-started.md
   url: https://learn.microsoft.com/entra/identity/hybrid/get-started
   title: Get started integrating with Microsoft Entra ID
@@ -25300,10 +25501,8 @@ pages:
   ms_date: '2025-08-04'
   ms_topic: how-to
   description: Step-by-step guide to identifying, triaging, and removing unused security and distribution groups in Active Directory Domain Services (AD DS) using a structured scream test methodology. Improve security and reduce administrative burden by cleaning up groups no longer needed in your domain.
-  coverage: covered-uncited
-  note: Group source of authority moves object by object.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: AD group cleanup (scream test); Book 02 Ch04 covers group SOA conversion, not group cleanup
   cited_by: []
 - path: docs/identity/hybrid/how-to-group-source-of-authority-configure.md
   url: https://learn.microsoft.com/entra/identity/hybrid/how-to-group-source-of-authority-configure
@@ -25312,11 +25511,13 @@ pages:
   ms_date: '2026-11-02'
   ms_topic: how-to
   description: Learn how to convert group management from Active Directory Domain Services to Microsoft Entra ID by using Group Source of Authority (SOA).
-  coverage: covered-uncited
+  coverage: cited
   note: Group source of authority moves object by object.
   workbook:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
 - path: docs/identity/hybrid/how-to-source-of-authority-auditing-monitoring.md
   url: https://learn.microsoft.com/entra/identity/hybrid/how-to-source-of-authority-auditing-monitoring
   title: How to audit and monitor Group Source of Authority (SOA) in Microsoft Entra ID
@@ -25324,10 +25525,8 @@ pages:
   ms_date: '2025-08-01'
   ms_topic: concept-article
   description: Learn how to audit and monitor Group Source of Authority (SOA) in Microsoft Entra ID.
-  coverage: covered-uncited
-  note: Group source of authority moves object by object.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Auditing group SOA changes; Book 02 Ch04 covers the conversion, not its audit events
   cited_by: []
 - path: docs/identity/hybrid/how-to-source-of-authority-self-service-group-management.md
   url: https://learn.microsoft.com/entra/identity/hybrid/how-to-source-of-authority-self-service-group-management
@@ -25336,10 +25535,8 @@ pages:
   ms_date: '2025-08-01'
   ms_topic: how-to
   description: Configure self-service group management in Microsoft Entra for security groups, mail-enabled security groups, and distribution groups after SOA conversion.
-  coverage: covered-uncited
-  note: Group source of authority moves object by object.
-  workbook:
-  - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  coverage: not-covered
+  note: Self-service group management after SOA conversion; not in Book 02 Ch04
   cited_by: []
 - path: docs/identity/hybrid/how-to-user-source-of-authority-configure.md
   url: https://learn.microsoft.com/entra/identity/hybrid/how-to-user-source-of-authority-configure
@@ -25382,11 +25579,13 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how to use on-demand provisioning with Microsoft Entra Cloud Sync.
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid identity overview and sync-tool choice.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/prepare-user-source-of-authority-environment.md
   url: https://learn.microsoft.com/entra/identity/hybrid/prepare-user-source-of-authority-environment
   title: Prepare Your Environment for User SOA
@@ -26617,10 +26816,8 @@ pages:
   ms_date: '2026-04-28'
   ms_topic: how-to
   description: Learn about the recommendation to minimize multifactor authentication prompts from known devices in Microsoft Entra ID.
-  coverage: covered-uncited
-  note: MFA recommendations.
-  workbook:
-  - docs/books/b02-identity/10-migrating-and-governing.md
+  coverage: not-covered
+  note: 'MFA recommendations. Learn pass Nov 9, 2026: Book 02 Ch10 doesn''t discuss MFA prompt frequency from known devices.'
   cited_by: []
 - path: docs/identity/monitoring-health/recommendation-migrate-apps-from-adfs-to-azure-ad.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-migrate-apps-from-adfs-to-azure-ad
@@ -26729,10 +26926,8 @@ pages:
   ms_date: '2026-04-28'
   ms_topic: how-to
   description: Learn why you should turn off per user MFA in Microsoft Entra ID with Microsoft Entra recommendations
-  coverage: covered-uncited
-  note: MFA recommendations.
-  workbook:
-  - docs/books/b02-identity/10-migrating-and-governing.md
+  coverage: not-covered
+  note: 'MFA recommendations. Learn pass Nov 9, 2026: Book 02 Ch10 doesn''t discuss per-user MFA.'
   cited_by: []
 - path: docs/identity/monitoring-health/reference-audit-activities.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/reference-audit-activities
@@ -27129,13 +27324,15 @@ pages:
   ms_date: '2026-03-18'
   ms_topic: concept-article
   description: Learn about topologies for cross-tenant synchronization in Microsoft Entra ID.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Cross-tenant synchronization: Book 04 Appendix C, Book 03 Ch15, Book 02 Ch10'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b03-hr-identity/15-external-partner-identity.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: docs/identity/multi-tenant-organizations/defender-xdr-microsoft-entra-mto.md
   url: https://learn.microsoft.com/entra/identity/multi-tenant-organizations/defender-xdr-microsoft-entra-mto
   title: Secure and govern security operations center (SOC) access in a multitenant organization with Microsoft Defender for Cloud XDR and Microsoft Entra ID Governance
@@ -27911,10 +28108,8 @@ pages:
   ms_date: '2023-05-02'
   ms_topic: how-to
   description: Clean up unmanaged accounts using email one-time password and PowerShell modules in Microsoft Entra ID
-  coverage: covered-uncited
-  note: Custom domains and unmanaged accounts/self-service sign-up posture.
-  workbook:
-  - docs/books/b02-identity/10-migrating-and-governing.md
+  coverage: not-covered
+  note: 'Custom domains and unmanaged accounts/self-service sign-up posture. Learn pass Nov 9, 2026: Book 02 Ch10 doesn''t discuss unmanaged (viral) accounts.'
   cited_by: []
 - path: docs/identity/users/convert-external-users-internal.md
   url: https://learn.microsoft.com/entra/identity/users/convert-external-users-internal
@@ -27987,10 +28182,8 @@ pages:
   ms_date: '2026-06-18'
   ms_topic: how-to
   description: How to take over a DNS domain name in an unmanaged Microsoft Entra organization (shadow tenant).
-  coverage: covered-uncited
-  note: Custom domains and unmanaged accounts/self-service sign-up posture.
-  workbook:
-  - docs/books/b02-identity/10-migrating-and-governing.md
+  coverage: not-covered
+  note: 'Custom domains and unmanaged accounts/self-service sign-up posture. Learn pass Nov 9, 2026: Book 02 Ch10 doesn''t discuss taking over unmanaged directories.'
   cited_by: []
 - path: docs/identity/users/domains-manage.md
   url: https://learn.microsoft.com/entra/identity/users/domains-manage
@@ -28011,10 +28204,8 @@ pages:
   ms_date: '2025-01-15'
   ms_topic: how-to
   description: Change default subdomain authentication settings inherited from root domain settings in Microsoft Entra ID.
-  coverage: covered-uncited
-  note: Custom domains and unmanaged accounts/self-service sign-up posture.
-  workbook:
-  - docs/books/b02-identity/10-migrating-and-governing.md
+  coverage: not-covered
+  note: 'Custom domains and unmanaged accounts/self-service sign-up posture. Learn pass Nov 9, 2026: Book 02 Ch10 doesn''t discuss subdomain authentication types.'
   cited_by: []
 - path: docs/identity/users/groups-assign-sensitivity-labels.md
   url: https://learn.microsoft.com/entra/identity/users/groups-assign-sensitivity-labels
@@ -28586,10 +28777,8 @@ pages:
   ms_date: '2021-05-04'
   ms_topic: how-to
   description: How to close your work or school account in an unmanaged Microsoft Entra ID.
-  coverage: covered-uncited
-  note: Custom domains and unmanaged accounts/self-service sign-up posture.
-  workbook:
-  - docs/books/b02-identity/10-migrating-and-governing.md
+  coverage: not-covered
+  note: 'Custom domains and unmanaged accounts/self-service sign-up posture. Learn pass Nov 9, 2026: Book 02 Ch10 doesn''t discuss unmanaged organizations.'
   cited_by: []
 - path: docs/identity/users/users-custom-security-attributes.md
   url: https://learn.microsoft.com/entra/identity/users/users-custom-security-attributes

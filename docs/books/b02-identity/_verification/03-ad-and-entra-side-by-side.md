@@ -92,3 +92,13 @@ New section "Security identifiers, and what replaces them" (Learn coverage gap w
 | G7 | SID history injection risk across a trust without SID filtering; `/quarantine` accepts only directly trusted domain SIDs | §Security identifiers | verified | <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts>; <https://learn.microsoft.com/windows-server/administration/windows-commands/netdom-trust> |
 | G8 | `onPremisesSecurityIdentifier` on users and groups; group `securityIdentifier` for Windows scenarios | §Security identifiers | verified | Graph user and group resource types |
 | G9 | Entra-joined device local admin by group SID of the form S-1-12-1 | §Security identifiers | verified | <https://learn.microsoft.com/entra/identity/devices/assign-local-admin>; <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-localusersandgroups> |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Covered-but-uncited Learn pages cited where the chapter already says what they say. No wording changed.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | In the old world the domain controller is the trust root (AD DS integrates sign-in authentication and access control; DCs hold and replicate the directory) | The shift in one paragraph | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview> |
+| L2 | Group Policy configures domain-joined machines; device configuration moves to a device-management service | At a glance, caveat paragraph | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/fundamentals/compare> |
+| L3 | SAML and WS-Federation reach SaaS applications through AD FS, a separate federation server | AD protocol stack | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/windows-server/identity/ad-fs/ad-fs-overview>; <https://learn.microsoft.com/entra/fundamentals/compare> |

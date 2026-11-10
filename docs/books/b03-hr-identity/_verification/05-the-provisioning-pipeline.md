@@ -123,3 +123,20 @@ New section "Provisioning to on-premises applications: retiring MIM" (entra-apps
 | E14 | Services to check, 10-20 minute readiness, test script path | §Moving a MIM connector | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-ecma-troubleshoot> |
 | E15 | Capabilities the agent doesn't use (one object type and partition; no hierarchies, full export or concurrent operations) | §Moving a MIM connector | verified | <https://learn.microsoft.com/entra/identity/app-provisioning/on-premises-custom-connector> |
 | E16 | Parallel run against a test copy until exports match | §Moving a MIM connector | restated-as-design | — |
+
+## Revision 2026-11-09 — Learn citation pass
+
+Covered-but-uncited Learn pages cited where the chapter already says what they say. No wording changed. Workday pages are cited only where the chapter names Workday or where they show a mechanism the API-driven app shares (manager DN, OU expression).
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| L1 | `/bulkUpload` answers 202 Accepted; per-record results come from the provisioning logs API | Logical architecture | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-curl-tutorial>; <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-graph-explorer> |
+| L2 | The middleware normalizes any HR export into the same SCIM payload | Why API-driven | verified (Learn read Nov 9, 2026: SCIM from an HCM system to Entra ID and AD with a predefined schema) | <https://learn.microsoft.com/entra/architecture/sync-scim> |
+| L3 | Employee ID populated before the first full sync; matching prevents duplicates | Oracle HCM source | verified (Learn read Nov 9, 2026: `employeeId` is the default matching property) | <https://learn.microsoft.com/entra/identity/app-provisioning/index-employeeid-attribute-entra-id-to-active-directory>; <https://learn.microsoft.com/entra/identity/app-provisioning/hr-intermittent-timeouts-slow-performance> |
+| L4 | With clearing attribute values (preview) enabled, an omitted or null mapped attribute can clear the target; send the complete record | Middleware | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/app-provisioning/clear-attribute-values> |
+| L5 | Inbound provisioning to AD through the agent, then the sync client projects the user to the cloud | Two landing zones | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/automate-provisioning-to-applications-introduction> |
+| L6 | An expression mapping on `parentDistinguishedName` computes the OU | Landing in AD | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/app-provisioning/functions-for-customizing-application-data>; <https://learn.microsoft.com/entra/identity/app-provisioning/workday-expression-mapping-functions-guide> |
+| L7 | AD `manager` is written as a DN reference to the already-provisioned supervisor | Landing in AD | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/app-provisioning/hr-manager-update-issues> |
+| L8 | Entra ID's provisioning service can take over MIM's on-premises application connections | Retiring MIM | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/id-governance/what-is-provisioning> |
+| L9 | A MIM Sync connector moves without rebuilding it | Moving a MIM connector | verified (Learn read Nov 9, 2026: connectors built for MIM reused without a MIM Sync deployment) | <https://learn.microsoft.com/entra/architecture/automate-provisioning-to-applications-solutions> |
+| L10 | Native HR connectors exist for Workday | Native connectors | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/id-governance/scenarios/provision-workday-to-active-directory>; <https://learn.microsoft.com/entra/id-governance/scenarios/provision-workday-to-entra> |
