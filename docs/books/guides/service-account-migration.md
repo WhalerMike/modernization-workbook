@@ -20,7 +20,7 @@ last-reviewed: 2026-11-09
 
 ::: {.callout-note}
 ## In this guide
-How to compare every kind of service identity the program will meet, choose a target for each workload, and move it there. First, how to read the guide and where its facts come from. Then a comparison of eleven kinds of service identity, on premises and in Microsoft Entra ID, and a decision path that lines up with the Non-Person Identity track's dispositions. Then three migrations, each step with Microsoft Learn's own commands: a user account used as a service to a group managed service account (gMSA), the same account to a Windows Server 2025 delegated managed service account (dMSA), and an on-premises account to a Microsoft Entra workload identity once the workload moves or gains a cloud path. Then the special cases Learn documents (containers, Microsoft Entra Domain Services, the sync agents, SQL Server, AD FS), the federal requirements and evidence for each step, dangers, rollback, a checklist and what couldn't be verified. The scripted, reviewed versions of the same work are the Non-Person Identity kit's; this guide points to them rather than repeating them.
+How to compare every kind of service identity the program will meet, choose a target for each workload, and move it there. First, how to read the guide and where its facts come from. Then a comparison of eleven kinds of service identity, on premises and in Microsoft Entra ID, and a decision path that lines up with the Non-Person Identity track's dispositions. Then three migrations, each step with Microsoft Learn's own commands: a user account used as a service to a group managed service account (gMSA), the same account to a Windows Server 2025 delegated managed service account (dMSA), and an on-premises account to a Microsoft Entra workload identity once the workload moves or gains a cloud path. Then how a workload that runs as a gMSA sends mail, on premises and to Exchange Online. Then the special cases Learn documents (containers, Microsoft Entra Domain Services, the sync agents, SQL Server, AD FS), the federal requirements and evidence for each step, dangers, rollback, a checklist and what couldn't be verified. The scripted, reviewed versions of the same work are the Non-Person Identity kit's; this guide points to them rather than repeating them.
 :::
 
 ::: {.callout-tip}
@@ -56,6 +56,11 @@ How to compare every kind of service identity the program will meet, choose a ta
 | `<graph-permission>` | One Microsoft Graph application permission, such as `User.Read.All` |
 | `<arc-server>` | The Azure Arc-enabled server's resource name (its managed identity has the same name) |
 | `<app-name>`, `<app-id>`, `<cert-file>` | An app registration's display name, its application (client) ID, and the public certificate file (`.pem`, `.cer` or `.crt`) |
+| `<sp-object-id>`, `<thumbprint>` | The object ID of the app's service principal (Enterprise applications, not App registrations), and the thumbprint of its certificate in the host's store |
+| `<shared-mailbox>`, `<other-mailbox>` | The shared mailbox the workload sends as, and any mailbox it must not send as (for the negative test) |
+| `<connector-name>`, `<exchange-server-ip>`, `<host-ips>` | A dedicated Exchange Server receive connector's name, the Exchange server address it binds to, and the IP addresses of the workload's hosts |
+| `<scope-group>`, `<scope-group-dn>`, `<scope-name>` | The mail-enabled security group that holds only `<shared-mailbox>`, its distinguished name from `Get-Group`, and the Exchange Online management scope's name |
+| `<subject>`, `<body>`, `<recipient>` | A test message's subject, text and recipient address |
 
 : Placeholders used in this guide {.striped .hover}
 
@@ -360,7 +365,7 @@ az role assignment create --assignee-object-id <principal-id> --assignee-princip
 
 Assign the identity to the Azure resource that runs the workload, then change the application to acquire tokens with the Azure Identity library or MSAL, which needs no secret.[^sam-mi-overview] A user-assigned identity outlives its resources and must be deleted explicitly, so it needs an owner like any other identity ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#managed-identities)).
 
-### C2. The workload stays on an Arc-enabled server: its system-assigned identity
+### C2. The workload stays on an Arc-enabled server: its system-assigned identity {#sam-c2}
 
 Every Arc-enabled server has a system-assigned managed identity with the server's name.[^sam-arc-identity] Only local Administrators and members of the *Hybrid agent extension applications* group can request its tokens; to let a service that runs as a gMSA use it, add the gMSA to that group on the host (as [Book 10, Appendix B](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md) does):[^sam-arc-identity]
 
@@ -380,7 +385,7 @@ New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $mi.Id -PrincipalId 
 
 For an Azure role, use C1's `az role assignment create` with `$mi.Id` as `<principal-id>`. If the identity's credential is suspected compromised, disconnect and reconnect the agent, which removes the Arc resource and its identity and creates new ones.[^sam-arc-identity]
 
-### C3. The workload stays on a host with no Arc agent: an app registration with a certificate
+### C3. The workload stays on a host with no Arc agent: an app registration with a certificate {#sam-c3}
 
 Create the app and its service principal, then add the certificate's public key; the private key stays on the host or in Azure Key Vault:[^sam-az-ad] [^sam-app-cert]
 
@@ -409,6 +414,131 @@ When the cloud identity has carried production traffic for the 30-day parallel r
 **What can't move.** Learn has no Entra identity that a service can use for Kerberos or NTLM to an on-premises resource; a workload that authenticates that way to a file share, a SQL Server login mapped to a Windows account, or a Kerberos-only application keeps its gMSA or dMSA until that resource changes ([Book 06, Chapter 09](../b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)). Those accounts carry an end date and, where they hold SPNs, an SPN owner on Chapter 06's island list.
 
 **Rollback (C).** Switch the application's configuration back to the on-premises identity, which stays enabled through the parallel run; remove the new identity's role assignments and Graph grants from the export taken before the change.
+
+## Sending mail from a gMSA workload {#mail-from-gmsa}
+
+A gMSA has no mailbox, and no password an SMTP client could type, so a workload that sent mail as a user account needs another way to send once it runs as a gMSA *(inference: a gMSA is an `msDS-GroupManagedServiceAccount` object, not a mailbox user)*. Learn shows the pattern in its own products: when Microsoft Identity Manager's services run as managed accounts, its setup asks for a different account for Exchange, because the LogonUser function doesn't work for managed accounts.[^sam-mim-gmsa] Basic-authentication SMTP AUTH to Exchange Online isn't an option either: Learn says client SMTP submission with Basic authentication is scheduled for deprecation and isn't compatible with security defaults, and it recommends High Volume Email, Azure Communication Services Email or an on-premises relay instead.[^sam-mfd] The program's [no-secrets rule](#rules) rules out a stored mailbox password in any case.
+
+Choose by where the mail server is:
+
+| Where the mail goes | Path | What authenticates | Step |
+|---|---|---|---|
+| Exchange Server on premises | A receive connector that offers Integrated Windows authentication (Kerberos), with Send As on a shared mailbox | The gMSA itself | [M1](#sam-m1) |
+| Exchange Server on premises, from a client that can't authenticate | IP-restricted anonymous internal relay | Nothing: the hosts' IP addresses | [M2](#sam-m2) |
+| Exchange Online | Microsoft Graph `sendMail`, app-only, scoped to one mailbox with RBAC for Applications | An app registration with a certificate ([C3](#sam-c3)), or on an Arc-enabled host the Arc managed identity ([C2](#sam-c2)) | [M3](#sam-m3) |
+| Learn's other options | High Volume Email (internal recipients only), Azure Communication Services Email, or hybrid relay through the on-premises servers | An HVE account, an ACS resource, or M1 or M2 | [M4](#sam-m4) |
+
+: Sending mail from a gMSA workload {.striped .hover}
+
+**Government-cloud availability**, as Learn states it (read November 11, 2026):
+
+| Option | Commercial | GCC | GCC High | DoD |
+|---|---|---|---|---|
+| Graph `sendMail`[^sam-sendmail] | Yes (global service) | Yes (global service, `graph.microsoft.com`) | Yes (US Government L4) | Yes (US Government L5) |
+| RBAC for Applications in Exchange Online[^sam-app-rbac] | Yes | Not yet specified | Not yet specified | Not yet specified |
+| SMTP relay support in Exchange Online[^sam-exo-gov] | Yes | Yes | Yes | Yes |
+| High Volume Email[^sam-hve] | Yes (Microsoft 365 Worldwide) | Not listed: Learn names Worldwide only; other clouds "under evaluation" | Not listed | Not listed |
+| Azure Communication Services Email[^sam-acs-gov] | Yes, SDK and SMTP (commercial Azure) | Yes, in commercial Azure | Azure Government: generally available through the SDK; the SMTP endpoint isn't supported | Not yet specified: the page names Azure Government without distinguishing DoD |
+
+: Mail options by cloud {.striped .hover}
+
+RBAC for Applications is the mailbox-scoping step of M3; where the cloud's availability is unconfirmed, test `Test-ServicePrincipalAuthorization` in that tenant before relying on it, and don't fall back to an unscoped `Mail.Send` grant *(risk-based recommended: the program's position, because an unscoped grant can send as any user)*.
+
+### M1. On-premises Exchange: Kerberos and Send As {#sam-m1}
+
+Exchange Server's receive connectors offer Integrated Windows authentication (`Integrated`, NTLM and Kerberos) as an authentication mechanism, and the Client usage type includes it.[^sam-rc] A dedicated connector bound to the workload's hosts keeps the change away from the default connectors. In the Exchange Management Shell, with Learn's custom-connector syntax:[^sam-rc-custom]
+
+```powershell
+New-ReceiveConnector -Name "<connector-name>" -TransportRole FrontendTransport -Custom -Bindings <exchange-server-ip>:587 -RemoteIPRanges <host-ips> -AuthMechanism Tls,Integrated -PermissionGroups ExchangeUsers
+Get-ReceiveConnector -Identity "<connector-name>" | Format-List Enabled,TransportRole,Bindings,RemoteIPRanges,AuthMechanism,PermissionGroups
+```
+
+**Expected:** `AuthMechanism` `Tls, Integrated`, `PermissionGroups` `ExchangeUsers`, and only the workload's hosts in `RemoteIPRanges`.
+
+Send from a shared mailbox, never a person's. Exchange needs Send As to send from another mailbox,[^sam-sendas-ts] granted with Learn's command and read back:[^sam-sendas]
+
+```powershell
+Add-ADPermission -Identity "<shared-mailbox>" -User "<DOMAIN>\<gmsa-name>$" -AccessRights ExtendedRight -ExtendedRights "Send As"
+Get-ADPermission -Identity "<shared-mailbox>" | where {$_.ExtendedRights -like 'Send*'} | Format-Table -Auto User,Deny,ExtendedRights
+```
+
+**Expected:** `<DOMAIN>\<gmsa-name>$` listed with `Send-As`, `Deny` `False`. Point the application's SMTP settings at `<exchange-server-ip>`, port 587, with STARTTLS and the process's own Windows credentials, and `<shared-mailbox>`'s address as the sender. Whether the application's mail library can authenticate with the process's credentials is the application's; check it with its vendor before the switch ([What couldn't be verified](#what-couldnt-be-verified)).
+
+**Rollback (M1).** `Remove-ADPermission -Identity "<shared-mailbox>" -User "<DOMAIN>\<gmsa-name>$" -ExtendedRights "Send As"` and `Remove-ReceiveConnector -Identity "<connector-name>"`, then the application's previous mail settings.
+
+### M2. On-premises Exchange: anonymous internal relay {#sam-m2}
+
+For a workload whose mail client can't authenticate, Learn's pattern is a dedicated Front End Transport connector that accepts anonymous relay only from listed IP addresses, never the default connectors and never open relay.[^sam-relay] Learn gives two ways to grant the permissions; this guide uses the anonymous one, which grants the minimum *(risk-based recommended: the externally secured method treats the hosts as fully trusted internal senders and bypasses antispam)*:[^sam-relay]
+
+```powershell
+New-ReceiveConnector -Name "<connector-name>" -TransportRole FrontendTransport -Custom -Bindings <exchange-server-ip>:25 -RemoteIpRanges <host-ips>
+Set-ReceiveConnector "<connector-name>" -PermissionGroups AnonymousUsers
+Get-ReceiveConnector "<connector-name>" | Add-ADPermission -User "NT AUTHORITY\ANONYMOUS LOGON" -ExtendedRights "Ms-Exch-SMTP-Accept-Any-Recipient"
+Get-ADPermission "<connector-name>" -User "NT AUTHORITY\ANONYMOUS LOGON" | where {($_.Deny -eq $false) -and ($_.IsInherited -eq $false)} | Format-Table User,ExtendedRights
+```
+
+**Expected:** only the workload's hosts in `RemoteIpRanges`, and `ANONYMOUS LOGON` holding `Ms-Exch-SMTP-Accept-Any-Recipient`. The relay identifies nothing but an IP address, so it is the weakest path here; record each host's address in the identity's record and review the connector's range with the identity *(design guidance)*.
+
+**Rollback (M2).** `Remove-ReceiveConnector -Identity "<connector-name>"`.
+
+### M3. Exchange Online: Graph sendMail scoped to one mailbox {#sam-m3}
+
+A gMSA can't sign in to Exchange Online, so the workload sends as a Microsoft Entra workload identity: the app registration with a certificate from [C3](#sam-c3), or on an Arc-enabled host the Arc managed identity from [C2](#sam-c2). Graph `sendMail` sends a message from a mailbox and needs the `Mail.Send` application permission.[^sam-sendmail] RBAC for Applications in Exchange Online grants that permission with a resource scope, so the identity can send only as the mailboxes in scope; it replaces Application Access Policies.[^sam-app-rbac]
+
+Don't consent `Mail.Send` to the identity in Microsoft Entra ID. Learn says the two grants are a union, so an unscoped Entra grant beside a scoped Exchange grant leaves no effective scoping.[^sam-app-rbac] Read the identity's service principal (as a Global Reader or Application Administrator in Microsoft Graph PowerShell):
+
+```powershell
+Connect-MgGraph -TenantId <tenant-id> -Scopes 'Application.Read.All'
+$sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+$sp | Select-Object DisplayName, AppId, Id
+Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | Select-Object ResourceDisplayName, AppRoleId
+```
+
+**Expected:** no Microsoft Graph app role assignment for `Mail.Send`. For the Arc identity, use `-Filter "displayName eq '<arc-server>'"`; its `AppId` and `Id` go in the commands below.
+
+Then, as a member of Organization Management in Exchange Online (Learn's requirement, with Exchange Administrator in Entra ID), scope the grant to a mail-enabled security group that holds only the sending shared mailbox; Learn's scope filter is `MemberOfGroup` with the group's distinguished name, and nested members are out of scope:[^sam-app-rbac]
+
+```powershell
+Connect-ExchangeOnline
+New-DistributionGroup -Name "<scope-group>" -Type Security -Members "<shared-mailbox>"
+Get-Group -Identity "<scope-group>" | Format-List Name,DistinguishedName
+New-ServicePrincipal -AppId <app-id> -ObjectId <sp-object-id> -DisplayName "<app-name>"
+New-ManagementScope -Name "<scope-name>" -RecipientRestrictionFilter "MemberOfGroup -eq '<scope-group-dn>'"
+New-ManagementRoleAssignment -App <sp-object-id> -Role "Application Mail.Send" -CustomResourceScope "<scope-name>"
+Test-ServicePrincipalAuthorization -Identity <sp-object-id> -Resource <shared-mailbox>
+Test-ServicePrincipalAuthorization -Identity <sp-object-id> -Resource <other-mailbox>
+```
+
+In GCC High, connect with `Connect-ExchangeOnline -ExchangeEnvironmentName O365USGovGCCHigh`, and in DoD with `-ExchangeEnvironmentName O365USGovDoD`.[^sam-exo-connect] `<sp-object-id>` is the `Id` from the read above; Learn warns not to take the IDs from the App registrations page.[^sam-app-rbac]
+
+**Expected:** `Application Mail.Send` with `InScope` `True` for `<shared-mailbox>` and `False` for `<other-mailbox>`. A change can take 30 minutes to 2 hours to reach a running app, though the test cmdlet bypasses that cache.[^sam-app-rbac]
+
+Send, on the host, as the app with its certificate in the machine's store (Learn's `Send-MgUserMail` sample, sending as the shared mailbox):[^sam-sendmail] [^sam-mg-connect]
+
+```powershell
+Connect-MgGraph -ClientId <app-id> -TenantId <tenant-id> -CertificateThumbprint <thumbprint>
+$params = @{
+  message = @{
+    subject = "<subject>"
+    body = @{ contentType = "Text"; content = "<body>" }
+    toRecipients = @( @{ emailAddress = @{ address = "<recipient>" } } )
+  }
+  saveToSentItems = "false"
+}
+Send-MgUserMail -UserId <shared-mailbox> -BodyParameter $params
+```
+
+In GCC High add `-Environment USGov` to `Connect-MgGraph`, and in DoD `-Environment USGovDoD`.[^sam-mg-connect] **Expected:** no error; Graph returns `202 Accepted`, which means accepted, not delivered, so confirm the message in the recipient's mailbox or in message trace.[^sam-sendmail] The same call with `-UserId <other-mailbox>` must fail.
+
+On an Arc-enabled host, the workload gets its Graph token from the Arc agent's local endpoint as C2 describes (only local Administrators and the *Hybrid agent extension applications* group can request it) and calls `POST /users/<shared-mailbox>/sendMail` with the same body; no certificate is involved.[^sam-arc-identity]
+
+**Rollback (M3).** `Remove-ManagementRoleAssignment` on the assignment `Get-ManagementRoleAssignment -RoleAssignee <sp-object-id>` lists, then `Remove-ManagementScope -Identity "<scope-name>"`; the app stays, with nothing to send as.
+
+### M4. Learn's other options {#sam-m4}
+
+- **High Volume Email** sends from dedicated HVE accounts to internal recipients only, at most 50 recipients a message, with OAuth recommended; Learn lists it for Microsoft 365 Worldwide only.[^sam-hve] It doesn't serve a GCC, GCC High or DoD tenant today.
+- **Azure Communication Services Email** sends to internal and external recipients from a verified domain.[^sam-mfd] In Azure Government it is generally available through the SDK, and its SMTP endpoint isn't supported.[^sam-acs-gov] It brings its own resource, connection and identity to govern, and it sends from outside Exchange Online, so its mail isn't in the tenant's message trace.
+- **Hybrid relay.** A workload that keeps sending to the on-premises servers (M1 or M2) reaches Exchange Online mailboxes through the hybrid mail flow while the on-premises servers remain; when they retire, the workload moves to M3.
 
 ## Special cases Learn documents {#special-cases}
 
@@ -441,10 +571,73 @@ The mapping reuses the Non-Person Identity guide's [Evidence](non-person-identit
 | C1 to C4 Cloud identity | The workload authenticates as itself with no secret, with scoped permissions | IA-9 Service Identification and Authentication (tailored in); IA-5; AC-6 | None for IA-9 (no indicator lists it); KSI-IAM-SNU; KSI-IAM-ELP | Chapter 05's plan and apply manifests; Graph grants and role assignments; the service principal sign-in log |
 | A7, C5 Retire | The old identity is disabled, then deleted only through the decommission process | AC-2; AC-2(3) | KSI-IAM-SNU; KSI-IAM-AAM | The decommission ticket; Chapter 06's `reconciliation.json` |
 | Island | Every account that stays on Kerberos has an end date and, where it has SPNs, an owner | CM-8; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | Chapter 06's `island-list.csv` |
+| M1 to M4 Mail | The workload sends as one shared mailbox, through a connector limited to its hosts or a grant scoped to that mailbox, with no stored password | AC-6; IA-5; IA-9 (tailored in) | KSI-IAM-ELP; KSI-IAM-SNU | `Get-ReceiveConnector` and `Get-ADPermission` output (M1, M2); `Get-ManagementRoleAssignment` and both `Test-ServicePrincipalAuthorization` results (M3); the test message's trace; the service principal sign-in log |
 
 : Federal requirements and KSIs, by step {.striped .hover}
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which evidence supports which indicator is the program's mapping (design guidance), as in the Non-Person Identity guide. The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)).
+
+**Evidence checklist** <!-- Book 00, Appendix D -->
+
+- [ ] **Configuration:** `Get-ADServiceAccount` output for each new gMSA or dMSA; Chapter 06's approved plans and apply manifests; Chapter 05's plans for cloud identities; for mail, the connector, Send As and RBAC for Applications reads (M1 to M3)
+- [ ] **Operational:** the old account's logons stopping on the domain controllers during the 30 days (A6); Kerberos events 307 to 309 (B2); the service principal sign-in log (C, M3); message trace for the test message
+- [ ] **Test:** `Test-ADServiceAccount` `True` per host (A4); `sc.exe qmanagedaccount` `TRUE` and the end-to-end application test (A5, A6); both `Test-ServicePrincipalAuthorization` results and the refused send as `<other-mailbox>` (M3); each with date and tester
+- [ ] **Exception:** Chapter 06's island list with end dates and SPN owners; `KeepKerberos` dispositions with the authorizing official's acceptance; any anonymous relay range (M2) with its owner
+- [ ] **Assessor-ready artifact:** the Non-Person Identity guide's [evidence](non-person-identity-implementation.md#evidence) package with this account's rows, and a closure-chain entry for any assessment finding ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain))
+
+## Control states, change safety and assessment mapping {#sam-control-states}
+
+The workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)) applied to the migrations. Each row points to the step that already holds it.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The decision path](#decision-path) and the account's Chapter 03 disposition | `decisions.json` and its manifest; the owners and sponsor on the record |
+| Configured | A3, B1, C1 to C4 and M1 to M3: the new identity exists with its retrievers, role or grant | `Get-ADServiceAccount` output; Chapter 05 and 06 apply manifests; the RBAC for Applications assignment |
+| Enforced | A5 (the workload runs as the gMSA), B3 (migration completed), A7 and C5 (the old identity disabled) | `sc.exe qmanagedaccount` `TRUE`; `Get-ADUser` showing `Enabled` `False`; `msDS-DelegatedMSAState` `2` |
+| Evidenced | A4, A6 and M3's tests | `Test-ADServiceAccount` per host; the end-to-end test; `Test-ServicePrincipalAuthorization`; the test message |
+| Operated | The track's lifecycle ([Non-Person Identity guide, Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)) and Chapter 06's reconciliation and island list | Owner reviews; reconciliation runs; island list end dates |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** <!-- Book 00, Appendix D: How-section template -->
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | A2 (KDS root key), Migration B's limits, Migration C's order of preference, the [mail availability table](#mail-from-gmsa) |
+| Pilot | The first account on each path runs in the test domain, then one low-risk production workload before a wave *(design guidance, from [the program's rules](#rules): hand runs only in a test domain or under an approved change record)* |
+| Report-only or audit phase | The 30-day parallel run (A6) with the old account enabled; a dMSA in state `1` (B2); for mail, `Test-ServicePrincipalAuthorization` before any send (M3) |
+| Enforcement | A5 in one change window; B3's completion; A7's disable |
+| Rollback | Rollback (A), (B), (C) and (M1) to (M3) |
+| Exclusions | `Keep` and `KeepKerberos` dispositions on the island list; emergency access: not applicable, because no step restricts interactive sign-in, and the cloud-only emergency accounts are never in a service-account wave |
+| Telemetry | The old account's domain controller logons (A6); Kerberos events 307 to 309 (B2); Event 4004 (A2); the service principal sign-in log (C, M3); message trace (M) |
+| Evidence | [Federal requirements and evidence](#evidence), ending in the evidence checklist |
+| Day-two ownership | The two named owners and the sponsor ([the rules](#rules)); the lifecycle in the Non-Person Identity guide's Step 6; [Book 15](../b15-day2-operations/index.md) for the support path |
+
+: Where each How subsection lives {.striped .hover}
+
+**Change safety** <!-- Book 00, Appendix D -->
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The test domain and test tenant | Each path's commands run clean; Chapter 06's Lab 2 |
+| 1 | One low-risk production workload per path | A clean 30-day parallel run; the end-to-end test passes |
+| 2 | Waves by application owner | Every workload in the wave switched and verified; no old-account logons for 30 days |
+| 3 | The remainder, and the island list's end dates | Every account dispositioned; the island list reviewed |
+
+- **Emergency access:** not applicable; no step blocks or restricts an interactive sign-in.
+- **Change window:** A5's switch, B3's completion and M1 to M3's grants each go through an approved change record ([the rules](#rules)), with the application owner on hand to run the end-to-end test.
+- **Backout triggers:** set before the change *(design guidance)*: the service fails to start or the application's test fails; Kerberos errors to the service after the SPN move; the old account still logging on from a host not on the record; a send refused for `<shared-mailbox>` or allowed for `<other-mailbox>`.
+- **Post-change validation:** A4 and A6's tests on every host after each ring; M3's two authorization tests and the test message.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity (workload identities)
+- **CISA ZTMM pillar:** Identity; Applications and Workloads
+- **Depends on:** Infrastructure (the Arc agent for C2, [Arc track guide](arc-track-implementation.md)); the credential rules and least privilege of the [Non-Person Identity guide](non-person-identity-implementation.md#step-3-set-the-credential-rules); privileged groups kept out ([privileged access guide](privileged-access-implementation.md))
+- **Attack chain interrupted:** Credential Access (Kerberoasting of service account passwords, passwords kept in configuration files), Persistence and Lateral Movement (a long-lived password usable from any host)
+:::
 
 ## Dangers and how to avoid them {#dangers}
 
@@ -462,6 +655,8 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | A client secret on the new app registration | A password in a configuration file again | Managed identity, then federation, then a certificate; the application management policy ([Non-Person Identity guide, Step 3](non-person-identity-implementation.md#step-3-set-the-credential-rules)) |
 | A non-domain-joined container host's portable user account | A stored domain password reappears | Domain-joined hosts until the program decides (question below) |
 | A gMSA left behind at program G5 | The workload loses its credential when the last domain controller is demoted | Chapter 06's reconciliation and island list |
+| A mail workload given `Mail.Send` in Microsoft Entra ID | The identity can send as any mailbox in the tenant; a scope in Exchange doesn't narrow it, because the grants are a union | No Entra consent; RBAC for Applications only, with the negative `Test-ServicePrincipalAuthorization` (M3) |
+| An anonymous relay connector with a wide IP range | Anything in the range can send as anyone in the organization | The workload's hosts only; reviewed with the identity (M2) |
 
 : Dangers {.striped .hover}
 
@@ -477,6 +672,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] Every old account was disabled, not deleted, and has a decommission record.
 - [ ] Every cloud identity uses a managed identity, a federated credential or a certificate, never a secret, with only the permissions its workload calls.
 - [ ] Every account that stays on Kerberos is on Chapter 06's island list with an end date.
+- [ ] Every gMSA workload that sends mail sends as one shared mailbox: through Kerberos and Send As or a host-limited relay on premises, or through Graph with an RBAC for Applications scope in Exchange Online, never a stored password or basic-auth SMTP AUTH.
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
@@ -484,6 +680,9 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - **The IIS application pool step** combines Learn's IIS PowerShell sample, which sets a user and password, with the blank password of Learn's move-to-gMSA step; Learn has no page that shows a gMSA application pool end to end.
 - **`sc.exe config` with `password= ""`.** The `sc.exe config` reference says a password is required for an account other than LocalSystem, while the Service Control Manager's API reference says the password must be NULL for a managed service account. The step verifies the outcome with `sc.exe qmanagedaccount`, which must report `TRUE`.
 - **The gMSA name length.** Learn's gMSA pages don't state a maximum name length; keep names short and test the create in the test domain.
+- **A gMSA on an Integrated Windows authentication receive connector (M1).** Learn documents the connector's Kerberos mechanism and the Send As permission, but no page shows a gMSA submitting SMTP end to end, and whether a given application's mail library authenticates with its process's credentials is the application's. Test M1 in the test domain before the switch.
+- **Graph tokens on an Arc-enabled host (M3).** The Arc page documents the local token endpoint; no page read shows `Connect-MgGraph -Identity` against an Arc agent, so the step calls the endpoint as C2 describes rather than giving a PowerShell connection.
+- **RBAC for Applications, High Volume Email and Azure Communication Services Email in the US Government clouds.** The RBAC for Applications page names no cloud; High Volume Email lists Microsoft 365 Worldwide only; ACS Email's government page names Azure Government without distinguishing DoD (read November 11, 2026). The [availability table](#mail-from-gmsa) says "not yet specified" or "not listed" where Learn does.
 - **Government-cloud availability of managed identities** isn't stated on the managed identity pages read; the Graph federated credential APIs list L4 and L5 (Chapter 05's verified facts), and Workload ID Premium is available in Azure Government through the account manager ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 
 ## Questions for the program owner {#questions}
@@ -544,4 +743,18 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-wif]: Microsoft Learn, "Workload identity federation," <https://learn.microsoft.com/entra/workload-id/workload-identity-federation> (accessed Nov 9, 2026).
 [^sam-wif-create]: Microsoft Learn, "Configure an app to trust an external identity provider," Azure CLI, <https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust> (accessed Nov 9, 2026).
 [^sam-az-ad]: Microsoft Learn, Azure CLI reference, "az ad app" (`create`, `--sign-in-audience`, `credential reset --cert --append`), <https://learn.microsoft.com/cli/azure/ad/app>, and "az ad sp" (`create --id`), <https://learn.microsoft.com/cli/azure/ad/sp> (accessed Nov 9, 2026).
+[^sam-mim-gmsa]: Microsoft Learn, "Convert Microsoft Identity Manager-specific services to use group Managed Service Accounts," Microsoft Identity Manager Service (a different user for Exchange for managed accounts; the LogonUser function doesn't work for managed accounts), <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016-gmsa> (accessed Nov 11, 2026).
+[^sam-mfd]: Microsoft Learn, "How to set up a multifunction device or application to send email using Microsoft 365 or Office 365," client SMTP submission (Basic authentication scheduled for deprecation; not compatible with security defaults; High Volume Email, Azure Communication Services Email, or an on-premises server with anonymous relay instead), <https://learn.microsoft.com/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365>, and "Deprecation of Basic authentication in Exchange Online," POP, IMAP, and SMTP AUTH (retirement of Basic authentication for SMTP AUTH announced; Graph as an alternative), <https://learn.microsoft.com/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online> (both accessed Nov 11, 2026).
+[^sam-sendmail]: Microsoft Learn, "user: sendMail" (Graph v1.0; global service, US Government L4 and L5; `Mail.Send` application permission; `202 Accepted` doesn't mean delivered; PowerShell `Send-MgUserMail` sample), <https://learn.microsoft.com/graph/api/user-sendmail?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^sam-app-rbac]: Microsoft Learn, "Role Based Access Control for Applications in Exchange Online" (replaces Application Access Policies; Organization Management and Exchange Administrator; `New-ServicePrincipal`, `New-ManagementScope`, `New-ManagementRoleAssignment -App -Role "Application Mail.Send" -CustomResourceScope`, `Test-ServicePrincipalAuthorization`; Entra and Exchange grants are a union; `MemberOfGroup` scopes, nested members out of scope; cache of 30 minutes to 2 hours; no cloud availability stated), <https://learn.microsoft.com/exchange/permissions-exo/application-rbac> (accessed Nov 11, 2026).
+[^sam-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features (SMTP relay support: GCC, GCC High, DoD), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
+[^sam-hve]: Microsoft Learn, "Manage High Volume Email for Microsoft 365" (internal recipients only; 50 recipients per message; OAuth recommended; supported in Microsoft 365 Worldwide, other cloud environments under evaluation), <https://learn.microsoft.com/exchange/mail-flow-best-practices/high-volume-mails-m365> (accessed Nov 11, 2026).
+[^sam-acs-gov]: Microsoft Learn, "Azure Communication Services for US Government" (Email generally available in Azure Government through SDK-based integration; SMTP endpoint not supported in Azure US Government cloud), <https://learn.microsoft.com/azure/communication-services/concepts/government> (accessed Nov 11, 2026).
+[^sam-rc]: Microsoft Learn, "Receive connectors in Exchange Server," usage types (Client includes `Integrated`), authentication mechanisms (`Integrated`: NTLM and Kerberos), permission groups (`ExchangeUsers`: authenticated users, with submit and relay), <https://learn.microsoft.com/exchange/mail-flow/connectors/receive-connectors> (accessed Nov 11, 2026).
+[^sam-rc-custom]: Microsoft Learn, "Scenarios for custom Receive connectors in Exchange Server," scenario 3 (`New-ReceiveConnector -Custom -Bindings -RemoteIPRanges -AuthMechanism -PermissionGroups`), <https://learn.microsoft.com/exchange/mail-flow/connectors/custom-receive-connectors> (accessed Nov 11, 2026).
+[^sam-sendas-ts]: Microsoft Learn, "Can't send an email message when Full Access permission is granted to a shared mailbox in Exchange Server" (Exchange requires Send As to send from a shared mailbox), <https://learn.microsoft.com/troubleshoot/exchange/mailflow/cannot-send-email-with-full-access> (accessed Nov 11, 2026).
+[^sam-sendas]: Microsoft Learn, "Manage permissions for recipients," use the Exchange Management Shell to assign the Send As permission (`Add-ADPermission -ExtendedRights "Send As"`; verify with `Get-ADPermission`), <https://learn.microsoft.com/exchange/recipients/mailbox-permissions> (accessed Nov 11, 2026).
+[^sam-relay]: Microsoft Learn, "Allow anonymous relay on Exchange servers" (Exchange Server 2016, 2019 and Subscription Edition; a dedicated Front End Transport connector limited to listed hosts; the anonymous and externally secured methods compared; commands and verification), <https://learn.microsoft.com/exchange/mail-flow/connectors/allow-anonymous-relay> (accessed Nov 11, 2026).
+[^sam-exo-connect]: Microsoft Learn, "Connect to Exchange Online PowerShell," step 2 (`-ExchangeEnvironmentName O365USGovGCCHigh` and `O365USGovDoD`; none needed for GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
+[^sam-mg-connect]: Microsoft Learn, "Connect-MgGraph" (app-only with `-CertificateThumbprint`; `-Environment USGov` and `USGovDoD`), <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph>, and "Authentication module cmdlets in Microsoft Graph PowerShell," app-only access (certificate from the current user's or local machine's store), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (both accessed Nov 11, 2026).
 [^sam-agent]: Microsoft Learn, "Agent identities in Microsoft Entra Agent ID," <https://learn.microsoft.com/entra/agent-id/agent-identities>, and "Microsoft Entra Agent ID key concepts," <https://learn.microsoft.com/entra/agent-id/key-concepts> (accessed Nov 9, 2026).

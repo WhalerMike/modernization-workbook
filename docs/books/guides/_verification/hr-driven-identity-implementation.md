@@ -76,3 +76,19 @@ FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/
 - Temporary Access Pass and the LCW TAP task in Azure Government: no row in the availability table.
 - Whether a GCC tenant's custom task extension can call a Logic App in an Azure Government subscription.
 - Tenant behavior of any step; the kit checks are fixture-tested.
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied the conventions of Book 00, Appendix D (`docs/books/b00-orientation/appendix-d-control-states-and-evidence.md`) to this procedure guide, as the smallest coherent addition:
+
+| Convention | Where | What was added |
+|---|---|---|
+| G-01 control states | `#hrd-control-states` | The five states mapped to the guide's gates, with the evidence for each, and the ready-for-closure sentence |
+| G-02 How template | `#hrd-control-states` | A coverage table pointing each subsection to where the guide already covers it; exclusions name the emergency access accounts |
+| G-06 evidence checklist | the five-kind evidence checklist appended to **Evidence** | Five kinds: configuration, operational, test, exception, assessor-ready artifact |
+| G-07 change safety | `#hrd-control-states` | Rings adapted from the guide's pilot and waves, emergency access, change window, backout triggers *(design guidance)*, post-change validation |
+| G-08 assessment mapping | `#hrd-assessment-mapping` | Microsoft and CISA pillars, dependencies, attack chain interrupted |
+
+**G-05 musts relabeled.** None. The remaining *must* and *required* are product constraints (a CRL must download within 10 seconds), BOD 25-01 required configurations (a mandate, kept), the binding affinity setting's name, or descriptive.
+
+**G-03 re-verification.** None. Every statement in the new section is carried from the guide's own gates, Evidence and Rollback, the pipeline guide's shadow mode, or the privileged access guide's G2; no new product, licensing or government-cloud claim was added, so no Learn page was re-read. The guide's product claims keep their footnoted read date (November 1, 2026).

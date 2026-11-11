@@ -23,3 +23,9 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Microsoft Entra Connect Provisioning Agent: Version release history | https://learn.microsoft.com/entra/identity/app-provisioning/provisioning-agent-release-version-history | November 9, 2026 | Lifecycle Workflows table, Synced AD users: agent version 1.1.1586.0 (May 13, 2024) |
 | Troubleshoot HR manager update issues with HR user provisioning | https://learn.microsoft.com/entra/identity/app-provisioning/hr-manager-update-issues | November 9, 2026 | Mapping table, Manager row: AD `manager` holds the manager's distinguished name (page written for Workday and SAP SuccessFactors) |
 | Reference for writing expressions for attribute mappings in Microsoft Entra ID | https://learn.microsoft.com/entra/identity/app-provisioning/functions-for-customizing-application-data | November 9, 2026 | Mapping notes: `FormatDateTime` converts the ISO dates in the AD app's mapping expression |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Added the section `#hcm-control-states` under Book 00, Appendix D's conventions: control states (G-01), How-template coverage (G-02), change safety (G-07), the evidence checklist (G-06) and the assessment-mapping block (G-08), drawn from HCM pipeline: phases 0–6, Parts 1–4, Testing and cutover, Gate G1. The section makes no new product, licensing or availability claim: every row points to text already on the page and footnoted, with the access dates in this log; rings, backout triggers and the emergency-access rule are labelled *(design guidance)*.
+
+Authority labels (G-05): every "must", "shall" and "required" on the page was read. None was relabelled: each is a product constraint from its cited source, a quoted passage, a condition, or a mandate that names its authority (for the SD-WAN guide, CISA ED 26-03). No fact was re-verified, because none was added or changed.

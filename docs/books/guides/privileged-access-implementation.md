@@ -180,7 +180,7 @@ This is the one step that can't move. Learn documents the lockout: every Global 
 
 **Steps.**
 
-1. **Build the accounts to Learn's standard,** which Book 04 adopts: two or more cloud-only accounts on `*.onmicrosoft.com`, neither synchronized nor federated; a passkey (FIDO2) or certificate-based authentication, different from the normal administrators' methods; Global Administrator assigned active and permanent in PIM; credentials that don't expire.[^pag-emergency] Book 04 adds dual custody and a post-use review ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts)).
+1. **Build the accounts to Learn's standard,** which Book 04 adopts: two or more cloud-only accounts on `*.onmicrosoft.com`, neither synchronized nor federated; a passkey (FIDO2) or certificate-based authentication, different from the normal administrators' methods; Global Administrator assigned active and permanent in PIM; credentials that don't expire.[^pag-emergency] Book 04 adds dual custody and a post-use review ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts)), and its [reference architecture](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture) sets out the accounts, credentials, custody, exclusion group, monitoring and drill as one design, with the rules that keep the exclusion group to the two accounts.
 2. **Exclude them through one group** from every Conditional Access policy that blocks or restricts sign-in. Nobody else goes in that group: everyone in it skips every policy.
 3. **Alert on any use.** Learn's sample alert watches interactive sign-ins only. Add the non-interactive sign-in table and the audit log, matched by object ID, never by name. Learn says new FIDO2 sign-ins that get a refresh token are logged as non-interactive.[^pag-noninteractive] Deploy the alert from the reviewed template at severity 0, any result fires ([Chapter 02, the alert](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#the-alert)).
 4. **Drill at least every 90 days.** Sign in, do an administrative task against the current Conditional Access set, record it in `emergency-validations.csv` with a ticket, and tell security operations first.
@@ -227,7 +227,7 @@ This is the one step that can't move. Learn documents the lockout: every Global 
 
 Book 04's Wave 2 is the administrator set of six policies: CA003 (phishing-resistant MFA by group and by role), CA004 (compliant device), CA005 (trusted networks), CA025 (PAW only), CA026 (server and Arc administration) and CA027 (Azure management for operators only). The kit holds five of them; CA026 isn't a file yet. Its activation gate is context `c1` and the policy `PIM-Activation-c1`, which asks again for the strength and a compliant device at the moment of elevation ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators); [Chapter 08, Step 2](../b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)).
 
-**Prerequisites.** Gate G2 passed, and one emergency account signed in. Every administrator has at least one phishing-resistant method registered (plan task A1.2): Learn warns that enforcing first risks locking you out.[^pag-admin-phish]
+**Prerequisites.** Gate G2 passed, and one emergency account signed in. Every administrator has at least one phishing-resistant method registered (plan task A1.2): Learn warns that enforcing first risks locking you out.[^pag-admin-phish] [Book 04, Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md) holds the runbooks for that registration: the [bootstrap](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-bootstrap) with a Temporary Access Pass, [recovery of a lost authenticator](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-recovery-and-a-lost-authenticator), and the [registration coverage](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-metrics) to read before CA003 is enforced. Emergency access accounts are outside those runbooks ([where the runbooks stop](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-where-the-runbooks-stop)).
 
 **Steps.**
 
@@ -569,6 +569,14 @@ Each gate's table names what the ISSO keeps. Together they make one file:
 
 Every control named is in the NIST SP 800-53B Moderate baseline.[^pag-moderate] AC-2(7) isn't, and an agency that tailors it in can point to the same rows ([Chapter 01](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#federal-requirements-and-evidence)). OMB M-22-09 asks agencies to move toward more granular, dynamically defined permissions; time-bound privilege is the program's choice, not its mandate ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#federal-requirements-and-evidence)). Book 04's [assessment evidence](../b04-access/08-pim-self-request-with-approval.md#assessment-evidence) and [control mapping](../b04-access/08-pim-self-request-with-approval.md#control-mapping-fedramp-moderate) carry the rest. File every check run with its date, tenant and kit version.
 
+**Evidence checklist** <!-- Book 00, Appendix D -->
+
+- [ ] **Configuration:** the policy, role, group, Azure and review files in the repository, with each apply's `plan.json` and `manifest.json` (G3 to G7)
+- [ ] **Operational:** the scheduled runs, drift reports and PIM audit reads in the chained packages, kept for the plan's 365-day retention (G8)
+- [ ] **Test:** the emergency drill records (G2), the report-only sign-in review (G3), Book 04's validation tests 1 to 12 with expected and observed results, date and tester (G4), and each Validate step's check run
+- [ ] **Exception:** `exceptions.csv` (emergency accounts and service principals that can't activate), D-A7's time-bound PAW exclusion group, and the authorizing official's acceptance of residual standing privilege (G1, G3, G8)
+- [ ] **Assessor-ready artifact:** the period package that `pa_evidence.py period` assembles, traceable to the four above, and a closure-chain entry for each assessment finding ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain))
+
 ## Rollback
 
 | Gate | Rollback |
@@ -583,6 +591,60 @@ Every control named is in the NIST SP 800-53B Moderate baseline.[^pag-moderate] 
 | G8 Evidence and drift | Standing loop: close each drift at the source |
 
 : Rollback by gate {.striped .hover}
+
+## Control states, change safety and assessment mapping {#pag-control-states}
+
+The workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)) applied to the eight gates. Each row points to the gate that already holds the step.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Prerequisites](#prerequisites): decisions D-A1 to D-A7; the tiers in [the track at a glance](#the-track-at-a-glance) | The decision records in the [plan](../../project-plans/privileged-access.md#decision-points); `config/tiers.json` |
+| Configured | G3 policies created report-only; G4 to G7 files planned as dry runs | The policy, role, group, Azure and review files with their commits; `plan.json` |
+| Enforced | G3 enforced ring by ring and `PIM-Activation-c1` On; G4 standing assignments converted wave by wave; G5 and G6 applied; G7 series running | The enforcing state in the tenant (policies **On**, eligible not active) with an empty `diff.csv` or `diff-after.txt`; `exceptions.csv` |
+| Evidenced | Each gate's **Validate**; G2's drill; Book 04's validation tests | Check runs with no Finding; drill tickets and the alert's firing; test results |
+| Operated | [G7](#step-7-review-every-privileged-role-and-group) and [G8](#step-8-keep-evidence-and-drift-on-a-schedule) | Review series and decisions; scheduled runs, drift reports, incident records for Tier 0 drift; owner: the CISO, with the identity governance officer for reviews |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** <!-- Book 00, Appendix D: How-section template -->
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | [Prerequisites](#prerequisites), with each gate's own **Prerequisites** and **Government-cloud availability** |
+| Pilot | Tier 1 is the pilot class (D-A5); Tier 0 follows once the pilot matches its files ([the track at a glance](#the-track-at-a-glance)) |
+| Report-only or audit phase | G3 steps 3 and 4 (every policy report-only, a week of sign-in results read); every G4 to G7 run is a dry run before `-Apply` |
+| Enforcement | G3 step 5 (`-AllowEnforce`, ring by ring); G4 steps 3 to 5 (waves); G6 step 3 (eligible first, removal last) |
+| Rollback | Each gate's **Rollback**, and [Rollback by gate](#rollback) |
+| Exclusions | G2's one emergency access group, built to Book 04's [reference architecture](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture); `exceptions.csv` (G1); D-A7's time-bound PAW exclusion (G3 interim path) |
+| Telemetry | G2's alert on the emergency accounts; the PIM alerts (G4, G8 step 7); the PIM audit read and drift comparison (G8) |
+| Evidence | [Evidence](#evidence), ending in the evidence checklist |
+| Day-two ownership | G7 and G8; the CISO owns the gates, the identity governance officer the reviews; help-desk and cadence in [Book 15](../b15-day2-operations/index.md) |
+
+: Where each How subsection lives {.striped .hover}
+
+**Change safety** <!-- Book 00, Appendix D -->
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The identity engineers' own administrator accounts, in the test tenant first ([Chapter 09](../../project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md)) | Every Validate clean; an emergency sign-in succeeds before and after |
+| 1 | Tier 1, the pilot class (D-A5) | A week of report-only results read; Book 04's tests 1 to 12 pass for the class; an empty `diff.csv` |
+| 2 | Tier 0 | The same, with approvers named and tested and a second emergency sign-in after enforcement |
+| 3 | Tier 2, read-only roles, and Azure scopes (G6) | Every governed scope applied, `diff-after.txt` empty, no standing human assignment outside an exception |
+
+- **Emergency access:** the one group from G2 is excluded from every enforced policy; PA-EA-08 and VK-CA-01 check the exclusion, and an emergency sign-in is tested before and after each enforcement (plan task A2.6).
+- **Change window:** each enforcement and each wave is its own change under Book 04's [change control](../b04-access/10-access-as-code-and-evidence.md#change-control), approved by the CISO, with an identity engineer and a holder of an emergency credential on hand *(design guidance)*.
+- **Backout triggers:** set before the change *(design guidance)*: an emergency sign-in that fails; an administrator in the ring who can't activate; a Tier 0 approval request with no approver able to act; an unexpected entry in `verify.csv` or `diff-after.txt`.
+- **Post-change validation:** the gate's **Validate** and Book 04's validation tests after each ring; the dry run shows NoChange.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices (compliant devices and PAWs for CA004 and CA025, [Intune track guide](intune-track-implementation.md)); phishing-resistant registration ([Book 04, Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md)); SecOps (the workspace, the emergency alert and PIM alerts, [Book 12](../b12-security-operations/index.md)); non-human privileged assignments in the [non-person identity guide](non-person-identity-implementation.md#directory-roles)
+- **Attack chain interrupted:** Privilege Escalation and Persistence (no standing privileged assignment to steal or keep), Credential Access (phishing-resistant proof at sign-in and activation), Defense Evasion (edits to the activation gate caught by drift)
+:::
 
 ## Checklist
 
@@ -613,7 +675,7 @@ The row numbers are the workbook's [research gaps log](https://github.com/Whaler
 
 ## Back to the books
 
-[Book 04](../b04-access/index.md) · [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md) · [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md) · [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) · [Appendix B](../b04-access/appendix-b-pim-role-settings.md) · [Privileged Access & Administrative Identity plan](../../project-plans/privileged-access.md) · [Building Privileged Access](../../project-plans/developer-workbooks/privileged-access/index.md) (the developer workbook) · [Non-person identity guide](non-person-identity-implementation.md) · [Privileged Access Management book](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md) (PAW hardware baseline)
+[Book 04](../b04-access/index.md) · [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md) ([emergency access reference architecture](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)) · [Book 04, Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md) (phishing-resistant authentication runbooks) · [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md) · [Book 04, Chapter 10](../b04-access/10-access-as-code-and-evidence.md) · [Appendix B](../b04-access/appendix-b-pim-role-settings.md) · [Privileged Access & Administrative Identity plan](../../project-plans/privileged-access.md) · [Building Privileged Access](../../project-plans/developer-workbooks/privileged-access/index.md) (the developer workbook) · [Non-person identity guide](non-person-identity-implementation.md) · [Privileged Access Management book](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md) (PAW hardware baseline)
 
 <!-- revisions:start: generated by scripts/generate_revisions.py from data/editions.yml; edit those, not this section -->
 
