@@ -1,0 +1,41 @@
+# Defender XDR Engineering & Operations guide — reference architecture:
+# the Microsoft service boundary holds the control planes (Intune, the
+# Defender portal) and the identity plane (Entra ID) at the top and Defender
+# XDR at the bottom; the agency boundary in the middle holds the Windows
+# endpoints, servers and the SOC's own tools. Facts from the guide's
+# footnotes, read Nov 11, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.55}
+clusters:
+  - id: planes
+    label: "Microsoft service boundary: control and identity planes"
+    tone: blue
+    filled: false
+    nodes: [intune, portal, entra]
+    order: [intune, portal, entra]
+  - id: agency
+    label: "Agency boundary"
+    tone: slate
+    filled: false
+    nodes: [clients, servers, soc]
+    order: [clients, servers, soc]
+  - id: svc
+    label: "Microsoft service boundary: the tenant's GCC, GCC High or DoD instance"
+    tone: green
+    filled: false
+    nodes: [xdr]
+nodes:
+  intune: {tone: blue, width: 200, title: "Intune", body: ["Endpoint security policies", "EDR onboarding, compliance"], size: 11}
+  portal: {tone: blue, width: 200, title: "Defender portal settings", body: ["Unified RBAC, device groups", "Automation levels, exclusions"], size: 11}
+  entra: {tone: blue, width: 200, title: "Entra ID", body: ["Admin roles through PIM", "Conditional Access, risk"], size: 11}
+  clients: {tone: slate, width: 200, title: "Windows clients", body: ["Antivirus, firewall, ASR", "Network protection, CFA", "Sensor, tamper protection"], size: 11}
+  servers: {tone: slate, width: 200, title: "Windows Server 2019+", body: ["Defender for Servers via Arc", "Security settings management", "Identity sensor on DCs"], size: 11}
+  soc: {tone: violet, width: 200, title: "SOC tools", body: ["Sentinel workspace (Book 12)", "Gated automation", "Ticketing, evidence store"], size: 11}
+  xdr: {tone: green, width: 440, title: "Defender XDR", body: ["Incidents correlate Endpoint, Identity, Office 365 and Cloud Apps alerts", "Advanced hunting (30 days), vulnerability management, Secure Score", "Graph security API on the cloud's own host"], size: 11}
+edges:
+  - [intune, clients, {tone: blue, label: "policy"}]
+  - [portal, servers, {tone: blue, label: "policy"}]
+  - [entra, soc, {tone: blue, label: "admin sign-in"}]
+  - [clients, xdr, {tone: green, label: "telemetry"}]
+  - [servers, xdr, {tone: green, label: "telemetry"}]
+  - [xdr, soc, {tone: violet, label: "incidents, API reads", both: true}]
