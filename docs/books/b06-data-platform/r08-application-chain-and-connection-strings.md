@@ -170,6 +170,67 @@ The **data-plane audience** matters, and the source had it wrong. It used `https
 - **Verify** the application now connects as its Entra principal and no longer over Windows Authentication. The `sys.dm_exec_connections` and `sys.dm_exec_sessions` join that [Runbook R05](r05-login-migration-and-parallel-run.md) uses for the parallel-run window shows `login_name` and `auth_scheme` for each session. Confirm the application's sessions log in under the Entra login and that **no** `NTLM` or `KERBEROS` rows remain for it.[^r08-auth-scheme] Microsoft documents `auth_scheme` as the SQL Server or Windows authentication scheme for the connection but doesn't list the value it shows for an Entra connection; the source's `auth_scheme = AAD` should be confirmed in the pilot before it's used as a test.
 - **Rollback** is the prior connection string. Keep the previous configuration and, as Runbook R05 does, keep the legacy login *disabled, not dropped*, so reverting is immediate. Cut over only after the gate conditions are met and the parallel observation is clean.
 
+## Control states, change safety and evidence {#b06-r08-control-states}
+
+This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to Phase 2 and adds only what was missing. Phase 1 is read-only and needs no rollout of its own.
+
+**Authority:** Microsoft-recommended for a specific authentication mode such as `Active Directory Managed Identity` in production rather than `Active Directory Default`, and for a certificate over a client secret where the driver supports it (Learn, "Microsoft Entra authentication with Microsoft.Data.SqlClient," read again Nov 11, 2026);[^r08-sqlclient][^r08-sp-cert] risk-based recommended for the three gate conditions and for making the change in application configuration rather than by script, which are the program's controls on the most gated step.
+**Applies:** applications whose instance has completed [Runbooks R04](r04-arc-deployment-and-managed-identity.md) and [R05](r05-login-migration-and-parallel-run.md), with a driver that supports the chosen mode (SqlClient 2.1 or later for Managed Identity, 3.0 for Default). Environment-dependent: as in [Runbook R04](r04-arc-deployment-and-managed-identity.md#b06-r04-control-states), the Arc managed identity used for Entra authentication to SQL Server is a commercial-cloud configuration for a GCC tenant; for GCC High and DoD it is not yet specified and outside this book's scope.
+
+| How-section subsection | In this runbook |
+|---|---|
+| Prerequisites | The three gate conditions |
+| Pilot | Gate 3: the change tested against a non-production stack whose Arc, extension and certificate configuration matches production; then one pilot application in production |
+| Report-only or audit phase | Not applicable as a product mode: a connection string has no audit mode. The stand-in is the observation of [Runbook R05](r05-login-migration-and-parallel-run.md)'s Step 3, with both the legacy and the Entra login enabled and SQL Server Audit recording which one the application uses |
+| Enforcement | The configuration change in the change window, application by application as below; the legacy login is disabled afterward under Runbook R05 |
+| Rollback | The prior connection string, kept with the release, with the legacy login disabled, not dropped |
+| Exclusions | Class 4 applications and others with a dated exception, each with a sunset date reconciled against 2027-04-01 ([Chapter 18](18-the-four-class-pattern-for-applications.md)); a service principal with a client secret only as a documented exception ([Chapter 11](11-three-principal-types.md)) |
+| Telemetry | The `auth_scheme` and session query, SQL Server Audit login records, managed identity and service principal sign-in logs in Entra ID, and the application's own connection errors |
+| Evidence | The checklist below |
+| Day-two ownership | The application owner owns the connection string and its cutover window; the data platform team owns the login and its role; the identity team owns any service principal and its credential rotation ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). Drift is a connection string or configuration file that brings back a stored password, or the application's sessions reappearing on a Windows login |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The production-equivalent non-production stack (gate 3) | Application connects as its Entra principal; rollback rehearsed |
+| 1 | One pilot application per Class 1 or Class 2 pattern | Its sessions on the Entra login only, for two weeks, with no connection errors |
+| 2 | Applications by class and owner | As ring 1, signed off by each application owner |
+| 3 | Remaining applications, excepted ones last with their sunset dates | As ring 1 |
+
+- **Emergency access:** not a sign-in restriction for people, so no emergency account is affected; the way back for the application is the kept configuration and the disabled, not dropped, legacy login. The tenant's emergency access accounts are unaffected because Conditional Access doesn't apply to service principals and managed identities.[^r08-ca-sql]
+- **Change window:** in the application's own release window, agreed with its owner, with a DBA able to re-enable the legacy login and the application team able to redeploy the prior configuration on hand.
+- **Backout triggers:** set before the change: login failures for the application's Entra principal, token errors from the local identity endpoint (a `401` the challenge doesn't clear, or a `403`), the application's health check failing, or any session for the application still arriving on a Windows login. Any one restores the prior configuration.
+- **Post-change validation:** the verification query above after each ring, confirming the application's sessions use the Entra login and no `NTLM` or `KERBEROS` rows remain for it.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the `New-FMPAppConnectionPlan` record and the application's configuration change at the commit or release that deployed it, with no secret in it
+- [ ] **Operational:** session and audit records showing the application on its Entra login, and its sign-ins in the managed identity or service principal sign-in log
+- [ ] **Test:** the gate 3 test on the production-equivalent stack, with expected and observed results, date and tester
+- [ ] **Exception:** excepted applications with sunset dates, and any client-secret service principal with its rotation record
+- [ ] **Assessor-ready artifact:** the application's entry in the closure evidence of [Runbook R09](r09-continuous-monitoring-and-closure.md#the-six-live-evidence-sets)
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The four-class triage and the connection plan | The classification and the plan record |
+| Configured | Gates 1 and 2: the Entra login and its database role exist | `sys.server_principals` and role membership exports |
+| Enforced | The connection-string change, by ring, then the legacy login disabled | The deployed configuration and the disabled login |
+| Evidenced | Verification and rollback, and gate 3 | Session and audit records; the test record |
+| Operated | [Runbook R09](r09-continuous-monitoring-and-closure.md) | Protocol telemetry and drift events |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Apps
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Infrastructure (the Arc machine identity, [Runbook R04](r04-arc-deployment-and-managed-identity.md)); Identity (the Entra login and any workload identity, [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md))
+- **Attack chain interrupted:** Credential Access: no stored service-account password or SQL password in a configuration file to be read and reused
+:::
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Runbook R07 — Groups, Administrative Units & the Conditional Access Perimeter](r07-groups-aus-and-the-conditional-access-perimeter.md) · [Book index](index.md) · [Next: Runbook R09 — Continuous Monitoring & the CCM-BIR Closure Record →](r09-continuous-monitoring-and-closure.md)
@@ -190,4 +251,5 @@ The **data-plane audience** matters, and the source had it wrong. It used `https
 [^r08-entra-sql]: Microsoft Learn, "Microsoft Entra authentication for SQL Server," section "Access token" (the audience must be `https://database.windows.net/`), <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview> (accessed Oct 20, 2026).
 [^r08-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments" (a Microsoft 365 GCC environment continues to use the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (accessed Oct 20, 2026).
 [^r08-auth-scheme]: Microsoft Learn, "sys.dm_exec_connections (Transact-SQL)" (`auth_scheme`: "Specifies SQL Server/Windows Authentication scheme used with this connection"), <https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-objects/sys-dm-exec-connections-transact-sql> (accessed Oct 20, 2026).
+[^r08-ca-sql]: Microsoft Learn, "Conditional access" (Azure SQL Database, Azure SQL Managed Instance and Azure Synapse Analytics; policies apply to users, not to service principals and managed identities), <https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure> (accessed Nov 11, 2026).
 [^r08-sp-cert]: Microsoft Learn, "Microsoft Entra authentication with Microsoft.Data.SqlClient," section "Replace deprecated password authentication" ("Where the driver supports it, prefer a client certificate over a client secret"), <https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication>; and "Security best practices for Microsoft.Data.SqlClient," section "Passwords" (rotate a necessary client secret), <https://learn.microsoft.com/sql/connect/ado-net/sql/application-security-scenarios-sql-server> (both accessed Oct 21, 2026).

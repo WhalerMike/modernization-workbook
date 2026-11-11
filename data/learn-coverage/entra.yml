@@ -7689,6 +7689,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
 - path: docs/id-governance/conditional-access-exclusion.md
   url: https://learn.microsoft.com/entra/id-governance/conditional-access-exclusion
@@ -7748,6 +7749,7 @@ pages:
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
 - path: docs/id-governance/create-lifecycle-workflow.md
   url: https://learn.microsoft.com/entra/id-governance/create-lifecycle-workflow
@@ -7868,6 +7870,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md
 - path: docs/id-governance/download-workflow-history.md
   url: https://learn.microsoft.com/entra/id-governance/download-workflow-history
@@ -10450,6 +10453,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/id-governance/tenant-governance/overview.md
@@ -17539,16 +17543,20 @@ pages:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/10-access-as-code-and-evidence.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/08-pim-self-request-with-approval.md
   - docs/books/b04-access/_verification/09-access-governance.md
+  - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
   - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
+  - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b06-data-platform/appendix-c-applicability.md
+  - docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
@@ -21759,6 +21767,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md
@@ -22843,6 +22852,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/identity/enterprise-apps/tutorial-govern-monitor.md
@@ -30401,6 +30411,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md

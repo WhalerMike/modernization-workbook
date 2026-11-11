@@ -73,3 +73,14 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 ## Server standard, November 5, 2026
 
 Tense only; date carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Zero Trust closure update, November 11, 2026 (Phase 4 conventions)
+
+Phase 4 of the Zero Trust closure update. Added "Control states, change safety and evidence" (`#b06-r04-control-states`): authority and applicability labels, How-template coverage table, change safety, evidence checklist, control states and assessment mapping. The existing claims below were read again on Microsoft Learn; none had changed.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Entra authentication for SQL Server needs the Azure public cloud; managed-identity setup only on SQL Server 2025 on Windows; FCIs unsupported; disabling Entra authentication not advisable | Control states (Authority, Applies); Rollback | verified, unchanged | Learn, "Managed identity for SQL Server enabled by Azure Arc," https://learn.microsoft.com/sql/sql-server/azure-arc/managed-identity | Nov 11, 2026 |
+| 2 | US Government Virginia region lists onboarding, inventory, licensing, FCIs and ESUs only; Entra authentication not listed | Control states (Applies); Prerequisites | verified, unchanged; GCC High and DoD availability recorded as not yet specified | Learn, "SQL Server enabled by Azure Arc in US Government," https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region | Nov 11, 2026 |
+| 3 | Arc-enabled servers use a system-assigned managed identity with a local token endpoint | Step 2; Control states | verified, unchanged | Learn, "Access Azure resources by using managed identity on Azure Arc-enabled servers"; "Identity and access management with Azure Arc-enabled servers" | Nov 11, 2026 |
+| 4 | Rings, backout triggers, change window and exit criteria | Change safety | restated-as-design (program) | Book 00, Appendix D, change safety | Nov 11, 2026 |

@@ -329,6 +329,67 @@ Feature update policies hold the fleet on a supported Windows version. As of Oct
 
 Version 26H1 (build 28000) ships only on new devices that came to market in 2026 and isn't offered as an in-place update.[^c10-win11-release] Any 23H2 device left in the fleet loses updates on November 10, 2026, so the program's feature update policy targets 25H2 now and the compliance floor (24H2) rises each year.
 
+### Control states, change safety and evidence for updates {#b05-10-update-control-states}
+
+The monthly ring cycle is an enforcement procedure: deadlines install updates and restart devices without the user's choice. It follows the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); the emergency path has its own blocks in [Expedited quality updates](#expedited-quality-updates).
+
+**Authority:** risk-based recommended for the ring values and the feature update target, which are the program's; SI-2 asks the organization to install security updates within a period it defines, and the ring deadlines are how the program defines it ([the evidence table](#reporting-and-the-evidence-an-assessor-reads)).
+**Applies:** Environment-dependent. Update rings are standard MDM features in GCC, GCC High and DoD; feature and quality update policies and Windows Autopatch are available in GCC and planned, not yet available, in GCC High and DoD, where the rings carry the whole cadence ([GCC boundary facts](#gcc-moderate-boundary-facts)).[^c10-intune-gov]
+
+| Template part | Where this section carries it |
+|---|---|
+| Prerequisites | [The update policy surfaces](#the-update-policy-surfaces); co-managed devices with the Windows Update workload moved ([Chapter 08](08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves)) |
+| Pilot | The Test and First rings |
+| Report-only or audit phase | Not applicable: an update has no audit mode; the Test ring, with deferral 0, is the observation |
+| Enforcement | The deadlines and grace periods in [The program's rings](#the-programs-rings) |
+| Rollback | **Pause** the ring's quality or feature updates (up to 35 days, from the device's next check-in), or **Uninstall** the latest update, which starts at once, restarts without a delay option and pauses the ring; a feature update can be uninstalled only inside the ring's 2 to 60 day uninstall period[^c10-p4-update-rings] |
+| Exclusions | Devices in the exception register with a compensating control and a review date, for example a validated instrument image |
+| Telemetry | The quality update and feature update reports in Intune, or Autopatch's reports, per ring |
+| Evidence | The checklist below |
+| Day-two ownership | The endpoint engineering lead, each Patch Tuesday; the help desk path is in [Book 15](../b15-day2-operations/index.md) |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test: endpoint engineering lab devices | The update installed and restarted cleanly; line-of-business smoke tests pass |
+| 1 | First: pilot cohort, about 5% | No failed restart or application regression before Fast's deferral ends |
+| 2 | Fast: about a quarter of the fleet | As ring 1 before Broad's deferral ends |
+| 3 | Broad: everyone else | Quality update compliance per ring at the program's target within the deadline |
+
+- **Emergency access:** not affected: updates don't change sign-in policy; the Tier 0 privileged access workstations are in First, never Test
+- **Change window:** the deferrals set it: Patch Tuesday for Test, then the ring offsets above, with deadlines and grace periods inside working days
+- **Backout triggers:** set before release day: a failed restart, a broken line-of-business application or a rise in help desk calls in Test or First pauses the ring for the later rings
+- **Post-change validation:** the quality update report per ring, and the Test ring's smoke tests after each release
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the update ring and feature update policy exports, with their assignments
+- [ ] **Operational:** quality update compliance per ring for each month, retained for the assessment period
+- [ ] **Test:** the Test ring's result for each release, with date and tester
+- [ ] **Exception:** devices excluded from rings, and any ring paused, with reason and approver
+- [ ] **Assessor-ready artifact:** the SI-2 row of [the evidence table](#reporting-and-the-evidence-an-assessor-reads), linked to the above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | The ring table and the feature update target | The approved ring values |
+| Configured | Ring and feature update policies created | Policy exports |
+| Enforced | Rings assigned, deadlines on | Assignments and the exception register |
+| Evidenced | The Test ring result for each release | Test record and the update report |
+| Operated | Monthly ring cycle and version currency review | Report history and pause decisions |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices
+- **CISA ZTMM pillar:** Devices (device threat protection)
+- **Depends on:** Devices: enrollment and the co-management Windows Update workload ([Chapter 08](08-gpo-to-intune-policy-migration.md)); SecOps: the vulnerability queue that decides when to expedite ([Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Initial Access and Privilege Escalation through exploitation of a known vulnerability
+:::
+
 ## Microsoft Defender for Endpoint
 
 Devices onboard to Defender for Endpoint through the EDR policy (ES-004 in Chapter 08), which uses the onboarding package Intune receives over the Intune–Defender connection. Intune's **EDR Onboarding Status** report shows which devices are onboarded and the health of their sensors; the Defender portal's device inventory confirms it.[^c10-edr]
@@ -344,7 +405,7 @@ The settings that live in the Defender portal rather than the EDR policy are par
 | Web content filtering | On, with the organization's category policy | Defender portal |
 | Tamper protection | On | Intune antivirus policy (ES-001); needs onboarding first[^c10-tamper] |
 
-Attack surface reduction runs the audit-then-block cadence in ES-005. During the audit month, the program reviews each rule's audit events in Defender and records an exclusion or a decision before the rule moves to block.
+Attack surface reduction runs the audit, warn, block cadence in [ES-005](08-gpo-to-intune-policy-migration.md#es-005-attack-surface-reduction), the same as Gate 4 of the [Defender XDR implementation guide](../guides/defender-xdr-implementation.md#step-4-attack-surface-reduction). During the audit month, the program reviews each rule's audit events in Defender and records an exclusion or a decision before the rule moves to warn. During the two weeks in warn, it counts the unblock requests per rule: since Defender Antivirus platform version 4.18.26060 each **Unblock** needs administrator approval, so the requests reach the help desk, and Microsoft says a persistent need belongs in a per-rule exclusion rather than repeated unblocks.[^c10-p4-asr-warn] A repeated request becomes a per-rule exclusion, with an owner and an expiry, before the rule moves to block. The LSASS and Office code-injection rules don't support warn and go from audit to block.
 
 Servers are in Defender too, but not in Intune: Intune doesn't manage Windows Server, so [Chapter 09](09-servers-under-azure-arc.md) covers how servers are configured through Azure Policy machine configuration and reached by Intune only through security settings management.
 
@@ -425,6 +486,51 @@ Four facts shape the sequence:
 - **Daily limits apply.** A tenant can submit up to 1,000 retire actions and 1,000 delete actions a day, counting bulk and Graph requests.[^c10-retire][^c10-delete] A mass refresh is planned in daily batches.
 
 The Entra device object is deleted last, after a disable period, and only after its recovery keys are exported (see [Stale records](#stale-records)). Windows Autopilot devices can't be deleted from Entra ID until they are deleted from Intune.[^c10-entra-delete]
+
+### Change safety and evidence for cleanup and retirement {#b05-10-cleanup-control-states}
+
+Stale-record cleanup and retirement are the fleet's destructive operations: a wipe can't be undone, and an Entra device delete takes the recovery keys with it. They follow [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); the enrollment controls they close out, with their assessment mapping, are in [Chapter 04](04-intune-first-onboarding.md#enrollment-controls).
+
+**Authority:** Microsoft-recommended for disabling a stale device before deleting it, backing up recovery keys and local administrator credentials first, and deleting hybrid-joined devices in Active Directory;[^c10-stale][^c10-retire] risk-based recommended for the 90-day cleanup rule and the order above, which are the program's.
+**Applies:** all tenants. Environment-dependent: GCC uses the commercial Intune instance; GCC High and DoD support Intune's standard MDM features, and Windows Autopilot, which the sequence deregisters, isn't available there.[^c10-intune-gov]
+
+- **Report-only phase:** the read-only reconciliation script above is the observation; nothing is disabled, retired or deleted that it hasn't listed as a finding with an owner.
+- **Pilot:** the first cleanup run disables, and doesn't delete, a small batch of the oldest stale objects, and waits a full disable period for anyone who reports a device that stopped working.
+- **Rollback:** a disabled Entra device is re-enabled; a hidden Intune device reappears when it checks in; a retire or wipe can't be reversed, so neither runs without an approved request.
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Lab and test device records | The sequence runs end to end; keys exported and readable |
+| 1 | A small batch of the oldest stale records, disabled only | No report of a working device during the disable period |
+| 2 | Weekly batches, disable then delete after the disable period | Each batch inside the daily action limits, with keys exported first |
+| 3 | Steady state: the weekly reconciliation | Findings closed each week |
+
+- **Emergency access:** not affected: device records don't control sign-in for the emergency access accounts; Tier 0 privileged access workstations are never in a bulk batch and are retired one at a time
+- **Change window:** weekly, after the reconciliation run, approved in the change record; with Multi Admin Approval where the tenant uses it for wipe, retire and delete ([Chapter 05](05-the-governed-manual-and-retrofit-paths.md#the-actuation-ladder))
+- **Backout triggers:** a user reporting a disabled device that is in use, or a key export that fails, stops the batch
+- **Post-change validation:** the next reconciliation run shows the batch's findings closed and no new "enrolled, no Entra object" findings
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the Intune cleanup rule and the program's disable period, as configured
+- [ ] **Operational:** the weekly reconciliation output and the device action history
+- [ ] **Test:** the ring 0 run of the full sequence, with the exported keys read back
+- [ ] **Exception:** devices kept past the rule, with owner and reason
+- [ ] **Assessor-ready artifact:** the CM-8 row of [the evidence table](#reporting-and-the-evidence-an-assessor-reads), with the key export records for every deleted device
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | The retirement sequence and the stale-record rules | The approved sequence |
+| Configured | Cleanup rule set; reconciliation scheduled | Rule setting and schedule |
+| Enforced | Weekly batches | Change records and device action history |
+| Evidenced | The ring 0 run and the weekly closed findings | Test record and reconciliation output |
+| Operated | The weekly reconciliation | Run history |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
 ## Drift detection and alerting
 
@@ -588,7 +694,7 @@ The program's evidence is the records the services keep, exported on a schedule 
 |---|---|---|---|
 | CM-2 Baseline Configuration | Develop, document and maintain under configuration control a current baseline configuration, and review it on a schedule, when circumstances require, and when components are installed or upgraded | The policy library (Chapter 08) exported as JSON from Graph, under version control, with its review history; the Windows version and update policy | Graph export; repository history |
 | CM-6 Configuration Settings | Establish settings in the most restrictive mode consistent with operations, implement them, approve deviations, and monitor and control changes | Per-setting status reports; the exception register with approvals; Intune audit logs of every policy change | Intune reports and Graph; `IntuneAuditLogs`; exception register |
-| CM-7 Least Functionality | Provide only mission-essential capabilities and prohibit or restrict named functions, ports, protocols, software and services | Attack surface reduction rules in block, firewall policy with its rule set, Edge extension allow list, consumer features off; ASR audit-to-block decisions | ES-003, ES-005, SC-003, SC-010 status; Defender ASR reports |
+| CM-7 Least Functionality | Provide only mission-essential capabilities and prohibit or restrict named functions, ports, protocols, software and services | Attack surface reduction rules in block, firewall policy with its rule set, Edge extension allow list, consumer features off; ASR audit, warn and block decisions, with the unblock requests counted in warn | ES-003, ES-005, SC-003, SC-010 status; Defender ASR reports |
 | CM-8 System Component Inventory | Keep an inventory that reflects the system, includes every component, has no duplicates or components of other systems, and is reviewed on a schedule | The weekly reconciliation of Intune, Entra ID and Defender inventories, with findings and their closure | Reconciliation output; `IntuneDevices` export |
 | SI-2 Flaw Remediation | Identify, report and correct flaws; test updates before installation; install security updates within a defined period of release; tie flaw remediation into configuration management | The ring table with its deferrals and deadlines; quality update compliance per ring; the Test and First ring results that gate Broad; expedite records | Update ring and quality update reports; Autopatch reports |
 
@@ -670,6 +776,8 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 [^c10-win11-release]: Microsoft Learn, "Windows 11 release information," section "Windows 11 current versions by servicing option," <https://learn.microsoft.com/windows/release-health/windows11-release-information> (accessed Oct 20, 2026).
 [^c10-edr]: Microsoft Learn, "Deploy endpoint detection and response policy with Intune," sections "Deploy EDR policy" and "Monitor and validate EDR deployment," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/deploy-edr> (accessed Oct 20, 2026).
 [^c10-mde-gov]: Microsoft Learn, "Microsoft Defender for Endpoint for US Government customers," sections "Licensing requirements" and "Portal URLs," <https://learn.microsoft.com/defender-endpoint/gov> (accessed Oct 20, 2026).
+[^c10-p4-asr-warn]: Microsoft Learn, "Attack surface reduction (ASR) rules overview," section "Modes for ASR rules" (administrator approval required for **Unblock** on a rule in warn mode from platform version 4.18.26060; Unblock is temporary suppression, a persistent need is a per-rule exclusion; the two rules without warn), <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview> (accessed Nov 11, 2026).
+[^c10-p4-update-rings]: Microsoft Learn, "Manage Windows Update ring policies," section "Manage update rings" (**Pause** stops feature or quality updates for up to 35 days and takes effect at the device's next check-in; **Uninstall** rolls back the latest feature or quality update, starts at once and restarts without a delay option, and pauses the ring; feature updates can be uninstalled only within the configured 2 to 60 day period; deleting a ring leaves devices on their current settings), <https://learn.microsoft.com/intune/device-updates/windows/manage-update-rings> (accessed Nov 11, 2026).
 [^c10-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Intune commercial and government instances" and "Feature differences in Intune GCC High and DoD," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026; rechecked Nov 11, 2026, including "Intune features planned for GCC High and DoD" and "Intune features not available in GCC High and DoD").
 [^c10-tamper]: Microsoft Learn, "Antivirus policy for endpoint security in Microsoft Intune," section "Prerequisites for antivirus policy," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus> (accessed Oct 20, 2026).
 [^c10-cleanup]: Microsoft Learn, "Device cleanup rules," <https://learn.microsoft.com/intune/governance/configure-cleanup-rules> (accessed Oct 20, 2026).

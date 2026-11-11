@@ -303,6 +303,71 @@ Each restriction can apply only to apps created after a chosen date, which lets 
 
 The program adopts Microsoft's recommended policy for every app created after its effective date. That is stricter than the rotation standard in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#governing-service-principals), which allows certificates rotated annually for service accounts being migrated. The two fit together: an existing workload moves onto a certificate and is rotated at least annually while it's remediated, and every new registration starts under the 180-day cap with secrets blocked. Where an app genuinely can't use a certificate, the exception is a documented, time-limited policy exception ([Chapter 06](06-who-decides-access.md#exceptions)), with the shortest secret lifetime the app tolerates and automated rotation. The program governs the workflow for issuing and rotating certificates; the choice of certificate authority belongs to the target PKI in [Book 07, Chapter 04](../b07-pki/04-the-target-pki.md), with the cryptographic architecture in [Vol I Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md) as a secondary reference.
 
+As of November 11, 2026, Learn lists more restrictions than the table above, among them `audiences` (block multitenant or consumer-account apps), `uriAdditionWithoutUniqueTenantIdentifier` and `trustedCertificateAuthority` (accept new certificates only from listed issuers, set through the API), and it documents *caller* exceptions, which exempt a named user or service principal through a custom security attribute so that an automated process keeps working while it's fixed; the admin center now sets these under **Entra ID** > **Enterprise apps** > **Application policies**.[^c05-p4-amp-learn] The program adopts the table's restrictions; the others are optional until the change process adds them.
+
+#### Rolling out the credential policy {#b04-amp-rollout}
+
+The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s; this subsection gives the safe path for turning the policy on.
+
+**Authority:** Microsoft-recommended for blocking secrets and symmetric keys and capping certificate lifetime at 180 days (Learn, "Tutorial: Enforce secret and certificate standards using application management policies," read Oct 20, 2026, and the restrictions it sets re-read Nov 11, 2026);[^c05-secret-tutorial][^c05-p4-amp-learn] risk-based recommended for the effective date and the exception rule, which are the program's.
+**Applies:** all tenants; application management policies are free with Microsoft Entra ID.[^c05-wid-faq] Environment-dependent: Learn's government feature table doesn't list application management policies, so their availability in GCC High and DoD is not yet specified; it lists Workload ID Premium as available in Azure for US Government.[^c05-p4-gov]
+
+| Template step | In this rollout |
+|---|---|
+| Prerequisites | Security Administrator together with Application Administrator or Cloud Application Administrator, or Global Administrator, held through PIM ([Chapter 08](08-pim-self-request-with-approval.md));[^c05-p4-amp-learn] a credential inventory of every app and service principal ([A read-only inventory to start from](#a-read-only-inventory-to-start-from)); a saved copy of the current tenant default policy, which Learn says to keep because the earlier settings can't be found after an update[^c05-p4-amp-tutorial-copy] |
+| Pilot | A custom app management policy assigned to a few of the identity team's own test registrations; Learn documents applying a restriction to selected applications before the tenant[^c05-p4-amp-learn] |
+| Report-only or audit phase | Not applicable as a product mode: the policy has no audit setting. Its equivalent is the credential inventory read against the rule, so every existing app the policy would affect at its next credential change is known before the effective date |
+| Enforcement | The tenant default policy, with the restrictions dated to the program's effective date, through the change process in [Chapter 10](10-access-as-code-and-evidence.md#change-control); existing apps are brought under it as they're remediated |
+| Rollback | Set the affected restriction's state back to `disabled` in the tenant default policy, or restore the saved copy; an identity engineer holding the roles above does it in minutes. A single app is relieved by a custom policy that disables the restriction for it |
+| Exclusions | Per-app or per-caller exceptions only, each a documented, time-limited exception ([Chapter 06](06-who-decides-access.md#exceptions)). Emergency access accounts are unaffected: the policy governs app credentials, not sign-in |
+| Telemetry | Failed application and service principal update operations in the Entra audit log, exported to the workspace, and the policy object itself in the drift check ([Chapter 10](10-access-as-code-and-evidence.md#drift-detection-and-closure)) |
+| Evidence | The checklist below |
+| Day-two ownership | The identity governance office owns the policy and the exceptions; [Book 15](../b15-day2-operations/index.md) holds the help-desk path for an app owner whose credential change is refused |
+
+One property keeps the risk of this rollout low. Neither the tenant default policy nor an app's own policy blocks token issuance for an existing application: an app that doesn't meet the policy keeps working, and only the create or update operation that would break the rule is refused.[^c05-p4-amp-tokens] The help-desk load falls on the next credential rotation, not on the day of enforcement, which is when the backout triggers below are read.
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The identity team's test registrations, through a custom policy | A secret addition is refused and a 180-day certificate is accepted |
+| 1 | Apps created after the effective date, through the tenant default policy | Two weeks with no refused change that wasn't a real breach of the rule |
+| 2 | Existing apps, as each moves to a certificate or managed identity | Each app's owner confirms its rotation works under the cap |
+| 3 | Every app and service principal in the tenant | No app outside the exception register holds a secret |
+
+- **Emergency access:** not applicable to the policy itself; the emergency accounts sign in as users and hold no app credential
+- **Change window:** a business day, with the identity engineer and the application team on hand; approved by the IGO
+- **Backout triggers:** a refused credential rotation on an R1 application that the owner can't move to a certificate within its expiry, or a pipeline that can't deploy
+- **Post-change validation:** the ring 0 test repeated after each ring, and the inventory query showing no new secret on an app outside the register
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the tenant default policy and every custom app management policy, exported as JSON with `GET /policies/defaultAppManagementPolicy` and `/policies/appManagementPolicies`, kept as code
+- [ ] **Operational:** refused-credential audit events and the monthly credential inventory, in the workspace
+- [ ] **Test:** the ring 0 test, with expected and observed outcomes, date and tester
+- [ ] **Exception:** each per-app or per-caller exception with its approver and expiry
+- [ ] **Assessor-ready artifact:** the evidence package entry for the period ([Chapter 10](10-access-as-code-and-evidence.md#the-evidence-package-for-a-period))
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | This section's order of preference and policy values | The approved credential standard |
+| Configured | Ring 0 and the tenant default policy | Policy exports |
+| Enforced | Rings 1 to 3 | Policy enabled with the effective date; exception register |
+| Evidenced | The ring 0 test, repeated after each ring | Test record and the refused-operation audit event |
+| Operated | The drift check and the monthly inventory | Drift reports and inventory results |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Apps
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Identity (the roles that set the policy, held through PIM, [Chapter 08](08-pim-self-request-with-approval.md)); Infrastructure (managed identities and Key Vault for certificates, [Book 10](../b10-cloud-boundary/index.md)); PKI (the issuing CA, [Book 07](../b07-pki/index.md))
+- **Attack chain interrupted:** Credential Access and Persistence: a leaked client secret can't be added or kept for long, so an attacker who reaches an app's owner can't plant a long-lived credential on it
+:::
+
 ## Managed identities and workload identity federation
 
 Workload identity is Microsoft's term for any identity assigned to software: applications, service principals and managed identities.[^c05-wid-faq][^c05-wid-overview] [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts) maps each Active Directory service account type to one of them and covers the mechanics of federated identity credentials (issuer, subject, audience, and the 20-credential limit). This section adds what matters for access policy.
@@ -532,4 +597,8 @@ None of this book's certificates is renewed by the CLM platform. App-registratio
 [^c05-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: SaaS apps with modern authentication, group assignment to applications and role-based access control available; consent settings and the admin consent workflow not listed), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
 [^c05-rsc]: Microsoft Learn, "Resource-specific consent for Teams agents and apps" (permissions scoped to the teams, chats, meetings and user scopes where an app is installed; declared in the app manifest; users consent to all of an app's RSC permissions at install; not shown in the Entra admin center), <https://learn.microsoft.com/microsoftteams/platform/graph-api/rsc/resource-specific-consent> (accessed Nov 11, 2026).
 [^c05-rsc-preapproval]: Microsoft Learn, "Preapproval of RSC permissions" (available only in public developer preview; Microsoft recommends keeping the `ManagedByMicrosoft` state; `New-MgBetaTeamAppPreapproval`, `Update-MgBetaTeamAppPreapproval` and `Remove-MgBetaTeamAppPreapproval`), <https://learn.microsoft.com/microsoftteams/platform/graph-api/rsc/preapproval-instruction-docs> (accessed Nov 11, 2026).
+[^c05-p4-amp-learn]: Microsoft Learn, "Configure restrictions on how applications can be configured" (restriction list including `audiences`, `uriAdditionWithoutUniqueTenantIdentifier` and `trustedCertificateAuthority`; prerequisites; applying a restriction to selected applications; caller exceptions through custom security attributes; **Application policies** in the admin center), <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies> (accessed Nov 11, 2026).
+[^c05-p4-amp-tutorial-copy]: Microsoft Learn, "Tutorial: Enforce secret and certificate standards using application management policies," section "Read your tenant application management policy" (make a copy of the current settings before updating them), <https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-enforce-secret-standards> (accessed Nov 11, 2026).
+[^c05-p4-amp-tokens]: Microsoft Learn, "Microsoft Entra application management policies API overview" (neither the tenant default nor app management policies block token issuance for existing applications; only the violating create or update is blocked), <https://learn.microsoft.com/graph/api/resources/applicationauthenticationmethodpolicy?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c05-p4-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government table; section "Other Microsoft Entra products": Workload Identities Premium available in Azure for US government; application management policies not listed), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
 [^c05-teams-consent]: Microsoft Learn, "Grant and manage consent to Teams app permissions," section "View resource-specific consent permissions of an app," <https://learn.microsoft.com/microsoftteams/manage-consent-app-permissions> (accessed Nov 11, 2026).

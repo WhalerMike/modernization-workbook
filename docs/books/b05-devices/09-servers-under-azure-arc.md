@@ -335,6 +335,67 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 
 [Chapter 10](10-operating-and-evidencing-the-fleet.md) covers the Intune side only; it doesn't bring the server and workstation signals together. The compute side of the same transition, from the application's point of view, is in the Client-Server to Hybrid-Cloud series, [Book 01, Chapter 07 — Compute Transformation](../b01-transformation-arc/07-compute-transformation.md).
 
+## Control states, change safety and evidence for servers {#b05-09-server-control-states}
+
+Onboarding and the day-one baseline are an implementation procedure, so they follow the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). Most of the How-section template is in the sections above; this section points to each part and adds the staged path for the one step that changes a server's configuration, moving machine configuration from audit to apply.
+
+**Authority:** Microsoft-recommended for the least-privileged onboarding role, certificate credentials, auditing beside Group Policy before moving enforcement, and Defender for Servers Plan 2, as cited above; risk-based recommended for the waves, tags and exit criteria, which are the program's.
+**Applies:** Environment-dependent. The workbook assumes a commercial Azure subscription beside the GCC tenant, where every feature here is available. For servers onboarded to Azure Government instead: the agent connects with `--cloud AzureUSGovernment`;[^c09-azcm-check] Azure Update Manager supports Arc-enabled servers in US Gov Virginia and US Gov Arizona;[^c09-p4-aum-regions] Defender for Servers is generally available in Azure Government, and in GCC Moderate on the commercial cloud the Defender for Endpoint integration doesn't support direct onboarding, vulnerability assessment recommendations or file integrity monitoring;[^c09-p4-dfs-clouds] Entra ID sign-in is available in Azure Government;[^c09-arc-login] machine configuration's availability in Azure Government, and Arc in the DoD regions, are not yet specified on the Learn pages read.
+
+| Template part | Where this chapter carries it |
+|---|---|
+| Prerequisites | [Before you onboard](#before-you-onboard): cost, roles, network, resource groups, tags and images |
+| Pilot | Wave 1 below: lab servers, then low-criticality servers from one owning team |
+| Report-only or audit phase | Machine configuration assigned as `Audit`, which reports without changing anything; a new policy assignment audits an existing machine first[^c09-p4-mc-remediation] |
+| Enforcement | The waves below, moving a configuration to `ApplyAndMonitor` or `ApplyAndAutoCorrect` per server class |
+| Rollback | [Rollback](#rollback) for Arc; for a configuration, set the assignment back to `Audit`; for custom packages only, the tag `CustomGuestConfigurationSetPolicy` = `disable` on a machine turns remediation off[^c09-p4-mc-remediation] |
+| Exclusions | Policy exemptions and the agent's local extension allowlist, each recorded with the onboarding change; servers left out of a wave in the exception register |
+| Telemetry | [Monitoring the server estate](#monitoring-the-server-estate): connection state, machine configuration compliance, Update Manager and Defender for Cloud |
+| Evidence | The checklist below |
+| Day-two ownership | Server infrastructure ([Chapter 06](06-who-owns-the-endpoint.md)); security operations for Defender for Servers |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Lab servers | Connected; baseline evaluated in `Audit`; Defender onboarded; rollback rehearsed on one server |
+| 1 | `Criticality=Low` servers of one owning team | Two weeks with no application regression; every audit finding has a fix, an exemption or a decision |
+| 2 | `Criticality=Medium` servers | As ring 1, across owning teams |
+| 3 | `Criticality=High` servers, then Tier 0 servers with their agent lockdown set first | As ring 2, with the application owner's sign-off per server |
+
+- **Emergency access:** Entra ID sign-in to Arc servers doesn't support Conditional Access, so there is no policy exclusion to make; keep the server's existing local administrator recovery path until Entra ID sign-in has been tested on that server
+- **Change window:** each wave under the program's change approval, inside the server's maintenance window and its `PatchGroup` schedule, with server infrastructure on hand
+- **Backout triggers:** set before each wave: a workload failing after a configuration applies, a server disconnected for more than 15 minutes after onboarding, or a baseline setting that conflicts with a GPO still applied
+- **Post-change validation:** `azcmagent show` reports connected, the machine configuration compliance view shows the expected state, and the workload's own health check passes
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the policy assignments and customized baseline JSON in the governance repository, and the extension allowlist per server class
+- [ ] **Operational:** machine configuration, Update Manager and Defender for Cloud compliance for the period, and the connection-state alert history
+- [ ] **Test:** per wave, the `azcmagent show` output, one baseline setting checked on the server, and one rollback rehearsal
+- [ ] **Exception:** policy exemptions, servers outside Arc, and Windows Server 2016 hosts with their signed risk acceptance and retirement date
+- [ ] **Assessor-ready artifact:** the onboarding change record per wave, traceable to the four above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | Tags, roles, extension allowlists and the baseline chosen per server class | The onboarding design and the customized baseline JSON |
+| Configured | Servers connected; machine configuration in `Audit` | Arc inventory and the assignments in audit |
+| Enforced | Configurations applied per wave; Defender for Servers Plan 2 on | Assignment types, the Defender plan setting and the exemptions |
+| Evidenced | The post-change validation per wave | Test records and the compliance results they produced |
+| Operated | Monitoring and the governed path's scheduled observers | Alert rules, compliance history and the reviewed exceptions |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Infrastructure
+- **CISA ZTMM pillar:** Devices (servers as assets), with Applications and Workloads for the workloads they host
+- **Depends on:** Identity: the onboarding service principal, PIM-held Azure roles and the Entra ID sign-in roles ([Book 04](../b04-access/index.md)); SecOps: Defender for Servers alerts in the incident queue ([Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Privilege Escalation and Execution through extensions run as Local System, which the allowlist and narrow roles limit; exploitation of unpatched servers; Persistence through configuration drift that machine configuration reports
+:::
+
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
 
 [Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
@@ -408,5 +469,8 @@ Servers aren't Intune-managed, so they can't get certificates from Cloud PKI. Af
 [^c09-linux-login]: Microsoft Learn, "Sign in to a Linux virtual machine in Azure by using Microsoft Entra ID and OpenSSH," supported distributions, <https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux#supported-linux-distributions-and-azure-regions> (accessed Oct 20, 2026).
 [^c09-uninstall]: Microsoft Learn, "Uninstall the Azure Connected Machine agent from Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/uninstall-agent> (accessed Oct 20, 2026).
 [^c09-azcm-disconnect]: Microsoft Learn, "`azcmagent disconnect`," <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-disconnect> (accessed Oct 20, 2026).
+[^c09-p4-aum-regions]: Microsoft Learn, "Supported regions for Azure Update Manager," section "Azure for US Government" (USGovVirginia and USGovArizona for Azure VMs and Arc-enabled servers; USGovTexas for Azure VMs only), <https://learn.microsoft.com/azure/update-manager/supported-regions> (accessed Nov 11, 2026).
+[^c09-p4-dfs-clouds]: Microsoft Learn, "Defender for Servers support," section "Azure cloud support" (features GA in Azure Government; in GCC-M on Azure public cloud, direct onboarding, vulnerability assessment recommendations and file integrity monitoring aren't supported for the Defender for Endpoint integration), <https://learn.microsoft.com/azure/defender-for-cloud/support-matrix-defender-for-servers> (accessed Nov 11, 2026).
+[^c09-p4-mc-remediation]: Microsoft Learn, "Remediation options for machine configuration," sections "Machine configuration assignment types" (`Audit`, `ApplyAndMonitor`, `ApplyAndAutoCorrect`; a new assignment on an existing machine audits first) and "Disable remediation of custom content" (tag `CustomGuestConfigurationSetPolicy` = `disable`, custom packages only), <https://learn.microsoft.com/azure/governance/machine-configuration/concepts/remediation-options> (accessed Nov 11, 2026).
 [^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
 [^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).

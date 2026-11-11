@@ -176,3 +176,7 @@ New subsection "The role-setting export and the permanent-assignment exception r
 | Z3 | PIM available in Azure for US Government | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
 | Z4 | Register fields, categories, review cadences | Register | restated-as-design | program position; Step 5 names the two exclusions | Nov 11, 2026 |
 | Z5 | Export and compare scripts | Export; Register | command (read-only, illustrative) | Microsoft Graph PowerShell reference | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Change-safety block added after Step 5 (rings for Steps 3 to 5, emergency access, window, backout triggers, post-change validation). It relies on claims already logged (five-minute assignment minimum, 24-hour approval window, emergency access standard); no new product claim. Rings and triggers: restated-as-design (program position), checked Nov 11, 2026.

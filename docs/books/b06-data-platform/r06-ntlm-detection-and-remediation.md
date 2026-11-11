@@ -169,6 +169,67 @@ NTLM elimination is sequenced, not a single cutover. Two different policy famili
 - **Re-run detection.** Spec3-D1.7 should report zero CRITICAL collisions, and the connection checks of [Runbook R05](r05-login-migration-and-parallel-run.md) (the `sys.dm_exec_connections` query and SQL Server Audit) should show no remote NTLM connections for the instance. The Spec3-D1.8 audit doesn't carry connection data, so it can't show this.
 - **Rollback.** SPN changes are reversible (`setspn -D`, or re-add with `-S`). Group Policy changes revert by restoring the prior LAN Manager level and *Restrict NTLM* values. Because the Group Policy block is the *last* step, the earlier Kerberos fixes can be validated long before anything is refused.
 
+## Control states, change safety and evidence {#b06-r06-control-states}
+
+This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to Phase 2 and adds only what was missing. Phase 1 changes nothing and needs no rollout of its own.
+
+**Authority:** Microsoft-recommended for registering SPNs with `setspn -S` and for constrained rather than unconstrained delegation (the Learn pages cited in Phase 2); risk-based recommended for the phased Group Policy restriction and the 2027-04-01 Phase C date, which are the program's plan, not a Microsoft or federal deadline ([Chapter 15](15-the-three-phases-of-ntlm-elimination.md)).
+**Applies:** domain-joined SQL Server hosts, their clients and the domain controllers that serve them. Not applicable for cloud availability: SPNs, delegation and the *Restrict NTLM* policies are on-premises Windows and Active Directory settings and don't depend on GCC, GCC High or DoD.
+
+| How-section subsection | In this runbook |
+|---|---|
+| Prerequisites | Phase 1 output (the SPN map, the collision report and the protocol audit) and the reviewed `New-FMPSpnRemediationPlan` and `Get-FMPNtlmGpoReport` records |
+| Pilot | One instance and its known clients for SPN and linked-server fixes; one pilot set of SQL hosts and clients for each Group Policy step; success is Kerberos tickets and `KERBEROS` in `auth_scheme` from remote clients, with no new failures |
+| Report-only or audit phase | The *Restrict NTLM* audit settings come before every deny setting: *Audit Incoming NTLM Traffic* on servers, *Audit NTLM authentication in this domain* on domain controllers, and *Outgoing NTLM traffic to remote servers* set to **Audit all** on clients. The audit settings log, in the NTLM Operational log, the requests that the matching deny setting would block.[^r06-restrict-audit][^r06-ntlm-policies] Read them for at least one full business cycle, including month-end jobs, before the deny step |
+| Enforcement | LAN Manager level 5, then the *Restrict NTLM* deny settings, then Phase C at the program date, ring by ring as below |
+| Rollback | The verification-and-rollback list above: `setspn` reverses an SPN change; the prior LAN Manager level and *Restrict NTLM* values restore the policy, and a deny setting goes back to audit first ([Chapter 15](15-the-three-phases-of-ntlm-elimination.md), Phase B) |
+| Exclusions | Server names in *Add server exceptions in this domain* (domain controller) and *Add remote server exceptions for NTLM authentication* (client); there is no server-side list. Each name is recorded in the exception registry with its owner, reason and sunset date, reconciled against 2027-04-01 |
+| Telemetry | The NTLM Operational log on servers, clients and domain controllers; Windows logon events naming the authentication package; `auth_scheme` and SQL Server Audit on the instance ([Runbook R09](r09-continuous-monitoring-and-closure.md), Step 4) |
+| Evidence | The checklist below |
+| Day-two ownership | The data platform team owns SPNs and linked servers; the directory and server teams own the Group Policy objects; security operations watches the NTLM telemetry ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). Drift is a new NTLM connection, a new SPN collision, or a GPO whose `Get-FMPNtlmGpoReport` posture drops |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | A test domain or lab OU with representative SQL hosts and clients | Each change applied and backed out once; audit events read as expected |
+| 1 | A pilot set of SQL hosts and their clients | Audit shows no NTLM request that the deny step would block, other than registered exceptions, for a full business cycle; after the deny, no blocked production connection for two weeks |
+| 2 | A site or application wave | As ring 1 |
+| 3 | Domain-wide (Phase C, at the program date) | Every production instance through [Runbook R05](r05-login-migration-and-parallel-run.md); the exception registry reconciled |
+
+- **Emergency access:** the *Restrict NTLM* settings don't touch Entra sign-ins, so the tenant's emergency access accounts are unaffected. The SQL Server break-glass group of [Appendix B](appendix-b-ato-kit.md#break-glass-design) authenticates with Windows Authentication, so test it over Kerberos from the administrators' workstations before each deny ring; local sign-in on the host keeps working because it doesn't cross the network.
+- **Change window:** SPN and linked-server changes in the instance's window; each Group Policy ring in a window approved by the directory owner and the affected application owners, with a domain administrator able to revert the GPO on hand, and Group Policy refresh time allowed for.
+- **Backout triggers:** set before the change: an NTLM block event (NTLM Operational log) from a production application not on the exception list, a CRITICAL collision reappearing, a linked-server query failing with `NT AUTHORITY\ANONYMOUS LOGON`, or a help-desk call pattern traced to the ring. Any one returns the ring's setting to audit.
+- **Post-change validation:** the verification steps above (`klist`, `auth_scheme` from a remote client, Spec3-D1.7 with zero CRITICAL collisions) and the NTLM Operational log after each ring.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the reviewed remediation plan, the `setspn -L` output for each service account after the change, and the GPO reports with `Get-FMPNtlmGpoReport` posture per GPO
+- [ ] **Operational:** NTLM Operational log extracts and the instance protocol telemetry, before and after each ring
+- [ ] **Test:** the `klist` and `auth_scheme` checks from a remote client, and the break-glass group's Kerberos test, with date and tester
+- [ ] **Exception:** each server name on an exception list with its registry entry, owner and sunset date
+- [ ] **Assessor-ready artifact:** the protocol-telemetry evidence set of [Runbook R09](r09-continuous-monitoring-and-closure.md#the-six-live-evidence-sets), traceable to the above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Phase 1 and the reviewed remediation plan | The plan records and the exception registry |
+| Configured | SPN and linked-server fixes; the *Restrict NTLM* audit settings | `setspn -L` output and GPO reports in audit posture |
+| Enforced | LAN Manager level 5, the deny settings, Phase C | GPO reports showing `phase_b_ntlmv2_only` or `phase_c_full_block` |
+| Evidenced | Verification and rollback | `klist` and `auth_scheme` test records; Spec3-D1.7 rerun |
+| Operated | [Runbook R09](r09-continuous-monitoring-and-closure.md) protocol telemetry | NTLM alerts and their review |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Infrastructure (domain controllers and Group Policy while they remain, [Book 05](../b05-devices/index.md)); Applications and Workloads (connection strings that stop asking for Windows Authentication, [Runbook R08](r08-application-chain-and-connection-strings.md))
+- **Attack chain interrupted:** Credential Access and Lateral Movement: NTLM relay and pass-the-hash need NTLM to be accepted, and each ring removes a place that accepts it
+:::
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Runbook R05 — Login Migration & Parallel-Run Validation](r05-login-migration-and-parallel-run.md) · [Book index](index.md) · [Next: Runbook R07 — Groups, Administrative Units & the Conditional Access Perimeter →](r07-groups-aus-and-the-conditional-access-perimeter.md)
@@ -194,3 +255,4 @@ NTLM elimination is sequenced, not a single cutover. Two different policy famili
 [^r06-entra-password]: Microsoft Learn, "Use Microsoft Entra ID" (OLE DB Driver for SQL Server), section "Microsoft Entra username and password authentication" ("The ActiveDirectoryPassword authentication option ... is deprecated in the Microsoft SQL drivers"; incompatible with mandatory Microsoft Entra multifactor authentication), <https://learn.microsoft.com/sql/connect/oledb/features/using-azure-active-directory> (accessed Oct 21, 2026).
 [^r06-samlib]: Microsoft Learn, "Enable SAM client logging and diagnostics," sections "Prerequisites," "Enable the SAM client event log," "Review SAM client events" and "Manage command-line argument logging," <https://learn.microsoft.com/windows-server/identity/ad-ds/enable-sam-client-logging-diagnostics> (accessed Nov 9, 2026).
 [^r06-wevtutil]: Microsoft Learn, "wevtutil," sections "Parameters" (`set-log`, `query-events`) and "Options" (`/e`, `/q`, `/c`, `/rd`, `/f`), <https://learn.microsoft.com/windows-server/administration/windows-commands/wevtutil> (accessed Nov 9, 2026).
+[^r06-restrict-audit]: Microsoft Learn, "Policy CSP - LocalPoliciesSecurityOptions," entries *NetworkSecurity_RestrictNTLM_AuditIncomingNTLMTraffic* (logs the requests that *Incoming NTLM traffic* would block), *NetworkSecurity_RestrictNTLM_OutgoingNTLMTrafficToRemoteServers* ("Audit all" logs each NTLM request to a remote server) and *NetworkSecurity_RestrictNTLM_IncomingNTLMTraffic*; events in Applications and Services Logs/Microsoft/Windows/NTLM/Operational, <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-localpoliciessecurityoptions> (accessed Nov 11, 2026).

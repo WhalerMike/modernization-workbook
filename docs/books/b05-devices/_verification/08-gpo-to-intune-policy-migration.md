@@ -240,3 +240,19 @@ Instruction B05-02 (Windows hardening) and the Book 05 parts of closure-map rows
 | 18 | Update, expedite and Autopatch policies planned for GCC High and DoD; standard MDM features available | Prerequisites | verified | Learn, Intune government service description | Nov 11, 2026 |
 | 19 | Phishing-resistant sign-in mandated by M-22-09 and SP 800-63B-4 | Authority paragraph | verified (carried from Book 16 Ch07's verified claims 3 and 4) | Book 16 Chapter 07 verification log | Nov 11, 2026 |
 | 20 | Rings, exit criteria, backout triggers, rollback table, owners, Tier 0 in ring 1 | Hardening rollout | restated-as-design | program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (conventions applied to existing procedures)
+
+Phase 4 follow-ups 1 and 2 and the conventions for the seven phases. ES-005 moves from audit-then-block to audit, warn, block, aligned with the Defender XDR implementation guide's Gate 4; the hardening rollout's ASR rows, rollback, control state and drift text aligned to it; the prose mention of the Defender XDR guide is now a link; new subsection "Control states, change safety and evidence for the migration" (`#b05-08-migration-control-states`). The Windows LAPS account-management decision (`#laps-account-management-decision`) is unchanged: it stays the owner's open decision. Pages read on Nov 11, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Warn mode: Windows 10 1809+, platform 4.18.2008.9, engine 1.1.17400.5; not in Configuration Manager; acts as block on unsupported Windows | ES-005 | verified (new footnote c08-p4-asr-warn) | Learn, "Attack surface reduction (ASR) rules overview," Modes for ASR rules, https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview | Nov 11, 2026 |
+| P4-2 | LSASS and Office code-injection rules don't support warn | ES-005 table | verified | same | Nov 11, 2026 |
+| P4-3 | Since platform 4.18.26060, Unblock on a warn rule needs administrator approval; Unblock is temporary; persistent need is a per-rule exclusion | ES-005; hardening audit phase | verified | same | Nov 11, 2026 |
+| P4-4 | Microsoft recommends Block for standard protection rules without extensive testing, Audit first for others | ES-005 | verified | same | Nov 11, 2026 |
+| P4-5 | Audit 30 days, warn 14 days, block for every rule; help-desk staffing for warn; rollback one stage | ES-005; hardening rollout | restated-as-design (matches the Defender XDR guide's Gate 4 ring table) | program design; docs/books/guides/defender-xdr-implementation.md#step-4-attack-surface-reduction | Nov 11, 2026 |
+| P4-6 | Remediations not available and not planned in GCC High and DoD; Windows Device Health Attestation planned; GCC is the commercial instance; standard MDM features supported | Migration control states, Applies | verified (new footnote c08-p4-gov) | Learn, "Microsoft Intune for US Government GCC High and DoD service description," https://learn.microsoft.com/intune/fundamentals/government-service | Nov 11, 2026 |
+| P4-7 | DHA gap affects CP-001's boot-measured rules (BitLocker, Secure Boot, code integrity) | Migration control states, Applies | restated-as-design (inference from claim 20 and P4-6; not stated on one Learn page) | claims 20 and P4-6 | Nov 11, 2026 |
+| P4-8 | Group Policy analytics not mentioned in the government service description | Migration control states, Applies | unverifiable for GCC High and DoD: written as "not yet specified" | same page as P4-6 | Nov 11, 2026 |
+| P4-9 | Migration rings, exit criteria, backout triggers, owners, evidence | Migration control states | restated-as-design | program design | Nov 11, 2026 |
