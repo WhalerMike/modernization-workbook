@@ -45,7 +45,8 @@ ROOT = Path(__file__).resolve().parents[2]
 # Folders (every page in them and their subfolders) and single pages.
 GATED = ["docs/project-plans/developer-workbooks", "docs/books/b19-developer-workbook",
          "docs/books/guides", "docs/training", "docs/reference/source-register.md",
-         "docs/reference/learn-coverage.md"]
+         "docs/reference/learn-coverage.md",
+         "docs/reference/rmf-map.md"]
 
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 # The narrated-tour callout or table the tour build writes (presentations/_build/link_tours.py):
