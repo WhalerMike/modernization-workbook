@@ -20,7 +20,7 @@ lifecycle_review: 2027-05-01
 
 ::: {.callout-note}
 ## In this chapter
-The governance record every application and service principal carries, and how to find the ones that are ownerless, privileged or unknown. Secrets governance: the default prohibition on long-lived client secrets, the exception criteria, vaulting, expiry limits, rotation windows, the managed-identity preference and source-code scanning. Continuous exports and drift rules for eight configuration domains, the baseline diff, and the remediation workflow that turns a difference into a remediation contract. Each section follows the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md): the five control states, the How-section template, authority labels, the evidence checklist and change safety.
+The governance record every application and service principal carries, and how to find the ones that are ownerless, privileged or unknown. Secrets governance: the default prohibition on long-lived client secrets, the exception criteria, vaulting, expiry limits, rotation windows, the managed-identity preference and source-code scanning. Continuous exports and drift rules for eight configuration domains, the baseline diff, and the remediation workflow that turns a difference into a remediation contract. The governance of the permanent privileged-role assignments that [Book 04](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) leaves standing: approvers, expiry, review and drift. Each section follows the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md): the five control states, the How-section template, authority labels, the evidence checklist and change safety.
 :::
 
 The earlier chapters of this book describe the machinery: one authoritative record ([Chapter 03](03-one-authoritative-record.md)), change control ([Chapter 04](04-change-control-and-provenance.md)), the drift engine and its remediation contract ([Chapter 06](06-the-drift-engine.md)), and the ticket-to-machine tempo ([Chapter 10](10-ticket-to-machine.md)). This chapter applies that machinery to three things Zero Trust assessments look at closely and governance programs most often leave to individual teams: who owns each application identity, how its credentials are governed, and whether the security configuration of the tenant still matches what was approved.
@@ -497,6 +497,60 @@ The export run log and its exit status; the commit history; TCM monitoring resul
 
 The governance platform team owns the export, the repository and the schedule; each domain owner (the identity platform owner for Entra, the endpoint owner for Intune, the messaging owner for Exchange, the data protection owner for Purview, the network owner for Global Secure Access) owns their domain's drift rules and findings. The governance board reviews the drift rules quarterly. The signal that the exports themselves have drifted is a run that fails or a domain whose file stops changing while its audit log shows changes.
 
+## Standing privilege exceptions {#standing-privilege-exceptions}
+
+[Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) converts standing privileged assignments to eligible ones and produces two artifacts: a read-only export of every directory role's PIM settings with its list of permanent active assignments (`role-settings.csv`, `permanent-active.csv`), and a register of the permanent assignments that remain. This section is the governance side of that register: who approves an entry, when it expires, how often it is reviewed, how drift against the export is found, and what evidence the cycle leaves. It doesn't repeat the build or the scripts; it reads their output.
+
+**Authority:** Microsoft-recommended for eligible rather than permanent assignment of privileged roles and for emergency access accounts that stay permanently assigned (Learn, read Nov 11, 2026).[^c14g-pim-exc] Risk-based recommended for the approvers, expiry limits and drift severities below, which are the program's position on the risk of standing privilege.
+**Applies:** License-dependent: Microsoft Entra ID P2 or Entra ID Governance for PIM. Environment-dependent: PIM and the Graph reads the export uses are available in the global service, GCC High and DoD, as [Book 04](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) records.
+
+**Who approves, for how long, and how often it is reviewed.** The register's `Category` decides the route. The routes reuse [Chapter 09](09-who-governs.md#who-accepts-exceptions)'s split between a bounded exception, which the CISO approves, and a risk acceptance, which the authorizing official decides.
+
+| Category | Who approves | Expiry | Review cadence |
+|---|---|---|---|
+| `EmergencyAccess` | The CISO, on the identity governance office's request, as part of the emergency access design ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)) | None while the account is one of the designed emergency accounts; the entry ends when the account is retired | At each 90-day emergency access drill; the drill record is the review |
+| `ServicePrincipalCannotActivate` | The application's business owner and the identity governance office propose; the CISO approves as a bounded exception with a compensating control | The application's next review date in its governance record ([above](#application-governance-record)), no later than one year | On the application's risk-tier cadence ([Book 04, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain)) |
+| `Other` | The CISO recommends; the authorizing official for the affected system accepts the risk | No more than six months | Before expiry; a second renewal goes to the board as a sign the design needs to change |
+
+No entry renews automatically, and an entry never changes the rule that roles are eligible: the drift engine keeps reporting the permanent assignment, marked as excepted, until the entry ends ([Chapter 09](09-who-governs.md#who-accepts-exceptions)). The governance board reviews the whole register quarterly with the other exceptions.
+
+**Drift against the export.** Each run of Book 04's export, on the drift-export schedule ([Configuration drift exports](#configuration-drift-exports)), is compared with the register and with the role-setting baseline. Three differences are findings, each written as a remediation contract ([Chapter 06](06-the-drift-engine.md#the-remediation-contract)):
+
+| Difference | Drift class and default severity | Response |
+|---|---|---|
+| A permanent active assignment in `permanent-active.csv` with no register entry (Book 04's `=>` line) | `DRIFT-AUTHZ`; P1 for a Tier 0 role, otherwise P2 | Convert to eligible, or open a register entry through the route above |
+| A register entry past its expiry or review date | `DRIFT-SEMANTIC`; P2 | Renew through the route, or remove the assignment |
+| A role setting in `role-settings.csv` that differs from [Book 04, Appendix B](../b04-access/appendix-b-pim-role-settings.md) | `DRIFT-AUTHZ`; P2, as in the PIM row of the drift table above | Restore the setting, or approve the change and move the baseline |
+
+The second check is a date comparison over the register. `<register>` is the register's path in the evidence store; it is read-only:
+
+```powershell
+# READ-ONLY. List register entries whose next review date has passed.
+Import-Csv -Path '<register>' |
+    Where-Object { [datetime]$_.NextReview -lt (Get-Date) } |
+    Select-Object EntryId, PrincipalId, RoleDefinitionId, Category, Approver, NextReview
+```
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | The approval routes, expiry limits and drift rules above, approved by the governance board | The board's decision record |
+| Configured | The register exists, and the export and comparison run on the drift-export schedule | The register at its commit; the export run log |
+| Enforced | Every permanent active assignment has a current register entry, and every expired entry is renewed or removed | A comparison with no `=>` lines and no overdue entries |
+| Evidenced | A deliberate test: a permanent assignment to a test account in a test tenant, with no entry, raises the P1 or P2 finding; removing it closes the finding | The test record and the finding it produced |
+| Operated | The drill-time, risk-tier and six-month reviews, and the board's quarterly register review | Review records and the board minutes |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `role-settings.csv`, the per-role rules JSON and `permanent-active.csv` from each run ([Book 04](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register))
+- [ ] **Operational:** the comparison outputs and the remediation contracts they opened
+- [ ] **Test:** the unregistered-assignment test above, with expected and observed results, date and tester
+- [ ] **Exception:** the register, each entry's approval or risk acceptance, expiry and last review
+- [ ] **Assessor-ready artifact:** the evidence package entry for AC-2, AC-6 and CM-3 pointing to the four above ([Chapter 07](07-evidence-over-attestation.md))
+
 ## Change safety {#c14-change-safety}
 
 Deactivating apps, denying vault secrets and enforcing push protection are the steps here that can break a workload. Exports and reports can't.
@@ -582,3 +636,4 @@ The control statements are from NIST's release 5.2.0 catalog.[^c14g-sp80053] The
 [^c14g-tcm-auth]: Microsoft Learn, "Set up authentication for Tenant Configuration Management APIs" ("During public preview, organizations must add the TCM service principal to their tenant and grant it the required permissions"), <https://learn.microsoft.com/graph/utcm-authentication-setup> (accessed Nov 11, 2026).
 [^c14g-tcm-snap]: Microsoft Learn, "configurationBaseline: createSnapshot" (`POST /admin/configurationManagement/configurationSnapshots/createSnapshot` with `displayName`, `description` and `resources`; `ConfigurationMonitoring.ReadWrite.All`), <https://learn.microsoft.com/graph/api/configurationbaseline-createsnapshot?view=graph-rest-1.0> (accessed Nov 11, 2026).
 [^c14g-ksi]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, Key Security Indicator theme pages for policy and inventory, identity and access management, service configuration, monitoring, logging and auditing, and change management, <https://fedramp.gov/2026/providers/20x/key-security-indicators/policy-and-inventory/>, <https://fedramp.gov/2026/providers/20x/key-security-indicators/identity-and-access-management/>, <https://fedramp.gov/2026/providers/20x/key-security-indicators/service-configuration/>, <https://fedramp.gov/2026/providers/20x/key-security-indicators/monitoring-logging-and-auditing/> and <https://fedramp.gov/2026/providers/20x/key-security-indicators/change-management/> (indicator names as cited elsewhere in the workbook; accessed Nov 11, 2026).
+[^c14g-pim-exc]: Microsoft Learn, "Plan a Privileged Identity Management deployment," section "Type of assignments" ("Keep zero permanently active assignments for roles other than your emergency access accounts"), <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan>, and "Manage emergency access accounts in Microsoft Entra ID," section "Security guardrails summary" (permanent active Global Administrator for emergency accounts; validate at least every 90 days), <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (both accessed Nov 11, 2026).

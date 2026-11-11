@@ -330,6 +330,26 @@ When only one domain fails, recover its domain controllers as above, clean up th
 
 The rows support the controls; they don't satisfy them. The agency sets each control's parameters, owns the policy and procedures, and the assessor decides whether each is satisfied.[^aH-sp80053] The FedRAMP indicators bind cloud service providers; for the agency they are the vocabulary [Chapter 06](06-contingency-and-continuity.md#fedramps-recovery-planning-indicators) uses for its own evidence.[^aH-ksi]
 
+**Control states, recovery safety and evidence.** [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply to a recovery runbook as follows. **Authority:** Microsoft guidance for the sequence and commands; Mandated in substance for CP-2, CP-4 and CP-10 where the system's baseline selects them; the hybrid steps are program design (the table below). **Applies:** every forest that still holds domain controllers; Windows Server 2019 or later is the program's assumed minimum for domain controllers after January 12, 2027.
+
+| State | This runbook | Evidence |
+|---|---|---|
+| Designed | [Before an incident](#before-an-incident): the plan, the forest map and the choice of domain controllers to recover | The approved plan and forest map |
+| Configured | The backups and passwords held | Backup job reports; the password and BitLocker key custody record |
+| Enforced | Not applicable: recovery restores service; it enforces nothing | — |
+| Evidenced | The yearly lab drill with copies of production backups | Drill timings per step, `repadmin /replsum` and `DCDiag /v` output, after-action report |
+| Operated | Practice yearly and on changes to Enterprise Admins or Domain Admins membership | The drill calendar and plan revisions |
+
+How-section coverage: the pilot is the lab drill; report-only and enforcement are not applicable; rollback is not available once a forest is restored from backup, which is why [Pause synchronization](#pause-synchronization-to-microsoft-entra-id) comes before any domain controller is reachable and [Resume synchronization](#resume-synchronization-to-microsoft-entra-id) only after the export review; exclusions are the domain controllers retired at recovery instead of redeployed. Recovery safety, in place of rings: the **change window** is an emergency change under the incident commander, with the identity engineer and Microsoft Support on hand; the **backout trigger** is any sign the chosen backup postdates the failure, which sends the team back to [Determine how to recover](#determine-how-to-recover) with an older backup; **post-change validation** is the replication and SYSVOL checks, then the Connect export review. Emergency access to Microsoft Entra ID doesn't depend on the forest: the cloud-only emergency accounts in [Book 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture) stay usable throughout. Day-two ownership: the identity platform owner keeps the runbook; the contingency planning coordinator schedules the drill ([Chapter 10](10-who-owns-compliance.md)).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the forest map, the plan, and the backup job reports for two writable domain controllers per domain
+- [ ] **Operational:** the custody record for passwords and BitLocker keys, and the drill calendar
+- [ ] **Test:** the yearly drill record with timings, command output and the backup's age
+- [ ] **Exception:** domain controllers not backed up or not redeployed, with the decision and approver
+- [ ] **Assessor-ready artifact:** the identity recovery appendix of the contingency plan and the drill's after-action report, pointing to the four above
+
 ## What is requirement and what is design
 
 | Statement | Status | Basis |

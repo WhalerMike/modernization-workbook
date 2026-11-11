@@ -411,6 +411,69 @@ foreach ($rt in 'AzureActiveDirectory', 'ExchangeAdmin', 'ExchangeItem',
 
 The record types are values of `AuditLogRecordType`.[^c04-mgmt-schema] The source script used `Exchange` and `SharePoint`; `Exchange` isn't a record type (Exchange activity is `ExchangeAdmin`, `ExchangeItem` or `ExchangeItemGroup`), and file activity is `SharePointFileOperation`. Run both checks. The workspace query shows the SIEM is receiving; the tenant check shows the tenant is recording. Only the second one can tell "nothing happened" from "nothing is being captured."
 
+## Control states, rollout and evidence {#b12-04-control-states}
+
+The chapter has two procedures: Azure emission (Parts 1 to 3) and Microsoft 365 audit collection (Part 4). This section applies [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions to both, reusing what the parts already say.
+
+**Authority:** Mandated for the retention floor (OMB M-26-14, [Retention: the tier that decides the evidence](#retention-the-tier-that-decides-the-evidence)). Microsoft-recommended for verifying that unified auditing is on and for using the Management Activity API rather than `Search-UnifiedAuditLog` for programmatic collection (Learn pages cited above, read Oct 21, 2026), and for staging policy assignments with `DoNotEnforce` before enforcing them.[^c04-sdp] Risk-based recommended for enabling all eight activity log categories, the `allLogs` initiative at the top management group, and running both the Sentinel connector and the API collector, which are the program's design.
+**Applies:** All Azure subscriptions and Microsoft 365 tenants. License-dependent: audit retention beyond 180 days follows each user's license ([the warning above](#retention-the-tier-that-decides-the-evidence)). Environment-dependent: the Management Activity API host by plan ([Step 3](#step-3-register-the-collector)); the Microsoft 365 connector is GA in GCC, GCC High and DoD.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The category choices in Parts 1 and 2, the policy assignments in Part 3, and the content-type list in Step 4 | The program's logging design in the repository and the Agency Logging Plan |
+| Configured | Subscription diagnostic settings; the policy assignments in audit mode; `UnifiedAuditLogIngestionEnabled` `True`; the collector's subscriptions | The policy assignment export; the `Get-AdminAuditLogConfig` output recorded with its module; the subscription list from Step 4 |
+| Enforced | Part 3: the `allLogs` initiative and the activity log policy assigned with enforcement on, and a remediation task run per policy | The assignment's `enforcementMode` `Default`; remediation task results; the policy exemptions list |
+| Evidenced | [Verify Azure emission](#verify-azure-emission) and [Verify Microsoft 365 emission](#verify-microsoft-365-emission) | The query and script outputs, with the subscription check showing no `NO ACTIVITY LOG EXPORT` line |
+| Operated | Policy compliance against the inventory as the coverage input to [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md); the high-severity detection on `Set-AdminAuditLogConfig` | Compliance history; the detection's alert history; the collector's run log |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-section coverage**
+
+| Subsection | Azure emission (Parts 1 to 3) | Microsoft 365 audit (Part 4) |
+|---|---|---|
+| Prerequisites | The roles in each part; the remediation identity's roles ([Where DeployIfNotExists stops](#part-3-enforce-emission-with-azure-policy)) | The Audit Logs role; the collector's app registration and `ActivityFeed.Read`; the plan's API host |
+| Pilot | One non-production subscription, then one management group below the root | A test tenant, or the production tenant read-only before the collector writes anywhere |
+| Report-only or audit phase | AuditIfNotExists, or DeployIfNotExists with `enforcementMode` `DoNotEnforce`, until the first evaluation is read[^c04-sdp] | Not applicable: reading the audit log changes nothing |
+| Enforcement | `enforcementMode` `Default`, ring by ring (below), then a remediation task per policy | Step 2 turns auditing on where it was off; nothing else enforces |
+| Rollback | Set the assignment back to `DoNotEnforce`; diagnostic settings already deployed stay and are removed only by change | Stop the collector; never turn tenant auditing off (it blinds everything downstream) |
+| Exclusions | The logging storage accounts and event hubs ([the self-reference loop](#part-2-resource-logs)); resource types outside the initiative, each with a documented exception | None for auditing; split retention by license is recorded in the system security plan |
+| Telemetry | The `Policy` activity log category; compliance state; the queries above | `OfficeActivity`; the collector's `contentId` log; the audit record of any `Set-AdminAuditLogConfig` |
+| Evidence | The checklist below | The checklist below |
+| Day-two ownership | Platform engineering owns the assignments; security engineering owns the category list ([Chapter 10](10-who-runs-security-operations.md)) | Security engineering owns the collector; the SOC owns the auditing-disabled detection |
+
+**Change safety** (Part 3, the only step here that enforces)
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | A sandbox subscription | Assignment deploys; first evaluation completes; one remediation task succeeds |
+| 1 | One non-production management group | Compliant count matches the inventory; no failed remediation deployments |
+| 2 | Production management groups except Tier 0 platform subscriptions | No deployment failures attributed to the policy for one week |
+| 3 | The top management group | Compliance against the full inventory reported in [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) |
+
+- **Emergency access:** not applicable to sign-in; the policies change no access. The remediation identity's role assignments are reviewed with the other privileged roles ([Book 04](../b04-access/index.md)).
+- **Change window:** the platform team's standard window, approved through change control; the platform engineer on hand.
+- **Backout triggers:** a remediation deployment fails on a production resource, or a resource's own logging destination loops; set back to `DoNotEnforce` and fix before going on.
+- **Post-change validation:** the subscription check and the `AzureDiagnostics` backlog query after each ring.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** policy assignment exports with their enforcement mode; subscription diagnostic settings; `Get-AdminAuditLogConfig` output; the collector's subscription list
+- [ ] **Operational:** compliance history, the `AzureActivity` and `OfficeActivity` liveness results, and the collector run log, kept for the evidence period
+- [ ] **Test:** the Azure checks and the tenant script after each ring and each collector change, with expected and observed results, date and tester
+- [ ] **Exception:** policy exemptions and excluded resource types with approver and expiry; the license split on audit retention
+- [ ] **Assessor-ready artifact:** the evidence package entry for AU-2, AU-4, AU-12 and CM-6 (the policy) pointing to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** SecOps; Infrastructure for the Azure planes
+- **CISA ZTMM pillar:** Applications and Workloads, and the Visibility and Analytics cross-cutting capability
+- **Depends on:** the identity telemetry in [Chapter 03](03-identity-telemetry.md); the workspace retention in [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md#retention-tiers-and-tamper-protected-copies); Purview audit depth in [Book 20, Chapter 10](../b20-information-protection/10-audit-insider-risk-and-communication-compliance.md)
+- **Attack chain interrupted:** Defense Evasion (turning tenant auditing off, or a resource born without logging); Collection and Exfiltration in mailboxes and sites stay visible
+:::
+
 ## Where the evidence goes next
 
 All three emission paths now land in one workspace, with one verification loop and retention set to the baseline. [Chapter 05](05-from-log-warehouse-to-detection.md) turns these tables into detections, and [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) turns the coverage and liveness checks into continuous-monitoring evidence. The control-level detail for SIEM and detection is in [Vol III Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
@@ -450,3 +513,4 @@ All three emission paths now land in one workspace, with one verification loop a
 [^c04-purview-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," step 4 (Audit (Standard) and Audit (Premium) rows), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Oct 21, 2026).
 [^c04-officeactivity]: Microsoft Learn, Azure Monitor Logs table reference, "OfficeActivity," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/officeactivity> (accessed Oct 21, 2026).
 [^c04-sentinel-billing]: Microsoft Learn, "Plan costs and understand Microsoft Sentinel pricing and billing," section "Free data sources," <https://learn.microsoft.com/azure/sentinel/billing> (accessed Oct 21, 2026).
+[^c04-sdp]: Microsoft Learn, "Safe deployment of Azure Policy assignments," section "Steps for safe deployment of Azure Policy assignments with modify or deployIfNotExists effects" (assign with `enforcementMode` `DoNotEnforce`, validate compliance, then set `Default` tier by tier), <https://learn.microsoft.com/azure/governance/policy/how-to/policy-safe-deployment-practices>, and "Azure Policy assignment structure," section "Enforcement mode," <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure#enforcement-mode> (both accessed Nov 11, 2026).

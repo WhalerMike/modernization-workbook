@@ -144,3 +144,12 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | AU-4 asks for audit log storage capacity allocated to accommodate retention requirements (item 599) | Retention | verified | NIST OSCAL SP 800-53 Rev. 5 catalog |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b12-04-control-states` with change safety for Part 3 (G-01, G-02, G-05, G-06, G-07, G-08) and footnote `c04-sdp`.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Azure Policy assignments can be staged with `enforcementMode` `DoNotEnforce`, validated, then set to `Default` tier by tier; remediation tasks can run under DoNotEnforce | Control states, rollout and evidence | verified (new) | Learn, "Safe deployment of Azure Policy assignments" and "Azure Policy assignment structure," Enforcement mode, https://learn.microsoft.com/azure/governance/policy/how-to/policy-safe-deployment-practices | Nov 11, 2026 |
+| P4-2 | Rings 0-3 by subscription and management group, backout triggers | Change safety | restated-as-design | Program design | Nov 11, 2026 |

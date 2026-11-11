@@ -113,3 +113,7 @@ New section "Data and endpoint telemetry in the contract" with its searchability
 | D10 | Defender for Endpoint detection test command; alert in about 10 minutes | Searchability | verified (command copied from Learn) | Learn, Run a detection test on a device recently onboarded | Nov 11, 2026 |
 | D11 | Retention floor per table and the snapshot/change split | Two rules | restated-as-design | Program design; Chapter 12 | Nov 11, 2026 |
 | D12 | Defender XDR connector in DoD to be confirmed | Matrix | verified (as Chapter 05 records the conflict between two Learn pages) | Chapter 05 | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Data and endpoint telemetry: the prose mention of the Information Protection and Microsoft Purview book became links to Book 20 and its Chapter 10 How section (now merged). No new claim.

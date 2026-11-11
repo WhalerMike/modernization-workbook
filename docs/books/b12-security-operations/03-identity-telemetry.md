@@ -346,6 +346,55 @@ auditpol /get /category:* | Out-File "C:\Evidence\$env:COMPUTERNAME-auditpol-$(G
 
 Microsoft's list of events to monitor rates a handful of events High, meaning a single occurrence should be investigated: 4618, 4649, 4719 (system audit policy changed), 4765 and 4766 (SID History added to an account, or the attempt failed), 4794 (an attempt to set the Directory Services Restore Mode), 4897, 4964 (special groups assigned to a new logon) and 5124. Event 1102 (audit log cleared) is rated Medium to High.[^c03-events-l] The program's detection rules for domain controllers start from that list and from Microsoft's single-occurrence examples, such as a Domain Admins member signing in to a workstation, which event 4964 surfaces.[^c03-audit-rec] Book 04 sets the tier rules those events test ([Chapter 04](../b04-access/04-privileged-roles-and-tiers.md)).
 
+## Control states, rollout and evidence {#b12-03-control-states}
+
+This section applies [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions to the procedure above, Paths A to C and the verification query. It reuses what the chapter already says and adds only what was missing.
+
+**Authority:** Mandated for the retention floor: OMB M-26-14's six months searchable and one year retrievable ([Retention](#retention-what-the-logging-baseline-asks-for)). Microsoft-recommended for routing Graph activity logs to the same workspace as the sign-in logs and for keeping `MicrosoftServicePrincipalSignInLogs` off (Learn pages cited above, read Oct 21, 2026). Risk-based recommended for the Core, High value and Conditional tiers and for deploying from code, which are the program's design.
+**Applies:** All tenants for the Core tier. License-dependent: Entra ID P1 or P2 for Graph activity logs; ID Protection licensing for the High value tier. Environment-dependent: endpoints by cloud, in [Sovereign clouds](#sovereign-clouds); Global Secure Access categories not yet supported in GCC High or DoD.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The log categories and their tables](#the-log-categories-and-their-tables) and [Retention](#retention-what-the-logging-baseline-asks-for): the category list and retention per table | The category list in the repository, approved by security engineering ([Chapter 10](10-who-runs-security-operations.md)) |
+| Configured | [Path B](#path-b-tenant-scope-bicep) or [Path C](#path-c-az-rest) | The GET output from Path C, committed with each change; the table retention export ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md)) |
+| Enforced | Not applicable: a diagnostic setting emits records and blocks nothing; its scope is the whole tenant from the first save | — |
+| Evidenced | [Verify emission](#verify-emission) at 24 and 72 hours | The query result with every expected table `OK` or carrying a recorded expected-quiet exception |
+| Operated | The daily run of the verification query and the scheduled comparison of the deployed setting with the repository | The query history, the comparison output, and the stale-source incidents [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) routes to the SOC |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-section coverage.** The procedure carries each subsection of the template, or says why it doesn't apply:
+
+| Subsection | Where, or why not |
+|---|---|
+| Prerequisites | [Before you start](#before-you-start); government-cloud endpoints and availability in [Sovereign clouds](#sovereign-clouds) |
+| Pilot | Path A in a lab or first tenant, then Path B or C in a test tenant, as the illustrative-code warning requires |
+| Report-only or audit phase | Not applicable: emission has no blocking effect to observe first |
+| Enforcement | Not applicable for the same reason; the [Verify emission](#verify-emission) runs at 24 and 72 hours take its place |
+| Rollback | Redeploy the previous template from the repository (Path B), or `PUT` the previous category list (Path C). Removing the setting stops emission and is itself a change that needs approval, because it ends the identity record |
+| Exclusions | `MicrosoftServicePrincipalSignInLogs`, left off by design; expected-quiet exceptions for the provisioning and risk tables, each recorded with an owner |
+| Telemetry | The workspace tables themselves, the completeness query, and the Entra audit events for changes to diagnostic settings |
+| Evidence | The checklist below |
+| Day-two ownership | Security engineering owns the setting and the category list; the SOC owns the daily query and the stale-source response ([Chapter 10](10-who-runs-security-operations.md)) |
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the template or category list in the repository, and the Path C GET output committed with each change
+- [ ] **Operational:** the daily verification-query results and the table retention export, kept for the evidence period
+- [ ] **Test:** the 24-hour and 72-hour query runs after each change, with expected tables, observed status, date and tester
+- [ ] **Exception:** the expected-quiet register for the provisioning and risk tables, and the record that `MicrosoftServicePrincipalSignInLogs` is off by design, each with its approver and review date
+- [ ] **Assessor-ready artifact:** the evidence package entry for AU-2, AU-3 and AU-12 pointing to the four above ([Chapter 02](02-the-evidence-contract.md))
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** SecOps (with Identity as the source)
+- **CISA ZTMM pillar:** Identity, and the Visibility and Analytics cross-cutting capability
+- **Depends on:** the workspace and its retention ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md#retention-tiers-and-tamper-protected-copies)); the identity detections that read these tables ([Appendix B](appendix-b-identity-and-application-detections.md))
+- **Attack chain interrupted:** Defense Evasion: an attacker's sign-ins, consent grants and role changes stay on record past Entra's 30-day window, so Credential Access, Persistence and Privilege Escalation can be investigated after the fact
+:::
+
 ## Privacy: identity telemetry is PII
 
 Every record this chapter collects is about a person. A sign-in event identifies the user by name, username and user ID, and records the application and resource, the IP address and an approximate location, and the browser, operating system and compliance state of the device.[^c03-signin-details] Under A-130's definition that is personally identifiable information, and a workspace holding a year of it is a profile of each worker's day.[^c03-a130] M-26-14 sets what to log and for how long; it doesn't address privacy, and the Privacy Act and A-130 apply to the logs as to any other PII. Where the agency retrieves log records by a person's name or identifier, they are records in a system of records, and the privacy office decides which notice covers them.[^c03-pa]

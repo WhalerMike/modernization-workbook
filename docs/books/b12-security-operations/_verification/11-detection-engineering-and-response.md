@@ -144,3 +144,7 @@ Left listed but uncited in the coverage map: zero-trust-monitor-detect (no sente
 ## Zero Trust closure update, November 11, 2026 (B12-01, B12-02)
 
 The library table gains a row for FMP-DET-30 to 45 and a pointer to Appendix B, which carries the rules, their sources and their verification log (`_verification/appendix-b-identity-and-application-detections.md`). "The last two rows" became "FMP-DET-22 and FMP-DET-23" because the table now has a later row. No new external claim in this chapter.
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b12-11-control-states` for the rule lifecycle and playbooks, with change safety for playbooks (G-01, G-02, G-05, G-06, G-07). Relabeled the suppression rules' "must carry an expiration date" as the program's decision-rights design, risk-based recommended (G-05). No new product claim.

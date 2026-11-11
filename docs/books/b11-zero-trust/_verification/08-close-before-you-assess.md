@@ -108,3 +108,7 @@ Full read of the page, top to bottom, after the first reader covered it by diff.
 |---|---|---|
 | Link text "Vol VII Book 02 of the Federal Compliance series" | Link text is Book 15 Chapter 08's title; the old label stays in brackets | Decision of Nov 8, 2026; title read from b15-day2-operations/08-control-automation-m365-and-azure.md |
 | CA001 meets MS.AAD.1.1v1 after legacy clients move (claim 18) | CA001 addresses MS.AAD.1.1v1 after legacy clients move | Decision of Nov 8, 2026; claim language |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#finding-families`, a map from each Zero Trust assessment finding family (closure-map rows CM-01 to CM-15) to the pages that carry its closure content. Links only; no new claim.

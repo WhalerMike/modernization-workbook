@@ -273,6 +273,35 @@ The program's division of labor, which is design:
 
 Detection needs recent data at hand; investigation needs older data retrievable. M-26-14 sets the federal floor: logs searchable for at least 6 months after creation, meaning analytics can run on them without preparation, and retrievable for a year, meaning they can be restored to an analytics tier after intermediary steps; it adds that these minimums do not relieve agencies of records schedules.[^c05-m2614] The source volume cited M-26-14 as setting "12 months of active storage plus 18 months of cold storage." Those were M-21-31's figures, and M-21-31 is rescinded. Set retention per table in the workspace so the tables the rule library reads meet the searchable floor; [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) covers the tiers and the evidence that retention is configured as designed.
 
+## Control states and evidence for the connectors {#b12-05-control-states}
+
+The procedure in this chapter is connecting each source and proving it still delivers. [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply as below; the rules that read these tables have their own lifecycle in [Chapter 11](11-detection-engineering-and-response.md#b12-11-control-states).
+
+**Authority:** Mandated in substance for AU-6 review and the M-26-14 baseline the sources serve ([What AU-6 requires](#what-au-6-requires)). Microsoft-recommended for writing rules over Defender-only data as Defender custom detections (Learn, read Oct 21, 2026). Risk-based recommended for the division of labor between Defender XDR and Sentinel and for selective raw streaming, which are the program's design.
+**Applies:** License-dependent per connector (Entra ID P1 or P2 for sign-in logs; Defender XDR licensing for incident integration). Environment-dependent: [Where Sentinel runs, and which cloud's table to read](#where-sentinel-runs-and-which-clouds-table-to-read) lists what differs in Azure Government.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Microsoft Sentinel connector architecture](#microsoft-sentinel-connector-architecture) and [What Defender XDR contributes](#what-defender-xdr-contributes) | The connector inventory and the division-of-labor decision, approved by security engineering |
+| Configured | Each connector section | The workspace's connector list and data collection rules, exported |
+| Enforced | Not applicable: connectors collect; they block nothing | — |
+| Evidenced | [Proving the connectors still deliver](#proving-the-connectors-still-deliver) | The freshness export with every required table `OK`; `SentinelHealth` failures for the connectors it covers |
+| Operated | The daily freshness run; stale sources routed to the SOC as AU-5 failures ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md)) | The freshness history and the incidents it raised |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-section coverage.** Prerequisites: each connector's licensing and the cloud table above. Pilot: one connector at a time into a test workspace, then production. Report-only or audit phase and Enforcement: not applicable, because a connector blocks nothing; the freshness check stands in for both. Rollback: disconnect the connector or remove its data collection rule under change control; the tables keep what arrived. Exclusions: raw Defender tables not streamed by design, each named in the connector inventory. Telemetry: `SentinelHealth` where supported, and the freshness export everywhere. Day-two ownership: security engineering owns the connectors and the SOC the freshness response ([Chapter 10](10-who-runs-security-operations.md)).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the connector inventory and data collection rules, exported with each change
+- [ ] **Operational:** the daily freshness CSVs and `SentinelHealth` history, kept for the evidence period
+- [ ] **Test:** a freshness run after each new connector, and a synthetic event from each source found in its table (expected and observed, date, tester; [Appendix B](appendix-b-identity-and-application-detections.md#synthetic-tests) gives the identity and application cases)
+- [ ] **Exception:** sources not connected or not streamed, with the reason, approver and review date
+- [ ] **Assessor-ready artifact:** the evidence package entry for AU-6 and SI-4 pointing to the four above
+
 ## Controls this chapter makes assessable
 
 | Control | What the program implements | Evidence it produces |

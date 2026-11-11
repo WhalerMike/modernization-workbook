@@ -52,3 +52,13 @@ Primary sources opened on Nov 11, 2026: Microsoft Learn through the Microsoft Le
 ## Not tested
 
 The scripts are written from Learn's documented cmdlets and endpoints and haven't been run against a tenant. They are read-only except the Key Vault policy assignments, the GitHub `PATCH`, and the TCM snapshot request.
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#standing-privilege-exceptions` (CM-02, Book 13 part): approval routes, expiry and review cadence, drift rules against Book 04's export, control states and evidence checklist; footnote `c14g-pim-exc`.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Keep zero permanently active assignments except emergency access accounts | Standing privilege exceptions | verified (new) | Learn, "Plan a Privileged Identity Management deployment," Type of assignments, https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan | Nov 11, 2026 |
+| P4-2 | Emergency accounts hold Global Administrator as permanent active; validate at least every 90 days | Standing privilege exceptions | verified (new) | Learn, "Manage emergency access accounts in Microsoft Entra ID," Security guardrails summary, https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access | Nov 11, 2026 |
+| P4-3 | Approvers, expiry limits (one year, six months) and drift severities | Standing privilege exceptions | restated-as-design | Program design, reusing Chapter 09's exception routes and Book 04's register categories | Nov 11, 2026 |
