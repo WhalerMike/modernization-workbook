@@ -50,7 +50,7 @@ Detection and response are only as good as the telemetry that reaches them. A lo
 | **Who** | Who runs security operations, who owns each plane, detection and playbook, and who accepts residual risk | [10](10-who-runs-security-operations.md) |
 | **How** | Engineer detections and automate response within the actuation ladder, then evidence the whole system with continuous monitoring and metrics | [11](11-detection-engineering-and-response.md), [12](12-evidence-metrics-and-continuous-monitoring.md) |
 
-Appendix: [A — Requirements mapping: controls, mandates and books](appendix-a-requirements-mapping.md)
+Appendices: [A — Requirements mapping: controls, mandates and books](appendix-a-requirements-mapping.md); [B — Identity and application detections for Zero Trust findings](appendix-b-identity-and-application-detections.md)
 
 ## Reading paths
 

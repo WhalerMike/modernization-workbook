@@ -191,7 +191,7 @@ Every URL below was opened on October 21, 2026. Chapters cite product sources sp
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 12 — Evidence, Metrics and Continuous Monitoring](12-evidence-metrics-and-continuous-monitoring.md) · [Book index](index.md)
+[← Previous: Chapter 12 — Evidence, Metrics and Continuous Monitoring](12-evidence-metrics-and-continuous-monitoring.md) · [Book index](index.md) · [Next: Appendix B — Identity and Application Detections →](appendix-b-identity-and-application-detections.md)
 :::
 
 [^aA-53]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, release 5.2.0 (CSRC planning note of August 27, 2025), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; control identifiers, titles and statements checked against the OSCAL catalog (version 5.2.0, last modified May 11, 2026), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (both accessed Oct 21, 2026).
