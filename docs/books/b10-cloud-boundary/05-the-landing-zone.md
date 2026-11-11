@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What a landing zone is in Microsoft's current terms, and the substrate it depends on. How the management group hierarchy and subscriptions are organized, and how each boundary decision (which cloud, which regions, which services, which settings, which exceptions) becomes a specific policy at a specific scope. How the same pattern looks on AWS, including the differences in AWS GovCloud (US). Why every piece of automation that touches the cloud has to declare its boundary, and what a landing zone can't prove on its own.
+What a landing zone is in Microsoft's current terms, and the substrate it depends on. How the management group hierarchy and subscriptions are organized, and how each boundary decision (which cloud, which regions, which services, which settings, which exceptions) becomes a specific policy at a specific scope. How the same pattern looks on AWS, including the differences in AWS GovCloud (US). How internet-facing workloads are selected and governed: Front Door, Application Gateway, WAF rules and rate limits, DDoS Protection tiers, Private Link, Azure Firewall and public IP policy, with the AWS, Google Cloud and Oracle Cloud equivalents, and the inventory and exercise that evidence them. Why every piece of automation that touches the cloud has to declare its boundary, and what a landing zone can't prove on its own.
 :::
 
 The earlier chapters argued that the authorization boundary, not the product catalog, decides what an agency can use. That argument stays abstract until something enforces it. The landing zone is the first place that happens: it's the pre-built environment every workload lands in, and its structure decides what a workload team can deploy, where, and with which settings, before anyone writes an application. If the boundary says a service is out of scope and the landing zone lets a team deploy it anyway, the boundary is a document, not a control.
@@ -127,6 +127,79 @@ AWS recommends **Landing Zone Accelerator on AWS** on top of Control Tower for r
 
 Those classes describe what each region was assessed against, not who may use it. AWS states that US East/West is FedRAMP Certified Class C (formerly the Moderate baseline) and GovCloud (US) Class D (formerly the High baseline), and its services-in-scope list marks each service separately for each, so a service can be in scope in one and not the other.[^c05-aws-fedramp] The High baseline contains the Moderate controls, so a Moderate system can run in GovCloud (US) as well as in the commercial Regions *(inference)*. An agency may run most of its AWS workloads in GovCloud (US) at Moderate and put a service such as a contact center in the commercial Regions; both are Moderate locations. The landing zone then has two organizations, one per partition, and the package names which services run where *(design guidance)*. Check each service, per region, on the FedRAMP Marketplace and AWS's list before the design depends on it.
 
+## Internet-facing workloads: ingress and resilience {#internet-facing-workloads}
+
+The **Online** management group holds the workloads that face the internet, and its policy is where the boundary decides how they may be reached. This section covers selection and control patterns only: which ingress, firewall and DDoS service fits which need, the policy that keeps every public endpoint behind one of them, and the evidence. The engineering (WAF rule tuning, origin lock-down, TLS, health probes, Firewall rules, Private Link DNS, response exercises) belongs to the **Azure Security Engineering** implementation guide, and the network paths themselves to [Book 09](../b09-network/index.md).
+
+**Authority:** Microsoft-recommended for putting a web application firewall and DDoS protection in front of internet-facing web workloads;[^c05-ing-waf-afd] Mandated for knowing and attesting what is exposed, which BOD 26-04 asks of agencies quarterly for publicly exposed IP addresses and domains;[^c05-ing-bod2604] Risk-based recommended for the selection rules below, which are the program's position.
+**Applies:** License-dependent (DDoS Protection and Front Door Premium are paid tiers) and Environment-dependent: Azure Front Door Standard and Premium are generally available in Azure Government in US Gov Arizona and US Gov Texas, and Learn records no other networking variation for the services below, deferring to Microsoft's products-by-region list, so their Azure Government availability is checked there when the design is written.[^c05-ing-gov]
+
+### Selection
+
+| Need | Service | Choose it when | Control pattern | Evidence |
+|---|---|---|---|---|
+| Global HTTP(S) entry with an edge WAF | Azure Front Door Premium with a WAF policy | The application spans regions, needs global load balancing or caching, or should be protected at the edge; Front Door has layer 3 and 4 DDoS protection by default and accepts only HTTP and HTTPS[^c05-ing-afd-ddos] | Managed rules need Premium (Standard supports custom rules only); origins reached over Private Link so they aren't public[^c05-ing-waf-afd][^c05-ing-afd-ddos] | Profile and WAF policy export; origin with no public access |
+| Regional HTTP(S) entry, public or private | Application Gateway WAF v2 | A single-region application, or region-specific rules behind Front Door | Its public IP is in the agency's virtual network, so it needs DDoS Network Protection on that network for tuned layer 3 and 4 mitigation[^c05-ing-l7] | WAF policy export; DDoS plan association |
+| Both | Front Door in front of Application Gateway | A multiregion application that also needs regional rules | Front Door as the first line, Application Gateway rules per region[^c05-ing-wafdesign] | Both exports |
+| Request floods and abuse | WAF rate-limit custom rules on either service; the HTTP DDoS ruleset is in preview | Every internet-facing web workload | At least one catch-all rate-limit rule, in place before an attack[^c05-ing-l7] | Rule export; WAF logs |
+| Volumetric attack on a public IP | Azure DDoS Protection: infrastructure protection (free, automatic), IP Protection (per IP) or Network Protection (a plan covering up to 100 public IPs across the tenant's subscriptions) | Network Protection for production estates: it adds DDoS Rapid Response, cost protection and a WAF discount, which IP Protection doesn't;[^c05-ing-ddos-tiers] Microsoft's FAQ puts the cost crossover at about 15 public IPs[^c05-ing-ddos-faq] | Built-in policy "Virtual networks should be protected by Azure DDoS Protection," in Audit, then Modify[^c05-ing-ddos-secure] | Policy compliance; plan associations |
+| No public endpoint at all | Private Link and private endpoints for PaaS services | The service has no reason to be reached from the internet | Fewer public IPs are fewer DDoS targets[^c05-ing-ddos-secure] | Private endpoint inventory; public network access disabled |
+| Egress and east-west control | Azure Firewall in the Connectivity hub | All spoke traffic to the internet and between spokes | Central, logged application and network rules[^c05-ing-netoverview] | Firewall policy export; logs |
+| Public IP governance | Azure Policy at the landing-zone groups | Always | **Not allowed resource types** with Deny for `Microsoft.Network/publicIPAddresses` in **Corp** (see [Which services](#which-services)); in **Online**, every public IP behind Front Door or an Application Gateway, or registered as an exception | Policy assignment; exemption register; the inventory below |
+
+### The same pattern on other platforms
+
+| Need | Azure | AWS | Google Cloud | Oracle Cloud Infrastructure |
+|---|---|---|---|---|
+| Global edge with WAF | Front Door Premium | CloudFront with AWS WAF; CloudFront isn't available in AWS GovCloud (US), though it can front GovCloud resources from the standard Regions[^c05-ing-aws-cf] | Global external Application Load Balancer with Cloud Armor; not listed for Assured Workloads FedRAMP Moderate or High[^c05-ing-gcp-aw] | WAF edge policy, reached through DNS[^c05-ing-oci-waf] |
+| Regional L7 with WAF | Application Gateway WAF v2 | Application Load Balancer with AWS WAF, available in GovCloud (US) with AWS managed rule groups only[^c05-ing-aws-waf] | Regional external Application Load Balancer with Cloud Armor; regional backend security policies are the only Cloud Armor policies listed for FedRAMP High[^c05-ing-gcp-aw] | Load Balancer with a regional WAF policy[^c05-ing-oci-waf] |
+| Rate limiting | WAF rate-limit rules | AWS WAF rate-based rules[^c05-ing-aws-waf] | Cloud Armor rate-based rules[^c05-ing-gcp-armor] | WAF rate limiting[^c05-ing-oci-waf] |
+| DDoS | DDoS IP or Network Protection | Shield Standard (automatic) or Shield Advanced; Shield Advanced isn't yet available in GovCloud (US)[^c05-ing-aws-shield] | Cloud Armor; Adaptive Protection and DDoS response support come with Cloud Armor Enterprise[^c05-ing-gcp-armor] | Layer 3 and 4 protection included with every tenancy[^c05-ing-oci-ddos] |
+| Private service access | Private Link | PrivateLink interface endpoints[^c05-ing-aws-pl] | Private Service Connect[^c05-ing-gcp-psc] | Private endpoints and service gateway[^c05-ing-oci-pe] |
+| Managed firewall | Azure Firewall | AWS Network Firewall, available in GovCloud (US)[^c05-ing-aws-nfw] | Cloud NGFW, listed for FedRAMP Moderate and High[^c05-ing-gcp-aw] | OCI Network Firewall; available in Oracle US Government Cloud[^c05-ing-oci-gov] |
+| Public exposure guardrail | Azure Policy deny on public IP resources | VPC Block Public Access; AWS Config rule `ec2-instance-no-public-ip` (detects only)[^c05-ing-aws-bpa] | Organization policy `constraints/compute.vmExternalIpAccess`, which can't be applied retroactively[^c05-ing-gcp-ip] | Security Zone policies `deny public_subnets` and `deny internet_gateway`[^c05-ing-oci-sz] |
+
+Government availability is read per offering, not per vendor, as [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#authorization-status-is-not-uniform) argues for SASE services: in Oracle US Government Cloud, WAF, Network Firewall and the Network Load Balancer have listed endpoints and the Layer 7 Load Balancer isn't listed, so for it availability is not yet specified.[^c05-ing-oci-gov]
+
+### The inventory and the exercise
+
+The closure evidence an assessor looks for is coverage, not configuration: every internet-facing resource known, owned and protected, and a test that shows the protection responds. Inventory every public IP and its DDoS protection mode with Azure Resource Graph, from the Azure CLI signed in to the agency's cloud (`az cloud set --name AzureUSGovernment` first in Azure Government):
+
+```bash
+az extension add --name resource-graph
+az graph query --first 1000 -q "
+Resources
+| where type =~ 'microsoft.network/publicipaddresses'
+| project subscriptionId, resourceGroup, name, ipAddress = tostring(properties.ipAddress),
+          ddosMode = tostring(properties.ddosSettings.protectionMode),
+          attachedTo = tostring(properties.ipConfiguration.id)
+| order by subscriptionId asc, name asc" --output table
+```
+
+Microsoft recommends exactly this kind of inventory of public IPs and their protection status, with Resource Graph to find the gaps.[^c05-ing-ddos-secure] Each row is matched to an owner in the CMDB ([Book 15, Chapter 07](../b15-day2-operations/07-the-cmdb-and-asset-identity.md)); a row with no owner, or attached to nothing, is a finding. The monthly comparison and the quarterly BOD 26-04 attestation run on [Book 15's operating cadence](../b15-day2-operations/12-the-day-two-runbook.md#the-cadence-by-control-family).
+
+The exercise has two parts. A WAF policy starts in Detection mode, which logs and blocks nothing, and moves to Prevention after tuning; Microsoft's design guidance puts that at one to two weeks of clean logs, and is explicit that Detection mode gives no protection.[^c05-ing-wafdesign] A DDoS test is run only through Microsoft's approved simulation partners, against public IPs the agency owns that are already under DDoS Protection; Microsoft's penetration-testing rules prohibit any other denial-of-service testing.[^c05-ing-ddos-sim] The simulation report, the DDoS metrics and alerts it raised, and the response team's record are the exercise evidence.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Selection](#selection), recorded per workload in the request ([Chapter 07](07-the-front-door.md)) | The workload's ingress decision |
+| Configured | WAF policies, DDoS plan, Private Link, Firewall (the Azure Security Engineering guide) | Exports |
+| Enforced | Public IP policy with Deny in Corp; DDoS policy in Modify; WAF in Prevention | Policy assignments; WAF mode; exemption register |
+| Evidenced | The inventory and the exercise above | Inventory output; simulation report; WAF logs |
+| Operated | Monthly inventory comparison, quarterly attestation, annual exercise | Cadence records |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Infrastructure; Networks
+- **CISA ZTMM pillar:** Networks; Applications and Workloads
+- **Depends on:** the asset inventory and CMDB ([Book 15](../b15-day2-operations/07-the-cmdb-and-asset-identity.md)); logging to the SIEM ([Book 12](../b12-security-operations/index.md)); the landing-zone policy above
+- **Attack chain interrupted:** exploitation of an unprotected public endpoint and denial of service against it (Initial Access, Impact)
+:::
+
 ## A multi-environment estate
 
 Many agencies don't have one landing zone; they have several environments that have to behave as one boundary. A typical pattern looks like this:
@@ -160,8 +233,9 @@ A landing zone enforces structure. It doesn't authorize anything. NIST defines t
 1. A landing zone is a platform landing zone plus workload landing zones, and in Azure each workload landing zone is a subscription placed in a management group that carries its policy.
 2. Every boundary decision has a mechanism: the cloud and tenant choice, Allowed locations, allowed resource types checked against Microsoft's audit-scope list, the FedRAMP regulatory compliance initiative in audit mode, and exemptions with an expiry.
 3. Microsoft's landing zone accelerators aren't supported unmodified in Azure Government, and AWS Control Tower works differently in GovCloud; both differences have to be planned, not discovered.
-4. Automation needs a boundary contract too: declared boundary or named exception, no hardcoded endpoints, fail closed.
-5. Policy compliance is evidence, not authorization.
+4. Internet-facing workloads sit behind a chosen ingress (Front Door, Application Gateway or both), with the WAF in Prevention, DDoS Protection on every public IP and a public IP policy; the evidence is the inventory and a partner-run DDoS exercise.
+5. Automation needs a boundary contract too: declared boundary or named exception, no hardcoded endpoints, fail closed.
+6. Policy compliance is evidence, not authorization.
 
 ::: {.callout-tip}
 ## Continue the book
@@ -195,3 +269,29 @@ A landing zone enforces structure. It doesn't authorize anything. NIST defines t
 [^c05-aws-subnet]: AWS, *Amazon VPC User Guide*, "Subnet CIDR blocks," Subnet sizing for IPv4, <https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html> (accessed Oct 21, 2026).
 [^c05-sp80037]: National Institute of Standards and Technology, SP 800-37 Rev. 2, *Risk Management Framework for Information Systems and Organizations*, December 2018, Appendix A glossary, "authorization boundary" (from OMB Circular A-130), <https://csrc.nist.gov/pubs/sp/800/37/r2/final> (accessed Oct 21, 2026).
 [^c05-fedramp-use]: FedRAMP, "Using a FedRAMP Certified Cloud Service," *Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/agencies/use/> (accessed Oct 21, 2026).
+[^c05-ing-waf-afd]: Microsoft Learn, "Azure Web Application Firewall on Azure Front Door" (for web workloads Microsoft highly recommends Azure DDoS Protection and a web application firewall; WAF natively integrated with Front Door Premium with full capabilities, custom rules only on Standard), <https://learn.microsoft.com/azure/web-application-firewall/afds/afds-overview> (accessed Nov 11, 2026).
+[^c05-ing-bod2604]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 26-04, *Prioritizing Security Updates Based on Risk*, June 10, 2026, Phase I required actions (attest to publicly exposed IP addresses and domains quarterly), <https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk> (accessed Oct 21, 2026, as cited in [Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md)).
+[^c05-ing-gov]: Microsoft Learn, "Compare Azure Government and global Azure," sections "Service availability" (availability without a listed variation implies the service's features are available; Microsoft points to its products-by-region list) and "Networking" ("Azure Front Door (AFD) Standard and Premium tiers are available in general availability in Azure Government regions US Gov Arizona and US Gov Texas"), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Nov 11, 2026).
+[^c05-ing-afd-ddos]: Microsoft Learn, "DDoS protection on Azure Front Door" (layer 3, 4 and 7 protection; only HTTP and HTTPS; Private Link to origins), <https://learn.microsoft.com/azure/frontdoor/front-door-ddos> (accessed Nov 11, 2026).
+[^c05-ing-l7]: Microsoft Learn, "Application (layer 7) DDoS protection," sections "Platform DDoS protection differs by platform" (Application Gateway's public IP needs DDoS Network Protection), "Automated protection with the HTTP DDoS ruleset (preview)" and "Baseline configuration checklist" (at least one catch-all rate-limit rule), <https://learn.microsoft.com/azure/web-application-firewall/application-ddos-protection> (accessed Nov 11, 2026).
+[^c05-ing-wafdesign]: Microsoft Learn, "Web Application Firewall for Azure networks," sections "Azure WAF platform comparison" (Front Door, Application Gateway, or both layered) and "Detection mode vs. Prevention mode" (Detection logs only and provides no protection; switch after one to two weeks of clean logs), <https://learn.microsoft.com/azure/networking/design-guide/web-application-firewall> (accessed Nov 11, 2026).
+[^c05-ing-ddos-tiers]: Microsoft Learn, "About Azure DDoS Protection tier comparison" (IP Protection lacks DDoS rapid response support, cost protection and the WAF discount), <https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison>; and "DDoS protection for Azure networks," section "Azure services and features" (infrastructure protection free and automatic; a Network Protection plan covers up to 100 public IPs across the tenant), <https://learn.microsoft.com/azure/networking/design-guide/ddos> (both accessed Nov 11, 2026).
+[^c05-ing-ddos-faq]: Microsoft Learn, "Azure DDoS Protection frequently asked questions," "Which Azure DDoS Protection tier should I choose?" (fewer than 15 public IP resources: IP Protection is the more cost-effective), <https://learn.microsoft.com/azure/ddos-protection/ddos-faq> (accessed Nov 11, 2026).
+[^c05-ing-ddos-secure]: Microsoft Learn, "Secure your Azure DDoS Protection deployment," sections "Network security" (Private Link reduces exposed public IPs) and "Compliance and governance" (built-in policy "Virtual networks should be protected by Azure DDoS Protection" with Modify or Audit; inventory public IPs and their protection status with Azure Resource Graph; regular simulation testing), <https://learn.microsoft.com/azure/ddos-protection/secure-ddos-protection> (accessed Nov 11, 2026).
+[^c05-ing-netoverview]: Microsoft Learn, "Azure networking services overview," section "Azure network security services" (Azure Firewall centrally creates, enforces and logs application and network connectivity policies across subscriptions and virtual networks; WAF with Application Gateway is regional, with Front Door at the edge), <https://learn.microsoft.com/azure/networking/networking-overview> (accessed Nov 11, 2026).
+[^c05-ing-ddos-sim]: Microsoft Learn, "Tutorial: Azure DDoS Protection simulation testing," section "Azure DDoS simulation testing policy" (approved partners only; targets must be the customer's own Azure public IPs under DDoS Protection; Red Button is available only for the public cloud), <https://learn.microsoft.com/azure/ddos-protection/test-through-simulations>; and "Penetration testing," section "Prohibited testing," <https://learn.microsoft.com/azure/security/fundamentals/pen-testing> (both accessed Nov 11, 2026).
+[^c05-ing-aws-cf]: Amazon Web Services, "Setting Up Amazon CloudFront with Your AWS GovCloud (US) Resources," AWS GovCloud (US) User Guide ("CloudFront is not available in AWS GovCloud (US), but you can use CloudFront in the standard Regions and point to your AWS GovCloud (US) resources"), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/setting-up-cloudfront.html> (accessed Nov 11, 2026).
+[^c05-ing-aws-waf]: Amazon Web Services, "AWS WAF in AWS GovCloud (US)" (available in US-West and US-East; only AWS managed rule groups), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html>; and "Using rate-based rule statements in AWS WAF," <https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based.html> (both accessed Nov 11, 2026).
+[^c05-ing-aws-shield]: Amazon Web Services, "AWS Shield Standard overview" (automatic, at no additional charge), <https://docs.aws.amazon.com/waf/latest/developerguide/ddos-standard-summary.html>; and the AWS Regional Services List, which shows Shield Advanced as planned, not available, in us-gov-west-1 and us-gov-east-1, <https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/> (both accessed Nov 11, 2026).
+[^c05-ing-aws-pl]: Amazon Web Services, "What is AWS PrivateLink?," <https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html> (accessed Nov 11, 2026).
+[^c05-ing-aws-nfw]: Amazon Web Services, "AWS Network Firewall in AWS GovCloud (US)" (available in US-West and US-East, no differences), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-nf.html> (accessed Nov 11, 2026).
+[^c05-ing-aws-bpa]: Amazon Web Services, "Block public access to VPCs and subnets," <https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html>; and "ec2-instance-no-public-ip," AWS Config Developer Guide, <https://docs.aws.amazon.com/config/latest/developerguide/ec2-instance-no-public-ip.html> (both accessed Nov 11, 2026).
+[^c05-ing-gcp-aw]: Google Cloud, "Supported products by control package," Assured Workloads (FedRAMP High and Moderate list Cloud Armor, regional Application Load Balancers and Cloud NGFW, and don't list the global external Application Load Balancer; "If a service is not listed for a given control package, that service is unsupported"), <https://docs.cloud.google.com/assured-workloads/docs/supported-products>; and "Google Cloud Armor compliance" (FedRAMP High: regional backend security policies), <https://docs.cloud.google.com/armor/docs/compliance> (both accessed Nov 11, 2026).
+[^c05-ing-gcp-armor]: Google Cloud, "Rate limiting overview," Cloud Armor, <https://docs.cloud.google.com/armor/docs/rate-limiting-overview>; and "Cloud Armor Enterprise overview" (Adaptive Protection; DDoS response support with the Enterprise Annual subscription), <https://docs.cloud.google.com/armor/docs/managed-protection-overview> (both accessed Nov 11, 2026).
+[^c05-ing-gcp-psc]: Google Cloud, "Private Service Connect," <https://docs.cloud.google.com/vpc/docs/private-service-connect> (accessed Nov 11, 2026).
+[^c05-ing-gcp-ip]: Google Cloud, "Configure static external IP addresses," section on restricting external IP addresses (`constraints/compute.vmExternalIpAccess`; "You cannot apply the constraint retroactively"), <https://docs.cloud.google.com/compute/docs/ip-addresses/configure-static-external-ip-address> (accessed Nov 11, 2026).
+[^c05-ing-oci-waf]: Oracle, "Overview of Web Application Firewall," OCI documentation (a regional WAF policy as a plug-in for the load balancer; an edge policy as a global solution reached through DNS; protection rules and rate limiting), <https://docs.oracle.com/en-us/iaas/Content/WAF/Concepts/overview.htm> (accessed Nov 11, 2026).
+[^c05-ing-oci-ddos]: Oracle, "Security Overview," OCI documentation ("L3/4 DDoS protection is included with all Oracle Cloud Infrastructure accounts and no configuration or monitoring is required"), <https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_overview.htm> (accessed Nov 11, 2026).
+[^c05-ing-oci-pe]: Oracle, "Private Access," OCI Networking documentation (private endpoints; service gateway), <https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/privateaccess.htm> (accessed Nov 11, 2026).
+[^c05-ing-oci-sz]: Oracle, "Security Zone Policies," OCI documentation (`deny public_subnets`, `deny internet_gateway`), <https://docs.oracle.com/en-us/iaas/security-zone/using/security-zone-policies.htm> (accessed Nov 11, 2026).
+[^c05-ing-oci-gov]: Oracle, "Oracle US Government Cloud," OCI documentation (API endpoints in us-langley-1 and us-luke-1 listed for Web Application Firewall, Network Firewall and Network Load Balancer; the Layer 7 Load Balancer isn't listed), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govfedramp.htm> (accessed Nov 11, 2026).

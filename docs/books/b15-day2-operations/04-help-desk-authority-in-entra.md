@@ -159,6 +159,8 @@ The program's recovery sequence, executed by an Authentication Administrator sco
 5. Stay with the user while they register a phishing-resistant method, then confirm the old method is gone. Microsoft notes that users replacing lost credentials should remove the old ones.[^c04-tap]
 6. Notify the user, and close the ticket with the evidence in [Evidence every action leaves](#evidence-every-action-leaves).
 
+[Appendix B](appendix-b-recovery-and-escalation-runbooks.md) turns this sequence and its neighbors (a lost passkey, a Windows Hello for Business reset, a replaced device, a BitLocker recovery key, an emergency access account incident and a Conditional Access block) into runbooks with copy-paste commands, escalation and a quarterly help-desk simulation.
+
 The pass policy settings (one-time use, the lifetime ceiling, which groups may use a pass) are policy, not help desk work. They belong to the authentication policy owners in [Book 04](../b04-access/index.md).
 
 ## The high-risk tasks and why they need a second approver
