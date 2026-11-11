@@ -174,6 +174,7 @@ Stale records are how DNS becomes a map of where things used to be, and dangling
 - **Windows DNS:** aging and scavenging, configured per zone (no-refresh and refresh intervals) and per server. Where Azure VMs register in Windows DNS through dynamic DNS, Microsoft warns that long Azure DHCP leases can cause scavenging to remove records prematurely, so set the intervals with that in mind.[^c11-vnet-names]
 - **Azure Private DNS:** autoregistered VM records are removed when the VM is deleted or stopped and deallocated.[^c11-pdns-faq] Manually created records have no aging; remove them through the same automation that created them, or with a scheduled job that checks each record against the resources that still exist.
 - **The policy plane:** DHCP-driven DDNS removes records when leases expire. Report stale-record and dangling-CNAME rates monthly as hygiene metrics.
+- **Names that applications send tokens to:** a record behind an application's redirect URI is the costliest one to leave dangling, because the name receives sign-in tokens; [Chapter 06](06-dns-identity-and-dnssec.md#redirect-uris-and-dns-ownership) gives the owner-and-DNS-proof check for every redirect domain.
 
 ## Troubleshooting reference
 
