@@ -334,7 +334,7 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
 
-   Expected: `70 passed`, then `Tests Passed: 44, Failed: 0, Skipped: 0`.
+   Expected: `94 passed`, then `Tests Passed: 56, Failed: 0, Skipped: 0`. The counts include Module 4's Arc tests (24 in Python, 12 in Pester).
 
 **Check your work:** for any tenant, you can name the hosts, the scope and the PowerShell environment, and show that the client refuses the wrong one.
 
