@@ -89,3 +89,14 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service. Adde
 | L4 | Command-line arguments omitted by default; `IncludeArguments` REG_DWORD 1 adds them; Microsoft cautions they can contain credentials | Same | verified; the runbook leaves it off (program design) | `r06-samlib`, section "Manage command-line argument logging" |
 | L5 | `wevtutil sl <log> /e:true|false` enables or disables a log; `qe` with `/q`, `/c`, `/rd:true`, `/f:text` | Same, command block | verified (syntax); Learn's SAM page gives Event Viewer steps, the wevtutil form is the equivalent from the wevtutil reference and hasn't been run against a device | `r06-wevtutil`, Learn "wevtutil" (read Nov 9, 2026) |
 | L6 | SAM-R callers are another AD dependency and a DC load source; they go into the same inventory as NTLM findings | Same | restated-as-design | Program design; load source from `r06-samlib` introduction |
+
+## Zero Trust closure update, November 11, 2026 (Phase 4 conventions)
+
+Phase 4 of the Zero Trust closure update. Added "Control states, change safety and evidence" (`#b06-r06-control-states`), including the *Restrict NTLM* audit phase before each deny setting.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | *Audit Incoming NTLM Traffic* logs the requests *Incoming NTLM traffic* would block; *Outgoing NTLM traffic to remote servers* set to Audit all logs each NTLM request; events in the NTLM Operational log | Control states (audit phase) | added (verified) | Learn, "Policy CSP - LocalPoliciesSecurityOptions," https://learn.microsoft.com/windows/client-management/mdm/policy-csp-localpoliciessecurityoptions | Nov 11, 2026 |
+| 2 | Two audit policies, two exception lists (client and DC), no server-side exception list | Control states (audit phase, exclusions) | verified, unchanged | Learn, "Status code 0x32 and you can't join a domain," More information | Nov 11, 2026 |
+| 3 | Government-cloud availability | Control states (Applies) | not applicable: on-premises Windows and AD settings | - | Nov 11, 2026 |
+| 4 | 2027-04-01 is the program's date, not a Microsoft or federal deadline | Control states (Authority) | restated-as-design (unchanged) | Chapter 15 | Nov 11, 2026 |

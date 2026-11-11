@@ -172,19 +172,57 @@ By design, the closure record keeps the behavioral layer as an external join rat
 5. **Conditional Access MFA report**: MFA satisfied for 100% of human sign-ins to the SQL resource (`Export-FMPConditionalAccess` from Runbook R07, plus the sign-in logs).
 6. **Exception registry**: every excepted instance with its justification, sunset date and its own closure record.
 
-When all six are satisfied at the same time, and the monitoring confirms they have been for the validation period, the transformation is closed.
+When all six are satisfied at the same time, and the monitoring confirms they have been for the validation period, the transformation is closed. For a control or an assessment finding, that is the point at which it is ready for closure; closing it is the authorizing official's or the assessor's decision ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#control-states)).
 
 ## Reading the 2027-04-01 date correctly
 
 2027-04-01 is the date the program applies the **NTLM block** through the Restrict NTLM policies in the operating system's security layer, Phase C of its NTLM-elimination plan ([Runbook R06](r06-ntlm-detection-and-remediation.md)). It is the program's own date, not an external deadline: Microsoft lists NTLM as deprecated but still working,[^r09-ntlm-deprecated] and nothing in Microsoft's or the federal record falls due on that day. The external dates near it are product lifecycle dates. SQL Server 2017 reaches end of support on October 12, 2027;[^r09-eos-2027] the first year of Extended Security Updates for SQL Server 2016 ends on July 13, 2027, and the third and final year for SQL Server 2014 ends on July 12, 2027.[^r09-esu] Those dates bear on the pre-2022 long tail below, because only SQL Server 2022 and later can take Entra logins at all.
 
-The block is a **consequence, not a migration completion date**, and it doesn't honor engine-level exception status. Read as a consequence, it reorganizes the schedule. Migration activity (the parallel run and cutover of [Runbook R05](r05-login-migration-and-parallel-run.md), `sa` disablement, type-S elimination) must finish **well before** the block, and the final months are the continuous-audit **validation period**, not the migration period. A posture confirmed only on the last day before the block is one nobody has had time to prove.
+The block is a **consequence, not a migration completion date**, and it doesn't honor engine-level exception status. Read as a consequence, it reorganizes the schedule. The program's position (risk-based recommended) is that migration activity (the parallel run and cutover of [Runbook R05](r05-login-migration-and-parallel-run.md), `sa` disablement, type-S elimination) finishes **well before** the block, and the final months are the continuous-audit **validation period**, not the migration period. A posture confirmed only on the last day before the block is one nobody has had time to prove.
 
-The exception long tail (pre-2022 instances and applications in column C or D of [Chapter 18](18-the-four-class-pattern-for-applications.md) with a dated exception) must carry certificate-based authentication as the program's authorized interim posture, with a sunset date reconciled against the block. As [Chapter 22](22-where-sql-server-touches-adcs.md) explains, that means the user signs in to Active Directory with a smart card or PIV certificate and the SQL Server connection still uses Windows Authentication, so it avoids NTLM only where the connection then negotiates Kerberos. Its certificate dependency is the subject of [Runbook R10](r10-certificate-discovery-for-adcs.md). When the migration is done, the audit has validated the posture continuously, and the six evidence sets are live and satisfied, the block arrives as a non-event.
+The exception long tail (pre-2022 instances and applications in column C or D of [Chapter 18](18-the-four-class-pattern-for-applications.md) with a dated exception) carries certificate-based authentication as the program's authorized interim posture (risk-based recommended: the program's position for the long tail), with a sunset date reconciled against the block. As [Chapter 22](22-where-sql-server-touches-adcs.md) explains, that means the user signs in to Active Directory with a smart card or PIV certificate and the SQL Server connection still uses Windows Authentication, so it avoids NTLM only where the connection then negotiates Kerberos. Its certificate dependency is the subject of [Runbook R10](r10-certificate-discovery-for-adcs.md). When the migration is done, the audit has validated the posture continuously, and the six evidence sets are live and satisfied, the block arrives as a non-event.
 
 ## Safety
 
 Everything in this runbook is **read-only**: scheduled Spec3-D1.8 runs in inventory mode, log reads and diffs. Continuous monitoring changes nothing on the instances it watches; its only outputs are evidence and drift events. A drift event is remediated through the relevant earlier runbook's review-required procedure ([Runbook R05](r05-login-migration-and-parallel-run.md) for logins, [Runbook R06](r06-ntlm-detection-and-remediation.md) for NTLM and SPNs), not here.
+
+## Control states and evidence across the runbooks {#b06-r09-control-states}
+
+This runbook enforces nothing, so the How-section template's pilot, enforcement, rollback and change-safety steps are not applicable here: they belong to the runbooks that make changes, each of which ends with its own control-states section ([R04](r04-arc-deployment-and-managed-identity.md#b06-r04-control-states), [R05](r05-login-migration-and-parallel-run.md#b06-r05-control-states), [R06](r06-ntlm-detection-and-remediation.md#b06-r06-control-states), [R07](r07-groups-aus-and-the-conditional-access-perimeter.md#b06-r07-control-states), [R08](r08-application-chain-and-connection-strings.md#b06-r08-control-states)). This runbook carries the last two states, Evidenced and Operated, for all of them ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)).
+
+**Authority:** risk-based recommended for the closure record, the drift rules and the six evidence sets, which are the program's design ([Chapter 20](20-the-closure-condition.md)); the date 2027-04-01 is the program's planning date, not a mandate.
+**Applies:** every retained and target instance. License-dependent: Defender for SQL servers on machines is a Defender for Cloud plan,[^r09-defender] and the Conditional Access results in the sign-in join need Entra ID P1 ([Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md#the-perimeter-dividend)); environment-dependent as in [Runbook R04](r04-arc-deployment-and-managed-identity.md#b06-r04-control-states).
+
+- **Telemetry:** the scheduled Spec3-D1.8 runs, the drift diff, Entra sign-in logs, SQL Server Audit, host logon and NTLM Operational events, and Defender for SQL alerts (Steps 1 to 4).
+- **Day-two ownership:** the data platform team runs the schedule and keeps the closure records; security operations receives drift events, NTLM telemetry and Defender alerts; the ISSO keeps the evidence package ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). The cadence is the program's: at least monthly, and before every authorization or assessment milestone.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** each scheduled D1.8 JSON under version control, and the closure record for every production instance (evidence sets 1 and 4)
+- [ ] **Operational:** drift events and their remediation tickets; the sign-in and protocol telemetry of evidence sets 2, 3 and 5, kept for the validation period
+- [ ] **Test:** a deliberate drift test on a non-production instance (for example a new SQL login created and then removed) that the next run reports as a violation, with date and tester
+- [ ] **Exception:** the exception registry, evidence set 6, with each excepted instance's own closure record and sunset date
+- [ ] **Assessor-ready artifact:** the six evidence sets for the validation period, packaged with the closure records ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain))
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | Where in the runbooks | Evidence |
+|---|---|---|
+| Designed | [Runbook R02](r02-estate-discovery-and-consolidation-gate.md) verdicts, the R05 mapping, the R07 classification, the R08 triage | Decision records and the exception registry |
+| Configured | Runbooks R04 to R08, each before its enforcement step | Their configuration exports |
+| Enforced | Runbooks R05 (logins), R06 (NTLM), R07 (groups and perimeter), R08 (connection strings) | The enforcing state in each runbook's evidence |
+| Evidenced | This runbook, Steps 2 and 4, and the six evidence sets | Closure records and the telemetry joins |
+| Operated | This runbook, Step 3 and the schedule | Drift events, remediation records and the owner named in Chapter 13 |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** SecOps
+- **CISA ZTMM pillar:** Identity, with the cross-cutting Visibility and Analytics capability
+- **Depends on:** Identity (Entra sign-in logs and Conditional Access results, [Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md)); Infrastructure (Arc and the extension, [Runbook R04](r04-arc-deployment-and-managed-identity.md)); SecOps (the workspace and Defender, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Persistence and Defense Evasion: a re-enabled mixed mode, a new SQL or Windows login, or a returning NTLM connection is caught at the next run instead of at incident time
+:::
 
 ::: {.callout-tip}
 ## Continue the book

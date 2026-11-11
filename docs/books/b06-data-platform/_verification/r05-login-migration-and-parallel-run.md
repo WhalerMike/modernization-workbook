@@ -52,3 +52,15 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | CR2-1 | `sa`: "rename it if your standard requires it" changed to disable and rename, the program's standard (Chapter 12); the rename statement in the code block is no longer commented out. New note `[^r05-alter-login-name]` | lines 200-205; note line 228 | design-consistency with factual support | <https://learn.microsoft.com/sql/t-sql/statements/alter-login-transact-sql> (argument `NAME`, example D) |
+
+## Zero Trust closure update, November 11, 2026 (Phase 4 conventions)
+
+Phase 4 of the Zero Trust closure update. Added a paragraph on Microsoft's sequence for the Disable SQL Authentication setting, with a check query, and "Control states, change safety and evidence" (`#b06-r05-control-states`).
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Disable SQL Authentication: SQL Server 2025 on Windows, primary managed identity, extension 1.1.3394.392 or later; blocks new SQL logins including `sa`; no restart; reversible from the portal under Azure RBAC; `SERVERPROPERTY('IsExternalAuthenticationOnly')` returns 1 when disabled | The `sa` account; Control states | added (verified) | Learn, "Disable SQL authentication for SQL Server enabled by Azure Arc," https://learn.microsoft.com/sql/sql-server/azure-arc/disable-sql-authentication | Nov 11, 2026 |
+| 2 | Microsoft's migration order: audit with SUCCESSFUL_LOGIN_GROUP, create Entra equivalents, move every connector, validate, then disable; keep a working Entra admin login | The `sa` account; Control states (Authority) | added (verified); matches the runbook's own order | same page | Nov 11, 2026 |
+| 3 | Disable SQL authentication GA April 2026 | The `sa` account | verified, unchanged | Learn, "Release notes - SQL Server enabled by Azure Arc" | Nov 11, 2026 |
+| 4 | Disable SQL Authentication not among the US Government Virginia features | Control states (Applies) | verified; GCC High and DoD not yet specified | Learn, "SQL Server enabled by Azure Arc in US Government" | Nov 11, 2026 |
+| 5 | Parallel run, disable-then-drop, `sa` disable and rename | Control states (Authority) | restated-as-design (Chapter 12 decisions; risk-based recommended) | - | Nov 11, 2026 |

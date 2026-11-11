@@ -77,3 +77,14 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 | CR2-1 | Step 2 table rebuilt on Chapter 20's canonical field set: Condition column added; break-glass exception on the Windows-login field (was zero); `IsExternalAuthenticationOnly` merged into the `LoginMode` row; new rows for zero remote NTLM/Kerberos connections, Entra sign-ins observed, and extension deployed; the runbook no longer defines its own field set | lines 52-68 | design-consistency | — |
 | CR2-2 | New paragraph after `New-FMPClosureRecord`: as the program defines it, the projection lists `sa` disabled (not renamed), tolerates only type-S exceptions (so a registered break-glass group shows as failing), and doesn't carry the Condition 3 joins; the reviewer closes each gap. No claim about module behavior beyond what claim 12 already verified | line 72 | design-consistency | — |
 | CR2-3 | Evidence set 4: `sa` "disabled" changed to "disabled and renamed" | line 171 | design-consistency | — |
+
+## Zero Trust closure update, November 11, 2026 (Phase 4 conventions)
+
+Phase 4 of the Zero Trust closure update. Added "Control states and evidence across the runbooks" (`#b06-r09-control-states`); relabeled two program positions that read as unconditional "must"; added that a finding is ready for closure and the authorizing official or assessor decides.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Migration activity "must finish well before the block" | Reading the 2027-04-01 date correctly | relabeled: risk-based recommended (program position) | - | Nov 11, 2026 |
+| 2 | Exception long tail "must carry certificate-based authentication" | Reading the 2027-04-01 date correctly | relabeled: risk-based recommended (program position) | - | Nov 11, 2026 |
+| 3 | "the transformation is closed" when the six sets hold | The six live evidence sets | qualified: ready for closure; the authorizing official or assessor decides | Book 00, Appendix D, control states | Nov 11, 2026 |
+| 4 | Defender for SQL servers on machines is a Defender for Cloud plan | Control states (Applies) | cited from the existing footnote (read Oct 20, 2026); not re-read in this pass | Learn, "Overview of Microsoft Defender for SQL servers on machines" | Nov 11, 2026 |

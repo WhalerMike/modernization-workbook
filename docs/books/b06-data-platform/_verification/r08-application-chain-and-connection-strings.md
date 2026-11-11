@@ -66,3 +66,13 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | CR2-1 | Service-principal connection string marked a documented exception (comment in the code block); the credential bullet states Chapter 11's rule: prefer the certificate through a token callback, the secret-based mode only as an exception, secret from Key Vault and rotated. New note `[^r08-sp-cert]` | lines 124-125, 134; note line 193 | design-consistency with factual support | <https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication>; <https://learn.microsoft.com/sql/connect/ado-net/sql/application-security-scenarios-sql-server> |
+
+## Zero Trust closure update, November 11, 2026 (Phase 4 conventions)
+
+Phase 4 of the Zero Trust closure update. Added "Control states, change safety and evidence" (`#b06-r08-control-states`).
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Prefer a specific mode such as Active Directory Managed Identity in production; Default can be slow and its identity can change; first releases 2.0, 2.1, 3.0; extension package from 7.0 | Control states (Authority, Applies) | verified, unchanged | Learn, "Microsoft Entra authentication with Microsoft.Data.SqlClient," https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication | Nov 11, 2026 |
+| 2 | Conditional Access applies to users, not to service principals and managed identities | Change safety (emergency access) | added footnote (verified) | Learn, "Conditional access" (Azure SQL), https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure | Nov 11, 2026 |
+| 3 | Gate conditions and application-configuration-only change | Control states (Authority) | restated-as-design (program) | - | Nov 11, 2026 |
