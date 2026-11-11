@@ -142,3 +142,22 @@ Learn coverage pass (citations for Microsoft Learn identity pages the chapter al
 | L3 | Avoid delta CRLs on offline roots | CRL publication | verified (second citation added) | `c08-pki-design`: Learn, "PKI design considerations using AD CS" (read Nov 9, 2026) |
 | L4 | Backup-CARoleService for database and key | Decommissioning step 3 | verified (second citation added) | `c08-ca-backup`: Learn, "CA Backup and Restore Windows PowerShell cmdlets" (read Nov 9, 2026) |
 | L5 | Retiring an Online Responder is a lifecycle change; keep its URL until the last certificate carrying it is gone | Decommissioning step 5 | verified (clause added) | `c08-ocsp-retire`: Learn, "Secure, monitor, renew, and scale Online Responders" (read Nov 9, 2026) |
+
+## Zero Trust Assessment closure additions (Nov 11, 2026)
+
+Added for the Zero Trust Assessment closure update (B07-01, and the Book 07 part of CM-05). Each row uses the verification-log row from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md#block-verification-row). Learn pages were read on the date shown; `ms.date` wasn't exposed by the fetch tool, so the read date is the date recorded.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | Zero Trust checks: no client secrets; no certificates over 180 days (trusted CAs among remediations); regular rotation; enforce standards | Application certificate credentials | verified | Learn, Configure Microsoft Entra for Zero Trust: Protect identities and secrets | Nov 11, 2026 |
+| Z2 | Trusted CAs for app certificates: certificateBasedApplicationConfiguration, up to 10, beta only | Design table, approved issuers | verified | Learn, Graph beta certificateBasedApplicationConfiguration resource type | Nov 11, 2026 |
+| Z3 | Key Vault Standard FIPS 140 Level 1; Premium HSM and Managed HSM FIPS 140-3 Level 3 | Design table, HSM criteria | verified | Learn, About Azure Key Vault; What is Azure Key Vault Managed HSM? | Nov 11, 2026 |
+| Z4 | Key Vault and Managed HSM availability in GCC High and DoD regions | Applies | unverifiable on the pages read; shown as not yet specified | Same pages | Nov 11, 2026 |
+| Z5 | Key Vault renews self-signed and integrated-CA certificates; nonintegrated CA needs a new version and merged CSR; lifetime actions EmailContacts/AutoRenew | Design table, renewal automation | verified | Learn, Renew your Azure Key Vault certificates; About Azure Key Vault certificates | Nov 11, 2026 |
+| Z6 | Event Grid and Azure Automation pattern for nonintegrated CAs | Design table, renewal automation | verified | Learn, Certificate life cycle management on Azure (Architecture Center) | Nov 11, 2026 |
+| Z7 | Renew at about 80% of lifetime; CertificateNearExpiry 30 days before; CertificateExpired; CertificateNewVersionCreated | Design table; telemetry | verified | Learn, Secure your Azure Key Vault certificates | Nov 11, 2026 |
+| Z8 | Recommendations for expiring application and service principal credentials, preview, 30 days; validate key ID in sign-in logs before removing the old credential; prefer the application object | Design table; telemetry; report-only | verified | Learn, Renew expiring application credentials; Renew expiring service principal credentials | Nov 11, 2026 |
+| Z9 | Graph keyCredential key value returned only on single-object $select | Rollover | verified | Learn, Graph keyCredential resource type | Nov 11, 2026 |
+| Z10 | addKey needs proof of possession signed with an existing key | Rollover | verified | Learn, Graph application: addKey | Nov 11, 2026 |
+| Z11 | Graph service principal update available in US Gov L4 and L5 | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
+| Z12 | Approved issuers, HSM criteria, 36-day overlap, rings, 45-day flag, inventory script | Design; Enforcement | restated-as-design | Program design | Nov 11, 2026 |

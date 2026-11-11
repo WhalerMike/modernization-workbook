@@ -113,3 +113,27 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | Device preparation app limit is 25 managed apps (raised January 30, 2026), scripts still 10; the overview no longer gives the numbers (Microsoft Learn: Compare Windows Autopilot device preparation and Windows Autopilot; device preparation What's new) | corrected: "up to 10 of each" now "up to 25 apps and 10 PowerShell scripts", cited to the comparison page; comparison table row now "More than 25 apps or 10 PowerShell scripts" |
+
+## Zero Trust closure update, November 11, 2026 (B05-04)
+
+Instruction B05-04 (enrollment) of the Zero Trust Assessment closure update. Added the section "Enrollment controls, from automatic enrollment to decommissioning" in the How-section template of Book 00, Appendix D, with the control states, authority labels, assessment mapping, evidence checklist and a read-only reconciliation script. Microsoft Learn read with the Learn search and fetch tools on Nov 11, 2026. Three existing footnotes (government service, enrollment restrictions, corporate identifiers) were rechecked and carry the recheck date.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | MDM user scope Some/All; a user in both MDM and WIP scope enrolls on corporate, not on personal devices | Enrollment controls | verified | Learn, "Set up automatic enrollment for Windows devices" | Nov 11, 2026 |
+| 2 | Automatic MDM enrollment is a premium Microsoft Entra feature (P1) | Prerequisites | verified | Learn, "Step 4 - Set up automatic enrollment for Windows devices" | Nov 11, 2026 |
+| 3 | Enrollment restrictions aren't security features; best-effort barrier | What each control does | verified | Learn, "What are enrollment restrictions?" | Nov 11, 2026 |
+| 4 | Platform restriction roles: Intune Administrator; others read-only | Prerequisites | verified | Learn, "Create device platform restrictions" | Nov 11, 2026 |
+| 5 | Device limit restriction roles; edits apply to new enrollments only; priority | Prerequisites; Rollback | verified | Learn, "Create device limit restrictions in Intune" | Nov 11, 2026 |
+| 6 | Default device limit can be raised to at most 15; DEM accounts and the device cap | What each control does; Exclusions | verified | Learn troubleshooting, "Windows user is not authorized to enroll"; "Troubleshooting device enrollment in Intune" | Nov 11, 2026 |
+| 7 | Ownership by enrollment path table | Ownership classification | verified | Learn, "Identify devices as corporate-owned" | Nov 11, 2026 |
+| 8 | Windows corporate identifiers apply only at enrollment; User Enrollment can't use identifiers | Ownership classification | verified | same | Nov 11, 2026 |
+| 9 | CSV format, 5,000 rows or 5 MB, one identifier type per file, no header | Enforcement | verified | same | Nov 11, 2026 |
+| 10 | Microsoft's command for manufacturer, model and serial | Enforcement | verified (Microsoft's command reused) | same, section "Resources" | Nov 11, 2026 |
+| 11 | Deleting an identifier doesn't change ownership; corporate-to-personal deletes app inventory within 7 days | Rollback | verified | same | Nov 11, 2026 |
+| 12 | Enrollment failure reason "Enrollment restriction not met"; identifier statuses | Pilot; Telemetry | verified | same | Nov 11, 2026 |
+| 13 | Government cloud availability: standard MDM in GCC High/DoD; classic Autopilot not available; device association planned | Prerequisites | verified | Learn, "Microsoft Intune for US Government GCC High and DoD service description" | Nov 11, 2026 |
+| 14 | importedDeviceIdentities Graph beta endpoint, permission, national clouds, properties | Evidence | verified | Graph beta reference, "List importedDeviceIdentities"; "importedDeviceIdentity resource type" | Nov 11, 2026 |
+| 15 | managedDeviceOwnerType values unknown, company, personal | Evidence | verified | Graph v1.0, "managedDevice resource type" | Nov 11, 2026 |
+| 16 | windowsAutopilotDeviceIdentities v1.0 list | Evidence | verified (endpoint already used by the book's Intune track guide) | Graph v1.0, "List windowsAutopilotDeviceIdentities" | Nov 11, 2026 |
+| 17 | Ownership table, pilot criteria, 90-day line, exception register, owners | Enrollment controls | restated-as-design | program design | Nov 11, 2026 |
