@@ -249,6 +249,11 @@ All four methods meet the built-in phishing-resistant MFA authentication strengt
 
 That split follows CISA's Hybrid Identity Solutions Guidance. CISA recommends that agencies support passkeys, synced or device-bound, in public-facing applications, and weigh synced passkeys for employees and contractors case by case: syncing puts the key material at more risk, but it also survives a lost device and can replace a password or another phishable method. CISA advises against synced authenticators for Authenticator Assurance Level 3 (AAL3) scenarios, which it notes require resident keys.[^c10-hisg] So the program's privileged population, and any system the agency rates at AAL3, uses device-bound passkeys or PIV, never synced passkeys.
 
+**Authority:** Mandated for agency staff, contractors and partners: phishing-resistant MFA, and an end to phishable methods for routine self-service access (OMB M-22-09, above). The order of the phases and the method for each population are risk-based recommended: the program's position, for the risk that an administrator is phished before anyone else is protected.
+**Applies:** all tenants. License-dependent: enforcing a phishing-resistant authentication strength through Conditional Access needs Entra ID P1. Environment-dependent: Book 04 keeps the [government-cloud table](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-government-cloud-availability) for each method, read Nov 11, 2026; passkey profiles and synced passkeys are not yet specified there for GCC, GCC High or DoD.
+
+**Running the roadmap.** [Book 04, Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md) turns each phase of this roadmap into runbooks for the phishing-resistant methods: bootstrap with a Temporary Access Pass, recovery from a lost authenticator, the [report-only readiness gate](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-report-only-and-the-readiness-gate) a population passes before CA022 and CA003 enforce a phishing-resistant strength for it, the registration-coverage metrics, and the control states, evidence checklist and day-two ownership of the rollout. This chapter sets the order and the methods; Appendix D is where each population is moved and where its evidence is kept.
+
 ### Authentication methods policy
 
 The Authentication methods policy decides which methods are available to which users.[^c10-auth-methods-manage] The program's configuration:
@@ -261,6 +266,42 @@ The Authentication methods policy decides which methods are available to which u
 - **SMS and voice.** Disabled for staff. M-22-09 requires discontinuing them for routine access.[^c10-m2209]
 - **Email one-time passcode.** Guests only.
 - **Registration campaigns.** On, to prompt users without a strong method to register one at sign-in. The program allows three snoozes.[^c10-registration-campaign]
+
+#### Turning a method off {#b02-10-turning-a-method-off}
+
+Turning a method on is low risk; turning one off is an enforcement step, because a user whose only registered method is the one switched off can no longer complete MFA. SMS and voice for staff are the usual case. Each method in the policy is enabled for included groups and can exclude others,[^c10-auth-methods-manage] so a method is turned off population by population, never for the whole tenant in one change. The methods policy has no report-only mode; the read below is its equivalent, run before each ring.
+
+**Authority:** Mandated for staff on routine self-service access (OMB M-22-09, above). The rings and backout triggers are risk-based recommended, for the risk of locking people out of their accounts.
+**Applies:** all tenants.
+
+```powershell
+# Read-only, as a Reports Reader: users whose only registered methods are phone methods
+Connect-MgGraph -Scopes 'AuditLog.Read.All' -NoWelcome
+$PhoneOnly = 'mobilePhone', 'alternateMobilePhone', 'officePhone'   # confirm the values against your own output
+Get-MgReportAuthenticationMethodUserRegistrationDetail -All |
+    Where-Object { $_.MethodsRegistered.Count -gt 0 -and
+                   @($_.MethodsRegistered | Where-Object { $_ -notin $PhoneOnly }).Count -eq 0 } |
+    Select-Object UserPrincipalName, @{ n = 'Methods'; e = { $_.MethodsRegistered -join ';' } } |
+    Export-Csv -Path '.\evidence\auth\phone-only-users.csv' -NoTypeInformation   # CONFIGURE the evidence folder
+```
+
+The report lists each user's registered methods in `methodsRegistered`, with values such as `mobilePhone`, `email` and `passKeyDeviceBound`.[^c10-registration-details] Everyone on the list gets a registration campaign prompt and, where needed, a Temporary Access Pass from the help desk before their ring.
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The identity team | Nobody on the phone-only list; every member signs in with another method |
+| 1 | IT and security staff | Phone-only list empty for the ring; help desk volume at baseline for a week |
+| 2 | One division at a time, in the order of Book 04's readiness gate | Phone-only list empty for the division before the change |
+| 3 | Every remaining staff population | Phone-only list empty; the method's included groups hold no staff |
+
+- **Emergency access:** the emergency accounts use a passkey or certificate-based authentication ([Chapter 09](09-building-the-entra-target.md#emergency-access-accounts)), so turning SMS or voice off doesn't reach them; confirm both still sign in after each ring.
+- **Change window:** each ring is a scheduled change approved by the identity engineering lead, with the help desk told and staffed for the day after.
+- **Backout triggers, set before the change:** help desk calls from the ring for "can't complete MFA" above twice the baseline, or any user in the ring found with no usable method. The way back is adding the affected group back to the method's included groups, which an Authentication Policy Administrator does in minutes.
+- **Post-change validation:** the read above, re-run for the ring, returns nobody; a ring member signs in with each remaining method.
+
+Control states, evidence and day-two ownership for the methods are Book 04's, in [Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md#b04-appd-evidence); each ring's phone-only list and change record are added to that evidence.
 
 ### Banned passwords in the cloud and on the domain controllers
 
@@ -301,6 +342,67 @@ On a Server Core proxy, add `-AuthenticateUsingDeviceCode` to both `Register-` c
 
 **Government clouds.** On-premises Password Protection is supported in Azure Government as well as the commercial cloud, and Microsoft's feature-availability page lists the global and custom banned password lists as available in Azure Government; GCC tenants use the commercial service.[^c10-pwd-faq][^c10-feature-avail] The deployment page lists only the commercial endpoints the proxy needs (`login.microsoftonline.com`, `enterpriseregistration.windows.net`, `autoupdate.msappproxy.net`); the Azure Government equivalents are not yet specified there, so confirm them for a GCC High or DoD forest before opening the proxy's firewall rules.[^c10-pwd-deploy]
 
+#### Rolling out Password Protection safely {#b02-10-password-protection-rollout}
+
+**Authority:** Microsoft-recommended: deploying on-premises Password Protection, starting in audit mode, and testing a domain controller promotion and demotion during the audit period ("Plan and deploy on-premises Microsoft Entra Password Protection," read Nov 11, 2026). The custom list's contents and the length of the audit period are risk-based recommended, for the risk of password spray against AD passwords that password hash sync also makes the cloud password.
+**Applies:** every forest whose users sync to Entra ID. License-dependent: Entra ID P1 or P2 for synced users (above). Environment-dependent: supported in Azure Government; the proxy's Azure Government endpoints are not yet specified (above).
+
+The table fills in what the steps above leave open, against the workbook's How template.
+
+| Subsection | For Password Protection |
+|---|---|
+| Prerequisites | The requirements above: proxies on Tier 0 member servers, DC agents on every writable domain controller, DFSR-replicated SYSVOL, and a reboot window for each domain controller |
+| Pilot | The proxies and DC agents in a test forest first, registered to a test tenant; then production in audit mode, with one domain controller promotion and one demotion during the audit period, as Microsoft recommends[^c10-pwd-deploy] |
+| Report-only or audit phase | Audit mode, the default: passwords that would be rejected are accepted and logged as events 10024 and 10025. The program runs it for at least 30 days and one full password-expiry cycle, until the weekly count is stable and its sources are understood *(program position)* |
+| Enforcement | Set **Mode** to **Enforced**. The mode is a single setting on the tenant's password protection page, so it can't be ringed by population; the rings below are the agent deployment, and the switch to Enforced is one change in a window[^c10-pwd-enable] |
+| Rollback | Set **Mode** back to **Audit**. Setting **Enable password protection on Windows Server Active Directory** to **No** puts every DC agent in a quiescent mode that accepts all passwords and logs nothing.[^c10-pwd-enable] A DC agent picks up the change at its next policy download; restarting the DC agent service forces one, logged as event 30006.[^c10-pwd-faq] Full removal follows Microsoft's ordered procedure: proxies first, then DC agents (a reboot each), then the service connection points, the forest configuration container and the SYSVOL folder[^c10-pwd-remove] |
+| Exclusions | None per user: the policy applies to every password change and reset the DC agent sees. Accounts set to "password never expires" aren't checked until their password changes. Emergency access accounts are cloud-only and outside the forest; in Entra ID itself the policy is always enforced, because audit mode exists only on premises[^c10-pwd-faq] |
+| Telemetry | The DC agent Admin log (events 10014 to 10017, 10024 and 10025, and 30006 for each policy download); `Get-AzureADPasswordProtectionSummaryReport`; and `Get-AzureADPasswordProtectionDCAgent`, whose `HeartbeatUTC` goes stale when an agent stops, is uninstalled or its server is demoted[^c10-pwd-monitor] |
+| Evidence | The checklist below |
+| Day-two ownership | Identity engineering (directory) owns the proxies, the agents and the custom list. Monthly: agent heartbeats, the summary report and the rejection count. Annually: the custom list's terms. The DC agent doesn't upgrade itself; event 30034 says a newer version exists, and an upgrade is a change with a reboot[^c10-pwd-monitor] |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test forest, audit mode | `Test-AzureADPasswordProtectionProxyHealth -TestAll` passes; policy downloaded (event 30006) |
+| 1 | Production proxies and every writable domain controller, audit mode | Every agent listed by `Get-AzureADPasswordProtectionDCAgent`; one promotion and one demotion completed |
+| 2 | The audit period | 30 days and one expiry cycle; weekly 10024 and 10025 counts stable; help desk briefed on the rejection message |
+| 3 | **Mode: Enforced** | First week's 10016 and 10017 rejections reviewed; no failed automation |
+
+- **Emergency access:** the cloud emergency accounts are out of scope. The forest's own recovery credentials are not: Directory Services Restore Mode passwords and the local Administrator password set at demotion are validated too, so they are set to passwords the policy accepts before Ring 3.[^c10-pwd-remove]
+- **Change window:** Ring 1 needs a reboot per domain controller, scheduled site by site; Ring 3 is a single change in business hours with the help desk staffed.
+- **Backout triggers, set before the change:** an account-provisioning or service automation failing on a rejected password, a domain controller promotion or demotion blocked, or password help desk calls above twice the audit-period baseline in the first week. The response is the first Rollback step.
+- **Post-change validation:** on a test account, a password containing a banned term is rejected and logs event 10016 or 10017; an acceptable one succeeds and logs 10014 or 10015.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | This section and the custom list | The approved custom list and rollout plan |
+| Configured | Rings 0 to 2, audit mode | Agent and proxy inventory; the password protection settings showing Audit |
+| Enforced | Ring 3 | The settings showing Enforced; every writable domain controller listed by `Get-AzureADPasswordProtectionDCAgent` |
+| Evidenced | Post-change validation | The test record and the 10016 or 10017 event it produced |
+| Operated | Day-two ownership | The monthly heartbeat and summary report review |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** a record of the password protection settings (mode, custom list on) and the agent and proxy inventory, in the identity baseline repository
+- [ ] **Operational:** the monthly `Get-AzureADPasswordProtectionSummaryReport` output and the audit period's 10024 and 10025 trend, kept for the program's log retention
+- [ ] **Test:** the post-change validation record (expected and observed outcome, date, tester) and its events
+- [ ] **Exception:** any writable domain controller without the agent, with its reason and removal date
+- [ ] **Assessor-ready artifact:** the package entry for IA-5(1), password-based authentication, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b02-10-password-protection-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Infrastructure, for the Tier 0 proxies and the domain controllers; Identity, for password hash sync, which carries the AD password to the cloud
+- **Attack chain interrupted:** Credential Access: password spray and guessing with the common and organization-specific passwords attackers try first
+:::
+
 ### Mandatory MFA for Azure and the admin portals
 
 Microsoft now requires MFA, outside any tenant policy, for user sign-ins to Azure and its admin portals. Phase 1 (from October 2024) covers the Azure portal, the Microsoft Entra admin center and the Intune admin center, and from February 2025 the Microsoft 365 admin center. Phase 2 (from October 1, 2025) covers create, update and delete operations through Azure CLI, Azure PowerShell, the Azure mobile app, infrastructure-as-code tools and the Azure Resource Manager REST API; read operations don't require MFA. The latest a tenant could postpone Phase 2 to was July 1, 2026, and there's no opt-out.[^c10-mandatory-mfa] As of November 2026, then, both phases apply to every tenant in the public Azure cloud, which includes the commercial Entra ID that GCC tenants use.
@@ -329,6 +431,37 @@ The remediation sequence:
 2. **Remediate** applications and devices onto modern authentication (OAuth 2.0), the Microsoft Graph mail APIs, or a supported relay.
 3. **Block** with policy CA001 from [Chapter 09](09-building-the-entra-target.md#the-policy-set).
 4. **Monitor** for 30 days after enforcement and confirm zero successful legacy sign-ins.[^c10-secops-users]
+
+**Authority:** Mandated where BOD 25-01 applies: CISA lists MS.AAD.1.1v1, "Legacy authentication SHALL be blocked," as a required configuration.[^c10-bod-configs] Disabling SMTP AUTH except for the mailboxes that need it is Microsoft-recommended.[^c10-smtp-auth]
+**Applies:** all tenants. License-dependent: CA001 needs Entra ID P1.
+
+The block is CA001, and its report-only period, rings, rollback, evidence checklist and control states are Book 04's ([Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)); Phase 8 below schedules it. What Book 04 doesn't cover is Exchange Online's own switch. Turn SMTP AUTH off for the organization and back on only for the mailboxes on the approved exception list, each with an expiry. The **SMTP AUTH Clients** report in the Exchange admin center shows who still submits mail with Basic authentication (`TlsAuthLogin`) and who with OAuth (`XOAUTH2`), over up to 90 days.[^c10-smtp-auth][^c10-smtp-report]
+
+```powershell
+# Exchange Online PowerShell: off for the organization, then on for each approved exception
+Set-TransportConfig -SmtpClientAuthenticationDisabled $true
+Set-CASMailbox -Identity '<mailbox on the exception list>' -SmtpClientAuthenticationDisabled $false
+# Read back: the organization setting, and every mailbox that overrides it
+Get-TransportConfig | Format-List SmtpClientAuthenticationDisabled
+Get-CASMailbox -ResultSize Unlimited | Where-Object { $_.SmtpClientAuthenticationDisabled -eq $false } |
+    Select-Object PrimarySmtpAddress, SmtpClientAuthenticationDisabled
+```
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the CA001 export (Book 04) and the `Get-TransportConfig` and `Get-CASMailbox` read-back above
+- [ ] **Operational:** 30 days of the legacy sign-in query showing no successful legacy sign-ins, and the SMTP AUTH Clients report for the same period
+- [ ] **Test:** a legacy-protocol sign-in attempt by a test account, blocked by CA001 and logged
+- [ ] **Exception:** the SMTP AUTH exception list, each mailbox with its owner, approver, expiry and planned move to OAuth or a relay
+- [ ] **Assessor-ready artifact:** the package entry for MS.AAD.1.1v1, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b02-10-legacy-auth-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Apps, for the clients and devices moved to modern authentication; SecOps, for the legacy sign-in query ([Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Initial Access and Credential Access: password spray and credential stuffing over protocols that can't do MFA
+:::
 
 ### Passwords that remain: SSO first, then a password manager
 
@@ -497,11 +630,35 @@ The indicator IDs and titles are from FedRAMP's published indicator pages.[^c10-
 
 ## The migration execution playbook
 
-The migration runs in eleven phases, grouped into five stages. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The one exception is Phase 8, which can run in parallel with Phase 7. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
+The migration runs in eleven phases, grouped into five stages. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order, and as the program's rule *(risk-based recommended)*, a phase's validation criteria are met before the next begins. The one exception is Phase 8, which can run in parallel with Phase 7. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
 
 Every rollback below assumes Active Directory itself is healthy: each one returns the tenant to a forest that still works. If the forest is lost (every domain controller compromised or unusable), no phase rollback applies; recover the forest first, pausing synchronization to Entra ID while you do, with [Book 14, Appendix H](../b14-compliance/appendix-h-ad-forest-recovery.md), the runbook for recovering Active Directory during the hybrid period. Rehearse it before Phase 1, because the hybrid period is when a forest failure also reaches the cloud.
 
 ![The eleven playbook phases in five stages: foundation, objects, privilege and policy, authentication, and sustain.](../../images/diagrams/b02-identity/svg/ch10-migration-waves.svg){#fig-ch10-migration-waves fig-alt="Five boxes in a left-to-right chain. Phases 0 to 2, foundation, in slate: assess, sync, PHS, Conditional Access in report-only. Phases 3 and 4, objects, in blue: groups, then service accounts. Phases 5 and 6, privilege and policy, in amber: PIM, then Conditional Access enforced in waves. Phases 7 to 9, authentication, in blue: phishing-resistant methods, legacy cutoff, AD FS out. Phase 10, sustain, in violet: lifecycle, reviews, drift detection."}
+
+### Change safety and control states across the playbook {#b02-10-playbook-change-safety}
+
+Each phase table is the workbook's How template in short form ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)): prerequisites, steps that pilot and observe before they enforce, validation, and rollback. Three things the tables leave implicit apply to every phase that turns something on:
+
+- **Change window.** The enforcing step of a phase (Phase 1's export, Phase 6's policies **On**, Phase 8's CA001, Phase 9's domain conversion) is a scheduled change approved through the agency's change control, with the identity engineer and the help desk lead on hand.
+- **Emergency access.** The break-glass group created in Phase 2 is excluded from every blocking policy, and both emergency accounts sign in successfully before and after every enforcing step.
+- **Backout triggers, set before the change.** Each phase's validation line is its post-change check, and the condition that sends it to its rollback is written into the change record before the change: object counts outside the ±1% tolerance in Phase 1, help desk volume above twice baseline or a legitimate block lasting more than an hour in Phase 6, a critical dependency surfacing in Phase 8, authentication failures from the cutover in Phase 9.
+
+How far each phase takes its controls, and where the detailed procedure and its evidence checklist live:
+
+| Phase | Control | State the phase reaches | Procedure and evidence |
+|---|---|---|---|
+| 0 | Inventory and decisions | Designed | The assessment output in Git |
+| 1–2 | Sync, sign-in method and the sync identities | Configured, then Enforced | [Chapter 09](09-building-the-entra-target.md#hardening-the-synchronization-identities) |
+| 2, 6 | Conditional Access baseline | Configured (report-only) in Phase 2; Enforced in Phase 6 | [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement) |
+| 4 | Workload identities | Enforced | [Service account migration guide](../guides/service-account-migration.md) |
+| 5 | PIM and emergency access | Enforced | [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture) and [Appendix B](../b04-access/appendix-b-pim-role-settings.md) |
+| 5, 7 | Phishing-resistant methods | Enforced, population by population | [Book 04, Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md) and [Turning a method off](#b02-10-turning-a-method-off) |
+| 8 | Legacy authentication | Enforced | [Blocking legacy authentication](#blocking-legacy-authentication) |
+| 9 | Federation retired | Enforced (every domain managed) | [Appendix D](appendix-d-migrating-ad-fs-applications.md#b02-appd-rollout-safety-and-evidence) |
+| 10 | Lifecycle workflows and reviews | Operated | [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#b03-08-rollout-and-evidence) |
+
+A phase reaches Evidenced only when its validation result is committed to Git with the date and the person who ran it, and Operated only when Phase 10's runbook names the control's owner and cadence. A finding a phase addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
 ### Phase 0: Assessment
 
@@ -600,7 +757,7 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 8 complete; PHS verified; every federated domain identified; staged rollout tested; every relying party other than Microsoft 365 migrated, retired or on a dated exception ([Appendix D](appendix-d-migrating-ad-fs-applications.md#retirement-criteria)) |
-| Steps | 1. Use staged rollout to move users from federation to PHS in waves; staged rollout tests cloud authentication but doesn't convert domains.[^c10-staged-rollout][^c10-adfs-faq] 2. Wave 1: the IT team, one week. 3. Wave 2: a pilot group, two weeks. 4. Wave 3: everyone else. 5. Document and back up the federation settings (`Get-MgDomainFederationConfiguration`). 6. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`; conversion can take up to 60 minutes per domain.[^c10-federation-migration] The retired `Convert-MsolDomainToStandard` cmdlet must not be used. 7. Decommission AD FS (servers, Web Application Proxy, certificates) once Appendix D's retirement criteria are all true, including 30 days with no token issuance (event 1200) on any server in the farm. 8. Remove the AD FS DNS records. 9. Update documentation and the Git records. |
+| Steps | 1. Use staged rollout to move users from federation to PHS in waves; staged rollout tests cloud authentication but doesn't convert domains.[^c10-staged-rollout][^c10-adfs-faq] 2. Wave 1: the IT team, one week. 3. Wave 2: a pilot group, two weeks. 4. Wave 3: everyone else. 5. Document and back up the federation settings (`Get-MgDomainFederationConfiguration`). 6. Convert each domain with `Update-MgDomain -DomainId <domain> -AuthenticationType "Managed"`; conversion can take up to 60 minutes per domain.[^c10-federation-migration] Don't use `Convert-MsolDomainToStandard`: the MSOnline module it belongs to is retired. 7. Decommission AD FS (servers, Web Application Proxy, certificates) once Appendix D's retirement criteria are all true, including 30 days with no token issuance (event 1200) on any server in the farm. 8. Remove the AD FS DNS records. 9. Update documentation and the Git records. |
 | Validation | Every domain managed; every user authenticating through PHS; AD FS decommissioned; no authentication failures from the cutover |
 | Rollback | Re-federate the domain with `New-MgDomainFederationConfiguration`, which needs the AD FS infrastructure, so keep it recoverable for 90 days after decommission[^c10-federation-migration] |
 | Duration | 4–8 weeks |
@@ -748,6 +905,11 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-pwd-enable]: Microsoft Learn, "Enable on-premises Microsoft Entra Password Protection," <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-operations> (accessed Nov 9, 2026).
 [^c10-pwd-monitor]: Microsoft Learn, "Monitor and review logs for on-premises Microsoft Entra Password Protection environments," <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-monitor> (accessed Nov 9, 2026).
 [^c10-pwd-faq]: Microsoft Learn, "On-premises Microsoft Entra Password Protection FAQ" (supported in both Azure Global and Azure Government clouds), <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-faq> (accessed Nov 9, 2026).
+[^c10-pwd-remove]: Microsoft Learn, "Troubleshoot: On-premises Microsoft Entra Password Protection," sections "Removal" (proxies, then DC agents with a reboot, then the service connection points, the forest configuration container and the SYSVOL state, in that order), "Ntdsutil.exe fails to set a weak DSRM password" and "Domain controller demotion fails due to a weak local Administrator password," <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-troubleshoot> (accessed Nov 11, 2026).
+[^c10-registration-details]: Microsoft Learn, "userRegistrationDetails resource type" (Microsoft Graph v1.0; `methodsRegistered`, for example `mobilePhone`, `email`, `passKeyDeviceBound`), <https://learn.microsoft.com/graph/api/resources/userregistrationdetails?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c10-bod-configs]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policy MS.AAD.1.1v1 ("Legacy authentication SHALL be blocked"), <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Nov 11, 2026).
+[^c10-smtp-auth]: Microsoft Learn, "Enable or disable authenticated client SMTP submission (SMTP AUTH) in Exchange Online" (Microsoft highly recommends disabling SMTP AUTH for the organization and enabling it only for the mailboxes that still need it; organization-wide and per-mailbox settings), <https://learn.microsoft.com/exchange/clients-and-mobile-in-exchange-online/authenticated-client-smtp-submission> (accessed Nov 11, 2026).
+[^c10-smtp-report]: Microsoft Learn, "SMTP AUTH Clients report in the new Exchange admin center in Exchange Online" (authentication protocol TlsAuthLogin for Basic and XOAUTH2 for Modern; a date range of up to 90 days), <https://learn.microsoft.com/exchange/monitoring/mail-flow-reports/mfr-smtp-auth-clients-report> (accessed Nov 11, 2026).
 [^c10-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
 [^c10-mandatory-mfa]: Microsoft Learn, "Mandatory multifactor authentication for Azure and admin portals" (phases, accounts in scope, federated identity providers, postponement, sovereign clouds), <https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication> (accessed Nov 9, 2026).
 [^c10-mandatory-mfa-howto]: Microsoft Learn, "Verify that users are set up for mandatory MFA," <https://learn.microsoft.com/entra/identity/authentication/how-to-mandatory-multifactor-authentication> (accessed Nov 9, 2026).
