@@ -671,6 +671,53 @@ The digest shows 16 open notices, 8 needing action and 5 starting in the next 30
 ./deploy/Invoke-PnRollback.ps1 -SettingsPath <settings-file> -OutputPath out/rollback
 ```
 
+## Control states, change safety and assessment mapping {#pn-control-states}
+
+This section states the guide against the workbook's conventions in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). Provider notices are a detective and operating loop: they inform owners and open tasks, and block nothing.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Prerequisites](#prerequisites) (owners, routing decisions, notice contacts); [G6](#step-6-route-notices-to-owners), step 1 (the routing file) | The reviewed routing file and the named owner of each provider's notices |
+| Configured | [G1](#step-1-azure-service-health) to [G5](#step-5-google-cloud-personalized-service-health): a reader per provider holding only its read role; G1's alert policy planned | Role assignments and policy statements; each run's `manifest.json`; the alert plan |
+| Enforced | Not applicable for the notices: the loop blocks nothing. The one setting applied at scope is G1's Service Health alert policy, remediated at the management group | The assignment compliant after remediation, and `results.json` |
+| Evidenced | Each gate's **Validate**; G7's `Invoke-PnEvidence.ps1 -Check -Stage` | The check output, and the evidence records and `SHA256SUMS` it verified |
+| Operated | [G7](#step-7-digest-and-evidence): the weekly run, the digest, tasks closed only on the re-read | The schedule, each week's digest, the evidence chain with no gap, the ISSO as gate owner |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** Where the guide carries each subsection of [Appendix D's How template](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template):
+
+| Subsection | Where it is |
+|---|---|
+| Prerequisites | [Prerequisites](#prerequisites) and each gate's own; government-cloud availability in each gate and in [the five providers compared](#the-five-providers-compared) |
+| Pilot | The test stage of [G7](#step-7-digest-and-evidence): one settings file per environment, and the test stage's evidence is a production preflight check |
+| Report-only or audit phase | The dry runs: `deploy/New-PnAlertPolicy.ps1` without `-Apply` (G1) and `Invoke-PnRoute.ps1` without `-Send` (G6); task payloads stay files until the endpoint exists |
+| Enforcement | Not applicable as a blocking control; the production switches are G1's `-Apply -ApprovedSha256` and G6's `-Send` |
+| Rollback | [Rollback](#rollback), by gate, and `deploy/Invoke-PnRollback.ps1` |
+| Exclusions | Not applicable: no person or sign-in is restricted. Providers not enabled, and Google Cloud's planned-maintenance gap, are recorded with the ISSO (G5) |
+| Telemetry | Each run's `raw/` files and `manifest.json`; G1's Service Health alerts; the evidence chain |
+| Evidence | [Evidence](#evidence) and its checklist |
+| Day-two ownership | Each gate's owner; the ISSO for G7; owners read the weekly digest and work their tasks ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md)) |
+
+: Where each How-template subsection is covered {.striped .hover}
+
+**Change safety** *(design guidance)*. Only G1's policy assignment and G6's sending change anything outside the kit's own folders.
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The test stage: test settings file, test subscriptions and a test ServiceNow endpoint, if built | `Invoke-PnEvidence.ps1 -Check -Stage test` passes |
+| 1 | Production, collection and dry-run routing only | One week's digest read by the owners; the dry run's tasks match what the owners expected |
+| 2 | Production, G1's alert policy applied and G6's `-Send` on | `Invoke-PnEvidence.ps1 -Check -Stage production` passes |
+
+- **Emergency access:** not applicable: no sign-in is restricted.
+- **Change window:** the change record that approves each plan's SHA-256, with the cloud platform lead on hand for G1 and the service desk for G6.
+- **Backout triggers:** remediation that fails or reaches subscriptions outside scope; duplicate tasks on a re-run; tasks sent to the wrong assignment group.
+- **Post-change validation:** G1's and G6's **Validate** steps, after each ring.
+
+The guide addresses no Zero Trust Assessment test family, so it carries no assessment-mapping block; its requirements are SA-9, SI-5, CM-3, CP-2 and CA-7, in each gate's table.
+
 ## Dangers and how to avoid them {#dangers}
 
 | Danger | What goes wrong | Mitigation |
@@ -704,6 +751,14 @@ Each gate's table names what the ISSO keeps. Together they make one file:
 : Evidence by gate {.striped .hover}
 
 The kit's records support these controls; they don't by themselves decide them, and the agency's assessor does. SI-5, SA-9, CP-2 and CA-7 are in the NIST Low, Moderate and High baselines and FedRAMP Classes B, C and D, and CM-3 in Moderate and High and Classes C and D ([Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md); [Book 12, Appendix A](../b12-security-operations/appendix-a-requirements-mapping.md); [Book 14, Chapter 06](../b14-compliance/06-contingency-and-continuity.md)). File every run with its date, environment and kit version.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the settings file per environment, the routing file, the readers' role assignments and policy statements, and G1's alert plan, kept inside the boundary
+- [ ] **Operational:** each week's `raw/` files, `notices.json`, task payloads, `state.json` and digest, kept with the evidence records
+- [ ] **Test:** each gate's **Validate** result and the stage's `Invoke-PnEvidence.ps1 -Check` output, with date and operator
+- [ ] **Exception:** providers not enabled, the Google Cloud planned-maintenance gap, and any gate passed on its interim path, each with the ISSO's acceptance
+- [ ] **Assessor-ready artifact:** the evidence chain (`records/`, `records.csv`, `SHA256SUMS`) for the period, traceable to the four above
 
 ## Rollback
 

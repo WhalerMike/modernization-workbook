@@ -71,3 +71,11 @@ New guide, first pass of 2026-11-08. The guide runs the decision guide's work as
 ## Design guidance (labeled in the page)
 
 The 30-day watch after draining; draining rather than maintenance mode for that watch; the 120-minute fallback; the 75% target utilization and two DPs per hub; the wave order by circuit readiness; the Stage 1 and Stage 2 go/no-go criteria.
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied the conventions of Book 00, Appendix D to the guide's steps (conventions on procedure sections; a "must" relabeled only where it is a recommendation).
+
+- **Added** `#dpc-control-states`: the five control states mapped to Steps 0 to 10; a How-template coverage table that points at existing sections; a change-safety block whose rings are the guide's own Stage 1, pilot wave, later waves and Step 10; the five-kind evidence checklist (the guide had per-step requirement tables and no evidence section). No assessment-mapping block: the guide consolidates infrastructure and addresses no Zero Trust Assessment test family; the section says so.
+- **Authority labels:** one relabel. Step 1.1's "The servers must run Windows Server 2019 or later" is the program's server standard, not a product requirement (Learn supports the role on 2019, 2022 and 2025, as `dpi-siteos` records); it now reads "run Windows Server 2019 or later, the workbook's minimum *(risk-based recommended: the program's server standard)*". "Restart required" (exit code 3010) and Intune's silent-install requirement are product behavior and stay.
+- **Sources:** the additions make no new product, licensing or government-cloud claim; the 4,000-client limit and the 80% threshold are the guide's existing sizing and go/no-go figures. Every Learn claim above carries its November 8, 2026 read, so nothing was re-read.

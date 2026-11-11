@@ -105,3 +105,19 @@ The guide's "Where the kits stop" table states what no validation kit check read
 | Before | After | Source |
 |---|---|---|
 | The `memberOf` preview ends on November 3, 2026 | The preview ended on November 3, 2026 | Companion guide, Limits; Book 02 Ch 09 |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied the conventions of Book 00, Appendix D (`docs/books/b00-orientation/appendix-d-control-states-and-evidence.md`) to this procedure guide, as the smallest coherent addition:
+
+| Convention | Where | What was added |
+|---|---|---|
+| G-01 control states | `#adm-control-states` | The five states mapped to the guide's gates, with the evidence for each, and the ready-for-closure sentence |
+| G-02 How template | `#adm-control-states` | A coverage table pointing each subsection to where the guide already covers it; exclusions name the emergency access accounts |
+| G-06 evidence checklist | the five-kind evidence checklist inside the new section (the guide has no **Evidence** section of its own) | Five kinds: configuration, operational, test, exception, assessor-ready artifact |
+| G-07 change safety | `#adm-control-states` | Rings adapted from the guide's pilot and waves, emergency access, change window, backout triggers *(design guidance)*, post-change validation |
+| G-08 assessment mapping | `#adm-assessment-mapping` | Microsoft and CISA pillars, dependencies, attack chain interrupted |
+
+**G-05 musts relabeled.** One: Gate 1, step 2, "`distinguishedName` ... must never drive policy" becomes "should never drive policy *(risk-based recommended: the program's position)*". The others are product constraints, descriptive ("what must not change") or the *required affinity* setting's name.
+
+**G-03 re-verification.** None. The guide still adds no new external claims: the new section is carried from its own gates, Where the kits stop and Rollback at a glance, and from the privileged access guide's G2.
