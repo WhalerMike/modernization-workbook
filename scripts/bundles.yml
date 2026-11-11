@@ -160,6 +160,13 @@ bundles:
     root: docs/project-plans/developer-workbooks/hr-driven-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: b20-information-protection-bundle.docx
+    title: "Book 20 — Information Protection & Microsoft Purview"
+    subtitle: "Protection that travels with the data — Federal Modernization Workbook, combined edition"
+    root: docs/books/b20-information-protection
+    image_dir: docs/images/diagrams/b20-information-protection
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b18-application-modernization-bundle.docx
     title: "Book 18 — Application Modernization"
     subtitle: "A portfolio, not a rewrite — Federal Modernization Workbook, combined edition"

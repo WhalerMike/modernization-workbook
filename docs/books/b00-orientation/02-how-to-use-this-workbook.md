@@ -30,7 +30,7 @@ The books fix that. Each book takes one topic, consolidates every page the workb
 
 ## Nineteen books
 
-The workbook is organized as nineteen topic books, numbered B00 to B18, and a code-first developer workbook, Book 19. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 18 each take one domain in depth.
+The workbook is organized as nineteen topic books, numbered B00 to B18, and a code-first developer workbook, Book 19. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 18 each take one domain in depth. Book 20, Information Protection & Microsoft Purview, added in November 2026 with the Zero Trust Assessment closure update, carries the data pillar; it is listed in the table below and the [book index](../index.md), and isn't yet in the map above.
 
 The numbering follows the dependency chain [Chapter 01](01-why-modernize-now.md) describes. Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after. The map above groups the books that way, and the [book index](../index.md) lists them with their status.
 
@@ -173,6 +173,7 @@ The table below shows the books. The [Workbook Map](../../../workbook-map.qmd) l
 | B16 | [People: Training & Education](../b16-people/index.md) | Why do people, not tools, close the gap? | Running it |
 | B17 | [AI Identity Governance](../b17-ai-identity/index.md) | Why do AI agents need identities and owners? | Identity and access |
 | B18 | [Application Modernization](../b18-application-modernization/index.md) | Why is application modernization a portfolio decision, not a rewrite? | Running it |
+| B20 | [Information Protection & Microsoft Purview](../b20-information-protection/index.md) | Why does protection have to travel with the data? | Boundary and assurance |
 
 The [book index](../index.md) shows each book's status and when it was last updated.
 
@@ -184,7 +185,7 @@ NIST's Cybersecurity Framework 2.0 organizes cybersecurity outcomes under six Fu
 |---|---|---|
 | GOVERN | "The organization's cybersecurity risk management strategy, expectations, and policy are established, communicated, and monitored." | [Book 00 — Orientation & Program](../b00-orientation/index.md); [Book 01 — The Transformation Arc](../b01-transformation-arc/index.md); [Book 10 — Cloud Boundary & Landing Zone](../b10-cloud-boundary/index.md); [Book 13 — Governance, Drift & Evidence](../b13-governance/index.md); [Book 14 — Federal Compliance & Authorization](../b14-compliance/index.md); [Book 17 — AI Identity Governance](../b17-ai-identity/index.md) |
 | IDENTIFY | "The organization's current cybersecurity risks are understood." | [Book 01 — The Transformation Arc](../b01-transformation-arc/index.md); [Book 11 — Zero Trust & Assessment](../b11-zero-trust/index.md); [Book 17 — AI Identity Governance](../b17-ai-identity/index.md) |
-| PROTECT | "Safeguards to manage the organization's cybersecurity risks are used." | [Book 02 — Identity & Directory](../b02-identity/index.md); [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md); [Book 04 — Access & Privilege](../b04-access/index.md); [Book 05 — Devices & Endpoints](../b05-devices/index.md); [Book 06 — Data Platform: SQL Server Identity](../b06-data-platform/index.md); [Book 07 — PKI & Certificates](../b07-pki/index.md); [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md); [Book 09 — Network & Transport](../b09-network/index.md); [Book 16 — People: Training & Education](../b16-people/index.md) |
+| PROTECT | "Safeguards to manage the organization's cybersecurity risks are used." | [Book 02 — Identity & Directory](../b02-identity/index.md); [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md); [Book 04 — Access & Privilege](../b04-access/index.md); [Book 05 — Devices & Endpoints](../b05-devices/index.md); [Book 06 — Data Platform: SQL Server Identity](../b06-data-platform/index.md); [Book 07 — PKI & Certificates](../b07-pki/index.md); [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md); [Book 09 — Network & Transport](../b09-network/index.md); [Book 16 — People: Training & Education](../b16-people/index.md); [Book 20 — Information Protection & Microsoft Purview](../b20-information-protection/index.md) |
 | DETECT | "Possible cybersecurity attacks and compromises are found and analyzed." | [Book 12 — Security Operations & Telemetry](../b12-security-operations/index.md) |
 | RESPOND | "Actions regarding a detected cybersecurity incident are taken." | [Book 12 — Security Operations & Telemetry](../b12-security-operations/index.md) |
 | RECOVER | "Assets and operations affected by a cybersecurity incident are restored." | [Book 14 — Federal Compliance & Authorization](../b14-compliance/index.md) ([Chapter 06](../b14-compliance/06-contingency-and-continuity.md)) |
