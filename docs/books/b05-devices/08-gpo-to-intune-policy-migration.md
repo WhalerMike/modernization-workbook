@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The working detail of the GPO sunset that [Chapter 07](07-the-gpo-sunset-program.md) runs as a program: the seven phases broken into tasks, durations, exit gates, rings, tests and rollback steps. Then the program's policy library for the existing Windows fleet: how policies are typed, targeted and tagged, the four compliance policies plus a server baseline, six configuration profiles, six endpoint security policies and two app protection policies, with the GPO paths they replace. The chapter closes with dynamic group and filter templates and Microsoft Graph templates for creating the policies as code; the setting-level crosswalk and CSP paths are in [Appendix A](appendix-a-gpo-to-intune-crosswalk.md).
+The working detail of the GPO sunset that [Chapter 07](07-the-gpo-sunset-program.md) runs as a program: the seven phases broken into tasks, durations, exit gates, rings, tests and rollback steps. Then the program's policy library for the existing Windows fleet: how policies are typed, targeted and tagged, the four compliance policies plus a server baseline, six configuration profiles, six endpoint security policies and two app protection policies, with the GPO paths they replace, and how the hardening policies are rolled out in rings and evidenced. The chapter closes with dynamic group and filter templates and Microsoft Graph templates for creating the policies as code; the setting-level crosswalk and CSP paths are in [Appendix A](appendix-a-gpo-to-intune-crosswalk.md).
 :::
 
 [Chapter 07](07-the-gpo-sunset-program.md) sets the rules: inventory before anything moves, one authority per setting, evidence before a GPO link is disabled, and disable before delete. This chapter is what an endpoint engineer works from inside those rules. It assumes the decision records from Chapter 07 exist, because a template is only applied to a setting that has been classified as required.
@@ -341,6 +341,8 @@ Security settings management has a licensing catch for servers: if the tenant's 
 | Grace period | 1 day | 0 days | 3 days | 1 day (alert) | 2 days |
 | Retire list | 30 days | 7 days | 30 days | No | No |
 
+Corporate and personally owned iOS, iPadOS and Android Enterprise devices have their own compliance policies, CP-006 to CP-009, in [Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture), with the rule for when compliance starts to decide access.
+
 ## Configuration profiles (settings catalog)
 
 Settings catalog profiles replace ADMX-backed Group Policy with cloud-delivered configuration. Each profile below maps the GPO paths to the settings that replace them. All are assigned to all corporate devices unless the profile says otherwise. The exception is the settings that replace User Configuration paths: Folder Redirection in SC-004, and the wallpaper and Windows Spotlight rows in SC-010. Those are the user half of Group Policy, so they go to the HR track's user groups, not to the device assignment ([Intune track guide, Step 2.3](../guides/intune-track-implementation.md)).
@@ -629,7 +631,7 @@ Replaces the LAPS GPO (Computer Configuration > Administrative Templates > Syste
 
 The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program sets 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] Windows Server 2025 isn't a target; servers don't enroll, so server LAPS stays with the server toolchain; Chapter 09 doesn't yet specify it.
 
-Windows LAPS keeps a managed account's password in one directory at a time, so a hybrid-joined device backs up to Entra ID or to Active Directory, never both; when passwords go to Entra ID, only Global Administrator, Cloud Device Administrator and Intune Administrator can read the clear-text password by default.[^c08-laps-concepts][^c08-laps-faq] Passwords can be 8 to 64 characters, so the program's 24 is inside the range; complexity 4 is large and small letters, numbers and specials.[^c08-laps-passwords] Microsoft recommends automatic account management (Windows 11, version 24H2 and later), with a custom account and the built-in Administrator left disabled; the profile above keeps the built-in account, and whether the program moves to automatic mode is not yet specified.[^c08-laps-modes]
+Windows LAPS keeps a managed account's password in one directory at a time, so a hybrid-joined device backs up to Entra ID or to Active Directory, never both; when passwords go to Entra ID, only Global Administrator, Cloud Device Administrator and Intune Administrator can read the clear-text password by default.[^c08-laps-concepts][^c08-laps-faq] Passwords can be 8 to 64 characters, so the program's 24 is inside the range; complexity 4 is large and small letters, numbers and specials.[^c08-laps-passwords] Microsoft recommends automatic account management (Windows 11, version 24H2 and later), with a custom account and the built-in Administrator left disabled; the profile above keeps the built-in account, and whether the program moves to automatic mode is an open decision, set out [below](#laps-account-management-decision).[^c08-laps-modes]
 
 Moving off the legacy LAPS GPO (Microsoft LAPS, the `AdmPwd` client-side extension) follows Microsoft's immediate transition: disable the legacy policy and apply ES-006's Windows LAPS profile together, confirm the transition on the device, then uninstall the legacy software. A Windows LAPS policy always takes precedence over a legacy LAPS policy on the same device, and the first Windows LAPS policy rotates the password at once.[^c08-laps-migration][^c08-laps-legacy] Confirm on a pilot device with the Windows LAPS event log: 10022 records a policy backing up to Entra ID, 10029 a successful password update in Entra ID, and 10018 the same for Active Directory.[^c08-laps-events]
 
@@ -645,6 +647,155 @@ msiexec.exe /q /uninstall '{97E2CA7B-B657-4FF7-A6DB-30ECC73E1E28}'
 ```
 
 `Invoke-LapsPolicyProcessing` and the event IDs are in Microsoft's LAPS PowerShell and event log references; the uninstall command is the one Microsoft gives for an MSI-installed legacy client.[^c08-laps-ps]
+
+#### Windows LAPS automatic account management: the open decision {#laps-account-management-decision}
+
+Whether ES-006 moves from the built-in Administrator account to automatic account management is **an open decision for the program's owner**, not settled here. The options, from Microsoft's description of the two modes:[^c08-z-laps-modes][^c08-z-laps-intune]
+
+| Option | What it means | For it | Against it |
+|---|---|---|---|
+| A. Manual mode, built-in Administrator (ES-006 today) | Windows LAPS manages only the password; the IT team owns everything else about the account | Works on every supported Windows version; no change to support procedures | The account name is the same on every device and well known to attackers; the account must stay enabled |
+| B. Automatic mode, built-in account, name randomized | Windows LAPS controls the built-in account entirely and gives it a unique name per device | Removes the predictable target name; adds tamper protection over the whole account | Help desk and runbooks can't assume a common name; Windows 11, version 24H2 and later only |
+| C. Automatic mode, custom account, built-in account disabled | Windows LAPS creates and manages a custom account; the built-in Administrator stays unused and disabled | **Microsoft-recommended**: Microsoft recommends automatic mode in all but rare cases, targeting a custom account with the built-in account disabled | Needs 24H2 or later, so the fleet runs two LAPS policies (manual for older devices) until the 24H2 floor is reached |
+| D. As C, with the managed account kept disabled until needed | The managed account exists but is enabled only by a policy change when someone needs it | No password-spray target at all | Every use needs a policy change first, which is friction during an outage |
+
+What Microsoft says about the trade: keeping the managed account disabled removes any chance of a password spray against it but means it must be enabled by policy before use, and a per-device name makes the attacker's job harder but means staff can't rely on a common account name; whether the friction is acceptable depends on how often the account is used and the environment's security requirements.[^c08-z-laps-modes] In automatic mode Windows LAPS blocks any outside change to the account and logs events 10101 to 10104 for each rejected attempt, so scripts and the local-group policies must not try to manage it.[^c08-z-laps-modes]
+
+**To decide:** the option, whether the 24H2 floor (CP-001 already requires it) lets the program skip a split policy, and the help desk procedure for finding the account name on a device. Until the owner decides, ES-006 stays on option A and this is recorded as an open item, not an exception. Whichever option is chosen follows the hardening rollout below, with Windows LAPS event 10029 (password backed up to Entra ID) as its test evidence.
+
+### Rolling out the Windows hardening policies {#windows-hardening-rollout}
+
+The templates above say *what* each hardening policy sets. This section says how the set is turned on safely and proved: Microsoft Defender Antivirus and tamper protection, Windows Firewall, BitLocker, Windows LAPS, the security baselines, attack surface reduction, Windows Hello for Business, update rings and expedited updates. It stays at the Intune policy level. The depth of Microsoft Defender for Endpoint and Defender XDR (detection tuning, automated investigation, hunting and incident response) belongs to the workbook's planned implementation guide, *Defender XDR Engineering & Operations*, which a later change adds to the implementation guides. The conventions are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices (with Identity for Windows Hello for Business)
+- **CISA ZTMM pillar:** Devices (policy enforcement and compliance monitoring; device threat protection)
+- **Depends on:** enrollment and compliance ([Chapter 04](04-intune-first-onboarding.md#enrollment-controls), [Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture)); Defender for Endpoint onboarding (ES-004) before tamper protection; Book 04's authentication strength for phishing-resistant sign-in ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md))
+- **Attack chain interrupted:** Execution and Persistence through malicious documents, scripts and drivers (antivirus, ASR); Defense Evasion by turning security off (tamper protection); Credential Access and Lateral Movement through a shared local administrator password or a stolen password (Windows LAPS, Credential Guard, Windows Hello for Business); data theft from a lost device (BitLocker); exploitation of known vulnerabilities (update rings, expedited updates)
+:::
+
+#### What each control's safe path looks like
+
+| Control | Policy | Observe-only mode | Microsoft's rollout advice | Enforcing step | Proof on a device |
+|---|---|---|---|---|---|
+| Defender Antivirus | ES-001 | None for protection itself; deploy to rings | Deploy in rings; real-time and cloud-delivered protection on | Assign ES-001 to the ring | `Get-MpComputerStatus` shows real-time protection on |
+| Tamper protection | ES-001 (Windows Security experience profile) | None | Needs the device onboarded to Defender for Endpoint, Intune-only management (co-managed devices aren't supported) and `DisableLocalAdminMerge` set; the Intune setting is being renamed **controlled configuration**, and the renamed setting doesn't turn on controlled configuration's added protections[^c08-z-tamper][^c08-z-tamper-overview] | Set tamper protection **On** in the profile for the ring | `IsTamperProtected` is `True`; a blocked change logs event 5013[^c08-z-tamper-ts] |
+| Windows Firewall | ES-003 | None; rules can be tested on the pilot ring | Build the rules by hand; Group Policy analytics can't migrate them | Assign ES-003 | `Get-NetFirewallProfile` shows each profile on |
+| BitLocker | ES-002 | Encryption report before enforcing compliance | Silent encryption with escrow to Entra ID first | Assign ES-002; then CP-001's **Require BitLocker** decides access | Encryption report; `Get-BitLockerVolume` |
+| Windows LAPS | ES-006 | Pilot device events | Immediate transition from legacy LAPS | Assign ES-006 | Events 10022 and 10029 |
+| Security baselines | SC-001; Microsoft baselines | The read-only **STIG audit baseline** (license-dependent) reports pass or fail per STIG rule without changing anything[^c08-z-stig] | Review overlaps between baselines; profiles don't update to a new baseline version by themselves | Assign SC-001 or the baseline profile | Per-setting status **Succeeded** |
+| Attack surface reduction | ES-005 | **Audit** mode; **Warn** for rules that support it | Standard protection rules can go straight to **Block** without testing; test the others in Audit, then Block or Warn ring by ring; prefer a per-rule exclusion to turning a rule off[^c08-z-asr-deploy][^c08-z-asr-enable] | Set the rule to **Block** for the ring | `Get-MpPreference` shows the rule IDs and actions; Defender ASR report |
+| Windows Hello for Business | ES-006 | Pilot group | The tenant-wide enrollment policy applies only at enrollment; manage it afterward through account protection, the settings catalog or a baseline, never Group Policy and Intune together[^c08-z-whfb-config] | Assign ES-006 | `dsregcmd /status` shows `NgcSet : YES` for the user |
+| Update rings | SC-005 | None; the Test ring is the observation | [Chapter 10](10-operating-and-evidencing-the-fleet.md#the-programs-rings) | Ring assignment | Quality update report |
+| Expedited updates | Expedite policy | None | [Chapter 10](10-operating-and-evidencing-the-fleet.md#expedited-quality-updates) | Assign the expedite policy | Expedited update report |
+
+Each row is **Risk-based recommended** as part of the program's baseline unless the table names Microsoft's recommendation. The phishing-resistant sign-in that Windows Hello for Business provides is **Mandated** for agency staff, contractors and partners by OMB M-22-09 and NIST SP 800-63B-4 as described in [Book 16, Chapter 07](../b16-people/07-end-user-training.md#what-federal-policy-requires); Windows Hello for Business is one way to provide it, and requiring it at sign-in is Book 04's authentication strength, not a device setting. Microsoft lists **Require Security Device** (a TPM-backed key) as optional but recommended in its Windows Hello for Business deployment guides; the program sets it, so a key can't fall back to software.[^c08-z-whfb-cloud] For administrators, Windows Hello for Business or a FIDO2 security key on a Tier 0 privileged access workstation (CP-002, with Credential Guard under UEFI lock) is the device half of phishing-resistant administrator sign-in; Book 04's CA004 and CA025 and its privileged authentication strength are the access half, and they are where an assessment finding on administrator authentication is addressed ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators)).
+
+#### Prerequisites
+
+- **Licenses:** Intune Plan 1; Defender for Endpoint Plan 1 or 2 for tamper protection and the ASR reporting in the Defender portal (Microsoft's ASR deployment guide assumes Defender for Endpoint E5 or Windows E5 for full reporting);[^c08-z-asr-plan] Windows Enterprise or Education for Credential Guard; the Intune Advanced Analytics add-on for the STIG audit baseline (**license-dependent**).
+- **Platform:** Windows 11, version 24H2 or later (CP-001's floor); Windows 11 24H2 for Windows LAPS automatic account management if option B, C or D is chosen.
+- **Roles:** Endpoint Security Manager for endpoint security policies and baselines.
+- **In place first:** the device onboarded to Defender for Endpoint (ES-004) before tamper protection; the co-management Endpoint Protection workload moved to Intune; the legacy GPO for each setting disabled per [Chapter 07](07-the-gpo-sunset-program.md#coexistence-who-wins).
+- **Government cloud availability** (read Nov 11, 2026): the endpoint security policies, baselines and update rings are standard MDM features in GCC, GCC High and DoD;[^c08-z-intune-gov] quality, feature and expedite update policies and Windows Autopatch are planned for GCC High and DoD, not yet available, so there the rings carry the whole cadence; Windows LAPS backup to Entra ID is available in Azure Government;[^c08-z-laps-entra] the STIG audit baseline is available in commercial (which includes GCC) and GCC High, and Learn doesn't list DoD, so for DoD it is **not yet specified**.[^c08-z-stig] Defender for Endpoint in the government clouds is in [Chapter 10](10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint).
+
+#### Pilot
+
+The pilot is the Test and First rings from [Chapter 10](10-operating-and-evidencing-the-fleet.md#the-programs-rings): endpoint engineering devices, then about 5% of the fleet chosen to include every hardware model, every line-of-business application in Phase 1's baseline, and the users with the most unusual software. Microsoft's ASR guidance adds rule champions, people in each business unit who report what a rule broke.[^c08-z-asr-plan] Success is no unexplained per-setting **Error** or **Conflict**, the application tests from Phase 4 passing, and every ASR audit event reviewed.
+
+#### Report-only or audit phase
+
+- **ASR:** every non-standard rule in **Audit** for 30 days on each ring (ES-005's plan), reviewing the Defender ASR report and its audit events, and adding per-rule exclusions where a business application is affected.[^c08-z-asr-deploy]
+- **Baselines:** assign the STIG audit baseline (where licensed) to the pilot to see, rule by rule, how far the pilot is from the STIG before and after SC-001; it never changes a device and can't conflict with other policies.[^c08-z-stig]
+- **Compliance-backed settings (BitLocker, firewall, antivirus):** the setting is pushed first and its compliance rule's grace period is kept long until the encryption report and the device compliance report show the ring at target ([Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture)).
+- **Settings with no audit mode** (tamper protection, LAPS, firewall profiles, Windows Hello for Business): the Test ring runs them for one week before the First ring.
+
+#### Enforcement
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test: endpoint engineering lab devices | Every policy **Succeeded**; the device proofs in the table pass |
+| 1 | First: pilot cohort, about 5% | As above for two weeks; ASR audit events reviewed and exclusions recorded; no application regression |
+| 2 | Fast: about a quarter of the fleet | As above for one week; help desk volume inside the wave threshold |
+| 3 | Broad: everyone else | Ring 2 held for one week |
+
+- **Emergency access:** not affected by device hardening; the Tier 0 privileged access workstations that emergency procedures depend on are in ring 1, not ring 0, so the break-glass workstation is never the first to receive a change
+- **Change window:** weekday business hours with the endpoint team on hand; never the day of a Patch Tuesday ring deadline
+- **Backout triggers:** a line-of-business application failing in more than one device, a rise in BitLocker recovery-key requests, an ASR block on a business process, or help desk volume above the threshold
+- **Post-change validation:** the device proofs below on a sample of each ring, and the per-setting status report for the ring
+
+The enforcing step is the assignment of each policy to the ring's group, and for ASR, changing the rule from **Audit** to **Block** (or **Warn**) in ES-005 for that ring.
+
+#### Rollback
+
+| Control | Step back | Time |
+|---|---|---|
+| Any endpoint security policy or baseline | Remove the ring's group from the assignment; settings return to their defaults or to the next policy that sets them | Next check-in |
+| ASR | Prefer a per-rule exclusion; otherwise set the rule back to **Audit** for the ring[^c08-z-asr-enable] | Next check-in |
+| Tamper protection | Set it to off in the profile for the device group; for a temporary change on one device, use Defender for Endpoint troubleshooting mode, whose changes are discarded when it expires[^c08-z-tamper-ts] | Next check-in; troubleshooting mode is time-limited |
+| BitLocker | Don't decrypt to roll back. Lengthen CP-001's grace period while the cause is fixed; keys stay escrowed | Minutes |
+| Windows LAPS | Assign the previous LAPS policy (only one Windows LAPS policy per device) | Next check-in |
+| Credential Guard with UEFI lock (Tier 0) | Can't be turned off remotely; the reason Tier 0 isn't ring 0 | Hands-on, per device |
+
+#### Exclusions
+
+Antivirus and ASR exclusions follow the exclusion hygiene rule above: recorded with a business reason, reviewed quarterly, removed with the application. Devices that can't take a control (a validated instrument image, a co-managed device that can't take tamper protection yet) go in the exception register with the compensating control and a review date. There is no emergency access exclusion to make, because these policies don't block sign-in; the compliance policies that do are covered in [Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture).
+
+#### Telemetry
+
+- Per-policy and per-setting status in Intune; the encryption report; the Windows LAPS reports.
+- Defender for Endpoint: the ASR rules report, tamper protection alerts and event 5013, and the device health of each sensor ([Chapter 10](10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint)).
+- The drift comparison and alerts in [Chapter 10](10-operating-and-evidencing-the-fleet.md#drift-detection-and-alerting): tamper protection off, BitLocker not encrypted, an OS below the floor.
+- The STIG audit report, where licensed.
+
+#### Evidence
+
+Run the first block on a sample device in each ring in an elevated PowerShell session, and the second in the signed-in user's own, non-elevated session, because `dsregcmd /status` reports the user's Windows Hello state only in the user's context.[^c08-z-dsregcmd] Every command reads state only.
+
+```powershell
+# Elevated. Read-only device proof for the hardening rollout. Save the output with the ring and date.
+Get-MpComputerStatus | Select-Object AMRunningMode, RealTimeProtectionEnabled, IsTamperProtected, AntivirusSignatureLastUpdated
+$p = Get-MpPreference
+0..([math]::Min($p.AttackSurfaceReductionRules_Ids.Count, $p.AttackSurfaceReductionRules_Actions.Count) - 1) |
+    ForEach-Object { [pscustomobject]@{ Id = $p.AttackSurfaceReductionRules_Ids[$_]; Action = $p.AttackSurfaceReductionRules_Actions[$_] } }
+Get-NetFirewallProfile | Select-Object Name, Enabled, DefaultInboundAction, DefaultOutboundAction
+Get-BitLockerVolume -MountPoint $env:SystemDrive | Select-Object MountPoint, VolumeStatus, EncryptionMethod, ProtectionStatus
+Get-WinEvent -LogName 'Microsoft-Windows-LAPS/Operational' -MaxEvents 20 | Where-Object Id -in 10022, 10029 | Select-Object TimeCreated, Id
+```
+
+```powershell
+# Not elevated, as the signed-in user. NgcSet : YES means a Windows Hello key is set for this user.
+dsregcmd /status | Select-String 'AzureAdJoined', 'NgcSet'
+```
+
+`Get-MpComputerStatus` with `IsTamperProtected` and `RealTimeProtectionEnabled` is Microsoft's own check for tamper protection,[^c08-z-tamper] and the LAPS events are those in the Windows LAPS section above. The ASR listing is Microsoft's own command; an action of 1 is block, 2 audit, 6 warn and 0 off.[^c08-z-asr-configure]
+
+**Evidence checklist**
+
+- [ ] **Configuration:** each ES, SC and baseline policy exported as JSON under version control ([Microsoft Graph templates](#microsoft-graph-templates)), with the ring assignments
+- [ ] **Operational:** per-setting status reports, the encryption report, the ASR report and tamper protection alerts, retained for the assessment period
+- [ ] **Test:** the device proof output for each ring, with the expected values, date and tester; one deliberate tamper attempt on a ring 0 device that logs event 5013
+- [ ] **Exception:** antivirus and ASR exclusions with reasons, co-managed and validated-image devices, and the LAPS decision while it is open
+- [ ] **Assessor-ready artifact:** the CM-6, CM-7 and SI-3 rows of [Chapter 10's evidence table](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads), each linked to the above; and the STIG audit export where licensed
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | ES-001 to ES-006, SC-001, SC-005 and the open LAPS decision | Decision records from Phase 1; the LAPS decision once made |
+| Configured | Policies built and assigned to ring 0; ASR in Audit | Policy JSON and assignment exports |
+| Enforced | All rings assigned; ASR rules in Block or Warn | Assignment export and ES-005's rule actions, with the exclusion list |
+| Evidenced | The device proofs and the tamper test | Device proof output and the event it produced |
+| Operated | Drift comparison, alerts and the quarterly exclusion review | Alert definitions, drift results and review notes |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides. Weigh findings by what the control protects, not by how many tests passed ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#weigh-the-finding-not-the-pass-rate)).
+
+#### Day-two ownership
+
+The endpoint engineering lead owns the hardening policies; the security operations lead owns the Defender portal settings and ASR exclusions with them. Cadence: the drift comparison daily, ASR and antivirus exclusions quarterly, security baselines when Microsoft publishes a new version (profiles don't move to it by themselves), and the LAPS decision until it is made. Drift looks like a policy with growing **Error** or **Conflict** counts, tamper protection reported off, an ASR rule back in Audit with no record, or a new exclusion with no reason. The help desk path, including BitLocker recovery and LAPS password retrieval, is in [Book 15](../b15-day2-operations/index.md).
 
 ## App protection policies
 
@@ -1005,3 +1156,18 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-gpa-graph]: Microsoft Learn, "List groupPolicyMigrationReports," Microsoft Graph beta (permissions; national cloud table), <https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta>; and "Create groupPolicyMigrationReport" (properties, including `migrationReadiness`; ReadWrite permission), <https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-create?view=graph-rest-beta> (both accessed Oct 30, 2026).
 [^c08-baselines]: Microsoft Learn, "Use security baselines to help secure Windows devices you manage with Microsoft Intune," Q & A ("Is there a difference in the recommendations for Windows security baselines for group policy vs. Intune?"), <https://learn.microsoft.com/intune/device-security/security-baselines/overview> (accessed Oct 30, 2026).
 [^c08-graph-intents]: Microsoft Learn, "deviceManagementIntent resource type" (Microsoft Graph beta; no v1.0 version), <https://learn.microsoft.com/graph/api/resources/intune-deviceintent-devicemanagementintent?view=graph-rest-beta> (accessed Oct 20, 2026).
+[^c08-z-laps-modes]: Microsoft Learn, "Windows LAPS account management modes," sections "Manual account management mode," "Automatic account management mode," "Automatic account management security improvements and considerations," "Account tampering protection" and "Choosing a mode" (Microsoft recommends automatic mode targeting a custom account, with the built-in Administrator disabled; Windows 11 24H2, Windows Server 2025 and later), <https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-account-management-modes> (accessed Nov 11, 2026).
+[^c08-z-laps-intune]: Microsoft Learn, "Microsoft Intune support for Windows LAPS," capabilities (automatic account management on Windows 11 24H2 and later) and "Frequently Asked Questions"; and "Deploy Windows LAPS policy with Microsoft Intune," section "About Intune LAPS policy" (one LAPS policy per device, assigned to device groups), <https://learn.microsoft.com/intune/device-security/laps/overview>, <https://learn.microsoft.com/intune/device-security/laps/deploy-policy> (both accessed Nov 11, 2026).
+[^c08-z-laps-entra]: Microsoft Learn, "Windows Local Administrator Password Solution in Microsoft Entra ID," sections "Supported Azure regions and Windows distributions" (Azure Global, Azure Government) and "License requirements," <https://learn.microsoft.com/entra/identity/devices/howto-manage-local-admin-passwords> (accessed Nov 11, 2026).
+[^c08-z-tamper]: Microsoft Learn, "Configure tamper protection for Microsoft Defender Antivirus on Windows," sections "Configure tamper protection in the Microsoft Defender portal" (Intune policy takes precedence) and "Determine the status of tamper protection and real-time protection using PowerShell"; and "Antivirus policy for endpoint security in Microsoft Intune," section "Prerequisites for antivirus policy," <https://learn.microsoft.com/defender-endpoint/tamper-protection-windows-configure>, <https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus> (both accessed Nov 11, 2026).
+[^c08-z-tamper-overview]: Microsoft Learn, "Tamper protection overview," note on controlled configuration and section "Requirements for tamper protection" (device onboarding; Intune requirements including no co-managed devices and `DisableLocalAdminMerge`), <https://learn.microsoft.com/defender-endpoint/tamper-protection-overview> (accessed Nov 11, 2026).
+[^c08-z-tamper-ts]: Microsoft Learn, "Troubleshoot problems with tamper protection" (troubleshooting mode; event ID 5013; Not applicable before onboarding), <https://learn.microsoft.com/defender-endpoint/tamper-protection-troubleshoot> (accessed Nov 11, 2026).
+[^c08-z-asr-plan]: Microsoft Learn, "Plan your attack surface reduction (ASR) rules deployment," sections on infrastructure requirements and champions, <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-plan> (accessed Nov 11, 2026).
+[^c08-z-asr-deploy]: Microsoft Learn, "Attack surface reduction (ASR) rules deployment guide" (standard protection rules can typically go to Block or Warn without testing) and "Test your attack surface reduction (ASR) rules deployment," section "Step 1: Test all ASR rules in Audit mode," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment>, <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-test> (both accessed Nov 11, 2026).
+[^c08-z-asr-enable]: Microsoft Learn, "Enable your attack surface reduction (ASR) rules deployment," sections "Step 1: Transition ASR from Audit to Block" (rule exclusions are better than turning rules off; Warn mode) and "Step 2: Expand deployment to ring n + 1," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-implement> (accessed Nov 11, 2026).
+[^c08-z-asr-configure]: Microsoft Learn, "Configure attack surface reduction (ASR) rules and exclusions," section "Configure ASR rules in PowerShell" (listing command; valid action values), <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-configure> (accessed Nov 11, 2026).
+[^c08-z-whfb-config]: Microsoft Learn, "Configure Windows Hello for Business," section "Configure Windows Hello for Business using Microsoft Intune" (the tenant-wide policy applies only at enrollment); and "Configure Windows Hello for Business on devices when they enroll with Intune," <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/configure>, <https://learn.microsoft.com/intune/device-security/identity-protection/configure-tenant-wide-policy> (both accessed Nov 11, 2026).
+[^c08-z-whfb-cloud]: Microsoft Learn, "Cloud-only deployment guide" and "Cloud Kerberos trust deployment guide," section "Configure Windows Hello for Business policy settings" (Use a hardware security device: optional but recommended; Group Policy takes precedence over Intune when both configure it), <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/cloud-only>, <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust> (both accessed Nov 11, 2026).
+[^c08-z-dsregcmd]: Microsoft Learn, "Troubleshoot devices by using the dsregcmd command," section "User state" (NgcSet; the command must run in a user context), <https://learn.microsoft.com/entra/identity/devices/troubleshoot-device-dsregcmd> (accessed Nov 11, 2026).
+[^c08-z-stig]: Microsoft Learn, "Use STIG audit baselines to assess Windows device compliance in Microsoft Intune," sections "Overview," "Prerequisites" (commercial and GCC High; requires Intune Advanced Analytics), "Understand audit-only behavior" and "Known limitations," <https://learn.microsoft.com/intune/device-security/security-baselines/stig-audit-baseline> (accessed Nov 11, 2026).
+[^c08-z-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Supported Intune features in GCC High and DoD" and "Intune features planned for GCC High and DoD," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 11, 2026).

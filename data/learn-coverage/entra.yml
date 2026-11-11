@@ -17473,6 +17473,7 @@ pages:
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  - docs/books/b16-people/07-end-user-training.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
   - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
@@ -17741,6 +17742,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b02-identity/_verification/10-migrating-and-governing.md
+  - docs/books/b16-people/07-end-user-training.md
 - path: docs/identity/authentication/how-to-mfa-authenticator-lite.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-authenticator-lite
   title: Enable Authenticator Lite for Outlook mobile
@@ -18958,6 +18960,7 @@ pages:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
+  - docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md
   - docs/books/guides/intune-track-implementation.md
@@ -20200,6 +20203,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: docs/identity/devices/howto-vm-sign-in-azure-ad-linux.md
   url: https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux
   title: Sign in to a Linux virtual machine in Azure by using Microsoft Entra ID and OpenSSH
@@ -20446,6 +20450,7 @@ pages:
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
   cited_by:
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
+  - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
   - docs/books/guides/intune-track-implementation.md
 - path: docs/identity/devices/troubleshoot-device-registration-tool-linux.md
   url: https://learn.microsoft.com/entra/identity/devices/troubleshoot-device-registration-tool-linux
