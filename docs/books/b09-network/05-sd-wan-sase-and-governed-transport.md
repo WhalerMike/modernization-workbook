@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What SD-WAN's differentiated transport buys: path classes, route-inflation recovery, tail-latency tools such as forward error correction and packet duplication, and protection of latency-critical traffic from bulk transfers, with the hard ceiling it can't pass. How SASE security services sit above SD-WAN in CISA's model and in the TIC 3.0 Branch Office Use Case, and why a SASE or VPN path must not break Teams emergency calling. Microsoft's Global Secure Access as one SASE candidate, with its government-cloud and licensing gates first: Private Access as the VPN and DirectAccess replacement, deployment, remote networks, Internet Access policy and coexistence with other vendors. The program's proposed governed-path model, in which the path is leased per intent and bound to a short-lived token. The decision records the fabric must emit, and the controls the controller and edges need before they're credited with closing anything.
+What SD-WAN's differentiated transport buys: path classes, route-inflation recovery, tail-latency tools such as forward error correction and packet duplication, and protection of latency-critical traffic from bulk transfers, with the hard ceiling it can't pass. How SASE security services sit above SD-WAN in CISA's model and in the TIC 3.0 Branch Office Use Case, and why a SASE or VPN path must not break Teams emergency calling. Microsoft's Global Secure Access as one SASE candidate, with its government-cloud and licensing gates first: Private Access as the VPN and DirectAccess replacement, deployment, remote networks, Internet Access policy and coexistence with other vendors. The bridge from those TIC 3.0 and SASE capabilities to identity-aware access (compliant network, secure web gateway, private application segmentation, traffic steering, coexistence and bypass governance), with the architecture decision and pilot exit criteria. The program's proposed governed-path model, in which the path is leased per intent and bound to a short-lived token. The decision records the fabric must emit, and the controls the controller and edges need before they're credited with closing anything.
 :::
 
 [Chapter 02](02-transport-is-physics-control-is-compliance.md) separated the pipe from the governor: transport is a physics decision, and control is a compliance decision. This chapter is about the governor. It has three layers, and each answers a different question. SD-WAN decides which traffic takes which path and measures how each path is doing. SASE decides whether a flow is allowed and inspects it at a policy enforcement point (PEP). The governed path, which is still a proposal in the program, decides whether the path itself was authorized for this caller and this intent, and records the answer as evidence. Sitting over all three is a question the sources answered only briefly: who protects the governor?
@@ -273,6 +273,105 @@ Each scenario needs the same two things. The partner client has to bypass Global
 
 The rows say what the service supports. The agency still sets each control's parameters and owns its policy and procedures, and the assessor decides whether each is satisfied. Traffic logs and remote network health logs are kept for 30 days and are exported through diagnostic settings.[^c05-gsa-logs]
 
+## From TIC capability to identity-aware access: the bridge {#the-bridge-to-identity-aware-access}
+
+TIC 3.0 and CISA's SASE guide describe security capabilities and where the policy enforcement points sit. A Zero Trust assessment of the network asks a different question: does the access decision use who the user is, what the device is and which path the request came over, and can the agency show it? This section is the bridge between the two. It maps each capability a TIC 3.0 or SASE architecture already names to the identity-aware control that carries it, says what has to be decided before any of it is enforced, and sets the exit criteria for the pilot. The engineering (client packaging, traffic profiles, connector builds, TLS inspection, telemetry export) belongs to the **Global Secure Access & Zero Trust Network Engineering** implementation guide, and the Conditional Access policy shapes are [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic)'s. This section doesn't repeat either.
+
+**Authority:** Risk-based recommended (the program's position, for the risk that a network control which can't see identity lets a stolen token or an unmanaged device through a permitted path); it builds on TIC 3.0's policy enforcement parity, which is the federal requirement ([What the branch edge adds](#what-the-branch-edge-adds-and-what-tic-3.0-asks-of-it)).
+**Applies:** Environment-dependent and License-dependent. Global Secure Access is available in GCC and not yet supported in GCC High or DoD,[^c05-gsa-limits] so in those tenants every row below is carried by a FedRAMP-authorized partner service or the existing VPN, and the decision record says which.
+
+### The bridge, capability by capability
+
+| TIC 3.0 or SASE capability | Identity-aware control that carries it | With Global Secure Access (GCC) | With another SSE, or none | Evidence |
+|---|---|---|---|---|
+| Policy enforcement parity across paths | Every path the user can take lands on the same identity-aware policy | Client and remote-network paths given the same security profiles, where the features exist | The partner's equivalent profile on each path, recorded per path | Profile assignment per path |
+| Compliant network | Conditional Access accepts a sign-in only if it came through the agency's own SSE tenant | **Conditional Access signaling** on, and the **All Compliant Network locations** named location used in a block-except policy;[^c05-gsa-cn] Microsoft's Zero Trust configuration guidance checks that signaling is on[^c05-zt-networks] | Named locations of the SSE's egress addresses, kept by hand: a weaker signal | Signaling setting; named location; policy in report-only, then on; a blocked test sign-in |
+| Secure web gateway | Internet policy chosen per user or group by Conditional Access, not per site | Internet Access security profiles linked through Conditional Access ([Internet Access policy](#internet-access-policy)) | The partner gateway's identity-integrated policy | Profiles; policy assignments; traffic logs |
+| Private application segmentation | Each private application reached by an assigned user on a named port, with its own access policy | Per-app access replacing Quick Access ([Private Access](#private-access-as-the-vpn-and-directaccess-replacement)) | The partner's ZTNA per application, or VPN pools narrowed by group | Per-app assignment lists; application discovery report |
+| Traffic steering | The client or tunnel decides which traffic is acquired, and the decision is policy, not a local setting | Traffic forwarding profiles (Microsoft, Internet, Private) on for the users in scope[^c05-zt-networks] | The partner client's steering configuration | Profile state and assignment |
+| Branch and remote-user coexistence | Branches and remote users get equal enforcement through the transition | Remote networks for clientless branch traffic, the client for user-aware policy, and coexistence with a partner ([Coexistence](#coexistence-with-cisco-zscaler-palo-alto-networks-netskope-and-infoblox)) | The partner's branch connectors | Coexistence design; per-path profile record |
+| Bypass governance | Every path that skips the enforcement point is registered, owned and expires | [Bypass governance](#bypass-governance) | Same | Bypass register |
+
+One limit shapes the design: the compliant network check isn't supported for Private Access applications, and Conditional Access applies to Private Access per application, not to its traffic as a whole.[^c05-gsa-limits] Private applications therefore rest on per-app assignment and per-app Conditional Access, and the compliant network check protects Microsoft and internet resources.
+
+### Bypass governance {#bypass-governance}
+
+Every SSE design has paths around the enforcement point, and each is a place where parity can fail silently. The program records each one as a governed object, as [Appendix A](appendix-a-optimize-exemption-instruments.md) records an Optimize-category exemption. The kinds of bypass to register:
+
+- **Traffic not acquired:** a traffic forwarding profile left off for some users, or destinations excluded from a profile.
+- **Inspection bypass:** TLS inspection bypass rules, including the category bypass Microsoft creates by default ([Internet Access policy](#internet-access-policy)).
+- **Coexistence bypass:** the address and name lists each SSE client bypasses for the other ([Coexistence](#coexistence-with-cisco-zscaler-palo-alto-networks-netskope-and-infoblox)).
+- **Direct paths:** Microsoft 365 Optimize traffic sent around the tunnel ([Chapter 12](12-microsoft-365-traffic.md)), and any split-tunnel VPN route.
+- **User or device bypass:** a client a user can disable, or a device the client isn't on. This is why the compliant network policy blocks the absence of the signal rather than trusting it.
+
+Each register entry carries the fields below; an entry without an owner or an expiry is a finding.
+
+```yaml
+- id: BYP-<nnn>
+  kind: <traffic-not-acquired | inspection | coexistence | direct-path | user-or-device>
+  scope: <users, groups, devices or sites>
+  destinations: <FQDNs, address ranges or categories>
+  reason: <the application or technical cause>
+  compensating_control: <what still applies on the bypass path>
+  owner: <role, not a person>
+  approved_by: <network owner and security office>
+  expires: <YYYY-MM-DD>
+  telemetry: <the log that shows traffic on the bypass path>
+```
+
+Changes to the register are reviewed weekly, and the whole register each quarter, on [Book 15's operating cadence](../b15-day2-operations/12-the-day-two-runbook.md#the-cadence-by-control-family).
+
+### The architecture decision and the pilot exit criteria {#the-architecture-decision-and-the-pilot-exit-criteria}
+
+The decision record names the option chosen for each row of the bridge table and, for each, the license, cloud availability, prerequisites, the compensating control where a feature isn't available, and the exit criteria that end the pilot:
+
+```yaml
+decision: identity-aware-network-access
+options_considered: [global-secure-access, partner-sse, vpn-with-conditional-access]
+chosen: <option, per bridge row>
+license: <Entra ID P1/P2; Internet Access; Private Access; partner SKU>
+cloud_availability: <GCC available | GCC High and DoD not yet supported; source and date read>
+prerequisites: [client packaging, device compliance, source IP restoration, emergency access exclusion tested]
+compensating_controls: <where a feature is unavailable or in preview>
+pilot_scope: <users, devices, sites>
+exit_criteria: <the list below, each with its measured value>
+rollback: <the step back and who runs it>
+owner: <network owner>
+approved_by: <CISO; the authorizing official where the boundary changes>
+```
+
+The pilot ends when every criterion below is measured and met. A missed criterion is a reason to stay in the pilot, not to waive it.
+
+1. Every pilot device runs the client and reports healthy, and devices without it are blocked by the compliant network policy, which ran in report-only for the period [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement) sets before it was turned on.
+2. With the client disabled, a fresh sign-in to a protected application is blocked, and with it re-enabled access returns, the validation Microsoft's tutorial gives.[^c05-gsa-cn-tutorial]
+3. Every private application the pilot uses is reached through per-app access, and the application discovery report shows no remaining Quick Access traffic for those users.
+4. Every bypass in use is in the register with an owner and an expiry.
+5. Traffic logs reach the SIEM, and the telemetry-completeness check covers them ([Book 15, Chapter 12](../b15-day2-operations/12-the-day-two-runbook.md#the-telemetry-completeness-check)).
+6. The emergency access accounts are excluded from the compliant network policy and were tested at the pilot's start and end, and the break-glass procedure for an SSE outage was rehearsed ([Deployment and proof of concept](#deployment-and-proof-of-concept)).
+7. Help desk tickets for blocked access in the pilot were routed by [Book 15's Conditional Access runbook](../b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md#runbook-blocked-by-conditional-access), not resolved with exclusions.
+
+**Change safety.** The rings are [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)'s, with the network owner's pilot as ring 1. Microsoft cautions that turning off Global Secure Access signaling while compliant network policies are active can block the users they target, so the policies are deleted before signaling is ever turned off.[^c05-gsa-cn] That order is a backout rule written into the change, not left to the day.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The architecture decision](#the-architecture-decision-and-the-pilot-exit-criteria) | Signed decision record |
+| Configured | Traffic profiles, signaling, security profiles and per-app applications (the GSA implementation guide) | Configuration exports |
+| Enforced | Compliant network and per-app policies on, after report-only ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic)) | Policy state; exclusion register |
+| Evidenced | Exit criteria 1, 2 and 5 | Blocked and allowed test sign-ins; traffic log samples |
+| Operated | The bypass register on the operating cadence | Register review records; telemetry alerts |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Networks
+- **CISA ZTMM pillar:** Networks
+- **Depends on:** device compliance ([Book 05](../b05-devices/index.md)) and the Conditional Access library ([Book 04](../b04-access/index.md)); emergency access accounts excluded and tested
+- **Attack chain interrupted:** a stolen token replayed from outside the agency's own path, and an attacker on a permitted path reaching more than the one application assigned (Credential Access, Lateral Movement)
+:::
+
 ## The governed path
 
 ::: {.callout-warning}
@@ -396,6 +495,7 @@ None of this argues against SD-WAN. The branch already has a router with a manag
 - At the branch, TIC 3.0's policy enforcement parity makes the steering policy a security control: every path class must land on enforcement of equal strength.
 - SASE security services sit above SD-WAN. CISA lists SD-WAN among SASE's networking tools but mandates neither; the boundary, flow and malware closures come from the services above it, and the PEP's location is a physics decision too.
 - FedRAMP status differs by offering, not by vendor; read it from the Marketplace data when the requirement is written.
+- The bridge to identity-aware access maps each TIC 3.0 and SASE capability to a control that reads identity, device and path; every bypass is registered with an owner and an expiry, and the pilot ends on measured exit criteria.
 - The proposed governed path extends per-call identity to the transport plane: tunnels leased per intent, bound to a short-lived token, with the path recorded as evidence and the program kept out of the data plane.
 - The controller and edges are new, estate-wide attack surface. ED 26-03, BOD 26-02 and BOD 26-04 define what protecting them looks like; that protection comes before production traffic.
 :::
@@ -470,3 +570,6 @@ None of this argues against SD-WAN. The branch already has a router with a manag
 [^c05-gsa-infoblox]: Microsoft Learn, "Configure Microsoft Entra Global Secure Access with Infoblox," <https://learn.microsoft.com/entra/global-secure-access/how-to-infoblox-coexistence> (accessed Nov 9, 2026).
 [^c05-gsa-edr]: Microsoft Learn, "EDR and antivirus coexistence with Global Secure Access client," <https://learn.microsoft.com/entra/global-secure-access/how-to-edr-antivirus-coexistence> (accessed Nov 9, 2026).
 [^c05-gsa-logs]: Microsoft Learn, "Global Secure Access logs and monitoring," <https://learn.microsoft.com/entra/global-secure-access/concept-global-secure-access-logs-monitoring> (accessed Nov 9, 2026).
+[^c05-gsa-cn]: Microsoft Learn, "Enable compliant network check with Conditional Access," sections "Enable Global Secure Access signaling for Conditional Access" (the **All Compliant Network locations** named location; the caution about disabling signaling while compliant network policies are active) and "Protect your resources behind the compliant network," <https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network> (accessed Nov 11, 2026).
+[^c05-gsa-cn-tutorial]: Microsoft Learn, "Tutorial: Enable the compliant network check," sections "Step 1: Create the compliant network Conditional Access policy" (start with a pilot group and a test application) and "Step 2: Validate the compliant network policy" (disable the client and confirm a fresh sign-in is blocked); source IP restoration must be enabled to target the compliant network, <https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-compliant-network> (accessed Nov 11, 2026).
+[^c05-zt-networks]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect networks," section "Zero Trust security recommendations" (Global Secure Access signaling for Conditional Access is enabled; traffic forwarding profiles route traffic for enforcement), <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks> (accessed Nov 11, 2026).
