@@ -119,3 +119,14 @@ Learn coverage pass (citations for pages the coverage map marked covered-uncited
 | L9 | Default-Block MCP posture from the identity records; block event as drift signal; GCC/GCC High consequences | Network edge | restated-as-design | Program design from L6, L8 and the Agent 365 service description |
 
 Learn pages left uncited but listed for this chapter in the coverage map: the individual agent OAuth flow pages, the sidecar setup and local-development pages, control-user-access, grant-agent-access-microsoft-365, manage-owners-sponsors, manage-agents-without-identity, the Bedrock and n8n pages and fundamentals/zero-trust-ai (topic-level matches; the chapter cites the more specific pages).
+
+## Zero Trust Assessment closure additions (Nov 11, 2026)
+
+Added for the Zero Trust Assessment closure update (B17-01). Each row uses the verification-log row from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md#block-verification-row). Learn pages were read on the date shown; `ms.date` wasn't exposed by the fetch tool, so the read date is the date recorded.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | Disable an agent identity or blueprint (object kept, tokens stopped); three tenant-wide block policies, report-only first, P1; consequences; audit logging under base identity types | The kill switch | verified | Learn, Disable agent identities in your tenant | Nov 11, 2026 |
+| Z2 | PATCH servicePrincipals/{id}/microsoft.graph.agentIdentity; AgentIdentity.EnableDisable.All; Agent ID Administrator; US Gov L4 and L5 listed | The kill switch | verified | Learn, Graph Update agentIdentity; agentIdentity resource type | Nov 11, 2026 |
+| Z3 | Per-agent control table; who may pull the switch; yearly disable test | Workload-identity controls per agent | restated-as-design | Program design from Chapters 04-07 and Book 04 Chapter 05 | Nov 11, 2026 |
+| Z4 | M-25-21 fail-safe "when practicable" | Authority label | verified (carried from Chapter 02's verified reading) | Chapter 02 verification log | Nov 11, 2026 |
