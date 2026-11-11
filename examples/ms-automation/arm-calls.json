@@ -1,0 +1,28 @@
+{
+  "_comment": "Every Azure Resource Manager call the Arc tasks (python/arc_tasks.py, powershell/FmwArm.psm1) make. Unlike Graph, an Azure token carries no permission list: Azure RBAC decides at each call. The role every call here needs is Reader on the subscriptions or management group in scope; `actions` is the Azure RBAC action the call is checked against. Sources: Microsoft Learn, 'Subscriptions - List' (2022-12-01), 'Resources' (Resource Graph, 2024-04-01), 'Azure permissions for Management and governance', 'Azure built-in roles for General' (Reader), accessed November 3, 2026.",
+  "role": {
+    "name": "Reader",
+    "id": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+    "actions": ["*/read"]
+  },
+  "calls": [
+    {
+      "id": "subscriptions-list",
+      "method": "GET",
+      "path": "/subscriptions",
+      "api_version": "2022-12-01",
+      "actions": [],
+      "note": "Lists the subscriptions the caller can see: those where it holds any Azure role. No role action is checked.",
+      "tasks": ["arc-extensions", "arc-private-link", "lifecycle", "sql-inventory", "policy-summary"]
+    },
+    {
+      "id": "resource-graph-query",
+      "method": "POST",
+      "path": "/providers/Microsoft.ResourceGraph/resources",
+      "api_version": "2024-04-01",
+      "actions": ["Microsoft.ResourceGraph/resources/read"],
+      "note": "A Resource Graph query. It returns only the resources the caller can read; with no read access the result is empty, not an error.",
+      "tasks": ["arc-extensions", "arc-private-link", "lifecycle", "sql-inventory", "policy-summary"]
+    }
+  ]
+}

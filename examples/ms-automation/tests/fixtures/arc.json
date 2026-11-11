@@ -1,0 +1,316 @@
+{
+  "_comment": "A fictional estate in one subscription: seven Arc-enabled servers, five SQL Server instances, four policy assignments. Rows have the shape the Resource Graph queries in python/arc_tasks.py project.",
+  "machines": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01",
+      "name": "SRV-APP-01",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Connected",
+      "osType": "windows",
+      "osName": "windows",
+      "osSku": "Windows Server 2022 Datacenter",
+      "osVersion": "10.0.20348",
+      "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
+      "esuEligibility": "",
+      "esuAssignment": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
+      "name": "SRV-APP-02",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Connected",
+      "osType": "windows",
+      "osName": "windows",
+      "osSku": "Windows Server 2016 Standard",
+      "osVersion": "10.0.14393",
+      "privateLinkScopeResourceId": "",
+      "esuEligibility": "",
+      "esuAssignment": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
+      "name": "SRV-LEG-01",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Disconnected",
+      "osType": "windows",
+      "osName": "windows",
+      "osSku": "Windows Server 2012 R2 Datacenter",
+      "osVersion": "6.3.9600",
+      "privateLinkScopeResourceId": "",
+      "esuEligibility": "",
+      "esuAssignment": "Assigned"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
+      "name": "SRV-DB-01",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Connected",
+      "osType": "windows",
+      "osName": "windows",
+      "osSku": "Windows Server 2019 Standard",
+      "osVersion": "10.0.17763",
+      "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
+      "esuEligibility": "",
+      "esuAssignment": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01",
+      "name": "lnx-web-01",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Connected",
+      "osType": "linux",
+      "osName": "Ubuntu 22.04",
+      "osSku": "",
+      "osVersion": "22.04",
+      "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
+      "esuEligibility": "",
+      "esuAssignment": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-02",
+      "name": "lnx-web-02",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Connected",
+      "osType": "linux",
+      "osName": "Red Hat Enterprise Linux 9.4",
+      "osSku": "",
+      "osVersion": "9.4",
+      "privateLinkScopeResourceId": "",
+      "esuEligibility": "",
+      "esuAssignment": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01",
+      "name": "SRV-NEW-01",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "status": "Connected",
+      "osType": "windows",
+      "osName": "windows",
+      "osSku": "Windows Server 2025 Datacenter",
+      "osVersion": "10.0.26100",
+      "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
+      "esuEligibility": "",
+      "esuAssignment": ""
+    }
+  ],
+  "extensions": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01/extensions/azuremonitorwindowsagent",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01",
+      "name": "AzureMonitorWindowsAgent",
+      "publisher": "Microsoft.Azure.Monitor",
+      "extensionType": "AzureMonitorWindowsAgent",
+      "provisioningState": "Succeeded",
+      "version": "1.30.0.0"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01/extensions/mde.windows",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01",
+      "name": "MDE.Windows",
+      "publisher": "Microsoft.Azure.AzureDefenderForServers",
+      "extensionType": "MDE.Windows",
+      "provisioningState": "Succeeded",
+      "version": "1.0.9.6"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02/extensions/azuremonitorwindowsagent",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
+      "name": "AzureMonitorWindowsAgent",
+      "publisher": "Microsoft.Azure.Monitor",
+      "extensionType": "AzureMonitorWindowsAgent",
+      "provisioningState": "Succeeded",
+      "version": "1.30.0.0"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02/extensions/mde.windows",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
+      "name": "MDE.Windows",
+      "publisher": "Microsoft.Azure.AzureDefenderForServers",
+      "extensionType": "MDE.Windows",
+      "provisioningState": "Failed",
+      "version": "1.0.9.6"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01/extensions/azuremonitorwindowsagent",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
+      "name": "AzureMonitorWindowsAgent",
+      "publisher": "Microsoft.Azure.Monitor",
+      "extensionType": "AzureMonitorWindowsAgent",
+      "provisioningState": "Succeeded",
+      "version": "1.22.0.0"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01/extensions/azuremonitorwindowsagent",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
+      "name": "AzureMonitorWindowsAgent",
+      "publisher": "Microsoft.Azure.Monitor",
+      "extensionType": "AzureMonitorWindowsAgent",
+      "provisioningState": "Succeeded",
+      "version": "1.30.0.0"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01/extensions/mde.windows",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
+      "name": "MDE.Windows",
+      "publisher": "Microsoft.Azure.AzureDefenderForServers",
+      "extensionType": "MDE.Windows",
+      "provisioningState": "Succeeded",
+      "version": "1.0.9.6"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01/extensions/azuremonitorlinuxagent",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01",
+      "name": "AzureMonitorLinuxAgent",
+      "publisher": "Microsoft.Azure.Monitor",
+      "extensionType": "AzureMonitorLinuxAgent",
+      "provisioningState": "Succeeded",
+      "version": "1.33.2"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01/extensions/mde.linux",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01",
+      "name": "MDE.Linux",
+      "publisher": "Microsoft.Azure.AzureDefenderForServers",
+      "extensionType": "MDE.Linux",
+      "provisioningState": "Creating",
+      "version": "1.0.5.2"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01/extensions/azuremonitorwindowsagent",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01",
+      "name": "AzureMonitorWindowsAgent",
+      "publisher": "Microsoft.Azure.Monitor",
+      "extensionType": "AzureMonitorWindowsAgent",
+      "provisioningState": "Succeeded",
+      "version": "1.30.0.0"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01/extensions/mde.windows",
+      "machineId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01",
+      "name": "MDE.Windows",
+      "publisher": "Microsoft.Azure.AzureDefenderForServers",
+      "extensionType": "MDE.Windows",
+      "provisioningState": "Succeeded",
+      "version": "1.0.9.6"
+    }
+  ],
+  "sqlInstances": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-db-01_mssqlserver",
+      "name": "SRV-DB-01_MSSQLSERVER",
+      "version": "SQL Server 2016",
+      "edition": "Enterprise",
+      "status": "Connected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
+      "licenseType": "Paid",
+      "currentVersion": "13.0.7050.2"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-db-01_reports",
+      "name": "SRV-DB-01_REPORTS",
+      "version": "SQL Server 2019",
+      "edition": "Standard",
+      "status": "Connected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
+      "licenseType": "Paid",
+      "currentVersion": "15.0.4415.2"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-leg-01_mssqlserver",
+      "name": "SRV-LEG-01_MSSQLSERVER",
+      "version": "SQL Server 2014",
+      "edition": "Standard",
+      "status": "Disconnected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
+      "licenseType": "Paid",
+      "currentVersion": "12.0.6449.1"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/old-sql-07_mssqlserver",
+      "name": "OLD-SQL-07_MSSQLSERVER",
+      "version": "SQL Server 2012",
+      "edition": "Standard",
+      "status": "Connected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-legacy/providers/microsoft.hybridcompute/machines/old-sql-07",
+      "licenseType": "Paid",
+      "currentVersion": "11.0.7507.2"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-app-01_sqlexpress",
+      "name": "SRV-APP-01_SQLEXPRESS",
+      "version": "Unknown",
+      "edition": "Express",
+      "status": "Connected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01",
+      "licenseType": "Free",
+      "currentVersion": ""
+    }
+  ],
+  "assignments": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/arc-baseline",
+      "name": "arc-baseline",
+      "displayName": "Arc server baseline",
+      "enforcementMode": "Default",
+      "scope": "/subscriptions/00000000-0000-0000-0000-00000000000a"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/arc-private-link",
+      "name": "arc-private-link",
+      "displayName": "Require Arc private link scope",
+      "enforcementMode": "DoNotEnforce",
+      "scope": "/subscriptions/00000000-0000-0000-0000-00000000000a"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/deploy-ama",
+      "name": "deploy-ama",
+      "displayName": "Deploy Azure Monitor Agent",
+      "enforcementMode": "Default",
+      "scope": "/subscriptions/00000000-0000-0000-0000-00000000000a"
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/tag-taxonomy",
+      "name": "tag-taxonomy",
+      "displayName": "Tag taxonomy",
+      "enforcementMode": "",
+      "scope": "/subscriptions/00000000-0000-0000-0000-00000000000a"
+    }
+  ],
+  "policyStates": [
+    {
+      "assignmentId": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/arc-baseline",
+      "nonCompliant": 3,
+      "compliant": 4,
+      "exempt": 0,
+      "total": 7
+    },
+    {
+      "assignmentId": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/arc-private-link",
+      "nonCompliant": 3,
+      "compliant": 4,
+      "exempt": 0,
+      "total": 7
+    },
+    {
+      "assignmentId": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/deploy-ama",
+      "nonCompliant": 0,
+      "compliant": 6,
+      "exempt": 1,
+      "total": 7
+    },
+    {
+      "assignmentId": "/providers/microsoft.management/managementgroups/mg-agency/providers/microsoft.authorization/policyassignments/mg-initiative",
+      "nonCompliant": 2,
+      "compliant": 7,
+      "exempt": 0,
+      "total": 9
+    }
+  ]
+}

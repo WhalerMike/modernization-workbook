@@ -15,7 +15,7 @@ last-reviewed: 2026-11-07
 ---
 # Microsoft Automation, Module 1: Graph and Azure Foundations {.unnumbered}
 
-**Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 1 of 3 · 85 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) · Developer workbook: [Book 19, Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md)
+**Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 1 of 4 · 85 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) · Developer workbook: [Book 19, Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_MS_Automation_Module_1.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_MS_Automation_Module_1_Narrated.pptx) (about 14 minutes, captions) · [▶ Watch](../presentations/watch.html?v=Training_MS_Automation_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_MS_Automation_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-1/Training_MS_Automation_Module_1_Narrated.vtt).
 
@@ -32,7 +32,7 @@ Picture your first evidence collector. It works in a commercial test tenant, the
 | **1. Foundations** (this page) | Clouds and endpoints, sign-in, permissions, tools, request patterns | Draft |
 | [2. Microsoft Entra ID](ms-automation-entra.md) | Users, groups, Conditional Access, PIM, applications, logs, authentication methods | Draft |
 | [3. Intune](ms-automation-intune.md) | Devices, compliance, configuration, Autopilot | Draft |
-| 4. Azure Arc and Azure Resource Manager | Resource Graph, Azure Policy, Update Manager, SQL Server | Planned |
+| [4. Azure Arc and Azure Resource Manager](ms-automation-arc.md) | Resource Manager versus Graph, Resource Graph, Arc machines and extensions, SQL Server, Azure Policy, product lifecycle | Draft |
 | 5. Teams Phone and Teams administration | Calling, policies, the Teams PowerShell module | Planned |
 | 6. Monitoring and evidence | Log Analytics and KQL, Defender, Sentinel | Planned |
 
@@ -437,7 +437,7 @@ To move this page to **In review**:
 
 To move it to **Proved**: record a GCC run and, if the program has one, a GCC High run here. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
-Related: [Module 2: Microsoft Entra ID](ms-automation-entra.md), [Module 3: Intune](ms-automation-intune.md), the [Microsoft practice crosswalk](../reference/graph-practice-crosswalk.md), [Book 04 — Access & Privilege](../books/b04-access/index.md) and [Book 15 — Day-2 Operations](../books/b15-day2-operations/index.md).
+Related: [Module 2: Microsoft Entra ID](ms-automation-entra.md), [Module 3: Intune](ms-automation-intune.md), [Module 4: Azure Arc](ms-automation-arc.md), the [Microsoft practice crosswalk](../reference/graph-practice-crosswalk.md), [Book 04 — Access & Privilege](../books/b04-access/index.md) and [Book 15 — Day-2 Operations](../books/b15-day2-operations/index.md).
 
 [^m1-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (updated January 30, 2025), <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 25, 2026.
 [^m1-natcloud]: Microsoft Learn, "Microsoft Entra authentication & national clouds" (updated January 15, 2025), <https://learn.microsoft.com/en-us/entra/identity-platform/authentication-national-cloud>, accessed October 25, 2026.
