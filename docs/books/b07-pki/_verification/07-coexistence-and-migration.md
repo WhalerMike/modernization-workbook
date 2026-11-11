@@ -109,3 +109,11 @@ Learn coverage pass (citations for Microsoft Learn identity pages the chapter al
 |---|---|---|---|---|
 | L1 | Backup-ADFS captures configuration database, file, certificates and (with -BackupDKM) DKM keys; Restore-ADFS needs same version and service account; cold standby use case | Cutover steps 2 and 6 | verified (sentences added) | `c07-adfs-rrt`: Learn, "AD FS Rapid Restore tool" (read Nov 9, 2026) |
 | L2 | Global Secure Access TLS inspection pages were mapped to this chapter | Coverage map | not cited: the chapter doesn't discuss Global Secure Access TLS inspection (reported to the coordinator) | Learn coverage data |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | How template, change safety, control states and evidence for the six waves | The playbook against the workbook's conventions | restated-as-design (Learn facts carried from the wave footnotes) | Program design | Nov 11, 2026 |

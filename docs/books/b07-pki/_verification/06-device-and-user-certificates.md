@@ -193,3 +193,15 @@ Learn coverage pass (citations for Microsoft Learn identity pages the chapter al
 | L9 | Use attestation Required on AD CS templates and gate relying parties on the OID | New section | restated-as-design | Program design |
 | L10 | Government cloud availability of attested certificates through Intune or Cloud PKI | New section | not yet specified | Learn doesn't say |
 | L11 | `Import-Certificate -CertStoreLocation Cert:\LocalMachine\EKCA` to fill the stores | New section, command block | restated (Learn's example copies files into the Cert: drive stores; `Import-Certificate` is the documented cmdlet for public certificates) | `c06-tpm-attest`; Learn, "Inspect certificates and manage certificate store contents" |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Full Enforcement is the only supported KDC mode; rollback per profile type | Strong certificate mapping (control states) | verified (carried; c06-kb5014754, c06-pkcs) | KB5014754; Configure and use PKCS certificates with Intune | Nov 11, 2026 |
+| P4-2 | Staged rollout: synced users only, 10 groups per feature, no nested or dynamic groups, 200 users when a group is first added, up to 24 hours for changes; separate groups for staged rollout and the CBA method policy | Staged rollout (How template, change safety) | verified (re-read; unchanged) | [Migrate to cloud authentication using Staged Rollout](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-staged-rollout); [Migrate from federation to Entra CBA](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-migration) | Nov 11, 2026 |
+| P4-3 | Entra CBA available in Azure for US Government | Staged rollout (Applies) | verified (added; footnote c06-entra-govavail) | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
+| P4-4 | Learn's CBA migration page names User Administrator as the minimum role for enabling staged rollout; the staged rollout page names Hybrid Identity Administrator | Staged rollout | unverifiable (two Learn pages differ); the chapter keeps Hybrid Identity Administrator, the stricter | Both pages above | Nov 11, 2026 |
+| P4-5 | Rings, emergency access exclusion, backout triggers, control states, evidence, assessment mapping | Staged rollout | restated-as-design | Program design | Nov 11, 2026 |

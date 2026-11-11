@@ -270,7 +270,7 @@ The program's position follows from these: sign external zones and the `.gov` de
 
 ### Operational considerations
 
-- **Key management.** KSK and ZSK rollover must be automated and audited. NIST recommends a hardware security module for important private keys, usually the KSK, DNSKEY signature validity periods of about five to seven days, and signing-key lifetimes of one to three years.[^c06-nist81]
+- **Key management.** The program automates and audits KSK and ZSK rollover (Risk-based recommended: a manual rollover is the step most likely to break a chain of trust). NIST recommends a hardware security module for important private keys, usually the KSK, DNSKEY signature validity periods of about five to seven days, and signing-key lifetimes of one to three years.[^c06-nist81]
 - **Algorithms.** NIST's table of acceptable DNSSEC algorithms includes RSA with SHA-256 at 2,048 bits or more and ECDSA P-256 and P-384, and it prefers ECDSA because smaller keys and signatures keep responses small.[^c06-nist81] Windows Server's zone-signing wizard defaults to RSA/SHA-256 with a 2,048-bit KSK and a 1,024-bit ZSK, and offers ECDSA P-256 and P-384.[^c06-ws-sign] A default ZSK is below NIST's RSA floor, so the program signs Windows zones with ECDSA or with RSA keys of at least 2,048 bits.
 - **Denial of existence.** Windows labels NSEC3 "recommended."[^c06-ws-sign] NIST observes that NSEC3 only raises the cost of zone walking, relies on SHA-1, and considers NSEC "the more prudent approach" unless policy requires NSEC3.[^c06-nist81] Compact denial of existence, published as RFC 9824 in September 2025, is a third option that prevents enumeration and is what Azure DNS uses.[^c06-rfc9824][^c06-azdnssec]
 - **Response size.** Signing increases response sizes, so EDNS(0) and correct MTU and fragmentation handling are required, and responses can exceed UDP limits during algorithm rollovers.[^c06-rfc6891][^c06-nist81]
@@ -313,6 +313,42 @@ Signed zones move by their own sequence. In [Chapter 10](10-migration-sequence.m
 3. **Watch validation failures during the move**, on the validators, since clients see only generic failures.[^c06-nist81]
 4. **Decide internal zones on their merits.** Where an internal zone was signed on AD DNS and lands on a platform that can't sign private zones, such as Azure Private DNS, that is a documented risk decision, not an implementation detail. The DNS Modernization Guide listed compensating controls for this case. Two of them don't hold as written and have been corrected: Azure virtual network traffic isn't encrypted by default. Virtual network encryption has to be enabled, covers only traffic between VMs on supported sizes with Accelerated Networking, enforces only `AllowUnencrypted` (so traffic to unsupported VMs flows in the clear), and is in public preview in Azure Government;[^c06-vnetenc] and Private Link removes the public endpoint from the path but doesn't make DNS answers inside the network tamper-proof. Network isolation of the resolution path and restricting DNS traffic to authorized resolvers remain valid compensations, and NIST's own position that internal signing is of limited value where it isn't required ([above](#why-it-matters-in-hybrid-multi-cloud-and-federal-environments)) is the stronger argument.
 5. **Remove retired trust anchors** for decommissioned zones from validators after the program's 90-day parallel-operation period, so stale anchors don't cause failures later.
+
+**Authority:** Mandated for signing the agency's `.gov` zones and for SC-20 and SC-21 where the system's baseline selects them (M-08-23 and SP 800-53, [above](#why-it-matters-in-hybrid-multi-cloud-and-federal-environments)); Risk-based recommended for the signed-zone sequence and the 90-day trust-anchor rule, which are the program's. **Applies:** Environment-dependent: Azure DNS and Route 53 sign public zones only, and neither cloud's default resolver validates for the client ([DNSSEC on Windows Server, Azure and AWS](#dnssec-on-windows-server-azure-and-aws)).
+
+| How template | Signing, validation and moving signed zones |
+|---|---|
+| Prerequisites | The inventory's DNSSEC state ([Chapter 10](10-migration-sequence.md), Phase 1); key storage decided (HSM for the KSK where NIST's recommendation is adopted); registrar access for DS changes |
+| Pilot | A test zone, delegated from the external parent, signed and validated end to end before a production zone |
+| Report-only or audit phase | Validation on one agency resolver first, with its failure logs read before validation is turned on at every resolver; a signed zone's new chain checked from an independent validator before the old signing stops |
+| Enforcement | Validation on at every agency resolver; a moved zone's signing switched to the new platform after the DS change |
+| Rollback | Before the DS change: keep or restore the old signing. After it: re-publish the old DS record and wait out its TTL. Unsigning follows Microsoft's order: remove the DS, let its TTL expire, then unsign[^c06-az-unsign] |
+| Exclusions | Internal zones the program doesn't sign, each a documented risk decision (step 4 above) |
+| Telemetry | Validator failure logs (SERVFAIL counts by zone), key rollover events, and DS changes at the registrar |
+| Evidence | The checklist below |
+| Day-two ownership | The DNS service owner ([Chapter 09](09-who-owns-dns.md)); rollovers on the key schedule; drift looks like a validation failure spike, an expired signature or a DS that no longer matches |
+
+: DNSSEC against the How template {.striped .hover}
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The program's position (sign external and `.gov` zones; validate everywhere; sign internal zones only where required) | The signing decision per zone, with the risk decisions for unsigned internal zones |
+| Configured | Signed zones and validating resolvers | `Get-DnsServerDnsSecZoneSetting` and `Get-DnsServerSigningKey` output, or the DDI platform's export |
+| Enforced | Validation on at every agency resolver | Resolver configuration export |
+| Evidenced | An independent validator's check of each signed zone, and a deliberately broken test record returning SERVFAIL | Test record with the validator output |
+| Operated | Automated rollover and validation monitoring | Rollover history; failure-log alerts ([Chapter 11](11-operating-the-control-plane.md)) |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** zone signing settings and keys per zone, and the resolvers' validation and trust-anchor settings
+- [ ] **Operational:** rollover history and validator failure logs, at the program's log retention
+- [ ] **Test:** the independent chain-of-trust check per signed zone and the SERVFAIL test (date, tester)
+- [ ] **Exception:** the unsigned internal zones, each with its risk decision and approver
+- [ ] **Assessor-ready artifact:** the SC-20 and SC-21 entries in [Appendix B](appendix-b-requirements-mapping.md), traceable to the four above
 
 ::: {.callout-note}
 ## What this chapter establishes

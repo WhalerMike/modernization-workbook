@@ -214,6 +214,64 @@ Turning on enforcement before every device is enrolled is how a NAC program caus
 
 For assessors, the program keeps RADIUS accounting exports (90 days, per the agency's AU-11 retention), Intune compliance reports for NAC-enrolled devices, the DHCP audit log for NAC-controlled scopes, and the Phase 1 baseline report.
 
+**Authority:** Mandated for device identification and authentication before connection, which SP 800-53 IA-3 asks of systems at the baselines that select it ([The controls this closes](#the-controls-this-closes)); Risk-based recommended for 802.1X with EAP-TLS, Intune posture and the tier design, which are the program's position, for the risk that an unmanaged or noncompliant device reaches a production segment. **Applies:** Environment-dependent: the access layer's switch and wireless models and their software releases decide which of 802.1X, CoA and RadSec are available; License-dependent: the Intune compliance retrieval service needs devices enrolled in Intune.
+
+| How template | Network access control rollout |
+|---|---|
+| Prerequisites | Machine certificates and supplicant profiles ([Certificates and supplicant profiles](#certificates-and-supplicant-profiles)); Intune compliance policies ([Book 05](../b05-devices/04-intune-first-onboarding.md)); the NAC product registered with the compliance retrieval service; KB5040268 settings on every NPS server |
+| Pilot | One site's workstation ports in monitor mode first, then the same site in enforcement before the next site |
+| Report-only or audit phase | Phase 1 monitor mode: the switch ignores rejects for four weeks; the baseline report is what's read from it. The Windows wired profile stays at *Do not enforce* until the switch side enforces |
+| Enforcement | Phases 2 to 4, site by site, in the rings below |
+| Rollback | Return the site's ports to open mode (and the wired profile to *Do not enforce*); the network operations team runs it from the switch management plane in one change, in minutes per switch stack |
+| Exclusions | Uplinks and trunks; MAB device classes registered in IPAM with a device-class tag; time-limited vendor exceptions with an approver and expiry. Each is in the exception list the Phase 1 baseline seeded |
+| Telemetry | RADIUS accounting to the SIEM, with the three detections in [Inventory, profiling and logs](#inventory-profiling-and-logs); Intune compliance reports; DHCP audit logs |
+| Evidence | The checklist below |
+| Day-two ownership | The network owner ([Chapter 09](09-who-owns-the-network.md)); the exception list reviewed monthly; shared secrets rotated every 180 days; drift looks like a port back in open mode, a MAB entry with no IPAM registration, or a rise in quarantine placements |
+
+: Network access control rollout against the How template {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The network team's own ports and a lab switch | EAP-TLS, remediation, quarantine and CoA each tested |
+| 1 | One pilot site's workstation ports | The Phase 1 baseline shows every managed device passing EAP-TLS, and every non-supplicant device registered |
+| 2 | A region's sites, wired then wireless | No production outage; help desk ticket volume back to baseline within a week |
+| 3 | Every site, then IoT segmentation | The rogue-device tabletop passed; every MAB class registered |
+
+- **Emergency access:** every switch keeps an out-of-band management path that doesn't depend on 802.1X or RADIUS, and the behavior when every RADIUS server is unreachable is set and tested per vendor before ring 1, so a RADIUS outage doesn't quarantine a site *(design guidance; the setting's name and default differ by vendor)*.
+- **Change window:** enforcement at a site is a normal change approved by the network owner, scheduled outside the site's core hours with on-site or remote hands available.
+- **Backout triggers:** a critical device class losing connectivity, more than a small, pre-agreed share of managed devices in remediation or quarantine in the first hour, or RADIUS response time above the switch timeout.
+- **Post-change validation:** after each ring, a managed compliant device lands in production, a noncompliant one in remediation, an unknown one in quarantine, and an approved IoT device in its segment.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The policy tiers](#the-policy-tiers) and the D3 decision ([Choosing the EAP method](#choosing-the-eap-method); [The RADIUS server is the Active Directory dependency](#the-radius-server-is-the-active-directory-dependency)) | The decision record and the tier table, approved by the network owner and ISSO |
+| Configured | Phase 1 monitor mode | Switch configuration backups; RADIUS policy export; Intune profile exports |
+| Enforced | Phases 2 to 4, per site | Port configuration without open mode; the exception list |
+| Evidenced | Post-change validation and the rogue-device tabletop | Test records with the accounting entries they produced |
+| Operated | Detections, exception review and secret rotation | Alert history; exception review records; rotation records |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** switch and wireless controller configuration backups, the RADIUS policy export and the Intune Wi-Fi, wired and certificate profile exports, in the evidence repository
+- [ ] **Operational:** RADIUS accounting and detection alert history, kept 90 days per the agency's AU-11 retention
+- [ ] **Test:** the post-change validation per ring and the rogue-device tabletop (expected and observed placement, date, tester)
+- [ ] **Exception:** the exception list (MAB classes, vendor exceptions, ports left in open mode), each with an approver and expiry
+- [ ] **Assessor-ready artifact:** the Phase 1 baseline and the current coverage report per site, traceable to the four above and to the control table below
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Networks; Devices
+- **CISA ZTMM pillar:** Networks; Devices
+- **Depends on:** device certificates ([Book 07, Chapter 06](../b07-pki/06-device-and-user-certificates.md)); Intune compliance ([Book 05](../b05-devices/index.md)); DHCP and IPAM ([Book 08](../b08-ddi/index.md))
+- **Attack chain interrupted:** an unauthorized or rogue device plugged into an agency port, and lateral movement from a noncompliant or spoofed IoT device (Initial Access, Lateral Movement)
+:::
+
 ## The controls this closes
 
 | Control | Before | After |

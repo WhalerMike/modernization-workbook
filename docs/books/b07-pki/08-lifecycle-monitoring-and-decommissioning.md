@@ -314,6 +314,40 @@ Decommissioning is the program's last wave, Wave 6. It comes after cutover ([Cha
 
 Two variations depend on the target model ([Chapter 04](04-the-target-pki.md)). Under the Cloud PKI root model, an AD CS hierarchy that's being retired keeps its offline root only as long as policy and outstanding certificates require. Its root CRL publication continues on schedule until the last subordinate certificate expires. Under BYOCA, the Cloud PKI issuing CA chains to the agency's private CA hierarchy.[^c08-cpki] The root, and any intermediate that signed the Cloud PKI issuing CA, stay in service. They keep publishing CRLs and keep their keys in custody. Only the AD CS issuing CAs that no longer issue are retired. The source guide said the chain "is still in use" under BYOCA without saying which CA. The CA that must stay is the one that signed Cloud PKI's issuing CA, not necessarily the AD CS issuing CA being retired.
 
+| How template | Decommissioning one AD CS CA |
+|---|---|
+| Prerequisites | The gate above; Enterprise Admins for the uninstall and NTAuth change; the records officer's disposition for the archive (step 9) |
+| Pilot | The first CA retired is the one with the fewest remaining dependents, and the rest wait until its trust cleanup has run a week with no sign-in or validation failures |
+| Report-only or audit phase | Step 2 is the observation phase: issuance stops but nothing is removed, and events 4886 and 4888 show who still asks for the retired templates before the uninstall |
+| Enforcement | Steps 4 to 6: the final CRL, the uninstall and the trust cleanup |
+| Rollback | Restore from the step 3 backup and republish templates; the program plans eight to twelve hours ([Chapter 07](07-coexistence-and-migration.md)). After step 4's revocations, a restored CA can't un-revoke certificates; replacements are issued instead |
+| Exclusions | BRIDGE and RETAIN CAs; under BYOCA, the CA that signed the Cloud PKI issuing CA and the root |
+| Telemetry | CA audit events up to the uninstall; Entra sign-in logs for the retired CA's chain; CRL endpoint checks until the last certificate expires |
+| Evidence | The checklist below |
+| Day-two ownership | The PKI administrators keep the CDP and AIA endpoints serving until the last certificate expires, then remove the remaining objects (step 7); the records officer holds the archive's disposition |
+
+: Decommissioning against the How template {.striped .hover}
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The sponsor's retirement decision per CA ([Chapter 05](05-who-owns-the-certificate-estate.md)) | The decision record, with the dependency check from step 1 |
+| Configured | Step 2: issuance stopped | The CA's template list, empty; GPO links removed |
+| Enforced | Steps 4 to 6 | The final CRL and its next-update time; trust stores without the CA |
+| Evidenced | Step 6's sign-in log check and the CRL endpoint check | Sign-in logs showing the chain unused; endpoint check output |
+| Operated | Step 7's endpoint upkeep until the last expiry | Endpoint freshness history |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the trust store, NTAuthCertificates and Intune trusted certificate profile exports after cleanup
+- [ ] **Operational:** CA audit events through step 2, and CRL endpoint checks until the last certificate expires
+- [ ] **Test:** a validation of a certificate the CA issued, against the final CRL from a representative client (date, tester)
+- [ ] **Exception:** any CA kept past its planned retirement, with the dependency that holds it and an owner
+- [ ] **Assessor-ready artifact:** the decommission record from step 9, traceable to the four above and to SC-17(b)
+
 ## The evidence an assessor reads
 
 The control text below is NIST SP 800-53 Rev. 5.[^c08-sp80053] The evidence column is the program's mapping. The [Federal Compliance book](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md) argues why these controls can't be closed without lifecycle automation.

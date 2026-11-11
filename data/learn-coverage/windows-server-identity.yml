@@ -497,6 +497,7 @@ pages:
   - docs/books/b07-pki/03-hardening-what-stays.md
   - docs/books/b07-pki/05-who-owns-the-certificate-estate.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
+  - docs/books/b07-pki/_verification/03-hardening-what-stays.md
   - docs/reference/source-register.md
 - path: WindowsServerDocs/identity/ad-cs/secure-monitor-scale-online-responders.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/secure-monitor-scale-online-responders

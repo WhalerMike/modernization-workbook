@@ -6213,6 +6213,7 @@ pages:
   note: VPN and DirectAccess replacement with Private Access; central to remote-access retirement
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-migrate-web-content-filtering-policies.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies
   title: Migrate web content filtering policies from V1 to V2
@@ -17107,6 +17108,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b07-pki/06-device-and-user-certificates.md
+  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: docs/identity/authentication/concept-certificate-based-authentication-mobile-android.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-mobile-android
@@ -17555,7 +17557,9 @@ pages:
   - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b06-data-platform/appendix-c-applicability.md
   - docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md
+  - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
+  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b13-governance/10-ticket-to-machine.md
@@ -24824,6 +24828,7 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/07-coexistence-and-migration.md
+  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b07-pki/appendix-a-deployment-checklists.md
   - docs/books/b07-pki/appendix-b-template-migration-matrix.md
   - docs/reference/source-register.md

@@ -214,6 +214,28 @@ Certificate Services also logs 4871 and 4872 for CRL publication requests and pu
 
 Forward the events through Windows Event Forwarding to a collector and then to the SIEM. Microsoft's current WEF baseline subscription already includes 4886, 4887 and 4888, but WEF doesn't enable auditing or stop a full local log from overwriting evidence, so size the CA's Security log for the longest plausible collection outage.[^c03-ca-audit] The program's monitoring of these events is in [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md).
 
+**Authority:** Microsoft-recommended (both settings, the focused event baseline, and generating each event in a test before writing its collection rule[^c03-ca-audit]). **Applies:** every enterprise CA that remains in service; the Defender for Identity sensor's CA assessments additionally need it installed on the CA ([The ESC taxonomy](#the-esc-taxonomy)).
+
+Auditing is a detective control, so the How template's enforcement steps reduce to the restart: pilot on one non-production CA, then each production CA in its own maintenance window after a `Backup-CARoleService` backup. Rollback is setting the audit filter back to the value `certutil -getreg CA\AuditFilter` showed before the change, with `certutil -setreg`, and a service restart, by a CA administrator in minutes; there are no exclusions, because a CA left unaudited is a gap, not an exception.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The event baseline above | The collection rule list, approved by security operations |
+| Configured | The GPO and the audit filter on each CA | GPO export; `certutil -getreg CA\AuditFilter` output per CA |
+| Enforced | Not applicable: auditing detects, it doesn't block | — |
+| Evidenced | Each baseline event generated in a test and seen in the SIEM | Test record with the event and its SIEM entry |
+| Operated | Alerts on the baseline events ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#monitoring)) | Alert definitions; event 4885 alert history |
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the audit GPO export and the audit filter value per CA
+- [ ] **Operational:** CA audit events in the SIEM, and the Security log size per CA, at the program's log retention
+- [ ] **Test:** each baseline event generated and collected (date, tester)
+- [ ] **Exception:** none expected; a CA without auditing is a finding, recorded on the plan of action
+- [ ] **Assessor-ready artifact:** the AU-2 and AU-12 evidence entry for the CA estate, traceable to the four above
+
 ## The risk-scoring matrix
 
 The program scores each class for prioritization. The risk level, migration-blocker and priority columns are the program's own scoring, carried forward from its PKI guide with one change: ESC2 is downgraded from "Yes" to "Possible" for domain compromise, because Microsoft describes its main effect as undermining trust in other certificate consumers rather than direct user impersonation.[^c03-mdi-certs] The detection columns are from Microsoft's documentation.[^c03-mdi-certs][^c03-mdi-overview]
@@ -231,6 +253,41 @@ The program scores each class for prioritization. The risk level, migration-bloc
 
 "Immediate" means the finding is fixed or the template or endpoint is taken out of service before the next change window closes. Every row is a migration blocker until it's verified closed. Verification means the Defender for Identity assessment shows no exposed entities (scores and statuses update every 24 hours, so allow for the lag),[^c03-mdi-certs] and a manual re-check for ESC5.
 
+The remediations are changes to a Tier 0 system, so each runs under the same safety rules, whichever class it fixes:
+
+- **Rings.** A remediation is made first on a test CA or a duplicated template where one exists, then on the production template or CA. A template whose fix might break a workload (removing **Supply in the request**, narrowing an EKU, removing enrollment rights) is first checked against the requests that used it in the last 90 days, from events 4886 and 4887.
+- **Change window and backout.** Every change has a change record and a `Backup-CARoleService` backup taken first ([Hardening the AD CS that remains](#hardening-the-ad-cs-that-remains)). The backout trigger is a workload whose certificate requests are now denied (event 4888) that wasn't on the remediation's impact list; the way back is restoring the template's previous settings from its export, or putting the template back on the issuance list.
+- **Emergency access.** CA changes don't touch sign-in policy, but a template change can stop smart card or certificate logon; keep the emergency access accounts' sign-in independent of the AD CS certificates being changed ([Book 04](../b04-access/index.md)).
+- **Post-change validation.** The Defender for Identity assessment for that class clears after its 24-hour refresh, and a legitimate request from the workload still succeeds.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The migration gate](#the-migration-gate) and the matrix above | The scored findings list, approved by the CISO and ISSO ([Chapter 05](05-who-owns-the-certificate-estate.md)) |
+| Configured | Each class's fix | Template and CA configuration exports after the change |
+| Enforced | Critical and High classes remediated before any workload migrates | The gate record in wave 1 ([Chapter 07](07-coexistence-and-migration.md)) |
+| Evidenced | No exposed entities after the 24-hour refresh; manual ESC5 re-check | Secure Score assessment exports; the ESC5 check output |
+| Operated | Posture regressions watched as drift ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#drift-patterns)) | Events 4882 and 4892 alerts; reopened recommendations |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** template and CA configuration exports before and after each remediation, with the change record
+- [ ] **Operational:** Defender for Identity assessment history and the CA audit events that show the change
+- [ ] **Test:** the post-change legitimate request and the cleared assessment, per class (date, tester)
+- [ ] **Exception:** any template kept in service with a known weakness, with compensating control, approver and expiry
+- [ ] **Assessor-ready artifact:** the wave 1 gate record, listing each class's finding and its closing evidence
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity; Infrastructure
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** CA auditing ([above](#turn-on-ca-auditing)); Defender for Identity sensors on the CAs (SecOps); the Tier 0 administration model ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md))
+- **Attack chain interrupted:** a low-privileged user obtaining a certificate that authenticates as someone else, up to a domain administrator (Privilege Escalation, Credential Access, Persistence)
+:::
+
 ## Hardening the AD CS that remains
 
 Templates classified BRIDGE or RETAIN ([Chapter 02](02-what-ad-cs-holds-up.md)) keep AD CS in service for months or years. For that period:
@@ -241,7 +298,7 @@ Templates classified BRIDGE or RETAIN ([Chapter 02](02-what-ad-cs-holds-up.md)) 
 - **Back up before every change.** Run `Backup-CARoleService` from an elevated session as a CA administrator before changing permissions, templates or audit settings; it backs up the database and the CA private key, so protect the output as recovery material and test restoration only on an isolated system.[^c03-ca-audit] `Restore-CARoleService` is the matching restore cmdlet, and `-Password` protects the CA certificate and private key in the backup, not the database.[^c03-ca-backup]
 - **Treat CA servers as Tier 0.** Patch them, administer them only from a hardened management host, avoid routine interactive sign-in, and keep CA private keys, backups and key recovery agent keys under separate custody.[^c03-ca-audit] The Tier 0 designation is the program's; it follows from the fact that the CA can mint domain authentication credentials.
 - **Isolate the network.** Allow RPC enrollment to the CA only from the endpoints that need it (domain members for autoenrollment, the Intune Certificate Connector, NDES, and lifecycle tooling) and block everything else at the host and network firewall. This is a program control; the exact port set depends on your RPC configuration.
-- **Protect the CA keys.** The program requires FIPS 140-3 validated cryptographic modules for every new CA; a retained CA whose hardware security module holds a FIPS 140-2 validation keeps it as an existing system, since NIST moved 140-2 certificates to its Historical List after September 21, 2026, for existing systems only, and records that status ([Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md#fips-140-2-modules-moved-to-the-historical-list)).[^c03-cmvp] The program also requires CA private keys generated and held non-exportable in a hardware security module, and dual control with split knowledge for root CA ceremonies (NIST SP 800-53 `SC-12`, `SC-13`). Record the module validation certificates as assessment evidence.
+- **Protect the CA keys.** The program requires FIPS 140-3 validated cryptographic modules for every new CA; a retained CA whose hardware security module holds a FIPS 140-2 validation keeps it as an existing system, since NIST moved 140-2 certificates to its Historical List after September 21, 2026, for existing systems only, and records that status ([Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md#fips-140-2-modules-moved-to-the-historical-list)).[^c03-cmvp] The program's position (Risk-based recommended, supporting NIST SP 800-53 `SC-12` and `SC-13`, which leave the mechanism to the organization) is that CA private keys are generated and held non-exportable in a hardware security module, with dual control and split knowledge for root CA ceremonies. Record the module validation certificates as assessment evidence.
 
 ## Hardening Microsoft Cloud PKI
 
@@ -262,6 +319,8 @@ Entra CBA is a relying party, not a CA ([Book 02, Chapter 04](../b02-identity/04
 - **Require specific issuers and policy OIDs for sensitive resources.** A custom authentication strength can require CBA certificates from named issuers or with named policy OIDs (up to five of each), and Conditional Access can require that strength for the resources that need it.[^c03-authstrength] Pair it with a compliant-device requirement so both the person and the device are verified.
 - **Make revocation real.** Turn on **Require CRL validation**, which makes CBA fail for certificates from a CA with no CRL configured.[^c03-cba-crl] Entra supports one CRL distribution point per CA, over HTTP (or HTTPS; HTTP recommended), and no OCSP or LDAP URLs.[^c03-cba-overview][^c03-cba-crl] The PKI guide called for "CRL pre-fetching in Entra"; no such setting is documented, so it's removed. The program's own requirement is that each issuing CA trusted by Entra publishes a new CRL at least every 24 hours, because Entra caches the CRL and a revocation isn't seen until the cache refreshes.[^c03-cba-crl]
 - **Trust only what you use.** Upload only the chains of CAs that are actively issuing to users. Use CA scoping, generally available since April 2026, to restrict each issuing CA to the Entra group whose members should hold its certificates; a user outside the scoped group fails authentication even with an otherwise valid certificate. Each CA takes one group, the tenant supports up to 30 scoping rules, and a mistake can lock users out, so pilot it.[^c03-cba-deep][^c03-entra-whatsnew] Remove a decommissioned CA's certificates from the trust store as part of its decommissioning ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)).
+
+Required high affinity, Require CRL validation and CA scoping each block sign-ins they don't recognize, so none of them is switched on tenant-wide in one step. They roll out with the CBA pilot in [Chapter 06](06-device-and-user-certificates.md#staged-rollout), whose rings, emergency access exclusion and backout triggers apply to each. The authority for all four is Microsoft-recommended, from the Learn pages cited; none is a federal mandate in its own right, though they support the phishing-resistant authentication M-22-09 asks for ([Chapter 09](09-federal-workforce-credentials.md)).
 
 ::: {.callout-tip}
 ## Continue the book

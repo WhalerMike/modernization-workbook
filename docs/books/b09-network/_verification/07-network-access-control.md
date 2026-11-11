@@ -166,3 +166,12 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | IA-3 is met at the access broker instead, as the next section explains. | IA-3 is supported at the access broker instead, as the next section explains. | no source change |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | IA-3 labeled Mandated where the baseline selects it; the 802.1X design Risk-based recommended | Rolling it out (Authority) | verified (carried; c07-sp80053) | NIST SP 800-53 Rev. 5 IA-3 | Nov 11, 2026 |
+| P4-2 | How template, rings, RADIUS-unreachable behavior and out-of-band management, backout triggers, control states, evidence, assessment mapping | Rolling it out | restated-as-design (RADIUS-unreachable setting labeled design guidance; vendor-specific) | Program design | Nov 11, 2026 |

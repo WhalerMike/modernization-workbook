@@ -25,10 +25,10 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 380 | 2026-11-11 |
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Baseline** | 10 + 1 app. | 340 | 2026-11-11 |
 | **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Baseline** | 33 + 3 app. | 310 | 2026-11-11 |
-| **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Baseline** | 9 + 3 app. | 215 | 2026-11-11 |
-| **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Baseline** | 12 + 3 app. | 205 | 2026-11-11 |
-| **B09** | **[Network & Transport](b09-network/index.md)** | **Why does physics decide the architecture?** | **Baseline** | 13 + 3 app. | 310 | 2026-11-11 |
-| **B10** | **[Cloud Boundary & Landing Zone](b10-cloud-boundary/index.md)** | **Why does the authorization boundary decide what you can use?** | **Baseline** | 11 + 2 app. | 200 | 2026-11-11 |
+| **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Baseline** | 9 + 3 app. | 230 | 2026-11-11 |
+| **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Baseline** | 12 + 3 app. | 215 | 2026-11-11 |
+| **B09** | **[Network & Transport](b09-network/index.md)** | **Why does physics decide the architecture?** | **Baseline** | 13 + 3 app. | 315 | 2026-11-11 |
+| **B10** | **[Cloud Boundary & Landing Zone](b10-cloud-boundary/index.md)** | **Why does the authorization boundary decide what you can use?** | **Baseline** | 11 + 2 app. | 205 | 2026-11-11 |
 | **B11** | **[Zero Trust & Assessment](b11-zero-trust/index.md)** | **Why is Zero Trust a whole-agency property, not a product?** | **Baseline** | 10 + 1 app. | 165 | 2026-11-11 |
 | **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 2 app. | 345 | 2026-11-11 |
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Draft** | 14 + 2 app. | 275 | 2026-11-11 |
