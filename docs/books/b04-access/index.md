@@ -54,13 +54,13 @@ Zero Trust moves every access decision to a policy engine and makes it on every 
 | **Who** | Who decides access and who does the work | [06](06-who-decides-access.md) |
 | **How** | The policy library, PIM with approval, access governance, and access as code with its evidence | [07](07-the-conditional-access-policy-library.md), [08](08-pim-self-request-with-approval.md), [09](09-access-governance.md), [10](10-access-as-code-and-evidence.md) |
 
-Appendices: [A — Conditional Access policy templates](appendix-a-conditional-access-templates.md) · [B — PIM role settings reference](appendix-b-pim-role-settings.md) · [C — Partner access profile (Microsoft Entra)](appendix-c-partner-access-profile-entra.md)
+Appendices: [A — Conditional Access policy templates](appendix-a-conditional-access-templates.md) · [B — PIM role settings reference](appendix-b-pim-role-settings.md) · [C — Partner access profile (Microsoft Entra)](appendix-c-partner-access-profile-entra.md) · [D — Phishing-resistant authentication runbooks](appendix-d-phishing-resistant-authentication-runbooks.md)
 
 ## Reading paths
 
 - **Executives (20 minutes):** Chapters 01, 02 and 06, or the 15-minute presentation.
 - **Architects:** Chapters 01–06, then 10.
-- **Identity engineers:** Chapters 03–05, then 07–09 with the three appendices at hand.
+- **Identity engineers:** Chapters 03–05, then 07–09 with the four appendices at hand.
 
 ## Where this book sits in the workbook
 
