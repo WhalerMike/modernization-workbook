@@ -189,6 +189,44 @@ SP 800-137 lists the full set of responses as mitigation, acceptance, transferen
 
 The register and the plan of action and milestones are related but not the same artifact. OMB requires agencies to use plans of action and milestones "to record and manage the mitigation and remediation of identified weaknesses and deficiencies, not associated with accepted risks."[^c12-a130] An accepted gap leaves the plan of action and milestones and stays in the register, with its acceptance and review date. A gap being closed appears in both, and PM-4 asks that the organization's plans of action and milestones be reviewed "for consistency with the organizational risk management strategy and organization-wide priorities for risk response actions."[^c12-sp80053] The register is how the program keeps that review possible across a hundred systems: one place where every open, accepted and closed gap is visible with its evidence.
 
+### Skipped and unevaluated results: the disposition register {#disposition-register}
+
+Assessment tools return results that are neither a pass nor a failure: a check the tenant isn't licensed for, a service the run wasn't connected to, a check that doesn't apply, one the tool hasn't built yet, or one that errored. [Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy) normalizes them into five results (Planned, Skipped-Licensing, Skipped-Disconnected, Skipped-Not-Applicable and Unable-to-Evaluate) and rules that none of them is counted as a failure or as a pass. They aren't coverage either. A control that a tool couldn't evaluate has no classification yet, and leaving it there is how a licensing gap or a broken connection disappears from the coverage report.
+
+The program keeps them in a **disposition register**, beside the gap closure register and separate from it, so the cause of each is decided rather than assumed. The register reuses Book 11's taxonomy unchanged and adds the cause, the decision and the reassessment:
+
+| Normalized result | Cause recorded | Disposition the register records | Owner | Becomes a gap register entry when |
+|---|---|---|---|---|
+| Skipped-Licensing | Licensing: the check needs a license or add-on the tenant doesn't hold | A licensing decision: license it, cover the control another way, or accept that it isn't covered | The owner of licensing decisions, with the control's owner | The control is required for the boundary and nothing else covers it |
+| Skipped-Disconnected | Connection: the run wasn't connected to the service, or lacked permission | Fix the run's scope and re-run within the same cycle; not a decision about the control | The assessment operator | Never directly; a second consecutive disconnected run is escalated to the ISSO |
+| Skipped-Not-Applicable | Applicability: the feature isn't used, or isn't supported in the cloud the tenant runs in | Record the reason; a feature unsupported in a government cloud is a boundary finding for [Book 10](../b10-cloud-boundary/index.md) | The ISSO | The control is still required and the unsupported feature was the way to meet it |
+| Planned | Tool or product stage: the tool hasn't implemented the check, or the check depends on a preview capability the agency doesn't run in production | Wait for the tool or for general availability; verify by hand meanwhile if the control matters to the boundary | The assessment operator | A manual check finds the control missing |
+| Unable-to-Evaluate | Error: the check should have produced a result and didn't | Fix the run, or verify by hand and record the manual result | The assessment operator | The manual result is a failure |
+
+: The disposition register: cause, decision and owner for each result that isn't a pass or a failure {.striped .hover}
+
+Every entry carries the tool, its version, the test ID and run date, the raw and normalized result, the cause, the decision and who made it, the evidence (a license record, the corrected run's log, the manual check), and the run that reassessed it. Four rules keep it honest:
+
+- **Every non-result gets a disposition within one assessment cycle.** An entry without one is reported as *undispositioned*, in its own count.
+- **Licensing is a dependency, not a failure.** A Skipped-Licensing check enters the coverage report as unclassified until the licensing decision is made, then as covered (licensed and passing), partial (a compensating control), gap, or out of scope.
+- **Preview stays visible.** A check that waits on a preview capability carries the capability and its stage, and is re-read when the stage changes.
+- **Reassessment closes the loop.** Each entry is re-checked at the next run; an entry whose cause is fixed takes the normalized result of that run, and the register keeps the history.
+
+A copy-ready entry, in the shape of Book 11's [closure chain](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain):
+
+```yaml
+- disposition: DISP-<test-id>-<run-date>
+  tool: {name: "<Zero Trust Assessment | ScubaGear>", version: "<x.y.z>", test: "<test or policy ID>"}
+  result: {raw: "<tool value>", normalized: "<Planned | Skipped-Licensing | Skipped-Disconnected | Skipped-Not-Applicable | Unable-to-Evaluate>", reason: "<skip or error reason>"}
+  cause: "<licensing | connection | applicability | preview | tool | error>"
+  decision: {action: "<license | compensate | accept-uncovered | fix-run | manual-check | wait>", by: "<role>", date: "<date>"}
+  evidence: ["<license record, corrected run log or manual check record>"]
+  gap_register: "<gap ID, or none>"
+  reassessment: {tool_version: "<x.y.z>", date: "<date>", normalized: "<result>"}
+```
+
+[Chapter 14](14-application-secret-and-configuration-governance.md) applies the same discipline to the application, secret and configuration controls that assessments test.
+
 ## What doesn't scale automatically
 
 Some work stays human however good the tooling becomes, and the program says so:
