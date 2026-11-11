@@ -126,3 +126,17 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | 18 | Recommendations refresh every 24 hours with a one-day lag; four statuses; completed set by the service; dismissal needs a reason; Connect-related recommendations listed | Step 2 | supported | [How to use recommendations](https://learn.microsoft.com/entra/identity/monitoring-health/howto-use-recommendations); [Recommendations overview](https://learn.microsoft.com/entra/identity/monitoring-health/overview-recommendations) |
 | 19 | `Get-MgBetaReportHealthMonitoringAlert` and `Get-MgBetaDirectoryRecommendation` with read-only permissions; beta APIs | Health and recommendations block | supported | [List alerts](https://learn.microsoft.com/graph/api/healthmonitoring-healthmonitoringroot-list-alerts?view=graph-rest-beta); [List recommendations](https://learn.microsoft.com/graph/api/directory-list-recommendation?view=graph-rest-beta) |
 | 20 | Health alerts API: global service only; recommendations API: global, L4 and L5; GCC availability of Entra Health "not yet specified" | Government clouds (Health) | supported (national-cloud tables on the Graph pages; no GCC statement found) | as row 19 |
+
+## Additions, November 11, 2026 (Zero Trust closure: operating cadence, B15-02)
+
+New section "The cadence by control family" with an annual column, authority per cell and a six-role table mapped to Chapter 10's roles.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 21 | Emergency access: alert on every use; validate at least every 90 days | Cadence, identity | verified | [Manage emergency access accounts](https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access) | Nov 11, 2026 |
+| 22 | BOD 25-01: report in-scope tenants annually; SCuBA results continuously or quarterly | Cadence, identity | carried from Book 13, Appendix A | CISA BOD 25-01 | Oct 21, 2026 |
+| 23 | BOD 23-01: asset discovery every 7 days; vulnerability enumeration every 14 days | Cadence, devices | carried from Book 12, Chapter 06 | CISA BOD 23-01 | Oct 21, 2026 |
+| 24 | Intune BitLocker encryption report | Cadence, devices | verified | [Encrypt Windows devices with BitLocker using Intune](https://learn.microsoft.com/intune/device-configuration/endpoint-security/encrypt-bitlocker-windows#monitor-and-manage-bitlocker) | Nov 11, 2026 |
+| 25 | BOD 26-04: attest to publicly exposed IP addresses and domains quarterly | Cadence, network | carried from Book 12, Chapter 06 | CISA BOD 26-04 | Oct 21, 2026 |
+| 26 | CP-4 and IR-3 frequencies organization-defined | Cross-family cycles | verified | SP 800-53 Rev. 5 release 5.2.0 catalog (parameters), as in row 2 | Nov 11, 2026 |
+| 27 | Every other frequency, the six-role table and its mapping to Chapter 10 | Cadence; Who does it | restated-as-design (labeled P) | Program design | Nov 11, 2026 |
