@@ -140,3 +140,11 @@ New section "The cadence by control family" with an annual column, authority per
 | 25 | BOD 26-04: attest to publicly exposed IP addresses and domains quarterly | Cadence, network | carried from Book 12, Chapter 06 | CISA BOD 26-04 | Oct 21, 2026 |
 | 26 | CP-4 and IR-3 frequencies organization-defined | Cross-family cycles | verified | SP 800-53 Rev. 5 release 5.2.0 catalog (parameters), as in row 2 | Nov 11, 2026 |
 | 27 | Every other frequency, the six-role table and its mapping to Chapter 10 | Cadence; Who does it | restated-as-design (labeled P) | Program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Section added: Moving the desk onto the governed tasks (control states, How-template map, authority labels, change safety, evidence checklist, assessment mapping). No new product fact.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Rings by task type, audit phase using the no-ticket rule, backout triggers and control-state evidence | Moving the desk onto the governed tasks | restated-as-design | Program design under Book 00, Appendix D | Nov 11, 2026 |

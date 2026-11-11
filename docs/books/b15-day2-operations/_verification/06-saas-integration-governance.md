@@ -163,3 +163,12 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | [Tutorial: Govern and monitor applications](https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-govern-monitor) | Keeping integrations authorized, access | Nov 9, 2026 | Access reviews and monitoring for apps |
 | [Quickstart: View enterprise applications](https://learn.microsoft.com/entra/identity/enterprise-apps/view-applications-portal) | Keeping integrations authorized, inventory | Nov 9, 2026 | Listing enterprise applications |
 | [Viewing apps using your tenant for identity management](https://learn.microsoft.com/entra/identity/enterprise-apps/application-list) | Keeping integrations authorized, inventory | Nov 9, 2026 | Application objects and service principals in the tenant |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Section added: Putting the gate in place (control states, How-template map, authority labels, change safety, evidence checklist, assessment mapping). Product facts it points to are the rows above; the Global Administrator and assignment-required behavior is the Phase 4 row.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Global Administrators can sign in to an application regardless of Assignment required; Enabled for users to sign in = No stops token issuance | Putting the gate in place, Exclusions and Rollback | carried from the Phase 4 row's source | [Properties of an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/application-properties) (read Oct 21, 2026) | Nov 11, 2026 |
+| 2 | Rings, audit phase, backout triggers and control-state evidence for the integration gate; assignment required on every application | Putting the gate in place | restated-as-design | Program design under Book 00, Appendix D | Nov 11, 2026 |

@@ -149,6 +149,61 @@ Teams provides the mechanisms; the agency has to configure them, and the catalog
 
 Government clouds differ in client coverage, so the catalog has to know which cloud it is in. Microsoft lists dynamic emergency calling as available on all Teams clients in GCC; in GCC High it is available on Teams desktop and mobile clients and on Teams phones from a stated app version, and in DoD on desktop, mobile and Teams phone applications released through the Teams admin center.[^c05-dynamic]
 
+### Putting emergency calling in place {#b15-05-putting-emergency-calling-in-place}
+
+The emergency items change what happens on every 911 call, so turning them on follows the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)). Most of each step is already above; the table says where.
+
+**Authority:** Risk-based recommended, the program's position: configure the system as if 47 CFR part 9 binds the agency ([Emergency calling](#emergency-calling-configure-as-if-the-rules-bind-the-agency) and its interpretation note). Microsoft-recommended for creating addresses with the map search and for turning off web PSTN calling where dynamic emergency calling is in use (above, read on the dates in the notes).
+**Applies:** every Teams Phone deployment. Environment-dependent: dynamic emergency calling's client coverage differs in GCC, GCC High and DoD, and GCC High and DoD need Direct Routing (above).
+
+| How-template step | Where this section covers it, or what it adds |
+|---|---|
+| Prerequisites | Validated, geocoded addresses; the network inventory from [Book 08](../b08-ddi/index.md); the connectivity option and, for Direct Routing, the emergency routing provider or ELIN configuration ([How Teams meets the rules](#how-teams-meets-the-rules)) |
+| Pilot | One building's network sites and the softphone users who work there |
+| Report-only or audit phase | The Locations and Networks report's Network Identifier tab shows which clients get a location before anyone relies on it; 933 test calls where the connectivity option supports them ([above](#how-teams-meets-the-rules)) |
+| Enforcement | Number assignment gated on a validated address; emergency calling and calling policies assigned by group and site; rings below |
+| Rollback | Reassign the previous emergency calling or calling policy to the group or site; a mapping that returns the wrong location is removed so the call falls back to the user's confirmed or registered address rather than a wrong one. A Teams administrator does it in minutes; network changes take up to four hours to reach clients |
+| Exclusions | VPN address pools stay unmapped ([above](#how-teams-meets-the-rules)); users on clients that don't support dynamic emergency calling are covered by the web-PSTN restriction, not excluded. Emergency access accounts aren't affected: nothing here touches sign-in |
+| Telemetry | Call records, the PSTN usage report and telephony administrator actions routed to the evidence store ([Call records are evidence](#call-records-are-evidence-and-they-expire)) |
+| Evidence | The checklist below |
+| Day-two ownership | The telecommunications office owns the addresses and mappings; the network-to-location item runs whenever the address-management system records a change; drift is a subnet or access point with no mapping, or a softphone user without the remote-location policy |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The telephony team's own phones and softphones | 933 test calls return the right number and location |
+| 1 | One building | Every network identifier there matches a location in the report; the security desk receives the notification on a test call |
+| 2 | Buildings by region | The same, per building |
+| 3 | Every site, and every softphone user by group | No unmapped subnet or access point in the report; the remote-location policy held by every softphone user |
+
+- **Emergency access:** not applicable; no sign-in control changes.
+- **Change window:** outside the security desk's busiest hours, with the telecommunications office and the security desk told in advance, because test calls ring there.
+- **Backout triggers:** a test call that returns the wrong location, or a security-desk notification that doesn't arrive.
+- **Post-change validation:** a 933 call (or the emergency routing provider's test for Direct Routing) from a sample of mapped locations in each ring.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The catalog items and the position on the rules | This chapter and the counsel's determination, held by the telecommunications office |
+| Configured | Addresses, places, network identifiers and policies | A Teams PowerShell or admin-center export of emergency addresses, network mappings and policy assignments |
+| Enforced | Number assignment gated on a validated address; policies assigned to every user and site in scope | The assignment export with no user lacking a policy |
+| Evidenced | The test calls | Test records (location returned, notification received, date, tester) |
+| Operated | The mapping item raised on every network change; call records kept | Catalog task history and the call-record export |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the export of addresses, network mappings and policy assignments, kept with each change
+- [ ] **Operational:** call records and telephony administrator actions in the evidence store, kept beyond the portal's retention
+- [ ] **Test:** the test calls for each ring and after each network change (expected and observed outcome, date, tester)
+- [ ] **Exception:** unmapped address pools and any site without dynamic location, with the reason and approver
+- [ ] **Assessor-ready artifact:** the exports and test records filed for CM-3 and AU-2 in the package ([Chapter 11](11-attestation-and-the-compliance-app.md))
+
+The Zero Trust assessment-mapping block doesn't apply: emergency calling is a life-safety configuration, not a finding family a Zero Trust assessment raises.
+
 ### Call records are evidence, and they expire
 
 Call detail records and telephony administrator actions are the AU-2 half of the catalog. Microsoft Graph keeps a call record for 30 days after the call ends, and organizations can subscribe to call records as they are created to build their own reporting or alert on scenarios such as emergency calls.[^c05-callrecords] The PSTN usage report in the Teams admin center keeps detailed PSTN records for a period set by country; for most countries it is 365 days for Calling Plans and 150 days for Direct Routing.[^c05-pstn-report] Both windows are shorter than most audit periods. The program's design routes call records and telephony administrator actions into the evidence store when the service is onboarded, under the evidence contract in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md), rather than relying on the portal's retention when an investigation needs them.

@@ -5239,6 +5239,8 @@ pages:
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
+  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+  - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
 - path: docs/fundamentals/zero-trust-protect-networks.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks
   title: Security guidance - Protect networks
@@ -17548,6 +17550,7 @@ pages:
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b14-compliance/06-contingency-and-continuity.md
+  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
@@ -18259,6 +18262,7 @@ pages:
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
+  - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
@@ -19047,6 +19051,7 @@ pages:
   - docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md
+  - docs/books/b18-application-modernization/_verification/03-the-target-reference-architecture.md
   - docs/books/guides/intune-track-implementation.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
@@ -21560,6 +21565,7 @@ pages:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
+  - docs/books/b15-day2-operations/_verification/06-saas-integration-governance.md
   - docs/books/b18-application-modernization/_verification/appendix-a-identity-remediation-work-packages.md
   - docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
@@ -27905,6 +27911,7 @@ pages:
   - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+  - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
 - path: docs/identity/role-based-access-control/administrative-units.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units
