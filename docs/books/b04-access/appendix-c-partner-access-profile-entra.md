@@ -60,6 +60,124 @@ The record holds the partner's immutable tenant ID and the names Entra resolves 
 
 For a partner on SAML/WS-Fed federation, such as `tailspin.example`, Conditional Access can require only the MFA grant, not an authentication strength, so the agreement must establish whether the partner's method is phishing-resistant ([Book 07, Chapter 09](../b07-pki/09-federal-workforce-credentials.md#federation-with-other-agencies-and-partners)).
 
+### Defaults, allowlist criteria and the partner register {#defaults-allowlist-criteria-and-the-partner-register}
+
+A Zero Trust assessment reads the tenant-wide defaults, not the partner entries: inbound B2B collaboration open to every tenant, outbound open to every tenant, or no tenant restrictions policy. The partner entries above only mean something when the defaults behind them are closed. This subsection sets the defaults, states when a tenant goes on the allowlist or the blocklist, names the partner register, and adds the validation test for tenant restrictions. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
+
+**Authority:** risk-based recommended (the program's default-deny position, carried from [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#cross-tenant-access-settings)); Microsoft documents the settings and their defaults.[^aC4-xtap][^aC4-xtap-b2b]
+**Applies:** all tenants; organization-specific settings for selected users and groups need Entra ID P1 or P2.[^aC4-xtap-b2b] Environment-dependent: tenant restrictions v2 and Tenant Governance government-cloud availability is not yet specified ([Government clouds](#government-clouds)); universal tenant restrictions depends on Global Secure Access, not supported in GCC High or DoD ([Chapter 07](07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic)).
+
+| Default setting | Microsoft's default | Program value |
+|---|---|---|
+| Inbound B2B collaboration | Allowed for all external tenants | **Blocked** for all external users and applications; each partner is allowed by its own entry. Learn notes that blocking all external users and groups also requires blocking all internal applications in the same setting[^aC4-xtap-b2b] |
+| Outbound B2B collaboration | Allowed | **Blocked**; agency users reach a partner only through an entry that allows named groups and applications |
+| B2B direct connect, inbound and outbound | Blocked | Blocked (unchanged) |
+| Inbound trust (MFA, compliant device, hybrid joined device) | Not trusted | Not trusted (unchanged); trust is set per partner only |
+| Automatic redemption | Off; can't be changed in the defaults[^aC4-xtap-default] | Off |
+| Tenant restrictions v2 | No policy | **Block** external accounts and applications ([Tenant restrictions v2](#tenant-restrictions-v2-the-outbound-edge)) |
+
+SharePoint and OneDrive invitations through the B2B integration also check the domain allowlist in external collaboration settings, so a partner domain must be on that list too, or invitations from those apps can fail even with the cross-tenant entry in place.[^aC4-xtap-b2b]
+
+**Allowlist and blocklist criteria** (program design). A tenant gets an allowing entry only when all of these hold: a signed agreement names it; an internal sponsor is named on its connected organization; its tenant ID is verified (T0); the agreement states its MFA standard; and the IGO has added it to the partner tenant list. It loses the entry when the agreement ends, when no access package for it has had an active assignment for 90 days, or at the security office's direction after an incident at the partner. A tenant gets an explicit **blocking** entry, rather than relying on the default, when the governance office quarantines it as unsanctioned ([Chapter 09](09-access-governance.md#unsanctioned-tenants)) or the security office names it as hostile, so a later change to the defaults can't reopen it.
+
+**The partner register** is the set of [profile records](#the-profile-record), one per partner and use case, plus the partner tenant list the IGO owns. The register, the organization-specific entries and the `{tenant:partners}` list in the five partner policies must agree; the read-only check in [Conditional Access linkage](#conditional-access-linkage) compares them.
+
+#### Prerequisites {#b04-xtap-prerequisites}
+
+Security Administrator to change cross-tenant access settings;[^aC4-xtap-b2b] Global Reader or `Policy.Read.All` to read them. The partner register current. For the tenant restrictions test, a managed Windows device with tenant restrictions v2 signalled, and a test account in a tenant that isn't on the allowlist.
+
+#### Pilot {#b04-xtap-pilot}
+
+Change the outbound default only after a month's read of the cross-tenant access activity workbook, which shows which external tenants agency users reach;[^aC4-trv2-plan] each legitimate one gets its entry first. Then change it in a test tenant before production.
+
+#### Report-only or audit phase {#b04-xtap-report-only}
+
+Cross-tenant access settings have no report-only mode. The workbook read in the pilot is the audit phase, and for tenant restrictions v2 the proxy or device rollout is phased, one proxy or one group of users at a time, as Learn's migration guidance advises.[^aC4-trv2-plan]
+
+#### Enforcement {#b04-xtap-enforcement}
+
+Inbound default first (partners already have entries), then outbound, then the tenant restrictions v2 default, each as its own change.
+
+#### Rollback {#b04-xtap-rollback}
+
+Restore the previous default from the exported JSON (below) with `Update-MgPolicyCrossTenantAccessPolicyDefault`; for one partner, add or correct its entry rather than reopening the default.
+
+#### Exclusions {#b04-xtap-exclusions}
+
+None in the defaults. A business need is met by an organization-specific entry that meets the allowlist criteria.
+
+#### Telemetry {#b04-xtap-telemetry}
+
+Changes to these settings are audited under `CrossTenantAccessSettings`;[^aC4-xtap] cross-tenant sign-ins appear in the sign-in logs of both tenants, and a service principal blocked by tenant restrictions v2 is logged only in the tenant it tried to reach.[^aC4-trv2]
+
+#### Evidence {#b04-xtap-evidence}
+
+Read and keep the defaults and the organization-specific entries. Read-only:
+
+```powershell
+# READ-ONLY. Export cross-tenant access defaults and partner entries.
+Connect-MgGraph -Scopes 'Policy.Read.All' -NoWelcome
+$OutDir = '.\evidence\xtap'          # CONFIGURE: this period's evidence folder
+New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+
+$Default = Get-MgPolicyCrossTenantAccessPolicyDefault
+$Default | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir 'default.json')
+[pscustomobject]@{
+    B2BCollabInboundUsers   = $Default.B2BCollaborationInbound.UsersAndGroups.AccessType
+    B2BCollabInboundApps    = $Default.B2BCollaborationInbound.Applications.AccessType
+    B2BCollabOutboundUsers  = $Default.B2BCollaborationOutbound.UsersAndGroups.AccessType
+    DirectConnectInbound    = $Default.B2BDirectConnectInbound.UsersAndGroups.AccessType
+    DirectConnectOutbound   = $Default.B2BDirectConnectOutbound.UsersAndGroups.AccessType
+}
+
+Get-MgPolicyCrossTenantAccessPolicyPartner -All |
+    ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir 'partners.json')
+```
+
+Expected: `blocked` for every row. Each tenant ID in `partners.json` has a profile record, or it's a finding.
+
+**T11, tenant restrictions v2.** On a managed Windows device with tenant restrictions v2 signalled, sign in to a Microsoft 365 web app with the test account from a tenant not on the allowlist. Expected: sign-in blocked with error `AADSTS5000211` ("A tenant restrictions policy added to this request by a device or network administrator does not allow access").[^aC4-trv2] Then sign in with an agency account: expected to succeed. Read the device's tenant restrictions events, read-only:
+
+```powershell
+# READ-ONLY, on the test device.
+Get-WinEvent -LogName 'Microsoft-Windows-TenantRestrictions/Operational' -MaxEvents 20 |
+    Select-Object TimeCreated, Id, LevelDisplayName, Message
+```
+
+Learn names the log as **Applications and Services Logs** > **Microsoft** > **Windows** > **TenantRestrictions** > **Operational**;[^aC4-trv2] confirm the channel name on the test device before relying on the command.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `default.json` and `partners.json`, with every partner tenant matched to a profile record
+- [ ] **Operational:** `CrossTenantAccessSettings` audit events and the cross-tenant access activity workbook for the period
+- [ ] **Test:** T0 to T10 for each partner, and T11 for the device baseline, with expected and observed results
+- [ ] **Exception:** each organization-specific entry with its agreement clause, and each blocking entry with the decision behind it
+- [ ] **Assessor-ready artifact:** the partner register and the period's evidence package entry
+
+#### Day-two ownership {#b04-xtap-day-two}
+
+The IGO owns the partner register and the allowlist; the identity engineering team owns the settings; sponsors review their partners' guests quarterly ([Chapter 09](09-access-governance.md#guest-access-governance)). Drift is a default changed from `blocked`, a partner entry with no profile record, or a partner on the list with no active package for 90 days.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The default table and the allowlist criteria | The partner register and the agreements |
+| Configured | Organization-specific entries and the defaults | `partners.json` and `default.json` |
+| Enforced | Defaults at `blocked`; tenant restrictions v2 signalled on managed devices | The exports, and the device configuration assignment |
+| Evidenced | T0 to T11 | Test output files |
+| Operated | Sponsor reviews, the monitoring section and the drift check | Review history and drift reports |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices (tenant restrictions v2 signalled from managed Windows devices, [Book 05](../b05-devices/index.md)); Networks (the proxy or Global Secure Access path for tenant restrictions, [Book 09](../b09-network/index.md))
+- **Attack chain interrupted:** Initial Access through an unvetted external tenant, and Exfiltration to an external account on an agency device: default-deny admits only listed partners, and tenant restrictions stop agency devices signing in to other tenants
+:::
+
 ## Conditional Access linkage
 
 No new policy is needed. Five library policies already carry the partner list `{tenant:partners}`: CA009 (MFA) and CA010 (terms of use) include partner users, while CA011, CA012 and CA038 apply guest limits to everyone *except* partner tenants. The list must be identical in all five; a partner in one and not the others is a drift finding ([Appendix A](appendix-a-conditional-access-templates.md#policy-templates)). A partner enters that list only when its access package goes live, and leaves it at partner exit. The IGO (identity governance officer) owns the list ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix)).
@@ -409,7 +527,7 @@ Workload support differs from directory support. Microsoft notes that Teams does
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix B — PIM Role Settings Reference](appendix-b-pim-role-settings.md) · [Book index](index.md)
+[← Previous: Appendix B — PIM Role Settings Reference](appendix-b-pim-role-settings.md) · [Book index](index.md) · [Next: Appendix D — Phishing-Resistant Authentication Runbooks →](appendix-d-phishing-resistant-authentication-runbooks.md)
 :::
 
 [^aC4-cts-overview]: Microsoft Learn, "What is cross-tenant synchronization?" (ms.date 2026-11-02), sections Who should use, Properties, Automatic redemption setting, License requirements and Frequently asked questions, <https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview> (accessed Nov 6, 2026).
@@ -431,7 +549,7 @@ Workload support differs from directory support. Microsoft notes that Teams does
 [^aC4-xtap-b2b]: Microsoft Learn, "Manage cross-tenant access settings for B2B collaboration," <https://learn.microsoft.com/entra/external-id/cross-tenant-access-settings-b2b-collaboration> (accessed Nov 9, 2026).
 [^aC4-cross-cloud]: Microsoft Learn, "Enable B2B collaboration across Microsoft clouds" (Microsoft cloud settings), <https://learn.microsoft.com/entra/external-id/cross-cloud-settings> (accessed Nov 9, 2026).
 [^aC4-b2b-gov]: Microsoft Learn, "Microsoft Entra B2B in government and national clouds," <https://learn.microsoft.com/entra/external-id/b2b-government-national-clouds> (accessed Nov 9, 2026).
-[^aC4-trv2]: Microsoft Learn, "Set up tenant restrictions v2," sections Tenant restrictions v2 overview, Compare tenant restrictions v1 and v2, and Tenant restrictions vs. inbound and outbound settings, <https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2> (accessed Nov 9, 2026).
+[^aC4-trv2]: Microsoft Learn, "Set up tenant restrictions v2," sections Tenant restrictions v2 overview, Compare tenant restrictions v1 and v2, and Tenant restrictions vs. inbound and outbound settings; and, read Nov 11, 2026, "Configure tenant restrictions v2 on the client side" (View tenant restrictions v2 events in Event Viewer), "Tenant restrictions v2 and service principals" (error `AADSTS5000211`) and "Sign-in logs," <https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2> (accessed Nov 9, 2026; re-read Nov 11, 2026).
 [^aC4-trv2-migration]: Microsoft Learn, "Set up tenant restrictions v2," section Migrate tenant restrictions v1 policies to v2 on the proxy, <https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2>; "Plan a Tenant Restrictions v1 Migration to Tenant Restrictions v2," <https://learn.microsoft.com/entra/external-id/tenant-restrictions-migration> (accessed Nov 9, 2026).
 [^aC4-estate]: Microsoft Learn, "Microsoft Entra tenant estate guidance introduction," sections Tenant architecture patterns, When to integrate an app or workload with an existing tenant, Tenant lifecycle governance and Multitenant administration patterns, <https://learn.microsoft.com/entra/architecture/tenant-estate-guide>; "Microsoft Entra tenant estate guidance for business partner access," <https://learn.microsoft.com/entra/architecture/tenant-estate-business-partner> (accessed Nov 9, 2026).
 [^aC4-estate-hybrid]: Microsoft Learn, "Microsoft Entra tenant estate guidance for hybrid identity and isolation," <https://learn.microsoft.com/entra/architecture/tenant-estate-hybrid-identity> (accessed Nov 9, 2026).
@@ -447,3 +565,5 @@ Workload support differs from directory support. Microsoft notes that Teams does
 [^aC4-tg-api]: Microsoft Learn, "Investigate related tenant signals by using Microsoft Graph (preview)" (states that Tenant Governance is in preview), <https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-investigate-related-tenants-api> (accessed Nov 9, 2026).
 [^aC4-tg-relationships]: Microsoft Learn, "Governance relationships," <https://learn.microsoft.com/entra/id-governance/tenant-governance/governance-relationships> (accessed Nov 9, 2026).
 [^aC4-tg-delegated]: Microsoft Learn, "Cross-tenant delegated administration," <https://learn.microsoft.com/entra/id-governance/tenant-governance/cross-tenant-delegated-administration> (accessed Nov 9, 2026).
+[^aC4-xtap-default]: Microsoft Learn, "crossTenantAccessPolicyConfigurationDefault resource type" (Microsoft Graph v1.0; `automaticUserConsentSettings` inbound and outbound are always `false` and can't be updated in the default configuration), <https://learn.microsoft.com/graph/api/resources/crosstenantaccesspolicyconfigurationdefault?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^aC4-trv2-plan]: Microsoft Learn, "Plan a tenant restrictions v1 migration to tenant restrictions v2," sections "Enable tenant restrictions v2" (phased rollout, one proxy at a time or by groups of users, with a rollback plan) and "Monitor" (the cross-tenant access activity workbook), <https://learn.microsoft.com/entra/external-id/tenant-restrictions-migration> (accessed Nov 11, 2026).

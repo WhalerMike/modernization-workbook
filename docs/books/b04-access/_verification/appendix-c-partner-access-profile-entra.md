@@ -47,3 +47,16 @@ New section "Tenant strategy: multitenant organizations and Tenant Governance", 
 | T26 | MTO template Graph APIs: Global service only, not US Government L4 or L5 | Government clouds | verified | Graph multitenantorganizationpartnerconfigurationtemplate-get |
 | T27 | Tenant Governance and TRv2 government-cloud availability | Government clouds | not yet specified (no Learn statement found) | feature-availability (no row); tenant-governance faq and licensing (no statement) |
 | T28 | Requirements row: AC-2, AC-6(5), AC-20, CM-8; KSI-IAM-ELP | Requirements, KSIs and evidence | design guidance (control mapping), as the table's note says | — |
+
+## Additions, November 11, 2026 (Zero Trust Assessment closure, B04-07)
+
+New subsection "Defaults, allowlist criteria and the partner register" under Tenant relationship and cross-tenant access settings; next-page link to Appendix D.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | Default inbound and outbound settings on the Default settings tab; blocking all external users and groups also requires blocking all internal applications; selected users and groups need P1 or P2; SharePoint and OneDrive B2B integration needs domains in external collaboration settings | Defaults | verified | https://learn.microsoft.com/entra/external-id/cross-tenant-access-settings-b2b-collaboration | Nov 11, 2026 |
+| Z2 | automaticUserConsentSettings always false and not updatable in defaults | Defaults table | verified | https://learn.microsoft.com/graph/api/resources/crosstenantaccesspolicyconfigurationdefault?view=graph-rest-1.0 | Nov 11, 2026 |
+| Z3 | Phased TRv2 rollout (one proxy at a time or by user groups); cross-tenant access activity workbook | Pilot; Report-only | verified | https://learn.microsoft.com/entra/external-id/tenant-restrictions-migration | Nov 11, 2026 |
+| Z4 | AADSTS5000211 error text; Event Viewer TenantRestrictions Operational; service principal block logged only in the target tenant | T11; Telemetry | verified | https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2 | Nov 11, 2026 |
+| Z5 | Event log channel name Microsoft-Windows-TenantRestrictions/Operational | T11 command | unverifiable | page gives the Event Viewer path only; the command says to confirm on the device | Nov 11, 2026 |
+| Z6 | Program default values, allowlist and blocklist criteria, 90-day rule | Defaults; criteria | restated-as-design | program position, consistent with Book 02 Chapter 10 | Nov 11, 2026 |

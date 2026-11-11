@@ -164,3 +164,15 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | A2 | The page recommends two emergency access accounts kept permanently assigned Global Administrator | Step 5 | verified | same |
 | A3 | The program uses the page to inventory and converts to group eligibility itself | Step 5 | design | — |
 | A4 | Government availability of the preview page is not yet specified; the feature availability page lists PIM only | Step 5 | verified (absence on the page) | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) |
+
+## Additions, November 11, 2026 (Zero Trust Assessment closure, B04-02, CM-02)
+
+New subsection "The role-setting export and the permanent-assignment exception register" under Assessment evidence.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | List roleAssignmentSchedules available in global, US Gov L4 and L5; read roles Global Reader, Security Operator, Security Reader, Security Administrator, Privileged Role Administrator; noExpiration | Export | verified | https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0 | Nov 11, 2026 |
+| Z2 | Rule IDs read by the export | Export | verified | c08-rules (Rules in PIM mapping guide) | Nov 11, 2026 |
+| Z3 | PIM available in Azure for US Government | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
+| Z4 | Register fields, categories, review cadences | Register | restated-as-design | program position; Step 5 names the two exclusions | Nov 11, 2026 |
+| Z5 | Export and compare scripts | Export; Register | command (read-only, illustrative) | Microsoft Graph PowerShell reference | Nov 11, 2026 |
