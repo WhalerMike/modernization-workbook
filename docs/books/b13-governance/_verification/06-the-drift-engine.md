@@ -72,3 +72,7 @@ Full read of the page, top to bottom, after the first reader covered it by diff.
 | Before | After | Check |
 |---|---|---|
 | DRIFT-AUTHZ and DRIFT-IDENTITY detected "At runtime" | "At runtime (design only today)" | Decision of Nov 8, 2026; matches the page's own statement that runtime checks are design |
+
+## Addition — Nov 11, 2026: pointer to Chapter 14
+
+One paragraph after the domain-check mapping table, pointing at Chapter 14's drift exports for eight tenant security domains and its ownerless-application and secret checks, with the classes they use. No new external claim; the classes and severities are this chapter's model (restated-as-design).

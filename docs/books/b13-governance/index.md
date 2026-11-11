@@ -50,7 +50,7 @@ A point-in-time assessment measures a moment. The estate starts drifting the nex
 | **Why** | Why does compliance decay the day after the audit, and why is drift the primary threat? | [01](01-why-governance-decays.md), [02](02-drift-is-the-primary-threat.md) |
 | **What** | One authoritative record, controlled change, deterministic rules, the drift engine, evidence over attestation, and the adapters that make it platform-neutral | [03](03-one-authoritative-record.md), [04](04-change-control-and-provenance.md), [05](05-deterministic-governance.md), [06](06-the-drift-engine.md), [07](07-evidence-over-attestation.md), [08](08-the-adapter-model.md) |
 | **Who** | Who keeps the record, approves rule changes, reviews drift and accepts exceptions | [09](09-who-governs.md) |
-| **How** | Run at machine tempo, support reciprocity and ongoing authorization, govern at scale, and keep the evidence as federal records | [10](10-ticket-to-machine.md), [11](11-reciprocity-and-one-authorization.md), [12](12-governance-at-scale.md), [13](13-records-evidence-and-retention.md) |
+| **How** | Run at machine tempo, support reciprocity and ongoing authorization, govern at scale, keep the evidence as federal records, and govern applications, secrets and configuration drift | [10](10-ticket-to-machine.md), [11](11-reciprocity-and-one-authorization.md), [12](12-governance-at-scale.md), [13](13-records-evidence-and-retention.md), [14](14-application-secret-and-configuration-governance.md) |
 
 Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · [B — Ticket-to-machine reference](appendix-b-ticket-to-machine-reference.md)
 
@@ -59,6 +59,7 @@ Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · 
 - **Executives (20 minutes):** Chapters 01, 09 and 11, or the 15-minute presentation.
 - **Governance leads and stewards:** Chapters 03, 04, 06 and 09, then 12.
 - **Engineers building the platform:** Chapters 05, 06, 07 and 08, with Appendix B.
+- **Identity and platform engineers closing assessment findings:** Chapter 14, for the application governance record, secrets governance and configuration drift exports, then Chapter 12's [disposition register](12-governance-at-scale.md#disposition-register) for skipped and unevaluated results.
 - **ISSOs and authorizing officials:** Chapters 01, 07, 09 and 11, with Appendix A.
 - **Records officers:** Chapter 13, which separates the authoritative record and audit evidence from a federal record and says which records rules apply to the evidence the kits produce, then Chapter 09.
 
