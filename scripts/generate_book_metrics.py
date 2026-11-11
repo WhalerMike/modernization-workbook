@@ -9,9 +9,10 @@ that links a published book (`bNN-folder/index.md`), this script counts:
   endnotes): one page per 725 words, per 6 table rows and per half a
   diagram (2 pages each), rounded to the nearest 5. Fitted to the real Word
   page counts of Books 02, 06, 10 and 11 (October 2026), each within 7%.
-- Status: stays as written, except that it reads Baseline once every chapter
-  and appendix of the book says `status: baseline` (set at the baseline cut by
-  scripts/set_baseline_status.py).
+- Status: reads Baseline once every chapter and appendix of the book says
+  `status: baseline` (set at the baseline cut by scripts/set_baseline_status.py),
+  and Draft as soon as any one of them says `status: draft` (a chapter or
+  appendix added after the cut). Otherwise it stays as written.
 - Last updated: the date of the latest commit that touched the book's
   chapters or its diagrams (`git log`).
 
@@ -68,15 +69,18 @@ STATUS = re.compile(r"^status:[ ]*[\"']?(\w+)", re.M)
 
 
 def book_status(folder: Path) -> str:
-    """The word baseline once every chapter and appendix says `status: baseline` (the baseline cut,
-    scripts/set_baseline_status.py), else an empty string and the table's own label stays."""
+    """`baseline` once every chapter and appendix says `status: baseline` (the baseline cut,
+    scripts/set_baseline_status.py); `draft` when any one says `status: draft` (added after the
+    cut); else an empty string and the table's own label stays."""
     found = set()
     for page in chapter_files(folder) + sorted(folder.glob("appendix-*.md")):
         text = page.read_text(encoding="utf-8").replace(chr(13) + chr(10), chr(10))
         m = FRONT_MATTER.match(text)
         s = STATUS.search(m.group(0)) if m else None
         found.add(s.group(1).lower() if s else "")
-    return "baseline" if found == {"baseline"} else ""
+    if found == {"baseline"}:
+        return "baseline"
+    return "draft" if "draft" in found else ""
 
 
 def metrics(folder: Path, dated: bool, old_date: str) -> tuple[str, str, str]:
@@ -122,8 +126,11 @@ def main() -> int:
         link = re.search(r"\]\((b\d\d-[^/)]+)/index\.md\)", base[1])
         if link and (BOOKS / link.group(1)).is_dir():
             extra = metrics(BOOKS / link.group(1), dated, old_date if old_date != DASH else "")
-            if book_status(BOOKS / link.group(1)) == "baseline":
+            status = book_status(BOOKS / link.group(1))
+            if status == "baseline":
                 base[3] = base[3].replace("Draft", "Baseline")
+            elif status == "draft":
+                base[3] = base[3].replace("Baseline", "Draft")
         else:
             extra = (DASH, DASH, DASH)
         out.append("| " + " | ".join(base + list(extra)) + " |")
