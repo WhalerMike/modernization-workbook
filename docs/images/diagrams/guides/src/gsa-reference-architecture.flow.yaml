@@ -1,0 +1,53 @@
+# Global Secure Access implementation guide — the reference architecture:
+# trust zones (endpoint, branch, Microsoft service edge, agency private
+# network), the identity control plane that decides, and the telemetry that
+# leaves. GCC only; GCC High and DoD aren't supported (Learn, Nov 11, 2026).
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+clusters:
+  - id: endpoints
+    label: "Trust zone: managed endpoints and branches"
+    tone: slate
+    nodes: [client, cpe]
+  - id: control
+    label: "Control plane: Microsoft Entra ID (decides)"
+    tone: blue
+    nodes: [entra, admin]
+  - id: edge
+    label: "Data plane: Microsoft service edge (enforces)"
+    tone: violet
+    nodes: [sse]
+  - id: private
+    label: "Trust zone: agency private network"
+    tone: slate
+    dashed: true
+    nodes: [conn, apps]
+nodes:
+  client: {tone: slate, width: 170, tag: "Windows, via Intune", title: "Client", body: ["Three traffic profiles", "Device compliance"], size: 12}
+  cpe: {tone: slate, width: 170, tag: "Branch, clientless", title: "Remote network", body: ["IPsec and BGP", "No Private Access"], size: 12}
+  entra: {tone: blue, width: 170, title: "Conditional Access", body: ["Compliant network", "Tenant restrictions", "Auth strength, CAE"], size: 12}
+  admin: {tone: blue, width: 170, tag: "Policy plane", title: "GSA settings", body: ["Traffic, security profiles", "TLS, signaling, UTR"], size: 12}
+  sse: {tone: violet, width: 260, tag: "Commercial Azure regions", title: "Service edge", body: ["Microsoft: source IP, tagging", "Internet: TLS, web, threats", "Private: per-app broker"], size: 12}
+  conn: {tone: slate, width: 180, tag: "Two or more per group", title: "Connectors", body: ["Outbound 443 only", "DNS for private suffixes"], size: 12}
+  apps: {tone: slate, width: 180, title: "Apps, admin hosts", body: ["Per-app segments", "DC sensor"], size: 12}
+  m365: {kind: pill, tone: green, text: "Microsoft 365", width: 130}
+  web: {kind: pill, tone: amber, text: "Internet, SaaS", width: 120}
+  siem: {tone: green, width: 180, tag: "Evidence", title: "Log Analytics, Sentinel", body: ["Traffic, sign-in, audit", "CISA telemetry (TIC 3.0)"], size: 12}
+edges:
+  - [client, cpe, {style: invis}]
+  - [entra, admin, {style: invis}]
+  - [client, sse, {tone: blue, label: "tunnel"}]
+  - [cpe, sse, {tone: blue, label: "IPsec"}]
+  - [entra, sse, {tone: blue, label: "token, policy"}]
+  - [admin, sse, {tone: blue}]
+  - [sse, m365, {tone: green}]
+  - [sse, web, {tone: amber}]
+  - [sse, conn, {tone: violet, label: "brokered"}]
+  - [conn, apps, {tone: slate}]
+  - [sse, siem, {tone: violet, label: "logs"}]
+order:
+  - [client, entra]
+  - [cpe, admin]
+ranks:
+  - [client, entra]
+  - [cpe, admin]

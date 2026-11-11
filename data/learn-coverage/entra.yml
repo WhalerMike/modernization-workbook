@@ -1530,9 +1530,10 @@ pages:
   ms_date: '2025-01-06'
   ms_topic: how-to
   description: Deploy and verify Microsoft Global Secure Access for Microsoft Traffic
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/architecture/gsa-deployment-guide-private-access.md
   url: https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-private-access
   title: Microsoft Global Secure Access Deployment Guide for Microsoft Entra Private Access
@@ -5236,6 +5237,7 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/fundamentals/zero-trust-protect-tenants.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants
   title: Security guidance - Protect tenants and isolate production systems
@@ -5381,6 +5383,7 @@ pages:
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/concept-internet-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-internet-access
   title: Learn about Microsoft Entra Internet Access
@@ -5519,6 +5522,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/concept-transport-layer-security.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-transport-layer-security
   title: What is Transport Layer Security Inspection?
@@ -5530,6 +5534,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/concept-universal-conditional-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-universal-conditional-access
   title: Learn about Universal Conditional Access Through Global Secure Access
@@ -5591,6 +5596,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-access-audit-logs.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-access-audit-logs
   title: How to access Global Secure Access audit logs (preview)
@@ -5698,6 +5704,7 @@ pages:
   cited_by:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-configure-cloud-firewall-clients.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall-clients
   title: Configure cloud firewall for Global Secure Access clients (preview)
@@ -5776,6 +5783,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/_verification/01-02-why.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-configure-explicit-forward-proxy-headers.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-explicit-forward-proxy-headers
   title: Configure Explicit Forward Proxy HTTP Header Session Management
@@ -5861,6 +5869,7 @@ pages:
   note: Private Access per-app segmentation; workbook names Private Access only as the Kerberos bridge
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-configure-quick-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-quick-access
   title: How to configure Quick Access for Global Secure Access
@@ -6089,6 +6098,7 @@ pages:
   coverage: cited
   note: Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate
   cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/intune-track-implementation.md
 - path: docs/global-secure-access/how-to-list-remote-networks.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-list-remote-networks
@@ -6220,9 +6230,10 @@ pages:
   ms_date: '2026-05-04'
   ms_topic: how-to
   description: Post-deployment operations guide for Microsoft Entra Internet Access, the secure web gateway (SWG) capability, covering alerting, health checks, web filtering policy management, integration, and automation.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-operate-microsoft-traffic.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic
   title: Operate Microsoft Entra Global Secure Access Microsoft traffic profile
@@ -6230,9 +6241,10 @@ pages:
   ms_date: '2026-05-04'
   ms_topic: how-to
   description: Post-deployment operations guide for the Microsoft traffic profile in Global Secure Access, covering alerting, health checks, Microsoft 365 traffic optimization, and automation.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-operate-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access
   title: Operate Microsoft Entra Private Access
@@ -6260,9 +6272,10 @@ pages:
   ms_date: '2026-05-04'
   ms_topic: how-to
   description: Shared operational guidance for Global Secure Access covering roles, change management, metrics and reporting, and continuous improvement.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-palo-alto-coexistence.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-palo-alto-coexistence
   title: Security Service Edge (SSE) coexistence with Microsoft and Palo Alto Networks
@@ -6324,9 +6337,10 @@ pages:
   ms_date: '2026-06-18'
   ms_topic: how-to
   description: Security operations guide for Microsoft Entra Global Secure Access covering detection patterns and Sentinel analytics for Private Access, Internet Access, Remote Networks, and Microsoft Traffic.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access logs, alerts and Sentinel integration; fits Book 12 Ch03
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-sentinel-integration.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-sentinel-integration
   title: Integrate Global Secure Access with Microsoft Sentinel
@@ -6364,6 +6378,7 @@ pages:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-target-resource-microsoft-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-microsoft-profile
   title: Microsoft traffic Conditional Access policies
@@ -6389,6 +6404,7 @@ pages:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-transport-layer-security-settings-managed-certificate.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings-managed-certificate
   title: Configure TLS inspection with a Microsoft-managed certificate
@@ -6415,6 +6431,7 @@ pages:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-transport-layer-security.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security
   title: Configure Transport Layer Security Inspection Policies
@@ -6429,6 +6446,7 @@ pages:
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-universal-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions
   title: Global Secure Access and Universal Tenant Restrictions
@@ -6443,6 +6461,7 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by:
   - docs/books/b09-network/12-microsoft-365-traffic.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/how-to-use-private-link-with-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-use-private-link-with-private-access
   title: How to access an Azure Storage account behind Azure Private Link using Microsoft Entra Private Access
@@ -6564,9 +6583,10 @@ pages:
   ms_date: '2026-05-04'
   ms_topic: overview
   description: Overview and navigation for the post-deployment operations guide suite for Microsoft Entra Global Secure Access.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/overview-what-is-global-secure-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access
   title: What is Global Secure Access?
@@ -6583,6 +6603,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/11-field-office-wan-transformation.md
   - docs/books/explainers/hybrid-credentials.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/partner-ecosystems-overview.md
   url: https://learn.microsoft.com/entra/global-secure-access/partner-ecosystems-overview
   title: Partner Ecosystem Overview
@@ -6721,6 +6742,7 @@ pages:
   - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
   - docs/books/explainers/hybrid-credentials.md
   - docs/books/guides/cisco-sdwan-implementation.md
+  - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/intune-track-implementation.md
   - docs/evaluations/sdwan-platform-deep-dive.md
 - path: docs/global-secure-access/reference-daily-health-check.md
@@ -7210,6 +7232,7 @@ pages:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/tutorial-internet-access-application-discovery.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-application-discovery
   title: 'Tutorial: Discover applications and shadow IT'
@@ -7273,6 +7296,7 @@ pages:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/tutorial-internet-access-url-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-url-filtering
   title: 'Tutorial: Configure URL Filtering and Custom Block Pages'
@@ -7300,9 +7324,10 @@ pages:
   ms_date: '2026-06-22'
   ms_topic: tutorial
   description: Learn how to configure a Conditional Access policy that requires a compliant network with Global Secure Access.
-  coverage: not-covered
+  coverage: cited
   note: Compliant network check and Conditional Access on Global Secure Access traffic; fits the policy library
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-enable-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile
   title: 'Tutorial: Enable the Microsoft traffic profile'
@@ -7310,9 +7335,10 @@ pages:
   ms_date: '2026-06-22'
   ms_topic: tutorial
   description: Learn how to enable the Microsoft traffic profile in Global Secure Access, assign users, install the client, and verify traffic forwarding.
-  coverage: not-covered
+  coverage: cited
   note: Traffic forwarding profile configuration
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-introduction.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-introduction
   title: 'Tutorial: Get started with Microsoft traffic labs'
@@ -7320,9 +7346,10 @@ pages:
   ms_date: '2026-06-22'
   ms_topic: tutorial
   description: Learn about Microsoft traffic labs for Global Secure Access, including source IP restoration, compliant network checks, and universal tenant restrictions.
-  coverage: not-covered
+  coverage: cited
   note: Traffic forwarding profile configuration
-  cited_by: []
+  cited_by:
+  - docs/books/guides/global-secure-access-implementation.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-source-ip-restoration.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-source-ip-restoration
   title: 'Tutorial: Enable source IP restoration'
