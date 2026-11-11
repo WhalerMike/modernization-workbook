@@ -549,6 +549,60 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 
 <!-- labs:end -->
 
+## Control states, change safety and assessment mapping {#ttm-control-states}
+
+This section states the example against the workbook's conventions in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [G1](#step-1-confirm-the-authorization-boundary) (boundary and integration identities) and [G2](#step-2-decide-the-writers-and-the-approvers) (one writer per attribute, one approver system per authority class, a lane per class) | The boundary and data-flow record; the attribute map and approver table |
+| Configured | [G3](#step-3-connect-the-sources-and-measure-the-starting-drift) and [G4](#step-4-open-the-front-door): sources aggregated, the finding table and endpoint, workflows created disabled and test-run | Source and workflow configuration; the baseline drift run |
+| Enforced | [G5](#step-5-actuate-on-the-native-surface) (changes run through connectors under service identities) and [G6](#step-6-close-only-on-a-re-read) (no closure without a re-read) | The business rule active on every table SailPoint writes to; connector identities and their permissions |
+| Evidenced | Each gate's **Validate** | Kit test output, the lab runs, and the records they produced |
+| Operated | [G7](#step-7-operate-the-tempo): the tempo, the five measures, the monthly evidence package | Scheduled run outputs, the measures, the package and the ISSO's review |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** Where the guide carries each subsection of [Appendix D's How template](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template):
+
+| Subsection | Where it is |
+|---|---|
+| Prerequisites | [Prerequisites](#prerequisites) and each gate's own; availability in each gate |
+| Pilot | The developer instance and sandbox tenant with synthetic data, then test and production in [Chapter 09 of the developer workbook](../../project-plans/developer-workbooks/ticket-to-machine/09-deploying-to-test-and-production.md) |
+| Report-only or audit phase | G3's read-only drift reconciliation (the starting drift, measured before anything acts); G4's workflows, which can't be created enabled and are test-run first |
+| Enforcement | G5's lanes and G6's re-read rule; the rings below |
+| Rollback | [Rollback](#rollback), by gate, and each gate's Validate box |
+| Exclusions | G5's declared-exception lane, each with an approver, an end date and a POA&M item; emergency access accounts, below |
+| Telemetry | SailPoint events, ServiceNow records, and Entra ID audit logs forwarded to the SIEM ([Evidence](#evidence)) |
+| Evidence | [Evidence](#evidence) and its checklist |
+| Day-two ownership | G7, with the roles in [Prerequisites](#prerequisites): gate owners, the IGO, the platform owners and the ISSO |
+
+: Where each How-template subsection is covered {.striped .hover}
+
+**Change safety** *(design guidance)*.
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Developer instance and sandbox tenant, synthetic data | Every gate's lab passes |
+| 1 | Production, read-only: G3's reconciliation and G4's front door, findings raised but nothing actuated | Findings match a hand count; no duplicate tasks |
+| 2 | Production, one authority class actuated through its lane, with G6's rule on | Every closure in the period has a re-read; no unintended change |
+| 3 | Every class and lane | G7's first monthly package accepted by the ISSO |
+
+- **Emergency access:** the emergency access accounts sit outside every lane: no lifecycle state, workflow, uncorrelated-account rule or connector disables or changes them, and the exclusion is tested at Ring 1 ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)).
+- **Change window:** the change record each class needs (G5), approved by the gate owner, with the SailPoint administrator and ServiceNow platform owner on hand.
+- **Backout triggers:** more connector actions in a run than the batch expected; a re-read failure rate above the one set for the ring; a change to an account the request didn't name.
+- **Post-change validation:** the gate's **Validate** after each ring, and a re-read sample of the ring's closures.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#ttm-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity (with the Governance cross-cutting capability)
+- **Depends on:** the HR source of record ([Book 03](../b03-hr-identity/index.md)); the integration identities on the [non-person identity track](non-person-identity-implementation.md); just-in-time roles for people who act ([privileged access guide](privileged-access-implementation.md))
+- **Attack chain interrupted:** Persistence and Privilege Escalation (accounts and access that outlive a leaver or a move, writes outside the pipeline), found and removed on a clock
+:::
+
 ## Dangers and how to avoid them {#dangers}
 
 | Danger | What goes wrong | Mitigation |
@@ -581,6 +635,14 @@ The mapping is the program's, from Book 13's [Appendix A](../b13-governance/appe
 : The evidence record on ServiceNow and SailPoint {.striped .hover}
 
 Run the checks on the continuous-monitoring cadence and file their output with the date, the tenant and the checker version. Entra ID's own audit logs are kept for 30 days on P1 or P2, so forward them to the SIEM ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#what-entra-id-enforces-and-what-the-program-has-to-build)).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the boundary and data-flow record, the attribute map and approver table, the workflow and business-rule definitions, and the integration identities with their permissions
+- [ ] **Operational:** SailPoint provisioning events, ServiceNow finding and request records, PIM activations, and Entra ID audit logs in the SIEM, kept for the retention the ISSO sets
+- [ ] **Test:** each gate's **Validate** output and lab records, with date and tester
+- [ ] **Exception:** each declared exception with its approver, end date and POA&M item; every writer or approver exception from G2
+- [ ] **Assessor-ready artifact:** the monthly evidence package (`evidence_export.py`'s records and hash-chained manifest, with the SailPoint half), traceable to the four above
 
 ## Rollback
 

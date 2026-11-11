@@ -491,6 +491,60 @@ Attribute drift is ADM Gate 9's. This gate adds the lifecycle classes, the metri
 
 **Rollback.** None. This is the standing loop.
 
+## Control states, change safety and assessment mapping {#hrd-control-states}
+
+The blocks below follow [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) and point back to the gates that already do the work.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Prerequisites](#prerequisites) (Book 03's Phase 1 decisions); [G1 Writers](#step-1-name-one-writer-for-every-state-and-attribute); [G2 Sources](#step-2-bring-in-employees-and-contractors-from-their-sources) | The signed register with its lifecycle rows; the source decisions and authority-per-fact table |
+| Configured | [G3](#step-3-make-joiners-ready-on-day-one) and [G6](#step-6-time-separations-and-deprovisioning) workflows; [G4](#step-4-assign-access-from-attributes-and-review-what-a-move-leaves) assignment policies; [G5](#step-5-bind-credentials-to-hr-events) CBA trust store and bindings | Workflow definitions and versions; assignment policy exports; the CBA configuration export |
+| Enforced | Workflows scheduled for the covered population with execution limits; other write paths removed (G1); phishing-resistant strength required (G5) | The schedule and execution-limit settings; the delegation export with the removed paths; the authentication strength policy |
+| Evidenced | Each gate's **Validate**, and the acceptance rows of [Book 03, Appendix C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md#acceptance) | Kit runs (VK-HR, VK-DG-05, VK-PIV-01); workflow run history; separation-to-block intervals |
+| Operated | [G7 Drift and evidence](#step-7-keep-the-record-true-and-file-the-evidence) | Drift findings closed at the source; the six metrics on the ConMon cadence; the log export configuration |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.**
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | [Prerequisites](#prerequisites) and each gate's own; government-cloud availability in each gate |
+| Pilot | Each gate runs first on the pilot population: G1's audit queries over the pilot, G3's first hire cohort, G5's pilot card holders, G7's "Gates 1 to 6 on the pilot" |
+| Report-only or audit phase | The pipeline's shadow mode before Gate 3 of the Identity Lifecycle plan ([pipeline guide](hcm-entra-implementation.md#build-phases-mapped-to-book-03)); execution limits that quarantine an anomalous run (G3, G4); a reorganization rehearsed as a mass mover (G4) |
+| Enforcement | Population by population, as each gate's Validate passes; the ticket path closed only after the sole-source proof (G7) |
+| Rollback | [Rollback](#rollback) |
+| Exclusions | Privileged users take their own verified leaver path (G6); privileged roles stay out of attribute rules (G4); emergency access accounts are cloud-only and outside the HR feed, and stay excluded from any Conditional Access policy that G5's authentication strength adds ([privileged access guide, G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first)) |
+| Telemetry | Audit, sign-in and provisioning logs routed out of Entra ID before the first gate; workflow run history; CRL download time and size (G5) |
+| Evidence | [Evidence](#evidence) and its checklist |
+| Day-two ownership | Gate owners in each Validate; security owns the leaver path end to end (G6); fact owners close drift at the source (G7) |
+
+: Where each How-template subsection is covered {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test users in a non-production tenant (each chapter's Lab 2 in [the developer workbook](../../project-plans/developer-workbooks/hr-driven-identity/index.md)) | Each workflow and policy behaves as its file says |
+| 1 | The pilot population | The gate's Validate passes; for G6, a full pay-period cycle with zero missed leavers |
+| 2 | Further populations, one at a time | The same Validate per population; drift findings for it closed at the source |
+| 3 | Every population HR or the contractor source masters | The sole-source proof per population (G7); the ticket path closed |
+
+- **Emergency access:** the emergency accounts sit outside the HR feed and every workflow scope, and are excluded from any policy that requires the phishing-resistant strength; the exclusion is tested in the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first) *(design guidance)*.
+- **Change window:** workflow, policy and CBA changes go through the change record; on-demand runs are a change behind PIM approval and a second person (G6, [Dangers](#dangers)).
+- **Backout triggers:** an execution limit tripped by a normal week, a missed leaver, a separation-to-block interval past the approved threshold, or a CRL download failure, each set in the change record before the population moves *(design guidance)*.
+- **Post-change validation:** the gate's **Validate** after each population, and VK-HR-05 for late separations.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#hrd-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the attribute foundation ([ADM implementation guide](attribute-driven-migration-implementation.md)); the HR feed ([pipeline guide](hcm-entra-implementation.md)); Devices for the leaver's retire or wipe ([Intune track guide](intune-track-implementation.md)); PKI for the issuing CAs and CRLs ([Book 07](../b07-pki/index.md)); privileged access for PIM eligibility through packages ([privileged access guide](privileged-access-implementation.md))
+- **Attack chain interrupted:** Initial Access and Persistence (a leaver's or expired contractor's valid account blocked and its credential revoked on time), Privilege Escalation (residual access after a move reviewed and removed)
+:::
+
 ## Dangers and how to avoid them {#dangers}
 
 | Danger | What goes wrong | Mitigation |
@@ -521,6 +575,14 @@ Each gate's table names what the ISSO keeps. Together they make one file per pop
 - drift findings with closure at the source, the six metrics and the sole-source proof (G7).
 
 Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5) says what each control still needs from the agency, and the companion guide's [federal requirements](attribute-driven-migration.md#federal-requirements) map the evidence across the four tracks. File every kit run with its date, tenant and check version.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the register, workflow definitions and versions, assignment policy exports, the TAP policy and the CBA configuration export, in the evidence store
+- [ ] **Operational:** exported workflow run history, provisioning and audit logs, drift findings and the six metrics, kept for the records schedule's period
+- [ ] **Test:** each gate's **Validate** result and Book 03's acceptance rows, with expected and observed outcome, date and tester
+- [ ] **Exception:** late separations run on demand, contractors on the exception path, time-boxed CRL exemptions and privileged leavers' alternate path, each with its approver and end date
+- [ ] **Assessor-ready artifact:** one evidence file per population, as listed above, with ScubaGear results for the Gate 4 and 5 identity policies, traceable to the four above
 
 ## Rollback
 

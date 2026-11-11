@@ -473,6 +473,66 @@ It doesn't build `sdwan_decision` records; those need the policy and statistics 
 
 Microsoft ended support for the HTTP Data Collector API on September 14, 2026; ingestion continues for TLS 1.2 clients.[^cs-dcapi] Syslog through the Azure Monitor Agent is listed as generally available in Azure Government.[^cs-sentinel-avail] Whether the Cisco solution is in the Azure Government content hub couldn't be confirmed. Treat the NetFlow path as legacy and ask for a data-collection-rule-based one (vendor ask 10).
 
+[**Evidence checklist**]{#sdw-evidence-checklist}
+
+- [ ] **Configuration:** the policy groups, configuration groups and hardening settings as exported from Manager, with the release baseline; the boundary disposition record
+- [ ] **Operational:** syslog and audit-log records in the SIEM and confirmed at CLAW; the `management_audit` records; alarms and application-route statistics
+- [ ] **Test:** the gate run (`ed-26-03-gate.csv` with no `fail` or `confirm` rows), the hunt artifacts, and the failover test record per site class
+- [ ] **Exception:** documented Optimize exceptions under SC-7(4), the secondary-path static-address exception, and any template-only features, each with an approver and review date
+- [ ] **Assessor-ready artifact:** the per-office CLAW confirmation and the Chapter 05 evidence records, traceable to the four above
+
+## Control states, change safety and assessment mapping {#sdw-control-states}
+
+The workbook's conventions for implementation procedures are defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); this section applies them to the build above without adding product claims.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Orientation](#orientation-book-09s-design-on-a-catalyst-fabric) (hosted or on-premises); Phase 0 decisions in [Build phases](#build-phases-mapped-to-book-09) | Boundary disposition record; release baseline; path-class and segment design |
+| Configured | [Policy](#policy-path-classes-and-lane-discipline), [Segmentation](#segmentation-and-network-access-control), [Hardening](#hardening) in the Phase 0 pilot | Manager exports of policy and configuration groups; hardening record |
+| Enforced | Gate 0 closed, then Phases 1 and 2 at full scope: no site with a local-internet action except to an SSE tunnel or a documented exception | Gate CSV; policy-group audit on each change; approved boundary change dated before cutover |
+| Evidenced | The [gate checklist](#the-gate-as-a-checklist) and the failover test record per site class | Gate run, hunt artifacts, failover records and the alarms they produced |
+| Operated | [Evidence and telemetry](#evidence-and-telemetry); the gate re-run on every KEV addition and Cisco publication day | Named fabric owner; SIEM alert definitions; last gate re-run and patch record |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.**
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | [Gate 0](#gate-0-emergency-directive-26-03-and-the-kev-floor) and the Phase 0 release baseline |
+| Pilot | Phase 0's ten-site pilot across tiers and transports, with 30 days of stability |
+| Report-only or audit phase | Not applicable as a fabric mode: the example script is read-only and observes, and Pattern A (hairpin) is every office's starting state before governed breakout |
+| Enforcement | Phases 1 and 2, office by office; change safety below |
+| Rollback | Pattern A is the fallback if the SSE is unreachable; MPLS is retired per office only after CLAW parity; upgrades follow Cisco's procedure with disaster recovery paused ([Build phases](#build-phases-mapped-to-book-09)) |
+| Exclusions | Optimize traffic under the SC-7(4) exception; template-only features; the secondary path's address exception |
+| Telemetry | [Evidence and telemetry](#evidence-and-telemetry) |
+| Evidence | The [evidence checklist](#sdw-evidence-checklist) |
+| Day-two ownership | Gate re-runs on Cisco's publication cadence; certificate renewal runbook; operating cadence in [Book 15](../b15-day2-operations/index.md) |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Control components (Gate 0) | Every gate line closed and evidenced |
+| 1 | The ten-site pilot (Phase 0) | 30 days of pilot stability; paired-branch effect size measured |
+| 2 | The regional hubs (Phase 1) | Hubs in production; replacement telemetry confirmed for the pilot sites |
+| 3 | Office waves at MPLS renewal (Phase 2) | Per-office CLAW confirmation; failover test record per site class |
+
+- **Emergency access:** device CLI access keeps a local account last in the AAA order, and management stays out of band on VPN 512 ([Hardening](#hardening)), so a failed TACACS+, RADIUS or single sign-on path doesn't lock operators out; test the local path at each ring *(design guidance)*.
+- **Change window:** BOD 26-04's remediation windows, fed by Cisco's publication Wednesdays, with an approved change and the network engineer on hand ([Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md)).
+- **Backout triggers:** a site misses its SLA class on every path; its SSE tunnel stops logging; CLAW delivery for the office stops; a gate re-run shows a `fail` row *(design guidance)*.
+- **Post-change validation:** the gate re-run, the policy-group audit for local-internet actions, and the site's failover test.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#sdw-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Networks
+- **CISA ZTMM pillar:** Networks
+- **Depends on:** Identity for administrator sign-in to Manager with phishing-resistant MFA ([Book 04](../b04-access/index.md)); Devices through network access control ([Book 09, Chapter 07](../b09-network/07-network-access-control.md)); SecOps for the SIEM alerts; the PKI of [Book 07](../b07-pki/index.md) for edge certificates
+- **Attack chain interrupted:** Initial Access through exploited control components (the KEV floor); Persistence through rogue peering (the hunt and peering alerts); Lateral Movement across segments (service VPNs); Exfiltration through bare local breakout (Pattern C only)
+:::
+
 ## Risks
 
 | Risk | Rating | Mitigation *(design guidance)* |

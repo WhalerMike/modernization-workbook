@@ -81,3 +81,16 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 | L8 | Android client through Defender for Endpoint app configuration (`Global Secure Access` key); Android 11+; Entra registered; Private DNS off; no Go edition or shared devices; no Tunnel coexistence on iOS or Android | Step 3.7, Android | verified (added) | `iti-gsa-android`; `iti-gsa-limits` (read 2026-11-09) |
 | L9 | `dsregcmd /status` reports `AzureAdPrt` | Step 3.7, Validate | verified (added) | `iti-dsregcmd` (read 2026-11-09) |
 | L10 | macOS out of scope; no validation kit check yet for Step 3.7; pilot in the Gate 3 rings | Step 3.7 | restated-as-design | Program scope decision (Nov 9, 2026); design guidance |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied Book 00 Appendix D's conventions to the guide as an implementation procedure. Added an **Evidence checklist** at the end of Step 6.3, and a section **Control states, change safety and assessment mapping** (`#itn-control-states`) before the Checklist: the control-states table, a How-template coverage table that points to the existing gates, a change-safety block built on the lab ring, the 5% pilot cohort, the pilot division and the division waves, and the assessment-mapping callout (Devices; CISA Devices).
+
+No "must", "shall" or "required" was relabeled: each one in the guide states a licensing or product requirement, or the program's single-writer rule from Book 05.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Compliant-device policies exclude the emergency access group; VK-CA-01 checks every persona policy's exclusion | Change safety, Emergency access | carried from Book 04 Ch 04 and the validation kit by link | [Book 04, Chapter 04](../../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts); `examples/validation-kit` README | Nov 11, 2026 |
+| P4-2 | Rings, change window, backout triggers and post-change validation | Change safety | restated-as-design (the existing Gate 3 and Gate 5 rings; backout triggers marked *design guidance*) | Book 00 Appendix D, change safety | Nov 11, 2026 |
+
+No new product, licensing or government-cloud claim was added; the existing footnotes keep their October 29 and November 9, 2026 dates.

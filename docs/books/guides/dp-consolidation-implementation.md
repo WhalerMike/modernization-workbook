@@ -230,7 +230,7 @@ Copy-Item .\config\hub-design.example.csv .\config\hub-design.csv
 notepad .\config\hub-design.csv
 ```
 
-One row per hub: its region (matching `offices.csv`), its boundary group, its two pull DP servers and its source DPs in rank order. The servers must run Windows Server 2019 or later; Learn supports the distribution point role on Windows Server 2019, 2022 and 2025.[^dpi-siteos]
+One row per hub: its region (matching `offices.csv`), its boundary group, its two pull DP servers and its source DPs in rank order. The servers run Windows Server 2019 or later, the workbook's minimum *(risk-based recommended: the program's server standard)*; Learn supports the distribution point role on Windows Server 2019, 2022 and 2025.[^dpi-siteos]
 
 ### Step 1.2: run the sizing {#step-1-2}
 
@@ -822,6 +822,62 @@ Lab 2 is Stage 1 in miniature. It needs a test hierarchy you can rebuild: one pr
 | Last wave | Step 10 | All five gates closed in a `Test-DpcRetirementGates.ps1` run |
 
 : Go/no-go criteria {.striped .hover}
+
+## Control states, change safety and evidence {#dpc-control-states}
+
+This section states the guide against the workbook's conventions in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). It consolidates infrastructure rather than enforcing an access or security control, so the control states describe how far the consolidation has gone.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Step 0](#step-0) to [Step 2](#step-2): the estate read, the hub design and waves, the decision recorded | The decision record with the worksheet and the inventory and sizing runs |
+| Configured | [Step 3](#step-3) to [Step 5](#step-5): the hub tier, boundary groups and fallback, peer cache and client settings | Each step's `plan.csv` and apply run |
+| Enforced | [Step 6](#step-6) and [Step 8](#step-8) to [Step 10](#step-10), across every wave: office DPs drained and removed, PXE off, the Configuration Manager update workflow off on clients, the last DP retired | The `retire-*` runs per DP; the DP list with no PXE; `gates-final` with all five gates closed |
+| Evidenced | Each step's **Expected** output, [Validate Step 0](#step-0), [Step 3.3](#step-3-3), [Step 4.4](#step-4-4) and the [go/no-go](#go-no-go) at each stage and wave | The check output and the Client Data Sources export filed per wave |
+| Operated | During the program: the inventory rerun and the Client Data Sources watch each wave ([Step 5.4](#step-5-4)). After Step 10: not applicable for the DPs, which are retired; what remains of Configuration Manager is the Endpoint & Device program's | The wave records; the hand-over to the Endpoint & Device program |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** Where the guide carries each subsection of [Appendix D's How template](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template):
+
+| Subsection | Where it is |
+|---|---|
+| Prerequisites | [How to use this guide](#how-to-use), [the kit](#the-kit), [placeholders](#placeholders) and [connecting to the site](#connect); [government cloud availability](#gcc) |
+| Pilot | Stage 1 in a test hierarchy ([Lab 2](#lab-2)), then the pilot wave of [Step 6](#step-6) |
+| Report-only or audit phase | Every change script's dry run and its `plan.csv`; the drain and 30-day watch of [Steps 6.2 and 6.3](#step-6-2) before any role is removed |
+| Enforcement | [Step 6.4](#step-6-4) and [Step 10](#step-10), wave by wave, under the [go/no-go](#go-no-go) |
+| Rollback | Each step's **Rollback** line and the `Rollback` column of each `plan.csv`; [Lab 2](#lab-2)'s full back-out |
+| Exclusions | Not applicable to people or sign-in. An office held back by a NO-GO (such as PXE) has an owner and a date ([go/no-go](#go-no-go)); a Windows Server 2016 host stays only as a recorded exception |
+| Telemetry | The Client Data Sources dashboard ([Step 5.4](#step-5-4)), distribution status, and the inventory reruns |
+| Evidence | Each step's requirements table and the checklist below |
+| Day-two ownership | The [Content Delivery Modernization](../../project-plans/content-delivery.md) plan during the program; the Endpoint & Device program after Step 10 |
+
+: Where each How-template subsection is covered {.striped .hover}
+
+**Change safety.** The rings are the guide's own stages and waves:
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Stage 1, the test hierarchy | Lab 2 done end to end, including the full back-out; the change board approves the production plan |
+| 1 | The pilot wave: the first two offices in `waves.csv` | Both drained for 30 days with no content from their DP and no failure traced to content location |
+| 2 | Each later wave | The same for every office in the wave; hub load per DP under 80% of the limit |
+| 3 | The hub and source DPs ([Step 10](#step-10)) | All five retirement gates closed |
+
+- **Emergency access:** not applicable: no sign-in is restricted.
+- **Change window:** a change record per drain and per removal (CM-3, [Step 6](#step-6)), approved by the change board, with the Configuration Manager administrator on hand.
+- **Backout triggers:** a deployment failure traced to content location; an office's clients pulling content across the WAN from the data center; a hub DP over 80% of the 4,000-client limit *(design guidance)*.
+- **Post-change validation:** [Step 6.1](#step-6-1)'s check and the inventory rerun after each drain and removal; the Client Data Sources export for the wave.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `offices.csv`, `workloads.csv`, `evidence-sources.csv`, the hub design and each step's `plan.csv`, kept inside the boundary
+- [ ] **Operational:** the inventory runs, the Client Data Sources exports per wave, and the apply runs with their `applied` rows
+- [ ] **Test:** each step's **Expected** output and each go/no-go decision, with date and operator
+- [ ] **Exception:** offices held back by a NO-GO and any Windows Server 2016 host, each with an owner, an approver and a date
+- [ ] **Assessor-ready artifact:** the decision record, `gates-final` with all five gates closed, and the decommission and sanitization records per server, traceable to the four above
+
+The guide carries no assessment-mapping block: it addresses no Zero Trust Assessment test family. Its requirements are CM-3, CM-6, CM-7, CM-8, SA-22, SI-2 and MP-6, in each step's table.
 
 ## Government cloud availability {#gcc}
 

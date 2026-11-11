@@ -426,7 +426,69 @@ The program's evidence is the records the services keep, exported on a schedule 
 
 The M-22-09 rows follow [Book 11, Appendix A](../b11-zero-trust/appendix-a-requirements-mapping.md#omb-m-22-09-objectives-and-actions), and CDM's role follows [Book 12, Chapter 01](../b12-security-operations/01-you-cant-defend-what-you-cant-see.md#bod-23-01-and-cdm-the-asset-denominator). IA-3 is evidenced by the same compliance records ([federal requirements](attribute-driven-migration.md#federal-requirements)), and Book 05 maps the evidence to FedRAMP 20x indicators ([Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#fedramp-20x-key-security-indicators)).
 
+**Evidence checklist**
+
+- [ ] **Configuration:** the policy library exported as JSON from Graph with its commits; the setting register; dynamic group rules in Git; the signed writer list ([Gate 1](#gate-1-device-sources-and-the-single-writer))
+- [ ] **Operational:** the scheduled `VK-INT-*` and `VK-DG-*` results; per-setting status and compliance reports; `IntuneAuditLogs`; the weekly inventory reconciliation, each with its retention location
+- [ ] **Test:** the pilot ring's `gpresult` comparison ([Step 3.3](#step-3.3-report-only-and-pilot-rings-phase-4)), each wave's exit criteria ([Step 5.1](#step-5.1-the-runbook-for-one-wave)) and the rollback test on the pilot division, with dates and testers
+- [ ] **Exception:** the exception register (every remaining GPO link, dated, with an owner and review date); device-only licensing and path D exceptions ([Gate 0](#gate-0-prerequisites)); Windows 10 devices as dated exceptions
+- [ ] **Assessor-ready artifact:** the monthly evidence package for CM-2, CM-6, CM-7, CM-8 and M-22-09, traceable to the four above ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads))
+
 **Validate Gate 6.** The checks run on their cadence with results retained; each evidence row has a named producer and a retention location; the first monthly evidence package has been assembled from them once, end to end.
+
+## Control states, change safety and assessment mapping {#itn-control-states}
+
+The workbook's conventions for implementation procedures are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); this section applies them to the Intune track.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Gate 0](#gate-0-prerequisites) to [Gate 2](#gate-2-the-targeting-design): coverage matrix and tiers, vocabularies, one writer, the targeting design and the setting register | The signed writer list; the setting register with a decision record per setting |
+| Configured | [Step 3.2](#step-3.2-build-the-policy-library-phases-2-and-3): the library built unassigned, as code; [Step 3.3](#step-3.3-report-only-and-pilot-rings-phase-4): the report-only ring | The JSON export with its commits; lab ring **Succeeded** |
+| Enforced | [Gate 5](#gate-5-cut-over-waves-and-rollback): policies assigned wave by wave, GPO links disabled, sliders at **Intune**; compliant-device Conditional Access enforced under Book 04 | Assignments matching the register (VK-INT-04); link state; the exception register |
+| Evidenced | Each gate's **Validate** step; the rollback test on the pilot division | `VK-INT-*` and `VK-DG-*` results; `gpresult` comparisons; the rollback timings |
+| Operated | [Gate 6](#gate-6-operating-it) | The drift schedule and its owners ([Step 6.2](#step-6.2-drift)); stale-device procedure; the monthly evidence package |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** Where the guide carries each part of the [How-section template](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template):
+
+| Subsection | Where |
+|---|---|
+| Prerequisites | [Gate 0](#gate-0-prerequisites) (licences, cloud, roles, coverage) |
+| Pilot | The pilot cohort of about 5% in [Step 3.3](#step-3.3-report-only-and-pilot-rings-phase-4); the pilot division in [Gate 5](#gate-5-cut-over-waves-and-rollback) |
+| Report-only or audit phase | [Step 3.3](#step-3.3-report-only-and-pilot-rings-phase-4): audit mode, a 7-day grace period and Conditional Access report-only |
+| Enforcement | [Step 3.4](#step-3.4-workload-waves-phase-5) and [Step 5.1](#step-5.1-the-runbook-for-one-wave) |
+| Rollback | [Step 3.5](#step-3.5-disable-gpo-links-population-by-population) and [Step 5.2](#step-5.2-rollback) |
+| Exclusions | The exception register ([Step 3.6](#step-3.6-residual-cleanup-and-retirement-phases-6-and-7)); Apple and Android out of report-only compliance ([Step 3.3](#step-3.3-report-only-and-pilot-rings-phase-4)); emergency access accounts excluded from the compliant-device policies, which Book 04 owns ([emergency access](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts)) |
+| Telemetry | Per-setting status, compliance, `IntuneAuditLogs` and the membership-delta alarm ([Step 6.2](#step-6.2-drift); [Gate 4](#gate-4-dangers-and-mitigations)) |
+| Evidence | [Step 6.3](#step-6.3-evidence) and its evidence checklist |
+| Day-two ownership | [Gate 6](#gate-6-operating-it): each drift finding routed to the owner of its source |
+
+: How-section template, mapped to the Intune track {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Lab ring | **Succeeded** for every setting; VK-INT-05 clean on the planned assignments ([Step 3.2](#step-3.2-build-the-policy-library-phases-2-and-3)) |
+| 1 | Pilot cohort, about 5% of the fleet, GPOs still linked | No unexplained **Conflict** or **Error**; no application regressions ([Step 3.3](#step-3.3-report-only-and-pilot-rings-phase-4)) |
+| 2 | Pilot division | Wave exit criteria met; rollback tested once ([Step 5.2](#step-5.2-rollback)) |
+| 3 | Two or three divisions at a time, until every division is in | Each wave drift-clean and watched for 72 hours before the next ([Step 5.1](#step-5.1-the-runbook-for-one-wave)) |
+
+- **Emergency access:** the compliant-device Conditional Access policies exclude the emergency access group, as Book 04 requires of every policy that blocks or restricts sign-in ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts)); VK-CA-01 checks it.
+- **Change window:** each wave is its own change, with the help desk briefed and re-enable owners named in the entry criteria ([Step 5.1](#step-5.1-the-runbook-for-one-wave)).
+- **Backout triggers:** set per wave before it starts: a policy breaking an application, a rise in attributable tickets, unplanned membership changes in VK-DG-05, or a population blocked by compliant-device enforcement ([Step 5.2](#step-5.2-rollback)) *(design guidance)*.
+- **Post-change validation:** the wave's exit criteria after each ring.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices
+- **CISA ZTMM pillar:** Devices
+- **Depends on:** Identity (compliant-device Conditional Access in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md); the device provisioning service as a non-person identity, [Non-Person Identity guide](non-person-identity-implementation.md)); the asset record as the source of device facts ([Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md)); SecOps (Defender for Endpoint onboarding, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Initial Access (unmanaged or noncompliant devices refused at sign-in); Execution and Defense Evasion (attack surface reduction and configuration baselines); Persistence (drift caught at the source)
+:::
 
 ## Checklist
 

@@ -96,3 +96,19 @@ Read on Microsoft Learn on November 9, 2026 through the Microsoft Learn document
 | G4 | Find user accounts used as services by SPN, delegation and password never expires; privileged group membership a security issue | Step 1a | verified (ms.dates 2023-02-09) | `npi-user-svc`, `npi-gmsa-secure` |
 | G5 | Link to the service account comparison and migration guide | Step 2 | link added | — |
 | G6 | The KDS root key is created once for the forest (was "once per domain"): a one-time operation in the forest, stored in the Configuration partition | Step 2 | corrected by meaning | `npi-gmsa-secure`, `npi-containers`, `npi-kds` |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied the conventions of Book 00, Appendix D (`docs/books/b00-orientation/appendix-d-control-states-and-evidence.md`) to this procedure guide, as the smallest coherent addition:
+
+| Convention | Where | What was added |
+|---|---|---|
+| G-01 control states | `#npi-control-states` | The five states mapped to the guide's gates, with the evidence for each, and the ready-for-closure sentence |
+| G-02 How template | `#npi-control-states` | A coverage table pointing each subsection to where the guide already covers it; exclusions name the emergency access accounts |
+| G-06 evidence checklist | Rollback by step table unchanged; the five-kind evidence checklist appended to **Evidence** | Five kinds: configuration, operational, test, exception, assessor-ready artifact |
+| G-07 change safety | `#npi-control-states` | Rings adapted from the guide's pilot and waves, emergency access, change window, backout triggers *(design guidance)*, post-change validation |
+| G-08 assessment mapping | `#npi-assessment-mapping` | Microsoft and CISA pillars, dependencies, attack chain interrupted |
+
+**G-05 musts relabeled.** None. The four uses of *must* left are product constraints (a user-assigned identity must be deleted explicitly; a gMSA name must be unique in the forest; multitenant app objects must be removed by hand) or not directive.
+
+**G-03 re-verification.** None. Every statement in the new section is carried from the guide's own gates (Steps 1 to 6, Evidence, Rollback) or from the privileged access guide's G2; no new product, licensing or government-cloud claim was added, so no Learn page was re-read. The guide's product claims keep their footnoted access dates (October 29 to November 7, 2026) and the rows above.
