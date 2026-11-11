@@ -19,8 +19,8 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 |---|---|---|---|---:|---:|---|
 | **B00** | **[Orientation & Program](b00-orientation/index.md)** | **Why modernize, and why now?** | **Draft** | 10 + 4 app. | 235 | 2026-11-11 |
 | **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Baseline** | 12 + 2 app. | 170 | 2026-11-11 |
-| **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** | 11 + 4 app. | 390 | 2026-11-11 |
-| **B03** | **[HR-Driven Identity](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Baseline** | 15 + 4 app. | 230 | 2026-11-11 |
+| **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** | 11 + 4 app. | 405 | 2026-11-11 |
+| **B03** | **[HR-Driven Identity](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Baseline** | 15 + 4 app. | 245 | 2026-11-11 |
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 365 | 2026-11-11 |
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 365 | 2026-11-11 |
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Baseline** | 10 + 1 app. | 315 | 2026-11-11 |
