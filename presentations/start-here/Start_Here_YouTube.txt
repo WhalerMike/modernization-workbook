@@ -1,4 +1,4 @@
-Start Here: Where Modernization Begins
+Start series, Episode 1 — Start Here: Where Modernization Begins
 
 A narrated briefing from the Federal Modernization Workbook, a free public reference for federal IT modernization. It isn't an official government publication.
 
@@ -7,15 +7,15 @@ https://whalermike.github.io/modernization-workbook/docs/presentations/watch.htm
 
 Chapters
 0:00 Start Here: Where Modernization Begins
-0:31 Four reasons to start now
-1:00 The clocks nobody can move
-2:09 Everything decides on identity
-3:08 HR is being rebuilt anyway
-3:53 The access risk agencies already carry
-4:30 The first ask: four weeks, no vendor decision
-5:06 The finish line: Gate G1, Foundation Complete
-5:41 Who decides, and what to bring
-6:22 Where to go next
+0:37 Four reasons to start now
+1:06 The clocks nobody can move
+2:15 Everything decides on identity
+3:14 HR is being rebuilt anyway
+4:00 The access risk agencies already carry
+4:37 The first ask: four weeks, no vendor decision
+5:16 The finish line: Gate G1, Foundation Complete
+5:57 Who decides, and what to bring
+6:44 The Start series, and where to go next
 
 From the workbook
 Book 00: Chapter 01 — Why Modernize, and Why Now: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html
@@ -24,6 +24,7 @@ Book 01: Chapter 02 — The Problem: Governance Hidden in the Directory: https:/
 Book 01: Chapter 12 — The Migration Roadmap: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html
 Book 03: Chapter 02 — Why HR Is the Source of Authority: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html
 Book 03: Chapter 03 — Federal HR 2.0 and the Core HCM Platform: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/03-federal-hr-2-0.html
+Book 07: Chapter 01 — Why Certificates Outlive Every Migration: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/01-why-certificates-outlive-every-migration.html
 Book 00: Chapter 02 — How to Use This Workbook: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/02-how-to-use-this-workbook.html
 Book 03: Chapter 10 — From Attributes to Access: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html
 Book 01: Chapter 10 — Analyzing the Estate: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html
@@ -38,6 +39,7 @@ Microsoft lifecycle pages: https://whalermike.github.io/modernization-workbook/d
 CISA BOD 25-01: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01
 CISA BOD 26-02: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-26-02
 OMB M-26-14: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14
+OMB M-19-17: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17
 OMB/OPM memo Dec. 10, 2025: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#creating-federal-hr-2-0-by-consolidating
 OPM award: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#opm-awards-contract-for-first-ever
 Oracle announcement: https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#us-office-of-personnel-management-selects

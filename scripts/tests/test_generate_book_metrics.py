@@ -66,6 +66,23 @@ class BooksTableOnly(unittest.TestCase):
         self.assertIn("**Baseline**", rows[0])
         self.assertIn("**Draft**", rows[1])
 
+    def test_status_reads_draft_when_a_page_added_after_the_cut_is_draft(self) -> None:
+        books = gbm.BOOKS
+        (books / "b00-orientation" / "appendix-a-new.md").write_text(chapter("draft"), encoding="utf-8")
+        index = gbm.INDEX.read_text(encoding="utf-8").replace("| **Why?** | **Draft** |", "| **Why?** | **Baseline** |")
+        gbm.INDEX.write_text(index, encoding="utf-8")
+        row = next(r for r in self.run_main().split(chr(10)) if r.startswith("| **B00"))
+        self.assertIn("**Draft**", row)
+        self.assertNotIn("Baseline", row)
+
+    def test_missing_status_leaves_the_label(self) -> None:
+        books = gbm.BOOKS
+        (books / "b00-orientation" / "r01-runbook.md").write_text("---" + chr(10) + "title: R" + chr(10) + "---" + chr(10) + "# R" + chr(10), encoding="utf-8")
+        index = gbm.INDEX.read_text(encoding="utf-8").replace("| **Why?** | **Draft** |", "| **Why?** | **Baseline** |")
+        gbm.INDEX.write_text(index, encoding="utf-8")
+        row = next(r for r in self.run_main().split(chr(10)) if r.startswith("| **B00"))
+        self.assertIn("**Baseline**", row)
+
     def test_second_run_changes_nothing(self) -> None:
         first = self.run_main()
         self.assertEqual(first, self.run_main())

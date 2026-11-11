@@ -1,6 +1,7 @@
-// Start Here: Where Modernization Begins — a ~6-minute EXECUTIVE starting point for the whole workbook.
-// The case for starting with identity: the clocks, the dependency chain, Federal HR 2.0, the access risk,
-// then one bounded ask (Phase 0, four weeks) and the Gate G1 finish line.
+// Start series, Episode 1: Start Here: Where Modernization Begins — a ~7-minute EXECUTIVE starting point for the
+// whole workbook. The case for starting with identity: the clocks, the dependency chain, Federal HR 2.0, the access
+// risk, then one bounded ask (Phase 0, four weeks) and the Gate G1 finish line. It stands alone, and points on to
+// Episodes 2 (The First Four Weeks), 3 (Foundation to Gate G1) and 4 (Making the Case at Your Agency).
 // Build (Git Bash):  source /c/tmp/deckenv.sh && node build.js Start_Here.pptx
 // Reuses the shared kit in ../_build/ and the helpers of research-hybrid-credentials/build.js.
 // Every fact comes from a footnoted chapter: Book 00 Ch01/Ch03, Book 01 Ch02/Ch12, Book 03 Ch02/Ch03.
@@ -9,7 +10,7 @@ const path = require("path");
 const fs = require("fs");
 const KIT = path.join(__dirname, "..", "_build", "lib.js");
 const D = require(KIT)({ book: "Start Here", title: "Executive Briefing",
-  footer: "Start here  ·  Federal Modernization Workbook  ·  Executive briefing" });
+  footer: "Start series, Episode 1  ·  Federal Modernization Workbook  ·  Executive briefing" });
 const { pres, HEX, txt, box, tag, bullets, tableOpts, head, callout } = D;
 const OUT = process.argv[2] || "Start_Here.pptx";
 
@@ -120,20 +121,21 @@ const label = (s, name, text, x, y, w, color = HEX.red) =>
   txt(s, name, text, { x, y, w, h: 0.28, fontSize: 11, bold: true, color, valign: "middle" });
 
 
-const SUB = "Executive briefing  ·  Start here";
-const S = "Start here";
+const SUB = "Executive briefing  ·  Start series, Episode 1";
+const S = "Episode 1";
 
 // ================================================================== 1 Title
 {
   const s = titleSlide(S, "Start Here: Where Modernization Begins", SUB);
   txt(s, "Session map", [
-    { text: "WHY IDENTITY COMES FIRST, AND THE FIRST STEP  ·  ABOUT 6 MINUTES", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
+    { text: "EPISODE 1 OF 4  ·  WHY IDENTITY COMES FIRST, AND THE FIRST STEP  ·  ABOUT 7 MINUTES", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
     { text: "Four reasons to start now  ·  The first ask: a four-week pre-flight", options: { color: HEX.ink, breakLine: true } },
-    { text: "The finish line: Gate G1  ·  Who decides  ·  Where to go next", options: { color: HEX.ink } },
-  ], { x: 0.8, y: 4.75, w: 8.6, h: 1.2, fontSize: 15, paraSpaceAfter: 2 });
+    { text: "The finish line: Gate G1  ·  Who decides  ·  The Start series", options: { color: HEX.ink, breakLine: true } },
+    { text: "Then Episodes 2–4: The First Four Weeks  ·  Foundation to Gate G1  ·  Making the Case", options: { color: HEX.slate, fontSize: 12.5 } },
+  ], { x: 0.8, y: 4.75, w: 8.6, h: 1.28, fontSize: 15, paraSpaceAfter: 2 });
   sources(s, "Sources: Book 00, Ch 01 and 03; Book 01, Ch 02 and 12; Book 03, Ch 02 and 03. Facts as of October 2026.", 6.08);
   notes(s,
-`An executive starting point for the whole workbook. One case: modernization begins with identity, and the first step is bounded. Four reasons (the external clocks, the dependency chain, Federal HR 2.0, the access risk already carried), then one ask (Phase 0, a four-week pre-flight with no vendor decision) and the finish line (Gate G1, Foundation Complete). The workbook is independent analysis, not an official publication of any agency.`,
+`Episode 1 of the four-part Start series, and an executive starting point for the whole workbook; it stands on its own. Episode 2 (The First Four Weeks) opens Phase 0, Episode 3 (Foundation to Gate G1) covers Phase 1, weeks 5–8, and Episode 4 (Making the Case at Your Agency) turns the case into a one-page ask. One case: modernization begins with identity, and the first step is bounded. Four reasons (the external clocks, the dependency chain, Federal HR 2.0, the access risk already carried), then one ask (Phase 0, a four-week pre-flight with no vendor decision) and the finish line (Gate G1, Foundation Complete). The workbook is independent analysis, not an official publication of any agency.`,
   "Book 00, Chapters 01 and 03; Book 01, Chapters 02 and 12; Book 03, Chapters 02 and 03.");
 }
 
@@ -244,14 +246,16 @@ const S = "Start here";
     { head: "An owner", body: "A named executive sponsor and steward, and a lead for each workstream" },
     { head: "A date", body: "Gate G0 on the calendar, beside the external clocks", color: HEX.amber, tint: HEX.amberTint },
   ], 13.5);
-  table(s, "G0", 3.45, [2.6, 9.55], ["Phase 0 — Pre-flight", "Weeks 1–4"], [
+  const b = table(s, "G0", 3.45, [2.6, 9.55], ["Phase 0 — Pre-flight", "Weeks 1–4"], [
     ["Entry", "Executive sponsor and steward named; platform host provisioned; read-only assessment account created"],
     ["Work", "Build the platform host; run the assessment; seed the repository; least-privilege service principals for Entra ID, Intune and Azure Arc"],
     ["Gate G0, Ready to Plan", "Platform host operational; assessment committed; no open priority-one findings"],
   ], { fontSize: 12 });
+  callout(s, "Episode 2", b + 0.25, Math.min(0.85, 6.5 - b - 0.25), "FaRoute", HEX.amber, "In the Start series: ",
+    "Episode 2, The First Four Weeks, opens these four weeks.");
   sources(s, "Sources: Book 01, Ch 12 (Phase 0; Where to start) and Ch 10 (analyzing the estate).");
   notes(s,
-`Book 01 Chapter 12, "Where to start": "None of this requires a vendor decision on day one. It requires three things, and Phase 0 produces them: an inventory (the read-only assessment of Chapter 10, committed with provenance); an owner (a named executive sponsor and steward, and a lead for each workstream); a date (Gate G0 on the calendar, with the external clocks beside it)." Phase 0, weeks 1–4: entry, executive sponsor and steward named, platform host provisioned, read-only assessment account created; work, build the platform host, run the assessment, seed the repository, create least-privilege service principals for Entra ID, Intune and Azure Arc, profile transactions of any application proposed to move away from its data; Gate G0, Ready to Plan: platform host operational, assessment committed, no open priority-one findings.`,
+`Book 01 Chapter 12, "Where to start": "None of this requires a vendor decision on day one. It requires three things, and Phase 0 produces them: an inventory (the read-only assessment of Chapter 10, committed with provenance); an owner (a named executive sponsor and steward, and a lead for each workstream); a date (Gate G0 on the calendar, with the external clocks beside it)." Phase 0, weeks 1–4: entry, executive sponsor and steward named, platform host provisioned, read-only assessment account created; work, build the platform host, run the assessment, seed the repository, create least-privilege service principals for Entra ID, Intune and Azure Arc, profile transactions of any application proposed to move away from its data; Gate G0, Ready to Plan: platform host operational, assessment committed, no open priority-one findings. Episode 2 of the Start series, The First Four Weeks, opens Phase 0 in detail (Book 00 Chapter 08; Book 01 Chapters 03 and 10).`,
   "Book 01, Chapter 12 (Phase 0 — Pre-flight; Where to start).");
 }
 
@@ -259,7 +263,7 @@ const S = "Start here";
 {
   const s = content(S, "The finish line: Gate G1, Foundation Complete");
   tag(s, "How");
-  table(s, "G1", 1.5, [3.2, 8.95], ["Phase 1 — Foundation (weeks 5–8)", "Gate G1 passes when, measured from data"], [
+  const b = table(s, "G1", 1.5, [3.2, 8.95], ["Phase 1 — Foundation (weeks 5–8)", "Gate G1 passes when, measured from data"], [
     ["Identity", "Enterprise groups and administrative units in place and drift-clean"],
     ["Policy", "Baseline Conditional Access enforced: no user outside the MFA requirement except the documented emergency access accounts"],
     ["Emergency access", "Emergency access accounts vaulted and tested"],
@@ -267,11 +271,14 @@ const S = "Start here";
     ["HR feed", "HR-to-cloud provisioning operational for the foundation scope"],
     ["Overall", "Zero drift across the foundation"],
   ], { fontSize: 12.5 });
-  callout(s, "Data", 4.9, 1.0, "FaClipboardCheck", HEX.teal, "Evaluated from data, not executive signature: ",
+  const c = Math.max(b + 0.25, 4.3);
+  callout(s, "Data", c, 0.95, "FaClipboardCheck", HEX.teal, "Evaluated from data, not executive signature: ",
     "when G1 passes, every later book has something solid to build on.");
+  callout(s, "Episode 3", c + 1.1, Math.min(0.85, 6.5 - c - 1.1), "FaRoute", HEX.amber, "In the Start series: ",
+    "Episode 3, Foundation to Gate G1, walks through weeks five to eight.");
   sources(s, "Sources: Book 01, Ch 12 (Phase 1 — Foundation; Gate G1; key takeaways); Book 03, Ch 12 (foundation-scope HR feed).");
   notes(s,
-`Book 01 Chapter 12, Phase 1 — Foundation (weeks 5–8), goal: put the identity primitives in place before anything else moves. Identity: enterprise-level dynamic groups; administrative units for Tier 1 and selected Tier 2 scopes; the HR-to-cloud provisioning feed for the foundation scope (Book 03, Chapter 12). Policy: the enterprise Conditional Access baseline (MFA for all users, legacy authentication blocked, emergency access accounts excluded from every policy that blocks or restricts sign-in). Services: IPAM covering the platform host and Tier 0 infrastructure. Compute: platform host and pilot servers connected through Azure Arc. Gate G1: enterprise groups and administrative units drift-clean; baseline Conditional Access enforced with no user outside MFA other than documented emergency accounts; Tier 0 covered by IPAM; emergency accounts vaulted and tested; HR-to-cloud provisioning operational for the foundation scope; zero drift across the foundation. Key takeaway: "Gate criteria are evaluated from data, not executive signature."`,
+`Book 01 Chapter 12, Phase 1 — Foundation (weeks 5–8), goal: put the identity primitives in place before anything else moves. Identity: enterprise-level dynamic groups; administrative units for Tier 1 and selected Tier 2 scopes; the HR-to-cloud provisioning feed for the foundation scope (Book 03, Chapter 12). Policy: the enterprise Conditional Access baseline (MFA for all users, legacy authentication blocked, emergency access accounts excluded from every policy that blocks or restricts sign-in). Services: IPAM covering the platform host and Tier 0 infrastructure. Compute: platform host and pilot servers connected through Azure Arc. Gate G1: enterprise groups and administrative units drift-clean; baseline Conditional Access enforced with no user outside MFA other than documented emergency accounts; Tier 0 covered by IPAM; emergency accounts vaulted and tested; HR-to-cloud provisioning operational for the foundation scope; zero drift across the foundation. Key takeaway: "Gate criteria are evaluated from data, not executive signature." Episode 3 of the Start series, Foundation to Gate G1, walks through Phase 1 and the G1 check.`,
   "Book 01, Chapter 12 (Phase 1 — Foundation; key takeaways); Book 03, Chapter 12.");
 }
 
@@ -291,29 +298,36 @@ const S = "Start here";
     "Your Federal HR 2.0 wave and dates",
     "Ask: approve the four-week pre-flight, with a named owner and a start date",
   ], 13);
+  callout(s, "Episode 4", 5.35, 0.9, "FaRoute", HEX.amber, "In the Start series: ",
+    "Episode 4, Making the Case at Your Agency, turns this into a one-page ask for the meeting.");
   sources(s, "Sources: Book 00, Ch 03 (charter roles and gate authorities); Book 01, Ch 09. The four numbers and the ask are design guidance.");
   notes(s,
-`Book 00 Chapter 03's charter roles: project sponsor (executive sponsor, with the CIO) decides scope, funding and sequence, gates G3 and G5, and when Active Directory components retire; project lead (the steward, the program office's accountable lead) decides target architecture and the authoritative repository, gates G0, G1 and G4, and co-signs G2 with the sponsor; domain leads (identity, policy, services and addressing, compute, access) own playbook content and execution readiness. The charter leaves names blank; the agency fills them in. The four local numbers and the shape of the ask are the program's design guidance for making the decision concrete.`,
+`Book 00 Chapter 03's charter roles: project sponsor (executive sponsor, with the CIO) decides scope, funding and sequence, gates G3 and G5, and when Active Directory components retire; project lead (the steward, the program office's accountable lead) decides target architecture and the authoritative repository, gates G0, G1 and G4, and co-signs G2 with the sponsor; domain leads (identity, policy, services and addressing, compute, access) own playbook content and execution readiness. The charter leaves names blank; the agency fills them in. The four local numbers and the shape of the ask are the program's design guidance for making the decision concrete. Episode 4 of the Start series, Making the Case at Your Agency, turns them into a one-page ask for the meeting.`,
   "Book 00, Chapter 03 (charter roles); Book 01, Chapter 09.");
 }
 
 // ================================================================== 10 Next
 {
-  const s = content(S, "Where to go next");
+  const s = content(S, "The Start series, and where to go next");
   tag(s, "How");
-  table(s, "Next", 1.5, [3.6, 8.55], ["Read or watch", "For"], [
+  const b = table(s, "Next", 1.5, [4.1, 8.05], ["Watch next, or read", "For"], [
+    ["Episode 2 — The First Four Weeks", "What Phase 0 produces: the assessment, the owners and Gate G0"],
+    ["Episode 3 — Foundation to Gate G1", "Weeks five to eight, and the first gate checked from data"],
+    ["Episode 4 — Making the Case", "The one-page ask for the meeting at your agency"],
     ["Book 00 executive briefing", "The decisions leadership must make, with owners and timing"],
     ["Book 01, Chapter 12", "The roadmap: seven phases and six gates"],
     ["Book 02 — Identity & Directory", "The identity foundation: Entra ID, groups, administrative units, delegation"],
     ["Book 03 — HR-Driven Identity", "The full case for HR as the source of authority, and Federal HR 2.0"],
     ["Presentations page", "A 15-minute deck for every book, with narrated editions"],
-  ], { fontSize: 13 });
-  callout(s, "Independent", 4.1, 1.0, "FaBook", HEX.slate, "Independent analysis: ",
+  ], { fontSize: 12 });
+  callout(s, "Independent", b + 0.18, 0.8, "FaBook", HEX.slate, "Independent analysis: ",
     "every claim is footnoted to a primary source in the books. Not an official publication of any agency.");
-  sources(s, "Sources: whalermike.github.io/modernization-workbook: Books 00–03 and the Presentations page.");
+  callout(s, "Next", b + 1.1, Math.min(0.8, 6.5 - b - 1.1), "FaRoute", HEX.amber, "Next in the Start series: ",
+    "Episode 2, The First Four Weeks.");
+  sources(s, "Sources: whalermike.github.io/modernization-workbook: the Start series, Books 00–03 and the Presentations page.");
   notes(s,
-`Where to go next: the Book 00 executive briefing (decisions with owners and timing); Book 01 Chapter 12 (seven phases, six gates); Book 02 (identity and directory); Book 03 (HR-driven identity and Federal HR 2.0); the Presentations page for every book's deck. The site is independent analysis, not an official government publication; no agency reviewed or endorsed it.`,
-  "Books 00 to 03; the Presentations page.");
+`The Start series continues with Episode 2, The First Four Weeks (Phase 0 and Gate G0: Book 00 Chapter 08, Book 01 Chapters 03, 10 and 12); Episode 3, Foundation to Gate G1 (Phase 1, weeks 5–8: Book 01 Chapter 12); and Episode 4, Making the Case at Your Agency (the one-page ask: Book 01 Chapters 09 and 12, design guidance). All four are on the Start Here page. Where to go next in the books: the Book 00 executive briefing (decisions with owners and timing); Book 01 Chapter 12 (seven phases, six gates); Book 02 (identity and directory); Book 03 (HR-driven identity and Federal HR 2.0); the Presentations page for every book's deck. The site is independent analysis, not an official government publication; no agency reviewed or endorsed it. Next: Episode 2 of the Start series, The First Four Weeks.`,
+  "Start series Episodes 2 to 4; Books 00 to 03; the Presentations page.");
 }
 
 // ================================================================== Backup

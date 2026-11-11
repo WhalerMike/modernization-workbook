@@ -6,469 +6,504 @@ Welcome to the Federal
 Modernization Workbook.
 
 2
-00:00:02.725 --> 00:00:05.010
-If you lead an agency's technology,
+00:00:02.725 --> 00:00:05.712
+This is Episode 1 of four
+in the Start series,
 
 3
-00:00:05.010 --> 00:00:08.275
-security or workforce, this
-is the place to start.
+00:00:05.712 --> 00:00:10.275
+for anyone who leads an agency's
+technology, security or workforce.
 
 4
-00:00:08.275 --> 00:00:12.944
-In under ten minutes, I'll make one
-case: that modernization should begin
+00:00:10.275 --> 00:00:12.818
+In about seven minutes,
+I'll make one case:
 
 5
-00:00:12.944 --> 00:00:17.613
-with identity, and that the first step
-is small, bounded and can start now.
+00:00:12.818 --> 00:00:17.903
+that modernization should begin with
+identity, and that the first step is small,
 
 6
-00:00:17.613 --> 00:00:22.613
-There are four reasons, and then one specific
-ask, with a finish line you can check.
+00:00:17.903 --> 00:00:21.525
+bounded and can start now, with
+a finish line you can check.
 
 7
-00:00:22.613 --> 00:00:25.433
+00:00:21.525 --> 00:00:24.316
+Episodes 2 to 4 cover
+the first four weeks,
+
+8
+00:00:24.316 --> 00:00:28.913
+the foundation through gate G one,
+and making the case at your agency.
+
+9
+00:00:28.913 --> 00:00:31.733
 Everything I say is sourced
 in the workbook's books,
 
-8
-00:00:25.433 --> 00:00:27.680
+10
+00:00:31.733 --> 00:00:33.970
 and I'll point you to them at the end.
 
-9
-00:00:31.430 --> 00:00:33.642
+11
+00:00:37.720 --> 00:00:39.932
 Here are the four reasons on one page.
 
-10
-00:00:33.642 --> 00:00:35.631
+12
+00:00:39.932 --> 00:00:41.921
 There are deadlines nobody can move.
 
-11
-00:00:35.631 --> 00:00:39.768
+13
+00:00:41.921 --> 00:00:46.058
 Every other decision depends on
 identity, so it has to come first.
 
-12
-00:00:39.768 --> 00:00:42.892
+14
+00:00:46.058 --> 00:00:49.182
 The HR side of government
 is being rebuilt anyway,
 
-13
-00:00:42.892 --> 00:00:46.855
+15
+00:00:49.182 --> 00:00:53.145
 which makes this the cheapest
 moment to connect identity to it.
 
-14
-00:00:46.855 --> 00:00:49.793
+16
+00:00:53.145 --> 00:00:56.083
 And the access risk is
 already on the books today.
 
-15
-00:00:49.793 --> 00:00:53.018
+17
+00:00:56.083 --> 00:00:59.308
 None of this requires a
 large commitment to begin.
 
-16
-00:00:53.018 --> 00:00:56.500
+18
+00:00:59.308 --> 00:01:02.790
 Let's take them one at a time,
 starting with the clocks.
 
-17
-00:01:00.250 --> 00:01:03.837
+19
+00:01:06.540 --> 00:01:10.127
 Modernization is usually
 treated as a choice of timing.
 
-18
-00:01:03.837 --> 00:01:07.126
+20
+00:01:10.127 --> 00:01:13.416
 It isn't, because the dates
 are set outside the agency.
 
-19
-00:01:07.126 --> 00:01:12.550
+21
+00:01:13.416 --> 00:01:18.840
 Federal directives already require secure
 cloud configurations and better logging.
 
-20
-00:01:12.550 --> 00:01:16.837
+22
+00:01:18.840 --> 00:01:23.127
 FedRAMP's new rules become
 mandatory in January 2027.
 
-21
-00:01:16.837 --> 00:01:21.471
+23
+00:01:23.127 --> 00:01:27.761
 Windows Server 2016's end of
 support is January twelfth, 2027,
 
-22
-00:01:21.471 --> 00:01:26.012
+24
+00:01:27.761 --> 00:01:32.302
 and this workbook plans on those
 servers being gone by then.
 
-23
-00:01:26.012 --> 00:01:29.960
+25
+00:01:32.302 --> 00:01:36.250
 But a current server still
 sits in the same directory,
 
-24
-00:01:29.960 --> 00:01:34.537
+26
+00:01:36.250 --> 00:01:40.827
 and Windows Server 2019's date
 is already set for January 2029.
 
-25
-00:01:34.537 --> 00:01:36.487
+27
+00:01:40.827 --> 00:01:42.777
 Certificates have their own clock.
 
-26
-00:01:36.487 --> 00:01:43.452
+28
+00:01:42.777 --> 00:01:49.742
 The CA/Browser Forum's Ballot SC-081v3
 cuts the maximum life of a public web
 
-27
-00:01:43.452 --> 00:01:49.617
+29
+00:01:49.742 --> 00:01:55.907
 certificate from 200 days today
 to 100 days from March fifteenth,
 
-28
-00:01:49.617 --> 00:01:53.613
+30
+00:01:55.907 --> 00:01:59.903
 2027, and 47 days from
 March fifteenth, 2029.
 
-29
-00:01:53.613 --> 00:01:58.375
+31
+00:01:59.903 --> 00:02:04.665
 By the workbook's arithmetic, that's
 about fifteen renewals every working day
 
-30
-00:01:58.375 --> 00:02:03.063
+32
+00:02:04.665 --> 00:02:09.353
 for each thousand certificates from
 2027, more than a spreadsheet can track.
 
-31
-00:02:03.063 --> 00:02:05.850
+33
+00:02:09.353 --> 00:02:12.140
 So with time short, where do you begin?
 
-32
-00:02:09.600 --> 00:02:13.425
+34
+00:02:15.890 --> 00:02:19.715
 You begin with identity, because
 everything else decides on it.
 
-33
-00:02:13.425 --> 00:02:19.281
+35
+00:02:19.715 --> 00:02:25.571
 Access policy, devices, data, certificates:
 each one asks who or what is making the
 
-34
-00:02:19.281 --> 00:02:25.225
+36
+00:02:25.571 --> 00:02:31.515
 request, and that includes service accounts,
 applications, devices and AI agents.
 
-35
-00:02:25.225 --> 00:02:31.007
+37
+00:02:31.515 --> 00:02:37.297
 Federal identity guidance, OMB memorandum
 M-19-17, says those non-person
 
-36
-00:02:31.007 --> 00:02:35.825
+38
+00:02:37.297 --> 00:02:42.115
 entities must be distinguishable,
 auditable, and consistently managed.
 
-37
-00:02:35.825 --> 00:02:38.554
+39
+00:02:42.115 --> 00:02:44.844
 If the answer to that
 question isn't trustworthy,
 
-38
-00:02:38.554 --> 00:02:40.737
+40
+00:02:44.844 --> 00:02:47.027
 nothing built on top of it can be either.
 
-39
-00:02:40.737 --> 00:02:45.282
+41
+00:02:47.027 --> 00:02:51.572
 That's why the workbook numbers its
 books in this order, with identity first
 
-40
-00:02:45.282 --> 00:02:49.900
+42
+00:02:51.572 --> 00:02:56.190
 and infrastructure next, then the cloud
 boundary, assurance and operations.
 
-41
-00:02:49.900 --> 00:02:52.737
+43
+00:02:56.190 --> 00:02:59.027
 Infrastructure sits in the same chain:
 
-42
-00:02:52.737 --> 00:02:57.613
+44
+00:02:59.027 --> 00:03:03.903
 if DNS stays integrated with Active
 Directory, AD can never retire.
 
-43
-00:02:57.613 --> 00:02:59.987
+45
+00:03:03.903 --> 00:03:06.277
 Skipping ahead only moves the problem.
 
-44
-00:02:59.987 --> 00:03:04.380
+46
+00:03:06.277 --> 00:03:10.670
 And right now there's an unusual
 opportunity on the identity side.
 
-45
-00:03:08.130 --> 00:03:14.792
+47
+00:03:14.420 --> 00:03:21.082
 Federal HR 2.0 is moving agencies onto one
 government-wide human resources platform.
 
-46
-00:03:14.792 --> 00:03:21.776
+48
+00:03:21.082 --> 00:03:28.066
 The OMB and OPM memo came in December
 2025, Oracle won the contract in June 2026,
 
-47
-00:03:21.776 --> 00:03:26.031
+49
+00:03:28.066 --> 00:03:32.321
 and agencies move in
 waves through fiscal 2027.
 
-48
-00:03:26.031 --> 00:03:30.493
+50
+00:03:32.321 --> 00:03:36.783
 Each agency's move includes new
 connections, designed during onboarding.
 
-49
-00:03:30.493 --> 00:03:36.105
+51
+00:03:36.783 --> 00:03:42.395
 OPM rebuilds the HR side, but the
 identity side is left to the agency.
 
-50
-00:03:36.105 --> 00:03:39.768
+52
+00:03:42.395 --> 00:03:46.058
 If identity rides along,
 the agency connects once.
 
-51
-00:03:39.768 --> 00:03:41.918
+53
+00:03:46.058 --> 00:03:48.208
 If it waits, it builds twice.
 
-52
-00:03:41.918 --> 00:03:46.617
+54
+00:03:48.208 --> 00:03:52.907
 That's why the workbook calls HR
 2.0 the opening, not the project.
 
-53
-00:03:46.617 --> 00:03:50.190
+55
+00:03:52.907 --> 00:03:56.480
 Which brings us to the risk
 agencies already carry.
 
-54
-00:03:53.940 --> 00:03:57.216
+56
+00:04:00.230 --> 00:04:03.506
 Today, who gets an account,
 and when access ends,
 
-55
-00:03:57.216 --> 00:04:00.578
+57
+00:04:03.506 --> 00:04:06.868
 often lives in tickets,
 spreadsheets and email.
 
-56
-00:04:00.578 --> 00:04:04.128
+58
+00:04:06.868 --> 00:04:10.418
 A contractor roster is out of
 date the moment it's saved.
 
-57
-00:04:04.128 --> 00:04:08.373
+59
+00:04:10.418 --> 00:04:14.663
 Quarterly access reviews can't see a
 transition when it happens, so a review
 
-58
-00:04:08.373 --> 00:04:13.028
+60
+00:04:14.663 --> 00:04:19.318
 ninety days after someone leaves ends up
 approving an account nobody should have.
 
-59
-00:04:13.028 --> 00:04:17.564
+61
+00:04:19.318 --> 00:04:23.854
 Assessors know this pattern well; it's
 where account-management findings come from.
 
-60
-00:04:17.564 --> 00:04:20.041
+62
+00:04:23.854 --> 00:04:26.331
 HR-driven identity fixes the cause:
 
-61
-00:04:20.041 --> 00:04:25.078
+63
+00:04:26.331 --> 00:04:31.368
 the HR record becomes the source of
 who works here, and access follows it.
 
-62
-00:04:25.078 --> 00:04:27.210
+64
+00:04:31.368 --> 00:04:33.500
 So what exactly is the ask?
 
-63
-00:04:30.960 --> 00:04:32.222
+65
+00:04:37.250 --> 00:04:38.512
 The ask is small.
 
-64
-00:04:32.222 --> 00:04:37.134
+66
+00:04:38.512 --> 00:04:43.424
 Phase zero is a four-week pre-flight,
 and it doesn't require choosing a vendor.
 
-65
-00:04:37.134 --> 00:04:39.414
+67
+00:04:43.424 --> 00:04:45.704
 It needs three things: an inventory,
 
-66
-00:04:39.414 --> 00:04:43.185
+68
+00:04:45.704 --> 00:04:49.475
 from a read-only assessment of
 the current estate; an owner,
 
-67
-00:04:43.185 --> 00:04:47.664
+69
+00:04:49.475 --> 00:04:53.954
 meaning a named executive sponsor
 and a steward who runs the program;
 
-68
-00:04:47.664 --> 00:04:52.772
+70
+00:04:53.954 --> 00:04:59.062
 and a date, with the first gate on the
 calendar next to those external deadlines.
 
-69
-00:04:52.772 --> 00:04:57.177
+71
+00:04:59.062 --> 00:05:03.467
 At the end of four weeks, leadership
 sees the estate as it really is,
 
-70
-00:04:57.177 --> 00:04:59.623
+72
+00:05:03.467 --> 00:05:05.913
 and decides the next step from facts.
 
-71
-00:04:59.623 --> 00:05:02.340
+73
+00:05:05.913 --> 00:05:10.050
+Episode 2, The First Four
+Weeks, opens those four weeks.
+
+74
+00:05:10.050 --> 00:05:12.780
 Then comes the first real milestone.
 
-72
-00:05:06.090 --> 00:05:09.603
+75
+00:05:16.530 --> 00:05:20.043
 Phase one, the foundation,
 runs about four more weeks
 
-73
-00:05:09.603 --> 00:05:13.115
+76
+00:05:20.043 --> 00:05:23.555
 and ends at a gate leadership
 can check, not just sign.
 
-74
-00:05:13.115 --> 00:05:16.977
+77
+00:05:23.555 --> 00:05:27.417
 Groups and administrative units
 are in place, with no drift.
 
-75
-00:05:16.977 --> 00:05:19.945
+78
+00:05:27.417 --> 00:05:30.385
 Everyone is under
 multifactor authentication,
 
-76
-00:05:19.945 --> 00:05:23.653
+79
+00:05:30.385 --> 00:05:34.093
 except a few emergency accounts
 that are vaulted and tested.
 
-77
-00:05:23.653 --> 00:05:26.728
+80
+00:05:34.093 --> 00:05:37.168
 The core infrastructure is
 covered by address management.
 
-78
-00:05:26.728 --> 00:05:29.878
+81
+00:05:37.168 --> 00:05:40.318
 And the HR feed is live for
 a first group of people.
 
-79
-00:05:29.878 --> 00:05:31.902
+82
+00:05:40.318 --> 00:05:42.342
 Each of those is measured from data.
 
-80
-00:05:31.902 --> 00:05:36.091
+83
+00:05:42.342 --> 00:05:46.531
 When the gate passes, everything else
 has something solid to stand on.
 
-81
-00:05:36.091 --> 00:05:38.040
+84
+00:05:46.531 --> 00:05:52.155
+Episode 3, Foundation to Gate G1, walks
+through these weeks five to eight.
+
+85
+00:05:52.155 --> 00:05:54.120
 So who needs to be in the room?
 
-82
-00:05:41.790 --> 00:05:44.015
+86
+00:05:57.870 --> 00:06:00.095
 The decision belongs to a few people.
 
-83
-00:05:44.015 --> 00:05:49.640
+87
+00:06:00.095 --> 00:06:05.720
 The executive sponsor, with the CIO,
 owns scope, funding and sequence.
 
-84
-00:05:49.640 --> 00:05:53.165
+88
+00:06:05.720 --> 00:06:09.245
 The steward owns the target
 design and the early gates.
 
-85
-00:05:53.165 --> 00:05:56.328
+89
+00:06:09.245 --> 00:06:12.408
 And workstream leads say
 when their area is ready.
 
-86
-00:05:56.328 --> 00:06:00.604
+90
+00:06:12.408 --> 00:06:16.684
 To make the conversation concrete,
 bring four local numbers:
 
-87
-00:06:00.604 --> 00:06:06.419
+91
+00:06:16.684 --> 00:06:22.499
 how many Windows Server 2019 servers you
 run, how many contractors sit outside the
 
-88
-00:06:06.419 --> 00:06:10.695
+92
+00:06:22.499 --> 00:06:26.775
 HR system, how long it takes a
 departing person to lose access,
 
-89
-00:06:10.695 --> 00:06:11.978
+93
+00:06:26.775 --> 00:06:28.058
 and your HR 2.0 wave.
 
-90
-00:06:11.978 --> 00:06:15.957
+94
+00:06:28.058 --> 00:06:32.037
 Then ask for one decision:
 approve the four-week pre-flight,
 
-91
-00:06:15.957 --> 00:06:18.640
+95
+00:06:32.037 --> 00:06:34.358
 with a named owner and a start date.
 
-92
-00:06:22.390 --> 00:06:26.944
-To go deeper, start with the executive
-briefing for Orientation and Program,
-
-93
-00:06:26.944 --> 00:06:30.052
-which lays out the decisions
-with owners and timing.
-
-94
-00:06:30.052 --> 00:06:35.153
-Chapter 12 of The Transformation Arc is
-the roadmap, with every phase and gate.
-
-95
-00:06:35.153 --> 00:06:39.261
-Identity and Directory covers
-identity and the directory,
-
 96
-00:06:39.261 --> 00:06:43.789
-and HR-Driven Identity makes the
-full case for HR-driven identity.
+00:06:34.358 --> 00:06:37.193
+Episode 4, Making the Case at Your Agency,
 
 97
-00:06:43.789 --> 00:06:48.852
+00:06:37.193 --> 00:06:40.720
+turns this into a one-page
+ask for the meeting.
+
+98
+00:06:44.470 --> 00:06:48.320
+Episode 2, The First Four
+Weeks, opens the pre-flight.
+
+99
+00:06:48.320 --> 00:06:53.583
+Episode 3, Foundation to Gate G1,
+walks through weeks five to eight.
+
+100
+00:06:53.583 --> 00:06:59.345
+Episode 4, Making the Case at Your Agency,
+turns this case into a one-page ask.
+
+101
+00:06:59.345 --> 00:07:05.168
+In the books, go to Orientation and Program,
+the roadmap in The Transformation Arc,
+
+102
+00:07:05.168 --> 00:07:08.558
+Identity and Directory,
+and HR-Driven Identity.
+
+103
+00:07:08.558 --> 00:07:13.619
 Every claim in this briefing is footnoted
 to a primary source in those books.
 
-98
-00:06:48.852 --> 00:06:54.652
+104
+00:07:13.619 --> 00:07:19.420
 The workbook is independent analysis, not
 an official publication of any agency.
 
-99
-00:06:54.652 --> 00:06:56.160
+105
+00:07:19.420 --> 00:07:20.870
 Thank you for starting here.
+
+106
+00:07:20.870 --> 00:07:25.120
+Next in the Start series:
+Episode 2, The First Four Weeks.

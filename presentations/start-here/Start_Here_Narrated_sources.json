@@ -78,6 +78,10 @@
    {
     "text": "OMB M-26-14",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "Book 07, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/01-why-certificates-outlive-every-migration.html"
    }
   ]
  },
@@ -96,6 +100,14 @@
    {
     "text": "Book 01, Ch 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/02-the-problem.html"
+   },
+   {
+    "text": "Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html"
+   },
+   {
+    "text": "OMB M-19-17",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-19-17"
    }
   ]
  },
@@ -203,7 +215,7 @@
  },
  {
   "slide": 10,
-  "title": "Where to go next",
+  "title": "The Start series, and where to go next",
   "links": [
    {
     "text": "whalermike.github.io/modernization-workbook",
