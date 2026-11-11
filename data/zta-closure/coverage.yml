@@ -30,7 +30,7 @@ items:
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#control-states
       - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: G-02
     title: "How-section template: prerequisites, pilot, report-only or audit, enforcement, rollback, exclusions, telemetry, evidence, day-two ownership"
@@ -39,7 +39,7 @@ items:
     status: partial
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: G-03
     title: "Source policy: primary sources and last-verified dates for product behavior and licensing"
@@ -48,7 +48,7 @@ items:
     status: partial
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#source-policy
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: G-04
     title: "Terminology: organization, agency or tenant; no organization-specific identifiers"
@@ -59,7 +59,7 @@ items:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#terminology
       - scripts/check_identifiers.py
       - scripts/check_neutrality.py
-    pr: null
+    pr: 555
     note: "Defined in Book 00 Appendix D; check_identifiers.py added (quiet on every published page at the time), beside the salted-hash neutrality check."
   - id: G-05
     title: "Authority labels: mandated, Microsoft-recommended, risk-based recommended, optional, license-dependent, environment-dependent"
@@ -68,7 +68,7 @@ items:
     status: partial
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: G-06
     title: "Evidence pattern: configuration, operational, test, exception evidence and the assessor-ready artifact"
@@ -77,7 +77,7 @@ items:
     status: partial
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: G-07
     title: "Change safety: rings, emergency-access exclusions, change windows, backout triggers, post-change validation"
@@ -86,7 +86,7 @@ items:
     status: partial
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#change-safety
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: G-08
     title: "Assessment mapping: Zero Trust pillar, cross-pillar dependencies, attack chain interrupted"
@@ -95,7 +95,7 @@ items:
     status: partial
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#assessment-mapping
-    pr: null
+    pr: 555
     note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
   - id: B02-01
     title: "Managed authentication versus federation decision tree"
@@ -199,7 +199,7 @@ items:
     book: "B05"
     status: not-applicable
     where: []
-    pr: null
+    pr: 555
     note: "macOS and Linux are out of the workbook's scope (Mike, Nov 9, 2026)."
   - id: B05-04
     title: "Enrollment: automatic enrollment, Autopilot, ownership, restrictions, stale-device cleanup"
@@ -256,7 +256,7 @@ items:
     status: implemented
     where:
       - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy
-    pr: null
+    pr: 555
     note: ""
   - id: B11-02
     title: "Closure chain as a register schema"
@@ -266,7 +266,7 @@ items:
     where:
       - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
       - docs/books/b11-zero-trust/appendix-a-requirements-mapping.md
-    pr: null
+    pr: 555
     note: ""
   - id: B11-03
     title: "Control-weighting guidance; no pass percentage as the sole maturity score"
@@ -275,7 +275,7 @@ items:
     status: implemented
     where:
       - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#weigh-the-finding-not-the-pass-rate
-    pr: null
+    pr: 555
     note: ""
   - id: B12-01
     title: "Identity detections"
@@ -853,7 +853,7 @@ items:
     where:
       - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy
       - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
-    pr: null
+    pr: 555
     note: "Closure-map row; destinations B11, B13. Book 11 part done (taxonomy and disposition in the register); Book 13 part planned."
   - id: ZTA-GUIDE
     title: "Zero Trust Assessment tool: implementation guide, narrated deck and training module, with a section reconciling its findings with AWS Security Hub CSPM for agencies that run both"
