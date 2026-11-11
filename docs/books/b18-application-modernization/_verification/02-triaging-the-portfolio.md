@@ -75,3 +75,15 @@ Small addition from the Learn coverage review: the app inventory asks about ADAL
 | L4 | Entra recommendations list applications and service principals still calling Azure AD Graph; service principals usually need a vendor update | Same | verified | Learn, "Microsoft Entra recommendation: Migrate from Azure AD Graph APIs to Microsoft Graph" |
 | L5 | Implicit grant no longer a suitable method (third-party cookie blocking breaks silent SSO); MSAL.js 2.x doesn't support it; three migration steps; disabling it affects every app sharing the registration | Same | verified | Learn, "Migrate a JavaScript single-page app from implicit grant to auth code flow"; "Microsoft identity platform and OAuth 2.0 implicit grant flow" |
 | L6 | Questions lower technical condition; measured vs attested flag | Same | restated-as-design | Program design (this chapter's rubric) |
+
+## Addition — Nov 11, 2026: identity and access intake fields (Zero Trust Assessment closure, B18-01, CM-07)
+
+New section "Identity and access intake fields" before the evidence map. Fields and the attack-path rank are program design; the export it reads is Book 13 Chapter 14's.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| I1 | Maintain ownership of redirect URIs; monitor DNS; no wildcards or insecure schemes; keep the list small; a lapse can lead to app compromise | Intake fields | verified | Learn, "Security best practices for application properties in Microsoft Entra ID," Redirect URIs, <https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration> | Nov 11, 2026 |
+| I2 | Wildcards allowed only for work/school sign-in apps via manifest; strongly recommend absolute URIs | Same | verified | Learn, "Redirect URI (reply URL) outline and restrictions," <https://learn.microsoft.com/entra/identity-platform/reply-url> | Nov 11, 2026 |
+| I3 | Dangling DNS can be taken over; OAuth credentials sent to a dangling subdomain might be exposed | Same | verified | Learn, "Prevent dangling DNS entries and avoid subdomain takeover," <https://learn.microsoft.com/azure/security/fundamentals/subdomain-takeover> | Nov 11, 2026 |
+| I4 | Nine fields; additive score and thresholds 8 / 4; 90-day retirement-candidate rule | Same | restated-as-design | Program design | Nov 11, 2026 |
+| I5 | Ranking script | Same | not tested against a tenant; uses only the Book 13 Ch14 export and .NET DNS resolution | — | Nov 11, 2026 |
