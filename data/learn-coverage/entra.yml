@@ -4421,6 +4421,7 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b04-access/_verification/appendix-c-partner-access-profile-entra.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b09-network/12-microsoft-365-traffic.md
   - docs/books/b09-network/appendix-a-optimize-exemption-instruments.md
@@ -5079,6 +5080,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
+  - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/fundamentals/users-reset-password-azure-portal.md
   url: https://learn.microsoft.com/entra/fundamentals/users-reset-password-azure-portal
   title: Reset a user's password
@@ -5246,6 +5249,8 @@ pages:
   coverage: cited
   note: Microsoft tenant isolation and engineering-system guidance not covered.
   cited_by:
+  - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
 - path: docs/fundamentals/zero-trust-response-remediation.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-response-remediation
@@ -9568,7 +9573,9 @@ pages:
   - data/source-register.json
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/appendix-b-pim-role-settings.md
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
@@ -10234,9 +10241,11 @@ pages:
   ms_date: '2026-08-26'
   ms_topic: how-to
   description: Learn how to securely create a governed Microsoft Entra workforce tenant and establish governance from your home tenant.
-  coverage: not-covered
+  coverage: cited
   note: Tenant discovery and governance relationships (multi-tenant estate); only configuration management is covered
-  cited_by: []
+  cited_by:
+  - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
 - path: docs/id-governance/tenant-governance/how-to-delegated-administration.md
   url: https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-delegated-administration
   title: Use cross-tenant delegated administration
@@ -17441,12 +17450,20 @@ pages:
   - docs/books/b03-hr-identity/12-execution-plan.md
   - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
   - docs/books/b04-access/03-the-conditional-access-model.md
+  - docs/books/b04-access/04-privileged-roles-and-tiers.md
+  - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
+  - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/08-pim-self-request-with-approval.md
   - docs/books/b04-access/_verification/09-access-governance.md
+  - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
+  - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b06-data-platform/appendix-c-applicability.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b13-governance/10-ticket-to-machine.md
@@ -17877,6 +17894,8 @@ pages:
   cited_by:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b02-identity/_verification/10-migrating-and-governing.md
+  - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
+  - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
 - path: docs/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication
   title: Get started with a phishing-resistant passwordless authentication deployment in Microsoft Entra ID
@@ -17968,6 +17987,8 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   cited_by:
+  - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
+  - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
 - path: docs/identity/authentication/how-to-sign-in-entra-passkey-windows.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-sign-in-entra-passkey-windows
@@ -18149,6 +18170,8 @@ pages:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b04-access/03-the-conditional-access-model.md
+  - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
+  - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b15-day2-operations/01-the-help-desk-decides.md
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
@@ -18284,11 +18307,13 @@ pages:
   ms_date: '2025-06-24'
   ms_topic: how-to
   description: Learn how to view sign-in activity for Microsoft Entra multifactor authentication events and status messages.
-  coverage: covered-uncited
+  coverage: cited
   note: MFA and audit-log telemetry.
   workbook:
   - docs/books/b12-security-operations/03-identity-telemetry.md
-  cited_by: []
+  cited_by:
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
 - path: docs/identity/authentication/howto-mfa-userdevicesettings.yml
   url: https://learn.microsoft.com/entra/identity/authentication/howto-mfa-userdevicesettings
   title: Manage user authentication methods for Microsoft Entra multifactor authentication
@@ -18981,6 +19006,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
 - path: docs/identity/conditional-access/concept-continuous-access-evaluation-workload.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation-workload
@@ -19010,6 +19037,8 @@ pages:
   - docs/books/b02-identity/02-the-structural-problem.md
   - docs/books/b02-identity/_verification/01-02-why.md
   - docs/books/b04-access/03-the-conditional-access-model.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/b09-network/appendix-c-glossary.md
   - docs/books/b11-zero-trust/02-governance-principles.md
@@ -19054,6 +19083,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/03-the-conditional-access-model.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md
 - path: docs/identity/conditional-access/concept-token-protection.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/concept-token-protection
@@ -19066,6 +19097,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/b09-network/appendix-c-glossary.md
 - path: docs/identity/conditional-access/controls.md
@@ -26568,6 +26601,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
 - path: docs/identity/monitoring-health/concept-provisioning-logs.md
@@ -28231,6 +28266,7 @@ pages:
   - docs/books/b04-access/02-why-standing-privilege-fails.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
+  - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
   - docs/books/b06-data-platform/appendix-b-ato-kit.md
