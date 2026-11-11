@@ -1,0 +1,231 @@
+{
+  "arc-extensions": {
+    "machinesInScope": 7,
+    "emptyScope": false,
+    "machinesWithFindings": 4,
+    "missingRequired": 2,
+    "extensionsNotSucceeded": 2,
+    "findings": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01",
+        "name": "lnx-web-01",
+        "osType": "linux",
+        "status": "Connected",
+        "missing": [],
+        "notSucceeded": [
+          {
+            "extension": "Microsoft.Azure.AzureDefenderForServers/MDE.Linux",
+            "provisioningState": "Creating",
+            "version": "1.0.5.2"
+          }
+        ]
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-02",
+        "name": "lnx-web-02",
+        "osType": "linux",
+        "status": "Connected",
+        "missing": [
+          "Microsoft.Azure.Monitor/AzureMonitorLinuxAgent",
+          "Microsoft.Azure.AzureDefenderForServers/MDE.Linux"
+        ],
+        "notSucceeded": []
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
+        "name": "SRV-APP-02",
+        "osType": "windows",
+        "status": "Connected",
+        "missing": [],
+        "notSucceeded": [
+          {
+            "extension": "Microsoft.Azure.AzureDefenderForServers/MDE.Windows",
+            "provisioningState": "Failed",
+            "version": "1.0.9.6"
+          }
+        ]
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
+        "name": "SRV-LEG-01",
+        "osType": "windows",
+        "status": "Disconnected",
+        "missing": [
+          "Microsoft.Azure.AzureDefenderForServers/MDE.Windows"
+        ],
+        "notSucceeded": []
+      }
+    ]
+  },
+  "arc-private-link": {
+    "machinesInScope": 7,
+    "emptyScope": false,
+    "publicEndpoint": 3,
+    "privateLinkScopes": {
+      "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east": 4
+    },
+    "findings": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-02",
+        "name": "lnx-web-02",
+        "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+        "resourceGroup": "rg-servers"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
+        "name": "SRV-APP-02",
+        "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+        "resourceGroup": "rg-servers"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
+        "name": "SRV-LEG-01",
+        "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+        "resourceGroup": "rg-servers"
+      }
+    ]
+  },
+  "lifecycle": {
+    "asOf": "2026-11-03T00:00:00Z",
+    "windowDays": 180,
+    "machinesInScope": 7,
+    "emptyScope": false,
+    "counts": {
+      "unsupported": 2,
+      "esuNotConfirmed": 2,
+      "esuCovered": 0,
+      "endingSoon": 1,
+      "supported": 4
+    },
+    "findings": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
+        "name": "SRV-LEG-01",
+        "kind": "os",
+        "product": "Windows Server 2012 R2",
+        "state": "unsupported",
+        "date": "2026-10-14T06:59:59Z"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/old-sql-07_mssqlserver",
+        "name": "OLD-SQL-07_MSSQLSERVER",
+        "kind": "sql",
+        "product": "SQL Server 2012",
+        "state": "unsupported",
+        "date": "2025-07-09T06:59:59Z"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-db-01_mssqlserver",
+        "name": "SRV-DB-01_MSSQLSERVER",
+        "kind": "sql",
+        "product": "SQL Server 2016",
+        "state": "esuNotConfirmed",
+        "date": "2029-07-17T08:00:00Z"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-leg-01_mssqlserver",
+        "name": "SRV-LEG-01_MSSQLSERVER",
+        "kind": "sql",
+        "product": "SQL Server 2014",
+        "state": "esuNotConfirmed",
+        "date": "2027-07-09T06:59:59Z"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
+        "name": "SRV-APP-02",
+        "kind": "os",
+        "product": "Windows Server 2016",
+        "state": "endingSoon",
+        "date": "2027-01-13T06:59:59Z"
+      }
+    ],
+    "notInTable": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01",
+        "name": "lnx-web-01",
+        "kind": "os",
+        "label": "Ubuntu 22.04"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-02",
+        "name": "lnx-web-02",
+        "kind": "os",
+        "label": "Red Hat Enterprise Linux 9.4"
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-app-01_sqlexpress",
+        "name": "SRV-APP-01_SQLEXPRESS",
+        "kind": "sql",
+        "label": "Unknown"
+      }
+    ]
+  },
+  "sql-inventory": {
+    "instances": 5,
+    "byVersion": {
+      "SQL Server 2012": 1,
+      "SQL Server 2014": 1,
+      "SQL Server 2016": 1,
+      "SQL Server 2019": 1,
+      "Unknown": 1
+    },
+    "byEdition": {
+      "Enterprise": 1,
+      "Express": 1,
+      "Standard": 3
+    },
+    "findings": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/old-sql-07_mssqlserver",
+        "name": "OLD-SQL-07_MSSQLSERVER",
+        "version": "SQL Server 2012",
+        "host": null,
+        "reasons": [
+          "host not found among the Arc machines in scope"
+        ]
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-leg-01_mssqlserver",
+        "name": "SRV-LEG-01_MSSQLSERVER",
+        "version": "SQL Server 2014",
+        "host": "SRV-LEG-01",
+        "reasons": [
+          "instance status Disconnected",
+          "host status Disconnected"
+        ]
+      }
+    ]
+  },
+  "policy-summary": {
+    "assignments": 4,
+    "notEnforced": [
+      "Require Arc private link scope"
+    ],
+    "withNonCompliant": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/arc-baseline",
+        "displayName": "Arc server baseline",
+        "enforcementMode": "Default",
+        "nonCompliant": 3,
+        "compliant": 4,
+        "exempt": 0,
+        "total": 7
+      },
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/providers/microsoft.authorization/policyassignments/arc-private-link",
+        "displayName": "Require Arc private link scope",
+        "enforcementMode": "DoNotEnforce",
+        "nonCompliant": 3,
+        "compliant": 4,
+        "exempt": 0,
+        "total": 7
+      }
+    ],
+    "noStates": [
+      "Tag taxonomy"
+    ],
+    "statesForUnknownAssignments": [
+      "/providers/microsoft.management/managementgroups/mg-agency/providers/microsoft.authorization/policyassignments/mg-initiative"
+    ]
+  }
+}
