@@ -8,8 +8,8 @@
 # 1. apt from the runner's configured mirror, bounded in time, if its host resolves.
 # 2. apt again from archive.ubuntu.com directly (the runner's mirror list bypassed).
 # 3. pip for every python3-* package (PyPI is a different service); a package
-#    pip can't supply (librsvg2-bin) is reported, and the steps that need it
-#    fail with their own message (scripts/build_bundles.py names rsvg-convert).
+#    pip can't supply (librsvg2-bin) fails the step, unless INSTALL_DEPS_ALLOW_MISSING=1
+#    (the PR check and the weekly gates, which publish nothing) makes it a warning.
 set -uo pipefail
 
 PACKAGES=("$@")
@@ -55,6 +55,13 @@ if [ ${#pip[@]} -gt 0 ]; then
   python3 -m pip install --user --break-system-packages "${pip[@]}" lxml || exit 1
 fi
 if [ ${#missing[@]} -gt 0 ]; then
-  echo "::warning::Not installed (no PyPI equivalent): ${missing[*]}. Steps that need them will report it."
+  # The deploy and the edition cut publish what they build, so a missing package fails them
+  # (rsvg-convert missing means Word files without their SVG figures). Checks may go on.
+  if [ "${INSTALL_DEPS_ALLOW_MISSING:-0}" = 1 ]; then
+    echo "::warning::Not installed (no PyPI equivalent): ${missing[*]}. Steps that need them will report it."
+  else
+    echo "::error::Not installed (no PyPI equivalent): ${missing[*]}. Re-run when the apt mirror is back."
+    exit 1
+  fi
 fi
 exit 0
