@@ -144,6 +144,8 @@ website:
             text: "Guide: Defender XDR Engineering & Operations"
           - href: docs/books/guides/azure-security-implementation.md
             text: "Guide: Azure Security Engineering"
+          - href: docs/books/guides/global-secure-access-implementation.md
+            text: "Guide: Global Secure Access Implementation"
           - href: docs/books/guides/ansible-configuration-automation.md
             text: "Guide: Ansible for Configuration Automation"
           - href: docs/books/guides/effective-meetings.md
@@ -469,6 +471,7 @@ website:
             - docs/books/guides/provider-notices-implementation.md
             - docs/books/guides/defender-xdr-implementation.md
             - docs/books/guides/azure-security-implementation.md
+            - docs/books/guides/global-secure-access-implementation.md
             - docs/books/guides/ansible-configuration-automation.md
             - docs/books/guides/effective-meetings.md
             - docs/books/guides/hcm-entra-implementation.md
