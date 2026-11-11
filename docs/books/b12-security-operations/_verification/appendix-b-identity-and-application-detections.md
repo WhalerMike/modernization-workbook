@@ -1,0 +1,49 @@
+# Verification — Appendix B, Identity and Application Detections for Zero Trust Findings
+
+New page, written November 11, 2026 for the Zero Trust Assessment closure update (instruction IDs B12-01, B12-02; the Book 12 parts of closure-map rows CM-01 and CM-14). All Microsoft sources were read on November 11, 2026 through the Microsoft Learn MCP tools; Microsoft's Sentinel templates are cited through the Learn pages that link them. No private assessment data, tenant name, object ID or count was used. Nothing was executed against a tenant or workspace; every query and command is illustrative and untested.
+
+## Claims log
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Alert on every emergency access sign-in; sample `SigninLogs` queries by object ID; Azure Monitor log search alert, severity 0; post-use review; validate at least every 90 days | Prerequisites; DET-30; tests 7; day-two | verified | Learn, Manage emergency access accounts in Microsoft Entra ID | Nov 11, 2026 |
+| 2 | Emergency account events that may indicate compromise: sign-in, password change, permission or role change, credential or method change | DET-31 | verified | Learn, Security operations for privileged accounts | Nov 11, 2026 |
+| 3 | PIM activation activity "Add member to role completed (PIM activation)"; monitor elevation | DET-32 | verified | Learn, Security operations for privileged accounts; audit activities reference (as Chapter 11 claim 21) | Nov 11, 2026 |
+| 4 | Alert on any admin account password change, admin or self-service; template `PrivilegedAccountPasswordChanges` | DET-33 | verified | Learn, Security operations for privileged accounts | Nov 11, 2026 |
+| 5 | Password activity names: Reset password (by admin), Change password (self-service), Reset password (self-service), Admin started password reset | DET-33 | verified | Learn, audit activities reference (Self-service password management; Authentication Methods) | Nov 11, 2026 |
+| 6 | Authentication Methods activity names (Admin/User registered, updated, deleted security info; User changed default security info; Authentication Methods Policy Update and Reset; Authentication Strength Policy create, update, delete) | DET-34 | verified | Learn, audit activities reference, Authentication Methods | Nov 11, 2026 |
+| 7 | Changes to a privileged account's authentication methods are high risk | DET-34 | verified | Learn, Security operations for privileged accounts (and consumer accounts table) | Nov 11, 2026 |
+| 8 | Tenant creation recorded as DirectoryManagement / Create Company; creator becomes Global Administrator; Tenant Creator role; restriction setting | DET-35 | verified | Learn, default user permissions; Zero Trust protect tenants | Nov 11, 2026 |
+| 9 | Infrastructure guide: monitor tenant creation, medium risk, target shows the created tenant ID | DET-35 | verified | Learn, Security operations for infrastructure | Nov 11, 2026 |
+| 10 | Microsoft's federation-change alert query on "Set federation settings on domain" and "Set domain authentication" | DET-36 | verified (query adapted: actor projected) | Learn, Monitor changes to federation configuration | Nov 11, 2026 |
+| 11 | Device code flow: investigate successful use without need; low to medium risk | DET-37 | verified | Learn, Security operations for applications | Nov 11, 2026 |
+| 12 | `AuthenticationProtocol` values include `deviceCode`; `OriginalTransferMethod` column exists in `SigninLogs` | DET-37 | verified | Learn, SigninLogs and AADNonInteractiveUserSignInLogs table references | Nov 11, 2026 |
+| 13 | Alert on unexpected device code use by privileged users, emergency access accounts, unfamiliar apps or locations; non-Teams exceptions as documented risk acceptance | DET-37 | verified | Learn, Restrict device code flow for Teams devices | Nov 11, 2026 |
+| 14 | Original transfer method shows device-code-derived sessions | DET-37 | verified | Learn, Conditional Access: Authentication flows | Nov 11, 2026 |
+| 15 | Risk diagnostic categories and tables (RiskyUsers/AADRiskyUsers, UserRiskEvents/AADUserRiskEvents, RiskyServicePrincipals/AADRiskyServicePrincipals, ServicePrincipalRiskEvents/AADServicePrincipalRiskEvents) | Prerequisites; DET-38, 44 | verified | Learn, How To: Export risk data | Nov 11, 2026 |
+| 16 | ID Protection risk on privileged sign-in should be alerted on | DET-39 | verified | Learn, Security operations for privileged accounts | Nov 11, 2026 |
+| 17 | Without P2, risk fields are hidden; licensing is a disposition, not a failed control | DET-39 | restated-as-design (licensing statement from Book 11 Chapter 10; `hidden` value from Graph riskyServicePrincipal and risk tables) | Learn, riskyServicePrincipal resource; Book 11 | Nov 11, 2026 |
+| 18 | Applications guide: credentials, role assignment, highly privileged permissions (`AppRole.Value`), consent (`ConsentContext.IsAdminConsent`), redirect URI (`AppAddress`), ownership; risk levels and templates | DET-14, 40 to 43, 45 | verified | Learn, Microsoft Entra security operations guide for applications | Nov 11, 2026 |
+| 19 | ApplicationManagement activity names (Add/Remove owner from application or service principal; Add service principal credentials; Update application - Certificates and secrets management; Consent to application; Add app role assignment to service principal; Add delegated permission grant) | DET-14, 40 to 42 | verified | Learn, audit activities reference, Core Directory; View activity logs of application permissions | Nov 11, 2026 |
+| 20 | `ConsentContext.OnBehalfOfAll` and `ConsentAction.Permissions` property names | DET-41 | unverifiable on Learn (follow Microsoft's consent templates); the page says to confirm on a test consent | — | Nov 11, 2026 |
+| 21 | Order of owner and application in `TargetResources` for owner events | DET-40 | unverifiable on Learn; the page says to confirm on the synthetic test event | — | Nov 11, 2026 |
+| 22 | Workload risk: single-tenant, non-Microsoft SaaS and multitenant apps; not managed identities; full detail with Workload Identities Premium, limited detail without | Prerequisites; DET-44 | verified | Learn, Securing workload identities | Nov 11, 2026 |
+| 23 | Sample active service principal risk query (`arg_max(LastUpdatedDateTime, *) by RequestId, ServicePrincipalId`, `RiskState == "atRisk"`) | DET-44 | verified (lookback added) | Learn, Queries for the AADServicePrincipalRiskEvents table | Nov 11, 2026 |
+| 24 | Sentinel availability: Entra ID and ID Protection connectors, scheduled and NRT rules, automation rules, watchlists GA in commercial and Azure Government; Defender portal GA features in GCC, GCC High, DoD; preview commercial only | Government-cloud availability | verified | Learn, Microsoft Sentinel feature support | Nov 11, 2026 |
+| 25 | Entra in Azure for US Government: ID Protection detections available except Microsoft Entra threat intelligence; Workload Identities Premium available | Government-cloud availability | verified | Learn, Microsoft Entra feature availability | Nov 11, 2026 |
+| 26 | Workload ID free trial unavailable in Azure Government | Government-cloud availability | verified | Learn, Workload ID FAQ | Nov 11, 2026 |
+| 27 | Azure Monitor log search alert availability in Azure Government | Government-cloud availability | unverifiable on the pages read; written "not yet specified" | — | Nov 11, 2026 |
+| 28 | `_GetWatchlist` with `SearchKey` | Watchlists | verified | Learn, Build queries or detection rules with watchlists | Nov 11, 2026 |
+| 29 | `Connect-MgGraph -Environment` values Global, USGov, USGovDoD | Synthetic tests | verified | Learn, Connect-MgGraph | Nov 11, 2026 |
+| 30 | `Add-MgApplicationPassword -ApplicationId <object id> -PasswordCredential` | Synthetic tests | verified | Learn, Add-MgApplicationPassword | Nov 11, 2026 |
+| 31 | `New-MgApplicationOwnerByRef -OdataId`, `Remove-MgApplicationOwnerByRef -DirectoryObjectId`, `Update-MgApplication -Web`, `New-/Remove-MgUserAuthenticationPhoneMethod`, `az login --use-device-code` | Synthetic tests | restated-as-design (standard Graph PowerShell and Azure CLI usage; not individually read on Nov 11) | — | Nov 11, 2026 |
+| 32 | Tables on the Auxiliary plan or data lake tier don't raise alerts | Prerequisites | verified (as Chapter 12 records) | Chapter 12 | Nov 11, 2026 |
+| 33 | Rule IDs, severities, watchlists, Tier 0 lists, sensitive permission list, rollout order and evidence checklist | Throughout | restated-as-design | Program design; Book 00 Appendix D | Nov 11, 2026 |
+
+## Learn pages read for this page (Nov 11, 2026)
+
+Manage emergency access accounts; Security operations for privileged accounts; Security operations for applications; Security operations for infrastructure; Security operations for consumer accounts (privileged table only); Microsoft Entra audit log categories and activities; Reporting options for password management; Default user permissions; Configure Microsoft Entra for Zero Trust: Protect tenants; Monitor changes to federation configuration; Conditional Access: Authentication flows; Restrict device code flow for Teams devices; SigninLogs; AADNonInteractiveUserSignInLogs; How To: Export risk data; AADRiskyServicePrincipals; AADServicePrincipalRiskEvents and its sample queries; Securing workload identities; Workload ID FAQ; riskyServicePrincipal resource type; View activity logs of application permissions; Microsoft Entra feature availability; Cloud feature availability for US Government customers; Microsoft Sentinel feature support; Build queries with watchlists; Connect-MgGraph; Add-MgApplicationPassword; Remove-MgServicePrincipalOwnerByRef.
+
+## Not yet specified by Learn
+
+- Azure Monitor log search alerts in Azure Government (Learn's emergency access page doesn't say; Sentinel rules are the program's path and are GA there).

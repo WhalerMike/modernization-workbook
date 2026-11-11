@@ -1,0 +1,49 @@
+# Azure Security Engineering guide — reference architecture: trust boundaries
+# (internet, Microsoft edge, platform connectivity hub, workload landing zone)
+# and the control planes that govern and watch them. Services and behaviors
+# verified on Microsoft Learn, Nov 11, 2026 (guide footnotes).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.5}
+clusters:
+  - id: edge
+    label: "Trust boundary 1: Microsoft edge"
+    tone: amber
+    filled: false
+    dashed: true
+    nodes: [afd]
+  - id: hub
+    label: "Trust boundary 2: platform connectivity hub"
+    tone: slate
+    filled: false
+    dashed: true
+    nodes: [agw, fw, dns]
+  - id: spoke
+    label: "Trust boundary 3: workload landing zone (a subscription)"
+    tone: blue
+    filled: false
+    dashed: true
+    nodes: [app, pe, kv]
+  - id: control
+    label: "Control planes (govern and watch every boundary)"
+    tone: violet
+    filled: false
+    nodes: [ctl]
+nodes:
+  inet: {tone: red, width: 150, title: "Internet", body: ["Users and attackers", "DDoS traffic"], size: 11}
+  afd: {tone: amber, width: 185, title: "Front Door Premium + WAF", body: ["DRS, bot, rate limits", "Private Link to origin", "Built-in L3/L4 DDoS"], size: 11}
+  agw: {tone: slate, width: 185, title: "Application Gateway WAF_v2", body: ["Prevention mode", "Public IP under DDoS", "Network Protection"], size: 11}
+  fw: {tone: slate, width: 185, title: "Azure Firewall Premium", body: ["Egress and east-west", "Threat intel and IDPS: deny", "TLS inspection"], size: 11}
+  dns: {tone: slate, width: 185, title: "Private DNS zones", body: ["privatelink.* zones", "Central, policy-registered"], size: 11}
+  app: {tone: blue, width: 185, title: "Workload", body: ["Managed identity", "No public IP", "Default route to firewall"], size: 11}
+  pe: {tone: blue, width: 185, title: "Private endpoints", body: ["PaaS public access off"], size: 11}
+  kv: {tone: blue, width: 185, title: "Key Vault", body: ["RBAC, purge protection", "Rotation, AuditEvent logs"], size: 11}
+  ctl: {tone: violet, width: 230, title: "Azure Policy, Entra ID, Monitor", body: ["Initiatives at intermediate root", "Exemptions with expiry", "PIM for Azure roles", "Log Analytics, Sentinel, Defender for Cloud"], size: 11}
+edges:
+  - [inet, afd, {tone: red, label: "HTTPS"}]
+  - [inet, agw, {tone: red, label: "HTTPS (regional)"}]
+  - [afd, pe, {tone: amber, label: "Private Link"}]
+  - [agw, app]
+  - [app, fw, {label: "0.0.0.0/0"}]
+  - [app, pe]
+  - [pe, kv]
+  - [pe, dns, {style: dashed}]
