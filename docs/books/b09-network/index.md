@@ -68,6 +68,8 @@ Appendices: [A — Optimize exemption decision instruments](appendix-a-optimize-
 
 This is Book 09 of the [Federal Modernization Workbook](../index.md). [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md) governs the name layer that SD-WAN interception and encrypted DNS touch ([Chapter 05](../b08-ddi/05-edge-interception-and-bypass.md)). [Book 07 — PKI & Certificates](../b07-pki/index.md) issues the certificates 802.1X depends on, and [Book 04 — Access & Privilege](../b04-access/index.md) turns network location into one signal among many. [Book 05 — Devices & Endpoints](../b05-devices/index.md) and [Book 06 — Data Platform](../b06-data-platform/index.md) carry the device and database work that moves over these paths. For control-level depth, the Federal Compliance volumes on [802.1X network access control](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_02_Network_Access_Control_802_1X.md), [network modernization](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_05_Network_Modernization.md) and [telecommunications modernization](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_06_Federal_Telecommunications_Modernization.md) remain in the repository.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

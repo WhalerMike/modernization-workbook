@@ -18926,6 +18926,7 @@ pages:
   - data/source-register.json
   - docs/about/decision-register.md
   - docs/books/b00-orientation/09-design-pilot-and-rollout.md
+  - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md
   - docs/books/b01-transformation-arc/05-policy-transformation.md
   - docs/books/b04-access/01-access-is-a-policy-decision.md
   - docs/books/b04-access/03-the-conditional-access-model.md
@@ -28222,6 +28223,7 @@ pages:
   - docs/books/b00-orientation/06-the-project-portfolio.md
   - docs/books/b00-orientation/09-design-pilot-and-rollout.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
+  - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md
   - docs/books/b01-transformation-arc/05-policy-transformation.md
   - docs/books/b01-transformation-arc/12-migration-roadmap.md
   - docs/books/b02-identity/09-building-the-entra-target.md

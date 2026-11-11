@@ -77,6 +77,8 @@ Appendix: [A — GPO to Intune crosswalk](appendix-a-gpo-to-intune-crosswalk.md)
 
 This is Book 05 of the [Federal Modernization Workbook](../index.md). It builds on [Book 02 — Identity & Directory](../b02-identity/index.md) for the directory migration, and hands device compliance to [Book 04 — Access & Privilege](../b04-access/index.md), where Conditional Access decides what a compliant device may reach. The [Endpoint & Device Modernization project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-charter.md) ([plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md); the published schedule is the [Endpoint & Device plan](../../project-plans/endpoint-device.md)) delivers it, and Book 01's chapters on [policy](../b01-transformation-arc/05-policy-transformation.md) and [compute](../b01-transformation-arc/07-compute-transformation.md) tell the same story at the level of the whole estate.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

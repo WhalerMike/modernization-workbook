@@ -88,3 +88,21 @@ The workbook targets FedRAMP Moderate civilian agencies. Framing that read as Hi
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |
+
+## Closure method, November 11, 2026
+
+Added from the workbook owner's anonymized "Zero Trust Assessment Closure Update Instructions," items B11-01 (normalized result taxonomy), B11-02 (closure chain) and B11-03 (weighting). The instructions' wording that guidance "closes" a finding was not carried: a finding is ready for closure when every applicable field has evidence, and the authorizing official or assessor decides. Both tools' current releases were checked on November 11, 2026: the Zero Trust Assessment's latest release is still 3.1.0 (October 20, 2026) and ScubaGear's is still v2.0.0 (October 22, 2026), so no product fact in the chapter changed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | ZTA 3.1.0 statuses: Passed, Failed, Planned (`UnderConstruction`), Skipped, and custom Investigate and Error | Normalized result taxonomy | verified (re-read at tag 3.1.0) | `Get-ZtTestStatus.ps1`, `Get-ZtTestResultStatus.ps1` |
+| 2 | ZTA 3.1.0 `SkippedBecause` values: NotConnectedAzure, NotConnectedExchange, NotConnectedSecurityCompliance, NotConnectedToService, NotLicensedEntraIDP1, NotLicensedEntraIDP2, NotLicensedEntraIDGovernance, NotLicensedEntraWorkloadID, NotSupported, UnderConstruction, NotLicensedIntune, NoAzureAccess, NotApplicable, NotDotGovDomain, NoCompatibleLicenseFound, TimeoutReached | Normalized result taxonomy | verified | `Add-ZtTestResultDetail.ps1` at tag 3.1.0 |
+| 3 | Grouping of skip reasons into Skipped-Licensing, Skipped-Disconnected, Skipped-Not-Applicable and Unable-to-Evaluate; Investigate as a provisional Fail | Normalized result taxonomy | restated-as-design (the program's mapping) | — |
+| 4 | ScubaGear 2.0.0 result values (Pass, Fail, Warning, N/A, Omitted, Incorrect Result, Error) and criticality values including `Shall/Not-implemented` and `Should/Not-implemented`; OriginalResult kept for annotated or omitted controls | Normalized result taxonomy | verified | ScubaGear v2.0.0 tooloutputschema.md |
+| 5 | Learn doesn't list the report's status values; it says each result shows its Risk and Status | Normalized result taxonomy | verified (absence noted; the source code is cited) | Learn, "Get started with the Zero Trust Assessment," "Review assessment results" |
+| 6 | A skipped check isn't a failed control or a pass | Normalized result taxonomy | verified (tool guide, already cited in the chapter) | ZTA PowerShell guide |
+| 7 | Closure chain fields and their mapping to the control states | The closure chain | restated-as-design (B11-02; Book 00 Appendix D) | — |
+| 8 | Six weighting factors; no pass percentage as the sole maturity score | Weigh the finding | restated-as-design (B11-03) | — |
+| 9 | RA-7 risk response in accordance with risk tolerance | Weigh the finding | verified (already cited in the chapter) | SP 800-53 Rev. 5.2.0 |
+| 10 | 364 tests in 3.1.0 | Weigh the finding | verified (Chapter 05's count; release unchanged) | ZTA source, tag 3.1.0 |
+| 11 | CISA ZTMM describes maturity per pillar and cross-cutting capability | Weigh the finding | verified (already cited in the chapter) | CISA ZTMM v2.0 §5, §5.6 |

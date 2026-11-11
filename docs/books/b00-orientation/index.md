@@ -53,7 +53,7 @@ Most federal IT estates still run on a client/server model built around Active D
 | **Who** | Who runs the program, and who decides what | [07](07-who-runs-the-program.md) |
 | **How** | Pre-flight and the assessment; design, pilot and rollout; retirement, steady state and measuring success | [08](08-pre-flight-and-assessment.md), [09](09-design-pilot-and-rollout.md), [10](10-retirement-steady-state-and-success.md) |
 
-Appendices: [A — Risk register and control traceability](appendix-a-risk-register-and-traceability.md) · [B — The engagement archetype (illustrative)](appendix-b-engagement-archetype.md) · [C — Funding and acquiring the program](appendix-c-funding-and-acquisition.md)
+Appendices: [A — Risk register and control traceability](appendix-a-risk-register-and-traceability.md) · [B — The engagement archetype (illustrative)](appendix-b-engagement-archetype.md) · [C — Funding and acquiring the program](appendix-c-funding-and-acquisition.md) · [D — Control states, authority labels and evidence](appendix-d-control-states-and-evidence.md)
 
 ## Reading paths
 
@@ -65,6 +65,8 @@ Appendices: [A — Risk register and control traceability](appendix-a-risk-regis
 ## Where this book sits in the workbook
 
 This is Book 00 of the [Federal Modernization Workbook](../index.md), the front door to the series. [Book 01 — The Transformation Arc](../b01-transformation-arc/index.md) carries the technical arc and sets the roadmap's phases and gates, which this book's plan follows; [Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md) holds the program-wide decision matrix. Each principle in [Chapter 04](04-the-principles.md) names the book and chapter that carry it in depth, and each project in [Chapter 06](06-the-project-portfolio.md) names its book.
+
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Appendix D](appendix-d-control-states-and-evidence.md).
 
 ## Chapters
 

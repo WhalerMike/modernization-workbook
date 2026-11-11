@@ -65,6 +65,8 @@ Appendix: [A — Requirements mapping: controls, mandates and books](appendix-a-
 
 This is Book 12 of the [Federal Modernization Workbook](../index.md). The identity and access signals it collects are designed in [Book 02](../b02-identity/index.md) and [Book 04](../b04-access/index.md), the devices and servers that emit them in [Book 05](../b05-devices/index.md), DNS logging and Protective DNS in [Book 08](../b08-ddi/index.md), CISA telemetry continuity at the network edge in [Book 09, Chapter 03](../b09-network/03-what-tic-3-requires.md), feature availability by government cloud in [Book 10](../b10-cloud-boundary/index.md), and SCuBA assessment evidence in [Book 11](../b11-zero-trust/index.md). For control-level depth, the Federal Compliance [Security Operations volumes](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_00_Security_Operations_Overview.md) remain in the repository.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

@@ -104,7 +104,7 @@ The program buys licenses, platform services and tools ([Chapter 05](05-the-prog
 ## Continue the book
 
 ::: {.callout-note appearance="minimal"}
-[← Previous: Appendix B — The Engagement Archetype (Illustrative)](appendix-b-engagement-archetype.md) · [Book index](index.md)
+[← Previous: Appendix B — The Engagement Archetype (Illustrative)](appendix-b-engagement-archetype.md) · [Book index](index.md) · [Next: Appendix D — Control States, Authority Labels and Evidence →](appendix-d-control-states-and-evidence.md)
 :::
 
 [^aC-11312]: 40 U.S.C. §11312(a) and (b)(1)–(6), Capital planning and investment control (2024 edition), <https://www.govinfo.gov/content/pkg/USCODE-2024-title40/html/USCODE-2024-title40-subtitleIII-chap113-subchapII-sec11312.htm> (accessed Oct 23, 2026).

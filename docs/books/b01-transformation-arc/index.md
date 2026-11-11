@@ -75,6 +75,8 @@ Appendices: [A — Requirements mapping](appendix-a-requirements-mapping.md) · 
 
 This is Book 01 of the [Federal Modernization Workbook](../index.md), and its overview. The other published books each take one part of the arc and carry it in depth; see the table above.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

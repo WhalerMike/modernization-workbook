@@ -63,6 +63,8 @@ Appendices: [A — What to ask a cloud provider for](appendix-a-what-to-ask-for.
 
 This is Book 10 of the [Federal Modernization Workbook](../index.md). [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md) owns the name and address layer the landing zone depends on, and [Book 09 — Network & Transport](../b09-network/index.md) the TIC 3.0 and transport decisions at its edge. [Book 04 — Access & Privilege](../b04-access/index.md) carries Conditional Access, and [Book 01, Chapter 03](../b01-transformation-arc/03-platform-foundation.md) the platform host whose interfaces Appendix B lists. For control-level depth, the Federal Compliance volumes on the [cloud landing zone](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md), [landing zone and network as code](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_01_Landing_Zone_Network_as_Code.md) and [the landing zone front door](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_02_Landing_Zone_Front_Door.md) remain in the repository.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

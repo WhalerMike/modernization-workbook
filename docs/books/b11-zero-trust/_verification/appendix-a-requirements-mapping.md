@@ -62,3 +62,10 @@ The front-matter description said a workbook book "closes" each requirement; it 
 | Before | After | Check |
 |---|---|---|
 | SR-3 and SR-6 row listed provider evidence only | Adds that Book 11 maps the provider's evidence for SR-3 and SR-6 while supplier assessment stays open in Book 14 Appendix A | Decision of Nov 8, 2026; Book 14 Appendix A rows SR-3 and SR-6 status Open |
+
+## Closure method, November 11, 2026
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | RA-7 Risk Response added to the CA-2/CA-5/CA-7 row; "respond to findings ... in accordance with organizational risk tolerance"; RA-7 is in the SP 800-53B Moderate baseline | Controls table | verified | SP 800-53 Rev. 5.2.0 OSCAL catalog; SP 800-53B Moderate profile |
+| 2 | Evidence column names the Chapter 10 register (normalized results, closure chain, weighting) | Controls table | restated-as-design | Book 11 Chapter 10 |

@@ -66,6 +66,8 @@ Appendices: [A — Federal requirements crosswalk](appendix-a-federal-requiremen
 
 This is Book 02 of the [Federal Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../b03-hr-identity/index.md). The SQL Server estate's move off Windows authentication is in [Book 06, Data Platform: SQL Server Identity](../b06-data-platform/index.md).
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

@@ -7,7 +7,7 @@ doc-type: section-landing
 
 # Reference {.unnumbered}
 
-These pages are looked up rather than read in order. Each one except the Learn Coverage Map, a table of more than 3,000 rows, also downloads as a Word document, built from the same source as the page on every site deploy. The [Reference Set](../../downloads/reference-set.docx) has those six in one document, with a title page and a table of contents.
+These pages are looked up rather than read in order. Each one except the Learn Coverage Map, a table of more than 3,000 rows, and the Zero Trust Closure Coverage tracker also downloads as a Word document, built from the same source as the page on every site deploy. The [Reference Set](../../downloads/reference-set.docx) has those six in one document, with a title page and a table of contents.
 
 | Page | What it covers | Word edition |
 |---|---|---|
@@ -18,6 +18,7 @@ These pages are looked up rather than read in order. Each one except the Learn C
 | [M-19-17 and FICAM Crosswalk](m-19-17-ficam-crosswalk.md) | OMB M-19-17 and the FICAM Architecture mapped to the books, guides and kits (under review) | [reference-m-19-17-ficam-crosswalk.docx](../../downloads/reference-m-19-17-ficam-crosswalk.docx) |
 | [Microsoft Practice Crosswalk](graph-practice-crosswalk.md) | Entra ID, Intune, national-cloud, Azure Arc and SQL practices mapped to Microsoft Learn, ScubaGear and Azure Policy (draft) | [reference-graph-practice-crosswalk.docx](../../downloads/reference-graph-practice-crosswalk.docx) |
 | [Learn Coverage Map](learn-coverage.md) | Every Microsoft Learn page on Windows Server identity and Microsoft Entra, the workbook pages that cite or cover it, and the gaps (under review) | Site only; its data is in [`data/learn-coverage/`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/learn-coverage) |
+| [Zero Trust Closure Coverage](zta-closure-coverage.md) | Each item of the Zero Trust Assessment closure update, from the global conventions to the closure map, with the workbook pages that carry it; guidance coverage, not any tenant's implementation (draft) | Site only; its data is in [`data/zta-closure/`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/zta-closure) |
 
 A narrated presentation, *The Reference Tab*, walks through why each page matters, how the six fit together and where to start by role. It's listed, with its script, on the [Presentations](../presentations/index.md#reference-tab) page; the deck and the video are coming.
 

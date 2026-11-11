@@ -211,6 +211,8 @@ website:
             text: "Microsoft Practice Crosswalk"
           - href: docs/reference/learn-coverage.md
             text: "Learn Coverage Map"
+          - href: docs/reference/zta-closure-coverage.md
+            text: "Zero Trust Closure Coverage"
       - text: "About"
         menu:
           - href: docs/inspiration/index.md
@@ -331,6 +333,7 @@ website:
         - docs/reference/m-19-17-ficam-crosswalk.md
         - docs/reference/graph-practice-crosswalk.md
         - docs/reference/learn-coverage.md
+        - docs/reference/zta-closure-coverage.md
     - id: projects
       title: "Projects"
       style: docked
