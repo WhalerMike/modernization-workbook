@@ -1,13 +1,14 @@
-# Book 00 Chapter 02 — the workbook's nineteen books in five reading groups
-# (the program's own grouping). Blue = published as a draft book; all
-# nineteen are published. Status from docs/books/index.md on October 28, 2026.
+# Book 00 Chapter 02 — the workbook's twenty topic books in five reading groups
+# (the program's own grouping). Blue = published in Release 2.0; amber = Book 20,
+# added in November 2026 and still a draft. Status from docs/books/index.md on
+# November 11, 2026.
 rankdir: TB
 graph: {nodesep: 0.12, ranksep: 0.3}
 clusters:
   - {id: g1, label: "Orientation and arc", tone: slate, filled: false, nodes: [b00, b01], order: [b00, b01]}
   - {id: g2, label: "Identity and access", tone: slate, filled: false, nodes: [b02, b03, b04, b17], order: [b02, b03, b04, b17]}
   - {id: g3, label: "The estate", tone: slate, filled: false, nodes: [b05, b06, b07, b08, b09], order: [b05, b06, b07, b08, b09]}
-  - {id: g4, label: "Boundary and assurance", tone: slate, filled: false, nodes: [b10, b11, b14], order: [b10, b11, b14]}
+  - {id: g4, label: "Boundary and assurance", tone: slate, filled: false, nodes: [b10, b11, b14, b20], order: [b10, b11, b14, b20]}
   - {id: g5, label: "Running it", tone: slate, filled: false, nodes: [b12, b13, b15, b16, b18], order: [b12, b13, b15, b16, b18]}
 nodes:
   b00: {tone: blue, width: 128, tag: "B00", title: "Orientation & Program", size: 11}
@@ -25,6 +26,7 @@ nodes:
   b10: {tone: blue, width: 128, tag: "B10", title: "Cloud Boundary", size: 11}
   b11: {tone: blue, width: 128, tag: "B11", title: "Zero Trust & Assessment", size: 11}
   b14: {tone: blue, width: 128, tag: "B14", title: "Compliance & Authorization", size: 11}
+  b20: {tone: amber, width: 128, tag: "B20 · draft", title: "Information Protection", size: 11}
   b12: {tone: blue, width: 128, tag: "B12", title: "Security Operations", size: 11}
   b13: {tone: blue, width: 128, tag: "B13", title: "Governance, Drift & Evidence", size: 11}
   b15: {tone: blue, width: 128, tag: "B15", title: "Day-2 Operations", size: 11}
