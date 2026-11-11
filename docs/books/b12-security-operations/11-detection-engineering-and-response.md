@@ -333,7 +333,50 @@ For medium-confidence detections, the playbook gathers context and hands the dec
 
 ### Suppression of known-benign incidents
 
-Health-check hosts that trip the beaconing rule, scheduled penetration tests and maintenance windows produce incidents the SOC already understands. An automation rule closes them as they are created, with a closing reason and a comment. Each rule must carry an expiration date and a named approver, as the decision-rights matrix in [Chapter 10](10-who-runs-security-operations.md) requires, so a time-limited exception cannot become permanent; a suppression with no end date goes to the authorizing official.[^c11-autorules] This is the one L4 class the program enables by default, because its blast radius is the incident queue, its condition is a watchlist with a named owner, and every closure is recorded. Better still is fixing the rule so it does not fire, which the lifecycle review does.
+Health-check hosts that trip the beaconing rule, scheduled penetration tests and maintenance windows produce incidents the SOC already understands. An automation rule closes them as they are created, with a closing reason and a comment. Each rule carries an expiration date and a named approver (risk-based recommended: the program's decision-rights matrix in [Chapter 10](10-who-runs-security-operations.md) sets it, not a Microsoft or federal requirement), so a time-limited exception cannot become permanent; a suppression with no end date goes to the authorizing official.[^c11-autorules] This is the one L4 class the program enables by default, because its blast radius is the incident queue, its condition is a watchlist with a named owner, and every closure is recorded. Better still is fixing the rule so it does not fire, which the lifecycle review does.
+
+## Control states, rollout and evidence for rules and playbooks {#b12-11-control-states}
+
+The rule lifecycle and the containment playbooks are this chapter's procedures. The rule lifecycle already stages every rule (test against history, alert-only, promote), and the response ladder already gates every containment on a named approver; this section states the control states and evidence in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s form, and the change safety for the playbooks, which are the steps here that act on people and devices. The identity and application rules in [Appendix B](appendix-b-identity-and-application-detections.md#rollout) carry their own rollout.
+
+**Authority:** Mandated in substance: IR-4 incident handling and AU-6 review where the system's baseline selects them. Microsoft-recommended for automated, risk-based response to identity risk and for Conditional Access session controls over configurable token lifetimes (Learn pages cited above, read Oct 21, 2026). Risk-based recommended for the confidence gates, the permanent-L3 classes and the quarterly rule review, which are the program's design.
+**Applies:** License-dependent: Sentinel automation and Logic Apps, Defender for Endpoint for isolation, ID Protection for risky-user actions. Environment-dependent: Sentinel features by cloud ([Chapter 05](05-from-log-warehouse-to-detection.md#where-sentinel-runs-and-which-clouds-table-to-read)).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [A rule library as code](#a-rule-library-as-code) and [The response ladder](#the-response-ladder) | Each rule's file and reason; the rung assigned to each playbook, approved by the SOC lead ([Chapter 10](10-who-runs-security-operations.md)) |
+| Configured | Lifecycle steps 1 to 3: authored, tested against history, deployed alert-only | The commit; the results simulation; the alert-only setting |
+| Enforced | Step 4, promotion with incident creation on, and each playbook wired at its rung | The promotion commit with the measured false-positive rate; the automation rule and playbook definitions |
+| Evidenced | The known-bad replay for each rule, and a playbook run against a test account and test device | The replay result; the incident comment the playbook wrote, with approver and timestamps |
+| Operated | Step 5's quarterly review and the suppression rules' expiry dates | The review record; `AUTO DISABLED` rules found and fixed; suppression rules with approver and expiry |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-section coverage.** Prerequisites: the tables the rule reads are fresh ([Chapter 05](05-from-log-warehouse-to-detection.md#proving-the-connectors-still-deliver)) and the playbook's managed identity holds only the permissions its actions need. Pilot and Report-only or audit phase: lifecycle steps 2 and 3. Enforcement: step 4, and the rings below for playbooks. Rollback: disable the rule or the automation rule; reverse a playbook's action through the separate, recorded re-enablement path in [Account disablement](#account-disablement) or by releasing isolation. Exclusions: the emergency access watchlist and the permanent-L3 classes, which no playbook acts on. Telemetry: the incident comments each playbook writes, Logic Apps run history and `SentinelHealth`. Day-two ownership: detection engineering owns the library and its review ([Chapter 10](10-who-runs-security-operations.md)).
+
+**Change safety** (playbooks at L3 and L4)
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test accounts and test devices in a test tenant | Each guard stops the playbook when it should; the action and comment are recorded |
+| 1 | Production, prepare-only: the playbook proposes the action and an analyst performs it by hand | Proposed actions match what the analyst would have done for a month |
+| 2 | Production at L3: approver releases the prepared action | No wrongly contained person or device for a month |
+| 3 | L4 only for classes the authorizing official has accepted | Post-incident review shows every autonomous action was correct and reversible |
+
+- **Emergency access:** the `FMP-EmergencyAccess` watchlist guard is tested in ring 0 with a test account on the watchlist; the playbook must stop.
+- **Change window:** playbook changes deploy in the SOC's change window, with the SOC lead and the identity on-call on hand.
+- **Backout triggers:** any containment of a wrong person or device, or a guard that fails to stop; the automation rule is disabled until the cause is fixed.
+- **Post-change validation:** the ring 0 tests repeated after every playbook change.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the rule library and playbook definitions in the repository, with promotion commits
+- [ ] **Operational:** incident records with playbook comments, approvers and timestamps; the tuning log
+- [ ] **Test:** each rule's known-bad replay and each playbook's ring 0 run, with expected and observed results, date and tester
+- [ ] **Exception:** suppression automation rules with approver and expiry; L4 classes with the authorizing official's acceptance
+- [ ] **Assessor-ready artifact:** the evidence package entry for AU-6, IR-4 and SI-4 pointing to the four above
 
 ## The incident response plan
 

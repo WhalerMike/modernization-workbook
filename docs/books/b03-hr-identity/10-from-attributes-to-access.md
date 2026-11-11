@@ -67,7 +67,53 @@ An agent's user account is a kind of user in Entra ID, and user rules evaluate i
 
 - Code lists are controlled vocabularies owned by HR. A value that isn't on the list is a drift event (Chapter 11).
 - Every rule that grants access is validated, run in shadow against the group it replaces, and gated on a verified pilot cohort before it's attached to a resource.
-- A group's membership must be explainable from attributes alone. A manual addition to a dynamic group isn't possible;[^c10-dyn-rules] a manual change to an attribute is drift.
+- A group's membership is explainable from attributes alone *(the program's design rule)*. A manual addition to a dynamic group isn't possible;[^c10-dyn-rules] a manual change to an attribute is drift.
+
+**Changing a rule safely.** A rule change is an enforcement step: it can add or remove access for thousands of people at the next evaluation. Shadow comparison and the pilot cohort above are its report-only and pilot phases. Two Microsoft facilities make the way back fast. A group's processing can be paused from its overview page by a Groups Administrator, which stops evaluation and keeps the current members, and Microsoft publishes PowerShell samples that pause and resume dynamic groups and administrative units, in bulk or by ID.[^c10-dyn-pause][^c10-dyn-samples] Processing is usually done within a few hours but can take more than 24, depending on tenant size, the number of changes and the operators a rule uses.[^c10-dyn-samples]
+
+**Authority:** Microsoft-recommended: reviewing write permissions on every attribute a security-sensitive rule uses (above), and testing the pause and resume scripts in a test environment first.[^c10-dyn-samples] The shadow-then-act discipline is risk-based recommended.
+**Applies:** License-dependent: Entra ID P1 for each unique member of a dynamic group (above). Environment-dependent: dynamic administrative units aren't available in Azure Government (below).
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The new rule on a shadow group with no resource attached | Shadow membership matches the group it replaces, every difference explained |
+| 1 | The rule attached to its resource for the pilot cohort | One week without a wrongly granted or removed entitlement |
+| 2 | The rule's full population | Membership count within the expected range after processing completes |
+
+- **Emergency access:** no rule-based group may hold emergency access accounts or be used in their Conditional Access exclusion; that group is assigned, and changed only through its own change record.
+- **Change window:** rule changes go through change control in business hours, with the group's processing state checked before and after.
+- **Backout triggers, set before the change:** membership moving by more than the expected number of users, or any report of access lost or wrongly gained. The response is to pause the group's processing, restore the previous rule from the repository, and resume.
+- **Post-change validation:** the processing status reads **Update complete**, the member count is in range, and named test users from the cohort are in or out as the rule intends.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Rule patterns and the code lists | The rule and its code list in the repository, with its owner |
+| Configured | Ring 0, the shadow group | The shadow comparison result |
+| Enforced | Rings 1 and 2, the rule attached to its resource | The group's rule and the resource assignment |
+| Evidenced | Post-change validation | The test users' membership record and the processing status |
+| Operated | Drift detection (Chapter 11) | Drift findings on attributes and rules; the access review results |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** every access-granting rule and code list in the repository, with the commit that changed it
+- [ ] **Operational:** the group's membership change history and Chapter 11's drift results
+- [ ] **Test:** the shadow comparison and post-change validation for each change
+- [ ] **Exception:** access outside the derivation baseline, each with its approver and expiry (the exception-scoped access review)
+- [ ] **Assessor-ready artifact:** for a sampled entitlement, the chain from the resource to the rule, the attribute and the worker record, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b03-10-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the HR source and the provisioning service as the only writers of the access attributes (Chapter 06); Apps, for the resources the groups are assigned to
+- **Attack chain interrupted:** Privilege Escalation and Persistence: access gained by writing an attribute a rule reads, or kept after a move because nobody removed it
+:::
 
 ## Administrative units
 
@@ -170,6 +216,8 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 :::
 
 [^c10-dyn-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership> (accessed Oct 20, 2026).
+[^c10-dyn-pause]: Microsoft Learn, "Create or update a dynamic membership group in Microsoft Entra ID," section "Check the processing status for a rule" (Pause processing on the overview page; `membershipRuleProcessingState` set to `Paused`; Groups Administrator), <https://learn.microsoft.com/entra/identity/users/groups-create-rule> (accessed Nov 11, 2026).
+[^c10-dyn-samples]: Microsoft Learn, "PowerShell samples for dynamic membership processing" (pause and resume groups and administrative units, in bulk or by ID; verify in a test environment first), <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples>, and "Troubleshooting Groups with dynamic membership processing" (usually within a few hours, can take more than 24), <https://learn.microsoft.com/troubleshoot/entra/entra-id/dir-dmns-obj/troubleshoot-dynamic-group-processing> (both accessed Nov 11, 2026).
 [^c10-dyn-efficient]: Microsoft Learn, "Create simpler, more efficient rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-more-efficient> (accessed Oct 20, 2026).
 [^c10-ca-users]: Microsoft Learn, "Conditional Access: Users, groups, agents, and workload identities," <https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups> (accessed Oct 20, 2026).
 [^c10-nist-80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; Release 5.2.0, August 27, 2025), control AC-2, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).

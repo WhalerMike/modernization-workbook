@@ -836,6 +836,10 @@ PIM role settings are defined per role.[^c09-pim-settings] The program's standar
 
 Every activation in the table requires the phishing-resistant authentication context described above.
 
+**Authority:** Risk-based recommended: the role values above are the program's position, for the risk of standing privilege. Microsoft-recommended where the text cites Learn (fewer than five Global Administrators, the authentication context for activation, named approvers). License-dependent: PIM needs Entra ID P2 or Entra ID Governance for every eligible user.
+
+**Rollout and evidence.** These standards are rolled out in Phase 5 of the [migration playbook](10-migrating-and-governing.md#phase-5-pim-rollout). The procedure that carries them through the workbook's How template, with rings, rollback, the evidence checklist and the control states, is Book 04's: the per-role settings in [Appendix B](../b04-access/appendix-b-pim-role-settings.md), activation with approval in [Chapter 08](../b04-access/08-pim-self-request-with-approval.md), and the [privileged access implementation guide](../guides/privileged-access-implementation.md)'s gates.
+
 ### PIM for Groups
 
 PIM for Groups (formerly called privileged access groups) extends just-in-time activation to group membership and ownership. Instead of sitting permanently in a sensitive group, a user activates membership through PIM with the same controls as a role: justification, authentication context, approval.[^c09-pim-groups]
@@ -856,6 +860,8 @@ Emergency access ("break-glass") accounts restore access when normal administrat
 - **Conditional Access.** Put both accounts in a dedicated exclusion group and exclude it from every policy that blocks or restricts sign-in. Report-only policies don't need the exclusion.[^c09-emergency-access]
 - **Monitoring.** Alert on every sign-in and every audit event for these accounts. Any use is an incident until a post-use review says otherwise.
 - **Validation.** Test sign-in and an administrative task at least every 90 days, as Microsoft recommends, and record the test in change management.[^c09-emergency-access]
+
+The reference architecture for these accounts, with its How-template subsections, exclusion register, alert rules, evidence checklist and control states, is [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture); the standard above is its design input.
 
 ### Protected actions
 
@@ -956,6 +962,10 @@ Conditional Access deployment follows three stages:
 ## Never enforce untested policies on all users
 Never switch a policy that targets all users from off straight to on. A misconfigured policy can lock out the whole organization, administrators included. Before enforcing any policy, confirm the break-glass exclusion group is excluded, and confirm both emergency accounts can still sign in.
 :::
+
+**Authority:** Risk-based recommended: the stages and durations are the program's position, for the risk of locking out the organization. Microsoft recommends at least a week in report-only, as a deployment tip rather than a product requirement ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)).
+
+**Change safety, rollback and evidence.** The three stages above are the rings. The per-policy cycle (pre-deployment check, report-only measurement, review and approval, ring-by-ring enforcement with a 48-hour watch), the rollback table that sets each policy back to report-only or off and never deletes it, the policy design matrix, the evidence checklist, the control states and the assessment mapping are kept once, in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement). The backout triggers for Phase 6 are in the [playbook](10-migrating-and-governing.md#b02-10-playbook-change-safety).
 
 ## Operations reference: the Connect Sync servers that stay {#operations-reference-connect-sync}
 

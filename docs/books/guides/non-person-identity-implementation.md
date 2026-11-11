@@ -485,6 +485,60 @@ AI agents are non-person identities and follow this guide, with these additions 
 
   For GCC High and DoD (High only), Microsoft has published no availability, so treat the agent features as unavailable there. Where they aren't available, run this guide's lifecycle on the service principals the agents run as.
 
+## Control states, change safety and assessment mapping {#npi-control-states}
+
+The blocks below follow [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) and point back to the gates that already do the work.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Prerequisites](#prerequisites) (the record and its fields); [G2 Decision](#step-2-decide-each-identitys-target) | The agreed record fields; each identity's target and date, approved by its owner |
+| Configured | [G3 Credential rules](#step-3-set-the-credential-rules); [G4](#step-4-cut-privilege) workload identity policies in report-only | The application management policy export; the policy files and their report-only results |
+| Enforced | G3's policy on from its effective date; G4's workload identity policies switched to On; [G5](#step-5-convert-with-a-parallel-run) legacy accounts disabled after the parallel run | The enforcing state in the exports; the exception register; the disabled objects' IDs in the record |
+| Evidenced | Each gate's **Validate** (VK-NPI-01 to 09) | Each check's output with its date, tenant and check version; ScubaGear MS.AAD.5.x results |
+| Operated | [G6 Lifecycle](#step-6-run-the-lifecycle) | Weekly VK-NPI-01 and 02 runs; owner-change, orphan and decommission tickets; access review results |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.**
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | [Prerequisites](#prerequisites): record, roles, licenses; Workload ID Premium in Azure Government through the account manager |
+| Pilot | G4's workload identity policies start with Tier 1 single-tenant service principals; G5 converts high-risk accounts in the first wave |
+| Report-only or audit phase | G4's workload identity policies report-only first, results read in the service principal sign-in logs; G1 and G2 change nothing |
+| Enforcement | G3's policy effective date; G4's switch to On; G5's disable after 30 days |
+| Rollback | [Rollback](#rollback) |
+| Exclusions | G3's secret exceptions (approved, at most six months); G4's justified high-privilege grants; managed identities and multitenant apps, which workload identity policies can't cover. Emergency access accounts are human accounts and aren't in this track's policies |
+| Telemetry | Service principal sign-in logs, audit entries for credential adds and `isDisabled` changes, routed to the SIEM ([Evidence](#evidence)) |
+| Evidence | [Evidence](#evidence) and its checklist |
+| Day-two ownership | G6: two named owners and a sponsor per identity; the identity governance office for orphans; weekly checks |
+
+: Where each How-template subsection is covered {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The track's own automation identities (the check and write apps) | Checks run on certificates, no secrets; the write path's plan and apply manifests recorded |
+| 1 | Tier 1 single-tenant service principals, report-only (G4) and the first G5 wave of high-risk accounts | Report-only results reviewed with no legitimate sign-in that would be blocked; 30-day parallel run clean |
+| 2 | Remaining service principals and service accounts, wave by wave | Each wave's parallel run clean; VK-NPI-03 and 06 show the wave converted |
+| 3 | The tenant-wide default policy for every new registration (G3) | VK-NPI-02 shows no new credential past the cap |
+
+- **Emergency access:** not applicable to workload identity policies, which target service principals only; the emergency accounts' exclusion is the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first).
+- **Change window:** each write is a reviewed plan approved by its SHA-256 and applied by a person under a change record ([Evidence](#evidence), CM-3) *(design guidance)*.
+- **Backout triggers:** a workload's sign-in or token-exchange failure during the parallel run, or a production credential expiring unplanned, set in the wave's change record before it starts *(design guidance)*.
+- **Post-change validation:** the gate's **Validate** checks after each wave, and the new identity's sign-ins in the service principal sign-in log.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#npi-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity (workload identities); Apps
+- **CISA ZTMM pillar:** Identity; Applications and Workloads
+- **Depends on:** the privileged access track for PIM and reviews of privileged service principals ([privileged access guide](privileged-access-implementation.md)); the cryptographic architecture for workload certificates ([Book 07](../b07-pki/index.md)); SecOps for the sign-in and audit logs ([Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md))
+- **Attack chain interrupted:** Credential Access (no stored secrets to steal, Kerberoastable passwords replaced), Persistence (orphaned identities and credentials added by an owner found and removed), Privilege Escalation (standing high-privilege grants cut)
+:::
+
 ## Dangers and how to avoid them {#dangers}
 
 | Danger | What goes wrong | Mitigation |
@@ -526,6 +580,14 @@ The mapping is the program's, from the books cited. Where a book maps a control,
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which evidence supports which indicator is the program's mapping (design guidance).[^npi-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)).
 
 Run the checks on the continuous monitoring cadence and file their output with the date, the tenant and the check version. The scheduled drift comparison in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#git-based-drift-detection) is where a regression shows up as an issue.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the application management policy export, the workload identity policy files, and the Step 1 record, in the evidence store
+- [ ] **Operational:** VK-NPI runs on the continuous monitoring cadence; service principal sign-in and audit logs in the SIEM, with their retention
+- [ ] **Test:** each gate's **Validate** result, and the test owner change and test decommission from G6, with expected and observed outcome, date and tester
+- [ ] **Exception:** secret exceptions, justified high-privilege grants and dated password-never-expires exceptions, each with its approver and expiry
+- [ ] **Assessor-ready artifact:** the ScubaGear report and the period's filed check outputs, traceable to the four above
 
 ## Rollback
 

@@ -61,3 +61,12 @@ New appendix, Nov 9, 2026 (Learn coverage gaps: entra-apps gap 1 and 8, ws gap 3
 
 - Microsoft's "Best practices to migrate applications and authentication" page still calls the migration tool "Currently in preview"; the how-to page doesn't. The appendix follows the how-to page.
 - The GitHub "ADFS to AzureAD App Migration" scripts aren't documented on Learn; no commands from them are given.
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | "Every group ... must be synced" relabeled as Microsoft's migration stages (Microsoft-recommended) | Step 4 | restated-as-design (authority label) | Learn, as note aD-stages | Nov 11, 2026 |
+| P4-2 | How-template mapping, rings, backout triggers, control states, evidence checklist and assessment mapping for each relying party's move | Rollout safety and evidence | restated-as-design (built from Steps 1–7, whose Learn sources are logged above) | — | Nov 11, 2026 |

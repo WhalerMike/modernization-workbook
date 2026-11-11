@@ -183,3 +183,7 @@ New section "Identity recovery during the hybrid period," a row in the controls 
 | 103 | Interim path: restore soft-deleted objects within 30 days; keep known-good configuration (snapshots, exports in version control) | Identity recovery, Entra | verified | Microsoft Learn "Recoverability best practices," "Recover from deletions," read Nov 9, 2026 |
 | 104 | "For GCC the plan confirms it in the tenant before relying on it"; "leave resilience defaults on" | Identity recovery | restated-as-design | — |
 | 105 | Forest recovery pointer and summary | Identity recovery, Active Directory; Section 5 | restated (summary of Appendix H; sources in that appendix's log) | Appendix H |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b14-06-backup-control-states` (G-01, G-02, G-05, G-06). No new product claim; Azure Backup and workspace replication facts are the dated rows above.

@@ -72,3 +72,11 @@ Re-checked after the weekly source watch (issue #499) reported that OPM replaced
 |---|---|---|
 | GPPA edition cited as "October 2026" | updated: the cover and page footers now read November 2026; footnote edition and access date changed | GPPA PDF, <https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf> |
 | Chapter list and codes this page relies on (Ch 1 §4 and §5, EHRI Data Standards codes only in coded blocks; Ch 9–11, 13 accessions and conversions; Ch 14; Ch 15: 430, 450–452, 460, 471, 473, 480, with 472 Furlough NTE in its tables; Ch 16: 280, 292; Ch 30; Ch 31; Ch 32: 001, 002) | re-verified in the November 2026 edition, no change | Same |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | "must be ready" relabeled as risk-based recommended, with its reason | Phase 5 | restated-as-design (authority label) | — | Nov 11, 2026 |

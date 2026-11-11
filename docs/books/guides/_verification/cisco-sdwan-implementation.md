@@ -25,3 +25,9 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 10 | "Harden" row and section heading say "configuration baseline" rather than "STIG status" | Guide map; section heading | editorial | — |
 
 Kept unchanged: CISA's quoted "Host Infrastructure in GovCloud" (a CISA fact, `cs-supp`); "The system is High impact ... SDWAN-G is certified at Moderate" (a tier comparison in the on-premises triggers).
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Added the section `#sdw-control-states` under Book 00, Appendix D's conventions: control states (G-01), How-template coverage (G-02), change safety (G-07), the evidence checklist (G-06) and the assessment-mapping block (G-08), drawn from Gate 0, Phases 0–2, Hardening and Evidence and telemetry; plus the evidence checklist `#sdw-evidence-checklist`. The section makes no new product, licensing or availability claim: every row points to text already on the page and footnoted, with the access dates in this log; rings, backout triggers and the emergency-access rule are labelled *(design guidance)*.
+
+Authority labels (G-05): every "must", "shall" and "required" on the page was read. None was relabelled: each is a product constraint from its cited source, a quoted passage, a condition, or a mandate that names its authority (for the SD-WAN guide, CISA ED 26-03). No fact was re-verified, because none was added or changed.

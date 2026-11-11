@@ -313,6 +313,66 @@ The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr
 
 On the fixture extract (19 fictional rows) both clients produce 9 operations, 9 quarantined records and 1 superseded record, with identical payload hashes. The tests ran 70 pytest cases and 62 Pester 5 cases on November 8, 2026 (45 and 40 at first publication), all passing. They prove the code does what its README says against the fixtures, not that a tenant or an Oracle extract behaves the same way. The clients don't read Atom feeds, hold future-dated events, write provenance or read the provisioning logs back; those are the rest of the middleware.
 
+## Control states, change safety and assessment mapping {#hcm-control-states}
+
+The workbook's conventions for implementation procedures are defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); this section applies them to the pipeline above without adding product claims.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The two decisions](#the-two-decisions-to-make-first); [Part 3](#part-3-the-mapping); phases 0 and 1 of the [build phases](#build-phases-mapped-to-book-03) | Signed schema; the polling and gateway decisions recorded; Steering Committee request |
+| Configured | [Part 1](#part-1-the-entra-side) and [Part 2](#part-2-the-oracle-side); phase 2 | The provisioning apps' exported mappings and scoping; `config/mapping.json` and its commit; uploader and log-reader permissions; deletion threshold and notification email set on both apps |
+| Enforced | Phases 4 and 5: the pipeline is the only writer of account state for its population | Seven-day sole-source proof ([Appendix C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md)); the single-writer check on slots 1–6 and 10–12 |
+| Evidenced | [Testing and cutover](#testing-and-cutover); the Gate G1 evidence | Acceptance test records with provisioning-log entries matched by `externalId`; zero missed leavers across a pay period |
+| Operated | Phase 6 | Named pipeline owner; daily changes-only reconciliation; alerts on feed lag and job quarantine; last reconciliation record |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.**
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | [The provisioning apps](#the-provisioning-apps) (roles, licensing), [Permissions](#permissions), [GCC](#gcc), [The integration identity](#the-integration-identity) |
+| Pilot | Phase 3 (hybrid go-live in shadow mode); Microsoft's five-to-ten-record trial in [Testing and cutover](#testing-and-cutover) |
+| Report-only or audit phase | The example clients' dry run, and phase 3's shadow mode, where every difference is explained before the pipeline writes |
+| Enforcement | Phases 4 (leavers first) and 5 (cutover to Core HCM); change safety below |
+| Rollback | [Testing and cutover](#testing-and-cutover): pause the job from an operator role; never *Restart* |
+| Exclusions | Pending workers, nonworkers and contingent workers scoped by decision in phase 1; emergency access accounts outside the pipeline's scope (below) |
+| Telemetry | [Provisioning logs](#provisioning-logs-the-reconcile-duty); [job quarantine](#job-quarantine-and-the-deletion-threshold) notifications and job status |
+| Evidence | The checklist below |
+| Day-two ownership | Phase 6; help-desk and operating cadence in [Book 15](../b15-day2-operations/index.md) |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test tenant and fixture extract (phase 2) | Joiner, mover and leaver end to end with provenance; the dry run refuses every bad record |
+| 1 | Five to ten records, then the foundation population in shadow mode (phase 3) | Every difference explained; zero unmatched creations |
+| 2 | Leavers automated (phase 4) | Zero missed leavers across a pay period |
+| 3 | Every in-scope worker, source switched to Core HCM (phase 5) | Seven-day sole-source proof |
+
+- **Emergency access:** emergency access accounts are cloud-only and have no HR record, so they stay outside every provisioning app's scope and no workflow targets them *(design guidance)*; confirm before ring 1 that no scoping rule or Lifecycle Workflow reaches them. Their design is [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture).
+- **Change window:** each ring and the month-8 source switch run under an approved change, with the identity engineer and an operator who holds the pause switch on hand *(design guidance)*.
+- **Backout triggers:** the job enters quarantine; staged disables or deletions exceed the deletion threshold; the middleware's large-delta hold fires; an unmatched creation appears in the provisioning log *(design guidance)*.
+- **Post-change validation:** the provisioning-log reconciliation for the ring's population, and the Appendix C acceptance rows re-run.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** exported attribute mappings and scoping of both provisioning apps; `config/mapping.json` and its commit; deletion threshold and notification email settings
+- [ ] **Operational:** provisioning-log reconciliation runs, quarantine notifications and feed-lag alerts, kept on the continuous-monitoring cadence
+- [ ] **Test:** the Appendix C acceptance scenarios, expected and observed outcome, date, tester, with their provisioning-log entries
+- [ ] **Exception:** the quarantine file of refused records, each with an owner; scope decisions for pending, contingent and nonworker records
+- [ ] **Assessor-ready artifact:** the seven-day sole-source proof and the Gate G1 evidence, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#hcm-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the HR source as authority ([Book 03](../b03-hr-identity/index.md)); access derived from the attributes ([attribute-driven migration guide](attribute-driven-migration-implementation.md)); SecOps for the quarantine and feed-lag alerts
+- **Attack chain interrupted:** Persistence and Initial Access through accounts that outlive employment (leavers disabled on time); Privilege Escalation through access left behind by a move
+:::
+
 ## Risks
 
 | Risk | Rating | Mitigation *(design guidance)* |

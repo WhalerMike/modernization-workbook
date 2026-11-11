@@ -132,3 +132,11 @@ One sentence said no single console "closes SI-2"; it now says none is enough to
 | Before | After | Source |
 |---|---|---|
 | closes SI-2 on a multi-platform estate | is enough to support SI-2 on a multi-platform estate | no source change |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b12-07-control-states` with change safety for baseline enforcement (G-01, G-02, G-05, G-06, G-07, G-08) and footnote `c07-sdp`. Relabeled three "must" statements (G-05): the unified record (risk-based recommended), tracking publishers' baselines (risk-based recommended), and SCuBA updates (mandated by BOD 25-01 required action 4, per Book 11 Chapter 04).
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Microsoft's safe-deployment practice for policy assignments: least critical tier first, validate compliance and application health, widen tier by tier | Control states, rollout and evidence | verified (new) | Learn, "Safe deployment of Azure Policy assignments" and "Azure Policy assignment structure," Enforcement mode, https://learn.microsoft.com/azure/governance/policy/how-to/policy-safe-deployment-practices | Nov 11, 2026 |

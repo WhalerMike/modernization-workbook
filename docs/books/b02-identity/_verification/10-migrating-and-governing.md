@@ -270,3 +270,26 @@ Learn pages the coverage map listed as covered but uncited were read on Nov 9, 2
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | F1 | Phase rollbacks assume a healthy forest; a lost forest is recovered first, with synchronization paused, using Book 14 Appendix H; rehearse before Phase 1 | §The migration execution playbook | restated-as-design (cross-reference; the runbook's own claims log carries the Microsoft sources) | Book 14, Appendix H |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Book 04 Appendix D runs the roadmap: runbooks, readiness gate, evidence, control states; government-cloud table there (passkey profiles, synced passkeys not yet specified) | Phishing-resistant roadmap | restated-as-design (cross-reference) | Book 04, Appendix D | Nov 11, 2026 |
+| P4-2 | Each method in the authentication methods policy targets included and excluded groups | Turning a method off | verified | Learn, "Manage authentication methods" | Nov 11, 2026 |
+| P4-3 | userRegistrationDetails `methodsRegistered` lists registered methods, e.g. `mobilePhone`, `email`, `passKeyDeviceBound`; the full value list isn't enumerated, so the code says to confirm values | Turning a method off | verified | Learn, userRegistrationDetails resource type | Nov 11, 2026 |
+| P4-4 | Rings, triggers and the phone-only read for turning a method off | Turning a method off | restated-as-design (program position) | — | Nov 11, 2026 |
+| P4-5 | Microsoft recommends starting in audit mode and at least one DC promotion and one demotion during audit | Rolling out Password Protection | verified | Learn, "Plan and deploy on-premises Microsoft Entra Password Protection" | Nov 11, 2026 |
+| P4-6 | Enable toggle set to No puts DC agents in quiescent mode (all passwords accepted, no audit events); Mode Audit or Enforced on one settings page | Rolling out Password Protection | verified | Learn, "Enable on-premises Microsoft Entra Password Protection" | Nov 11, 2026 |
+| P4-7 | Restarting the DC agent service forces a policy download (event 30006); Entra ID is always in enforce mode, audit is on-premises only | Rolling out Password Protection | verified | Learn, on-premises Password Protection FAQ | Nov 11, 2026 |
+| P4-8 | Ordered removal (proxies, DC agents with reboot, SCPs, config container, SYSVOL); DSRM and demotion local Administrator passwords are validated | Rolling out Password Protection | verified | Learn, "Troubleshoot: On-premises Microsoft Entra Password Protection" | Nov 11, 2026 |
+| P4-9 | HeartbeatUTC stale when an agent stops, is uninstalled or the DC is demoted; event 30034 for a newer version; no autoupgrade | Rolling out Password Protection | verified | Learn, "Monitor and review logs for on-premises Microsoft Entra Password Protection" | Nov 11, 2026 |
+| P4-10 | 30-day and one-expiry-cycle audit period; rings; backout triggers | Rolling out Password Protection | restated-as-design (program position) | — | Nov 11, 2026 |
+| P4-11 | MS.AAD.1.1v1 "Legacy authentication SHALL be blocked" is a BOD 25-01 required configuration | Blocking legacy authentication | verified | CISA, BOD 25-01 Required Configurations | Nov 11, 2026 |
+| P4-12 | Microsoft highly recommends disabling SMTP AUTH organization-wide and enabling per mailbox; Set-TransportConfig and Set-CASMailbox settings | Blocking legacy authentication | verified | Learn, "Enable or disable authenticated client SMTP submission (SMTP AUTH)" | Nov 11, 2026 |
+| P4-13 | SMTP AUTH Clients report: TlsAuthLogin (Basic) and XOAUTH2 (Modern), up to 90 days | Blocking legacy authentication | verified | Learn, "SMTP AUTH Clients report" | Nov 11, 2026 |
+| P4-14 | Basic authentication retirement for SMTP AUTH: Learn still points to the latest Exchange announcement for the timeline; text unchanged ("check the current announcement") | Blocking legacy authentication | verified (no change) | Learn, "Deprecation of Basic authentication in Exchange Online" | Nov 11, 2026 |
+| P4-15 | Playbook change window, emergency access test, backout triggers; phase-to-control-state table | Change safety and control states across the playbook | restated-as-design | — | Nov 11, 2026 |
+| P4-16 | "must be met" and "must not be used" relabeled: the phase-order rule as risk-based recommended; Convert-MsolDomainToStandard as a retired module's cmdlet | Playbook intro; Phase 9 | restated-as-design (authority label) | — | Nov 11, 2026 |

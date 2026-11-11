@@ -112,6 +112,26 @@ The kits' packaging scripts don't delete evidence; the drift pipeline refuses to
 5. **Keep evidence of the suspension.** Export the retention and lifecycle settings before and after, with times and the identity that changed them, and add the export to the evidence store. The hold record, the exports and the release are themselves records; GRS 4.1 item 020 covers records about "transferring, destroying, and retrieving records," though counsel's own hold files are usually scheduled with the matter.[^c13-grs41]
 6. **Release in writing, then resume disposition.** When the issuing office releases the hold, the steward closes the hold record, restores the settings, and lets disposition run under the register. Records past their date are destroyed as the schedule instructs, the rule 36 CFR 1226.18(c) sets for the end of a temporary extension.[^c13-1226]
 
+**Control states and evidence for a hold.** The steps above change retention settings, so [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply. **Authority:** Mandated: NARA's hold and disposition rules in 36 CFR Chapter XII, Subchapter B, as cited above; the six steps are the program's design for meeting them. **Applies:** every system whose evidence the hold's scope names.
+
+| State | This procedure | Evidence |
+|---|---|---|
+| Designed | Step 1: the hold record, with scope from counsel or the records officer | The hold record at its commit |
+| Configured | Steps 2 and 3: every deletion path listed and suspended | The before-and-after settings exports (step 5) |
+| Enforced | Step 4: purge jobs fail closed against the hold records | Job logs showing in-scope items refused |
+| Evidenced | A test deletion of a held test item that the job refuses | The test record and the refusal it logged |
+| Operated | Step 6: release in writing, settings restored, disposition resumed | The release record and the restored settings export |
+
+Pilot, report-only phase and change safety are not applicable: a hold is ordered, not rolled out, and suspending deletion can't lock anyone out. Rollback is step 6, and only on written release. Exclusions are whatever counsel's scope leaves out, recorded in the hold record. Day-two ownership is the steward's, with the records officer ([Who owns what](#who-owns-what)).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the hold record and the retention and lifecycle settings exports before and after
+- [ ] **Operational:** purge-job logs showing refusals for the hold's duration
+- [ ] **Test:** the held-item deletion test, with expected and observed results, date and tester
+- [ ] **Exception:** any deletion path that couldn't be suspended, with the records officer's decision
+- [ ] **Assessor-ready artifact:** the hold's entry in the records file, pointing to the four above
+
 ## Immutable storage and disposition
 
 The program writes evidence once and keeps it in storage that can't be changed or deleted until a retention interval ends: in the drift pipeline's design, a container with a locked time-based retention policy ([Book 19, Chapter 09](../b19-developer-workbook/09-drift-pipelines-and-evidence.md#the-evidence-package) covers the platform settings). That serves records law well. NARA requires controls for electronic records that protect authenticity "against unauthorized addition, deletion, alteration, use, and concealment," and integrity through audit trails that keep records "complete and unaltered."[^c13-1236] Write-once storage and the hash chain from [Chapter 07](07-evidence-over-attestation.md) provide both. It also interacts with disposition in five ways the records officer should hear about before the lock is set (design guidance):

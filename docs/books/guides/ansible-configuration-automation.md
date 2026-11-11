@@ -222,6 +222,14 @@ Ansible produces evidence as a side effect of being used properly: the playbook 
 
 **Job results to the evidence store.** Book 12's evidence contract already expects Ansible Automation Platform job results to be posted to the coordination layer's inbound integration, in the same shape every other stack emits: the asset's authoritative identity as the join key, `aap` as the source stack, the finding or baseline reference, and the job ID as the evidence pointer ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#extending-the-contract-to-a-second-cloud-red-hat-on-aws)). Because the inventory came from the CMDB, every result already carries the CMDB's configuration item number, which maps to the contract's `asset_id`; the asset's authoritative identity from the naming plane stays the join key. The example playbooks write CSV and JSON with that column for the same reason.
 
+**Evidence checklist**
+
+- [ ] **Configuration:** the playbooks, roles, inventory source and `requirements.yml`, by Git commit and tag, as the CM-2 baseline of the hosts Ansible owns
+- [ ] **Operational:** check-mode drift reports, job results posted with the CMDB key, and the controller's activity stream and job events in the SIEM ([Logging](#logging-and-audit)), retained past any hosted service's own log erasure
+- [ ] **Test:** the two consecutive runs with no change on the second, the canary batch's result, and the rollback test of [Phase 3](#a-phased-adoption-path), with date and tester
+- [ ] **Exception:** dated records for every setting Ansible touches that another tool owns ([One owning tool per setting](#one-owning-tool-per-setting)), with approver and expiry
+- [ ] **Assessor-ready artifact:** the evidence-store entries for CM-2, CM-3, CM-6, CM-7, CM-8, AU-2, AU-12, AC-6 and SR-3, traceable to the four above
+
 ## Dangers and how to avoid them {#dangers-and-how-to-avoid-them}
 
 | Danger | How it fails | How to avoid it |
@@ -253,6 +261,60 @@ Ansible produces evidence as a side effect of being used properly: the playbook 
 : Adoption phases, decisions and gates {.striped .hover}
 
 Phase 0 can start in a week with nothing but a laptop-class control node and a CMDB export, and it produces evidence the program needs anyway. Automation Platform isn't a prerequisite for phases 0 to 2; it's the way to make phase 3 governable at scale.
+
+## Control states, change safety and assessment mapping {#ans-control-states}
+
+The workbook's conventions for implementation procedures are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); this section applies them to the adoption path above.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [One owning tool per setting](#one-owning-tool-per-setting); Phase 0 and Phase 2 decisions ([adoption path](#a-phased-adoption-path)); [baseline content](#baseline-content) | `config_owner` values in the CMDB; the approved baseline per platform |
+| Configured | Phase 2: baseline playbooks run in check mode only | Playbook versions by commit; drift reports against the versioned baseline |
+| Enforced | Phase 3: baselines applied by pull request, canary first, on hosts whose `config_owner` is Ansible | Job results; the pull request and its reviewer; the exception records |
+| Evidenced | Phase 3's gate: two clean consecutive runs and a tested rollback | The two job records and the rollback record |
+| Operated | Phase 4, with [credentials and the controller's identity](#credentials-and-the-controllers-identity) and [logging](#logging-and-audit) | Owners and the quarterly access review; the drift-run schedule; controller logs in the SIEM |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** Where the guide carries each part of the [How-section template](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template):
+
+| Subsection | Where |
+|---|---|
+| Prerequisites | [Phase 0](#a-phased-adoption-path) (control node, CMDB inventory); [Ansible Automation Platform in a federal setting](#ansible-automation-platform-in-a-federal-setting) for versions, authorization status, FIPS mode and hosting |
+| Pilot | The canary batch of `serial` ([Dangers](#dangers-and-how-to-avoid-them)); the example's one host, then 5, then 25 percent |
+| Report-only or audit phase | Check mode and `--diff` (Phase 2) |
+| Enforcement | Phase 3, by pull request, in canary-first batches |
+| Rollback | A playbook is reverted by applying the previous tagged version of the baseline to the same hosts through the same pull-request path, and tested in Phase 3 *(design guidance)* |
+| Exclusions | Hosts another tool owns are refused by the playbook's assertion; exceptions are dated records. Emergency access accounts: not applicable, because no step here blocks a sign-in |
+| Telemetry | [Logging and audit](#logging-and-audit): job events, activity stream and logs to the SIEM |
+| Evidence | [Evidence to the program](#evidence-to-the-program) and its evidence checklist |
+| Day-two ownership | Two named owners for the controller and each credential; the quarterly access review ([credentials](#credentials-and-the-controllers-identity)) |
+
+: How-section template, mapped to Ansible adoption {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Check mode against the platform's hosts | Drift report triaged; no unexpected change in `--diff` |
+| 1 | The canary batch (first `serial` batch, for example one host) | Run succeeds; the second run reports no changes |
+| 2 | The next batches (for example 5 hosts, then 25 percent) | `max_fail_percentage` not exceeded; no attributable incidents |
+| 3 | Every host of the platform whose `config_owner` is Ansible | Two clean consecutive runs; drift reports clean |
+
+- **Emergency access:** not applicable to sign-in. The way back to a host is the platform's own break-fix access, kept outside the controller so a bad run can't remove it *(design guidance)*.
+- **Change window:** go-live per platform through the platform owner's change control (Phase 3), with the playbook's pull request as the change record.
+- **Backout triggers:** set before the run: the first failure in a batch (`any_errors_fatal`, or `max_fail_percentage` exceeded), a service failure on a canary host, or a second run that still reports changes.
+- **Post-change validation:** the same playbook in check mode after each ring, and the second-run test.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Infrastructure
+- **CISA ZTMM pillar:** Devices (servers and network devices as assets), with Applications and Workloads for the controller
+- **Depends on:** the CMDB as the inventory of record; Identity (the controller and its credentials as non-person identities, [Non-Person Identity guide](non-person-identity-implementation.md)); the [Arc track](arc-track-implementation.md) for servers Arc can govern; SecOps (logs in the SIEM, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Persistence and Defense Evasion (configuration drift reverted to the baseline); Credential Access (no standing secrets in playbooks or on engineers' machines); supply-chain compromise through unreviewed collections
+:::
 
 ## The example playbooks {#the-example-playbooks}
 

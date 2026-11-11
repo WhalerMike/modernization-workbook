@@ -153,11 +153,44 @@ The built-in leaver tasks cover groups, Teams, access packages, licenses, disabl
 - Authorize the response with the Logic App's system-assigned managed identity, the default.[^c09-lcw-ext]
 - Order the workflow as the sequence above. Tasks run in their execution sequence, and each task's `continueOnError` setting decides whether its failure stops the tasks after it.[^c09-lcw-tasks] Put *Disable user account* and *Revoke all refresh tokens for user* first, and read the account back to verify the block. The disable task, like the delete task, doesn't support users with Microsoft Entra role assignments or with membership or ownership of role-assignable groups, so privileged leavers need their own verified block path (Appendix A).[^c09-lcw-tasks] Then the custom task (one Logic App that starts the Intune retire or wipe and the CMS revocation in parallel and reports both results); then the group, Teams, access package and license removals. Put *Delete user* in a separate post-separation workflow keyed to the account-disposition rule; the privileged-access removals have to finish first.[^c09-lcw-tasks]
 
-Custom tasks must be idempotent and use bounded retry with backoff for transient failures. Exhausted retries, validation failures, or permanent errors create a high-priority exception, notify the responsible security and operations teams, and remain open until revocation is confirmed through an alternate path. The exception counts against the separation metrics in Chapter 11.
+As the program's design *(risk-based recommended)*, custom tasks are idempotent and use bounded retry with backoff for transient failures. Exhausted retries, validation failures, or permanent errors create a high-priority exception, notify the responsible security and operations teams, and remain open until revocation is confirmed through an alternate path. The exception counts against the separation metrics in Chapter 11.
 
 ## What the evidence must show
 
 For each leaver: the HR effective date; the disable and token-revocation timestamps; the device actions and their completion; the CMS revocation record and the CRL that published it; the access removals; any exceptions and how they closed; and the disposition date. Two intervals come out of it: HR effective date to the block (steps 1–2), and HR effective date to the last confirmed revocation. They are what an assessor asks for under PS-4, which requires disabling system access within an organization-defined period and revoking the person's authenticators and credentials (Chapter 11).[^c09-sp80053]
+
+**Authority:** Mandated where the agency's baseline adopts PS-4 (NIST SP 800-53 Rev. 5): disabling access within the organization-defined period and revoking authenticators and credentials; for a PIV card that can't be collected, FIPS 201-3's 18-hour termination window (above). The order of the sequence follows Microsoft's documented revocation procedure *(Microsoft-recommended)*.
+**Applies:** every tenant. License-dependent: running the sequence from Lifecycle Workflows needs Microsoft Entra ID Governance ([Chapter 08](08-joiner-mover-leaver.md#b03-08-rollout-and-evidence)); without it, the leaver checklist with a named owner per row is the fallback.
+
+The rollout, rings, rollback and day-two ownership of the workflow that runs the sequence are [Chapter 08's](08-joiner-mover-leaver.md#b03-08-rollout-and-evidence). For the credential side:
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The canonical leaver sequence | The approved sequence and the custom task design |
+| Configured | The leaver workflow's task order and the custom task extension | The workflow export with its task order and `continueOnError` settings |
+| Enforced | The leaver workflow scheduled ([Chapter 08](08-joiner-mover-leaver.md#b03-08-rollout-and-evidence)) | Scheduling on; the CMS integration live |
+| Evidenced | A test leaver with a test-CA certificate (Chapter 12, Phase 2) | The CMS revocation record, the CRL that published it, and the account read back as disabled |
+| Operated | Exceptions tracked to closure; Chapter 11's metrics | The separation-to-revocation interval each reporting period |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the leaver workflow export and the custom task extension's Logic App definition, in the identity baseline repository
+- [ ] **Operational:** for each leaver, the record listed above, from HR effective date to disposition date
+- [ ] **Test:** the test leaver run with a test-CA revocation (expected and observed outcome, date, tester)
+- [ ] **Exception:** every high-priority exception from a custom task, with how revocation was confirmed and when
+- [ ] **Assessor-ready artifact:** the two intervals for the period, with the leavers behind them, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b03-09-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices, for Intune retire and wipe and the certificates they remove ([Book 05](../b05-devices/index.md)); the PKI and card management system ([Book 07](../b07-pki/index.md))
+- **Attack chain interrupted:** Credential Access and Persistence: a separated person's PIV certificate, device certificate or refresh token still accepted after separation
+:::
 
 
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}

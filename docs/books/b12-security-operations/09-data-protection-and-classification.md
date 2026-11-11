@@ -388,6 +388,55 @@ The order matters because each step depends on the one before it. It is the prog
 4. **Run auto-labeling and DLP in simulation, then enforce.** Measure false positives against real content before any policy acts.
 5. **Set audit retention to the requirement.** Licenses and retention policies decide how long label and DLP events survive ([Chapter 04](04-platform-and-m365-telemetry.md)).
 
+### Control states, rollout and evidence {#b12-09-control-states}
+
+[Book 20, Information Protection & Microsoft Purview](../b20-information-protection/index.md), now carries each of these steps as a full procedure with its own pilot, simulation, enforcement, rollback, exclusions and evidence: the taxonomy in a test tenant ([Chapter 02](../b20-information-protection/02-sensitivity-label-architecture.md#b20-02-how-build-the-taxonomy-in-a-test-tenant)), publication and defaults ([Chapter 03](../b20-information-protection/03-label-publication-and-defaults.md#how-publish-labels-and-set-defaults)), Rights Management ([Chapter 05](../b20-information-protection/05-rights-management-and-recovery.md#how-activate-and-stage-the-rights-management-service)), workload and endpoint DLP ([Chapter 08](../b20-information-protection/08-dlp-and-endpoint-controls.md#how-workload-dlp-from-simulation-to-enforcement)), service-side auto-labeling ([Chapter 09](../b20-information-protection/09-auto-labeling-and-sensitive-information-types.md#how-service-side-auto-labeling-from-simulation-to-rollout)) and Purview Audit ([Chapter 10](../b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#how-turn-on-retain-and-test-purview-audit)). Follow those for the build; this chapter keeps the security-operations view, and the sequence above states the order. [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply to the sequence as below.
+
+**Authority:** Mandated in substance: the CUI program's marking and safeguarding rules ([The federal CUI framework](#the-federal-cui-framework)). Microsoft-recommended for running auto-labeling in simulation before enabling it (Learn, read Oct 21, 2026). Risk-based recommended for the CUI label mapping, the minimum DLP baseline and the key choices, which are the program's design.
+**Applies:** License-dependent: Purview Information Protection and DLP licensing per surface; Customer Key and DKE need their own licenses. Environment-dependent: the surfaces and key options are listed as available in GCC and GCC High above; DoD and the Information Protection Sentinel connector by cloud are in [Chapter 02](02-the-evidence-contract.md#data-and-endpoint-telemetry).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Mapping CUI to sensitivity labels](#mapping-cui-to-sensitivity-labels), [The minimum policy baseline](#the-minimum-policy-baseline) and step 1's key decisions | The approved taxonomy file and DLP baseline, and the key-option decision record |
+| Configured | Steps 2 and 4 in pilot or simulation (`TestWithoutNotifications`) | `Get-Label`, `Get-LabelPolicy`, `Get-AutoSensitivityLabelPolicy` and `Get-DlpCompliancePolicy` exports showing mode and scope |
+| Enforced | Step 4 after the simulation review (`Enable`), ring by ring (below) | The same exports showing `Enable` and full scope; the DLP exception groups |
+| Evidenced | A labeled test file blocked from external sharing, and a test CUI message blocked from external send | The test record and the DLP event in the workspace |
+| Operated | Step 3's detections and the drift rules for Purview in [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#configuration-drift-exports) | Detection alert history; the Purview drift export |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The data protection team, in a test tenant and then in production | Markings, encryption and policy tips behave as designed on every client the agency supports |
+| 1 | A pilot group that handles CUI daily | Simulation results reviewed; false positives below the threshold the data owner set; overrides understood |
+| 2 | One component or office | Help-desk volume within the backout triggers for two weeks |
+| 3 | Everyone in scope | Detections live; drift export matches the baseline |
+
+- **Emergency access:** emergency access accounts hold no mailbox content and aren't in label or DLP policy scopes; recovery of encrypted content goes through the super-user procedure in [Book 20, Chapter 05](../b20-information-protection/05-rights-management-and-recovery.md#how-recover-encrypted-content-through-a-super-user-just-in-time), not an exclusion.
+- **Change window:** the messaging and collaboration change window, approved by change control, with the data protection owner and the help desk briefed.
+- **Backout triggers:** a business process that must send CUI externally is blocked with no approved path; a false-positive rate above the data owner's threshold; a label that encrypts content a required recipient can't open.
+- **Post-change validation:** the two test cases above after each ring, and the policy exports compared with the baseline.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the taxonomy file, the label, auto-labeling and DLP policy exports, and the key-option record
+- [ ] **Operational:** label and DLP events in the workspace, and the detection alert history, kept for the evidence period
+- [ ] **Test:** the external-sharing and external-send tests after each ring, with expected and observed results, date and tester
+- [ ] **Exception:** DLP exception group membership and override justifications, with approver and review date
+- [ ] **Assessor-ready artifact:** the evidence package entry for AC-4, AC-16 and SC-28 pointing to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Data
+- **CISA ZTMM pillar:** Data
+- **Depends on:** identity and device signals for access to labeled content ([Book 04](../b04-access/index.md), [Book 05](../b05-devices/index.md)); the audit pipeline in [Chapter 04](04-platform-and-m365-telemetry.md)
+- **Attack chain interrupted:** Collection and Exfiltration of CUI by external share, external mail, removable media or unapproved cloud apps; Defense Evasion by mass label removal, which the step 3 detections report
+:::
+
 ## Honest limits
 
 - Auto-labeling is only as accurate as its classifiers. Manual labeling discipline and the label-removal detection compensate for mislabeled or stripped content.
