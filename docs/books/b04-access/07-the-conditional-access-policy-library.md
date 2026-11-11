@@ -113,31 +113,31 @@ Wave 2 decides who may administer and from where. This subsection decides how lo
 
 Two cautions shape the values. Microsoft says "every time" works best for resources that know when to ask for a new token, can cause sign-in loops without MFA, and for the Azure portal and the Microsoft Entra admin center should be replaced by a time-based frequency or reauthentication at PIM activation;[^c07-session-lifetime] the program uses "every time" only in `PIM-Activation-c1`, where Learn recommends it.[^c07-pim-every-time] And CAE location enforcement in standard mode can issue a one-hour token that suspends the resource's IP check when the address Entra ID sees is allowed and the one the resource sees isn't; strict mode removes that exception and blocks.[^c07-cae][^c07-cae-strict]
 
-#### Prerequisites
+#### Prerequisites {#b04-ps-prerequisites}
 
 CA003, CA004, CA005 and CA026 configured ([Wave 2](#wave-2-administrators)); `PIM-Activation-c1` **On**; the workspace receiving `SigninLogs` and `AADNonInteractiveUserSignInLogs`, since token refreshes on a user's behalf are logged as non-interactive sign-ins.[^c07-noninteractive] For strict location enforcement, the CAE insights workbook to find addresses the resource sees that aren't in a named location.[^c07-cae-strict]
 
-#### Pilot
+#### Pilot {#b04-ps-pilot}
 
 The identity team's own administrator accounts, for two weeks, with the scripts and tools they use daily (Graph PowerShell, the Azure CLI, the Exchange Online module). Success: no session older than 4 hours without fresh authentication in the query below, and no unattended job broken that should have run as a workload identity instead.
 
-#### Report-only or audit phase
+#### Report-only or audit phase {#b04-ps-report-only}
 
 The session controls ride on CA003, CA004 and CA026, which pass through report-only like every policy ([Rollout](#rollout-from-report-only-to-enforcement)). Session controls aren't evaluated as pass or fail in report-only, so the phase is read for the grant results; the frequency itself is observed during the pilot. Strict location enforcement is first applied to a few test users, and the **IP address (seen by resource)** column is read for mismatches before it goes wider.[^c07-cae-strict]
 
-#### Enforcement
+#### Enforcement {#b04-ps-enforcement}
 
 With the wave 2 rings: the identity team, then all `CA-Persona-Admins`, then `CA-Access-ServerAdmins` for CA026.
 
-#### Rollback
+#### Rollback {#b04-ps-rollback}
 
 Lengthen the frequency on the affected policy, or remove strict location enforcement from CA005, through a change; never turn CAE off for administrators to fix a single client.
 
-#### Exclusions
+#### Exclusions {#b04-ps-exclusions}
 
 The emergency access group only ([Chapter 04](04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)). An unattended job that fails because it runs under an administrator's session isn't excluded; it moves to a workload identity ([the policy design matrix](#policy-design-matrix)).
 
-#### Telemetry
+#### Telemetry {#b04-ps-telemetry}
 
 Administrative sign-ins accepted on an MFA claim more than 4 hours after the user's last fresh authentication. Expected: no rows. The `authenticationStepResultDetail` values are those Learn lists for MFA details, and Learn notes that "satisfied by claim in the token" can appear wrongly while a sign-in is first being logged, so run the query on data more than a few hours old.[^c07-mfa-details] The query is illustrative and hasn't been run against a production workspace; confirm the values against your own data.
 
@@ -158,7 +158,7 @@ Signins
 | where TimeGenerated - LastFresh > Window
 ```
 
-#### Evidence
+#### Evidence {#b04-ps-evidence}
 
 A test, run at enforcement and each quarter by a pilot administrator: sign in to the Microsoft Entra admin center and run `Connect-MgGraph` and one read command; return after the 4-hour window and repeat both. Expected: a fresh, phishing-resistant sign-in prompt in the browser and in PowerShell, with interactive sign-in records showing CA003 applied, and the query above returning no rows for the account.
 
@@ -170,7 +170,7 @@ A test, run at enforcement and each quarter by a pilot administrator: sign in to
 - [ ] **Exception:** any administrator workload moved to a workload identity, and any approved deviation from the 4-hour value
 - [ ] **Assessor-ready artifact:** the evidence package entry for the period
 
-#### Day-two ownership
+#### Day-two ownership {#b04-ps-day-two}
 
 The Conditional Access owner ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix)) owns the values and the weekly query; security operations reads its results. Drift is a frequency lengthened, persistent browser changed, or CAE disabled in any policy, which the [drift check](#drift) already watches.
 

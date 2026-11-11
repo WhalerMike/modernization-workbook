@@ -323,19 +323,19 @@ Quarantine deals with tenants that already exist. The cheaper control stops the 
 
 **The approved Tenant Creator workflow** (program design). Tenant Creator is an eligible assignment in PIM, never active, requested through the Tier 2 settings with approval required ([Chapter 08](08-pim-self-request-with-approval.md#settings-by-tier)). The request names the purpose (test, development, partner sandbox or a governed workforce tenant), the owner, the end date and the cost center. The governance office approves it and records the new tenant, with its tenant ID, in the tenant inventory that the [tenant strategy](appendix-c-partner-access-profile-entra.md#tenant-strategy-multitenant-organizations-and-tenant-governance) keeps. Where Tenant Governance is adopted, Microsoft's governed workforce tenant flow also requires Tenant Creator and can establish a governance relationship with the home tenant from its default policy template.[^c09-governed-tenant]
 
-#### Prerequisites
+#### Prerequisites {#b04-tc-prerequisites}
 
 A role that can change user settings, and the `Policy.ReadWrite.Authorization` permission for the Graph command;[^c09-authz-tenants] the workspace receiving `AuditLogs`; PIM configured for the Tenant Creator role.
 
-#### Pilot
+#### Pilot {#b04-tc-pilot}
 
 Not applicable: the setting is tenant-wide. Before turning it on, read 90 days of `Create Company` events to find who creates tenants today, and give each legitimate creator an eligible Tenant Creator assignment first.
 
-#### Report-only or audit phase
+#### Report-only or audit phase {#b04-tc-report-only}
 
 The audit read above is the audit phase; the setting has no report-only mode.
 
-#### Enforcement
+#### Enforcement {#b04-tc-enforcement}
 
 Read the current value, then set it. The second command writes; the third reads the result.
 
@@ -349,15 +349,15 @@ Update-MgPolicyAuthorizationPolicy -BodyParameter @{ defaultUserRolePermissions 
 (Get-MgPolicyAuthorizationPolicy).DefaultUserRolePermissions.AllowedToCreateTenants   # expected: False
 ```
 
-#### Rollback
+#### Rollback {#b04-tc-rollback}
 
 The same command with `$true`, through an emergency change. Rollback isn't expected; a blocked creator requests Tenant Creator instead.
 
-#### Exclusions
+#### Exclusions {#b04-tc-exclusions}
 
 None. Eligible Tenant Creator holders are the governed route, not an exclusion.
 
-#### Telemetry
+#### Telemetry {#b04-tc-telemetry}
 
 Alert on every tenant-creation event; each one should match an approved request. The query is illustrative and hasn't been run against a production workspace.
 
@@ -369,7 +369,7 @@ AuditLogs
           InitiatorId = tostring(InitiatedBy.user.id), Result, CorrelationId
 ```
 
-#### Evidence
+#### Evidence {#b04-tc-evidence}
 
 The monitored test event: a Tenant Creator holder, after an approved PIM activation, creates a test tenant; the alert fires with the creator's identity and the time, and the governance office records the tenant and deletes it when the test ends. A second test: a user without the role tries to create a tenant and can't.
 
@@ -381,7 +381,7 @@ The monitored test event: a Tenant Creator holder, after an approved PIM activat
 - [ ] **Exception:** the eligible Tenant Creator assignments and their approvals
 - [ ] **Assessor-ready artifact:** the tenant inventory with each created tenant's approval
 
-#### Day-two ownership
+#### Day-two ownership {#b04-tc-day-two}
 
 The IGO owns the setting, the approvals and the tenant inventory; security operations owns the alert. Cadence: every `Create Company` event reviewed when it fires; Tenant Creator eligibility reviewed with the Tier 2 roles ([Appendix B](appendix-b-pim-role-settings.md#review-cadence-by-tier)). Drift is the setting returned to allow, or a tenant created with no approved request.
 

@@ -259,31 +259,31 @@ A Zero Trust assessment can find emergency access accounts that exist and still 
 4. No other exception rides on this group. Travel, onboarding and readiness exceptions have their own time-bound groups ([Chapter 07](07-the-conditional-access-policy-library.md#prerequisites)).
 5. The system security plan records the exclusion as part of the documented deviation for permanent emergency accounts ([Chapter 02](02-why-standing-privilege-fails.md#break-glass-the-one-governed-exception)).
 
-#### Prerequisites
+#### Prerequisites {#b04-ea-prerequisites}
 
 Microsoft Entra ID P1 for Conditional Access, and P2 or Entra ID Governance for PIM ([Chapter 08](08-pim-self-request-with-approval.md#prerequisites)). A Log Analytics workspace that receives the `SigninLogs`, `AADNonInteractiveUserSignInLogs` and `AuditLogs` tables ([Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md)). Two security keys from the program's approved list, or two certificates issued to the accounts. Government-cloud availability is in the **Applies** line above.
 
-#### Pilot
+#### Pilot {#b04-ea-pilot}
 
 Not applicable: there is no population to pilot. The first drill after the accounts are built serves as the pilot, and it must pass before [Chapter 08's Step 0](08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first) is complete.
 
-#### Report-only or audit phase
+#### Report-only or audit phase {#b04-ea-report-only}
 
 Not applicable to the accounts themselves. The report-only policy CA090 is how the program watches them: it evaluates every emergency sign-in without blocking it, so the sign-in log shows which enforced policies the account would have met.
 
-#### Enforcement
+#### Enforcement {#b04-ea-enforcement}
 
 The control is in force when both accounts pass a drill, every enforced policy excludes the group, and the alert is enabled at severity 0. The build is the guide's Step 2. Each new enforced Conditional Access policy is checked against the group in the same change that turns it on ([Chapter 07](07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)).
 
-#### Rollback
+#### Rollback {#b04-ea-rollback}
 
 None for the accounts: they are the rollback for every other control in this book. A faulty alert rule is rolled back by redeploying the previous version of its template.
 
-#### Exclusions
+#### Exclusions {#b04-ea-exclusions}
 
 The group is the exclusion, and the five rules above govern it. The accounts themselves have no exclusions from monitoring.
 
-#### Telemetry
+#### Telemetry {#b04-ea-telemetry}
 
 The query below returns every sign-in and audit event by either account in the last day. It is the alert's query, and it is also what the drill record cites. It is illustrative and hasn't been run against a production workspace.
 
@@ -304,7 +304,7 @@ union Interactive, NonInteractive, Audit
 | sort by TimeGenerated asc
 ```
 
-#### Evidence
+#### Evidence {#b04-ea-evidence}
 
 Each drill produces one test record per account, so a passing drill leaves two. The record holds: the date; the account (by its placeholder name in the record, its object ID in the evidence store); which custody location the credential came from; the sign-in result (`ResultType` 0); the administrative task performed; the CA090 result for the sign-in; the time the alert fired and the time security operations acknowledged it; and the ticket. Security operations is told before the drill starts, as Learn advises.[^c04-emergency]
 
@@ -316,7 +316,7 @@ Each drill produces one test record per account, so a passing drill leaves two. 
 - [ ] **Exception:** the system security plan's deviation for permanent emergency accounts, with its compensating controls and approver
 - [ ] **Assessor-ready artifact:** the evidence package entry for the period, pointing to the four items above
 
-#### Day-two ownership
+#### Day-two ownership {#b04-ea-day-two}
 
 The identity engineering lead runs the drills; the CISO owns the result, as the gate owner in the guide; security operations owns the alert and the post-use review, which decides whether a use was a drill, a real emergency or misuse.[^c04-emergency] Cadence: every 90 days, and after staff changes. Drift is any member added to the group, any method added to an account, or a drill missed. The day-two calendar that carries the drill is [Book 15, Chapter 12](../b15-day2-operations/12-the-day-two-runbook.md).
 

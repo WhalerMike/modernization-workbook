@@ -173,35 +173,35 @@ The settings above decide what consent can happen. A Zero Trust assessment also 
 
 **Resource-specific consent.** Teams apps can ask for permissions scoped to one team, chat, meeting or user, declared in the app's manifest rather than shown in the Microsoft Entra admin center; a user installing the app consents to all of them at once.[^c05-rsc] Preapproval policies let an administrator declare in advance the most an app may ask for. Microsoft says they are available only in public developer preview, and recommends that organizations keep the default `ManagedByMicrosoft` state.[^c05-rsc-preapproval] The program keeps that state and doesn't adopt the preview. It governs resource-specific consent through which Teams apps are available, and reviews the permissions an approved app holds on the app's **Permissions** tab in the Teams admin center, where resource-specific permissions are listed with the others.[^c05-teams-consent]
 
-#### Prerequisites
+#### Prerequisites {#b04-consent-prerequisites}
 
 The user consent setting, permission classifications and admin consent workflow configured as above. Global Reader, or `Policy.Read.All` and `Directory.Read.All`, for the export. The application inventory from the [illustrative script below](#a-read-only-inventory-to-start-from).
 
-#### Pilot
+#### Pilot {#b04-consent-pilot}
 
 Not applicable to the settings, which are tenant-wide. The first certification cycle runs on the R1 applications ([Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain)) before it covers the sample.
 
-#### Report-only or audit phase
+#### Report-only or audit phase {#b04-consent-report-only}
 
 Not applicable: consent settings have no report-only mode. Before restricting user consent further, read the audit log's consent events for 30 days to see which apps users consent to, and route the legitimate ones to admin consent first.
 
-#### Enforcement
+#### Enforcement {#b04-consent-enforcement}
 
 The settings are enforced when set. The certification is enforced when a grant the owner doesn't certify is revoked within 30 days ([Chapter 06](06-who-decides-access.md#review)).
 
-#### Rollback
+#### Rollback {#b04-consent-rollback}
 
 Restore the previous user consent policy assignment from the export. A revoked grant is restored only through a new admin consent request.
 
-#### Exclusions
+#### Exclusions {#b04-consent-exclusions}
 
 None for users. An app that needs a grant outside the policy goes through admin consent; it isn't excluded from the policy.
 
-#### Telemetry
+#### Telemetry {#b04-consent-telemetry}
 
 Consent events in the audit log (**Consent to application**, **Add delegated permission grant**, **Add app role assignment to service principal**), routed to the workspace, with an alert on any admin consent to a Microsoft Graph application permission outside a change window ([Book 12](../b12-security-operations/index.md)).
 
-#### Evidence
+#### Evidence {#b04-consent-evidence}
 
 The export below writes the consent settings and every grant to the evidence folder. It changes nothing and is illustrative; it hasn't been run against a production tenant.
 
@@ -239,7 +239,7 @@ The certification sample, a program design: every application permission and eve
 - [ ] **Exception:** each grant outside the policy, with its admin consent ticket and approver
 - [ ] **Assessor-ready artifact:** the grant exports and the signed sample certification for the period
 
-#### Day-two ownership
+#### Day-two ownership {#b04-consent-day-two}
 
 The IGO owns consent: the settings, the workflow reviewers and the certification ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix)). Cadence: the export each quarter with the sample; the full certification each year. Drift is a change to the user consent policy assignment, to a permission classification, or to the workflow's reviewers.
 

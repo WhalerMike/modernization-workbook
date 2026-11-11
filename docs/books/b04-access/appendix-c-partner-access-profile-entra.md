@@ -82,35 +82,35 @@ SharePoint and OneDrive invitations through the B2B integration also check the d
 
 **The partner register** is the set of [profile records](#the-profile-record), one per partner and use case, plus the partner tenant list the IGO owns. The register, the organization-specific entries and the `{tenant:partners}` list in the five partner policies must agree; the read-only check in [Conditional Access linkage](#conditional-access-linkage) compares them.
 
-#### Prerequisites
+#### Prerequisites {#b04-xtap-prerequisites}
 
 Security Administrator to change cross-tenant access settings;[^aC4-xtap-b2b] Global Reader or `Policy.Read.All` to read them. The partner register current. For the tenant restrictions test, a managed Windows device with tenant restrictions v2 signalled, and a test account in a tenant that isn't on the allowlist.
 
-#### Pilot
+#### Pilot {#b04-xtap-pilot}
 
 Change the outbound default only after a month's read of the cross-tenant access activity workbook, which shows which external tenants agency users reach;[^aC4-trv2-plan] each legitimate one gets its entry first. Then change it in a test tenant before production.
 
-#### Report-only or audit phase
+#### Report-only or audit phase {#b04-xtap-report-only}
 
 Cross-tenant access settings have no report-only mode. The workbook read in the pilot is the audit phase, and for tenant restrictions v2 the proxy or device rollout is phased, one proxy or one group of users at a time, as Learn's migration guidance advises.[^aC4-trv2-plan]
 
-#### Enforcement
+#### Enforcement {#b04-xtap-enforcement}
 
 Inbound default first (partners already have entries), then outbound, then the tenant restrictions v2 default, each as its own change.
 
-#### Rollback
+#### Rollback {#b04-xtap-rollback}
 
 Restore the previous default from the exported JSON (below) with `Update-MgPolicyCrossTenantAccessPolicyDefault`; for one partner, add or correct its entry rather than reopening the default.
 
-#### Exclusions
+#### Exclusions {#b04-xtap-exclusions}
 
 None in the defaults. A business need is met by an organization-specific entry that meets the allowlist criteria.
 
-#### Telemetry
+#### Telemetry {#b04-xtap-telemetry}
 
 Changes to these settings are audited under `CrossTenantAccessSettings`;[^aC4-xtap] cross-tenant sign-ins appear in the sign-in logs of both tenants, and a service principal blocked by tenant restrictions v2 is logged only in the tenant it tried to reach.[^aC4-trv2]
 
-#### Evidence
+#### Evidence {#b04-xtap-evidence}
 
 Read and keep the defaults and the organization-specific entries. Read-only:
 
@@ -154,7 +154,7 @@ Learn names the log as **Applications and Services Logs** > **Microsoft** > **Wi
 - [ ] **Exception:** each organization-specific entry with its agreement clause, and each blocking entry with the decision behind it
 - [ ] **Assessor-ready artifact:** the partner register and the period's evidence package entry
 
-#### Day-two ownership
+#### Day-two ownership {#b04-xtap-day-two}
 
 The IGO owns the partner register and the allowlist; the identity engineering team owns the settings; sponsors review their partners' guests quarterly ([Chapter 09](09-access-governance.md#guest-access-governance)). Drift is a default changed from `blocked`, a partner entry with no profile record, or a partner on the list with no active package for 90 days.
 
