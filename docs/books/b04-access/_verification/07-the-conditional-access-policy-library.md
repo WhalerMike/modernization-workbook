@@ -246,3 +246,21 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | A6 | Explicit Forward Proxy is preview; restrict to trusted networks (IP affinity); not in All internet resources; exclude GSA-ExplicitForwardProxy from compliant-network-for-all-resources policies | same | verified | [Configure a Conditional Access policy for Explicit Forward Proxy](https://learn.microsoft.com/entra/global-secure-access/how-to-configure-conditional-access-policy-for-explicit-forward-proxy); [Known limitations](https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations) |
 | A7 | Global Secure Access is available in GCC, not yet supported in GCC High, DoD or other government and sovereign clouds | same; Government cloud notes | verified | [Known limitations for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations) |
 | A8 | Compliant network is a candidate to complement NL-TrustedNetworks in CA005, CA029, CA032; the program still creates the policy in report-only | same | design (program convention) | — |
+
+## Additions, November 11, 2026 (Zero Trust Assessment closure, B04-03, B04-04, CM-04)
+
+New subsections "Privileged sessions" (after Wave 2) and "The policy design matrix" (after Rollback). No policy added to the numbered library.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | "Every time" works best where resources request new tokens; loops without MFA; for Azure portal and Entra admin center use time-based or PIM authentication context | Privileged sessions | verified | https://learn.microsoft.com/entra/identity/conditional-access/concept-session-lifetime | Nov 11, 2026 |
+| Z2 | PIM: set the auth-context policy's sign-in frequency to Every time to reauthenticate every activation | Same | verified | https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings | Nov 11, 2026 |
+| Z3 | CAE available in Azure Government (GCC High and DoD) for Exchange Online; standard mode one-hour token exception | Same, Applies and cautions | verified | https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation | Nov 11, 2026 |
+| Z4 | Strict location enforcement is preview; not for shared or unknown egress; test small subset; IP address (seen by resource) | Same | verified | https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation-strict-enforcement | Nov 11, 2026 |
+| Z5 | Non-interactive sign-ins are on behalf of the user (refresh tokens); FIDO2 refresh-token sign-ins logged non-interactive since Apr 11, 2025 | Same, Prerequisites | verified | https://learn.microsoft.com/entra/identity/monitoring-health/concept-noninteractive-sign-ins | Nov 11, 2026 |
+| Z6 | MFA detail values include completed in the cloud, satisfied by claim in the token, satisfied by strong authentication, successfully completed; the claim value can show wrongly at first | Same, Telemetry | verified | https://learn.microsoft.com/entra/identity/authentication/howto-mfa-reporting | Nov 11, 2026 |
+| Z7 | Token protection: GA native apps on Windows, iOS/iPadOS, macOS; browser preview for ARM web apps; Exchange, SharePoint, Teams; AVD and Windows 365 on Windows; pilot, report-only, both logs | Design matrix | verified | https://learn.microsoft.com/entra/identity/conditional-access/concept-token-protection | Nov 11, 2026 |
+| Z8 | Token protection government-cloud availability and licensing | Same | not yet specified | not stated on the page read | Nov 11, 2026 |
+| Z9 | Conditional Access and session lifetime management available in Azure for US Government | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
+| Z10 | Matrix values (durations, rings, exclusions) carried from the waves and rollout cycle | Design matrix | restated-as-design | this chapter | Nov 11, 2026 |
+| Z11 | Reauthentication KQL | Privileged sessions, Telemetry | unverifiable (illustrative, not run) | labelled illustrative | Nov 11, 2026 |

@@ -96,6 +96,104 @@ These policies have no user-visible effect for anyone already on modern clients,
 
 **Rollout and monitoring.** Admin policies are piloted on the identity team first, with an emergency account sign-in tested before and after each policy is enforced. The policy-hit query below, filtered to these policy names, should show no *not applied* results for members of the Admins group.
 
+### Privileged sessions {#privileged-sessions}
+
+Wave 2 decides who may administer and from where. This subsection decides how long an administrative session lasts, what ends it early, and how the program proves both, including for administration that never shows a sign-in prompt: Microsoft Graph PowerShell, the Azure CLI and other tools that refresh their tokens in the background. A Zero Trust assessment that reports long-lived or persistent administrator sessions is answered here. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
+
+**Authority:** Microsoft-recommended for time-based sign-in frequency on the admin portals, for reauthentication at PIM activation through an authentication context, and for not reauthenticating more than the risk needs (Learn, "Conditional Access adaptive session lifetime policies," read Nov 11, 2026);[^c07-session-lifetime] risk-based recommended for the 4-hour value, which is the program's.
+**Applies:** all tenants with Entra ID P1. Environment-dependent: Microsoft lists Conditional Access and session lifetime management as available in Azure for US Government;[^c07-gov-features] it says continuous access evaluation is available in Azure Government tenants (GCC High and DoD) for Exchange Online, and is not yet specified there for other services;[^c07-cae] strict location enforcement is in preview, and its government-cloud availability is not yet specified.[^c07-cae-strict]
+
+| Element | Setting | Where |
+|---|---|---|
+| Short sign-in frequency | 4 hours on every privileged sign-in, all resources; every time at PIM activation | CA003 and CA026; `PIM-Activation-c1` ([Chapter 08, Step 2](08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)) |
+| No persistent browser | Persistent browser session **never** for administrators; the control works correctly only on a policy that targets all resources, which CA004 does | CA004 |
+| Continuous access evaluation | Left on for administrators. CAE-capable services end a session in near real time when the account is disabled or deleted, the password is reset, tokens are revoked or high user risk is detected, and when a CAE-capable client moves outside the locations a policy allows | Tenant default; no policy disables it |
+| Strict location enforcement | Optional, administrators only, after the agency's egress addresses are dedicated and listed in `NL-TrustedNetworks`; Microsoft warns against it where traffic leaves through shared or unknown egress addresses | A session control on CA005, adopted through the change process |
+| Token protection | Optional: binds the sign-in session token to the device for supported native clients on Windows and Apple platforms; browser support is preview and limited to some applications that use Azure Resource Manager | A candidate policy, unnumbered ([policy design matrix](#policy-design-matrix)) |
+
+Two cautions shape the values. Microsoft says "every time" works best for resources that know when to ask for a new token, can cause sign-in loops without MFA, and for the Azure portal and the Microsoft Entra admin center should be replaced by a time-based frequency or reauthentication at PIM activation;[^c07-session-lifetime] the program uses "every time" only in `PIM-Activation-c1`, where Learn recommends it.[^c07-pim-every-time] And CAE location enforcement in standard mode can issue a one-hour token that suspends the resource's IP check when the address Entra ID sees is allowed and the one the resource sees isn't; strict mode removes that exception and blocks.[^c07-cae][^c07-cae-strict]
+
+#### Prerequisites
+
+CA003, CA004, CA005 and CA026 configured ([Wave 2](#wave-2-administrators)); `PIM-Activation-c1` **On**; the workspace receiving `SigninLogs` and `AADNonInteractiveUserSignInLogs`, since token refreshes on a user's behalf are logged as non-interactive sign-ins.[^c07-noninteractive] For strict location enforcement, the CAE insights workbook to find addresses the resource sees that aren't in a named location.[^c07-cae-strict]
+
+#### Pilot
+
+The identity team's own administrator accounts, for two weeks, with the scripts and tools they use daily (Graph PowerShell, the Azure CLI, the Exchange Online module). Success: no session older than 4 hours without fresh authentication in the query below, and no unattended job broken that should have run as a workload identity instead.
+
+#### Report-only or audit phase
+
+The session controls ride on CA003, CA004 and CA026, which pass through report-only like every policy ([Rollout](#rollout-from-report-only-to-enforcement)). Session controls aren't evaluated as pass or fail in report-only, so the phase is read for the grant results; the frequency itself is observed during the pilot. Strict location enforcement is first applied to a few test users, and the **IP address (seen by resource)** column is read for mismatches before it goes wider.[^c07-cae-strict]
+
+#### Enforcement
+
+With the wave 2 rings: the identity team, then all `CA-Persona-Admins`, then `CA-Access-ServerAdmins` for CA026.
+
+#### Rollback
+
+Lengthen the frequency on the affected policy, or remove strict location enforcement from CA005, through a change; never turn CAE off for administrators to fix a single client.
+
+#### Exclusions
+
+The emergency access group only ([Chapter 04](04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)). An unattended job that fails because it runs under an administrator's session isn't excluded; it moves to a workload identity ([the policy design matrix](#policy-design-matrix)).
+
+#### Telemetry
+
+Administrative sign-ins accepted on an MFA claim more than 4 hours after the user's last fresh authentication. Expected: no rows. The `authenticationStepResultDetail` values are those Learn lists for MFA details, and Learn notes that "satisfied by claim in the token" can appear wrongly while a sign-in is first being logged, so run the query on data more than a few hours old.[^c07-mfa-details] The query is illustrative and hasn't been run against a production workspace; confirm the values against your own data.
+
+```kusto
+let Admins = dynamic(["{admin-1-object-id}", "{admin-2-object-id}"]);  // members of CA-Persona-Admins
+let Window = 4.1h;                                                       // CA003 frequency plus skew
+let Signins = union SigninLogs, AADNonInteractiveUserSignInLogs
+    | where TimeGenerated between (ago(2d) .. ago(6h)) and UserId in (Admins) and tostring(ResultType) == "0"
+    | mv-expand Step = todynamic(AuthenticationDetails)
+    | extend StepDetail = tostring(Step.authenticationStepResultDetail)
+    | project TimeGenerated, UserId, AppDisplayName, StepDetail;
+let Fresh = Signins | where StepDetail has_any ("successfully completed", "completed in the cloud", "satisfied by strong authentication") | project UserId, FreshTime = TimeGenerated;
+Signins
+| where StepDetail has "claim in the token"
+| join kind=inner Fresh on UserId
+| where FreshTime <= TimeGenerated
+| summarize LastFresh = max(FreshTime) by UserId, TimeGenerated, AppDisplayName
+| where TimeGenerated - LastFresh > Window
+```
+
+#### Evidence
+
+A test, run at enforcement and each quarter by a pilot administrator: sign in to the Microsoft Entra admin center and run `Connect-MgGraph` and one read command; return after the 4-hour window and repeat both. Expected: a fresh, phishing-resistant sign-in prompt in the browser and in PowerShell, with interactive sign-in records showing CA003 applied, and the query above returning no rows for the account.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the CA003, CA004, CA005 and CA026 exports showing sign-in frequency, persistent browser and any CAE session setting ([Chapter 10](10-access-as-code-and-evidence.md))
+- [ ] **Operational:** the query's results each week, kept with the identity logs
+- [ ] **Test:** the reauthentication test record, with the interactive sign-ins it produced
+- [ ] **Exception:** any administrator workload moved to a workload identity, and any approved deviation from the 4-hour value
+- [ ] **Assessor-ready artifact:** the evidence package entry for the period
+
+#### Day-two ownership
+
+The Conditional Access owner ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix)) owns the values and the weekly query; security operations reads its results. Drift is a frequency lengthened, persistent browser changed, or CAE disabled in any policy, which the [drift check](#drift) already watches.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The element table above | The approved values in the policy library |
+| Configured | CA003, CA004, CA026 and `PIM-Activation-c1` | Policy exports |
+| Enforced | Wave 2 rings | Policies **On**, emergency access the only exclusion |
+| Evidenced | The reauthentication test | The test record and its sign-in events |
+| Operated | The weekly query and drift check | Query results and drift reports |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices (compliant devices and PAWs, which CA004 and CA025 require, [Book 05](../b05-devices/index.md)); Networks (the egress addresses behind `NL-TrustedNetworks` for CAE location enforcement, [Book 09](../b09-network/index.md)); SecOps (the workspace, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Credential Access and Lateral Movement through a stolen administrator session or token: a session expires within hours, ends when the account changes, and with token protection can't be replayed from another device
+:::
+
 ## Wave 3: everyone
 
 | Policy | Intent | Targeting | Controls | License |
@@ -260,6 +358,57 @@ A wave starts only after the previous one has been enforced for at least a week 
 | Wave rollback | Several policies in a wave interacting badly | Set the wave's policies to report-only; open an incident |
 
 Never delete a policy during a rollback. Microsoft does allow a deleted policy or named location to be restored within 30 days,[^c07-plan] but a deletion breaks the policy's change history in source control and the drift record has to explain it. If the tenant is locked out entirely, an emergency account signs in to reverse the change; if no administrator can, Microsoft support can update the blocking policy after verification.[^c07-troubleshoot]
+
+### The policy design matrix {#policy-design-matrix}
+
+A Zero Trust assessment reports Conditional Access gaps by design area, not by policy number: administrators without phishing-resistant MFA, security-information registration from anywhere, device-code flow allowed, and so on. The matrix maps each area to the library's policies and records, for each, the fields an assessor asks for: how long it ran in report-only and what was read, the pilot, the enforcement ring, the exclusions and the way back. Every row follows the cycle above; the matrix is where its values are written down. Kept as a file in the policy repository beside the policies ([Chapter 10](10-access-as-code-and-evidence.md#what-goes-in-the-repository)), it is the named policy set the assessment evidence points to.
+
+**Authority:** each row's policies carry the authority given in their wave above (BOD 25-01 mandated configurations are marked there); the matrix itself is risk-based recommended, the program's way of recording them.
+
+| Design area | Policies | Report-only: duration and what is read | Pilot | Enforcement | Exclusions beyond emergency access | Rollback |
+|---|---|---|---|---|---|---|
+| Administrators | CA003, CA004, CA005, CA025, CA026, CA027; `PIM-Activation-c1` ([Chapter 08](08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)) | 2 to 4 weeks; *not applied* results for Admins, failures by device and location | The identity team, with an emergency sign-in before and after | Wave 2 | None | Report-only per policy; `PIM-Activation-c1` is never set to report-only (the PIM fallback doesn't trigger) |
+| Security-information registration | CA020 | 2 weeks; registrations from unmanaged devices | IT staff, then new-hire cohorts | Wave 1 | `CA-Exclude-RegistrationOnboarding`, each member with an expiry | Report-only |
+| Device-code flow | CA021 | 2 weeks; sign-ins whose authentication protocol is device code, by device and app | IT staff | Wave 1 | `CA-Exclude-DeviceCodeFlow` (Teams Rooms and similar accounts) | Report-only |
+| Managed-device requirements | CA004, CA007, CA016, CA017, CA028 | 2 to 4 weeks, with macOS, iOS and Android left out of the report-only version to avoid certificate prompts; noncompliant devices by platform | Devices readiness gate: 90 percent compliant | Waves 2, 3 and 5, in rings | `CA-Persona-WebOnly` (CA007 only) | Report-only, or a time-bound group for one platform |
+| Authentication strength | CA003 (custom strength), CA006 and CA009 (MFA strength), CA022 (phishing-resistant) | CA022 from the first day of the program; users without a phishing-resistant method | Per platform, by users whose devices are ready | CA022 in wave 5, as the not-ready group shrinks | `CA-Exclude-PhishResistantNotReady`, each member with an expiry | Add the affected users to the not-ready group with an expiry ([Appendix D](appendix-d-phishing-resistant-authentication-runbooks.md) has the recovery runbooks) |
+| Sign-in risk | CA014, CA019 (CA012 until CA019 is enforced) | At least 2 weeks with ID Protection reports reviewed | IT staff | Wave 4 | None | Report-only |
+| User risk | CA013 (block where BOD 25-01 applies) | At least 2 weeks; leaked-credential detection confirmed working | IT staff | Wave 4, with the help desk recovery procedure ready | None | Report-only |
+| Token protection | Not yet in the library: a candidate policy, unnumbered | Long enough to cover normal application use, reading both interactive and non-interactive sign-in logs, as Microsoft advises | Known, reliable users on supported Windows devices first | Native clients for Exchange Online, SharePoint Online and Teams, after the pilot, through the change process that would number it | Devices and clients Learn lists as unsupported | Report-only |
+| Session frequency | CA003, CA011, CA014, CA024, CA026, CA028, CA029, CA031, CA034; `PIM-Activation-c1` | With the policy that carries it | With that policy | With that policy; administrators per [Privileged sessions](#privileged-sessions) | None | Lengthen the value through a change |
+| Workload identities | CA015, CA037 | Results appear in the service principal sign-in logs; 2 weeks for each workload brought into scope | R1 single-tenant workloads ([Chapter 05](05-applications-and-workload-identities.md#what-workload-id-premium-adds)) | Wave 4, one workload at a time | None; service principals are assigned to the policy directly, never through groups | Report-only |
+
+**Token protection** is a session control that accepts only device-bound sign-in session tokens, such as the primary refresh token, so a stolen token can't be replayed from another device. Native applications are generally available on Windows, iOS and iPadOS, and macOS; browser applications are in preview for some web applications that use Azure Resource Manager. For native applications it can be enforced on Exchange Online, SharePoint Online and Teams, and on Windows also on Azure Virtual Desktop and Windows 365. Microsoft's deployment advice is the matrix row above: a pilot group, report-only first, both sign-in logs captured over normal use, then known, reliable users.[^c07-token-protection] Learn's token protection page doesn't state government-cloud availability, so it is not yet specified, and the program adds the policy to the library only after the agency confirms it for its cloud. Its licensing isn't stated on the page read; confirm it before adoption.
+
+**Workload identities** are reached only by CA015 and CA037, and only for single-tenant service principals with Workload ID Premium ([Chapter 05](05-applications-and-workload-identities.md#conditional-access-for-workload-identities); [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#conditional-access-for-workload-identities)). Managed identities and multitenant applications are outside Conditional Access, so the answer for a service account that a policy can't reach is to move it to a credential the program governs: the [service account migration guide](../guides/service-account-migration.md#migration-c) takes an on-premises service account to a managed identity, an app registration with a certificate, or workload identity federation.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the matrix file and the policy exports it names, at the same commit ([Chapter 10](10-access-as-code-and-evidence.md))
+- [ ] **Operational:** the policy-results query below, per design area, for each report-only period and after enforcement
+- [ ] **Test:** for each design area, one blocked or challenged test sign-in as designed, and one emergency access sign-in that succeeds
+- [ ] **Exception:** the exclusion groups' membership with each member's expiry, and the access reviews of those groups
+- [ ] **Assessor-ready artifact:** the evidence package entry that maps each assessment finding to its matrix row
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The waves and the matrix | The matrix file, approved through the change process |
+| Configured | Each policy in report-only | The policy exports in report-only state |
+| Enforced | The enforcement column | Exports showing **On**, and the exclusion register |
+| Evidenced | The test row of the checklist | Test sign-ins and their sign-in log entries |
+| Operated | [Monitoring](#monitoring) and [Drift](#drift) | Query results and drift reports |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices (compliance and device labels, [Book 05](../b05-devices/index.md)); Applications and Workloads (application attributes and workload identities, [Chapter 05](05-applications-and-workload-identities.md)); SecOps (risk signals and the workspace, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Initial Access and Credential Access: legacy protocols, device-code phishing, registration of an attacker's method, risky sign-ins and replayed tokens are each stopped before a token is issued or used
+:::
 
 ## Monitoring
 
@@ -485,3 +634,11 @@ The access-related Group Policy settings an assessment finds ([Book 02, Chapter 
 [^c07-gsa-private]: Microsoft Learn, "Apply Conditional Access policies to Private Access apps," <https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-private-access-apps> (accessed Nov 9, 2026).
 [^c07-gsa-efp]: Microsoft Learn, "Configure a Microsoft Entra Conditional Access policy for Explicit Forward Proxy," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-conditional-access-policy-for-explicit-forward-proxy> (accessed Nov 9, 2026).
 [^c07-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access," sections "Explicit Forward Proxy (preview) limitations" and "Global Secure Access In Government Cloud limitations," <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Nov 9, 2026).
+[^c07-session-lifetime]: Microsoft Learn, "Conditional Access adaptive session lifetime policies," section "User sign-in frequency" ("every time" works best where the resource knows when to request a new token; without MFA it can cause sign-in loops; for the Azure portal and the Microsoft Entra admin center use a time-based frequency or reauthentication on PIM activation through an authentication context; five minutes of clock skew), <https://learn.microsoft.com/entra/identity/conditional-access/concept-session-lifetime#user-sign-in-frequency> (accessed Nov 11, 2026).
+[^c07-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Conditional Access, session lifetime management, Privileged Identity Management and passwordless methods available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
+[^c07-cae]: Microsoft Learn, "Continuous access evaluation," sections "Scenarios" (continuous access evaluation is also available in Azure Government tenants, GCC High and DoD, for Exchange Online) and "Exception for IP address variations and how to turn off the exception" (standard mode issues a one-hour token that suspends the resource's IP check when Entra ID sees an allowed address), <https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation> (accessed Nov 11, 2026).
+[^c07-cae-strict]: Microsoft Learn, "Strictly enforce location policies using continuous access evaluation (preview)" (overview table of standard and strict modes; don't enable strict enforcement where traffic leaves through shared or undefinable egress addresses; test on a small subset; the CAE insights workbook and the **IP address (seen by resource)** column), <https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation-strict-enforcement> (accessed Nov 11, 2026).
+[^c07-pim-every-time]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," section "Role settings" (to enforce reauthentication on every role activation, set the authentication-context policy's sign-in frequency to **Every time**), <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Nov 11, 2026).
+[^c07-noninteractive]: Microsoft Learn, "What are non-interactive user sign-ins in Microsoft Entra?" (sign-ins a client performs on a user's behalf, such as a refresh-token exchange; since April 11, 2025, new sign-ins that obtain a refresh token with FIDO2 keys are logged as non-interactive), <https://learn.microsoft.com/entra/identity/monitoring-health/concept-noninteractive-sign-ins> (accessed Nov 11, 2026).
+[^c07-mfa-details]: Microsoft Learn, "Use the sign-in logs to review Microsoft Entra multifactor authentication events," section "View the Microsoft Entra sign-in logs" (MFA result details including "completed in the cloud," "satisfied by claim in the token," "satisfied by strong authentication" and "successfully completed"; "satisfied by claim in the token" can be shown incorrectly when events are first logged), <https://learn.microsoft.com/entra/identity/authentication/howto-mfa-reporting> (accessed Nov 11, 2026).
+[^c07-token-protection]: Microsoft Learn, "Token Protection in Microsoft Entra Conditional Access," sections "Platform availability," "Supported resources" and "Deployment," <https://learn.microsoft.com/entra/identity/conditional-access/concept-token-protection> (accessed Nov 11, 2026).
