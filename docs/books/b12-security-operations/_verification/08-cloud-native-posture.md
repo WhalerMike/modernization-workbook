@@ -91,3 +91,7 @@ The description still said posture management and admission control "close" CM-6
 | Before | After | Source |
 |---|---|---|
 | how cloud security posture management closes CM-6 | how cloud security posture management supports CM-6 | no source change |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added a paragraph linking the Azure Security Engineering implementation guide (Steps 1, 2, 9, 10 and its AWS, Google Cloud and Oracle Cloud comparison) where it carries the depth. No new claim.

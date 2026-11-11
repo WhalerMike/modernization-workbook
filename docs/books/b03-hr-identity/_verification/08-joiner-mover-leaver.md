@@ -165,3 +165,18 @@ Thirteen Learn pages the coverage map listed as covered but uncited for this cha
 | L11 | A post-separation workflow deletes the user after a set period | Leaver | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/id-governance/tutorial-scheduled-leaver-portal> |
 | L12 | On-demand and scheduled runs leave the same processing history | Emergency termination | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/id-governance/check-status-workflow> |
 | L13 | Every workflow processing event is written to the audit log (up to 30 days) | Emergency termination | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-audits> |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Learn's deployment checklist includes planning a pilot; on-demand runs test a workflow on up to 10 users and ignore execution conditions | Rolling out the workflows | verified | Learn, "Plan a Lifecycle Workflow deployment"; "Run a workflow on-demand" | Nov 11, 2026 |
+| P4-2 | Execution user scope lists the users the workflow would process at its next run | Rolling out the workflows | verified | Learn, "Lifecycle workflows execution conditions and scheduling" | Nov 11, 2026 |
+| P4-3 | Cancel in-progress or queued runs; completed changes aren't reversed; one run at a time | Rolling out the workflows | verified | Learn, "Cancel workflow runs using Lifecycle Workflows" | Nov 11, 2026 |
+| P4-4 | `isSchedulingEnabled` updated with Update-MgIdentityGovernanceLifecycleWorkflow (LifecycleWorkflows.ReadWrite.All) | Rolling out the workflows | verified | Learn, cmdlet reference | Nov 11, 2026 |
+| P4-5 | Lifecycle Workflows licensing now also lists Microsoft 365 E7, beside ID Governance and Entra Suite (added to the new section; the chapter's earlier sentence stays true) | Rolling out the workflows | corrected (addition) | Learn, "Microsoft Entra ID Governance licensing fundamentals" | Nov 11, 2026 |
+| P4-6 | ID Governance available in GCC, GCC High and DoD; Lifecycle workflows listed for Azure Government | Rolling out the workflows | verified | Learn, licensing fundamentals; "Microsoft Entra feature availability" | Nov 11, 2026 |
+| P4-7 | Learn's pages disagree on whether a new workflow starts enabled ("Create a lifecycle workflow" says disabled, "Understanding lifecycle workflows" says enabled); the section relies only on scheduling, which both say starts off | Rolling out the workflows | unverifiable (conflict noted; not relied on) | Learn, both pages | Nov 11, 2026 |
+| P4-8 | Rings, triggers, exclusions by coded scope, day-two cadence | Rolling out the workflows | restated-as-design | — | Nov 11, 2026 |

@@ -80,6 +80,8 @@ Defender for Cloud's multicloud plans cover Azure, AWS and Google Cloud: Defende
 
 An agency whose AWS accounts are governed from an Azure Government subscription therefore can't use Defender for Cloud as its AWS posture source at all. That is one more reason the owned native tool is primary on its own platform.
 
+For Azure itself, the [Azure Security Engineering implementation guide](../guides/azure-security-implementation.md) carries the build this chapter only chooses: the landing-zone security baseline and its policy initiatives ([Step 1](../guides/azure-security-implementation.md#step-1-landing-zone-security-baseline)), the public exposure inventory that the attack-path view reads ([Step 2](../guides/azure-security-implementation.md#step-2-public-exposure-inventory)), policy and drift ([Step 9](../guides/azure-security-implementation.md#step-9-policy-and-drift)) and the operations evidence catalog ([Step 10](../guides/azure-security-implementation.md#step-10-operations-and-evidence)), each with its own rollout, rollback and evidence. The guide also compares the same controls on AWS, Google Cloud and Oracle Cloud ([The same controls on AWS, Google Cloud and Oracle Cloud](../guides/azure-security-implementation.md#other-clouds)).
+
 ## CNAPP: one platform, overlapping views
 
 A CNAPP combines tools that used to be bought separately. Each view answers a different question and supports a different control.

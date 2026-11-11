@@ -28,3 +28,13 @@ Editor pass 2026-10-20. The appendix had no footnotes. The acceptance scenarios,
 | Closing the ticket path | kept | — |
 | Where an HR connector already exists | edited (records schedule pointer) | — |
 | Continue callout | edited to "Continue the book"; Previous = Appendix B, Book index, no Next | — |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | API-driven inbound provisioning and provisioning agent registration with an Azure Government tenant are available in Azure Government | Rollout safety and evidence | verified | Learn, "Microsoft Entra feature availability" | Nov 11, 2026 |
+| P4-2 | "must trace" relabeled as the program's acceptance criterion (risk-based recommended) | Proving HR is the sole source | restated-as-design (authority label) | — | Nov 11, 2026 |
+| P4-3 | How-template mapping, rings, backout triggers, control states, evidence checklist, assessment mapping | Rollout safety and evidence | restated-as-design | — | Nov 11, 2026 |

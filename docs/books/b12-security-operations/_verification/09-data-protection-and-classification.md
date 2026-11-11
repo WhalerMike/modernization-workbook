@@ -150,3 +150,7 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 | L11 | Government-cloud configuration for AIP in GCC High and DoD needs extra steps | Not added to the text | noted | Learn "Azure Information Protection Premium Government Service Description" (search result, Nov 9, 2026) |
 
 Left listed but uncited in the coverage map: groups-sensitivity-labels (sensitivity labels on Entra security groups, preview).
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b12-09-control-states` after the deployment sequence: links to Book 20's How sections, authority labels, control states, change safety, evidence checklist and assessment mapping (G-01, G-02, G-05, G-06, G-07, G-08). Product facts reuse the dated rows above and Book 20's verification files.

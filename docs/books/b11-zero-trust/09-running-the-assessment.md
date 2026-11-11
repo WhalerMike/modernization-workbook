@@ -274,6 +274,33 @@ The playbook gives portal steps and Microsoft Learn links only, no scripts. For 
 
 The dashboard and digests are working views. The evidence is the unaltered report and its JSON export, wrapped and sealed through the same four stages as ScubaGear's output, with the tool version, run time and scope recorded.
 
+## Control states and evidence for an assessment run {#b11-09-control-states}
+
+Running the two assessors is a procedure, but one that changes nothing in the tenant. [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply to it as below. A run is evidence for the controls it reads; it isn't one of them, so the states describe the assessment capability itself.
+
+**Authority:** Mandated: BOD 25-01's tool deployment and reporting for in-scope Microsoft 365 tenants, and for Google Workspace from its due date ([Before the first run](#before-the-first-run)); M-26-14's logging baseline for the assessment accounts. Microsoft-recommended for storing the Zero Trust Assessment's output securely and deleting the local folder after the run (Learn, read Oct 21, 2026). Optional for the Zero Trust Assessment itself, which no directive requires ([Chapter 08](08-close-before-you-assess.md#where-this-argument-stops)); the program runs it as risk-based recommended.
+**Applies:** ScubaGear: every in-scope tenant, with the `gcc`, `gcchigh` or `dod` environment value. Zero Trust Assessment: License-dependent and Environment-dependent coverage; a check skipped for a missing license or government-cloud feature is recorded as not applicable, not as a pass or a failure ([Chapter 10](10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Before the first run](#before-the-first-run): scope, host, accounts, output handling, logging | The scope list and the CISO's approval of the reader accounts ([Chapter 07](07-who-owns-zero-trust.md)) |
+| Configured | The pinned tool versions and the versioned ScubaGear configuration file | `Invoke-SCuBA -Version` and the module version in the run log; the configuration file's commit |
+| Enforced | Not applicable: both assessors read and enforce nothing ([The government-cloud boundary case](#the-government-cloud-boundary-case)) | — |
+| Evidenced | Each run's unaltered `ScubaResults_{UUID}.json` and `zt-export\ZeroTrustAssessmentReport.json`, sealed into an interval bundle | The sealed bundle and its hash; the BOD 25-01 submission record |
+| Operated | The interval cadence, drift classes and re-assessment in [Chapter 10](10-evidence-not-verdicts.md#re-assess-on-a-cadence) | The run history; drift findings raised; the quarterly CISA report |
+
+**How-section coverage.** Prerequisites: [Before the first run](#before-the-first-run). Pilot: the illustrative-code warning's test tenant, then one production tenant with the narrow roles. Report-only or audit phase, Enforcement and Change safety: not applicable, because nothing in the tenant changes; the risk to manage is the output, which is Controlled data. Rollback: revoke the tools' consent grants and disable the reader accounts if a run must stop; nothing in the tenant needs restoring. Exclusions: the configuration file's omissions and exclusions, approved as [Chapter 10](10-evidence-not-verdicts.md#exceptions-belong-in-the-configuration-file-with-an-owner) describes; skipped and unevaluated checks go to the disposition register in [Book 13, Chapter 12](../b13-governance/12-governance-at-scale.md#disposition-register). Telemetry: the assessment accounts' sign-ins and consent grants in the identity logs ([Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md)). Day-two ownership: the Zero Trust program owner in [Chapter 07](07-who-owns-zero-trust.md).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the configuration file at its commit, the tool and module versions, and the reader accounts' role assignments
+- [ ] **Operational:** the run history and the sealed interval bundles, kept as the records decision allows
+- [ ] **Test:** a test-tenant run after every tool upgrade, compared with the previous version's results for the same tenant (expected and observed, date, tester)
+- [ ] **Exception:** omissions and annotations with approver and expiry; skipped checks with their disposition
+- [ ] **Assessor-ready artifact:** the OSCAL assessment-results observations and the BOD 25-01 submission, traceable to the four above
+
 ## Honest limits
 
 - ScubaGear's coverage is per policy. It evaluates the SCuBA baselines, not every Microsoft 365 control. The program's adapter taxonomy has other slots (vulnerability scanning, host configuration against CIS Benchmarks or the agency's CM-6 settings, patch state) for the rest; ScubaGear is the policy adapter, not the universal one.

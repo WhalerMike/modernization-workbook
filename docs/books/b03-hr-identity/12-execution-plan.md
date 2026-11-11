@@ -93,7 +93,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 
 Each population cuts over to HR-driven identity as it moves to Entra ID, and the ticket path for account creation closes for it (Appendix C).
 
-- Align the cutover with the agency's Core HCM onboarding: the provisioning feed must be ready when the agency's interconnections go live (Chapter 03).
+- Align the cutover with the agency's Core HCM onboarding: have the provisioning feed ready when the agency's interconnections go live (Chapter 03) *(risk-based recommended: a feed that lags the interconnection leaves the population on the old ticket path)*.
 - As populations become cloud-mastered, retarget their provisioning from the AD app to the Entra app — a configuration change per population, evidence-gated — with the AD leg dormant but intact until nothing remains synced.
 - Retire OU-bound policy deliberately, and retire EHRI- and eOPF-shaped integrations as the program decommissions those systems, not before.
 

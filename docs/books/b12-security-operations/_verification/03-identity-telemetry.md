@@ -139,3 +139,11 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 | L18 | "In this chapter" callout extended to name the new section | Callout | restated-as-design | - |
 
 Left listed but uncited in the coverage map: most monitoring-health concept, how-to and workbook pages, the ID Protection guide pages and the operations-guide pages (the chapter covers them at the level of the diagnostic setting; no sentence says only what one of them says).
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b12-03-control-states`: authority labels, control states, How-template coverage, evidence checklist and assessment mapping (Book 00 Appendix D, G-01, G-02, G-05, G-06, G-08). The block restates claims already verified above (footnotes dated Oct 21 and Nov 9, 2026) and the program's design; it adds no new product claim.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Rollback by redeploying the previous template or category list; removal ends the record | Control states, rollout and evidence | restated-as-design | Program design over Path B and C (rows above) | Nov 11, 2026 |

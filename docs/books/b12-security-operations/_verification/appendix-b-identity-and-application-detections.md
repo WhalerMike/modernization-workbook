@@ -47,3 +47,7 @@ Manage emergency access accounts; Security operations for privileged accounts; S
 ## Not yet specified by Learn
 
 - Azure Monitor log search alerts in Azure Government (Learn's emergency access page doesn't say; Sentinel rules are the program's path and are GA there).
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Closure map: the prose mentions of the Purview book and the Defender XDR guide became links to Book 20 (Chapter 10's audit How section) and `docs/books/guides/defender-xdr-implementation.md`. No new claim.
