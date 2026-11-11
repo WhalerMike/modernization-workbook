@@ -9284,6 +9284,8 @@ pages:
   - docs/books/b06-data-platform/13-who-owns-the-data-platform.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+  - docs/books/b20-information-protection/05-rights-management-and-recovery.md
+  - docs/books/b20-information-protection/_verification/05-rights-management-and-recovery.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md
   - docs/reference/source-register.md
@@ -9310,6 +9312,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b20-information-protection/05-rights-management-and-recovery.md
   - docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md
 - path: docs/id-governance/privileged-identity-management/groups-assign-member-owner.md
   url: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-assign-member-owner
@@ -9373,6 +9376,7 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b20-information-protection/05-rights-management-and-recovery.md
   - docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md
   - docs/reference/source-register.md
