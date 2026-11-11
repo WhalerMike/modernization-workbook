@@ -208,3 +208,15 @@ New section "Microsoft's security service edge: Global Secure Access" (Learn gap
 | GSA-40 | Coexistence pages name no government cloud | Coexistence | verified | Microsoft Learn "the coexistence pages above (absence checked)", read Nov 9, 2026 |
 | GSA-41 | Traffic and remote network health logs 30 days; diagnostic settings export | Requirements table | verified | Microsoft Learn "Global Secure Access logs and monitoring", read Nov 9, 2026 |
 | GSA-42 | Requirements table rows | Requirements table | restated-as-design | program design (restated-as-design) |
+
+## Addition, November 11, 2026: the bridge to identity-aware access (Zero Trust closure, B09-01)
+
+New section "From TIC capability to identity-aware access: the bridge", with bypass governance, the decision record and pilot exit criteria. It links Book 04 Chapter 07 for the Conditional Access policy shapes and names the Global Secure Access & Zero Trust Network Engineering implementation guide for the engineering, without repeating either.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| BR-1 | Signaling toggle; **All Compliant Network locations** named location; disabling signaling with active compliant-network policies can block users, so delete the policies first | Bridge table; change safety | verified | [Enable compliant network check with Conditional Access](https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network) | Nov 11, 2026 |
+| BR-2 | Pilot group first; disable the client and confirm a fresh sign-in is blocked; source IP restoration required | Exit criterion 2 | verified | [Tutorial: Enable the compliant network check](https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-compliant-network) | Nov 11, 2026 |
+| BR-3 | Microsoft's Zero Trust configuration guidance checks that signaling is on and that traffic forwarding profiles route traffic | Bridge table | verified | [Configure Microsoft Entra for Zero Trust: Protect networks](https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks) | Nov 11, 2026 |
+| BR-4 | GCC only; compliant network not supported for Private Access; Conditional Access per Private Access application | Applies; limit | carried (GSA rows above) | Known limitations, read Nov 9, 2026 | Nov 9, 2026 |
+| BR-5 | Bridge mapping, bypass kinds and register fields, decision record, exit criteria 1 and 3 to 7, rings | Section | restated-as-design (labeled Risk-based recommended) | Program design | Nov 11, 2026 |
