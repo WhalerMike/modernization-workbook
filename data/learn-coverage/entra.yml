@@ -2452,6 +2452,8 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b12-security-operations/11-detection-engineering-and-response.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
 - path: docs/architecture/security-operations-privileged-identity-management.md
   url: https://learn.microsoft.com/entra/architecture/security-operations-privileged-identity-management
   title: Microsoft Entra security operations for Privileged Identity Management
@@ -5249,6 +5251,8 @@ pages:
   - docs/books/b01-transformation-arc/08-access-plane.md
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
 - path: docs/fundamentals/zero-trust-protect-tenants.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants
   title: Security guidance - Protect tenants and isolate production systems
@@ -5714,6 +5718,8 @@ pages:
   cited_by:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-configure-cloud-firewall-clients.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall-clients
   title: Configure cloud firewall for Global Secure Access clients (preview)
@@ -7316,9 +7322,11 @@ pages:
   ms_date: '2026-06-22'
   ms_topic: tutorial
   description: Learn how to configure a Conditional Access policy that requires a compliant network with Global Secure Access.
-  coverage: not-covered
+  coverage: cited
   note: Compliant network check and Conditional Access on Global Secure Access traffic; fits the policy library
-  cited_by: []
+  cited_by:
+  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-enable-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile
   title: 'Tutorial: Enable the Microsoft traffic profile'
@@ -16738,6 +16746,7 @@ pages:
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
 - path: docs/identity/authentication/concept-authentication-authenticator-app.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-authentication-authenticator-app
   title: Microsoft Authenticator authentication method
@@ -17492,6 +17501,8 @@ pages:
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b16-people/07-end-user-training.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
@@ -18197,7 +18208,9 @@ pages:
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b18-application-modernization/06-compliance-by-design.md
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
@@ -19827,6 +19840,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
   - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
 - path: docs/identity/conditional-access/troubleshoot-policy-changes-audit-log.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/troubleshoot-policy-changes-audit-log
@@ -20367,12 +20382,14 @@ pages:
   ms_date: '2026-06-17'
   ms_topic: how-to
   description: This article describes how to use the Microsoft Entra admin center to manage device identities and monitor related event information.
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid join, device registration and troubleshooting.
   workbook:
   - docs/books/b05-devices/02-the-hybrid-join-trap.md
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
-  cited_by: []
+  cited_by:
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
 - path: docs/identity/devices/manage-stale-devices.md
   url: https://learn.microsoft.com/entra/identity/devices/manage-stale-devices
   title: How to manage stale devices in Microsoft Entra ID
@@ -28320,6 +28337,10 @@ pages:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b11-zero-trust/02-governance-principles.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
+  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
+  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md
   - docs/books/guides/privileged-access-implementation.md
@@ -30270,6 +30291,8 @@ pages:
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
+  - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
+  - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
 - path: docs/workload-id/index.yml
   url: https://learn.microsoft.com/entra/workload-id
   title: Microsoft Entra Workload ID documentation
