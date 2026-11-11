@@ -1,19 +1,19 @@
 ---
 title: "Federal Framework Crosswalk"
-subtitle: "Which federal modernization frameworks the workbook's 20 books address, where, and how deeply, with each framework's status checked on October 23, 2026, and every federal source the books cite"
-description: "Research under review: a crosswalk of the Federal Modernization Workbook's 20 books against federal modernization frameworks: each framework's current status, a book-by-framework coverage matrix scored 0 to 3, the gaps, and a proposal for tagging chapters by framework."
+subtitle: "Which federal modernization frameworks the workbook's 21 books address, where, and how deeply, with each framework's status checked on October 23, 2026, and every federal source the books cite"
+description: "Research under review: a crosswalk of the Federal Modernization Workbook's 21 books against federal modernization frameworks: each framework's current status, a book-by-framework coverage matrix scored 0 to 3, the gaps, and a proposal for tagging chapters by framework."
 research-status: in review
 research-type: reference
-research-book: "Books 00–19"
-date-modified: 2026-11-08
-last-reviewed: 2026-11-08
+research-book: "Books 00–20"
+date-modified: 2026-11-11
+last-reviewed: 2026-11-11
 aliases:
   - /docs/research/federal-framework-crosswalk.html
 ---
 
 # Federal Framework Crosswalk {.unnumbered}
 
-A federal modernization program answers to more than its security controls. Statute and OMB policy also govern how IT investments are chosen and funded, how enterprise architecture is kept, how digital services are delivered, and how privacy and records are handled. This page maps the workbook's 20 books against those frameworks, checks each one's current status at its primary source, and records where coverage is deep, thin or missing, so that the gaps can be closed deliberately.
+A federal modernization program answers to more than its security controls. Statute and OMB policy also govern how IT investments are chosen and funded, how enterprise architecture is kept, how digital services are delivered, and how privacy and records are handled. This page maps the workbook's 21 books against those frameworks, checks each one's current status at its primary source, and records where coverage is deep, thin or missing, so that the gaps can be closed deliberately.
 
 ## How to read the scores
 
@@ -77,33 +77,33 @@ The frameworks the workbook relies on most are not on the usual modernization li
 
 ## Coverage matrix
 
-| Framework | 00 Orientation & Program | 01 The Transformation Arc | 02 Identity & Directory | 03 HR-Driven Identity | 04 Access & Privilege | 05 Devices & Endpoints | 06 Data Platform: SQL Server Identity | 07 PKI & Certificates | 08 DNS, DHCP & IPAM | 09 Network & Transport | 10 Cloud Boundary & Landing Zone | 11 Zero Trust & Assessment | 12 Security Operations & Telemetry | 13 Governance, Drift & Evidence | 14 Federal Compliance & Authorization | 15 Compliance Automation & Day-2 Operations | 16 People: Training & Education | 17 AI Identity Governance | 18 Application Modernization | 19 Building the Attribute-Driven Migration |
-|--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
-| FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 | 1 | 3 |
-| NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 2 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | 3 | 3 | 3 | 2 | 2 | 3 | 2 | 3 |
-| EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 3 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 | 0 | 3 |
-| CISA ZTMM 2.0 | 1 | 3 | 1 | 1 | 1 | 0 | 3 | 0 | 3 | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| PIV, HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 | 0 | 1 |
-| OMB M-26-14 (logging) | 2 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 0 | 3 | 3 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
-| FISMA 2014 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 2 | 3 | 0 | 0 |
-| OMB Circular A-130 | 2 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 2 | 3 | 3 | 0 | 2 | 3 | 3 | 0 |
-| Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 3 | 0 | 0 | 3 | 2 | 0 |
-| Federal records | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 1 | 2 | 0 | 1 | 0 |
-| M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 1 | 0 | 0 | 2 | 0 |
-| Evidence Act (was the Federal Data Strategy) | 0 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 0 |
-| NIST CSF 2.0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 0 | 1 | 0 | 1 | 0 | 0 | 0 |
-| Section 508 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 3 | 0 | 3 | 0 |
-| Enterprise architecture (A-130 §5.a(2)) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 0 | 0 | 0 | 3 | 0 |
-| Clinger-Cohen, CPIC and A-11 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 2 | 0 |
-| FITARA (M-26-10) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 2 | 0 |
-| Cloud Smart | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| Technology Modernization Fund | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
-| 21st Century IDEA and M-23-22 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 0 |
-| TOGAF Standard, 10th Edition | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
-| Zachman Framework 3.0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
+| Framework | 00 Orientation & Program | 01 The Transformation Arc | 02 Identity & Directory | 03 HR-Driven Identity | 04 Access & Privilege | 05 Devices & Endpoints | 06 Data Platform: SQL Server Identity | 07 PKI & Certificates | 08 DNS, DHCP & IPAM | 09 Network & Transport | 10 Cloud Boundary & Landing Zone | 11 Zero Trust & Assessment | 12 Security Operations & Telemetry | 13 Governance, Drift & Evidence | 14 Federal Compliance & Authorization | 15 Compliance Automation & Day-2 Operations | 16 People: Training & Education | 17 AI Identity Governance | 18 Application Modernization | 19 Building the Attribute-Driven Migration | 20 Information Protection & Microsoft Purview |
+|--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 | 1 | 3 | 3 |
+| NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 2 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | 3 | 3 | 3 | 2 | 2 | 3 | 2 | 3 | 0 |
+| EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 3 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 | 0 | 3 | 2 |
+| CISA ZTMM 2.0 | 1 | 3 | 1 | 1 | 1 | 0 | 3 | 0 | 3 | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |
+| PIV, HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 | 0 | 1 | 0 |
+| OMB M-26-14 (logging) | 2 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 0 | 3 | 3 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 1 |
+| FISMA 2014 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 2 | 3 | 0 | 0 | 0 |
+| OMB Circular A-130 | 2 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 2 | 3 | 3 | 0 | 2 | 3 | 3 | 0 | 0 |
+| Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 3 | 0 | 0 | 3 | 2 | 0 | 2 |
+| Federal records | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 1 | 2 | 0 | 1 | 0 | 2 |
+| M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 1 | 0 | 0 | 2 | 0 | 0 |
+| Evidence Act (was the Federal Data Strategy) | 0 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 0 | 0 |
+| NIST CSF 2.0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 |
+| Section 508 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 3 | 0 | 3 | 0 | 0 |
+| Enterprise architecture (A-130 §5.a(2)) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 0 | 0 | 0 | 3 | 0 | 0 |
+| Clinger-Cohen, CPIC and A-11 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 |
+| FITARA (M-26-10) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 2 | 0 | 0 |
+| Cloud Smart | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Technology Modernization Fund | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 |
+| 21st Century IDEA and M-23-22 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 0 | 0 |
+| TOGAF Standard, 10th Edition | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0 |
+| Zachman Framework 3.0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0 |
 
-Notes: the PIV, HSPD-12 and FIPS 201 row scores how much each book discusses PIV credentials; only Books 03, 06 and 07 name HSPD-12 or FIPS 201 themselves. Book 18 was added on October 28, 2026; its scores and the TOGAF and Zachman rows come from its chapters as published that day, and no other book cites either framework. Book 14's enterprise architecture score rests on A-130 §5.a(2) and control PM-7, with architecture artifacts and review gates as the evidence; its score does not rest on FEAF, which Book 00 and Book 18 name. Book 01's Cloud Smart score is a mention of its 2010 predecessor, Cloud First, as history. Book 12 relies on M-22-09 through other books rather than citing it directly. Book 19 was added on November 6, 2026 and is scored from its index and ten chapters: each chapter's "Federal requirements and evidence" table (Chapter 10: "Requirements, KSIs and evidence") maps scripted kit actions to SP 800-53 controls and FedRAMP Key Security Indicators with the file or command that proves each, so those two rows and the M-22-09 row score 3; HSPD-12 scores 1 because Chapter 05 names the leaver's PIV revocation as a custom-extension example and nothing more. Book 19's RMF score rests on one row of Chapter 09's table, which ties the OSCAL export to Tasks A-4, A-6 and M-4, controls CA-2, CA-5 and CA-7, and the files that prove it. Books 04 and 18 never name the RMF, and Book 05 only points to Book 02 for its role definitions; their 2 comes from the tasks the map credits to them. Book 19 doesn't cite FISMA, A-130, the Privacy Act, records law, the Zero Trust Maturity Model, M-26-14, M-26-05, the Evidence Act, CSF 2.0, Section 508, enterprise architecture, capital planning, FITARA, Cloud Smart, the TMF, IDEA, TOGAF or Zachman, so those cells are 0.
+Notes: the PIV, HSPD-12 and FIPS 201 row scores how much each book discusses PIV credentials; only Books 03, 06 and 07 name HSPD-12 or FIPS 201 themselves. Book 18 was added on October 28, 2026; its scores and the TOGAF and Zachman rows come from its chapters as published that day, and no other book cites either framework. Book 14's enterprise architecture score rests on A-130 §5.a(2) and control PM-7, with architecture artifacts and review gates as the evidence; its score does not rest on FEAF, which Book 00 and Book 18 name. Book 01's Cloud Smart score is a mention of its 2010 predecessor, Cloud First, as history. Book 12 relies on M-22-09 through other books rather than citing it directly. Book 19 was added on November 6, 2026 and is scored from its index and ten chapters: each chapter's "Federal requirements and evidence" table (Chapter 10: "Requirements, KSIs and evidence") maps scripted kit actions to SP 800-53 controls and FedRAMP Key Security Indicators with the file or command that proves each, so those two rows and the M-22-09 row score 3; HSPD-12 scores 1 because Chapter 05 names the leaver's PIV revocation as a custom-extension example and nothing more. Book 19's RMF score rests on one row of Chapter 09's table, which ties the OSCAL export to Tasks A-4, A-6 and M-4, controls CA-2, CA-5 and CA-7, and the files that prove it. Books 04 and 18 never name the RMF, and Book 05 only points to Book 02 for its role definitions; their 2 comes from the tasks the map credits to them. Book 19 doesn't cite FISMA, A-130, the Privacy Act, records law, the Zero Trust Maturity Model, M-26-14, M-26-05, the Evidence Act, CSF 2.0, Section 508, enterprise architecture, capital planning, FITARA, Cloud Smart, the TMF, IDEA, TOGAF or Zachman, so those cells are 0. Book 20 was added on November 11, 2026 and is scored from its index, twelve chapters and Appendix A: Appendix A maps SP 800-53 controls and FedRAMP Key Security Indicators to the evidence each chapter produces, and every chapter carries a Zero Trust assessment-mapping block on the CISA model's Data pillar, so those rows score 3; it cites M-22-09 §III.E and M-26-14 in the appendix (2 and 1), and Chapters 01 and 10 apply Privacy Act and records-schedule decisions (2 each). It ties no RMF task to a control and an artifact, and the RMF Map credits it none, so its RMF score is 0.
 
 :::
 
@@ -162,6 +162,10 @@ Sources now have a permanent home in the [Source Register](source-register.md), 
 - **Book 19, [Building the Attribute-Driven Migration](../books/b19-developer-workbook/index.md)**, joins the matrix as its own column (scored on the note under the matrix), and the book count on this page is now 20 (Books 00 to 19; `research-book` now says so).
 - **Re-review.** Each earlier addition (October 28 and 29 and 30, November 2 and 5) was reread against the chapters it cites: the linked chapters and headings exist, the cited controls, memoranda and notices appear in them, and the Privacy Act, A-130, Section 508 and EO 14028 scores match the cells. Nothing needed changing. The Book 18 portfolio claim rests on two chapters together: Chapter 02 names FITARA, and Chapters 02 and 10 name capital planning and the Technology Modernization Fund. The source lists below were built from the October 23 sweep and are not recounted for Book 19; the "All 20 books" rows were checked against it.
 - **Checks.** `scripts/check_framework_crosswalk.py` now runs on every pull request and checks the counts in the section headings, `research-book`, the matrix columns and rows, and the review dates.
+
+## Additions made, November 11, 2026
+
+- **Book 20, [Information Protection & Microsoft Purview](../books/b20-information-protection/index.md)**, joins the matrix as its own column (scored on the note under the matrix), and the book count on this page is now 21 (Books 00 to 20; `research-book` now says so). The source lists below are not recounted for Book 20; their "All 20 books" rows were counted before it existed.
 
 ## Every federal source the books cite
 
