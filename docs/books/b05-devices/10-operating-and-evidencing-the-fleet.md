@@ -1,6 +1,6 @@
 ---
 title: "Chapter 10 — Operating and Evidencing the Fleet"
-description: "Run-state for the Intune-managed fleet: compliance and the Conditional Access hand-off, Windows update rings and Windows Autopatch, Microsoft Defender for Endpoint, device inventory reconciliation, retirement and wipe, drift detection, and the evidence an assessor reads for NIST SP 800-53 CM-2, CM-6, CM-7, CM-8 and SI-2."
+description: "Run-state for the Intune-managed fleet: compliance and the Conditional Access hand-off, the compliance architecture by platform and ownership, Windows update rings, expedited updates and Windows Autopatch, Microsoft Defender for Endpoint, device inventory reconciliation, retirement and wipe, drift detection, endpoint analytics, and the evidence an assessor reads for NIST SP 800-53 CM-2, CM-6, CM-7, CM-8 and SI-2."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b05-devices
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-How the Federal Modernization Program runs the fleet after the GPO sunset. Compliance and how its result reaches Conditional Access; Windows update rings, update policies and Windows Autopatch; Microsoft Defender for Endpoint; reconciling the device inventories that Intune, Entra ID and Defender each keep; retiring and wiping devices without losing recovery keys; drift detection and alerting; and the evidence an assessor reads for the configuration management and flaw remediation controls, with the boundary facts for a GCC (Moderate) tenant.
+How the Federal Modernization Program runs the fleet after the GPO sunset. Compliance and how its result reaches Conditional Access, and the compliance baselines for Windows, iOS and iPadOS and Android Enterprise, corporate and personally owned; Windows update rings, update policies, expedited updates and Windows Autopatch; Microsoft Defender for Endpoint; reconciling the device inventories that Intune, Entra ID and Defender each keep; retiring and wiping devices without losing recovery keys; drift detection and alerting; endpoint analytics for drift and delayed patching; and the evidence an assessor reads for the configuration management and flaw remediation controls, with the boundary facts for a GCC (Moderate) tenant.
 :::
 
 Group Policy answered "why is this setting here?" with the device's position in the directory. [Chapter 01](01-why-group-policy-cant-come-to-the-cloud.md) explained why that answer doesn't survive the move to Intune. In the run state the program replaces it with three records that together say what each device should be, what it is, and who changed what: the policy library from [Chapter 08](08-gpo-to-intune-policy-migration.md), the status Intune and Defender report per device, and the audit log of every change. Operating the fleet means keeping those three records in agreement. Evidencing the fleet means handing an assessor the same records, not a document written for the audit.
@@ -48,6 +48,207 @@ The device compliance dashboard groups devices as **Compliant**, **In grace peri
 ### Defender risk as a compliance signal
 
 The Windows compliance policy can require a device to be at or under a Defender for Endpoint machine risk score.[^c10-win-compliance] The program sets it on Tier 0 (CP-002 in Chapter 08), so a Defender detection on a privileged access workstation becomes a compliance failure and, through Conditional Access, a loss of access.
+
+## Compliance architecture by platform and ownership {#compliance-architecture}
+
+Chapter 08's compliance policies cover the Windows fleet. An assessment that reads device compliance reads every platform that reaches organizational data, and it reads ownership too: a personally owned phone and a corporate one carry different risks and get different controls. This section completes the architecture for the platforms in the workbook's scope, Windows, iOS and iPadOS, and Android Enterprise, for corporate and personally owned devices, and sets the rule for when compliance starts to decide access. The conventions are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices
+- **CISA ZTMM pillar:** Devices (policy enforcement and compliance monitoring; asset risk management)
+- **Depends on:** Identity: the device record is a Microsoft Entra object and Conditional Access reads its compliance ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md)); enrollment and ownership from [Chapter 04](04-intune-first-onboarding.md#enrollment-controls)
+- **Attack chain interrupted:** a stolen or phished credential used from an unmanaged, jailbroken, rooted or out-of-date device (Initial Access with valid accounts; Defense Evasion on a device the organization can't see)
+:::
+
+### Compliance is not configuration
+
+Two policy families do two different jobs, and the program keeps them apart:
+
+- **Configuration** sets the device: a configuration profile, settings catalog policy, endpoint security policy or security baseline pushes a setting. Each setting has exactly one owning policy ([Chapter 08](08-gpo-to-intune-policy-migration.md#choosing-the-authority-per-workload)).
+- **Compliance** measures the device and reports a state that Conditional Access reads. A compliance policy defines the rules a device must meet, and the actions for noncompliance, such as marking the device noncompliant after a grace period, emailing the user or adding the device to the retire list.[^c10-z-noncompliance]
+
+A compliance rule checks an outcome the device can report (encryption, OS version, jailbreak or root state, a Defender risk level), not a setting the program merely pushes. A setting that is pushed but can't be measured stays out of compliance and is checked by drift detection instead, as Chapter 08 does for Credential Guard. That separation is what lets the program change a configuration without changing who gets access, and lets an assessor see which controls decide access.
+
+### Platform and ownership baselines
+
+The program's baselines start from Microsoft's security configuration framework for mobile devices, which defines levels of device compliance and restriction settings for personally owned and organization-owned iOS/iPadOS and Android Enterprise devices. Microsoft describes level 2, enhanced security, as the recommended minimum for devices where users reach work data, and level 3, high security, for users or groups who are uniquely targeted; it asks organizations to adjust the examples to their own risk and then deploy in rings.[^c10-z-ios-compliance][^c10-z-android-personal][^c10-z-android-managed] Microsoft's Zero Trust identity and device access guidance uses the same levels.[^c10-z-zt-common]
+
+| Platform and ownership | Enrollment path ([Chapter 04](04-intune-first-onboarding.md#enrollment-controls)) | Compliance policy | Configuration | Access path (owned by [Book 04](../b04-access/07-the-conditional-access-policy-library.md)) |
+|---|---|---|---|---|
+| Windows, corporate | Windows Autopilot or device preparation | CP-001, CP-002, CP-003, CP-005 ([Chapter 08](08-gpo-to-intune-policy-migration.md#compliance-policies)) | Chapter 08 library; hardening rollout in [Chapter 08](08-gpo-to-intune-policy-migration.md#windows-hardening-rollout) | Compliant device: CA004, CA007, CA016, CA028 |
+| Windows, personally owned | Not enrolled; personal Windows enrollment is blocked | None (no enrolled device to evaluate) | AP-002 app protection for Edge | App protection for Edge, as Book 04's policies decide |
+| iOS and iPadOS, corporate | Apple Automated Device Enrollment, supervised | CP-006 | Microsoft supervised level 2 restrictions | Compliant device |
+| iOS and iPadOS, personally owned | Account-driven User Enrollment, or app protection only | CP-007, where enrolled | AP-002 and AP-001; User Enrollment's limited setting set | App protection: CA017 |
+| Android Enterprise, corporate | Fully managed (zero-touch or Knox Mobile Enrollment) | CP-008 | Microsoft fully managed level 2 restrictions | Compliant device |
+| Android Enterprise, personally owned | Personally owned work profile, or app protection only | CP-009, where enrolled | Microsoft work profile level 2 restrictions; AP-001 and AP-002 | App protection: CA017 |
+
+Shared and kiosk mobile devices follow the corporate rows with no user affinity; the program has no mobile kiosk population today, so no separate ID is defined. Which Conditional Access policy reads which row, and its exclusions, are Book 04's decisions; this book's job is that each row's compliance signal is accurate and evidenced.
+
+#### CP-006 and CP-007: iOS and iPadOS
+
+**Authority:** Microsoft-recommended (the iOS/iPadOS compliance example at enhanced security, level 2).[^c10-z-ios-compliance] **Applies:** all enrolled iOS and iPadOS devices; level 3 settings (a stricter OS floor and a Defender for Endpoint or mobile threat defense risk level) are **license-dependent** and are the program's choice for Tier 0 users only.
+
+| Section | Setting | Value | Source |
+|---|---|---|---|
+| Device health | Jailbroken devices | Block | Microsoft level 2 |
+| Device properties | Minimum OS version | The current major version minus one (N-1), raised as Apple ships | Microsoft level 2: match the versions Microsoft apps support, N-1 |
+| System security | Require a password to unlock mobile devices | Require | Microsoft level 2 |
+| System security | Simple passwords | Block | Microsoft level 2 |
+| System security | Minimum password length | 6 | Microsoft level 2 |
+| System security | Required password type | Numeric | Microsoft level 2 |
+| System security | Maximum minutes after screen lock before password is required | 5 | Microsoft level 2 |
+| System security | Maximum minutes of inactivity until screen locks | 5 | Microsoft level 2 |
+| Actions for noncompliance | Mark device noncompliant | 1 day | Program choice, matching CP-001; Microsoft's example marks it immediately |
+
+CP-007 applies the same table to personally owned devices enrolled with account-driven User Enrollment. User Enrollment gives the organization a limited, separate managed volume and a subset of management options, and supervision isn't available,[^c10-z-user-enrollment] so check each setting against Microsoft's list of what User Enrollment supports before relying on it, and keep app protection (AP-001, AP-002) as the data control for personal devices. User Enrollment needs a Managed Apple Account per user; Apple Managed account federation with Microsoft Entra ID isn't available in GCC High or DoD, so there the accounts are created in Apple Business Manager instead.[^c10-z-user-enrollment][^c10-intune-gov]
+
+#### CP-008 and CP-009: Android Enterprise
+
+**Authority:** Microsoft-recommended (the fully managed and personally owned work profile examples at enhanced security, level 2).[^c10-z-android-managed][^c10-z-android-personal] **Applies:** all enrolled Android Enterprise devices; level 3 as for iOS.
+
+| Section | Setting | CP-008 fully managed | CP-009 personally owned work profile |
+|---|---|---|---|
+| Device health | Play Integrity verdict | Check basic integrity and device integrity | Check basic integrity and device integrity |
+| Device health | Check strong integrity using hardware-backed security features | Check strong integrity (devices that can't are marked noncompliant) | Same |
+| Device health | Rooted devices | — | Block |
+| Device health | Google Play Services is configured; up-to-date security provider | — | Require |
+| Device properties | Minimum OS version | The program's Android floor, reviewed each release | Same |
+| Device properties | Minimum security patch level | Not configured until the fleet's OEMs deliver monthly patches | Same |
+| System security | Require a password; required type; minimum length | Require; numeric complex; 6 | Same |
+| System security | Maximum minutes of inactivity before password is required | 5 | 5 |
+| System security | Require encryption of data storage | Require | Require |
+| System security | Block apps from unknown sources; block USB debugging | — | Block; block |
+| System security | Intune or Company Portal app runtime integrity | Require | Require |
+| System security | Number of days until password expires; passwords before reuse | Not configured (program choice) | Not configured |
+| Actions for noncompliance | Mark device noncompliant | 1 day (program choice) | 1 day |
+
+Microsoft's fully managed level 2 example sets a 365-day passcode expiry and a five-password reuse limit. The program leaves both unset, because it doesn't require periodic changes to memorized secrets anywhere else ([Book 16, Chapter 07](../b16-people/07-end-user-training.md#corrections-to-the-source-password-rules)); that departure from Microsoft's example is the program's risk-based position and is recorded in the exception register. Microsoft also notes that the strong integrity check isn't supported by every device, and such devices are marked noncompliant,[^c10-z-android-managed] so the procurement list should carry only devices that pass it.
+
+### Prerequisites
+
+- **Licenses:** Intune Plan 1. Level 3's device risk setting needs Defender for Endpoint on the device or a mobile threat defense connector (**license-dependent**).[^c10-z-ios-compliance]
+- **Roles:** Intune Administrator, or a custom role with compliance policy permissions, scoped by scope tag.
+- **Platform connections:** the Apple MDM push certificate for iOS and iPadOS enrollment;[^c10-z-apple-guide] Apple Business Manager for Automated Device Enrollment and Managed Apple Accounts; managed Google Play bound to the tenant for Android Enterprise.
+- **In place first:** the tenant settings above (**Mark devices with no compliance policy assigned as** *Not compliant*), the enrollment controls in [Chapter 04](04-intune-first-onboarding.md#enrollment-controls), and Book 04's emergency access accounts excluded from every policy that requires a compliant device.
+- **Government cloud availability** (Intune government service description, read Nov 11, 2026):[^c10-intune-gov] compliance policies and the platforms in this section are standard MDM features in GCC (the commercial Intune instance), GCC High and DoD; mobile threat defense connectors in GCC High are limited to vendors that also support it; Apple Managed account federation isn't available in GCC High or DoD.
+
+### Pilot
+
+Assign each new compliance policy to a pilot device group per row: the endpoint engineering team's own devices, then about 5% of the row's population chosen to cover every device model and OS version in the fleet. Success is that every pilot device reports *Compliant*, or *Not compliant* for a reason the team expected and can explain, within the 14-day validity period; and that the help desk sees no tickets it can't resolve with the user-facing fix in [Book 16, Chapter 07](../b16-people/07-end-user-training.md#what-not-compliant-means).
+
+### Report-only or audit phase
+
+Compliance policies have no report-only mode, so the program observes them in two ways before they can block anyone:
+
+1. **Notify, don't block.** During the pilot, the Conditional Access policy that reads the row stays in report-only, and the compliance policy's only actions are **Mark device noncompliant** with a long grace period and an email to the user. The device compliance report and per-setting status show what would fail.[^c10-monitor-compliance]
+2. **Read the report-only result.** A report-only Conditional Access policy is evaluated at sign-in and its result is written to the sign-in log, so the team can count the sign-ins that would have been blocked for noncompliance before turning it on ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)).[^c10-z-ca-report-only]
+
+Run both for at least two weeks per ring.
+
+### Enforcement
+
+Compliance is connected to Conditional Access **only after the pilot validates it**. That is a risk-based rule of the program, and it matches Microsoft's advice to deploy its example configurations in rings.[^c10-z-ios-compliance] The exit criteria for each ring, set before the change: every device in the ring has reported within the validity period; every *Not compliant* device has an explained reason and a fix; the report-only Conditional Access results show no sign-in that would be blocked for an unexplained reason; and help desk volume is inside the wave threshold from [Book 16, Chapter 10](../b16-people/10-measuring-readiness.md).
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Endpoint engineering team | All devices compliant or explained; report-only clean for one week |
+| 1 | Pilot group, about 5% of the row | As above for two weeks; help desk tickets resolved |
+| 2 | One division per row | As above; no rise in blocked sign-ins after the Conditional Access policy is turned on for the ring |
+| 3 | Everyone in the row | Ring 2's criteria held for one week |
+
+- **Emergency access:** excluded from every policy that requires a compliant device, with the exclusion tested each quarter ([Book 04](../b04-access/index.md))
+- **Change window:** business hours, with the help desk briefed; the Conditional Access owner turns the policy on for the ring
+- **Backout triggers:** a rise in blocked sign-ins with an unexplained compliance reason, or help desk volume above the wave threshold
+- **Post-change validation:** a sign-in from one compliant and one deliberately noncompliant test device per platform in the ring, with the expected grant and block in the sign-in log
+
+The enforcing step is in two places. In Intune, set the policy's grace period to its production value (1 day for CP-006 to CP-009) and assign it to the ring's group. In Entra ID, the Conditional Access owner moves the Book 04 policy from **Report-only** to **On** for the ring.
+
+### Rollback
+
+The Conditional Access owner sets the policy back to **Report-only**, which stops blocks within the policy's evaluation of the next sign-in; Book 04 keeps rollback as report-only or off, never delete. In Intune, lengthen the grace period or remove the ring's assignment. Changing the tenant setting **Mark devices with no compliance policy assigned as** back to *Compliant* is not a rollback step: it would let every unassigned device through.
+
+### Exclusions
+
+Emergency access accounts first, excluded in Book 04's policies and tested. Then devices that can't be evaluated: path D devices in [Chapter 04](04-intune-first-onboarding.md#path-d-under-the-compliant-device-policies), with their named exclusion group, owner and 90-day review. Each exclusion and the departure from Microsoft's passcode-expiry example are in the exception register with an approver and an expiry.
+
+### Telemetry
+
+- The device compliance dashboard and per-policy device status in Intune.[^c10-monitor-compliance]
+- `IntuneDeviceComplianceOrg` in Log Analytics, daily, for the trend ([What Log Analytics receives, and when](#what-log-analytics-receives-and-when)).
+- Sign-in logs with the Conditional Access and report-only results, which Book 04's queries read.
+- The coverage report below, weekly.
+
+### Evidence
+
+The acceptance test is a **coverage report by platform and ownership**: how many devices in each row, how many are compliant, and whether every row has an assigned compliance policy.
+
+::: {.callout-warning}
+## Illustrative, not tested against a production tenant
+Read-only and illustrative; run it first against a test tenant. In GCC High, connect with `-Environment USGov` and use `graph.microsoft.us`.
+:::
+
+```powershell
+# Read-only. Compliance coverage by platform and ownership, and the policies behind each platform.
+Connect-MgGraph -Scopes 'DeviceManagementManagedDevices.Read.All', 'DeviceManagementConfiguration.Read.All'
+$stamp = Get-Date -Format 'yyyy-MM-dd'
+
+$devices = Get-MgDeviceManagementManagedDevice -All -Property 'operatingSystem,managedDeviceOwnerType,complianceState,lastSyncDateTime'
+
+# Rows: platform x ownership, with counts by compliance state
+$devices | Group-Object OperatingSystem, ManagedDeviceOwnerType | ForEach-Object {
+    $g = $_.Group
+    [pscustomobject]@{
+        Platform     = $g[0].OperatingSystem
+        Ownership    = $g[0].ManagedDeviceOwnerType
+        Devices      = $g.Count
+        Compliant    = ($g | Where-Object ComplianceState -eq 'compliant').Count
+        NotCompliant = ($g | Where-Object ComplianceState -eq 'noncompliant').Count
+        GracePeriod  = ($g | Where-Object ComplianceState -eq 'inGracePeriod').Count
+        Other        = ($g | Where-Object ComplianceState -notin 'compliant', 'noncompliant', 'inGracePeriod').Count
+        StaleOver14d = ($g | Where-Object { $_.LastSyncDateTime -lt (Get-Date).AddDays(-14) }).Count
+    }
+} | Sort-Object Platform, Ownership | Export-Csv ".\compliance-coverage-$stamp.csv" -NoTypeInformation
+
+# Policies: each compliance policy, its platform type and how many assignments it has
+$uri = 'https://graph.microsoft.com/v1.0/deviceManagement/deviceCompliancePolicies?$expand=assignments'
+$policies = @()
+while ($uri) {
+    $page = Invoke-MgGraphRequest -Method GET -Uri $uri -OutputType PSObject
+    $policies += $page.value
+    $uri = $page.'@odata.nextLink'
+}
+$policies | Select-Object displayName, '@odata.type', @{ n = 'Assignments'; e = { $_.assignments.Count } } |
+    Export-Csv ".\compliance-policies-$stamp.csv" -NoTypeInformation
+```
+
+The `complianceState` values (`compliant`, `noncompliant`, `inGracePeriod`, `conflict`, `error`, `configManager`, `unknown`) are Graph's; `Other` collects the states the program reviews weekly, as above.[^c10-z-graph-device] The 14-day column matches the program's compliance validity period.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `compliance-policies-<date>.csv` and each policy exported as JSON under version control ([Chapter 08](08-gpo-to-intune-policy-migration.md#microsoft-graph-templates)), with the tenant compliance settings
+- [ ] **Operational:** `IntuneDeviceComplianceOrg` trend and the sign-in log's Conditional Access results, retained with the workspace
+- [ ] **Test:** per platform, one compliant and one deliberately noncompliant test device, with the expected and observed grant or block, date and tester
+- [ ] **Exception:** the exception register: path D devices, the emergency access exclusion and its last test, the passcode-expiry departure
+- [ ] **Assessor-ready artifact:** `compliance-coverage-<date>.csv` showing every row of the platform table with an assigned policy, filed with the CM-6 and AC-19 evidence below
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | The platform and ownership table, CP-006 to CP-009 and the exception register | Decision record per row, approved by the endpoint owner and the CISO for the departures |
+| Configured | Policies created and assigned to pilot groups; Conditional Access in report-only | `compliance-policies-<date>.csv` and the policy JSON |
+| Enforced | Production grace periods; the Book 04 policy **On** for each ring | Policy assignments and Book 04's enforcing state, with the exclusion register |
+| Evidenced | The per-platform test sign-ins | Test record and the sign-in log entries it produced |
+| Operated | Weekly coverage report and compliance review; alerts in [Alerts](#alerts) | Report history, review notes and alert definitions |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides. [Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain) carries those states into the finding's register entry.
+
+### Day-two ownership
+
+The endpoint engineering lead owns the compliance policies and the coverage report; the Conditional Access owner in Book 04 owns the access decision. The compliance review is weekly (the *Not evaluated* and *Error* review above), the platform floors are reviewed when Apple or Google ships a major release, and the levels are reviewed each year against Microsoft's framework. Drift looks like a platform row with no assigned policy, a rising *Not evaluated* count, or a stale-device column that grows. The help desk path for a user whose device is marked noncompliant is in [Book 15](../b15-day2-operations/index.md) and the user's own fix in [Book 16, Chapter 07](../b16-people/07-end-user-training.md#what-not-compliant-means).
 
 ## Configuration status and conflicts
 
@@ -91,6 +292,29 @@ Update rings allow a quality deferral of 0 to 30 days, deadlines of 2 to 30 days
 Windows Autopatch automates update ring management, sequencing and reporting for Windows, Microsoft 365 Apps, Edge and Teams. It is available with Windows Enterprise E3 or E5 (including through Microsoft 365 F3, E3 or E5), Education A3 or A5, Enterprise VDA, and Microsoft 365 Business Premium.[^c10-autopatch-prereq] For government tenants, it is included for GCC customers with Microsoft 365 G3 GCC or G5 GCC, and isn't supported in GCC High or DoD.[^c10-autopatch-faq] Devices must be Entra joined or hybrid joined, and co-managed devices need the Windows Update policies and device configuration workloads set to Intune or Pilot Intune.[^c10-autopatch-prereq] When Autopatch manages a device, it creates and maintains the update rings; administrators shouldn't assign their own rings to those devices.[^c10-update-rings]
 
 The program's position: use Autopatch where the license allows, and keep the ring table above as the specification Autopatch's groups are configured to. Either way, the ring values are what the assessor reads for SI-2.
+
+### Expedited quality updates {#expedited-quality-updates}
+
+The rings are for the monthly cadence. When a security update has to reach the fleet faster than the rings' deferrals allow, for example to address a vulnerability being exploited, the program uses an Intune **expedite policy**. An expedited update installs as soon as possible and bypasses the deferral settings, without pausing or editing the rings; it covers one update, is meant for targeted, time-bound use, and doesn't change how later quality updates are deployed. Only supported Windows security updates, and on Windows 11 the latest non-security update, can be expedited.[^c10-z-expedite]
+
+**Authority:** risk-based recommended, as the program's emergency path for a critical vulnerability; any federal remediation deadline that applies to the vulnerability is the requirement, and the expedite policy is one way to act on it. **Applies:** **environment-dependent**: GCC uses the commercial Intune instance, where expedite policies are available; expedite policies, like quality and feature update policies and Windows Autopatch, are on the planned list for GCC High and DoD, not available yet.[^c10-intune-gov]
+
+**Prerequisites.** The devices meet the Windows quality update prerequisites. The update rings follow Microsoft's recommended values so they don't block the expedited scan: **Enable pre-release builds** not configured, **Automatic update behavior** reset to default, and any **Change notification update level** other than turning off all notifications; and the Group Policy settings that point devices at WSUS or disable dual scan are back to Not configured on any device still receiving GPOs. On Windows versions earlier than 24H2 the Update Health Tools must be present; on 24H2 and later they shouldn't be.[^c10-z-expedite] The ring values in [The program's rings](#the-programs-rings) are compatible with these.
+
+**Pilot, then the fleet.** An expedite policy is itself the emergency change, so its rings are compressed, not skipped: assign it to the Test ring, then, after the Test ring reports **UpdateInstalled** without a backout trigger (a failed restart or a broken line-of-business application on a test device), to everyone in scope the same day. The emergency change record names the vulnerability, the update and the approver.
+
+1. In the Intune admin center, **Devices** > **Windows Updates** > **Quality updates** > **Create** > **Expedite policy**.
+2. Select the update from **Select the quality update you would like to Expedite** (the list shows only updates that can be expedited; a B release is the Patch Tuesday release, OOB an out-of-band one).
+3. Set **If a reboot is required, select the number of days before it's enforced** to **1** (0 to 2 is allowed; 0 notifies the user immediately and gives little time to save work).[^c10-z-expedite]
+4. Assign to the Test ring's device group, then to all in-scope groups.
+
+**Rollback.** Deleting the policy removes it from Intune but doesn't uninstall an update already installed; Windows Update attempts to cancel installations in progress, without a guarantee.[^c10-z-expedite] A bad update is backed out through the normal quality update process, which is why the Test ring goes first.
+
+**Exclusions.** Devices the emergency change record excludes (for example a validated instrument image) stay in the exception register with their compensating control. Emergency access is not affected: updates don't touch sign-in policy.
+
+**Telemetry and evidence.** **Reports** > **Windows Updates** > **Windows Expedited Update Report**, and **Devices** > **Monitor** > **Expedited quality update policies with alerts**, which show each device's state from *Pending* through *Installing* to *UpdateInstalled*.[^c10-z-expedite] The report export, filed with the emergency change record, is the "expedite record" in the SI-2 row of [the evidence table](#reporting-and-the-evidence-an-assessor-reads).
+
+**Day-two ownership.** The endpoint engineering lead runs expedite policies on the security team's request, and deletes each one once the next monthly ring cycle carries the same or a later update.
 
 ### Version currency
 
@@ -258,6 +482,104 @@ The table columns used are documented for `IntuneDeviceComplianceOrg`, `IntuneDe
 
 Don't alert on Tier 0 noncompliance from the daily compliance export: with up to 48 hours of export latency, the alert would arrive two days late. Tier 0 is polled from Graph instead, and Conditional Access blocks the device in the meantime because CP-002 has no grace period.
 
+## Endpoint analytics {#endpoint-analytics}
+
+The drift comparison above answers "is the device configured as designed?" Endpoint analytics answers a different question that also matters to an assessor: is the fleet actually healthy, current and cloud-managed, and is that getting better or worse? It scores startup performance, application reliability and **work from anywhere** readiness, compares them with baselines, and offers insights and recommendations.[^c10-z-ea-config] Two of its signals feed the program's drift and patching work directly: the work from anywhere **Windows** metric, the percentage of devices on supported Windows versions, and its **cloud management**, **cloud identity** and **cloud provisioning** metrics, which show devices that have fallen back out of the target state.[^c10-z-ea-wfa]
+
+Endpoint analytics doesn't replace the update reports: patch latency is still measured from Intune's Windows update reports and the ring deadlines ([Windows updates](#windows-updates)). Its role is to flag the population that update reports alone don't explain, such as devices stuck on an old version, devices that have stopped restarting, and models with poor reliability, and to show the trend.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices (with SecOps for the telemetry)
+- **CISA ZTMM pillar:** Devices (visibility and analytics, a cross-cutting capability)
+- **Depends on:** enrollment ([Chapter 04](04-intune-first-onboarding.md#enrollment-controls)); the update rings ([Windows updates](#windows-updates)); the privacy review in [Book 14, Chapter 08](../b14-compliance/08-privacy-pii-processing.md)
+- **Attack chain interrupted:** exploitation of known vulnerabilities on devices that silently stopped updating (Initial Access and Execution through public exploits); management drift that leaves devices outside policy (Defense Evasion)
+:::
+
+**Authority:** Microsoft-recommended as a monitoring capability; the program uses it as risk-based recommended evidence of drift and delayed patching. **Applies:** Intune-managed, co-managed and Configuration Manager tenant-attached Windows devices on Pro, Pro Education, Enterprise or Education, Entra joined or hybrid joined, each with a valid Intune license.[^c10-z-ea-overview] **Environment-dependent:** endpoint analytics is available in all Intune locations in global Azure,[^c10-z-ea-data] which includes GCC (the commercial instance). Microsoft's endpoint analytics pages don't state availability in GCC High or DoD; the Intune Advanced Analytics add-on that builds on it lists GCC High and DoD (in DoD without device query or the resource performance report),[^c10-z-aa] so for base endpoint analytics in those clouds the program records **not yet specified** and confirms with Microsoft before relying on it. The Advanced Analytics add-on (anomaly detection, battery health, resource performance, device query, device timeline and the read-only STIG audit baseline) is **license-dependent**: it needs a subscription beyond Intune Plan 1 or Plan 2.[^c10-z-aa]
+
+### Prerequisites
+
+- **Licenses and roles:** an Intune license per device. To configure endpoint analytics, an Intune role with Endpoint Analytics read and create/update/delete, Organization and Managed Devices read, and Device configurations create, read and assign; to read the reports, Help Desk Operator, Read Only Operator or Endpoint Security Manager, or the Entra Reports Reader role.[^c10-z-ea-overview]
+- **Device requirements:** the **Connected User Experiences and Telemetry** service (DiagTrack) enabled and running, and the devices able to reach `https://*.events.data.microsoft.com`.[^c10-z-ea-overview] Check that the configuration library doesn't disable that service; a device that can't send the data simply never appears.
+- **Privacy review, before any data is collected.** Endpoint analytics data falls in Intune's optional data category and includes diagnostic, performance and usage data tied to a user or device, such as boot and sign-in timings and the processes loaded during startup, as well as identifiers such as the Entra device ID and the tenant ID.[^c10-z-ea-data] Data flows to the Microsoft Endpoint Management service in the Microsoft public cloud and is processed every 24 hours; Microsoft anonymizes and aggregates scores across enrolled organizations to keep the **All organizations (median)** baseline current, and the tenant can withdraw that consent.[^c10-z-ea-data][^c10-z-ea-config] The privacy officer decides whether the collection is covered by the agency's existing system privacy documentation, needs an update to it, or needs a privacy threshold analysis; that decision is recorded before the pilot ([Book 14, Chapter 08](../b14-compliance/08-privacy-pii-processing.md) covers the privacy controls).
+
+### Pilot
+
+Segment the pilot by ring, not by department, so the analytics compare like with like: assign the **Intune data collection policy** to the Test and First ring device groups only. In the Intune admin center, **Reports** > **Endpoint analytics**, choose **Selected devices** under **Collect device data from**, then select **Start**; the policy Intune creates is a Windows health monitoring profile named *Intune data collection policy*, and its assignment can be changed later under **Devices** > **Configuration**.[^c10-z-ea-config] Devices must restart once after the policy arrives, and data can take up to 24 hours after a restart to appear; end-to-end latency can reach 96 hours, and the startup score can take weeks to fill in.[^c10-z-ea-config][^c10-z-ea-data] At least five devices must report before a score is shown.[^c10-z-ea-config] Success for the pilot: every pilot device appears in the reports within a week, the work from anywhere Windows metric matches the update report for the same devices, and the privacy decision is filed.
+
+### Report-only or audit phase
+
+Endpoint analytics is observation only: it collects and reports, and changes nothing on a device. The audit phase is a month of reading the pilot's scores before anyone acts on them, and creating a first custom baseline from the pilot's figures (**Settings** > **Baseline** > **Create new**, with the date in the name; the default regression threshold is 10%, and a tenant can hold 20 baselines).[^c10-z-ea-config]
+
+### Enforcement
+
+Not applicable in the sense of blocking anything: endpoint analytics is a detective control. Its rollout widens the data collection policy through the rings (Test, First, Fast, Broad), each after the previous ring's devices are reporting, until the policy reaches every in-scope device. The privacy decision sets whether collection reaches every device or only a sample; if it allows only a sample, the sample must include devices from every ring and every model.
+
+### Rollback
+
+Unassign the Intune data collection policy, or clear the **Endpoint analytics** scope on it; optionally revoke consent to share anonymized metrics. Revoking consent disables the reports that rely on shared data, stops new data, and keeps historical data visible for up to 60 days before it is removed.[^c10-z-ea-data][^c10-z-ea-config]
+
+### Exclusions
+
+Devices the privacy decision excludes, and devices whose role makes the collection inappropriate (for example a device in a sensitive investigation), are excluded by group from the data collection policy and listed in the exception register. Emergency access accounts are not affected.
+
+### Telemetry
+
+| Signal | Where | What the program reads |
+|---|---|---|
+| Work from anywhere: **Windows** | Endpoint analytics, Work from anywhere | Percentage of devices on supported Windows versions, and the device list behind it: the delayed-patching population |
+| Work from anywhere: cloud management, cloud identity, cloud provisioning | Same | Devices that left the target state: not Intune-managed, not Entra joined, not Autopilot-provisioned |
+| Startup performance and application reliability | Endpoint analytics | Regressions after a ring's update or a configuration change, against the program's own baseline |
+| Score versus baseline | Overview | A metric that regressed by more than the threshold shows red and flags the score as needing attention[^c10-z-ea-config] |
+| Anomalies (Advanced Analytics only) | Anomalies report | Crash and stop-error clusters correlated with deployments and configuration changes[^c10-z-aa] |
+
+A device appears in the work from anywhere report if it uploaded at least one event in the past 29 days; Microsoft notes that devices with an **Unknown** Windows 11 readiness are usually inactive, which points back to the [stale-record](#stale-records) rules.[^c10-z-ea-wfa]
+
+### Evidence
+
+```powershell
+# Read-only. Work from anywhere metrics and the devices behind each one, for the monthly evidence file.
+Connect-MgGraph -Scopes 'DeviceManagementManagedDevices.Read.All'
+$stamp = Get-Date -Format 'yyyy-MM-dd'
+$metrics = (Invoke-MgGraphRequest -Method GET -OutputType PSObject `
+    -Uri 'https://graph.microsoft.com/v1.0/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics').value
+foreach ($m in $metrics) {
+    $uri = "https://graph.microsoft.com/v1.0/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/$($m.id)/metricDevices"
+    $rows = @()
+    while ($uri) {
+        $page = Invoke-MgGraphRequest -Method GET -Uri $uri -OutputType PSObject
+        $rows += $page.value
+        $uri = $page.'@odata.nextLink'
+    }
+    $rows | Export-Csv ".\wfa-$($m.id)-$stamp.csv" -NoTypeInformation
+}
+```
+
+The work from anywhere metrics and their device lists are in Microsoft Graph v1.0, available in the global service and both US Government clouds, with `DeviceManagementManagedDevices.Read.All`.[^c10-z-graph-wfa] Compare the Windows metric's device list with the `IntuneDevices` OS-floor query in [What Log Analytics receives, and when](#what-log-analytics-receives-and-when): a device in one and not the other is a reporting gap to explain.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the Intune data collection policy's assignment export, and the privacy decision record
+- [ ] **Operational:** the monthly `wfa-*.csv` files and an export of the Overview scores against the program's baseline, kept for the assessment period
+- [ ] **Test:** telemetry populated for the pilot and production rings: for each ring, the count of devices reporting compared with the count enrolled, date and reviewer
+- [ ] **Exception:** devices excluded from collection, with the privacy officer's approval and review date
+- [ ] **Assessor-ready artifact:** the monthly analytics summary (score, regressions, the delayed-patching device count and its trend) linked to the SI-2 and CM-8 evidence below
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | Ring segmentation and the privacy decision | Privacy decision record; the data collection design |
+| Configured | Data collection policy assigned to Test and First | Assignment export |
+| Enforced | Not applicable: a detective control blocks nothing; the policy reaches every in-scope ring instead | Assignment export showing all rings |
+| Evidenced | Telemetry populated for pilot and production rings | Per-ring reporting counts |
+| Operated | Monthly review and baseline refresh | Review notes; the summary history |
+
+### Day-two ownership
+
+The endpoint engineering lead owns endpoint analytics and the monthly review, with the privacy officer reviewing the collection each year and whenever Microsoft changes the data collected. The review reads the Windows metric against the update ring deadlines, opens a finding for each device past the ring's deadline that isn't explained by the [stale-record](#stale-records) rules, and records a new baseline after each feature update. Drift looks like a falling number of reporting devices (often a disabled DiagTrack service or a blocked endpoint), a Windows metric that falls while update reports look clean, or a cloud management metric below 100% for the corporate fleet.
+
 ## Reporting and the evidence an assessor reads
 
 The program's evidence is the records the services keep, exported on a schedule and retained. An assessor reading the configuration management and flaw remediation controls for the fleet sees these artifacts. Control wording below is from NIST SP 800-53 Revision 5, release 5.2.0, the release FedRAMP's 2026 control catalog uses; FedRAMP adds no parameter values of its own to CM-2, CM-6, CM-7, CM-8 or SI-2.[^c10-nist][^c10-fedramp-cm][^c10-fedramp-si]
@@ -348,7 +670,7 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 [^c10-win11-release]: Microsoft Learn, "Windows 11 release information," section "Windows 11 current versions by servicing option," <https://learn.microsoft.com/windows/release-health/windows11-release-information> (accessed Oct 20, 2026).
 [^c10-edr]: Microsoft Learn, "Deploy endpoint detection and response policy with Intune," sections "Deploy EDR policy" and "Monitor and validate EDR deployment," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/deploy-edr> (accessed Oct 20, 2026).
 [^c10-mde-gov]: Microsoft Learn, "Microsoft Defender for Endpoint for US Government customers," sections "Licensing requirements" and "Portal URLs," <https://learn.microsoft.com/defender-endpoint/gov> (accessed Oct 20, 2026).
-[^c10-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Intune commercial and government instances" and "Feature differences in Intune GCC High and DoD," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026).
+[^c10-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Intune commercial and government instances" and "Feature differences in Intune GCC High and DoD," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026; rechecked Nov 11, 2026, including "Intune features planned for GCC High and DoD" and "Intune features not available in GCC High and DoD").
 [^c10-tamper]: Microsoft Learn, "Antivirus policy for endpoint security in Microsoft Intune," section "Prerequisites for antivirus policy," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus> (accessed Oct 20, 2026).
 [^c10-cleanup]: Microsoft Learn, "Device cleanup rules," <https://learn.microsoft.com/intune/governance/configure-cleanup-rules> (accessed Oct 20, 2026).
 [^c10-stale]: Microsoft Learn, "How To: Manage stale devices in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/devices/manage-stale-devices> (accessed Oct 20, 2026).
@@ -374,3 +696,19 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 [^c10-ksi-cna]: FedRAMP, "Cloud Native Architecture" (Key Security Indicators), <https://fedramp.gov/2026/providers/20x/key-security-indicators/cloud-native-architecture/> (accessed Oct 20, 2026).
 [^c10-ksi-iam]: FedRAMP, "Identity and Access Management" (Key Security Indicators), <https://fedramp.gov/2026/providers/20x/key-security-indicators/identity-and-access-management/> (accessed Oct 20, 2026).
 [^c10-graph-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments," section "Microsoft Graph and Graph Explorer service root endpoints," <https://learn.microsoft.com/graph/deployments> (accessed Oct 20, 2026).
+[^c10-z-noncompliance]: Microsoft Learn, "Configure actions for noncompliant devices in Intune," sections "Overview" and "Available actions for noncompliance," <https://learn.microsoft.com/intune/device-security/compliance/configure-noncompliance-actions> (accessed Nov 11, 2026).
+[^c10-z-ios-compliance]: Microsoft Learn, "iOS/iPadOS device compliance security configurations examples," sections "Enhanced security (level 2)" and "High security (level 3)" (no level 1 for compliance; ring deployment), <https://learn.microsoft.com/intune/device-security/security-configurations/ios-ipados-compliance> (accessed Nov 11, 2026).
+[^c10-z-android-personal]: Microsoft Learn, "Android Enterprise personally-owned work profile security configuration examples," sections "Personally-owned work profile enhanced security (level 2)" and "high security (level 3)," <https://learn.microsoft.com/intune/device-security/security-configurations/android-personally-owned> (accessed Nov 11, 2026).
+[^c10-z-android-managed]: Microsoft Learn, "Android Enterprise fully managed device security configuration examples," sections "Fully managed basic security (level 1)," "enhanced security (level 2)" and "high security (level 3)," <https://learn.microsoft.com/intune/device-security/security-configurations/android-fully-managed> (accessed Nov 11, 2026).
+[^c10-z-zt-common]: Microsoft Learn, "Common security policies for Microsoft 365," section "Device compliance policies" (personal and supervised levels for iOS/iPadOS; Android enrollment scenarios), <https://learn.microsoft.com/security/zero-trust/zero-trust-identity-device-access-policies-common> (accessed Nov 11, 2026).
+[^c10-z-user-enrollment]: Microsoft Learn, "Overview of Apple User Enrollment in Microsoft Intune" (separate volume, limited management options, no supervision); and "Set up account driven Apple User Enrollment," section "Step 2: Create enrollment profile," <https://learn.microsoft.com/intune/device-enrollment/apple/user-enrollment-methods-ios>, <https://learn.microsoft.com/intune/device-enrollment/apple/setup-account-driven-user> (both accessed Nov 11, 2026).
+[^c10-z-apple-guide]: Microsoft Learn, "Enrollment guide: Enroll Apple mobile devices in Microsoft Intune," section "BYOD: User and Device enrollment" (Apple MDM push certificate; enrollment options), <https://learn.microsoft.com/intune/device-enrollment/apple/guide-ios-ipados> (accessed Nov 11, 2026).
+[^c10-z-ca-report-only]: Microsoft Learn, "Analyze Conditional Access policy impact" (report-only policies are evaluated at sign-in but not enforced, with results in the sign-in log), <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only> (accessed Nov 11, 2026).
+[^c10-z-graph-device]: Microsoft Graph v1.0 reference, "managedDevice resource type" (`complianceState`, `managedDeviceOwnerType`, `operatingSystem`, `lastSyncDateTime`), <https://learn.microsoft.com/graph/api/resources/intune-devices-manageddevice?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c10-z-expedite]: Microsoft Learn, "Expedite policies for Windows quality updates," sections "Before you begin," "Update Health Tools," "How expedited updates work," "Create and assign an expedited quality update," "Manage expedite policies" and "Monitoring and reporting," <https://learn.microsoft.com/intune/device-updates/windows/configure-expedite-policy> (accessed Nov 11, 2026).
+[^c10-z-ea-overview]: Microsoft Learn, "Endpoint analytics overview," section "Prerequisites" (editions, device configuration, DiagTrack, network endpoint, licensing and roles), <https://learn.microsoft.com/intune/endpoint-analytics/> (accessed Nov 11, 2026).
+[^c10-z-ea-config]: Microsoft Learn, "Configure endpoint analytics," sections "Enable endpoint analytics," "Change the assignment of the Intune data collection policy," "Consent to share data," "Configure baselines" and "Review collected data," <https://learn.microsoft.com/intune/endpoint-analytics/configure> (accessed Nov 11, 2026).
+[^c10-z-ea-data]: Microsoft Learn, "Endpoint analytics data collection," sections "Data flow" (available in all Intune locations in global Azure; processed every 24 hours; maximum latency 96 hours), "Data collection" (optional data category) and "Stop gathering data," <https://learn.microsoft.com/intune/endpoint-analytics/ref-data-collection> (accessed Nov 11, 2026).
+[^c10-z-ea-wfa]: Microsoft Learn, "Work from anywhere report," sections "Work from anywhere score" (Windows, cloud management, cloud identity and cloud provisioning; active devices in the past 29 days) and "Windows 11 hardware readiness," <https://learn.microsoft.com/intune/endpoint-analytics/work-from-anywhere> (accessed Nov 11, 2026).
+[^c10-z-aa]: Microsoft Learn, "Advanced Analytics overview," sections "Prerequisites" (cloud requirements: public cloud, GCC High and DoD, with DoD excluding device query and resource performance; licensing) and "Advanced Analytics in the Intune admin center"; and "Use STIG audit baselines to assess Windows device compliance in Microsoft Intune," section "Prerequisites," <https://learn.microsoft.com/intune/advanced-analytics/>, <https://learn.microsoft.com/intune/device-security/security-baselines/stig-audit-baseline> (both accessed Nov 11, 2026).
+[^c10-z-graph-wfa]: Microsoft Graph v1.0 reference, "List userExperienceAnalyticsWorkFromAnywhereMetrics" and "List userExperienceAnalyticsWorkFromAnywhereDevices," <https://learn.microsoft.com/graph/api/intune-devices-userexperienceanalyticsworkfromanywheremetric-list?view=graph-rest-1.0>, <https://learn.microsoft.com/graph/api/intune-devices-userexperienceanalyticsworkfromanywheredevice-list?view=graph-rest-1.0> (both accessed Nov 11, 2026).
