@@ -213,3 +213,30 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 | L10 | Settings catalog Sync your settings > Enable Windows Backup; CSP `./Device/Vendor/MSFT/Policy/Config/SettingsSync/EnableWindowsBackup`, string `<enabled/>` | SC-004, Windows settings roaming | verified (added) | `c08-win-backup` (read 2026-11-09) |
 | L11 | Windows Backup for Organizations isn't available in GCC High or DoD (no plan); GCC not stated | SC-004, Windows settings roaming | verified (added); GCC written as not yet specified | `c08-gov-backup`, Learn, "Microsoft Intune for US Government GCC High and DoD service description" (read 2026-11-09) |
 | L12 | Whether the program enables ESR is not yet specified; privacy review in Book 14 | SC-004, Windows settings roaming | restated-as-design | Program decision open |
+
+## Zero Trust closure update, November 11, 2026 (B05-02, CM-09, CM-03)
+
+Instruction B05-02 (Windows hardening) and the Book 05 parts of closure-map rows CM-09 (endpoint hardening) and CM-03 (phishing-resistant administrator authentication). Added "Windows LAPS automatic account management: the open decision" (options only; the decision stays with the program's owner) and "Rolling out the Windows hardening policies" in the How-section template, with the control states, authority labels, assessment mapping, change safety, evidence checklist and read-only device proofs. Defender for Endpoint depth is left to the planned *Defender XDR Engineering & Operations* implementation guide, named in prose because the file doesn't exist yet. Microsoft Learn read on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Manual vs automatic account management; automatic mode settings; tamper events 10101-10104 | LAPS decision | verified | Learn, "Windows LAPS account management modes" | Nov 11, 2026 |
+| 2 | Microsoft recommends automatic mode with a custom account and the built-in Administrator disabled; 24H2 only | LAPS decision | verified | same | Nov 11, 2026 |
+| 3 | Disabled managed account removes spray risk but adds friction; name randomization | LAPS decision | verified | same | Nov 11, 2026 |
+| 4 | Intune supports automatic account management on 24H2; one LAPS policy per device, device groups | LAPS decision; Rollback | verified | Learn, "Microsoft Intune support for Windows LAPS"; "Deploy Windows LAPS policy with Microsoft Intune" | Nov 11, 2026 |
+| 5 | Windows LAPS with Entra ID available in Azure Global and Azure Government; Entra ID Free | Prerequisites | verified | Learn, "Windows Local Administrator Password Solution in Microsoft Entra ID" | Nov 11, 2026 |
+| 6 | LAPS option chosen: not decided | LAPS decision | restated-as-design (open decision for the owner) | - | Nov 11, 2026 |
+| 7 | Tamper protection needs onboarding; Intune policy takes precedence over the portal; PowerShell status check | Hardening table; Evidence | verified | Learn, "Configure tamper protection for Microsoft Defender Antivirus on Windows"; "Antivirus policy for endpoint security" | Nov 11, 2026 |
+| 8 | Tamper protection requirements: no co-managed devices, DisableLocalAdminMerge; rename to controlled configuration | Hardening table | verified | Learn, "Tamper protection overview" | Nov 11, 2026 |
+| 9 | Troubleshooting mode discards changes on expiry; event 5013; Not applicable before onboarding | Rollback; Hardening table | verified | Learn, "Troubleshoot problems with tamper protection" | Nov 11, 2026 |
+| 10 | Standard protection ASR rules can go to Block or Warn without testing; others Audit first | Hardening table; Audit phase | verified | Learn, ASR deployment guide and "Test your ASR rules deployment" | Nov 11, 2026 |
+| 11 | Rule exclusions are better than turning rules off; Warn mode; ring n + 1 | Hardening table; Rollback | verified | Learn, "Enable your ASR rules deployment" | Nov 11, 2026 |
+| 12 | ASR plan assumes Defender for Endpoint E5 or Windows E5; champions | Prerequisites; Pilot | verified | Learn, "Plan your ASR rules deployment" | Nov 11, 2026 |
+| 13 | ASR listing command and action values 0, 1, 2, 6 | Evidence | verified (Microsoft's command reused) | Learn, "Configure ASR rules and exclusions" | Nov 11, 2026 |
+| 14 | WHfB tenant-wide policy applies only at enrollment; managed afterward by account protection, settings catalog or baselines | Hardening table | verified | Learn, "Configure Windows Hello for Business"; "Configure Windows Hello for Business on devices when they enroll" | Nov 11, 2026 |
+| 15 | Require Security Device optional but recommended; Group Policy wins over Intune when both configure WHfB | Hardening table | verified | Learn, WHfB cloud-only and cloud Kerberos trust deployment guides | Nov 11, 2026 |
+| 16 | dsregcmd /status NgcSet; must run in user context | Evidence | verified | Learn, "Troubleshoot devices by using the dsregcmd command" | Nov 11, 2026 |
+| 17 | STIG audit baseline: audit-only, Advanced Analytics license, commercial and GCC High; DoD not listed | Hardening table; Prerequisites | verified; DoD not yet specified | Learn, "Use STIG audit baselines" | Nov 11, 2026 |
+| 18 | Update, expedite and Autopatch policies planned for GCC High and DoD; standard MDM features available | Prerequisites | verified | Learn, Intune government service description | Nov 11, 2026 |
+| 19 | Phishing-resistant sign-in mandated by M-22-09 and SP 800-63B-4 | Authority paragraph | verified (carried from Book 16 Ch07's verified claims 3 and 4) | Book 16 Chapter 07 verification log | Nov 11, 2026 |
+| 20 | Rings, exit criteria, backout triggers, rollback table, owners, Tier 0 in ring 1 | Hardening rollout | restated-as-design | program design | Nov 11, 2026 |

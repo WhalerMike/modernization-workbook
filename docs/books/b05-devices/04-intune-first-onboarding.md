@@ -239,6 +239,169 @@ The isolation-first order, the group name and the 90-day review are the program'
 
 Devices that predate the process, or arrive outside normal procurement, fall through to user derivation or the unpositioned marker. They surface as findings for governance review, with three possible outcomes: file a procurement record retroactively, reclassify the asset, or quarantine it for disposition.
 
+## Enrollment controls, from automatic enrollment to decommissioning {#enrollment-controls}
+
+The sections above describe the doctrine one mechanism at a time. This section is the procedure that puts the enrollment controls in place together and proves them: automatic enrollment, Windows Autopilot, ownership classification, enrollment restrictions, corporate identifiers, stale-device cleanup and decommissioning. Its acceptance test is simple to state and hard to fake: **the enrollment and cleanup reports match the procurement inventory**. A device in Intune with no procurement record, a procurement record with no enrolled device, or a corporate device marked personal is a finding. The conventions it follows (control states, the How-section template, authority labels and the evidence checklist) are defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices
+- **CISA ZTMM pillar:** Devices (asset and supply chain risk management; policy enforcement and compliance monitoring)
+- **Depends on:** Identity: automatic enrollment and Autopilot run on the user's or device's Microsoft Entra identity ([Book 02](../b02-identity/index.md)); access decisions that read the enrolled state ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md))
+- **Attack chain interrupted:** an unmanaged or unknown device reaching organizational data (Initial Access through a valid account on an unmanaged device); a lost or retired device still holding live credentials or keys (Credential Access)
+:::
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | The ownership table and the restriction design below, recorded as decisions | Decision record per control, approved by the endpoint owner ([Chapter 06](06-who-owns-the-endpoint.md)) |
+| Configured | Automatic enrollment scoped to a pilot group; restrictions and identifiers created | Export of the enrollment configurations and the corporate identifier list |
+| Enforced | MDM user scope **All**; the personal-Windows block assigned to every user | The same export showing scope and assignments, and the exception register |
+| Evidenced | The reconciliation run in [Evidence](#enrollment-evidence) below | The run's CSV files, dated, with the expected and observed counts |
+| Operated | Weekly reconciliation, cleanup rules and the retirement sequence in [Chapter 10](10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation) | The run history and the closed findings |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+### What each control does, and whose recommendation it is
+
+| Control | What it does | Authority and applicability |
+|---|---|---|
+| Automatic enrollment (MDM user scope) | Enrolls a Windows device in Intune when a user in scope joins it to Microsoft Entra ID or adds a work account. **Some** scopes it to named groups, **All** to every user.[^c04-z-automdm] | Microsoft-recommended for Intune-managed Windows; **license-dependent**: automatic MDM enrollment is a Microsoft Entra ID P1 feature.[^c04-z-automdm-quick] |
+| Windows Autopilot | Registers the hardware before first boot and marks the device corporate; [above](#windows-autopilot-or-autopilot-device-preparation) | Risk-based recommended (pillar 2); **environment-dependent**: not available in GCC High or DoD[^c04-intune-gov] |
+| Ownership classification | Records each device as corporate or personal, which decides what Intune collects and which restrictions apply[^c04-corp-ids] | Microsoft-documented behavior; the classification table below is the program's design |
+| Corporate identifiers | Pre-registers serial numbers (or, for Windows, manufacturer, model and serial) so that a device enrolling outside Autopilot is treated as corporate[^c04-corp-ids] | Optional where Autopilot or Automated Device Enrollment already marks the device corporate; risk-based recommended for device preparation |
+| Platform restriction | Blocks personally owned Windows enrollment and sets OS floors per platform[^c04-z-platform] | Risk-based recommended. Microsoft states enrollment restrictions aren't security features: a compromised device can misrepresent itself, so they are a best-effort barrier for non-malicious users[^c04-restrictions] |
+| Device limit restriction | Caps how many devices one user can enroll; the default policy's limit can be raised to at most 15[^c04-z-limit][^c04-z-limit-max] | Optional; set to the program's per-user allowance |
+| Stale-device cleanup and decommissioning | Hides, retires, wipes and deletes records in a fixed order | Program design over Microsoft's mechanics, in [Chapter 10](10-operating-and-evidencing-the-fleet.md#stale-records) |
+
+The ownership classification the program uses, from Microsoft's rules for how each enrollment path sets ownership:[^c04-corp-ids]
+
+| Enrollment path | Ownership Intune records | Program use |
+|---|---|---|
+| Windows Autopilot, Apple Automated Device Enrollment, Android Enterprise fully managed or corporate-owned work profile, Knox Mobile Enrollment | Corporate, automatically | Every corporate device |
+| Windows automatic enrollment with Entra join during setup, or Autopilot device preparation | Corporate, but blocked by a personal-device platform restriction unless the device matches a corporate identifier | Device preparation path only, with identifiers uploaded in phase 2 |
+| **Add work account** in Windows Settings, the Company Portal app, or **Allow my organization to manage my device** in a Microsoft 365 app | Personal, unless it matches a corporate identifier | Blocked for Windows by the platform restriction; personal devices use app protection instead ([Chapter 08](08-gpo-to-intune-policy-migration.md#app-protection-policies)) |
+| Apple account-driven User Enrollment, Android Enterprise personally owned work profile | Personal | The personally owned mobile path in [Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture) |
+
+Two facts about identifiers shape the design. Windows corporate identifiers apply only at enrollment time: after enrollment, the device's ownership follows the enrollment path in the table, and changing it means editing the device's ownership in the admin center. And account-driven User Enrollment on Apple devices can't use corporate identifiers, because the MDM never sees the serial number or IMEI.[^c04-corp-ids]
+
+### Prerequisites
+
+- **Licenses:** Intune Plan 1 for every user who enrolls; Microsoft Entra ID P1 for automatic MDM enrollment.[^c04-z-automdm-quick]
+- **Roles:** Intune Administrator for platform restrictions and Intune Service Administrator for device limit restrictions (other built-in Intune roles are read-only for them);[^c04-z-platform][^c04-z-limit] Policy and Profile Manager or Intune Administrator for corporate identifiers.[^c04-corp-ids]
+- **In place first:** the procurement intake fields from phase 1, so that every identifier upload has a purchase order behind it; the emergency access design in [Book 04](../b04-access/index.md), although nothing in this section blocks sign-in.
+- **Government cloud availability**, from the Intune government service description (read Nov 11, 2026):[^c04-intune-gov] automatic enrollment, enrollment restrictions and corporate identifiers are standard MDM features, available in GCC (the commercial instance) and in GCC High and DoD; classic Windows Autopilot is not available in GCC High or DoD, and Autopilot device preparation's device association is listed as planned there. The Graph endpoint for corporate identifiers is documented for the global service and both US Government clouds.[^c04-z-graph-ids]
+
+### Pilot
+
+Set **MDM user scope** to **Some** and select a pilot user group (the endpoint engineering team, then a representative 5% of one division) before **All**.[^c04-z-automdm] Assign the personal-Windows block and the device limit to the same group first. Success is three things: every pilot device enrolls with the ownership the table above predicts, every enrollment failure in **Devices** > **Enrollment failures** has an explained reason (for a blocked personal device the reason reads **Enrollment restriction not met**),[^c04-corp-ids] and the reconciliation run below finds no unexplained mismatch.
+
+### Report-only or audit phase
+
+Enrollment controls have no report-only mode. The audit phase is the reconciliation run itself: run it against the pilot group daily for two weeks before widening scope, and read the enrollment failures report alongside it. Restrictions can be created and left assigned to an empty group, so their configuration can be reviewed before they act on anyone.
+
+### Enforcement
+
+Widen in the rings from [Change safety](../b00-orientation/appendix-d-control-states-and-evidence.md#change-safety): pilot group, then one division, then **All**. The exact enforcing steps are in the Intune admin center:
+
+1. **Devices** > **Enrollment** > **Windows** > **Automatic Enrollment** > **Microsoft Intune**: **MDM user scope** to **All**; **WIP user scope** to **None** (a user in both scopes is enrolled on a corporate device and not on a personal one, which defeats the design).[^c04-z-automdm]
+2. **Devices** > **Enrollment** > **Windows** > **Device platform restriction**: on the restriction assigned to all users, **Personally owned devices** to **Block** for Windows (MDM).[^c04-z-platform] Repeat for the iOS/iPadOS and Android tabs with the program's OS floor.
+3. **Devices** > **Enrollment** > **Corporate device identifiers** > **Add** > **Upload CSV file**: upload the purchase order's identifiers before the devices ship. A Windows file has one `manufacturer,model,serial` line per device and no header; a mobile file has one serial number (or IMEI) per line; up to 5,000 rows or 5 MB per file, one identifier type per file.[^c04-corp-ids]
+
+Run this on each new Windows device during the procurement pilot to capture the exact identifier string Intune will match (Microsoft's own command):[^c04-corp-ids]
+
+```powershell
+Get-CimInstance -ClassName Win32_ComputerSystem | ForEach-Object {$_.Manufacturer, $_.Model, (Get-CimInstance -ClassName Win32_BIOS).SerialNumber -join ','}
+```
+
+### Rollback
+
+- Automatic enrollment: set **MDM user scope** back to **Some** (or **None**). Devices already enrolled stay enrolled; only new enrollments stop.
+- Restrictions: edits apply to new enrollments only and don't affect devices already enrolled;[^c04-z-limit] remove the assignment, or lower the restriction's priority, to restore the previous behavior.
+- Corporate identifiers: deleting an identifier for an enrolled device doesn't change that device's ownership.[^c04-corp-ids] A device marked corporate in error is changed to **Personal** in its properties, after which Intune deletes the app inventory it collected within seven days.[^c04-corp-ids]
+
+Each step takes minutes and is run by an Intune Administrator under the change record.
+
+### Exclusions
+
+Not applicable to emergency access: enrollment controls don't block sign-in, and emergency access accounts don't enroll devices. The exclusions that do apply are recorded in the exception register with an owner and a review date of no more than 90 days: users allowed to enroll a personal Windows device (Microsoft's advice is to allow it only for the specific groups that need it),[^c04-unblock] device enrollment manager accounts (which bypass the per-user device cap),[^c04-z-limit-max] and path D devices from [the four exception paths](#the-four-exception-paths).
+
+### Telemetry
+
+- **Devices** > **Enrollment failures**, with the failure reason per attempt.[^c04-corp-ids]
+- The status column on **Corporate device identifiers**: *Enrolled*, *Not contacted*, *Not applicable* or *Failed*.[^c04-corp-ids]
+- `IntuneOperationalLogs` in Log Analytics, which records enrollment events ([Chapter 10](10-operating-and-evidencing-the-fleet.md#what-log-analytics-receives-and-when)).
+- The weekly reconciliation in [Chapter 10](10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation) and the five drift checks [below](#validation-drift-checks-and-evidence).
+
+### Evidence {#enrollment-evidence}
+
+::: {.callout-warning}
+## Illustrative, not tested against a production tenant
+The script below is read-only and illustrative. Run it first against a test tenant. In GCC High, connect with `-Environment USGov` and replace `graph.microsoft.com` with `graph.microsoft.us`.
+:::
+
+Replace `<procurement-export.csv>` with the procurement system's export of open and delivered orders; it needs a `SerialNumber` column. The corporate identifier call uses the beta endpoint, which Microsoft supports but changes more often.[^c04-z-graph-ids]
+
+```powershell
+# Read-only. Enrollment and cleanup evidence, matched to the procurement inventory.
+Connect-MgGraph -Scopes 'DeviceManagementServiceConfig.Read.All', 'DeviceManagementManagedDevices.Read.All'
+
+function Get-GraphAll([string]$Uri) {
+    $out = @()
+    while ($Uri) {
+        $page = Invoke-MgGraphRequest -Method GET -Uri $Uri -OutputType PSObject
+        $out += $page.value
+        $Uri = $page.'@odata.nextLink'
+    }
+    $out
+}
+
+$stamp = Get-Date -Format 'yyyy-MM-dd'
+
+# 1. Enrollment configurations: restrictions, limits, ESP and their assignments
+Get-GraphAll 'https://graph.microsoft.com/v1.0/deviceManagement/deviceEnrollmentConfigurations?$expand=assignments' |
+    Select-Object displayName, '@odata.type', priority, @{ n = 'AssignedGroups'; e = { $_.assignments.Count } } |
+    Export-Csv ".\enrollment-configurations-$stamp.csv" -NoTypeInformation
+
+# 2. Inventories: managed devices, Autopilot registrations, corporate identifiers, procurement
+$managed = Get-MgDeviceManagementManagedDevice -All -Property 'deviceName,serialNumber,operatingSystem,managedDeviceOwnerType,lastSyncDateTime'
+$autopilot = Get-GraphAll 'https://graph.microsoft.com/v1.0/deviceManagement/windowsAutopilotDeviceIdentities'
+$corpIds = Get-GraphAll 'https://graph.microsoft.com/beta/deviceManagement/importedDeviceIdentities'
+$procured = Import-Csv '<procurement-export.csv>'
+
+$procuredSerials = $procured.SerialNumber
+$registeredSerials = @($autopilot.serialNumber) + @($corpIds | ForEach-Object { ($_.importedDeviceIdentifier -split ',')[-1] })
+
+# 3. Findings: each row is something the reports and the inventory disagree on
+$findings = @()
+$findings += $managed | Where-Object { $_.ManagedDeviceOwnerType -eq 'company' -and $_.SerialNumber -notin $procuredSerials } |
+    ForEach-Object { [pscustomobject]@{ Serial = $_.SerialNumber; Finding = 'Corporate device, no procurement record' } }
+$findings += $managed | Where-Object { $_.ManagedDeviceOwnerType -eq 'personal' -and $_.SerialNumber -in $procuredSerials } |
+    ForEach-Object { [pscustomobject]@{ Serial = $_.SerialNumber; Finding = 'Procured device recorded as personal' } }
+$findings += $procured | Where-Object { $_.SerialNumber -notin $registeredSerials } |
+    ForEach-Object { [pscustomobject]@{ Serial = $_.SerialNumber; Finding = 'Procured, not registered in Autopilot or as a corporate identifier' } }
+$findings += $managed | Where-Object { $_.LastSyncDateTime -lt (Get-Date).AddDays(-90) } |
+    ForEach-Object { [pscustomobject]@{ Serial = $_.SerialNumber; Finding = 'No check-in for 90 days: cleanup or retirement due' } }
+
+$findings | Sort-Object Finding, Serial | Export-Csv ".\enrollment-findings-$stamp.csv" -NoTypeInformation
+"{0} managed, {1} procured, {2} findings" -f $managed.Count, $procured.Count, $findings.Count
+```
+
+`Get-MgDeviceManagementManagedDevice` and the `managedDeviceOwnerType` values (`company`, `personal`) are Microsoft Graph's;[^c04-z-graph-managed] the Autopilot and corporate identifier lists come from their Graph resources.[^c04-z-graph-autopilot][^c04-z-graph-ids] The 90-day line matches the program's Windows cleanup rule in [Chapter 10](10-operating-and-evidencing-the-fleet.md#stale-records).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `enrollment-configurations-<date>.csv` and a screenshot or export of the MDM user scope, kept with the change record
+- [ ] **Operational:** the enrollment failures report and `IntuneOperationalLogs` enrollment events, retained with the workspace's retention
+- [ ] **Test:** one enrollment attempt per path in the ownership table, with the expected and observed ownership and the date and tester; a personal Windows enrollment that fails with **Enrollment restriction not met**
+- [ ] **Exception:** the register of users allowed personal Windows enrollment, device enrollment manager accounts and path D devices, with approver and expiry
+- [ ] **Assessor-ready artifact:** `enrollment-findings-<date>.csv` with zero unexplained findings, or each finding linked to its ticket, filed as CM-8 inventory evidence ([Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads))
+
+### Day-two ownership
+
+The endpoint engineering lead owns the enrollment controls ([Chapter 06](06-who-owns-the-endpoint.md)); procurement owns the identifier uploads. The reconciliation runs weekly with the inventory reconciliation in [Chapter 10](10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation), and a device leaves through the [retirement sequence](10-operating-and-evidencing-the-fleet.md#retirement-and-wipe), which deregisters it from Autopilot before its records are deleted. Drift looks like a rising count in any of the four finding rows, an MDM user scope that isn't **All**, or a restriction whose assignments changed outside a change record. The help desk path for a user whose device won't enroll is in [Book 15](../b15-day2-operations/index.md).
+
 ## Validation, drift checks and evidence
 
 Phase 5 runs platform-neutral and platform-specific checks. Failures quarantine the device under pillar 5. The doctrine adds five domain checks for onboarding. Each book owns the detail of its own domain's checks, and [Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md) classifies every drift finding into one of its five classes:
@@ -274,7 +437,7 @@ The keys these checks join on, and a read-only script that finds three of the fi
 [^c04-ap-registration]: Microsoft Learn, "Windows Autopilot registration overview," <https://learn.microsoft.com/autopilot/registration-overview> (accessed Oct 20, 2026).
 [^c04-ap-faq]: Microsoft Learn, "Windows Autopilot device preparation FAQ," <https://learn.microsoft.com/autopilot/device-preparation/faq> (accessed Oct 20, 2026).
 [^c04-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Nov 9, 2026).
-[^c04-intune-gov]: Microsoft Learn, "Microsoft Intune Government Service overview," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026).
+[^c04-intune-gov]: Microsoft Learn, "Microsoft Intune Government Service overview," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026; rechecked Nov 11, 2026).
 [^c04-ap-overview]: Microsoft Learn, "Overview of Windows Autopilot device preparation," including section "Cloud environments," <https://learn.microsoft.com/autopilot/device-preparation/overview> (accessed Nov 9, 2026).
 [^c04-ap-assoc]: Microsoft Learn, "Overview of Windows Autopilot device association" (how device association works; key capabilities) and "Windows Autopilot device preparation: What's new" (device association, added August 27, 2026), <https://learn.microsoft.com/autopilot/device-preparation/device-association/overview>, <https://learn.microsoft.com/autopilot/device-preparation/whats-new> (accessed Oct 22, 2026).
 [^c04-ap-dp-name]: Microsoft Learn, "Windows Autopilot device preparation user-driven Microsoft Entra join: Create a Windows Autopilot device preparation policy," Configuration settings (Apply device name template; settings only available to associated devices), <https://learn.microsoft.com/autopilot/device-preparation/tutorial/user-driven/entra-join-autopilot-policy> (accessed Oct 22, 2026).
@@ -283,8 +446,8 @@ The keys these checks join on, and a read-only script that finds three of the fi
 [^c04-ap-manual]: Microsoft Learn, "Manual registration overview," <https://learn.microsoft.com/autopilot/manual-registration> (accessed Oct 20, 2026).
 [^c04-ap-hololens]: Microsoft Learn, "Windows Autopilot for HoloLens 2," create a device group (group tag maps to the OrderID attribute), <https://learn.microsoft.com/hololens/hololens2-autopilot#configuring-autopilot-for-hololens-2> (accessed Oct 20, 2026).
 [^c04-dynamic-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," rules for devices, <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership#rules-for-devices> (accessed Oct 20, 2026).
-[^c04-restrictions]: Microsoft Learn, "What are enrollment restrictions?," <https://learn.microsoft.com/intune/device-enrollment/restrictions> (accessed Oct 20, 2026).
-[^c04-corp-ids]: Microsoft Learn, "Identify devices as corporate-owned," <https://learn.microsoft.com/intune/device-enrollment/add-corporate-identifiers> (accessed Oct 20, 2026).
+[^c04-restrictions]: Microsoft Learn, "What are enrollment restrictions?," <https://learn.microsoft.com/intune/device-enrollment/restrictions> (accessed Oct 20, 2026; rechecked Nov 11, 2026, including the note that enrollment restrictions aren't security features).
+[^c04-corp-ids]: Microsoft Learn, "Identify devices as corporate-owned," <https://learn.microsoft.com/intune/device-enrollment/add-corporate-identifiers> (accessed Oct 20, 2026; rechecked Nov 11, 2026, sections "Supported corporate identifiers," "Add Windows corporate identifiers," "Check enrollment status," "Change device ownership," "Block personal devices" and "Known issues and limitations").
 [^c04-unblock]: Microsoft Learn, "Unblock Windows 'Set up for work or school' enrollment," <https://learn.microsoft.com/troubleshoot/mem/intune/device-enrollment/troubleshoot-windows-work-school> (accessed Oct 20, 2026).
 [^c04-ap-profile]: Microsoft Learn, "User-driven Microsoft Entra join: Create and assign user-driven Microsoft Entra join Windows Autopilot profile," <https://learn.microsoft.com/autopilot/tutorial/user-driven/azure-ad-join-autopilot-profile> (accessed Oct 20, 2026).
 [^c04-ap-esp]: Microsoft Learn, "User-driven Microsoft Entra join: Configure and assign the Enrollment Status Page (ESP)," <https://learn.microsoft.com/autopilot/tutorial/user-driven/azure-ad-join-esp> (accessed Oct 20, 2026).
@@ -298,3 +461,11 @@ The keys these checks join on, and a read-only script that finds three of the fi
 [^c04-ca-grant]: Microsoft Learn, "Conditional Access: Grant," section "Require device to be marked as compliant," <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-grant#require-device-to-be-marked-as-compliant> (accessed Oct 21, 2026).
 [^c04-ca-filter]: Microsoft Learn, "Conditional Access: Filter for devices," sections "Common scenarios" and "Policy behavior with filter for devices," <https://learn.microsoft.com/entra/identity/conditional-access/concept-condition-filters-for-devices> (accessed Oct 21, 2026).
 [^c04-ca-plan]: Microsoft Learn, "Plan a Conditional Access deployment," section "Roll back policies," <https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access#roll-back-policies> (accessed Oct 21, 2026).
+[^c04-z-automdm]: Microsoft Learn, "Set up automatic enrollment for Windows devices," section "Enable Windows automatic enrollment" (MDM and WIP user scope; precedence when a user is in both), <https://learn.microsoft.com/intune/device-enrollment/windows/enable-automatic-mdm> (accessed Nov 11, 2026).
+[^c04-z-automdm-quick]: Microsoft Learn, "Step 4 - Set up automatic enrollment for Windows devices," section "Set up automatic enrollment" (automatic MDM enrollment is a premium Microsoft Entra feature), <https://learn.microsoft.com/intune/device-enrollment/windows/quickstart-automatic-mdm> (accessed Nov 11, 2026).
+[^c04-z-platform]: Microsoft Learn, "Create device platform restrictions," sections "Requirements" (roles) and "Default policy," <https://learn.microsoft.com/intune/device-enrollment/create-platform-restrictions> (accessed Nov 11, 2026).
+[^c04-z-limit]: Microsoft Learn, "Create device limit restrictions in Intune," sections "Requirements," "Edit enrollment restrictions" (edits apply to new enrollments only) and "Change restriction priority," <https://learn.microsoft.com/intune/device-enrollment/create-device-limit-restrictions> (accessed Nov 11, 2026).
+[^c04-z-limit-max]: Microsoft Learn, "Windows user is not authorized to enroll," Solution 2 (device limit, maximum 15); and "Troubleshooting device enrollment in Intune," section "Device cap reached" (device enrollment manager accounts and the cap), <https://learn.microsoft.com/troubleshoot/mem/intune/device-enrollment/windows-user-cannot-enroll>, <https://learn.microsoft.com/troubleshoot/mem/intune/device-enrollment/troubleshoot-device-enrollment-in-intune> (both accessed Nov 11, 2026).
+[^c04-z-graph-ids]: Microsoft Graph beta reference, "List importedDeviceIdentities" (national cloud availability; DeviceManagementServiceConfig.Read.All) and "importedDeviceIdentity resource type" (`importedDeviceIdentifier`, `importedDeviceIdentityType`, `enrollmentState`), <https://learn.microsoft.com/graph/api/intune-enrollment-importeddeviceidentity-list?view=graph-rest-beta>, <https://learn.microsoft.com/graph/api/resources/intune-enrollment-importeddeviceidentity?view=graph-rest-beta> (both accessed Nov 11, 2026).
+[^c04-z-graph-managed]: Microsoft Graph v1.0 reference, "managedDevice resource type" (`managedDeviceOwnerType`: `unknown`, `company`, `personal`; `serialNumber`; `lastSyncDateTime`), <https://learn.microsoft.com/graph/api/resources/intune-devices-manageddevice?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c04-z-graph-autopilot]: Microsoft Graph v1.0 reference, "List windowsAutopilotDeviceIdentities," <https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-list?view=graph-rest-1.0> (accessed Nov 11, 2026).
