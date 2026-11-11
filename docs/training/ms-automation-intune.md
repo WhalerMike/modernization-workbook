@@ -15,7 +15,7 @@ last-reviewed: 2026-11-09
 ---
 # Microsoft Automation, Module 3: Intune through Microsoft Graph {.unnumbered}
 
-**Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 3 of 3 · 86 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) (`intune_tasks.py`, `FmwGraph.psm1`) · Guide: [Intune track, Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it)
+**Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 3 of 4 · 86 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) (`intune_tasks.py`, `FmwGraph.psm1`) · Guide: [Intune track, Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_MS_Automation_Module_3.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_MS_Automation_Module_3_Narrated.pptx) (about 14 minutes, captions) · [▶ Watch](../presentations/watch.html?v=Training_MS_Automation_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_MS_Automation_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narrated.vtt).
 
@@ -554,8 +554,8 @@ You mapped Book 05's evidence questions to Graph APIs, their least-privileged pe
 **Evidence an ISSO keeps from this module:** each check's dated output, with its `evidences` list, the app's permissions and consent record, and the beta label on `autopilot-profiles`; the coverage result showing every device under a policy, and the record of the tenant-wide setting changed to *Not compliant*; the encryption findings confirmed in Intune's encryption report; and the validation kit's VK-INT results beside them. [Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads) lists what an assessor reads, and the [Intune track guide's Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it) puts it on a schedule.
 
 ::: {.callout-tip}
-## You've finished the path
-[Previous: Module 2](ms-automation-entra.md) · [Learning path](index.md#microsoft-automation-learning-path). Modules 4 to 6 are planned ([Module 1](ms-automation-foundations.md#unit-1-introduction) lists them).
+## Continue the path
+[Previous: Module 2](ms-automation-entra.md) · [Learning path](index.md#microsoft-automation-learning-path) · [Next: Module 4, Azure Arc through Azure Resource Manager and Resource Graph →](ms-automation-arc.md)
 :::
 
 ## Status and review
