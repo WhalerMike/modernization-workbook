@@ -225,6 +225,67 @@ Disconnect-MgGraph
 
 A row with `PreAuthentication` set to `passthrough`, or `AssignmentRequired` set to `False`, is a finding against step 4 above.
 
+### Control states, rollback and evidence for the move {#b18-03-proxy-move-conventions}
+
+Moving an application from the old proxy to application proxy puts its remote users behind Entra ID preauthentication and Conditional Access, which is an enforcement change for every user who reached it before without either. The retirement steps above already carry the inventory, the pilot and the incremental order; this subsection adds what the workbook's implementation conventions ask for and the steps leave implicit ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)).
+
+**Authority:** Microsoft-recommended for application proxy as the replacement for WAP-published applications, for the incremental publishing order and for a verified custom domain (the Learn pages cited above, read Nov 9, 2026). Risk-based recommended, the program's position: passthrough only on a pilot application, **Assignment required** left on, and CAE left on.
+**Applies:** web applications reached by remote users. Environment-dependent: application proxy is listed as available in Azure for US Government, and CAE for application proxy is not yet specified in any government cloud ([Availability in the government clouds](#availability-in-the-government-clouds)).
+
+| How-template step | Where this chapter covers it, or what it adds |
+|---|---|
+| Prerequisites | Steps 1 to 3: the inventory, connector groups and the registered connector; the application's owner named in the [evidence map](02-triaging-the-portfolio.md#recording-dependencies-as-an-evidence-map) |
+| Pilot | Step 4's pilot application, not reachable by production users |
+| Report-only or audit phase | Conditional Access policies for the published application created in report-only mode first; the sign-in log's report-only results read for a week before they're turned on |
+| Enforcement | Step 4's order, then step 6's DNS cut-over, one application at a time (rings below) |
+| Rollback | Point the public DNS name back at the old proxy, which stays configured until the application has run a full business cycle on application proxy; the application owner and the network team, within the DNS record's time to live |
+| Exclusions | Users on the corporate network, who reach the application directly rather than through the proxy ([above](#applications-that-stay-on-premises-publishing-through-application-proxy)); any application left on passthrough, with an owner and an expiry. Emergency access accounts are excluded from the application's Conditional Access policies under [Book 04](../b04-access/index.md)'s design |
+| Telemetry | The application's sign-in and audit logs, routed to the SIEM ([Book 12](../b12-security-operations/index.md)), and each connector's status from the read-only inventory's `Status` column |
+| Evidence | The checklist below |
+| Day-two ownership | The application owner; identity engineering owns the connector groups and their servers. Drift is a row in the read-only inventory with `passthrough` or `AssignmentRequired` false, or a connector group below two healthy connectors |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The pilot application, passthrough then preauthentication | Works for the test users at each step of Microsoft's order |
+| 1 | One production application with a small user population | A full business cycle with no sign-in failures traced to the proxy |
+| 2 | The remaining applications behind the same connector group | The same, per application |
+| 3 | The old proxy's last application moved; WAP servers retired when federation is decommissioned | The old proxy publishes nothing; its servers are in the decommissioning record |
+
+- **Emergency access:** excluded from the application's Conditional Access policies; the exclusion is checked in the policy export.
+- **Change window:** each cut-over in the application owner's window, with the network team on hand for DNS.
+- **Backout triggers:** sign-in failures or a broken single sign-on for assigned users that can't be fixed within the window.
+- **Post-change validation:** a remote test sign-in by an assigned user, a refused sign-in by an unassigned one, and the read-only inventory showing preauthentication and assignment as designed.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The path chosen per application ([Choosing the path](#choosing-the-path)) | The evidence-map row |
+| Configured | The published application and its Conditional Access policies in report-only mode | `appproxy-apps.csv` and the policy export |
+| Enforced | Preauthentication on, assignment required, policies on, DNS cut over | The same exports after the change, and the DNS record |
+| Evidenced | The post-change validation | Test records with the sign-in log entries they produced |
+| Operated | The read-only inventory rerun on a cadence; connector health watched | Inventory history and connector alerts |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `appproxy-apps.csv`, `appproxy-connectors.csv` and the Conditional Access export, kept with each change
+- [ ] **Operational:** the application's sign-in logs in the SIEM and the connector status history, kept for the program's log retention
+- [ ] **Test:** the post-change validation per application (expected and observed outcome, date, tester)
+- [ ] **Exception:** any application left on passthrough or without assignment required, and any request to turn CAE off, with approver and expiry
+- [ ] **Assessor-ready artifact:** the evidence-map row per application, linked to the exports and test record
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Apps, with Networks for the removed inbound path
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Conditional Access and emergency access design ([Book 04](../b04-access/index.md)); the identity plane for preauthentication (Identity); Private Access for non-web traffic ([Book 01, Chapter 08](../b01-transformation-arc/08-access-plane.md))
+- **Attack chain interrupted:** an unauthenticated or password-only path to an on-premises application from the internet (Initial Access), and access that survives a disabled account until token expiry (Persistence), cut by preauthentication and CAE
+:::
+
 ## Secure hybrid access for header-based, Kerberos and LDAP applications
 
 Application proxy covers Kerberos and header-based web applications. Microsoft lists SSH, NTLM, LDAP and cookie-based authentication as protocols it doesn't support, and points to independent software vendors whose products connect those applications to Entra ID.[^c03-sha-integrations] Microsoft calls this secure hybrid access. Each partner registers the application in Entra ID as an enterprise application, so Conditional Access, multifactor authentication and sign-in logs apply to it per application, as they do to a SaaS application.[^c03-sha][^c03-sha-integrations] The partners fall into application delivery controllers (F5 BIG-IP Access Policy Manager, Citrix ADC, Akamai, Kemp), VPN gateways and software-defined perimeter products (Datawiza, Silverfort, Zscaler Private Access and others).[^c03-sha-integrations] Four that Microsoft documents in depth:

@@ -107,3 +107,12 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Production rollback of a dynamic group unassigns it and keeps it and the group it replaces; `rollback.py` (`k_dynamic_group`) and its test changed to match (item 933) | Roll back in production | restated-as-design | Attribute-Driven Migration implementation guide, Gate 4 rollback |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Section added: Control states and change safety for the runbook (How-template map, exclusions, change safety, control states, evidence checklist, assessment mapping). It maps steps already on the page and adds no new command or product fact.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | VK-CA-01 reports a policy that doesn't exclude the emergency-access group; runs in vk-before and vk-after with the CA track | Control states and change safety, Exclusions | verified against the page and the guide | Attribute-Driven Migration implementation guide, VK-CA-01; this chapter's steps 1 and 9 | Nov 11, 2026 |
+| 2 | Emergency access accounts kept out of every dynamic rule and wave | Control states and change safety, Exclusions | restated-as-design (labeled design guidance) | Program design | Nov 11, 2026 |
