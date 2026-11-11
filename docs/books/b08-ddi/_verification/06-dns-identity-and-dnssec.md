@@ -160,3 +160,12 @@ Added for the Zero Trust Assessment closure update (B08-01, and the Book 08 part
 | Z6 | RDAP bootstrap (RFC 9224) and expiration events (RFC 9083) | Prerequisites; report-only | verified | IETF RFC 9224; RFC 9083 | Nov 11, 2026 |
 | Z7 | Graph service principal update available in US Gov L4 and L5 | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
 | Z8 | Owner and DNS proof rule, 90-day registration threshold, rings, post-change test, vendor-domain exception | Pattern; Enforcement; Exclusions | restated-as-design | Program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | 'KSK and ZSK rollover must be automated and audited' relabeled as the program's Risk-based recommended position | Operational considerations | corrected (authority label) | Program design; NIST SP 800-81r3 recommendations unchanged | Nov 11, 2026 |
+| P4-2 | How template, control states and evidence for signing, validation and moving signed zones; unsign order from Learn | Moving signed zones | restated-as-design (unsign order carried from c06-az-unsign) | Program design | Nov 11, 2026 |

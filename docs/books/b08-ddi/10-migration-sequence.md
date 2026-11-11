@@ -244,7 +244,7 @@ The gates, all of which must pass:
 
 1. **The inventory reconciles.** Every zone, record, forwarder and scope from Phase 1 is accounted for in the target or deliberately retired, in both directions: nothing missing from the target and nothing unexplained in it. A signed zone counts as moved only when its new chain of trust validates and the old signing has stopped; a signed zone still in transfer holds the gate.
 2. **SRV resolution holds.** Every critical locator record resolves from every VNet and every on-premises site, checked every 15 minutes, with 100% success for 30 consecutive days and no open alerts ([Chapter 11](11-operating-the-control-plane.md) has the monitoring).
-3. **Parallel operation has run its course.** The program requires 90 days of parallel operation with no critical alerts and no unresolved drift.
+3. **Parallel operation has run its course.** The program's gate (Risk-based recommended, for the risk of losing records nobody inventoried) is 90 days of parallel operation with no critical alerts and no unresolved drift.
 4. **Failover has been tested** on the new resolvers and DHCP servers, not assumed.
 5. **The old servers are idle.** A final query-log review shows no direct queries reaching the legacy DNS servers that no longer host locator zones. Domain controllers keep the DNS role, and the locator zones on them keep receiving registrations, until the last domain controller is retired.
 
@@ -271,6 +271,60 @@ The migration is finished when four things are true and the query logs prove the
 The four risks that most often stop it are the ones this chapter's gates exist for: split-brain from missing or stale forwarding rules, private endpoints falling back to public addresses, orphaned SRV records when domain controllers are retired before their records are inventoried, and OCSP or CRL endpoints that resolve from some locations and not others.
 
 Before the next SD-WAN or DDI change, whatever phase the program is in: audit every branch's redirect-dns target; verify the forwarding chain order in the running configuration; complete the AD DNS inventory before touching a domain controller; confirm the sovereign-cloud limits on Microsoft 365 telemetry with the program office if any part of the estate is in GCC Moderate, GCC High or DoD ([Appendix C](appendix-c-applicability.md)); and take open questions to the vendors rather than working around unconfirmed behavior.
+
+## The migration against the workbook's conventions {#b08-10-conventions}
+
+The six phases already carry most of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s How template; this table says where each part is, and names the two the phases leave implicit.
+
+**Authority:** Risk-based recommended: the phases, gates and durations are the program's position, for the risk of a forest-wide outage from lost locator records; the controls they put in place carry their own authority ([Chapter 03](03-federal-requirements.md)). **Applies:** Environment-dependent: Azure Private DNS behaviors (autoregistration, no signing) shape the rollback and the signed-zone rule, and the GCC Moderate, GCC High and DoD limits are in [Appendix C](appendix-c-applicability.md).
+
+| How template | Where the migration carries it |
+|---|---|
+| Prerequisites | Phase 1's inventory, committed before anything moves |
+| Pilot | Phase 3's first client wave, and the first zone through the cutover loop |
+| Report-only or audit phase | Phase 2's read-only synchronization and coexistence, in which the new resolvers answer while authority hasn't moved |
+| Enforcement | Each pass through the cutover loop's switch step, then Phase 5's gated decommission |
+| Rollback | The cutover loop's rollback point, the three cutover patterns' rollbacks, the wave rollback (revert option 6 or the VNet setting), and the burn-in rollback from archived exports; the Azure Private DNS warning above applies |
+| Exclusions | The AD locator zones, which stay with the domain controllers until the last one goes; any zone or scope deliberately retired, recorded in the reconciliation |
+| Telemetry | Query logs, drift reports and SRV checks ([Chapter 11](11-operating-the-control-plane.md)) |
+| Evidence | The checklist below, and [Chapter 11's sample checklist](11-operating-the-control-plane.md#sample-evidence-checklist) for the finished state |
+| Day-two ownership | The DNS service owner and the roles in [Chapter 09](09-who-owns-dns.md) |
+
+: The migration against the How template {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | One test zone and the DNS team's clients | The cutover loop run end to end, including a rehearsed rollback |
+| 1 | The pilot client wave and its zones | No resolution, authentication or application failures for the wave |
+| 2 | One department per wave | The same, per wave, with SRV checks passing |
+| 3 | The whole organization, then Phase 5 | The Phase 5 gates |
+
+- **Emergency access:** the domain controllers' own DNS and the archived exports stay available until the burn-in ends, so sign-in and domain join never depend on a resolver that is mid-change.
+- **Change window:** each switch of authority is a normal change approved by the DNS service owner, made after the TTL was lowered at least 48 hours earlier, with the resolver and directory teams on hand.
+- **Backout triggers:** a failed validation at step 3 or step 5 of the cutover loop, any SRV check failure, or a private endpoint name resolving to a public address.
+- **Post-change validation:** the cutover loop's validation from every origin, and Phase 4's matrix.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Chapter 08](08-reference-architecture.md)'s five decisions and Phase 1's sorting of every component | The decision record and the "where each component goes" table, filled in |
+| Configured | Phase 2 coexistence | Resolver and forwarding-rule exports |
+| Enforced | Phases 3 and 5: authority moved and the old servers removed | Delegation and forwarder exports; DHCP option 6 per scope; decommission record |
+| Evidenced | Phase 4's matrix and the Phase 5 gates | Validation results from every origin; 30 days of SRV check history |
+| Operated | [Chapter 11](11-operating-the-control-plane.md) | Drift reports, anomaly reports and record-hygiene history |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the Phase 1 inventory JSON and the target configuration exports, in the program's assessment repository
+- [ ] **Operational:** query logs, drift reports and SRV check history through parallel operation, at M-26-14 retention
+- [ ] **Test:** the cutover loop's validation per zone and wave, the Phase 4 matrix and the failover test (date, tester)
+- [ ] **Exception:** zones and scopes retired rather than moved, and internal zones left unsigned, each with its approver
+- [ ] **Assessor-ready artifact:** the reconciliation report and the decommission record, traceable to the four above
 
 ::: {.callout-note}
 ## What this chapter establishes
