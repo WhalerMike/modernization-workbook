@@ -19,7 +19,7 @@ New to the workbook? Start with this briefing of about 7 minutes. It makes one c
 </video>
 ```
 
-Captions are available from the player's captions button. The full narration is in the script below.
+This is Episode 1 of the four-part [Start series](#the-start-series) below; Episodes 2 to 4 pick up where it ends. Captions are available from the player's captions button. The full narration is in the script below.
 
 ## Download
 
