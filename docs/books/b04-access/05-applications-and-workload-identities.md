@@ -157,6 +157,112 @@ Configuration details matter for the approval model in [Chapter 06](06-who-decid
 
 The program enables the workflow, names the identity governance office as reviewers, and treats the workflow as the intake for the admin consent approval chain, not as the approval itself. The tier decision and security review happen in the ticket; the workflow request is where the grant is finally executed by a holder of the right role. Requests for Microsoft Graph application permissions that arrive through the workflow need a Global Administrator to approve them there. Outside the workflow, Microsoft lists Privileged Role Administrator as the least privileged role for consenting to Microsoft Graph application permissions, but notes that in practice this typically requires Global Administrator, and that Privileged Role Administrator may not be enough depending on the tenant's consent policies, the permission scopes or Graph protection requirements.[^c05-graph-consent-practice] So the program plans for both: it grants those permissions once the ticket is approved, through the Enterprise applications pane, as Privileged Role Administrator activated through PIM ([Chapter 08](08-pim-self-request-with-approval.md)), with a PIM-activated Global Administrator as the fallback. Test the path in the pilot.
 
+### Governing consent over time {#governing-consent-over-time}
+
+The settings above decide what consent can happen. A Zero Trust assessment also asks what consent has already happened and who checks it: grants don't expire, so a tenant that restricted user consent last year can still hold every grant made before then. This subsection makes consent one governed process, with one owner, an export that shows the settings, and a sampled certification of the grants. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
+
+**Authority:** CISA's baseline mandates restricted user consent where BOD 25-01 applies (MS.AAD.5.2v1, above); Microsoft recommends user consent only for verified publishers, and reviewing the permissions granted to applications;[^c05-user-consent][^c05-review-perms] the cadence and sampling below are risk-based recommended, the program's position.
+**Applies:** all tenants. Environment-dependent: Microsoft says publisher verification isn't supported in national clouds (above); Learn's government feature table lists application access and role-based access control as available in Azure for US Government but doesn't list consent settings or the admin consent workflow separately, so their availability in GCC High and DoD is not yet specified.[^c05-gov-features] Teams resource-specific consent preapproval is a developer preview, and its government-cloud availability is not yet specified.[^c05-rsc-preapproval]
+
+| Consent route | Who can grant | The program's control |
+|---|---|---|
+| User consent (delegated, own data) | Users, within the user consent policy | Verified-publisher and in-tenant apps, low-classified permissions only ([above](#user-consent-and-the-consent-policy)) |
+| Admin consent (tenant-wide delegated, or application permissions) | The roles in the table above | Only through the admin consent workflow and the approval chain in [Chapter 06](06-who-decides-access.md#who-approves-admin-consent) |
+| Resource-specific consent in Teams | Users and team owners, when they install an app in a team, chat or meeting | Teams app availability, set by the Teams administrator, decides which apps can be installed; preapproval policies stay `ManagedByMicrosoft` |
+| Grants made through Microsoft Graph | Holders of write access to `oauth2PermissionGrants` and `appRoleAssignedTo` | Treated as critical ([above](#admin-consent)); by the program's design, held only through PIM-activated roles or the policy pipeline's workload identity |
+
+**Resource-specific consent.** Teams apps can ask for permissions scoped to one team, chat, meeting or user, declared in the app's manifest rather than shown in the Microsoft Entra admin center; a user installing the app consents to all of them at once.[^c05-rsc] Preapproval policies let an administrator declare in advance the most an app may ask for. Microsoft says they are available only in public developer preview, and recommends that organizations keep the default `ManagedByMicrosoft` state.[^c05-rsc-preapproval] The program keeps that state and doesn't adopt the preview. It governs resource-specific consent through which Teams apps are available, and reviews the permissions an approved app holds on the app's **Permissions** tab in the Teams admin center, where resource-specific permissions are listed with the others.[^c05-teams-consent]
+
+#### Prerequisites
+
+The user consent setting, permission classifications and admin consent workflow configured as above. Global Reader, or `Policy.Read.All` and `Directory.Read.All`, for the export. The application inventory from the [illustrative script below](#a-read-only-inventory-to-start-from).
+
+#### Pilot
+
+Not applicable to the settings, which are tenant-wide. The first certification cycle runs on the R1 applications ([Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain)) before it covers the sample.
+
+#### Report-only or audit phase
+
+Not applicable: consent settings have no report-only mode. Before restricting user consent further, read the audit log's consent events for 30 days to see which apps users consent to, and route the legitimate ones to admin consent first.
+
+#### Enforcement
+
+The settings are enforced when set. The certification is enforced when a grant the owner doesn't certify is revoked within 30 days ([Chapter 06](06-who-decides-access.md#review)).
+
+#### Rollback
+
+Restore the previous user consent policy assignment from the export. A revoked grant is restored only through a new admin consent request.
+
+#### Exclusions
+
+None for users. An app that needs a grant outside the policy goes through admin consent; it isn't excluded from the policy.
+
+#### Telemetry
+
+Consent events in the audit log (**Consent to application**, **Add delegated permission grant**, **Add app role assignment to service principal**), routed to the workspace, with an alert on any admin consent to a Microsoft Graph application permission outside a change window ([Book 12](../b12-security-operations/index.md)).
+
+#### Evidence
+
+The export below writes the consent settings and every grant to the evidence folder. It changes nothing and is illustrative; it hasn't been run against a production tenant.
+
+```powershell
+#Requires -Modules Microsoft.Graph.Identity.SignIns, Microsoft.Graph.Applications
+# READ-ONLY. Export consent settings and grants for the period's certification.
+Connect-MgGraph -Scopes 'Policy.Read.All', 'Policy.Read.PermissionGrant', 'Directory.Read.All', 'Application.Read.All' -NoWelcome
+
+$OutDir = '.\evidence\consent'          # CONFIGURE: this period's evidence folder
+New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+
+Get-MgPolicyAuthorizationPolicy | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir 'authorization-policy.json')
+Get-MgPolicyAdminConsentRequestPolicy | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir 'admin-consent-request-policy.json')
+Get-MgPolicyPermissionGrantPolicy -All | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir 'permission-grant-policies.json')
+
+# Delegated grants: AllPrincipals is tenant-wide admin consent; Principal is one user's own consent.
+Get-MgOauth2PermissionGrant -All |
+    Select-Object ClientId, ConsentType, PrincipalId, ResourceId, Scope |
+    Export-Csv (Join-Path $OutDir 'delegated-grants.csv') -NoTypeInformation
+
+# Application permissions: app role assignments held by every service principal.
+Get-MgServicePrincipal -All -Property 'id,appId,displayName' | ForEach-Object {
+    Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $_.Id -All |
+        Select-Object PrincipalId, PrincipalDisplayName, ResourceDisplayName, AppRoleId, CreatedDateTime
+} | Export-Csv (Join-Path $OutDir 'application-grants.csv') -NoTypeInformation
+```
+
+The certification sample, a program design: every application permission and every tenant-wide delegated grant to a permission not classified Low is certified each year by the application owner (the annual review in [Chapter 06](06-who-decides-access.md#review)); each quarter the IGO also draws a random sample of 25 user-consent grants, or all of them if there are fewer, and the owner of each app certifies or revokes. A grant to an app with no owner, or from an unverified publisher outside the agency, is revoked unless an owner is assigned within 30 days.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the three policy exports, matched to the settings above
+- [ ] **Operational:** the consent events in the workspace and the alert history
+- [ ] **Test:** a test user's consent attempt to an unverified multitenant app, blocked with **Approval required** and a workflow request created
+- [ ] **Exception:** each grant outside the policy, with its admin consent ticket and approver
+- [ ] **Assessor-ready artifact:** the grant exports and the signed sample certification for the period
+
+#### Day-two ownership
+
+The IGO owns consent: the settings, the workflow reviewers and the certification ([Chapter 06](06-who-decides-access.md#the-responsibility-matrix)). Cadence: the export each quarter with the sample; the full certification each year. Drift is a change to the user consent policy assignment, to a permission classification, or to the workflow's reviewers.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The route table above and Chapter 06's approval chain | The approved consent standard |
+| Configured | The settings in this section | The three policy exports |
+| Enforced | Settings in effect; uncertified grants revoked | Revocation records |
+| Evidenced | The blocked-consent test | Test record and the workflow request it created |
+| Operated | The quarterly sample and annual certification | Signed certifications and the grant exports |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Apps
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Identity (the roles that grant consent, held through PIM, [Chapter 08](08-pim-self-request-with-approval.md)); SecOps (consent events and alerts, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Initial Access and Persistence through consent phishing: a malicious app can't get user consent to sensitive permissions, and a grant obtained earlier is found and revoked at certification
+:::
+
 ## Ownership
 
 Owners are the most misunderstood control on an application. They aren't a contact field.
@@ -423,3 +529,7 @@ None of this book's certificates is renewed by the CLM platform. App-registratio
 [^c05-consent-conditions]: Microsoft Learn, "Manage app consent policies," sections "App consent policy segments" and "List existing app consent policies," <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-app-consent-policies> (accessed Nov 9, 2026).
 [^c05-consent-read]: Microsoft Learn, "Configure how users consent to applications," Microsoft Graph PowerShell tab (`Policy.Read.All` for reading the setting), <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-user-consent>, and "Manage app consent policies for group owners," section "Retrieve the current value for the group owner consent policy using PowerShell," <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-group-owner-consent-policies> (both accessed Nov 9, 2026).
 [^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).
+[^c05-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: SaaS apps with modern authentication, group assignment to applications and role-based access control available; consent settings and the admin consent workflow not listed), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
+[^c05-rsc]: Microsoft Learn, "Resource-specific consent for Teams agents and apps" (permissions scoped to the teams, chats, meetings and user scopes where an app is installed; declared in the app manifest; users consent to all of an app's RSC permissions at install; not shown in the Entra admin center), <https://learn.microsoft.com/microsoftteams/platform/graph-api/rsc/resource-specific-consent> (accessed Nov 11, 2026).
+[^c05-rsc-preapproval]: Microsoft Learn, "Preapproval of RSC permissions" (available only in public developer preview; Microsoft recommends keeping the `ManagedByMicrosoft` state; `New-MgBetaTeamAppPreapproval`, `Update-MgBetaTeamAppPreapproval` and `Remove-MgBetaTeamAppPreapproval`), <https://learn.microsoft.com/microsoftteams/platform/graph-api/rsc/preapproval-instruction-docs> (accessed Nov 11, 2026).
+[^c05-teams-consent]: Microsoft Learn, "Grant and manage consent to Teams app permissions," section "View resource-specific consent permissions of an app," <https://learn.microsoft.com/microsoftteams/manage-consent-app-permissions> (accessed Nov 11, 2026).
