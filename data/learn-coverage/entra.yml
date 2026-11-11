@@ -434,6 +434,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
+  - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md
   - docs/reference/source-register.md
   - examples/third_party/entra-agent-id-pages/SNAPSHOT.md
@@ -5211,6 +5212,7 @@ pages:
   coverage: cited
   note: Microsoft tenant isolation and engineering-system guidance not covered.
   cited_by:
+  - docs/books/b08-ddi/06-dns-identity-and-dnssec.md
   - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
 - path: docs/fundamentals/zero-trust-protect-identities.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities
@@ -5223,9 +5225,13 @@ pages:
   note: ''
   cited_by:
   - docs/books/b02-identity/01-why-identity-matters.md
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
+  - docs/books/b07-pki/09-federal-workforce-credentials.md
 - path: docs/fundamentals/zero-trust-protect-networks.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks
   title: Security guidance - Protect networks
@@ -13102,7 +13108,8 @@ pages:
   description: A description of the best practices and limitations of redirect URIs in the Microsoft identity platform.
   coverage: out-of-scope
   note: Developer protocol, SDK or web-app build detail; the workbook does not write app code against MSAL
-  cited_by: []
+  cited_by:
+  - docs/books/b08-ddi/06-dns-identity-and-dnssec.md
 - path: docs/identity-platform/retire-service-principal-less-authentication.md
   url: https://learn.microsoft.com/entra/identity-platform/retire-service-principal-less-authentication
   title: Retirement of service principal-less authentication
@@ -13494,6 +13501,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b08-ddi/06-dns-identity-and-dnssec.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
 - path: docs/identity-platform/security-best-practices-for-frontline-workers.md
@@ -17443,7 +17451,9 @@ pages:
   - data/source-register.json
   - docs/books/b01-transformation-arc/appendix-b-applicability.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
@@ -17465,6 +17475,7 @@ pages:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b06-data-platform/appendix-c-applicability.md
+  - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
@@ -19557,6 +19568,7 @@ pages:
   - docs/books/b04-access/appendix-a-conditional-access-templates.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/appendix-a-conditional-access-templates.md
@@ -22969,11 +22981,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: concept-article
   description: This article describes the required accounts for each of the synchronization tools.
-  coverage: covered-uncited
+  coverage: cited
   note: Hybrid identity overview and sync-tool choice.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/cloud-sync/cloud-sync-migration-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/cloud-sync-migration-faq
   title: Migrate from Microsoft Entra Connect Sync to Cloud Sync FAQ
@@ -23250,6 +23263,7 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/guides/service-account-migration.md
 - path: docs/identity/hybrid/cloud-sync/how-to-inbound-synch-ms-graph.md
@@ -23758,7 +23772,9 @@ pages:
   description: This article describes how to allow the Microsoft Entra Connect application to authenticate with Microsoft Entra ID with modern, more secure credentials.
   coverage: out-of-scope
   note: Release history, privacy notice, deprecated-version, DirSync-era or Exchange-migration page; no program procedure.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/choose-ad-authn.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/choose-ad-authn
   title: Authentication for Microsoft Entra hybrid identity solutions
@@ -23930,9 +23946,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This topic documents how to restore the Microsoft Entra Connector account.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-configure-ad-ds-connector-account.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-configure-ad-ds-connector-account
   title: 'Microsoft Entra Connect: Configure AD DS Connector Account Permissions'
@@ -23991,7 +24008,9 @@ pages:
   description: This article explains how to revoke and update AD FS certificates immediately.
   coverage: out-of-scope
   note: AD FS and federation configuration; AD FS is retired in favor of Entra authentication.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-fed-compatibility.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-fed-compatibility
   title: Microsoft Entra federation compatibility list
@@ -24033,7 +24052,9 @@ pages:
   description: This article explains to Microsoft 365 users how to resolve issues with emails that notify them about renewing a certificate.
   coverage: out-of-scope
   note: AD FS and federation configuration; AD FS is retired in favor of Entra authentication.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-fed-saml-idp.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-fed-saml-idp
   title: 'Microsoft Entra Connect: Use a SAML 2.0 Identity Provider for Single Sign On - Azure'
@@ -24161,6 +24182,7 @@ pages:
   coverage: out-of-scope
   note: AD FS Connect Health; AD FS is retired.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-agent-install.md
@@ -24190,6 +24212,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-data-freshness.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-data-freshness
@@ -24725,9 +24748,10 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This topic document describes how to update Microsoft Entra Connect after the password of the AD DS account is changed.
-  coverage: not-covered
+  coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-change-serviceacct-pass.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-serviceacct-pass
   title: 'Microsoft Entra Connect Sync: Changing the ADSync service account'
@@ -25052,6 +25076,7 @@ pages:
   - data/source-register.json
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/01-why-identity-matters.md
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b02-identity/appendix-c-identity-assessment-module.md
@@ -25166,6 +25191,7 @@ pages:
   coverage: cited
   note: Connect Sync operation (install, upgrade, database, accounts, PowerShell references, troubleshooting) not covered step by step.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/reference-connect-adsyncconfig.md
@@ -26991,6 +27017,7 @@ pages:
   coverage: cited
   note: Entra recommendations not covered as a feature.
   cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
@@ -27139,6 +27166,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
   - docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md
 - path: docs/identity/monitoring-health/recommendation-renew-expiring-service-principal-credential.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-renew-expiring-service-principal-credential
@@ -27147,11 +27175,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: Learn how the Microsoft Entra recommendation to renew expiring service principal credentials work and why it's important.
-  coverage: covered-uncited
+  coverage: cited
   note: Application and service principal credential hygiene.
   workbook:
   - docs/books/b04-access/05-applications-and-workload-identities.md
-  cited_by: []
+  cited_by:
+  - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
 - path: docs/identity/monitoring-health/recommendation-turn-off-per-user-mfa.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-turn-off-per-user-mfa
   title: Turn off per user MFA in Microsoft Entra ID
@@ -28275,6 +28304,7 @@ pages:
   - docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
   - docs/books/b06-data-platform/appendix-b-ato-kit.md
+  - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b11-zero-trust/02-governance-principles.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md

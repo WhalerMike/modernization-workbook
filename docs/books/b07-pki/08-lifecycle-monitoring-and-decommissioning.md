@@ -121,6 +121,158 @@ Since the February 2025 Windows security update, domain controllers that weren't
 
 In the program's model, the drift checks run on a schedule, at least weekly, and their outputs are committed to the program's evidence repository under `assessments/pki/{domain}/{timestamp}/`. The outputs are the CA and template inventory, the posture findings, certificate health and the compliance results. History matters more than any single run. An assessor asks how long a finding stayed open, not only whether it's open now.
 
+## Certificates as application credentials {#application-certificate-credentials}
+
+A certificate on an app registration or service principal is a credential, not a TLS certificate: Entra ID holds only its public key, the workload signs a token request with the private key, and whoever holds that key *is* the application. [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#credentials) sets the order (managed identity, then federation, then a certificate, never a secret) and the 180-day lifetime cap in the app management policy; [Book 04's certificate table](../b04-access/05-applications-and-workload-identities.md#certificates-and-the-clm-platform) records that these certificates aren't one of this book's renewal classes and that the CLM platform doesn't upload them to Entra ID. What this section adds is the PKI half: which issuers are approved, how the private key is protected, how the certificates are inventoried and owned, and how they are renewed, rolled over and watched. Migrating a service account onto one is [the service account guide's Migration C3](../guides/service-account-migration.md#migration-c); ranking applications by their credentials is [Book 18's](../b18-application-modernization/02-triaging-the-portfolio.md).
+
+Microsoft's Zero Trust guidance for Entra ID carries four checks for these credentials: no client secrets on applications, no application certificates with a lifetime over 180 days, application certificates rotated regularly, and standards enforced through application management policies, with a defined list of trusted certificate authorities for application certificates among the remediations.[^c08-zt-protect-identities] A workload that moves off a client secret onto a governed certificate is how this book supports the closure-map row for application secrets; replacing the secret with a managed identity, where the workload can use one, is Book 04's and the service account guide's.
+
+**Authority:** Microsoft-recommended (certificates over secrets, 180-day lifetime, regular rotation, trusted issuers, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," read Nov 11, 2026); the issuer list, the HSM criteria and the overlap window below are risk-based recommended, the program's position for the risk that a copied private key impersonates the application.
+**Applies:** every app registration and service principal the agency owns that holds a certificate credential. Environment-dependent: the Microsoft Graph application and service principal APIs are available in the US Government L4 and L5 (DoD) deployments;[^c08-graph-sp-update] the trusted-CA restriction for application certificates is a beta API; the Entra credential-expiry recommendations are preview, and their government-cloud availability is not yet specified; Key Vault Premium and Managed HSM availability in GCC High and DoD regions is not yet specified on the pages read.
+
+### The design
+
+| Element | Program rule | Basis |
+|---|---|---|
+| **Approved issuers** | Production: the program's internal issuing CA for internal names, the same issuer [Chapter 04](04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates) names for internal server certificates. Key Vault self-signed certificates are allowed only where Key Vault both holds the key and renews it, and only until the trusted-CA restriction can be enforced. Developer self-signed certificates: development and test tenants only | Microsoft prefers a certificate from a trusted CA over a self-signed one, and a self-signed one over a secret ([Book 04](../b04-access/05-applications-and-workload-identities.md#credentials)). A tenant can define up to 10 trusted certificate authorities for application certificates through the `certificateBasedApplicationConfiguration` resource, which on Nov 11, 2026 is in Microsoft Graph beta only[^c08-app-trusted-ca] |
+| **Private-key protection** | The key is generated where it will be used and marked non-exportable: in Key Vault for workloads that read it from Key Vault, or in the host's TPM through the Microsoft Platform Crypto Provider for a workload on its own server. Never a `.pfx` copied between hosts or kept in a repository | Microsoft says to keep certificate credentials in a key vault and to scan pipelines so credentials never reach a repository ([Book 04](../b04-access/05-applications-and-workload-identities.md#credentials)); Connect Sync's application credential is the worked Microsoft example of a TPM-held key ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#hardening-the-synchronization-identities)) |
+| **HSM criteria** | An HSM-backed key (Key Vault Premium `RSA-HSM`, Managed HSM, or a TPM) is required when the application holds an application permission the program classifies high, any Entra directory role, or an Azure role at subscription scope or above; a non-exportable software key is acceptable otherwise | Key Vault Premium's HSM-protected keys and Managed HSM use FIPS 140-3 Level 3 validated HSMs; the Standard tier uses software validated to FIPS 140 Level 1[^c08-kv-tiers] |
+| **Inventory** | Every certificate credential on every app registration and service principal, with its key ID, thumbprint, subject, start and end dates, the application's owners and its `serviceManagementReference` | The read-only script below |
+| **Ownership** | The application's registry owner answers for renewal; the two technical owners in Entra ID do it ([Book 04](../b04-access/05-applications-and-workload-identities.md#ownership)). The CLM owner answers only for the issuing CA | [Chapter 05](05-who-owns-the-certificate-estate.md#renewal-ownership-per-certificate-class)'s rule: one renewal owner per certificate |
+| **Renewal automation** | Key Vault certificate policy with a lifetime action at 80% of lifetime: `AutoRenew` for self-signed and integrated-CA certificates; `EmailContacts` plus the Event Grid and Automation pattern for a non-integrated (internal) CA | Key Vault renews self-signed and integrated-CA certificates itself; a non-integrated CA needs a new version and a merged CSR, which Microsoft's reference architecture automates with Event Grid and Azure Automation[^c08-kv-renew][^c08-kv-clm-arch] |
+| **Rollover overlap** | Add the new public key to the application while the old one is still valid, switch the workload, confirm from the sign-in logs which key ID it uses, then remove the old key. With the 180-day cap and renewal at 80%, the overlap is about 36 days | Microsoft's renewal steps: add the new credential, update the service, validate the key ID in the sign-in logs, then remove the old one[^c08-renew-app-creds] |
+| **Expiry alerting** | Three independent signals: the inventory's 45-day flag, Key Vault's `Microsoft.KeyVault.CertificateNearExpiry` event (30 days before expiry), and the Entra recommendations for expiring application and service principal credentials (30 days) | Key Vault event schema; Entra recommendations[^c08-kv-secure][^c08-renew-app-creds] |
+
+### Prerequisites
+
+- Application Administrator or Cloud Application Administrator, through PIM, for the credential changes; Key Vault Certificates Officer on the vault; Reports Reader for the sign-in check.
+- The application on the program's app management policy ([Book 04](../b04-access/05-applications-and-workload-identities.md#enforcing-the-order-with-app-management-policies)), so a certificate over 180 days can't be added.
+- For an internal CA, the issuing CA reachable by the renewal runbook, and the CA's chain on the workload host.
+
+### Pilot
+
+Pick three applications the identity team owns, one per key location (Key Vault software key, Key Vault HSM key, host TPM), and run the full cycle below on each, including a rollover. Success is a rollover with no failed sign-in for the application and the new key ID in the logs within one hour of the switch.
+
+### Report-only or audit phase
+
+Run the inventory weekly for a month before enforcing anything, and read it: certificates over 180 days, self-signed certificates in production, credentials on service principals rather than on the application object (Microsoft recommends the application object[^c08-renew-sp-creds]), and applications with more than two certificates. Nothing is removed in this phase.
+
+```powershell
+#Requires -Modules Microsoft.Graph.Applications
+# Read-only: every certificate credential on app registrations and service principals
+Connect-MgGraph -Scopes 'Application.Read.All' -NoWelcome
+$now = Get-Date
+$rows = foreach ($app in Get-MgApplication -All -Property 'id,appId,displayName,keyCredentials,serviceManagementReference') {
+    $owners = (Get-MgApplicationOwner -ApplicationId $app.Id -All).Count
+    foreach ($k in $app.KeyCredentials) {
+        [pscustomobject]@{ Object='Application'; DisplayName=$app.DisplayName; AppId=$app.AppId; KeyId=$k.KeyId
+            Subject=$k.DisplayName; Start=$k.StartDateTime; End=$k.EndDateTime
+            LifetimeDays=[int]($k.EndDateTime - $k.StartDateTime).TotalDays; DaysLeft=[int]($k.EndDateTime - $now).TotalDays
+            Owners=$owners; ServiceRef=$app.ServiceManagementReference }
+    }
+}
+$rows += foreach ($sp in Get-MgServicePrincipal -All -Property 'id,appId,displayName,keyCredentials,appOwnerOrganizationId') {
+    foreach ($k in ($sp.KeyCredentials | Where-Object Usage -eq 'Verify')) {
+        [pscustomobject]@{ Object='ServicePrincipal'; DisplayName=$sp.DisplayName; AppId=$sp.AppId; KeyId=$k.KeyId
+            Subject=$k.DisplayName; Start=$k.StartDateTime; End=$k.EndDateTime
+            LifetimeDays=[int]($k.EndDateTime - $k.StartDateTime).TotalDays; DaysLeft=[int]($k.EndDateTime - $now).TotalDays
+            Owners=$null; ServiceRef=$null }
+    }
+}
+$rows | Sort-Object DaysLeft |
+    Export-Csv ".\FMP-AppCertificateInventory-$(Get-Date -Format yyyyMMdd).csv" -NoTypeInformation
+$rows | Where-Object { $_.LifetimeDays -gt 180 -or $_.DaysLeft -lt 45 } | Format-Table DisplayName, Object, Subject, LifetimeDays, DaysLeft
+```
+
+Service principal credentials with usage `Sign` are SAML signing certificates, which Entra ID issues for single sign-on and which have their own renewal path ([Book 02, Appendix D](../b02-identity/appendix-d-migrating-ad-fs-applications.md#retirement-criteria) keeps them in the inventory); the script reads only `Verify` credentials there.
+
+### Enforcement
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The three pilot applications | One clean rollover each |
+| 1 | Applications holding high-classified permissions or roles | Every one on an approved issuer, an HSM-backed key, and a Key Vault lifetime action |
+| 2 | All other applications with certificates | Inventory shows no certificate over 180 days and no production self-signed certificate outside the allowed Key Vault case |
+| 3 | The trusted-CA restriction | Applied when the API is generally available, with the approved CAs listed |
+
+The rollover, for a certificate held in Key Vault (the commands run as the application's technical owner, through PIM):
+
+```powershell
+#Requires -Modules Az.KeyVault, Microsoft.Graph.Applications
+# 1. Create the next version in Key Vault (a self-signed or integrated-CA policy renews in place; for an internal CA, merge the signed CSR first)
+Connect-AzAccount -Environment '<AzureCloud or AzureUSGovernment>'
+$cert = Get-AzKeyVaultCertificate -VaultName '<vault>' -Name '<certificate name>'
+$cert.Certificate.NotAfter
+
+# 2. Add the new public key to the application alongside the old one (the list must include every key to keep)
+Connect-MgGraph -Scopes 'Application.ReadWrite.All' -NoWelcome
+$id   = (Get-MgApplication -Filter "appId eq '<application (client) id>'").Id
+$app  = Get-MgApplication -ApplicationId $id -Property 'id,keyCredentials'   # a single-object read returns each key's value
+$keys = @($app.KeyCredentials | ForEach-Object { @{ KeyId = $_.KeyId; Type = $_.Type; Usage = $_.Usage; Key = $_.Key; DisplayName = $_.DisplayName } })
+$keys += @{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.Certificate.RawData; DisplayName = $cert.Certificate.Subject }
+Update-MgApplication -ApplicationId $app.Id -KeyCredentials $keys
+
+# 3. Point the workload at the new version (an unversioned Key Vault reference picks it up), then confirm which key it signs with
+Get-MgBetaAuditLogSignIn -Filter "appId eq '<application (client) id>' and signInEventTypes/any(t: t eq 'servicePrincipal')" -Top 20 |
+    Select-Object CreatedDateTime, ServicePrincipalCredentialKeyId, Status
+
+# 4. Remove the old key once every sign-in uses the new key ID
+$keep = @($keys | Where-Object { $_.KeyId -ne '<old key id>' })
+Update-MgApplication -ApplicationId $app.Id -KeyCredentials $keep
+```
+
+Microsoft Graph returns a key's value only when `keyCredentials` is selected on a single application, which is why step 2 reads the application by its object ID; a list query returns the keys without their values, so its result can't be written back as it is.[^c08-graph-keycred] Check the result with `(Get-MgApplication -ApplicationId $id -Property keyCredentials).KeyCredentials | Select-Object KeyId, EndDateTime` before going on. An application that has its own valid certificate can instead add the next one itself with the `addKey` action, which requires a proof-of-possession token signed with an existing key.[^c08-graph-addkey]
+
+### Rollback
+
+Until step 4, rollback is pointing the workload back at the previous Key Vault version; both keys are valid on the application. After step 4, re-add the old public key while it's still within its validity. The technical owner runs either in minutes. A certificate that has already expired can't be rolled back to.
+
+### Exclusions
+
+Microsoft's own applications' credentials, multitenant applications owned by other organizations, and managed identities aren't in scope: the agency can't, or needn't, govern their keys. Connect Sync's application certificate is self-signed and managed by Connect, and stays so by design ([Book 02](../b02-identity/09-building-the-entra-target.md#hardening-the-synchronization-identities)). Any other exclusion is a dated exception in the application registry, approved through [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#exceptions).
+
+### Telemetry
+
+- Audit log: **Update application – Certificates and secrets management** for every credential added or removed.
+- Service principal sign-in logs: `servicePrincipalCredentialKeyId`, which shows the key each sign-in used.
+- Key Vault: `Microsoft.KeyVault.CertificateNearExpiry`, `CertificateExpired` and `CertificateNewVersionCreated` events through Event Grid, and Key Vault diagnostic logs.[^c08-kv-secure]
+- Entra recommendations **Renew expiring application credentials** and **Renew expiring service principal credentials** (preview), which list credentials expiring within 30 days.[^c08-renew-app-creds][^c08-renew-sp-creds]
+
+### Evidence
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The design table above | The approved-issuer list and HSM criteria, approved by the CISO |
+| Configured | Key Vault certificate policies; app management policy | Certificate policy exports; the policy export from Book 04 |
+| Enforced | Rings 1–3 | The inventory showing no certificate over 180 days and none from an unapproved issuer; the trusted-CA configuration once available |
+| Evidenced | A rollover per key location | Rollover record with the old and new key IDs and the sign-in log entries |
+| Operated | Weekly inventory; the three expiry signals | Inventory history; alert history; the renewal owner in the registry |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the weekly certificate inventory CSV and the Key Vault certificate policies, in the evidence repository under `assessments/pki/app-credentials/{timestamp}/`
+- [ ] **Operational:** audit log entries for credential changes, Key Vault near-expiry events and the recommendation history, kept for the program's log retention
+- [ ] **Test:** a rollover record per key location (expected and observed key ID, date, tester), refreshed yearly
+- [ ] **Exception:** every application on a dated exception (self-signed in production, software key where an HSM is required), with approver and expiry
+- [ ] **Assessor-ready artifact:** the inventory and rollover records, traceable to the "Applications don't have certificates with expiration longer than 180 days" and "Application certificates must be rotated on a regular basis" checks and to any plan of action entry for application secrets
+
+### Day-two ownership
+
+The application's registry owner is accountable for renewal and the technical owners do it; the CLM owner keeps the internal issuing CA available to the renewal runbook; security operations owns the three alerts. The inventory runs weekly, the issuer list and HSM criteria are reviewed yearly with the CISO, and drift looks like a new certificate from an unlisted issuer, a credential added to a service principal instead of the application, a third key on one application, or a near-expiry event with no new version created within a week.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity (workload identities)
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Book 04's app management policy and ownership rules (Identity); Key Vault or the host TPM (Infrastructure); the internal issuing CA ([Chapter 04](04-the-target-pki.md)); SecOps for the alerts
+- **Attack chain interrupted:** Credential Access and Persistence: a copied private key, or a long-lived certificate nobody rotates, used to sign in as the application
+:::
+
+
 ## Troubleshooting reference
 
 | Symptom | Likely cause | Check and fix |
@@ -227,3 +379,14 @@ The control text below is NIST SP 800-53 Rev. 5.[^c08-sp80053] The evidence colu
 [^c08-pki-design]: Microsoft Learn, "PKI design considerations using Active Directory Certificate Services," section "Authority Information Access and Certificate Revocation List Distribution Point settings" ("Avoid publishing delta CRLs on offline root CAs"), <https://learn.microsoft.com/windows-server/identity/ad-cs/pki-design-considerations> (accessed Nov 9, 2026).
 [^c08-ca-backup]: Microsoft Learn, "CA Backup and Restore Windows PowerShell cmdlets" (`Backup-CARoleService` parameters, including `-Password` for the key material and `-KeyOnly` and `-DatabaseOnly`), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/ca-backup-and-restore-windows-powershell-cmdlets> (accessed Nov 9, 2026).
 [^c08-ocsp-retire]: Microsoft Learn, "Secure, monitor, renew, and scale Online Responders," section "Retire a responder or revocation configuration" (inventory unexpired certificates that carry the responder URL; keep the URL available until the last affected certificate expires or is replaced), <https://learn.microsoft.com/windows-server/identity/ad-cs/secure-monitor-scale-online-responders> (accessed Nov 9, 2026).
+[^c08-zt-protect-identities]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," recommendations "Applications don't have client secrets configured," "Applications don't have certificates with expiration longer than 180 days" (remediations include defining trusted certificate authorities for apps and service principals), "Application certificates must be rotated on a regular basis" and "Enforce standards for app secrets and certificates," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Nov 11, 2026).
+[^c08-graph-sp-update]: Microsoft Learn, Microsoft Graph, "Update servicePrincipal" (national cloud deployments: global service, US Government L4 and US Government L5 (DoD) available), <https://learn.microsoft.com/graph/api/serviceprincipal-update?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c08-app-trusted-ca]: Microsoft Learn, Microsoft Graph beta, "certificateBasedApplicationConfiguration resource type" (trusted certificate authorities for certificates assigned to apps and service principals; up to 10 trusted authorities; `/beta` APIs subject to change and not supported in production), <https://learn.microsoft.com/graph/api/resources/certificatebasedapplicationconfiguration?view=graph-rest-beta> (accessed Nov 11, 2026).
+[^c08-kv-tiers]: Microsoft Learn, "About Azure Key Vault" (Standard tier: software validated to FIPS 140 Level 1; Premium tier: HSM-protected keys in FIPS 140-3 Level 3 validated HSMs), <https://learn.microsoft.com/azure/key-vault/general/overview>, and "What is Azure Key Vault Managed HSM?" (FIPS 140-3 Level 3 validated HSMs), <https://learn.microsoft.com/azure/key-vault/managed-hsm/overview> (both accessed Nov 11, 2026).
+[^c08-kv-renew]: Microsoft Learn, "Renew your Azure Key Vault certificates" (integrated CAs DigiCert and GlobalSign renewed end to end; nonintegrated CA: new version, download the CSR, merge the signed request; self-signed autorenewal; certificate contacts for near-expiry notifications), <https://learn.microsoft.com/azure/key-vault/certificates/overview-renew-certificate>, and "About Azure Key Vault certificates," section "Certificate policy" (lifetime actions `EmailContacts` or `AutoRenew`, triggered by days before expiry or lifetime percentage), <https://learn.microsoft.com/azure/key-vault/certificates/about-certificates> (both accessed Nov 11, 2026).
+[^c08-kv-clm-arch]: Microsoft Learn, Azure Architecture Center, "Certificate life cycle management on Azure" (automated renewal for nonintegrated CAs with Key Vault, Event Grid, Azure Automation and a Hybrid Runbook Worker on the CA server; the private key never leaves Key Vault), <https://learn.microsoft.com/azure/architecture/example-scenario/certificate-lifecycle/> (accessed Nov 11, 2026).
+[^c08-renew-app-creds]: Microsoft Learn, "Microsoft Entra recommendation: Renew expiring application credentials (preview)" (credentials expiring within 30 days; add the new credential, update the service, validate the key ID in the sign-in logs, then remove the old credential), <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-renew-expiring-application-credential> (accessed Nov 11, 2026).
+[^c08-renew-sp-creds]: Microsoft Learn, "Microsoft Entra recommendation: Renew expiring service principal credentials (preview)" (credentials on a service principal expiring within 30 days; Microsoft highly recommends using the credential on the backing application object instead of the service principal), <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-renew-expiring-service-principal-credential> (accessed Nov 11, 2026).
+[^c08-kv-secure]: Microsoft Learn, "Secure your Azure Key Vault certificates," section "Certificate lifecycle management" (renew at about 80% of lifetime as a common practice; `Microsoft.KeyVault.CertificateNearExpiry` fires 30 days before expiration, with `CertificateExpired` and `CertificateNewVersionCreated`; maintain a certificate inventory with owning applications), <https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates> (accessed Nov 11, 2026).
+[^c08-graph-addkey]: Microsoft Learn, Microsoft Graph, "application: addKey" (adds a key credential; requires a proof-of-possession JWT signed with one of the application's existing valid certificates), <https://learn.microsoft.com/graph/api/application-addkey?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c08-graph-keycred]: Microsoft Learn, Microsoft Graph, "keyCredential resource type," property `key` (requires `$select`; only available for single-object requests; otherwise always null), <https://learn.microsoft.com/graph/api/resources/keycredential?view=graph-rest-1.0> (accessed Nov 11, 2026).

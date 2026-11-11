@@ -109,3 +109,15 @@ Learn coverage pass (citations for Microsoft Learn identity pages the chapter al
 |---|---|---|---|---|
 | L1 | Entra CBA on Android supports on-device and derived PIV certificates in MSAL or Authenticator apps; smart cards and security keys from supported vendors only | Derived PIV, Entra ID accepts it | verified (sentence added) | `c09-cba-android`: Learn, "Microsoft Entra certificate-based authentication on Android devices" (read Nov 9, 2026) |
 | L2 | FIDO2 security keys are device-bound passkeys; the private key never leaves the key | Require the phishing-resistant strength | verified (sentence added) | `c09-passkeys`: Learn, "Authentication methods in Microsoft Entra ID - passkeys (FIDO2)" and "Sign in with a FIDO2 security key" (read Nov 9, 2026) |
+
+## Zero Trust Assessment closure additions (Nov 11, 2026)
+
+Added for the Zero Trust Assessment closure update (the Book 07 part of CM-03). Each row uses the verification-log row from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md#block-verification-row). Learn pages were read on the date shown; `ms.date` wasn't exposed by the fetch tool, so the read date is the date recorded.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | Zero Trust checks: privileged accounts have phishing-resistant methods registered; privileged roles targeted with phishing-resistant Conditional Access | Administrators: the PIV certificate | verified | Learn, Configure Microsoft Entra for Zero Trust: Protect identities and secrets | Nov 11, 2026 |
+| Z2 | Emergency access accounts: passkey (FIDO2) recommended, CBA if the organization has a PKI; excluded from blocking policies | Administrators table | verified | Learn, Manage emergency access accounts in Microsoft Entra ID | Nov 11, 2026 |
+| Z3 | CBA and Conditional Access available in Azure for US Government | Applies | verified | Learn, Microsoft Entra feature availability | Nov 11, 2026 |
+| Z4 | Admin binding on the cloud-only admin account; strength restricted to PIV issuer and OID; emergency accounts on a different method | Administrators table | restated-as-design | Program design on Book 04 Chapters 04 and 07 | Nov 11, 2026 |
+| Z5 | authenticationMethod reads X.509 Certificate for CBA sign-ins; KQL and Graph checks | Evidence queries | restated-as-design (query shape is the program's) | Program design | Nov 11, 2026 |
