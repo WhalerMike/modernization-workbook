@@ -131,6 +131,7 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 | [Module 1: Graph and Azure Foundations](ms-automation-foundations.md) | [Lab 1](ms-automation-foundations.md#unit-7-exercise-lab-1-fixtures-no-tenant) | [Lab 2](ms-automation-foundations.md#unit-8-exercise-lab-2-your-test-tenant) |
 | [Module 2: Microsoft Entra ID through Microsoft Graph](ms-automation-entra.md) | [Lab 1](ms-automation-entra.md#unit-8-exercise-lab-1-fixtures-no-tenant) | [Lab 2](ms-automation-entra.md#unit-9-exercise-lab-2-your-test-tenant) |
 | [Module 3: Intune through Microsoft Graph](ms-automation-intune.md) | [Lab 1](ms-automation-intune.md#unit-8-exercise-lab-1-fixtures-no-tenant) | [Lab 2](ms-automation-intune.md#unit-9-exercise-lab-2-your-test-tenant) |
+| [Module 4: Azure Arc through Azure Resource Manager and Resource Graph](ms-automation-arc.md) | [Lab 1](ms-automation-arc.md#unit-8-exercise-lab-1-fixtures-no-subscription) | [Lab 2](ms-automation-arc.md#unit-9-exercise-lab-2-your-test-subscription) |
 
 : Microsoft Automation: labs by module {.striped .hover}
 
