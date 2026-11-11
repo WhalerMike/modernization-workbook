@@ -49,7 +49,9 @@ Most agencies run hundreds or thousands of mission applications, many of them wr
 | **Why** | Why is application modernization a portfolio decision, not a rewrite? | [01](01-a-portfolio-not-a-rewrite.md) |
 | **What** | Triage, the target reference architecture, moving the data, generative and agentic AI, and compliance by design | [02](02-triaging-the-portfolio.md), [03](03-the-target-reference-architecture.md), [04](04-moving-the-data.md), [05](05-generative-and-agentic-ai.md), [06](06-compliance-by-design.md) |
 | **Who** | Who governs the architecture: the review board, standards, patterns and gates | [07](07-who-governs-the-architecture.md) |
-| **How** | The reference implementation, the TOGAF and Zachman mapping, and running the portfolio in waves | [08](08-the-reference-implementation.md), [09](09-togaf-and-zachman.md), [10](10-running-the-portfolio-in-waves.md) |
+| **How** | The reference implementation, the TOGAF and Zachman mapping, running the portfolio in waves, and the identity remediation work packages | [08](08-the-reference-implementation.md), [09](09-togaf-and-zachman.md), [10](10-running-the-portfolio-in-waves.md) |
+
+Appendix: [A — Identity remediation work packages](appendix-a-identity-remediation-work-packages.md)
 
 ## Reading paths
 
@@ -58,6 +60,7 @@ Most agencies run hundreds or thousands of mission applications, many of them wr
 - **Database and data teams:** Chapter 04, with [Book 06](../b06-data-platform/index.md) when the target is SQL Server.
 - **AI and application teams:** Chapters 05 and 08, with [Book 17](../b17-ai-identity/index.md).
 - **ISSOs, privacy officers and authorizing officials:** Chapter 06, with [Book 14](../b14-compliance/index.md).
+- **Identity engineers fixing application findings:** Chapter 02's [identity and access intake fields](02-triaging-the-portfolio.md#identity-and-access-intake-fields), Chapter 10's [identity remediation factory](10-running-the-portfolio-in-waves.md#identity-remediation-factory) and Appendix A.
 
 ## Where this book sits in the workbook
 
