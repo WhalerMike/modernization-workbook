@@ -312,6 +312,99 @@ ConsistencyLevel: eventual
 
 The quarantine page doesn't state government-cloud availability for these steps, so it is not yet specified there. As a design position, the governance office decides each quarantine, records it with the partner tenant list ([Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md)), and lifts it only when an administrator of the other tenant proves ownership or hands control to the program.
 
+### Tenant creation {#tenant-creation}
+
+Quarantine deals with tenants that already exist. The cheaper control stops the next one. By default any user can create a new Microsoft Entra tenant and is made its Global Administrator; the new tenant inherits none of the agency's settings, and Microsoft's Zero Trust guidance describes it as a shadow identity platform outside the organization's governance and monitoring.[^c09-zt-tenants] A Zero Trust assessment reports the open setting as a finding. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s, and [Book 11, Chapter 06](../b11-zero-trust/06-beyond-microsoft-365.md) explains why an unmanaged tenant belongs in the program's inventory.
+
+**Authority:** Microsoft-recommended: restrict non-admin users from creating tenants, assign the Tenant Creator role to those who need it, and review tenant-creation events in the audit log (Learn, "Configure Microsoft Entra for Zero Trust: Protect tenants and isolate production systems," read Nov 11, 2026).[^c09-zt-tenants] The approval workflow is risk-based recommended, the program's.
+**Applies:** all tenants; no license beyond Microsoft Entra ID. Environment-dependent: Learn doesn't state the setting's or the Tenant Creator role's availability in GCC High or DoD, so it is not yet specified; Learn's government feature table lists user and group management and built-in roles as available in Azure for US Government.[^c09-feature-availability]
+
+**What the setting does.** **Restrict non-admin users from creating tenants**, under **Entra ID** > **Users** > **User settings**, set to **Yes**, limits tenant creation to holders of at least the Tenant Creator role. Creation is still recorded in the audit log, as category `DirectoryManagement` and activity `Create Company`, and the creator is still made Global Administrator of the new tenant.[^c09-default-perms] In Microsoft Graph the setting is the `allowedToCreateTenants` property of the authorization policy's default user role permissions; `false` corresponds to **Yes** in the admin center, and Tenant Creator holders can still create tenants.[^c09-authz-tenants]
+
+**The approved Tenant Creator workflow** (program design). Tenant Creator is an eligible assignment in PIM, never active, requested through the Tier 2 settings with approval required ([Chapter 08](08-pim-self-request-with-approval.md#settings-by-tier)). The request names the purpose (test, development, partner sandbox or a governed workforce tenant), the owner, the end date and the cost center. The governance office approves it and records the new tenant, with its tenant ID, in the tenant inventory that the [tenant strategy](appendix-c-partner-access-profile-entra.md#tenant-strategy-multitenant-organizations-and-tenant-governance) keeps. Where Tenant Governance is adopted, Microsoft's governed workforce tenant flow also requires Tenant Creator and can establish a governance relationship with the home tenant from its default policy template.[^c09-governed-tenant]
+
+#### Prerequisites
+
+A role that can change user settings, and the `Policy.ReadWrite.Authorization` permission for the Graph command;[^c09-authz-tenants] the workspace receiving `AuditLogs`; PIM configured for the Tenant Creator role.
+
+#### Pilot
+
+Not applicable: the setting is tenant-wide. Before turning it on, read 90 days of `Create Company` events to find who creates tenants today, and give each legitimate creator an eligible Tenant Creator assignment first.
+
+#### Report-only or audit phase
+
+The audit read above is the audit phase; the setting has no report-only mode.
+
+#### Enforcement
+
+Read the current value, then set it. The second command writes; the third reads the result.
+
+```powershell
+# READ, WRITE, READ. Needs Policy.ReadWrite.Authorization.
+Connect-MgGraph -Scopes 'Policy.ReadWrite.Authorization' -NoWelcome
+(Get-MgPolicyAuthorizationPolicy).DefaultUserRolePermissions.AllowedToCreateTenants   # True means anyone can create tenants
+
+Update-MgPolicyAuthorizationPolicy -BodyParameter @{ defaultUserRolePermissions = @{ allowedToCreateTenants = $false } }
+
+(Get-MgPolicyAuthorizationPolicy).DefaultUserRolePermissions.AllowedToCreateTenants   # expected: False
+```
+
+#### Rollback
+
+The same command with `$true`, through an emergency change. Rollback isn't expected; a blocked creator requests Tenant Creator instead.
+
+#### Exclusions
+
+None. Eligible Tenant Creator holders are the governed route, not an exclusion.
+
+#### Telemetry
+
+Alert on every tenant-creation event; each one should match an approved request. The query is illustrative and hasn't been run against a production workspace.
+
+```kusto
+AuditLogs
+| where TimeGenerated > ago(1d)
+| where Category == "DirectoryManagement" and OperationName == "Create Company"
+| project TimeGenerated, Initiator = tostring(InitiatedBy.user.userPrincipalName),
+          InitiatorId = tostring(InitiatedBy.user.id), Result, CorrelationId
+```
+
+#### Evidence
+
+The monitored test event: a Tenant Creator holder, after an approved PIM activation, creates a test tenant; the alert fires with the creator's identity and the time, and the governance office records the tenant and deletes it when the test ends. A second test: a user without the role tries to create a tenant and can't.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the authorization policy export showing `allowedToCreateTenants` false, and the Tenant Creator role settings in PIM
+- [ ] **Operational:** `Create Company` events and alerts for the period, each matched to an approved request
+- [ ] **Test:** the monitored test event and the blocked attempt, with expected and observed results
+- [ ] **Exception:** the eligible Tenant Creator assignments and their approvals
+- [ ] **Assessor-ready artifact:** the tenant inventory with each created tenant's approval
+
+#### Day-two ownership
+
+The IGO owns the setting, the approvals and the tenant inventory; security operations owns the alert. Cadence: every `Create Company` event reviewed when it fires; Tenant Creator eligibility reviewed with the Tier 2 roles ([Appendix B](appendix-b-pim-role-settings.md#review-cadence-by-tier)). Drift is the setting returned to allow, or a tenant created with no approved request.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The approved Tenant Creator workflow | The workflow and its owner |
+| Configured | Tenant Creator eligible in PIM; the alert rule | PIM role settings and the rule definition |
+| Enforced | The setting at **Yes** (`allowedToCreateTenants` false) | The authorization policy export |
+| Evidenced | The monitored test event and the blocked attempt | Test records and the `Create Company` event |
+| Operated | Day-two ownership above | The tenant inventory and the alert history |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** SecOps (the audit alert, [Book 12](../b12-security-operations/index.md)); Identity (PIM for the Tenant Creator role, [Chapter 08](08-pim-self-request-with-approval.md))
+- **Attack chain interrupted:** Resource Development and Persistence: an attacker or an unaware user can't stand up an identity platform outside the agency's governance for token issuance, impersonation or consent phishing, and any tenant that is created is seen
+:::
+
 ### Microsoft 365 group expiration
 
 An expiration policy gives Microsoft 365 groups a lifetime of 30 days or more; it applies to all, selected (up to 500), or no Microsoft 365 groups, and a tenant can have only one. Groups with user activity in Outlook, SharePoint, Teams or Viva Engage renew automatically about 35 days before they expire; otherwise owners are emailed 30 days, 15 days and 1 day before expiry, and a group nobody renews is deleted one day after it expires. A deleted group can be restored for 30 days, and that window can't be changed. The policy needs Entra ID P1 or P2 licenses for the members of every group it applies to (held, not necessarily assigned), and Groups Administrator or User Administrator to configure it.[^c09-groups-lifecycle] To view the current policy without changing it:[^c09-groups-lifecycle][^c09-get-lifecycle]
@@ -490,3 +583,7 @@ External Partner Persons are guests by default and arrive through a package, so 
 [^c09-restore-object]: Microsoft Learn, "Restore-EntraDeletedDirectoryObject" (roles needed to restore deleted groups, including role-assignable groups), <https://learn.microsoft.com/powershell/module/microsoft.entra.directorymanagement/restore-entradeleteddirectoryobject?view=entra-powershell> (accessed Nov 9, 2026).
 [^c09-feature-availability]: Microsoft Learn, "Microsoft Entra feature availability," section "Microsoft Entra ID" (Administration and hybrid identity: advanced group management), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
 [^c09-azure-gov-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration," <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Nov 9, 2026).
+[^c09-zt-tenants]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect tenants and isolate production systems," recommendation "Permissions to create new tenants are limited to the Tenant Creator role" (the creator is assigned Global Administrator; a shadow identity platform outside governance; remediation: enable the restriction, assign Tenant Creator, review `Create Company` events in category `DirectoryManagement`), <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants> (accessed Nov 11, 2026).
+[^c09-default-perms]: Microsoft Learn, "What are the default user permissions in Microsoft Entra ID?," section "Restrict member users' default permissions," row "Restrict non-admin users from creating tenants," <https://learn.microsoft.com/entra/fundamentals/users-default-permissions> (accessed Nov 11, 2026).
+[^c09-authz-tenants]: Microsoft Learn, "defaultUserRolePermissions resource type" (Microsoft Graph v1.0), property `allowedToCreateTenants`, <https://learn.microsoft.com/graph/api/resources/defaultuserrolepermissions?view=graph-rest-1.0>, and "Update authorizationPolicy" (permission `Policy.ReadWrite.Authorization`), <https://learn.microsoft.com/graph/api/authorizationpolicy-update?view=graph-rest-1.0> (both accessed Nov 11, 2026).
+[^c09-governed-tenant]: Microsoft Learn, "Create a governed workforce tenant," section "Prerequisites" (Tenant Creator required regardless of the restriction setting; the default governance policy template establishes the governance relationship), <https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-create-tenant> (accessed Nov 11, 2026).

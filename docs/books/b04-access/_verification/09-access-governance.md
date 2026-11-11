@@ -255,3 +255,17 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | A21 | Restored dynamic group repopulated, up to 24 hours | Tenant hygiene, restore | verified | [Learn](https://learn.microsoft.com/entra/identity/users/groups-lifecycle) |
 | A22 | Advanced group management (dynamic groups, naming policies, expiration) available in Azure Government; GCC pairs with Entra ID in commercial Azure, GCC High and DoD with Azure Government | Tenant hygiene, government cloud | verified | [Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability); [Azure feature availability](https://learn.microsoft.com/azure/security/fundamentals/feature-availability) |
 | A23 | Government-cloud availability for quarantine levers and M365 group restore | Tenant hygiene | not yet specified | — |
+
+## Additions, November 11, 2026 (Zero Trust Assessment closure, B04-08)
+
+New subsection "Tenant creation" under Tenant hygiene.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | By default users can create tenants and become Global Administrator; shadow identity platform; restrict, assign Tenant Creator, review Create Company events | Tenant creation | verified | https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants | Nov 11, 2026 |
+| Z2 | Setting Yes restricts creation to Tenant Creator; audit category DirectoryManagement, activity Create Company; creator becomes Global Administrator; new tenant inherits no settings | Same | verified | https://learn.microsoft.com/entra/fundamentals/users-default-permissions | Nov 11, 2026 |
+| Z3 | Graph property allowedToCreateTenants; false means the restriction is on; Tenant Creator can still create | Same, Enforcement | verified | https://learn.microsoft.com/graph/api/resources/defaultuserrolepermissions?view=graph-rest-1.0 | Nov 11, 2026 |
+| Z4 | Update permission Policy.ReadWrite.Authorization | Prerequisites | verified | https://learn.microsoft.com/graph/api/authorizationpolicy-update?view=graph-rest-1.0 | Nov 11, 2026 |
+| Z5 | Governed workforce tenant flow requires Tenant Creator; default template sets the governance relationship | Workflow | verified | https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-create-tenant | Nov 11, 2026 |
+| Z6 | Government-cloud availability of the setting and the Tenant Creator role | Applies | not yet specified | not stated on Learn | Nov 11, 2026 |
+| Z7 | Tenant Creator eligible in PIM at Tier 2 with approval; request fields; inventory | Workflow | restated-as-design | program position | Nov 11, 2026 |
