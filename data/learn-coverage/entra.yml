@@ -9551,6 +9551,8 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b11-zero-trust/02-governance-principles.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
@@ -28394,6 +28396,8 @@ pages:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b11-zero-trust/02-governance-principles.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md

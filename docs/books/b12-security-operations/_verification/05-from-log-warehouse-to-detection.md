@@ -131,3 +131,7 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | Syslog channel page (docs.venafi.com, documentation 26.2, now branded Palo Alto Networks): "Starting in Trust Protection Foundation 26.2, the certificate is checked against the Host value exactly as you configured it"; dNSName for a host name, iPAddress for an address; earlier versions used the IP address the Host resolved to | Sentence on the collector certificate rewritten for 26.2 and the upgrade effect; footnote [^clm-syslog] updated |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b12-05-control-states` (G-01, G-02, G-05, G-06). No new product claim; connector and cloud facts are the dated rows above.

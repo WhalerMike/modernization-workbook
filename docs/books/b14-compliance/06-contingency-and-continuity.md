@@ -278,6 +278,33 @@ Once a year, for each data category, the system security officer:
 
 That record is the CP-9(1) evidence and part of the CP-4 test.
 
+### Control states and evidence for backups {#b14-06-backup-control-states}
+
+The backup and export steps above, and the yearly restore test, are this chapter's configuration procedure. [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply as below.
+
+**Authority:** Mandated: CP-6, CP-9 and CP-9(1) where the system's baseline selects them, with the frequencies the agency sets. Microsoft-recommended for immutable vaults, soft delete and multi-user authorization on Azure Backup (Learn, as cited above). Risk-based recommended for the quarterly Intune policy export and the yearly restore of every data category, which are the program's design.
+**Applies:** All systems in the plan. Environment-dependent: Log Analytics workspace replication names no Azure Government region ([Audit logs](#audit-logs)); the export script's Graph and Azure environment parameters differ for GCC High.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | The business impact analysis's RPOs and the backup design per data category | The approved BIA and the plan's backup section |
+| Configured | Backup policies, vault settings and the policy-export schedule | Backup policy and vault settings exports; the export script's run log |
+| Enforced | Not applicable: backups protect data and block no one. Locking a vault's protections is a design decision recorded before it is made | — |
+| Evidenced | [Testing the storage site](#testing-the-storage-site): a restore into an isolated environment | The restore record: backup age, restore time, integrity results, gaps |
+| Operated | Backup job monitoring and the yearly test, with the plan updated after each | Job reports; the dated test entries in the plan |
+
+**How-section coverage.** Prerequisites: the BIA and the alternate-region storage account. Pilot: one data category restored in a test environment before the schedule covers all. Report-only or audit phase: not applicable. Enforcement: not applicable, as above. Rollback: a backup or export job can be stopped or reverted without touching production; a restore always goes to an isolated environment first. Exclusions: data categories Microsoft's resiliency covers as an inherited capability, recorded with the provider's package ([Microsoft 365 content](#microsoft-365-content)). Telemetry: backup job results and alerts, and the export run log. Day-two ownership: the system security officer runs the test; the contingency planning coordinator keeps the plan current ([Chapter 10](10-who-owns-compliance.md)).
+
+**Evidence checklist**
+
+- [ ] **Configuration:** backup policies and vault settings exports; the policy-export script and its schedule
+- [ ] **Operational:** backup job reports and the dated Intune policy exports in the alternate region
+- [ ] **Test:** the yearly restore record per data category, with expected and observed results, date and tester
+- [ ] **Exception:** categories left to inherited provider resiliency, with the authorizing official's acceptance
+- [ ] **Assessor-ready artifact:** the CP-9 and CP-9(1) entries in the authorization package, pointing to the four above
+
 ## Identity recovery during the hybrid period
 
 Until the migration ends, the identity tier is two directories, and each recovers differently. Microsoft Entra ID is a provider service: Microsoft keeps it running, and the agency recovers its own objects and configuration in it. Active Directory is the agency's own system, and a forest-wide failure is the agency's to recover from backup.

@@ -92,7 +92,7 @@ Two properties of the matrix carry weight.
 
 ## Governance is unified: the record
 
-Coordination isn't a console. It's a record every stack must emit. The program's unified remediation record is the patch-and-configuration specialization of the evidence contract in [Chapter 02](02-the-evidence-contract.md); the field names below are program design:
+Coordination isn't a console. It's a record the program asks every stack to emit (risk-based recommended: one record is what lets one queue exist). The program's unified remediation record is the patch-and-configuration specialization of the evidence contract in [Chapter 02](02-the-evidence-contract.md); the field names below are program design:
 
 | Field | Meaning | Chapter 02 contract field |
 |---|---|---|
@@ -147,7 +147,7 @@ Baselines come from their publishing authorities, and the agency chooses which. 
 
 *High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
-Microsoft's built-in Azure compute security baselines for Windows and Linux are a practical starting point on Azure and Arc ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)). Every baseline is point-in-time and must track its publisher's updates, or it silently ages out of currency.
+Microsoft's built-in Azure compute security baselines for Windows and Linux are a practical starting point on Azure and Arc ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)). Every baseline is point-in-time and should track its publisher's updates (risk-based recommended), or it silently ages out of currency; for SCuBA's mandatory policies, BOD 25-01 itself requires later updates on CISA's timelines ([Book 11, Chapter 04](../b11-zero-trust/04-scuba-and-bod-25-01.md#what-bod-25-01-requires)).
 
 ### Azure machine configuration and the drift export
 
@@ -236,8 +236,59 @@ For SCuBA, the same pattern applies to the cloud business applications: the Scub
 ### Honest limits
 
 - Automatic remediation is safe only for idempotent, low-blast-radius settings. The `report` path exists because not every drift can be closed without human judgment.
-- SCuBA, CIS and vendor baselines are point-in-time and must follow their publishers' revisions.
+- SCuBA, CIS and vendor baselines are point-in-time. SCuBA's mandatory policies follow CISA's updates because BOD 25-01 requires it (mandated); CIS and vendor baselines should follow their publishers' revisions (risk-based recommended).
 - Cloud posture findings across several providers need a pack per provider. The mechanism is uniform; the pack content isn't ([Chapter 08](08-cloud-native-posture.md)).
+
+## Control states, rollout and evidence for a baseline {#b12-07-control-states}
+
+The [deployment sequence](#deployment-sequence) above is the procedure. This section applies [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions to it, on any platform; the example is Azure machine configuration.
+
+**Authority:** Mandated: CM-2 and CM-6 where the system's baseline selects them, and the SCuBA baselines for Microsoft 365 and Google Workspace under BOD 25-01. Microsoft-recommended for staging Azure Policy assignments before enforcing them.[^c07-sdp] Risk-based recommended for the remediate-or-report split and for not using `ApplyAndAutoCorrect` where drift must stay visible, which are the program's design.
+**Applies:** All servers in scope. Environment-dependent: machine configuration on Azure and Arc-enabled servers; State Manager and Ansible elsewhere ([Configuration state, not just patch level](#configuration-state-not-just-patch-level)).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The baseline file, authored and reviewed in a pull request ([The baseline lifecycle](#the-baseline-lifecycle)) | The approved pull request and the remediate-or-report split |
+| Configured | Assignment in `Audit` (step 1 of the sequence) | The assignment export with `assignmentType` `Audit`; the first drift population |
+| Enforced | `ApplyAndMonitor` for the `remediate` rules, ring by ring (below) | The assignment export with the enforcing type; the exception list |
+| Evidenced | The drift export after each ring | Contract records showing the expected settings compliant and nothing else changed |
+| Operated | Steps 3 and 4: drift wired to the evidence contract and unremediated drift to the SI-2 queue and POA&M | The drift export history; queue rows and POA&M items |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-section coverage.** Prerequisites: Arc enrollment and machine configuration ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)). Pilot: ring 1 below. Report-only or audit phase: the `Audit` assignment type, kept until the drift population is measured and every `remediate` rule has been shown harmless on the pilot. Enforcement: the rings below. Rollback: change the assignment back to `Audit`; a setting already applied stays until the baseline's previous version is applied under change, so each `remediate` rule names its prior value. Exclusions: a governed deviation under CM-6 with an approval, never a silent gap (step 4). Telemetry: the drift export and the platform's compliance state. Evidence: the checklist below. Day-two ownership: platform owners run the assignments; the governance board reviews the baseline when its publisher revises it ([Book 13, Chapter 06](../b13-governance/06-the-drift-engine.md)).
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Lab servers built from the same images | No service failure after a full evaluation cycle |
+| 1 | A pilot set of non-production servers per role | Application owners confirm service; drift population shrinks as expected |
+| 2 | Production servers except Tier 0 and database servers | No incident attributed to the baseline for two weeks |
+| 3 | Everything in scope, Tier 0 last, in its own window | Drift export shows only approved deviations |
+
+- **Emergency access:** break-glass local administrator accounts and the recovery path for each server role are tested in ring 0, so a baseline that tightens local sign-in can't lock out recovery.
+- **Change window:** each ring in the platform's maintenance window, approved by the change advisory board, with the platform owner and the application owner on hand.
+- **Backout triggers:** a service on a ring's servers fails after the assignment changes, or a `remediate` rule's setting conflicts with an application's documented requirement.
+- **Post-change validation:** the drift export after the next evaluation, and the application owner's service check.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the baseline file and its pull request; the assignment exports with type and scope
+- [ ] **Operational:** the drift export history and the contract records it produced
+- [ ] **Test:** each ring's post-change validation, with expected and observed results, date and tester
+- [ ] **Exception:** governed deviations with approver and expiry
+- [ ] **Assessor-ready artifact:** the evidence package entry for CM-2, CM-6, CM-6(1) and SI-2 pointing to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Infrastructure
+- **CISA ZTMM pillar:** Applications and Workloads (servers), Devices for Windows clients through Intune
+- **Depends on:** the authoritative inventory (CM-8) and the vulnerability queue ([Chapter 06](06-vulnerability-management.md)); endpoint hardening for clients in [Book 05](../b05-devices/08-gpo-to-intune-policy-migration.md#windows-hardening-rollout)
+- **Attack chain interrupted:** Exploitation for Privilege Escalation and Lateral Movement through a known flaw or a weakened setting; Defense Evasion through a reverted hardening setting that drift detection reports
+:::
 
 ## The cross-cloud overlay decision
 
@@ -336,3 +387,4 @@ Control-level depth for the multi-platform remediation plane and the baseline de
 [^c07-sp80070]: National Institute of Standards and Technology, SP 800-70 Rev. 5, *National Checklist Program for IT Products: Guidelines for Checklist Users and Developers*, May 2026, <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; and NIST, "National Checklist Program," <https://csrc.nist.gov/projects/national-checklist-program> (repository at <https://ncp.nist.gov/>) (accessed Oct 29, 2026).
 [^c07-cis]: Center for Internet Security, "CIS Benchmarks" (benchmark list, including Red Hat Enterprise Linux 9 3.0.0, Microsoft Windows Server 2022 5.1.0 and 2025 2.1.0, Cisco IOS XE 17.x 2.2.1 and Amazon Web Services Foundations 7.1.0), <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026).
 [^c07-ncp]: National Institute of Standards and Technology, "National Checklist Program," Computer Security Resource Center, <https://csrc.nist.gov/projects/national-checklist-program> (accessed Oct 21, 2026).
+[^c07-sdp]: Microsoft Learn, "Safe deployment of Azure Policy assignments" (assign at the least critical tier first, validate compliance and application health, then widen tier by tier), <https://learn.microsoft.com/azure/governance/policy/how-to/policy-safe-deployment-practices> (accessed Nov 11, 2026).

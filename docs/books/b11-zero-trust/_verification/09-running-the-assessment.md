@@ -129,3 +129,7 @@ The workbook targets FedRAMP Moderate civilian agencies. Framing that read as Hi
 |---|---|---|---|---|
 | 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |
 | 2 | Adapter taxonomy slot "STIG compliance" | Honest limits | restated 2026-10-29: "host configuration against CIS Benchmarks or the agency's CM-6 settings" (Moderate civilian baseline, not DISA) | Brief; NIST SP 800-53 Rev. 5 CM-6 (agency-chosen common secure configurations) |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added `#b11-09-control-states` (G-01, G-02, G-05, G-06). Tool versions rechecked: ScubaGear v2.0.0 and Zero Trust Assessment 3.1.0 are still current on Nov 11, 2026 (per the Phase 1 notes). No new product claim.

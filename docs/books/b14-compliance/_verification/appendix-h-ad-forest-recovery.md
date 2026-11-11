@@ -72,3 +72,7 @@ The following commands are often quoted for forest recovery but are not in Micro
 - Learn's authoritative-SYSVOL wording (claim 26): the agency's plan states which reading it follows.
 - The guide doesn't list Windows Server 2025; recheck when the program's standard moves.
 - Status `draft` (added after the baseline edition, per CONTRIBUTING.md).
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added control states, recovery safety (G-07 adapted: no rings for an emergency recovery) and an evidence checklist (G-01, G-02, G-05, G-06). States the program's Windows Server 2019 minimum as an assumption. No new product claim.

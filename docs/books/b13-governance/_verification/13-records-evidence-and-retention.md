@@ -73,3 +73,7 @@ New chapter, written November 2, 2026 (no source pages consolidated). It builds 
 | Source page § | Went to | Or why not carried |
 |---|---|---|
 | (none) | — | New chapter; nothing consolidated or archived |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Added control states and an evidence checklist after the hold procedure (G-01, G-02, G-05, G-06). No new claim; the authority is the 36 CFR rows above.

@@ -91,6 +91,28 @@ Not every finding waits for architecture. The program routes each current ScubaG
 
 A finding with no response recorded is the only state the program treats as a failure. Routing is also what stops the two kinds of finding from being worked as one queue.
 
+## Where each finding family is closed {#finding-families}
+
+Zero Trust assessments raise the same families of finding again and again. The architectural work for each lives in the book or guide that owns the subject; this table is the map. Each destination follows [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions, and [Chapter 10](10-evidence-not-verdicts.md#the-closure-chain) carries each finding through the closure chain. A finding is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+| Finding family | Where the closure content is |
+|---|---|
+| Emergency access | [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture); alerts in [Book 12, Appendix B](../b12-security-operations/appendix-b-identity-and-application-detections.md#closure-map); incident runbook in [Book 15, Appendix B](../b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md#runbook-emergency-access-incident) |
+| Standing privilege and PIM | [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register); exception governance in [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#standing-privilege-exceptions) |
+| Phishing-resistant admin authentication | [Book 04, Appendix D](../b04-access/appendix-d-phishing-resistant-authentication-runbooks.md); [Book 07, Chapter 09](../b07-pki/09-federal-workforce-credentials.md#administrators-piv-in-the-privileged-strength); [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#windows-hardening-rollout) |
+| Conditional Access gaps | [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#policy-design-matrix) |
+| Application secrets | [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#secrets-governance); [Book 18, Appendix A, WP3](../b18-application-modernization/appendix-a-identity-remediation-work-packages.md#wp3-secret-to-managed-identity) |
+| Ownerless privileged applications | [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#application-governance-record); [Book 18, Appendix A, WP1](../b18-application-modernization/appendix-a-identity-remediation-work-packages.md#wp1-owner-assignment) |
+| Redirect URI risk | [Book 08, Chapter 06](../b08-ddi/06-dns-identity-and-dnssec.md#redirect-uris-and-dns-ownership); [Book 18, Appendix A, WP4](../b18-application-modernization/appendix-a-identity-remediation-work-packages.md#wp4-redirect-uri-cleanup) |
+| Device compliance gaps | [Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#compliance-architecture) |
+| Endpoint hardening gaps | [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#windows-hardening-rollout); the [Defender XDR implementation guide](../guides/defender-xdr-implementation.md) |
+| Network access gaps | The [Global Secure Access implementation guide](../guides/global-secure-access-implementation.md); [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md) |
+| DDoS, WAF and public exposure | The [Azure Security Engineering implementation guide](../guides/azure-security-implementation.md); [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md) |
+| No labels, defaults or containers | [Book 20, Chapters 02 to 04](../b20-information-protection/index.md) |
+| Rights Management and mail encryption | [Book 20, Chapters 05 and 06](../b20-information-protection/index.md) |
+| Audit and visibility gaps | [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md#data-and-endpoint-telemetry); [Book 20, Chapter 10](../b20-information-protection/10-audit-insider-risk-and-communication-compliance.md); the [Defender XDR implementation guide](../guides/defender-xdr-implementation.md) |
+| Skipped or unevaluated tests | [Chapter 10](10-evidence-not-verdicts.md#a-normalized-result-taxonomy); [Book 13, Chapter 12](../b13-governance/12-governance-at-scale.md#disposition-register) |
+
 ## Then assess, continuously
 
 BOD 25-01's reporting obligation can be met by continuous integration with CISA's monitoring or by quarterly reporting, and CISA's implementation guidance offers three methods for doing so: manual CyberScope upload, CISA-hosted ScubaConnect, or an agency-hosted semi-automated model ([Chapter 04](04-scuba-and-bod-25-01.md)).[^c08-bod2501] Any of them is an accepted way to meet the directive's reporting requirement. What a point-in-time scan doesn't give the program on its own is a durable run-to-run record, aging of each open deviation against a remediation target, and a clean signal for "this deviation is new" versus "this is a known, governed exception." <!-- claims-ok: the directive's own reporting options -->
