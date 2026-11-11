@@ -1,0 +1,51 @@
+# Book 20 Chapter 02 — the information protection reference architecture
+# (program design). Trust boundaries: the agency's Microsoft 365 tenant in its
+# cloud (commercial, GCC, GCC High or DoD), the managed endpoint, and the
+# outside world. Control planes: identity (Microsoft Entra ID), policy
+# (Microsoft Purview), protection (Azure Rights Management and the tenant key)
+# and monitoring (audit to the log platform, Book 12). Product behavior as
+# documented on Microsoft Learn, read Nov 11, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: tenant
+    label: "Trust boundary: the Microsoft 365 tenant (commercial, GCC, GCC High or DoD)"
+    tone: blue
+    filled: false
+    nodes: [owners, entra, purview, rms, work, audit]
+  - id: endpoint
+    label: "Trust boundary: managed endpoint"
+    tone: slate
+    filled: false
+    nodes: [office]
+  - id: outside
+    label: "Outside the boundary"
+    tone: red
+    filled: false
+    nodes: [ext]
+nodes:
+  owners: {tone: amber, width: 250, title: "Decisions (Chapter 01)", body: ["=Class register, data owners, decision records"], size: 11}
+  entra: {tone: blue, width: 250, title: "Identity plane: Microsoft Entra ID", body: ["Groups that labels grant rights to", "PIM for recovery roles", "Conditional Access and authentication contexts"], size: 11}
+  purview: {tone: violet, width: 250, title: "Policy plane: Microsoft Purview", body: ["Labels, label policies, defaults", "Auto-labeling, DLP, insider risk", "DSPM for AI"], size: 11}
+  rms: {tone: green, width: 250, title: "Protection plane: Rights Management", body: ["Encryption and usage rights", "Tenant key: Microsoft-managed or BYOK", "Super user off by default"], size: 11}
+  work: {tone: blue, width: 250, title: "Data plane: workloads", body: ["Exchange and Message Encryption", "SharePoint, OneDrive, Teams", "Microsoft 365 Copilot"], size: 11}
+  audit: {tone: violet, width: 250, title: "Monitoring plane: Purview Audit", body: ["=Label, DLP, encryption and AI events, routed to the log platform (Book 12)"], size: 11}
+  office: {tone: slate, width: 250, title: "Office apps and endpoint DLP", body: ["=Apply labels and markings; enforce print, copy and upload rules"], size: 11}
+  ext: {tone: red, width: 250, title: "External recipients and unmanaged devices", body: ["=Reach content only through encryption rights, the message portal or limited web access"], size: 11}
+order:
+  - [entra, purview]
+  - [rms, work]
+  - [office, ext]
+edges:
+  - [owners, purview, {tone: amber}]
+  - [owners, entra, {tone: amber, style: dashed}]
+  - [entra, rms, {tone: blue}]
+  - [purview, work, {tone: violet}]
+  - [purview, office, {tone: violet, attrs: "constraint=false"}]
+  - [rms, work, {tone: green}]
+  - [rms, office, {tone: green, attrs: "constraint=false"}]
+  - [work, ext, {tone: red, style: dashed, attrs: "constraint=false"}]
+  - [work, audit, {tone: violet, style: dashed}]
+  - [office, audit, {tone: violet, style: dashed, attrs: "constraint=false"}]
+  - [audit, office, {style: invis}]
+  - [audit, ext, {style: invis}]
