@@ -5,7 +5,7 @@
 #
 #   .github/scripts/install-deps.sh librsvg2-bin python3-yaml python3-pytest ...
 #
-# 1. apt from the runner's configured mirror, bounded in time.
+# 1. apt from the runner's configured mirror, bounded in time, if its host resolves.
 # 2. apt again from archive.ubuntu.com directly (the runner's mirror list bypassed).
 # 3. pip for every python3-* package (PyPI is a different service); a package
 #    pip can't supply (librsvg2-bin) is reported, and the steps that need it
@@ -16,11 +16,19 @@ PACKAGES=("$@")
 APT_OPTS=(-o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20)
 
 apt_install() {
-  timeout 600 sudo apt-get "${APT_OPTS[@]}" update &&
-    timeout 900 sudo apt-get "${APT_OPTS[@]}" install -y "${PACKAGES[@]}"
+  timeout 180 sudo apt-get "${APT_OPTS[@]}" update &&
+    timeout 420 sudo apt-get "${APT_OPTS[@]}" install -y "${PACKAGES[@]}"
 }
 
-if apt_install; then
+# The runner's mirror hosts, from its mirror list; if the first doesn't resolve, skip to step 2.
+hosts=$(sed -n 's|^[a-z]*://\([^/]*\)/.*|\1|p' /etc/apt/apt-mirrors.txt 2>/dev/null)
+mirror_ok=0
+[ -z "$hosts" ] && mirror_ok=1   # no mirror list: the sources name their hosts directly
+# apt tries the first (highest-priority) mirror for every file, so that one has to resolve.
+first=$(printf '%s\n' "$hosts" | head -n 1)
+if [ -n "$first" ] && getent hosts "$first" >/dev/null; then mirror_ok=1; fi
+[ "$mirror_ok" = 0 ] && echo "::warning::the runner's apt mirror $first does not resolve"
+if [ "$mirror_ok" = 1 ] && apt_install; then
   exit 0
 fi
 
