@@ -239,6 +239,20 @@ Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 39, 40, 41 } -ErrorAct
 
 Run it on every domain controller, or better, forward the events to the log workspace and alert on them ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)). Each hit is a certificate the migration has to reissue or map.
 
+Microsoft has already done the enforcing here: Full Enforcement is the only mode a current domain controller supports, so there's no report-only phase to run and no switch to roll back. What the program rolls out is the profile change that adds the SID, on the pilot-first path above, and its rollback is the one Microsoft documents per profile type (a new profile without the SID attribute for SCEP; the registry value restored and a new profile for PKCS).[^c06-pkcs]
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [What Intune profiles need](#what-intune-profiles-need) | The profile design per certificate class, and the mapping decision for PIV certificates |
+| Configured | SCEP SAN URI, PKCS connector setting, explicit mappings | Profile and connector setting exports; `altSecurityIdentities` sample |
+| Enforced | Full Enforcement on every domain controller, by Microsoft's update | Domain controller update level |
+| Evidenced | No KDC events 39, 40 or 41 for a migrated population | The sweep output, or the workspace query, dated |
+| Operated | The drift row for missing strong mapping ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#drift-patterns)) | Alert history for KDC events |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
 ## Entra certificate-based authentication
 
 ### How a CBA sign-in works
@@ -323,6 +337,64 @@ The sequence the program uses:
 
 One trap at the end: when you remove a user from a CBA staged-rollout group after the user has signed in to Windows with a certificate, keep the user enabled for the CBA method long enough to sign in to Windows and refresh the primary refresh token through the federation server.[^c06-sro]
 
+**Authority:** Microsoft-recommended (staged rollout as a temporary test before conversion; separate groups for the staged-rollout feature and the method policy; high-affinity bindings[^c06-sro][^c06-cba-migrate][^c06-cba-howto]); the federal requirement it supports is M-22-09's phishing-resistant authentication ([Chapter 09](09-federal-workforce-credentials.md)). **Applies:** Microsoft Entra CBA is listed as available in Azure for US Government on Microsoft's Entra feature-availability page, and the commercial service that GCC uses has it;[^c06-entra-govavail] Conditional Access and bulk trust-store upload are License-dependent (Entra ID P1).[^c06-entra-licensing]
+
+| How template | CBA staged rollout |
+|---|---|
+| Prerequisites | Trust store and CRLs (step 1); `certificateUserIds` populated for every pilot user before high affinity is required; password hash sync; Hybrid Identity Administrator and Authentication Policy Administrator through privileged access ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md)) |
+| Pilot | Steps 3 to 6: ten to twenty users across certificate types, platforms and CAs |
+| Report-only or audit phase | Conditional Access policies that require the CBA authentication strength run in report-only for the pilot first ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)); the CBA method itself has no report-only mode, so the pilot's sign-in log review is its audit phase |
+| Enforcement | Step 7's growing groups, then step 8's domain conversion |
+| Rollback | Remove the groups from staged rollout (up to 24 hours for existing groups); before conversion, users return to federated sign-in; after it, re-federation ([Migrating from AD FS](#migrating-from-ad-fs-certificate-authentication)) |
+| Exclusions | Users without a certificate or a smart card reader, with a Temporary Access Pass or another registered method; emergency access accounts, which are cloud-only and never in a staged-rollout or CBA group |
+| Telemetry | Sign-in logs (binding matched, authentication level, AADSTS errors); trust store audit events ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#monitoring)) |
+| Evidence | The checklist below |
+| Day-two ownership | The identity team owns the method policy and bindings; the PKI administrators own the trust store and CRLs ([Chapter 05](05-who-owns-the-certificate-estate.md)) |
+
+: CBA staged rollout against the How template {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The identity team's test accounts with test certificates | Sign-in with each binding and each CA; the expected authentication level in the log |
+| 1 | The pilot groups (step 3) | Every pilot user signs in with CBA at the intended level; no lockouts |
+| 2 | Wider groups inside the 10-group and initial-200 limits | Sign-in failure rate and help desk tickets at the levels set before the ring |
+| 3 | Domain conversion, smallest domain first | [Chapter 07](07-coexistence-and-migration.md)'s wave 5 exit gate |
+
+- **Emergency access:** the emergency access accounts are cloud-only, excluded from the CBA method group and from every policy that requires the CBA strength, and tested at the start and end of each ring ([Book 04](../b04-access/index.md)).
+- **Change window:** each group addition and each tenant-wide setting (required affinity, CRL validation, CA scoping) is a normal change approved by the identity owner, with the help desk briefed.
+- **Backout triggers:** users locked out by an affinity or scoping rule, a CA's CRL failing to download (AADSTS220501), or a sign-in failure rate above the level set before the ring.
+- **Post-change validation:** step 6's sign-in log check on a sample of each ring's users.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The program's binding position ([Username bindings and affinity](#username-bindings-and-affinity)) and the authentication binding rules | The CBA design record, approved by the identity owner and ISSO |
+| Configured | Trust store, bindings, method policy (steps 1, 2 and 4) | Graph exports of the CBA method configuration and trust store |
+| Enforced | Required high affinity in production; domains converted | The same exports showing the enforcing values; domain authentication type |
+| Evidenced | Step 6's sign-in log checks | Sign-in log entries per ring, with the binding and level |
+| Operated | CBA failures and trust store changes monitored ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#monitoring)) | Alert history; trust store audit log |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the CBA method configuration, trust store and Conditional Access policy exports
+- [ ] **Operational:** CBA sign-in log entries and failure alerts, at the program's log retention
+- [ ] **Test:** the ring 0 and post-change sign-in checks, and the emergency access test (date, tester)
+- [ ] **Exception:** users on a Temporary Access Pass or another method instead of a certificate, with owner and expiry
+- [ ] **Assessor-ready artifact:** the IA-5(2) entries ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#the-evidence-an-assessor-reads)), traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the PKI and its CRLs (this book); device compliance where the policy requires it ([Book 05](../b05-devices/index.md)); the Conditional Access library ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md))
+- **Attack chain interrupted:** phishing and replay of a password or one-time code, and a certificate issued to the wrong person signing in as someone else (Credential Access, Initial Access)
+:::
+
 ### Migrating from AD FS certificate authentication
 
 Many agencies run AD FS only to do certificate authentication. Entra CBA removes that dependency; the credential and the PKI don't change, and the PKI owners keep control of issuance and revocation. Only the place where revocation and authentication are checked moves.[^c06-cba-migrate]
@@ -377,3 +449,4 @@ The device side leaves a list of certificates Intune can't deliver: domain contr
 [^c06-adfs-rrt]: Microsoft Learn, "Active Directory Federation Services Rapid Restore tool" (`Backup-ADFS` backs up the configuration database, configuration file, DKM keys and certificates; a restore needs the same AD FS version and service account), <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/ad-fs-rapid-restore-tool>; listed among the AD FS downloadable tools in "Active Directory Federation Services: Offline tools," <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/offline-tools> (both accessed Nov 9, 2026).
 [^c06-scep-ksp]: Microsoft Learn, "Create and assign SCEP certificate profiles in Intune," section "Create a SCEP certificate profile," Key storage provider (KSP) (Windows only), <https://learn.microsoft.com/intune/device-configuration/certificates/scep-profiles#create-a-scep-certificate-profile> (accessed Nov 9, 2026).
 [^c06-tpm-attest]: Microsoft Learn, "TPM Key Attestation," sections "Overview," "Deployment overview," "Deployment details" (certificate template, CA configuration, issuance policy OIDs) and "Troubleshooting" (`Confirm-CAEndorsementKeyInfo`), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/tpm-key-attestation> (accessed Nov 9, 2026).
+[^c06-entra-govavail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: certificate-based authentication available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).

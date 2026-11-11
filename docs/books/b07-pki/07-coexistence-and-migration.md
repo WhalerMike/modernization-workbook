@@ -260,6 +260,53 @@ Two corrections to the PKI guide's version of this wave:
 - Removing a SCEP profile assignment revokes the certificates it issued on Windows, iOS/iPadOS and macOS, and so does editing the profile.[^c07-intune-remove] Treat profile changes and unassignment as changes with impact, not as a harmless undo.
 - Staged rollout changes for existing groups can take up to 24 hours,[^c07-sro] so a user rollback isn't instant; plan the communication accordingly.
 
+## The playbook against the workbook's conventions {#b07-07-conventions}
+
+Each wave already has its prerequisites (the entry gate), its pilot or ring, its enforcement and its rollback. The table says where the rest of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s How template sits.
+
+**Authority:** Risk-based recommended: the waves, gates, thresholds and durations are the program's planning position, for the risk of an authentication outage when a certificate population moves; Microsoft-recommended for the parts Learn documents (staged rollout as a temporary test, domain conversion and re-federation, observing usage before AD FS is decommissioned[^c07-sro][^c07-fed-migrate][^c07-adfs-decom]). **Applies:** Environment-dependent: Cloud PKI and Entra CBA availability by cloud is in [Chapter 04](04-the-target-pki.md#cloud-availability) and [Chapter 06](06-device-and-user-certificates.md#staged-rollout); License-dependent: Cloud PKI ([Chapter 04](04-the-target-pki.md#licensing)).
+
+| How template | Where the playbook carries it |
+|---|---|
+| Prerequisites | Each wave's entry gate |
+| Pilot | Wave 3 |
+| Report-only or audit phase | Wave 1 (read-only) and wave 2 (trust deployed, nothing issued to users); the Conditional Access report-only step for CBA in [Chapter 06](06-device-and-user-certificates.md#staged-rollout) |
+| Enforcement | Waves 4 and 5: SCEP rings, autoenrollment removed per ring, domains converted |
+| Rollback | Each wave's rollback, and the rules above |
+| Exclusions | BRIDGE and RETAIN templates, which stay on AD CS ([Appendix B](appendix-b-template-migration-matrix.md)); emergency access accounts, which never depend on a certificate the playbook moves |
+| Telemetry | Intune certificate reports, connector events, Entra sign-in logs, CA audit events ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#monitoring)) |
+| Evidence | The checklist below; each wave's record in the evidence repository |
+| Day-two ownership | [Chapter 05](05-who-owns-the-certificate-estate.md)'s roles; [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md) after cutover |
+
+: The migration playbook against the How template {.striped .hover}
+
+**Change safety.** The rings are the waves, and inside waves 3 and 4 the device and user rings; each wave's exit gate is its ring's exit criteria. The other four elements:
+
+- **Emergency access:** emergency access accounts are cloud-only, excluded from CBA groups and from the policies that require certificate strength, and their sign-in is tested at the start and end of waves 3, 4 and 5 ([Book 04](../b04-access/index.md)).
+- **Change window:** every assignment, autoenrollment change and domain conversion is a change record approved by the PKI and identity owners ([Chapter 05](05-who-owns-the-certificate-estate.md)), with the help desk briefed.
+- **Backout triggers:** issuance success below the wave's threshold, a relying party rejecting the cloud chain, or authentication failures caused by certificate configuration; set before the wave, as the exit gates are.
+- **Post-change validation:** the sample checks in each wave's work list (certificate issued, chain valid, SID present, sign-in log binding and level).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Wave 1's classification and [Chapter 04](04-the-target-pki.md)'s target | The approved assessment record and template matrix |
+| Configured | Wave 2 | Cloud PKI CA, trust store and trusted certificate profile exports |
+| Enforced | Waves 4 and 5 | Profile assignments per ring; autoenrollment removal records; domain authentication type |
+| Evidenced | Each wave's exit gate | Gate records with issuance rates and sign-in log samples |
+| Operated | [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md) | Renewal, drift and monitoring records |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the wave 1 assessment record and the configuration exports at each wave's exit
+- [ ] **Operational:** Intune certificate reports, connector events and CBA sign-in logs through the waves
+- [ ] **Test:** each wave's exit-gate checks and each rehearsed rollback (date, tester)
+- [ ] **Exception:** BRIDGE and RETAIN templates and any user kept off CBA, each with its reason and owner
+- [ ] **Assessor-ready artifact:** the gate records in the evidence repository, traceable to the four above and to [Chapter 08](08-lifecycle-monitoring-and-decommissioning.md#the-evidence-an-assessor-reads)
+
 For the federal policy context behind the move to phishing-resistant, certificate-based sign-in, see the Federal Compliance book on [certificates, tokens and cryptographic identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
 
 ::: {.callout-tip}
