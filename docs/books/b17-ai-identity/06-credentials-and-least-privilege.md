@@ -190,6 +190,110 @@ The program's design uses the MCP firewall's default-Block posture where it is a
 
 Global Secure Access is available in GCC but not yet supported in GCC High, DoD or other government clouds,[^c06-gsa-limits] and Agent 365 lists Entra's network controls for agents as not available in GCC.[^c06-a365-sd] In practice, an agency in GCC can use prompt injection protection and the MCP firewall for traffic from its managed devices, but not the agent gateway; an agency in GCC High or DoD can't use any of the three yet.
 
+## The workload-identity controls, applied per agent {#agent-credential-controls}
+
+Each control in this chapter and the two before it is a workload-identity control [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md) already sets for applications, applied to an agent. The table brings them together as one record per agent, so an assessor can see every control for one agent in one place, and adds the one the chapters describe but don't proceed through: the kill switch. Migrating a service account an AI system already uses onto a managed identity or a federated credential is [the service account guide's Migration C](../guides/service-account-migration.md#migration-c); where AI sits in an application's architecture is [Book 18, Chapter 05](../b18-application-modernization/05-generative-and-agentic-ai.md).
+
+**Authority:** Microsoft-recommended for the platform controls (sponsor at creation, credential order, least privilege, Conditional Access, disable before delete), from the Learn pages cited in Chapters 04 to 07, read Oct 21–22 and Nov 11, 2026. Mandated for the fail-safe where M-25-21's minimum practices apply to a high-impact AI use case, which asks for one "when practicable" ([Chapter 02](02-what-federal-ai-rules-require.md)). The two-person record and the tested disable are risk-based recommended, the program's position.
+**Applies:** every AI system with an identity in the tenant. License-dependent: Conditional Access for agents needs Microsoft 365 E7 or Agent 365 with Entra ID P1; Conditional Access for workload identities needs Workload ID Premium (above). Environment-dependent: Agent ID is partly available in GCC and isn't published as available in GCC High or DoD, where AI systems are governed as workload identities ([Chapter 04](04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)).
+
+| Control | For an agent identity | For an AI system on a service principal or managed identity | Where it's set | What the identity record holds |
+|---|---|---|---|---|
+| **Sponsor** | Required at creation; a federal employee mastered in HR | Recorded in the application registry and `serviceManagementReference` | [Chapter 05](05-owners-sponsors-and-lifecycle.md#the-programs-rule-two-named-humans-and-a-record) | Sponsor, matching the directory |
+| **Owner** | A named technical owner | Two technical owners ([Book 04](../b04-access/05-applications-and-workload-identities.md#ownership)) | Chapter 05; Book 04 | Owners |
+| **Least privilege** | On-behalf-of first; narrow inherited permissions; no standing privileged role | Scoped consent; resource-scoped Azure roles | [Above](#least-privilege-for-microsoft-graph-and-apis) | Every grant, with its approver and end date |
+| **Non-secret credential** | Managed identity or federated credential on the blueprint; certificate only by exception; no secret in production | Managed identity, then federation, then a certificate under the 180-day cap ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md#application-certificate-credentials)) | [Above](#no-stored-secrets) | Credential type and, for a certificate, its expiry |
+| **Network restriction** | Global Secure Access MCP and prompt policies where available | Conditional Access for workload identities by location ([Book 04's CA015](../b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities)) | [Above](#at-the-network-edge-global-secure-access-for-ai-traffic) | Allowed tools and egress, or the recorded gap |
+| **Monitoring** | Agent sign-in logs, ID Protection for agents, drift findings | Service principal sign-ins and workload risk | [Chapter 07](07-monitoring-drift-and-shadow-ai.md) | Alert routing to the sponsor and security operations |
+| **Lifecycle** | Expiring access packages; recertification; disable, then delete | Book 04's governed lifecycle ([Book 04](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations)) | [Chapter 05](05-owners-sponsors-and-lifecycle.md#the-lifecycle-event-by-event) | Next recertification date |
+| **Kill switch** | Disable the agent identity, the blueprint, or all agents | Disable the service principal | Below | Who may pull it, and the last test |
+
+### The kill switch
+
+Microsoft documents three scopes for stopping agent activity. Disabling one agent identity, or one blueprint, keeps the object and its metadata but stops it receiving tokens; three Conditional Access policies block token issuance tenant-wide, to all agent identities, to all agents' user accounts, or to users signing in to agents, without changing any object; and the two can be combined. Microsoft recommends running the Conditional Access policies in report-only mode first. It also warns that disabling can make running agents fail, can make Microsoft product experiences that assume agent identities fail or fall back, and that disabling a multitenant blueprint in all tenants affects its agents in other tenants.[^c06-disable-agents] A sponsor can disable an agent but can't re-enable it ([Chapter 05](05-owners-sponsors-and-lifecycle.md#three-accountable-relationships)).
+
+#### Prerequisites
+
+Agent ID Administrator (through PIM) for the object-scoped disable, or the `AgentIdentity.EnableDisable.All` permission, which is the least-privileged permission for the update;[^c06-agent-update] Conditional Access Administrator for the tenant-wide policies, which need Entra ID P1.[^c06-disable-agents] The Microsoft Graph agent identity update is listed for the US Government L4 and L5 (DoD) deployments,[^c06-agent-update] but Agent ID itself isn't published as available in GCC High or DoD, so there the switch is the service principal disable below.
+
+#### Pilot
+
+Test on a development agent identity first, then on one production agent with its sponsor present, in a change window.
+
+#### Report-only phase
+
+Create Microsoft's three tenant-wide block policies now, in report-only mode, so the hold exists before it's needed; they show which agents would have been stopped without stopping any. Turn on Policy 1 only for an incident.
+
+#### Enforcement: pulling the switch
+
+```powershell
+# One agent identity: stop it receiving tokens (keeps the object). Microsoft Graph PowerShell, as Agent ID Administrator through PIM
+Connect-MgGraph -Scopes 'AgentIdentity.EnableDisable.All' -NoWelcome
+Invoke-MgGraphRequest -Method PATCH -Uri 'https://graph.microsoft.com/v1.0/servicePrincipals/<agent identity object id>/microsoft.graph.agentIdentity' `
+    -Body (@{ accountEnabled = $false } | ConvertTo-Json) -ContentType 'application/json'
+
+# An AI system on an ordinary service principal
+Connect-MgGraph -Scopes 'Application.ReadWrite.All' -NoWelcome
+Update-MgServicePrincipal -ServicePrincipalId '<service principal object id>' -AccountEnabled:$false
+```
+
+For a GCC High or DoD tenant, connect with `-Environment USGov` or `USGovDoD` and use the matching Graph host. A blueprint is disabled in the admin center (**Entra ID** > **Agents** > **Agent blueprints** > the blueprint > **Disable**), and the tenant-wide hold is Microsoft's Policy 1 switched from report-only to **On**:[^c06-disable-agents]
+
+```powershell
+# Tenant-wide hold on agent identity authentication: switch the existing report-only policy on (Conditional Access Administrator)
+Connect-MgGraph -Scopes 'Policy.ReadWrite.ConditionalAccess' -NoWelcome
+Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId '<Policy 1 id>' -State 'enabled'
+```
+
+Disabling stops new tokens; access tokens already issued stay valid until they expire. Removing the agent's grants or deleting it are separate retirement decisions ([Chapter 05](05-owners-sponsors-and-lifecycle.md#retirement)).
+
+#### Rollback
+
+Set `accountEnabled` back to `true` with the same call (an owner or Agent ID Administrator; a sponsor can't), or set the Policy 1 state back to `enabledForReportingButNotEnforced`. Rollback takes minutes; the decision to roll back is the sponsor's, after security operations closes the incident.
+
+#### Exclusions
+
+None for the object-scoped disable. Microsoft's Policy 1 template excludes nothing; an agent the agency must keep running through a tenant-wide hold is excluded by name, with the sponsor's and the CISO's approval recorded, and the exclusion reviewed when the hold ends.
+
+#### Telemetry
+
+The disable appears in the audit log as an update to the service principal (agent identities are logged under their base identity type, with `agentType` other than `notAgentic` on the target), and the agent's sign-in attempts after it as failures; Policy 1's report-only results show every agent the hold would stop.[^c06-disable-agents] [Chapter 07](07-monitoring-drift-and-shadow-ai.md#what-to-alert-on) routes both.
+
+#### Evidence
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The table above, per agent | The identity record: sponsor, owner, grants, credential, network rule, alert routing, recertification date, kill-switch holder |
+| Configured | Credential, grants, policies, monitoring as set in Chapters 05–07 | Graph exports of the agent identity, its sponsors and owners, grants and credential; policy exports |
+| Enforced | App management policy blocking secrets; the agent Block policy when its target leaves preview; workload-identity location policy where licensed | Policy exports in the enforcing state, or the recorded preview status |
+| Evidenced | A tested disable, and an agent that skipped the production handshake shown in Policy 1's report | Test record (time to disable, failed sign-in after it, re-enable) |
+| Operated | Recertification at each expiry; the inventory check; risk alerts to the sponsor | Recertification records; inventory history; alert history |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** each agent's identity record, and the Graph export it was checked against ([Chapter 05's read-only check](05-owners-sponsors-and-lifecycle.md#a-read-only-check-to-start-from) for owners; sponsors through the agent identity's `sponsors` relationship)
+- [ ] **Operational:** agent sign-in and audit logs, risk detections and drift findings, kept for the program's log retention
+- [ ] **Test:** a disable test per production blueprint, at least yearly and before authorization (expected and observed outcome, date, tester); for a high-impact use case, the tested fail-safe M-25-21 asks for
+- [ ] **Exception:** a certificate or secret on a blueprint, an API key a tool needs, and any kill-switch exclusion, each with approver and expiry
+- [ ] **Assessor-ready artifact:** the identity records and the disable test, carried into the authorization package as [Chapter 10](10-evidence-and-authorization.md) describes
+
+#### Day-two ownership
+
+The sponsor is accountable for the agent and holds the right to disable it; the owner keeps the credential and grants current; identity engineering runs the inventory check and the disable test; security operations can pull the tenant-wide hold during an incident under the incident commander's authority. Drift looks like an agent with no confirmed sponsor, a credential type that changed, a grant outside its access package, or a disable test more than a year old.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity (workload and agent identities), with AI as the Zero Trust Assessment's pillar for agent tests
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Book 04's workload-identity controls and Conditional Access (Identity); Global Secure Access where available (Networks); Book 12's telemetry for agent sign-ins (SecOps)
+- **Attack chain interrupted:** Persistence and Privilege Escalation through an agent: a stolen blueprint credential or an over-granted agent used to act at machine speed, stopped by the credential order and, once found, by the kill switch
+:::
+
+
 ## Release stage and government-cloud availability
 
 [Chapter 04](04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) gives the general picture for Agent ID and workload identities, including agents' user accounts (preview, Frontier program only), the partial GCC subset, no published availability in GCC High or DoD, and Agent 365's pending FedRAMP High authorization. The table below covers only the features this chapter relies on, as published on October 22, 2026. "Not published" means Microsoft's documentation states no availability.
@@ -285,4 +389,6 @@ None of this book's certificates is renewed by the CLM platform. Agent and servi
 [^c06-gsa-mcp]: Microsoft Learn, "Configure Global Secure Access MCP firewall to secure MCP traffic (preview)," Supported scenarios, Prerequisites, Example 2 and Known limitations, <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-mcp-firewall> (accessed Nov 9, 2026).
 [^c06-gsa-agents]: Microsoft Learn, "Learn about Secure Web And AI Gateway for Microsoft Copilot Studio agents," <https://learn.microsoft.com/entra/global-secure-access/concept-secure-web-ai-gateway-agents> (accessed Nov 9, 2026).
 [^c06-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access," section "Global Secure Access In Government Cloud limitations," <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Nov 9, 2026).
+[^c06-disable-agents]: Microsoft Learn, "Disable agent identities in your tenant" (object-scoped disable of an agent identity or blueprint keeps the object and stops token issuance; three Conditional Access block policies for all agent identities, agents' user accounts and users signing in to agents, report-only first, Entra ID P1; consequences for running agents, Microsoft experiences and multitenant blueprints; audit events logged under the base identity types with `agentType`), <https://learn.microsoft.com/entra/agent-id/disable-agent-identities> (accessed Nov 11, 2026).
+[^c06-agent-update]: Microsoft Learn, Microsoft Graph, "Update agentIdentity" (`PATCH /servicePrincipals/{id}/microsoft.graph.agentIdentity`; least-privileged permission `AgentIdentity.EnableDisable.All`; least-privileged role Agent ID Administrator; national cloud deployments: global service, US Government L4 and US Government L5 (DoD)), <https://learn.microsoft.com/graph/api/agentidentity-update?view=graph-rest-1.0>, and "agentIdentity resource type" (`accountEnabled`), <https://learn.microsoft.com/graph/api/resources/agentidentity?view=graph-rest-1.0> (both accessed Nov 11, 2026).
 [^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).
