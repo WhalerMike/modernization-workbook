@@ -196,3 +196,12 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 |---|---|---|---|---|
 | H1 | Item 413: each playbook step mapped onto Book 02's six canon phases (Discover, Normalize, Map, Migrate, Validate, Decommission); no step maps to Normalize | Playbook mapping table, new canon-phase column | restated (internal) | The source guide's own Canon Phase Mapping table (archive/b08-ddi/docs/operational-guides/network-transformation/dns-modernization.md), carried unchanged; Book 02 Ch04 canon phase mapping |
 | H2 | Item 420 remainder: Phase 4 validates Oracle Cloud Infrastructure private endpoint resolution where the agency holds its own tenancy and VCN | Phase 4 | restated (internal) | Chapter 07, What this means for the agency's estate and Checking which resolver answers (c07-ociadb, c07-ocifusion). Oracle discovery and IPAM federation not added: no chapter supports them |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | 'The program requires 90 days of parallel operation' relabeled as the program's gate (Risk-based recommended) | Phase 5, gate 3 | corrected (authority label) | Program design | Nov 11, 2026 |
+| P4-2 | How template mapping, change safety, control states and evidence for the six phases | The migration against the workbook's conventions | restated-as-design | Program design | Nov 11, 2026 |

@@ -226,6 +226,18 @@ For a program office or an authorization package. The first five items are the f
 - Rogue DHCP and router advertisement detection, and option 6 and RDNSS consistency controls, documented.
 - Delegated roles and scopes reviewed, with DnsAdmins and equivalent privileged memberships justified.
 
+The same items, sorted into the five kinds of evidence [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern) asks every How section to end with:
+
+**Evidence checklist**
+
+- [ ] **Configuration:** Decisions 1 to 5 as running configuration; Protective DNS and encrypted DNS settings; option 6 and RDNSS values; delegated roles and scopes
+- [ ] **Operational:** query, lease and change logs at M-26-14 retention; drift, SRV and anomaly reports with their tickets
+- [ ] **Test:** the Phase 4 validation matrix from every origin; the resolution-path consistency test ([Chapter 12](12-selection-cost-and-residual-risk.md)); rogue DHCP and router advertisement detection exercised
+- [ ] **Exception:** unsigned internal zones, retired zones, and privileged memberships kept by justification, each with its approver
+- [ ] **Assessor-ready artifact:** the control mapping in [Chapter 03](03-federal-requirements.md) and [Appendix B](appendix-b-requirements-mapping.md), each row pointing at the four above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated --> Designed, Configured and Enforced are the migration's ([Chapter 10](10-migration-sequence.md#b08-10-conventions)); this chapter carries Evidenced (the tests above) and Operated (the monitoring, drift detection and record hygiene sections, owned as [Chapter 09](09-who-owns-dns.md) assigns).
+
 ## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
 
 [Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.

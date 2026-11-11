@@ -220,3 +220,12 @@ New section "From TIC capability to identity-aware access: the bridge", with byp
 | BR-3 | Microsoft's Zero Trust configuration guidance checks that signaling is on and that traffic forwarding profiles route traffic | Bridge table | verified | [Configure Microsoft Entra for Zero Trust: Protect networks](https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks) | Nov 11, 2026 |
 | BR-4 | GCC only; compliant network not supported for Private Access; Conditional Access per Private Access application | Applies; limit | carried (GSA rows above) | Known limitations, read Nov 9, 2026 | Nov 9, 2026 |
 | BR-5 | Bridge mapping, bypass kinds and register fields, decision record, exit criteria 1 and 3 to 7, rings | Section | restated-as-design (labeled Risk-based recommended) | Program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | DirectAccess migration: four phases; restart twice, more if artifacts remain; validate NRPT and IP-HTTPS removal; don't decommission DirectAccess servers until every user is on Private Access; the page gives no rollback | Deployment and proof of concept (DirectAccess rollback) | verified (re-read; rollback labeled design guidance) | [Migrate from DirectAccess to Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-direct-access-to-private-access) | Nov 11, 2026 |
+| P4-2 | Links to the GSA implementation guide's steps for each part's procedure | The bridge; Deployment and proof of concept | restated-as-design (cross-reference) | Global Secure Access implementation guide | Nov 11, 2026 |

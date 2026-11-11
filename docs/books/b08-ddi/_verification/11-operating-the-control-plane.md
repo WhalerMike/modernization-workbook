@@ -145,3 +145,11 @@ Item 407 of the Nov 7 sort: Chapter 05 said Chapter 11 turns four resolution-pat
 | H2 | CISA allows public fallback resolvers only when Protective DNS is unavailable, with alerting when used | Same, fallback row | verified (settled in Chapter 05) | c05-cisaedns, CISA Encrypted DNS Implementation Guidance §3.3 |
 | H3 | DoT uses TCP 853 and DoQ UDP 853; both blockable by port except to approved resolvers; DoH needs RPZ on known DoH names plus firewall rules against public DoH addresses | Same, port 853 and DoH rows | verified (settled in Chapter 05) | c05-nist81, c05-cisaedns |
 | H4 | Daily counts of the four detections, with tickets, added to the compliance evidence list | Compliance evidence | restated-as-design | Program |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Sample checklist sorted into the five evidence kinds; Evidenced and Operated states | Sample evidence checklist | restated-as-design | Program design | Nov 11, 2026 |

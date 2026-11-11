@@ -71,3 +71,11 @@ Checked 2026-10-21 against Microsoft Learn (network connectivity principles; Man
 | index.md — Related material (SD-WAN vs DIA §5.5; Vol I Book 05 App A; FedRAMP 20x commercial-feature-gap paper) | §5.5 argument → Ch02/Ch05 links; Vol I Book 05 App A linked by GitHub URL in "What's different for GCC-Moderate tenants" | Whitepapers are archived sources, not linked; the FedRAMP 20x commercial-feature-gap paper's argument isn't carried (out of B09 scope; framework argument belongs to Ch03) |
 | attachment-a — all sections | Appendix A (Attachment A); summarized in Ch12 | See Appendix A ledger |
 | attachment-b — all sections | Appendix A (Attachment B); summarized in Ch12 | See Appendix A ledger |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Device-side TRv2 precondition: authority, control states, evidence, assessment mapping; links Book 04 Appendix C and GSA guide Step 8; TRv2 government-cloud availability not yet specified (Book 04 Appendix C) | Tenant restrictions | restated-as-design (Learn facts carried from c12-trv2) | Program design; Book 04, Appendix C | Nov 11, 2026 |

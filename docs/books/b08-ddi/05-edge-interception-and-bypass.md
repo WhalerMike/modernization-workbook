@@ -109,6 +109,68 @@ In production, set the Edge and Chrome policies through Group Policy or Intune r
 
 Prevention is never complete, so the program also watches for its failure: hosts that make outbound connections but whose queries never appear in the governed resolver logs, any use of a fallback public resolver, TCP 853 or UDP 853 attempts to unapproved destinations, and DoH connections to known public DoH endpoints. [Chapter 11](11-operating-the-control-plane.md#resolution-path-anomalies) turns these into monitored evidence.
 
+### Rolling out encrypted DNS enforcement {#rolling-out-encrypted-dns-enforcement}
+
+The endpoint and network settings above enforce, and a wrong one stops name resolution for every device it reaches, so they move in the same staged way as any other enforcement.
+
+**Authority:** Mandated for encrypted DNS wherever it is technically supported and for routing DNS through CISA-operated infrastructure (M-22-09[^c05-m2209]); the browser, port and root-hint settings follow CISA's implementation guidance,[^c05-cisaedns] which the program adopts. Optional for Zero Trust DNS, which adds a deny-by-default outbound policy on the device. **Applies:** Environment-dependent: Windows 11 for DoT, Windows Server 2025 with KB5094125 for a DoH-serving Windows resolver, and Zero Trust DNS only on Windows 11 Enterprise or Education; License-dependent: Zero Trust DNS needs Windows Enterprise E3 or E5, or Education A3 or A5.[^c05-ztdns]
+
+| How template | Encrypted DNS and bypass controls |
+|---|---|
+| Prerequisites | Agency resolvers that answer DoH or DoT with a certificate the clients trust, and forward upstream to Protective DNS ([Chapter 03](03-federal-requirements.md)); the resolver-path alerts in [Chapter 11](11-operating-the-control-plane.md#resolution-path-anomalies) running |
+| Pilot | The DNS team's own devices, then a pilot group across device types and sites |
+| Report-only or audit phase | DoH set to *allow* rather than *require*, and browsers' policy set, while the resolver logs show the pilot's queries arriving encrypted; firewall rules for TCP and UDP 853 and known DoH addresses logging before they block; Zero Trust DNS in audit mode (`netsh ztdns set state enable=yes audit=yes`), whose BlockedConnections log shows what enforcement would block[^c05-ztdns-deploy] |
+| Enforcement | The rings below; the steps that enforce are DoH set to *require* with no UDP fallback, the 853 and DoH blocks set to deny, and Zero Trust DNS with `audit=no` |
+| Rollback | Return the DoH policy to *allow*, the firewall rules to log, and Zero Trust DNS to audit or off (`netsh ztdns set state enable=no audit=no`, which Microsoft documents as restoring connectivity immediately);[^c05-ztdns-deploy] the endpoint team runs it through Group Policy or Intune, the network team on the firewalls |
+| Exclusions | Devices and applications that can't use the agency resolver, recorded with an owner and expiry; Zero Trust DNS IP exceptions (Microsoft names Microsoft 365 address ranges and WebRTC applications as needing them)[^c05-ztdns-deploy] |
+| Telemetry | Resolver query logs, firewall logs for 853 and DoH destinations, Zero Trust DNS event logs, and the four resolution-path detections |
+| Evidence | The checklist below |
+| Day-two ownership | The DNS service owner ([Chapter 09](09-who-owns-dns.md)); browser behavior re-validated with each browser release, as CISA asks;[^c05-cisaedns] drift looks like queries missing from the resolver logs or fallback resolver use |
+
+: Encrypted DNS rollout against the How template {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The DNS team's devices | Internal and external names resolve over DoH; the Firefox canary returns NXDOMAIN |
+| 1 | Pilot group | A week with no resolution failures and no unexplained Zero Trust DNS blocks |
+| 2 | One department or site per device type | Help desk name-resolution tickets at baseline |
+| 3 | Every managed device | Governed-resolver coverage, as [Chapter 11](11-operating-the-control-plane.md#compliance-evidence) measures it, at the level the DNS service owner set before the ring |
+
+- **Emergency access:** not a sign-in control, so no emergency access accounts apply; administrators keep a management path to the resolvers and to Group Policy and Intune that doesn't depend on the policy being rolled out.
+- **Change window:** a normal change, approved by the DNS service owner and the security office, with the resolver team on hand.
+- **Backout triggers:** internal names failing to resolve, a resolver outage while DoH is required, or application failures traced to Zero Trust DNS blocks without an exception path.
+- **Post-change validation:** after each ring, `Get-DnsClientDohServerAddress` on a sample device shows the agency resolver, the resolver logs show its queries, and a test query to a public DoH or DoT service from the device fails.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The program's configuration in [Control the endpoint: browsers](#control-the-endpoint-browsers) and the resolver design ([Chapter 08](08-reference-architecture.md)) | The design record approved by the DNS service owner |
+| Configured | DoH allowed, browser policy set, firewall rules logging, Zero Trust DNS in audit | Group Policy or Intune exports; firewall rule export |
+| Enforced | DoH required; 853 and DoH blocks denying; Zero Trust DNS enforcing where adopted | The same exports showing the enforcing values; the exception list |
+| Evidenced | Post-change validation | The failed public DoH or DoT query and the matching resolver and firewall log entries |
+| Operated | The resolution-path detections | Daily anomaly counts and their tickets ([Chapter 11](11-operating-the-control-plane.md#compliance-evidence)) |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the DoH, browser and Zero Trust DNS policy exports and the firewall rule export
+- [ ] **Operational:** resolver query logs and the anomaly reports, at M-26-14 retention ([Chapter 11](11-operating-the-control-plane.md#compliance-evidence))
+- [ ] **Test:** the blocked public DoH and DoT queries per ring (date, tester)
+- [ ] **Exception:** the device, application and Zero Trust DNS IP exception list, each with an owner and expiry
+- [ ] **Assessor-ready artifact:** the encrypted DNS entry in the Chapter 11 evidence checklist, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Networks
+- **CISA ZTMM pillar:** Networks
+- **Depends on:** managed devices for the endpoint policy ([Book 05](../b05-devices/index.md)); the agency resolvers and Protective DNS ([Chapter 08](08-reference-architecture.md))
+- **Attack chain interrupted:** malware resolving its command-and-control or exfiltration destinations through a resolver the agency doesn't see (Command and Control, Exfiltration, Defense Evasion)
+:::
+
 ## DHCP option 6 and rogue DHCP
 
 A rogue DHCP server that hands out a malicious resolver in option 6 can move an entire subnet onto an attacker-controlled resolver in one step, past every response policy zone and Protective DNS control. MITRE ATT&CK catalogs the technique as DHCP Spoofing (T1557.003), with malware acting as a DHCP server to "provide adversary-owned DNS servers" to victims.[^c05-mitre] The whitepaper's claim that the technique "has been observed in federal network incidents" couldn't be verified and has been removed. In IPv6 networks, rogue router advertisements carrying the RDNSS option (RFC 8106) can do the same and are often the larger attack surface, because many networks govern DHCPv4 carefully and router advertisements not at all.[^c05-rfc8106] RFC 9463 now also lets DHCP and router advertisements announce encrypted, network-designated resolvers;[^c05-rfc9463] M-22-09's instruction to configure agency-designated resolvers explicitly rather than rely on discovery is the federal answer to that channel.[^c05-m2209]
@@ -165,7 +227,8 @@ Unified DHCP and IPv6 governance addresses this through:
 [^c05-doh]: Microsoft Learn, "Secure DNS Client over HTTPS (DoH)" (Windows Server), <https://learn.microsoft.com/en-us/windows-server/networking/dns/doh-client-support> (accessed Oct 20, 2026).
 [^c05-win11]: Microsoft Learn, "Network security" (Windows security book), Domain Name System (DNS) security, <https://learn.microsoft.com/en-us/windows/security/book/operating-system-security-network-security> (accessed Oct 20, 2026).
 [^c05-ws-doh]: Microsoft Learn, "DNS encryption using DNS over HTTPS," DNS over HTTPS for DNS Server, <https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-encryption-dns-over-https>, and "Enable DNS over HTTPS in DNS Server," prerequisites, <https://learn.microsoft.com/en-us/windows-server/networking/dns/enable-dns-over-https-server> (both accessed Oct 20, 2026).
-[^c05-ztdns]: Microsoft Learn, "Zero Trust DNS," <https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/zero-trust-dns/> (accessed Oct 20, 2026).
+[^c05-ztdns]: Microsoft Learn, "Zero Trust DNS" (overview; supported on Windows 11 Enterprise and Education, with entitlements in Windows Enterprise E3 and E5 and Education A3 and A5), <https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/zero-trust-dns/> (accessed Oct 20, 2026; re-verified Nov 11, 2026).
+[^c05-ztdns-deploy]: Microsoft Learn, "Deploying Zero Trust DNS" (audit mode logs expected blocks without blocking and is strongly recommended first; `netsh ztdns set state enable=yes audit=yes`, then `audit=no` to enforce; `enable=no audit=no` immediately disables enforcement and restores connectivity; Microsoft 365 address ranges need manual exceptions), and "Troubleshooting Zero Trust DNS" (BlockedConnections log; WebRTC applications need IP exceptions), <https://learn.microsoft.com/windows/security/operating-system-security/network-security/zero-trust-dns/deploying-zero-trust-dns> (accessed Nov 11, 2026).
 [^c05-edge]: Microsoft Learn, "DnsOverHttpsMode" (Microsoft Edge browser policy), <https://learn.microsoft.com/en-us/deployedge/microsoft-edge-browser-policies/dnsoverhttpsmode> (accessed Oct 20, 2026).
 [^c05-chrome]: Google, Chrome Enterprise policy list, "DnsOverHttpsMode: Controls the mode of DNS-over-HTTPS," <https://chromeenterprise.google/policies/dns-over-https-mode/> (accessed Oct 20, 2026). CISA's guidance (Appendix A.1.2) documents the same policy for Chrome.
 [^c05-ff-canary]: Mozilla Support, "Configure networks to disable DNS over HTTPS" (canary domain use-application-dns.net), <https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https> (accessed Oct 20, 2026); cited by CISA, *Encrypted DNS Implementation Guidance*, Appendix A.1.1.
