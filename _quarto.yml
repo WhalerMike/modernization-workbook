@@ -140,6 +140,8 @@ website:
             text: "Guide: Privileged Access Implementation"
           - href: docs/books/guides/provider-notices-implementation.md
             text: "Guide: Provider Notices Implementation"
+          - href: docs/books/guides/defender-xdr-implementation.md
+            text: "Guide: Defender XDR Engineering & Operations"
           - href: docs/books/guides/ansible-configuration-automation.md
             text: "Guide: Ansible for Configuration Automation"
           - href: docs/books/guides/effective-meetings.md
@@ -462,6 +464,7 @@ website:
             - docs/books/guides/service-account-migration.md
             - docs/books/guides/privileged-access-implementation.md
             - docs/books/guides/provider-notices-implementation.md
+            - docs/books/guides/defender-xdr-implementation.md
             - docs/books/guides/ansible-configuration-automation.md
             - docs/books/guides/effective-meetings.md
             - docs/books/guides/hcm-entra-implementation.md
