@@ -92,3 +92,12 @@ Wording aligned with Book 13 Appendix B, whose heading is "Operation classes and
 | Before | After | Source |
 |---|---|---|
 | "Assign each change class a lane"; "each change class has a lane" (gate G2, requirements table, manual check) | "operation class" in the same four places; ServiceNow "change record" and "standard/normal change" are unchanged | Book 13 Appendix B |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied the conventions of Book 00, Appendix D to the example's gates (conventions on procedure sections; a "must" relabeled only where it is a recommendation).
+
+- **Added** `#ttm-control-states`: the five control states mapped to G1 to G7; a How-template coverage table that points at existing sections; a change-safety block (rings: developer instance and sandbox, production read-only, one authority class actuated, every class), marked design guidance, with the emergency access accounts kept outside every lane and linked to Book 04, Chapter 04's reference architecture; and an assessment-mapping callout (Identity; CISA Identity with the Governance cross-cutting capability; Persistence and Privilege Escalation).
+- **Added** the five-kind evidence checklist to `#evidence`.
+- **Authority labels:** the guide's "must" and "required" matches are descriptive ("an agency that must run identity governance inside its own boundary", "where a person must act", "triage by required authority") or a heading anchor; none is a recommendation stated as a mandate. None relabeled.
+- **Sources:** the additions make no new vendor, Microsoft, licensing or government-cloud claim; they restate the gates (workflows created disabled, row 38 and `ttm-wf`). Product claims above carry their read dates (November 1, 2026, or October 24, 2026 where carried), so nothing was re-read. CISA ZTMM's Governance cross-cutting capability is as Book 00, Appendix D cites it (ZTMM v2.0, section 5.6).

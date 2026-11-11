@@ -86,3 +86,12 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 ## AWS support plan wording, November 9, 2026
 
 AWS's pages name the plans the Health API needs differently. The CLI reference names Business, Enterprise On-Ramp or Enterprise Support; the AWS Health User Guide's "Concepts for AWS Health" (read Nov 9, 2026) names Business Support+, Enterprise Support or Unified Operations; the GovCloud (US) guide names Business or Enterprise. The guide now says "a qualifying AWS Support plan" and cites all three, as Book 15 Chapter 14 does. Footnote `pn-aws-plan-ug` added.
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied the conventions of Book 00, Appendix D to the guide's procedure gates, as the trimmed plan asks (conventions on procedure sections; a "must" relabeled only where it is a recommendation).
+
+- **Added** `#pn-control-states`: the five control states mapped to G1 to G7 (Enforced not applicable for the notices, a detective loop; G1's alert policy named as the one setting applied at scope), a How-template coverage table that points at existing sections, and a change-safety block (rings: test stage, production read-only, production with the alert policy and sending), marked design guidance. No assessment-mapping block: the guide addresses no Zero Trust Assessment test family; that is stated in the section.
+- **Added** the five-kind evidence checklist to `#evidence`.
+- **Authority labels:** no "must", "shall" or "required" in the guide's own voice is a recommendation; the matches are provider field names (`ACTION_REQUIRED`, `actionRequiredByDateTime`) and "action required" as a notice state. None relabeled.
+- **Sources:** the additions make no new product, licensing or government-cloud claim; they restate the guide's gates. Every product claim above already carries its read date (November 9, 2026), so nothing was re-read.

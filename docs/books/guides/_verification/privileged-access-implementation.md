@@ -76,3 +76,21 @@ Fictional data only (`contoso.example`). No agency named. No prohibited terms.
 | Before | After | Source |
 |---|---|---|
 | Tier 0 and Tier 1 activation "at most eight hours" | Four hours for Tier 0 and eight for Tier 1 | Book 04 Appendix B role table; privileged-access workbook Ch 04 tier caps |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied Book 00, Appendix D's conventions, as the smallest coherent addition:
+
+| Convention | Where | What was added |
+|---|---|---|
+| G-01 control states | `#pag-control-states` | The five states mapped to G1 to G8, with evidence, and the ready-for-closure sentence |
+| G-02 How template | `#pag-control-states` | A coverage table pointing each subsection to the gate that already covers it; no gap needed new text |
+| G-06 evidence checklist | End of `#evidence` | The five kinds, pointing at the kit's artifacts |
+| G-07 change safety | `#pag-control-states` | Rings from the test tenant through Tier 1 (D-A5), Tier 0, then Tier 2, read-only and Azure; emergency access from G2; change window and backout triggers marked *(design guidance)* |
+| G-08 assessment mapping | `#pag-control-states` | Identity; dependencies on Devices, Book 04 Appendix D and SecOps; attack chain interrupted |
+
+**Back-links (follow-up).** G2 step 1 and Back to the books link Book 04 Chapter 04's emergency access reference architecture (`#emergency-access-reference-architecture`); G3's prerequisites and Back to the books link Book 04 Appendix D (phishing-resistant authentication runbooks: bootstrap, recovery, metrics, where the runbooks stop). Both targets were read on `origin/main` on November 11, 2026.
+
+**G-05.** No "must" relabeled: "must match Chapter 01's `exceptions.csv`" is the kit's own consistency rule, and "an access package's expiration must not exceed the group's own eligibility expiry" is Learn's warning carried from the workbook's Chapter 05 (`pa05-em-eligible`, `pa05-em-pim`).
+
+**G-03.** No new product, licensing or government-cloud claim; every Learn footnote keeps its access date (Oct 30 to Nov 2, 2026).

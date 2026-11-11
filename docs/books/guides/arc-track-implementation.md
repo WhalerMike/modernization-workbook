@@ -435,6 +435,68 @@ On AU: the Activity log records control-plane operations, keeps them for 90 days
 All `VK-ARC-*` checks scheduled on the continuous monitoring cadence, with results filed: **VK-ARC-01** and **VK-ARC-02** daily, **VK-ARC-03** and **VK-ARC-05** weekly, **VK-ARC-04** with the CMDB's weekly reconciliation, **VK-ARC-06** and **VK-ARC-07** monthly *(design guidance)*. The Activity log export is confirmed in the SIEM, and the Resource Graph exports are present for the period.
 :::
 
+**Evidence checklist**
+
+- [ ] **Configuration:** the signed tag taxonomy; the policy assignment export with each assignment's `enforcementMode`; the baseline JSON and custom packages with their commits; the Update Manager maintenance configurations; the role assignments at Arc scopes ([8.4](#step-8-operating-it))
+- [ ] **Operational:** the scheduled `VK-ARC-*` results; the Activity log in the SIEM; the `patchassessmentresources` and `patchinstallationresources` exports; disconnection alerts and Advisor recommendations, kept past their 7-, 30- and 90-day windows
+- [ ] **Test:** each wave's Gate 3 record, the pilot wave's rollback exercise, and the SQL Server hosts' managed-identity token test, with date and tester
+- [ ] **Exception:** dated policy exemptions with approver and expiry; Windows Server 2016 risk acceptances with retirement dates (wave 4); break-glass role holders on Arc scopes
+- [ ] **Assessor-ready artifact:** the period's evidence package for CM-2, CM-6, CM-8, SI-2 and AU, traceable to the four above ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads))
+
+## Control states, change safety and assessment mapping {#arc-control-states}
+
+The workbook's conventions for implementation procedures are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); this section applies them to the Arc track.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Step 1](#step-1-prerequisites) (cloud, layout, coverage matrix) and [Step 2](#step-2-the-tag-taxonomy-and-resource-groups) (taxonomy, one writer per tag) | The cloud decision record; the signed taxonomy; the coverage matrix |
+| Configured | [Steps 3 to 6](#step-3-onboarding-at-scale): servers connected, baselines assigned in `Audit`, tag policies in `DoNotEnforce`, schedules and roles set | Policy assignment export; baseline JSON with its commit; role assignments |
+| Enforced | Tag policies switched to `Default` after the pilot ([2.4](#assign-the-tag-policies-in-evaluation-mode-first)); `ApplyAndMonitor` or `ApplyAndAutoCorrect` where machine configuration owns the setting ([4.3](#assignment-types-and-remediation)); patch schedules running ([Step 5](#step-5-update-manager-and-patch-evidence)) | `enforcementMode` `Default` in the export; assignment type per setting; the exemption register |
+| Evidenced | Each gate's **Validate** step | `VK-ARC-*` results, the rollback exercise record and the token test, each dated |
+| Operated | [Step 8](#step-8-operating-it) | The check schedule, disconnection alerts, the agent upgrade rings, the Activity log and Resource Graph exports |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.** Where the guide carries each part of the [How-section template](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template):
+
+| Subsection | Where |
+|---|---|
+| Prerequisites | [Step 1](#step-1-prerequisites), with [Azure Government availability](#azure-government-versus-commercial) |
+| Pilot | Wave 0 in [3.3](#run-it-in-waves) |
+| Report-only or audit phase | Tag policies in `DoNotEnforce` ([2.4](#assign-the-tag-policies-in-evaluation-mode-first)); baselines in `Audit` ([4.1](#the-assignments)); preview baselines kept as an assessment aid ([4.2](#the-baselines)) |
+| Enforcement | Waves 1 to 4 in [3.3](#run-it-in-waves); the switch to `Default` after the pilot wave |
+| Rollback | [3.3](#run-it-in-waves) (extensions, disconnect, uninstall); for a policy, set `enforcementMode` back to `DoNotEnforce`[^arc-enforcement] |
+| Exclusions | Dated policy exemptions ([4.1](#the-assignments)); servers outside Arc by tier ([1.4](#read-the-coverage-matrix-and-place-every-server)); break-glass on Arc scopes ([Step 6](#step-6-access)). Emergency access accounts: not applicable to sign-in here, because no step blocks an Entra sign-in; Conditional Access isn't supported with the Entra join extension on Arc servers ([6.2](#entra-sign-in-where-supported)) |
+| Telemetry | [8.1](#disconnected-agents) and [8.3](#resource-graph-inventory); the Activity log ([8.4](#step-8-operating-it)) |
+| Evidence | [8.4](#step-8-operating-it) and the evidence checklist above |
+| Day-two ownership | [Step 8](#step-8-operating-it): the server platform owner runs the checks; the CMDB owner owns the reconciliation ([2.2](#one-writer-per-tag)) |
+
+: How-section template, mapped to the Arc track {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Wave 0: 10 to 20 non-production servers per OS family, one hardened build and one SQL Server host | Gate 3 passes; tag policies show no false positives in `DoNotEnforce`; rollback exercised |
+| 1 | Wave 1: non-production, all OS families | Tag policies in `Default` with no blocked legitimate connect; first schedules ran |
+| 2 | Wave 2: low-criticality production | Gate 3 and Gate 4 pass under production change control |
+| 3 | Wave 3: high-criticality and sensitive production | Extension allowlists and local lockdown decided per server class; Gate 3 to Gate 5 pass |
+
+- **Emergency access:** not applicable to Entra sign-in (no step blocks one). The break-glass holders of Owner or Contributor on Arc scopes ([6.1](#azure-rbac-at-scope)) are the way back for a policy or role change, and are tested before wave 1 *(design guidance)*.
+- **Change window:** each wave and each switch of a policy to `Default` is its own change record, in the owning team's maintenance window, with the server platform owner on hand *(design guidance)*.
+- **Backout triggers:** set before the change, for example a legitimate connect denied by a tag policy, a service failure on a hardened build after a baseline assignment, or servers disconnected in the wave *(design guidance)*.
+- **Post-change validation:** the gate's **Validate** step for the wave, run after each ring.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Infrastructure
+- **CISA ZTMM pillar:** Devices (servers as assets), with Applications and Workloads for the workloads they host
+- **Depends on:** Identity (the onboarding identity as a non-person identity, [Non-Person Identity guide](non-person-identity-implementation.md); PIM-eligible roles, [Privileged Access guide](privileged-access-implementation.md)); SecOps (the Activity log and Defender for Servers in [Book 12](../b12-security-operations/index.md)); the CMDB as the inventory of record ([Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md))
+- **Attack chain interrupted:** Initial Access (servers unpatched or unknown to the inventory); Persistence and Defense Evasion (configuration drift away from the baseline); Privilege Escalation (standing rights to push extensions that run as Local System)
+:::
+
 ::: {.callout-tip}
 ## Back to the books
 [Book 05, Chapter 09 — Servers Under Azure Arc](../b05-devices/09-servers-under-azure-arc.md) · [Book 05, Chapter 03 — Where Device and Server Data Lives](../b05-devices/03-where-device-and-server-data-lives.md) · [Book 05, Chapter 10 — Operating and Evidencing the Fleet](../b05-devices/10-operating-and-evidencing-the-fleet.md) · [Book 06, Runbook R04 — Arc Deployment & the Managed Identity](../b06-data-platform/r04-arc-deployment-and-managed-identity.md) · [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../b12-security-operations/07-patch-configuration-and-baselines.md) · [Attribute-Driven Migration: the Arc track](attribute-driven-migration.md#arc-track) · [Ansible for Configuration Automation](ansible-configuration-automation.md#arc-onboarding-at-scale)
