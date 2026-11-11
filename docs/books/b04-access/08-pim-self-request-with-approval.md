@@ -522,6 +522,117 @@ What an assessor will ask for, and where it comes from:
 The rows describe where evidence comes from, not content to publish. Real exports, request records and review results belong in the agency's evidence store under its own handling rules.
 :::
 
+### The role-setting export and the permanent-assignment exception register {#role-setting-export-and-exception-register}
+
+A Zero Trust assessment reports standing privilege as a finding when it sees active assignments to privileged roles. The build above removes them; this section produces the two artifacts that show it did, and that the ones left are governed: an export of every role's settings, and a register of every permanent active assignment with its approval. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
+
+**Authority:** Microsoft-recommended for eligible assignments, approval with named approvers, and an authentication context on activation (Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," read Nov 11, 2026);[^c08-settings] risk-based recommended for the tier values and the register, which are the program's.
+**Applies:** License-dependent: Microsoft Entra ID P2 or Entra ID Governance ([Prerequisites](#prerequisites)). Environment-dependent: Microsoft lists PIM as available in Azure for US Government;[^c08-feature-availability] the Graph APIs the export reads are available in the global service, US Government L4 (GCC High) and US Government L5 (DoD).[^c08-assignment-schedules]
+
+The role-setting pattern the assessment looks for is already set by this chapter. The table shows where each element lives, so the export can be read against it.
+
+| Element | Where it is set | Rule the export reads |
+|---|---|---|
+| Eligible, not active | [Eligible, not active](#eligible-not-active); [Step 5](#step-5-convert-standing-assignments-to-eligible) | Assignment schedules (below) |
+| Approval for the highest roles | [Settings by tier](#settings-by-tier): T0 and T1 require approval from a named group | `Approval_EndUser_Assignment` |
+| Justification and ticket | [The activation controls](#the-activation-controls) | `Enablement_EndUser_Assignment` |
+| Authentication strength at activation | The `c1` authentication context, whose policy requires the program's phishing-resistant strength ([Step 2](#step-2-build-the-authentication-context-and-its-policy)) | `AuthenticationContext_EndUser_Assignment` |
+| Activation duration | 4 or 8 hours by tier | `Expiration_EndUser_Assignment` |
+| Eligibility expiry | 90, 180 or 365 days by tier | `Expiration_Admin_Eligibility` |
+| Notifications | [Step 7](#step-7-notifications-and-pim-alerts) | The nine `Notification_*` rules |
+| Recurring access reviews | [Step 8](#step-8-access-reviews-of-eligibility); cadence by tier in [Appendix B](appendix-b-pim-role-settings.md#review-cadence-by-tier) | Not a rule: the access review definitions and their history |
+
+**The export.** The script reads every directory role's PIM policy and its rules, saves the rules as JSON, flattens the values the table names into one CSV, and lists the active assignments that never expire. It changes nothing. It is illustrative and hasn't been run against a production tenant; run it in a test tenant first. Rule IDs and shapes are from Microsoft's mapping guide.[^c08-rules]
+
+```powershell
+#Requires -Modules Microsoft.Graph.Identity.SignIns, Microsoft.Graph.Identity.Governance
+# READ-ONLY. Export PIM role settings for every Microsoft Entra role, and list permanent active assignments.
+Connect-MgGraph -Scopes 'RoleManagementPolicy.Read.Directory', 'RoleManagement.Read.Directory' -NoWelcome
+
+$OutDir = '.\evidence\pim'          # CONFIGURE: this period's evidence folder
+New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+
+$Roles = Get-MgRoleManagementDirectoryRoleDefinition -All | Select-Object DisplayName, TemplateId
+$PolicyAssignments = Get-MgPolicyRoleManagementPolicyAssignment -Filter "scopeId eq '/' and scopeType eq 'DirectoryRole'" -All
+
+$Rows = foreach ($pa in $PolicyAssignments) {
+    $Rules = Get-MgPolicyRoleManagementPolicyRule -UnifiedRoleManagementPolicyId $pa.PolicyId -All
+    $Rules | ConvertTo-Json -Depth 10 | Set-Content -Path (Join-Path $OutDir "$($pa.RoleDefinitionId).rules.json")
+    $r = @{}
+    foreach ($rule in $Rules) { $r[$rule.Id] = $rule.AdditionalProperties }
+    [pscustomobject]@{
+        Role                   = ($Roles | Where-Object TemplateId -eq $pa.RoleDefinitionId).DisplayName
+        RoleTemplateId         = $pa.RoleDefinitionId
+        ApprovalRequired       = $r['Approval_EndUser_Assignment'].setting.isApprovalRequired
+        ActivationRequirements = ($r['Enablement_EndUser_Assignment'].enabledRules -join ';')
+        AuthContextRequired    = $r['AuthenticationContext_EndUser_Assignment'].isEnabled
+        AuthContext            = $r['AuthenticationContext_EndUser_Assignment'].claimValue
+        MaxActivation          = $r['Expiration_EndUser_Assignment'].maximumDuration
+        EligibilityExpires     = $r['Expiration_Admin_Eligibility'].isExpirationRequired
+        MaxEligibility         = $r['Expiration_Admin_Eligibility'].maximumDuration
+        ActiveExpires          = $r['Expiration_Admin_Assignment'].isExpirationRequired
+    }
+}
+$Rows | Export-Csv -Path (Join-Path $OutDir 'role-settings.csv') -NoTypeInformation
+
+# Active assignments that never expire: each must have a register entry.
+Get-MgRoleManagementDirectoryRoleAssignmentSchedule -All |
+    Where-Object { $_.ScheduleInfo.Expiration.Type -eq 'noExpiration' } |
+    Select-Object PrincipalId, RoleDefinitionId, DirectoryScopeId, MemberType |
+    Export-Csv -Path (Join-Path $OutDir 'permanent-active.csv') -NoTypeInformation
+```
+
+Listing active assignment schedules needs at least Global Reader, Security Reader or Privileged Role Administrator for a delegated caller.[^c08-assignment-schedules] Read `role-settings.csv` against [Appendix B](appendix-b-pim-role-settings.md): a privileged role with `ApprovalRequired` false where its tier requires approval, an empty `AuthContext`, or `EligibilityExpires` false is a finding.
+
+**The register.** Compare the tenant with the register. Every line marked `=>` is a permanent active assignment with no approved entry, which is a finding; every line marked `<=` is an entry for an assignment that no longer exists, which is closed.
+
+```powershell
+# READ-ONLY. CONFIGURE the path to the register kept in the evidence store.
+$Register = Import-Csv -Path '.\permanent-assignment-register.csv'
+$Tenant   = Import-Csv -Path '.\evidence\pim\permanent-active.csv'
+Compare-Object -ReferenceObject $Register -DifferenceObject $Tenant -Property PrincipalId, RoleDefinitionId
+```
+
+| Field | What it holds |
+|---|---|
+| `EntryId` | The register's own identifier |
+| `PrincipalId`, `PrincipalType` | The object ID, and whether it is a user, a group or a service principal |
+| `RoleDefinitionId`, `DirectoryScopeId` | The role's template ID and the scope (`/` for tenant-wide) |
+| `Category` | `EmergencyAccess`, `ServicePrincipalCannotActivate`, or `Other`; `Other` needs the CISO's approval and the AO's risk acceptance ([Chapter 06](06-who-decides-access.md#exceptions)) |
+| `Reason`, `CompensatingControls` | Why the assignment can't be eligible, and what watches it instead |
+| `Approver`, `Approved`, `NextReview` | Who approved it, when, and when it is reviewed again: at each 90-day drill for emergency accounts, on the application's risk-tier cadence for service principals, and within six months for `Other` |
+| `Ticket` | The change that made the assignment |
+
+Only the first two categories are expected; [Step 5](#step-5-convert-standing-assignments-to-eligible) names them as the two exclusions from conversion.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `role-settings.csv` and the per-role rules JSON, taken on change and at each assessment, matched to [Appendix B](appendix-b-pim-role-settings.md)
+- [ ] **Operational:** the activation, approval and denial records in the workspace ([Step 9](#step-9-export-audit-records-for-retention)), and the PIM alert history
+- [ ] **Test:** the [validation test plan](#validation-test-plan), tests 1 to 8 and 12, with expected and observed results
+- [ ] **Exception:** the permanent-assignment register, the comparison output with no `=>` lines, and each entry's approval
+- [ ] **Assessor-ready artifact:** the period's evidence package entry pointing to the four above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [The target design](#the-target-design) and [Appendix B](appendix-b-pim-role-settings.md) | The tier table, approved by the IGO and CISO |
+| Configured | Steps 1 to 4 | `role-settings.csv` and the rules JSON |
+| Enforced | Step 5 | Assignment schedules with no permanent active assignment outside the register |
+| Evidenced | The validation test plan | Test records and the audit events they produced |
+| Operated | Steps 7 to 9 and [Operating the workflow](#operating-the-workflow) | Review history, alert history, register reviews |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Identity (phishing-resistant methods behind the `c1` strength, [Appendix D](appendix-d-phishing-resistant-authentication-runbooks.md)); Devices (the compliant device or PAW in `PIM-Activation-c1`, [Chapter 04](04-privileged-roles-and-tiers.md#privileged-access-workstations)); SecOps (the audit export, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Privilege Escalation and Persistence: a stolen administrator session carries no privilege until an approved, freshly authenticated activation, and a standing assignment added outside PIM shows up as a register mismatch
+:::
+
 ## Validation test plan
 
 Run these after the build, and after any change to role settings, Conditional Access, protected actions or approver group membership.
@@ -641,3 +752,4 @@ The NIST text behind the AC rows is short: AC-6 requires allowing only the acces
 [^c08-nist-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, OSCAL profile, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Oct 20, 2026).
 [^c08-discovery]: Microsoft Learn, "Discovery and insights (preview) for Microsoft Entra roles (formerly Security Wizard)," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-security-wizard> (accessed Nov 9, 2026).
 [^c08-gov-deploy]: Microsoft Learn, "Microsoft Entra ID Governance deployment guide to govern privileged identities," <https://learn.microsoft.com/entra/architecture/governance-deployment-privileged-identities> (accessed Nov 9, 2026).
+[^c08-assignment-schedules]: Microsoft Learn, "List roleAssignmentSchedules" (Microsoft Graph v1.0; national cloud table: global service, US Government L4 and US Government L5 (DOD) supported; least-privileged roles for read: Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator; PowerShell `Get-MgRoleManagementDirectoryRoleAssignmentSchedule`; `scheduleInfo.expiration.type` of `noExpiration` for an assignment that never ends), <https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0> (accessed Nov 11, 2026).

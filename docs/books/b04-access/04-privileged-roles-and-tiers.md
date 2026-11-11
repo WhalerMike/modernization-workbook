@@ -232,6 +232,114 @@ Two notes keep this current. Microsoft's mandatory MFA for the Azure portal, the
 
 The accounts must exist and be tested **before** any role is converted to eligible or any approval requirement is switched on. [Chapter 08](08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first) explains the lockout that ordering prevents.
 
+### Reference architecture, exclusions and evidence {#emergency-access-reference-architecture}
+
+A Zero Trust assessment can find emergency access accounts that exist and still flag them: an account with a phone method, an exclusion group that has gathered other members, an alert that watches only interactive sign-ins, or no record that anyone has signed in with them since they were made. This subsection sets the standard above out as one architecture, with the conditions that keep the Conditional Access exclusion narrow and the records that show the accounts work. The build steps, the alert template and the drill script are in the [Privileged Access implementation guide, Step 2](../guides/privileged-access-implementation.md#step-2-build-and-test-emergency-access-first) and its developer workbook; they aren't repeated here. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
+
+**Authority:** Microsoft-recommended (Learn, "Manage emergency access accounts in Microsoft Entra ID," read Nov 11, 2026), with the program's additions labeled risk-based recommended where they appear.[^c04-emergency]
+**Applies:** all tenants. Environment-dependent: Microsoft lists passkeys (FIDO2), certificate-based authentication, Conditional Access and PIM as available in Azure for US Government, which serves GCC High and DoD tenants; GCC tenants use Microsoft Entra ID in commercial Azure.[^c04-gov-features]
+
+| Component | Design | Authority |
+|---|---|---|
+| Accounts | Two cloud-only accounts on `*.onmicrosoft.com`, not synchronized or federated, not tied to a person, with names that don't announce their purpose | Microsoft-recommended; naming is risk-based recommended (Book 02's rule) |
+| Credentials | One credential per account: a passkey (FIDO2) security key, or certificate-based authentication where a PKI already exists; different from the methods normal administrators use; no phone, app, one-time code or Temporary Access Pass registered; credentials and devices that don't expire or fall to automated cleanup | Microsoft-recommended |
+| Custody | Each credential in a separate secure, fireproof location; the list of people authorized to use them reviewed at each drill; safe combinations changed regularly and when someone with access leaves | Microsoft-recommended; dual custody ([Chapter 06](06-who-decides-access.md#emergency-access)) is risk-based recommended |
+| Role | Global Administrator, permanent and active in PIM | Microsoft-recommended |
+| Workstation | A designated secure workstation or PAW for every use | Microsoft-recommended |
+| Exclusion | One dedicated group, `CA-Exclude-EmergencyAccess`, excluded from every enforced policy that blocks or restricts sign-in; report-only policies such as CA090 keep the accounts in scope | Microsoft-recommended |
+| Monitoring | An alert on every interactive and non-interactive sign-in and every audit event by either account, matched on object ID, at the highest severity | Microsoft-recommended (Learn's sample reads `SigninLogs` only; the other two tables are the program's addition) |
+| Validation | A drill at least every 90 days, after staff changes and after the tenant's subscriptions change: sign in, do an administrative task, confirm the alert fired | Microsoft-recommended |
+| Contingency policies | Pre-built Conditional Access policies, left off, that restore access for critical users during an outage | Optional (Learn suggests them; the library doesn't define any yet) |
+
+**Keeping the exclusion narrow.** The exclusion is the most dangerous object in the policy set: everyone in the group skips every enforced policy. Five rules, all risk-based recommended, keep it to the accounts it exists for.
+
+1. The group holds the two emergency accounts and nothing else. Any other member is an incident, and the drift check in [Chapter 07](07-the-conditional-access-policy-library.md#drift) alerts on any change to its membership.
+2. The group is excluded only from enforced policies that block or restrict sign-in. It is never excluded from report-only policies, so CA090 records every emergency sign-in.
+3. Every enforced policy in the repository is checked for the exclusion before merge ([Chapter 10](10-access-as-code-and-evidence.md#a-pre-merge-check-for-the-emergency-access-exclusion)).
+4. No other exception rides on this group. Travel, onboarding and readiness exceptions have their own time-bound groups ([Chapter 07](07-the-conditional-access-policy-library.md#prerequisites)).
+5. The system security plan records the exclusion as part of the documented deviation for permanent emergency accounts ([Chapter 02](02-why-standing-privilege-fails.md#break-glass-the-one-governed-exception)).
+
+#### Prerequisites {#b04-ea-prerequisites}
+
+Microsoft Entra ID P1 for Conditional Access, and P2 or Entra ID Governance for PIM ([Chapter 08](08-pim-self-request-with-approval.md#prerequisites)). A Log Analytics workspace that receives the `SigninLogs`, `AADNonInteractiveUserSignInLogs` and `AuditLogs` tables ([Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md)). Two security keys from the program's approved list, or two certificates issued to the accounts. Government-cloud availability is in the **Applies** line above.
+
+#### Pilot {#b04-ea-pilot}
+
+Not applicable: there is no population to pilot. The first drill after the accounts are built serves as the pilot, and it must pass before [Chapter 08's Step 0](08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first) is complete.
+
+#### Report-only or audit phase {#b04-ea-report-only}
+
+Not applicable to the accounts themselves. The report-only policy CA090 is how the program watches them: it evaluates every emergency sign-in without blocking it, so the sign-in log shows which enforced policies the account would have met.
+
+#### Enforcement {#b04-ea-enforcement}
+
+The control is in force when both accounts pass a drill, every enforced policy excludes the group, and the alert is enabled at severity 0. The build is the guide's Step 2. Each new enforced Conditional Access policy is checked against the group in the same change that turns it on ([Chapter 07](07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)).
+
+#### Rollback {#b04-ea-rollback}
+
+None for the accounts: they are the rollback for every other control in this book. A faulty alert rule is rolled back by redeploying the previous version of its template.
+
+#### Exclusions {#b04-ea-exclusions}
+
+The group is the exclusion, and the five rules above govern it. The accounts themselves have no exclusions from monitoring.
+
+#### Telemetry {#b04-ea-telemetry}
+
+The query below returns every sign-in and audit event by either account in the last day. It is the alert's query, and it is also what the drill record cites. It is illustrative and hasn't been run against a production workspace.
+
+```kusto
+let EmergencyIds = dynamic(["{emergency-account-1-object-id}", "{emergency-account-2-object-id}"]);
+let Interactive = SigninLogs
+    | where TimeGenerated > ago(1d) and UserId in (EmergencyIds)
+    | project TimeGenerated, Kind = "Interactive sign-in", UserId, Detail = AppDisplayName, IPAddress, Result = tostring(ResultType);
+let NonInteractive = AADNonInteractiveUserSignInLogs
+    | where TimeGenerated > ago(1d) and UserId in (EmergencyIds)
+    | project TimeGenerated, Kind = "Non-interactive sign-in", UserId, Detail = AppDisplayName, IPAddress, Result = tostring(ResultType);
+let Audit = AuditLogs
+    | where TimeGenerated > ago(1d)
+    | extend UserId = tostring(InitiatedBy.user.id)
+    | where UserId in (EmergencyIds)
+    | project TimeGenerated, Kind = "Audit", UserId, Detail = OperationName, IPAddress = tostring(InitiatedBy.user.ipAddress), Result = tostring(Result);
+union Interactive, NonInteractive, Audit
+| sort by TimeGenerated asc
+```
+
+#### Evidence {#b04-ea-evidence}
+
+Each drill produces one test record per account, so a passing drill leaves two. The record holds: the date; the account (by its placeholder name in the record, its object ID in the evidence store); which custody location the credential came from; the sign-in result (`ResultType` 0); the administrative task performed; the CA090 result for the sign-in; the time the alert fired and the time security operations acknowledged it; and the ticket. Security operations is told before the drill starts, as Learn advises.[^c04-emergency]
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the two accounts' authentication methods (one passkey or certificate each, nothing else), their permanent active Global Administrator assignments, the exclusion group's membership, and the alert rule definition, exported and kept as code ([Chapter 10](10-access-as-code-and-evidence.md))
+- [ ] **Operational:** the alert's firing history and every post-use review, retained with the workspace's identity logs
+- [ ] **Test:** two successful drill records per drill, one per account, each with the alert that fired
+- [ ] **Exception:** the system security plan's deviation for permanent emergency accounts, with its compensating controls and approver
+- [ ] **Assessor-ready artifact:** the evidence package entry for the period, pointing to the four items above
+
+#### Day-two ownership {#b04-ea-day-two}
+
+The identity engineering lead runs the drills; the CISO owns the result, as the gate owner in the guide; security operations owns the alert and the post-use review, which decides whether a use was a drill, a real emergency or misuse.[^c04-emergency] Cadence: every 90 days, and after staff changes. Drift is any member added to the group, any method added to an account, or a drill missed. The day-two calendar that carries the drill is [Book 15, Chapter 12](../b15-day2-operations/12-the-day-two-runbook.md).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The standard above and the architecture table | The program's emergency access standard and the system security plan deviation |
+| Configured | The guide's Step 2 build | Account, method, role and alert exports |
+| Enforced | Every enforced policy excludes the group, and the alert is on | The policy export with the exclusion, and the group's membership of exactly two |
+| Evidenced | The drill | Two successful test records and the alert each produced |
+| Operated | Day-two ownership above | The drill calendar, the alert history and the last post-use review |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices (the PAW the accounts are used from, [Book 05](../b05-devices/index.md)); SecOps (the workspace and the alert routing, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Persistence and Privilege Escalation through an unmonitored, policy-excluded Global Administrator: the narrow group stops the exclusion from spreading, and the alert exposes the first use of a stolen credential
+:::
+
 ## What the tiers answer in federal requirements
 
 The tier model is the program's answer to the least-privilege and account-management family of NIST SP 800-53 Revision 5.[^c04-nist]
@@ -276,7 +384,7 @@ All of these controls are in the NIST SP 800-53B Moderate baseline, which FedRAM
 [^c04-vsphere-entra]: Broadcom, "Configure vCenter Identity Provider Federation for Microsoft Entra ID," *vSphere Authentication* (vSphere 9.0), <https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/vsphere-authentication/vsphere-authentication-with-vcenter-single-sign-on/configuring-vcenter-server-identity-provider-federation/configure-vcenter-server-identity-provider-federation-for-azure-ad.html> (accessed Oct 20, 2026).
 [^c04-paw-devices]: Microsoft Learn, "Securing devices as part of the privileged access story," <https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-devices> (accessed Oct 20, 2026).
 [^c04-paw-deploy]: Microsoft Learn, "Privileged access deployment," <https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-deployment> (accessed Oct 20, 2026).
-[^c04-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 20, 2026).
+[^c04-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," including sections "Configuration requirements," "Conditional Access considerations," "Security guardrails summary," "Monitor sign-in and audit logs" and "Validate accounts regularly," <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 20, 2026; re-read Nov 11, 2026).
 [^c04-mandatory-mfa]: Microsoft Learn, "Mandatory multifactor authentication for Azure and admin portals," <https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication> (accessed Oct 20, 2026).
 [^c04-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; current release 5.2.0), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
 [^c04-nist-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, OSCAL profile, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Oct 20, 2026).
@@ -300,3 +408,4 @@ All of these controls are in the NIST SP 800-53B Moderate baseline, which FedRAM
 [^c04-ad-monitor]: Microsoft Learn, "Monitoring Active Directory for Signs of Compromise" (advanced audit policy; configuring audit policy with auditpol.exe), <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/monitoring-active-directory-for-signs-of-compromise> (accessed Nov 9, 2026).
 [^c04-events]: Microsoft Learn, "Appendix L: Events to monitor," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor> (accessed Nov 9, 2026).
 [^c04-ad-compromise]: Microsoft Learn, "Planning for Compromise" (Rethinking the approach), <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/planning-for-compromise> (accessed Nov 9, 2026).
+[^c04-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: multifactor authentication, passwordless methods including FIDO2 security keys, certificate-based authentication, Conditional Access, session lifetime management and Privileged Identity Management available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability>, and "Cloud feature availability for US Government customers," section "Microsoft 365 integration" (Office 365 GCC pairs with Microsoft Entra ID in Azure; GCC High and DoD pair with Microsoft Entra ID in Azure Government), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration> (both accessed Nov 11, 2026).
