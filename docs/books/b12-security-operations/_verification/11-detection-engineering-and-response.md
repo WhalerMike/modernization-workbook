@@ -140,3 +140,7 @@ Page read on 2026-11-09 through the Microsoft Learn documentation service, for t
 | L2 | Those policies act at sign-in and belong to Book 04; the ladder governs post-alert response | Same | restated-as-design | Program design |
 
 Left listed but uncited in the coverage map: zero-trust-monitor-detect (no sentence that says only what it says).
+
+## Zero Trust closure update, November 11, 2026 (B12-01, B12-02)
+
+The library table gains a row for FMP-DET-30 to 45 and a pointer to Appendix B, which carries the rules, their sources and their verification log (`_verification/appendix-b-identity-and-application-detections.md`). "The last two rows" became "FMP-DET-22 and FMP-DET-23" because the table now has a later row. No new external claim in this chapter.
