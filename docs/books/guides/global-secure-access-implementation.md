@@ -332,7 +332,7 @@ Compare `activeDeviceCount` with Intune's count of in-scope Windows devices; the
 **How-section.** **Prerequisites:** Step 1; Intune Win32 app management; the pilot group. **Pilot:** the implementing team, then fewer than 20 users, Learn's deployment guide's pilot size ([Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#deployment-and-proof-of-concept)). **Report-only or audit:** not applicable to the client itself; the profiles it carries are piloted in Steps 4 to 6. **Enforcement:** widen the Required assignment ring by ring ([Step 11](#step-11-coexistence-and-migration)). **Rollback:** remove the Required assignment and assign the uninstall; the uninstall command is Learn's. **Exclusions:** hosts with a Hyper-V external switch, AVD multi-session hosts, and devices on a reviewed exception list; each with an owner and a review date. **Telemetry:** Intune install status; the device usage summary; client health check exports. **Evidence:** the app's assignment export, detection rule, remediation results, the device usage summary. **Day-two ownership:** the platform owner (endpoint); help desk tier 1 uses the client's **Collect logs** and the health check before escalating ([Book 15](../b15-day2-operations/index.md)).
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 3
 - **Microsoft Zero Trust pillar:** Networks
 - **CISA ZTMM pillar:** Devices
 - **Depends on:** device identity and compliance ([Book 05](../b05-devices/index.md))
@@ -376,7 +376,7 @@ SigninLogs
 **How-section.** **Prerequisites:** Steps 1 to 3. **Pilot:** the pilot group only. **Report-only or audit:** the profile has no report-only mode; the pilot group is the audit phase, read through the sign-in query for five business days. **Enforcement:** add ring groups. **Rollback:** remove the ring group from the assignment, or `{"state":"disabled"}` on the profile after Steps 7 and 8's policies are out of enforcement. **Exclusions:** none by default; where an application breaks, Learn's traffic forwarding rules are adjusted by a normal change. **Telemetry:** `SigninLogs`, `NetworkAccessTraffic` with `TrafficType == "microsoft365"`. **Evidence:** the profile export and its assignments, the signaling GET, the sign-in query result. **Day-two ownership:** the platform owner (network); weekly volume check from Learn's Microsoft traffic operations queries.[^gsai-ops-ms]
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 4
 - **Microsoft Zero Trust pillar:** Networks
 - **CISA ZTMM pillar:** Networks
 - **Depends on:** Step 3's client; Entra ID sign-in logs ([Book 12, Ch. 03](../b12-security-operations/03-identity-telemetry.md))
@@ -454,7 +454,7 @@ NetworkAccessTraffic
 **How-section.** **Prerequisites:** Steps 1 to 4; the acceptable-use category list approved by the policy owner. **Pilot:** the pilot group's security profile. **Report-only or audit:** Learn's pages read don't say whether a Conditional Access policy in report-only mode applies a security profile; the program pilots with a group-scoped policy set to **On** for the pilot only, and an **Allow** policy with logging for categories under review *(Risk-based recommended)*. **Enforcement:** widen the policy's groups ring by ring; move threat intelligence to the baseline profile at ring 1. **Rollback:** set the Conditional Access policy to `disabled`, or remove the policy link from the profile; disable the internet profile last. **Exclusions:** the emergency access group; categories excluded by the privacy rules of Step 9; each bypass in the exception register. **Telemetry:** `NetworkAccessTraffic`, the block counts by category. **Evidence:** filtering policy, profile and Conditional Access exports; the blocked-category test; the bypass register. **Day-two ownership:** the policy owner approves category changes; the platform owner applies them; the security monitor reviews top blocked destinations weekly.[^gsai-ops-ia]
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 5
 - **Microsoft Zero Trust pillar:** Networks
 - **CISA ZTMM pillar:** Networks
 - **Depends on:** Step 3's client; Conditional Access ([Book 04](../b04-access/index.md))
@@ -536,7 +536,7 @@ And for least privilege, Quick Access should shrink to nothing: list what is lef
 **How-section.** **Prerequisites:** connectors per Book 09, Chapter 05 (Windows Server 2019 or later, TLS 1.2, no inline TLS inspection of connector traffic); Step 3. **Pilot:** one application, the pilot group. **Report-only or audit:** the Conditional Access policy in `enabledForReportingButNotEnforced` for five business days, read in the sign-in log's report-only results. **Enforcement:** set the policy to `enabled`; add ring groups to the assignment; then turn off the VPN route for that application ([Step 11](#step-11-coexistence-and-migration)). **Rollback:** remove the group's app role assignment, or set the policy back to report-only; the VPN route stays until Step 11's exit criteria are met. **Exclusions:** emergency access accounts from the policy; no exclusions from the assignment (an unassigned user has no path, by design). **Telemetry:** `NetworkAccessTraffic` with `TrafficType == "private"`, sign-in logs for the app, connector health. **Evidence:** app, segment, assignment and policy exports; the reachable and unreachable port tests; the Quick Access residual list. **Day-two ownership:** the application owner reviews the assignment each quarter (an access review, [Book 04, Chapter 09](../b04-access/09-access-governance.md)); the platform owner keeps at least two healthy, current connectors per group.[^gsai-ops-pa]
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 6
 - **Microsoft Zero Trust pillar:** Networks
 - **CISA ZTMM pillar:** Applications and Workloads
 - **Depends on:** Conditional Access and device compliance ([Book 04](../b04-access/index.md), [Book 05](../b05-devices/index.md)); connectors on the program's server standard
@@ -610,7 +610,7 @@ Universal Continuous Access Evaluation is the data-plane half: the Windows clien
 **How-section.** **Prerequisites:** Steps 3 and 4; the break-glass scripts staged. **Pilot:** the pilot group, all resources. **Report-only or audit:** 10 business days in report-only, reading the query above; a non-zero `reportOnlyFailure` count with `Through == "true"` is a defect to fix before enforcement. **Enforcement:** set `state` to `enabled` for the pilot, then add ring groups. **Rollback:** `PATCH` the policy's `state` to `enabledForReportingButNotEnforced`; in an outage, run Microsoft's break-glass script. **Exclusions:** the emergency access group (tested each quarter), the Intune enrollment applications, and any service account through workload identity policies instead ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md)). **Telemetry:** the sign-in query; the `Token/Device Inconsistency` alert in `NetworkAccessAlerts` ([Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md#global-secure-access-logs-and-alerts)). **Evidence:** the policy export, the named location, the disable-and-retry test, the report-only results, the break-glass rehearsal record. **Day-two ownership:** the policy owner; the identity engineer runs the policy; the security monitor watches blocks with `Through == "false"`, which are either an attack or a broken client.
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 7
 - **Microsoft Zero Trust pillar:** Identity and Networks
 - **CISA ZTMM pillar:** Identity (with Networks)
 - **Depends on:** Steps 3 and 4; emergency access ([Book 04, Ch. 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts))
@@ -653,7 +653,7 @@ A known issue: an administrator of an allowed partner tenant may see "Access den
 **How-section.** **Prerequisites:** Step 4; the TRv2 policy approved. **Pilot:** the Microsoft traffic profile's pilot group. **Report-only or audit:** TRv2 has no report-only mode on the pages read; the pilot group is the audit phase, with the block query read daily. **Enforcement:** widens with the Microsoft profile's rings. **Rollback:** `{"networkPacketTaggingStatus":"disabled"}`; the TRv2 policy stays. **Exclusions:** none at the tagging layer; partner allowances are TRv2 partner policies with an owner and review date. **Telemetry:** the block query; the `Increased External Tenant Activity` alert ([Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md#global-secure-access-logs-and-alerts)). **Evidence:** the TRv2 exports, the tagging GET, the four-case test record. **Day-two ownership:** the identity engineer owns the partner list, reviewed with the partner register each quarter.
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 8
 - **Microsoft Zero Trust pillar:** Identity and Data
 - **CISA ZTMM pillar:** Identity (with Data)
 - **Depends on:** Step 4; the partner register ([Book 04, App. C](../b04-access/appendix-c-partner-access-profile-entra.md))
@@ -699,7 +699,7 @@ Microsoft's recommendation treats a failure rate above 1% as a systemic problem.
 **How-section.** **Prerequisites:** Step 5 working on server names; the dedicated issuing CA; the privacy officer's approved scope; user notice sent. **Pilot:** the pilot security profile only. **Report-only or audit:** none; a policy whose default action is **Bypass**, with inspection rules for a few test categories, is the audit phase. **Enforcement:** default action **Inspect** for the pilot, then ring by ring; never the baseline profile until ring 3. **Rollback:** Learn's order: remove the policy link from the security profile, delete the policy, then remove the certificate.[^gsai-tls] **Exclusions:** the system bypass, the privacy categories, and pinned applications, each custom bypass in the exception register with an expiry. **Telemetry:** the TLS query; the certificate's expiry date. **Evidence:** the certificate and chain, the CSR's template, the trust profile's deployment status, the policy export, the issuer check, the failure rate, the privacy approval and user notice. **Day-two ownership:** the platform owner renews the certificate at least 90 days before expiry (Learn's procedure); the security monitor alerts on failure rate; the policy owner reviews bypasses each quarter.
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 9
 - **Microsoft Zero Trust pillar:** Networks
 - **CISA ZTMM pillar:** Networks (with Data)
 - **Depends on:** the agency PKI ([Book 07](../b07-pki/index.md)); Step 5
@@ -759,7 +759,7 @@ For RDP, connect to `<admin-host-fqdn>` with the client on: the sign-in log for 
 **How-section.** **Prerequisites:** phishing-resistant methods registered for every administrator ([Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md)); privileged access workstations; Step 6. **Pilot:** one administrative host group and its administrators; for sensors, a few DCs in one site with application SPNs only. **Report-only or audit:** the policy in report-only; the sensor in **Audit**, reading its event log (**Applications and Services Logs** > **Microsoft** > **Windows** > **Private Access Sensor**). **Enforcement:** policy **On**; sensor `SensorMode` set to **EnforceMode** in **Connectors and sensors** > **Private access sensors**; then remove direct RDP from the VPN and from the server firewall except from connector IPs. **Rollback:** policy back to report-only; sensor **Enable break glass mode** in the admin center, or `TmpBreakglass` set to `1` and the sensor restarted.[^gsai-dc] **Exclusions:** emergency access accounts; SPN exclusions by IP or UPN only for systems without a client, each with an owner and expiry; never a blanket exclusion of the DC's own SPN without a review. **Telemetry:** sign-in logs for the admin apps, the sensor event log, `NetworkAccessTraffic` private sessions to admin hosts. **Evidence:** app and policy exports, the sensor mode, the `klist` test record, the break-glass rehearsal. **Day-two ownership:** the privileged access owner ([Privileged Access guide](privileged-access-implementation.md)); the security monitor alerts on RDP to admin hosts outside Private Access.
 
 ::: {.callout-note appearance="simple"}
-## Assessment mapping
+## Assessment mapping: Step 10
 - **Microsoft Zero Trust pillar:** Identity and Networks
 - **CISA ZTMM pillar:** Identity (with Networks)
 - **Depends on:** PIM and privileged groups ([Book 04, Ch. 08](../b04-access/08-pim-self-request-with-approval.md)); phishing-resistant methods
