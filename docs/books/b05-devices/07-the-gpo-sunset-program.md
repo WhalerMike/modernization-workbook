@@ -215,6 +215,8 @@ Set-GPLink -Name $gpoName -Target $target -LinkEnabled No
 
 Unlinking doesn't always undo what a GPO did. Group Policy preferences don't remove their settings when a GPO stops applying, unless the item was configured with *Remove this item when it is no longer applied*.[^c07-gpp] Drive maps, registry items, local users and groups, and scheduled tasks delivered as preferences stay on the device after the link is gone. Co-management has a matching trap: Intune doesn't revert settings when policy is unassigned while the device configuration workload is still on Configuration Manager.[^c07-tattoo] So the decision record for every preference item states what clears it: an Intune policy that takes over the value, or a Remediation that removes it.
 
+Unlinking is the enforcement step of the sunset, so it runs with the change safety, evidence checklist and control states of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md), which [Chapter 08](08-gpo-to-intune-policy-migration.md#b05-08-migration-control-states) sets out for the seven phases: rings by population, backout triggers set before each wave, a test after each ring, and a link re-enabled with `-LinkEnabled Yes` as the way back. The change record for each unlink names the GPO, the target OU, the backup and the approver, and is the configuration evidence that the link was disabled on purpose.
+
 ## The end state
 
 The program is done when:

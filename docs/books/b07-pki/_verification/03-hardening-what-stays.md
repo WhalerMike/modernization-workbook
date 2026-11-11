@@ -146,3 +146,14 @@ Learn coverage pass (citations for Microsoft Learn identity pages the chapter al
 | L3 | CES must use HTTPS with a Server Authentication certificate; off-CA CES issuing new certificates has a service account trusted for delegation | ESC8 detection | verified (sentence added) | `c03-ces-config`: Learn, "Configure the Certificate Enrollment Web Service" (read Nov 9, 2026) |
 | L4 | NDES runs in IIS under a service account in IIS_IUSRS | ESC8 closing paragraph | verified (clause added) | `c03-ndes-account`: Learn, "Configure Network Device Enrollment Service to use a domain user account" (read Nov 9, 2026) |
 | L5 | `Restore-CARoleService` is the restore cmdlet; `-Password` protects the CA certificate and key, not the database | Back up before every change | verified (sentence added) | `c03-ca-backup`: Learn, "CA Backup and Restore Windows PowerShell cmdlets" (read Nov 9, 2026) |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | CA audit filter and Audit Certification Services both needed; generate each event in a test first; back up before changes | Turn on CA auditing (authority, How, states, evidence) | verified (carried; footnote c03-ca-audit) | [Secure, delegate, and audit CA administration](https://learn.microsoft.com/windows-server/identity/ad-cs/secure-delegate-audit-certification-authority) | Nov 11, 2026 |
+| P4-2 | Remediation rings, backout triggers, 90-day request check, control states and evidence for the migration gate | The risk-scoring matrix | restated-as-design (program position) | Program design | Nov 11, 2026 |
+| P4-3 | HSM-held CA keys and dual control relabeled Risk-based recommended (SC-12 and SC-13 leave the mechanism to the organization) | Hardening the AD CS that remains | corrected (authority label; was 'The program also requires') | NIST SP 800-53 Rev. 5 SC-12, SC-13 | Nov 11, 2026 |
+| P4-4 | Affinity, CRL validation and CA scoping roll out through Chapter 06's staged sequence; Microsoft-recommended | Hardening Entra CBA | restated-as-design | Chapter 06; Learn pages already cited | Nov 11, 2026 |

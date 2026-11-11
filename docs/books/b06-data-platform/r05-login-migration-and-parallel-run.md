@@ -206,6 +206,73 @@ ALTER LOGIN [sa] WITH NAME = [<new name>];
 
 Closing the enabled `sa` account is one step toward the Entra-exclusive operational posture. On SQL Server 2025 on Windows connected to Arc, Microsoft added a portal option to disable SQL authentication, generally available since April 2026; use it, after the SQL logins themselves are migrated. It is a separate setting from `LoginMode`, not a replacement for it.[^r05-arc-release-notes] On SQL Server 2022 instances, set Windows Authentication mode (`LoginMode = 1`) once the SQL logins are migrated.
 
+Microsoft's own sequence for the SQL Server 2025 setting matches this runbook's: find which principals still connect with SQL Server Audit's `SUCCESSFUL_LOGIN_GROUP`, create Entra equivalents with matching permissions, move everything that connects (applications, Agent jobs, linked servers, scripts), and confirm no SQL-authentication traffic remains before disabling. It also tells you to make sure an Entra login can still do the administrative work you need first. The setting blocks only new SQL logins, takes effect without a restart, and is reversed by clearing the checkbox, which Azure role-based access control governs rather than a SQL Server connection, so a lost data-plane path can be restored from the portal. Check it with `SERVERPROPERTY('IsExternalAuthenticationOnly')`, which returns `1` when SQL authentication is disabled.[^r05-disable-sql]
+
+```sql
+SELECT SERVERPROPERTY('IsExternalAuthenticationOnly') AS sql_auth_disabled;   -- 1 = disabled
+```
+
+## Control states, change safety and evidence {#b06-r05-control-states}
+
+This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to the steps above and adds only what was missing.
+
+**Authority:** risk-based recommended for the parallel run and the disable-then-drop sequence, which are the program's decisions for a reversible cutover ([Chapter 12](12-the-engine-authentication-decision.md#decision-2-the-parallel-run-sequence-is-required)); Microsoft-recommended for auditing which principals connect before SQL authentication is disabled, and for keeping a working Entra administrative login first (Learn, "Disable SQL authentication for SQL Server enabled by Azure Arc," read Nov 11, 2026);[^r05-disable-sql] risk-based recommended for disabling and renaming `sa`, the program's standard ([Chapter 12](12-the-engine-authentication-decision.md#decision-3-sql-authentication-eliminated-sa-disabled-and-renamed)).
+**Applies:** instances that completed [Runbook R04](r04-arc-deployment-and-managed-identity.md). Environment-dependent: the Disable SQL Authentication setting needs SQL Server 2025 on Windows with a primary managed identity and extension version `1.1.3394.392` or later;[^r05-disable-sql] it isn't among the features Microsoft lists for the US Government Virginia region ([Runbook R04](r04-arc-deployment-and-managed-identity.md#b06-r04-control-states)), and for GCC High and DoD it is not yet specified.
+
+| How-section subsection | In this runbook |
+|---|---|
+| Prerequisites | Preconditions 1 to 4 |
+| Pilot | One pilot instance for the generated script and the parallel run, as the illustrative-code warning says; success is the Step 3 exit criteria on that instance, confirmed with the Entra `auth_scheme` value observed there |
+| Report-only or audit phase | Step 3: the parallel run with SQL Server Audit's `SUCCESSFUL_LOGIN_GROUP` capturing every login, Windows and Entra paths both open |
+| Enforcement | Step 4 (disable the superseded Windows logins), then the `sa` remediation and the SQL authentication setting, ring by ring as below |
+| Rollback | `ALTER LOGIN ... ENABLE` while the login is disabled, not dropped; for the SQL Server 2025 setting, clear **Disable SQL Authentication** in the portal |
+| Exclusions | Logins left unresolved in the mapping, each with a reason; the break-glass Windows group of [Appendix B](appendix-b-ato-kit.md#break-glass-design), empty by default; and any type-S login with a dated entry in the exception registry |
+| Telemetry | SQL Server Audit `SUCCESSFUL_LOGIN_GROUP` and `FAILED_LOGIN_GROUP` records; the `auth_scheme` query; Entra sign-in logs for the SQL resource |
+| Evidence | The checklist below |
+| Day-two ownership | The data platform team owns the logins, the audit and the drop decision; application owners sign off their cutover windows ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). Drift is a new type-U, type-G or type-S login, or `LoginMode` returning to mixed mode, which [Runbook R09](r09-continuous-monitoring-and-closure.md) reports |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | A non-production instance with the production Arc and extension configuration | Generated script reviewed; parallel run and rollback rehearsed |
+| 1 | One pilot production instance with a few well-understood applications | Step 3 exit criteria met; no failed logins on a disabled login for the 30-day observation |
+| 2 | A wave of instances, by application owner | As ring 1 for every instance in the wave |
+| 3 | The rest of the retained estate | As ring 1; `sa` disabled and renamed and SQL authentication refused on each instance |
+
+- **Emergency access:** before any disable, a DBA proves two ways in that don't depend on the logins being cut over: the Entra admin group from [Runbook R04](r04-arc-deployment-and-managed-identity.md), and the registered break-glass Windows group, with a test member added and removed under change and the login recorded. Never disable `sa` or turn on Disable SQL Authentication without the first; the tenant's emergency access accounts stay excluded from the Conditional Access policies that govern Entra sign-ins ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#conventions-used-in-every-policy)).
+- **Change window:** each disable runs in a window the application owners have agreed, with a DBA able to run `ALTER LOGIN ... ENABLE` on hand for its duration.
+- **Backout triggers:** set before the change: any failed login on a just-disabled Windows login from a production application (`FAILED_LOGIN_GROUP`), any job or linked server failing to connect, or an application owner reporting an outage traced to the cutover. Any one re-enables the login and stops the ring.
+- **Post-change validation:** the Step 3 query and the audit record after each ring, and for the SQL Server 2025 setting, the `IsExternalAuthenticationOnly` check above.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the reviewed `create-entra-logins.sql` and database-user scripts at the commit that ran, and a `sys.server_principals` export after cutover
+- [ ] **Operational:** the SQL Server Audit files for the parallel run and the 30-day observation, kept for the audit-record retention period
+- [ ] **Test:** the pilot's Entra test login, the observed `auth_scheme` values, and the `Test-FMPLoginParallelRun` record per instance
+- [ ] **Exception:** unresolved logins with their reasons, the break-glass group's registry entry, and any excepted type-S login with its sunset date
+- [ ] **Assessor-ready artifact:** the instance's closure record from [Runbook R09](r09-continuous-monitoring-and-closure.md), traceable to the above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The reviewed login mapping (Step 1) | The mapping file and its approval |
+| Configured | Steps 1 and 2, Entra logins and users beside the Windows ones | The reviewed scripts and a principals export |
+| Enforced | Step 4 and the `sa` remediation, by ring | Disabled Windows logins, `sa` disabled and renamed, `LoginMode = 1` or `IsExternalAuthenticationOnly = 1` |
+| Evidenced | Step 3 exit criteria and the 30-day observation | Audit records and the parallel-run record |
+| Operated | [Runbook R09](r09-continuous-monitoring-and-closure.md) drift detection | Closure records and drift events |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Infrastructure (the Arc machine identity and extension, [Runbook R04](r04-arc-deployment-and-managed-identity.md)); Identity (Conditional Access on SQL sign-ins, [Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md)); Data (which databases each principal reaches)
+- **Attack chain interrupted:** Credential Access and Persistence: no SQL password or well-known `sa` login left to guess or spray, and no forgotten Windows login left to keep a way in
+:::
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Runbook R04 — Arc Deployment & the Managed Identity](r04-arc-deployment-and-managed-identity.md) · [Book index](index.md) · [Next: Runbook R06 — NTLM Detection & Remediation →](r06-ntlm-detection-and-remediation.md)
@@ -228,3 +295,5 @@ Closing the enabled `sa` account is one step toward the Entra-exclusive operatio
 [^r05-alter-login-name]: Microsoft Learn, "ALTER LOGIN (Transact-SQL)," argument `NAME = login_name` and example D, "Change the name of a login," <https://learn.microsoft.com/sql/t-sql/statements/alter-login-transact-sql> (accessed Oct 21, 2026).
 
 [^r05-arc-release-notes]: Microsoft Learn, "Release notes - SQL Server enabled by Azure Arc," general availability, <https://learn.microsoft.com/sql/sql-server/azure-arc/release-notes> (accessed Oct 20, 2026).
+
+[^r05-disable-sql]: Microsoft Learn, "Disable SQL authentication for SQL Server enabled by Azure Arc," sections "Prerequisites," "Prepare your environment," "Migrate logins before you disable SQL authentication," "How disabling SQL authentication works" and "Check authentication status," <https://learn.microsoft.com/sql/sql-server/azure-arc/disable-sql-authentication> (accessed Nov 11, 2026).

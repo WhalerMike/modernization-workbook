@@ -52,3 +52,11 @@ Checked October 27, 2026; no personal data sent to any site.
 | S1 | "The tooling isn't published" qualified: R02's read-only discovery now ships as the workbook's Start Kit | What the runbooks automate | corrected | examples/start-kit (PR in this change); tests/powershell, 118 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026 |
 | S2 | Added the "workbook's Start Kit" callout: program automation to kit equivalents (`Invoke-FMPSqlEstateDiscovery`, `Get-FMPSqlInstanceDetail`, `Merge-FMPSqlEstate`/`Get-FMPSqlClassification`, `Get-FMPKerberosSpnMap`), PowerShell 5.1 and 7, write path, provenance; stated that its output isn't the program's sealed envelope | After the roster | added | Same |
 | S3 | Kit's T-SQL permissions (VIEW SERVER STATE; VIEW SERVER PERFORMANCE STATE on 2022+) | Kit README, carried into R02 | verified | learn.microsoft.com/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-index-usage-stats-transact-sql (Permissions for SQL Server 2022 and later), fetched Oct 27, 2026 |
+
+## Zero Trust closure update, November 11, 2026 (Phase 4 conventions)
+
+Phase 4 of the Zero Trust closure update (conventions G-01 to G-08 of Book 00, Appendix D). Added one paragraph after the production-safety callout in Step 3 pointing to the control-states sections of R04 to R08 and R09. No product claim added.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | The production runbooks carry Appendix D sections; read-only runbooks don't | Step 3 | restated-as-design | Book 00, Appendix D | Nov 11, 2026 |

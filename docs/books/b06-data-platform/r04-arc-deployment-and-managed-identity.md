@@ -209,6 +209,67 @@ Arc enrollment is reversible, and the order matters ([Book 05, Chapter 09](../b0
 
 Before Step 4, nothing in SQL Server depends on the machine identity, so rolling back has no effect on existing Windows-authenticated connections. After Step 4, treat Entra authentication as a one-way change on SQL Server 2025: Microsoft advises against disabling it once it's enabled, and forcing it off by deleting registry entries can cause unpredictable behavior.[^r04-sql-mi] Prove the pattern on a pilot instance before turning it on across a wave.
 
+## Control states, change safety and evidence {#b06-r04-control-states}
+
+This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to the steps above. It points to what the runbook already says and adds only what was missing.
+
+**Authority:** Microsoft-recommended for the certificate-based onboarding service principal and for the managed-identity setup of Entra authentication on SQL Server 2025 (Learn, "`azcmagent connect`" and "Managed identity for SQL Server enabled by Azure Arc," read again Nov 11, 2026);[^r04-azcm-connect][^r04-sql-mi] risk-based recommended for making Arc the only path to Entra authentication for the estate, which is the program's position because it is the managed, repeatable configuration ([Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md#bind-the-group-to-a-sql-server-group-login)).
+**Applies:** SQL Server 2022 and later on Windows Server 2019 or later, except failover cluster instances. Environment-dependent: Entra authentication for SQL Server needs the Azure public cloud, and Microsoft's list of features for SQL Server enabled by Azure Arc in the US Government Virginia region still doesn't include it (read Nov 11, 2026),[^r04-sql-mi][^r04-sql-usgov] so a GCC tenant uses a commercial subscription, as [Prerequisites](#the-right-azure-cloud) explains. For GCC High and DoD tenants, which are outside this book's scope, availability is not yet specified.
+
+| How-section subsection | In this runbook |
+|---|---|
+| Prerequisites | [Prerequisites (GCC-Moderate)](#the-right-azure-cloud): cloud, host and instance, network, roles and Graph permissions |
+| Pilot | One pilot instance through Steps 1 to 4, as Step 4 says; success is every line of the verification checklist, including a test Entra login |
+| Report-only or audit phase | Not applicable as a product mode: Arc enrollment has no audit mode. The read-only stand-ins come first: `azcmagent check`, the `Invoke-FMPArcOnboarding` plan record, and the token and extension checks of Steps 2 and 3, all before Step 4 changes the instance. Turning on Entra authentication refuses nothing; Windows and SQL logins keep working until [Runbook R05](r05-login-migration-and-parallel-run.md) |
+| Enforcement | Step 4, ring by ring as below |
+| Rollback | The rollback order above; on SQL Server 2025, Step 4 is treated as one-way |
+| Exclusions | Failover cluster instances (unsupported), instances below SQL Server 2022 (upgrade or except, [Chapter 12](12-the-engine-authentication-decision.md)), and hosts already registered in Azure Government (a second registration plan); each recorded in the exception registry with an owner and a sunset date |
+| Telemetry | `azcmagent show` status, the extension's provisioning state, the Azure activity log for the machine and extension resources, and the `arc_agent_offline` drift event of [Runbook R09](r09-continuous-monitoring-and-closure.md) |
+| Evidence | The checklist below |
+| Day-two ownership | Server infrastructure owns the agent, the extension and egress; the identity team owns the Graph permissions; the data platform team owns the Entra admin and drops a replaced admin login ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). Drift is the agent going offline, the extension failing, or the machine identity changing after a reconnect |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | A non-production host whose Arc and extension configuration matches production | Verification checklist passes; rollback rehearsed once, end to end |
+| 1 | One pilot production instance | Verification checklist passes; a test Entra login works over an encrypted connection; no change in existing Windows-authenticated connections for a week |
+| 2 | The first wave of Category 2 instances from the [Runbook R03](r03-the-authentication-audit.md) audit | Every instance in the wave passes the checklist; no unexplained `arc_agent_offline` events for two weeks |
+| 3 | The rest of the retained estate, wave by wave | As ring 2, per wave |
+
+- **Emergency access:** Arc enrollment and Step 4 restrict no sign-in, so nothing is excluded at this stage. Before Step 4, confirm that an existing `sysadmin` path other than the new Entra admin still works, and that the tenant's emergency access accounts are in place ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)); the SQL Server break-glass group of [Appendix B](appendix-b-ato-kit.md#break-glass-design) is set up before [Runbook R05](r05-login-migration-and-parallel-run.md) disables anything.
+- **Change window:** Steps 1 and 4 run in an approved change window, approved by the server infrastructure lead and the instance's application owners, with a DBA and an identity engineer who can grant Graph permissions on hand.
+- **Backout triggers:** set before the change: the agent not reporting `Connected` within the window, the extension not reaching `Succeeded`, any existing Windows-authenticated application connection failing after Step 4, or the test Entra login failing for a reason the failure modes above don't resolve in the window.
+- **Post-change validation:** the verification checklist, run after each ring and kept as the test record.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `azcmagent show -j` output and the extension document (`az connectedmachine extension show`) for each instance, and the Entra admin setting on the **Microsoft Entra ID and Purview** page, exported or captured
+- [ ] **Operational:** the Arc inventory and the `arc_agent_offline` drift results from [Runbook R09](r09-continuous-monitoring-and-closure.md), kept with the audit runs
+- [ ] **Test:** the token check of Step 2 (claims only, never the token) and the test Entra login, with date, instance and tester
+- [ ] **Exception:** the excluded instances in the exception registry, with owner, reason and sunset date
+- [ ] **Assessor-ready artifact:** the `Test-FMPArc*` sealed records and the instance's closure record ([Runbook R09](r09-continuous-monitoring-and-closure.md)), in the evidence package for the period
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Prerequisites, and the instance's Category from [Runbook R03](r03-the-authentication-audit.md) | The wave plan and the exception registry entries |
+| Configured | Steps 1 to 3 | `azcmagent show` and extension exports |
+| Enforced | Step 4, Entra authentication on, by ring | The Entra admin setting for each instance; nothing is refused until Runbooks R05 and R06 |
+| Evidenced | The verification checklist | Token-claims record and test-login record |
+| Operated | Arc health in [Runbook R09](r09-continuous-monitoring-and-closure.md)'s closure record and drift diff | Drift results and the owner named in Chapter 13 |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Infrastructure
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Identity (the Entra tenant, Graph permissions and the Entra admin group, [Book 04](../b04-access/index.md)); Networks (outbound paths to the Arc and Entra endpoints, [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md))
+- **Attack chain interrupted:** Credential Access: the host gets a cloud identity with no stored secret, which is what lets later runbooks retire service-account passwords and NTLM
+:::
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Runbook R03 — The Authentication Audit](r03-the-authentication-audit.md) · [Book index](index.md) · [Next: Runbook R05 — Login Migration & Parallel-Run Validation →](r05-login-migration-and-parallel-run.md)

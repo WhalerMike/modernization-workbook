@@ -94,6 +94,38 @@ Second, Global Secure Access is often ruled out on the grounds that it isn't FIP
 
 Device-side TRv2 has limits that the instruments make the agency enumerate. It works on managed Windows 10 and Windows 11 devices and covers Office apps, Universal Windows Platform .NET apps and Microsoft Edge. Microsoft says it "doesn't protect the .NET stack, Chrome, or Firefox," and recommends App Control for Business to block unenlightened apps from Microsoft resources. Microsoft labels its data-plane support for Teams, SharePoint Online, Exchange Online and Office.com, and its anonymous-access blocking for Forms and Teams, as preview.[^c12-trv2] The program's position is therefore that device-side TRv2, verified in force at the site from the endpoint and with the uncovered device and browser population listed rather than assumed empty, is a **precondition to cutover** in all three instruments. Microsoft documents Group Policy deployment; for an Intune-managed fleet, confirm how the same Windows setting is delivered ([Book 05](../b05-devices/index.md)). The rest of the identity layer, Conditional Access and token protection, becomes the primary control on a less-inspected path ([Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md)).
 
+The tenant restrictions v2 policy itself, which blocks external accounts and applications by default, is [Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md#tenant-restrictions-v2-the-outbound-edge)'s, and universal tenant restrictions through Global Secure Access are built in [Step 8 of the Global Secure Access implementation guide](../guides/global-secure-access-implementation.md#step-8-tenant-restrictions), each with its pilot, rollback and evidence. This chapter adds only what the exemption needs from them: proof that device-side signaling is in force at each site before cutover.
+
+**Authority:** Risk-based recommended (device-side TRv2 as a precondition to cutover is the program's position, for the risk of tenant-to-tenant exfiltration over an uninspected path); Microsoft-recommended for App Control for Business against unenlightened apps.[^c12-trv2] **Applies:** Environment-dependent: managed Windows 10 and 11 devices only, with data-plane coverage labeled preview, and the rest of the device and browser population listed as uncovered; tenant restrictions v2's government-cloud availability is not yet specified on Learn ([Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md#government-clouds)).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The memo's precondition ([The three instruments](#the-three-instruments)) | The memo and the TRv2 policy's allow list |
+| Configured | Device-side TRv2 delivered to the site's managed Windows devices | The Group Policy or Intune setting export, scoped to the site |
+| Enforced | The policy in force before the site's cutover | Attachment A's readiness date for the site |
+| Evidenced | A sign-in from a site device to a tenant outside the allow list is blocked, and data-plane access with a copied token is refused | Test record with the sign-in log entry |
+| Operated | The uncovered population list and the policy reviewed on the register's cadence | Attachment A change log; review records |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the TRv2 policy export and the device setting export for each site
+- [ ] **Operational:** sign-in log entries showing tenant restrictions blocks, kept for the program's log retention
+- [ ] **Test:** the blocked sign-in and the refused data-plane request per site (date, tester)
+- [ ] **Exception:** the uncovered device and browser population, with the compensating control and owner for each
+- [ ] **Assessor-ready artifact:** Attachment A's readiness row for the site, citing the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Data; Networks
+- **CISA ZTMM pillar:** Data; Networks
+- **Depends on:** managed Windows devices ([Book 05](../b05-devices/index.md)); the cross-tenant access policy ([Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md))
+- **Attack chain interrupted:** moving agency data to a personal or hostile tenant over a path nobody inspects (Exfiltration)
+:::
+
 ## The three instruments
 
 The decision needs three documents, each signed by the person whose question it answers.

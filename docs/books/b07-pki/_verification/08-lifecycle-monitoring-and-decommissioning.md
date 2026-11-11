@@ -161,3 +161,11 @@ Added for the Zero Trust Assessment closure update (B07-01, and the Book 07 part
 | Z10 | addKey needs proof of possession signed with an existing key | Rollover | verified | Learn, Graph application: addKey | Nov 11, 2026 |
 | Z11 | Graph service principal update available in US Gov L4 and L5 | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
 | Z12 | Approved issuers, HSM criteria, 36-day overlap, rings, 45-day flag, inventory script | Design; Enforcement | restated-as-design | Program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | How template, control states and evidence for decommissioning one CA; only certificate hold is reversible, so a restored CA can't un-revoke | Decommissioning AD CS | restated-as-design (revocation fact carried from c08-adcs-revoke) | Program design | Nov 11, 2026 |

@@ -64,7 +64,7 @@ The change is the simplest step technically, but it can't be made on demand. Thr
 2. **The role is granted.** The application's service principal or managed identity must hold the right database role, so that authentication succeeds and authorization follows ([Chapter 16](16-groups-roles-and-membership.md)). A token doesn't grant database permissions by itself.[^c19-sqlclient]
 3. **The change is tested in a production-equivalent environment.** Token acquisition and validation depend on the Arc agent, the Azure extension for SQL Server and the instance's Entra configuration being present and correct, and Entra connections require an encrypted connection with a server certificate the client trusts.[^c19-tutorial] A connection-string change that works on a developer's laptop but has never been exercised against a production-equivalent Arc, extension and certificate stack isn't a tested change.
 
-Only when all three gates hold is the production cutover safe to perform.
+Only when all three gates hold is the production cutover safe to perform. [Runbook R08](r08-application-chain-and-connection-strings.md#b06-r08-control-states) gives the cutover's rings, backout triggers and evidence.
 
 ## The Azure.Identity library and DefaultAzureCredential
 

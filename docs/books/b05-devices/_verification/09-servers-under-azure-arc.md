@@ -183,3 +183,15 @@ Re-checked after the weekly source watch (issue #299, week of November 2, 2026) 
 | Finding | Change |
 |---|---|
 | Cloud Adoption Framework articles "Identity and access management for Azure Arc-enabled servers" and "Automation disciplines for Azure Arc-enabled servers" retired; their addresses now serve the Arc pages "Identity and access management with Azure Arc-enabled servers" (no role or extension warning) and "Plan and deploy Azure Arc-enabled servers" | gone, replaced: the CAF warning on Contributor, Owner and Azure Connected Machine Resource Administrator restated from Arc docs (that role includes extension-deployment permissions, manage-vm-extensions; extension manager runs as Local System or root, security-overview); dedicated resource group footnote now cites Plan and deploy, Phase 1 |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (conventions applied to existing procedures)
+
+Book 00, Appendix D conventions applied to onboarding and the day-one baseline: new section "Control states, change safety and evidence for servers" (`#b05-09-server-control-states`), with government-cloud availability. Pages read on Nov 11, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Machine configuration assignment types Audit, ApplyAndMonitor, ApplyAndAutoCorrect; a new assignment audits an existing machine first; CustomGuestConfigurationSetPolicy=disable for custom packages only | Server control states | verified (new footnote c09-p4-mc-remediation) | Learn, "Remediation options for machine configuration," https://learn.microsoft.com/azure/governance/machine-configuration/concepts/remediation-options | Nov 11, 2026 |
+| P4-2 | Update Manager supports Arc-enabled servers in USGovVirginia and USGovArizona | Server control states, Applies | verified (new footnote c09-p4-aum-regions) | Learn, "Supported regions for Azure Update Manager," https://learn.microsoft.com/azure/update-manager/supported-regions | Nov 11, 2026 |
+| P4-3 | Defender for Servers GA in Azure Government; GCC-M on public cloud lacks direct onboarding, VA recommendations, FIM for the MDE integration | Server control states, Applies | verified (new footnote c09-p4-dfs-clouds) | Learn, "Defender for Servers support," https://learn.microsoft.com/azure/defender-for-cloud/support-matrix-defender-for-servers | Nov 11, 2026 |
+| P4-4 | Machine configuration in Azure Government; Arc in DoD regions | Server control states, Applies | unverifiable on the pages read: written as "not yet specified" (Arc's region list is on the Azure products-by-region page, not Learn) | Learn, "What is Azure Arc-enabled servers?," Supported regions | Nov 11, 2026 |
+| P4-5 | Server waves by Criticality tag, exit criteria, recovery path, backout triggers | Server control states | restated-as-design | program design | Nov 11, 2026 |

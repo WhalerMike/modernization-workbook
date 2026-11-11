@@ -165,6 +165,67 @@ Three facts bound the dividend:
 - **Which principals it reaches.** Microsoft's Azure SQL guidance notes that Conditional Access policies apply to users, not to programmatic connections such as service principals and managed identities.[^r07-ca-sql] Application connections ([Runbook R08](r08-application-chain-and-connection-strings.md)) are protected by their credential type and by workload-identity controls (in Book 04, CA037 for high-risk service principals), not by device or MFA conditions.
 - **What it costs.** Sign-in-risk conditions need Microsoft Entra ID P2 (Book 04 marks CA014 and CA019 as P2); compliance, location and MFA conditions need P1.
 
+## Control states, change safety and evidence {#b06-r07-control-states}
+
+This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to Phase 2 and adds only what was missing. This runbook creates no Conditional Access policy: the perimeter is the [Book 04 library](../b04-access/07-the-conditional-access-policy-library.md), which carries its own report-only phase, rings, emergency access exclusion and rollback ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#policy-design-matrix)). What this runbook enforces is who reaches SQL Server through which group.
+
+**Authority:** Microsoft-recommended for avoiding `-contains` and `-match` in dynamic rules and for scoping roles to an administrative unit (the Learn pages cited in Phase 2); risk-based recommended for the AU-first sequence, unrestricted-by-default AUs and group logins over per-user logins, which are the program's design ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md)).
+**Applies:** License-dependent: dynamic groups need Microsoft Entra ID P1 for each member, and an AU-scoped administrator needs P1.[^r07-dynamic][^r07-au-license] Environment-dependent: a GCC tenant uses the worldwide Entra ID and Graph endpoints;[^r07-graph-clouds] Microsoft lists Conditional Access, dynamic groups and delegated administration with built-in roles as available in Azure for US Government, and doesn't list administrative units or restricted management administrative units there, so their availability in GCC High and DoD is not yet specified (read Nov 11, 2026).[^r07-entra-gov]
+
+| How-section subsection | In this runbook |
+|---|---|
+| Prerequisites | Phase 1 inventory and classification; the instance through [Runbook R05](r05-login-migration-and-parallel-run.md)'s preconditions; the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) populated for the rule's attributes |
+| Pilot | One instance's reader groups first; success is the verification list above, with every expected member present and no unexpected one |
+| Report-only or audit phase | The adapters' dry run, reviewed before any write; each dynamic rule validated against the captured inventory before it is applied; for the perimeter, the Book 04 policies' report-only results for sign-ins to the SQL resource |
+| Enforcement | The order under Sequencing above, then group logins ring by ring as below; the Book 04 waves for the perimeter |
+| Rollback | The verification-and-rollback list above: delete the object or revert the rule; `DROP LOGIN` once no user depends on it; Book 04's report-only fallback for a policy |
+| Exclusions | Groups classified `review`, distribution lists (never a SQL login) and, for the perimeter, the Book 04 library's exclusions, emergency access first. The break-glass Windows group stays outside every Entra group and rule ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md#break-glass)) |
+| Telemetry | Entra audit logs for group, rule, AU and role-assignment changes; Entra sign-in logs with Conditional Access results for the SQL resource; `sys.server_principals` |
+| Evidence | The checklist below |
+| Day-two ownership | The identity team owns groups, rules, AUs and the perimeter policies; the data platform team owns the group logins and their database roles; data owners confirm each rule still describes its population ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). Drift is a rule edited outside change control, a group membership count moving outside its expected range, or a new login not backed by a classified group |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | A test tenant or a test AU, with the adapters' dry run | Planned writes match the classification; rollback rehearsed |
+| 1 | The DBA AU and its scoped assignment, then one instance's reader groups | AU boundary verified; expected members only; test sign-ins as a member and a non-member behave as designed |
+| 2 | One application's groups at a time | As ring 1, signed off by the application owner and data owner |
+| 3 | The remaining classified groups | As ring 1; Phase 1 inventory rerun matches the target |
+
+- **Emergency access:** the tenant's emergency access accounts are excluded from every enforced Conditional Access policy, as the Book 04 library requires of itself ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#conventions-used-in-every-policy)), and appear in no dynamic rule; the SQL Server break-glass group is a Windows group and depends on none of this machinery. Plan the phishing-resistant method for SQL sign-ins knowing that Microsoft doesn't currently support FIDO2 for Entra authentication to SQL Server on Arc ([Chapter 20](20-the-closure-condition.md#the-five-closure-conditions)).
+- **Change window:** Graph writes and group logins in a window approved by the identity owner and the application owner, with the data platform team on hand to drop a group login.
+- **Backout triggers:** set before the change: a dynamic group's membership differing from the validated count by more than the threshold the owner set, a member who should have access denied, or a non-member gaining access. Any one reverts the rule or drops the login.
+- **Post-change validation:** the verification list above after each ring, including a member and a non-member test sign-in to the instance.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the classification file, the adapters' reviewed plans, `Export-FMPEntraGroups` and `Export-FMPConditionalAccess` output after the change, and `create-group-logins.sql` at the commit that ran
+- [ ] **Operational:** Entra audit log entries for each change, and sign-in logs with Conditional Access results for the SQL resource
+- [ ] **Test:** member and non-member test sign-ins, and the AU-boundary test, with date and tester
+- [ ] **Exception:** `review` groups and any AU marked restricted, each with its recorded decision
+- [ ] **Assessor-ready artifact:** the Conditional Access MFA evidence set and the reconciliation in [Runbook R09](r09-continuous-monitoring-and-closure.md#the-six-live-evidence-sets)
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Phase 1 classification and the AU restriction decision | The classification file and the AU's registry entry |
+| Configured | The AU, the groups and rules, the group logins | Adapter records and exports |
+| Enforced | Group logins replacing Windows group logins, by ring; the Book 04 policies **On** | `sys.server_principals` showing type X; policy exports |
+| Evidenced | The verification list | Test sign-in records and their sign-in log entries |
+| Operated | Access reviews of the groups ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md#access-reviews)) and [Runbook R09](r09-continuous-monitoring-and-closure.md) | Review results and drift events |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Devices (device compliance in the perimeter policies, [Book 05](../b05-devices/index.md)); Identity (the HR attributes the rules read, [Book 03](../b03-hr-identity/index.md)); Data (which databases each group's role reaches)
+- **Attack chain interrupted:** Privilege Escalation and Initial Access: a tenant-wide administrator can't quietly change who reaches the database, and a human sign-in to SQL Server meets device, location and MFA conditions before a token is issued
+:::
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Runbook R06 — NTLM Detection & Remediation](r06-ntlm-detection-and-remediation.md) · [Book index](index.md) · [Next: Runbook R08 — The Application Chain & Connection-String Migration →](r08-application-chain-and-connection-strings.md)
@@ -183,4 +244,6 @@ Three facts bound the dividend:
 [^r07-entra-setup]: Microsoft Learn, "Tutorial: Set up Microsoft Entra authentication for SQL Server with app registration," section "Create logins and users," <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial> (accessed Oct 20, 2026).
 [^r07-entra-sql]: Microsoft Learn, "Microsoft Entra authentication for SQL Server" (setup with and without Azure Arc; access token audience `https://database.windows.net/`), <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview> (accessed Oct 20, 2026).
 [^r07-nonunique]: Microsoft Learn, "Microsoft Entra logins and users with nonunique display names," <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/authentication-microsoft-entra-create-users-with-nonunique-names> (accessed Oct 20, 2026).
+[^r07-au-license]: Microsoft Learn, "Administrative units in Microsoft Entra ID," section "License requirements" (P1 for each administrative unit administrator assigned directory roles over the unit; Free for each member), <https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units> (accessed Nov 11, 2026).
+[^r07-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Conditional Access, advanced group management including dynamic groups, and delegated administration with built-in roles listed as available; administrative units not listed), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
 [^r07-ca-sql]: Microsoft Learn, "Conditional access" (Azure SQL Database, Azure SQL Managed Instance and Azure Synapse Analytics; target resource *Azure SQL Database*; policies apply only to users, not to service principals and managed identities; P1 required), <https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure> (accessed Oct 20, 2026).

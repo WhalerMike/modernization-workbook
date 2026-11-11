@@ -132,3 +132,14 @@ Instructions B05-01 (compliance architecture; macOS removed from scope, Mike, No
 | 20 | Base endpoint analytics in GCC High and DoD | Endpoint analytics applicability | unverifiable: Learn doesn't state it; recorded as not yet specified | Learn endpoint analytics pages; Intune government service description | Nov 11, 2026 |
 | 21 | WFA metrics Graph v1.0, permission, national clouds | Evidence | verified | Graph v1.0, "List userExperienceAnalyticsWorkFromAnywhereMetrics" | Nov 11, 2026 |
 | 22 | Privacy decision, ring segmentation, monthly review, owners | Endpoint analytics | restated-as-design | program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (conventions applied to existing procedures)
+
+Phase 4 follow-up 1 (ASR rollout text aligned to audit, warn, block) and the conventions for the monthly update cycle and for cleanup and retirement: new subsections `#b05-10-update-control-states` and `#b05-10-cleanup-control-states`. Pages read on Nov 11, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Unblock on warn needs administrator approval from platform 4.18.26060; persistent need is a per-rule exclusion; two rules without warn | Microsoft Defender for Endpoint (ASR paragraph); CM-7 row | verified (new footnote c10-p4-asr-warn) | Learn, "Attack surface reduction (ASR) rules overview," Modes for ASR rules, https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview | Nov 11, 2026 |
+| P4-2 | Pause up to 35 days from next check-in; Uninstall starts at once, restarts without delay option, pauses the ring; feature uninstall only within the 2 to 60 day period | Update control states, Rollback | verified (new footnote c10-p4-update-rings) | Learn, "Manage Windows Update ring policies," https://learn.microsoft.com/intune/device-updates/windows/manage-update-rings | Nov 11, 2026 |
+| P4-3 | Update rings standard MDM; feature and quality update policies and Autopatch planned for GCC High and DoD; Autopilot not available there | Update and cleanup control states, Applies | verified (existing c10-intune-gov, rechecked Nov 11, 2026) | Learn, "Microsoft Intune for US Government GCC High and DoD service description," https://learn.microsoft.com/intune/fundamentals/government-service | Nov 11, 2026 |
+| P4-4 | Update and cleanup rings, exit criteria, backout triggers, owners | Update and cleanup control states | restated-as-design | program design | Nov 11, 2026 |
