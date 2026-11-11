@@ -3248,6 +3248,7 @@ pages:
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   cited_by:
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
+  - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b02-identity/_verification/10-migrating-and-governing.md
 - path: WindowsServerDocs/identity/ad-fs/decommission/adfs-decommission-guide.md

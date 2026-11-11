@@ -75,6 +75,178 @@ Wildcard DNS is the natural way to publish a namespace of applications: one `*.a
 
 Regional namespaces of the form `{app}.{region}.agency.gov` add a variant: geographic split-brain. A record present in one cloud's private zone and absent from another's produces NXDOMAIN rather than a wrong address, a different failure signature that may not trip the same alerts. Governing these namespaces requires one authoritative source publishing the same records to every surface. The address side of this registry, IPAM that tracks FQDN namespaces and wildcard occupancy as well as address assignments, is in [Chapter 07](07-cloud-private-endpoints-and-ipam.md).
 
+## Redirect URIs: the names a token is sent to {#redirect-uris-and-dns-ownership}
+
+An OAuth application's redirect URI is where Entra ID sends the authorization code or token after the user signs in. Entra ID sends tokens only to redirect URIs registered on the application,[^c06-reply-url] so the registration is an allow-list of DNS names, and whoever controls one of those names can receive tokens meant for the application. That makes every redirect URI a DNS dependency with the same failure as any dangling record ([Chapter 11](11-operating-the-control-plane.md#record-hygiene)): a CNAME left pointing at a deleted cloud resource, or a domain whose registration lapsed, can be claimed by someone else, and Microsoft warns that if application logic sends OAuth credentials to a dangling subdomain, they may be exposed to third parties.[^c06-dangling]
+
+Microsoft's Zero Trust guidance for Entra ID carries three checks on this: app registrations and service principals use safe redirect URIs (no wildcards, URL shorteners or `*.azurewebsites.net`, and for service principals no `localhost`), and app registrations have no dangling or abandoned-domain redirect URIs.[^c06-zt-engineering] The registration side, who may register applications and how their credentials are governed, is [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md)'s; ranking applications in the portfolio is [Book 18's](../b18-application-modernization/02-triaging-the-portfolio.md). This section is the DNS side: every redirect domain has an owner and DNS proof.
+
+**Authority:** Microsoft-recommended (maintain ownership of all redirect URIs, monitor their DNS records, no wildcards or insecure schemes, keep the list small, from "Security best practices for application properties in Microsoft Entra ID" and "Configure Microsoft Entra for Zero Trust: Protect engineering systems," read Nov 11, 2026); the DNS-proof rule and the cadence are risk-based recommended, the program's position for the token-interception risk above.
+**Applies:** every app registration the agency owns. Multitenant applications registered by other organizations carry their publisher's redirect URIs, which the agency can't change; their control is consent ([Book 04](../b04-access/05-applications-and-workload-identities.md#consent)). Environment-dependent: the Microsoft Graph application APIs are available in the US Government L4 and L5 (DoD) deployments;[^c06-graph-gov] the sign-in endpoint for Azure Government tenants is `login.microsoftonline.us` ([above](#from-kerberos-to-tokens-the-dns-surface-changes-it-doesnt-shrink)).
+
+### The pattern
+
+| Rule | What it means | Source |
+|---|---|---|
+| **Owner and DNS proof for every redirect domain** | Each registrable domain in a redirect URI is in the agency's domain inventory with an owner, its zone is served by the agency's authoritative DNS ([Chapter 09](09-who-owns-dns.md)), its registration doesn't expire within 90 days, and each redirect host resolves to a resource the agency owns | Microsoft: maintain ownership of all URIs; a lapse in ownership of one can lead to application compromise; keep DNS records updated and monitored[^c06-app-best-practices] |
+| **No wildcards** | Every redirect URI is an absolute URI | Wildcards can be set only through the manifest, for work-or-school-only apps, and Microsoft strongly recommends absolute URIs, per RFC 6749 section 3.1.2[^c06-reply-url] |
+| **HTTPS only, except loopback in development** | `http` only for `localhost` or `127.0.0.1`, and those only on development registrations | Microsoft supports `http` only for localhost and says to keep development redirect URIs out of production apps, using separate registrations[^c06-reply-url] |
+| **No shared or predictable cloud default names** | No `*.azurewebsites.net` default hostnames or URL shorteners; an App Service front end uses a custom domain with its `asuid` verification record, or a secure unique default hostname | Microsoft's redirect URI checks; App Service domain verification and unique default hostnames prevent takeover[^c06-zt-engineering][^c06-appservice-takeover] |
+| **The application object only** | Redirect URIs are added to the application object, never to a service principal | A service principal's values can be overwritten when it syncs with the application object[^c06-reply-url] |
+| **Small lists** | Remove any URI the application no longer uses | Microsoft: keep the list small, trim unnecessary URIs[^c06-app-best-practices] |
+
+A name that points at a cloud resource, whether an Azure, AWS, Google Cloud or Oracle Cloud resource name, dangles the same way when the resource is deleted; the check below flags any CNAME whose target is in a list of provider suffixes the DNS team maintains, starting from Microsoft's reference list of Azure domains.[^c06-dangling]
+
+### Prerequisites
+
+- Application.Read.All to read redirect URIs; Application Administrator or Cloud Application Administrator, through PIM, to change them; Reports Reader for the sign-in check.
+- The agency's domain inventory as a CSV (`domain,owner,authoritative`), from the DDI platform's zone list ([Chapter 07](07-cloud-private-endpoints-and-ipam.md)).
+- Outbound access from the run host to the IANA RDAP bootstrap file and the registries' RDAP services, for registration expiry (RFC 9224, RFC 9083).[^c06-rdap]
+
+### Pilot
+
+Run the inventory and checks below against the identity team's own registrations first, then against one business unit's. Success is a report every owner agrees is complete, with no false "dangling" result left unexplained.
+
+### Report-only phase
+
+The check reads and reports; it changes nothing. Run it weekly for a month before any cleanup.
+
+```powershell
+#Requires -Modules Microsoft.Graph.Applications
+# Read-only: every redirect URI on the agency's app registrations, with DNS and ownership checks
+Connect-MgGraph -Scopes 'Application.Read.All' -NoWelcome
+$owned    = Import-Csv '.\domain-inventory.csv'          # columns: domain, owner, authoritative
+$cloudSfx = @('azurewebsites.net','cloudapp.azure.com','cloudapp.net','azurefd.net','azureedge.net','blob.core.windows.net',
+              'trafficmanager.net','azurecontainer.io','azure-api.net','usgovcloudapp.net')   # extend for other providers
+$rows = foreach ($app in Get-MgApplication -All -Property 'id,appId,displayName,web,spa,publicClient,signInAudience') {
+    $uris = @($app.Web.RedirectUris) + @($app.Spa.RedirectUris) + @($app.PublicClient.RedirectUris) | Where-Object { $_ }
+    foreach ($u in $uris) {
+        $flags = @()
+        if ($u -match '\*') { $flags += 'wildcard' }
+        try { $h = ([uri]$u).Host } catch { $h = $null; $flags += 'not-a-url' }
+        if ($u -like 'http://*' -and $h -notin 'localhost','127.0.0.1') { $flags += 'http' }
+        if ($h -in 'localhost','127.0.0.1') { $flags += 'loopback' }
+        if ($h -like '*.azurewebsites.net') { $flags += 'default-cloud-hostname' }
+        $owner = $null
+        if ($h -and $h -notin 'localhost','127.0.0.1') {
+            $match = $owned | Where-Object { $h -eq $_.domain -or $h.EndsWith('.' + $_.domain) } | Select-Object -First 1
+            if ($match) { $owner = $match.owner } else { $flags += 'domain-not-in-inventory' }
+            $ans = Resolve-DnsName -Name $h -ErrorAction SilentlyContinue
+            if (-not $ans) { $flags += 'nxdomain-or-no-answer' }
+            $cname = ($ans | Where-Object Type -eq 'CNAME' | Select-Object -Last 1).NameHost
+            if ($cname -and ($cloudSfx | Where-Object { $cname.EndsWith($_) })) { $flags += "cloud-cname:$cname" }
+        }
+        [pscustomobject]@{ App = $app.DisplayName; AppId = $app.AppId; Audience = $app.SignInAudience
+                           RedirectUri = $u; Host = $h; Owner = $owner; Flags = ($flags -join ';') }
+    }
+}
+$rows | Export-Csv ".\FMP-RedirectUriReport-$(Get-Date -Format yyyyMMdd).csv" -NoTypeInformation
+$rows | Where-Object Flags | Format-Table App, RedirectUri, Flags -AutoSize
+```
+
+A `cloud-cname` flag isn't a finding by itself: confirm the target resource exists in a subscription the agency owns, for Azure with Microsoft's `Get-DanglingDnsRecords` tool or an Azure Resource Graph export of resource hostnames, and that an App Service target has its `asuid` record.[^c06-dangling] Then check registration expiry for each registrable domain in the report:
+
+```powershell
+# Registration expiry through RDAP (RFC 9224 bootstrap, RFC 9083 response); <domain> is a registrable domain such as contoso.example
+$domain = '<domain>'
+$boot   = Invoke-RestMethod 'https://data.iana.org/rdap/dns.json'
+$tld    = $domain.Split('.')[-1]
+$base   = ($boot.services | Where-Object { $_[0] -contains $tld } | Select-Object -First 1)[1][0]
+$rdap   = Invoke-RestMethod ($base.TrimEnd('/') + "/domain/$domain")
+$rdap.events | Where-Object eventAction -eq 'expiration' | Select-Object eventAction, eventDate
+```
+
+### Enforcement
+
+Cleanup is enforcement here: each flagged URI is fixed or removed, in rings.
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The identity team's registrations | Every flag fixed or explained; post-change tests pass |
+| 1 | Registrations with high-classified permissions ([Book 04](../b04-access/05-applications-and-workload-identities.md#permissions-what-an-application-can-be-granted)) | No wildcard, no dangling or uninventoried domain |
+| 2 | All other production registrations | As ring 1 |
+| 3 | New registrations | The check runs in the registration request ([Book 04's governed lifecycle](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations)); a request with a flagged URI isn't approved |
+
+Before removing a URI, confirm with the application's owner which sign-in flows use it, and record the owner's agreement. Then set the remaining list, which replaces the whole list:
+
+```powershell
+# As the application's technical owner, through PIM: keep only the URIs listed (the list replaces what's there)
+Connect-MgGraph -Scopes 'Application.ReadWrite.All' -NoWelcome
+$app = Get-MgApplication -Filter "appId eq '<application (client) id>'"
+$app.Web.RedirectUris | Set-Content ".\redirect-before-$($app.AppId).txt"          # keep for rollback
+Update-MgApplication -ApplicationId $app.Id -Web @{ RedirectUris = @('<https URI to keep 1>', '<https URI to keep 2>') }
+(Get-MgApplication -ApplicationId $app.Id).Web.RedirectUris
+```
+
+Use `-Spa` or `-PublicClient` in the same way for those platforms. A dangling DNS record found on the way is removed, or pointed at a resource the agency owns, through the DDI platform's change process, and investigated as Microsoft's remediation steps describe: whether any compromise occurred, and why the record wasn't removed when the resource was.[^c06-dangling]
+
+### Post-change OAuth test
+
+After each change, test every redirect URI that remains, and one that was removed, with an interactive authorization request in a browser (a private window, signed in as a test user):
+
+```text
+https://login.microsoftonline.com/<tenant id>/oauth2/v2.0/authorize?client_id=<application (client) id>&response_type=code&redirect_uri=<URL-encoded redirect URI>&scope=openid&state=test
+```
+
+A kept URI returns to the application with a `code` parameter; a removed one stops at Entra ID with `AADSTS50011`, the reply-URL mismatch error.[^c06-reply-url] Use `login.microsoftonline.us` for an Azure Government tenant. Then run the application's own sign-in end to end, and for seven days watch its sign-ins for error 50011, which means a client still sends a URI that was removed:
+
+```kusto
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where AppId == "<application (client) id>" and ResultType == "50011"
+| summarize Failures = count() by bin(TimeGenerated, 1h), ClientAppUsed
+```
+
+### Rollback
+
+Restore the saved list with `Update-MgApplication -ApplicationId $app.Id -Web @{ RedirectUris = (Get-Content ".\redirect-before-<appId>.txt") }`; the technical owner runs it in minutes. Never restore a URI whose domain is dangling or not owned: that would reopen the exposure. Fix the client instead.
+
+### Exclusions
+
+Loopback URIs on development registrations; multitenant applications registered by other organizations (governed by consent, not by this check). Any other exception, such as a vendor-hosted callback on the vendor's domain, is recorded with the vendor's name in the application registry, an owner and a review date, and the vendor domain is added to the inventory as third-party with its own DNS proof (it resolves, and the vendor confirms it in writing).
+
+### Telemetry
+
+- The weekly report and its history, with counts by flag.
+- Audit log: **Update application** events on the registrations in ring 1, alerted, so a redirect URI added outside the request process is seen.
+- Sign-in error 50011 by application.
+- DNS changes and record hygiene metrics from [Chapter 11](11-operating-the-control-plane.md#record-hygiene), including dangling CNAME rates; Microsoft Defender for App Service raises a dangling DNS alert when an App Service site is decommissioned and its custom domain is left in DNS, where that plan is on.[^c06-dangling]
+
+### Evidence
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The pattern table above | The redirect URI standard, approved by the CISO and the DNS owner |
+| Configured | The domain inventory and the weekly check | Inventory CSV; the check's first full report |
+| Enforced | Cleanup rings 0–3 | Reports showing no wildcard, dangling or uninventoried domain in rings 1–2; the registration-request check |
+| Evidenced | Post-change OAuth tests | Test record per change: kept URIs returned a code, removed URI returned AADSTS50011 |
+| Operated | Weekly report, 50011 watch, DNS hygiene | Report history; alert history; exception reviews |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the domain inventory with owners, and each application's redirect URI list (from the weekly report), in the evidence repository
+- [ ] **Operational:** the weekly reports and the 50011 query results, kept for the program's log retention
+- [ ] **Test:** the post-change OAuth test records (expected and observed outcome, date, tester)
+- [ ] **Exception:** vendor-domain and other exceptions with owner, approver and review date
+- [ ] **Assessor-ready artifact:** for each redirect domain, owner and DNS proof (zone authority, resolution, registration expiry), traceable to the "safe redirect URIs" and "no dangling or abandoned domain redirect URIs" checks
+
+### Day-two ownership
+
+The application's registry owner answers for its redirect URIs; the DNS team owns the domain inventory, the zone records and the registration renewals ([Chapter 09](09-who-owns-dns.md)); identity engineering runs the weekly check and routes findings. A domain retirement or a cloud resource decommission includes removing every redirect URI that names it, as Microsoft's decommissioning checklist includes removing the DNS entry.[^c06-dangling] Drift looks like a new wildcard or `http` URI, a domain disappearing from the inventory while an application still uses it, a registration within 90 days of expiry, or a cloud CNAME whose resource no longer exists.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Apps (with Identity)
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** the authoritative DNS and domain inventory (Networks, [Chapter 08](08-reference-architecture.md)); Book 04's application registration governance (Identity)
+- **Attack chain interrupted:** Credential Access: authorization codes or tokens delivered to a subdomain or domain an attacker has claimed
+:::
+
+
 ## DNSSEC
 
 DNSSEC (DNS Security Extensions) adds data-origin authentication and integrity protection to DNS. It doesn't encrypt queries; it lets a resolver verify that the answer it received is authentic and wasn't modified. It provides:
@@ -183,3 +355,10 @@ Signed zones move by their own sequence. In [Chapter 10](10-migration-sequence.m
 [^c06-r53validate]: AWS, *Amazon Route 53 Developer Guide*, "Enabling DNSSEC validation in Amazon Route 53," <https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dnssec-validation.html> (accessed Oct 20, 2026).
 [^c06-az-unsign]: Microsoft Learn, "How to unsign your Azure Public DNS zone," <https://learn.microsoft.com/en-us/azure/dns/dnssec-unsign> (accessed Oct 20, 2026).
 [^c06-vnetenc]: Microsoft Learn, "What is Azure Virtual Network encryption?," <https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-encryption-overview> (accessed Oct 20, 2026).
+[^c06-reply-url]: Microsoft Learn, "Redirect URI (reply URL) outline and restrictions" (tokens sent only to registered redirect URIs; AADSTS50011 on a mismatch; `https` required except localhost; separate registrations for development; wildcards only through the manifest for work-or-school-only apps, with absolute URIs per RFC 6749 §3.1.2 strongly recommended; add redirect URIs to the application object only, never to a service principal), <https://learn.microsoft.com/entra/identity-platform/reply-url> (accessed Nov 11, 2026).
+[^c06-dangling]: Microsoft Learn, "Prevent dangling DNS entries and avoid subdomain takeover" (dangling CNAMEs to deprovisioned resources; OAuth credentials sent to dangling subdomains may be exposed; Get-DanglingDnsRecords; reference list of Azure domains; Defender for App Service dangling DNS alerts; "Remove DNS entry" in decommissioning; remediation steps), <https://learn.microsoft.com/azure/security/fundamentals/subdomain-takeover> (accessed Nov 11, 2026).
+[^c06-zt-engineering]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect engineering systems," recommendations "App registrations use safe redirect URIs," "Service principals use safe redirect URIs" and "App registrations must not have dangling or abandoned domain redirect URIs," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-engineering-systems> (accessed Nov 11, 2026).
+[^c06-app-best-practices]: Microsoft Learn, "Security best practices for application properties in Microsoft Entra ID," section "Redirect URIs" (maintain ownership of all URIs, as a lapse in ownership can lead to application compromise; keep DNS records updated and monitored; no wildcard reply URLs or insecure schemes; keep the list small), <https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration> (accessed Nov 11, 2026).
+[^c06-appservice-takeover]: Microsoft Learn, "Prevent subdomain takeovers in Azure App Service" (`asuid` TXT domain verification records; secure unique default hostnames), <https://learn.microsoft.com/azure/app-service/reference-dangling-subdomain-prevention> (accessed Nov 11, 2026).
+[^c06-graph-gov]: Microsoft Learn, Microsoft Graph, "Update servicePrincipal" (national cloud deployments: global service, US Government L4 and US Government L5 (DoD)), <https://learn.microsoft.com/graph/api/serviceprincipal-update?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^c06-rdap]: IETF RFC 9224, *Finding the Authoritative Registration Data Access Protocol (RDAP) Service*, March 2022, <https://www.rfc-editor.org/rfc/rfc9224>, and RFC 9083, *JSON Responses for the Registration Data Access Protocol (RDAP)*, June 2021 (events with `eventAction` "expiration"), <https://www.rfc-editor.org/rfc/rfc9083> (both accessed Nov 11, 2026).

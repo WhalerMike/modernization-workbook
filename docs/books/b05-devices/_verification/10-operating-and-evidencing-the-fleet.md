@@ -103,3 +103,32 @@ The body now states the guidance directly. These were the earlier positions it u
 - The source put Defender-portal settings in the EDR policy; its three KQL queries hard-coded states, joined on a nonexistent `DeviceId` and queried the wrong table.
 - The source alerted on Tier 0 noncompliance from the daily export; mapped a wider control set, including SI-16 and AU-3.
 - The source's boundary table described Intune in GCC (Moderate) as a separate government instance.
+
+## Zero Trust closure update, November 11, 2026 (B05-01, B05-05, CM-08, B05-02 part)
+
+Instructions B05-01 (compliance architecture; macOS removed from scope, Mike, Nov 9, 2026), B05-05 (endpoint analytics), the Book 05 part of closure-map row CM-08 (device compliance), and the expedited-updates part of B05-02. Added "Compliance architecture by platform and ownership" with CP-006 to CP-009, "Expedited quality updates" and "Endpoint analytics", each in the How-section template of Book 00, Appendix D. Microsoft Learn read on Nov 11, 2026; the existing government-service footnote was rechecked.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Compliance policy defines rules and noncompliance actions | Compliance is not configuration | verified | Learn, "Configure actions for noncompliant devices in Intune" | Nov 11, 2026 |
+| 2 | Microsoft security configuration framework levels; level 2 recommended minimum; ring deployment; no level 1 for iOS compliance or Android work profile | Platform baselines | verified | Learn, iOS/iPadOS compliance, Android fully managed and personally owned work profile examples; "Common security policies for Microsoft 365" | Nov 11, 2026 |
+| 3 | CP-006/CP-007 values (jailbreak, N-1, passcode 6 numeric, 5-minute locks) | CP-006 and CP-007 | verified (Microsoft level 2); grace period restated-as-design | Learn, iOS/iPadOS compliance example | Nov 11, 2026 |
+| 4 | CP-008/CP-009 values (Play Integrity, strong integrity, root, encryption, unknown sources, USB debugging, runtime integrity) | CP-008 and CP-009 | verified (Microsoft level 2) | Learn, Android examples | Nov 11, 2026 |
+| 5 | Fully managed level 2 sets 365-day expiry and reuse 5; program departs | CP-008 and CP-009 | verified (Microsoft value); departure restated-as-design | same; Book 16 Ch07 | Nov 11, 2026 |
+| 6 | Strong integrity unsupported devices are marked noncompliant | CP-008 and CP-009 | verified | same | Nov 11, 2026 |
+| 7 | User Enrollment: separate volume, limited options, no supervision; Managed Apple Accounts | CP-006 and CP-007 | verified | Learn, "Overview of Apple User Enrollment"; "Set up account driven Apple User Enrollment" | Nov 11, 2026 |
+| 8 | Apple Managed account federation not available in GCC High/DoD; MTD connectors limited to supporting vendors | CP-007; Prerequisites | verified | Learn, Intune government service description | Nov 11, 2026 |
+| 9 | Report-only CA evaluated at sign-in, logged | Report-only phase | verified | Learn, "Analyze Conditional Access policy impact" | Nov 11, 2026 |
+| 10 | complianceState values | Evidence | verified | Graph v1.0, "managedDevice resource type" | Nov 11, 2026 |
+| 11 | Connect compliance to CA only after pilot; exit criteria; rings; rollback order | Enforcement; Rollback | restated-as-design | program design (instruction B05-01) | Nov 11, 2026 |
+| 12 | Expedite policy behavior, eligibility, recommended ring settings, Update Health Tools, restart 0-2 days, reports and states, delete doesn't uninstall | Expedited quality updates | verified | Learn, "Expedite policies for Windows quality updates" | Nov 11, 2026 |
+| 13 | Expedite policies planned (not available) in GCC High and DoD | Expedited quality updates | verified | Learn, Intune government service description | Nov 11, 2026 |
+| 14 | Endpoint analytics reports, score, baselines (20, 10% threshold), 5-device minimum, 24 hours after restart | Endpoint analytics | verified | Learn, "Configure endpoint analytics" | Nov 11, 2026 |
+| 15 | Prerequisites: editions, join types, DiagTrack, events.data.microsoft.com, license, roles | Endpoint analytics prerequisites | verified | Learn, "Endpoint analytics overview" | Nov 11, 2026 |
+| 16 | Optional data category; data examples; global Azure; processed every 24 hours; 96-hour latency; stop gathering | Endpoint analytics | verified | Learn, "Endpoint analytics data collection" | Nov 11, 2026 |
+| 17 | Revoking consent: reports disabled, data stale, history kept 60 days | Rollback | verified | Learn, "Configure endpoint analytics" | Nov 11, 2026 |
+| 18 | Work from anywhere metrics; 29-day active device; Unknown readiness usually inactive | Telemetry | verified | Learn, "Work from anywhere report" | Nov 11, 2026 |
+| 19 | Advanced Analytics clouds (GCC High, DoD with limits), licensing, features | Endpoint analytics applicability | verified | Learn, "Advanced Analytics overview" | Nov 11, 2026 |
+| 20 | Base endpoint analytics in GCC High and DoD | Endpoint analytics applicability | unverifiable: Learn doesn't state it; recorded as not yet specified | Learn endpoint analytics pages; Intune government service description | Nov 11, 2026 |
+| 21 | WFA metrics Graph v1.0, permission, national clouds | Evidence | verified | Graph v1.0, "List userExperienceAnalyticsWorkFromAnywhereMetrics" | Nov 11, 2026 |
+| 22 | Privacy decision, ring segmentation, monthly review, owners | Endpoint analytics | restated-as-design | program design | Nov 11, 2026 |

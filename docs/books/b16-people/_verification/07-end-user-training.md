@@ -130,3 +130,22 @@ Microsoft Learn pages the Learn coverage map marked as covered but uncited, read
 | 67 | Agency sets how many SSPR methods are required; users reset at aka.ms/sspr | Module 2, Registering and resetting | verified | Learn, Tutorial: enable SSPR, <https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-sspr> (`c07-sspr-tutorial`) |
 | 68 | Combined registration: one registration for MFA and SSPR | Module 2, Registering and resetting | verified | Learn, Combined security information registration, <https://learn.microsoft.com/entra/identity/authentication/howto-registration-mfa-sspr-combined> (`c07-combined-howto`) |
 | 69 | In a hybrid estate the Active Directory password policy may still apply to synced passwords | Module 2, Corrections to the source password rules | verified | Learn, SSPR frequently asked questions, Password writeback, <https://learn.microsoft.com/entra/identity/authentication/passwords-faq> (`c07-sspr-faq`) |
+
+## Zero Trust closure update, November 11, 2026 (B16-01)
+
+Instruction B16-01 (user adoption training): Authenticator additional context in Module 1; the blocked-access table in Module 3; "Labeled and protected information" in Module 4 (sensitivity labels, encrypted mail, data loss prevention policy tips); a timing note; and "Proving the user-facing modules worked" (completion and support trends measured, with the control states, authority labels, assessment mapping and evidence checklist). The engineering for labels and data loss prevention belongs to the workbook's new information protection book (Book 20), named in prose because its pages are being written in a parallel change. Microsoft Learn read on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Additional context shows application name and IP-based location; enabled separately; only Authenticator-enabled users see it | Module 1 | verified | Learn, "Use additional context in Authenticator notifications" | Nov 11, 2026 |
+| 2 | Additional context availability in Azure Government | Module 1 note | unverifiable: not named on Entra's US Government feature page; recorded as not yet specified | Learn, "Microsoft Entra feature availability" | Nov 11, 2026 |
+| 3 | Default label, justification to remove or lower (readable in activity explorer), mandatory labeling | Module 4 | verified | Learn, "Learn about sensitivity labels" | Nov 11, 2026 |
+| 4 | Mandatory labeling prompts at save/send; labels can be changed but not removed | Module 4 | verified | Learn, "Manage sensitivity labels in Office apps" | Nov 11, 2026 |
+| 5 | Do Not Forward and Encrypt-only usage rights | Module 4 | verified | Learn, "Configure usage rights for the Azure Rights Management service" | Nov 11, 2026 |
+| 6 | Microsoft 365 recipients read inline; others via portal, federated sign-in or one-time passcode | Module 4 | verified | Learn, "Message encryption"; "Compare versions of message encryption" | Nov 11, 2026 |
+| 7 | One-time passcode can land in junk or quarantine; admins control OTP | Module 4 | verified | Learn, "Message encryption FAQ"; "Manage message encryption" | Nov 11, 2026 |
+| 8 | Policy tips while composing; notify, block, override with justification, false positive; logged | Module 4 | verified | Learn, "Send email notifications and show policy tips for DLP policies" | Nov 11, 2026 |
+| 9 | Policy tips not supported in Outlook for Mac and iOS; use Outlook on the web | Module 4 | verified | Learn, "Resolve issues that affect DLP policy tips" | Nov 11, 2026 |
+| 10 | Purview availability in GCC, GCC High and DoD (labels, Message Encryption, DLP) | Module 4 | verified | Learn, Purview planning pages for GCC, GCC High and DoD | Nov 11, 2026 |
+| 11 | Exchange Online DLP requires G3 or G5; Message Encryption behavior across the GCC High/DoD boundary | Module 4 | verified | Learn, "Exchange Online for US government environments" | Nov 11, 2026 |
+| 12 | Blocked-access table, timing note, measures and thresholds | Module 3; Timing; Proving | restated-as-design | program design | Nov 11, 2026 |
