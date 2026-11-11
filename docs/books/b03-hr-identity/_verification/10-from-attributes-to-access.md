@@ -139,3 +139,13 @@ Four Learn pages the coverage map listed as covered but uncited for this chapter
 | L2 | Entitlement management has a built-in separation-of-duties check for incompatible access packages and groups | Access packages and access reviews, separation-of-duties bullet | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-process> |
 | L3 | Managers requesting access on behalf of their employees needs ID Governance (or the Entra Suite) rather than P2 | Licensing | verified (Learn read Nov 9, 2026): requestor and target both need ID Governance or the Entra Suite | <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-request-behalf> |
 | L4 | An access package can grant eligibility for a privileged role, which is then activated just in time through PIM | Where dynamic membership stops, "Position decides eligibility" | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-resources> |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Pause processing on a group's overview page (Groups Administrator); `membershipRuleProcessingState` Paused | Governance of the rules themselves | verified | Learn, "Create or update a dynamic membership group" | Nov 11, 2026 |
+| P4-2 | Microsoft's PowerShell samples pause and resume dynamic groups and administrative units; verify in a test environment first; processing usually within hours, can exceed 24 | Governance of the rules themselves | verified | Learn, "PowerShell samples for dynamic membership processing"; troubleshooting article | Nov 11, 2026 |
+| P4-3 | "must be explainable" relabeled as the program's design rule; rings, triggers, control states, evidence checklist, mapping | Governance of the rules themselves | restated-as-design | — | Nov 11, 2026 |

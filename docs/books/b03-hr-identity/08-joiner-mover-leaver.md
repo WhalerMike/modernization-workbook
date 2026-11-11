@@ -127,6 +127,76 @@ The program's responses *(design guidance)*:
 
 The companion guide's [Lifecycle Workflows at scale](../guides/attribute-driven-migration.md#lifecycle-workflows-at-scale) sets these limits against an estate of one forest with 12 trees.
 
+### Rolling out the workflows {#b03-08-rollout-and-evidence}
+
+A scheduled workflow acts on every user in its scope, so turning one on is an enforcement step, and the leaver workflow is the one whose evidence an assessor reads. This is the workbook's How template for the workflows ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)); the pipeline's own cutover is [Appendix C](appendix-c-acceptance-and-cutover.md#b03-c-rollout-safety).
+
+**Authority:** Microsoft-recommended: pilot a workflow and test it on demand on a small set of users before it runs on a schedule (Learn's deployment checklist and "Run a workflow on-demand," read Nov 11, 2026).[^c08-lcw-deploy][^c08-lcw-ondemand] The rings, thresholds and the leaver-first order are risk-based recommended. The leaver workflow supports AC-2 and PS-4 in the agency's adopted NIST SP 800-53 baseline (Chapter 11); it doesn't satisfy them alone.
+**Applies:** License-dependent: Lifecycle Workflows need Microsoft Entra ID Governance, Microsoft Entra Suite or, in Learn's licensing table read Nov 11, 2026, Microsoft 365 E7.[^c08-licensing] Environment-dependent: Microsoft Entra ID Governance is available in GCC, GCC High and DoD, and Learn's feature-availability page lists Lifecycle Workflows for Azure Government.[^c08-licensing][^c08-feature-avail]
+
+| Subsection | For the lifecycle workflows |
+|---|---|
+| Prerequisites | The licenses above; the pipeline writing `employeeHireDate` and `employeeLeaveDateTime` (Chapter 05); the Lifecycle Workflows Administrator role behind PIM; execution limits sized ([Guardrails](#guardrails-at-agency-scale)) |
+| Pilot | Each workflow built and run end to end in a test tenant (Chapter 12, Phase 2), then in production with a scope rule narrowed to the pilot cohort's organization code |
+| Report-only or audit phase | Not available as a mode: Lifecycle Workflows has no report-only setting. The equivalents are the workflow's execution user scope, the list of users it would process at its next run, read before scheduling,[^c08-lcw-scope] and on-demand runs on up to 10 test users, which ignore the execution conditions[^c08-lcw-ondemand] |
+| Enforcement | Turn scheduling on for one workflow at a time, leaver first (Chapter 12, Phase 4), and widen its scope rule ring by ring |
+| Rollback | Turn scheduling off for the workflow; cancel a run that is queued or in progress, which stops its remaining tasks but doesn't reverse completed ones;[^c08-lcw-cancel] re-enable any wrongly disabled account from the HR record through the pipeline; restore a wrongly deleted user within 30 days (Deletion, below) |
+| Exclusions | Emergency access and other cloud-only administrative accounts carry no worker-type code, so the coded scope rules never reach them; the disable and delete tasks don't support users with Microsoft Entra role assignments, so privileged leavers follow their own verified block path ([Chapter 09](09-credentials-and-certificates.md#running-it-from-lifecycle-workflows); Appendix A) |
+| Telemetry | Workflow history (runs, users and tasks) and the audit log;[^c08-lcw-history][^c08-lcw-audits] quarantine notifications to Lifecycle Workflows administrators |
+| Evidence | The checklist below |
+| Day-two ownership | The CIO's identity team owns the workflows and their thresholds ([Chapter 07](07-who-owns-workforce-identity.md)); it reviews workflow history weekly, every quarantine at the time, and the workflow budget in change control |
+
+Scheduling is a property of each workflow; turning it on or off is one call, made as a change by a Lifecycle Workflows Administrator:[^c08-lcw-update]
+
+```powershell
+# Microsoft Graph PowerShell: read the workflows, then turn scheduling on (or off, to roll back) for one
+Connect-MgGraph -Scopes 'LifecycleWorkflows.ReadWrite.All' -NoWelcome
+Get-MgIdentityGovernanceLifecycleWorkflow -All | Select-Object Id, DisplayName, Category, IsEnabled, IsSchedulingEnabled
+Update-MgIdentityGovernanceLifecycleWorkflow -WorkflowId '<workflow id>' -BodyParameter @{ isSchedulingEnabled = $true }
+```
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test tenant, canned payloads | Each workflow completes for a test joiner, mover and leaver, with a provenance record (Chapter 12, Phase 2) |
+| 1 | Production, on demand on test users, scheduling off | Every task succeeds; the execution user scope lists only the expected users |
+| 2 | Leaver workflow scheduled for the pilot cohort | A full pay-period cycle with zero missed leavers; separation-to-block within the approved threshold (Chapter 11) |
+| 3 | Scope widened population by population, then the joiner and mover workflows the same way | Each population's cutover in Appendix C passed |
+
+- **Emergency access:** outside every workflow's scope, as above; confirm with the execution user scope before each ring.
+- **Change window:** scheduling changes and scope changes are made in business hours, with the identity team and the help desk on hand for the next scheduled run.
+- **Backout triggers, set before the change:** a quarantine, any active person disabled, any separated person not disabled at the next run, or a custom task extension failing for more than one run. The response is turning scheduling off and cancelling the open run.
+- **Post-change validation:** the next scheduled run's history shows only the expected users, each task completed, and the leaver's account read back as disabled.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | This chapter and Appendix A's rules | The approved workflow set, scope rules and thresholds |
+| Configured | Rings 0 and 1: workflows built, scheduling off | Workflow exports with `isSchedulingEnabled` false |
+| Enforced | Rings 2 and 3: scheduling on | Workflow exports with scheduling on and their scope rules |
+| Evidenced | Post-change validation and the lifecycle metrics | Run history for the test and pilot leavers; the separation-to-block interval (Chapter 11) |
+| Operated | Day-two ownership | Weekly history review, quarantine records, the workflow budget |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** each workflow exported as JSON at every version, with its scope rule and execution limits, in the identity baseline repository
+- [ ] **Operational:** workflow run history and the audit log entries for each run, exported before Entra ID's retention ends (Chapter 11)
+- [ ] **Test:** the Ring 0 and Ring 1 run records (expected and observed outcome, date, tester)
+- [ ] **Exception:** every quarantine release, on-demand run and emergency termination, each with its approver and change record
+- [ ] **Assessor-ready artifact:** the separation-to-block and separation-to-revocation intervals for the period, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b03-08-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the HR source and the pipeline (Chapter 05); Devices, for the Intune retire and wipe the leaver's custom task calls ([Book 05](../b05-devices/index.md))
+- **Attack chain interrupted:** Initial Access and Persistence: a separated person's account, sessions or credentials still usable after their separation
+:::
+
 ## Joiner
 
 Provisioning creates the account ahead of the start date from the future-dated hire — if the hire reaches the pipeline early. Oracle's Atom feeds don't surface a future-dated hire or separation before its effective date by default; it appears early only when the middleware reads the feed by published date and holds the effective date itself (Chapter 05).[^c08-ora-dated] A pipeline that reads by effective date delivers the hire on the start date, and because Lifecycle Workflows catch up only three days past a trigger date,[^c08-lcw-exec] a pre-hire workflow set further ahead never runs. Read by published date, as Chapter 05 recommends, so pre-hire and pre-separation steps run before the date. A pre-hire workflow runs a set number of days before `employeeHireDate` (for example, generate a Temporary Access Pass and send it to the manager),[^c08-lcw-onboard-tut] and a day-one workflow runs on the date (assign licenses, request the onboarding access package that carries baseline access rather than adding groups directly, and run its enable task as the recorded backstop, because the pipeline is the enable writer). Microsoft recommends a 24-hour maximum lifetime for a Temporary Access Pass sent to a new hire, so that it hasn't expired in another time zone, and recommends setting the time portion of `employeeHireDate` early enough that the tenant schedule doesn't push the day-one run past the start of work.[^c08-lcw-sync] Day-one readiness (account, licenses and baseline access in place at start of day) is a metric, not a hope (Chapter 11).
@@ -211,3 +281,7 @@ Disable on the separation date; delete or anonymize only under the approved acco
 [^c08-lcw-leaver-tut]: Microsoft Learn, "Automate employee offboarding tasks after their last day of work with the Microsoft Entra admin center" (the Post-offboarding of an employee template runs a set number of days after the leave date and deletes the user account), <https://learn.microsoft.com/entra/id-governance/tutorial-scheduled-leaver-portal> (accessed Nov 9, 2026).
 [^c08-lcw-history]: Microsoft Learn, "Check the status of a workflow" (run and user processing history for users processed both by schedule and on demand), <https://learn.microsoft.com/entra/id-governance/check-status-workflow> (accessed Nov 9, 2026).
 [^c08-lcw-audits]: Microsoft Learn, "Auditing Lifecycle Workflows" (every workflow processing event is logged in the audit logs, kept for up to 30 days), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-audits> (accessed Nov 9, 2026).
+[^c08-lcw-scope]: Microsoft Learn, "Lifecycle workflows execution conditions and scheduling," section "Execution user scope" (the users who meet the execution conditions and would be processed at the next run), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions> (accessed Nov 11, 2026).
+[^c08-lcw-cancel]: Microsoft Learn, "Cancel workflow runs using Lifecycle Workflows" (in-progress and queued runs can be cancelled; completed changes aren't reversed; one run at a time), <https://learn.microsoft.com/entra/id-governance/cancel-workflow-runs> (accessed Nov 11, 2026).
+[^c08-lcw-update]: Microsoft Learn, "Update-MgIdentityGovernanceLifecycleWorkflow" (Microsoft Graph PowerShell; `isEnabled` and `isSchedulingEnabled`; LifecycleWorkflows.ReadWrite.All), <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/update-mgidentitygovernancelifecycleworkflow?view=graph-powershell-1.0> (accessed Nov 11, 2026).
+[^c08-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure Government: Lifecycle workflows, in Microsoft Entra ID Governance; API-driven inbound provisioning), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).

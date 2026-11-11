@@ -115,3 +115,12 @@ Added at the author's request during the independent verification pass (`docs/ab
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "The contractor PIV path", first line | restated-as-design (status statement; nothing external claimed) | `docs/evaluations/oracle-contingent-worker-contractor-source.md#status-and-review` |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | PS-4 adopted baseline and FIPS 201-3's 18-hour window labeled Mandated; the sequence's order Microsoft-recommended; "must be idempotent" relabeled as the program's design | The canonical leaver sequence; What the evidence must show | restated-as-design (authority labels; sources logged above) | — | Nov 11, 2026 |
+| P4-2 | Control states, evidence checklist and assessment mapping for the leaver credential sequence | What the evidence must show | restated-as-design | — | Nov 11, 2026 |

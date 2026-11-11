@@ -56,11 +56,72 @@ A short report gates every cutover: the acceptance results, open defects and the
 
 ## Proving HR is the sole source
 
-For seven days after cutover, every create, change and disable for the population must trace to an HR event and a provenance record. The provisioning logs record the outcome the provisioning service reached for each record it received,[^aC-prov-logs] so the comparison is between those logs and the directory's audit log: anything in the audit log without a matching provisioning record came from somewhere else. Any change that doesn't — a ticket, a script, a hand edit — is a finding, and the clock restarts once it is closed.
+The program's acceptance criterion *(risk-based recommended)*: for seven days after cutover, every create, change and disable for the population traces to an HR event and a provenance record. The provisioning logs record the outcome the provisioning service reached for each record it received,[^aC-prov-logs] so the comparison is between those logs and the directory's audit log: anything in the audit log without a matching provisioning record came from somewhere else. Any change that doesn't — a ticket, a script, a hand edit — is a finding, and the clock restarts once it is closed.
 
 ## Closing the ticket path
 
 When the proof holds, the manual path for creating and changing accounts in that population closes: the help desk stops accepting account-creation tickets for it, and any exception goes through the governed exception process (Appendix A). This is the visible end state of HR-driven identity: nobody requests an account for a new hire, because the hire causes it.
+
+## Rollout safety and evidence {#b03-c-rollout-safety}
+
+Cutting a population over to HR-driven provisioning is an enforcement step: from then on the pipeline creates, changes and disables its accounts. The sections above are its procedure; this one adds what the workbook's How template asks ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)).
+
+**Authority:** Microsoft-recommended: API-driven inbound provisioning, its provisioning logs, and pausing a provisioning job (Chapter 05 and the notes here). The acceptance tests, the seven-day sole-source proof and the rings are risk-based recommended, the program's position for the risk of a separated person keeping access or an active one losing it.
+**Applies:** License-dependent: API-driven inbound provisioning is included from Entra ID P1; the Lifecycle Workflows that back it need Entra ID Governance ([Chapter 08](08-joiner-mover-leaver.md#b03-08-rollout-and-evidence)). Environment-dependent: Learn's feature-availability page lists API-driven inbound provisioning, and provisioning agent registration with an Azure Government tenant, as available in Azure Government.[^aC-feature-avail]
+
+| Subsection | For the cutover |
+|---|---|
+| Prerequisites | Chapter 12's Phase 1 and Phase 2 gates; the privacy and security checks of Appendix B; the signed validation report |
+| Pilot | The pilot cohort in Chapter 12's Phase 3, run in shadow mode first |
+| Report-only or audit phase | The dry run: production data, writes disabled, every difference explained |
+| Enforcement | Cutover, one population at a time, in the rings below |
+| Rollback | Pause the provisioning job, quarantine the batch, return the population to the prior process (above) |
+| Exclusions | Accounts the pipeline never manages: emergency access and other cloud-only administrative accounts, service and non-person identities (Book 02's [Phase 4](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)), and populations not yet cut over. The provisioning app's scoping filters hold the list, reviewed at each cutover |
+| Telemetry | The provisioning logs, compared with the directory audit log (Proving HR is the sole source); quarantine counts; Chapter 11's drift signals |
+| Evidence | The checklist below |
+| Day-two ownership | The CIO's identity team owns the pipeline and its job; HR owns data quality at the source ([Chapter 07](07-who-owns-workforce-identity.md)); drift findings run on Chapter 11's cadence |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Dry run on production data, writes disabled | Every difference from the directory explained |
+| 1 | The pilot cohort | A full joiner, mover and leaver cycle closes with evidence; zero unmatched-record creations |
+| 2 | One population at a time | Seven days of sole-source proof with no finding open |
+| 3 | The ticket path closed for the population | Help desk confirms no account-creation tickets accepted for it |
+
+- **Emergency access:** outside the pipeline's scope, as above; check the scoping filters before each ring.
+- **Change window:** each population's cutover is scheduled with HR, the help desk and the identity team on hand, aligned with that population's move to Entra ID where the two coincide.
+- **Backout triggers, set before the change:** any separated person with access past the agreed interval, any active person locked out, a quarantine rate above the level agreed in the validation report, or a sole-source finding that can't be closed within a day. The response is Rollback.
+- **Post-change validation:** the spot checks of named records after the first cycle, then the seven-day sole-source comparison.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Acceptance tests and the validation report | The signed validation report |
+| Configured | Dry run and pilot | The dry-run difference report; the provisioning app's mappings and scoping filters |
+| Enforced | Cutover, population by population | The job running for the population; the closed ticket path |
+| Evidenced | Acceptance results and the seven-day proof | Test results by scenario; the provisioning-log-to-audit-log comparison |
+| Operated | Day-two ownership | Chapter 11's metrics and drift findings each period |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the provisioning app's attribute mappings and scoping filters, exported, and the middleware configuration, in the identity baseline repository
+- [ ] **Operational:** provisioning logs for each population, exported before Entra ID's retention ends, and the quarantine log
+- [ ] **Test:** the acceptance results by scenario (expected and observed outcome, date, tester) and the dry-run difference report
+- [ ] **Exception:** every manual change found by the sole-source comparison, with how it closed; every governed exception (Appendix A)
+- [ ] **Assessor-ready artifact:** the signed validation report and the seven-day comparison for each population, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b03-c-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the HR system of record and its interconnection (Chapter 03); Infrastructure, for the provisioning agents hardened as Tier 0 assets (Chapter 05)
+- **Attack chain interrupted:** Initial Access and Persistence: orphaned and hand-made accounts that no HR record explains
+:::
 
 ## Where an HR connector already exists
 
@@ -76,3 +137,4 @@ Some agencies already run a script or connector that creates accounts from an HR
 [^aC-pause]: Microsoft Learn, "synchronizationJob: pause" (Microsoft Graph v1.0: progress and job state persist, and the job continues from where it left off on start), <https://learn.microsoft.com/en-us/graph/api/synchronization-synchronizationjob-pause> (accessed Oct 20, 2026).
 [^aC-prov-logs]: Microsoft Learn, "API-driven inbound provisioning concepts" (admins and API clients track the outcome of each record through the provisioning logs and the provisioning logs API), <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-concepts> (accessed Oct 20, 2026).
 [^aC-grs32]: National Archives and Records Administration, General Records Schedule 3.2, *Information Systems Security Records*, Transmittal No. 33, January 2023 (items 030 and 031, system access records), <https://www.archives.gov/files/records-mgmt/grs/grs03-2.pdf> (accessed Oct 20, 2026).
+[^aC-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability," section "HR provisioning apps" (API-driven inbound provisioning; provisioning agent configuration and registration with an Azure for US Government tenant), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
