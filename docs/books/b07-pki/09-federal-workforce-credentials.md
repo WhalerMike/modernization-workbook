@@ -108,6 +108,79 @@ Entra CBA is how the agency's cloud tenant accepts the PIV credential. It doesn'
 
 M-22-09's identity actions require phishing-resistant MFA for agency staff, contractors and partners, enforced at the application layer; agencies must stop supporting, for routine self-service access, methods that register phone numbers for SMS or voice, supply one-time codes or use push notifications.[^c09-m2209] Microsoft's own M-22-09 guidance lists Entra CBA, including PIV, CAC and derived PIV for mobile devices, among the phishing-resistant options.[^c09-learn-m2209] So the requirement and the configuration come together in one place: a Conditional Access policy requiring the phishing-resistant strength, satisfied by the PIV card through CBA. The policy library that holds it is [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md).
 
+### Administrators: the PIV certificate in the privileged strength {#administrators-piv-in-the-privileged-strength}
+
+The Zero Trust Assessment's privileged-authentication checks ask whether privileged accounts have phishing-resistant methods registered and whether Conditional Access targets the privileged roles with a phishing-resistant strength.[^c09-zt-protect-identities] The policy that enforces it is [Book 04's CA003](../b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators), with its pilot, report-only phase, rings, rollback and exclusions; this book's part is to make the PIV certificate a method that policy can count on for an administrator, and to keep the evidence that it did. FIDO2 security keys and Windows Hello for Business stay in the same strength for administrators without a PIV card or a reader.
+
+**Authority:** Mandated for phishing-resistant MFA (M-22-09, above); Microsoft-recommended for the method (phishing-resistant methods for privileged accounts and, for emergency access accounts, a passkey or, where the agency already runs a PKI, certificate-based authentication[^c09-emergency]). The certificate settings below are the program's position, risk-based recommended.
+**Applies:** all tenants. Environment-dependent: certificate-based authentication and Conditional Access are listed as available in Azure for US Government,[^c09-gov-features] and the certificate authentication endpoint differs by cloud ([Chapter 06](06-device-and-user-certificates.md#how-a-cba-sign-in-works)).
+
+What makes the PIV certificate count for an administrator, beyond the four settings above:
+
+| Setting | Rule for administrators | Why |
+|---|---|---|
+| The account the certificate binds to | The administrator's separate cloud-only admin account gets its own high-affinity value in `certificateUserIds`, written by the admin-account request process, not by sync | Privileged accounts are cloud-only ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md)); a binding on a synced attribute can be changed by whoever administers the sync server ([Chapter 06](06-device-and-user-certificates.md#migrating-from-ad-fs-certificate-authentication)) |
+| The certificate the strength accepts | CA003's custom strength requires, under its advanced options, the PIV authentication certificate's issuer and policy OID, so a software certificate from the same CA doesn't qualify | A custom strength can require particular issuers or policy OIDs (above) |
+| The authentication binding | Multifactor for the PIV authentication policy OID only | Single-factor CBA satisfies no built-in strength (above) |
+| Emergency access accounts | Excluded from CA003 and every blocking policy, and registered with a method different from the administrators' own: where administrators use PIV, the emergency accounts use FIDO2 security keys | [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts) carries the design, on Microsoft's emergency access guidance |
+
+Pilot, report-only, enforcement, rollback and exclusions are CA003's ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)); the trust store and binding steps they depend on are [Chapter 06](06-device-and-user-certificates.md#staged-rollout)'s sequence, run for the admin accounts first.
+
+The registration and sign-in evidence, read-only:
+
+```powershell
+#Requires -Modules Microsoft.Graph.Users, Microsoft.Graph.Identity.DirectoryManagement
+# Which members of the privileged roles have a certificate binding? (Global Administrator shown; repeat per role)
+Connect-MgGraph -Scopes 'RoleManagement.Read.Directory','User.Read.All' -NoWelcome
+$role = Get-MgDirectoryRole -Filter "displayName eq 'Global Administrator'"
+Get-MgDirectoryRoleMember -DirectoryRoleId $role.Id | ForEach-Object {
+    $u = Get-MgUser -UserId $_.Id -Property 'userPrincipalName,onPremisesSyncEnabled,authorizationInfo'
+    [pscustomobject]@{ UPN = $u.UserPrincipalName; Synced = [bool]$u.OnPremisesSyncEnabled
+        CertificateBindings = ($u.AuthorizationInfo.CertificateUserIds -join '; ') }
+}
+```
+
+```kusto
+// Privileged sign-ins in the last 30 days and the method used; every row should show a phishing-resistant method
+SigninLogs
+| where TimeGenerated > ago(30d)
+| where ConditionalAccessPolicies has "CA003-Admins-RequirePhishResistantMFA"
+| mv-expand AuthenticationDetails
+| extend Method = tostring(AuthenticationDetails.authenticationMethod)
+| summarize SignIns = count() by UserPrincipalName, Method
+```
+
+`authenticationMethod` reads `X.509 Certificate` for a CBA sign-in. A synced admin account, an admin with no binding and no FIDO2 key, or a privileged sign-in by any other method is a finding.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The table above, and CA003's design in Book 04 | The admin authentication standard |
+| Configured | Trust store, bindings, authentication binding rule, custom strength | CBA configuration export; the binding report above |
+| Enforced | CA003 **On** (Book 04) | Policy export in the enforcing state; exclusion register |
+| Evidenced | A test admin sign-in with the PIV card, and a blocked sign-in with a password and a one-time code | The two sign-in log entries |
+| Operated | Monthly binding report and sign-in query | Report history; findings closed |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the CBA configuration export (trust store, bindings, authentication binding rules) and the custom strength definition
+- [ ] **Operational:** the monthly binding report and the privileged sign-in summary, kept for the program's log retention
+- [ ] **Test:** the allowed PIV sign-in and the blocked weaker sign-in, with date and tester
+- [ ] **Exception:** administrators on FIDO2 instead of PIV, and the emergency access accounts' exclusions, each with approver and review date
+- [ ] **Assessor-ready artifact:** the package entry for the privileged phishing-resistant checks, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the Federal PKI trust chain and CRLs ([Chapter 04](04-the-target-pki.md#federal-pki-for-piv)); Book 04's CA003 and its emergency access design; Devices, for card readers on privileged access workstations
+- **Attack chain interrupted:** Initial Access and Privilege Escalation: a phished password and one-time code replayed against an administrator account
+:::
+
+
 ## PIV interoperability and federation
 
 ### Federal PKI trust
@@ -232,3 +305,6 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers: 
 [^c09-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, CM-8, IA-2, IA-2(1), IA-2(2), IA-2(12), IA-5, IA-5(2), IA-8, IA-8(1), IA-8(2), IA-12, PS-4 and SC-17), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^c09-cba-android]: Microsoft Learn, "Microsoft Entra certificate-based authentication on Android devices," sections "Prerequisites" and "Supported Microsoft Entra use cases" (Operating systems: certificate on-device/derived PIV supported; smart cards and security keys, supported vendors only), <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-mobile-android> (accessed Nov 9, 2026).
 [^c09-passkeys]: Microsoft Learn, "Authentication methods in Microsoft Entra ID - passkeys (FIDO2)," <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-passkeys-fido2>; and "Sign in with a FIDO2 security key" (security keys are device-bound passkeys; the private key never leaves the key), <https://learn.microsoft.com/entra/identity/authentication/how-to-security-key-sign-in> (both accessed Nov 9, 2026).
+[^c09-zt-protect-identities]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," recommendations "Privileged accounts have phishing-resistant methods registered" and "Privileged Microsoft Entra built-in roles are targeted with Conditional Access policies to enforce phishing-resistant methods," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Nov 11, 2026).
+[^c09-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," section "Create emergency access accounts" (passkey (FIDO2) recommended; certificate-based authentication if the organization already has a PKI; exclude from Conditional Access policies that block or restrict sign-in), <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Nov 11, 2026).
+[^c09-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: certificate-based authentication and Conditional Access available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
