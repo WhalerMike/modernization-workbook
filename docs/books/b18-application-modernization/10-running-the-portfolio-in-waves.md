@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-How the application portfolio runs inside the program's phases and gates. How to plan waves: what goes in the pilot, how move groups form, how far ahead to plan, and what to do with the long tail. What the modernization factory is and who staffs it. The metrics that tell an executive whether it is working. How the Technology Modernization Fund and IT working capital funds pay for it. And how to keep the triage from going stale.
+How the application portfolio runs inside the program's phases and gates. How to plan waves: what goes in the pilot, how move groups form, how far ahead to plan, and what to do with the long tail. What the modernization factory is and who staffs it, and the identity remediation line inside it. The metrics that tell an executive whether it is working. How the Technology Modernization Fund and IT working capital funds pay for it. And how to keep the triage from going stale.
 :::
 
 [Chapter 02](02-triaging-the-portfolio.md) produced a disposition for every application. That is a list, not a plan. A large agency can't start thousands of modernization projects at once, and it shouldn't run them one at a time either: each would rediscover the same problems with the same database conversions, the same authentication changes and the same authorization questions. Waves solve both problems. Each wave is a batch of applications that move together through the same steps, and each one leaves the next a little cheaper.
@@ -82,6 +82,27 @@ For application modernization the factory has five parts. Each is the program's 
 
 Factory teams do the work wave by wave; application owners and their developers join for their applications. The factory's own measure of success is that the fifth wave costs less per application than the first. If it doesn't, the runbooks aren't absorbing what the waves teach.
 
+## The identity remediation factory {#identity-remediation-factory}
+
+The modernization factory changes what an application is. A second, smaller line in the same factory changes how the application's identity is governed, and it runs on a faster clock: the attack-path rank from [Chapter 02](02-triaging-the-portfolio.md#identity-and-access-intake-fields) puts an application into it whatever its disposition, because an ownerless app with a high-privilege permission or a redirect URI on a lapsed domain is exposed today, and a refactor two years out doesn't change that. The identity line uses the same platform, runbooks and gates as the rest of the factory; what it adds is six repeatable work packages and one standard evidence pack per application.
+
+| Work package | Entry condition (from the intake fields) | What it does | Exit test |
+|---|---|---|---|
+| **WP1 Owner assignment** | No business owner, no technical owner, or fewer than two | Names the business owner in the record and `serviceManagementReference`, and two technical owners in Entra; removes owners who have left | The record and the tenant agree; the gap report shows no owner gap for the app |
+| **WP2 Permission reduction** | An application permission or tenant-wide grant without a justification, or one the app hasn't used | Removes or narrows the grant on the enterprise application and the request on the app registration, after a report-only check of what the app calls | The app works on the reduced set through a full business cycle; no re-consent prompt reintroduces the grant |
+| **WP3 Secret to managed identity** | A client secret, or a certificate where a managed identity or federation would do | Converts the credential through the [service account migration guide, Migration C](../guides/service-account-migration.md#migration-c) and the [Non-Person Identity guide, Step 5](../guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run), with a parallel run; then removes the secret | Sign-in logs show the app authenticating with the new credential type, and the secret is gone |
+| **WP4 Redirect URI cleanup** | A wildcard, non-loopback `http` or unowned-domain redirect URI, or one no sign-in has used | Proves DNS ownership of each remaining host, removes the rest, and keeps development URIs out of the production registration | Each remaining host is on an owned domain; the OAuth regression test passes |
+| **WP5 Assignment enforcement** | **Assignment required?** off on an app that shouldn't be open to every user and client | Assigns the groups (and client apps) that need it, then turns assignment on | Assigned users and clients sign in; an unassigned test user is refused |
+| **WP6 Post-change test** | Every application after WP1 to WP5 | Runs the regression test, reads the sign-in logs, rebuilds the intake row and seals the evidence pack | The app's attack-path rank falls below the wave threshold, or the residual is an accepted exception |
+
+: The six identity work packages {.striped .hover}
+
+[Appendix A](appendix-a-identity-remediation-work-packages.md) gives every work package as copy-paste commands with its validation, rollback and evidence, following [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). It doesn't repeat the conversion engineering, which belongs to the two identity guides, or the governance record, which belongs to [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md).
+
+**One evidence pack per application.** Every application through the identity line leaves the same folder, so an assessor can read any one of them without a guide: the intake row before and after, the change records, each work package's before-and-after export, the regression test record, the sign-in log extract and a hash manifest. The pack is what the [closure chain](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain) entry for each related assessment finding points at; the finding is then ready for closure, and the assessor or authorizing official decides.
+
+**Who works it.** The identity line is staffed from the identity platform team, with the application's technical owner for WP2, WP3 and WP4, and the identity governance office approving WP1 and any exception. Its throughput is measured like the rest of the factory's, and its first wave is the applications scoring 8 or more.
+
 ## Metrics
 
 Executives need a few numbers that show whether the portfolio is moving, and engineers need a few that show whether the factory works. The program's design reports both at the monthly gate review.
@@ -97,6 +118,7 @@ Executives need a few numbers that show whether the portfolio is moving, and eng
 | Defects after cut-over | Defects found in production in the first 30 days, per application | Issue tracker | Steward, application owners |
 | Time to authorization | Days from Gate 2 design approval to the authorizing official's decision | Gate and authorization records | CISO, authorizing official |
 | Long-tail health | Retained applications with an owner, a reason and a review date that hasn't passed | Triage record | Steward |
+| Identity attack-path rank | Applications scoring 8 or more on the attack-path rank, and the share of the portfolio through the identity work packages with a sealed evidence pack | Intake rank; evidence packs | CISO, steward |
 
 Two cautions. "Cost avoided" is a forecast until the old system is actually switched off, so report it from Phase 4 records, not from plans. And time to authorization measures the whole path, not the authorizing official: if it is long, look first at whether the evidence from [Chapter 07](07-who-governs-the-architecture.md)'s gates arrives complete.
 
@@ -141,7 +163,7 @@ This is the last chapter of Book 18. The book's argument, in one line: decide ap
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 09 — Mapping the Work to TOGAF and Zachman](09-togaf-and-zachman.md) · [Book index](index.md)
+[← Previous: Chapter 09 — Mapping the Work to TOGAF and Zachman](09-togaf-and-zachman.md) · [Book index](index.md) · [Next: Appendix A — Identity Remediation Work Packages →](appendix-a-identity-remediation-work-packages.md)
 :::
 
 [^c10-aws-wave]: Amazon Web Services, AWS Prescriptive Guidance, *Portfolio playbook for AWS large migrations*, "Task 5: Defining the wave planning process," <https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-portfolio-playbook/wave-planning.html> (accessed Oct 28, 2026).

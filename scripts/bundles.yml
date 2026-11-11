@@ -166,7 +166,7 @@ bundles:
     root: docs/books/b18-application-modernization
     image_dir: docs/images/diagrams/b18-application-modernization
     warn_unlisted: ["*.md"]
-    pages: [index.md, "[0-9][0-9]-*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b17-ai-identity-bundle.docx
     title: "Book 17 — AI Identity Governance"
     subtitle: "Every AI system needs an identity and an owner — Federal Modernization Workbook, combined edition"

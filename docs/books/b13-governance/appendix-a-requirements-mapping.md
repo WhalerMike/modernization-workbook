@@ -213,7 +213,7 @@ Every URL below was opened on October 21, 2026.
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 13 — Records, Evidence and Retention](13-records-evidence-and-retention.md) · [Book index](index.md) · [Next: Appendix B — Ticket-to-Machine Reference →](appendix-b-ticket-to-machine-reference.md)
+[← Previous: Chapter 14 — Applications, Secrets and Configuration Drift](14-application-secret-and-configuration-governance.md) · [Book index](index.md) · [Next: Appendix B — Ticket-to-Machine Reference →](appendix-b-ticket-to-machine-reference.md)
 :::
 
 [^aA-53]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, release 5.2.0 (CSRC planning note of August 27, 2025), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; identifiers and titles checked against the CSRC Cybersecurity and Privacy Reference Tool export for SP_800_53_5_2_0, <https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_2_0/home>, and statements against the OSCAL catalog (version 5.2.0, last modified May 11, 2026), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (all accessed Oct 21, 2026).

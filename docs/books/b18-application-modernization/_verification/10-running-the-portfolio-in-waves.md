@@ -42,3 +42,7 @@ Manual checks: none. Note on the crosswalk: its TMF row quotes the 2026 call as 
 | Before | After | Check |
 |---|---|---|
 | Heading "Key takeaways" | Heading "What leadership should take from this", matching Chapters 01 to 06 | Decision of Nov 8, 2026; nothing in docs links to the old #key-takeaways anchor |
+
+## Addition — Nov 11, 2026: the identity remediation factory (Zero Trust Assessment closure, B18-02)
+
+New section "The identity remediation factory" after "The modernization factory"; one row added to the metrics table; the "In this chapter" summary and the Continue block now name Appendix A. The six work packages, entry conditions, exit tests, the evidence pack and staffing are program design (restated-as-design). The procedures and their sources are in Appendix A's verification file. Conversion is linked to the service account migration guide (Migration C) and the Non-Person Identity guide (Step 5).

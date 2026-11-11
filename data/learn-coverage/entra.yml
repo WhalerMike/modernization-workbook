@@ -9596,6 +9596,8 @@ pages:
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/appendix-b-pim-role-settings.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/guides/privileged-access-implementation.md
@@ -10170,6 +10172,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/id-governance/tenant-governance/cross-tenant-delegated-administration.md
   url: https://learn.microsoft.com/entra/id-governance/tenant-governance/cross-tenant-delegated-administration
   title: Cross-tenant delegated administration
@@ -10411,6 +10415,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/id-governance/tenant-governance/overview.md
   url: https://learn.microsoft.com/entra/id-governance/tenant-governance/overview
   title: What is Microsoft Entra Tenant Governance?
@@ -12015,7 +12021,11 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
+  - docs/books/b18-application-modernization/_verification/appendix-a-identity-remediation-work-packages.md
+  - docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
 - path: docs/identity-platform/howto-update-permissions.md
   url: https://learn.microsoft.com/entra/identity-platform/howto-update-permissions
   title: Update an app's requested permissions in Microsoft Entra ID
@@ -13125,6 +13135,10 @@ pages:
   note: Developer protocol, SDK or web-app build detail; the workbook does not write app code against MSAL
   cited_by:
   - docs/books/b08-ddi/06-dns-identity-and-dnssec.md
+  - docs/books/b18-application-modernization/02-triaging-the-portfolio.md
+  - docs/books/b18-application-modernization/_verification/02-triaging-the-portfolio.md
+  - docs/books/b18-application-modernization/_verification/appendix-a-identity-remediation-work-packages.md
+  - docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
 - path: docs/identity-platform/retire-service-principal-less-authentication.md
   url: https://learn.microsoft.com/entra/identity-platform/retire-service-principal-less-authentication
   title: Retirement of service principal-less authentication
@@ -13517,6 +13531,12 @@ pages:
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b08-ddi/06-dns-identity-and-dnssec.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
+  - docs/books/b18-application-modernization/02-triaging-the-portfolio.md
+  - docs/books/b18-application-modernization/_verification/02-triaging-the-portfolio.md
+  - docs/books/b18-application-modernization/_verification/appendix-a-identity-remediation-work-packages.md
+  - docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
 - path: docs/identity-platform/security-best-practices-for-frontline-workers.md
@@ -21509,6 +21529,8 @@ pages:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
+  - docs/books/b18-application-modernization/_verification/appendix-a-identity-remediation-work-packages.md
+  - docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
 - path: docs/identity/enterprise-apps/application-sign-in-other-problem-access-panel.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/application-sign-in-other-problem-access-panel
@@ -22780,6 +22802,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/identity/enterprise-apps/tutorial-govern-monitor.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-govern-monitor
   title: 'Tutorial: Govern and monitor applications'
@@ -26735,6 +26759,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+  - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
   - docs/books/guides/non-person-identity-implementation.md
 - path: docs/identity/monitoring-health/how-to-view-applied-conditional-access-policies.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/how-to-view-applied-conditional-access-policies

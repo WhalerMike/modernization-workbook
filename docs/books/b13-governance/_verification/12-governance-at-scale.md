@@ -70,3 +70,13 @@ Writer W6. Sources: `docs/executive-governance/ch08-governance-at-scale/index.md
 | Strategy: Evidence retention | Same | Detail is Book 12 Ch12 |
 | Gap register: Purpose, Entry fields, Operating rules, Bottom line | The gap closure register | — |
 | Coverage doctrine: Purpose, Classification, Gap treatment, Bottom line | Classify coverage; Three ways a gap closes | — |
+
+## Addition — Nov 11, 2026: the disposition register (Zero Trust Assessment closure, CM-15)
+
+New subsection "Skipped and unevaluated results: the disposition register" under "Coverage, gaps and how gaps close". It reuses Book 11 Chapter 10's normalized result taxonomy unchanged and links it rather than restating the tool values.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| D1 | Five non-results (Planned, three Skipped, Unable-to-Evaluate); none counted as a failure or a pass | Disposition register | verified against Book 11 Ch10 (its own sources: Zero Trust Assessment 3.1.0 source, ScubaGear 2.0.0 schema) | Book 11 Ch10 | Nov 11, 2026 |
+| D2 | A feature unsupported in a government cloud is a boundary finding for Book 10 | Same | verified against Book 11 Ch10 | Book 11 Ch10 | Nov 11, 2026 |
+| D3 | Causes, dispositions, owners, "becomes a gap register entry when" column, four rules, one-cycle window, YAML entry | Same | restated-as-design | Program design | Nov 11, 2026 |

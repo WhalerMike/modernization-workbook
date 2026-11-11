@@ -90,6 +90,82 @@ A few notes on using them.
 
   A yes to any of them lowers the technical condition score; the measured answers carry the *measured* flag, and an owner's word carries *attested*.
 
+## Identity and access intake fields {#identity-and-access-intake-fields}
+
+An application in the portfolio is also an identity in the tenant: an app registration, a service principal, sometimes a managed identity, with owners, permissions and credentials of its own. A Zero Trust assessment looks at those, and the findings it raises (ownerless privileged apps, long-lived secrets, redirect URIs on domains nobody controls) are attack paths whatever the application's disposition is. So intake records nine identity fields beside the six criteria. They don't change the disposition the rubric proposes. They rank each application by the attack paths its identity opens, and that rank sends it to the [identity remediation factory](10-running-the-portfolio-in-waves.md#identity-remediation-factory) on its own schedule: a retained application with an exposed secret is fixed now, not at its review date.
+
+| Intake field | What it records | Source |
+|---|---|---|
+| **Owners** | The business owner and the two technical owners, and whether each is still in that role | The governance record of [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#application-governance-record) |
+| **Graph and API permissions** | Each application permission and tenant-wide delegated grant, whether it is on the high-privilege list, and its justification | Same; the risk tiers in [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain) |
+| **Secrets and certificates** | Credential type (managed identity, federated, certificate, client secret), count and next expiry, and any secret exception | Same; [Book 13's secrets rules](../b13-governance/14-application-secret-and-configuration-governance.md#secrets-governance) |
+| **Redirect URIs** | Every redirect URI on the app registration, with three flags: wildcard, `http` other than loopback, and a host on a domain the agency can't show it controls | The app registration; the agency's domain ownership record ([Book 08](../b08-ddi/index.md)) |
+| **Assignment requirement** | Whether **Assignment required?** is on, so only assigned users and client apps get tokens | The service principal's `appRoleAssignmentRequired` |
+| **Conditional Access compatibility** | Whether Conditional Access can govern sign-in to it: a modern protocol (OpenID Connect, OAuth 2.0, SAML, or published through Application Proxy), or a legacy one that can't be targeted; and for an app that calls APIs as itself, whether it is a single-tenant service principal that workload identity Conditional Access can reach | The app's protocol from the sign-in logs; [Chapter 03](03-the-target-reference-architecture.md#applications-that-stay-on-premises-publishing-through-application-proxy) for publishing |
+| **Last activity** | The most recent sign-in as client or resource | The service principal sign-in activity report, or sign-in logs where the report isn't available |
+| **Data sensitivity** | The FIPS 199 confidentiality impact, already scored as a criterion | The triage record |
+| **Retirement candidate** | Yes when the disposition is retire, or when there has been no activity for 90 days (*design guidance*) | The triage record and last activity |
+
+: Identity and access intake fields {.striped .hover}
+
+Microsoft's guidance on redirect URIs is to maintain ownership of every one, monitor their DNS records, avoid wildcards and insecure schemes, and keep the list small; a lapse in ownership of one redirect URI can lead to compromise of the application.[^c02-app-best] Wildcards are accepted only for apps that sign in work or school accounts and only through the manifest, and Microsoft strongly recommends absolute URIs instead.[^c02-reply-url] An abandoned domain, or a CNAME left pointing at a deprovisioned cloud resource, can be taken over, and whoever takes it can receive what the application sends there, OAuth credentials included.[^c02-dangling]
+
+**The attack-path rank.** The program's design is a simple additive score, calibrated the way the rubric is ([Calibrating the rubric](#calibrating-the-rubric)). Points accumulate:
+
+| Signal | Points |
+|---|---|
+| A high-privilege application permission | 3 |
+| Any other application permission, or a tenant-wide delegated grant | 1 |
+| A client secret | 2, plus 1 if it has no exception |
+| No business owner, or no technical owner | 3 |
+| Fewer than two technical owners | 1 |
+| A redirect URI on a domain the agency can't show it controls | 3 |
+| A wildcard or non-loopback `http` redirect URI | 2 |
+| Assignment not required | 1 |
+| Multitenant, or Conditional Access can't govern its sign-in | 1 |
+| Confidentiality impact high or moderate | 2 or 1 |
+| A retirement candidate that still holds a credential or permission | 1 |
+
+: Attack-path rank (program design) {.striped .hover}
+
+An application scoring 8 or more goes into the next factory wave whatever its disposition; 4 to 7 joins a wave within the planning horizon; below 4 is fixed with its own modernization or retirement. Ties go to the higher data sensitivity. The thresholds are the program's starting point, not a standard, and change after calibration.
+
+**Rank the portfolio.** Run [Book 13, Chapter 14, Step 1](../b13-governance/14-application-secret-and-configuration-governance.md#application-governance-record) first; it writes `app-governance-tenant-<date>.csv`. The ranking below also reads `<record.csv>`, the governance record, which carries `Confidentiality`, `BusinessOwner`, `Disposition`, `SecretException` (the secret's exception ID) and `CaCompatible` (`No` where Conditional Access can't govern the app) for each `AppId`; `<owned-domains.txt>`, the agency's list of domains it controls, one per line; and `<out-dir>`, the evidence folder.
+
+```powershell
+$tenant = Import-Csv '<out-dir>\app-governance-tenant-<date>.csv'
+$record = @{}; Import-Csv '<record.csv>' | ForEach-Object { $record[$_.AppId] = $_ }
+$owned  = Get-Content '<owned-domains.txt>' | ForEach-Object { $_.Trim().ToLower() } | Where-Object { $_ }
+function Test-Owned($uriText) { try { $h = ([uri]$uriText).Host.ToLower() } catch { return $false }
+    if ($h -in 'localhost','127.0.0.1') { return $true }
+    [bool]($owned | Where-Object { $h -eq $_ -or $h.EndsWith(".$_") }) }
+function Test-Resolves($uriText) { try { [void][System.Net.Dns]::GetHostAddresses(([uri]$uriText).Host); $true } catch { $false } }
+
+$ranked = foreach ($t in $tenant) {
+    $r = $record[$t.AppId]; $uris = $t.RedirectUris -split ' ' | Where-Object { $_ }
+    $notOwned = @($uris | Where-Object { -not (Test-Owned $_) }); $noDns = @($uris | Where-Object { -not (Test-Resolves $_) })
+    $score = 0
+    if ($t.HighPrivilege -eq 'True') { $score += 3 } elseif ($t.AppPermissions -or $t.TenantWideDelegated) { $score += 1 }
+    if ([int]$t.Secrets -gt 0) { $score += 2; if (-not $r -or -not $r.SecretException) { $score += 1 } }
+    if (-not $r -or -not $r.BusinessOwner -or ($t.HomeTenant -eq 'this tenant' -and [int]$t.OwnerCount -eq 0)) { $score += 3 }
+    elseif ($t.HomeTenant -eq 'this tenant' -and [int]$t.OwnerCount -lt 2) { $score += 1 }
+    if ($notOwned.Count) { $score += 3 }
+    if ($t.WildcardOrHttpRedirect -eq 'True') { $score += 2 }
+    if ($t.AssignmentRequired -ne 'True') { $score += 1 }
+    if ($t.HomeTenant -ne 'this tenant' -or ($r -and $r.CaCompatible -eq 'No')) { $score += 1 }
+    if ($r -and $r.Confidentiality -eq 'High') { $score += 2 } elseif ($r -and $r.Confidentiality -eq 'Moderate') { $score += 1 }
+    $retire = ($r -and $r.Disposition -eq 'Retire') -or ($t.LastActivity -and [datetime]$t.LastActivity -lt (Get-Date).AddDays(-90))
+    if ($retire -and ($t.AppPermissions -or [int]$t.Secrets -or [int]$t.Certificates)) { $score += 1 }
+    [pscustomobject]@{ AppId = $t.AppId; DisplayName = $t.DisplayName; Score = $score
+        Wave = if ($score -ge 8) { 'next factory wave' } elseif ($score -ge 4) { 'within horizon' } else { 'with its disposition' }
+        RetirementCandidate = [bool]$retire; RedirectsNotOwned = $notOwned -join ' '; RedirectsNoDns = $noDns -join ' '
+        Confidentiality = $r.Confidentiality; Disposition = $r.Disposition }
+}
+$ranked | Sort-Object Score, Confidentiality -Descending | Export-Csv '<out-dir>\portfolio-identity-rank.csv' -NoTypeInformation
+```
+
+The output is one row per application with its score, its wave, and the redirect URIs that fail the ownership or DNS check, which feed [Appendix A's](appendix-a-identity-remediation-work-packages.md#wp4-redirect-uri-cleanup) redirect cleanup work package. A name that doesn't resolve isn't proof of a takeover risk, and one that resolves isn't proof of ownership: both are leads for the domain owner to confirm. The rank is evidence for the triage record the same way the six scores are, with the *measured* flag.
+
 ## Recording dependencies as an evidence map
 
 Dependencies are the criterion a scoring sheet handles worst. A single score doesn't say what an application is connected to, on whose evidence, or which of those connections a move would break. The program's design is to record dependencies as an evidence map, a list of typed entities joined by typed, directed relationships, each relationship carrying its source. The dependency score is then computed from the map rather than estimated by the owner.
@@ -233,3 +309,6 @@ Triage produces decisions; capital planning funds them. The two have to connect,
 [^c02-aadgraph-rec]: Microsoft Learn, "Microsoft Entra recommendation: Migrate from Azure AD Graph APIs to Microsoft Graph," Description, <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-migrate-to-microsoft-graph-api> (accessed Nov 9, 2026).
 [^c02-implicit]: Microsoft Learn, "Migrate a JavaScript single-page app from implicit grant to auth code flow," <https://learn.microsoft.com/entra/identity-platform/migrate-spa-implicit-to-auth-code> (accessed Nov 9, 2026).
 [^c02-implicit-flow]: Microsoft Learn, "Microsoft identity platform and OAuth 2.0 implicit grant flow," <https://learn.microsoft.com/entra/identity-platform/v2-oauth2-implicit-grant-flow> (accessed Nov 9, 2026).
+[^c02-app-best]: Microsoft Learn, "Security best practices for application properties in Microsoft Entra ID," section "Redirect URIs," <https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration> (accessed Nov 11, 2026).
+[^c02-reply-url]: Microsoft Learn, "Redirect URI (reply URL) outline and restrictions," section "Restrictions on wildcards in redirect URIs," <https://learn.microsoft.com/entra/identity-platform/reply-url> (accessed Nov 11, 2026).
+[^c02-dangling]: Microsoft Learn, "Prevent dangling DNS entries and avoid subdomain takeover" (a DNS record pointing at a deprovisioned resource can be taken over; secrets such as OAuth credentials sent to a dangling subdomain might be exposed), <https://learn.microsoft.com/azure/security/fundamentals/subdomain-takeover> (accessed Nov 11, 2026).

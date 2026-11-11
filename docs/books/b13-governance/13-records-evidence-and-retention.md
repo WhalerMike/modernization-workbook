@@ -168,7 +168,7 @@ External partner persons add four evidence items to the same register, each conf
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 12 — Governance at Scale and the Continuous-Monitoring Program](12-governance-at-scale.md) · [Book index](index.md) · [Next: Appendix A — Requirements Mapping: Controls, Mandates and Books →](appendix-a-requirements-mapping.md)
+[← Previous: Chapter 12 — Governance at Scale and the Continuous-Monitoring Program](12-governance-at-scale.md) · [Book index](index.md) · [Next: Chapter 14 — Applications, Secrets and Configuration Drift →](14-application-secret-and-configuration-governance.md)
 :::
 
 [^c13-3301]: 44 U.S.C. §3301, "Definition of records," subsections (a)(1)(A), (a)(1)(B) and (b), United States Code, 2023 edition, <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap33-sec3301.htm> (accessed Nov 2, 2026).

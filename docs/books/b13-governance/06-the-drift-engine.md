@@ -94,6 +94,8 @@ Earlier books defined drift checks for their own domains, with their own names. 
 
 Book 00's four categories govern attribute values only, which is why they map to schema and semantic and never to the other three classes. The words "Value" and "Orphan" mean different things in Book 00 and Book 01; the class column resolves the ambiguity.
 
+[Chapter 14](14-application-secret-and-configuration-governance.md#configuration-drift-exports) adds exports and drift rules for eight tenant security domains (Conditional Access, PIM, authentication methods, Intune, application permissions, Purview, Exchange protection and network access), each classed and given a default severity on this model, and checks for ownerless applications (identity) and client secrets without an exception (authorization).
+
 ## Severity
 
 Every finding carries one of four severities. Critical, High, Medium and Low in the domain books are the same scale as P1, P2, P3 and P4 here.
