@@ -157,3 +157,22 @@ Also cited for the first time in this chapter, through the additions below: Best
 | S5 | Supported clouds: Azure Global and Azure Government; GCC, GCC High and DoD breakdown not yet specified | Same | verified (new); breakdown not yet specified | c04-linux-ssh |
 | S6 | SSH admin is server-tier (T1) as eligible VM Administrator Login on the resource group; identity-infrastructure servers are T0; local accounts and long-lived keys are findings | Same, second paragraph | restated-as-design | program position (consistent with the Azure RBAC placements table) |
 | S7 | Read-only Azure CLI checks for role assignments and the extension | Same, code block | command (read-only) | c04-linux-ssh |
+
+## Additions, November 11, 2026 (Zero Trust Assessment closure, B04-01, CM-01)
+
+New subsection "Reference architecture, exclusions and evidence" under Emergency access accounts. The build, alert template and drill script stay in the Privileged Access implementation guide (Step 2); this subsection links to them.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | Two or more cloud-only *.onmicrosoft.com accounts; passkey (FIDO2) recommended or CBA; methods differ from normal admins; credentials don't expire or fall to cleanup | Reference architecture table | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access | Nov 11, 2026 |
+| Z2 | Credentials in separate secure, fireproof locations; authorized-user list reviewed; safe combinations changed regularly and after departures | Same, Custody row | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access (Store account credentials safely; Validate accounts regularly) | Nov 11, 2026 |
+| Z3 | Global Administrator permanent active in PIM; designated secure workstation or PAW | Same | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access | Nov 11, 2026 |
+| Z4 | Dedicated group excluded from CA policies that block or restrict sign-in; report-only policies need no exclusion | Same; exclusion rules | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access (Conditional Access considerations) | Nov 11, 2026 |
+| Z5 | Learn's sample alert queries SigninLogs by object ID; threshold greater than 0; severity 0 | Monitoring row | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access (Monitor sign-in and audit logs) | Nov 11, 2026 |
+| Z6 | Non-interactive and audit tables added to the alert | Monitoring row; Telemetry | restated-as-design | program addition; the guide's Step 2 footnote gives the non-interactive logging of FIDO2 refresh-token sign-ins | Nov 11, 2026 |
+| Z7 | Validate at least every 90 days, after staff changes and after subscription changes; tell security monitoring first | Validation row; Evidence | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access (Validate accounts regularly) | Nov 11, 2026 |
+| Z8 | Contingency Conditional Access policies suggested by Learn | Contingency row | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access (Conditional Access considerations) | Nov 11, 2026 |
+| Z9 | Post-use review decides drill, real emergency or misuse | Day-two ownership | verified | https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access (Prepare a post-mortem team) | Nov 11, 2026 |
+| Z10 | Passwordless (FIDO2), CBA, Conditional Access, PIM available in Azure for US Government; GCC pairs with Entra in commercial Azure, GCC High and DoD with Azure Government | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability; https://learn.microsoft.com/azure/security/fundamentals/feature-availability | Nov 11, 2026 |
+| Z11 | Five exclusion rules, two test records per drill, owners and cadence | Exclusion rules; Evidence; Day-two | restated-as-design | program position | Nov 11, 2026 |
+| Z12 | KQL union of SigninLogs, AADNonInteractiveUserSignInLogs, AuditLogs | Telemetry | unverifiable (illustrative, not run) | labelled illustrative in the page | Nov 11, 2026 |
