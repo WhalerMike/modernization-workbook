@@ -27,7 +27,7 @@ jobs:
           filter: blob:none
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml
+        run: bash .github/scripts/install-deps.sh librsvg2-bin python3-yaml
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
