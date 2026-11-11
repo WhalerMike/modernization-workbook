@@ -2383,6 +2383,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md
   - examples/third_party/sentinel-app-credential-rule/SNAPSHOT.md
   - examples/third_party/sentinel-app-credential-rule/snapshot.json
@@ -2416,12 +2417,13 @@ pages:
   ms_date: '2022-09-06'
   ms_topic: concept-article
   description: Learn how to monitor and alert on infrastructure components to identify security threats.
-  coverage: covered-uncited
+  coverage: cited
   note: Entra security operations signals; identity telemetry and migration chapters
   workbook:
   - docs/books/b12-security-operations/03-identity-telemetry.md
   - docs/books/b02-identity/10-migrating-and-governing.md
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/architecture/security-operations-introduction.md
   url: https://learn.microsoft.com/entra/architecture/security-operations-introduction
   title: Microsoft Entra security operations guide
@@ -2449,6 +2451,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b12-security-operations/11-detection-engineering-and-response.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/architecture/security-operations-privileged-identity-management.md
   url: https://learn.microsoft.com/entra/architecture/security-operations-privileged-identity-management
   title: Microsoft Entra security operations for Privileged Identity Management
@@ -5083,6 +5086,7 @@ pages:
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/fundamentals/users-reset-password-azure-portal.md
   url: https://learn.microsoft.com/entra/fundamentals/users-reset-password-azure-portal
   title: Reset a user's password
@@ -5258,6 +5262,7 @@ pages:
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/fundamentals/zero-trust-response-remediation.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-response-remediation
   title: Security guidance | accelerate response and remediation
@@ -10766,6 +10771,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b12-security-operations/03-identity-telemetry.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
@@ -10793,6 +10799,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b12-security-operations/03-identity-telemetry.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/id-protection/howto-identity-protection-configure-mfa-policy.md
   url: https://learn.microsoft.com/entra/id-protection/howto-identity-protection-configure-mfa-policy
   title: Configure the MFA registration policy
@@ -17477,6 +17484,7 @@ pages:
   - docs/books/b06-data-platform/appendix-c-applicability.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b14-compliance/06-contingency-and-continuity.md
@@ -18838,6 +18846,7 @@ pages:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/appendix-a-conditional-access-templates.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/identity/conditional-access/concept-authentication-transfer.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/concept-authentication-transfer
   title: Authentication transfer as a condition to secure mobile users
@@ -19748,6 +19757,7 @@ pages:
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/appendix-a-conditional-access-templates.md
   - docs/books/b04-access/appendix-a-conditional-access-templates.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/identity/conditional-access/reference-office-365-application-contents.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/reference-office-365-application-contents
   title: Office 365 App in Conditional Access reference
@@ -21437,6 +21447,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
 - path: docs/identity/enterprise-apps/application-list.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/application-list
@@ -24462,7 +24473,8 @@ pages:
   description: This article explains how to monitor changes to your federation configuration with Microsoft Entra ID.
   coverage: out-of-scope
   note: AD FS and federation configuration; AD FS is retired in favor of Entra authentication.
-  cited_by: []
+  cited_by:
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
 - path: docs/identity/hybrid/connect/how-to-connect-password-hash-synchronization.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-password-hash-synchronization
   title: Implement password hash synchronization with Microsoft Entra Connect Sync
@@ -27205,6 +27217,7 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b02-identity/appendix-c-identity-assessment-module.md
   - docs/books/b12-security-operations/11-detection-engineering-and-response.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md
@@ -28306,6 +28319,7 @@ pages:
   - docs/books/b06-data-platform/appendix-b-ato-kit.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b11-zero-trust/02-governance-principles.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md
   - docs/books/guides/privileged-access-implementation.md
@@ -30292,6 +30306,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/books/guides/attribute-driven-migration.md
