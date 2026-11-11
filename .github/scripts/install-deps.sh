@@ -51,7 +51,8 @@ for p in "${PACKAGES[@]}"; do
   if [ -n "${PIP_NAME[$p]:-}" ]; then pip+=("${PIP_NAME[$p]}"); else missing+=("$p"); fi
 done
 if [ ${#pip[@]} -gt 0 ]; then
-  python3 -m pip install --user --break-system-packages "${pip[@]}" || exit 1
+  # apt's python3-* packages also pull in lxml (presentations/_build/link_sources.py needs it).
+  python3 -m pip install --user --break-system-packages "${pip[@]}" lxml || exit 1
 fi
 if [ ${#missing[@]} -gt 0 ]; then
   echo "::warning::Not installed (no PyPI equivalent): ${missing[*]}. Steps that need them will report it."
