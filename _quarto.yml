@@ -246,6 +246,7 @@ website:
             - docs/training/ms-automation-foundations.md
             - docs/training/ms-automation-entra.md
             - docs/training/ms-automation-intune.md
+            - docs/training/ms-automation-arc.md
         - section: "Ticket-to-Machine learning path"
           href: docs/training/ticket-to-machine/index.md
           contents:
