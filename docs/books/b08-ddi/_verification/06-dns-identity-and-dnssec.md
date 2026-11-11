@@ -145,3 +145,18 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | and SC-21 is met by someone else's system, if at all. | and SC-21 rests on someone else's system, if it is supported at all. | no source change |
+
+## Zero Trust Assessment closure additions (Nov 11, 2026)
+
+Added for the Zero Trust Assessment closure update (B08-01, and the Book 08 part of CM-07). Each row uses the verification-log row from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md#block-verification-row). Learn pages were read on the date shown; `ms.date` wasn't exposed by the fetch tool, so the read date is the date recorded.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | Tokens sent only to registered redirect URIs; AADSTS50011; https except localhost; wildcards only via manifest for work-or-school apps, absolute URIs strongly recommended; application object only | Redirect URIs | verified | Learn, Redirect URI (reply URL) outline and restrictions | Nov 11, 2026 |
+| Z2 | Maintain ownership of all URIs; monitor DNS; no wildcards or insecure schemes; small lists | Pattern table | verified | Learn, Security best practices for application properties in Microsoft Entra ID | Nov 11, 2026 |
+| Z3 | Zero Trust checks: safe redirect URIs for app registrations and service principals; no dangling or abandoned domain redirect URIs | Redirect URIs | verified | Learn, Configure Microsoft Entra for Zero Trust: Protect engineering systems | Nov 11, 2026 |
+| Z4 | Dangling CNAMEs; OAuth credentials sent to dangling subdomains may be exposed; Get-DanglingDnsRecords; Defender for App Service alerts; remove DNS entry at decommission; remediation steps | Redirect URIs; telemetry; day-two | verified | Learn, Prevent dangling DNS entries and avoid subdomain takeover | Nov 11, 2026 |
+| Z5 | asuid verification records; secure unique default hostnames | Pattern table | verified | Learn, Prevent subdomain takeovers in Azure App Service | Nov 11, 2026 |
+| Z6 | RDAP bootstrap (RFC 9224) and expiration events (RFC 9083) | Prerequisites; report-only | verified | IETF RFC 9224; RFC 9083 | Nov 11, 2026 |
+| Z7 | Graph service principal update available in US Gov L4 and L5 | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
+| Z8 | Owner and DNS proof rule, 90-day registration threshold, rings, post-change test, vendor-domain exception | Pattern; Enforcement; Exclusions | restated-as-design | Program design | Nov 11, 2026 |

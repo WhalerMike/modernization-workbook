@@ -361,6 +361,119 @@ CISA's Hybrid Identity Solutions Guidance, written under the SCuBA project, comp
 - **Check the hash.** For password synchronization, CISA warns that mismatched hash functions on-premises and in the cloud could leave a weaker algorithm in use.[^c09-hisg] PHS doesn't send the Active Directory hash: the sync agent salts it per user and runs it through PBKDF2 with 1,000 iterations of HMAC-SHA256, so what Entra ID stores can't be replayed against Active Directory in a pass-the-hash attack.[^c09-phs-hash]
 - **Keep privileged accounts cloud-only** whatever the sign-in method, so a compromised on-premises environment reaches only lower-privilege accounts.[^c09-hisg] [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md) sets the program's standard.
 
+### Managed authentication or federation: the decision record {#managed-or-federated-decision}
+
+The table above compares the methods; an agency that still federates a domain also has to write down why, what keeps the federation safe while it lasts, and what ends it. Microsoft's Zero Trust guidance for Entra ID lists "Use cloud authentication" as a recommendation, because an on-premises federation server is a central authentication point whose compromise lets an attacker forge tokens that impersonate any user, and it points to the migration to password hash sync as the remediation.[^c09-zt-cloud-authn] The program's position is the same: managed authentication with PHS is the target, and federation is kept only on a dated, signed exception.
+
+**Authority:** Microsoft-recommended (cloud authentication, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," read Nov 11, 2026); the program's position (federation only by exception) is risk-based recommended, for the token-forgery risk above.
+**Applies:** all tenants with a federated domain. Environment-dependent: federated authentication, cloud authentication, Microsoft Entra Connect sync and cloud sync, and Connect Health are all listed as available in Azure for US Government, the cloud GCC High and DoD tenants use;[^c09-zt-gov-features] GCC tenants use the commercial service.
+
+#### The decision tree
+
+Answer the questions in order for each federated domain. The first answer that leads to "managed" ends the tree.
+
+| # | Question | If yes | If no |
+|---|---|---|---|
+| 1 | Is password hash sync on for every user in the domain, and has staged rollout to PHS succeeded for a pilot? | Go to 2 | Turn PHS on first; it is the fallback either way ([Recommendation: PHS everywhere](#choosing-the-sign-in-method)) |
+| 2 | Does a relying party other than Microsoft 365 still depend on the farm? | Record it; it keeps the *farm*, not the *domain*, federated ([Appendix D](appendix-d-migrating-ad-fs-applications.md#two-migrations-not-one)). Go to 3 | Go to 3 |
+| 3 | Does a sign-in requirement for this domain exist that Entra ID can't meet without the farm, named in writing by its owner? | Go to 4 | **Managed.** Plan the conversion in [Chapter 10, Phase 9](10-migrating-and-governing.md#phase-9-federation-decommission-if-applicable) |
+| 4 | Can the farm meet every condition in the next table (availability, certificate rollover, compromise recovery, monitoring) from today? | **Federated, on a dated exception** with an exit date no later than the program's AD FS retirement date | **Managed.** A farm that can't be kept safe is a reason to convert, not to keep it |
+
+Requirements that once forced federation mostly no longer do: smart card and PIV sign-in moves to Entra certificate-based authentication ([Book 07, Chapter 06](../b07-pki/06-device-and-user-certificates.md#migrating-from-ad-fs-certificate-authentication)), and immediate enforcement of on-premises account state is what pass-through authentication offers as a transition. A requirement that survives question 3 is rare, and the record names it.
+
+#### What a federated domain has to keep up while it lasts
+
+| Condition | What the program asks | Where it's done |
+|---|---|---|
+| **Availability** | Two or more AD FS servers and two or more Web Application Proxy servers behind load balancing, as the method table above says, with PHS on so an administrator can switch the domain to managed authentication if the farm fails; the farm's backups taken with the AD FS Rapid Restore Tool and a restore tested | This chapter; [Book 07, Chapter 06](../b07-pki/06-device-and-user-certificates.md#migrating-from-ad-fs-certificate-authentication) for the backup |
+| **Certificate rollover** | `AutoCertificateRollover` on and federation metadata reachable from the internet, so Entra ID picks up the new token-signing certificate on its own; Entra ID starts polling the metadata 35 days before the current certificate expires, and emails when it can't get the new one.[^c09-zt-fed-certs] Where certificates are renewed manually, run `Update-MgDomainFederationConfiguration` for every federated domain after each renewal | The check below |
+| **Compromise recovery** | A written, tested procedure: emergency rotation of the token-signing certificate, update of Entra ID, revocation of refresh tokens, or conversion of the domain to managed authentication | The procedure below |
+| **Monitoring** | Connect Health for AD FS agents on every AD FS and proxy server (Entra ID P1), with its alerts routed to the identity team; AD FS logs in the SIEM; an alert on changes to the domain's federation configuration[^c09-zt-health-adfs] | [Appendix D](appendix-d-migrating-ad-fs-applications.md#keeping-ad-fs-and-web-application-proxy-secure-until-they-retire) for hardening; [Chapter 10](10-migrating-and-governing.md#detection-rules) for detection rules |
+| **Exit criteria** | All of Appendix D's [retirement criteria](appendix-d-migrating-ad-fs-applications.md#retirement-criteria), and the domain converted | [Chapter 10, Phase 9](10-migrating-and-governing.md#phase-9-federation-decommission-if-applicable) |
+
+The rollover check, run monthly and before every change window, on the primary AD FS server:
+
+```powershell
+# On the primary AD FS server, as an AD FS administrator
+Get-AdfsProperties | Format-List AutoCertificateRollover, CertificateGenerationThreshold, CertificatePromotionThreshold
+Get-AdfsCertificate -CertificateType Token-Signing | Format-Table IsPrimary, Thumbprint, NotAfter
+
+# Microsoft Entra PowerShell, as a Hybrid Identity Administrator: compare with what Entra ID holds
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraFederationProperty -DomainName "<federated domain>" | Format-List Source, SigningCertificate
+```
+
+The thumbprints should match, and a `NotAfter` under 35 days away with `AutoCertificateRollover` off, or under 15 days with the certificates out of sync, means renew now.[^c09-zt-fed-certs] `<federated domain>` is the domain name, such as `contoso.example`.
+
+#### The compromise recovery procedure
+
+Microsoft's emergency rotation for a token-signing certificate that may be compromised creates *two* new certificates, so that Entra ID releases what it held about the old one; with only one, the old certificate might still authenticate users. The rotation revokes the old certificates at once and can cause an outage until every federation partner has the new ones.[^c09-zt-fed-emergency] The procedure for a farm with `AutoCertificateRollover` on:
+
+```powershell
+# 1. On the primary AD FS server, as an administrator: record the current certificate, then replace it twice
+Get-AdfsCertificate -CertificateType Token-Signing | Format-Table IsPrimary, Thumbprint, NotAfter
+Update-AdfsCertificate -CertificateType Token-Signing -Urgent
+Update-AdfsCertificate -CertificateType Token-Signing
+Get-AdfsCertificate -CertificateType Token-Signing | Format-Table IsPrimary, Thumbprint, NotAfter
+
+# 2. As a Hybrid Identity Administrator: push the new certificate to Entra ID, for every federated domain
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraFederationProperty -DomainName "<federated domain>"
+Update-MgDomainFederationConfiguration -DomainId "<federated domain>" -InternalDomainFederationId "<internal federation id from the line above>"
+
+# 3. On the primary AD FS server: remove the old certificate so it can't be used
+Remove-AdfsCertificate -CertificateType Token-Signing -Thumbprint "<old thumbprint from step 1>"
+```
+
+Then revoke refresh tokens for the affected users (`Revoke-EntraUserAllRefreshToken -UserId "<user object id>"` for each), revoke and replace the farm's TLS certificates if the compromise reached them, and send the new token-signing certificate to every relying party that doesn't read federation metadata.[^c09-zt-fed-emergency] Where PHS is on and staged rollout has proved cloud authentication, converting the domain (`Update-MgDomain -DomainId "<federated domain>" -AuthenticationType "Managed"`) takes the farm out of the Microsoft 365 sign-in path altogether, and is the faster containment for that path. Plan the change on Microsoft's two published figures: the migration guide says conversion can take up to 60 minutes per domain,[^c09-zt-fed-migrate] and the AD FS to Entra FAQ allows up to 4 hours for the change to take full effect.[^c09-zt-adfs-faq] Relying parties other than Microsoft 365 still trust the farm's certificate after a domain is converted, so the rotation is still needed for them ([Appendix D](appendix-d-migrating-ad-fs-applications.md#two-migrations-not-one)).
+
+*Test it before it's needed.* Run the whole procedure, rotation, Entra update, token revocation and the conversion's rollback (`New-MgDomainFederationConfiguration`), in a test tenant federated to a test farm, at least once a year and after any change to the farm; record the date, the tester, the observed outage and the time each step took. Rotation in production is an incident action, not a test.
+
+#### The decision record
+
+```markdown
+**Federation decision record**: <federated domain>
+- Decision: Managed | Federated on a dated exception
+- Tree answers (1–4): <yes/no and the evidence for each>
+- Requirement that needs the farm (question 3): <requirement, its owner, the date it was named>
+- Conditions met (availability, rollover, recovery, monitoring): <evidence for each, with dates>
+- Recovery procedure last tested: <date, tester, test tenant, observed outage>
+- Exit criteria and exit date: <Appendix D criteria still open; date no later than the AD FS retirement date>
+- Decided: identity engineering lead <name, date>; consulted: CISO <name, date>, ISSO <name, date>
+- Residual risk accepted (federated only): authorizing official <name, date>
+- Review: <quarterly while federated>
+```
+
+Identity engineering decides the authentication method, with the CISO and ISSO consulted, as [Chapter 06's responsibility matrix](06-who-owns-the-migration.md#the-responsibility-matrix) sets out; keeping a domain federated is a residual risk, so the authorizing official accepts it, and the exception follows Book 11's [closure chain](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain).
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The decision tree and the signed decision record | Decision record per federated domain |
+| Configured | PHS on; staged rollout pilot; rollover settings | Sync configuration export; `Get-AdfsProperties` output |
+| Enforced | Domain converted to managed (`Update-MgDomain`), or the exception's conditions in force | `Get-MgDomain` showing `AuthenticationType` Managed, or the exception record |
+| Evidenced | The recovery procedure tested in a test tenant | Test record (date, tester, observed outage, step times) |
+| Operated | Monthly rollover check; Connect Health alerts; quarterly review of the exception | Check output, alert history, review record |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** `Get-MgDomain` export showing each domain's authentication type; `Get-AdfsProperties` and `Get-EntraFederationProperty` output for any domain still federated, in the identity baseline repository
+- [ ] **Operational:** Connect Health for AD FS alert history and the monthly rollover check results, kept for the program's log retention
+- [ ] **Test:** the recovery test record from the test tenant (expected and observed outcome, date, tester)
+- [ ] **Exception:** the signed decision record for each federated domain, with its exit date and review date
+- [ ] **Assessor-ready artifact:** the decision records and test record, cross-referenced from the plan of action entry for a "Use cloud authentication" finding
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** password hash sync and the sync engine (this chapter); Infrastructure, for the Tier 0 servers the farm runs on; SecOps, for the AD FS logs and alerts ([Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Credential Access and Persistence: forging tokens with a stolen token-signing key to impersonate any user in the tenant
+:::
+
 ### Soft match and hard match
 
 When the sync engine adds an object that might already exist in the cloud, Entra ID looks for a match in this order:[^c09-existing-tenant]
@@ -886,6 +999,152 @@ cd "$env:ProgramFiles\Microsoft Azure AD Connect"
 
 Current builds handle the ADSync service account's encryption keys themselves when its password changes; the manual "abandon the encryption key" procedure applies only to build 1.1.443.0 and older.[^c09-adsync-password]
 
+### Hardening the synchronization identities {#hardening-the-synchronization-identities}
+
+The accounts above are the most privileged non-person identities in a hybrid tenant: whoever holds them can create accounts, change attributes and write passwords on both sides of the sync. Microsoft's Zero Trust guidance for Entra ID carries two checks for them: Entra Connect Sync should authenticate with service principal (certificate) credentials rather than a user account with a password, with the legacy Directory Synchronization Accounts removed; and a directory sync account should be locked down to specific named locations by Conditional Access.[^c09-zt-protect-identities] This section is the procedure for both, plus rotation and alerting, for every sync identity the tenant has.
+
+**Authority:** Microsoft-recommended (application-based authentication, removal of the legacy account, and named-location restriction, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets" and "Authenticate to Microsoft Entra ID by using application identity," both read Nov 11, 2026). The alerting rules are risk-based recommended, for the risk of a stolen sync credential used from elsewhere.
+**Applies:** every tenant with Connect Sync or Cloud Sync. License-dependent: a location policy on the Connect Sync application needs Workload ID Premium; a policy on the legacy user account needs Entra ID P1. Environment-dependent: Connect Sync, Cloud Sync and Conditional Access are listed as available in Azure for US Government, and Workload ID Premium is available there through the account manager;[^c09-zt-gov-features] application-based authentication isn't distinguished by cloud on its Learn page, so its government-cloud availability is not yet specified.
+
+#### The sync identities to inventory
+
+| Identity | Where it lives | How it authenticates | Least privilege | Rotation |
+|---|---|---|---|---|
+| Connect Sync application (application-based authentication) | Entra ID: a single-tenant application and service principal | Certificate, OAuth 2.0 client credentials; a 90-day certificate by default, private key in the TPM where there is one, otherwise non-exportable in software[^c09-zt-appid] | Only the Microsoft Entra AD Synchronization Service app role (and the three password writeback roles, if writeback is on) | Automatic when Connect manages the certificate and the scheduler is running; warning event 1011 at 70% of lifetime, error 1012 when expired[^c09-zt-appid] |
+| Legacy Microsoft Entra Connector account (`Sync_<server>_<id>`) | Entra ID: a user holding the Directory Synchronization Accounts role; one per server, up to 20 per tenant[^c09-connect-accounts] | Password that doesn't expire | The role can be granted only by the Connect wizard | Remove after moving to application-based authentication; until then, reset with `Add-ADSyncAADServiceAccount`[^c09-zt-connector-reset] |
+| AD DS connector account | Active Directory | Password | `Set-ADSyncRestrictedPermissions`, only the features in use; never Enterprise or Domain Admin (the table above) | Annually and when an administrator who knew it leaves *(program cadence)*: `Add-ADSyncADDSConnectorAccount -Name "<AD connector name>" -EACredential (Get-Credential)` resets it in AD and in the sync engine; a password changed only in AD stops imports and exports with event 6000[^c09-zt-addsacct] |
+| ADSync service account | The Connect server | Virtual service account or gMSA | Local to the sync service | Managed by Windows for a VSA or gMSA |
+| Cloud Sync agent gMSA (`provAgentgMSA$` or a custom gMSA) | Active Directory | gMSA password, rotated by AD | `Set-AADCloudSyncRestrictedPermissions`, then only the permission types the configuration uses[^c09-zt-cloudsync-gmsa] | Automatic (gMSA) |
+
+The Cloud Sync agent registers with Entra ID through the Hybrid Identity Administrator who installs it, and Learn doesn't document a user account or app registration in the tenant for it that Conditional Access can target, so the Entra-side controls below apply to Connect Sync.
+
+#### Prerequisites
+
+- Connect Sync 2.5.76.0 or later for automatic onboarding to application-based authentication, or 2.5.3.0 for manual; the April 7, 2027 deadline above requires 2.6.84.0 or later and application-based authentication on every server anyway.[^c09-zt-appid][^c09-connect-hardening]
+- A TPM 2.0 on each Connect server (on Hyper-V, a generation 2 VM with the TPM enabled), which Microsoft highly recommends for the certificate's private key.[^c09-zt-appid]
+- Hybrid Identity Administrator to configure, Conditional Access Administrator for the policies, and a named location, `NL-SyncServerEgress`, holding the public egress addresses of every Connect server, active and staging.
+- Entra ID P1 for a policy on the legacy user account; Workload ID Premium for a policy on the Connect Sync service principal ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities)).
+
+#### Pilot
+
+Start with the staging server: switch it to application-based authentication, run a full import and synchronization, and read its pending exports as in [Switching the active server](#switching-the-active-server). Success is a clean sync cycle with `ConnectorIdentityType` reporting `Application`. Then do the active server in a change window.
+
+```powershell
+# On each Connect server, as an administrator: which identity does it use now?
+Import-Module ADSync
+Get-ADSyncEntraConnectorCredential
+Get-ADSyncScheduler | Select-Object SyncCycleEnabled, StagingModeEnabled
+Get-Tpm | Select-Object TpmPresent, TpmReady
+```
+
+Move each server with the wizard: **Additional tasks** > **Configure application-based authentication to Microsoft Entra ID**.[^c09-zt-appid] Then confirm `Get-ADSyncEntraConnectorCredential` returns `Application`, and in **View or export current configuration**, that the key storage provider is `Microsoft Platform Crypto Provider` (TPM), not `Microsoft Software Key Storage Provider`.
+
+#### Report-only phase
+
+Create the location policies in report-only mode and read them for two weeks before enforcing.
+
+- **Legacy user account, while it exists.** A Conditional Access policy that includes the **Directory Synchronization Accounts** directory role, targets all resources, includes any location and excludes `NL-SyncServerEgress`, and grants **Block**. Microsoft's location policy pattern is in "Block access by location";[^c09-zt-ca-location] the sync accounts are the users it names for exclusion from *other* policies, which is why this one targets them on their own.
+- **Connect Sync service principal.** A policy for workload identities that selects the Connect Sync service principal directly (not through a group), targets all resources, includes any location and excludes `NL-SyncServerEgress`, and grants **Block**: the location pattern Microsoft documents for workload identities, and the shape of [Book 04's CA015](../b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities).[^c09-zt-ca-wid]
+
+Read the results in the sign-in logs: user sign-ins for the legacy account, **Service principal sign-ins** for the application, each on its **Report-only** tab. Every sign-in should come from `NL-SyncServerEgress`; any other address is either a missing egress address or an incident.
+
+```powershell
+# Microsoft Graph PowerShell, as a Reports Reader: sign-ins by the Connect Sync service principal in the last 14 days
+Connect-MgGraph -Scopes 'AuditLog.Read.All' -NoWelcome
+$appId = '<Connect Sync application (client) ID from Get-ADSyncEntraConnectorCredential>'
+$since = (Get-Date).ToUniversalTime().AddDays(-14).ToString('yyyy-MM-ddTHH:mm:ssZ')
+Get-MgBetaAuditLogSignIn -Filter "appId eq '$appId' and createdDateTime ge $since and signInEventTypes/any(t: t eq 'servicePrincipal')" -All |
+    Group-Object IPAddress | Select-Object Name, Count
+```
+
+#### Enforcement
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Staging server on application-based authentication | Clean full sync; pending exports match the active server |
+| 1 | Active server on application-based authentication; location policies in report-only | Two weeks of report-only results with every sign-in from `NL-SyncServerEgress` |
+| 2 | Legacy account removed; service principal policy **On** | Three clean delta cycles; password hash sync and writeback working |
+| 3 | Alerts live and tested | Both alert tests below raised an alert |
+
+Remove the legacy account only after the server is synchronizing on application-based authentication, with `Remove-ADSyncAADServiceAccount -AADCredential $HACredential -Name <Sync_server_id>`; where a custom account can't be removed, take the role away from it.[^c09-zt-appid] Then list what's left; nothing should remain in the role:
+
+```powershell
+# Microsoft Graph PowerShell: any members left in Directory Synchronization Accounts?
+Connect-MgGraph -Scopes 'RoleManagement.Read.Directory' -NoWelcome
+$role = Get-MgDirectoryRole -Filter "displayName eq 'Directory Synchronization Accounts'"
+Get-MgDirectoryRoleMember -DirectoryRoleId $role.Id | Select-Object Id, @{n='UPN';e={$_.AdditionalProperties.userPrincipalName}}
+```
+
+#### Rollback
+
+Microsoft documents the way back from application-based authentication: disable the scheduler, re-create the legacy account with `Add-ADSyncAADServiceAccount`, confirm `ConnectorIdentityType` is `ServiceAccount`, and re-enable the scheduler; the re-created account can take up to 15 minutes to work.[^c09-zt-appid] A location policy is rolled back by setting it to report-only. The identity engineer on the change runs either, in under 30 minutes.
+
+#### Exclusions
+
+Emergency access accounts aren't in scope of either policy, which target only the sync identities. The location policies have no exclusions; a new Connect server's egress address is added to `NL-SyncServerEgress` before the server is built, by change request.
+
+#### Telemetry
+
+- Sign-in logs: user sign-ins for the legacy account; service principal sign-ins for the Connect Sync application.
+- Audit logs: **Update application – Certificates and secrets management** on the Connect Sync application (a credential added or removed), and **Add member to role** for Directory Synchronization Accounts.
+- The Connect server's Application event log: 1011 and 1012 for the certificate's age, and the error event Connect writes when it fails to remove an old certificate credential after rotation.[^c09-zt-appid]
+- Microsoft Entra recommendations, in preview, that read the sync accounts: **Rotate password for Microsoft Entra Connect AD DS Connector account**, **Replace Enterprise or Domain Admin account for Microsoft Entra Connect AD DS Connector** and **Remove unsafe permissions on sensitive Microsoft Entra Connect accounts**.[^c09-zt-recommendations]
+
+The two alert rules, in the program's Log Analytics workspace ([Chapter 10](10-migrating-and-governing.md#detection-rules) has the others):
+
+```kusto
+// Sync identity signed in from outside the sync servers' egress addresses
+let syncEgress = dynamic(["<egress IP 1>", "<egress IP 2>"]);
+union
+  (AADServicePrincipalSignInLogs | where AppId == "<Connect Sync application (client) ID>"),
+  (SigninLogs | where UserPrincipalName startswith "Sync_")
+| where IPAddress !in (syncEgress)
+| project TimeGenerated, Identity = coalesce(ServicePrincipalName, UserPrincipalName), IPAddress, ResultType
+
+// A credential was added to, or removed from, the Connect Sync application
+AuditLogs
+| where OperationName == "Update application – Certificates and secrets management"
+| mv-expand TargetResources
+| where tostring(TargetResources.id) == "<Connect Sync application object ID>"
+| project TimeGenerated, InitiatedBy = tostring(InitiatedBy.user.userPrincipalName), Result
+```
+
+*Alert test.* Rotate the certificate on demand (wizard: **Additional tasks** > **Rotate application certificate**[^c09-zt-appid]) in a change window: the credential alert must fire, and the rotation itself is the rotation evidence. The location alert is tested by running the first query with an egress address temporarily removed from `syncEgress` in a copy of the rule.
+
+#### Evidence
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The inventory table and this procedure | The sync identity inventory, with owner |
+| Configured | Application-based authentication; restricted AD permissions; policies in report-only | `Get-ADSyncEntraConnectorCredential` output; policy exports |
+| Enforced | Legacy account removed; service principal policy **On** | Empty Directory Synchronization Accounts role; policy export in the enforcing state |
+| Evidenced | Both alert tests | Test records and the alerts they raised |
+| Operated | Certificate events watched; recommendations reviewed monthly | Alert history; the monthly review record |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the inventory of sync identities with owners; `Get-ADSyncEntraConnectorCredential` output per server; both policy exports, in the identity baseline repository
+- [ ] **Operational:** sign-in and audit log extracts for the sync identities, kept for the program's log retention; event 1011 and 1012 history
+- [ ] **Test:** the two alert test records (expected and observed outcome, date, tester), and the on-demand rotation that served as one of them
+- [ ] **Exception:** any custom legacy account that couldn't be removed, with its role removal recorded; any policy exclusion (there should be none)
+- [ ] **Assessor-ready artifact:** the package entry for the "Entra Connect Sync is configured with Service Principal Credentials" and "Directory sync account is locked down to specific named location" checks, traceable to the four above
+
+#### Day-two ownership
+
+Identity engineering (sync) owns the sync identities, as [Chapter 06](06-who-owns-the-migration.md#entra-roles-for-each-team) assigns. It reviews the inventory and the role membership monthly, keeps `NL-SyncServerEgress` current through change control, and treats a certificate event 1012, an unexpected credential change or a sign-in from outside the location as a security incident routed to security operations. Drift looks like a member reappearing in Directory Synchronization Accounts, the scheduler suspended (which stops automatic rotation), or the provider changing from TPM to software after a rebuild.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Infrastructure, for the Tier 0 Connect servers and their TPMs; Networks, for stable egress addresses; SecOps, for the alert rules ([Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Credential Access and Persistence: a stolen sync credential used from attacker infrastructure to create or change accounts in the tenant
+:::
+
 ### The ports
 
 | From the Connect server to | Protocol and port | Purpose |
@@ -1053,3 +1312,18 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c09-connect-uninstall]: Microsoft Learn, "Uninstall Microsoft Entra Connect," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-uninstall> (accessed Nov 9, 2026).
 [^c09-connect-instances]: Microsoft Learn, "Microsoft Entra Connect: Special considerations for instances," section "Microsoft Azure Government," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-instances> (accessed Nov 9, 2026).
 [^c09-connect-gov]: Microsoft Learn, "Hybrid identity considerations for the Azure Government cloud," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> (accessed Nov 9, 2026).
+[^c09-zt-cloud-authn]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," recommendation "Use cloud authentication" (an on-premises federation server is a central authentication point; attackers who compromise it can forge security tokens to impersonate any user; remediation: migrate from federation to cloud authentication such as PHS), <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Nov 11, 2026).
+[^c09-zt-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: cloud authentication, federated authentication, certificate-based authentication, Conditional Access, Microsoft Entra Connect sync and cloud sync, and Connect Health reporting available; Workload Identities Premium available in Azure for US Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
+[^c09-zt-fed-certs]: Microsoft Learn, "Renew federation certificates for Microsoft 365 and Microsoft Entra ID" (token-signing certificates self-signed and good for one year by default; AutoCertificateRollover; Entra ID polls federation metadata 35 days before expiry and emails if it can't get the new certificate; action table for 35 and 15 days; `Update-MgDomainFederationConfiguration` after manual renewal, for every federated domain), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-fed-o365-certs> (accessed Nov 11, 2026).
+[^c09-zt-health-adfs]: Microsoft Learn, "Microsoft Entra Connect Health agents for AD FS" (agents on every AD FS and Web Application Proxy server; Entra ID P1 or P2; Azure Government endpoints listed), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs>, and "Microsoft Entra Connect Health Alert Catalog," section "Alerts for Active Directory Federation Services," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-alert-catalog> (both accessed Nov 11, 2026).
+[^c09-zt-fed-emergency]: Microsoft Learn, "Emergency rotation of the AD FS certificates" (rotation revokes the old certificates immediately and may cause an outage; create two token-signing certificates, `-Urgent` first, so Entra ID releases the old one; `Update-MgDomainFederationConfiguration`; `Remove-ADFSCertificate`; replace TLS certificates after a compromise; update partners that don't read metadata; revoke refresh tokens), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-emergency-ad-fs-certificate-rotation> (accessed Nov 11, 2026).
+[^c09-zt-fed-migrate]: Microsoft Learn, "Migrate from federation to cloud authentication" (plan the maintenance window: conversion may take up to 60 minutes; rollback with `New-MgDomainFederationConfiguration`), <https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication> (accessed Nov 11, 2026).
+[^c09-zt-adfs-faq]: Microsoft Learn, "AD FS to Microsoft Entra FAQ," entry "When switching a domain from federated to managed how long does it take for the change to take place?" (up to 4 hours to fully cut over), <https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/ad-fs-to-azure-ad-faq> (accessed Nov 11, 2026).
+[^c09-zt-protect-identities]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," recommendations "Entra Connect Sync is configured with Service Principal Credentials" and "Directory sync account is locked down to specific named location," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Nov 11, 2026).
+[^c09-zt-appid]: Microsoft Learn, "Authenticate to Microsoft Entra ID by using application identity" (single-tenant application with certificate credentials; managed, BYOC and BYOA options; 90-day default certificate, TPM recommended, otherwise non-exportable software key; versions 2.5.3.0 manual and 2.5.76.0 automatic onboarding; `Get-ADSyncEntraConnectorCredential`; wizard tasks to configure and to rotate; removing the legacy account with `Remove-ADSyncAADServiceAccount`; rollback with `Add-ADSyncAADServiceAccount`, up to 15 minutes; events 1011 at 70% of lifetime and 1012 when expired; Application Administrator can add credentials to the Connect Sync application), <https://learn.microsoft.com/entra/identity/hybrid/connect/authenticate-application-id> (accessed Nov 11, 2026).
+[^c09-zt-connector-reset]: Microsoft Learn, "Change the Microsoft Entra Connector account password" (`Add-ADSyncAADServiceAccount` resets the password in Entra ID and the sync engine), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-azureadaccount> (accessed Nov 11, 2026).
+[^c09-zt-addsacct]: Microsoft Learn, "Changing the AD DS connector account password" (a password changed only in AD fails imports and exports with event 6000 until the sync service is updated), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-change-addsacct-pass>, and "Microsoft Entra Connect: ADSync PowerShell Reference," `Add-ADSyncADDSConnectorAccount`, <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsync> (both accessed Nov 11, 2026).
+[^c09-zt-cloudsync-gmsa]: Microsoft Learn, "Microsoft Entra provisioning agent gMSA PowerShell cmdlets" (`Set-AADCloudSyncRestrictedPermissions` disables inheritance and removes default permissions on the agent's account; `Set-AADCloudSyncPermissions` grants permission types), <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-gmsa-cmdlets>, and "Accounts for integrating with Active Directory," <https://learn.microsoft.com/entra/identity/hybrid/accounts> (both accessed Nov 11, 2026).
+[^c09-zt-ca-location]: Microsoft Learn, "Block access by location" (named location, Block, report-only first; service accounts such as the Microsoft Entra Connect Sync account named among recommended exclusions from user policies), <https://learn.microsoft.com/entra/identity/conditional-access/policy-block-by-location> (accessed Nov 11, 2026).
+[^c09-zt-ca-wid]: Microsoft Learn, "Conditional Access for workload identities," section "Create a location-based Conditional Access policy" (select service principals directly; any location, exclude allowed locations; Block; report-only available; Workload Identities Premium required), <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Nov 11, 2026).
+[^c09-zt-recommendations]: Microsoft Learn, "What are Microsoft Entra recommendations?," recommendations overview table (the three Microsoft Entra Connect account recommendations, preview), <https://learn.microsoft.com/entra/identity/monitoring-health/overview-recommendations> (accessed Nov 11, 2026).
