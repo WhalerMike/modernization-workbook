@@ -269,3 +269,15 @@ New subsection "Tenant creation" under Tenant hygiene.
 | Z5 | Governed workforce tenant flow requires Tenant Creator; default template sets the governance relationship | Workflow | verified | https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-create-tenant | Nov 11, 2026 |
 | Z6 | Government-cloud availability of the setting and the Tenant Creator role | Applies | not yet specified | not stated on Learn | Nov 11, 2026 |
 | Z7 | Tenant Creator eligible in PIM at Tier 2 with approval; request fields; inventory | Workflow | restated-as-design | program position | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+New subsection "Turning on auto-apply safely" (`#b04-ar-rollout`) after "From a manual procedure to the service".
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P1 | Auto-apply removes denied users; non-response options; warning that remove/take recommendations with auto-apply can revoke all access; denied guests can be re-enabled within 30 days | Rollout table | verified (unchanged since Oct 20) | [Create an access review of groups and applications](https://learn.microsoft.com/entra/id-governance/create-access-review) | Nov 11, 2026 |
+| P2 | Manual Apply when auto-apply is off; results not applied to synced, mail-enabled, dynamic groups or through nested groups | Report-only phase; exclusions | verified | [Complete an access review of groups and applications](https://learn.microsoft.com/entra/id-governance/complete-access-review) | Nov 11, 2026 |
+| P3 | Auto-apply automates removal; audit activity types for access reviews | Authority; telemetry | verified | [Plan a Microsoft Entra access reviews deployment](https://learn.microsoft.com/entra/id-governance/deploy-access-reviews) | Nov 11, 2026 |
+| P4 | Microsoft Entra ID Governance available in GCC, GCC-High and DoD | Applies | verified | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
+| P5 | Rings, manual-apply first instance, backout triggers | Rollout | restated-as-design | program position | Nov 11, 2026 |

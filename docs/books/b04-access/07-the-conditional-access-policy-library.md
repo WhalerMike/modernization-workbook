@@ -510,7 +510,7 @@ Alert on the emergency accounts' object IDs, not on user names containing "Break
 
 ### Drift
 
-The policy set in the tenant must equal the policy set in source control. The program's drift check, described in [Chapter 10](10-access-as-code-and-evidence.md), compares them and alerts on:
+The program's rule is that the policy set in the tenant equals the policy set in source control (risk-based recommended: an unreviewed change to a policy is how an access control quietly stops working; it supports CM-3, which [Chapter 10](10-access-as-code-and-evidence.md#change-control) covers). The program's drift check, described in [Chapter 10](10-access-as-code-and-evidence.md), compares them and alerts on:
 
 - a policy whose state changed (On to Off or report-only) without an approved change;
 - a change to any exclusion group's membership, especially `CA-Exclude-EmergencyAccess`;

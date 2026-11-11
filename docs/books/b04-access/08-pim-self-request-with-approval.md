@@ -353,6 +353,24 @@ Plan around three platform behaviors:[^c08-assign]
 
 The exclusions from conversion are exactly two, and both go in the system security plan with a rationale: the emergency access accounts, and service principals that can't perform an activation.
 
+Steps 3 to 5 are the build's enforcement: once approval is on and the standing assignment is gone, an administrator who can't activate can't administer. PIM has no report-only mode, so the safe path is the order of the rings, with the [validation test plan](#validation-test-plan) as the exit test for each. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#change-safety)'s.
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Read-only roles and the identity team's own Tier 2 assignments | Tests 1 to 7 pass; each person activates through the group before the active assignment is removed |
+| 1 | Remaining Tier 2 roles | One week of activations with no stranded administrator and approvers responding inside the 24-hour window |
+| 2 | Tier 1 roles | As ring 1, and the help desk's escalation path for an expired request exercised once |
+| 3 | Tier 0 roles, Privileged Role Administrator and Global Administrator last | Tests 8 to 14 pass, and an emergency access sign-in succeeds after the last conversion |
+
+- **Emergency access:** the two emergency accounts keep permanent active Global Administrator ([Step 0](#step-0-establish-emergency-access-accounts-first)) and are excluded from `PIM-Activation-c1`; their sign-in is tested before ring 3 and after it
+- **Change window:** business hours, so the tier's approver group is staffed; approved through the change process, with an identity engineer holding an active Privileged Role Administrator path on hand
+- **Backout triggers:** an administrator who can't activate a role they need for an open incident, an approver group that leaves a request to expire twice in a week, or test 9 failing
+- **Post-change validation:** the tests named for the ring, and the comparison in [the permanent-assignment register](#role-setting-export-and-exception-register) showing no unexplained active assignment
+
+Backout for a role is to add a time-bound active assignment for the affected person through PIM, with a ticket, while the cause is fixed; never turn off approval tenant-wide. Assignments can't be removed within five minutes of creation, so allow for that in the timing.[^c08-assign]
+
 ### Step 6 — Close the loop with protected actions {#step-6-close-the-loop-with-protected-actions}
 
 PIM protects *becoming* a Conditional Access Administrator. Nothing in PIM protects *editing a Conditional Access policy* once someone holds that permission by any route. Protected actions close the gap: they attach a Conditional Access authentication context to specific Microsoft Entra permissions, enforced when the user attempts the action, regardless of which role granted the permission.[^c08-protected-actions] [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#protected-actions) introduces them; this step applies them to the permissions that could dismantle this build.

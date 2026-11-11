@@ -194,3 +194,18 @@ New subsection "Governing consent over time" after the admin consent workflow.
 | Z4 | Government table lists app access and RBAC; consent settings and admin consent workflow not listed | Applies | verified (absence noted as not yet specified) | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
 | Z5 | Cmdlets Get-MgPolicyAdminConsentRequestPolicy, Get-MgPolicyPermissionGrantPolicy, Get-MgOauth2PermissionGrant, Get-MgServicePrincipalAppRoleAssignment | Evidence script | command (read-only, illustrative) | Microsoft Graph PowerShell reference | Nov 11, 2026 |
 | Z6 | Quarterly 25-grant sample; annual certification; 30-day owner rule | Evidence | restated-as-design | program position, consistent with Chapter 06 Review | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+New subsection "Rolling out the credential policy" (`#b04-amp-rollout`) under "Enforcing the order with app management policies", and a dated note on restrictions Learn now lists.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P1 | Learn now also lists `audiences`, `uriAdditionWithoutUniqueTenantIdentifier`, `trustedCertificateAuthority` (API only); caller exceptions through custom security attributes; admin center **Application policies** blade | Enforcing the order (note) | verified (new since Oct 20; added, nothing removed) | [Configure restrictions on how applications can be configured](https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies) | Nov 11, 2026 |
+| P2 | Roles to configure: Security Administrator and Cloud Application/Application Administrator, or Global Administrator | Rollout, prerequisites | verified | Same | Nov 11, 2026 |
+| P3 | A restriction can be applied to selected applications through a custom policy (pilot) | Rollout, pilot | verified | Same | Nov 11, 2026 |
+| P4 | Copy the current tenant default policy before updating it; earlier settings can't be found afterwards | Rollout, prerequisites and rollback | verified | [Tutorial: Enforce secret and certificate standards](https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-enforce-secret-standards) | Nov 11, 2026 |
+| P5 | Neither tenant default nor app policies block token issuance for existing apps; only the violating create/update is blocked | Rollout, change safety | verified | [Application management policies API overview](https://learn.microsoft.com/graph/api/resources/applicationauthenticationmethodpolicy?view=graph-rest-1.0) | Nov 11, 2026 |
+| P6 | Application management policies free (Workload ID FAQ) | Applies | verified | [Workload ID FAQ](https://learn.microsoft.com/entra/workload-id/workload-identities-faqs) | Nov 11, 2026 |
+| P7 | Government availability: Workload ID Premium available in Azure for US Government; app management policies not listed | Applies | verified (absence recorded as not yet specified) | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
+| P8 | Rings, effective-date approach, backout triggers, exception rule | Rollout | restated-as-design | program position | Nov 11, 2026 |

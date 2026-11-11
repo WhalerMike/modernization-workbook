@@ -327,6 +327,42 @@ Every drift is one of two things, and the issue records which:
 
 A drift open for more than one business day is reported to the governance office. A drift on a Tier 0 object (an emergency access exclusion removed, a PIM approval rule relaxed) is a security incident.
 
+### The pipeline as a control {#b04-10-pipeline-control-states}
+
+Change control and drift detection are themselves a control, the one that keeps every other control in this book at its approved state. They carry the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) briefly here; the controls they deploy carry their own rollout in [Chapter 07](07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement), [Chapter 08](08-pim-self-request-with-approval.md#build) and [Chapter 09](09-access-governance.md#b04-ar-rollout).
+
+**Authority:** Mandated for reviewing, approving and recording changes and restricting who can make them, where the agency's baseline selects CM-3 and CM-5;[^c10-p4-cm] risk-based recommended for the repository, the two-person rule, the pipeline identity and the drift cadences, which are the program's design.
+**Applies:** all tenants. License-dependent: the tenant configuration monitor needs Microsoft Entra ID P1 or P2.[^c10-tcm-licensing] Environment-dependent: Learn's Tenant Governance pages and its government feature table don't state the monitor's availability in GCC High or DoD, so it is not yet specified;[^c10-p4-gov] where it isn't available, the scheduled read-only comparison in [the drift table](#drift-detection-and-closure) covers its object classes.
+
+| Template step | Here |
+|---|---|
+| Prerequisites, pilot | The repository and pipeline, first run read-only against the tenant to produce a baseline that matches it |
+| Report-only or audit phase | The drift monitor alone, before any deployment from the pipeline: drift reported, nothing changed |
+| Enforcement | Branch protection and the pipeline identity as the normal path to production (rules 1 to 4 above) |
+| Rollback | A revert of the commit (rule 6); for the pipeline itself, its service principal disabled and changes made under PIM with a ticket (rule 5) until it's fixed |
+| Exclusions | Emergency changes only, back-ported within one business day |
+| Telemetry, evidence, day-two | The drift outputs above, [What the assessor reads](#what-the-assessor-reads), and the governance office as owner |
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the repository at the period's end commit, branch protection settings, and the pipeline service principal's permissions
+- [ ] **Operational:** merged pull requests with their approvals and plan output, and drift results for the period
+- [ ] **Test:** a deliberate drift in a test tenant (an exclusion removed in the portal) that the monitor reported and the pipeline redeployed, with dates
+- [ ] **Exception:** emergency changes and their back-port pull requests
+- [ ] **Assessor-ready artifact:** the evidence package for the period ([below](#the-evidence-package-for-a-period))
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [What goes in the repository](#what-goes-in-the-repository) and the change-control rules | The approved repository layout and rules |
+| Configured | The pipeline and its checks | Pipeline definition and branch protection settings |
+| Enforced | The pipeline identity as the only normal writer | Audit log showing changes by the pipeline, and emergency changes back-ported |
+| Evidenced | The deliberate-drift test | Test record and the drift object it produced |
+| Operated | The drift cadences | Drift reports and governance office escalations |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
 ## What the assessor reads
 
 Configuration evidence proves a setting existed. Operational evidence proves the setting did its job. An assessor needs both, and needs them for the whole assessment period, not just the day of the visit.
@@ -455,3 +491,5 @@ Microsoft Entra ID Governance for Government is available in GCC, GCC High and D
 [^c10-idg-alerts]: Microsoft Learn, "Microsoft Entra ID Governance custom alerts," <https://learn.microsoft.com/entra/id-governance/governance-custom-alerts> (accessed Nov 9, 2026).
 [^c10-idg-adx]: Microsoft Learn, "Tutorial: Create customized reports in Azure Data Explorer by using data from Microsoft Entra," <https://learn.microsoft.com/entra/id-governance/custom-entitlement-report-with-adx-and-entra-id> (accessed Nov 9, 2026).
 [^c10-idg-automation]: Microsoft Learn, "Automate Microsoft Entra ID Governance tasks via Azure Automation and Microsoft Graph," <https://learn.microsoft.com/entra/id-governance/identity-governance-automation> (accessed Nov 9, 2026).
+[^c10-p4-cm]: National Institute of Standards and Technology, SP 800-53 Rev. 5, controls CM-3 (Configuration Change Control) and CM-5 (Access Restrictions for Change), checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Nov 11, 2026); both are in the SP 800-53B Moderate baseline, which FedRAMP Moderate builds on ([Chapter 08](08-pim-self-request-with-approval.md#control-mapping-fedramp-moderate)).
+[^c10-p4-gov]: Microsoft Learn, "What is Microsoft Entra Tenant Governance?" and "Licensing for Microsoft Entra Tenant Governance" (no government-cloud statement), <https://learn.microsoft.com/entra/id-governance/tenant-governance/overview>; "Microsoft Entra feature availability" (Tenant Governance not listed), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (both accessed Nov 11, 2026).

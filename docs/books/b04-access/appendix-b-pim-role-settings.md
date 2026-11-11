@@ -357,6 +357,8 @@ process {
 }
 ```
 
+Applying a tier's settings is an enforcement step. Run it in the ring order, change window and backout triggers of [Chapter 08's change-safety block](08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible), and export the settings afterwards as the evidence that [the role-setting export](08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) describes; that section carries the control states for every role in this appendix. To back out one role, rerun the script with the previous values from the policy repository.
+
 For a Tier 2 role whose approval has been risk-accepted, set `isApprovalRequired` to `$false` and record the acceptance alongside the role's file in the policy repository ([Chapter 10](10-access-as-code-and-evidence.md)).
 
 ::: {.callout-tip}
