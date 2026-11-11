@@ -94,3 +94,11 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch).
 | gpo-sunset-principles.md — Full library pointer | Appendix A (crosswalk); Ch08 (library) | Pointer replaced by book links |
 | intune-policy-templates.md — "About this program" callout | Opening list | Crosswalk tables went to Appendix A; the rest is Ch08's |
 | intune-policy-templates.md — Phase 7 GPO sunset (unlink, disable, 90 days, archive) | "Freezing and unlinking GPOs" | Block-inheritance step removed (see claim 57); phase mechanics otherwise Ch08 |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (conventions applied to existing procedures)
+
+Book 00, Appendix D conventions applied to "Freezing and unlinking GPOs": a paragraph pointing the unlink step to Chapter 08's change safety, evidence checklist and control states, and naming the change record as configuration evidence. Pages read on Nov 11, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Unlink runs with rings, backout triggers, post-ring test, `-LinkEnabled Yes` as rollback; change record per unlink | Freezing and unlinking GPOs | restated-as-design (rollback command already verified, c07-setgplink) | program design; Learn, "Set-GPLink" | Nov 11, 2026 |

@@ -32,7 +32,7 @@ The program is an active reconciliation control plane. It holds the desired stat
 
 ### The rule all three obey: the control plane governs, the data plane executes
 
-Active Directory merged two jobs. The directory held the truth about users and computers, and the domain controller enforced it in the authentication path. The target keeps those jobs apart, and the program sits on the truth side. It governs: it holds desired state, observes, classifies and reconciles. The provider executes: it authenticates, authorizes, enrolls, evaluates policy and stores. A program adapter may call a provider's management API to make a change. It must never sit inline in an authentication or request path. Onboarding a server calls the Azure management plane. Deploying a Conditional Access policy calls the Microsoft Graph policy API. Neither puts the program between a user and a sign-in.
+Active Directory merged two jobs. The directory held the truth about users and computers, and the domain controller enforced it in the authentication path. The target keeps those jobs apart, and the program sits on the truth side. It governs: it holds desired state, observes, classifies and reconciles. The provider executes: it authenticates, authorizes, enrolls, evaluates policy and stores. A program adapter may call a provider's management API to make a change. It never sits inline in an authentication or request path *(risk-based recommended: the program's design rule, so that a fault in the program can't stop a sign-in)*. Onboarding a server calls the Azure management plane. Deploying a Conditional Access policy calls the Microsoft Graph policy API. Neither puts the program between a user and a sign-in.
 
 The providers are incorporated, not replaced.
 
@@ -169,7 +169,7 @@ A Group Policy and Intune overlap is often described as "last writer wins." Micr
 
 NTLM is deprecated in all its versions. Microsoft says calls to it should move to Negotiate, which tries Kerberos first. NTLMv1 is removed starting with Windows 11, version 24H2 and Windows Server 2025.[^c05-ntlm-deprecated] [Book 02, Chapter 03](../b02-identity/03-ad-and-entra-side-by-side.md) sets out the full deprecation schedule. The destination is Kerberos for everything that stays on premises, and token-based protocols for everything that moves.
 
-Restricting NTLM too early breaks legacy web applications, file access by IP address or without an SPN, and some third-party products. Enforce restrictions only after a 14 to 30 day audit shows no remaining dependencies, and only after application owners sign off.
+Restricting NTLM too early breaks legacy web applications, file access by IP address or without an SPN, and some third-party products. Enforce restrictions only after a 14 to 30 day audit shows no remaining dependencies, and only after application owners sign off *(risk-based recommended: the window is the program's; choose the longer end where monthly or quarterly jobs use NTLM)*.
 
 A common mistake is to treat LAN Manager authentication level 5 as "block all NTLM." Level 5 makes domain controllers refuse LM and NTLMv1, but they still accept NTLMv2. Level 4 refuses only LM.[^c05-lmlevel] NTLM is blocked by the *Restrict NTLM* policies. *Network security: Restrict NTLM: NTLM authentication in this domain* controls the domain controller, *Incoming NTLM traffic* controls servers, and *Outgoing NTLM traffic to remote servers* controls clients. Exception lists exist for the domain controller and the client roles.[^c05-ntlm-policies] The staging is:
 
@@ -230,6 +230,67 @@ Define rollback criteria before you begin. Each domain has a back-out:
 
 Every deployment has local values to set before anything runs: tenant ID, subscription ID, resource group, region and cloud environment (Azure commercial or Azure Government), the workstation OU distinguished name, the emergency access group ID and the SQL Server instance list. Run each step as a dry run before you remove the guards.
 
+### Control states, change safety and evidence for the runbook {#b05-05-runbook-control-states}
+
+The shared runbook is an implementation procedure, so it follows the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). Its four phases already run observe before change, and each domain's deeper procedure is in a later chapter or another book, which carries its own blocks: Intune policy in [Chapter 08](08-gpo-to-intune-policy-migration.md#b05-08-migration-control-states), servers in [Chapter 09](09-servers-under-azure-arc.md#b05-09-server-control-states), and Conditional Access in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#policy-design-matrix). This subsection covers what the runbook itself adds: the NTLM and SPN steps, and the order of the four phases.
+
+**Authority:** risk-based recommended for the phase order, the audit window and the staging, which are the program's; Microsoft-recommended for report-only Conditional Access and the emergency access exclusion, as cited above. The NTLM end state follows Microsoft's deprecation of NTLM, not a federal mandate.[^c05-ntlm-deprecated]
+**Applies:** all estates. Environment-dependent: GCC uses the commercial Intune instance and GCC High and DoD support standard MDM features;[^c05-p4-intune-gov] Conditional Access in the government clouds is in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes); Arc in Azure Government is in [Chapter 09](09-servers-under-azure-arc.md#b05-09-server-control-states). The NTLM and SPN steps run in Active Directory and don't depend on the cloud.
+
+| Template part | Where the runbook carries it |
+|---|---|
+| Prerequisites | [Prerequisites: licensing and roles](#prerequisites-licensing-and-roles) and [What you must configure](#what-you-must-configure) |
+| Pilot | The first NTLM stage and the first Arc and Intune wave on a pilot scope chosen from the Phase 1 inventory: one application's servers and its users' workstations |
+| Report-only or audit phase | Phase 1 is read-only; NTLM Stage 1 audits; Conditional Access starts in report-only |
+| Enforcement | NTLM Stages 2 and 3; enforcing each Conditional Access policy as its own change |
+| Rollback | [Rollback](#rollback), per domain |
+| Exclusions | The *Restrict NTLM* exception lists, each entry with an owner and a retirement date; emergency access accounts for Conditional Access |
+| Telemetry | The NTLM operational log and Event ID 4624's NTLM version; `sys.dm_exec_connections` for Kerberos; Phase 4's workspace |
+| Evidence | The checklist below |
+| Day-two ownership | Identity engineering for NTLM and SPNs, endpoint engineering for Intune, server infrastructure for Arc ([Chapter 06](06-who-owns-the-endpoint.md)) |
+
+**Change safety** (NTLM restriction, the runbook's own enforcement step)
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Stage 1 audit on every domain controller and server | 14 to 30 days with every NTLM source attributed to an owner |
+| 1 | Stage 2 on the pilot application's servers, with the audited exceptions listed | No authentication failure the audit didn't predict; the application owner signs off |
+| 2 | Stage 2 domain-wide | As ring 1 for the remaining applications |
+| 3 | Stage 3, removing each exception as its dependency is retired | The NTLM log shows no traffic from the retired dependency |
+
+- **Emergency access:** the cloud emergency access accounts don't use NTLM; for on-premises recovery, keep a documented administrator recovery path that authenticates with Kerberos, and test it before Stage 3
+- **Change window:** each stage under the program's change approval, on a weekday with identity engineering and the affected application owners on hand
+- **Backout triggers:** set before each stage: an authentication failure on a business application, or NTLM traffic from a source not in the audit
+- **Post-change validation:** `klist purge` and a fresh connection on a sample of clients, confirming Kerberos with `sys.dm_exec_connections` for SQL Server, and the NTLM operational log for the ring
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the LAN Manager level and *Restrict NTLM* settings as delivered (GPO report or Intune export), and the SPN inventory after repair
+- [ ] **Operational:** the NTLM operational log and Event ID 4624 summaries per stage, kept with the change records
+- [ ] **Test:** the Kerberos check after each SPN repair and each ring, with expected and observed results, date and tester
+- [ ] **Exception:** the NTLM exception lists, each entry with owner, reason and retirement date
+- [ ] **Assessor-ready artifact:** the change record for each stage, linking the audit that justified it and the test that followed it
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | Phase 1 baseline and the staging table | The signed-off audit and the stage plan |
+| Configured | NTLM Stage 1; SPN repairs; Conditional Access in report-only | Policy reports and the SPN inventory |
+| Enforced | NTLM Stages 2 and 3; Conditional Access on | The delivered settings and the exception lists |
+| Evidenced | The Kerberos checks and the post-stage logs | Test records and the events they produced |
+| Operated | Phase 4: watch | The workspace's alert rules and the drift comparison |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity and Devices (Infrastructure for the server steps)
+- **CISA ZTMM pillar:** Identity and Devices
+- **Depends on:** Identity: the Conditional Access baseline and emergency access ([Book 04](../b04-access/index.md)); Applications and Workloads: owners who fix each NTLM dependency ([Book 06](../b06-data-platform/index.md) for SQL Server)
+- **Attack chain interrupted:** Credential Access and Lateral Movement through NTLM relay and pass-the-hash, and through credentials an attacker reuses on an unmanaged device
+:::
+
 ## The manual path
 
 The manual path is for an agency that is modernizing without an orchestration platform. That can happen because of how the agency is organized, because it acquired the estate, because the timeline is compressed, or because it has no budget for one yet. Every step is self-contained and is meant to be run by qualified staff with no outside advisory dependency.
@@ -250,7 +311,7 @@ If you expect to add governance later, the manual path is designed for it. Don't
 
 The governed path reaches the same end state as the manual path. The same steps run. What governance adds is the binding from organizational intent to each technical change.
 
-- **Address before you actuate.** Organizational attributes must be present on every device before any policy targets it. Scope is derived from attributes, not from an OU or a hand-built group.
+- **Address before you actuate.** Organizational attributes are present on every device before any policy targets it *(risk-based recommended: a device without them falls outside attribute-scoped policy)*. Scope is derived from attributes, not from an OU or a hand-built group.
 - **Cap the blast radius.** High-blast-radius operation classes, such as tenant-wide role changes, Conditional Access enforcement changes and bulk device-state changes, stay gated on human approval. So do operations on high-impact device populations, such as privileged access workstations, servers and kiosks.
 - **Plan, then apply with a dry run.** No change is applied without a preview of its impact.
 - **Report-only first.** Enforcement is measured before it's switched on.
@@ -439,3 +500,4 @@ The paths share the observe-before-change rule and the evidence requirement. The
 [^c05-maa]: Microsoft Learn, "Use access policies to require multi admin approval," <https://learn.microsoft.com/intune/fundamentals/role-based-access-control/multi-admin-approval> (accessed Oct 20, 2026).
 [^c05-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/reference/20x/b/key-security-indicators/> (accessed Oct 20, 2026).
 [^c05-fedramp-cert]: FedRAMP, "FedRAMP Certification," *FedRAMP Consolidated Rules for 2026*, section "Effective Date(s) & Overall Applicability for 20x," <https://www.fedramp.gov/2026/providers/20x/rules/fedramp-certification/> (accessed Oct 20, 2026).
+[^c05-p4-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Intune commercial and government instances" (GCC is the commercial instance) and "Supported Intune features in GCC High and DoD" (standard MDM features), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 11, 2026).

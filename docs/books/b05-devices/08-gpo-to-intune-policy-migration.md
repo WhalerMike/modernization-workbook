@@ -145,6 +145,67 @@ Rollback is defined for every phase before the phase starts. Three facts shape i
 - **Moving a workload back has side effects.** Microsoft notes that switching a workload back to Configuration Manager can leave some state behind; for example, Windows and Office stay at the later versions Intune installed.[^c08-comanage]
 - **Disabled links come back with one command.** Because Phase 5 and Phase 6 disable links rather than delete GPOs, the GPO path is restored by re-enabling the link for the affected population.
 
+### Control states, change safety and evidence for the migration {#b05-08-migration-control-states}
+
+The seven phases are an implementation procedure, so they follow the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). Most of the How-section template is already in the phases above; this subsection points to each part and adds what was missing. The hardening policies the phases deliver have their own safe path in [Rolling out the Windows hardening policies](#windows-hardening-rollout).
+
+**Authority:** risk-based recommended: the phase plan, the gates, the durations and the 90-day retention are the program's design ([Chapter 07](07-the-gpo-sunset-program.md#methodology-principles)); Microsoft-recommended where a step cites Learn, such as reviewing settings rather than migrating every one and managing each setting through one method.[^c08-gpa-migrate][^c08-es-conflicts]
+**Applies:** Environment-dependent. GCC uses the commercial Intune instance, so every feature the phases use is available there. In GCC High and DoD, standard MDM features (configuration, compliance and endpoint security policies) are supported; Remediations, the interim home for a setting with no Intune equivalent, aren't available and aren't planned, so such a setting becomes a dated exception there; and Windows Device Health Attestation is planned, not yet available, which affects CP-001's boot-measured rules. Learn's government service description doesn't mention Group Policy analytics, so its availability in GCC High and DoD is not yet specified.[^c08-p4-gov]
+
+| Template part | Where the phases carry it |
+|---|---|
+| Prerequisites | Chapter 07's decision records; co-management for the pilot collection (Phase 2); the licensing and roles in [Chapter 05](05-the-governed-manual-and-retrofit-paths.md#prerequisites-licensing-and-roles) |
+| Pilot | Phase 4, about 5% of the fleet with GPOs still linked |
+| Report-only or audit phase | Phase 3 builds policies unassigned, with ASR and controlled folder access in audit; Phase 4 compares `gpresult` with Intune per-setting status while Group Policy still wins |
+| Enforcement | Phase 5's workload waves and rings; Phase 6 disables the remaining links |
+| Rollback | The table above and [Rollback](#rollback); Phase 7 keeps disabled GPOs 90 days |
+| Exclusions | The exception register: every setting with no modern home, with owner and review date ([Chapter 07](07-the-gpo-sunset-program.md#step-4-decide-and-record)) |
+| Telemetry | Intune per-setting status, **Conflict** and **Error** counts, and help desk tickets during each 72-hour watch |
+| Evidence | The checklist below |
+| Day-two ownership | Endpoint engineering owns the library; the GPO estate's owner keeps the backups until the domain retires ([Chapter 06](06-who-owns-the-endpoint.md)) |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Lab devices in the Phase 3 test ring | Every setting **Succeeded**; no setting in two policies |
+| 1 | The Phase 4 pilot cohort, about 5% | No unexplained **Conflict** or **Error**; application tests pass against the Phase 1 baseline |
+| 2 | About a quarter of the population, by the program's division waves | Success on the ring; no rise in tickets attributable to the change during the 72-hour watch |
+| 3 | The rest of the population | As ring 2; then the workload slider moves to **Intune** |
+
+- **Emergency access:** device policy doesn't block sign-in, so there is no account to exclude; the Tier 0 privileged access workstations that emergency procedures use join ring 1, never ring 0, as in the [hardening rollout](#windows-hardening-rollout)
+- **Change window:** each wave starts on a weekday with the endpoint team on hand, outside a Patch Tuesday ring deadline, under the program's change approval
+- **Backout triggers:** set before each wave: a line-of-business application failing on more than one device, a setting in **Conflict** or **Error** that the pilot didn't show, or help desk volume above the wave threshold
+- **Post-change validation:** the Phase 5 and Phase 6 tests in [Testing at each gate](#testing-at-each-gate), on a sample of each ring
+
+**Evidence checklist**
+
+- [ ] **Configuration:** each policy exported as JSON under version control ([Microsoft Graph templates](#microsoft-graph-templates)), with its assignments, and the GPO backups from Phase 7
+- [ ] **Operational:** per-setting status reports for each wave and the `Set-GPLink` change records for every disabled link
+- [ ] **Test:** the `gpresult` and per-setting comparison for the pilot and each ring, with the expected values, date and tester
+- [ ] **Exception:** the exception register, every entry with an owner and review date
+- [ ] **Assessor-ready artifact:** the decision record per setting, traceable to its policy, its test and its retired GPO
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This section | Evidence |
+|---|---|---|
+| Designed | Phase 1 decision records | A decision record per setting |
+| Configured | Phase 3 policies, unassigned or on the pilot | Policy JSON and the peer review |
+| Enforced | Phase 5 waves and Phase 6 unlinking | Assignment exports, the slider at **Intune**, disabled links and the exception register |
+| Evidenced | The gate tests in [Testing at each gate](#testing-at-each-gate) | Test records and the per-setting status they produced |
+| Operated | The drift comparison in [Chapter 10](10-operating-and-evidencing-the-fleet.md#drift-detection-and-alerting) | Daily drift results and the alert history |
+
+A finding this section addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Devices
+- **CISA ZTMM pillar:** Devices (policy enforcement and compliance monitoring)
+- **Depends on:** Identity: dynamic device groups read device attributes written through Microsoft Graph ([the device attribute schema](#the-device-attribute-schema)); co-management and enrollment ([Chapter 05](05-the-governed-manual-and-retrofit-paths.md))
+- **Attack chain interrupted:** Defense Evasion and Persistence through configuration nobody owns: a setting written by two channels, or left behind by an unlinked GPO, is found and given one owner
+:::
+
 ## Policy architecture
 
 ### Policy types
@@ -580,24 +641,28 @@ Four settings sometimes listed for this policy don't belong in it. Telemetry rep
 
 ### ES-005: attack surface reduction
 
-**Deployment:** all rules in audit mode for 30 days, then block after confirming no business-critical impact.
+**Deployment:** audit, then warn, then block, ring by ring: every rule in **Audit** for 30 days, then **Warn** for 14 days for the rules that support it, then **Block** *(risk-based recommended: the program's position, the same cadence as the [Defender XDR implementation guide's Gate 4](../guides/defender-xdr-implementation.md#step-4-attack-surface-reduction))*. Before a rule leaves audit, each of its audit hits has a per-rule exclusion, a fix or a recorded decision; before it leaves warn, every unblock request for a business-critical application has become a per-rule exclusion. Microsoft's own advice is lighter: it recommends **Block** for the standard protection rules without extensive testing, and **Audit** first for the other rules before **Block** or **Warn**.[^c08-p4-asr-warn] The program puts every rule through warn as well, because warn shows users the block while they can still get past it, and the requests it produces are the last check before block.
 
-| Rule GUID | Rule | Phase 1 | Phase 2 |
-|---|---|---|---|
-| `56a863a9-875e-4185-98a7-b882c64b5ce5` | Block abuse of exploited vulnerable signed drivers | Audit | Block |
-| `e6db77e5-3df2-4cf1-b95a-636979351e5b` | Block persistence through WMI event subscription | Audit | Block |
-| `be9ba2d9-53ea-4cdc-84e5-9b1eeee46550` | Block executable content from email client and webmail | Audit | Block |
-| `d4f940ab-401b-4efc-aadc-ad5f3c50688a` | Block all Office applications from creating child processes | Audit | Block |
-| `d3e037e1-3eb8-44c8-a917-57927947596d` | Block JavaScript or VBScript from launching downloaded executable content | Audit | Block |
-| `5beb7efe-fd9a-4556-801d-275e5ffc04cc` | Block execution of potentially obfuscated scripts | Audit | Block |
-| `92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b` | Block Win32 API calls from Office macros | Audit | Block |
-| `9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2` | Block credential stealing from the Windows local security authority subsystem | Audit, or straight to block | Block |
-| `d1e49aac-8f56-4280-b9ba-993a6d77406c` | Block process creations originating from PSExec and WMI commands | Audit | Block, except where Configuration Manager manages the device |
-| `b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4` | Block untrusted and unsigned processes that run from USB | Audit | Block |
-| `3b576869-a4ec-4529-8536-b80a7769e899` | Block Office applications from creating executable content | Audit | Block |
-| `75668c1f-73b5-4cf0-bb93-3ecf5cb7cc84` | Block Office applications from injecting code into other processes | Audit | Block |
-| `7674ba52-37eb-4a4f-a9a1-f0f9a1619a2c` | Block Adobe Reader from creating child processes | Audit | Block |
-| `c1db55ab-c21a-4637-bb3f-a12568109d35` | Use advanced protection against ransomware | Audit | Block |
+Warn mode needs Windows 10, version 1809 or later, with Defender Antivirus platform 4.18.2008.9 and engine 1.1.17400.5 or later; it isn't available through Configuration Manager, and on an unsupported Windows version a rule in warn acts as block. Two rules don't support warn, the LSASS rule and the Office code-injection rule, so they go from audit to block.[^c08-p4-asr-warn]
+
+Warn is user friction, not a bypass. Since Defender Antivirus platform version 4.18.26060, using **Unblock** on a rule in warn mode needs administrator approval, and Microsoft says **Unblock** is for temporary suppression only: a persistent need is a per-rule exclusion.[^c08-p4-asr-warn] So each unblock during the warn stage reaches the help desk as a request for an administrator, not a click the user makes alone. Staff the help desk for the warn stage of each ring ([Book 15](../b15-day2-operations/index.md)), count the requests per rule, and turn a repeated request into a per-rule exclusion with an owner and an expiry before the rule moves to block.
+
+| Rule GUID | Rule | Audit (30 days) | Warn (14 days) | End state |
+|---|---|---|---|---|
+| `56a863a9-875e-4185-98a7-b882c64b5ce5` | Block abuse of exploited vulnerable signed drivers | Audit | Warn | Block |
+| `e6db77e5-3df2-4cf1-b95a-636979351e5b` | Block persistence through WMI event subscription | Audit | Warn | Block |
+| `be9ba2d9-53ea-4cdc-84e5-9b1eeee46550` | Block executable content from email client and webmail | Audit | Warn | Block |
+| `d4f940ab-401b-4efc-aadc-ad5f3c50688a` | Block all Office applications from creating child processes | Audit | Warn | Block |
+| `d3e037e1-3eb8-44c8-a917-57927947596d` | Block JavaScript or VBScript from launching downloaded executable content | Audit | Warn | Block |
+| `5beb7efe-fd9a-4556-801d-275e5ffc04cc` | Block execution of potentially obfuscated scripts | Audit | Warn | Block |
+| `92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b` | Block Win32 API calls from Office macros | Audit | Warn | Block |
+| `9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2` | Block credential stealing from the Windows local security authority subsystem | Audit, or straight to block on a small set of devices | Not supported | Block |
+| `d1e49aac-8f56-4280-b9ba-993a6d77406c` | Block process creations originating from PSExec and WMI commands | Audit | Warn | Block, except where Configuration Manager manages the device |
+| `b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4` | Block untrusted and unsigned processes that run from USB | Audit | Warn | Block |
+| `3b576869-a4ec-4529-8536-b80a7769e899` | Block Office applications from creating executable content | Audit | Warn | Block |
+| `75668c1f-73b5-4cf0-bb93-3ecf5cb7cc84` | Block Office applications from injecting code into other processes | Audit | Not supported | Block |
+| `7674ba52-37eb-4a4f-a9a1-f0f9a1619a2c` | Block Adobe Reader from creating child processes | Audit | Warn | Block |
+| `c1db55ab-c21a-4637-bb3f-a12568109d35` | Use advanced protection against ransomware | Audit | Warn | Block |
 
 The list includes the first two rules because Microsoft classes them as standard protection rules alongside the LSASS rule.[^c08-asr] Microsoft's rule reference adds four rollout notes: the PSExec and WMI rule shouldn't be enabled on devices Configuration Manager manages, because its client depends on WMI; the LSASS rule adds nothing where LSA protection and Credential Guard are on; the LSASS rule produces a large volume of audit events that are almost all safe to ignore, so you can skip audit for it and start blocking on a small set of devices; and the ransomware and obfuscated-script rules need cloud-delivered protection.[^c08-asr]
 
@@ -665,7 +730,7 @@ What Microsoft says about the trade: keeping the managed account disabled remove
 
 ### Rolling out the Windows hardening policies {#windows-hardening-rollout}
 
-The templates above say *what* each hardening policy sets. This section says how the set is turned on safely and proved: Microsoft Defender Antivirus and tamper protection, Windows Firewall, BitLocker, Windows LAPS, the security baselines, attack surface reduction, Windows Hello for Business, update rings and expedited updates. It stays at the Intune policy level. The depth of Microsoft Defender for Endpoint and Defender XDR (detection tuning, automated investigation, hunting and incident response) belongs to the workbook's planned implementation guide, *Defender XDR Engineering & Operations*, which a later change adds to the implementation guides. The conventions are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+The templates above say *what* each hardening policy sets. This section says how the set is turned on safely and proved: Microsoft Defender Antivirus and tamper protection, Windows Firewall, BitLocker, Windows LAPS, the security baselines, attack surface reduction, Windows Hello for Business, update rings and expedited updates. It stays at the Intune policy level. The depth of Microsoft Defender for Endpoint and Defender XDR (detection tuning, automated investigation, hunting and incident response) belongs to the [Defender XDR implementation guide](../guides/defender-xdr-implementation.md), whose Gate 4 runs the same attack surface reduction cadence as ES-005. The conventions are in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
 
 ::: {.callout-note appearance="simple"}
 ## Assessment mapping
@@ -685,7 +750,7 @@ The templates above say *what* each hardening policy sets. This section says how
 | BitLocker | ES-002 | Encryption report before enforcing compliance | Silent encryption with escrow to Entra ID first | Assign ES-002; then CP-001's **Require BitLocker** decides access | Encryption report; `Get-BitLockerVolume` |
 | Windows LAPS | ES-006 | Pilot device events | Immediate transition from legacy LAPS | Assign ES-006 | Events 10022 and 10029 |
 | Security baselines | SC-001; Microsoft baselines | The read-only **STIG audit baseline** (license-dependent) reports pass or fail per STIG rule without changing anything[^c08-z-stig] | Review overlaps between baselines; profiles don't update to a new baseline version by themselves | Assign SC-001 or the baseline profile | Per-setting status **Succeeded** |
-| Attack surface reduction | ES-005 | **Audit** mode; **Warn** for rules that support it | Standard protection rules can go straight to **Block** without testing; test the others in Audit, then Block or Warn ring by ring; prefer a per-rule exclusion to turning a rule off[^c08-z-asr-deploy][^c08-z-asr-enable] | Set the rule to **Block** for the ring | `Get-MpPreference` shows the rule IDs and actions; Defender ASR report |
+| Attack surface reduction | ES-005 | **Audit** mode, then **Warn** for rules that support it | Standard protection rules can go straight to **Block** without testing; test the others in Audit, then Block or Warn ring by ring; prefer a per-rule exclusion to turning a rule off[^c08-z-asr-deploy][^c08-z-asr-enable] (the program runs every rule audit, warn, block: [ES-005](#es-005-attack-surface-reduction)) | Move the rule to **Warn**, then **Block**, for the ring | `Get-MpPreference` shows the rule IDs and actions; Defender ASR report |
 | Windows Hello for Business | ES-006 | Pilot group | The tenant-wide enrollment policy applies only at enrollment; manage it afterward through account protection, the settings catalog or a baseline, never Group Policy and Intune together[^c08-z-whfb-config] | Assign ES-006 | `dsregcmd /status` shows `NgcSet : YES` for the user |
 | Update rings | SC-005 | None; the Test ring is the observation | [Chapter 10](10-operating-and-evidencing-the-fleet.md#the-programs-rings) | Ring assignment | Quality update report |
 | Expedited updates | Expedite policy | None | [Chapter 10](10-operating-and-evidencing-the-fleet.md#expedited-quality-updates) | Assign the expedite policy | Expedited update report |
@@ -706,7 +771,7 @@ The pilot is the Test and First rings from [Chapter 10](10-operating-and-evidenc
 
 #### Report-only or audit phase
 
-- **ASR:** every non-standard rule in **Audit** for 30 days on each ring (ES-005's plan), reviewing the Defender ASR report and its audit events, and adding per-rule exclusions where a business application is affected.[^c08-z-asr-deploy]
+- **ASR:** every rule in **Audit** for 30 days on each ring (ES-005's plan), reviewing the Defender ASR report and its audit events, and adding per-rule exclusions where a business application is affected;[^c08-z-asr-deploy] then **Warn** for 14 days for the rules that support it, counting the unblock requests, each of which needs administrator approval on platform 4.18.26060 and later.[^c08-p4-asr-warn]
 - **Baselines:** assign the STIG audit baseline (where licensed) to the pilot to see, rule by rule, how far the pilot is from the STIG before and after SC-001; it never changes a device and can't conflict with other policies.[^c08-z-stig]
 - **Compliance-backed settings (BitLocker, firewall, antivirus):** the setting is pushed first and its compliance rule's grace period is kept long until the encryption report and the device compliance report show the ring at target ([Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture)).
 - **Settings with no audit mode** (tamper protection, LAPS, firewall profiles, Windows Hello for Business): the Test ring runs them for one week before the First ring.
@@ -727,14 +792,14 @@ The pilot is the Test and First rings from [Chapter 10](10-operating-and-evidenc
 - **Backout triggers:** a line-of-business application failing in more than one device, a rise in BitLocker recovery-key requests, an ASR block on a business process, or help desk volume above the threshold
 - **Post-change validation:** the device proofs below on a sample of each ring, and the per-setting status report for the ring
 
-The enforcing step is the assignment of each policy to the ring's group, and for ASR, changing the rule from **Audit** to **Block** (or **Warn**) in ES-005 for that ring.
+The enforcing step is the assignment of each policy to the ring's group, and for ASR, changing the rule from **Audit** to **Warn** and then to **Block** in ES-005 for that ring.
 
 #### Rollback
 
 | Control | Step back | Time |
 |---|---|---|
 | Any endpoint security policy or baseline | Remove the ring's group from the assignment; settings return to their defaults or to the next policy that sets them | Next check-in |
-| ASR | Prefer a per-rule exclusion; otherwise set the rule back to **Audit** for the ring[^c08-z-asr-enable] | Next check-in |
+| ASR | Prefer a per-rule exclusion; otherwise move the rule back one stage (block to warn, warn to audit) for the ring[^c08-z-asr-enable] | Next check-in |
 | Tamper protection | Set it to off in the profile for the device group; for a temporary change on one device, use Defender for Endpoint troubleshooting mode, whose changes are discarded when it expires[^c08-z-tamper-ts] | Next check-in; troubleshooting mode is time-limited |
 | BitLocker | Don't decrypt to roll back. Lengthen CP-001's grace period while the cause is fixed; keys stay escrowed | Minutes |
 | Windows LAPS | Assign the previous LAPS policy (only one Windows LAPS policy per device) | Next check-in |
@@ -787,7 +852,7 @@ dsregcmd /status | Select-String 'AzureAdJoined', 'NgcSet'
 |---|---|---|
 | Designed | ES-001 to ES-006, SC-001, SC-005 and the open LAPS decision | Decision records from Phase 1; the LAPS decision once made |
 | Configured | Policies built and assigned to ring 0; ASR in Audit | Policy JSON and assignment exports |
-| Enforced | All rings assigned; ASR rules in Block or Warn | Assignment export and ES-005's rule actions, with the exclusion list |
+| Enforced | All rings assigned; ASR rules in Block (a rule held in Warn or Audit is in the exception register) | Assignment export and ES-005's rule actions, with the exclusion list |
 | Evidenced | The device proofs and the tamper test | Device proof output and the event it produced |
 | Operated | Drift comparison, alerts and the quarterly exclusion review | Alert definitions, drift results and review notes |
 
@@ -795,7 +860,7 @@ A finding this section addresses is ready for closure when every applicable stat
 
 #### Day-two ownership
 
-The endpoint engineering lead owns the hardening policies; the security operations lead owns the Defender portal settings and ASR exclusions with them. Cadence: the drift comparison daily, ASR and antivirus exclusions quarterly, security baselines when Microsoft publishes a new version (profiles don't move to it by themselves), and the LAPS decision until it is made. Drift looks like a policy with growing **Error** or **Conflict** counts, tamper protection reported off, an ASR rule back in Audit with no record, or a new exclusion with no reason. The help desk path, including BitLocker recovery and LAPS password retrieval, is in [Book 15](../b15-day2-operations/index.md).
+The endpoint engineering lead owns the hardening policies; the security operations lead owns the Defender portal settings and ASR exclusions with them. Cadence: the drift comparison daily, ASR and antivirus exclusions quarterly, security baselines when Microsoft publishes a new version (profiles don't move to it by themselves), and the LAPS decision until it is made. Drift looks like a policy with growing **Error** or **Conflict** counts, tamper protection reported off, an ASR rule back in Audit or Warn with no record, or a new exclusion with no reason. The help desk path, including BitLocker recovery and LAPS password retrieval, is in [Book 15](../b15-day2-operations/index.md).
 
 ## App protection policies
 
@@ -1166,6 +1231,8 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-z-asr-deploy]: Microsoft Learn, "Attack surface reduction (ASR) rules deployment guide" (standard protection rules can typically go to Block or Warn without testing) and "Test your attack surface reduction (ASR) rules deployment," section "Step 1: Test all ASR rules in Audit mode," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment>, <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-test> (both accessed Nov 11, 2026).
 [^c08-z-asr-enable]: Microsoft Learn, "Enable your attack surface reduction (ASR) rules deployment," sections "Step 1: Transition ASR from Audit to Block" (rule exclusions are better than turning rules off; Warn mode) and "Step 2: Expand deployment to ring n + 1," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-implement> (accessed Nov 11, 2026).
 [^c08-z-asr-configure]: Microsoft Learn, "Configure attack surface reduction (ASR) rules and exclusions," section "Configure ASR rules in PowerShell" (listing command; valid action values), <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-configure> (accessed Nov 11, 2026).
+[^c08-p4-asr-warn]: Microsoft Learn, "Attack surface reduction (ASR) rules overview," sections "Modes for ASR rules" (warn mode requirements; not in Configuration Manager; acts as block on unsupported Windows; the two rules without warn; administrator approval required for **Unblock** from platform version 4.18.26060; Unblock is temporary suppression, persistent needs are per-rule exclusions; Block recommended for standard protection rules and Audit first for others) and "ASR rules," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview> (accessed Nov 11, 2026).
+[^c08-p4-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Intune commercial and government instances" (GCC is the commercial instance), "Supported Intune features in GCC High and DoD" (standard MDM features), "Intune features planned for GCC High and DoD" (Windows Device Health Attestation) and "Intune features not available in GCC High and DoD" (Remediations), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 11, 2026).
 [^c08-z-whfb-config]: Microsoft Learn, "Configure Windows Hello for Business," section "Configure Windows Hello for Business using Microsoft Intune" (the tenant-wide policy applies only at enrollment); and "Configure Windows Hello for Business on devices when they enroll with Intune," <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/configure>, <https://learn.microsoft.com/intune/device-security/identity-protection/configure-tenant-wide-policy> (both accessed Nov 11, 2026).
 [^c08-z-whfb-cloud]: Microsoft Learn, "Cloud-only deployment guide" and "Cloud Kerberos trust deployment guide," section "Configure Windows Hello for Business policy settings" (Use a hardware security device: optional but recommended; Group Policy takes precedence over Intune when both configure it), <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/cloud-only>, <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust> (both accessed Nov 11, 2026).
 [^c08-z-dsregcmd]: Microsoft Learn, "Troubleshoot devices by using the dsregcmd command," section "User state" (NgcSet; the command must run in a user context), <https://learn.microsoft.com/entra/identity/devices/troubleshoot-device-dsregcmd> (accessed Nov 11, 2026).
