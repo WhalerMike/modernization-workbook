@@ -33,7 +33,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Baseline** | 13 + 2 app. | 245 | 2026-11-11 |
 | **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 8 app. | 420 | 2026-11-11 |
 | **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 315 | 2026-11-11 |
-| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 1 app. | 300 | 2026-11-11 |
+| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 315 | 2026-11-11 |
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-11 |
 | **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 225 | 2026-11-11 |
 | **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Baseline** | 10 | 160 | 2026-11-11 |
