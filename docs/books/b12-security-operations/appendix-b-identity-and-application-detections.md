@@ -40,9 +40,9 @@ The rules extend the library in [Chapter 11](11-detection-engineering-and-respon
 
 **Applies:** All tenants with Entra diagnostic settings sent to a Log Analytics workspace. License-dependent rows say so (Microsoft Entra ID P2 for user risk, Workload Identities Premium for full workload risk detail). Environment-dependent rows give GCC, GCC High and DoD availability below.
 
-## Prerequisites {#prerequisites}
+## Prerequisites {#detection-prerequisites}
 
-### Data sources and licenses
+### Data sources and licenses {#detection-data-sources}
 
 | Table | Entra diagnostic setting category | License | Used by |
 |---|---|---|---|
@@ -54,7 +54,7 @@ The rules extend the library in [Chapter 11](11-detection-engineering-and-respon
 
 The category-to-table names for the risk tables are Microsoft's;[^aB-risk-export] the sign-in license requirement and the Workload ID Premium requirement for the risky service principal tables are as [Chapter 05](05-from-log-warehouse-to-detection.md#microsoft-entra-id) records them. Workload identity risk reaches tenants without the Premium license as detections with limited reporting detail.[^aB-wid-risk]
 
-### Government-cloud availability
+### Government-cloud availability {#detection-gov-availability}
 
 GCC tenants pair with Microsoft Entra ID in commercial Azure, so their workspace and Sentinel use the commercial column; GCC High and DoD pair with Entra ID in Azure Government ([Chapter 03](03-identity-telemetry.md#sovereign-clouds)).
 
@@ -69,7 +69,7 @@ GCC tenants pair with Microsoft Entra ID in commercial Azure, so their workspace
 
 Every rule below runs in Sentinel's analytics tier. A table moved to the Auxiliary plan or the data lake tier stops raising alerts ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md#retention-tiers-and-tamper-protected-copies)), so every table above stays on the Analytics plan.
 
-### Watchlists the rules read
+### Watchlists the rules read {#detection-watchlists}
 
 Exclusions and scopes live in Sentinel watchlists, kept outside the queries so a change is a reviewed watchlist edit, not a rule edit ([Chapter 11](11-detection-engineering-and-response.md#example-rules)). The watchlist names are the program's; Sentinel's `_GetWatchlist()` returns each with its `SearchKey` column.[^aB-watchlist]
 
@@ -400,35 +400,35 @@ AuditLogs
 
 The steps follow the workbook's How-section template ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)). Detections don't block anyone, so the risk in rolling them out is noise and missed signal, not lockout.
 
-### Pilot
+### Pilot {#rollout-pilot}
 
 Deploy the pack to the workspace with incident creation off, scoped as written. Success is each rule running without error for two weeks and the synthetic test below raising every rule's alert at least once.
 
-### Report-only or audit phase
+### Report-only or audit phase {#rollout-report-only-or-audit-phase}
 
 Chapter 11's alert-only window: alerts without incidents, reviewed daily, every false positive logged with its cause, for at least two weeks ([Chapter 11](11-detection-engineering-and-response.md#rule-lifecycle-and-testing)). Before enabling, run each query over 30 days of history in Log Analytics and record the hit count; a rule that would have fired hundreds of times needs its watchlists, not a higher threshold.
 
-### Enforcement
+### Enforcement {#rollout-enforcement}
 
 Promote rule by rule: turn on incident creation, record the measured false-positive rate, wire the response. Emergency access (DET-30, 31) and federation (DET-36) promote first, because their expected volume is zero outside drills. Response stays on Chapter 11's ladder: these rules prepare containment at L3 at most, and disabling an emergency access account is never automated ([Chapter 11](11-detection-engineering-and-response.md#the-response-ladder)).
 
-### Rollback
+### Rollback {#rollout-rollback}
 
 Disable the rule (a commit that sets `enabled: false`, deployed through the pipeline, or in an emergency the rule's toggle in the portal, recorded afterward as a commit). It takes effect at the next scheduled run. Nothing in the tenant changes, so rollback has no user impact.
 
-### Exclusions
+### Exclusions {#rollout-exclusions}
 
 Exclusions are watchlist rows with an owner, reason and expiry, never edits to a query. The rule for emergency access is the reverse of Conditional Access: emergency accounts are **excluded** from blocking policies and **included** in every detection. No watchlist may list an emergency access account as an exception to DET-30, 31 or 37.
 
-### Telemetry
+### Telemetry {#rollout-telemetry}
 
 The rules' own health: Sentinel's `SentinelHealth` table for rule runs where analytics health monitoring is on, the daily check for "AUTO DISABLED" rules, and table freshness for every source table ([Chapter 05](05-from-log-warehouse-to-detection.md#proving-the-connectors-still-deliver)). A rule over a table that stopped arriving is silent, not quiet.
 
-### Evidence
+### Evidence {#rollout-evidence}
 
 The synthetic test record, the rule export and the alert-only log, as the checklist below sets out.
 
-### Day-two ownership
+### Day-two ownership {#rollout-day-two-ownership}
 
 The rule library is security engineering's; the SOC triages; identity engineering owns the watchlists of emergency, privileged and device-code accounts; application owners answer DET-14, 40, 41 and 45 for their applications ([Chapter 10](10-who-runs-security-operations.md#the-responsibility-matrix)). Each rule is reviewed quarterly with the library, and the synthetic test runs quarterly alongside the emergency access validation that [Book 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts) schedules. An emergency access alert is handled through [Book 15](../b15-day2-operations/index.md)'s incident path, with Microsoft's post-use review: whether the use was a drill, a real emergency or misuse, and what the account did.[^aB-emergency]
 
@@ -513,7 +513,7 @@ SecurityAlert
 
 Export the result with the date, tester and the commands run; a rule with no row is a failed test, and goes back to authoring.
 
-## Evidence {#evidence}
+## Evidence {#detection-evidence}
 
 **Evidence checklist**
 
