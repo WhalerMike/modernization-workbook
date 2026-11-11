@@ -100,3 +100,15 @@ ESU guidance reworded as the exception path; dates carried. The standard itself 
 |---|---|---|
 | 1.4 coverage table: Windows Server 2012 and 2012 R2 "no new agent versions after November 2026" | Windows Server 2012 got its last new agent version, 1.69, in October 2026, serviced for 12 months; 2012 R2 is still listed for new agent versions; ESU sentence unchanged | Microsoft Learn, "Connected Machine agent prerequisites," re-read Nov 9, 2026: "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation"; matches Book 05 Ch09 SW1 |
 | 1.4 coverage table: Linux "several releases losing new agent versions after November 2026" | Named releases got their last new agent version, 1.69, in October 2026; Azure Linux 3.0 none after February 2027 | Same; matches Book 05 Ch09 SW2 |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied Book 00 Appendix D's conventions to the guide as an implementation procedure. Added an **Evidence checklist** at the end of Step 8.4, and a section **Control states, change safety and assessment mapping** (`#arc-control-states`) after Step 8: the control-states table, a How-template coverage table that points to the guide's existing steps, a change-safety block built on the existing waves 0 to 3, and the assessment-mapping callout (Infrastructure; CISA Devices). The section sits after Step 8 rather than before Step 7 (Dangers) so the numbered steps stay together.
+
+No "must", "shall" or "required" was relabeled: each one in the guide states a product constraint or a consequence, not a recommendation.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | `DoNotEnforce` evaluates without enforcing; recommended for testing a new assignment; remediation tasks can start in `DoNotEnforce` (used for the policy rollback row) | Control states; How-template coverage, Rollback | verified (unchanged; the page now also documents an `Enroll` mode for staged enforcement, which the guide doesn't use) | Microsoft Learn, "Azure Policy assignment structure," Enforcement mode, <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure> | Nov 11, 2026 |
+| P4-2 | Conditional Access not supported with the Entra join extension on Arc servers (why emergency access exclusion is not applicable) | How-template coverage, Exclusions | carried from Book 05 Ch 09 by link | [Book 05, Chapter 09](../../b05-devices/09-servers-under-azure-arc.md#microsoft-entra-id-sign-in) | Nov 11, 2026 |
+| P4-3 | Rings, change window, backout triggers and post-change validation | Change safety | restated-as-design (the existing waves; new statements marked *design guidance*) | Book 00 Appendix D, change safety | Nov 11, 2026 |

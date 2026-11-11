@@ -214,7 +214,7 @@ Every later mechanism reads these values, so this gate decides where each attrib
 **Steps.**
 
 1. **Inventory AD's attributes (AT1.1).** For each attribute that drives access today: how fully it's populated, who writes it, and which `extensionAttribute` slots are free. The carriers have to be free before they can carry codes ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema)).
-2. **Map AD to Entra ID, per object type (AT1.2).** Use the companion guide's [comparison with AD](attribute-driven-migration.md#compared-with-active-directory). `distinguishedName` comes across but must never drive policy, because it is the placement being left behind. Rules can't read `manager` or `employeeType`, which is why the schema carries coded copies. The disabled bit becomes `accountEnabled`, which every access rule requires. Kerberos SPNs stay in AD until their workloads move, and `adminCount` gives way to roles and PIM.
+2. **Map AD to Entra ID, per object type (AT1.2).** Use the companion guide's [comparison with AD](attribute-driven-migration.md#compared-with-active-directory). `distinguishedName` comes across but should never drive policy *(risk-based recommended: the program's position)*, because it is the placement being left behind. Rules can't read `manager` or `employeeType`, which is why the schema carries coded copies. The disabled bit becomes `accountEnabled`, which every access rule requires. Kerberos SPNs stay in AD until their workloads move, and `adminCount` gives way to roles and PIM.
 3. **Pick a store for each attribute (D-AT1).** Use the [store table](attribute-driven-migration.md#the-attribute-stores-in-the-order-to-reach-for-them), in its order. Native properties come first, then extension attributes 1 to 15 for what rules read, then directory extensions when more slots are needed. Custom security attributes hold sensitive values that rules don't need. Devices use device properties, servers Azure tags, and the PIV binding `certificateUserIds`. Pick the store by who has to read it. The data architect decides.
 4. **Fix the coded slots (D-AT2, AT1.3).** Use the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map): organization code, worker type code and position category in `extensionAttribute10` to `12`, with region, cost center, division, account type, clearance and `DoNotSync` in their own slots. On devices, tier, role and environment go in the device's own extension attributes ([Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#the-device-attribute-schema)). Codes, never display strings, go in anything a rule reads ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#design-rules)). Publish the register with one row per slot: the writer, the owner of the code list, and what reads it. HR owns the code lists.
 5. **Name the single writer for every slot (AT1.3).** The provisioning service is the only writer of every schema field. List the help desk, self-service and Exchange-admin write paths to the access slots for removal at Gate 2 ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#writers)).
@@ -639,6 +639,68 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 | 9 Drift | Standing loop: fix at the source |
 
 : Rollback by gate {.striped .hover}
+
+## Control states, change safety and assessment mapping {#adm-control-states}
+
+The blocks below follow [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) and point back to the gates that already do the work.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Gate 0](#gate-0-read-the-ou-tree) and [Gate 1](#gate-1-schema-and-slots); the persona set (D-AT5) and affinity (D-AT6) | The per-group decision record in Git; the signed schema and slot register; the decision records |
+| Configured | [Gate 3](#gate-3-map-the-attributes-through-sync) sync mapping; [Gate 4](#gate-4-the-dynamic-group-library-and-administrative-units) rules, shadowed; [Gate 5](#gate-5-personas-and-targeting-conventions) personas in report-only; [Gate 6](#gate-6-piv-and-cac-binding) high affinity piloted | The sync configuration export; the rule library in Git; the `ca-export` policy export; the pilot's affinity rule |
+| Enforced | Gate 2's other writers removed; Gate 5's personas enforced in waves; [Gate 8](#gate-8-cut-over-and-retire-the-ou-tree) waves cut over and the OU tree frozen | The delegation export; the enforcing state in the policy export with the emergency-access exclusion; the per-wave signed report and the final OU export |
+| Evidenced | Each gate's **Validate**; [Gate 7](#gate-7-prove-a-mover-across-the-tracks)'s mover proof | Kit runs (VK-HR, VK-SYNC, VK-DG, VK-CA-01, VK-PIV-01) with date and tenant; the workflow's run history; the seven-day sole-source report |
+| Operated | [Gate 9](#gate-9-keep-the-attributes-true) | The scan schedule, run folders, findings queue closed at the source, limits register, metrics |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**How-template coverage.**
+
+| Subsection | Where this guide covers it |
+|---|---|
+| Prerequisites | [Prerequisites](#prerequisites) and each gate's own; dynamic administrative units' cloud availability there |
+| Pilot | The pilot population in Gates 2, 3 and 6; the pilot division as Gate 8's first wave |
+| Report-only or audit phase | Gate 4's shadow comparison; Gate 5's report-only run of two to four weeks (seven days at minimum); Gate 8's dry run with writes disabled |
+| Enforcement | Gate 5's waves behind a monitoring gate; Gate 8's waves by attribute query |
+| Rollback | [Rollback at a glance](#rollback) |
+| Exclusions | The emergency-access group excluded from every persona policy (Gate 5, VK-CA-01); privileged groups kept assigned, never dynamic (Gate 4); `wave-exclusions.csv` with every left-out user and asset decided (Gate 8) |
+| Telemetry | Logs leaving Entra ID from Gate 2; sync reconciliation; Gate 9's nightly comparisons |
+| Evidence | The evidence checklist below; each gate's **Validate**; [Where the kits stop](#where-the-kits-stop) for stand-in evidence |
+| Day-two ownership | Gate 9: the CISO owns drift severity and findings; HR corrects values at the source; each track's standing checks in its guide |
+
+: Where each How-template subsection is covered {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The test tenant and test forest (each gate's *Try it* Lab 2) | The gate's checks pass on the lab estate |
+| 1 | The pilot population (Gates 2, 3, 6) and the pilot division (Gate 8, first wave) | Correlation threshold met; Gate 5's report-only review read; seven days of sole-source proof |
+| 2 | Two or three divisions at a time | Each wave drift-clean before the next; VK-HR and VK-DG checks on the wave's query |
+| 3 | Every population, then the OU tree frozen | Gate 8's Validate for the tree; Gate 9's zero-action plan |
+
+- **Emergency access:** the emergency-access group is excluded from every persona policy, and VK-CA-01 tests the exclusion; the accounts themselves are built and drilled in the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first).
+- **Change window:** each wave's go or no-go is identity engineering's, under the program's wave plan (D07); legacy retirement is approved item by item (Gate 8).
+- **Backout triggers:** VK-DG-05's membership change over its threshold, paused processing (VK-DG-06), a change for a cut-over population that doesn't trace to an HR event, or Gate 5's monitoring gate tripped, each set before the wave starts *(design guidance)*.
+- **Post-change validation:** the gate's **Validate** after each wave, with the wave's query and `WaveId`.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the signed slot register, the sync configuration export, the rule library and unit registry in Git, the `ca-export` policy export, and the final OU export
+- [ ] **Operational:** Gate 9's run folders and findings queue, the provisioning and audit logs leaving Entra ID, and the lifecycle metrics on the ConMon cadence
+- [ ] **Test:** each gate's **Validate** result and Gate 7's mover proof, with expected and observed outcome, date and tester
+- [ ] **Exception:** `wave-exclusions.csv`, restored write permissions with end dates, and policy exclusions, each with its approver and review date
+- [ ] **Assessor-ready artifact:** the per-wave signed validation reports and the seven-day sole-source reports, traceable to the four above, mapped through the companion guide's [federal requirements](attribute-driven-migration.md#federal-requirements)
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#adm-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity (attributes that drive Conditional Access and group targeting); Devices through the conventions handed to the Intune track
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** the HR feed and lifecycle ([pipeline guide](hcm-entra-implementation.md); [HR-driven identity guide](hr-driven-identity-implementation.md)); the device, server and non-person tracks for their own targeting ([Intune](intune-track-implementation.md), [Arc](arc-track-implementation.md), [non-person](non-person-identity-implementation.md)); PKI for PIV binding ([Book 07, Chapter 06](../b07-pki/06-device-and-user-certificates.md))
+- **Attack chain interrupted:** Privilege Escalation and Persistence (access granted by an attribute someone can write, or by stale OU placement, found and removed), Initial Access (a weakly bound certificate refused once high affinity is required)
+:::
 
 ## Checklist
 

@@ -159,3 +159,16 @@ The guide was reframed for FedRAMP Moderate civilian agencies. "STIG content" be
 | Linux and Unix: listed Linux releases lose new agent versions "after November 2026" (row 2; RHEL 7 then dated February 2027) | Those releases plus RHEL 7 reached the end of new agent version support in October 2026, final compatible agent 1.69, serviced for 12 months | Microsoft Learn, "Connected Machine agent prerequisites," re-read Nov 9, 2026: "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation" |
 | Quote "If an OS version isn't listed, it's not supported." | The page no longer says this; replaced with its current sentence, "Operating system versions not listed in either table aren't supported by Azure Arc." | Same page, "Supported operating systems" |
 | 20 Ansible documentation footnote links under `docs.ansible.com/ansible/latest/` | Moved to `docs.ansible.com/projects/ansible/latest/` (same path after the prefix); each old address checked with `curl -sIL` on Nov 9, 2026 and redirects to the new one with HTTP 200. No anchors in these links. Accessed dates kept, as the content wasn't re-read. No Source Register row uses these addresses | docs.ansible.com redirects |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Applied Book 00 Appendix D's conventions to the guide's adoption path, the part that enforces anything. Added an **Evidence checklist** at the end of "Evidence to the program", and a section **Control states, change safety and assessment mapping** (`#ans-control-states`) after the phased adoption path: the control-states table over Phases 0 to 4, a How-template coverage table, a change-safety block built on check mode and canary-first `serial` batches, and the assessment-mapping callout (Infrastructure; CISA Devices). The conceptual sections (what Ansible is, where it fits, the federal setting) were left as they are.
+
+No "must", "shall" or "required" was relabeled: each one states a product constraint, a consequence or the program's exception rule.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Rollback by applying the previous tagged baseline through the same pull-request path | How-template coverage, Rollback | restated-as-design | Program design; Phase 3's tested rollback | Nov 11, 2026 |
+| P4-2 | Rings, backout triggers (`any_errors_fatal`, `max_fail_percentage`) | Change safety | carried from the guide's Dangers table and its footnotes `ans-strategies`, `ans-errors` (checked Oct 29, 2026) | Ansible documentation, as footnoted | Nov 11, 2026 |
+
+No new product, licensing or government-cloud claim was added; macOS and Linux content was not added (the guide's existing Linux and Unix text is unchanged).

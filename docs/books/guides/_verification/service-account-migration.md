@@ -146,3 +146,27 @@ Every Microsoft fact and command was read on Microsoft Learn on November 9, 2026
 ## Review
 
 `review-status: pending`. The guide waits for the owner's review; it isn't approved here.
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+**Follow-up: sending mail from a gMSA workload.** New section `#mail-from-gmsa` (steps M1 to M4), placeholders, an evidence row, two dangers, a checklist line and three items under What couldn't be verified. Every Learn page below was read on November 11, 2026, through the Microsoft Learn documentation service.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| M-1 | Microsoft Identity Manager with managed accounts asks for a different user for Exchange; LogonUser doesn't work for managed accounts | Intro | verified; the general "a gMSA has no mailbox" is marked *(inference)* | `sam-mim-gmsa` | Nov 11, 2026 |
+| M-2 | Basic-auth client SMTP submission scheduled for deprecation, not compatible with security defaults; HVE (internal), ACS Email, or on-premises relay recommended; Graph named as an alternative | Intro; M4 | verified | `sam-mfd` | Nov 11, 2026 |
+| M-3 | Graph `sendMail`: `Mail.Send` application permission; global, L4, L5; `202 Accepted` isn't delivery; `Send-MgUserMail` sample | M3; availability table | verified | `sam-sendmail` | Nov 11, 2026 |
+| M-4 | RBAC for Applications: replaces Application Access Policies; Organization Management and Exchange Administrator; `New-ServicePrincipal`, `New-ManagementScope`, `New-ManagementRoleAssignment -App -Role "Application Mail.Send" -CustomResourceScope`, `Test-ServicePrincipalAuthorization`; union with Entra grants; `MemberOfGroup`, nested members out of scope; 30-minute to 2-hour cache; don't use App registrations IDs | M3 | verified; the page states no cloud availability, so GCC, GCC High and DoD are "not yet specified" | `sam-app-rbac` | Nov 11, 2026 |
+| M-5 | SMTP relay support in Exchange Online: GCC, GCC High, DoD | Availability table | verified | `sam-exo-gov` | Nov 11, 2026 |
+| M-6 | HVE: internal recipients only, 50 recipients a message, OAuth recommended; Microsoft 365 Worldwide only, other clouds under evaluation | Availability table; M4 | verified | `sam-hve` | Nov 11, 2026 |
+| M-7 | ACS Email GA in Azure Government through the SDK; SMTP endpoint not supported there; DoD not distinguished | Availability table; M4 | verified; DoD "not yet specified" | `sam-acs-gov` | Nov 11, 2026 |
+| M-8 | Receive connector: `Integrated` = NTLM and Kerberos; Client usage type includes it; `ExchangeUsers` = authenticated users with submit and relay | M1 | verified | `sam-rc` | Nov 11, 2026 |
+| M-9 | `New-ReceiveConnector -Custom -Bindings -RemoteIPRanges -AuthMechanism -PermissionGroups` | M1 | verified (Learn syntax; values the guide's) | `sam-rc-custom` | Nov 11, 2026 |
+| M-10 | Exchange requires Send As to send from a shared mailbox; `Add-ADPermission -ExtendedRights "Send As"`; verify with `Get-ADPermission` | M1 | verified | `sam-sendas-ts`, `sam-sendas` | Nov 11, 2026 |
+| M-11 | Anonymous relay: dedicated Front End Transport connector limited to listed hosts; anonymous versus externally secured; commands and verification | M2 | verified; choosing the anonymous method is restated as design (risk-based) | `sam-relay` | Nov 11, 2026 |
+| M-12 | `Connect-ExchangeOnline -ExchangeEnvironmentName O365USGovGCCHigh` / `O365USGovDoD`; none for GCC | M3 | verified | `sam-exo-connect` | Nov 11, 2026 |
+| M-13 | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`; `-Environment USGov` / `USGovDoD`; certificate from the user or machine store | M3 | verified | `sam-mg-connect` | Nov 11, 2026 |
+| M-14 | Arc: local token endpoint; only Administrators and *Hybrid agent extension applications* | M3 | carried from row 27 | `sam-arc-identity` | Nov 9, 2026 |
+| M-15 | A gMSA submitting SMTP over Integrated Windows authentication; `Connect-MgGraph -Identity` on an Arc agent | M1; M3 | unverifiable on the pages read; listed under What couldn't be verified | — | Nov 11, 2026 |
+
+**Conventions (Book 00, Appendix D).** New section `#sam-control-states`: G-01 control states, G-02 How-template coverage (pilot filled as design guidance; emergency access not applicable with the reason), G-07 change safety (rings 0 to 3, backout triggers as design guidance), G-08 assessment mapping. G-06: the evidence checklist ends `#evidence`. G-05: no "must" relabeled; the remaining uses are product constraints (SPN ownership, federated credential matching, AD FS container, a user-assigned identity's deletion) or questions in the decision table. G-03: every product claim already carried a date of Nov 9, 2026; the new mail claims are dated Nov 11, 2026 above.
