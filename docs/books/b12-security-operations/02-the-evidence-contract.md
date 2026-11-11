@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The problem the evidence contract solves and the case in one paragraph. The contract's fields and how they support AU-3. The join key, authoritative asset identity plus time, and why AU-12(1)'s system-wide, time-correlated audit trail depends on the naming plane. How vulnerability, patch, configuration, posture and data-protection findings become records in one queue, and what closes them. The roles that realize the contract, the continuous-monitoring pipeline CA-7 describes, the controls this chapter supports and where they sit in the FedRAMP baselines, and an illustrative coverage query.
+The problem the evidence contract solves and the case in one paragraph. The contract's fields and how they support AU-3. The join key, authoritative asset identity plus time, and why AU-12(1)'s system-wide, time-correlated audit trail depends on the naming plane. How vulnerability, patch, configuration, posture and data-protection findings become records in one queue, and what closes them. The roles that realize the contract, the continuous-monitoring pipeline CA-7 describes, the controls this chapter supports and where they sit in the FedRAMP baselines, and an illustrative coverage query. Then the connector and retention plan for data and endpoint telemetry (Purview audit, data loss prevention, sensitivity labels, Intune, Defender for Endpoint, endpoint analytics and encryption state) with its government-cloud availability, and a test that proves each source is searchable.
 :::
 
 ## Five stacks, five inventories
@@ -126,6 +126,68 @@ Three enhancements describe what automation adds. AU-6(1) integrates audit revie
 
 On the attestation side, NIST's OSCAL defines an assessment layer with three models, assessment plan, assessment results and plan of action and milestones,[^c02-oscal] which is where the contract's records go when the authorization package is assembled. FedRAMP's 2026 indicators show the same chain from the cloud service provider's side: the related controls for KSI-MLA-OSM, operating a SIEM capability, include AU-3, AU-6(1), AU-6(3), AU-8, AU-12(1) and SI-4(16).[^c02-ksi] Those indicators bind cloud service providers rather than agencies, but the program uses the same control set for its own estate, so that an agency's evidence and its providers' evidence describe monitoring in the same terms. [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md) covers metrics and the ongoing reporting cycle.
 
+## Data and endpoint telemetry in the contract {#data-and-endpoint-telemetry}
+
+Zero Trust assessments find data and device controls that are configured but can't be shown working: labels published that nobody can count, a data loss prevention policy whose matches go nowhere, devices reported encrypted by one console and unknown to another. Each is a contract problem. The source exists; its records don't reach the queue, or reach it without a join key, or age out before an assessor asks. The matrix below is the program's connector and retention plan for the data and endpoint sources, so the Agency Logging Plan can name each one. Purview's own audit depth (the audit tiers, audit retention policies and searches inside Purview) belongs to the workbook's Information Protection and Microsoft Purview book, in preparation; [Chapter 04](04-platform-and-m365-telemetry.md#part-4-the-microsoft-365-unified-audit-log) carries the unified audit log's collection and retention tiers, and this section only places its records in the contract.
+
+| Source | What reaches the workspace, and how | `control` and `state` it carries | Latency and gaps | GCC | GCC High and DoD |
+|---|---|---|---|---|---|
+| Microsoft 365 unified audit (Purview Audit) | Exchange, SharePoint and Teams activity in `OfficeActivity` through the Microsoft 365 connector; every other workload, including `Audit.General` and `DLP.All`, through the Management Activity API collector ([Chapter 04](04-platform-and-m365-telemetry.md#microsoft-sentinel-ingestion)) | AU-2, AU-12; the activity and its result | Records arrive out of order and can be duplicated ([Chapter 04](04-platform-and-m365-telemetry.md#step-5-list-and-retrieve-content)) | Connector GA[^c02-sentinel-feature] | Connector GA[^c02-sentinel-feature] |
+| Data loss prevention | Policy matches in the `DLP.All` content type through the collector; DLP alerts in the Defender XDR incident queue, and through the Defender XDR connector into Sentinel ([One queue for every finding](#one-queue-for-every-finding)) | AC-4, SC-28; the policy, the rule matched and the action taken | A built-in tuning rule can turn DLP alerts into behaviors that never reach the queue ([above](#one-queue-for-every-finding)) | Defender XDR connector GA | Defender XDR connector: GCC High GA, DoD to be confirmed in the agency's portal ([Chapter 05](05-from-log-warehouse-to-detection.md#where-sentinel-runs-and-which-clouds-table-to-read)) |
+| Sensitivity labels | Label applied, changed and removed, and labeled-file events, are Microsoft 365 audit records; the Microsoft Purview Information Protection connector lands them in `MicrosoftPurviewInformationProtection`[^c02-mpip] | AC-16, SC-28; label, action, and justification where the user gave one | Label names aren't populated in events from the Office Management API, so a watchlist maps label IDs to names; the connector's table and `OfficeActivity` can hold duplicates[^c02-mpip] | Connector in public preview[^c02-sentinel-feature] | Connector not available in Azure Government;[^c02-sentinel-feature] collect the same records with the Management Activity API collector |
+| Intune audit and operational logs | `IntuneAuditLogs` (create, update, delete, assign and remote actions) and `IntuneOperationalLogs` (enrollment results, noncompliant device details) through Intune diagnostic settings[^c02-intune-am] | CM-3, CM-6; who changed which policy, enrollment success or failure | Sent to Azure Monitor immediately after the action[^c02-intune-am] | Available (GCC uses the commercial Intune service)[^c02-intune-gov] | Log Analytics export listed as available in GCC High and DoD[^c02-intune-gov] |
+| Intune compliance and device inventory, including encryption state | `IntuneDeviceComplianceOrg` and `IntuneDevices`; the inventory carries `CompliantState`, `EncryptionStatusString`, `Ownership`, `JoinType` and `LastContact`[^c02-intune-am][^c02-intunedevices] | CM-8, CM-6, SC-28; compliant or not, encrypted or not, per device | Exported once in each 24-hour period and can take up to 48 hours to arrive;[^c02-intune-am] Intune can take up to 24 hours to report an encryption change, and for Windows reports the OS drive only[^c02-intune-encrypt] | Available | Available |
+| Defender for Endpoint | Raw `Device*` tables streamed through the Defender XDR connector; alerts and incidents through incident integration[^c02-xdr-clouds] | SI-4, SI-3, CM-8; sensor events, alerts, onboarding and health | Streaming the raw tables is a per-table choice with ingestion cost ([Chapter 05](05-from-log-warehouse-to-detection.md#microsoft-defender-xdr)) | Raw tables GA[^c02-xdr-clouds] | Raw device tables GA in Defender XDR and public preview in Sentinel[^c02-xdr-clouds] |
+| Defender cloud app events | `CloudAppEvents`, Microsoft 365 activity enriched by Defender for Cloud Apps, in advanced hunting and through the connector[^c02-xdr-clouds] | AU-6, SI-4 | Needs the Microsoft 365 app connector in Defender for Cloud Apps | GA[^c02-xdr-clouds] | Unsupported in the Sentinel connector;[^c02-xdr-clouds] stays in Defender advanced hunting |
+| Endpoint analytics | Not one of Intune's diagnostic-setting categories (audit, operational, compliance and devices);[^c02-intune-am] scores and reports are read in the Intune admin center or exported as reports | CM-6, SI-2 evidence of drift and delayed patching ([Book 05](../b05-devices/index.md)) | A periodic export, not a stream | Available | Advanced Analytics listed as supporting GCC High and DoD;[^c02-intune-gov] base endpoint analytics reports: not yet specified |
+
+The matrix is design built on Microsoft's documentation, read November 11, 2026. Two rules follow from it.
+
+- **Every source has a `state` the contract can carry.** Device encryption and compliance land as daily snapshots keyed by Intune's device ID and the Entra device ID (`ReferenceId`), which the naming plane maps to `asset_id` ([The join key](#the-join-key-authoritative-asset-identity-plus-time)). A snapshot table is evidence of state at a time, not of change; the change itself is in `IntuneAuditLogs`.
+- **Retention is set per table, in the Agency Logging Plan.** Each table in the matrix goes on the plan's retention list, with the same six-month searchable and one-year retrievable floor [Chapter 12](12-evidence-metrics-and-continuous-monitoring.md#retention-tiers-and-tamper-protected-copies) applies to the identity and platform tables, and its retention conformance export reads them like any other. The Purview tier keeps its own clock ([Chapter 04](04-platform-and-m365-telemetry.md#retention-the-tier-that-decides-the-evidence)); the workspace copy is the evidence store.
+
+### Proving each source is searchable {#proving-each-source-is-searchable}
+
+A connector that shows green proves nothing until a known event is found at the other end. For each source, the program makes one synthetic event and finds it in the workspace, then records the delay, on the quarterly cadence of [Chapter 05](05-from-log-warehouse-to-detection.md#proving-the-connectors-still-deliver). Microsoft 365 audit has its own emission test in [Chapter 04](04-platform-and-m365-telemetry.md#verify-microsoft-365-emission). Placeholders: `<test-managed-device-id>` is a pilot device's Intune device ID; `<test-device-name>` the same device's name.
+
+**Intune audit: a remote sync on a pilot device**, a remote action the audit log records.[^c02-intune-am] For GCC High use `-Environment USGov`, for DoD `USGovDoD`.
+
+```powershell
+Connect-MgGraph -Environment Global -Scopes "DeviceManagementManagedDevices.PrivilegedOperations.All" -NoWelcome
+Sync-MgDeviceManagementManagedDevice -ManagedDeviceId '<test-managed-device-id>'
+```
+
+```kql
+IntuneAuditLogs
+| where TimeGenerated > ago(2h)
+| where OperationName has "sync"
+| project TimeGenerated, OperationName, Identity, Properties
+```
+
+**Defender for Endpoint: Microsoft's detection test** on a pilot Windows device, from an elevated Command Prompt, after creating `C:\test-MDATP-test`; an alert should appear in about 10 minutes.[^c02-mde-test]
+
+```cmd
+powershell.exe -NoExit -ExecutionPolicy Bypass -WindowStyle Hidden $ErrorActionPreference = 'silentlycontinue';(New-Object System.Net.WebClient).DownloadFile('http://127.0.0.1/1.exe', 'C:\\test-MDATP-test\\invoice.exe');Start-Process 'C:\\test-MDATP-test\\invoice.exe'
+```
+
+```kql
+SecurityAlert
+| where TimeGenerated > ago(2h)
+| where CompromisedEntity has "<test-device-name>"
+| project TimeGenerated, AlertName, ProviderName, CompromisedEntity, Status
+```
+
+**Intune inventory and encryption state:** the daily export, checked for freshness rather than triggered.
+
+```kql
+IntuneDevices
+| where TimeGenerated > ago(2d)
+| summarize LastExport = max(TimeGenerated), Devices = dcount(DeviceId),
+            NotEncrypted = dcountif(DeviceId, EncryptionStatusString !~ "Encrypted")
+```
+
+The value strings in `EncryptionStatusString` vary by platform; read them from one export before relying on the `NotEncrypted` count. A source whose synthetic event isn't found within its documented delay is a coverage finding in the same queue as everything else, and the delay observed is the number the Agency Logging Plan records.
+
 ## Controls this chapter supports {#controls-this-chapter-closes}
 
 | Control | Title | How the contract closes it | FedRAMP Rev. 5 Moderate baseline |
@@ -200,3 +262,11 @@ A heartbeat proves only that an agent is talking, not that every plane is. The s
 [^c02-ksi]: FedRAMP, "Monitoring, Logging, and Auditing," Key Security Indicators, FedRAMP Consolidated Rules for 2026 (KSI-MLA-OSM related controls), <https://fedramp.gov/2026/providers/20x/key-security-indicators/monitoring-logging-and-auditing/> (accessed Oct 21, 2026).
 [^c02-heartbeat]: Microsoft Learn, "Heartbeat" (Azure Monitor Logs table reference: records logged by agents once per minute; Computer and TimeGenerated columns), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/heartbeat> (accessed Oct 21, 2026).
 [^c02-watchlist]: Microsoft Learn, "Build queries or detection rules with watchlists in Microsoft Sentinel," <https://learn.microsoft.com/azure/sentinel/watchlists-queries> (accessed Oct 21, 2026).
+[^c02-sentinel-feature]: Microsoft Learn, "Microsoft Sentinel feature support for Azure commercial/other clouds," Data collection table (Office 365 GA in Azure commercial and Azure Government; Microsoft Purview Information Protection public preview, Azure commercial only), <https://learn.microsoft.com/azure/sentinel/feature-availability> (accessed Nov 11, 2026).
+[^c02-mpip]: Microsoft Learn, "Stream data from Microsoft Purview Information Protection to Microsoft Sentinel," sections "Overview" (`MicrosoftPurviewInformationProtection` table, gathered through the Office Management API) and "Known issues and limitations" (label names not populated; duplicates with `OfficeActivity`), <https://learn.microsoft.com/azure/sentinel/connect-microsoft-purview>, and "Microsoft Purview Information Protection connector reference - audit log record types and activities support," <https://learn.microsoft.com/azure/sentinel/microsoft-purview-record-types-activities> (both accessed Nov 11, 2026).
+[^c02-intune-am]: Microsoft Learn, "Send Intune log data to Azure Storage, Event Hubs, or Log Analytics" (the four log categories; audit and operational logs sent immediately; compliance organizational and devices data once every 24 hours, up to 48 hours to arrive; audit logs record create, update, delete, assign and remote actions), <https://learn.microsoft.com/intune/governance/integrate-azure-monitor> (accessed Nov 11, 2026).
+[^c02-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description" (Log Analytics export available; GCC uses the commercial Intune instance; Advanced Analytics among the Intune Suite features supporting GCC High and DoD), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 11, 2026).
+[^c02-intunedevices]: Microsoft Learn, Azure Monitor Logs table reference, "IntuneDevices" (`CompliantState`, `EncryptionStatusString`, `Ownership`, `JoinType`, `LastContact`, `ReferenceId` as the Entra device ID), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/intunedevices>, and "IntuneAuditLogs," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/intuneauditlogs> (both accessed Nov 11, 2026).
+[^c02-intune-encrypt]: Microsoft Learn, "Monitor device encryption with Intune," section "Device encryption status" (up to 24 hours to report; for Windows, the OS drive only), <https://learn.microsoft.com/intune/device-management/monitor-encryption> (accessed Nov 11, 2026).
+[^c02-xdr-clouds]: Microsoft Learn, "Support for Microsoft Defender XDR connector data types in different clouds," section "Raw event data" (Defender for Endpoint tables GA in commercial and GCC; in GCC High and DoD GA in Defender XDR and public preview in Sentinel; `CloudAppEvents` unsupported in GCC High and DoD), <https://learn.microsoft.com/azure/sentinel/microsoft-365-defender-cloud-support> (accessed Nov 11, 2026).
+[^c02-mde-test]: Microsoft Learn, "Run a detection test on a device recently onboarded to Microsoft Defender for Endpoint," <https://learn.microsoft.com/defender-endpoint/run-detection-test> (accessed Nov 11, 2026).

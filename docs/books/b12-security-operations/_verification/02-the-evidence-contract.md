@@ -94,3 +94,22 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 |---|---|---|---|---|
 | 1 | AU-3(1) asks for audit records with organization-defined additional information; AU-6(5) asks to integrate audit analysis with vulnerability scanning, performance, monitoring or other information (item 599) | The contract; controls table | verified (control text); restated-as-design (the program's definitions) | NIST OSCAL SP 800-53 Rev. 5 catalog |
 | 2 | AU-3(1) in the FedRAMP Moderate baseline; AU-6(5) High only | Controls table | verified | This book's Appendix A baseline columns (NIST OSCAL profiles, FedRAMP Rev5 classes) |
+
+## Zero Trust closure update, November 11, 2026 (B12-03, CM-14)
+
+New section "Data and endpoint telemetry in the contract" with its searchability test. Microsoft Learn read Nov 11, 2026 through the Learn MCP tools. Nothing run against a tenant; the commands and queries are illustrative.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| D1 | Office 365 connector GA in Azure commercial and Azure Government; Purview Information Protection connector public preview, commercial only | Matrix | verified | Learn, Sentinel feature availability | Nov 11, 2026 |
+| D2 | `MicrosoftPurviewInformationProtection` table via the Office Management API; label names not populated; duplicates with `OfficeActivity` | Matrix | verified | Learn, Stream data from Microsoft Purview Information Protection to Microsoft Sentinel | Nov 11, 2026 |
+| D3 | Intune routes four log categories; audit and operational sent immediately; compliance and devices once per 24 hours, up to 48 hours | Matrix; searchability | verified | Learn, Send Intune log data to Azure Storage, Event Hubs, or Log Analytics | Nov 11, 2026 |
+| D4 | Intune Log Analytics export available in GCC High and DoD; GCC is the commercial instance; Advanced Analytics supports GCC High and DoD | Matrix | verified | Learn, Intune for US Government GCC High and DoD service description | Nov 11, 2026 |
+| D5 | Base endpoint analytics availability in GCC High and DoD | Matrix | unverifiable (Learn pages read don't say); written "not yet specified" | — | Nov 11, 2026 |
+| D6 | `IntuneDevices` columns `CompliantState`, `EncryptionStatusString`, `Ownership`, `JoinType`, `LastContact`, `ReferenceId`; `IntuneAuditLogs` columns `OperationName`, `Identity`, `Properties` | Matrix; queries | verified | Learn, IntuneDevices and IntuneAuditLogs table references | Nov 11, 2026 |
+| D7 | Encryption status up to 24 hours to report; Windows OS drive only | Matrix | verified | Learn, Monitor device encryption with Intune | Nov 11, 2026 |
+| D8 | Device tables GA in commercial and GCC; GCC High and DoD GA in Defender XDR, public preview in Sentinel; `CloudAppEvents` unsupported in GCC High and DoD | Matrix | verified | Learn, Support for Microsoft Defender XDR connector data types in different clouds | Nov 11, 2026 |
+| D9 | `Sync-MgDeviceManagementManagedDevice` with `DeviceManagementManagedDevices.PrivilegedOperations.All`; syncDevice available in US Government L4 and L5 | Searchability | verified | Learn, Sync-MgDeviceManagementManagedDevice; syncDevice action | Nov 11, 2026 |
+| D10 | Defender for Endpoint detection test command; alert in about 10 minutes | Searchability | verified (command copied from Learn) | Learn, Run a detection test on a device recently onboarded | Nov 11, 2026 |
+| D11 | Retention floor per table and the snapshot/change split | Two rules | restated-as-design | Program design; Chapter 12 | Nov 11, 2026 |
+| D12 | Defender XDR connector in DoD to be confirmed | Matrix | verified (as Chapter 05 records the conflict between two Learn pages) | Chapter 05 | Nov 11, 2026 |

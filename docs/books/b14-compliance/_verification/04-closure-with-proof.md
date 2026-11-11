@@ -92,3 +92,17 @@ Four remaining uses of "closes" for a mechanism and a control (the description, 
 |---|---|---|
 | the mechanism that closes it has to exist | the mechanism that supports it has to exist | no source change |
 | Only port-based authentication closes IA-3 for unmanaged network ports | Only port-based authentication supports IA-3 for unmanaged network ports | no source change |
+
+## Zero Trust closure update, November 11, 2026 (B14-01)
+
+New section "Zero Trust evidence, by control family" and its assessor caveats. Sources read Nov 11, 2026: NIST CSRC page for SP 1800-35 (by fetch), SP 800-53A Rev. 5 and the CISA ZTMM 2.0 as already cited in Book 00 Appendix D, and Book 11 Appendix A's control list. No private assessment data used.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| Z1 | SP 1800-35 (June 2025) maps ZTA principles and technologies to commonly used security standards and guidelines | Zero Trust evidence, by control family | verified | NIST CSRC, SP 1800-35 final, <https://csrc.nist.gov/pubs/sp/1800/35/final> | Nov 11, 2026 |
+| Z2 | SP 800-53 Rev. 5 has no Zero Trust control or family | Same | verified (as Book 11 Appendix A records from the 5.2.0 catalog) | Book 11 Appendix A, "Reading the controls" | Nov 11, 2026 |
+| Z3 | Family intents for AC, IA, AU, CM, SC, SI, IR, CA, with the controls named in each row | Mapping table | verified (control titles); restated-as-design (the phrasing of intent and the row selection) | NIST OSCAL SP 800-53 Rev. 5 catalog, release 5.2.0 | Nov 11, 2026 |
+| Z4 | The Zero Trust implementation, evidence and caveat columns | Mapping table | restated-as-design | Program design; Books 04, 05, 09, 11, 12, 13 | Nov 11, 2026 |
+| Z5 | Assessors determine by examine, interview and test; each determination is satisfied or other than satisfied | Assessor caveats | verified | NIST SP 800-53A Rev. 5, §2.4.2 and §3.3 | Nov 11, 2026 |
+| Z6 | ZTMM has five pillars and three cross-cutting capabilities | Assessor caveats | verified | CISA ZTMM 2.0, §5 and §5.6 | Nov 11, 2026 |
+| Z7 | SC-28 is scoped to organization-specified information at rest; AU-2 and AU-11 carry organization-defined parameters | Mapping table | verified | NIST OSCAL catalog SC-28, AU-2, AU-11 | Nov 11, 2026 |
