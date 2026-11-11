@@ -68,18 +68,18 @@ Every application and service principal in the tenant has a row in the authorita
 
 **Unknown workloads.** A service principal in the tenant with no row in the record is an *unknown workload*. The program's response follows the orphan rule in the [Non-Person Identity guide](../guides/non-person-identity-implementation.md#orphans): the identity governance office takes interim ownership, the app is treated as Tier 1, and once the finding is confirmed a person deactivates it (nothing is deleted) and the 30-day claim window starts. Deactivation stops new tokens; existing tokens stay valid until they expire. Where an unknown workload can't be deactivated yet because something depends on it, restrict it instead: require assignment on its service principal, so only assigned users and clients get tokens,[^c14g-assign] and, for single-tenant service principals with Workload ID Premium, add a Conditional Access policy for workload identities ([Non-Person Identity guide, Step 4](../guides/non-person-identity-implementation.md#step-4-cut-privilege)).
 
-### Prerequisites
+### Prerequisites {#app-prerequisites}
 
 - **The record.** The system inventory or CMDB holds the eight fields keyed by `appId` (the program's `<record.csv>` below: one row per application, with the columns `AppId`, `SystemId`, `Impact`, `BusinessOwner`, `TechnicalOwner`, `DataClassification`, `PermissionJustification`, `ReviewDate` and `RetirementDisposition`). The [Non-Person Identity guide's record](../guides/non-person-identity-implementation.md#the-record-each-identity-joins-to) is the same record; this chapter adds data classification, permissions justification, last activity and retirement disposition to it.
 - **Roles.** Reading needs Global Reader, or Reports Reader plus Application Administrator read scopes; the export below uses the Graph scopes `Application.Read.All`, `Directory.Read.All` and `AuditLog.Read.All`. Run it as an app registration with a certificate, or a managed identity, never a secret.
 - **Licenses.** Reading app registrations, service principals and grants is free. The service principal sign-in activity report reads with `AuditLog.Read.All` and the Reports Reader, Security Reader or Security Administrator role.[^c14g-spactivity] Workload ID Premium is needed only for Conditional Access for workload identities and its app health recommendations ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 - **Government clouds.** Microsoft Graph's application, service principal and grant APIs serve all three US government environments; a GCC tenant uses the worldwide endpoint, GCC High `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^c14g-graph-clouds] The service principal sign-in activity API is **preview**, in Graph beta, and listed for the global service only, not for US Government L4 or L5 (accessed Nov 11, 2026);[^c14g-spactivity] in GCC High and DoD, last activity comes from the service principal and managed identity sign-in logs instead ([Book 12](../b12-security-operations/index.md)), and the field is marked *measured from logs*.
 
-### Pilot
+### Pilot {#app-pilot}
 
 Run the export and the gap report on one system's applications first, chosen because its owner is engaged and it has both first-party and vendor apps. Success: every row joins, the owner agrees with the gaps the report lists, and nothing in the report contradicts what the owner knows.
 
-### Report-only or audit phase
+### Report-only or audit phase {#app-report-only}
 
 The export and the gap report change nothing. Run them weekly for four weeks across the tenant before any app is deactivated or restricted, and read three numbers from them: unknown workloads, ownerless high-impact apps and stale apps (no activity in 90 days, the program's threshold, *design guidance*). Each week's report goes to the identity governance office, which confirms or dismisses each row.
 
@@ -163,7 +163,7 @@ $record | Where-Object { $_.AppId -notin $tenant.AppId } | Export-Csv "$out\app-
 
 The last line lists record rows with no service principal: retired apps the record still carries, which is drift in the record, not the tenant ([Chapter 06](06-the-drift-engine.md#what-the-engine-compares-against)).
 
-### Enforcement
+### Enforcement {#app-enforcement}
 
 Enforcement is three rules, each turned on after the four-week audit phase:
 
@@ -171,9 +171,9 @@ Enforcement is three rules, each turned on after the four-week audit phase:
 2. **Weekly.** Every `OWNERLESS HIGH-IMPACT` row opens a P2 drift finding (identity class, [Chapter 06](06-the-drift-engine.md#severity)) assigned to the identity governance office, which names an owner within the finding's window or starts the orphan rule. Every `unknown workload` row starts the orphan rule.
 3. **On the review date.** Owners, permissions and credentials are certified through an access review or the owner's attestation ([Non-Person Identity guide, access reviews of owners](../guides/non-person-identity-implementation.md#access-reviews-of-owners)); a missed review sets the row's review date overdue, which the gap report raises.
 
-Deactivating or restricting an app is the step that can break something. It moves through the rings under [Change safety](#change-safety).
+Deactivating or restricting an app is the step that can break something. It moves through the rings under [Change safety](#c14-change-safety).
 
-### Rollback
+### Rollback {#app-rollback}
 
 Reactivate a deactivated app registration, or set the service principal's **Enabled for users to sign-in?** back to Yes, by the identity governance office through PIM; both take effect at once and keep the configuration ([Non-Person Identity guide, decommissioning](../guides/non-person-identity-implementation.md#decommissioning-disable-first-then-delete)). To undo assignment-required:
 
@@ -183,17 +183,17 @@ Update-MgServicePrincipal -ServicePrincipalId '<sp-object-id>' -AppRoleAssignmen
 
 `<sp-object-id>` is the service principal's object ID from the export. Record the rollback in the finding's remediation contract.
 
-### Exclusions
+### Exclusions {#app-exclusions}
 
 Microsoft first-party service principals and the tenant's own platform identities (the governance pipeline's own managed identity, the backup service) are excluded from deactivation, not from the record: each still gets a row with a business owner. Every other exclusion is an entry in the exception register with an approver and an expiry, reviewed by the governance board ([Chapter 09](09-who-governs.md#who-accepts-exceptions)). Emergency access accounts are user accounts and aren't in scope; nothing here changes Conditional Access exclusions for them.
 
-### Telemetry
+### Telemetry {#app-telemetry}
 
 - Entra audit log: **Add owner to application**, **Remove owner from application**, **Update application** (including `isDisabled` for deactivation), **Add service principal**, consent and app role assignment events. [Book 12](../b12-security-operations/index.md) carries the detections for application credential, owner and consent changes.
 - Service principal and managed identity sign-in logs, for last activity in clouds without the activity report.
 - The weekly gap report's three counts, trended.
 
-### Evidence
+### Evidence {#app-evidence}
 
 **Evidence checklist**
 
@@ -203,7 +203,7 @@ Microsoft first-party service principals and the tenant's own platform identitie
 - [ ] **Exception:** the exception register rows for excluded apps, with approver and expiry
 - [ ] **Assessor-ready artifact:** the closure-chain entry for each assessment finding about application owners ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain)), pointing at the gap report that shows no ownerless high-impact rows and the review records
 
-### Day-two ownership
+### Day-two ownership {#app-day-two-ownership}
 
 The identity governance office owns the record's application rows and the weekly report; each business owner owns their rows' accuracy. Cadence: the export weekly, certification on the risk tier's cadence (quarterly for Tier 1, *design guidance*), and the record reconciled at each [Book 18](../b18-application-modernization/10-running-the-portfolio-in-waves.md#keeping-the-triage-current) re-triage. The drift signal is a rising count of ownerless or unknown rows. The support path for an owner who can't be found is the governance board.
 
@@ -237,17 +237,17 @@ A client secret is a password an application keeps. Microsoft's guidance is not 
 
 These windows are the program's choice. SP 800-53 IA-5 leaves the time period for changing authenticators to the organization;[^c14g-sp80053] Key Vault's own rotation pattern publishes its near-expiry event 30 days before a secret expires,[^c14g-kv-rotate] which is why the scheduled window ends there.
 
-### Prerequisites
+### Prerequisites {#sec-prerequisites}
 
 - The application management policy from the [Non-Person Identity guide, Step 3](../guides/non-person-identity-implementation.md#step-3-set-the-credential-rules); application management policies are a free capability of Workload ID ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#enforcing-the-order-with-app-management-policies)).
 - Azure Key Vault in the agency's subscription. The Key Vault built-in Azure Policy definitions used below have Audit as their default effect and support Deny.[^c14g-kv-policy] Whether each built-in is present in Azure Government isn't stated on the Learn page; the lookup in Step 3 returns nothing if a definition isn't there, which is the check (government availability *not yet specified* on Learn, Nov 11, 2026).
 - Secret scanning: for GitHub repositories, GitHub's secret scanning with push protection, enabled per repository by an admin or an organization owner or security manager;[^c14g-gh-api] for Azure Repos, GitHub Advanced Security for Azure DevOps (or GitHub Secret Protection for Azure DevOps), which Microsoft makes available only for Azure DevOps Services and Git repositories.[^c14g-ghazdo] Both are **license-dependent**. Azure DevOps Services government-cloud availability isn't stated on the Learn page (*not yet specified*, Nov 11, 2026); an agency on Azure DevOps Server uses a pipeline secret scanner instead.
 
-### Pilot
+### Pilot {#sec-pilot}
 
 Pick one system whose apps hold secrets and whose owner will convert at least one. Run the inventory, file the exceptions for the rest, turn on push protection for its repositories, and run one conversion through the [Non-Person Identity guide's parallel run](../guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run). Success: the inventory matches what the owner knows, each remaining secret has an exception with a replacement date, and the converted app runs on its new credential with the secret removed.
 
-### Report-only or audit phase
+### Report-only or audit phase {#sec-report-only}
 
 **Step 1. Read the tenant's default policy** (no change), and keep the output as configuration evidence.[^c14g-amp-tutorial]
 
@@ -310,7 +310,7 @@ gh api "repos/<owner>/<repo>" --jq '.security_and_analysis'
 
 For Azure Repos, enablement is a portal step: **Organization settings** > **Repositories** > **Enable all** for Advanced Security (or Secret Protection) > **Begin billing**, and select **Automatically enable Advanced Security for new projects**. Push protection and repository scanning start when the product is turned on; push protection evaluates only pushes made after that, and repository scanning finds secrets already in history.[^c14g-ghazdo]
 
-### Enforcement
+### Enforcement {#sec-enforcement}
 
 - **Vaults:** after four weeks in Audit with no unexplained non-compliant secrets, move the three assignments to Deny, one management group at a time: delete each Audit assignment, then re-run the three `assign` lines from Step 3 with `"Deny"` in place of `"Audit"`.
 
@@ -321,22 +321,22 @@ For Azure Repos, enablement is a portal step: **Organization settings** > **Repo
 - **Repositories:** push protection blocks from the start. Bypassing it (on Azure Repos, the `skip-secret-scanning:true` commit message) still raises an alert;[^c14g-ghazdo-scan] every bypass is reviewed within one business day.
 - **Tenant:** the application management policy's prohibition is already enforcing for new apps; the replacement plan's dates enforce it for old ones. A secret with no exception, or past its replacement date, is a P2 authorization-class drift finding ([Chapter 06](06-the-drift-engine.md#the-programs-drift-model-five-classes)).
 
-### Rollback
+### Rollback {#sec-rollback}
 
 Move a Key Vault assignment back to Audit the same way: delete it and re-run its `assign` line with `"Audit"`, which the platform team can do in minutes. Push protection is disabled per repository by setting the two statuses to `disabled` with the same `gh api` call, only with the CISO's approval. An app-specific exemption to the application management policy is the rollback for one application that a policy change broke; never disable the tenant default.
 
-### Exclusions
+### Exclusions {#sec-exclusions}
 
 Exemptions are per application and expire; there is no tenant-wide exclusion. Emergency access accounts hold no application credentials and are out of scope. A Key Vault that holds only break-glass material for a recovery procedure may carry a policy exemption with its approver and review date.
 
-### Telemetry
+### Telemetry {#sec-telemetry}
 
 - Entra audit log: **Update application – Certificates and secrets management** for every credential added or removed; [Book 12](../b12-security-operations/index.md) carries the detection for new application credentials.
 - Key Vault `SecretNearExpiry` and `SecretExpired` events, sent to Event Grid, and Key Vault diagnostic logs.
 - Secret scanning alerts and push-protection bypasses.
 - Azure Policy compliance state for the three assignments.
 
-### Evidence
+### Evidence {#sec-evidence}
 
 **Evidence checklist**
 
@@ -346,7 +346,7 @@ Exemptions are per application and expire; there is no tenant-wide exclusion. Em
 - [ ] **Exception:** each secret exception with its four criteria, approvers, expiry and replacement date
 - [ ] **Assessor-ready artifact:** for each credential finding, the closure-chain entry with the inventory row before and after and the replacement proof (the app's sign-in on its new credential and the removal event for the secret)
 
-### Day-two ownership
+### Day-two ownership {#sec-day-two-ownership}
 
 The identity governance office owns the exception register and the replacement plan; technical owners own their rotations; the platform team owns the vault policies; the DevSecOps lead owns secret scanning. Cadence: the inventory weekly, exceptions reviewed at expiry and at least every 180 days, and the plan reviewed monthly by the governance board until the count of secrets reaches the agreed floor. The drift signal is any secret without an exception or past its date.
 
@@ -374,17 +374,17 @@ Safe Links and Safe Attachments need Defender for Office 365 (**license-dependen
 - **Tenant Configuration Management (TCM).** Microsoft Graph's Tenant Configuration Management APIs, surfaced in the Entra admin center as configuration management under Microsoft Entra Tenant Governance, take snapshots of current settings across Entra, Exchange Online, Intune, Defender, Purview and Teams, hold a JSON baseline, run monitors every six hours and report each drift with the properties that differ.[^c14g-tcm] A tenant can have up to 30 monitors and 800 monitored resources a day, snapshots are kept for seven days, a fixed drift is deleted 30 days after it is resolved, and changing a monitor's baseline deletes its earlier results and drifts,[^c14g-tcm-limits] so the program copies results to its own store on every run. The Basic capacity comes with Entra ID P1 or P2; ID Governance licenses add capacity (**license-dependent**).[^c14g-tcm-lic] It detects and reports; it doesn't deploy or remediate.[^c14g-m365dsc] **Environment-dependent:** the TCM API pages list the global service only, not US Government L4 or L5 (Nov 11, 2026),[^c14g-tcm-cloud] so it is available to GCC tenants, which use the worldwide endpoint, and not to GCC High or DoD. Learn's pages disagree on its stage: the configuration management overview says the APIs are generally available, while the authentication setup page still refers to public preview;[^c14g-tcm][^c14g-tcm-auth] treat it as preview until Learn is consistent.
 - **Scripted export.** The script below reads each domain with the platform's own read cmdlets or Graph calls, normalizes the output, and commits it to a Git repository whose history is the baseline record. It runs in every cloud the cmdlets support.
 
-### Prerequisites
+### Prerequisites {#drift-prerequisites}
 
 - Read roles: Global Reader covers Entra and Intune reads; Security Reader or a View-Only role in Exchange Online and Purview covers their cmdlets; Global Secure Access reads need Global Reader, Global Secure Access Log Reader or Security Administrator with `NetworkAccess.Read.All`.[^c14g-gsa] Run the export as an app registration with a certificate or a managed identity; Exchange Online and Security & Compliance PowerShell support certificate-based app-only sign-in.[^c14g-exo-app]
 - PowerShell 7 with `Microsoft.Graph.Authentication` and `ExchangeOnlineManagement`; Git; a private repository for the exports (they describe the tenant's defenses and are Controlled).
 - Government clouds: the Graph v1.0 and Intune beta reads, and the Global Secure Access forwarding-profile reads, are listed for the global service and US Government L4 and L5.[^c14g-intune][^c14g-gsa] Exchange Online and Security & Compliance PowerShell connect to GCC High and DoD with their own parameters (in the script). Conditional Access, PIM and authentication-method reads: the national-cloud table on each Learn API page is the source; where a page omits it, record *not yet specified*. TCM: GCC only, as above.
 
-### Pilot
+### Pilot {#drift-pilot}
 
 Export one domain, Conditional Access, for four weeks. Compare each week's diff with the change records for that week. Success: every difference matches an approved change or is a real finding, and the normalization removes every difference that is only a timestamp.
 
-### Report-only or audit phase
+### Report-only or audit phase {#drift-report-only}
 
 **Step 1. Create the export repository once.** `<exports>` is a local folder backed by the private repository.
 
@@ -467,23 +467,23 @@ Invoke-MgGraphRequest -Method GET -Uri 'v1.0/admin/configurationManagement/confi
 
 When the job shows `succeeded`, create the monitor from it in the Entra admin center (**Tenant Governance** > **Monitors** > **New** > **Import from snapshot**), after granting the TCM service principal its read permissions as Learn describes.[^c14g-tcm-auth] Read drifts with `Invoke-MgGraphRequest -Method GET -Uri 'v1.0/admin/configurationManagement/configurationDrifts'` and save each run's output into `<exports>/tcm/`.
 
-### Enforcement
+### Enforcement {#drift-enforcement}
 
 Detection is enforced; remediation stays with people. Each non-empty diff, and each TCM drift, becomes one finding per changed object, classed and given severity by the table above, and written as a remediation contract ([Chapter 06](06-the-drift-engine.md#the-remediation-contract)). The finding goes through the ticket-to-machine front door ([Chapter 10](10-ticket-to-machine.md)): the owner either approves the change (the baseline tag moves under a change record) or restores the approved setting. Conditional Access enforcement changes stay at L3, gated actuation, permanently ([Chapter 06](06-the-drift-engine.md#what-the-engine-remediates-and-what-it-doesnt)); nothing in this section reverts a policy automatically. Turn on the schedule after the pilot: daily for Conditional Access, PIM and authentication methods, weekly for the rest (*design guidance*).
 
-### Rollback
+### Rollback {#drift-rollback}
 
 Stopping the schedule stops collection without touching the tenant. A restore of a drifted setting is itself a change, made from the baseline file in the repository through the platform's own write path, under change control; if the restore causes harm, the backout is the change's own backout plan.
 
-### Exclusions
+### Exclusions {#drift-exclusions}
 
 Settings that change by design (for example a named location of the agency's current egress addresses maintained by the network team) are excluded by path in the normalization, each with an owner and a review date in the drift-rule file. Emergency access accounts' exclusions from Conditional Access are *not* excluded from comparison: a change to them is a P1 finding.
 
-### Telemetry
+### Telemetry {#drift-telemetry}
 
 The export run log and its exit status; the commit history; TCM monitoring results; and the platforms' own audit events that the diff should correlate with (Entra audit log policy and role-setting changes, Exchange admin audit log, Intune audit log, Purview audit). A diff with no matching audit event is itself a finding: the platform changed without a logged change.
 
-### Evidence
+### Evidence {#drift-evidence}
 
 **Evidence checklist**
 
@@ -493,11 +493,11 @@ The export run log and its exit status; the commit history; TCM monitoring resul
 - [ ] **Exception:** the excluded paths with owner and review date
 - [ ] **Assessor-ready artifact:** for each control the exports cover, the baseline file, the latest diff and the contracts, packaged as [Chapter 07](07-evidence-over-attestation.md) describes
 
-### Day-two ownership
+### Day-two ownership {#drift-day-two-ownership}
 
 The governance platform team owns the export, the repository and the schedule; each domain owner (the identity platform owner for Entra, the endpoint owner for Intune, the messaging owner for Exchange, the data protection owner for Purview, the network owner for Global Secure Access) owns their domain's drift rules and findings. The governance board reviews the drift rules quarterly. The signal that the exports themselves have drifted is a run that fails or a domain whose file stops changing while its audit log shows changes.
 
-## Change safety {#change-safety}
+## Change safety {#c14-change-safety}
 
 Deactivating apps, denying vault secrets and enforcing push protection are the steps here that can break a workload. Exports and reports can't.
 
@@ -515,7 +515,7 @@ Deactivating apps, denying vault secrets and enforcing push protection are the s
 - **Backout triggers:** a production workload fails to authenticate; more than two help-desk tickets attributed to the change in the first day; a Tier 1 owner asks for backout.
 - **Post-change validation:** the app's next sign-in succeeds on its expected credential (sign-in log), and the next gap report, inventory and diff show the expected change and nothing else.
 
-## Government-cloud availability
+## Government-cloud availability {#c14-government-clouds}
 
 | Capability | GCC | GCC High | DoD | Source (accessed Nov 11, 2026) |
 |---|---|---|---|---|
@@ -531,7 +531,7 @@ Deactivating apps, denying vault secrets and enforcing push protection are the s
 
 : Availability by government cloud {.striped .hover}
 
-## Federal requirements this chapter supports
+## Federal requirements this chapter supports {#c14-federal-requirements}
 
 | Requirement | What in this chapter supports it |
 |---|---|
@@ -546,7 +546,7 @@ Deactivating apps, denying vault secrets and enforcing push protection are the s
 
 The control statements are from NIST's release 5.2.0 catalog.[^c14g-sp80053] These records support the controls; the organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The indicators bind cloud service providers, not agencies; the program uses their names to describe its own measures. [Appendix A](appendix-a-requirements-mapping.md) maps the book's controls as a whole.
 
-## Key takeaways
+## Key takeaways {#c14-key-takeaways}
 
 - Every application and service principal carries eight fields in the record, and no high-impact workload is ownerless; an unknown workload is deactivated under the orphan rule, or restricted until it can be.
 - Long-lived client secrets are prohibited by default; an exception meets four criteria and has a replacement date, and the secret inventory is also the dated replacement plan. Conversion follows the service account migration and Non-Person Identity guides.

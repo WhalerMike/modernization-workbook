@@ -33,7 +33,7 @@ The work packages are the program's design. Each is small enough to run for one 
 | Configured | Each work package's change, made in the application's change window | The before-and-after export for each work package |
 | Enforced | WP5 turns on assignment; WP2 and WP3 remove the grants and secrets for good | The service principal's `appRoleAssignmentRequired`; the removal events |
 | Evidenced | WP6, the post-change test | The regression test record and the sign-in log extract |
-| Operated | The application's row back in the governance record, reviewed on its tier's cadence ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#day-two-ownership)) | The next weekly gap report and the review record |
+| Operated | The application's row back in the governance record, reviewed on its tier's cadence ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-day-two-ownership)) | The next weekly gap report and the review record |
 
 A finding these work packages address is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
@@ -45,7 +45,7 @@ A finding these work packages address is ready for closure when every applicable
 - **Attack chain interrupted:** Persistence through an owner or credential added to an unowned app; Privilege Escalation through an over-granted application permission; Credential Access through a secret or an authorization code sent to a redirect URI on a domain someone else now controls
 :::
 
-## Prerequisites {#prerequisites}
+## Prerequisites {#wp-prerequisites}
 
 - **Tools.** PowerShell 7 with the Microsoft Graph PowerShell SDK (`Microsoft.Graph.Applications`, `Microsoft.Graph.Identity.SignIns`, `Microsoft.Graph.Beta.Reports`).
 - **Inputs.** The application's row in `portfolio-identity-rank.csv` ([Chapter 02](02-triaging-the-portfolio.md#identity-and-access-intake-fields)) and in the governance record, and a change record. The placeholders used throughout: `<app-id>` is the application (client) ID; `<sp-object-id>` the service principal's object ID; `<out-dir>` the application's evidence folder, `<evidence-root>\<app-id>\<yyyymmdd>`; `<change-id>` the change record.
@@ -62,13 +62,13 @@ A finding these work packages address is ready for closure when every applicable
   New-Item -ItemType Directory -Force -Path '<out-dir>' | Out-Null
   ```
 
-  GCC uses the worldwide endpoint.[^b18aA-graph-clouds] The application, service principal, owner, grant and app role assignment APIs used here serve all three US government environments; Microsoft Graph activity logs are listed for the global service and US Government L4 and L5.[^b18aA-graph-activity] The service principal sign-in activity report is preview and global-only, so in GCC High and DoD the sign-in logs stand in for it ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#prerequisites)).
+  GCC uses the worldwide endpoint.[^b18aA-graph-clouds] The application, service principal, owner, grant and app role assignment APIs used here serve all three US government environments; Microsoft Graph activity logs are listed for the global service and US Government L4 and L5.[^b18aA-graph-activity] The service principal sign-in activity report is preview and global-only, so in GCC High and DoD the sign-in logs stand in for it ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-prerequisites)).
 
-## Pilot {#pilot}
+## Pilot {#wp-pilot}
 
 Run all six work packages on three applications from the top of the rank: one first-party line-of-business app with a client secret, one with an application permission to Microsoft Graph, and one vendor (multitenant) app. Success: each comes out with a sealed evidence pack, no unplanned outage, and its rank below the wave threshold; the runbook is revised from what went wrong before the first factory wave.
 
-## Report-only or audit phase {#report-only-or-audit-phase}
+## Report-only or audit phase {#wp-report-only-or-audit-phase}
 
 Every work package starts with the same read-only snapshot, and WP2 and WP4 each have a dry-run step that reads logs before anything changes. Take the snapshot first:
 
@@ -266,7 +266,7 @@ Removing a permission from the registration doesn't revoke an existing grant, wh
 
    Any error code other than `0` that started after the change is a backout trigger until explained.
 
-2. **Take the after-snapshot**, the same six commands as the [report-only snapshot](#report-only-or-audit-phase) with `after-` in place of `before-`.
+2. **Take the after-snapshot**, the same six commands as the [report-only snapshot](#wp-report-only-or-audit-phase) with `after-` in place of `before-`.
 
 3. **Rebuild the intake row.** Re-run [Book 13, Chapter 14, Step 1](../b13-governance/14-application-secret-and-configuration-governance.md#application-governance-record) and the [Chapter 02 ranking](02-triaging-the-portfolio.md#identity-and-access-intake-fields), and copy the application's new row to `<out-dir>\rank-after.csv`.
 
@@ -285,11 +285,11 @@ Removing a permission from the registration doesn't revoke an existing grant, wh
 
 **Validate:** the rank in `rank-after.csv` is below the wave threshold, or the remainder is an approved exception; the governance record matches the after-snapshot.
 
-## Enforcement {#enforcement}
+## Enforcement {#wp-enforcement}
 
-The work packages run in the rings under [Change safety](#change-safety). WP5 is the one enforcement switch; WP2, WP3 and WP4 remove access for good once validated. After an application's pack is sealed, the governance record's weekly gap report and drift exports ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#configuration-drift-exports)) keep it from drifting back: a new grant without a justification, a new secret without an exception or a new owner gap opens a finding.
+The work packages run in the rings under [Change safety](#wp-change-safety). WP5 is the one enforcement switch; WP2, WP3 and WP4 remove access for good once validated. After an application's pack is sealed, the governance record's weekly gap report and drift exports ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#configuration-drift-exports)) keep it from drifting back: a new grant without a justification, a new secret without an exception or a new owner gap opens a finding.
 
-## Rollback {#rollback}
+## Rollback {#wp-rollback}
 
 Every work package is reversed from its `before-` files, by the identity platform team through PIM, in minutes:
 
@@ -305,15 +305,15 @@ Every work package is reversed from its `before-` files, by the identity platfor
 
 Every rollback is recorded in the change and in the pack.
 
-## Exclusions {#exclusions}
+## Exclusions {#wp-exclusions}
 
 Microsoft first-party service principals are out of scope for WP2 to WP5; a vendor's multitenant app is in scope for WP1, WP2 and WP5 on its enterprise application, and its redirect URIs and credentials belong to the vendor, so WP3 and WP4 become a request to the vendor with a date. An application excused from a work package has an exception with its approver and expiry in the governance record. Emergency access accounts aren't application identities and aren't touched; nothing here changes Conditional Access exclusions.
 
-## Telemetry {#telemetry}
+## Telemetry {#wp-telemetry}
 
 Entra audit log events for owner changes, app role assignment and grant removals, credential removal (**Update application – Certificates and secrets management**), redirect URI and `appRoleAssignmentRequired` updates; sign-in logs for the app and its service principal; Microsoft Graph activity logs for what the app calls. [Book 12](../b12-security-operations/index.md) carries the detections for application credential, owner, consent and redirect URI changes.
 
-## Evidence {#evidence}
+## Evidence {#wp-evidence}
 
 **Evidence checklist**
 
@@ -323,11 +323,11 @@ Entra audit log events for owner changes, app role assignment and grant removals
 - [ ] **Exception:** any work package excused, with approver and expiry; any emergency secret under WP3's rollback
 - [ ] **Assessor-ready artifact:** the sealed pack with `SHA256SUMS.txt`, referenced from the closure-chain entry of each related assessment finding ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain))
 
-## Day-two ownership {#day-two-ownership}
+## Day-two ownership {#wp-day-two-ownership}
 
-The identity platform team runs the work packages; the application's technical owner tests and signs off; the identity governance office approves WP1 and exceptions; the steward tracks the identity line's throughput with the rest of the factory ([Chapter 10](10-running-the-portfolio-in-waves.md#metrics)). After the pack is sealed, the application is governed by [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#day-two-ownership) and re-ranked at each re-triage.
+The identity platform team runs the work packages; the application's technical owner tests and signs off; the identity governance office approves WP1 and exceptions; the steward tracks the identity line's throughput with the rest of the factory ([Chapter 10](10-running-the-portfolio-in-waves.md#metrics)). After the pack is sealed, the application is governed by [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-day-two-ownership) and re-ranked at each re-triage.
 
-## Change safety {#change-safety}
+## Change safety {#wp-change-safety}
 
 **Change safety**
 
@@ -343,18 +343,18 @@ The identity platform team runs the work packages; the application's technical o
 - **Backout triggers:** a sign-in error code that began with the change; the application's own health check failing; more than two help-desk tickets for the application in the first day; the business owner asks.
 - **Post-change validation:** WP6, after each work package and again after the last.
 
-## Government-cloud availability
+## Government-cloud availability {#wp-government-clouds}
 
 | Capability | GCC | GCC High | DoD | Source (accessed Nov 11, 2026) |
 |---|---|---|---|---|
 | Graph application, service principal, owner, grant and assignment operations | Yes (worldwide endpoint) | Yes | Yes | [^b18aA-graph-clouds] |
 | Microsoft Graph activity logs | Yes | Yes | Yes | [^b18aA-graph-activity] |
 | Sign-in logs through Graph beta (`clientCredentialType`) | Requires P1 or P2; cloud availability not stated on the resource page (*not yet specified*) | Same | Same | [^b18aA-signin] |
-| Service principal sign-in activity report | Yes (preview) | No | No | [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#prerequisites) |
+| Service principal sign-in activity report | Yes (preview) | No | No | [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-prerequisites) |
 
 : Availability by government cloud {.striped .hover}
 
-## Federal requirements these work packages support
+## Federal requirements these work packages support {#wp-federal-requirements}
 
 | Requirement | Work package |
 |---|---|
@@ -367,7 +367,7 @@ The identity platform team runs the work packages; the application's technical o
 
 : Requirements these work packages support {.striped .hover}
 
-Control names are from NIST's release 5.2.0 catalog.[^b18aA-sp80053] The packs support these controls; the organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#federal-requirements-this-chapter-supports) maps the related FedRAMP indicators.
+Control names are from NIST's release 5.2.0 catalog.[^b18aA-sp80053] The packs support these controls; the organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#c14-federal-requirements) maps the related FedRAMP indicators.
 
 ::: {.callout-tip}
 ## Continue the book
