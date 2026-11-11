@@ -1,0 +1,865 @@
+# Zero Trust Assessment closure update: coverage tracker.
+#
+# One entry per instruction ID in the workbook owner's anonymized "Zero Trust
+# Assessment Closure Update Instructions" (November 2026): global conventions
+# G-01..G-08, line-by-line updates B02-01..B18-02, the new Purview book's
+# chapters (the instructions' nineteenth book, numbered 20 here because the
+# workbook's Book 19 already exists), the three engineering topics carried as implementation guides
+# instead of books (GSA, XDR, AZS), the closure-map rows CM-01..CM-15, and the
+# Zero Trust Assessment tool guide (ZTA-GUIDE).
+#
+# This tracks WORKBOOK GUIDANCE coverage only. It says nothing about any
+# tenant's implementation or any control's status: a page that carries an item
+# gives guidance for it; whether an organization built it, and whether a finding
+# is closed, is the organization's evidence and its authorizing official's call.
+#
+# Fields: id, title, wave (1-4 from the instructions' update priority, or null),
+# book (B02..B20, "all", "guide" or a comma list), status (planned, implemented,
+# partial, deferred, not-applicable), where (repo paths, with #anchors), pr
+# (pull request number or null), note.
+#
+# docs/reference/zta-closure-coverage.md is generated from this file:
+#   python scripts/zta_coverage.py          # rewrite the page
+#   python scripts/zta_coverage.py --check  # fail if the page is stale or this file is invalid
+items:
+  - id: G-01
+    title: "Five-state control model: Designed, Configured, Enforced, Evidenced, Operated"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#control-states
+      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: G-02
+    title: "How-section template: prerequisites, pilot, report-only or audit, enforcement, rollback, exclusions, telemetry, evidence, day-two ownership"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: G-03
+    title: "Source policy: primary sources and last-verified dates for product behavior and licensing"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#source-policy
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: G-04
+    title: "Terminology: organization, agency or tenant; no organization-specific identifiers"
+    wave: 1
+    book: "all"
+    status: implemented
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#terminology
+      - scripts/check_identifiers.py
+      - scripts/check_neutrality.py
+    pr: null
+    note: "Defined in Book 00 Appendix D; check_identifiers.py added (quiet on every published page at the time), beside the salted-hash neutrality check."
+  - id: G-05
+    title: "Authority labels: mandated, Microsoft-recommended, risk-based recommended, optional, license-dependent, environment-dependent"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: G-06
+    title: "Evidence pattern: configuration, operational, test, exception evidence and the assessor-ready artifact"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: G-07
+    title: "Change safety: rings, emergency-access exclusions, change windows, backout triggers, post-change validation"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#change-safety
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: G-08
+    title: "Assessment mapping: Zero Trust pillar, cross-pillar dependencies, attack chain interrupted"
+    wave: 1
+    book: "all"
+    status: partial
+    where:
+      - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#assessment-mapping
+    pr: null
+    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+  - id: B02-01
+    title: "Managed authentication versus federation decision tree"
+    wave: 1
+    book: "B02"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B02-02
+    title: "Directory synchronization identities: named locations, rotation, least privilege, alerting"
+    wave: 1
+    book: "B02"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-01
+    title: "Two cloud-only emergency-access identities: reference architecture"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-02
+    title: "PIM role-setting pattern"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-03
+    title: "Conditional Access policy design matrix"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-04
+    title: "Privileged-session pattern: sign-in frequency, persistent browser, CAE"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-05
+    title: "Rollout runbooks for passkeys/FIDO2, Windows Hello for Business and certificate-based authentication"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-06
+    title: "Centralized consent governance"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-07
+    title: "External identities: partner inventory, cross-tenant access, tenant restrictions, guest lifecycle"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B04-08
+    title: "Restrict non-admin tenant creation; Tenant Creator workflow and monitoring"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B05-01
+    title: "Platform baselines: Windows, iOS/iPadOS, Android Enterprise, personally owned devices"
+    wave: 1
+    book: "B05"
+    status: planned
+    where: []
+    pr: null
+    note: "macOS dropped from the instruction: macOS and Linux are out of scope (Mike, Nov 9, 2026)."
+  - id: B05-02
+    title: "Windows hardening patterns: Defender Antivirus, Firewall, BitLocker, Windows LAPS, baselines, ASR, tamper protection, update rings"
+    wave: 1
+    book: "B05"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B05-03
+    title: "macOS hardening"
+    wave: 1
+    book: "B05"
+    status: not-applicable
+    where: []
+    pr: null
+    note: "macOS and Linux are out of the workbook's scope (Mike, Nov 9, 2026)."
+  - id: B05-04
+    title: "Enrollment: automatic enrollment, Autopilot, ownership, restrictions, stale-device cleanup"
+    wave: 1
+    book: "B05"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B05-05
+    title: "Endpoint analytics: data collection, privacy review, drift and patch delay"
+    wave: 1
+    book: "B05"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B07-01
+    title: "Certificate credential governance for applications"
+    wave: 1
+    book: "B07"
+    status: planned
+    where: []
+    pr: null
+    note: "Wave not stated in the instructions' priority table; assigned by the item's subject."
+  - id: B08-01
+    title: "Application redirect-URI and DNS ownership pattern"
+    wave: 1
+    book: "B08"
+    status: planned
+    where: []
+    pr: null
+    note: "Wave not stated in the instructions' priority table; assigned by the item's subject."
+  - id: B09-01
+    title: "Bridge from TIC/SASE architecture to identity-aware access"
+    wave: 3
+    book: "B09"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B10-01
+    title: "Azure ingress and resilience: Front Door, Application Gateway, WAF, DDoS, Private Link, Firewall, public IP governance"
+    wave: 4
+    book: "B10"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B11-01
+    title: "Normalized assessment result taxonomy; skipped is not failed"
+    wave: 1
+    book: "B11"
+    status: implemented
+    where:
+      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy
+    pr: null
+    note: ""
+  - id: B11-02
+    title: "Closure chain as a register schema"
+    wave: 1
+    book: "B11"
+    status: implemented
+    where:
+      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
+      - docs/books/b11-zero-trust/appendix-a-requirements-mapping.md
+    pr: null
+    note: ""
+  - id: B11-03
+    title: "Control-weighting guidance; no pass percentage as the sole maturity score"
+    wave: 1
+    book: "B11"
+    status: implemented
+    where:
+      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#weigh-the-finding-not-the-pass-rate
+    pr: null
+    note: ""
+  - id: B12-01
+    title: "Identity detections"
+    wave: 1
+    book: "B12"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B12-02
+    title: "Application detections"
+    wave: 1
+    book: "B12"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B12-03
+    title: "Data and endpoint telemetry in the evidence contract"
+    wave: 2
+    book: "B12"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B13-01
+    title: "Application governance fields for every application and service principal"
+    wave: 1
+    book: "B13"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B13-02
+    title: "Secrets governance: default prohibition on long-lived client secrets"
+    wave: 1
+    book: "B13"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B13-03
+    title: "Configuration drift: continuous exports and drift rules"
+    wave: 2
+    book: "B13"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B14-01
+    title: "Sample evidence mappings from Zero Trust implementation to SP 800-53 families, with assessor caveats"
+    wave: 2
+    book: "B14"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B15-01
+    title: "Help-desk identity-proofing and escalation runbooks"
+    wave: 1
+    book: "B15"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B15-02
+    title: "Operational cadence: daily to annual tasks per control family"
+    wave: 1
+    book: "B15"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B16-01
+    title: "User-facing training: Authenticator context, passwordless, labels, encrypted mail, DLP tips, blocked access"
+    wave: 2
+    book: "B16"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B17-01
+    title: "Reuse workload-identity controls for AI agents"
+    wave: 1
+    book: "B17"
+    status: planned
+    where: []
+    pr: null
+    note: "Wave not stated in the instructions' priority table; assigned by the item's subject."
+  - id: B18-01
+    title: "Portfolio intake fields for attack-path ranking"
+    wave: 1
+    book: "B18"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B18-02
+    title: "Remediation factory work packages"
+    wave: 1
+    book: "B18"
+    status: planned
+    where: []
+    pr: null
+    note: ""
+  - id: B20-01
+    title: "Data inventory and classification"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-02
+    title: "Sensitivity label architecture"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-03
+    title: "Label publication and defaults"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-04
+    title: "Teams, Groups and SharePoint containers"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-05
+    title: "Rights Management and recovery"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-06
+    title: "Exchange Message Encryption"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-07
+    title: "SharePoint and OneDrive"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-08
+    title: "DLP and endpoint controls"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-09
+    title: "Auto-labeling and sensitive information types"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-10
+    title: "Audit, Insider Risk and Communication Compliance"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-11
+    title: "AI data security"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: B20-12
+    title: "Operations and evidence"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "The planned twentieth book, Information Protection & Microsoft Purview (the instructions' nineteenth)."
+  - id: GSA-01
+    title: "Global Secure Access & Zero Trust Network Engineering: Decision and licensing"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-02
+    title: "Global Secure Access & Zero Trust Network Engineering: Reference architecture"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-03
+    title: "Global Secure Access & Zero Trust Network Engineering: Client deployment"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-04
+    title: "Global Secure Access & Zero Trust Network Engineering: Microsoft traffic"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-05
+    title: "Global Secure Access & Zero Trust Network Engineering: Internet traffic"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-06
+    title: "Global Secure Access & Zero Trust Network Engineering: Private applications"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-07
+    title: "Global Secure Access & Zero Trust Network Engineering: Compliant network"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-08
+    title: "Global Secure Access & Zero Trust Network Engineering: Tenant restrictions"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-09
+    title: "Global Secure Access & Zero Trust Network Engineering: TLS inspection"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-10
+    title: "Global Secure Access & Zero Trust Network Engineering: Privileged protocols"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-11
+    title: "Global Secure Access & Zero Trust Network Engineering: Coexistence and migration"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: GSA-12
+    title: "Global Secure Access & Zero Trust Network Engineering: Telemetry and evidence"
+    wave: 3
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-01
+    title: "Defender XDR Engineering & Operations: Service architecture"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-02
+    title: "Defender XDR Engineering & Operations: Endpoint onboarding"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-03
+    title: "Defender XDR Engineering & Operations: Endpoint prevention"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-04
+    title: "Defender XDR Engineering & Operations: Attack Surface Reduction"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-05
+    title: "Defender XDR Engineering & Operations: Exposure management"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-06
+    title: "Defender XDR Engineering & Operations: XDR incidents"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-07
+    title: "Defender XDR Engineering & Operations: Advanced hunting"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-08
+    title: "Defender XDR Engineering & Operations: Identity and cloud-app signals"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-09
+    title: "Defender XDR Engineering & Operations: Automation"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: XDR-10
+    title: "Defender XDR Engineering & Operations: Operations and evidence"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-01
+    title: "Azure Security Engineering: Landing-zone security baseline"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-02
+    title: "Azure Security Engineering: Public exposure inventory"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-03
+    title: "Azure Security Engineering: DDoS protection"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-04
+    title: "Azure Security Engineering: Web application firewall"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-05
+    title: "Azure Security Engineering: Front Door and Application Gateway"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-06
+    title: "Azure Security Engineering: Firewall and segmentation"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-07
+    title: "Azure Security Engineering: Private Link and DNS"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-08
+    title: "Azure Security Engineering: Managed identities and Key Vault"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-09
+    title: "Azure Security Engineering: Policy and drift"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: AZS-10
+    title: "Azure Security Engineering: Operations and evidence"
+    wave: 4
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "guide, not a book, by Mike's decision of Nov 11, 2026 (avoid duplicating Books 09, 10 and 12)."
+  - id: CM-01
+    title: "Emergency access"
+    wave: 1
+    book: "B04, B12, B15"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B04, B12, B15."
+  - id: CM-02
+    title: "Standing privilege / PIM"
+    wave: 1
+    book: "B04, B13"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B04, B13."
+  - id: CM-03
+    title: "Phishing-resistant admin authentication"
+    wave: 1
+    book: "B04, B05, B07"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B04, B05, B07."
+  - id: CM-04
+    title: "Conditional Access gaps"
+    wave: 1
+    book: "B04"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B04."
+  - id: CM-05
+    title: "Application secrets"
+    wave: 1
+    book: "B07, B13, B18"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B07, B13, B18."
+  - id: CM-06
+    title: "Ownerless privileged apps"
+    wave: 1
+    book: "B13, B18"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B13, B18."
+  - id: CM-07
+    title: "Redirect URI risk"
+    wave: 1
+    book: "B08, B18"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B08, B18."
+  - id: CM-08
+    title: "Device compliance gaps"
+    wave: 1
+    book: "B05"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B05."
+  - id: CM-09
+    title: "Endpoint hardening gaps"
+    wave: 4
+    book: "B05, guide:XDR"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B05, guide:XDR. guide:GSA, guide:XDR and guide:AZS are the implementation guides that replace the instructions' twentieth, twenty-first and twenty-second books (Mike, Nov 11, 2026)."
+  - id: CM-10
+    title: "Network access gaps"
+    wave: 3
+    book: "B09, guide:GSA"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B09, guide:GSA. guide:GSA, guide:XDR and guide:AZS are the implementation guides that replace the instructions' twentieth, twenty-first and twenty-second books (Mike, Nov 11, 2026)."
+  - id: CM-11
+    title: "DDoS / WAF / public exposure"
+    wave: 4
+    book: "B10, guide:AZS"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B10, guide:AZS. guide:GSA, guide:XDR and guide:AZS are the implementation guides that replace the instructions' twentieth, twenty-first and twenty-second books (Mike, Nov 11, 2026)."
+  - id: CM-12
+    title: "No labels, defaults or containers"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B20."
+  - id: CM-13
+    title: "Rights Management / mail encryption"
+    wave: 2
+    book: "B20"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B20."
+  - id: CM-14
+    title: "Audit / visibility gaps"
+    wave: 2
+    book: "B12, B20, guide:XDR"
+    status: planned
+    where: []
+    pr: null
+    note: "Closure-map row; destinations B12, B20, guide:XDR. guide:GSA, guide:XDR and guide:AZS are the implementation guides that replace the instructions' twentieth, twenty-first and twenty-second books (Mike, Nov 11, 2026)."
+  - id: CM-15
+    title: "Skipped or unevaluated tests"
+    wave: 1
+    book: "B11, B13"
+    status: partial
+    where:
+      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy
+      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
+    pr: null
+    note: "Closure-map row; destinations B11, B13. Book 11 part done (taxonomy and disposition in the register); Book 13 part planned."
+  - id: ZTA-GUIDE
+    title: "Zero Trust Assessment tool: implementation guide, narrated deck and training module, with a section reconciling its findings with AWS Security Hub CSPM for agencies that run both"
+    wave: null
+    book: "guide"
+    status: planned
+    where: []
+    pr: null
+    note: "Phase 5 (Mike, Nov 11, 2026)."

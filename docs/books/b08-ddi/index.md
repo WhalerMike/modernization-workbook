@@ -91,6 +91,8 @@ This is Book 08 of the [Federal Modernization Workbook](../index.md). [Book 02 â
 
 Platform-specific examples are illustrative; evaluate every option against the architectural requirement of a single authoritative policy plane. Footnotes cite primary sources (federal documents, IETF standards and the cloud providers' own documentation) wherever one exists; the few third-party sources are labeled as such, and [Appendix B](appendix-b-requirements-mapping.md) lists both groups separately.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

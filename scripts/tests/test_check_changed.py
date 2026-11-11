@@ -294,6 +294,13 @@ class NonSiteTasks(unittest.TestCase):
                                    "examples/validation-kit/README.md", "docs/images/x/svg/a.svg", "STATUS.md"))
         self.assertEqual(t["claims"], ["docs/books/b02-identity/index.md", "examples/validation-kit/README.md"])
 
+    def test_identifiers_checks_changed_published_pages(self):
+        t = cc.non_site_tasks(mods("docs/books/b11-zero-trust/10-evidence-not-verdicts.md",
+                                   "docs/books/b11-zero-trust/_verification/10-evidence-not-verdicts.md", "STATUS.md"))
+        self.assertEqual(t["identifiers"], ["docs/books/b11-zero-trust/10-evidence-not-verdicts.md"])
+        self.assertEqual(cc.non_site_tasks(mods("scripts/check_identifiers.py"))["identifiers"], ["*"])
+        self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/check_identifiers.py")))
+
     def test_claims_checker_or_baseline_change_checks_every_page(self):
         for path in ("data/claims-baseline.txt", "scripts/check_claims.py"):
             self.assertEqual(cc.non_site_tasks(mods(path))["claims"], ["*"], path)

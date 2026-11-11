@@ -70,6 +70,8 @@ This is Book 17 of the [Federal Modernization Workbook](../index.md). [Book 18, 
 
 Phase 6 of the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md#phase-6-ai-agents) schedules this book.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

@@ -63,6 +63,8 @@ Appendix: [A — Requirements mapping: pillars, controls and books](appendix-a-r
 
 This is Book 11 of the [Federal Modernization Workbook](../index.md). The pillars are carried in depth elsewhere: identity in [Book 02](../b02-identity/index.md) and [Book 03](../b03-hr-identity/index.md), access in [Book 04](../b04-access/index.md), devices in [Book 05](../b05-devices/index.md), networks in [Book 08](../b08-ddi/index.md) and [Book 09](../b09-network/index.md), and the cloud boundary in [Book 10](../b10-cloud-boundary/index.md). [Appendix A](appendix-a-requirements-mapping.md) maps each pillar and control to the book that closes it.
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

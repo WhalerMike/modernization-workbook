@@ -62,6 +62,8 @@ Appendices: [A — Control crosswalk](appendix-a-control-crosswalk.md) · [B —
 
 This is Book 14 of the [Federal Modernization Workbook](../index.md). The evidence contract it relies on is in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md); evidence over attestation, the drift model and reciprocity are in [Book 13](../b13-governance/index.md); and the FedRAMP 2026 rules and the authorization boundary in [Book 10](../b10-cloud-boundary/index.md). Training in depth is [Book 16](../b16-people/index.md).
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

@@ -138,6 +138,8 @@ Chapters 01 to 09 each have a narrated tour: a deck in Why, What, Who and How or
 
 This is Book 19 of the [Federal Modernization Workbook](../index.md): the developer workbook for the [Attribute-Driven Migration project](../../project-plans/attribute-driven-migration.md). The developer workbooks for other projects are under [Projects](../../project-plans/developer-workbooks/index.md). The HR side of the migration, its schema and its lifecycle rules are [Book 03](../b03-hr-identity/index.md). The directory, sync and matching are [Book 02](../b02-identity/index.md). Devices, Intune and Azure Arc are [Book 05](../b05-devices/index.md). Change control, provenance and the drift engine are [Book 13](../b13-governance/index.md). The gates each chapter's code proves are in the [implementation guide](../guides/attribute-driven-migration-implementation.md).
 
+New and revised procedures in this workbook follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

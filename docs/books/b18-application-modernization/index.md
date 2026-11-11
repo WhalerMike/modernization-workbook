@@ -63,6 +63,8 @@ Most agencies run hundreds or thousands of mission applications, many of them wr
 
 This is Book 18 of the [Federal Modernization Workbook](../index.md). The program's phases and gates, which the waves in Chapter 10 follow, are in [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md); decision rights in [Book 00, Chapter 07](../b00-orientation/07-who-runs-the-program.md). The identity side of a SQL Server target, from Windows Authentication to Microsoft Entra ID and connection strings, is [Book 06](../b06-data-platform/index.md). The cloud boundary the target platform runs in is [Book 10](../b10-cloud-boundary/index.md); change control and provenance [Book 13](../b13-governance/index.md); authorization, supply chain and privacy controls [Book 14](../b14-compliance/index.md); and identities and owners for AI agents [Book 17](../b17-ai-identity/index.md).
 
+New and revised procedures in this book follow the workbook's implementation conventions (control states, the How-section template, authority labels, the evidence checklist, change safety and the Zero Trust mapping block), defined once in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md).
+
 ## Chapters
 
 ::: {#chapters}

@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-How to read the two tools' results before counting them, which results are findings and which are absence of evidence, how the program scores and ranks findings, and where exceptions belong. It then turns the worklist into a program: plans of action and milestones, the pillar-by-pillar contribution of a shared evidence substrate, the evidence properties Advanced and Optimal maturity need, drift as continuous verification, re-assessment, and what an agency can do this quarter.
+How to read the two tools' results before counting them, the seven normalized results the program counts, which results are findings and which are absence of evidence, how the program scores, weighs and ranks findings, and where exceptions belong. It then turns the worklist into a program: plans of action and milestones and the closure chain each finding carries, the pillar-by-pillar contribution of a shared evidence substrate, the evidence properties Advanced and Optimal maturity need, drift as continuous verification, re-assessment, and what an agency can do this quarter.
 :::
 
 [Chapter 09](09-running-the-assessment.md) ends with sealed evidence: each tool's unaltered output wrapped in provenance and emitted as OSCAL. This chapter is what the agency does with it. The book's argument shapes the answer. Zero Trust maturity is a property of the whole agency ([Chapter 01](01-a-whole-agency-property.md)); Governance is the cross-cutting capability programs shortchange ([Chapter 02](02-governance-principles.md)); and each tool is an evidence input reconciled at the control level, not a verdict ([Chapter 05](05-two-assessment-tools.md)). A Zero Trust Assessment overview isn't a maturity stage, and a clean ScubaGear report isn't an authorization. Both are inputs to decisions that belong to named people ([Chapter 07](07-who-owns-zero-trust.md)).
@@ -65,6 +65,24 @@ The two tools use different words for the same outcomes, and some of their outco
 
 The program's dashboard recomputes outcomes from the per-check results rather than reading the report's own summary block, because in the program's testing the summary didn't reconcile with the checks beneath it.
 
+### A normalized result taxonomy {#a-normalized-result-taxonomy}
+
+The two tools' words don't line up, and an assessment register that mixes them can't be counted honestly. The program records every result twice: the tool's own value, unchanged, and one of seven normalized results. The normalized result is what the register, the dashboard and any report count.
+
+| Normalized result | Meaning | Zero Trust Assessment 3.1.0 | ScubaGear 2.0.0 | Counted as |
+|---|---|---|---|---|
+| **Pass** | The check ran and the configuration matched | Passed | Pass | Evidence of conformance for that run |
+| **Fail** | The check ran and the configuration didn't match | Failed; Investigate, until the manual review confirms or dismisses it | Fail (a SHALL policy); Warning (a SHOULD policy) | A finding |
+| **Planned** | The tool hasn't implemented the check yet | Planned (skip reason `UnderConstruction`) | A policy whose criticality is `Shall/Not-implemented` or `Should/Not-implemented` | Neither; ignored until the tool implements it |
+| **Skipped-Licensing** | The check needs a license the tenant doesn't hold | Skipped, with `NotLicensedEntraIDP1`, `NotLicensedEntraIDP2`, `NotLicensedEntraIDGovernance`, `NotLicensedEntraWorkloadID`, `NotLicensedIntune` or `NoCompatibleLicenseFound` | No equivalent result; ScubaGear's Power Platform and Power BI runs need their licenses before they run at all | Neither; a licensing decision |
+| **Skipped-Disconnected** | The tool wasn't connected to the service the check reads | Skipped, with `NotConnectedAzure`, `NotConnectedExchange`, `NotConnectedSecurityCompliance`, `NotConnectedToService` or `NoAzureAccess` | No equivalent result; a product left out of `-ProductNames` isn't in the report | Neither; fix the run's scope and re-run |
+| **Skipped-Not-Applicable** | The check doesn't apply to this tenant, or the feature isn't supported where it runs | Skipped, with `NotApplicable`, `NotDotGovDomain` or `NotSupported` | No equivalent result | Neither; record the reason, and treat a feature unsupported in a government cloud as a boundary finding |
+| **Unable-to-Evaluate** | The check should have produced a result and didn't | Error; Skipped with `TimeoutReached` | Error; N/A (typically a manual check the tool can't assess) | Neither; fix the run, or verify by hand and record the manual result |
+
+The status values and skip reasons are those in the Zero Trust Assessment's 3.1.0 source,[^c10-zta-skip] and ScubaGear's result and criticality values those in its 2.0.0 output schema.[^c10-scuba-schema] Both change with releases, so the mapping is versioned with the tool pin ([Chapter 09](09-running-the-assessment.md)). ScubaGear's Omitted and Incorrect Result aren't results of the check: they are exception records from the configuration file, and the output keeps the original result beside them. The register normalizes the original result and carries the exception separately, with its approver and expiry ([Exceptions belong in the configuration file](#exceptions-belong-in-the-configuration-file-with-an-owner)).
+
+The rule that follows is the one the tool's own guide states: a skipped check is not a failed control, and it isn't a pass either.[^c10-zta-guide] Planned, the three Skipped results and Unable-to-Evaluate are never added to the failures or to the passes. They are reported in their own columns, each with its reason, so that a report can't turn a missing license or a disconnected service into a control failure, or quietly drop it from the count.
+
 ### Absence of evidence is a different claim
 
 A skipped check is the easiest result to misread. The Zero Trust Assessment's guide says that missing prerequisites can produce skipped checks, not evidence that the tenant meets a recommendation, and that permission errors should be investigated rather than treated as security failures.[^c10-zta-guide] Many checks need premium licenses, flagged in the dashboard's applicability column. In a government-cloud tenant some of those capabilities may not be available or authorized, since feature availability there is defined by its differences from the commercial service.[^c10-gcc] So a "skipped" or "failed" premium check may not be a real gap. Confirm the license applies in the boundary before scoring it as one.
@@ -80,6 +98,23 @@ Only the findings (ScubaGear Fail and Warning; Zero Trust Assessment Failed and 
 - **Buckets** are P1 at 50 or above, P2 at 30 or above, P3 at 15 or above, and P4 above zero. These priority buckets are a separate scale from the P1 to P4 drift severities later in this chapter and in [Chapter 09](09-running-the-assessment.md), which carry fixed responses.
 
 The Zero Trust Assessment supplies the inputs. Microsoft rates each recommendation on three scales: Risk Level (High means potential environment-wide exposure until mitigated; Low means defense in depth or an operational optimization), User Impact (how many non-privileged users have to act or be told) and Implementation Cost (from targeted actions to programs that need ongoing commitment).[^c10-zta-glossary] The program uses Risk Level for severity and Implementation Cost for effort. User Impact doesn't change the rank; it changes the communications plan and the change window.
+
+### Weigh the finding, not the pass rate {#weigh-the-finding-not-the-pass-rate}
+
+The tool's risk level is a starting point. It doesn't know the agency's estate, so the program weighs each finding on six factors before it sets the order of work, and writes the rationale into the finding's register entry:
+
+| Factor | The question | Where the answer comes from |
+|---|---|---|
+| **Exploitability** | How easily could an attacker use the gap, and is it being used in attacks now? | The tool's risk level; threat intelligence from security operations ([Book 12](../b12-security-operations/index.md)) |
+| **Blast radius** | What would an attacker reach through it: one application, a tier, the tenant? | The privileged-access tiers ([Book 04](../b04-access/index.md)) and the affected identities and resources |
+| **Exposure** | Is the affected surface reachable from the internet, by guests or partners, or only from managed devices inside the boundary? | Conditional Access scope; network paths ([Book 09](../b09-network/index.md)) |
+| **Compensating controls** | Does another control already reduce the risk, and is its evidence registered? | The exception record and the compensating control's own evidence |
+| **Implementation effort** | How much change, testing and user impact does the fix need? | The tool's implementation cost and user impact; the change-safety plan ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#change-safety)) |
+| **Dependency order** | Does the fix need another fix first, or unblock others? | The closure chain's dependency field ([The closure chain](#the-closure-chain)) |
+
+The severity and priority score above stays the program's default sort. The weighting moves a finding up or down from it, and the register says why: an exposed, tenant-wide gap with no compensating control goes first even at high effort; a gap that depends on another fix waits for it, however quick it looks on its own. RA-7 asks organizations to respond to findings in accordance with their risk tolerance,[^c10-sp80053] and a written rationale is how a reviewer sees that the response did.
+
+A pass percentage is never the maturity score on its own. Its denominator moves with licensing, connections and the tool's version (release 3.1.0 holds 364 tests, and a later release will hold a different number), every test counts the same whatever its risk, and a high percentage can sit beside one exposed, tenant-wide gap. Report the counts by normalized result and by pillar, the weighted backlog, and the maturity stage per pillar in CISA's model, which describes maturity per pillar and per cross-cutting capability rather than as one number.[^c10-ztmm]
 
 The dashboard workbook lays the worklist out for a team:
 
@@ -119,6 +154,46 @@ ScubaGear's documentation warns that both omitting policies and marking results 
 Every finding that isn't fixed in the next change window and isn't covered by an approved exception becomes a plan of action and milestones item. SP 800-53 requires a plan of action and milestones for each system that documents planned remediation of weaknesses found in control assessments, updated from assessments, audits and continuous monitoring,[^c10-sp80053] and the authorizing official approves it.[^c10-sp80037] RA-7 asks organizations to respond to assessment and monitoring findings in accordance with their risk tolerance,[^c10-sp80053] which is the decision the worklist exists to inform.
 
 Three outputs seed it. ScubaGear's `ActionPlan.csv` lists only failing SHALL controls, with fields for the reason and the remediation timeline.[^c10-scuba-reports] The Zero Trust Assessment playbook's tracker has blank status, owner and notes columns for each failed check. And the OSCAL bundle from Chapter 09 can emit plan of action and milestones items directly, since OSCAL's POA&M model exists to track findings from periodic or continuous assessments that the system owner must address.[^c10-oscal] Each item names the pillar owner who will fix it, the control it bears on, the evidence that will show it closed, and the re-assessment that will test that evidence.
+
+### The closure chain {#the-closure-chain}
+
+A plan of action and milestones item says what will be fixed and by when. The program's assessment register keeps, for every finding, the whole chain from the tool's result to the reassessment that confirms the fix, so that nothing between them is assumed. Every field is filled in, or marked not applicable with a reason.
+
+| Field | What it records |
+|---|---|
+| `finding` | The finding's register ID; the tool, its version, the test or policy ID and the run date; the raw result and the normalized result |
+| `attack_path` | The attack the gap enables, in plain words, and the pillar ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#assessment-mapping)) |
+| `owner` | The pillar owner accountable for the fix ([Chapter 07](07-who-owns-zero-trust.md)) |
+| `dependency` | The findings or capabilities that must be in place first, by register ID or book chapter |
+| `change` | The change record that carries the fix through change control |
+| `pilot` | The pilot or report-only scope, dates and result |
+| `enforcement` | The date and scope the control was enforced, and its approved exclusions |
+| `test` | The test that shows the control works: expected and observed outcome, date, tester |
+| `evidence` | Where the configuration, operational, test and exception evidence is kept ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern)) |
+| `residual_risk` | What risk remains after the fix or the exception, and who accepted it (the CISO for an expiring exception, the authorizing official for a standing one) |
+| `reassessment` | The run that re-tested the finding: tool version, date and normalized result |
+| `weighting` | The six factors and the rationale for the finding's place in the backlog |
+
+The fields follow the five control states in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#control-states): `owner`, `dependency` and `attack_path` belong to Designed; `change` and `pilot` to Configured; `enforcement` to Enforced; `test` and `evidence` to Evidenced; and `reassessment`, with the drift checks below, to Operated. A finding is ready for closure when every applicable field has evidence and the reassessment shows a Pass. Closing it is the authorizing official's decision for a plan of action and milestones item, or the assessor's for an assessment finding, and the register records who decided and when. A copy-ready register entry:
+
+```yaml
+- finding: ZTA-<test-id>-<run-date>      # or SCUBA-<policy-id>-<run-date>
+  tool: {name: "<Zero Trust Assessment | ScubaGear>", version: "<x.y.z>", test: "<test or policy ID>"}
+  result: {raw: "<tool value>", normalized: "<Pass | Fail | Planned | Skipped-Licensing | Skipped-Disconnected | Skipped-Not-Applicable | Unable-to-Evaluate>", reason: "<skip or error reason>"}
+  attack_path: "<the attack the gap enables>"
+  pillar: {microsoft: "<pillar>", cisa: "<pillar>"}
+  owner: "<role>"
+  dependency: ["<register ID or book chapter>"]
+  change: "<change record>"
+  pilot: {scope: "<group or ring>", from: "<date>", to: "<date>", result: "<observed>"}
+  enforcement: {date: "<date>", scope: "<scope>", exclusions: "<exclusion register entry>"}
+  test: {expected: "<outcome>", observed: "<outcome>", date: "<date>", tester: "<role>"}
+  evidence: ["<configuration>", "<operational>", "<test>", "<exception>"]
+  residual_risk: {statement: "<what remains>", accepted_by: "<CISO | authorizing official | none>", expires: "<date>"}
+  reassessment: {tool_version: "<x.y.z>", date: "<date>", normalized: "<result>"}
+  weighting: {exploitability: "<H|M|L>", blast_radius: "<H|M|L>", exposure: "<H|M|L>", compensating: "<control or none>", effort: "<H|M|L>", rationale: "<why this place in the backlog>"}
+  closure: {ready: false, decided_by: "<authorizing official | assessor>", date: "<date>"}
+```
 
 Microsoft's Zero Trust Workshop is an optional planning aid. The Zero Trust Assessment writes a `ZeroTrustWorkshop.json` file that imports mapped findings into the workshop's task notes; the integration is experimental, skipped checks are left out, and imported tasks start as not reviewed, so the import doesn't mark anything complete.[^c10-zta-guide]
 
@@ -221,6 +296,7 @@ None needs a year-long program. Each is a structural step that compounds.
 [^c10-scuba-schema]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Tool Output Schema," Summary and Control objects, <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/misc/tooloutputschema.md> (accessed Oct 26, 2026).
 [^c10-zta-status]: Microsoft, Zero Trust Assessment repository, `Get-ZtTestResultStatus.ps1`, `Get-ZtTestStatus.ps1` and `Add-ZtTestResultDetail.ps1` (status values and skip reasons), <https://github.com/microsoft/zerotrustassessment/tree/main/src/powershell/private/core> (accessed Oct 21, 2026).
 [^c10-zta-guide]: Microsoft, Zero Trust Assessment repository, "Run the Zero Trust Assessment" (PowerShell guide), sections "Prerequisites," "Permissions and roles" and "Import Zero Trust Assessment results into Zero Trust Workshop," <https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md> (accessed Oct 21, 2026).
+[^c10-zta-skip]: Microsoft, Zero Trust Assessment source code, tag 3.1.0 (still the latest release on Nov 11, 2026), `src/powershell/private/core/Get-ZtTestStatus.ps1` (Passed, Failed, Planned for `UnderConstruction`, Skipped, and the custom statuses Investigate and Error), `Get-ZtTestResultStatus.ps1` and `Add-ZtTestResultDetail.ps1` (the `SkippedBecause` values), <https://github.com/microsoft/zerotrustassessment/tree/3.1.0/src/powershell/private/core> (accessed Nov 11, 2026).
 [^c10-gcc]: Microsoft Learn, "Office 365 GCC," section "How to use this service description," <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc> (accessed Oct 21, 2026).
 [^c10-zta-glossary]: Microsoft Learn, "Zero Trust assessment terminology," <https://learn.microsoft.com/security/zero-trust/assessment/glossary> (accessed Oct 21, 2026).
 [^c10-scuba-mappings]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Mappings," <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/misc/mappings.md> (accessed Oct 26, 2026).

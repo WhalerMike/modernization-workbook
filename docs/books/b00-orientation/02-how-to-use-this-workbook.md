@@ -51,6 +51,8 @@ Appendices follow the How chapters and carry reference material: requirements cr
 
 The four questions are also the shape of every presentation and every executive summary in the workbook. A sponsor who reads only the Why chapters of each book will understand the case for the program; an engineer who reads only the How chapters will be able to do the work, with links back to the reasons.
 
+How chapters, and the implementation guides that build on them, follow one set of conventions for every procedure they give: the five control states, a standard How-section template, authority labels on each recommendation, an evidence checklist, change safety and a Zero Trust mapping block. They are defined once, in [Appendix D](appendix-d-control-states-and-evidence.md).
+
 ## How claims are verified
 
 Every external factual claim in a book is checked against a primary source on the day the book is built, and carries a footnote. "External" means anything the workbook didn't decide for itself: Microsoft product behavior and names, feature tiers, limits and retirement dates; federal policy from OMB, CISA, NIST and FedRAMP; protocol facts; and statistics.

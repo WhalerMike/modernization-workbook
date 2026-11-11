@@ -309,8 +309,10 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
         if p.startswith("examples/evidence-maps/") or p in ("data/schemas/evidence-map.schema.json",
                                                              "scripts/check_evidence_maps.py"):
             add("evidence-maps", p)
+        if p.startswith("data/zta-closure/") or p in ("docs/reference/zta-closure-coverage.md", "scripts/zta_coverage.py"):
+            add("zta-coverage", p)
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
-                 "scripts/check_claims.py",
+                 "scripts/check_claims.py", "scripts/check_identifiers.py", "scripts/zta_coverage.py",
                  "scripts/generate_revisions.py", "scripts/deck_assets.py", "scripts/command_reference.py",
                  "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
@@ -336,6 +338,11 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("claims", p)
     if any(p in ("scripts/check_claims.py", "data/claims-baseline.txt") for p in every):
         tasks["claims"] = ["*"]                     # the checker or the baseline changed: every page
+    for p in live:
+        if check_claims.in_scope(p):                # the identifier check reads the same published pages
+            add("identifiers", p)
+    if any(p in ("scripts/check_identifiers.py", "scripts/check_claims.py") for p in every):
+        tasks["identifiers"] = ["*"]                # the checker or its page scope changed: every page
     return tasks
 
 
@@ -1130,6 +1137,9 @@ class Checker:
         if "command-help" in t:
             steps.append(("Every example command has a synopsis and an example",
                           self.simple([PY, "scripts/command_reference.py", "--check"])))
+        if "zta-coverage" in t:
+            steps.append(("Zero Trust closure coverage: data valid, page current",
+                          self.simple([PY, "scripts/zta_coverage.py", "--check"])))
         if "evidence-maps" in t:
             steps.append(("Evidence maps follow the rules; summaries current",
                           self.simple([PY, "scripts/check_evidence_maps.py", "--check"])))
@@ -1141,6 +1151,10 @@ class Checker:
             every_page = t["claims"] == ["*"]
             steps.append(("Claim language: supports, not satisfies" + (" (every page)" if every_page else f" ({len(t['claims'])} page(s))"),
                           self.simple([PY, "scripts/check_claims.py", "--check"] + ([] if every_page else t["claims"]))))
+        if "identifiers" in t:
+            every_page = t["identifiers"] == ["*"]
+            steps.append(("Organization identifiers: tenant names and GUIDs" + (" (every page)" if every_page else f" ({len(t['identifiers'])} page(s))"),
+                          self.simple([PY, "scripts/check_identifiers.py"] + ([] if every_page else t["identifiers"]))))
         if "example-tests" in t:
             every_kit = t["example-tests"] == ["*"]
             steps.append(("Example kit tests" + (" (every kit)" if every_kit else f" ({', '.join(t['example-tests'])})"),
