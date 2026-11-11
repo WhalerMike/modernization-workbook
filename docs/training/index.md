@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -57,28 +57,29 @@ Each page keeps its status label (draft or in review) until it is reviewed and p
 
 ## Microsoft Automation learning path
 
-Three modules that teach you to script Microsoft Entra ID and Intune through Microsoft Graph in a federal tenant: which cloud's endpoints to call, how a script signs in without a secret, which least-privileged permissions each read needs, and how to turn the results into evidence. Each module is in Microsoft Learn's form: an introduction with the federal requirements it supports, objectives, concept units, **Where agencies are** with government-cloud availability, a lab on fixtures with no tenant, a lab in your own test tenant, a knowledge check and a summary. The code is [`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), in Python and PowerShell.
+Four modules that teach you to script Microsoft Entra ID and Intune through Microsoft Graph, and Azure Arc-enabled servers through Azure Resource Manager and Resource Graph, in a federal tenant: which cloud's endpoints to call, how a script signs in without a secret, which least-privileged permissions each read needs, and how to turn the results into evidence. Each module is in Microsoft Learn's form: an introduction with the federal requirements it supports, objectives, concept units, **Where agencies are** with government-cloud availability, a lab on fixtures with no tenant, a lab in your own test tenant, a knowledge check and a summary. The code is [`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), in Python and PowerShell.
 
 | | |
 |---|---|
 | **Level** | Intermediate |
-| **Roles** | Developer, identity engineer, endpoint (Intune) engineer, ISSO reviewer |
-| **Products** | Microsoft Graph, Microsoft Entra ID, Microsoft Intune |
+| **Roles** | Developer, identity engineer, endpoint (Intune) engineer, server (Arc) engineer, ISSO reviewer |
+| **Products** | Microsoft Graph, Microsoft Entra ID, Microsoft Intune, Azure Resource Manager, Azure Resource Graph, Azure Arc, Azure Policy |
 | **Scope** | A FedRAMP Moderate civilian agency, most often in Microsoft 365 GCC with commercial Azure; each module says what differs in GCC High and DoD |
-| **Modules** | 3 (three more are planned) |
-| **Time** | About 4 hours 20 minutes, not counting the Lab 2 exercises |
+| **Modules** | 4 (two more are planned) |
+| **Time** | About 5 hours 55 minutes, not counting the Lab 2 exercises |
 
-**Prerequisites.** You can run commands in a terminal and read Python or PowerShell, and you know what an access token is. For the design behind the checks, skim [Book 02](../books/b02-identity/index.md), [Book 04](../books/b04-access/index.md) and [Book 05](../books/b05-devices/index.md); the modules link the chapters they use.
+**Prerequisites.** You can run commands in a terminal and read Python or PowerShell, and you know what an access token is. For the design behind the checks, skim [Book 02](../books/b02-identity/index.md), [Book 04](../books/b04-access/index.md), [Book 05](../books/b05-devices/index.md) and [Book 06](../books/b06-data-platform/index.md); the modules link the chapters they use.
 
 | # | Module | What you learn | Books | Time |
 |---|---|---|---|---|
 | 1 | [Graph and Azure Foundations](ms-automation-foundations.md) | Clouds and endpoints, signing in without a secret, permissions and consent, tools, paging, throttling, batching and delta | 02, 04, 05, 06, 10, 15 | 85 min |
 | 2 | [Microsoft Entra ID through Microsoft Graph](ms-automation-entra.md) | Users, groups, Conditional Access, PIM, applications, logs and authentication methods; four of its five checks mapped to ScubaGear | 02, 04 | 89 min |
 | 3 | [Intune through Microsoft Graph](ms-automation-intune.md) | Managed devices, compliance, configuration, assignment filters, Autopilot, v1.0 versus beta; five checks mapped to NIST SP 800-53 Moderate | 05 | 86 min |
+| 4 | [Azure Arc through Azure Resource Manager and Resource Graph](ms-automation-arc.md) | Resource Manager versus Graph, Azure RBAC, Resource Graph paging and its traps, Arc machines, extensions, SQL Server, policy and product lifecycle; five Reader-only checks mapped to NIST SP 800-53 Moderate | 05, 06 | 95 min |
 
 : The Microsoft Automation modules in order {.striped .hover}
 
-Work through them in order: Module 1 sets up what the other two use. The developer workbook's [Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) goes deeper on the Graph client, and the [Ticket-to-Machine](ticket-to-machine/index.md), [HR-Driven Identity](hr-driven-identity/index.md), [Non-Person Identity](non-person-identity/index.md), [Privileged Access](privileged-access/index.md) and [Attribute-Driven Migration](attribute-driven-migration/index.md) paths build on Module 1. **If you're an ISSO reviewer,** read each module's introduction, Where agencies are and summary, and skip the labs.
+Work through them in order: Module 1 sets up what the other three use. The developer workbook's [Chapter 02](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) goes deeper on the Graph client, and the [Ticket-to-Machine](ticket-to-machine/index.md), [HR-Driven Identity](hr-driven-identity/index.md), [Non-Person Identity](non-person-identity/index.md), [Privileged Access](privileged-access/index.md) and [Attribute-Driven Migration](attribute-driven-migration/index.md) paths build on Module 1. **If you're an ISSO reviewer,** read each module's introduction, Where agencies are and summary, and skip the labs.
 
 ### What you need for the Microsoft Automation labs
 
@@ -91,9 +92,9 @@ Work through them in order: Module 1 sets up what the other two use. The develop
 
 Run every command from `examples/ms-automation`. Module 2's lab writes an `out` folder there; delete it afterward.
 
-**Lab 2: your test tenant.** Each Lab 2 registers one app with a certificate and only the read permissions its checks need, runs them read-only, and ends by deleting the app registration. You need a test tenant in the worldwide or GCC cloud for learning, never production, with fictional data (before a gate passes, rehearse once in your agency's own cloud, as [Book 16](../books/b16-people/06-vendor-training-and-labs.md#what-changes-in-the-government-clouds) describes); Microsoft Entra ID P1 or P2 for Module 2's sign-in data, and P2 or Microsoft Entra ID Governance for its PIM data; an Intune license and a few test devices for Module 3; and an administrator who can grant admin consent. **The authors haven't run the Lab 2 steps.**
+**Lab 2: your test tenant.** Each Lab 2 registers one app with a certificate and only the read permissions its checks need, runs them read-only, and ends by deleting the app registration. You need a test tenant in the worldwide or GCC cloud for learning, never production, with fictional data (before a gate passes, rehearse once in your agency's own cloud, as [Book 16](../books/b16-people/06-vendor-training-and-labs.md#what-changes-in-the-government-clouds) describes); Microsoft Entra ID P1 or P2 for Module 2's sign-in data, and P2 or Microsoft Entra ID Governance for its PIM data; an Intune license and a few test devices for Module 3; for Module 4, a test subscription with a few Arc-enabled servers, someone who can assign the Reader role on it, and `Az.Accounts` and `Az.ResourceGraph` for the PowerShell steps; and an administrator who can grant admin consent. **The authors haven't run the Lab 2 steps.**
 
-**Watch:** each module has a narrated deck, about 13 to 14 minutes, linked from the module's page.
+**Watch:** Modules 1 to 3 each have a narrated deck, about 13 to 14 minutes, linked from the module's page. Module 4's deck is planned.
 
 ::: {#training-microsoft}
 :::

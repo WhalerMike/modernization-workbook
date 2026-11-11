@@ -1,11 +1,13 @@
 $ python -m pytest -q -p no:cacheprovider tests/python
-......................................................................   [100%]
-70 passed
+........................................................................ [ 76%]
+......................                                                   [100%]
+94 passed
 $ pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
-Starting discovery in 2 files.
-Discovery found 44 tests.
+Starting discovery in 3 files.
+Discovery found 56 tests.
 Running tests.
+[+] tests/powershell/FmwArm.Tests.ps1
 [+] tests/powershell/FmwGraph.Tests.ps1
 [+] tests/powershell/GraphClients.Tests.ps1
 Tests completed
-Tests Passed: 44, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+Tests Passed: 56, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
