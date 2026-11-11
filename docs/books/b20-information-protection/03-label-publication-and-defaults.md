@@ -39,15 +39,15 @@ Creating labels changes nothing for users; a label policy does. It decides who s
 
 | State | This page | Evidence |
 |---|---|---|
-| Designed | [Defaults the agency can justify](#defaults-the-agency-can-justify) | Decision record for each default and for mandatory labeling ([template](01-data-inventory-and-classification.md#decision-record-template)) |
-| Configured | [Enforcement](#enforcement), ring 1 | `Get-LabelPolicy` export of the pilot policy and its settings |
-| Enforced | [Enforcement](#enforcement), ring 3 | `Get-LabelPolicy` export of the production policies, scoped to everyone in scope, with the exclusion list |
-| Evidenced | [Validate: a labeled sample](#validate-a-labeled-sample) | The labeled sample record and the audit events it produced |
-| Operated | [Day-two ownership](#day-two-ownership) | Monthly label-activity review, downgrade review, policy drift check |
+| Designed | [Defaults the agency can justify](#b20-03-defaults-the-agency-can-justify) | Decision record for each default and for mandatory labeling ([template](01-data-inventory-and-classification.md#decision-record-template)) |
+| Configured | [Enforcement](#b20-03-enforcement), ring 1 | `Get-LabelPolicy` export of the pilot policy and its settings |
+| Enforced | [Enforcement](#b20-03-enforcement), ring 3 | `Get-LabelPolicy` export of the production policies, scoped to everyone in scope, with the exclusion list |
+| Evidenced | [Validate: a labeled sample](#b20-03-validate-a-labeled-sample) | The labeled sample record and the audit events it produced |
+| Operated | [Day-two ownership](#b20-03-day-two-ownership) | Monthly label-activity review, downgrade review, policy drift check |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
-## Defaults the agency can justify {#defaults-the-agency-can-justify}
+## Defaults the agency can justify {#b20-03-defaults-the-agency-can-justify}
 
 A label policy can set a default label separately for five kinds of item: documents (and Loop components and pages), emails, meetings and calendar events, new groups and sites, and Power BI content. Users can change the default to match the content.[^c03-labels] The program's defaults, and the reason for each:
 
@@ -76,13 +76,13 @@ Behaviors to know before choosing:
 
 Mandatory labeling ("require users to apply a label") makes users label a document before saving, an email or invite before sending, and a new group or site when creating it. With mandatory labeling in effect, users can't remove a label (only change it), and print-to-PDF is unavailable for labeled or encrypted documents.[^c03-office-apps] The program turns it on for documents, email, meetings, groups and sites, and Power BI, because every one of them has a non-encrypting default, so users are rarely prompted.
 
-The downgrade justification makes a user explain why they removed a label or replaced it with a lower-priority one; the reason appears in activity explorer.[^c03-labels] It applies to files, emails and meetings, not to groups and sites, and not between sublabels of the same group ([Chapter 02](02-sensitivity-label-architecture.md#priority-label-groups-and-the-modern-label-scheme)). The program turns it on everywhere it applies and reviews the justifications monthly.
+The downgrade justification makes a user explain why they removed a label or replaced it with a lower-priority one; the reason appears in activity explorer.[^c03-labels] It applies to files, emails and meetings, not to groups and sites, and not between sublabels of the same group ([Chapter 02](02-sensitivity-label-architecture.md#b20-02-priority-label-groups-and-the-modern-label-scheme)). The program turns it on everywhere it applies and reviews the justifications monthly.
 
 A help link ("Learn more") points users from the label menu to the agency's own page explaining the labels. Set it to the [Book 16](../b16-people/index.md) training page the agency publishes, not to Microsoft's generic article.
 
 ## How: publish labels and set defaults
 
-### Prerequisites {#prerequisites}
+### Prerequisites {#b20-03-prerequisites}
 
 | Feature | Commercial | GCC | GCC High | DoD | Source |
 |---|---|---|---|---|---|
@@ -100,7 +100,7 @@ A help link ("Learn more") points users from the label menu to the agency's own 
 - **Licenses:** as in the authority block above. Record the plan in each decision record.
 - **Roles:** Information Protection Admin (or Compliance Administrator) for the operator who changes label policies.
 - **Clients:** Microsoft 365 Apps for enterprise with built-in labeling on managed Windows devices; Outlook versions that support separate email defaults (Current Channel 2105+, Semi-Annual Enterprise Channel 2108+) where the email default differs from the document default.[^c03-versions]
-- **Labels created and validated** ([Chapter 02](02-sensitivity-label-architecture.md#validate)).
+- **Labels created and validated** ([Chapter 02](02-sensitivity-label-architecture.md#b20-02-validate)).
 - **Groups:** a pilot group (`b20-label-pilot@contoso.example`), the authorized-holder groups, and an exclusion group for service accounts that run unattended Office automation.
 - **Training and help desk ready:** the Book 16 page live, the help-desk script from [Book 15](../b15-day2-operations/index.md) published, before ring 2.
 
@@ -110,16 +110,16 @@ The pilot is ring 1: the implementing team plus 25 to 50 users from the help des
 
 - Every pilot user sees the labels in Word, Excel, PowerPoint and Outlook on Windows and on the web within 24 hours.
 - Fewer than one help-desk ticket per ten pilot users per week after the first week.
-- The labeled sample ([Validate](#validate-a-labeled-sample)) passes.
+- The labeled sample ([Validate](#b20-03-validate-a-labeled-sample)) passes.
 - The share of documents saved with a label other than the default is reviewed with the data owners: a high share of downgrades means the default is wrong; a near-zero share of CUI labels where CUI is known to be handled means training is needed.
 
 ### Report-only or audit phase
 
-Label policies have no report-only mode. The pilot ring is the observation phase: run it for at least two weeks and read activity explorer's label events and the downgrade justifications ([Telemetry](#telemetry)).
+Label policies have no report-only mode. The pilot ring is the observation phase: run it for at least two weeks and read activity explorer's label events and the downgrade justifications ([Telemetry](#b20-03-telemetry)).
 
-### Enforcement {#enforcement}
+### Enforcement {#b20-03-enforcement}
 
-Connect to Security & Compliance PowerShell for the tenant's cloud (commands in [Chapter 01](01-data-inventory-and-classification.md#inventory-find-where-the-data-already-is)). Commands were checked against Microsoft Learn on Nov 11, 2026; run them against a test tenant first. `-WhatIf` doesn't work in Security & Compliance PowerShell.[^c03-setlabelpolicy]
+Connect to Security & Compliance PowerShell for the tenant's cloud (commands in [Chapter 01](01-data-inventory-and-classification.md#b20-01-inventory-find-where-the-data-already-is)). Commands were checked against Microsoft Learn on Nov 11, 2026; run them against a test tenant first. `-WhatIf` doesn't work in Security & Compliance PowerShell.[^c03-setlabelpolicy]
 
 1. **Create the pilot policy**, scoped to the pilot group, with the labels from Chapter 02's design table:
 
@@ -227,13 +227,13 @@ To remove an advanced setting, Microsoft documents specifying the same setting w
 
 Exclusions go in `b20-label-exclusions@contoso.example`, never as individual names in the policy, so the exclusion register and the policy can't drift apart.
 
-### Telemetry {#telemetry}
+### Telemetry {#b20-03-telemetry}
 
 - **Activity explorer** shows label applied, changed and removed events, with the downgrade justifications.[^c03-labels]
 - **The audit log** records sensitivity label activities from Office apps and services, and label-policy changes; [Chapter 10](10-audit-insider-risk-and-communication-compliance.md) has the search commands. The `EnableAudit` advanced setting can stop Office apps from sending label data to auditing; the program never sets it to `False`.[^c03-setlabelpolicy]
 - **The log platform** receives both through the routing in [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md), and [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md) alerts on mass label removal.
 
-### Validate: a labeled sample {#validate-a-labeled-sample}
+### Validate: a labeled sample {#b20-03-validate-a-labeled-sample}
 
 This test is CM-12's "labeled sample". A pilot user, on a managed Windows device:
 
@@ -262,7 +262,7 @@ Record the expected and observed result for each step, the date and the tester. 
 - [ ] **Exception:** the exclusion group's membership export and each member's approval and review date
 - [ ] **Assessor-ready artifact:** the policy export, the labeled sample and the decision records, cited from the AC-16 and MP-3 implementation statements and from the finding's closure-chain entry ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain))
 
-### Day-two ownership {#day-two-ownership}
+### Day-two ownership {#b20-03-day-two-ownership}
 
 The **platform owner** owns the label policies and their settings; each class's **policy owner** owns its default and reviews the downgrade justifications for it monthly; the **operator** runs the ring changes; the **help desk** handles "which label?" and "I can't open this" calls with the [Book 15](../b15-day2-operations/index.md) script; the **security monitor** watches for mass removal; the **assessor** samples the export and the labeled sample at each assessment. Drift is any difference between the export and source control, or a policy whose order changed ([Chapter 12](12-operations-and-evidence.md)). The full RACI is in [Chapter 12](12-operations-and-evidence.md#raci).
 

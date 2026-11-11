@@ -42,10 +42,10 @@ Insider Risk Management and Communication Compliance are different in kind. They
 | State | This page | Evidence |
 |---|---|---|
 | Designed | [Audit is the floor](#audit-is-the-floor); [The charter comes first](#the-charter-comes-first) | Audit retention design in the evidence contract; the insider risk charter, signed by the privacy officer, general counsel, labor relations and the CISO |
-| Configured | [Enforcement](#enforcement); [Pilot](#pilot-irm) | `Get-AdminAuditLogConfig` and `Get-UnifiedAuditLogRetentionPolicy` exports; IRM and Communication Compliance settings and policy screenshots or exports; role-group membership |
+| Configured | [Enforcement](#enforcement); [Pilot](#b20-10-pilot-irm) | `Get-AdminAuditLogConfig` and `Get-UnifiedAuditLogRetentionPolicy` exports; IRM and Communication Compliance settings and policy screenshots or exports; role-group membership |
 | Enforced | [Enforcement](#enforcement) | Unified audit log ingestion `True`; retention policies at the designed durations. For IRM and Communication Compliance: not applicable as blocking controls; their Adaptive Protection effects follow [Chapter 08](08-dlp-and-endpoint-controls.md) and [Book 04](../b04-access/index.md) |
-| Evidenced | [Evidence](#evidence); [Evidence](#evidence-irm) | The synthetic-event test record and the audit records it found; a test alert worked through triage |
-| Operated | [Day-two ownership](#day-two-ownership); [Day-two ownership](#day-two-irm) | Monthly synthetic-event test, retention review, IRM case metrics and the investigators' own audit trail |
+| Evidenced | [Evidence](#evidence); [Evidence](#b20-10-evidence-irm) | The synthetic-event test record and the audit records it found; a test alert worked through triage |
+| Operated | [Day-two ownership](#day-two-ownership); [Day-two ownership](#b20-10-day-two-irm) | Monthly synthetic-event test, retention review, IRM case metrics and the investigators' own audit trail |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
@@ -285,7 +285,7 @@ Policy owner: the records officer for retention durations. Platform owner: audit
 
 This procedure stands up both tools only after the [charter](#the-charter-comes-first) is signed. Most configuration is in the Purview portal; role assignment and verification use Security & Compliance PowerShell. Placeholders: `<irm-admin-upn>`, `<irm-analyst-upn>`, `<irm-investigator-upn>`, `<irm-auditor-upn>` and the matching Communication Compliance accounts are named staff in the role register.
 
-### Prerequisites {#prerequisites-irm}
+### Prerequisites {#b20-10-prerequisites-irm}
 
 - **The charter**, signed by the CISO, the senior agency official for privacy, general counsel and the labor relations office, with the records schedule entry.
 - **Licensing (License-dependent).** Insider Risk Management is included in Microsoft 365 E5/A5/G5, the Microsoft Purview Suite and the E5/A5/F5/G5 Insider Risk Management add-on; Communication Compliance in those and Office 365 E5/A5/G5.[^c10-licensing] Microsoft offers Insider Risk Management only in tenants hosted where its Azure service dependencies are available.[^c10-irm-plan]
@@ -307,7 +307,7 @@ This procedure stands up both tools only after the [charter](#the-charter-comes-
 
 : Government-cloud availability for Insider Risk Management and Communication Compliance (read Nov 11, 2026; status subject to change) {.striped .hover}
 
-### Pilot {#pilot-irm}
+### Pilot {#b20-10-pilot-irm}
 
 Assign roles first, by name, per the role register (Security & Compliance PowerShell; checked against Learn on Nov 11, 2026). List the role groups to get their exact names, then add members:[^c10-roles][^c10-ediscovery-perms]
 
@@ -325,11 +325,11 @@ Get-RoleGroupMember -Identity '<irm-investigators-role-group-name>'
 
 Role assignments can take up to 30 minutes to apply.[^c10-irm-perms] Then, as an Admin, in the Purview portal: **Settings** > **Insider Risk Management** > **Privacy**, confirm **Show anonymized versions of usernames** is selected.[^c10-irm-privacy] Create one policy from the charter's first template, scoped to the pilot population the charter names.
 
-### Report-only or audit phase {#audit-irm}
+### Report-only or audit phase {#b20-10-audit-irm}
 
 Insider Risk Management policies raise alerts; they don't block. The audit phase is the first 30 days, in which Analysts triage alerts and record the outcome but no case is escalated except for an imminent threat the charter defines. The output is a tuning record: alert volume, the share confirmed, and threshold or indicator changes made. Communication Compliance policies are treated the same way.
 
-### Enforcement {#enforcement-irm}
+### Enforcement {#b20-10-enforcement-irm}
 
 Not applicable as a blocking control. Moving out of the audit phase means widening policy scope to the charter's full population and starting the case workflow. If the agency later turns on **Adaptive Protection**, which applies insider risk levels to DLP and Conditional Access, those effects are enforcement controls and follow [Chapter 08](08-dlp-and-endpoint-controls.md) and [Book 04](../b04-access/index.md) rings, with emergency access accounts excluded from any Conditional Access policy it drives.
 
@@ -347,15 +347,15 @@ Not applicable as a blocking control. Moving out of the audit phase means wideni
 - **Backout triggers:** A charter question found unanswered; alert volume Analysts can't triage; a privacy complaint the privacy officer upholds.
 - **Post-change validation:** A synthetic case (a test account's departure date imported through the HR connector, followed by staged downloads of test files) produces an alert that an Analyst triages under a pseudonym.
 
-### Rollback {#rollback-irm}
+### Rollback {#b20-10-rollback-irm}
 
 In the Purview portal, **Insider Risk Management** > **Policies**: select the policy and turn it off; in **Communication Compliance** > **Policies**, the same. Existing alerts and cases remain under the records schedule. Remove role assignments that are no longer needed with `Remove-RoleGroupMember -Identity '<role-group-name>' -Member '<upn>'`.
 
-### Exclusions {#exclusions-irm}
+### Exclusions {#b20-10-exclusions-irm}
 
 Exclusions are charter decisions, not operator ones: populations the charter puts out of scope (for example, staff whose communications are privileged by law) are excluded from policy scope, and the exclusion is listed in the charter. Priority user groups, where used, are a charter decision too, with review restricted to named reviewers.[^c10-priority]
 
-### Telemetry {#telemetry-irm}
+### Telemetry {#b20-10-telemetry-irm}
 
 - The insider risk audit trail ("watch the watchers"), read by the Auditors role group.[^c10-irm-perms]
 - Communication Compliance records (`ComplianceSupervisionExchange`) and other Purview records in the unified audit log.[^c10-supported]
@@ -367,7 +367,7 @@ Search-UnifiedAuditLog -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -R
   Select-Object CreationDate,UserIds,Operations | Export-Csv .\cc-activity-30d.csv -NoTypeInformation
 ```
 
-### Evidence {#evidence-irm}
+### Evidence {#b20-10-evidence-irm}
 
 **Evidence checklist**
 
@@ -377,7 +377,7 @@ Search-UnifiedAuditLog -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -R
 - [ ] **Exception:** charter exclusions and every de-anonymization approval
 - [ ] **Assessor-ready artifact:** the charter, role register, test record and the last quarter's metrics, under PM-12 and AC-5 in [Appendix A](appendix-a-requirements-mapping.md)
 
-### Day-two ownership {#day-two-irm}
+### Day-two ownership {#b20-10-day-two-irm}
 
 Policy owner: the insider threat program lead, under the charter. Platform owner: settings, connectors and role assignments. Operator: the IRM Admins, who don't see cases. Security monitor: receives escalated alerts that are security incidents ([Book 12](../b12-security-operations/index.md)). Help desk: not involved in cases; routes any employee question about monitoring to the privacy office ([Book 15](../b15-day2-operations/index.md)). Assessor: reviews the charter, the role separation and the Auditors' records. Cadence: weekly triage, monthly metrics, quarterly Auditors' review, annual charter review. Roles are set out in [Chapter 12](12-operations-and-evidence.md#raci). Drift looks like a named person in both an Admin and an Investigator role, anonymization turned off without a recorded approval, or a policy whose template the charter doesn't name.
 

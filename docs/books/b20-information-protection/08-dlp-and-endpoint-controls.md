@@ -335,7 +335,7 @@ Policy owner: the outcome statements and every change to them. Platform owner: t
 
 This procedure turns endpoint DLP on for onboarded Windows devices and takes the CUI Specified device rule from audit to block. Placeholders as above; `<device-pilot-group>@contoso.example` holds the pilot users (endpoint policies are scoped to users signed in to onboarded devices).[^c08-policy]
 
-### Prerequisites {#prerequisites-endpoint}
+### Prerequisites {#b20-08-prerequisites-endpoint}
 
 - **Devices onboarded** to Defender for Endpoint (and so to Purview) through Intune, the method Microsoft prefers; onboarding coverage reported by device group ([Book 05](../b05-devices/index.md)).[^c08-zt-intune]
 - **Servers:** endpoint DLP support for onboarded servers turned on in endpoint DLP settings, where servers are in scope.[^c08-onboard]
@@ -343,11 +343,11 @@ This procedure turns endpoint DLP on for onboarded Windows devices and takes the
 - **Licensing (License-dependent):** endpoint DLP is included in Microsoft 365 E5/A5/G5, the Microsoft Purview Suite and the E5/A5/F5/G5 Information Protection & Governance plans, per the Purview service description.[^c08-licensing]
 - **Government cloud:** endpoint DLP is listed as Available in GCC, GCC High and DoD.[^c08-gcc][^c08-gcch][^c08-dod]
 
-### Pilot {#pilot-endpoint}
+### Pilot {#b20-08-pilot-endpoint}
 
 Pilot users on a small set of managed Windows devices, including one device of each build in use and, where servers are in scope, one test server. Success: the expected device events appear in Activity explorer for each restricted action, and no line-of-business application breaks.
 
-### Report-only or audit phase {#audit-endpoint}
+### Report-only or audit phase {#b20-08-audit-endpoint}
 
 ```powershell
 $cuiSpecified = @(@{
@@ -371,7 +371,7 @@ New-DlpComplianceRule -Policy 'FMP-DLP-Endpoint-CUI-SP-v1' -Name 'Audit CUI Spec
 
 The policy is enabled but the rule's restrictions are `Audit`, so nothing is blocked: this is the endpoint equivalent of report-only. Run it for two weeks and read the device events in Activity explorer.
 
-### Enforcement {#enforcement-endpoint}
+### Enforcement {#b20-08-enforcement-endpoint}
 
 ```powershell
 Set-DlpComplianceRule -Identity 'Audit CUI Specified on devices' `
@@ -398,19 +398,19 @@ Set-DlpComplianceRule -Identity 'Audit CUI Specified on devices' `
 - **Backout triggers:** A blocked print or copy that stops a mission process with no approved alternative; device events failing to arrive.
 - **Post-change validation:** On a ring device, copy a CUI Specified test file to removable media and print it; confirm both are blocked and the events appear.
 
-### Rollback {#rollback-endpoint}
+### Rollback {#b20-08-rollback-endpoint}
 
 Set the restrictions back to `Audit` with the same `Set-DlpComplianceRule` command as the audit phase, or `Set-DlpCompliancePolicy -Identity 'FMP-DLP-Endpoint-CUI-SP-v1' -Mode Disable`. Device policy changes reach devices on the service's schedule; record the time of the command and the time the first device shows the old behavior.
 
-### Exclusions {#exclusions-endpoint}
+### Exclusions {#b20-08-exclusions-endpoint}
 
 `-EndpointDlpLocationException '<dlp-exceptions>@contoso.example'` for users with an approved need (for example, a records unit that prints CUI Specified for a court), each with an exception-register row. Device-level allowances (approved USB devices, approved printers) are endpoint DLP settings groups, owned by the platform owner and listed in the register.
 
-### Telemetry {#telemetry-endpoint}
+### Telemetry {#b20-08-telemetry-endpoint}
 
 Device events in Activity explorer and audit record type `DLPEndpoint`, forwarded to the SIEM; Defender for Endpoint device health for onboarding coverage ([Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md)).
 
-### Evidence {#evidence-endpoint}
+### Evidence {#b20-08-evidence-endpoint}
 
 **Evidence checklist**
 
@@ -420,7 +420,7 @@ Device events in Activity explorer and audit record type `DLPEndpoint`, forwarde
 - [ ] **Exception:** register rows for user and device exceptions
 - [ ] **Assessor-ready artifact:** the package above, filed under the control IDs in [Appendix A](appendix-a-requirements-mapping.md)
 
-### Day-two ownership {#day-two-endpoint}
+### Day-two ownership {#b20-08-day-two-endpoint}
 
 As for workload DLP, with Book 05's device owner for onboarding coverage. A device that drops out of onboarding drops out of endpoint DLP silently, so the platform owner reviews onboarding coverage monthly ([Chapter 12](12-operations-and-evidence.md#metrics)).
 

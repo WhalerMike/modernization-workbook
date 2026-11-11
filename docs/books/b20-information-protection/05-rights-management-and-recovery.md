@@ -39,7 +39,7 @@ That last question is the reason the chapter exists. Rights Management grants us
 
 | State | This page | Evidence |
 |---|---|---|
-| Designed | [Decide](#decide-activation-onboarding-and-recovery) | Decision record ([template](01-data-inventory-and-classification.md#decision-record-template)) naming the onboarding scope, the recovery operators and the approvers |
+| Designed | [Decide](#b20-05-decide-activation-onboarding-and-recovery) | Decision record ([template](01-data-inventory-and-classification.md#decision-record-template)) naming the onboarding scope, the recovery operators and the approvers |
 | Configured | [Prerequisites](#prerequisites) to [Report-only or audit phase](#report-only-or-audit-phase) | `Get-AipService`, `Get-AipServiceConfiguration` and `Get-AipServiceOnboardingControlPolicy` output; the PIM group settings export |
 | Enforced | [Enforcement](#enforcement) | Onboarding control removed (all licensed users can encrypt); super user feature state **Disabled** outside an approved recovery |
 | Evidenced | [Validate: the decryption-continuity test](#validate-the-decryption-continuity-test) | The test record, the usage log lines for each open and denial, and the admin log lines for the recovery |
@@ -58,7 +58,7 @@ When the Azure Rights Management service is active, all users in the organizatio
 **Authority:** Microsoft-recommended (Microsoft Learn, "Activate the Azure Rights Management service," accessed Nov 11, 2026) for confirming the service state and for onboarding controls in a phased deployment.
 **Applies:** License-dependent: a service plan that includes Azure Rights Management ([Prerequisites](#prerequisites)). Environment-dependent: GCC High and DoD clients need DNS records to reach the government instance.
 
-## Decide: activation, onboarding and recovery {#decide-activation-onboarding-and-recovery}
+## Decide: activation, onboarding and recovery {#b20-05-decide-activation-onboarding-and-recovery}
 
 Record these in the decision record before anything changes. The [decision record template](01-data-inventory-and-classification.md#decision-record-template) has the license, cloud-availability, prerequisite and compensating-control fields.
 
@@ -236,21 +236,21 @@ The **platform owner** owns the service configuration and the quarterly decrypti
 
 ## How: recover encrypted content through a super user, just in time
 
-### Prerequisites {#prerequisites-recovery}
+### Prerequisites {#b20-05-prerequisites-recovery}
 
 - An approved recovery request naming the content, the reason (a departed employee's files, a legal or records request, a group that no longer exists) and the approver.
 - The recovery operator is eligible for Compliance Administrator or Compliance Data Administrator in PIM, with approval required; Microsoft recommends at least two approvers for redundancy.[^c05-pim-settings]
 - For files outside SharePoint and Exchange, the Microsoft Purview Information Protection client, whose PowerShell module provides `Set-FileLabel` and `Remove-FileLabel`.[^c05-superuser][^c05-remove-filelabel] For mail, eDiscovery decrypts on export, because the super user ability is integrated with Exchange Online.[^c05-superuser]
 
-### Pilot {#pilot-recovery}
+### Pilot {#b20-05-pilot-recovery}
 
 Run the procedure once in ring 2 against a test file encrypted to a test account that has then been disabled. The pilot passes when the file opens only after the steps below and the admin log shows each step.
 
-### Report-only or audit phase {#audit-recovery}
+### Report-only or audit phase {#b20-05-audit-recovery}
 
 Not applicable: a recovery acts on a named item and has nothing to observe beforehand. The audit trail is the admin log before and after, checked in the last step.
 
-### Enforcement {#enforcement-recovery}
+### Enforcement {#b20-05-enforcement-recovery}
 
 After the recovery role is activated and approved in PIM:
 
@@ -278,19 +278,19 @@ Get-AipServiceSuperUser
 
 A super user has the Full Control usage right on all content the tenant encrypted, and can decrypt and remove protection even when an expiry date has passed; the time a user is added doesn't matter, so a super user added today can open content protected last week.[^c05-superuser][^c05-enable-su] That is why step 4 isn't optional, and why it removes the operator before disabling the feature: disabling the feature doesn't remove anyone from the super user list, so whoever is left on it becomes a super user again the next time the feature is enabled.[^c05-disable-su] The `Set-FileLabel` and `Remove-FileLabel` cmdlets remove a template-based label together with its protection; for custom permissions, `-RemoveProtection` is needed as well.[^c05-remove-filelabel]
 
-### Rollback {#rollback-recovery}
+### Rollback {#b20-05-rollback-recovery}
 
 Step 4 is the rollback, and it takes seconds. If the session ends before step 4, any operator with the active role runs step 4 alone. The security monitor's alert on an enabled feature older than the change window is the safety net.
 
-### Exclusions {#exclusions-recovery}
+### Exclusions {#b20-05-exclusions-recovery}
 
 Recovery operators can't approve their own PIM activation (PIM doesn't allow it) and can't recover their own content.[^c05-pim-approve] Emergency access accounts are never used to run a recovery.
 
-### Telemetry {#telemetry-recovery}
+### Telemetry {#b20-05-telemetry-recovery}
 
 The admin log records `AddSuperUser`, `SetSuperUserFeatureState` and their removal; the usage log records each decryption.[^c05-superuser] The PIM activation, approval and justification are in the Microsoft Entra audit log.
 
-### Evidence {#evidence-recovery}
+### Evidence {#b20-05-evidence-recovery}
 
 **Evidence checklist**
 
@@ -300,7 +300,7 @@ The admin log records `AddSuperUser`, `SetSuperUserFeatureState` and their remov
 - [ ] **Exception:** the approved recovery request (approver, ticket number, items)
 - [ ] **Assessor-ready artifact:** the recovery record filed with the request, traceable to the PIM activation
 
-### Day-two ownership {#day-two-recovery}
+### Day-two ownership {#b20-05-day-two-recovery}
 
 The policy owner approves; the operator runs; the security monitor reviews every recovery within one business day against the request. Recoveries are counted in the [metrics](12-operations-and-evidence.md#metrics).
 

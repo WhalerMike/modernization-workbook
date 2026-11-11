@@ -43,7 +43,7 @@ Two boundaries keep the chapter in scope. The identities of AI agents, their spo
 | Configured | [How: govern sensitive data in AI interactions](#how-govern-sensitive-data-in-ai-interactions), steps 1 to 4 | Audit status, the DSPM for AI policy list and the DLP policy export in simulation |
 | Enforced | Step 5 | DLP policies in `Enable` mode, and the exclusion register |
 | Evidenced | Step 6, the validation tests | Test record of a blocked Copilot response and a blocked paste to an AI site, with the activity explorer event each produced |
-| Operated | [Day-two ownership](#day-two-ownership-ai) | Owner, the monthly data risk assessment review, the AI activity alert route to security operations |
+| Operated | [Day-two ownership](#b20-11-day-two-ownership-ai) | Owner, the monthly data risk assessment review, the AI activity alert route to security operations |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
@@ -60,7 +60,7 @@ Three consequences follow for a federal tenant.
 One exception runs the other way. The person who applies encryption is the Rights Management owner and always holds EXTRACT, so content a user encrypted is always eligible to be returned to that user by Copilot; the restrictions apply to everyone else.[^c11-copilot-considerations]
 
 **Authority:** Microsoft-recommended (Microsoft Learn, "Considerations to manage Microsoft 365 Copilot," and "Data protection and auditing for Microsoft Copilot," read Nov 11, 2026) for using labels, encryption and DLP as the protection for Copilot; Risk-based recommended (the program's position, for the oversharing risk above) for deciding EXTRACT per sublabel rather than inheriting a default.
-**Applies:** License-dependent: Microsoft 365 Copilot is an add-on license, and Purview controls for Copilot need a Purview license (part of Microsoft 365 G3 or G5, or standalone).[^c11-copilot-sd] Environment-dependent: see the availability table in [Prerequisites](#prerequisites-ai).
+**Applies:** License-dependent: Microsoft 365 Copilot is an add-on license, and Purview controls for Copilot need a Purview license (part of Microsoft 365 G3 or G5, or standalone).[^c11-copilot-sd] Environment-dependent: see the availability table in [Prerequisites](#b20-11-prerequisites-ai).
 
 ## The AI data decisions
 
@@ -144,7 +144,7 @@ For AI sites the agency hasn't approved, the controls are the endpoint and brows
 
 The procedure takes Microsoft 365 Copilot first, because it sits inside the boundary and its controls are the labels already built, then unapproved AI sites.
 
-### Prerequisites {#prerequisites-ai}
+### Prerequisites {#b20-11-prerequisites-ai}
 
 - Sensitivity labels published and in use ([Chapter 03](03-label-publication-and-defaults.md)), with labels enabled for Office files in SharePoint and OneDrive ([Chapter 07](07-sharepoint-and-onedrive.md)). Without that, the encrypted files Copilot and agents can work with are limited to files open in Office apps on Windows.[^c11-entra-apps]
 - Purview audit on ([Chapter 10](10-audit-insider-risk-and-communication-compliance.md)).
@@ -175,11 +175,11 @@ Two Learn pages disagree on Insider Risk Management in GCC High: the Purview GCC
 
 **Applies:** License-dependent (above). Environment-dependent: in GCC High and DoD only supported AI sites are visible to DSPM for AI, and in GCC only Microsoft Copilot and supported AI sites; no tenant in a government cloud can create the "browse to URL" policy.[^c11-gcc][^c11-gcch][^c11-dod]
 
-### Pilot {#pilot-ai}
+### Pilot {#b20-11-pilot-ai}
 
 Choose a pilot of 25 to 50 Copilot-licensed users from two or three business units, including the help desk lead and a records officer, and none whose work is mostly CUI Specified. Before they get Copilot, run a custom data risk assessment for the sites they use. Success: the assessment's oversharing findings for those sites are remediated or accepted in writing, the pilot's Copilot responses never cite an item the user couldn't open directly, and the DLP simulation shows matches only on the labels the decision record names.
 
-### Report-only or audit phase {#audit-ai}
+### Report-only or audit phase {#b20-11-audit-ai}
 
 Every policy below starts in simulation (`TestWithoutNotifications`) or, for one-click DLP policies, the audit or test mode DSPM creates them in. Run it for at least two weeks across a month-end, when report and budget files move most. Read three things from it: the DLP rule matches in the activity explorer's AI activities tab, the sensitive information types detected in prompts, and the AI website visits by site. A rule that matches content the decision record didn't intend is fixed before enforcement.
 
@@ -245,7 +245,7 @@ New-DlpComplianceRule -Name "B20-Copilot-Exclude-CUI-SP-Rule" -Policy "B20-Copil
 
 To scope the pilot, replace the `Inclusions` value with the pilot group before creating the policy, as Learn's example notes. Add a second rule in the same policy for prompts that contain sensitive information types (for example U.S. Social Security numbers), from the portal's **Custom** template, because a rule can't hold both conditions.[^c11-dlp-copilot]
 
-### Enforcement {#enforcement-ai}
+### Enforcement {#b20-11-enforcement-ai}
 
 **Step 5. Enforce, ring by ring.**
 
@@ -278,7 +278,7 @@ Search-UnifiedAuditLog -StartDate (Get-Date).AddHours(-4) -EndDate (Get-Date) `
 
 and find the *DLP rule match* events in **DSPM** > **Discover** > **Activity explorer** > **AI activities**.[^c11-dspm-considerations]
 
-### Rollback {#rollback-ai}
+### Rollback {#b20-11-rollback-ai}
 
 The operator, or the platform owner if the operator isn't available, puts the policy back into simulation; the change reaches Copilot within four hours.
 
@@ -290,21 +290,21 @@ Set-DlpCompliancePolicy -Identity "B20-Copilot-Exclude-CUI-SP" -Mode Disable
 
 One-click DLP policies roll back the same way in the DLP solution. A deleted DSPM collection or one-click policy shows **PendingDeletion** until deletion completes.[^c11-dspm-considerations] Removing a site from Restricted Content Discovery restores Copilot's access to it. Rollback leaves the labels and their usage rights in place: those are the first line and aren't rolled back with the AI policies.
 
-### Exclusions {#exclusions-ai}
+### Exclusions {#b20-11-exclusions-ai}
 
 - No user is excluded from the Copilot label rule; it doesn't block access to the item, only Copilot's use of it.
 - A business unit whose approved workflow needs Copilot to summarize a label the rule excludes gets a narrower label or a reviewed exception, not an exclusion from the policy: the exception names the label, the group, the approver (policy owner and ISSO) and a review date no more than 90 days out.
 - Approved third-party AI sites are listed by name in the decision record and removed from the block list; every other AI site stays blocked or warned.
 - Emergency access accounts: not applicable (no sign-in restriction).
 
-### Telemetry {#telemetry-ai}
+### Telemetry {#b20-11-telemetry-ai}
 
 - Unified audit log: `CopilotInteraction`, DLP rule matches, and the admin events for policy changes. Route them to the security information and event management system with the rest of the Purview telemetry in [Chapter 10](10-audit-insider-risk-and-communication-compliance.md) and [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md).
 - DSPM activity explorer AI activities, reports and data risk assessment exports.
 - Insider Risk Management alerts from the risky AI usage policy, where available, to the triage path in [Chapter 10](10-audit-insider-risk-and-communication-compliance.md).
 - A detection in [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md)'s library for repeated sensitive-information pastes to AI sites by one user, alongside FMP-DET-06 for DLP override patterns.
 
-### Evidence {#evidence-ai}
+### Evidence {#b20-11-evidence-ai}
 
 **Evidence checklist**
 
@@ -314,7 +314,7 @@ One-click DLP policies roll back the same way in the DLP solution. A deleted DSP
 - [ ] **Exception:** approved AI sites and label exceptions in the exclusion register, with approver and expiry
 - [ ] **Assessor-ready artifact:** the data risk assessment export before and after remediation for each ring, and the closure-chain entry for the AI finding ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain))
 
-### Day-two ownership {#day-two-ownership-ai}
+### Day-two ownership {#b20-11-day-two-ownership-ai}
 
 The **policy owner** owns the list of approved AI apps and the labels excluded from Copilot, reviewed every quarter and whenever Microsoft adds a Copilot feature in the agency's cloud. The **platform owner** owns DSPM, the DLP policies and the monthly review of the default data risk assessment; each month's export goes into the evidence store. The **operator** runs policy changes through change control ([Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md)). The **security monitor** triages AI-related DLP and insider risk alerts. The **help desk** answers "Copilot won't summarize this file" with the label's explanation, not a workaround, using the user guidance in [Book 16](../b16-people/index.md). The **assessor** reads the evidence above. Drift looks like a Copilot DLP policy back in simulation, a one-click policy deleted, a new AI site appearing in visits with no decision, or the oversharing count rising between assessments. The full RACI is in [Chapter 12](12-operations-and-evidence.md#raci).
 

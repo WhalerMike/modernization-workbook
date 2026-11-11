@@ -41,11 +41,11 @@ This chapter is the Why. It argues that the first deliverable is a set of writte
 
 | State | This page | Evidence |
 |---|---|---|
-| Designed | [The authoritative data classes](#the-authoritative-data-classes), [The federal overlay decisions](#the-federal-overlay-decisions) | The class register and a signed decision record for each class ([template](#decision-record-template)) |
+| Designed | [The authoritative data classes](#b20-01-the-authoritative-data-classes), [The federal overlay decisions](#b20-01-the-federal-overlay-decisions) | The class register and a signed decision record for each class ([template](#decision-record-template)) |
 | Configured | Not applicable: this chapter configures nothing; the classes become labels in [Chapter 02](02-sensitivity-label-architecture.md) | — |
 | Enforced | Not applicable: enforcement is in Chapters 03 to 11 | — |
-| Evidenced | [Inventory: find where the data already is](#inventory-find-where-the-data-already-is) | The dated inventory export and its summary by class and location |
-| Operated | [Keeping the classes current](#keeping-the-classes-current) | The annual class review record and the inventory re-run |
+| Evidenced | [Inventory: find where the data already is](#b20-01-inventory-find-where-the-data-already-is) | The dated inventory export and its summary by class and location |
+| Operated | [Keeping the classes current](#b20-01-keeping-the-classes-current) | The annual class review record and the inventory re-run |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
@@ -61,7 +61,7 @@ Microsoft's sensitivity label is the mechanism that lets protection travel. It i
 
 NIST's control catalog draws the same line between knowing and protecting. AC-16 associates security and privacy attributes with information; MP-3 marks media with its distribution limitations and handling caveats; CM-12 asks the organization to identify and document where specified information is processed and stored; and RA-2 has it categorize the system and the information it processes, with the result documented and approved.[^c01-53] None of those is satisfied by a product setting. They begin with the agency deciding what its classes are. <!-- claims-ok: argues that settings alone don't satisfy the controls -->
 
-## The authoritative data classes {#the-authoritative-data-classes}
+## The authoritative data classes {#b20-01-the-authoritative-data-classes}
 
 A data class is the agency's name for a kind of information that needs one handling outcome. It is narrower than a FIPS 199 impact level, which applies to a whole information type or system, and broader than a sensitive information type, which is a pattern a classifier detects. The class register is the authoritative list. It has one row per class, and every later artifact (a label, a DLP rule, an auto-labeling policy, a retention label) cites the class it serves.
 
@@ -90,7 +90,7 @@ Each class needs a handling outcome that a control can enforce. "Sensitive" isn'
 
 Every class has a data owner: an official, not an administrator, who decides its handling and approves exceptions. The owner is the RACI's **policy owner** for that class ([Chapter 12](12-operations-and-evidence.md#raci)). The Purview administrators are the **platform owner** and **operator**; they configure what the owner decides and never decide it themselves. Typical owners are the CUI program manager for the CUI classes, the senior agency official for privacy for classes built on Privacy Act records ([Book 14, Chapter 08](../b14-compliance/08-privacy-pii-processing.md)), and the agency records officer for retention outcomes. A class whose owner has left is a class nobody can approve an exception for; the annual review below catches it.
 
-## The federal overlay decisions {#the-federal-overlay-decisions}
+## The federal overlay decisions {#b20-01-the-federal-overlay-decisions}
 
 A commercial tenant can choose any taxonomy. A federal agency inherits several decisions from law and policy, and the class register has to record each one explicitly, with its source, before Chapter 02 builds labels on it.
 
@@ -110,7 +110,7 @@ Two rules follow from 32 CFR Part 2002 and are worth stating where the classes a
 **Authority:** Mandated for CUI marking and handling (32 CFR Part 2002, §2002.20(b)); Mandated for categorization (FIPS 199, applied through RA-2). The way the register records them is the program's design.
 **Applies:** All federal tenants. Environment-dependent: a class whose authority requires a higher-impact environment (for example GCC High) can't be held in a tenant that lacks it, whatever the label says.
 
-## Inventory: find where the data already is {#inventory-find-where-the-data-already-is}
+## Inventory: find where the data already is {#b20-01-inventory-find-where-the-data-already-is}
 
 Classes are decided from authority; the inventory shows where the data already sits, so the rollout can start where the risk is. Microsoft Purview's data classification tools index Exchange, SharePoint, OneDrive and Teams content for sensitive information types, trainable classifier matches, sensitivity labels and retention labels. Content explorer (now also called data explorer) shows a snapshot of the items that carry a label or match a classifier, and the activity explorer shows what users did with them.[^c01-content-explorer][^c01-purview-sd] The structured data estate (SQL Server and other databases) is out of this inventory's reach; [Book 06](../b06-data-platform/index.md) carries the data platform's own inventory.
 
@@ -189,7 +189,7 @@ Counts in content explorer can take up to seven days to update, and up to 14 day
 
 Microsoft notes that the status on the government pages is subject to change.[^c01-gcc] Where the government pages list a feature as in development, the inventory for that workload uses the methods that are available and the decision record says so.
 
-## Keeping the classes current {#keeping-the-classes-current}
+## Keeping the classes current {#b20-01-keeping-the-classes-current}
 
 The classes change when the agency's authorities change: a new CUI category is added to the registry or adopted by the agency, a system of records notice is published, a records schedule is revised, or a mission adds a kind of data the register doesn't cover. Three practices keep the register honest.
 

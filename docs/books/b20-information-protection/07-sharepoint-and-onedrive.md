@@ -41,7 +41,7 @@ That is the setting this chapter turns on first, because without it the rest of 
 |---|---|---|
 | Designed | [Decide](#decide-integration-legacy-irm-and-co-authoring) | Decision record ([template](01-data-inventory-and-classification.md#decision-record-template)) for integration, PDF support, each IRM library's disposition and co-authoring |
 | Configured | [Label integration](#how-turn-on-label-integration-for-sharepoint-and-onedrive); [IRM inventory](#how-move-legacy-irm-libraries-to-sensitivity-labels) | `Get-SPOTenant` export; IRM library inventory |
-| Enforced | [Enforcement](#enforcement); [IRM enforcement](#enforcement-irm); [co-authoring](#enforcement-coauth) | Integration and PDF settings **True**; IRM disabled on migrated libraries; co-authoring on |
+| Enforced | [Enforcement](#enforcement); [IRM enforcement](#b20-07-enforcement-irm); [co-authoring](#b20-07-enforcement-coauth) | Integration and PDF settings **True**; IRM disabled on migrated libraries; co-authoring on |
 | Evidenced | [Validate](#validate-labeled-files-behave) | Test record with audit events for label applied, changed and removed |
 | Operated | [Day-two ownership](#day-two-ownership) | Monthly IRM library reconciliation; drift check on the tenant settings |
 
@@ -192,13 +192,13 @@ The **platform owner** (SharePoint) owns the tenant settings and runs the drift 
 
 SharePoint IRM is the older protection: it applies encryption and restrictions to files at the list or library level when they are downloaded, so that a downloaded file stays protected outside SharePoint.[^c07-irm] Learn describes three costs: documents in an IRM-enabled library can't be created or edited in Office in a browser, one person at a time downloads and edits, and collaboration falls back to check-in and check-out.[^c07-irm-setup] It also interacts badly with labels: a file uploaded with an encrypting label into an IRM library isn't processed, so co-authoring, eDiscovery, DLP and search don't work for it.[^c07-spo-labels] Labels carry the same protection, plus markings and the full set of usage rights, and travel with the file wherever it is stored.
 
-### Prerequisites {#prerequisites-irm}
+### Prerequisites {#b20-07-prerequisites-irm}
 
 - Label integration on (previous procedure).
 - For each library, an owner and a target label from [Chapter 02](02-sensitivity-label-architecture.md) whose permissions match what the IRM policy allowed (who can open, print, copy, and for how long).
 - **Inventory tooling.** No SharePoint Online Management Shell cmdlet reports IRM per library. The `IrmEnabled` property is on each list in the SharePoint client object model.[^c07-csom] The script below reads it with PnP PowerShell, a community-maintained module that isn't a Microsoft-supported product; the agency's change board approves its use, and it needs an app registration (`<app-id>`) with read access to the sites.
 
-### Pilot {#pilot-irm}
+### Pilot {#b20-07-pilot-irm}
 
 Inventory every site, then migrate one library whose owner volunteers. Run the inventory first (read-only):
 
@@ -221,11 +221,11 @@ $rows | Export-Csv -Path "<inventory-file>" -NoTypeInformation
 
 The pilot succeeds when the pilot library's files all carry the target label, owners can co-author them in the browser and desktop apps, and a downloaded file opens only for holders.
 
-### Report-only or audit phase {#audit-irm}
+### Report-only or audit phase {#b20-07-audit-irm}
 
 The inventory is the report-only phase: nothing changes until each library's owner signs its row. For each IRM library, record the IRM policy settings from **Library Settings > Information Rights Management** (the restriction on download, the policy title and the extra options), which Learn documents per library.[^c07-irm-apply]
 
-### Enforcement {#enforcement-irm}
+### Enforcement {#b20-07-enforcement-irm}
 
 Per library, in this order:
 
@@ -250,19 +250,19 @@ Per library, in this order:
 - **Backout triggers:** files found unlabeled after IRM was turned off; owners unable to open their own files.
 - **Post-change validation:** [Validate](#validate-labeled-files-behave), plus a download test from the migrated library.
 
-### Rollback {#rollback-irm}
+### Rollback {#b20-07-rollback-irm}
 
 Turn IRM back on for the library in **Library Settings > Information Rights Management**; the labels already applied stay on the files. Learn's coexistence rules then apply: files labeled with encryption keep the label's settings on download, and unencrypted Office and PDF files get the IRM restriction.[^c07-spo-labels] A site owner or SharePoint administrator can do it in minutes.
 
-### Exclusions {#exclusions-irm}
+### Exclusions {#b20-07-exclusions-irm}
 
 Libraries whose content the records officer says can't be relabeled (for example a closed records library under a hold) keep IRM, recorded in the exception register with the reason and a review date.
 
-### Telemetry {#telemetry-irm}
+### Telemetry {#b20-07-telemetry-irm}
 
 The inventory, rerun monthly, is the drift signal for IRM. Label audit events show the labeling progress per library.
 
-### Evidence {#evidence-irm}
+### Evidence {#b20-07-evidence-irm}
 
 **Evidence checklist**
 
@@ -272,7 +272,7 @@ The inventory, rerun monthly, is the drift signal for IRM. Label audit events sh
 - [ ] **Exception:** libraries left on IRM, with reason, approver and review date
 - [ ] **Assessor-ready artifact:** the migration register (library, owner, target label, date IRM turned off), linked to the four items above
 
-### Day-two ownership {#day-two-irm}
+### Day-two ownership {#b20-07-day-two-irm}
 
 The **policy owner** approves each library's target label; the **platform owner** runs the monthly inventory; site owners label their files. The program's metrics in [Chapter 12](12-operations-and-evidence.md#metrics) count IRM libraries remaining, not libraries migrated.
 
@@ -280,7 +280,7 @@ The **policy owner** approves each library's target label; the **platform owner*
 
 Without this setting, users must check out an encrypted document stored in SharePoint or OneDrive to edit it in a desktop app, or use Office for the web; with it, several people can edit the same encrypted document at once, and AutoSave works.[^c07-coauth]
 
-### Prerequisites {#prerequisites-coauth}
+### Prerequisites {#b20-07-prerequisites-coauth}
 
 The setting changes where Office saves labeling metadata for Word, Excel and PowerPoint files, and after it is on, labeling information for unencrypted files is no longer saved in custom properties.[^c07-coauth] Microsoft says not to enable it if any app, service, script or tool reads or writes labels in the old location, and lists the consequences: labeled documents appearing unlabeled or with an out-of-date label, co-authoring failing when another user has the file open in an app that doesn't support the new metadata, and Exchange mail flow rules that identify labels as custom properties of Office attachments failing or encrypting wrongly.[^c07-coauth] Check, and record in the decision record, each of these minimums from Learn:[^c07-coauth]
 
@@ -296,15 +296,15 @@ The setting changes where Office saves labeling metadata for Word, Excel and Pow
 
 Roles: at least DLP Compliance Management or Information Protection Admin; Security Administrator or Compliance Administrator also work.[^c07-coauth] Availability: co-authoring on encrypted documents is Available in GCC, GCC High and DoD.[^c07-gcc][^c07-gcch][^c07-dod] Co-authoring isn't supported for labels with expiry or Double Key Encryption, which the program keeps out of SharePoint anyway.[^c07-coauth]
 
-### Pilot {#pilot-coauth}
+### Pilot {#b20-07-pilot-coauth}
 
 The setting is tenant-wide, so the pilot is the inventory above: every row confirmed, with the owner of each third-party app or script that reads labels signing that it supports the new metadata.
 
-### Report-only or audit phase {#audit-coauth}
+### Report-only or audit phase {#b20-07-audit-coauth}
 
 Not applicable: there is no audit mode. The inventory replaces it.
 
-### Enforcement {#enforcement-coauth}
+### Enforcement {#b20-07-enforcement-coauth}
 
 Turn the setting on in the Microsoft Purview portal: **Settings > Solution settings > Information Protection > Co-authoring for files with sensitivity labels > Turn on co-authoring for files with sensitivity labels > Apply**, then wait 24 hours for it to replicate before relying on it.[^c07-coauth] Record the state from Security & Compliance PowerShell:
 
@@ -335,7 +335,7 @@ The connection URIs are the ones Learn gives for GCC High and DoD.[^c07-connect-
 - **Backout triggers:** labeled documents showing as unlabeled; a label-reading app failing after the switch.
 - **Post-change validation:** the co-authoring row of [Validate](#validate-labeled-files-behave).
 
-### Rollback {#rollback-coauth}
+### Rollback {#b20-07-rollback-coauth}
 
 The portal can't turn the setting off; only `Set-PolicyConfig -EnableLabelCoauth:$false` can, and it isn't clean: labeling information saved in the new location for unencrypted Word, Excel and PowerPoint files while the setting was on isn't copied back, so it is lost, and co-authoring for encrypted documents stops.[^c07-coauth] The program therefore treats this as a one-way change whose safety comes from the prerequisites, and keeps the rollback command for a service-wide failure only, decided by the policy owner:
 
@@ -343,15 +343,15 @@ The portal can't turn the setting off; only `Set-PolicyConfig -EnableLabelCoauth
 Set-PolicyConfig -EnableLabelCoauth:$false
 ```
 
-### Exclusions {#exclusions-coauth}
+### Exclusions {#b20-07-exclusions-coauth}
 
 None; the setting is tenant-wide. An app that can't be updated is a reason to delay the switch, recorded in the decision record, not an exclusion.
 
-### Telemetry {#telemetry-coauth}
+### Telemetry {#b20-07-telemetry-coauth}
 
 Label audit events (a rise in **Removed sensitivity label from file** after the switch is the warning sign) and help-desk tickets tagged for labels.
 
-### Evidence {#evidence-coauth}
+### Evidence {#b20-07-evidence-coauth}
 
 **Evidence checklist**
 
@@ -361,7 +361,7 @@ Label audit events (a rise in **Removed sensitivity label from file** after the 
 - [ ] **Exception:** apps delayed or retired because they can't read the new metadata
 - [ ] **Assessor-ready artifact:** the signed prerequisite inventory with the four items above
 
-### Day-two ownership {#day-two-coauth}
+### Day-two ownership {#b20-07-day-two-coauth}
 
 The **platform owner** keeps the label-reading app inventory current; any new tool that reads labels is checked against the MIP SDK minimum before it is approved.
 

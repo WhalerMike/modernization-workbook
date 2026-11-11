@@ -262,7 +262,7 @@ The metrics measure whether data is protected and whether the controls work, not
 
 Three cautions in reading them. A rising labeled share (M2) can mean better labeling or a looser sensitive information type; read it with M4. A low override rate (M5) is good only if M4 is high; a policy nobody overrides because it never fires is not working. And a metric that depends on a feature the tenant isn't licensed for, or that Learn doesn't list for its cloud, is reported as "not measured: licensing" or "not measured: environment", not as zero.
 
-### Day-two ownership {#day-two-ownership-ops}
+### Day-two ownership {#b20-12-day-two-ownership-ops}
 
 The platform owner owns the baseline, the drift run, the metrics and the evidence catalog, and reports the metrics monthly to the policy owner and quarterly to the authorizing official. The policy owner reviews the RACI and the cadence each year. The assessor reads the evidence catalog and the closure-chain entries at each reassessment. Drift in this chapter's own controls looks like a missed monthly export, a metric that stops updating, or an exception register with entries past expiry.
 

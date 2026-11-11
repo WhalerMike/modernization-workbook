@@ -37,11 +37,11 @@ The reference architecture for the book: the trust boundaries the data crosses a
 
 | State | This page | Evidence |
 |---|---|---|
-| Designed | [The taxonomy](#the-taxonomy-from-classes-to-labels), [Encryption settings](#encryption-settings) | The label design table, with a decision record per label ([template](01-data-inventory-and-classification.md#decision-record-template)) |
-| Configured | [How: build the taxonomy in a test tenant](#how-build-the-taxonomy-in-a-test-tenant) | `Get-Label` export from the test tenant, then from production, matched to the design table |
+| Designed | [The taxonomy](#b20-02-the-taxonomy-from-classes-to-labels), [Encryption settings](#b20-02-encryption-settings) | The label design table, with a decision record per label ([template](01-data-inventory-and-classification.md#decision-record-template)) |
+| Configured | [How: build the taxonomy in a test tenant](#b20-02-how-build-the-taxonomy-in-a-test-tenant) | `Get-Label` export from the test tenant, then from production, matched to the design table |
 | Enforced | Not applicable here: a label acts only once published, in [Chapter 03](03-label-publication-and-defaults.md) | — |
-| Evidenced | [Validate](#validate) | Test record: each label applied to a test item, with the marking and the encryption rights observed |
-| Operated | [Day-two ownership](#day-two-ownership) | Label change log; annual review against the class register |
+| Evidenced | [Validate](#b20-02-validate) | Test record: each label applied to a test item, with the marking and the encryption rights observed |
+| Operated | [Day-two ownership](#b20-02-day-two-ownership) | Label change log; annual review against the class register |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
@@ -70,7 +70,7 @@ The trust boundaries:
 
 Two design consequences follow. First, a label that doesn't encrypt protects nothing once the content leaves the tenant; it is a classification signal, which is enough for most classes and wrong for CUI Specified. Second, each plane has its own owner: the identity team owns the groups, the Purview platform owner owns the labels, the Rights Management service is owned with the tenant key, and the security monitor owns the audit routing. The RACI in [Chapter 12](12-operations-and-evidence.md#raci) assigns them.
 
-## The taxonomy: from classes to labels {#the-taxonomy-from-classes-to-labels}
+## The taxonomy: from classes to labels {#b20-02-the-taxonomy-from-classes-to-labels}
 
 Every label stands for one class in the register, and every class that users choose by hand becomes one label. The program's starting taxonomy is the one [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#mapping-cui-to-sensitivity-labels) derives from the CUI framework. In this book it is recorded as a design table with the settings each label needs:
 
@@ -88,8 +88,8 @@ Every label stands for one class in the register, and every class that users cho
 Four design choices are built into the table.
 
 - **Few labels, plain names.** Five main labels or fewer, each with five sublabels or fewer, is the point beyond which Microsoft reports that effectiveness drops noticeably; a tenant can hold far more, but users can't choose among them.[^c02-labels] A label name says what the content is (`CUI Basic`), not what to do with it.
-- **Separate labels for containers.** A label scoped only to Groups & sites isn't shown in Office apps and can't be applied to files, which keeps the file taxonomy short for users.[^c02-containers] The cost is a second list to order; [Container labels and priority](#container-labels-and-priority) below covers it.
-- **Category sublabels only where they are needed.** CUI Basic category markings are optional unless agency policy requires them, and Specified markings are mandatory ([Chapter 01](01-data-inventory-and-classification.md#the-federal-overlay-decisions)). A sublabel per category the agency doesn't use is noise.
+- **Separate labels for containers.** A label scoped only to Groups & sites isn't shown in Office apps and can't be applied to files, which keeps the file taxonomy short for users.[^c02-containers] The cost is a second list to order; [Container labels and priority](#b20-02-container-labels-and-priority) below covers it.
+- **Category sublabels only where they are needed.** CUI Basic category markings are optional unless agency policy requires them, and Specified markings are mandatory ([Chapter 01](01-data-inventory-and-classification.md#b20-01-the-federal-overlay-decisions)). A sublabel per category the agency doesn't use is noise.
 - **No expiry by default.** A label can expire encrypted content after a number of days; for records under a schedule, that is a records officer's decision, not a default ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#mapping-cui-to-sensitivity-labels)).
 
 **Authority:** Microsoft-recommended for keeping the number of labels small (Microsoft Learn, "Learn about sensitivity labels," accessed Nov 11, 2026). Mandated for the CUI banner markings (32 CFR Part 2002, §2002.20(b)). The rest of the table is risk-based recommended, the program's design.
@@ -99,7 +99,7 @@ Four design choices are built into the table.
 
 A label's scope decides which settings it can carry and where users see it. **Files & other data assets** is selected by default and covers Office, Loop and Power BI files; **Emails** is normally selected with it, because many labeling features need both; **Meetings** covers calendar events, Teams meeting options and Teams chat, and needs Files and Emails selected too; **Groups & sites** appears once labels are enabled for containers ([Chapter 04](04-teams-groups-and-sharepoint-containers.md)).[^c02-labels] Microsoft warns against removing the Files scope from an existing label, because configurations that rely on it (a SharePoint library's default label, for example) stop working; create a new email-only label instead.[^c02-office-apps]
 
-### Priority, label groups and the modern label scheme {#priority-label-groups-and-the-modern-label-scheme}
+### Priority, label groups and the modern label scheme {#b20-02-priority-label-groups-and-the-modern-label-scheme}
 
 Label order is priority. The least restrictive label sits at the top of the list and the most restrictive at the bottom. Priority decides what "downgrade" means when a policy requires a justification to lower a label, and which label wins when auto-labeling matches more than one.[^c02-labels] The design table's Priority column is therefore part of the design, not a display preference.
 
@@ -111,11 +111,11 @@ Two-tier hierarchies were built with parent labels and sublabels. Microsoft is r
 **Authority:** Microsoft-recommended (Microsoft Learn, "Migrate parent sensitivity labels to label groups," accessed Nov 11, 2026) for testing the migration in a test tenant first.
 **Applies:** All tenants; government-cloud rollout of the migration is not yet specified on the government planning pages.
 
-### Container labels and priority {#container-labels-and-priority}
+### Container labels and priority {#b20-02-container-labels-and-priority}
 
 When a labeled document is uploaded to a labeled site and the document's label has a higher priority than the site's, SharePoint doesn't block the upload; it raises a **Detected document sensitivity mismatch** audit event and emails the uploader and the site owners.[^c02-containers] That only works if the container labels sit in the same priority order as the file labels they correspond to. Microsoft advises, where container labels are separated from file labels, ordering the container labels before the labels scoped to files.[^c02-containers] The program orders `Internal site` below `Internal`, `CUI site` below `CUI Basic`, and `CUI Specified site` below the Specified sublabels, so a CUI Specified document in a CUI site raises the mismatch event, and [Chapter 10](10-audit-insider-risk-and-communication-compliance.md) turns it into a detection.
 
-## Encryption settings {#encryption-settings}
+## Encryption settings {#b20-02-encryption-settings}
 
 A label that encrypts grants usage rights to named users or groups, or lets the user assign them. The program's design:
 
@@ -145,7 +145,7 @@ Content markings are headers, footers and watermarks applied by Office apps. The
 
 Test markings against the agency's templates and forms before publishing, as Microsoft advises; a header that pushes a form's fields onto a second page is a help-desk ticket on day one.[^c02-labels]
 
-## Publishing policies {#publishing-policies}
+## Publishing policies {#b20-02-publishing-policies}
 
 A label does nothing until a label policy publishes it to users or groups. Policies decide who sees which labels and carry the defaults and mandatory-labeling settings that [Chapter 03](03-label-publication-and-defaults.md) configures. Policies are ordered too: a user in several policies gets all their labels, and for conflicting settings the policy with the highest order number wins.[^c02-labels] The program uses three policies:
 
@@ -159,7 +159,7 @@ A label does nothing until a label policy publishes it to users or groups. Polic
 
 Publishing CUI Specified sublabels only to their holders keeps the list short for everyone else, and anyone in the organization can still *see* the name of a label applied to content even if it isn't published to them.[^c02-labels] Allow up to 24 hours for a new or changed policy to reach users.[^c02-labels]
 
-## How: build the taxonomy in a test tenant {#how-build-the-taxonomy-in-a-test-tenant}
+## How: build the taxonomy in a test tenant {#b20-02-how-build-the-taxonomy-in-a-test-tenant}
 
 Label configuration has effects that can't be undone cleanly: a label applied to content keeps the version of its settings that was applied, deleting a label doesn't remove it from content, and label-group migration is irreversible.[^c02-labels][^c02-migrate] The program therefore builds the taxonomy in a test tenant from code ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#the-label-taxonomy-as-code) has the `New-Label` and `New-LabelPolicy` block), exports it, and promotes the same code to production.
 
@@ -194,7 +194,7 @@ Not applicable: a label has no audit mode. Its effect is observed by applying it
 
 Promote the same code to production, unpublished. Labels created in production aren't visible to users until a policy publishes them, so creating them is safe; publishing is the enforcement step, in Chapter 03.
 
-1. Connect to Security & Compliance PowerShell for the tenant's cloud (the commands are in [Chapter 01](01-data-inventory-and-classification.md#inventory-find-where-the-data-already-is)). Commands were checked against Microsoft Learn on Nov 11, 2026; run them against the test tenant first.
+1. Connect to Security & Compliance PowerShell for the tenant's cloud (the commands are in [Chapter 01](01-data-inventory-and-classification.md#b20-01-inventory-find-where-the-data-already-is)). Commands were checked against Microsoft Learn on Nov 11, 2026; run them against the test tenant first.
 2. Run the reviewed label script from source control. Then export what was created, with the date:
 
     ```powershell
@@ -240,7 +240,7 @@ None at this stage. Who sees which label is decided by the policies in [Chapter 
 
 Label creation and changes are recorded in the Purview audit log; [Chapter 10](10-audit-insider-risk-and-communication-compliance.md) has the search commands and [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md) the routing.
 
-### Validate {#validate}
+### Validate {#b20-02-validate}
 
 In the test tenant, for each label: apply it to a Word document, an email and a meeting invite (where scoped); confirm the header text; open the encrypted document as a member of the granted group (opens) and as a non-member (denied). Record the expected and observed result, the date and the tester.
 
@@ -254,9 +254,9 @@ In the test tenant, for each label: apply it to a Word document, an email and a 
 - [ ] **Exception:** any label that departs from the design (for example a category sublabel added at a data owner's request), with its decision record
 - [ ] **Assessor-ready artifact:** the design table and export, cited in the system security plan for AC-16 and MP-3, and the reference architecture figure for the boundary description
 
-### Day-two ownership {#day-two-ownership}
+### Day-two ownership {#b20-02-day-two-ownership}
 
-The **platform owner** owns the label configuration and its code; the **policy owner** of each class approves any change to its label; the **operator** runs the scripts; the **assessor** reviews the export at each assessment. Review the taxonomy against the class register annually, with the register review in [Chapter 01](01-data-inventory-and-classification.md#keeping-the-classes-current). Drift is any difference between the production export and source control ([Chapter 12](12-operations-and-evidence.md)). The full RACI is in [Chapter 12](12-operations-and-evidence.md#raci).
+The **platform owner** owns the label configuration and its code; the **policy owner** of each class approves any change to its label; the **operator** runs the scripts; the **assessor** reviews the export at each assessment. Review the taxonomy against the class register annually, with the register review in [Chapter 01](01-data-inventory-and-classification.md#b20-01-keeping-the-classes-current). Drift is any difference between the production export and source control ([Chapter 12](12-operations-and-evidence.md)). The full RACI is in [Chapter 12](12-operations-and-evidence.md#raci).
 
 ## Key takeaways
 

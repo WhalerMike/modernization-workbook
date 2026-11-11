@@ -39,11 +39,11 @@ Guest access itself, the partner route into the tenant and cross-tenant settings
 
 | State | This page | Evidence |
 |---|---|---|
-| Designed | [Container classes and their settings](#container-classes-and-their-settings), [Who may create containers](#who-may-create-containers) | Decision records for the container labels and for creation governance ([template](01-data-inventory-and-classification.md#decision-record-template)) |
-| Configured | [Enforcement](#enforcement), steps 1 to 4 | `Get-Label` export of each container label's settings; the directory setting export; the Conditional Access policy export |
-| Enforced | [Enforcement](#enforcement), steps 5 and 6 | Every site and team in scope carries a container label; the SharePoint site list export with the Sensitivity column |
-| Evidenced | [Validate](#validate) | Test record: guest add blocked, external share blocked, unmanaged device limited, mismatch event raised |
-| Operated | [Day-two ownership](#day-two-ownership) | Monthly unlabeled-container report, mismatch-event review, quarterly owner attestation |
+| Designed | [Container classes and their settings](#b20-04-container-classes-and-their-settings), [Who may create containers](#b20-04-who-may-create-containers) | Decision records for the container labels and for creation governance ([template](01-data-inventory-and-classification.md#decision-record-template)) |
+| Configured | [Enforcement](#b20-04-enforcement), steps 1 to 4 | `Get-Label` export of each container label's settings; the directory setting export; the Conditional Access policy export |
+| Enforced | [Enforcement](#b20-04-enforcement), steps 5 and 6 | Every site and team in scope carries a container label; the SharePoint site list export with the Sensitivity column |
+| Evidenced | [Validate](#b20-04-validate) | Test record: guest add blocked, external share blocked, unmanaged device limited, mismatch event raised |
+| Operated | [Day-two ownership](#b20-04-day-two-ownership) | Monthly unlabeled-container report, mismatch-event review, quarterly owner attestation |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
@@ -56,7 +56,7 @@ Two behaviors make container labels a governance tool rather than a suggestion:
 - **The privacy setting locks.** A label set to Public or Private sets and locks the container's privacy; it can be changed only by removing the label.[^c04-containers]
 - **Owners act through the label.** Some label options extend to site owners settings otherwise reserved for administrators: when a label carries external-sharing or authentication-context settings, an owner changes them by changing the label. Microsoft says not to configure those settings if site owners shouldn't be able to make such changes.[^c04-containers] The program keeps owners on a short, ordered list of container labels, so "changing the label" means moving to another approved set of settings, and a move to a less restrictive label is a monitored event.
 
-## Container classes and their settings {#container-classes-and-their-settings}
+## Container classes and their settings {#b20-04-container-classes-and-their-settings}
 
 | Setting | `Internal site` | `CUI site` | `CUI Specified site` | Source of the setting |
 |---|---|---|---|---|
@@ -76,14 +76,14 @@ What each setting does, from Learn:
 
 - **External sharing** offers anyone, new and existing guests, existing guests, or only people in the organization, the same choices as a site's own external-sharing setting.[^c04-containers] It can only tighten what the tenant allows: the tenant's SharePoint and Entra settings sit above it ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#labels-on-teams-groups-and-sites)).
 - **Unmanaged devices** uses SharePoint's app-enforced restrictions with Conditional Access. Without the Conditional Access policy the label setting has no effect, and it also has no effect if it is less restrictive than the tenant-level unmanaged-device setting; choose a label setting equal to or stricter than the tenant's.[^c04-containers]
-- **Authentication context** requires a Conditional Access authentication context already created and published; users of apps that don't support authentication contexts are denied access.[^c04-containers] It is listed with E5/G5-level plans and is on the engineering backlog in GCC, GCC High and DoD ([Prerequisites](#prerequisites)), so the program's design uses it only in a commercial tenant and leaves the setting off elsewhere, with the block on unmanaged devices as the compensating control.
+- **Authentication context** requires a Conditional Access authentication context already created and published; users of apps that don't support authentication contexts are denied access.[^c04-containers] It is listed with E5/G5-level plans and is on the engineering backlog in GCC, GCC High and DoD ([Prerequisites](#b20-04-prerequisites)), so the program's design uses it only in a commercial tenant and leaves the setting off elsewhere, with the block on unmanaged devices as the compensating control.
 - **Default sharing link** sets the scope and permission preselected when a user shares; users can override it, but typically don't. Where a site and a document both have a default, the more restrictive scope applies.[^c04-sharing-link]
 - **Members can share** is the label equivalent of the site-sharing permission setting in the SharePoint admin center (`MemberShareAll`, `MemberShareFileAndFolder`, `MemberShareNone`).[^c04-containers]
 
 **Authority:** Risk-based recommended (the program's position, for the risk of oversharing from containers whose sharing is set per site). Microsoft-recommended for the change-control cautions: test a new container label with a few users before publishing it to everyone, and don't change a published label's site and group settings after it has been applied (Microsoft Learn, "Use sensitivity labels to protect collaborative workspaces (groups and sites)," accessed Nov 11, 2026).
 **Applies:** License-dependent: container labels need group label support in Microsoft Entra ID, which needs at least one Microsoft Entra ID P1 license ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#labels-on-teams-groups-and-sites)); authentication contexts on labeled sites need E5/G5-level plans.[^c04-purview-sd] Environment-dependent: see the availability table.
 
-## Who may create containers {#who-may-create-containers}
+## Who may create containers {#b20-04-who-may-create-containers}
 
 Every team, Microsoft 365 group and group-connected site starts as a group. By default every user can create one, and Microsoft calls that the recommended approach, because people can start collaborating without waiting for IT.[^c04-creation] The program keeps self-service creation and governs it with labels instead: mandatory labeling for groups and sites ([Chapter 03](03-label-publication-and-defaults.md#mandatory-labeling-and-the-downgrade-justification)) means nothing is created without a label, and the default `Internal site` label means a new container starts private, guest-limited and shared by default only inside the agency.
 
@@ -91,7 +91,7 @@ Where an agency's risk assessment calls for it, creation can be limited to membe
 
 ## How: label the agency's containers
 
-### Prerequisites {#prerequisites}
+### Prerequisites {#b20-04-prerequisites}
 
 | Feature | Commercial | GCC | GCC High | DoD | Source |
 |---|---|---|---|---|---|
@@ -112,13 +112,13 @@ Where a cloud's status is "not yet specified", test the setting in that cloud's 
 
 ### Pilot
 
-The pilot is three new test sites and teams, one per container label, owned by the implementing team, plus five existing low-risk team sites whose owners volunteer. Success: each test case in [Validate](#validate) behaves as designed, and no owner of a pilot site reports a broken workflow in two weeks.
+The pilot is three new test sites and teams, one per container label, owned by the implementing team, plus five existing low-risk team sites whose owners volunteer. Success: each test case in [Validate](#b20-04-validate) behaves as designed, and no owner of a pilot site reports a broken workflow in two weeks.
 
 ### Report-only or audit phase
 
 Container labels have no audit mode. Two observation steps stand in for one. Before labeling existing sites, export each site's current sharing setting so the change in ring 3 is known in advance (step 5 below). The Conditional Access policy for unmanaged devices starts in **report-only** for the pilot users, and its report-only result is read in the sign-in log before it is turned on ([Book 04](../b04-access/index.md); [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)).
 
-### Enforcement {#enforcement}
+### Enforcement {#b20-04-enforcement}
 
 Commands were checked against Microsoft Learn on Nov 11, 2026; run them against a test tenant first. Placeholders: `<label-guid>` is a label's GUID from `Get-Label`; `<site-url>` a site's URL; `<tenant>` the tenant's SharePoint name.
 
@@ -174,7 +174,7 @@ Commands were checked against Microsoft Learn on Nov 11, 2026; run them against 
       Export-Csv ".\sites-before-$stamp.csv" -NoTypeInformation -Encoding UTF8
     ```
 
-    Data owners and site owners decide each site's container label from this list and the inventory in [Chapter 01](01-data-inventory-and-classification.md#inventory-find-where-the-data-already-is). A site with CUI and an `Anyone` sharing setting is a ring-3 priority.
+    Data owners and site owners decide each site's container label from this list and the inventory in [Chapter 01](01-data-inventory-and-classification.md#b20-01-inventory-find-where-the-data-already-is). A site with CUI and an `Anyone` sharing setting is a ring-3 priority.
 
 6. **Label existing sites**, one site or a batch from a reviewed CSV of `Url,Label` pairs:
 
@@ -197,7 +197,7 @@ Commands were checked against Microsoft Learn on Nov 11, 2026; run them against 
 
 | Ring | Scope | Exit criteria |
 |---|---|---|
-| 0 | Implementing team's three test sites | Every [Validate](#validate) case passes |
+| 0 | Implementing team's three test sites | Every [Validate](#b20-04-validate) case passes |
 | 1 | Pilot sites; Conditional Access policy in report-only for pilot users | Two weeks; report-only results read; no broken owner workflow |
 | 2 | New containers tenant-wide (the default label and mandatory labeling from Chapter 03 already apply); CUI-bearing existing sites | Two weeks; mismatch events triaged; help-desk volume within threshold |
 | 3 | All existing sites and teams; Conditional Access policy **On** | Unlabeled-container report at zero, or each remaining site on the exception list |
@@ -236,7 +236,7 @@ Each excluded site is listed in the exception register with its approver and rev
 - **Sign-in logs:** the Conditional Access policy's report-only and enforced results for unmanaged-device sessions.
 - **Detection:** [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md) alerts when a CUI-labeled site is relabeled to a less restrictive label, and on repeated mismatch events in one site.
 
-### Validate {#validate}
+### Validate {#b20-04-validate}
 
 This is the container half of CM-12's "labeled sample". On a `CUI site` and a `CUI Specified site`:
 
@@ -258,7 +258,7 @@ Record the expected and observed result, the date and the tester for each case, 
 - [ ] **Exception:** the excluded sites and accounts with approver and review date
 - [ ] **Assessor-ready artifact:** the site list showing each CUI-bearing site's label, tied to the class register and the decision records, cited from the AC-3, AC-4 and AC-21 implementation statements
 
-### Day-two ownership {#day-two-ownership}
+### Day-two ownership {#b20-04-day-two-ownership}
 
 The **platform owner** owns the container labels and the tenant sharing settings; **policy owners** decide which class each site holds; **site owners** keep their membership and guests current and attest quarterly, prompted by an access review ([Book 04](../b04-access/index.md)); the **operator** labels new batches and runs the monthly unlabeled-site report; the **security monitor** watches relabels and mismatch events; the **help desk** handles blocked-share and unmanaged-device calls with the [Book 15](../b15-day2-operations/index.md) script. Drift is a site without a label, a site whose sharing setting is looser than its label allows, or a container label whose settings differ from the export ([Chapter 12](12-operations-and-evidence.md)). The full RACI is in [Chapter 12](12-operations-and-evidence.md#raci).
 
