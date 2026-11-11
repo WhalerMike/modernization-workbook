@@ -150,7 +150,7 @@ AD FS access control policies and authorization rules become Entra ID assignment
 | Device trust level | The device filter or device state condition |
 | With specific claims in the request | Can't be migrated; redesign the requirement |
 
-Every group the rules name must be synced to Entra ID, with its membership checked, before the application cuts over.[^aD-stages] The tool's wizard carries over only the "Permit everyone" and "Permit specific groups" policies, skips groups that aren't synced, and creates no Conditional Access policies.[^aD-howto] Build the policies yourself, from the program's set in [Chapter 09](09-building-the-entra-target.md#the-policy-set), and run them report-only through the pilot.
+Microsoft's migration stages have every group the rules name synced to Entra ID, with its membership checked, before the application cuts over *(Microsoft-recommended)*.[^aD-stages] The tool's wizard carries over only the "Permit everyone" and "Permit specific groups" policies, skips groups that aren't synced, and creates no Conditional Access policies.[^aD-howto] Build the policies yourself, from the program's set in [Chapter 09](09-building-the-entra-target.md#the-policy-set), and run them report-only through the pilot.
 
 ## Step 5: Claims, tokens and signing keys in Entra ID
 
@@ -264,6 +264,67 @@ AD FS retires, in Chapter 10's Phase 9, when all of these are true:
 5. The configuration, the rule files and the final counts are committed to the baseline repository.
 
 Keep the farm restorable for 90 days after decommission, as Phase 9 does, because re-federating a domain needs it.[^aD-federation-migration]
+
+## Rollout safety and evidence {#b02-appd-rollout-safety-and-evidence}
+
+Steps 1 to 7 are the procedure; this section adds what the workbook's How template asks of every procedure that enforces something ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)). The control here is that an application's sign-in, and the access rules that guard it, move from the farm to Entra ID, where Conditional Access and the program's authentication strengths apply.
+
+**Authority:** Microsoft-recommended: the four migration stages, testing before cutover, keeping the relying party trust to roll back, and disabling it before removing it (Learn pages cited in Steps 4 to 6). The 30-day measurement window and the retirement criteria are risk-based recommended, the program's position for the risk of retiring a farm that still issues tokens.
+**Applies:** every tenant with an AD FS farm. Environment-dependent: the migration tool is not yet specified for GCC High and DoD ([Availability in government clouds](#availability-in-government-clouds)); the read-only inventory works in every cloud.
+
+| Subsection | Where it is |
+|---|---|
+| Prerequisites | [Availability in government clouds](#availability-in-government-clouds); Step 4's synced groups; Step 5's claims and certificates settled |
+| Pilot | Step 6's test instances, first against a test tenant where one exists, then against the production tenant with a pilot group assigned |
+| Report-only or audit phase | The application's Conditional Access policies run report-only through the pilot (Step 4); Step 7's 1200 counts are the audit of what still uses the farm |
+| Enforcement | Production cutover per application, then the relying party trust disabled (Step 6) |
+| Rollback | `Enable-AdfsRelyingPartyTrust` and point the application back; the trust is kept until 30 days of zero 1200 events (Step 6) |
+| Exclusions | Relying parties on a dated exception with an owner and the authorizing official's acceptance (Retirement criteria). The Conditional Access policies built in Step 4 exclude the emergency access group like every other blocking policy |
+| Telemetry | AD FS events 1200 and 1202 on every server (Step 7); Entra ID sign-in logs for the migrated application |
+| Evidence | The checklist below |
+| Day-two ownership | Each migrated application's owner, named in the inventory, owns its SAML signing certificate renewal (Step 5); identity engineering owns the farm until the retirement criteria are all true, and the monthly 1200 counts |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Test instance against a test tenant, or the identity team on a test instance against production | Test SAML Settings, or consent check, passes; claims match the AD FS token |
+| 1 | Pilot group assigned to the production application on Entra ID | A week of pilot sign-ins without a claim or access error; Conditional Access report-only results read |
+| 2 | Everyone assigned; relying party trust disabled | No 1200 events for the relying party; help desk volume for the application at baseline |
+| 3 | Trust removed after 30 days of zero 1200 events | The counts recorded in the inventory |
+
+- **Emergency access:** the emergency accounts don't sign in through AD FS; confirm they are excluded from the application's blocking policies.
+- **Change window:** each production cutover is a scheduled change with the application owner on hand, agreed with the application's own release calendar.
+- **Backout triggers, set before the change:** the application rejects Entra ID tokens (signature, issuer or claim errors), assigned users can't reach it, or a dependent integration fails. The response is the Rollback row above, which takes minutes while the trust exists.
+- **Post-change validation:** a pilot user and a user outside the assignment each sign in; the first succeeds with the expected claims, the second is refused; the sign-in log shows the Conditional Access result.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | Steps 1 to 3: inventory, rule reading, the plan for each relying party | The inventory and claim-rule files in Git |
+| Configured | Steps 4 and 5: assignments, policies in report-only, claims, certificates | The application's configuration export and policy exports |
+| Enforced | Step 6: production cutover and the trust disabled | The disabled trust, policy exports in the enforcing state, the exception list |
+| Evidenced | Post-change validation and Step 7's counts | Test records and the 30-day 1200 counts |
+| Operated | Certificate renewal owners; Retirement criteria | Certificate expiries in the inventory; the retirement record |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the relying-party inventory and claim-rule files, each migrated application's single sign-on configuration and its Conditional Access policy exports, in the baseline repository
+- [ ] **Operational:** the monthly 1200 counts per relying party from every server, and the migrated applications' sign-in logs
+- [ ] **Test:** each application's post-change validation record (expected and observed outcome, date, tester)
+- [ ] **Exception:** every relying party on a dated exception, with its owner, the authorizing official's acceptance and its end date
+- [ ] **Assessor-ready artifact:** the retirement record: the final counts, the empty inventory and the farm's decommission change, traceable to the four above
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping {#b02-appd-assessment-mapping}
+- **Microsoft Zero Trust pillar:** Identity, with Apps for the migrated applications
+- **CISA ZTMM pillar:** Identity; Applications and Workloads
+- **Depends on:** Identity, for synced groups and the authentication strengths; Infrastructure, for the farm's Tier 0 servers until they retire
+- **Attack chain interrupted:** Credential Access and Persistence: forged tokens from a stolen farm signing key, and sign-ins that bypass Conditional Access because a farm, not Entra ID, vouches for them
+:::
 
 ## Requirements this appendix supports
 

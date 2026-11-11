@@ -7616,13 +7616,14 @@ pages:
   ms_date: '2026-07-27'
   ms_topic: how-to
   description: Learn how to cancel in-progress or queued workflow runs in Lifecycle Workflows to prevent the impact of automation errors and misconfigurations.
-  coverage: covered-uncited
+  coverage: cited
   note: Lifecycle Workflows design and operation; joiner/mover/leaver chapter and labs cover it without linking this page
   workbook:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
 - path: docs/id-governance/catalog-access-reviews-access-packages.md
   url: https://learn.microsoft.com/entra/id-governance/catalog-access-reviews-access-packages
   title: Include access packages in catalog access reviews (preview)
@@ -17526,8 +17527,10 @@ pages:
   - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b03-hr-identity/12-execution-plan.md
   - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
+  - docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/05-applications-and-workload-identities.md
@@ -18491,9 +18494,10 @@ pages:
   ms_date: '2025-03-04'
   ms_topic: troubleshooting
   description: Learn how to troubleshoot Microsoft Entra Password Protection for an on-premises Active Directory Domain Services environment
-  coverage: not-covered
+  coverage: cited
   note: Entra Password Protection (cloud and on-premises DC agent, banned list) is not covered.
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/10-migrating-and-governing.md
 - path: docs/identity/authentication/howto-password-smart-lockout.md
   url: https://learn.microsoft.com/entra/identity/authentication/howto-password-smart-lockout
   title: Prevent Attacks Using Smart Lockout
@@ -28646,6 +28650,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
   - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
   - docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md
@@ -28662,6 +28667,7 @@ pages:
   - data/decisions.yml
   - data/source-register.json
   - docs/about/decision-register.md
+  - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   - docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md
   - docs/reference/source-register.md
   - examples/dynamic-rules/README.md

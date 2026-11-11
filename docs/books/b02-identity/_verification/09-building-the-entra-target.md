@@ -312,3 +312,13 @@ Added for the Zero Trust Assessment closure update (B02-01, B02-02). Each row us
 | Z17 | Workload-identity location policy: select service principals directly; Block only; Workload ID Premium | Report-only phase | verified | Learn, Conditional Access for workload identities | Nov 11, 2026 |
 | Z18 | Three Connect account recommendations, preview | Telemetry | verified | Learn, What are Microsoft Entra recommendations? | Nov 11, 2026 |
 | Z19 | KQL alert rules, alert test by on-demand rotation, rings, day-two cadence | Telemetry; Enforcement; Day-two | restated-as-design | Program design | Nov 11, 2026 |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | PIM standards: authority labels; rollout, rings, evidence and control states kept in Book 04 (Appendix B, Chapter 08, privileged access guide) | PIM configuration standards | restated-as-design (cross-reference) | Book 04 | Nov 11, 2026 |
+| P4-2 | Emergency access reference architecture, evidence and control states in Book 04, Chapter 04 | Emergency access accounts | restated-as-design (cross-reference) | Book 04 | Nov 11, 2026 |
+| P4-3 | CA testing and rollout: authority label; change safety, rollback, evidence and control states in Book 04, Chapter 07; Microsoft's one-week report-only is a deployment tip | Testing and rollout | restated-as-design (cross-reference; Book 04 carries the Learn source) | Book 04, Chapter 07 | Nov 11, 2026 |

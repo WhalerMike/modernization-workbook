@@ -61,3 +61,11 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | 6 | Section 508 covers ICT federal employees use | Scope | verified | 29 U.S.C. §794d(a)(1)(A)(i) |
 | 7 | CSF 2.0 six Functions and definitions | CSF table | verified (quoted) | NIST CSWP 29 §2 |
 | 8 | Function-to-book primary homes; RECOVER thinnest | CSF table | restated-as-design (workbook reading) | Book landing pages; B14 Ch06 |
+
+## Zero Trust closure update, Phase 4 (Nov 11, 2026)
+
+Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-states-and-evidence.md) applied to this page's procedure sections: control states, How-template gaps, authority labels, evidence checklist, change safety and assessment mapping. Product claims below were re-read on Microsoft Learn on Nov 11, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Twenty topic books (B00–B18 and B20) and the developer workbook, Book 19; Book 20 added November 2026 as a draft; map figure re-rendered with Book 20 in amber | Twenty topic books; figure | verified against the Books page (docs/books/index.md) | Repository | Nov 11, 2026 |
