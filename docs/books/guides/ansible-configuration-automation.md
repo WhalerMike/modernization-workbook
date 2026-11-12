@@ -305,7 +305,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** not applicable to sign-in. The way back to a host is the platform's own break-fix access, kept outside the controller so a bad run can't remove it *(design guidance)*.
 - **Change window:** go-live per platform through the platform owner's change control (Phase 3), with the playbook's pull request as the change record.
-- **Backout triggers:** set before the run: the first failure in a batch (`any_errors_fatal`, or `max_fail_percentage` exceeded), a service failure on a canary host, or a second run that still reports changes.
+- **Backout triggers:** set before the run: the first failure in a batch (`any_errors_fatal`, or `max_fail_percentage` exceeded), a service failure on a canary host, or a second run that still reports changes *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the same playbook in check mode after each ring, and the second-run test.
 
 ::: {.callout-note appearance="simple"}

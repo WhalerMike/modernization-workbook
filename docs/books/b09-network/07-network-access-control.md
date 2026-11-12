@@ -239,7 +239,7 @@ For assessors, the program keeps RADIUS accounting exports (90 days, per the age
 | 2 | A region's sites, wired then wireless | No production outage; help desk ticket volume back to baseline within a week |
 | 3 | Every site, then IoT segmentation | The rogue-device tabletop passed; every MAB class registered |
 
-- **Emergency access:** every switch keeps an out-of-band management path that doesn't depend on 802.1X or RADIUS, and the behavior when every RADIUS server is unreachable is set and tested per vendor before ring 1, so a RADIUS outage doesn't quarantine a site *(design guidance; the setting's name and default differ by vendor)*.
+- **Emergency access:** every switch keeps an out-of-band management path that doesn't depend on 802.1X or RADIUS, and the behavior when every RADIUS server is unreachable is set and tested per vendor before ring 1, so a RADIUS outage doesn't quarantine a site *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150); the setting's name and default differ by vendor)*.
 - **Change window:** enforcement at a site is a normal change approved by the network owner, scheduled outside the site's core hours with on-site or remote hands available.
 - **Backout triggers:** a critical device class losing connectivity, more than a small, pre-agreed share of managed devices in remediation or quarantine in the first hour, or RADIUS response time above the switch timeout.
 - **Post-change validation:** after each ring, a managed compliant device lands in production, a noncompliant one in remediation, an unknown one in quarantine, and an approved IoT device in its segment.

@@ -713,7 +713,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** not applicable: no sign-in is restricted.
 - **Change window:** the change record that approves each plan's SHA-256, with the cloud platform lead on hand for G1 and the service desk for G6.
-- **Backout triggers:** remediation that fails or reaches subscriptions outside scope; duplicate tasks on a re-run; tasks sent to the wrong assignment group.
+- **Backout triggers:** remediation that fails or reaches subscriptions outside scope; duplicate tasks on a re-run; tasks sent to the wrong assignment group *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** G1's and G6's **Validate** steps, after each ring.
 
 The guide addresses no Zero Trust Assessment test family, so it carries no assessment-mapping block; its requirements are SA-9, SI-5, CM-3, CP-2 and CA-7, in each gate's table.

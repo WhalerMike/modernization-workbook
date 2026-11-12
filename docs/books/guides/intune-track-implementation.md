@@ -479,7 +479,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** the compliant-device Conditional Access policies exclude the emergency access group, as Book 04 requires of every policy that blocks or restricts sign-in ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts)); VK-CA-01 checks it.
 - **Change window:** each wave is its own change, with the help desk briefed and re-enable owners named in the entry criteria ([Step 5.1](#step-5.1-the-runbook-for-one-wave)).
-- **Backout triggers:** set per wave before it starts: a policy breaking an application, a rise in attributable tickets, unplanned membership changes in VK-DG-05, or a population blocked by compliant-device enforcement ([Step 5.2](#step-5.2-rollback)) *(design guidance)*.
+- **Backout triggers:** set per wave before it starts: a policy breaking an application, a rise in attributable tickets, unplanned membership changes in VK-DG-05, or a population blocked by compliant-device enforcement ([Step 5.2](#step-5.2-rollback)) *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the wave's exit criteria after each ring.
 
 ::: {.callout-note appearance="simple"}

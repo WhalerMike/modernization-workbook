@@ -486,7 +486,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** not applicable to Entra sign-in (no step blocks one). The break-glass holders of Owner or Contributor on Arc scopes ([6.1](#azure-rbac-at-scope)) are the way back for a policy or role change, and are tested before wave 1 *(design guidance)*.
 - **Change window:** each wave and each switch of a policy to `Default` is its own change record, in the owning team's maintenance window, with the server platform owner on hand *(design guidance)*.
-- **Backout triggers:** set before the change, for example a legitimate connect denied by a tag policy, a service failure on a hardened build after a baseline assignment, or servers disconnected in the wave *(design guidance)*.
+- **Backout triggers:** set before the change, for example a legitimate connect denied by a tag policy, a service failure on a hardened build after a baseline assignment, or servers disconnected in the wave *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the gate's **Validate** step for the wave, run after each ring.
 
 ::: {.callout-note appearance="simple"}

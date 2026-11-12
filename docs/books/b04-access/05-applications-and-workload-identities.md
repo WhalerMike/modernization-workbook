@@ -229,7 +229,7 @@ Get-MgServicePrincipal -All -Property 'id,appId,displayName' | ForEach-Object {
 } | Export-Csv (Join-Path $OutDir 'application-grants.csv') -NoTypeInformation
 ```
 
-The certification sample, a program design: every application permission and every tenant-wide delegated grant to a permission not classified Low is certified each year by the application owner (the annual review in [Chapter 06](06-who-decides-access.md#review)); each quarter the IGO also draws a random sample of 25 user-consent grants, or all of them if there are fewer, and the owner of each app certifies or revokes. A grant to an app with no owner, or from an unverified publisher outside the agency, is revoked unless an owner is assigned within 30 days.
+The certification sample, the program's settled position ([WD-147](../../about/decision-register.md#wd-147), risk-based recommended): every application permission and every tenant-wide delegated grant to a permission not classified Low is certified each year by the application owner (the annual review in [Chapter 06](06-who-decides-access.md#review)); each quarter the IGO also draws a random sample of 25 user-consent grants, or all of them if there are fewer, and the owner of each app certifies or revokes. A grant to an app with no owner, or from an unverified publisher outside the agency, is revoked unless an owner is assigned within 30 days.
 
 **Evidence checklist**
 

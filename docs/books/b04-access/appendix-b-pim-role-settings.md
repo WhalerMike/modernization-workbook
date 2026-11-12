@@ -31,7 +31,7 @@ The values are the program's design. The ranges and behaviors they sit inside ar
 | `c1` | Authentication context `FMP-PIM-Activation`, enforced by Conditional Access policy `PIM-Activation-c1`: authentication strength `FMP-Privileged-SeparateDevice`, compliant device, sign-in frequency every time ([Chapter 08](08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)) |
 | `PIM-Approvers-T0` | Approvers for Tier 0 activations, drawn from the security office; no member is eligible for a Tier 0 role |
 | `PIM-Approvers-T1` | Approvers for Tier 1 activations, drawn from identity engineering leads and the security office; no member is eligible for any Tier 1 role |
-| `PIM-Approvers-T2` | Used only for a Tier 2 role whose risk acceptance has been withdrawn, so that it requires approval |
+| `PIM-Approvers-T2` | Approvers for the Tier 2 roles that require approval: Tenant Creator, and any Tier 2 role whose risk acceptance has been withdrawn |
 | `PRV-<tier>-<role>[-<scope>]` | The name of the role-assignable group that holds a role ([Chapter 04](04-privileged-roles-and-tiers.md#role-assignable-groups)). The scope is left out for a tenant-wide role and is the administrative unit (`<AU>`) for a Tier 2 role |
 | SOC mailbox | The security operations distribution list that receives every activation alert |
 | Eligible to | The role-assignable group that holds the eligible assignment ([Chapter 04](04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)) |
@@ -92,8 +92,11 @@ These roles are assigned at administrative-unit scope wherever the role supports
 | Helpdesk Administrator | 8 hours | Not required; risk acceptance on file | Required | 180 days | `PRV-T2-HelpdeskAdmin-<AU>` |
 | Password Administrator | 8 hours | Not required; risk acceptance on file | Required | 180 days | `PRV-T2-PasswordAdmin-<AU>` |
 | Authentication Administrator | 8 hours | Not required; risk acceptance on file | Required | 180 days | `PRV-T2-AuthAdmin-<AU>` |
+| Tenant Creator | 8 hours | Required: `PIM-Approvers-T2` | Required | 180 days | `PRV-T2-TenantCreator` |
 
-The risk acceptance rests on three compensating facts: the assignment is scoped to an administrative unit, these roles can't change the credentials of members of role-assignable groups,[^aB-roles-ref] and every activation still passes `c1` and is alerted to the SOC. Microsoft recommends approval for eligible assignments in groups used to elevate into roles, because otherwise someone who can reset an eligible user's credentials could activate on their behalf;[^aB-rag] if an agency's help desk can reset the credentials of Tier 2 administrators, withdraw the risk acceptance and require `PIM-Approvers-T2`.
+**Tenant Creator** is the one Tier 2 role that is tenant-wide and requires approval. It is the program's settled position ([WD-146](../../about/decision-register.md#wd-146), *program decision*): eligible only, never active, approval required, on the route [Chapter 09](09-access-governance.md#tenant-creation) sets out. The role lets its holder create tenants even when non-admin tenant creation is restricted, and the creator becomes Global Administrator of the new tenant, so an activation that no one approved would put a new, ungoverned tenant outside every policy in this book.[^aB-roles-ref] It has no administrative-unit scope, so its group carries no `<AU>` suffix.
+
+For the other Tier 2 roles, the risk acceptance rests on three compensating facts: the assignment is scoped to an administrative unit, these roles can't change the credentials of members of role-assignable groups,[^aB-roles-ref] and every activation still passes `c1` and is alerted to the SOC. Microsoft recommends approval for eligible assignments in groups used to elevate into roles, because otherwise someone who can reset an eligible user's credentials could activate on their behalf;[^aB-rag] if an agency's help desk can reset the credentials of Tier 2 administrators, withdraw the risk acceptance and require `PIM-Approvers-T2`.
 
 ## Read-only
 
@@ -142,7 +145,7 @@ Each role review is paired with a membership review of its `PRV-*` group, becaus
 | Conditional Access Administrator | 8 hours, no approval | 4 hours, approval by `PIM-Approvers-T0` | Can weaken the activation gate itself ([Chapter 04](04-privileged-roles-and-tiers.md#the-programs-privilege-tiers)) |
 | Exchange, SharePoint, Intune, Application and Compliance Administrator | No approval | Approval by `PIM-Approvers-T1` | Tier 1: service-wide control |
 | Teams, Cloud Application, Hybrid Identity and Authentication Policy Administrator | Not in Chapter 09's table | Eligible only; approval by `PIM-Approvers-T1`, 8 hours, ticket required (Tier 1 table above) | Tier 1: service-wide control, application credentials, the synchronization bridge to AD, or the tenant's authentication methods policy[^aB-roles-ref] |
-| Privileged Authentication Administrator (Tier 0); Helpdesk Administrator and Password Administrator (Tier 2); Reports Reader (read-only) | Not in Chapter 09's table | The values in this appendix's tier tables above | Book 02's table doesn't list these roles, so this appendix sets their values |
+| Privileged Authentication Administrator (Tier 0); Helpdesk Administrator, Password Administrator and Tenant Creator (Tier 2); Reports Reader (read-only) | Not in Chapter 09's table | The values in this appendix's tier tables above | Book 02's table doesn't list these roles, so this appendix sets their values |
 | Ticket on activation | Global, Privileged Role and Exchange Administrator only | Every Tier 0, 1 and 2 role | Ticket correlation in the ITSM is how activations are reconciled to approved work |
 | Security Reader, Global Reader | 12 hours, no justification | 8 hours, justification required | Privileged-labeled read access gets a recorded reason |
 | Eligibility expiry | At most 12 months | 90, 180 or 365 days by tier | Within Book 02's ceiling |
@@ -173,6 +176,7 @@ Template IDs are immutable and the same in every tenant; Graph uses them to find
 | Helpdesk Administrator | T2 | Yes | `729827e3-9c14-49f7-bb1b-9608f156bbb8` |
 | Password Administrator | T2 | Yes | `966707d0-3269-4727-9be2-8c3a10f19b9d` |
 | Authentication Administrator | T2 | Yes | `c4e39bd9-1100-46d3-8c65-fb160da0071f` |
+| Tenant Creator | T2 | No | `112ca1a2-15ad-4102-995e-45b0bc479a6a` |
 | Global Reader | Read-only | Yes | `f2ef992c-3afb-46b9-b7cf-a126ee74c451` |
 | Security Reader | Read-only | Yes | `5d6b6bb7-de71-4623-b4af-96380a352509` |
 | Reports Reader | Read-only | No | `4a5d8f65-41da-4de4-8968-e035b65339cf` |
@@ -372,7 +376,7 @@ For a Tier 2 role whose approval has been risk-accepted, set `isApprovalRequired
 [^aB-privileged]: Microsoft Learn, "Privileged roles and permissions in Microsoft Entra ID (preview)," <https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions> (accessed Oct 20, 2026).
 [^aB-pim-groups]: Microsoft Learn, "Privileged Identity Management (PIM) for Groups," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/concept-pim-for-groups> (accessed Oct 20, 2026).
 [^aB-rag]: Microsoft Learn, "Use Microsoft Entra groups to manage role assignments," <https://learn.microsoft.com/entra/identity/role-based-access-control/groups-concept> (accessed Oct 20, 2026).
-[^aB-roles-ref]: Microsoft Learn, "Microsoft Entra built-in roles," <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Oct 21, 2026).
+[^aB-roles-ref]: Microsoft Learn, "Microsoft Entra built-in roles," <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Oct 21, 2026; Tenant Creator section and template ID read Nov 11, 2026).
 [^aB-email]: Microsoft Learn, "Email notifications in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-email-notifications> (accessed Oct 20, 2026).
 [^aB-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> (accessed Oct 21, 2026).
 [^aB-update-rules]: Microsoft Learn, "Update rules in PIM by using Microsoft Graph," <https://learn.microsoft.com/graph/how-to-pim-update-rules> (accessed Oct 20, 2026).

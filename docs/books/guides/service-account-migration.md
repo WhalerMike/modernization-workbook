@@ -172,7 +172,7 @@ Before you create it:
 
 - **The name is unique in the forest,** not just the domain; a duplicate fails even in another domain.[^sam-gmsa-manage]
 - **The password interval is set only now.** It defaults to 30 days and can't be changed later; to change it, create a new gMSA.[^sam-gmsa-manage] [^sam-understand]
-- **Who creates it.** Domain Admins, or an account delegated the right to create `msDS-GroupManagedServiceAccount` objects; Account Operators can't by default.[^sam-gmsa-manage] [^sam-containers] Which of the two the program uses is an open question ([below](#questions)); Chapter 06's write path today names either.
+- **Who creates it.** Domain Admins, or an account delegated the right to create `msDS-GroupManagedServiceAccount` objects; Account Operators can't by default.[^sam-gmsa-manage] [^sam-containers] The program uses the delegated right, not Domain Admins: a program decision, settled as [WD-154](../../about/decision-register.md#wd-154) ([below](#questions)). Chapter 06's write path today still names either; until it names the delegated group, run it under an account that holds only the delegated right.
 - **Retrievers are a group.** Learn recommends a security group of the hosts; the hosts in it are the gMSA's blast radius.[^sam-gmsa-manage]
 
 Create the hosts' group and add the hosts, as Learn's containers page does:[^sam-containers]
@@ -182,13 +182,13 @@ New-ADGroup -Name "<hosts-group>" -SamAccountName "<hosts-group>" -GroupScope Do
 Add-ADGroupMember -Identity "<hosts-group>" -Members "<host>$"
 ```
 
-Create the gMSA with AES only, which the overview says to always configure for managed service accounts:[^sam-gmsa-overview]
+For a workload that holds an SPN, create the gMSA with AES only, which the overview says to always configure for managed service accounts:[^sam-gmsa-overview]
 
 ```powershell
 New-ADServiceAccount -Name <gmsa-name> -DNSHostName <gmsa-name>.<domain-fqdn> -PrincipalsAllowedToRetrieveManagedPassword <hosts-group> -KerberosEncryptionType AES256
 ```
 
-If the service only makes outbound connections and nothing authenticates to it, Learn's variant restricts it to outbound authentication (here with the default 30 days, stated):[^sam-gmsa-manage]
+For a workload that holds no SPN, the program's default is Learn's outbound-only variant, which restricts the gMSA to outbound authentication (here with the default 30 days, stated); record the choice in `kerberos-replatform.csv`. This is a program decision, settled as [WD-154](../../about/decision-register.md#wd-154); a no-SPN gMSA created without the restriction needs a recorded reason, such as a service that something authenticates to without an SPN of its own:[^sam-gmsa-manage]
 
 ```powershell
 New-ADServiceAccount -Name <gmsa-name> -DNSHostName <gmsa-name>.<domain-fqdn> -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword <hosts-group> -KerberosEncryptionType AES256
@@ -477,7 +477,7 @@ Get-ReceiveConnector "<connector-name>" | Add-ADPermission -User "NT AUTHORITY\A
 Get-ADPermission "<connector-name>" -User "NT AUTHORITY\ANONYMOUS LOGON" | where {($_.Deny -eq $false) -and ($_.IsInherited -eq $false)} | Format-Table User,ExtendedRights
 ```
 
-**Expected:** only the workload's hosts in `RemoteIpRanges`, and `ANONYMOUS LOGON` holding `Ms-Exch-SMTP-Accept-Any-Recipient`. The relay identifies nothing but an IP address, so it is the weakest path here; record each host's address in the identity's record and review the connector's range with the identity *(design guidance)*.
+**Expected:** only the workload's hosts in `RemoteIpRanges`, and `ANONYMOUS LOGON` holding `Ms-Exch-SMTP-Accept-Any-Recipient`. The relay identifies nothing but an IP address, so it is the weakest path here; record each host's address in the identity's record and review the connector's range with the identity *(design guidance)*. Of the two relay methods, this IP-restricted anonymous relay is the program's preferred one, a settled position ([WD-150](../../about/decision-register.md#wd-150)).
 
 **Rollback (M2).** `Remove-ReceiveConnector -Identity "<connector-name>"`.
 
@@ -545,7 +545,7 @@ On an Arc-enabled host, the workload gets its Graph token from the Arc agent's l
 | Case | What Learn says | What it means here |
 |---|---|---|
 | Kerberos delegation on a gMSA | The *Delegation* tab doesn't appear for managed service accounts; set `userAccountControl` and `msDS-AllowedToDelegateTo` with `Set-ADAccountControl` and `Set-ADServiceAccount`, never both delegation flags together[^sam-kcd] | Constrained delegation only; unconstrained delegation is a finding, and it stops working on a dMSA |
-| Windows containers | A container can't be domain-joined but can run as a gMSA through a credential spec (`New-CredentialSpec`); create separate gMSAs for development, test and production; the gMSA's name becomes the container's name on the network; containers register no SPNs, so add at least a host SPN; a non-domain-joined host retrieves the password through a `ccg.exe` plug-in and a standard user account kept in a secret store[^sam-containers] | The non-domain-joined pattern brings back a stored password, for the portable user account; see the question for the program owner below |
+| Windows containers | A container can't be domain-joined but can run as a gMSA through a credential spec (`New-CredentialSpec`); create separate gMSAs for development, test and production; the gMSA's name becomes the container's name on the network; containers register no SPNs, so add at least a host SPN; a non-domain-joined host retrieves the password through a `ccg.exe` plug-in and a standard user account kept in a secret store[^sam-containers] | The non-domain-joined pattern brings back a stored password, for the portable user account; the program allows gMSA containers only on domain-joined hosts ([WD-154](../../about/decision-register.md#wd-154), and the decision below) |
 | Microsoft Entra Domain Services | Create gMSAs in a custom OU, not *AADDC Users* or *AADDC Computers*; the KDS root key is pre-created and you can't create or view one[^sam-aadds] | Skip A2; use `New-ADServiceAccount -Path` with the custom OU, from the managed domain's management VM |
 | Microsoft Entra Cloud Sync agent | The agent runs as a gMSA, `provAgentgMSA$` by default, or a custom gMSA with listed permissions; Domain or Enterprise Admin credentials create it once; the forest schema must be Windows Server 2012 or later; `Set-AADCloudSyncRestrictedPermissions` hardens the account's own permissions[^sam-cloudsync] [^sam-cloudsync-cmdlets] | A gMSA the program keeps until AD retires; on Chapter 06's island list with the sync servers ([Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md)) |
 | Microsoft Entra Connect Sync | The sync service runs as a virtual service account by default; a gMSA is recommended with a remote SQL Server; the account can be set only at first installation[^sam-connect] | Choose the gMSA at installation if SQL Server is remote; changing it later means reinstalling |
@@ -628,7 +628,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** not applicable; no step blocks or restricts an interactive sign-in.
 - **Change window:** A5's switch, B3's completion and M1 to M3's grants each go through an approved change record ([the rules](#rules)), with the application owner on hand to run the end-to-end test.
-- **Backout triggers:** set before the change *(design guidance)*: the service fails to start or the application's test fails; Kerberos errors to the service after the SPN move; the old account still logging on from a host not on the record; a send refused for `<shared-mailbox>` or allowed for `<other-mailbox>`.
+- **Backout triggers:** set before the change *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*: the service fails to start or the application's test fails; Kerberos errors to the service after the SPN move; the old account still logging on from a host not on the record; a send refused for `<shared-mailbox>` or allowed for `<other-mailbox>`.
 - **Post-change validation:** A4 and A6's tests on every host after each ring; M3's two authorization tests and the test message.
 
 ::: {.callout-note appearance="simple"}
@@ -653,7 +653,7 @@ A finding this page addresses is ready for closure when every applicable state h
 | A dMSA completed too early, or with a host not on Windows Server 2025 | The old account is disabled and the service fails on hosts the dMSA hasn't learned | 30 days; every host on 2025; Chapter 06's NPI-KRB-04 |
 | The old account deleted during the migration | No way back | Disable only; delete through the decommission process |
 | A client secret on the new app registration | A password in a configuration file again | Managed identity, then federation, then a certificate; the application management policy ([Non-Person Identity guide, Step 3](non-person-identity-implementation.md#step-3-set-the-credential-rules)) |
-| A non-domain-joined container host's portable user account | A stored domain password reappears | Domain-joined hosts until the program decides (question below) |
+| A non-domain-joined container host's portable user account | A stored domain password reappears | Domain-joined hosts only, a program decision ([WD-154](../../about/decision-register.md#wd-154)); a non-domain-joined host needs a reviewed exception |
 | A gMSA left behind at program G5 | The workload loses its credential when the last domain controller is demoted | Chapter 06's reconciliation and island list |
 | A mail workload given `Mail.Send` in Microsoft Entra ID | The identity can send as any mailbox in the tenant; a scope in Exchange doesn't narrow it, because the grants are a union | No Entra consent; RBAC for Applications only, with the negative `Test-ServicePrincipalAuthorization` (M3) |
 | An anonymous relay connector with a wide IP range | Anything in the range can send as anyone in the organization | The workload's hosts only; reviewed with the identity (M2) |
@@ -687,11 +687,11 @@ A finding this page addresses is ready for closure when every applicable state h
 
 ## Questions for the program owner {#questions}
 
-These are design choices the guide doesn't make:
+These were design choices the guide left to the program owner. All three are now program decisions, taken as recommended on November 11, 2026 and recorded as [WD-154](../../about/decision-register.md#wd-154):
 
-1. **Non-domain-joined container hosts.** Learn's pattern for them keeps a standard user account's password in a secret store for `ccg.exe`. *Recommendation:* allow gMSA containers only on domain-joined hosts until a reviewed exception says otherwise.
-2. **Outbound-only gMSAs.** Learn offers `-RestrictToOutboundAuthenticationOnly` for services nothing authenticates to. *Recommendation:* make it the default for a gMSA whose workload holds no SPN, recorded in `kerberos-replatform.csv`.
-3. **Who creates gMSAs.** Learn allows a delegated right to create `msDS-GroupManagedServiceAccount` objects instead of Domain Admins. *Recommendation:* delegate that right on the service-account OU to the identity engineers who run Chapter 06's write path, and keep Domain Admins only for the dMSA steps Learn says need it.
+1. **Non-domain-joined container hosts.** Learn's pattern for them keeps a standard user account's password in a secret store for `ccg.exe`. *Decision:* gMSA containers run only on domain-joined hosts; a non-domain-joined host needs a reviewed exception.
+2. **Outbound-only gMSAs.** Learn offers `-RestrictToOutboundAuthenticationOnly` for services nothing authenticates to. *Decision:* it is the default for a gMSA whose workload holds no SPN, recorded in `kerberos-replatform.csv` (step A3 of [Migration A](#migration-a)).
+3. **Who creates gMSAs.** Learn allows a delegated right to create `msDS-GroupManagedServiceAccount` objects instead of Domain Admins. *Decision:* that right is delegated on the service-account OU to the identity engineers who run Chapter 06's write path, and Domain Admins are kept only for the dMSA steps Learn says need it.
 
 ## Back to the books
 
