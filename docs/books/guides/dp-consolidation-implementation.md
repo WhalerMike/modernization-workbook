@@ -866,7 +866,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** not applicable: no sign-in is restricted.
 - **Change window:** a change record per drain and per removal (CM-3, [Step 6](#step-6)), approved by the change board, with the Configuration Manager administrator on hand.
-- **Backout triggers:** a deployment failure traced to content location; an office's clients pulling content across the WAN from the data center; a hub DP over 80% of the 4,000-client limit *(design guidance)*.
+- **Backout triggers:** a deployment failure traced to content location; an office's clients pulling content across the WAN from the data center; a hub DP over 80% of the 4,000-client limit *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** [Step 6.1](#step-6-1)'s check and the inventory rerun after each drain and removal; the Client Data Sources export for the wave.
 
 **Evidence checklist**

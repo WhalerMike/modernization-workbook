@@ -104,7 +104,7 @@ An application in the portfolio is also an identity in the tenant: an app regist
 | **Conditional Access compatibility** | Whether Conditional Access can govern sign-in to it: a modern protocol (OpenID Connect, OAuth 2.0, SAML, or published through Application Proxy), or a legacy one that can't be targeted; and for an app that calls APIs as itself, whether it is a single-tenant service principal that workload identity Conditional Access can reach | The app's protocol from the sign-in logs; [Chapter 03](03-the-target-reference-architecture.md#applications-that-stay-on-premises-publishing-through-application-proxy) for publishing |
 | **Last activity** | The most recent sign-in as client or resource | The service principal sign-in activity report, or sign-in logs where the report isn't available |
 | **Data sensitivity** | The FIPS 199 confidentiality impact, already scored as a criterion | The triage record |
-| **Retirement candidate** | Yes when the disposition is retire, or when there has been no activity for 90 days (*design guidance*) | The triage record and last activity |
+| **Retirement candidate** | Yes when the disposition is retire, or when there has been no activity for 90 days (*design guidance*, settled as [WD-148](../../about/decision-register.md#wd-148)) | The triage record and last activity |
 
 : Identity and access intake fields {.striped .hover}
 
@@ -128,7 +128,7 @@ Microsoft's guidance on redirect URIs is to maintain ownership of every one, mon
 
 : Attack-path rank (program design) {.striped .hover}
 
-An application scoring 8 or more goes into the next factory wave whatever its disposition; 4 to 7 joins a wave within the planning horizon; below 4 is fixed with its own modernization or retirement. Ties go to the higher data sensitivity. The thresholds are the program's starting point, not a standard, and change after calibration.
+An application scoring 8 or more goes into the next factory wave whatever its disposition; 4 to 7 joins a wave within the planning horizon; below 4 is fixed with its own modernization or retirement. Ties go to the higher data sensitivity. The score and its thresholds are the program's settled starting point ([WD-148](../../about/decision-register.md#wd-148)), not a standard, and change after calibration.
 
 **Rank the portfolio.** Run [Book 13, Chapter 14, Step 1](../b13-governance/14-application-secret-and-configuration-governance.md#application-governance-record) first; it writes `app-governance-tenant-<date>.csv`. The ranking below also reads `<record.csv>`, the governance record, which carries `Confidentiality`, `BusinessOwner`, `Disposition`, `SecretException` (the secret's exception ID) and `CaCompatible` (`No` where Conditional Access can't govern the app) for each `AppId`; `<owned-domains.txt>`, the agency's list of domains it controls, one per line; and `<out-dir>`, the evidence folder.
 

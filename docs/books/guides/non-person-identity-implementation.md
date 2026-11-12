@@ -528,7 +528,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** not applicable to workload identity policies, which target service principals only; the emergency accounts' exclusion is the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first).
 - **Change window:** each write is a reviewed plan approved by its SHA-256 and applied by a person under a change record ([Evidence](#evidence), CM-3) *(design guidance)*.
-- **Backout triggers:** a workload's sign-in or token-exchange failure during the parallel run, or a production credential expiring unplanned, set in the wave's change record before it starts *(design guidance)*.
+- **Backout triggers:** a workload's sign-in or token-exchange failure during the parallel run, or a production credential expiring unplanned, set in the wave's change record before it starts *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the gate's **Validate** checks after each wave, and the new identity's sign-ins in the service principal sign-in log.
 
 ::: {.callout-note appearance="simple"}

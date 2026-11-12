@@ -520,9 +520,9 @@ A finding this page addresses is ready for closure when every applicable state h
 | 2 | The regional hubs (Phase 1) | Hubs in production; replacement telemetry confirmed for the pilot sites |
 | 3 | Office waves at MPLS renewal (Phase 2) | Per-office CLAW confirmation; failover test record per site class |
 
-- **Emergency access:** device CLI access keeps a local account last in the AAA order, and management stays out of band on VPN 512 ([Hardening](#hardening)), so a failed TACACS+, RADIUS or single sign-on path doesn't lock operators out; test the local path at each ring *(design guidance)*.
+- **Emergency access:** device CLI access keeps a local account last in the AAA order, and management stays out of band on VPN 512 ([Hardening](#hardening)), so a failed TACACS+, RADIUS or single sign-on path doesn't lock operators out; test the local path at each ring. The local AAA account plus out-of-band access is the fabric's break-glass path, a program decision settled as [WD-150](../../about/decision-register.md#wd-150).
 - **Change window:** BOD 26-04's remediation windows, fed by Cisco's publication Wednesdays, with an approved change and the network engineer on hand ([Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md)).
-- **Backout triggers:** a site misses its SLA class on every path; its SSE tunnel stops logging; CLAW delivery for the office stops; a gate re-run shows a `fail` row *(design guidance)*.
+- **Backout triggers:** a site misses its SLA class on every path; its SSE tunnel stops logging; CLAW delivery for the office stops; a gate re-run shows a `fail` row *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the gate re-run, the policy-group audit for local-internet actions, and the site's failover test.
 
 ::: {.callout-note appearance="simple"}

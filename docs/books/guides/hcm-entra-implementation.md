@@ -354,7 +354,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** emergency access accounts are cloud-only and have no HR record, so they stay outside every provisioning app's scope and no workflow targets them *(design guidance)*; confirm before ring 1 that no scoping rule or Lifecycle Workflow reaches them. Their design is [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture).
 - **Change window:** each ring and the month-8 source switch run under an approved change, with the identity engineer and an operator who holds the pause switch on hand *(design guidance)*.
-- **Backout triggers:** the job enters quarantine; staged disables or deletions exceed the deletion threshold; the middleware's large-delta hold fires; an unmatched creation appears in the provisioning log *(design guidance)*.
+- **Backout triggers:** the job enters quarantine; staged disables or deletions exceed the deletion threshold; the middleware's large-delta hold fires; an unmatched creation appears in the provisioning log *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the provisioning-log reconciliation for the ring's population, and the Appendix C acceptance rows re-run.
 
 **Evidence checklist**

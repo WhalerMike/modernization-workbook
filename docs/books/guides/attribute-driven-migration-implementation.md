@@ -683,7 +683,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** the emergency-access group is excluded from every persona policy, and VK-CA-01 tests the exclusion; the accounts themselves are built and drilled in the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first).
 - **Change window:** each wave's go or no-go is identity engineering's, under the program's wave plan (D07); legacy retirement is approved item by item (Gate 8).
-- **Backout triggers:** VK-DG-05's membership change over its threshold, paused processing (VK-DG-06), a change for a cut-over population that doesn't trace to an HR event, or Gate 5's monitoring gate tripped, each set before the wave starts *(design guidance)*.
+- **Backout triggers:** VK-DG-05's membership change over its threshold, paused processing (VK-DG-06), a change for a cut-over population that doesn't trace to an HR event, or Gate 5's monitoring gate tripped, each set before the wave starts *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the gate's **Validate** after each wave, with the wave's query and `WaveId`.
 
 **Evidence checklist**

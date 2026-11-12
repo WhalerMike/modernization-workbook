@@ -202,7 +202,7 @@ A finding this page addresses is ready for closure when every applicable state h
 - [ ] **Exception:** unmapped address pools and any site without dynamic location, with the reason and approver
 - [ ] **Assessor-ready artifact:** the exports and test records filed for CM-3 and AU-2 in the package ([Chapter 11](11-attestation-and-the-compliance-app.md))
 
-The Zero Trust assessment-mapping block doesn't apply: emergency calling is a life-safety configuration, not a finding family a Zero Trust assessment raises.
+The Zero Trust assessment-mapping block doesn't apply: emergency calling is a life-safety configuration, not a finding family a Zero Trust assessment raises. That is the program's settled position ([WD-150](../../about/decision-register.md#wd-150)).
 
 ### Call records are evidence, and they expire
 
