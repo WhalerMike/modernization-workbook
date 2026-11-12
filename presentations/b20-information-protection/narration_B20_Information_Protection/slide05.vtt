@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.029
+A label does nothing until
+a policy publishes it,
+
+2
+00:00:03.029 --> 00:00:05.263
+and the policy carries the defaults.
+
+3
+00:00:05.263 --> 00:00:09.512
+The program defaults documents,
+email and meetings to Internal,
+
+4
+00:00:09.512 --> 00:00:12.238
+and new groups and sites to Internal site.
+
+5
+00:00:12.238 --> 00:00:16.346
+None of those encrypts, because
+Microsoft cautions that an encrypting
+
+6
+00:00:16.346 --> 00:00:20.176
+default may leave external recipients
+unable to open the content.
+
+7
+00:00:20.176 --> 00:00:24.410
+Mandatory labeling then makes users
+label before they save or send,
+
+8
+00:00:24.410 --> 00:00:27.662
+and with a sensible default
+they're rarely prompted.
+
+9
+00:00:27.662 --> 00:00:30.145
+A user can change a
+label but not remove it,
+
+10
+00:00:30.145 --> 00:00:34.088
+and the program asks for a
+justification when someone lowers one.
+
+11
+00:00:34.088 --> 00:00:37.192
+Containers get three labels of their own:
+
+12
+00:00:37.192 --> 00:00:40.662
+Internal site, CUI site
+and CUI Specified site.
+
+13
+00:00:40.662 --> 00:00:44.090
+Each sets privacy, guest
+access, external sharing,
+
+14
+00:00:44.090 --> 00:00:47.851
+unmanaged-device access and
+the default sharing link.
+
+15
+00:00:47.851 --> 00:00:50.479
+But a container label governs the site,
+
+16
+00:00:50.479 --> 00:00:53.600
+not the files: the items
+inside don't inherit it.
+
+17
+00:00:53.600 --> 00:00:58.538
+In GCC, file labels and container
+labels are listed as available.
+
+18
+00:00:58.538 --> 00:01:02.683
+The default label for a SharePoint
+library is still in development there,
+
+19
+00:01:02.683 --> 00:01:07.150
+and authentication contexts on labeled
+sites are on the engineering backlog.

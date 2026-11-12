@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.562
+The book's reference
+architecture has three
+
+2
+00:00:02.562 --> 00:00:04.938
+trust boundaries and four control planes.
+
+3
+00:00:04.938 --> 00:00:09.079
+The boundaries are the tenant,
+the managed endpoint, and outside,
+
+4
+00:00:09.079 --> 00:00:13.063
+where external recipients can't
+see the agency's labels at all.
+
+5
+00:00:13.063 --> 00:00:18.181
+The planes are identity, which owns the
+groups that labels grant rights to; policy,
+
+6
+00:00:18.181 --> 00:00:22.917
+which is Purview; protection, which is
+Rights Management and the tenant key;
+
+7
+00:00:22.917 --> 00:00:25.362
+and monitoring, which is Purview Audit.
+
+8
+00:00:25.362 --> 00:00:27.038
+Each plane has its own owner.
+
+9
+00:00:27.038 --> 00:00:31.200
+The label design follows the class
+register, one label per class.
+
+10
+00:00:31.200 --> 00:00:36.974
+Microsoft reports that effectiveness
+drops noticeably beyond five main labels,
+
+11
+00:00:36.974 --> 00:00:42.069
+or five sublabels under one, so the
+taxonomy stays small: Public, Internal,
+
+12
+00:00:42.069 --> 00:00:46.910
+C U I Basic, a category sublabel only
+where agency policy requires one,
+
+13
+00:00:46.910 --> 00:00:51.750
+and one Specified sublabel per
+authority the agency actually holds.
+
+14
+00:00:51.750 --> 00:00:54.538
+Container labels sit in
+a group of their own.
+
+15
+00:00:54.538 --> 00:00:59.150
+Encryption grants rights to mail-enabled
+groups, never to individuals.
+
+16
+00:00:59.150 --> 00:01:02.600
+And a label that doesn't encrypt
+is a classification signal.
+
+17
+00:01:02.600 --> 00:01:06.000
+Once the content leaves the
+tenant, it protects nothing.

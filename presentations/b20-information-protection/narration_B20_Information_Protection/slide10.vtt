@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.503
+Purview differs a great deal between clouds,
+and changes often, so the book states
+
+2
+00:00:05.503 --> 00:00:11.038
+availability feature by feature, as Microsoft
+Learn listed it on November 11, 2026.
+
+3
+00:00:11.038 --> 00:00:13.637
+The baseline here is GCC.
+
+4
+00:00:13.637 --> 00:00:18.930
+There, the core is listed as available:
+manual, mandatory and container labels,
+
+5
+00:00:18.930 --> 00:00:24.058
+Rights Management and message encryption,
+D L P on every surface including
+
+6
+00:00:24.058 --> 00:00:28.937
+Windows endpoints, auto-labeling,
+exact data match, and both audit tiers.
+
+7
+00:00:28.937 --> 00:00:30.263
+A few gaps matter.
+
+8
+00:00:30.263 --> 00:00:34.132
+The default label for a SharePoint
+library is still in development,
+
+9
+00:00:34.132 --> 00:00:38.625
+and authentication contexts on labeled
+sites are on the engineering backlog.
+
+10
+00:00:38.625 --> 00:00:41.913
+GCC High and DoD are side notes.
+
+11
+00:00:41.913 --> 00:00:47.395
+Their clients need DNS records to reach
+the government Rights Management service,
+
+12
+00:00:47.395 --> 00:00:50.652
+DoD doesn't list Advanced
+Message Encryption yet,
+
+13
+00:00:50.652 --> 00:00:55.101
+and two Learn pages disagree on
+Insider Risk Management in GCC High.
+
+14
+00:00:55.101 --> 00:00:58.330
+The rule for all of it: a
+license or cloud gap goes
+
+15
+00:00:58.330 --> 00:01:01.725
+in a decision record, with
+a compensating control.
+
+16
+00:01:01.725 --> 00:01:04.420
+It's a dependency, never a failed control.

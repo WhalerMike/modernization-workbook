@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.952
+This briefing comes from Information
+Protection and Microsoft Purview,
+
+3
+00:00:04.952 --> 00:00:07.562
+a book of the Federal
+Modernization Workbook.
+
+4
+00:00:07.562 --> 00:00:10.212
+One thing first: the book is a draft.
+
+5
+00:00:10.212 --> 00:00:13.264
+Every page is awaiting
+the editor's review,
+
+6
+00:00:13.264 --> 00:00:16.926
+and it isn't part of Release
+2.0, the baseline edition.
+
+7
+00:00:16.926 --> 00:00:20.502
+It's written for C I Os
+and CISOs, data owners,
+
+8
+00:00:20.502 --> 00:00:25.613
+records and privacy officials,
+Purview engineers, and ISSOs.
+
+9
+00:00:25.613 --> 00:00:27.026
+I'll take four questions.
+
+10
+00:00:27.026 --> 00:00:29.425
+Why does protection have
+to travel with the data?
+
+11
+00:00:29.425 --> 00:00:32.113
+What does the program build
+with Microsoft Purview?
+
+12
+00:00:32.113 --> 00:00:33.024
+Who runs it?
+
+13
+00:00:33.024 --> 00:00:35.400
+And how do you roll it
+out and prove it works?
+
+14
+00:00:35.400 --> 00:00:40.975
+The short version: identity, device and
+network controls decide who reaches a file.
+
+15
+00:00:40.975 --> 00:00:44.891
+Only a classification decided in
+advance can say what the file is,
+
+16
+00:00:44.891 --> 00:00:49.440
+and that decision has to be written down
+before a single label is published.
