@@ -26,30 +26,38 @@ items:
     title: "Five-state control model: Designed, Configured, Enforced, Evidenced, Operated"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#control-states
-      - docs/books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: G-02
     title: "How-section template: prerequisites, pilot, report-only or audit, enforcement, rollback, exclusions, telemetry, evidence, day-two ownership"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: G-03
     title: "Source policy: primary sources and last-verified dates for product behavior and licensing"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#source-policy
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: G-04
     title: "Terminology: organization, agency or tenant; no organization-specific identifiers"
     wave: 1
@@ -65,38 +73,50 @@ items:
     title: "Authority labels: mandated, Microsoft-recommended, risk-based recommended, optional, license-dependent, environment-dependent"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: G-06
     title: "Evidence pattern: configuration, operational, test, exception evidence and the assessor-ready artifact"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: G-07
     title: "Change safety: rings, emergency-access exclusions, change windows, backout triggers, post-change validation"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#change-safety
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: G-08
     title: "Assessment mapping: Zero Trust pillar, cross-pillar dependencies, attack chain interrupted"
     wave: 1
     book: "all"
-    status: partial
+    status: implemented
     where:
       - docs/books/b00-orientation/appendix-d-control-states-and-evidence.md#assessment-mapping
-    pr: 555
-    note: "Convention defined once in Book 00 Appendix D, with a copy-ready block; applying it to existing procedure chapters and guide sections is Phase 4."
+      - docs/books/b04-access/09-access-governance.md#b04-ar-rollout
+      - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md#b12-07-control-states
+      - docs/books/guides/privileged-access-implementation.md
+    pr: 576
+    note: "Defined in Book 00 Appendix D (#555) and applied to every procedure section: new content in Phases 2-3 (#559-#569); existing chapters and guides in Phase 4 (#571 guides, #572 Books 00-03, #573 Books 11-14, #574 Books 07-10, #575 Books 04-06, #576 Books 15-19). Conceptual chapters are out of scope by Mike's trimmed plan."
   - id: B02-01
     title: "Managed authentication versus federation decision tree"
     wave: 1
@@ -825,11 +845,12 @@ items:
     title: "Standing privilege / PIM"
     wave: 1
     book: "B04, B13"
-    status: partial
+    status: implemented
     where:
       - docs/books/b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register
-    pr: 560
-    note: "Book 04 part done (#560); the Book 13 part (PIM exception approvals in governance) is not yet written."
+      - docs/books/b13-governance/14-application-secret-and-configuration-governance.md#standing-privilege-exceptions
+    pr: 573
+    note: "Book 04 part (#560) and Book 13 part, governance of permanent-assignment exceptions (#573)."
   - id: CM-03
     title: "Phishing-resistant admin authentication"
     wave: 1
