@@ -58,6 +58,8 @@ Running it takes more privilege than its read-only behavior suggests. Microsoft'
 
 Microsoft's documentation doesn't discuss government clouds. The 3.1.0 source code does: `Connect-ZtAssessment` takes an `-Environment` parameter (`Global`, `USGov`, `USGovDoD` and others) and an `-ExchangeEnvironmentName` parameter for GCC High and DoD.[^c05-zta-code] A GCC tenant uses the commercial endpoints. Confirm the run in your own cloud before relying on it.
 
+The [Zero Trust Assessment implementation guide](../guides/zero-trust-assessment-implementation.md) turns this into a procedure, from consent and the per-cloud connection to a normalized, re-run and hashed result.
+
 The tool grows quickly. Release 3.1.0 holds 364 tests. By the pillar each test declares, Identity is the largest group at 135, followed by Network (70), Security Operations (57) and Devices (43), with smaller groups for Data, AI and Infrastructure.[^c05-zta-code] Microsoft's get-started page still describes the report's tabs as Identity, Devices, Network and Data.[^c05-zta-start]
 
 ## Where they overlap, and where they don't
