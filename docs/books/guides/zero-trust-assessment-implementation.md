@@ -23,6 +23,11 @@ last-reviewed: 2026-11-11
 How an agency runs Microsoft's Zero Trust Assessment and turns its report into evidence, as ten steps an operator can follow. First, how to read the guide, the placeholders, the track at a glance, prerequisites, government-cloud availability and the path on one page. Then the steps: decide and scope; prepare the host and protect the output; consent and roles; connect in each cloud; run it; read the report; normalize the results with the kit; open the closure register and route each finding; reconcile with ScubaGear and AWS Security Hub CSPM; and re-run on a schedule and keep the evidence. Each step has its authority label, exact commands, the federal requirements and KSIs it supports, government-cloud availability, a **Validate** step and rollback. Then the control states, the decision record, RACI, evidence catalog and metrics, the dangers, rollback, a checklist and what couldn't be verified.
 :::
 
+::: {.callout-tip}
+## Watch, present or train
+**Narrated deck (about 15 minutes, captions)**: why a score isn't a verdict, what the tool checks and the four things it isn't, running it alongside ScubaGear, the ten steps, government-cloud availability, consent and the RACI, then each step from the host to the sealed evidence, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-zero-trust-assessment) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Zero_Trust_Assessment_Narrated). **Training:** the learning path [*The Zero Trust Assessment as Evidence*](../../training/zero-trust-assessment/index.md) teaches this guide in four modules, with labs on the kit's fixtures and in a test tenant and a knowledge check in each.
+:::
+
 ## How to read this guide {#zta-how-to-read}
 
 [Book 11](../b11-zero-trust/index.md) already argues the case. [Chapter 05](../b11-zero-trust/05-two-assessment-tools.md) explains what the Zero Trust Assessment and CISA's ScubaGear each check and why an agency runs both; [Chapter 08](../b11-zero-trust/08-close-before-you-assess.md) puts the assessment after the architecture it confirms and maps each [finding family](../b11-zero-trust/08-close-before-you-assess.md#finding-families) to the page that closes it; [Chapter 09](../b11-zero-trust/09-running-the-assessment.md) covers the run and the evidence chain; [Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md) sets the [normalized result taxonomy](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy), the [closure chain](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain) and the [weighting](../b11-zero-trust/10-evidence-not-verdicts.md#weigh-the-finding-not-the-pass-rate). What none of them gives is the run as a procedure, from the first consent to a re-run whose evidence an assessor can check. This guide does that, with the code in the Zero Trust Assessment results kit, [`examples/zta-results`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results), and links to the books instead of restating them.
@@ -56,7 +61,7 @@ How an agency runs Microsoft's Zero Trust Assessment and turns its report into e
 |---|---|
 | This guide | Draft, November 11, 2026 |
 | The results kit, `examples/zta-results`, with fixtures and Pester tests | Built; [download](../../../downloads/zta-results.zip) |
-| Narrated deck and video | Planned |
+| Narrated deck and video | Built, November 11, 2026: 15 narrated slides, about 15 minutes, with captions; see *Watch, present or train* at the top |
 | Labs: Lab 1 on the kit's fixtures, Lab 2 in a test tenant | Draft, November 11, 2026, inside the training path; this guide has no separate developer workbook, because the kit is small enough for the learning path to carry its labs |
 | Training path | Draft, November 11, 2026: [The Zero Trust Assessment as Evidence](../../training/zero-trust-assessment/index.md), four modules |
 

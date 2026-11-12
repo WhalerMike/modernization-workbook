@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+Here's the idea the guide is built
+on: a score is not a verdict.
+
+2
+00:00:04.188 --> 00:00:07.751
+The report compares each setting
+with Microsoft's guidance,
+
+3
+00:00:07.751 --> 00:00:10.388
+and it reads configuration
+on the day it runs.
+
+4
+00:00:10.388 --> 00:00:12.877
+It can't tell you which
+finding to fix first,
+
+5
+00:00:12.877 --> 00:00:15.937
+what a skipped test means,
+or when a finding is closed.
+
+6
+00:00:15.937 --> 00:00:18.516
+Those decisions belong to named people,
+
+7
+00:00:18.516 --> 00:00:21.563
+and the report is the
+evidence they decide with,
+
+8
+00:00:21.563 --> 00:00:26.876
+as the Zero Trust and Assessment book argues
+in its chapter, Evidence, Not Verdicts.
+
+9
+00:00:26.876 --> 00:00:31.060
+So every run is scoped, authorized
+and pinned to a tool version,
+
+10
+00:00:31.060 --> 00:00:33.850
+and its output stays inside the boundary.
+
+11
+00:00:33.850 --> 00:00:38.675
+Every result is recorded twice, the
+tool's value and a normalized one.
+
+12
+00:00:38.675 --> 00:00:42.668
+Every finding gets an owner, a route
+to the page that remediates it,
+
+13
+00:00:42.668 --> 00:00:44.813
+and a weighted place in the backlog.
+
+14
+00:00:44.813 --> 00:00:47.700
+Every run is compared
+with the last and sealed.
+
+15
+00:00:47.700 --> 00:00:52.314
+A finding is ready for closure when
+every applicable state has evidence and
+
+16
+00:00:52.314 --> 00:00:57.140
+a reassessment shows a pass; the authorizing
+official or the assessor decides.

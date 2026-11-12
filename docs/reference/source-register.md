@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-09
+date-modified: 2026-11-11
 review-status: approved
 reviewed-sha256: 73f432c010f5e81749e4e78478fca9c7204d5443df8995fa45878636e38cd99c
 last-reviewed: 2026-11-09
@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 540 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 555 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -33,8 +33,11 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Amazon Route 53 Developer Guide: Resolving DNS queries between VPCs and your network](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html){#aws-route-53-resolver} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-route-53-resolver"} |
 | [Amazon VPC IPAM automates IP from Infoblox](https://aws.amazon.com/about-aws/whats-new/2025/11/amazon-vpc-ipam-automates-ip-from-infoblox/){#aws-vpc-ipam-infoblox} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-vpc-ipam-infoblox"} |
 | [AWS Prescriptive Guidance: migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html){#aws-migration-strategies} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-migration-strategies"} |
+| [AWS Security Hub CSPM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html){#security-hub-cspm-in-govcloud} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-in-govcloud"} |
 | [AWS Security Hub CSPM User Guide](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html){#aws-security-hub} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-security-hub"} |
 | [AWS Service Management Connector end of support](https://docs.aws.amazon.com/smc/latest/ag/smc-end-of-support.html){#aws-smc-end-of-support} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-smc-end-of-support"} |
+| [Evaluating compliance status and control status (Security Hub CSPM)](https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html){#security-hub-cspm-compliance-status} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-compliance-status"} |
+| [NIST SP 800-53 Revision 5 in Security Hub CSPM](https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html){#security-hub-cspm-nist-800-53-r5} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-nist-800-53-r5"} |
 
 ## CISA
 
@@ -114,6 +117,14 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [GSA Enterprise Infrastructure Solutions Transition](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions/eis-transition){#gsa-eis-transition} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="gsa-eis-transition"} |
 | [Technology Modernization Fund: Agency and project fit](https://tmf.cio.gov/fit/){#tmf-fit} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tmf-fit"} |
 
+## Microsoft
+
+| Source | Status | In the register since | Last scan |
+|---|---|---|---|
+| [Run the Zero Trust Assessment (the tool's guide, 3.1.0)](https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/doc/readme.md){#run-the-zero-trust-assessment-3-1-0} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="run-the-zero-trust-assessment-3-1-0"} |
+| [Zero Trust Assessment release 3.1.0](https://github.com/microsoft/zerotrustassessment/releases/tag/3.1.0){#zero-trust-assessment-release-3-1-0} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="zero-trust-assessment-release-3-1-0"} |
+| [Zero Trust Assessment repository README (3.1.0)](https://github.com/microsoft/zerotrustassessment/blob/3.1.0/README.md){#zero-trust-assessment-readme-3-1-0} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="zero-trust-assessment-readme-3-1-0"} |
+
 ## Microsoft Learn
 
 | Source | Status | In the register since | Last scan |
@@ -133,12 +144,14 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Analyze Conditional Access policy impact](https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only){#analyze-conditional-access-policy-impact} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="analyze-conditional-access-policy-impact"} |
 | [API-driven inbound provisioning concepts](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-concepts){#api-driven-inbound-provisioning-concepts} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="api-driven-inbound-provisioning-concepts"} |
 | [API-driven inbound provisioning with PowerShell script](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-powershell){#api-driven-inbound-provisioning-with} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="api-driven-inbound-provisioning-with"} |
+| [App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell](https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2){#exchange-app-only-authentication} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="exchange-app-only-authentication"} |
 | [Application Access Policies (legacy)](https://learn.microsoft.com/exchange/permissions-exo/application-access-policies){#application-access-policies-legacy} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="application-access-policies-legacy"} |
 | [appliedConditionalAccessPolicy resource type](https://learn.microsoft.com/graph/api/resources/appliedconditionalaccesspolicy?view=graph-rest-1.0){#appliedconditionalaccesspolicy-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="appliedconditionalaccesspolicy-resource-type"} |
 | [Assign appliesTo](https://learn.microsoft.com/graph/api/appmanagementpolicy-post-appliesto?view=graph-rest-1.0){#assign-appliesto} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="assign-appliesto"} |
 | [Assign Azure resource roles in Privileged Identity Management](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles){#assign-azure-resource-roles-in-privileged} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="assign-azure-resource-roles-in-privileged"} |
 | [Assign privileged roles using PIM for Microsoft Entra roles APIs](https://learn.microsoft.com/graph/tutorial-assign-azureadroles){#assign-privileged-roles-using-pim-for} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="assign-privileged-roles-using-pim-for"} |
 | [Audit use of NTLMv1 on a Windows Server-based domain controller](https://learn.microsoft.com/troubleshoot/windows-server/windows-security/audit-domain-controller-ntlmv1){#audit-use-of-ntlmv1-on-a-windows-server} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="audit-use-of-ntlmv1-on-a-windows-server"} |
+| [Authentication module cmdlets in Microsoft Graph PowerShell](https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands){#graph-powershell-authentication-cmdlets} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="graph-powershell-authentication-cmdlets"} |
 | [Authorization in Microsoft Entra Agent ID](https://learn.microsoft.com/entra/agent-id/authorization-agent-id){#authorization-in-microsoft-entra-agent-id} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="authorization-in-microsoft-entra-agent-id"} |
 | [Automatic attack disruption in Microsoft Defender](https://learn.microsoft.com/defender-xdr/automatic-attack-disruption){#automatic-attack-disruption-in-microsoft} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="automatic-attack-disruption-in-microsoft"} |
 | [azcmagent connect](https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-connect){#azcmagent-connect} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azcmagent-connect"} |
@@ -187,6 +200,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Configure restrictions on how applications can be configured](https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies){#configure-restrictions-on-how-applications} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="configure-restrictions-on-how-applications"} |
 | [Configure tenant restrictions v2](https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2){#configure-tenant-restrictions-v2} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="configure-tenant-restrictions-v2"} |
 | [Connect machines to Azure Arc at scale with Ansible](https://learn.microsoft.com/azure/azure-arc/servers/onboard-ansible-playbooks){#connect-machines-to-azure-arc-at-scale-with} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="connect-machines-to-azure-arc-at-scale-with"} |
+| [Connect to Exchange Online PowerShell](https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell){#connect-to-exchange-online-powershell} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="connect-to-exchange-online-powershell"} |
 | [Continuous access evaluation](https://learn.microsoft.com/entra/identity/conditional-access/concept-continuous-access-evaluation){#continuous-access-evaluation} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="continuous-access-evaluation"} |
 | [Create a Key Distribution Service (KDS) root key](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key){#create-a-key-distribution-service-kds-root} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="create-a-key-distribution-service-kds-root"} |
 | [Create an agent identity blueprint](https://learn.microsoft.com/entra/agent-id/create-blueprint){#create-an-agent-identity-blueprint} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="create-an-agent-identity-blueprint"} |
@@ -221,12 +235,14 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Endpoint analytics overview](https://learn.microsoft.com/intune/endpoint-analytics/){#endpoint-analytics-overview} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="endpoint-analytics-overview"} |
 | [Enterprise access model](https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model){#enterprise-access-model} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="enterprise-access-model"} |
 | [Enterprise Mobility + Security for US Government service description](https://learn.microsoft.com/enterprise-mobility-security/solutions/ems-govt-service-description){#enterprise-mobility-security-for-us} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="enterprise-mobility-security-for-us"} |
+| [Exchange Online for US government environments](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments){#exchange-online-for-us-government} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="exchange-online-for-us-government"} |
 | [Flexible federated identity credentials (preview)](https://learn.microsoft.com/entra/workload-id/workload-identities-flexible-federated-identity-credentials){#flexible-federated-identity-credentials} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="flexible-federated-identity-credentials"} |
 | [Frequently asked questions about Microsoft Entra Agent ID](https://learn.microsoft.com/entra/agent-id/faq){#agent-id-faq} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="agent-id-faq"} |
 | [Frequently asked questions about Microsoft Entra Workload ID](https://learn.microsoft.com/entra/workload-id/workload-identities-faqs){#workload-id-faq} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="workload-id-faq"} |
 | [Get a user](https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0){#get-a-user} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-a-user"} |
 | [Get onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0){#get-onpremisesdirectorysynchronization} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-onpremisesdirectorysynchronization"} |
 | [Get servicePrincipal](https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0){#get-serviceprincipal} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-serviceprincipal"} |
+| [Get started with the Zero Trust Assessment](https://learn.microsoft.com/security/zero-trust/assessment/get-started){#get-started-with-the-zero-trust-assessment} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="get-started-with-the-zero-trust-assessment"} |
 | [Get-ADServiceAccount](https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount){#get-adserviceaccount} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-adserviceaccount"} |
 | [Get-ADUser](https://learn.microsoft.com/powershell/module/activedirectory/get-aduser){#get-aduser} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-aduser"} |
 | [Get-MgEnvironment](https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/get-mgenvironment?view=graph-powershell-1.0){#get-mgenvironment} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-mgenvironment"} |
@@ -349,6 +365,8 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Office 365 Content Delivery Network (CDN) Quickstart](https://learn.microsoft.com/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide){#office-365-content-delivery-network-cdn} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="office-365-content-delivery-network-cdn"} |
 | [Office 365 GCC](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc){#office-365-gcc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="office-365-gcc"} |
 | [onPremisesExtensionAttributes resource type](https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0){#onpremisesextensionattributes-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="onpremisesextensionattributes-resource-type"} |
+| [Operate Microsoft Entra Internet Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access){#operate-microsoft-entra-internet-access} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="operate-microsoft-entra-internet-access"} |
+| [Operate Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access){#operate-microsoft-entra-private-access} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="operate-microsoft-entra-private-access"} |
 | [Overview of enterprise application ownership in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/enterprise-apps/overview-assign-app-owners){#overview-of-enterprise-application-ownership} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="overview-of-enterprise-application-ownership"} |
 | [Overview of Microsoft Cloud PKI for Microsoft Intune](https://learn.microsoft.com/intune/cloud-pki/){#overview-of-microsoft-cloud-pki-for} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="overview-of-microsoft-cloud-pki-for"} |
 | [Overview of Microsoft Graph permissions](https://learn.microsoft.com/graph/permissions-overview){#overview-of-microsoft-graph-permissions} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="overview-of-microsoft-graph-permissions"} |
@@ -369,6 +387,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Privileged Identity Management (PIM) for Groups](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/concept-pim-for-groups){#privileged-identity-management-pim-for} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-identity-management-pim-for"} |
 | [Privileged Identity Management APIs](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis){#privileged-identity-management-apis} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-identity-management-apis"} |
 | [Privileged roles and permissions in Microsoft Entra ID (preview)](https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions){#privileged-roles-and-permissions-in} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-roles-and-permissions-in"} |
+| [Quickstart: Connect to Azure Government with PowerShell](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps){#connect-to-azure-government-with-powershell} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="connect-to-azure-government-with-powershell"} |
 | [RADIUS authentication with Microsoft Entra ID](https://learn.microsoft.com/entra/architecture/auth-radius){#radius-authentication-with-microsoft-entra} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="radius-authentication-with-microsoft-entra"} |
 | [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections){#register-a-service-principal-name-for} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="register-a-service-principal-name-for"} |
 | [Remediate non-compliant resources with Azure Policy](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources){#remediate-non-compliant-resources-with-azure} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remediate-non-compliant-resources-with-azure"} |
@@ -445,6 +464,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 | [Windows Server release information](https://learn.microsoft.com/windows/release-health/windows-server-release-info){#windows-server-release-information} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="windows-server-release-information"} |
 | [workflow: createNewVersion](https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0){#workflow-createnewversion} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="workflow-createnewversion"} |
 | [Workload identity federation concepts](https://learn.microsoft.com/entra/workload-id/workload-identity-federation){#workload-identity-federation-concepts} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="workload-identity-federation-concepts"} |
+| [Zero Trust assessment terminology](https://learn.microsoft.com/security/zero-trust/assessment/glossary){#zero-trust-assessment-terminology} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="zero-trust-assessment-terminology"} |
 
 ## Microsoft Security
 
@@ -673,6 +693,7 @@ This register lists 540 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 11, 2026 | 15 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |

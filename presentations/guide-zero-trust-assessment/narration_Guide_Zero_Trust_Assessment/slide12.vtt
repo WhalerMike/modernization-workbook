@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.625
+Step eight opens the closure register.
+
+2
+00:00:02.625 --> 00:00:06.743
+Every finding gets one entry
+with the closure chain's fields,
+
+3
+00:00:06.743 --> 00:00:11.438
+from the Zero Trust and Assessment
+book: the finding and tool version,
+
+4
+00:00:11.438 --> 00:00:15.309
+the attack path, the owner,
+dependencies, the change, pilot,
+
+5
+00:00:15.309 --> 00:00:20.663
+enforcement and test, the evidence,
+residual risk, reassessment and weighting.
+
+6
+00:00:20.663 --> 00:00:23.989
+Each finding family routes to
+the page that remediates it,
+
+7
+00:00:23.989 --> 00:00:26.900
+with the evidence that shows
+it's ready for closure.
+
+8
+00:00:26.900 --> 00:00:30.093
+Emergency access goes to
+Access and Privilege,
+
+9
+00:00:30.093 --> 00:00:32.712
+with a test sign-in that fired its alert.
+
+10
+00:00:32.712 --> 00:00:36.089
+Conditional Access gaps
+go to its policy library,
+
+11
+00:00:36.089 --> 00:00:38.725
+with a test sign-in blocked as designed.
+
+12
+00:00:38.725 --> 00:00:41.687
+Skipped tests go to step
+seven's dispositions.
+
+13
+00:00:41.687 --> 00:00:45.525
+A finding with no family goes
+to the Zero Trust program lead.
+
+14
+00:00:45.525 --> 00:00:49.700
+The kit sets a default priority,
+and the owner writes the rationale.
+
+15
+00:00:49.700 --> 00:00:53.150
+An exception with an expiry
+is the see-so's decision;
+
+16
+00:00:53.150 --> 00:00:56.025
+one without is the authorizing official's.
+
+17
+00:00:56.025 --> 00:00:58.940
+The kit never marks a
+finding ready for closure.

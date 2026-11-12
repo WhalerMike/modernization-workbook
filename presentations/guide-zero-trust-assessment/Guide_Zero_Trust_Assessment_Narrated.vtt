@@ -1,0 +1,1081 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.798
+This is the narrated briefing for
+a companion guide in the Federal
+
+3
+00:00:04.798 --> 00:00:09.274
+Modernization Workbook: Zero Trust
+Assessment, an implementation guide.
+
+4
+00:00:09.274 --> 00:00:12.987
+Microsoft's Zero Trust Assessment
+tells you, test by test,
+
+5
+00:00:12.987 --> 00:00:17.963
+how a tenant's configuration compares
+with Microsoft's Zero Trust guidance.
+
+6
+00:00:17.963 --> 00:00:20.041
+It doesn't tell you what to fix first,
+
+7
+00:00:20.041 --> 00:00:23.124
+what a skipped test means,
+or when a finding is closed.
+
+8
+00:00:23.124 --> 00:00:26.388
+Those are the program's to
+decide, and the guide is how.
+
+9
+00:00:26.388 --> 00:00:31.712
+Its facts come from Microsoft Learn's
+three Zero Trust Assessment pages and the
+
+10
+00:00:31.712 --> 00:00:35.826
+tool's own source and guide at
+release three point one point oh,
+
+11
+00:00:35.826 --> 00:00:37.924
+read on November eleventh, 2026.
+
+12
+00:00:37.924 --> 00:00:40.838
+The program's own rules
+are called design guidance.
+
+13
+00:00:40.838 --> 00:00:43.862
+Nothing in the guide was
+run against a live tenant.
+
+14
+00:00:43.862 --> 00:00:47.720
+We'll go in four parts:
+why, what, who, and how.
+
+15
+00:00:51.470 --> 00:00:55.608
+Here's the idea the guide is built
+on: a score is not a verdict.
+
+16
+00:00:55.608 --> 00:00:59.171
+The report compares each setting
+with Microsoft's guidance,
+
+17
+00:00:59.171 --> 00:01:01.808
+and it reads configuration
+on the day it runs.
+
+18
+00:01:01.808 --> 00:01:04.297
+It can't tell you which
+finding to fix first,
+
+19
+00:01:04.297 --> 00:01:07.357
+what a skipped test means,
+or when a finding is closed.
+
+20
+00:01:07.357 --> 00:01:09.936
+Those decisions belong to named people,
+
+21
+00:01:09.936 --> 00:01:12.983
+and the report is the
+evidence they decide with,
+
+22
+00:01:12.983 --> 00:01:18.296
+as the Zero Trust and Assessment book argues
+in its chapter, Evidence, Not Verdicts.
+
+23
+00:01:18.296 --> 00:01:22.480
+So every run is scoped, authorized
+and pinned to a tool version,
+
+24
+00:01:22.480 --> 00:01:25.270
+and its output stays inside the boundary.
+
+25
+00:01:25.270 --> 00:01:30.095
+Every result is recorded twice, the
+tool's value and a normalized one.
+
+26
+00:01:30.095 --> 00:01:34.088
+Every finding gets an owner, a route
+to the page that remediates it,
+
+27
+00:01:34.088 --> 00:01:36.233
+and a weighted place in the backlog.
+
+28
+00:01:36.233 --> 00:01:39.120
+Every run is compared
+with the last and sealed.
+
+29
+00:01:39.120 --> 00:01:43.734
+A finding is ready for closure when
+every applicable state has evidence and
+
+30
+00:01:43.734 --> 00:01:48.860
+a reassessment shows a pass; the authorizing
+official or the assessor decides.
+
+31
+00:01:52.610 --> 00:01:53.635
+What does it check?
+
+32
+00:01:53.635 --> 00:01:57.715
+Microsoft Learn says it tests
+hundreds of items from Microsoft's
+
+33
+00:01:57.715 --> 00:02:02.248
+configuration guidance for Entra,
+Intune, Azure networking and Purview.
+
+34
+00:02:02.248 --> 00:02:08.249
+Release three point one point oh holds
+three hundred sixty-four tests across seven
+
+35
+00:02:08.249 --> 00:02:11.118
+pillars: identity, devices, network, data,
+
+36
+00:02:11.118 --> 00:02:14.336
+infrastructure, security
+operations, and A I.
+
+37
+00:02:14.336 --> 00:02:16.447
+The guide names four things it isn't.
+
+38
+00:02:16.447 --> 00:02:20.235
+It isn't a verdict: a pass
+rate isn't a maturity stage.
+
+39
+00:02:20.235 --> 00:02:23.760
+It isn't a substitute for
+ScubaGear, which comes next.
+
+40
+00:02:23.760 --> 00:02:28.760
+It isn't a supported product: its read me
+calls it a community project maintained
+
+41
+00:02:28.760 --> 00:02:33.685
+by Microsoft employees, provided as is,
+outside any Microsoft support program.
+
+42
+00:02:33.685 --> 00:02:37.429
+And it isn't a detector: Learn's
+Global Secure Access guidance
+
+43
+00:02:37.429 --> 00:02:41.398
+calls it a configuration-posture
+check, to be paired with alerts.
+
+44
+00:02:41.398 --> 00:02:43.260
+In federal terms it's optional.
+
+45
+00:02:43.260 --> 00:02:46.077
+The program runs it as
+risk-based recommended,
+
+46
+00:02:46.077 --> 00:02:48.880
+for the breadth ScubaGear doesn't cover.
+
+47
+00:02:52.630 --> 00:02:55.680
+So run it alongside
+ScubaGear, never instead.
+
+48
+00:02:55.680 --> 00:03:00.361
+CISA's directive B O D twenty-five
+oh-one names CISA's SCuBA tools,
+
+49
+00:03:00.361 --> 00:03:03.655
+and the Zero Trust Assessment
+isn't one of them.
+
+50
+00:03:03.655 --> 00:03:08.152
+ScubaGear covers Exchange Online,
+Teams, SharePoint and Power Platform,
+
+51
+00:03:08.152 --> 00:03:10.924
+which the Zero Trust
+Assessment doesn't test,
+
+52
+00:03:10.924 --> 00:03:15.571
+and the Zero Trust and Assessment book
+counts twenty-two of the directive's
+
+53
+00:03:15.571 --> 00:03:20.367
+fifty mandatory Microsoft three sixty-five
+policies in those four products.
+
+54
+00:03:20.367 --> 00:03:24.030
+The Zero Trust Assessment
+brings breadth instead:
+
+55
+00:03:24.030 --> 00:03:27.430
+devices, network, data
+and security operations.
+
+56
+00:03:27.430 --> 00:03:32.210
+The two overlap mostly on Entra I D
+identity and email threat policies,
+
+57
+00:03:32.210 --> 00:03:34.930
+and a shared area isn't a duplicate check.
+
+58
+00:03:34.930 --> 00:03:36.729
+When both fail the same setting,
+
+59
+00:03:36.729 --> 00:03:41.226
+the ScubaGear finding is the directive's
+deviation and carries its reporting;
+
+60
+00:03:41.226 --> 00:03:45.793
+the Zero Trust Assessment finding is
+supporting evidence for the same control.
+
+61
+00:03:45.793 --> 00:03:48.370
+Nothing in this guide reports to CISA.
+
+62
+00:03:52.120 --> 00:03:57.170
+Here's the path on one page, each step
+with a done-when and a way to validate it.
+
+63
+00:03:57.170 --> 00:04:01.520
+One: decide and scope, until
+the decision record is approved.
+
+64
+00:04:01.520 --> 00:04:04.720
+Two: a clean host with
+PowerShell seven point six,
+
+65
+00:04:04.720 --> 00:04:07.920
+the pinned module, and a
+protected report folder.
+
+66
+00:04:07.920 --> 00:04:13.482
+Three: consent once, give the run account
+read roles only, and review the grants.
+
+67
+00:04:13.482 --> 00:04:17.146
+Four: connect every service
+in the tenant's own cloud.
+
+68
+00:04:17.146 --> 00:04:19.920
+Five: run it, and hash the export.
+
+69
+00:04:19.920 --> 00:04:24.282
+Six: pillar owners read their
+tabs and note skips and errors.
+
+70
+00:04:24.282 --> 00:04:26.894
+Seven: normalize every result.
+
+71
+00:04:26.894 --> 00:04:31.583
+Eight: register every finding with
+an owner, a family and a page.
+
+72
+00:04:31.583 --> 00:04:36.195
+Nine: reconcile overlapping findings
+through the setting and the control.
+
+73
+00:04:36.195 --> 00:04:40.783
+Ten: re-run on a schedule,
+compare, and seal the evidence.
+
+74
+00:04:40.783 --> 00:04:43.696
+Steps seven to ten run
+the guide's results kit,
+
+75
+00:04:43.696 --> 00:04:47.450
+which reads files only and
+never touches the tenant.
+
+76
+00:04:51.200 --> 00:04:52.925
+Does it work in a government cloud?
+
+77
+00:04:52.925 --> 00:04:56.938
+Microsoft Learn's three Zero
+Trust Assessment pages don't say.
+
+78
+00:04:56.938 --> 00:05:02.369
+The tool's three point one point oh
+source does: its connect command takes an
+
+79
+00:05:02.369 --> 00:05:07.625
+environment, Global, U S Gov or U S Gov
+D O D, and an Exchange environment name.
+
+80
+00:05:07.625 --> 00:05:11.313
+Each service it signs in to is
+documented per cloud on Learn,
+
+81
+00:05:11.313 --> 00:05:14.925
+and the guide matches the tool's
+parameters to those pages.
+
+82
+00:05:14.925 --> 00:05:19.609
+One place they conflict: for Security
+and Compliance in D O D, Learn gives
+
+83
+00:05:19.609 --> 00:05:22.308
+compliance dot D O D
+dot microsoft dot com,
+
+84
+00:05:22.308 --> 00:05:25.325
+and the tool's source
+uses a different address.
+
+85
+00:05:25.325 --> 00:05:27.113
+Which one works wasn't tested.
+
+86
+00:05:27.113 --> 00:05:32.148
+For SharePoint, the tool infers a
+sharepoint dot U S admin address,
+
+87
+00:05:32.148 --> 00:05:35.412
+so pass it explicitly;
+D O D's isn't specified.
+
+88
+00:05:35.412 --> 00:05:39.581
+Until a run is proved in your cloud,
+run one pillar at a time in a test
+
+89
+00:05:39.581 --> 00:05:44.560
+tenant of the same cloud, and keep
+ScubaGear as the federal baseline tool.
+
+90
+00:05:48.310 --> 00:05:49.148
+Now, who.
+
+91
+00:05:49.148 --> 00:05:53.972
+The first connection asks an administrator
+to consent to the tool's Microsoft
+
+92
+00:05:53.972 --> 00:05:58.797
+Graph read permissions; later runs don't
+ask again unless a new version adds one.
+
+93
+00:05:58.797 --> 00:06:00.434
+The sources differ on who.
+
+94
+00:06:00.434 --> 00:06:02.522
+Learn says a Global Administrator.
+
+95
+00:06:02.522 --> 00:06:07.462
+The tool's guide for three point one point
+oh says a Cloud Application Administrator
+
+96
+00:06:07.462 --> 00:06:11.697
+or Application Administrator, and
+that consent assigns no runtime role.
+
+97
+00:06:11.697 --> 00:06:16.723
+Learn lists twenty-one permissions; the
+source requests thirty-four, all read.
+
+98
+00:06:16.723 --> 00:06:19.010
+The program follows the tool's guide.
+
+99
+00:06:19.010 --> 00:06:22.997
+The consent administrator consents
+and doesn't run the assessment.
+
+100
+00:06:22.997 --> 00:06:27.510
+The run account is a dedicated reader
+whose roles are activated through pim
+
+101
+00:06:27.510 --> 00:06:32.309
+before each run; SharePoint Administrator
+is the one write-capable role it needs.
+
+102
+00:06:32.309 --> 00:06:36.702
+Consent lands on the shared Graph
+PowerShell application by default,
+
+103
+00:06:36.702 --> 00:06:38.898
+so the program uses a dedicated one.
+
+104
+00:06:38.898 --> 00:06:43.810
+The guide's RACI names who is responsible
+and accountable for each activity.
+
+105
+00:06:47.560 --> 00:06:49.723
+Now how, starting with the host.
+
+106
+00:06:49.723 --> 00:06:53.972
+The report and export hold tenant
+information an attacker could use.
+
+107
+00:06:53.972 --> 00:06:58.847
+Learn says to share them only with authorized
+personnel, store the report securely,
+
+108
+00:06:58.847 --> 00:07:02.661
+and delete the generated folder
+when the assessment is complete.
+
+109
+00:07:02.661 --> 00:07:06.886
+The tool's guide adds that exports and
+logs can hold personal information,
+
+110
+00:07:06.886 --> 00:07:11.598
+and that deleting the report folder doesn't
+remove the PowerShell logging folder.
+
+111
+00:07:11.598 --> 00:07:16.509
+So open a clean PowerShell session on
+a dedicated host inside the boundary.
+
+112
+00:07:16.509 --> 00:07:21.206
+Learn says PowerShell seven; the
+tool's guide asks for seven point six,
+
+113
+00:07:21.206 --> 00:07:23.348
+for its pinned Exchange module.
+
+114
+00:07:23.348 --> 00:07:27.047
+Install and pin the version
+the decision record names.
+
+115
+00:07:27.047 --> 00:07:30.189
+Create a new, empty report
+folder for each run,
+
+116
+00:07:30.189 --> 00:07:34.348
+restricted to the run account
+and the evidence custodians.
+
+117
+00:07:34.348 --> 00:07:39.109
+In step ten, the unaltered export
+moves into the evidence repository,
+
+118
+00:07:39.109 --> 00:07:42.890
+the copy is hashed, and the
+local folder is deleted.
+
+119
+00:07:46.640 --> 00:07:48.040
+Step four connects.
+
+120
+00:07:48.040 --> 00:07:52.537
+The tool signs in separately to
+Microsoft Graph, Azure, Exchange Online,
+
+121
+00:07:52.537 --> 00:07:57.567
+Security and Compliance, SharePoint
+Online and Azure Information Protection,
+
+122
+00:07:57.567 --> 00:08:00.540
+and a Graph connection
+doesn't grant the others.
+
+123
+00:08:00.540 --> 00:08:04.053
+Learn's get-started page shows
+only the commercial command,
+
+124
+00:08:04.053 --> 00:08:07.852
+so the guide takes each cloud's
+parameters from the tool's source.
+
+125
+00:08:07.852 --> 00:08:11.302
+Commercial and G C C use
+the Global environment.
+
+126
+00:08:11.302 --> 00:08:16.392
+G C C High uses U S Gov with
+its Exchange environment name,
+
+127
+00:08:16.392 --> 00:08:19.490
+and D O D uses U S Gov D O D with its own.
+
+128
+00:08:19.490 --> 00:08:24.990
+Then confirm the tenant and cloud with
+Get M G Context and Get A Z Context.
+
+129
+00:08:24.990 --> 00:08:30.165
+Pass the SharePoint admin U R L in
+every cloud, or the tool infers one.
+
+130
+00:08:30.165 --> 00:08:33.314
+If a service won't connect,
+connect the rest, run,
+
+131
+00:08:33.314 --> 00:08:37.540
+and record its tests as skipped,
+disconnected, with the reason.
+
+132
+00:08:37.540 --> 00:08:41.096
+In D O D, if the Purview
+tests skip as disconnected,
+
+133
+00:08:41.096 --> 00:08:44.200
+check the conflicting address first.
+
+134
+00:08:47.950 --> 00:08:49.250
+Step five runs it.
+
+135
+00:08:49.250 --> 00:08:52.950
+The assessment is read-only
+and stores its data locally.
+
+136
+00:08:52.950 --> 00:08:56.750
+On a large tenant it can take
+more than twenty-four hours,
+
+137
+00:08:56.750 --> 00:09:00.962
+and Learn says not to stop it, even
+if it logs warnings or errors.
+
+138
+00:09:00.962 --> 00:09:05.385
+The disable-telemetry switch
+suppresses the one telemetry event,
+
+139
+00:09:05.385 --> 00:09:09.325
+which carries the tenant I D;
+using it is the see-so's decision.
+
+140
+00:09:09.325 --> 00:09:12.900
+The no-browser switch keeps
+the report off a shared screen.
+
+141
+00:09:12.900 --> 00:09:18.653
+As soon as the run finishes, before
+anyone opens or copies anything,
+
+142
+00:09:18.653 --> 00:09:23.988
+hash the export, S H A two fifty-six,
+and hash every file into a C S V.
+
+143
+00:09:23.988 --> 00:09:26.687
+Those hashes show the
+output wasn't modified.
+
+144
+00:09:26.687 --> 00:09:30.505
+If the run fails, capture a support
+package in the same session,
+
+145
+00:09:30.505 --> 00:09:32.451
+to a separate protected folder.
+
+146
+00:09:32.451 --> 00:09:36.532
+Everything under the zt-export
+folder, including the jay-son
+
+147
+00:09:36.532 --> 00:09:40.810
+report data the kit reads, is
+assessment data, not just logs.
+
+148
+00:09:44.560 --> 00:09:47.498
+Steps six and seven read the results.
+
+149
+00:09:47.498 --> 00:09:49.547
+Each pillar owner reads their tab.
+
+150
+00:09:49.547 --> 00:09:53.278
+Every test ends in one
+of six statuses: passed,
+
+151
+00:09:53.278 --> 00:09:57.109
+failed, investigate,
+skipped, planned, or error.
+
+152
+00:09:57.109 --> 00:09:59.622
+Investigate means a person needs to look,
+
+153
+00:09:59.622 --> 00:10:03.685
+and skipped carries a reason, such
+as not licensed or not connected.
+
+154
+00:10:03.685 --> 00:10:07.418
+The kit records every result
+twice: the tool's value,
+
+155
+00:10:07.418 --> 00:10:10.885
+unchanged, and one of
+seven normalized results.
+
+156
+00:10:10.885 --> 00:10:12.573
+That's the rule in the title.
+
+157
+00:10:12.573 --> 00:10:16.247
+A skipped test is not a failed
+control, and it's not a pass.
+
+158
+00:10:16.247 --> 00:10:22.086
+It goes in its own column, with its reason:
+a licensing decision, or a run to fix.
+
+159
+00:10:22.086 --> 00:10:27.510
+Investigate counts as a finding until a
+recorded review confirms or dismisses it.
+
+160
+00:10:27.510 --> 00:10:28.923
+Two federal cases.
+
+161
+00:10:28.923 --> 00:10:32.103
+Not dot gov domain
+usually means the agency's
+
+162
+00:10:32.103 --> 00:10:35.111
+dot gov domain isn't
+verified in the tenant.
+
+163
+00:10:35.111 --> 00:10:40.412
+And Learn says impersonation protection
+isn't yet available in G C C High and D O D,
+
+164
+00:10:40.412 --> 00:10:44.710
+so a failed impersonation test
+there is a boundary finding.
+
+165
+00:10:48.460 --> 00:10:51.035
+Step eight opens the closure register.
+
+166
+00:10:51.035 --> 00:10:55.153
+Every finding gets one entry
+with the closure chain's fields,
+
+167
+00:10:55.153 --> 00:10:59.848
+from the Zero Trust and Assessment
+book: the finding and tool version,
+
+168
+00:10:59.848 --> 00:11:03.719
+the attack path, the owner,
+dependencies, the change, pilot,
+
+169
+00:11:03.719 --> 00:11:09.073
+enforcement and test, the evidence,
+residual risk, reassessment and weighting.
+
+170
+00:11:09.073 --> 00:11:12.399
+Each finding family routes to
+the page that remediates it,
+
+171
+00:11:12.399 --> 00:11:15.310
+with the evidence that shows
+it's ready for closure.
+
+172
+00:11:15.310 --> 00:11:18.503
+Emergency access goes to
+Access and Privilege,
+
+173
+00:11:18.503 --> 00:11:21.122
+with a test sign-in that fired its alert.
+
+174
+00:11:21.122 --> 00:11:24.499
+Conditional Access gaps
+go to its policy library,
+
+175
+00:11:24.499 --> 00:11:27.135
+with a test sign-in blocked as designed.
+
+176
+00:11:27.135 --> 00:11:30.097
+Skipped tests go to step
+seven's dispositions.
+
+177
+00:11:30.097 --> 00:11:33.935
+A finding with no family goes
+to the Zero Trust program lead.
+
+178
+00:11:33.935 --> 00:11:38.110
+The kit sets a default priority,
+and the owner writes the rationale.
+
+179
+00:11:38.110 --> 00:11:41.560
+An exception with an expiry
+is the see-so's decision;
+
+180
+00:11:41.560 --> 00:11:44.435
+one without is the authorizing official's.
+
+181
+00:11:44.435 --> 00:11:47.650
+The kit never marks a
+finding ready for closure.
+
+182
+00:11:51.400 --> 00:11:53.063
+Step nine reconciles.
+
+183
+00:11:53.063 --> 00:11:56.527
+Tools with different identifiers
+can't be matched directly,
+
+184
+00:11:56.527 --> 00:12:00.686
+so the program matches each to a common
+spine: the setting, and the control
+
+185
+00:12:00.686 --> 00:12:04.775
+it supports in the NIST special
+publication eight hundred fifty-three.
+
+186
+00:12:04.775 --> 00:12:09.414
+Two tools failing the same setting
+under the same control are one finding,
+
+187
+00:12:09.414 --> 00:12:12.000
+with two pieces of evidence and one owner.
+
+188
+00:12:12.000 --> 00:12:17.250
+CISA maps every SCuBA policy to those
+controls in the fed-ramp High baseline.
+
+189
+00:12:17.250 --> 00:12:22.168
+On AWS, Security Hub's standard for that
+publication supports a subset of it,
+
+190
+00:12:22.168 --> 00:12:23.992
+with automated checks only,
+
+191
+00:12:23.992 --> 00:12:28.275
+and each finding lists its related
+requirements: that's the spine.
+
+192
+00:12:28.275 --> 00:12:33.117
+Its statuses map to the taxonomy, and
+A W S warns that a control with no
+
+193
+00:12:33.117 --> 00:12:38.738
+resources passes at the account level, so
+a pass can mean nothing was evaluated.
+
+194
+00:12:38.738 --> 00:12:43.069
+On the other clouds, Oracle Cloud
+Infrastructure's Cloud Guard and Google
+
+195
+00:12:43.069 --> 00:12:48.390
+Cloud's Security Command Center are compared
+in Security Operations and Telemetry.
+
+196
+00:12:52.140 --> 00:12:54.227
+Step ten makes it repeatable.
+
+197
+00:12:54.227 --> 00:12:57.733
+The kit compares each
+run with the last: new,
+
+198
+00:12:57.733 --> 00:13:02.040
+regressed, fixed, still open,
+and no longer evaluated.
+
+199
+00:13:02.040 --> 00:13:04.028
+That last class matters most.
+
+200
+00:13:04.028 --> 00:13:08.991
+A finding the tool skipped this time
+isn't fixed: fix the run and run it again.
+
+201
+00:13:08.991 --> 00:13:11.684
+Runs from different tool
+versions are refused
+
+202
+00:13:11.684 --> 00:13:14.240
+until someone records
+a review of the change.
+
+203
+00:13:14.240 --> 00:13:19.180
+Then seal the evidence: each output
+folder becomes a chained record with its
+
+204
+00:13:19.180 --> 00:13:22.865
+controls, every file's hash,
+and the previous record's hash,
+
+205
+00:13:22.865 --> 00:13:25.453
+which the I S S O can
+check without the kit.
+
+206
+00:13:25.453 --> 00:13:31.026
+The cadence is design guidance from the
+day-two runbook in Compliance Automation and
+
+207
+00:13:31.026 --> 00:13:34.560
+Day-2 Operations: monthly,
+after each remediation wave,
+
+208
+00:13:34.560 --> 00:13:36.915
+before a tool upgrade, and quarterly.
+
+209
+00:13:36.915 --> 00:13:41.917
+Learn's weekly digest playbook comes with
+two cautions: report counts, not its
+
+210
+00:13:41.917 --> 00:13:47.520
+pass rate, and whether it runs against three
+point one point oh isn't yet specified.
+
+211
+00:13:51.270 --> 00:13:53.133
+To close, the dangers.
+
+212
+00:13:53.133 --> 00:13:56.258
+Counting a skipped test
+as a failure or a pass.
+
+213
+00:13:56.258 --> 00:13:59.344
+Calling a finding fixed because
+the next run skipped it.
+
+214
+00:13:59.344 --> 00:14:01.945
+Treating the pass rate
+as a maturity score.
+
+215
+00:14:01.945 --> 00:14:05.307
+Running the Zero Trust
+Assessment instead of ScubaGear.
+
+216
+00:14:05.307 --> 00:14:10.571
+Global Administrator for every run, or
+consent on the shared Graph application.
+
+217
+00:14:10.571 --> 00:14:14.270
+And the wrong cloud, or a
+report folder left on the host.
+
+218
+00:14:14.270 --> 00:14:16.107
+Each has its guard in the steps.
+
+219
+00:14:16.107 --> 00:14:21.123
+The guide is plain about what it couldn't
+verify: government clouds on Learn,
+
+220
+00:14:21.123 --> 00:14:25.412
+D O D's Security and Compliance
+address and SharePoint admin U R L,
+
+221
+00:14:25.412 --> 00:14:29.619
+which run roles apply, and Graph
+permissions in G C C High and D O D.
+
+222
+00:14:29.619 --> 00:14:31.533
+Nothing was run against a tenant.
+
+223
+00:14:31.533 --> 00:14:36.577
+To practice, start the learning path,
+The Zero Trust Assessment as Evidence:
+
+224
+00:14:36.577 --> 00:14:39.344
+four modules, each with a knowledge check.
+
+225
+00:14:39.344 --> 00:14:44.308
+Module one's first lab runs on the kit's
+fictional fixtures, with no tenant.
+
+226
+00:14:44.308 --> 00:14:45.120
+Thank you.

@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.775
+Does it work in a government cloud?
+
+2
+00:00:01.775 --> 00:00:05.788
+Microsoft Learn's three Zero
+Trust Assessment pages don't say.
+
+3
+00:00:05.788 --> 00:00:11.219
+The tool's three point one point oh
+source does: its connect command takes an
+
+4
+00:00:11.219 --> 00:00:16.475
+environment, Global, U S Gov or U S Gov
+D O D, and an Exchange environment name.
+
+5
+00:00:16.475 --> 00:00:20.163
+Each service it signs in to is
+documented per cloud on Learn,
+
+6
+00:00:20.163 --> 00:00:23.775
+and the guide matches the tool's
+parameters to those pages.
+
+7
+00:00:23.775 --> 00:00:28.459
+One place they conflict: for Security
+and Compliance in D O D, Learn gives
+
+8
+00:00:28.459 --> 00:00:31.158
+compliance dot D O D
+dot microsoft dot com,
+
+9
+00:00:31.158 --> 00:00:34.175
+and the tool's source
+uses a different address.
+
+10
+00:00:34.175 --> 00:00:35.963
+Which one works wasn't tested.
+
+11
+00:00:35.963 --> 00:00:40.998
+For SharePoint, the tool infers a
+sharepoint dot U S admin address,
+
+12
+00:00:40.998 --> 00:00:44.262
+so pass it explicitly;
+D O D's isn't specified.
+
+13
+00:00:44.262 --> 00:00:48.431
+Until a run is proved in your cloud,
+run one pillar at a time in a test
+
+14
+00:00:48.431 --> 00:00:53.110
+tenant of the same cloud, and keep
+ScubaGear as the federal baseline tool.

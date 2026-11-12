@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.888
+Now, who.
+
+2
+00:00:00.888 --> 00:00:05.712
+The first connection asks an administrator
+to consent to the tool's Microsoft
+
+3
+00:00:05.712 --> 00:00:10.537
+Graph read permissions; later runs don't
+ask again unless a new version adds one.
+
+4
+00:00:10.537 --> 00:00:12.174
+The sources differ on who.
+
+5
+00:00:12.174 --> 00:00:14.262
+Learn says a Global Administrator.
+
+6
+00:00:14.262 --> 00:00:19.202
+The tool's guide for three point one point
+oh says a Cloud Application Administrator
+
+7
+00:00:19.202 --> 00:00:23.437
+or Application Administrator, and
+that consent assigns no runtime role.
+
+8
+00:00:23.437 --> 00:00:28.463
+Learn lists twenty-one permissions; the
+source requests thirty-four, all read.
+
+9
+00:00:28.463 --> 00:00:30.750
+The program follows the tool's guide.
+
+10
+00:00:30.750 --> 00:00:34.737
+The consent administrator consents
+and doesn't run the assessment.
+
+11
+00:00:34.737 --> 00:00:39.250
+The run account is a dedicated reader
+whose roles are activated through pim
+
+12
+00:00:39.250 --> 00:00:44.049
+before each run; SharePoint Administrator
+is the one write-capable role it needs.
+
+13
+00:00:44.049 --> 00:00:48.442
+Consent lands on the shared Graph
+PowerShell application by default,
+
+14
+00:00:48.442 --> 00:00:50.638
+so the program uses a dedicated one.
+
+15
+00:00:50.638 --> 00:00:55.250
+The guide's RACI names who is responsible
+and accountable for each activity.

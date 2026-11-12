@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.350
+Step five runs it.
+
+2
+00:00:01.350 --> 00:00:05.050
+The assessment is read-only
+and stores its data locally.
+
+3
+00:00:05.050 --> 00:00:08.850
+On a large tenant it can take
+more than twenty-four hours,
+
+4
+00:00:08.850 --> 00:00:13.062
+and Learn says not to stop it, even
+if it logs warnings or errors.
+
+5
+00:00:13.062 --> 00:00:17.485
+The disable-telemetry switch
+suppresses the one telemetry event,
+
+6
+00:00:17.485 --> 00:00:21.425
+which carries the tenant I D;
+using it is the see-so's decision.
+
+7
+00:00:21.425 --> 00:00:25.000
+The no-browser switch keeps
+the report off a shared screen.
+
+8
+00:00:25.000 --> 00:00:30.753
+As soon as the run finishes, before
+anyone opens or copies anything,
+
+9
+00:00:30.753 --> 00:00:36.088
+hash the export, S H A two fifty-six,
+and hash every file into a C S V.
+
+10
+00:00:36.088 --> 00:00:38.787
+Those hashes show the
+output wasn't modified.
+
+11
+00:00:38.787 --> 00:00:42.605
+If the run fails, capture a support
+package in the same session,
+
+12
+00:00:42.605 --> 00:00:44.551
+to a separate protected folder.
+
+13
+00:00:44.551 --> 00:00:48.632
+Everything under the zt-export
+folder, including the jay-son
+
+14
+00:00:48.632 --> 00:00:52.610
+report data the kit reads, is
+assessment data, not just logs.
