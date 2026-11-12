@@ -57,10 +57,15 @@ How an agency runs Microsoft's Zero Trust Assessment and turns its report into e
 | This guide | Draft, November 11, 2026 |
 | The results kit, `examples/zta-results`, with fixtures and Pester tests | Built; [download](../../../downloads/zta-results.zip) |
 | Narrated deck and video | Planned |
-| Labs: Lab 1 on the kit's fixtures, Lab 2 in a test tenant | Planned, inside the training path; this guide has no separate developer workbook, because the kit is small enough for the learning path to carry its labs |
-| Training path | Planned |
+| Labs: Lab 1 on the kit's fixtures, Lab 2 in a test tenant | Draft, November 11, 2026, inside the training path; this guide has no separate developer workbook, because the kit is small enough for the learning path to carry its labs |
+| Training path | Draft, November 11, 2026: [The Zero Trust Assessment as Evidence](../../training/zero-trust-assessment/index.md), four modules |
 
 : The guide's pieces {.striped .hover}
+
+::: {.callout-tip}
+## Labs for this guide
+The hands-on work is in the learning path [*The Zero Trust Assessment as Evidence*](../../training/zero-trust-assessment/index.md): Lab 1 on a laptop with the kit's fictional fixtures, Lab 2 in a test tenant. [The Labs page](../../training/labs.md#zta) lists them; the steps below link their module.
+:::
 
 ## The track at a glance {#zta-at-a-glance}
 
@@ -160,6 +165,11 @@ The Zero Trust Assessment tests a tenant's configuration against hundreds of ite
 - The decision record names the scope, the account, the cadence, the tool version (3.1.0 at this writing) and the output handling, and carries the CISO's approval.
 - `Get-AzTag -ResourceId "/subscriptions/<subscription-id>"` shows `ZeroTrustAssessment = Infrastructure` for each subscription in scope.
 - Gate owner: the Zero Trust program lead.
+:::
+
+::: {.callout-tip}
+## Labs and training: G1 Decide and scope
+- **As training:** [Module 1: Evidence, not a verdict](../../training/zero-trust-assessment/01-evidence-not-a-verdict.md), with [Lab 1](../../training/zero-trust-assessment/01-evidence-not-a-verdict.md#zta-lab-1) on fixtures and a knowledge check
 :::
 
 **Rollback.** A superseding decision record. To take a subscription out of scope: `Update-AzTag -ResourceId "/subscriptions/<subscription-id>" -Tag @{ ZeroTrustAssessment = 'Infrastructure' } -Operation Delete`.
@@ -406,6 +416,12 @@ The run writes `ZeroTrustAssessmentReport.html` and `ZeroTrustAssessmentReport-c
 - Gate owner: the assessment operator.
 :::
 
+::: {.callout-tip}
+## Labs and training: G5 Run it
+- **In a test tenant:** [Module 2, Lab 2](../../training/zero-trust-assessment/02-running-the-assessment-safely.md#zta-lab-2) runs Steps 2 to 5
+- **As training:** [Module 2: Running the assessment safely](../../training/zero-trust-assessment/02-running-the-assessment-safely.md), with a knowledge check
+:::
+
 **Rollback.** None in the tenant. Delete an abandoned run's folder under the records rule.
 
 ## Step 6: Read the report {#zta-step-6}
@@ -571,6 +587,13 @@ A finding that matches no family, by test ID or by the tool's category, is *unro
 - Gate owner: the Zero Trust program lead.
 :::
 
+::: {.callout-tip}
+## Labs and training: G8 Register and route
+- **On a laptop, no tenant:** [Module 3, Lab 1](../../training/zero-trust-assessment/03-from-results-to-a-closure-register.md#zta-lab-1) runs Steps 7 and 8 on the kit's fixtures
+- **In a test tenant:** [Module 3, Lab 2](../../training/zero-trust-assessment/03-from-results-to-a-closure-register.md#zta-lab-2)
+- **As training:** [Module 3: From results to a closure register](../../training/zero-trust-assessment/03-from-results-to-a-closure-register.md), with a knowledge check
+:::
+
 **Rollback.** Delete the register folder and re-run; the owners' filled fields live in the agency's tracker, not in the kit's output.
 
 ## Step 9: Reconcile with ScubaGear and AWS Security Hub CSPM {#zta-step-9}
@@ -700,6 +723,13 @@ Learn's operations guidance for Microsoft Entra Private Access and Internet Acce
 - `Invoke-ZtaEvidence.ps1 -Check -Package re-run -RunDate <run-date>` passes every row.
 - The comparison's *no longer evaluated* rows each have a fix-and-re-run task.
 - Gate owner: the ISSO.
+:::
+
+::: {.callout-tip}
+## Labs and training: G10 Re-run and keep evidence
+- **On a laptop, no tenant:** [Module 4, Lab 1](../../training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md#zta-lab-1) compares, seals and breaks the evidence
+- **In a test tenant:** [Module 4, Lab 2](../../training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md#zta-lab-2)
+- **As training:** [Module 4: Reconcile, re-run and keep the evidence](../../training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md), with a knowledge check
 :::
 
 **Rollback.** Remove the calendar entry; keep the evidence.

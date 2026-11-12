@@ -135,6 +135,19 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : Microsoft Automation: labs by module {.striped .hover}
 
+## The Zero Trust Assessment learning path {#zta}
+
+[The learning path](zero-trust-assessment/index.md) · [its implementation guide](../books/guides/zero-trust-assessment-implementation.md) · [the code: zta-results.zip](../../downloads/zta-results.zip)
+
+| Module | Lab 1, no tenant | Lab 2 |
+|---|---|---|
+| [Module 1: Evidence, not a verdict](zero-trust-assessment/01-evidence-not-a-verdict.md) | [Lab 1](zero-trust-assessment/01-evidence-not-a-verdict.md#zta-lab-1) | — |
+| [Module 2: Running the assessment safely](zero-trust-assessment/02-running-the-assessment-safely.md) | — | [Lab 2](zero-trust-assessment/02-running-the-assessment-safely.md#zta-lab-2) |
+| [Module 3: From results to a closure register](zero-trust-assessment/03-from-results-to-a-closure-register.md) | [Lab 1](zero-trust-assessment/03-from-results-to-a-closure-register.md#zta-lab-1) | [Lab 2](zero-trust-assessment/03-from-results-to-a-closure-register.md#zta-lab-2) |
+| [Module 4: Reconcile, re-run and keep the evidence](zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md) | [Lab 1](zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md#zta-lab-1) | [Lab 2](zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md#zta-lab-2) |
+
+: The Zero Trust Assessment: labs by module {.striped .hover}
+
 ## What Lab 2 needs {#lab-2-environments}
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:
