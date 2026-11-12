@@ -5231,11 +5231,14 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
@@ -5267,6 +5270,8 @@ pages:
   coverage: cited
   note: Microsoft tenant isolation and engineering-system guidance not covered.
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
@@ -9560,7 +9565,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b11-zero-trust/02-governance-principles.md
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
@@ -19967,7 +19974,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/appendix-c-identity-assessment-module.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
@@ -20317,6 +20326,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: docs/identity/devices/howto-vm-sign-in-azure-ad-linux.md
@@ -25190,7 +25201,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/09-building-the-entra-target.md
@@ -28293,7 +28306,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b02-identity/02-the-structural-problem.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b03-hr-identity/07-who-owns-workforce-identity.md

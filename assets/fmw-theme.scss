@@ -410,6 +410,27 @@ figure img[src$=".svg"] {
     color: $fmw-muted;
     text-transform: none;
   }
+  // Card header: in a table whose first column is "Book" (class added by assets/table-cards.html), or
+  // one wrapped in `::: {.fmw-card-head}`, the first value of each card is shown reversed (white on
+  // navy) as the card's title bar.
+  table.fmw-stack.fmw-book-cards td:first-child,
+  .fmw-card-head table.fmw-stack td:first-child {
+    background: $fmw-navy;
+    color: #fff;
+    margin: -0.35rem -0.6rem 0.45rem;
+    width: auto !important;
+    padding: 0.4rem 0.6rem !important;
+    border-radius: 5px 5px 0 0;
+    font-weight: 600;
+  }
+  table.fmw-stack.fmw-book-cards td:first-child::before,
+  .fmw-card-head table.fmw-stack td:first-child::before {
+    color: #c9d4e2;
+  }
+  table.fmw-stack.fmw-book-cards td:first-child a,
+  .fmw-card-head table.fmw-stack td:first-child a {
+    color: #fff;
+  }
 }
 
 // Large tables (6 or more columns) use slightly smaller text on wide screens so columns balance

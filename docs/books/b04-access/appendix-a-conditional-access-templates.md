@@ -149,7 +149,7 @@ A country location. The program's standard is the United States only, with trave
 }
 ```
 
-Both are created with `New-MgIdentityConditionalAccessNamedLocation -BodyParameter`.[^aA-nl-cmdlet] `NL-WorkloadEgress` has the same shape as `NL-TrustedNetworks`, holding only the ranges workloads call from.
+Both are created with `New-MgIdentityConditionalAccessNamedLocation -BodyParameter`.[^aA-nl-cmdlet] `NL-WorkloadEgress` has the same shape as `NL-TrustedNetworks`, holding only the ranges workloads call from, and so does `NL-SyncServerEgress`, holding only the public egress addresses of the Microsoft Entra Connect servers, active and staging (CA039). Neither is marked trusted.
 
 ### Custom authentication strength
 
@@ -175,7 +175,7 @@ It is created with `New-MgPolicyAuthenticationStrengthPolicy -BodyParameter`, wh
 
 ## Policy templates
 
-Every template excludes the emergency access group, except CA090 and the workload identity policies (CA015 and CA037), which have no user scope to exclude it from. Templates are grouped by the wave in [Chapter 07](07-the-conditional-access-policy-library.md).
+Every template excludes the emergency access group, except CA090 and the workload identity policies (CA015, CA037 and CA039's workload form), which have no user scope to exclude it from. Templates are grouped by the wave in [Chapter 07](07-the-conditional-access-policy-library.md).
 
 ### Wave 1: foundation
 
@@ -608,6 +608,27 @@ CA015, workload identities only from their egress ranges. Service principals are
 ```
 
 CA037, high-risk workload identities, uses the same shape with `"servicePrincipalRiskLevels": ["high"]` in place of the location condition. Both need Workload ID Premium.[^aA-workload]
+
+CA039, the synchronization-account location restriction ([Chapter 07](07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities); [WD-151](../../about/decision-register.md#wd-151)), in two forms under one number. The user form, while any legacy connector account holds the Directory Synchronization Accounts role; `{role:Directory Synchronization Accounts}` is that role's template ID from Microsoft's built-in roles reference, resolved from the tenant map like the other placeholders:
+
+```json
+{
+  "displayName": "CA039-SyncAccounts-LocationRestriction",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeRoles": ["{role:Directory Synchronization Accounts}"],
+      "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}"]
+    },
+    "applications": { "includeApplications": ["All"] },
+    "locations": { "includeLocations": ["All"], "excludeLocations": ["{location:NL-SyncServerEgress}"] },
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+}
+```
+
+The workload form, `CA039-SyncSP-LocationRestriction`, is CA015's shape with the Connect Sync service principal (`{sp:connect-sync}`, the service principal of the application that `Get-ADSyncEntraConnectorCredential` names) in `includeServicePrincipals` and `{location:NL-SyncServerEgress}` in `excludeLocations`. The user form needs Entra ID P1; the workload form needs Workload ID Premium.[^aA-workload] Both start in report-only, as every template here does, and the user form is retired through a change, set to Off with its file kept in the policy repository, once [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#hardening-the-synchronization-identities) has removed the last legacy account.
 
 CA036, elevated insider risk (Adaptive Protection integration is in preview):[^aA-adaptive][^aA-tpl-insider]
 

@@ -291,6 +291,22 @@ Compliance policies define the minimum posture a device must meet before Conditi
 - **Windows supports fewer actions.** On Windows, the actions are **Mark device noncompliant**, **Send email to end user** and **Add device to retire list**. Remote lock and push notifications aren't available for Windows. Adding a device to the retire list doesn't retire it; an administrator has to retire it from that list.[^c08-noncompliance] There is no separate "block access" action: blocking is what Conditional Access does with a noncompliant device.
 - **Health attestation settings are measured at boot.** BitLocker, Secure Boot and code integrity are evaluated through Device Health Attestation, so a newly encrypted device needs a restart before it reports compliant.[^c08-win-compliance]
 
+::: {.callout-warning}
+## Device Health Attestation in GCC High and DoD
+
+The three boot-measured rules in CP-001 and CP-002 (**Require BitLocker**, **Require Secure Boot to be enabled** and **Require code integrity**) depend on the Windows Device Health Attestation service. Intune's government service description lists Windows Device Health Attestation among the features **planned** for GCC High and DoD, not yet available or supported there.[^c08-z-dha-gov] Learn's Windows compliance settings reference says the opposite, that devices across the commercial, GCC High and DoD services use the attestation service.[^c08-z-dha-settings] Where the two disagree, the program plans on the service description, the narrower statement, and confirms the behavior in its own tenant. GCC uses the commercial Intune instance, so in GCC the rules evaluate as written. This is the program's settled position, a program decision ([WD-145](../../about/decision-register.md#wd-145)).
+
+**In a GCC High or DoD tenant, until Learn lists attestation as available there** *(risk-based recommended; Learn gives a replacement only for the encryption check)*:
+
+| CP-001 rule | Alternative that doesn't depend on attestation | Source |
+|---|---|---|
+| Require BitLocker | **Encryption of data storage on a device**, set to *Require*. It reads the DeviceStatus CSP and checks the OS drive for BitLocker; Learn calls **Require BitLocker** the more robust check, so this is weaker, not equal | Microsoft Learn[^c08-z-dha-settings] |
+| Require Secure Boot to be enabled; Require code integrity | Learn documents no compliance setting for either that avoids attestation. The program reads both states from Microsoft Defender for Endpoint's device health reporting and its vulnerability management security recommendations, which Learn lists as available in GCC, GCC High and DoD, and treats a device that reports either one off as a finding through the drift loop in [Chapter 10](10-operating-and-evidencing-the-fleet.md#compliance-architecture), not through compliance | *Design guidance*[^c08-z-mde-gov] |
+| All three, as a risk signal | **Require the device to be at or under the machine risk score**, from the Defender for Endpoint connector, set to **Low**, so a device with a medium or high threat is noncompliant *(program choice)*. Learn doesn't state the connector's availability by cloud on the pages read, so it is **not yet specified** for GCC High and DoD and is confirmed in the pilot | Microsoft Learn[^c08-z-dha-settings] |
+
+Keep the three attestation rules in the policy, assigned to the same group: they still report in the tenant, and when attestation reaches GCC High and DoD they evaluate without a policy change. Until then, read their per-setting status as *not evaluated* rather than as a pass, and don't count them as evidence for CP-001 in the security plan. The pilot device proof for a GCC High or DoD ring adds `Confirm-SecureBootUEFI`, which should return `True`, and `manage-bde -status $env:SystemDrive`, run elevated.[^c08-z-dha-ts]
+:::
+
 ### CP-001: Windows workstation baseline
 
 **Platform:** Windows 11 · **Target:** corporate workstations in Tier 0 and Tier 1 · **Group:** devices where `extensionAttribute11` is `Tier0` or `Tier1`. Tier 2 devices get CP-003, which relaxes the password length to 12; because the most restrictive compliance setting applies, CP-001 can't also target them.
@@ -692,11 +708,17 @@ Replaces the LAPS GPO (Computer Configuration > Administrative Templates > Syste
 | Password age (days) | 30 |
 | Post-authentication actions | Reset the password and sign out the managed account |
 | Post-authentication reset delay (hours) | 8 |
-| Administrator account name | Default (built-in Administrator) |
+| Automatic account management (`AutomaticAccountManagementEnabled`) | Enabled (Windows 11, version 24H2 and later) |
+| Automatic account management target (`AutomaticAccountManagementTarget`) | Manage a new custom account (1, Learn's default) |
+| Name of the managed account (`AutomaticAccountManagementNameOrPrefix`) | `FMPLocalAdmin` (a name, because randomization is off; 14 characters at most leaves room if randomization is ever turned on) |
+| Enable the managed account (`AutomaticAccountManagementEnableAccount`) | Enabled (1), so the account can be used in an outage without a policy change first |
+| Randomize the account name (`AutomaticAccountManagementRandomizeName`) | Off (0, Learn's default) |
+| Administrator account name (`AdministratorAccountName`) | Not configured; Learn says it is ignored when automatic account management is enabled |
+| Built-in Administrator (`LocalPoliciesSecurityOptions/Accounts_EnableAdministratorAccountStatus`, a settings catalog setting outside the LAPS profile) | Disabled (0) |
 
 The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program sets 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] Windows Server 2025 isn't a target; servers don't enroll, so server LAPS stays with the server toolchain; Chapter 09 doesn't yet specify it.
 
-Windows LAPS keeps a managed account's password in one directory at a time, so a hybrid-joined device backs up to Entra ID or to Active Directory, never both; when passwords go to Entra ID, only Global Administrator, Cloud Device Administrator and Intune Administrator can read the clear-text password by default.[^c08-laps-concepts][^c08-laps-faq] Passwords can be 8 to 64 characters, so the program's 24 is inside the range; complexity 4 is large and small letters, numbers and specials.[^c08-laps-passwords] Microsoft recommends automatic account management (Windows 11, version 24H2 and later), with a custom account and the built-in Administrator left disabled; the profile above keeps the built-in account, and whether the program moves to automatic mode is an open decision, set out [below](#laps-account-management-decision).[^c08-laps-modes]
+Windows LAPS keeps a managed account's password in one directory at a time, so a hybrid-joined device backs up to Entra ID or to Active Directory, never both; when passwords go to Entra ID, only Global Administrator, Cloud Device Administrator and Intune Administrator can read the clear-text password by default.[^c08-laps-concepts][^c08-laps-faq] Passwords can be 8 to 64 characters, so the program's 24 is inside the range; complexity 4 is large and small letters, numbers and specials.[^c08-laps-passwords] Microsoft recommends automatic account management (Windows 11, version 24H2 and later), with a custom account and the built-in Administrator left disabled; the profile above follows that recommendation, which the program adopted on November 11, 2026 as a program decision ([WD-153](../../about/decision-register.md#wd-153)), set out with its rollout [below](#laps-account-management-decision).[^c08-laps-modes] Until that rollout reaches a device, the device keeps the earlier ES-006 profile, which managed the built-in Administrator in manual mode.
 
 Moving off the legacy LAPS GPO (Microsoft LAPS, the `AdmPwd` client-side extension) follows Microsoft's immediate transition: disable the legacy policy and apply ES-006's Windows LAPS profile together, confirm the transition on the device, then uninstall the legacy software. A Windows LAPS policy always takes precedence over a legacy LAPS policy on the same device, and the first Windows LAPS policy rotates the password at once.[^c08-laps-migration][^c08-laps-legacy] Confirm on a pilot device with the Windows LAPS event log: 10022 records a policy backing up to Entra ID, 10029 a successful password update in Entra ID, and 10018 the same for Active Directory.[^c08-laps-events]
 
@@ -713,9 +735,9 @@ msiexec.exe /q /uninstall '{97E2CA7B-B657-4FF7-A6DB-30ECC73E1E28}'
 
 `Invoke-LapsPolicyProcessing` and the event IDs are in Microsoft's LAPS PowerShell and event log references; the uninstall command is the one Microsoft gives for an MSI-installed legacy client.[^c08-laps-ps]
 
-#### Windows LAPS automatic account management: the open decision {#laps-account-management-decision}
+#### Windows LAPS automatic account management: the program's decision {#laps-account-management-decision}
 
-Whether ES-006 moves from the built-in Administrator account to automatic account management is **an open decision for the program's owner**, not settled here. The options, from Microsoft's description of the two modes:[^c08-z-laps-modes][^c08-z-laps-intune]
+Whether ES-006 moved from the built-in Administrator account to automatic account management was an open decision for the program's owner. It is now settled: **option C, automatic mode with a custom managed account and the built-in Administrator disabled**, Microsoft's recommendation, adopted as a program decision on November 11, 2026 ([WD-153](../../about/decision-register.md#wd-153)). The options considered, from Microsoft's description of the two modes:[^c08-z-laps-modes][^c08-z-laps-intune]
 
 | Option | What it means | For it | Against it |
 |---|---|---|---|
@@ -726,7 +748,40 @@ Whether ES-006 moves from the built-in Administrator account to automatic accoun
 
 What Microsoft says about the trade: keeping the managed account disabled removes any chance of a password spray against it but means it must be enabled by policy before use, and a per-device name makes the attacker's job harder but means staff can't rely on a common account name; whether the friction is acceptable depends on how often the account is used and the environment's security requirements.[^c08-z-laps-modes] In automatic mode Windows LAPS blocks any outside change to the account and logs events 10101 to 10104 for each rejected attempt, so scripts and the local-group policies must not try to manage it.[^c08-z-laps-modes]
 
-**To decide:** the option, whether the 24H2 floor (CP-001 already requires it) lets the program skip a split policy, and the help desk procedure for finding the account name on a device. Until the owner decides, ES-006 stays on option A and this is recorded as an open item, not an exception. Whichever option is chosen follows the hardening rollout below, with Windows LAPS event 10029 (password backed up to Entra ID) as its test evidence.
+**What was decided, and what it settles.** The questions that were open are answered this way ([WD-153](../../about/decision-register.md#wd-153)):
+
+- **The option:** C. Windows LAPS creates and manages `FMPLocalAdmin` on each device, enabled and with a common name, so the help desk finds it without looking it up; the built-in Administrator is disabled through the settings catalog and is no longer the managed account. Options B and D stay available for a later decision if the friction Microsoft describes becomes acceptable.
+- **A split policy, only while the fleet crosses the floor.** Learn says the automatic account management settings are supported only in Windows 11, version 24H2, Windows Server 2025 and later, and that where a policy carries a value an older OS doesn't support, the OS applies the default instead, so Microsoft advises one policy for the older OS and one for the newer.[^c08-z-laps-settings] Intune applies one Windows LAPS policy per device.[^c08-z-laps-intune] CP-001, CP-003 and CP-005 already require 24H2, so every compliant workstation can take the new profile; a device below the floor keeps the earlier manual-mode profile (`ES-006-Manual`) until it is upgraded or retired, and then leaves its group automatically.
+- **The help desk procedure:** the account name is `FMPLocalAdmin` on every device, and the password is read in Intune or the Microsoft Entra admin center as today.
+- **Servers:** Windows Server 2025 also supports automatic mode, but servers don't enroll in Intune; server LAPS stays with the server toolchain, which Chapter 09 doesn't yet specify.
+
+**Government cloud availability** (read Nov 11, 2026). Windows LAPS with Microsoft Entra ID is available in Azure Global and Azure Government,[^c08-z-laps-entra] and Intune endpoint security policies and the settings catalog are standard MDM features in GCC, GCC High and DoD.[^c08-z-intune-gov] Learn doesn't state automatic account management's availability by cloud: it is a device-side mode of the same LAPS CSP, so its availability by cloud is **not yet specified**, and the pilot below is where a GCC High or DoD tenant confirms it before the First ring.
+
+**Authority:** Microsoft-recommended for automatic mode, a custom account and the built-in Administrator disabled;[^c08-z-laps-modes] the account name, keeping the account enabled, and the rings are risk-based recommended, the program's.
+
+**Rollout rings.** Two device groups carry the two profiles, both dynamic on the OS build, so a device moves from one to the other when it is upgraded, never by hand. Windows 11, version 24H2 is build 10.0.26100 and version 25H2 is 10.0.26200, so the rules are *(design guidance; check them against the tenant's devices before assigning)*:
+
+```text
+ES-006 (automatic mode):          (device.deviceOSType -eq "Windows") -and (device.deviceOSVersion -startsWith "10.0.26")
+ES-006-Manual (the earlier ES-006): (device.deviceOSType -eq "Windows") -and -not (device.deviceOSVersion -startsWith "10.0.26")
+```
+
+Assign ES-006 ring by ring through the [hardening rollout below](#windows-hardening-rollout) (rings 0 to 3), each ring the intersection of its ring group and the automatic-mode group, with the built-in Administrator setting assigned to the same ring on the same day. Windows LAPS has no audit mode, so the Test ring runs it for one week before the First ring. On each pilot device, the first policy creates the account and rotates its password at once; confirm it in an elevated session:
+
+```powershell
+# Elevated, on a pilot device: the managed account exists and is enabled, the built-in Administrator (SID ending -500) is disabled,
+# and the LAPS log shows the policy, the backup to Entra ID and no rejected changes to the account.
+Get-LocalUser | Where-Object { $_.Name -eq 'FMPLocalAdmin' -or $_.SID.Value -like '*-500' } | Format-Table Name, Enabled, SID, Description
+Get-WinEvent -LogName 'Microsoft-Windows-LAPS/Operational' -MaxEvents 100 |
+  Where-Object Id -in 10022, 10029, 10101, 10102, 10103, 10104 |
+  Format-Table TimeCreated, Id, Message -Wrap
+```
+
+**Expected:** `FMPLocalAdmin` enabled, with a description saying Windows LAPS controls it; the `-500` account disabled; events 10022 and 10029; and no event from 10101 to 10104. Any of those four is a script or a local-group policy trying to change the account, which automatic mode blocks:[^c08-z-laps-modes] find it and stop it before the next ring.
+
+**Rollback.** Remove the ring's group from ES-006's assignment and add it to `ES-006-Manual`'s, and remove it from the built-in Administrator setting's assignment. Intune applies one LAPS policy per device, so the manual profile takes over at the next check-in. Learn doesn't describe what automatic mode leaves on a device when the mode is turned off, so treat `FMPLocalAdmin` as still present until the device proof shows otherwise, and keep its password readable until the built-in account's password has rotated under the manual profile *(design guidance)*. Before any ring, confirm that at least one other route to local administration works on the ring's devices, because a disabled built-in Administrator can't be re-enabled while its current password doesn't meet the password requirements.[^c08-z-admin-status]
+
+Whichever ring a device is in, the evidence is the same: Windows LAPS event 10029 (password backed up to Entra ID) and the device proof above, kept with the ring and the date.
 
 ### Rolling out the Windows hardening policies {#windows-hardening-rollout}
 
@@ -760,7 +815,7 @@ Each row is **Risk-based recommended** as part of the program's baseline unless 
 #### Prerequisites
 
 - **Licenses:** Intune Plan 1; Defender for Endpoint Plan 1 or 2 for tamper protection and the ASR reporting in the Defender portal (Microsoft's ASR deployment guide assumes Defender for Endpoint E5 or Windows E5 for full reporting);[^c08-z-asr-plan] Windows Enterprise or Education for Credential Guard; the Intune Advanced Analytics add-on for the STIG audit baseline (**license-dependent**).
-- **Platform:** Windows 11, version 24H2 or later (CP-001's floor); Windows 11 24H2 for Windows LAPS automatic account management if option B, C or D is chosen.
+- **Platform:** Windows 11, version 24H2 or later (CP-001's floor); Windows 11 24H2 for Windows LAPS automatic account management, which the program adopted as option C ([WD-153](../../about/decision-register.md#wd-153)); devices below it keep `ES-006-Manual`.
 - **Roles:** Endpoint Security Manager for endpoint security policies and baselines.
 - **In place first:** the device onboarded to Defender for Endpoint (ES-004) before tamper protection; the co-management Endpoint Protection workload moved to Intune; the legacy GPO for each setting disabled per [Chapter 07](07-the-gpo-sunset-program.md#coexistence-who-wins).
 - **Government cloud availability** (read Nov 11, 2026): the endpoint security policies, baselines and update rings are standard MDM features in GCC, GCC High and DoD;[^c08-z-intune-gov] quality, feature and expedite update policies and Windows Autopatch are planned for GCC High and DoD, not yet available, so there the rings carry the whole cadence; Windows LAPS backup to Entra ID is available in Azure Government;[^c08-z-laps-entra] the STIG audit baseline is available in commercial (which includes GCC) and GCC High, and Learn doesn't list DoD, so for DoD it is **not yet specified**.[^c08-z-stig] Defender for Endpoint in the government clouds is in [Chapter 10](10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint).
@@ -802,7 +857,7 @@ The enforcing step is the assignment of each policy to the ring's group, and for
 | ASR | Prefer a per-rule exclusion; otherwise move the rule back one stage (block to warn, warn to audit) for the ring[^c08-z-asr-enable] | Next check-in |
 | Tamper protection | Set it to off in the profile for the device group; for a temporary change on one device, use Defender for Endpoint troubleshooting mode, whose changes are discarded when it expires[^c08-z-tamper-ts] | Next check-in; troubleshooting mode is time-limited |
 | BitLocker | Don't decrypt to roll back. Lengthen CP-001's grace period while the cause is fixed; keys stay escrowed | Minutes |
-| Windows LAPS | Assign the previous LAPS policy (only one Windows LAPS policy per device) | Next check-in |
+| Windows LAPS | Assign the previous LAPS policy (only one Windows LAPS policy per device): for automatic mode, move the ring to `ES-006-Manual` and remove the built-in Administrator setting's assignment ([the LAPS decision](#laps-account-management-decision)) | Next check-in |
 | Credential Guard with UEFI lock (Tier 0) | Can't be turned off remotely; the reason Tier 0 isn't ring 0 | Hands-on, per device |
 
 #### Exclusions
@@ -843,14 +898,14 @@ dsregcmd /status | Select-String 'AzureAdJoined', 'NgcSet'
 - [ ] **Configuration:** each ES, SC and baseline policy exported as JSON under version control ([Microsoft Graph templates](#microsoft-graph-templates)), with the ring assignments
 - [ ] **Operational:** per-setting status reports, the encryption report, the ASR report and tamper protection alerts, retained for the assessment period
 - [ ] **Test:** the device proof output for each ring, with the expected values, date and tester; one deliberate tamper attempt on a ring 0 device that logs event 5013
-- [ ] **Exception:** antivirus and ASR exclusions with reasons, co-managed and validated-image devices, and the LAPS decision while it is open
+- [ ] **Exception:** antivirus and ASR exclusions with reasons, co-managed and validated-image devices, and the devices still on `ES-006-Manual` below the 24H2 floor
 - [ ] **Assessor-ready artifact:** the CM-6, CM-7 and SI-3 rows of [Chapter 10's evidence table](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads), each linked to the above; and the STIG audit export where licensed
 
 **Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
 
 | State | This section | Evidence |
 |---|---|---|
-| Designed | ES-001 to ES-006, SC-001, SC-005 and the open LAPS decision | Decision records from Phase 1; the LAPS decision once made |
+| Designed | ES-001 to ES-006, SC-001, SC-005 and the LAPS decision | Decision records from Phase 1; the LAPS decision, [WD-153](../../about/decision-register.md#wd-153) |
 | Configured | Policies built and assigned to ring 0; ASR in Audit | Policy JSON and assignment exports |
 | Enforced | All rings assigned; ASR rules in Block (a rule held in Warn or Audit is in the exception register) | Assignment export and ES-005's rule actions, with the exclusion list |
 | Evidenced | The device proofs and the tamper test | Device proof output and the event it produced |
@@ -1224,6 +1279,12 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-z-laps-modes]: Microsoft Learn, "Windows LAPS account management modes," sections "Manual account management mode," "Automatic account management mode," "Automatic account management security improvements and considerations," "Account tampering protection" and "Choosing a mode" (Microsoft recommends automatic mode targeting a custom account, with the built-in Administrator disabled; Windows 11 24H2, Windows Server 2025 and later), <https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-account-management-modes> (accessed Nov 11, 2026).
 [^c08-z-laps-intune]: Microsoft Learn, "Microsoft Intune support for Windows LAPS," capabilities (automatic account management on Windows 11 24H2 and later) and "Frequently Asked Questions"; and "Deploy Windows LAPS policy with Microsoft Intune," section "About Intune LAPS policy" (one LAPS policy per device, assigned to device groups), <https://learn.microsoft.com/intune/device-security/laps/overview>, <https://learn.microsoft.com/intune/device-security/laps/deploy-policy> (both accessed Nov 11, 2026).
 [^c08-z-laps-entra]: Microsoft Learn, "Windows Local Administrator Password Solution in Microsoft Entra ID," sections "Supported Azure regions and Windows distributions" (Azure Global, Azure Government) and "License requirements," <https://learn.microsoft.com/entra/identity/devices/howto-manage-local-admin-passwords> (accessed Nov 11, 2026).
+[^c08-z-dha-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," section "Intune features planned for GCC High and DoD" (Windows Device Health Attestation (DHA) currently not available and not supported; planning started), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 11, 2026).
+[^c08-z-dha-settings]: Microsoft Learn, "Device compliance settings for Windows in Intune," sections "Device health" (devices across Intune commercial, US Government GCC High and DoD services use the Device Health Attestation service; BitLocker measured at boot), "Encryption" (**Encryption of data storage on a device** checks the OS drive through the DeviceStatus CSP; **Require BitLocker** is the more robust check) and "Microsoft Defender for Endpoint" (machine risk score), <https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings> (accessed Nov 11, 2026).
+[^c08-z-mde-gov]: Microsoft Learn, "Microsoft Defender for Endpoint for US Government customers," section "Feature parity with commercial" (Reports: Device health, and Defender Vulnerability Management core and premium capabilities, available in GCC, GCC High and DoD), <https://learn.microsoft.com/defender-endpoint/gov> (accessed Nov 11, 2026).
+[^c08-z-dha-ts]: Microsoft Learn, "Windows 10 device with secure boot enabled shows as Not Compliant in Intune," section "More information" (`Confirm-SecureBootUEFI` returns True; `manage-bde` shows the protectors), <https://learn.microsoft.com/troubleshoot/mem/intune/device-protection/secure-boot-enabled-device-shows-not-compliant> (accessed Nov 11, 2026).
+[^c08-z-laps-settings]: Microsoft Learn, "Configure policy settings for Windows LAPS," sections "AutomaticAccountManagementEnabled," "AutomaticAccountManagementTarget," "AutomaticAccountManagementNameOrPrefix," "AutomaticAccountManagementEnableAccount" and "AutomaticAccountManagementRandomizeName" (each supported only in Windows 11, version 24H2, Windows Server 2025 and later releases; `AdministratorAccountName` is ignored when automatic management is enabled), and "Windows LAPS default policy values" (an unsupported value falls back to the default; create one policy for the older OS and one for the newer), <https://learn.microsoft.com/windows-server/identity/laps/laps-management-policy-settings>, and "LAPS CSP," <https://learn.microsoft.com/windows/client-management/mdm/laps-csp> (both accessed Nov 11, 2026).
+[^c08-z-admin-status]: Microsoft Learn, "Policy CSP - LocalPoliciesSecurityOptions," section "Accounts_EnableAdministratorAccountStatus" (0 disables the local Administrator account; it can't be re-enabled if its current password doesn't meet the password requirements), <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-localpoliciessecurityoptions> (accessed Nov 11, 2026).
 [^c08-z-tamper]: Microsoft Learn, "Configure tamper protection for Microsoft Defender Antivirus on Windows," sections "Configure tamper protection in the Microsoft Defender portal" (Intune policy takes precedence) and "Determine the status of tamper protection and real-time protection using PowerShell"; and "Antivirus policy for endpoint security in Microsoft Intune," section "Prerequisites for antivirus policy," <https://learn.microsoft.com/defender-endpoint/tamper-protection-windows-configure>, <https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus> (both accessed Nov 11, 2026).
 [^c08-z-tamper-overview]: Microsoft Learn, "Tamper protection overview," note on controlled configuration and section "Requirements for tamper protection" (device onboarding; Intune requirements including no co-managed devices and `DisableLocalAdminMerge`), <https://learn.microsoft.com/defender-endpoint/tamper-protection-overview> (accessed Nov 11, 2026).
 [^c08-z-tamper-ts]: Microsoft Learn, "Troubleshoot problems with tamper protection" (troubleshooting mode; event ID 5013; Not applicable before onboarding), <https://learn.microsoft.com/defender-endpoint/tamper-protection-troubleshoot> (accessed Nov 11, 2026).

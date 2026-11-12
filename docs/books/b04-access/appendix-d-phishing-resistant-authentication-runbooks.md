@@ -143,6 +143,8 @@ $Covered = $Details | Where-Object { @($_.MethodsRegistered | Where-Object { $_ 
 
 The report's `isAdmin` property lets the privileged population be counted on its own.[^aD4-registration] The `methodsRegistered` values in `$PhishResistant` are those the program expects; confirm them against the tenant's own output before reporting a number. Certificate-based authentication doesn't show as a registered method because the credential is the card, so PIV and CAC coverage is counted from successful certificate sign-ins over the period instead.
 
+The targets below are the program's settled position ([WD-147](../../about/decision-register.md#wd-147), risk-based recommended); the recovery-time target is still the CISO's to set from the drills.
+
 | Metric | Target (program values) | Source |
 |---|---|---|
 | Privileged accounts with a phishing-resistant method | 100 percent | The report, `isAdmin` true |

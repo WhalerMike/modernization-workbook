@@ -635,7 +635,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** the one group from G2 is excluded from every enforced policy; PA-EA-08 and VK-CA-01 check the exclusion, and an emergency sign-in is tested before and after each enforcement (plan task A2.6).
 - **Change window:** each enforcement and each wave is its own change under Book 04's [change control](../b04-access/10-access-as-code-and-evidence.md#change-control), approved by the CISO, with an identity engineer and a holder of an emergency credential on hand *(design guidance)*.
-- **Backout triggers:** set before the change *(design guidance)*: an emergency sign-in that fails; an administrator in the ring who can't activate; a Tier 0 approval request with no approver able to act; an unexpected entry in `verify.csv` or `diff-after.txt`.
+- **Backout triggers:** set before the change *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*: an emergency sign-in that fails; an administrator in the ring who can't activate; a Tier 0 approval request with no approver able to act; an unexpected entry in `verify.csv` or `diff-after.txt`.
 - **Post-change validation:** the gate's **Validate** and Book 04's validation tests after each ring; the dry run shows NoChange.
 
 ::: {.callout-note appearance="simple"}

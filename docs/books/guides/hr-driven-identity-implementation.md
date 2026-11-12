@@ -532,9 +532,9 @@ A finding this page addresses is ready for closure when every applicable state h
 | 2 | Further populations, one at a time | The same Validate per population; drift findings for it closed at the source |
 | 3 | Every population HR or the contractor source masters | The sole-source proof per population (G7); the ticket path closed |
 
-- **Emergency access:** the emergency accounts sit outside the HR feed and every workflow scope, and are excluded from any policy that requires the phishing-resistant strength; the exclusion is tested in the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first) *(design guidance)*.
+- **Emergency access:** the emergency accounts sit outside the HR feed and every workflow scope, and are excluded from any policy that requires the phishing-resistant strength; the exclusion is tested in the [privileged access guide's G2](privileged-access-implementation.md#step-2-build-and-test-emergency-access-first) *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Change window:** workflow, policy and CBA changes go through the change record; on-demand runs are a change behind PIM approval and a second person (G6, [Dangers](#dangers)).
-- **Backout triggers:** an execution limit tripped by a normal week, a missed leaver, a separation-to-block interval past the approved threshold, or a CRL download failure, each set in the change record before the population moves *(design guidance)*.
+- **Backout triggers:** an execution limit tripped by a normal week, a missed leaver, a separation-to-block interval past the approved threshold, or a CRL download failure, each set in the change record before the population moves *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the gate's **Validate** after each population, and VK-HR-05 for late separations.
 
 ::: {.callout-note appearance="simple"}

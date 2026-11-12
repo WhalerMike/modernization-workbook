@@ -592,7 +592,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - **Emergency access:** the emergency access accounts sit outside every lane: no lifecycle state, workflow, uncorrelated-account rule or connector disables or changes them, and the exclusion is tested at Ring 1 ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-reference-architecture)).
 - **Change window:** the change record each class needs (G5), approved by the gate owner, with the SailPoint administrator and ServiceNow platform owner on hand.
-- **Backout triggers:** more connector actions in a run than the batch expected; a re-read failure rate above the one set for the ring; a change to an account the request didn't name.
+- **Backout triggers:** more connector actions in a run than the batch expected; a re-read failure rate above the one set for the ring; a change to an account the request didn't name *(program decision, settled as [WD-150](../../about/decision-register.md#wd-150))*.
 - **Post-change validation:** the gate's **Validate** after each ring, and a re-read sample of the ring's closures.
 
 ::: {.callout-note appearance="simple"}
