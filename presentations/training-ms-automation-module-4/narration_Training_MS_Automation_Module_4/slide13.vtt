@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:06.409
+Every control the checks evidence is in
+the NIST special publication eight hundred
+
+3
+00:00:06.409 --> 00:00:10.244
+fifty-three, revision five, Moderate
+baseline: system monitoring,
+
+4
+00:00:10.244 --> 00:00:14.718
+malicious code protection and audit
+record generation, through the agents;
+
+5
+00:00:14.718 --> 00:00:17.488
+boundary protection,
+through the network path;
+
+6
+00:00:17.488 --> 00:00:22.175
+unsupported system components and flaw
+remediation; the component inventory;
+
+7
+00:00:22.175 --> 00:00:25.513
+and continuous monitoring
+and configuration settings.
+
+8
+00:00:25.513 --> 00:00:29.700
+The mapping is the program's reading;
+the agency's assessor decides.
+
+9
+00:00:29.700 --> 00:00:33.290
+The evidence an ISSO keeps:
+each check's dated output,
+
+10
+00:00:33.290 --> 00:00:36.462
+with its evidences list
+and machines in scope;
+
+11
+00:00:36.462 --> 00:00:39.634
+the app's Reader role
+assignment and its scope;
+
+12
+00:00:39.634 --> 00:00:43.558
+a decision for each unsupported
+server, migrate, upgrade,
+
+13
+00:00:43.558 --> 00:00:45.645
+or isolate and accept the risk;
+
+14
+00:00:45.645 --> 00:00:51.071
+the E S U subscription record for each
+instance whose coverage isn't confirmed;
+
+15
+00:00:51.071 --> 00:00:56.497
+the dated decision behind each do-not-enforce
+assignment; and for each Windows
+
+16
+00:00:56.497 --> 00:01:00.838
+Server 2016 server still in
+production after January twelfth,
+
+17
+00:01:00.838 --> 00:01:02.675
+2027, the exception record.
+
+18
+00:01:02.675 --> 00:01:06.940
+The Arc track implementation guide's
+Step 8 puts this on a schedule.

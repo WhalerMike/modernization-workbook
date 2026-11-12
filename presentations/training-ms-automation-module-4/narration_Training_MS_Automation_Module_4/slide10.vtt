@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.230
+Lab 2 runs the checks read-only
+against your own test subscription
+
+2
+00:00:04.230 --> 00:00:08.562
+in commercial Azure, never production,
+with a few Arc-enabled servers.
+
+3
+00:00:08.562 --> 00:00:12.841
+One Azure C L I command registers the
+app with a self-signed certificate
+
+4
+00:00:12.841 --> 00:00:16.612
+and no password, and assigns it
+Reader on the test subscription.
+
+5
+00:00:16.612 --> 00:00:20.966
+No Graph permission is needed, and
+never assign Contributor or Owner,
+
+6
+00:00:20.966 --> 00:00:23.563
+which can change every resource in scope.
+
+7
+00:00:23.563 --> 00:00:27.587
+Confirm the app holds one
+role, Reader, and nothing else.
+
+8
+00:00:27.587 --> 00:00:31.074
+Then run each check, in
+Python or PowerShell.
+
+9
+00:00:31.074 --> 00:00:35.621
+If machines in scope is zero and you
+know the subscription has Arc servers,
+
+10
+00:00:35.621 --> 00:00:39.050
+the role hasn't taken effect
+yet, or it's on the wrong scope.
+
+11
+00:00:39.050 --> 00:00:43.982
+Record two open review items: what
+operating system S K U your servers report,
+
+12
+00:00:43.982 --> 00:00:47.975
+and whether Reader alone can
+call Policy Insights' summarize.
+
+13
+00:00:47.975 --> 00:00:53.700
+Compare each result with the portal's Arc,
+extension, SQL Server and Policy views.
+
+14
+00:00:53.700 --> 00:00:58.056
+Then back it out: remove the role,
+delete the app and its certificate,
+
+15
+00:00:58.056 --> 00:01:02.650
+and delete the saved results, which
+hold server names and resource I Ds.
+
+16
+00:01:02.650 --> 00:01:04.850
+The authors haven't run Lab 2.

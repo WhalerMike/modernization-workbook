@@ -1,4 +1,4 @@
-// Infoblox DDI for Federal Agencies: a 50-minute TECHNICAL deep dive, in an orientation, two parts and four modules.
+// Infoblox DDI for Federal Agencies: a 28-minute TECHNICAL deep dive, in an orientation, two parts and four modules.
 //   Orientation: the control plane; what federal rules require (and that none names a vendor).
 //   Part 1 — The platform and the case for it:  Module 1 (the platform), Module 2 (federal fit, comparison, risks).
 //   Part 2 — Divisions under central governance:  Module 3 (divisions on NIOS), Module 4 (Universal DDI and the operating model).
@@ -126,7 +126,7 @@ const P2 = "Part 2 — Divisions under central governance";
   notes(s,
 `This is a technical deep dive on Infoblox DDI for federal agencies: DNS, DHCP and IP address management, delivered on Infoblox's NIOS Grid and on its cloud-managed service, Universal DDI. It's for the architects and engineers who will decide whether to build an agency's name and address layer on Infoblox, and how to run it once they do.
 
-After a five-minute orientation, it comes in two parts of about twenty-two minutes each, in four modules you can watch on their own. Part 1 covers the platform, then the case for it: which federal requirements it answers, what its FedRAMP listing actually covers, how it compares with BlueCat, EfficientIP, Microsoft and the native cloud services, and the risks you have to manage if you choose it. Part 2 covers divisions: how a central team hands DNS, DHCP and address management to bureaus and offices, on NIOS and on Universal DDI, without losing control, and it ends with a worked example, a responsibility matrix and a rollout sequence.
+After a three-minute orientation, it comes in two parts, of about thirteen and twelve minutes, in four modules you can watch on their own. Part 1 covers the platform, then the case for it: which federal requirements it answers, what its FedRAMP listing actually covers, how it compares with BlueCat, EfficientIP, Microsoft and the native cloud services, and the risks you have to manage if you choose it. Part 2 covers divisions: how a central team hands DNS, DHCP and address management to bureaus and offices, on NIOS and on Universal DDI, without losing control, and it ends with a worked example, a responsibility matrix and a rollout sequence.
 
 Two ground rules. Every fact here comes from a primary source opened on October twenty-second, 2026. And anything that is only Infoblox marketing is called a vendor claim when it appears.`,
   "Infoblox NIOS 9.1.x and Universal DDI docs; FedRAMP Marketplace products.json; NIST CMVP; DISA STIG file store (High only reference); OMB and CISA publications; CIS Benchmarks list and NIST SP 800-53 CM-6 (Oct. 29, 2026); Book 08.");
@@ -209,7 +209,7 @@ Now the honest starting point. No rule names Infoblox or any DDI vendor, and not
 // ================================================================== 4 Module 1 divider
 {
   const s = divider(P1, "Module 1: The platform", "Part 1 — The platform and the case for it",
-    ["Grid architecture, NIOS 9.1, NIOS-X and vNIOS in the clouds", "Universal DDI, the Infoblox Portal and its documented limits", "DNS, DHCP and IPAM, Threat Defense, automation and logging"], 12,
+    ["Grid architecture, NIOS 9.1, NIOS-X and vNIOS in the clouds", "Universal DDI, the Infoblox Portal and its documented limits", "DNS, DHCP and IPAM, Threat Defense, automation and logging"], 5,
     "Sources: Infoblox NIOS 9.1.x admin guide; Universal DDI and Threat Defense docs; infobloxopen GitHub; vendor pages (labeled).");
   notes(s,
 `Module 1: the platform.
@@ -419,7 +419,7 @@ And the built-in Reporting appliances have daily ingest caps: ten gigabytes on t
 // ================================================================== 11 Module 2 divider
 {
   const s = divider(P1, "Module 2: Why Infoblox, and why federal needs it", "Part 1 — The platform and the case for it",
-    ["Requirement → capability → Infoblox feature", "FedRAMP scope and boundary; baselines, FIPS 140, NIAP", "A fair comparison, the risks and the procurement asks"], 12,
+    ["Requirement → capability → Infoblox feature", "FedRAMP scope and boundary; baselines, FIPS 140, NIAP", "A fair comparison, the risks and the procurement asks"], 8,
     "Sources: FedRAMP Marketplace; CIS Benchmarks; DISA STIG store (High only); NIST CMVP; NIAP PCL; CISA CDM APL; NVD; CISA KEV; vendor and cloud docs.");
   notes(s,
 `Module 2: why Infoblox is a top recommendation, and why federal networks need what it does.
@@ -730,7 +730,7 @@ On the right are the procurement asks that turn these risks into obligations. A 
 // ================================================================== 18 Module 3 divider
 {
   const s = divider(P2, "Module 3: Divisions on NIOS", "Part 2 — Divisions under central governance",
-    ["The permission model and scoping a group to one division", "Network views, DNS views, attributes and approvals", "Sign-in, Microsoft servers, what stays central, reporting", "Separating DNS, DHCP and IPAM by team"], 16,
+    ["The permission model and scoping a group to one division", "Network views, DNS views, attributes and approvals", "Sign-in, Microsoft servers, what stays central, reporting", "Separating DNS, DHCP and IPAM by team"], 7,
     "Sources: Infoblox NIOS 9.1.x and 9.0 admin guides — permissions, admin groups, views, EAs, approvals, authentication, reporting.");
   notes(s,
 `Part 2: divisions under central governance. Module 3 covers divisions on NIOS.
@@ -1040,7 +1040,7 @@ One reporting caution applies however you split. On NIOS, report and search data
 // ================================================================== 25 Module 4 divider
 {
   const s = divider(P2, "Module 4: Universal DDI divisions and operating model", "Part 2 — Divisions under central governance",
-    ["Access views, IP spaces, IPAM Federation, Entra SSO", "Four delegation patterns and a worked example", "Who does what, rollout sequence, decisions"], 10,
+    ["Access views, IP spaces, IPAM Federation, Entra SSO", "Four delegation patterns and a worked example", "Who does what, rollout sequence, decisions"], 5,
     "Sources: Infoblox Portal and Universal DDI docs — access views, RBAC, IP spaces, federation, SSO, audit; Book 08, Ch 09–10.");
   notes(s,
 `Module 4: divisions on Universal DDI, and the operating model.

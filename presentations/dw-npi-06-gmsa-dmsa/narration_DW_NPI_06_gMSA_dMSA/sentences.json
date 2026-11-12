@@ -39,16 +39,21 @@
   ],
   [
    10.75,
+   16.288,
+   "Learn adds rules the plan respects: its name must be unique in the forest, its password interval can be set only when it's created, and a forest should have only one key distribution service root key, because more than one makes these accounts fail after a rotation."
+  ],
+  [
+   27.038,
    12.387,
    "The delegated kind is new in Windows Server 2025: it takes over from an old-style service account, and once the move completes, the old password stops working and the old account is disabled."
   ],
   [
-   23.137,
+   39.425,
    4.475,
    "The workbook's migration path matrix says which target each account gets."
   ],
   [
-   27.613,
+   43.9,
    7.662,
    "And because everything here is an Active Directory command against the domain, the cloud choice doesn't change anything in this chapter."
   ]
@@ -391,21 +396,21 @@
   ],
   [
    2.663,
-   10.562,
-   "The group account path is: create it, wait while the server owner installs it and switches the service over, run in parallel for thirty days, then disable the old account."
+   15.475,
+   "The group account path is: create it, wait while the server owner installs it, confirms each host can fetch its password, moves the service principal names and switches the service over, run in parallel for thirty days, then disable the old account."
   ],
   [
-   13.225,
+   18.137,
    11.188,
    "The delegated path is: create it, start the migration, wait the full thirty days, then complete it, which disables the old account and moves its service principal names across."
   ],
   [
-   24.413,
+   29.325,
    2.35,
    "Anything else is recorded with a reason."
   ],
   [
-   26.762,
+   31.675,
    6.562,
    "And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash."
   ]

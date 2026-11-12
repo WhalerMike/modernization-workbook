@@ -10,7 +10,7 @@ Why does this chapter have an end date built in? Because a group managed service
 
 ## Slide 3 — What gMSAs and dMSAs are, and where the code runs
 
-A quick grounding in what these accounts are. A group managed service account is a domain account whose password the domain controllers manage and rotate, and which several servers can fetch. The delegated kind is new in Windows Server 2025: it takes over from an old-style service account, and once the move completes, the old password stops working and the old account is disabled. The workbook's migration path matrix says which target each account gets. And because everything here is an Active Directory command against the domain, the cloud choice doesn't change anything in this chapter.
+A quick grounding in what these accounts are. A group managed service account is a domain account whose password the domain controllers manage and rotate, and which several servers can fetch. Learn adds rules the plan respects: its name must be unique in the forest, its password interval can be set only when it's created, and a forest should have only one key distribution service root key, because more than one makes these accounts fail after a rotation. The delegated kind is new in Windows Server 2025: it takes over from an old-style service account, and once the move completes, the old password stops working and the old account is disabled. The workbook's migration path matrix says which target each account gets. And because everything here is an Active Directory command against the domain, the cloud choice doesn't change anything in this chapter.
 
 ## Slide 4 — Learn's four procedures, pinned and run
 
@@ -34,7 +34,7 @@ The reader collects the root key's start time, every managed account with its pa
 
 ## Slide 9 — The plan: one action per account
 
-Each account becomes exactly one action. The group account path is: create it, wait while the server owner installs it and switches the service over, run in parallel for thirty days, then disable the old account. The delegated path is: create it, start the migration, wait the full thirty days, then complete it, which disables the old account and moves its service principal names across. Anything else is recorded with a reason. And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash.
+Each account becomes exactly one action. The group account path is: create it, wait while the server owner installs it, confirms each host can fetch its password, moves the service principal names and switches the service over, run in parallel for thirty days, then disable the old account. The delegated path is: create it, start the migration, wait the full thirty days, then complete it, which disables the old account and moves its service principal names across. Anything else is recorded with a reason. And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash.
 
 ## Slide 10 — The island list and the reconciliation
 

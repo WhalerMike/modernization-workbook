@@ -34,39 +34,35 @@ for managed identity,
 certificate and federated credentials.
 
 8
-00:00:23.975 --> 00:00:28.067
-Az PowerShell and the Azure
-CLI for Azure Resource Manager,
+00:00:23.975 --> 00:00:29.837
+Az PowerShell and the Azure CLI for Azure
+Resource Manager, which Module 4 covers.
 
 9
-00:00:28.067 --> 00:00:30.238
-which a planned Module 4 covers.
-
-10
-00:00:30.238 --> 00:00:34.376
+00:00:29.837 --> 00:00:33.975
 And not AzureAD, AzureAD
 Preview or MSOnline.
 
-11
-00:00:34.376 --> 00:00:40.913
+10
+00:00:33.975 --> 00:00:40.513
 Microsoft deprecated them on March 30,
 2024, said they'd work only until March 30,
 
-12
-00:00:40.913 --> 00:00:45.037
+11
+00:00:40.513 --> 00:00:44.637
 2025, and recommends
 Microsoft Graph PowerShell.
 
-13
-00:00:45.037 --> 00:00:50.075
+12
+00:00:44.637 --> 00:00:49.675
 The example client calls the REST API
 directly with the standard library.
 
-14
-00:00:50.075 --> 00:00:52.812
+13
+00:00:49.675 --> 00:00:52.412
 That isn't advice against the S D Ks.
 
-15
-00:00:52.812 --> 00:00:58.200
+14
+00:00:52.412 --> 00:00:57.820
 It keeps every request visible, so you can
 read and test each pattern line by line.

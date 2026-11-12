@@ -122,779 +122,804 @@ domain controllers manage and rotate,
 and which several servers can fetch.
 
 26
-00:01:40.610 --> 00:01:43.827
+00:01:40.610 --> 00:01:45.101
+Learn adds rules the plan respects:
+its name must be unique in the forest,
+
+27
+00:01:45.101 --> 00:01:48.526
+its password interval can be
+set only when it's created,
+
+28
+00:01:48.526 --> 00:01:52.788
+and a forest should have only one
+key distribution service root key,
+
+29
+00:01:52.788 --> 00:01:56.898
+because more than one makes these
+accounts fail after a rotation.
+
+30
+00:01:56.898 --> 00:02:00.115
 The delegated kind is new
 in Windows Server 2025:
 
-27
-00:01:43.827 --> 00:01:48.814
+31
+00:02:00.115 --> 00:02:05.102
 it takes over from an old-style service
 account, and once the move completes,
 
-28
-00:01:48.814 --> 00:01:52.997
+32
+00:02:05.102 --> 00:02:09.285
 the old password stops working
 and the old account is disabled.
 
-29
-00:01:52.997 --> 00:01:57.472
+33
+00:02:09.285 --> 00:02:13.760
 The workbook's migration path matrix
 says which target each account gets.
 
-30
-00:01:57.472 --> 00:02:01.948
+34
+00:02:13.760 --> 00:02:18.235
 And because everything here is an Active
 Directory command against the domain,
 
-31
-00:02:01.948 --> 00:02:05.490
+35
+00:02:18.235 --> 00:02:21.780
 the cloud choice doesn't change
 anything in this chapter.
 
-32
-00:02:09.240 --> 00:02:12.093
+36
+00:02:25.530 --> 00:02:28.383
 Here's what Microsoft
 gives you: four procedures,
 
-33
-00:02:12.093 --> 00:02:16.515
+37
+00:02:28.383 --> 00:02:32.805
 covering the delegated account
 walk-through, its limits, the group account
 
-34
-00:02:16.515 --> 00:02:21.365
+38
+00:02:32.805 --> 00:02:37.655
 walk-through, and the one-time root key that
 every managed password is derived from.
 
-35
-00:02:21.365 --> 00:02:26.105
+39
+00:02:37.655 --> 00:02:42.395
 These procedures live only inside web
 pages, so the repository pins their
 
-36
-00:02:26.105 --> 00:02:31.002
+40
+00:02:42.395 --> 00:02:47.292
 source unmodified, with hashes a test
 checks and a weekly watch for changes.
 
-37
-00:02:31.002 --> 00:02:34.750
+41
+00:02:47.292 --> 00:02:51.040
 Then a harness runs each PowerShell
 block exactly as published,
 
-38
-00:02:34.750 --> 00:02:39.064
+42
+00:02:51.040 --> 00:02:55.354
 against stand-ins that accept only
 the parameters the real commands have.
 
-39
-00:02:39.064 --> 00:02:42.680
+43
+00:02:55.354 --> 00:02:58.970
 That last detail matters,
 as you'll see in a moment.
 
-40
-00:02:46.430 --> 00:02:48.917
+44
+00:03:02.720 --> 00:03:05.207
 This is where the
 stand-ins earn their keep.
 
-41
-00:02:48.917 --> 00:02:53.068
+45
+00:03:05.207 --> 00:03:09.358
 The creation steps are fine, and
 the code keeps them as its model.
 
-42
-00:02:53.068 --> 00:02:57.076
+46
+00:03:09.358 --> 00:03:13.366
 But the root key check uses a
 command that returns the key itself,
 
-43
-00:02:57.076 --> 00:03:02.218
+47
+00:03:13.366 --> 00:03:18.508
 the secret every managed password comes
 from, so the code reads only its start time.
 
-44
-00:03:02.218 --> 00:03:06.131
+48
+00:03:18.508 --> 00:03:22.421
 The backdated key is meant for
 a test lab, not production.
 
-45
-00:03:06.131 --> 00:03:09.357
+49
+00:03:22.421 --> 00:03:25.647
 And one step sets the migration
 state with a parameter
 
-46
-00:03:09.357 --> 00:03:12.655
+50
+00:03:25.647 --> 00:03:28.945
 the command simply doesn't
 have, so as published it fails.
 
-47
-00:03:12.655 --> 00:03:15.051
+51
+00:03:28.945 --> 00:03:31.341
 Placeholder names that change from step to
 
-48
-00:03:15.051 --> 00:03:17.930
+52
+00:03:31.341 --> 00:03:34.220
 step are replaced by
 names from reviewed data.
 
-49
-00:03:21.680 --> 00:03:24.530
+53
+00:03:37.970 --> 00:03:40.820
 The rest of the gaps are
 about timing and safety.
 
-50
-00:03:24.530 --> 00:03:28.867
+54
+00:03:40.820 --> 00:03:45.157
 The walk-through completes a migration
 with no wait, while the overview
 
-51
-00:03:28.867 --> 00:03:33.130
+55
+00:03:45.157 --> 00:03:49.420
 asks for weeks, so the code waits thirty
 days, the program's parallel run.
 
-52
-00:03:33.130 --> 00:03:36.923
+56
+00:03:49.420 --> 00:03:53.213
 It never checks the limits, like
 unconstrained delegation that
 
-53
-00:03:36.923 --> 00:03:40.930
+57
+00:03:53.213 --> 00:03:57.220
 silently stops working, so the code
 checks each one before planning.
 
-54
-00:03:40.930 --> 00:03:43.580
+58
+00:03:57.220 --> 00:03:59.870
 It restarts every service on the host.
 
-55
-00:03:43.580 --> 00:03:46.712
+59
+00:03:59.870 --> 00:04:03.002
 And the pages disagree on
 deleting the old account;
 
-56
-00:03:46.712 --> 00:03:50.142
+60
+00:04:03.002 --> 00:04:06.432
 the code takes the stricter
 side and has no delete at all.
 
-57
-00:03:50.142 --> 00:03:53.400
+61
+00:04:06.432 --> 00:04:09.690
 So the verdict: use Learn's
 commands and their order,
 
-58
-00:03:53.400 --> 00:03:56.150
+62
+00:04:09.690 --> 00:04:12.440
 but not the procedures as the program.
 
-59
-00:03:59.900 --> 00:04:01.225
+63
+00:04:16.190 --> 00:04:17.515
 So what does the code add?
 
-60
-00:04:01.225 --> 00:04:04.394
+64
+00:04:17.515 --> 00:04:20.684
 A module, two entry scripts
 kept strictly apart,
 
-61
-00:04:04.394 --> 00:04:09.188
+65
+00:04:20.684 --> 00:04:25.478
 one that only reads and one that writes,
 and its own list of allowed calls.
 
-62
-00:04:09.188 --> 00:04:13.309
+66
+00:04:25.478 --> 00:04:29.599
 It builds on Chapter 1's register
 and on Chapter 3's decisions,
 
-63
-00:04:13.309 --> 00:04:16.276
+67
+00:04:29.599 --> 00:04:32.566
 and refuses either if
 its hash doesn't match.
 
-64
-00:04:16.276 --> 00:04:19.883
+68
+00:04:32.566 --> 00:04:36.173
 The owner's decision for each
 account comes from Chapter 3,
 
-65
-00:04:19.883 --> 00:04:21.387
+69
+00:04:36.173 --> 00:04:37.677
 never from a second list.
 
-66
-00:04:21.387 --> 00:04:24.141
+70
+00:04:37.677 --> 00:04:40.431
 Then three reviewed
 files: the new account,
 
-67
-00:04:24.141 --> 00:04:28.703
+71
+00:04:40.431 --> 00:04:44.993
 workload and hosts for each account
 being re-platformed, who may fetch
 
-68
-00:04:28.703 --> 00:04:33.501
+72
+00:04:44.993 --> 00:04:49.791
 each managed password, and the one
 program dates file Chapter 3 also reads.
 
-69
-00:04:33.501 --> 00:04:35.938
+73
+00:04:49.791 --> 00:04:52.228
 Notice that the end state has no default.
 
-70
-00:04:35.938 --> 00:04:40.400
+74
+00:04:52.228 --> 00:04:56.690
 If the decision is missing, the run
 simply stops rather than guessing.
 
-71
-00:04:44.150 --> 00:04:46.863
+75
+00:05:00.440 --> 00:05:03.153
 The reader collects the
 root key's start time,
 
-72
-00:04:46.863 --> 00:04:51.555
+76
+00:05:03.153 --> 00:05:07.845
 every managed account with its password
 retrievers and migration state, and,
 
-73
-00:04:51.555 --> 00:04:56.687
+77
+00:05:07.845 --> 00:05:12.977
 for a delegated conversion, the domain
 controllers and each host's operating system.
 
-74
-00:04:56.687 --> 00:04:58.138
+78
+00:05:12.977 --> 00:05:14.428
 Then nine rules run.
 
-75
-00:04:58.138 --> 00:05:03.002
+79
+00:05:14.428 --> 00:05:19.292
 Some come from Learn: the root key must
 exist and be old enough, the migration's
 
-76
-00:05:03.002 --> 00:05:07.712
+80
+00:05:19.292 --> 00:05:24.002
 limits must hold, and managed accounts
 shouldn't sit in privileged groups.
 
-77
-00:05:07.712 --> 00:05:11.767
+81
+00:05:24.002 --> 00:05:28.057
 Others come from the project plan:
 every account needs a decision,
 
-78
-00:05:11.767 --> 00:05:14.320
+82
+00:05:28.057 --> 00:05:30.610
 an owner for its service principal names,
 
-79
-00:05:14.320 --> 00:05:18.750
+83
+00:05:30.610 --> 00:05:35.040
 an end date inside the program's
 deadline, and a reconciled destination.
 
-80
-00:05:18.750 --> 00:05:21.220
+84
+00:05:35.040 --> 00:05:37.510
 Every finding gets a stable ID.
 
-81
-00:05:24.970 --> 00:05:27.582
+85
+00:05:41.260 --> 00:05:43.872
 Each account becomes exactly one action.
 
-82
-00:05:27.582 --> 00:05:29.819
+86
+00:05:43.872 --> 00:05:48.646
 The group account path is: create it,
+wait while the server owner installs it,
 
-83
-00:05:29.819 --> 00:05:34.290
-wait while the server owner installs
-it and switches the service over,
+87
+00:05:48.646 --> 00:05:51.341
+confirms each host can fetch its password,
 
-84
-00:05:34.290 --> 00:05:38.145
+88
+00:05:51.341 --> 00:05:55.498
+moves the service principal names
+and switches the service over,
+
+89
+00:05:55.498 --> 00:05:59.348
 run in parallel for thirty days,
 then disable the old account.
 
-85
-00:05:38.145 --> 00:05:43.187
+90
+00:05:59.348 --> 00:06:04.389
 The delegated path is: create it, start
 the migration, wait the full thirty days,
 
-86
-00:05:43.187 --> 00:05:46.339
+91
+00:06:04.389 --> 00:06:07.541
 then complete it, which
 disables the old account
 
-87
-00:05:46.339 --> 00:05:49.333
+92
+00:06:07.541 --> 00:06:10.535
 and moves its service
 principal names across.
 
-88
-00:05:49.333 --> 00:05:51.683
+93
+00:06:10.535 --> 00:06:12.885
 Anything else is recorded with a reason.
 
-89
-00:05:51.683 --> 00:05:55.443
+94
+00:06:12.885 --> 00:06:16.646
 And because the same inputs
 always produce the same file,
 
-90
-00:05:55.443 --> 00:05:58.600
+95
+00:06:16.646 --> 00:06:19.810
 byte for byte, a reviewer
 approves one hash.
 
-91
-00:06:02.350 --> 00:06:04.912
+96
+00:06:23.560 --> 00:06:26.122
 Two outputs carry the chapter's end date.
 
-92
-00:06:04.912 --> 00:06:08.584
+97
+00:06:26.122 --> 00:06:29.794
 The island list holds every
 account that will stay on Kerberos,
 
-93
-00:06:08.584 --> 00:06:12.962
+98
+00:06:29.794 --> 00:06:34.172
 under the name it will end up with, along
 with its disposition from Chapter 3,
 
-94
-00:06:12.962 --> 00:06:15.786
+99
+00:06:34.172 --> 00:06:36.996
 its owner, its end date and
 the date that bounds it,
 
-95
-00:06:15.786 --> 00:06:19.387
+100
+00:06:36.996 --> 00:06:40.597
 and whether it's ready to hand to
 the program's retirement work.
 
-96
-00:06:19.387 --> 00:06:21.835
+101
+00:06:40.597 --> 00:06:43.045
 An account kept on Kerberos is ready only
 
-97
-00:06:21.835 --> 00:06:24.499
+102
+00:06:43.045 --> 00:06:45.709
 with the authorizing
 official's acceptance.
 
-98
-00:06:24.499 --> 00:06:29.000
+103
+00:06:45.709 --> 00:06:50.210
 The hand-off flag only turns true
 when every single row is ready.
 
-99
-00:06:29.000 --> 00:06:32.296
+104
+00:06:50.210 --> 00:06:53.506
 The reconciliation covers
 every managed account,
 
-100
-00:06:32.296 --> 00:06:35.200
+105
+00:06:53.506 --> 00:06:56.410
 existing or planned, and
 says where it ends up.
 
-101
-00:06:35.200 --> 00:06:38.467
+106
+00:06:56.410 --> 00:06:59.677
 When the program confirms
 its end-state decision,
 
-102
-00:06:38.467 --> 00:06:42.292
+107
+00:06:59.677 --> 00:07:03.502
 the program dates file changes
 in a reviewed pull request,
 
-103
-00:06:42.292 --> 00:06:47.020
+108
+00:07:03.502 --> 00:07:08.230
 and Chapter 3's run and this one are
 repeated well before A D retires.
 
-104
-00:06:50.770 --> 00:06:53.381
+109
+00:07:11.980 --> 00:07:14.591
 Writing to the domain
 is the dangerous part,
 
-105
-00:06:53.381 --> 00:06:58.095
+110
+00:07:14.591 --> 00:07:19.305
 so it lives in its own script that refuses
 to run unless several things are true.
 
-106
-00:06:58.095 --> 00:07:02.045
+111
+00:07:19.305 --> 00:07:23.255
 The plan must be the exact one
 a reviewer approved, by hash.
 
-107
-00:07:02.045 --> 00:07:05.045
+112
+00:07:23.255 --> 00:07:26.255
 It must be for this domain
 and less than a week old.
 
-108
-00:07:05.045 --> 00:07:09.583
+113
+00:07:26.255 --> 00:07:30.793
 Every write must be a declared call
 with only its allowed parameters,
 
-109
-00:07:09.583 --> 00:07:14.120
+114
+00:07:30.793 --> 00:07:35.330
 and nothing that deletes, uninstalls,
 undoes or resets exists to call.
 
-110
-00:07:14.120 --> 00:07:16.633
+115
+00:07:35.330 --> 00:07:37.843
 It runs as a person, never a job.
 
-111
-00:07:16.633 --> 00:07:19.367
+116
+00:07:37.843 --> 00:07:40.577
 Then, before each write,
 it checks the target
 
-112
-00:07:19.367 --> 00:07:22.990
+117
+00:07:40.577 --> 00:07:44.200
 again and skips anything
 that changed since review.
 
-113
-00:07:26.740 --> 00:07:27.790
+118
+00:07:47.950 --> 00:07:49.000
 Who's involved?
 
-114
-00:07:27.790 --> 00:07:29.528
+119
+00:07:49.000 --> 00:07:50.738
 Developers build the code.
 
-115
-00:07:29.528 --> 00:07:34.002
+120
+00:07:50.738 --> 00:07:55.212
 Server and directory engineers run
 the write path and change the hosts.
 
-116
-00:07:34.002 --> 00:07:38.938
+121
+00:07:55.212 --> 00:08:00.148
 Application owners name who owns each
 service principal name and when it ends,
 
-117
-00:07:38.938 --> 00:07:42.052
+122
+00:08:00.148 --> 00:08:03.262
 and the security officer
 reviews the island list.
 
-118
-00:07:42.052 --> 00:07:44.353
+123
+00:08:03.262 --> 00:08:05.563
 The rights split is the important part.
 
-119
-00:07:44.353 --> 00:07:47.850
+124
+00:08:05.563 --> 00:08:09.060
 The read task holds no domain
 administration at all,
 
-120
-00:07:47.850 --> 00:07:51.265
+125
+00:08:09.060 --> 00:08:12.475
 just a narrow delegated read
 of the root key's dates.
 
-121
-00:07:51.265 --> 00:07:54.137
+126
+00:08:12.475 --> 00:08:15.347
 The write task does need
 administrator rights,
 
-122
-00:07:54.137 --> 00:07:58.187
+127
+00:08:15.347 --> 00:08:19.397
 because Learn's procedure requires
 them, and that's exactly why it's
 
-123
-00:07:58.187 --> 00:08:02.440
+128
+00:08:19.397 --> 00:08:23.650
 a separate script, run by a person,
 on a plan someone else approved.
 
-124
-00:08:06.190 --> 00:08:12.462
+129
+00:08:27.400 --> 00:08:33.672
 Lab 1 needs only a laptop, PowerShell 7
 and Pester, plus the runs of Chapters 1,
 
-125
-00:08:12.462 --> 00:08:17.115
+130
+00:08:33.672 --> 00:08:38.325
 2 and 3: the register, the owners
 and the owners' decisions.
 
-126
-00:08:17.115 --> 00:08:21.281
+131
+00:08:38.325 --> 00:08:42.491
 First you run Learn's own procedures
 against the stand-ins, and you can read
 
-127
-00:08:21.281 --> 00:08:25.652
+132
+00:08:42.491 --> 00:08:46.862
 the test where the migration-state step
 fails, just as it would on a real server.
 
-128
-00:08:25.652 --> 00:08:30.764
+133
+00:08:46.862 --> 00:08:51.974
 Then you list what each task is allowed
 to run: the read task is only lookups.
 
-129
-00:08:30.764 --> 00:08:33.440
+134
+00:08:51.974 --> 00:08:54.650
 Then you run the check
 against a fictional estate.
 
-130
-00:08:33.440 --> 00:08:36.406
+135
+00:08:54.650 --> 00:08:57.616
 Nine accounts are in
 scope, with five findings,
 
-131
-00:08:36.406 --> 00:08:39.840
+136
+00:08:57.616 --> 00:09:01.050
 four planned writes, and a
 hand-off that isn't ready yet.
 
-132
-00:08:39.840 --> 00:08:41.240
+137
+00:09:01.050 --> 00:09:02.450
 Let's see why.
 
-133
-00:08:44.990 --> 00:08:48.215
+138
+00:09:06.200 --> 00:09:09.425
 Reading the findings is where
 the rules become concrete.
 
-134
-00:08:48.215 --> 00:08:51.665
+139
+00:09:09.425 --> 00:09:12.875
 Every decision here is the
 owner's, from Chapter 3.
 
-135
-00:08:51.665 --> 00:08:55.738
+140
+00:09:12.875 --> 00:09:16.948
 One web server account is trusted
 for unconstrained delegation,
 
-136
-00:08:55.738 --> 00:09:00.792
+141
+00:09:16.948 --> 00:09:22.002
 which stops working after a delegated
 migration, so its owner kept it on Kerberos,
 
-137
-00:09:00.792 --> 00:09:04.940
+142
+00:09:22.002 --> 00:09:26.150
 with the authorizing official's
 acceptance, but it has no S P N owner.
 
-138
-00:09:04.940 --> 00:09:07.437
+143
+00:09:26.150 --> 00:09:28.647
 Another account's
 reviewed retrievers add a
 
-139
-00:09:07.437 --> 00:09:10.002
+144
+00:09:28.647 --> 00:09:31.212
 server that Active
 Directory doesn't have yet.
 
-140
-00:09:10.002 --> 00:09:13.465
+145
+00:09:31.212 --> 00:09:34.675
 An intranet account being
 re-platformed has no owner
 
-141
-00:09:13.465 --> 00:09:16.614
+146
+00:09:34.675 --> 00:09:37.824
 and an end date years out,
 so it can't be reconciled.
 
-142
-00:09:16.614 --> 00:09:18.640
+147
+00:09:37.824 --> 00:09:39.850
 One sits in Domain Admins.
 
-143
-00:09:18.640 --> 00:09:22.857
+148
+00:09:39.850 --> 00:09:44.067
 Meanwhile the plan completes a
 migration that started forty days ago,
 
-144
-00:09:22.857 --> 00:09:25.320
+149
+00:09:44.067 --> 00:09:46.530
 and creates two new group accounts.
 
-145
-00:09:29.070 --> 00:09:33.070
+150
+00:09:50.280 --> 00:09:54.280
 Next you read the island list and
 the reconciliation side by side.
 
-146
-00:09:33.070 --> 00:09:36.483
+151
+00:09:54.280 --> 00:09:57.693
 Each row now carries its
 disposition from Chapter 3.
 
-147
-00:09:36.483 --> 00:09:40.208
+152
+00:09:57.693 --> 00:10:01.418
 Two rows aren't ready for
 hand-off, so the flag stays false.
 
-148
-00:09:40.208 --> 00:09:44.311
+153
+00:10:01.418 --> 00:10:05.521
 The web front end carries the
 authorizing official's acceptance,
 
-149
-00:09:44.311 --> 00:09:46.971
+154
+00:10:05.521 --> 00:10:08.181
 so it becomes ready once
 it has an S P N owner.
 
-150
-00:09:46.971 --> 00:09:51.358
+155
+00:10:08.181 --> 00:10:12.568
 That's the point: which is the point:
 an incomplete list never goes.
 
-151
-00:09:51.358 --> 00:09:52.682
+156
+00:10:12.568 --> 00:10:13.892
 Then the write path.
 
-152
-00:09:52.682 --> 00:09:56.896
+157
+00:10:13.892 --> 00:10:18.106
 A dry run with the approved hash
 reports the four writes it would send.
 
-153
-00:09:56.896 --> 00:10:00.960
+158
+00:10:18.106 --> 00:10:22.170
 Applying it to the fake sends them,
 and the results tell the operator
 
-154
-00:10:00.960 --> 00:10:04.807
+159
+00:10:22.170 --> 00:10:26.017
 what comes next, such as installing
 each new account on its hosts.
 
-155
-00:10:04.807 --> 00:10:09.071
+160
+00:10:26.017 --> 00:10:30.281
 Finally you pass a hash nobody
 approved, and it refuses outright.
 
-156
-00:10:09.071 --> 00:10:12.830
+161
+00:10:30.281 --> 00:10:34.040
 The full suite is five hundred
 thirteen passing tests.
 
-157
-00:10:16.580 --> 00:10:19.900
+162
+00:10:37.790 --> 00:10:41.110
 Lab 2 moves to a test
 domain, never production,
 
-158
-00:10:19.900 --> 00:10:24.655
+163
+00:10:41.110 --> 00:10:45.865
 with a Windows Server 2025 domain
 controller and member server.
 
-159
-00:10:24.655 --> 00:10:27.394
+164
+00:10:45.865 --> 00:10:48.604
 You make two test accounts,
 one for each path,
 
-160
-00:10:27.394 --> 00:10:31.198
+165
+00:10:48.604 --> 00:10:52.408
 record their decisions by running
 Chapters 2 and 3 over them,
 
-161
-00:10:31.198 --> 00:10:35.687
+166
+00:10:52.408 --> 00:10:56.897
 and grant the reader only a narrow
 delegated read of the root key's dates,
 
-162
-00:10:35.687 --> 00:10:39.643
+167
+00:10:56.897 --> 00:11:00.853
 recording whether that really
 works without exposing the key.
 
-163
-00:10:39.643 --> 00:10:43.081
+168
+00:11:00.853 --> 00:11:04.291
 A second person reviews the
 plan and hands you its hash.
 
-164
-00:10:43.081 --> 00:10:47.505
+169
+00:11:04.291 --> 00:11:08.715
 You apply it as a person, then run
 the next plan to start the migration,
 
-165
-00:10:47.505 --> 00:10:51.455
+170
+00:11:08.715 --> 00:11:12.665
 restart only the test service,
 and watch the Kerberos events.
 
-166
-00:10:51.455 --> 00:10:55.400
+171
+00:11:12.665 --> 00:11:16.610
 After thirty days, complete
 it, or back it out by hand.
 
-167
-00:10:59.150 --> 00:11:01.525
+172
+00:11:20.360 --> 00:11:22.735
 Each of these failures
 has a guard in the code.
 
-168
-00:11:01.525 --> 00:11:04.647
+173
+00:11:22.735 --> 00:11:25.857
 The biggest is the one the
 chapter is built around:
 
-169
-00:11:04.647 --> 00:11:09.368
+174
+00:11:25.857 --> 00:11:30.578
 an account left behind when A D retires,
 and the guard is the reconciliation,
 
-170
-00:11:09.368 --> 00:11:12.337
+175
+00:11:30.578 --> 00:11:33.547
 rerun whenever the
 end-state decision changes.
 
-171
-00:11:12.337 --> 00:11:16.952
+176
+00:11:33.547 --> 00:11:38.162
 Others are about the migration itself:
 completing too early, on a host that
 
-172
-00:11:16.952 --> 00:11:21.188
+177
+00:11:38.162 --> 00:11:42.398
 can't use the new account, or deleting
 the old one so there's no way back.
 
-173
-00:11:21.188 --> 00:11:24.810
+178
+00:11:42.398 --> 00:11:46.020
 Then the quieter ones: reading
 the root key as a secret,
 
-174
-00:11:24.810 --> 00:11:29.174
+179
+00:11:46.020 --> 00:11:50.384
 widening retrievers by hand, or
 a plan that changed after review.
 
-175
-00:11:29.174 --> 00:11:32.210
+180
+00:11:50.384 --> 00:11:53.420
 Each guard is a rule that runs every time.
 
-176
-00:11:35.960 --> 00:11:37.310
+181
+00:11:57.170 --> 00:11:58.520
 Here's what done looks like.
 
-177
-00:11:37.310 --> 00:11:40.385
+182
+00:11:58.520 --> 00:12:01.595
 Every Kerberos account
 has a reviewed decision.
 
-178
-00:11:40.385 --> 00:11:44.173
+183
+00:12:01.595 --> 00:12:05.383
 The root key was checked without
 anyone holding administrator rights.
 
-179
-00:11:44.173 --> 00:11:49.257
+184
+00:12:05.383 --> 00:12:10.467
 Retrievers match the reviewed list, no
 migration broke the limits or finished early,
 
-180
-00:11:49.257 --> 00:11:53.760
+185
+00:12:10.467 --> 00:12:14.970
 and every plan was approved by someone
 other than the person who applied it.
 
-181
-00:11:53.760 --> 00:11:55.010
+186
+00:12:14.970 --> 00:12:16.220
 Nothing was deleted.
 
-182
-00:11:55.010 --> 00:11:59.182
+187
+00:12:16.220 --> 00:12:20.392
 Every island account has an owner
 and an end date inside the deadline,
 
-183
-00:11:59.182 --> 00:12:02.622
+188
+00:12:20.392 --> 00:12:23.832
 and every managed account
 has a reconciled destination.
 
-184
-00:12:02.622 --> 00:12:05.091
+189
+00:12:23.832 --> 00:12:26.301
 With the Kerberos accounts accounted for,
 
-185
-00:12:05.091 --> 00:12:08.547
+190
+00:12:26.301 --> 00:12:29.757
 Chapter 7 turns to least
 privilege for service principals.
 
-186
-00:12:08.547 --> 00:12:09.700
+191
+00:12:29.757 --> 00:12:30.910
 Thanks for watching.
