@@ -108,6 +108,7 @@ def main() -> int:
     lines = INDEX.read_text(encoding="utf-8").replace("\r\n", "\n").split("\n")
     dated = git("rev-parse", "--is-shallow-repository") == "false"
     out, changed, in_table = [], False, False
+    seen: set[str] = set()   # a book listed twice (e.g. after a bad merge) keeps its first row
     for i, line in enumerate(lines):
         if line.startswith("| Book | Topic |"):
             out.append(HEADER)
@@ -122,6 +123,9 @@ def main() -> int:
             out.append(line)
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if cells[0] in seen:
+            continue
+        seen.add(cells[0])
         base, old_date = cells[:4], cells[6] if len(cells) > 6 else ""
         link = re.search(r"\]\((b\d\d-[^/)]+)/index\.md\)", base[1])
         if link and (BOOKS / link.group(1)).is_dir():

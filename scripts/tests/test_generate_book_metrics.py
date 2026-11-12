@@ -83,6 +83,13 @@ class BooksTableOnly(unittest.TestCase):
         row = next(r for r in self.run_main().split(chr(10)) if r.startswith("| **B00"))
         self.assertIn("**Baseline**", row)
 
+    def test_a_book_listed_twice_keeps_one_row(self) -> None:
+        index = gbm.INDEX.read_text(encoding="utf-8")
+        row = next(r for r in index.split(chr(10)) if r.startswith("| **B01** | **["))
+        gbm.INDEX.write_text(index.replace(row, row + chr(10) + row), encoding="utf-8")
+        rows = [r for r in self.run_main().split(chr(10)) if r.startswith("| **B01** | **[")]
+        self.assertEqual(len(rows), 1)
+
     def test_second_run_changes_nothing(self) -> None:
         first = self.run_main()
         self.assertEqual(first, self.run_main())
