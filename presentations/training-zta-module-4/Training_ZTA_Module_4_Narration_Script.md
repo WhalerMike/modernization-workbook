@@ -1,0 +1,57 @@
+# Zero Trust Assessment learning path — Module 4: Reconcile, re-run and keep the evidence — narration script (practice copy)
+
+## Slide 1 — Module 4: Reconcile, re-run and keep the evidence
+
+Welcome to Module 4 of The Zero Trust Assessment as Evidence: reconcile, re-run and keep the evidence. This module is a draft, awaiting the editor's review, so recheck it after the review. A single run is a reading. A program needs the readings over time, lined up with the other tools, and sealed so an assessor can check them months later. This module does all three. It covers Steps 9 and 10 of the Zero Trust Assessment implementation guide, takes about fifty minutes, and finishes the path.
+
+## Slide 2 — Why: one run is a reading; a program needs three things
+
+Why does this matter? A single run is a reading. A program needs three more things. First, the readings over time: which findings were fixed, which came back, and which only seemed to disappear because the run lost a connection. Second, one finding per setting. The Zero Trust Assessment's findings have to line up with ScubaGear's, and, where the agency runs AWS, with Security Hub's, so one setting under one control is one finding with one owner. And third, every run sealed, so an assessor can check months later that the files are the ones the tool and the kit wrote. In this module you'll compare two runs, reconcile through the control, set a cadence, and seal an evidence package, then break it on purpose.
+
+## Slide 3 — What you'll be able to do in Module 4
+
+Here's what you'll be able to do by the end of this module. You'll compare two runs, and explain the kinds of change, including no longer evaluated. You'll say why runs from different tool versions aren't compared without a recorded review. You'll reconcile a finding across the Zero Trust Assessment, ScubaGear and Security Hub, through the control, and state what each tool can't see. And you'll set a cadence and seal a run's evidence package, then check it, and see a broken one fail. You need Module 3's Lab 1, because this lab uses its out folder. In Unit 2 you'll read the section on reconciling at the control, in Evidence, Not Verdicts, a chapter of Zero Trust and Assessment.
+
+## Slide 4 — Unit 1: comparing runs, and "no longer evaluated"
+
+Unit 1 compares runs. The kit's comparison sorts every test into new, regressed, fixed, still open, no longer evaluated, changed or unchanged. New is a finding that wasn't there before. Regressed is a pass that now fails. Fixed now passes, and still open still fails. No longer evaluated is the one that matters most. It's a finding that's now skipped, planned, unable to evaluate, or missing from the run. It isn't fixed, and counting it as fixed would turn a lost connection into remediation. So fix the run, and run it again. And one more rule: a new tool release adds tests and moves every denominator, so the kit refuses to compare runs from different versions until someone records that they reviewed the change.
+
+## Slide 5 — Unit 2: reconcile through the setting and the control
+
+Unit 2 reconciles. Tools with different identifiers can't be matched to each other directly. Instead, each is matched to a common spine: the setting itself, and the control it supports in NIST special publication eight hundred fifty-three. When two tools fail the same setting under the same control, that's one finding, with two pieces of evidence, routed to one owner. CISA maps every SCuBA policy to those controls, and where both fail, the ScubaGear finding is the directive's deviation and carries B O D twenty-five oh-one's reporting. On AWS, each Security Hub finding lists its related requirements, such as A C four, and that's the spine. Two cautions from AWS itself. Its NIST standard supports only a subset of the framework, with automated checks only. And a control with no corresponding resources reports passed at the account level, so a pass can mean nothing was evaluated. Each tool sees only its own platform.
+
+## Slide 6 — Where agencies are: one posture tool per platform
+
+Where are agencies? Most run more than one platform, and each has its own posture tool on the same spine. For Microsoft three sixty-five G C C and Azure, the workbook's baseline, it's the Zero Trust Assessment, with ScubaGear as the directive's tool for Microsoft three sixty-five. On AWS, it's Security Hub, with its standard for NIST eight hundred fifty-three, revision five. In AWS GovCloud, Security Hub is available, with limits on product integrations, some controls, and cross-Region aggregation. On Oracle Cloud Infrastructure, it's Cloud Guard, and on Google Cloud, Security Command Center. The chapter on cloud-native posture in Security Operations and Telemetry compares those two, and how their findings enter the evidence contract. The rule is the same everywhere: each finding is matched to the setting and the control, with one owner, in one row of the reconciliation table.
+
+## Slide 7 — Unit 3: the cadence and the evidence package
+
+Unit 3 is the cadence and the evidence package. The cadence is design guidance, from the day-two runbook in Compliance Automation and Day-2 Operations. Monthly, a full run, with the results and the plan of action and milestones regenerated. After each remediation wave, a run of the affected pillar, so a fix is closed by evidence, not by a ticket. Before a tool upgrade reaches production, a run of the new version in the test tenant. And quarterly, a trend review. Microsoft's operations guidance for Global Secure Access includes a weekly scheduled digest; the guide explains two cautions before adopting it as written. The evidence package for a run holds the export and its hash, the normalized results, the dispositions, the reviews and exceptions with their hashes, the register, the comparison, and the chained records with the S H A two fifty-six sums file.
+
+## Slide 8 — Try it: compare Module 3's two runs
+
+Try it. Lab 1 picks up Module 3's two runs. Step one compares them: two new, one regressed, three fixed, twelve still open, two no longer evaluated, two changed, and twelve unchanged. Step two lists the ones to look at. Two one seven eight three regressed, from pass to fail. Two one nine four one is new: it wasn't in the first run at all. Now the two no longer evaluated. Two one eight six oh and four one oh three two both failed last time, and this time they were skipped as disconnected. The second run lost its Azure and Exchange connections. Those findings aren't fixed; they still need a run that connects. And four one oh five oh shows as new only because the first run timed out on it, not because something broke. The slide shortens step two's command; the page has it in full.
+
+## Slide 9 — Try it: seal the second run and check the package
+
+Step three seals the second run's evidence. Each output folder becomes a record: the normalized run, the register, and the comparison, one after another. Each record names the controls its folder supports. The normalized run supports A U nine, C A two, C A seven and C M six; the register adds C A five and R A seven; the comparison supports A U nine, C A seven and C M six. Each record also holds every file's hash and the previous record's hash, so the records form a chain. Step four checks the package: sixteen files match the sums file, the chain of three records is unbroken, and a passing record covers each step for the run date. The I S S O doesn't need the kit to check this. In a POSIX shell, in the evidence folder, the standard sha two fifty-six sum check reads the same sums file.
+
+## Slide 10 — Try it: break the seal on purpose
+
+Step five breaks the seal on purpose. Add one line, the word edited, to the register file inside the sealed package, and check again. Two checks fail, and each says why. The sums check fails because the register file no longer matches its hash in the sums file. The chain check fails because the file no longer matches the hash its record holds. That's the point of sealing. Months later, an assessor can show that the files are the ones the tool and the kit wrote, or see exactly which one isn't. Step six cleans up: delete the out folder. In a real program, the sealed folder lives in the evidence repository, and retention follows the records officer's schedule.
+
+## Slide 11 — Lab 2: a second run in your test tenant
+
+Lab 2 makes one real change and proves it with evidence, in your test tenant, never production. The authors haven't run it. Step one: make one change that a finding in Module 3's Lab 2 register points to, through the page its remediation field names, under a change record. Step two: re-run the assessment into a new folder, then normalize it and write its register. Step three: compare it with the first run, seal all three output folders, and check the package. The finding you fixed should show as fixed. If it shows as no longer evaluated, the second run didn't connect to the service that test reads. Step four is optional: where you have an AWS test account with Security Hub and its NIST standard enabled, pull its active findings, and add one row to the reconciliation table. Step five backs it out. The slide shortens the lab; the page lists every command.
+
+## Slide 12 — The federal requirement and evidence for Module 4
+
+The federal requirement, in NIST special publication eight hundred fifty-three, revision five. C A seven, continuous monitoring: assessment at a defined frequency, with the changes between runs analyzed, and results correlated across tools. The evidence is each comparison and the reconciliation table. A U nine and A U eleven: the evidence protected and kept. That's the records, the sums file and the exports. And C A five: the plan of action and milestones regenerated from each run, from the register. No key security indicator is listed for that one. The evidence supports the controls; the assessor decides. Retention follows the records officer's schedule; the program's default for assessment evidence, in Zero Trust and Assessment, is three years.
+
+## Slide 13 — Check yourself: two questions on Module 4
+
+Check yourself with two questions. First: a finding failed last month, and this month it's skipped, disconnected. What is it? The answer is b: no longer evaluated. It's not fixed. Fix the run's connection, and run it again. Second: a Security Hub control reports passed at the account level. What should you check? The answer is b: whether any resource corresponds to the control, because AWS produces an account-level pass when none does. Read the pass with the resource inventory. The module page has three more questions, each linked to the unit that answers it.
+
+## Slide 14 — Summary: you've finished the path
+
+To sum up. You compared two runs, and told a fix from a lost connection. You reconciled across tools through the setting and the control, on every platform the agency runs. You set a cadence. And you sealed, checked and broke an evidence package. The evidence an I S S O keeps from this module: each comparison, the reconciliation table, and the chained records with the sums file and the exports, by the records schedule. That finishes the learning path, The Zero Trust Assessment as Evidence: four modules, about three hours with each module's Lab 1. Lab 2, in your own test tenant, isn't counted, because a full run on a large tenant can take more than a day. For the ten steps in one place, go back to the Zero Trust Assessment implementation guide. Thank you.

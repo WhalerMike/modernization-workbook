@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.789
+Consent leaves something behind:
+a delegated permission grant,
+
+2
+00:00:03.789 --> 00:00:06.400
+on the application the
+tool signs in through.
+
+3
+00:00:06.400 --> 00:00:10.730
+By default that's the Microsoft Graph
+PowerShell application, which other
+
+4
+00:00:10.730 --> 00:00:15.200
+scripts in the tenant share, so every
+script that uses it inherits the consent.
+
+5
+00:00:15.200 --> 00:00:19.925
+Learn's page on the Graph PowerShell
+authentication commands recommends a custom
+
+6
+00:00:19.925 --> 00:00:23.212
+application when you need to
+isolate the consent it holds,
+
+7
+00:00:23.212 --> 00:00:26.225
+and the tool accepts one with
+the client I D parameter.
+
+8
+00:00:26.225 --> 00:00:30.363
+The program uses a dedicated
+application; that's design guidance.
+
+9
+00:00:30.363 --> 00:00:33.175
+Review the grant after
+every version change,
+
+10
+00:00:33.175 --> 00:00:37.051
+and compare its scopes with the
+list Get Z T Graph Scope prints.
+
+11
+00:00:37.051 --> 00:00:41.207
+When the tool is retired, revoke
+a dedicated application's grant,
+
+12
+00:00:41.207 --> 00:00:43.325
+with Learn's revocation command.
+
+13
+00:00:43.325 --> 00:00:47.487
+Never revoke the shared one without
+asking who else relies on it.
+
+14
+00:00:47.487 --> 00:00:50.409
+Learn also notes that
+existing tokens stay valid
+
+15
+00:00:50.409 --> 00:00:53.040
+for their lifetime after
+a grant is deleted.

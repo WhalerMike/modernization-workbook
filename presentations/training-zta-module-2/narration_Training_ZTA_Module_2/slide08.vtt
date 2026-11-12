@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.060
+Here's where each service
+stands, cloud by cloud,
+
+2
+00:00:03.060 --> 00:00:05.375
+from the guide's availability table.
+
+3
+00:00:05.375 --> 00:00:11.626
+Microsoft Graph: G C C uses the
+worldwide graph dot microsoft dot com,
+
+4
+00:00:11.626 --> 00:00:17.988
+G C C High uses graph dot microsoft dot
+U S, and D O D its own D O D graph host.
+
+5
+00:00:17.988 --> 00:00:20.667
+Exchange Online: no parameter in G C C,
+
+6
+00:00:20.667 --> 00:00:24.238
+and an environment name
+for each of the other two.
+
+7
+00:00:24.238 --> 00:00:28.300
+Security and Compliance: the
+default endpoint in G C C;
+
+8
+00:00:28.300 --> 00:00:32.547
+a dot U S address in G C C High;
+and in D O D, Learn and the tool's
+
+9
+00:00:32.547 --> 00:00:37.625
+source give different addresses,
+and which one works wasn't tested.
+
+10
+00:00:37.625 --> 00:00:42.787
+Azure: Azure Cloud for G C C, Azure
+U S Government for the other two.
+
+11
+00:00:42.787 --> 00:00:47.838
+SharePoint admin: pass it explicitly;
+D O D's isn't yet specified.
+
+12
+00:00:47.838 --> 00:00:52.229
+Until a run has been proved in your own
+cloud, run one pillar at a time in a
+
+13
+00:00:52.229 --> 00:00:57.140
+test tenant of the same cloud, and keep
+ScubaGear as the federal baseline tool.

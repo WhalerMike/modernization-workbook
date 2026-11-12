@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.338
+The second point deserves its own slide.
+
+2
+00:00:02.338 --> 00:00:07.018
+CISA's directive B O D twenty-five
+oh-one names CISA's SCuBA tools,
+
+3
+00:00:07.018 --> 00:00:10.312
+and the Zero Trust Assessment
+isn't one of them.
+
+4
+00:00:10.312 --> 00:00:12.783
+The chapter on the two tools in Zero Trust
+
+5
+00:00:12.783 --> 00:00:15.400
+and Assessment lays
+out where they overlap.
+
+6
+00:00:15.400 --> 00:00:21.176
+Only ScubaGear covers Exchange Online mail
+flow, such as external forwarding, S P F,
+
+7
+00:00:21.176 --> 00:00:25.338
+D-kim and D-mark; Teams meeting
+and external-access policies;
+
+8
+00:00:25.338 --> 00:00:29.075
+SharePoint and OneDrive
+sharing; and Power Platform.
+
+9
+00:00:29.075 --> 00:00:34.422
+Both cover Entra I D identity, such as
+legacy authentication, M F A, Conditional
+
+10
+00:00:34.422 --> 00:00:36.428
+Access and privileged roles,
+
+11
+00:00:36.428 --> 00:00:40.438
+and Defender for Office three
+sixty-five threat policies.
+
+12
+00:00:40.438 --> 00:00:44.143
+Only the Zero Trust Assessment
+covers Intune devices,
+
+13
+00:00:44.143 --> 00:00:49.413
+Azure networking and Global Secure
+Access, Purview, and security operations.
+
+14
+00:00:49.413 --> 00:00:51.874
+So an agency that already runs the Zero
+
+15
+00:00:51.874 --> 00:00:54.950
+Trust Assessment monthly
+still runs ScubaGear.
+
+16
+00:00:54.950 --> 00:00:58.490
+The first runs alongside the
+second, never instead of it.

@@ -1,0 +1,655 @@
+{
+ "1": [
+  [
+   0.05,
+   6.95,
+   "Welcome to Module 3 of The Zero Trust Assessment as Evidence: from results to a closure register."
+  ],
+  [
+   7.0,
+   5.3,
+   "This module is a draft, awaiting the editor's review, so recheck it after the review."
+  ],
+  [
+   12.3,
+   3.525,
+   "In this module the guide's results kit does the mechanical part."
+  ],
+  [
+   15.825,
+   8.713,
+   "It normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry for each finding, routed and weighed."
+  ],
+  [
+   24.538,
+   2.837,
+   "People do the rest, and the register shows where."
+  ],
+  [
+   27.375,
+   8.55,
+   "It covers Steps 7 and 8 of the Zero Trust Assessment implementation guide, and takes about fifty-five minutes, most of it in Lab 1."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   3.438,
+   "A report that says seventeen failed can't be acted on."
+  ],
+  [
+   4.638,
+   10.838,
+   "Someone has to decide which of those are real findings, who owns each one, which page in the workbook remediates it, what comes first, and which are accepted for now, and by whom."
+  ],
+  [
+   15.475,
+   2.413,
+   "The results kit does the mechanical part."
+  ],
+  [
+   17.887,
+   2.163,
+   "It normalizes every result."
+  ],
+  [
+   20.05,
+   2.862,
+   "It lists what didn't run, with what to do about it."
+  ],
+  [
+   22.913,
+   5.425,
+   "And it writes one closure-register entry for each finding, routed to a page and weighed."
+  ],
+  [
+   28.337,
+   8.363,
+   "People do the rest: the owner fills their entries, writes why a finding is weighted as it is, and someone with the authority decides closure."
+  ],
+  [
+   36.7,
+   3.25,
+   "The register shows exactly where each of those lands."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   5.675,
+   "You'll normalize a Zero Trust Assessment export and read its counts by result and by pillar."
+  ],
+  [
+   8.637,
+   4.537,
+   "You'll work the dispositions for results that are neither a pass nor a finding."
+  ],
+  [
+   13.175,
+   2.962,
+   "You'll record the review of an investigate result."
+  ],
+  [
+   16.137,
+   6.013,
+   "You'll read a closure-register entry and say what's filled, what a person fills, and who decides closure."
+  ],
+  [
+   22.15,
+   5.062,
+   "And you'll route a finding to its family's remediation page, and check an exception's approver."
+  ],
+  [
+   27.212,
+   4.75,
+   "You need Module 1, and Module 2's Lab 2 for this module's Lab 2."
+  ],
+  [
+   31.962,
+   10.9,
+   "In Unit 2 you'll read two chapters of Zero Trust and Assessment: Close Before You Assess, for the finding families, and Evidence, Not Verdicts, for the closure chain."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.562,
+   "Unit 1 normalizes and disposes."
+  ],
+  [
+   2.612,
+   4.925,
+   "The kit writes each result twice: the tool's status and the normalized one."
+  ],
+  [
+   7.537,
+   5.05,
+   "It never copies the tool's result text, because that text can name tenant objects."
+  ],
+  [
+   12.588,
+   6.15,
+   "Everything that is neither a pass nor a finding lands in a dispositions file, with what to do about it."
+  ],
+  [
+   18.738,
+   3.125,
+   "A skip for licensing needs a licensing decision."
+  ],
+  [
+   21.863,
+   8.812,
+   "A skip because a service was disconnected, or a result the kit is unable to evaluate, needs a fix and a re-run, or a check by hand."
+  ],
+  [
+   30.675,
+   6.062,
+   "A skip as not applicable needs a recorded reason, and not supported is flagged as a boundary finding."
+  ],
+  [
+   36.737,
+   1.038,
+   "One more guard."
+  ],
+  [
+   37.775,
+   8.738,
+   "If the export comes from a version the kit's taxonomy wasn't reviewed for, or carries a status or reason it doesn't know, the kit says so."
+  ],
+  [
+   46.513,
+   4.362,
+   "It counts that result as unable to evaluate, rather than guessing."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.388,
+   "Unit 2 opens the closure register."
+  ],
+  [
+   2.438,
+   20.375,
+   "Every finding gets one entry, with the fields of the closure chain from Evidence, Not Verdicts: the finding and the tool version, the attack path, the owner, the dependencies, the change, the pilot, the enforcement, the test, the evidence, the residual risk, the reassessment, the weighting, and the closure decision."
+  ],
+  [
+   22.812,
+   6.125,
+   "The kit fills what it knows from the tool and the family table, and leaves placeholders for what a person decides."
+  ],
+  [
+   28.938,
+   2.638,
+   "And it never marks a finding ready for closure."
+  ],
+  [
+   31.575,
+   6.862,
+   "The authorizing official decides that for a plan of action and milestones item, and the assessor for an assessment finding."
+  ],
+  [
+   38.438,
+   2.062,
+   "The register records who decided."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.612,
+   "Each test I D routes to a finding family, and each family to the page in the workbook that remediates it."
+  ],
+  [
+   6.662,
+   6.775,
+   "The table is from Close Before You Assess, with the evidence the guide adds for when a finding is ready for closure."
+  ],
+  [
+   13.438,
+   7.0,
+   "Emergency access goes to Access and Privilege, and is ready when the sign-in alert fired on a test sign-in."
+  ],
+  [
+   20.438,
+   7.9,
+   "Standing privilege goes to its pim chapter, and is ready when no permanent active assignment sits outside the exception register."
+  ],
+  [
+   28.337,
+   6.638,
+   "Device compliance goes to Devices and Endpoints, ready when a noncompliant test device is refused."
+  ],
+  [
+   34.975,
+   3.938,
+   "Application secrets go to Governance, Drift and Evidence."
+  ],
+  [
+   38.913,
+   5.475,
+   "DDoS and web application firewall findings go to the Azure Security Engineering guide."
+  ],
+  [
+   44.388,
+   5.025,
+   "A finding no family covers is unrouted, and goes to the Zero Trust program lead."
+  ],
+  [
+   49.413,
+   9.15,
+   "In release three point one point oh, the email and collaboration threat-protection tests have no family yet, so they stay unrouted and visible."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.675,
+   "Two more parts of Unit 2: weighing and exceptions."
+  ],
+  [
+   3.725,
+   6.588,
+   "The kit sets a default priority: severity divided by effort, in buckets P one to P four."
+  ],
+  [
+   10.312,
+   3.312,
+   "That's design guidance, in the kit's taxonomy file."
+  ],
+  [
+   13.625,
+   11.825,
+   "Then the owner weighs each finding on six factors from Evidence, Not Verdicts: exploitability, blast radius, exposure, compensating controls, effort and dependency order."
+  ],
+  [
+   25.45,
+   2.788,
+   "The owner writes the rationale into the entry."
+  ],
+  [
+   28.238,
+   7.562,
+   "The register also lists each family's dependencies, so a Conditional Access finding waits for emergency access to be right."
+  ],
+  [
+   35.8,
+   3.538,
+   "Exceptions follow the same rule as ScubaGear's omissions."
+  ],
+  [
+   39.337,
+   3.475,
+   "An exception with an expiry is the see-so's decision."
+  ],
+  [
+   42.812,
+   6.225,
+   "One without an expiry is a standing risk acceptance, and only the authorizing official can approve it."
+  ],
+  [
+   49.038,
+   6.562,
+   "The kit checks each one, and marks it a governed exception, a lapsed acceptance, or a wrong approver."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.237,
+   "Lab 1 normalizes and registers two fictional runs of a Contoso tenant, two weeks apart."
+  ],
+  [
+   7.013,
+   2.475,
+   "Step one normalizes the first run."
+  ],
+  [
+   9.488,
+   10.875,
+   "Thirty-three tests: eight pass, seventeen fail, one planned, two skipped for licensing, one disconnected, two not applicable, and two unable to evaluate."
+  ],
+  [
+   20.363,
+   2.825,
+   "Seventeen findings, one of them investigate."
+  ],
+  [
+   23.188,
+   4.925,
+   "The tool marked sixteen failed; the investigate result makes seventeen."
+  ],
+  [
+   28.113,
+   4.0,
+   "The eight that are neither pass nor finding are in their own columns."
+  ],
+  [
+   32.112,
+   2.35,
+   "Step two reads the dispositions."
+  ],
+  [
+   34.462,
+   5.1,
+   "Two skips for licensing, two not applicable, one disconnected, one planned."
+  ],
+  [
+   39.562,
+   7.537,
+   "And two unable to evaluate: test two four five four eight ended in error, and four one oh five oh timed out."
+  ],
+  [
+   47.1,
+   3.562,
+   "Both of those are a run to fix, not a control to fail."
+  ],
+  [
+   50.663,
+   4.975,
+   "The slide leaves out the written-to line and the table's underline; the page shows them."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.975,
+   "Step three writes the register for the first run: seventeen findings, three in P one, ten in P two, four in P three."
+  ],
+  [
+   8.025,
+   3.95,
+   "And a warning: test four one oh three two is unrouted."
+  ],
+  [
+   11.975,
+   5.225,
+   "That's the Safe Links test, which has no finding family, so the program lead routes it."
+  ],
+  [
+   17.2,
+   2.55,
+   "Step four reads the top five rows."
+  ],
+  [
+   19.75,
+   3.75,
+   "Two device compliance findings, owned by endpoint engineering."
+  ],
+  [
+   23.5,
+   4.688,
+   "A DDoS and web application firewall finding, owned by the platform team."
+  ],
+  [
+   28.188,
+   5.562,
+   "The unrouted Safe Links finding, owned by the Zero Trust program lead until it's routed."
+  ],
+  [
+   33.75,
+   2.062,
+   "And an application secrets finding."
+  ],
+  [
+   35.812,
+   2.438,
+   "Look at two one eight three seven."
+  ],
+  [
+   38.25,
+   9.213,
+   "It's the investigate result, and its severity is weighted down, so it ranks below other high-risk findings of the same effort until a person confirms it."
+  ],
+  [
+   47.462,
+   3.975,
+   "Every finding has an owner, even the one nobody has claimed yet."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.55,
+   "Steps five and six take the second run, two weeks later."
+  ],
+  [
+   3.6,
+   10.075,
+   "The reviews file holds one row: endpoint engineering confirmed the investigate result, two one eight three seven, on November eleventh, with a note on why."
+  ],
+  [
+   13.675,
+   5.675,
+   "The kit normalizes the second run with that review: thirty-four tests, fifteen findings."
+  ],
+  [
+   19.35,
+   2.45,
+   "The exceptions file holds two rows."
+  ],
+  [
+   21.8,
+   9.75,
+   "The first, on two five five three three, was approved by the see-so, with an expiry at the end of January, 2027: a governed exception."
+  ],
+  [
+   31.55,
+   6.513,
+   "The second, on two one eight eight five, was approved by the I S S O, with no end date."
+  ],
+  [
+   38.062,
+   2.013,
+   "The kit marks it a wrong approver."
+  ],
+  [
+   40.075,
+   6.638,
+   "An exception with no end date is a standing risk acceptance, and only the authorizing official can approve it."
+  ],
+  [
+   46.712,
+   3.913,
+   "So the register warns, and that exception goes back to be fixed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.938,
+   "Lab 2 runs the same steps on the export from Module 2's Lab 2, on the assessment host."
+  ],
+  [
+   5.987,
+   1.562,
+   "The authors haven't run it."
+  ],
+  [
+   7.55,
+   9.175,
+   "You replace the report folder with Module 2's, and the reviews and exceptions files with your own copies of the kit's two templates, filled for your test tenant."
+  ],
+  [
+   16.725,
+   4.175,
+   "Step one normalizes the export and lists the dispositions."
+  ],
+  [
+   20.9,
+   3.275,
+   "Step two writes the register, with your exceptions."
+  ],
+  [
+   24.175,
+   4.4,
+   "Step three is a comparison by eye: open the report's pillar tabs."
+  ],
+  [
+   28.575,
+   5.287,
+   "Every failed and investigate test should have a register entry, and no skipped test should."
+  ],
+  [
+   33.862,
+   2.95,
+   "Note any unrouted test for your program lead."
+  ],
+  [
+   36.812,
+   1.5,
+   "Step four backs it out."
+  ],
+  [
+   38.312,
+   5.138,
+   "The outputs hold your test tenant's results, so delete them when you finish Module 4."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.862,
+   "The federal requirement, in nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.912,
+   6.0,
+   "C A two, C A seven and C M six: results normalized and counted honestly."
+  ],
+  [
+   11.912,
+   6.088,
+   "The evidence is the normalized results, the summary, the dispositions, and the reviews file."
+  ],
+  [
+   18.0,
+   9.575,
+   "C A five, the plan of action and milestones: each finding's planned remediation, evidenced by the register, in jay-son and C S V."
+  ],
+  [
+   27.575,
+   7.35,
+   "And R A seven, risk response: findings weighed against risk tolerance, and exceptions approved by the right official."
+  ],
+  [
+   34.925,
+   3.725,
+   "The evidence is the weighting rationale and the exceptions file."
+  ],
+  [
+   38.65,
+   8.775,
+   "For C A five and R A seven, no key security indicator is listed: the mapping in Governance, Drift and Evidence pairs none with them."
+  ],
+  [
+   47.425,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.513,
+   "First: who marks a register entry ready for closure?"
+  ],
+  [
+   5.537,
+   8.262,
+   "The answer is c: the authorizing official, for a plan of action and milestones item, or the assessor, for an assessment finding."
+  ],
+  [
+   13.8,
+   3.4,
+   "The kit never does, and the register records who decided."
+  ],
+  [
+   17.2,
+   4.625,
+   "Second: an exception has no expiry, and was approved by the see-so."
+  ],
+  [
+   21.825,
+   1.387,
+   "What does the kit report?"
+  ],
+  [
+   23.212,
+   2.625,
+   "The answer is b, a wrong approver."
+  ],
+  [
+   25.837,
+   5.737,
+   "With no expiry it's a standing risk acceptance, and that's the authorizing official's decision."
+  ],
+  [
+   31.575,
+   5.775,
+   "The module page has three more questions, each linked to the unit or lab step that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   3.462,
+   "You normalized two runs and worked their dispositions."
+  ],
+  [
+   4.338,
+   2.975,
+   "You recorded the review of an investigate result."
+  ],
+  [
+   7.312,
+   7.85,
+   "You opened a closure register, routed to the pages that remediate each family, with a default weighting the owner refines."
+  ],
+  [
+   15.162,
+   2.587,
+   "And you checked exceptions against their approvers."
+  ],
+  [
+   17.75,
+   10.4,
+   "The evidence an I S S O keeps from this module: the normalized results and summary, the dispositions, the reviews and exceptions files, and the register."
+  ],
+  [
+   28.15,
+   1.925,
+   "Keep the out folder from Lab 1."
+  ],
+  [
+   30.075,
+   6.787,
+   "Module 4, reconcile, re-run and keep the evidence, compares these two runs, and seals them."
+  ]
+ ]
+}

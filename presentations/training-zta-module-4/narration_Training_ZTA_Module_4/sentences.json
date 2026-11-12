@@ -1,0 +1,660 @@
+{
+ "1": [
+  [
+   0.05,
+   7.225,
+   "Welcome to Module 4 of The Zero Trust Assessment as Evidence: reconcile, re-run and keep the evidence."
+  ],
+  [
+   7.275,
+   5.3,
+   "This module is a draft, awaiting the editor's review, so recheck it after the review."
+  ],
+  [
+   12.575,
+   1.825,
+   "A single run is a reading."
+  ],
+  [
+   14.4,
+   6.938,
+   "A program needs the readings over time, lined up with the other tools, and sealed so an assessor can check them months later."
+  ],
+  [
+   21.337,
+   1.75,
+   "This module does all three."
+  ],
+  [
+   23.087,
+   7.875,
+   "It covers Steps 9 and 10 of the Zero Trust Assessment implementation guide, takes about fifty minutes, and finishes the path."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   1.825,
+   "A single run is a reading."
+  ],
+  [
+   3.025,
+   2.1,
+   "A program needs three more things."
+  ],
+  [
+   5.125,
+   8.775,
+   "First, the readings over time: which findings were fixed, which came back, and which only seemed to disappear because the run lost a connection."
+  ],
+  [
+   13.9,
+   2.188,
+   "Second, one finding per setting."
+  ],
+  [
+   16.087,
+   11.775,
+   "The Zero Trust Assessment's findings have to line up with ScubaGear's, and, where the agency runs AWS, with Security Hub's, so one setting under one control is one finding with one owner."
+  ],
+  [
+   27.863,
+   7.175,
+   "And third, every run sealed, so an assessor can check months later that the files are the ones the tool and the kit wrote."
+  ],
+  [
+   35.038,
+   9.15,
+   "In this module you'll compare two runs, reconcile through the control, set a cadence, and seal an evidence package, then break it on purpose."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   5.825,
+   "You'll compare two runs, and explain the kinds of change, including no longer evaluated."
+  ],
+  [
+   8.787,
+   4.763,
+   "You'll say why runs from different tool versions aren't compared without a recorded review."
+  ],
+  [
+   13.55,
+   8.838,
+   "You'll reconcile a finding across the Zero Trust Assessment, ScubaGear and Security Hub, through the control, and state what each tool can't see."
+  ],
+  [
+   22.387,
+   6.075,
+   "And you'll set a cadence and seal a run's evidence package, then check it, and see a broken one fail."
+  ],
+  [
+   28.462,
+   4.438,
+   "You need Module 3's Lab 1, because this lab uses its out folder."
+  ],
+  [
+   32.9,
+   8.238,
+   "In Unit 2 you'll read the section on reconciling at the control, in Evidence, Not Verdicts, a chapter of Zero Trust and Assessment."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.762,
+   "Unit 1 compares runs."
+  ],
+  [
+   1.812,
+   9.312,
+   "The kit's comparison sorts every test into new, regressed, fixed, still open, no longer evaluated, changed or unchanged."
+  ],
+  [
+   11.125,
+   2.375,
+   "New is a finding that wasn't there before."
+  ],
+  [
+   13.5,
+   2.312,
+   "Regressed is a pass that now fails."
+  ],
+  [
+   15.812,
+   3.1,
+   "Fixed now passes, and still open still fails."
+  ],
+  [
+   18.913,
+   3.513,
+   "No longer evaluated is the one that matters most."
+  ],
+  [
+   22.425,
+   5.688,
+   "It's a finding that's now skipped, planned, unable to evaluate, or missing from the run."
+  ],
+  [
+   28.113,
+   5.287,
+   "It isn't fixed, and counting it as fixed would turn a lost connection into remediation."
+  ],
+  [
+   33.4,
+   2.288,
+   "So fix the run, and run it again."
+  ],
+  [
+   35.688,
+   11.338,
+   "And one more rule: a new tool release adds tests and moves every denominator, so the kit refuses to compare runs from different versions until someone records that they reviewed the change."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.575,
+   "Unit 2 reconciles."
+  ],
+  [
+   1.625,
+   3.8,
+   "Tools with different identifiers can't be matched to each other directly."
+  ],
+  [
+   5.425,
+   9.1,
+   "Instead, each is matched to a common spine: the setting itself, and the control it supports in nist special publication eight hundred fifty-three."
+  ],
+  [
+   14.525,
+   8.15,
+   "When two tools fail the same setting under the same control, that's one finding, with two pieces of evidence, routed to one owner."
+  ],
+  [
+   22.675,
+   11.3,
+   "sis-uh maps every scuba policy to those controls, and where both fail, the ScubaGear finding is the directive's deviation and carries B O D twenty-five oh-one's reporting."
+  ],
+  [
+   33.975,
+   7.362,
+   "On AWS, each Security Hub finding lists its related requirements, such as A C four, and that's the spine."
+  ],
+  [
+   41.337,
+   2.475,
+   "Two cautions from AWS itself."
+  ],
+  [
+   43.812,
+   5.45,
+   "Its nist standard supports only a subset of the framework, with automated checks only."
+  ],
+  [
+   49.263,
+   7.45,
+   "And a control with no corresponding resources reports passed at the account level, so a pass can mean nothing was evaluated."
+  ],
+  [
+   56.712,
+   2.4,
+   "Each tool sees only its own platform."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   5.062,
+   "Most run more than one platform, and each has its own posture tool on the same spine."
+  ],
+  [
+   6.425,
+   11.3,
+   "For Microsoft three sixty-five G C C and Azure, the workbook's baseline, it's the Zero Trust Assessment, with ScubaGear as the directive's tool for Microsoft three sixty-five."
+  ],
+  [
+   17.725,
+   6.575,
+   "On AWS, it's Security Hub, with its standard for nist eight hundred fifty-three, revision five."
+  ],
+  [
+   24.3,
+   8.688,
+   "In AWS GovCloud, Security Hub is available, with limits on product integrations, some controls, and cross-Region aggregation."
+  ],
+  [
+   32.987,
+   6.025,
+   "On Oracle Cloud Infrastructure, it's Cloud Guard, and on Google Cloud, Security Command Center."
+  ],
+  [
+   39.013,
+   8.613,
+   "The chapter on cloud-native posture in Security Operations and Telemetry compares those two, and how their findings enter the evidence contract."
+  ],
+  [
+   47.625,
+   9.125,
+   "The rule is the same everywhere: each finding is matched to the setting and the control, with one owner, in one row of the reconciliation table."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.312,
+   "Unit 3 is the cadence and the evidence package."
+  ],
+  [
+   3.362,
+   6.65,
+   "The cadence is design guidance, from the day-two runbook in Compliance Automation and Day-2 Operations."
+  ],
+  [
+   10.012,
+   5.8,
+   "Monthly, a full run, with the results and the plan of action and milestones regenerated."
+  ],
+  [
+   15.812,
+   7.225,
+   "After each remediation wave, a run of the affected pillar, so a fix is closed by evidence, not by a ticket."
+  ],
+  [
+   23.038,
+   5.263,
+   "Before a tool upgrade reaches production, a run of the new version in the test tenant."
+  ],
+  [
+   28.3,
+   2.05,
+   "And quarterly, a trend review."
+  ],
+  [
+   30.35,
+   9.525,
+   "Microsoft's operations guidance for Global Secure Access includes a weekly scheduled digest; the guide explains two cautions before adopting it as written."
+  ],
+  [
+   39.875,
+   15.113,
+   "The evidence package for a run holds the export and its hash, the normalized results, the dispositions, the reviews and exceptions with their hashes, the register, the comparison, and the chained records with the S H A two fifty-six sums file."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   2.925,
+   "Lab 1 picks up Module 3's two runs."
+  ],
+  [
+   3.7,
+   10.338,
+   "Step one compares them: two new, one regressed, three fixed, twelve still open, two no longer evaluated, two changed, and twelve unchanged."
+  ],
+  [
+   14.037,
+   2.15,
+   "Step two lists the ones to look at."
+  ],
+  [
+   16.188,
+   3.875,
+   "Two one seven eight three regressed, from pass to fail."
+  ],
+  [
+   20.062,
+   4.188,
+   "Two one nine four one is new: it wasn't in the first run at all."
+  ],
+  [
+   24.25,
+   2.225,
+   "Now the two no longer evaluated."
+  ],
+  [
+   26.475,
+   7.237,
+   "Two one eight six oh and four one oh three two both failed last time, and this time they were skipped as disconnected."
+  ],
+  [
+   33.712,
+   3.438,
+   "The second run lost its Azure and Exchange connections."
+  ],
+  [
+   37.15,
+   3.638,
+   "Those findings aren't fixed; they still need a run that connects."
+  ],
+  [
+   40.788,
+   6.3,
+   "And four one oh five oh shows as new only because the first run timed out on it, not because something broke."
+  ],
+  [
+   47.087,
+   3.925,
+   "The slide shortens step two's command; the page has it in full."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.9,
+   "Step three seals the second run's evidence."
+  ],
+  [
+   2.95,
+   7.138,
+   "Each output folder becomes a record: the normalized run, the register, and the comparison, one after another."
+  ],
+  [
+   10.088,
+   3.388,
+   "Each record names the controls its folder supports."
+  ],
+  [
+   13.475,
+   13.625,
+   "The normalized run supports A U nine, C A two, C A seven and C M six; the register adds C A five and R A seven; the comparison supports A U nine, C A seven and C M six."
+  ],
+  [
+   27.1,
+   6.213,
+   "Each record also holds every file's hash and the previous record's hash, so the records form a chain."
+  ],
+  [
+   33.312,
+   10.475,
+   "Step four checks the package: sixteen files match the sums file, the chain of three records is unbroken, and a passing record covers each step for the run date."
+  ],
+  [
+   43.788,
+   3.138,
+   "The I S S O doesn't need the kit to check this."
+  ],
+  [
+   46.925,
+   7.025,
+   "In a POSIX shell, in the evidence folder, the standard sha two fifty-six sum check reads the same sums file."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.487,
+   "Step five breaks the seal on purpose."
+  ],
+  [
+   2.538,
+   6.075,
+   "Add one line, the word edited, to the register file inside the sealed package, and check again."
+  ],
+  [
+   8.613,
+   2.413,
+   "Two checks fail, and each says why."
+  ],
+  [
+   11.025,
+   5.213,
+   "The sums check fails because the register file no longer matches its hash in the sums file."
+  ],
+  [
+   16.238,
+   4.662,
+   "The chain check fails because the file no longer matches the hash its record holds."
+  ],
+  [
+   20.9,
+   1.475,
+   "That's the point of sealing."
+  ],
+  [
+   22.375,
+   6.7,
+   "Months later, an assessor can show that the files are the ones the tool and the kit wrote, or see exactly which one isn't."
+  ],
+  [
+   29.075,
+   2.825,
+   "Step six cleans up: delete the out folder."
+  ],
+  [
+   31.9,
+   7.7,
+   "In a real program, the sealed folder lives in the evidence repository, and retention follows the records officer's schedule."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.275,
+   "Lab 2 makes one real change and proves it with evidence, in your test tenant, never production."
+  ],
+  [
+   6.325,
+   1.562,
+   "The authors haven't run it."
+  ],
+  [
+   7.888,
+   9.787,
+   "Step one: make one change that a finding in Module 3's Lab 2 register points to, through the page its remediation field names, under a change record."
+  ],
+  [
+   17.675,
+   6.3,
+   "Step two: re-run the assessment into a new folder, then normalize it and write its register."
+  ],
+  [
+   23.975,
+   6.15,
+   "Step three: compare it with the first run, seal all three output folders, and check the package."
+  ],
+  [
+   30.125,
+   2.525,
+   "The finding you fixed should show as fixed."
+  ],
+  [
+   32.65,
+   5.987,
+   "If it shows as no longer evaluated, the second run didn't connect to the service that test reads."
+  ],
+  [
+   38.638,
+   11.125,
+   "Step four is optional: where you have an AWS test account with Security Hub and its nist standard enabled, pull its active findings, and add one row to the reconciliation table."
+  ],
+  [
+   49.763,
+   1.512,
+   "Step five backs it out."
+  ],
+  [
+   51.275,
+   3.962,
+   "The slide shortens the lab; the page lists every command."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.862,
+   "The federal requirement, in nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.912,
+   9.762,
+   "C A seven, continuous monitoring: assessment at a defined frequency, with the changes between runs analyzed, and results correlated across tools."
+  ],
+  [
+   15.675,
+   3.962,
+   "The evidence is each comparison and the reconciliation table."
+  ],
+  [
+   19.637,
+   4.45,
+   "A U nine and A U eleven: the evidence protected and kept."
+  ],
+  [
+   24.087,
+   3.475,
+   "That's the records, the sums file and the exports."
+  ],
+  [
+   27.562,
+   6.275,
+   "And C A five: the plan of action and milestones regenerated from each run, from the register."
+  ],
+  [
+   33.837,
+   3.188,
+   "No key security indicator is listed for that one."
+  ],
+  [
+   37.025,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ],
+  [
+   40.825,
+   8.812,
+   "Retention follows the records officer's schedule; the program's default for assessment evidence, in Zero Trust and Assessment, is three years."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.975,
+   "First: a finding failed last month, and this month it's skipped, disconnected."
+  ],
+  [
+   7.0,
+   0.8,
+   "What is it?"
+  ],
+  [
+   7.8,
+   3.013,
+   "The answer is b: no longer evaluated."
+  ],
+  [
+   10.812,
+   1.238,
+   "It's not fixed."
+  ],
+  [
+   12.05,
+   2.487,
+   "Fix the run's connection, and run it again."
+  ],
+  [
+   14.537,
+   4.287,
+   "Second: a Security Hub control reports passed at the account level."
+  ],
+  [
+   18.825,
+   1.137,
+   "What should you check?"
+  ],
+  [
+   19.962,
+   8.375,
+   "The answer is b: whether any resource corresponds to the control, because AWS produces an account-level pass when none does."
+  ],
+  [
+   28.337,
+   2.5,
+   "Read the pass with the resource inventory."
+  ],
+  [
+   30.837,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   3.712,
+   "You compared two runs, and told a fix from a lost connection."
+  ],
+  [
+   4.588,
+   6.125,
+   "You reconciled across tools through the setting and the control, on every platform the agency runs."
+  ],
+  [
+   10.713,
+   1.275,
+   "You set a cadence."
+  ],
+  [
+   11.988,
+   3.438,
+   "And you sealed, checked and broke an evidence package."
+  ],
+  [
+   15.425,
+   11.55,
+   "The evidence an I S S O keeps from this module: each comparison, the reconciliation table, and the chained records with the sums file and the exports, by the records schedule."
+  ],
+  [
+   26.975,
+   8.387,
+   "That finishes the learning path, The Zero Trust Assessment as Evidence: four modules, about three hours with each module's Lab 1."
+  ],
+  [
+   35.362,
+   7.162,
+   "Lab 2, in your own test tenant, isn't counted, because a full run on a large tenant can take more than a day."
+  ],
+  [
+   42.525,
+   5.675,
+   "For the ten steps in one place, go back to the Zero Trust Assessment implementation guide."
+  ],
+  [
+   48.2,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

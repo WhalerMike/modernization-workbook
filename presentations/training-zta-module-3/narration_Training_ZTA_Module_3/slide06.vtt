@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.599
+Each test I D routes to a finding family,
+
+2
+00:00:02.599 --> 00:00:06.662
+and each family to the page in
+the workbook that remediates it.
+
+3
+00:00:06.662 --> 00:00:09.139
+The table is from Close Before You Assess,
+
+4
+00:00:09.139 --> 00:00:13.437
+with the evidence the guide adds for
+when a finding is ready for closure.
+
+5
+00:00:13.437 --> 00:00:16.650
+Emergency access goes to
+Access and Privilege,
+
+6
+00:00:16.650 --> 00:00:20.438
+and is ready when the sign-in
+alert fired on a test sign-in.
+
+7
+00:00:20.438 --> 00:00:24.242
+Standing privilege goes to its
+PIM chapter, and is ready when no
+
+8
+00:00:24.242 --> 00:00:28.338
+permanent active assignment sits
+outside the exception register.
+
+9
+00:00:28.338 --> 00:00:31.656
+Device compliance goes to
+Devices and Endpoints,
+
+10
+00:00:31.656 --> 00:00:34.975
+ready when a noncompliant
+test device is refused.
+
+11
+00:00:34.975 --> 00:00:38.913
+Application secrets go to
+Governance, Drift and Evidence.
+
+12
+00:00:38.913 --> 00:00:41.688
+DDoS and web application firewall findings
+
+13
+00:00:41.688 --> 00:00:44.388
+go to the Azure Security
+Engineering guide.
+
+14
+00:00:44.388 --> 00:00:49.413
+A finding no family covers is unrouted,
+and goes to the Zero Trust program lead.
+
+15
+00:00:49.413 --> 00:00:53.558
+In release three point one point
+oh, the email and collaboration
+
+16
+00:00:53.558 --> 00:00:58.630
+threat-protection tests have no family
+yet, so they stay unrouted and visible.

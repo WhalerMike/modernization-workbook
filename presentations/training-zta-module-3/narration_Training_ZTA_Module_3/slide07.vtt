@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+Two more parts of Unit 2:
+weighing and exceptions.
+
+2
+00:00:03.725 --> 00:00:06.207
+The kit sets a default priority:
+
+3
+00:00:06.207 --> 00:00:10.313
+severity divided by effort,
+in buckets P one to P four.
+
+4
+00:00:10.313 --> 00:00:13.624
+That's design guidance, in
+the kit's taxonomy file.
+
+5
+00:00:13.624 --> 00:00:18.992
+Then the owner weighs each finding on
+six factors from Evidence, Not Verdicts:
+
+6
+00:00:18.992 --> 00:00:21.760
+exploitability, blast radius, exposure,
+
+7
+00:00:21.760 --> 00:00:25.450
+compensating controls,
+effort and dependency order.
+
+8
+00:00:25.450 --> 00:00:28.238
+The owner writes the
+rationale into the entry.
+
+9
+00:00:28.238 --> 00:00:31.426
+The register also lists
+each family's dependencies,
+
+10
+00:00:31.426 --> 00:00:35.800
+so a Conditional Access finding waits
+for emergency access to be right.
+
+11
+00:00:35.800 --> 00:00:39.338
+Exceptions follow the same
+rule as ScubaGear's omissions.
+
+12
+00:00:39.338 --> 00:00:42.812
+An exception with an expiry
+is the see-so's decision.
+
+13
+00:00:42.812 --> 00:00:45.999
+One without an expiry is a
+standing risk acceptance,
+
+14
+00:00:45.999 --> 00:00:49.037
+and only the authorizing
+official can approve it.
+
+15
+00:00:49.037 --> 00:00:52.893
+The kit checks each one, and
+marks it a governed exception,
+
+16
+00:00:52.893 --> 00:00:55.660
+a lapsed acceptance, or a wrong approver.

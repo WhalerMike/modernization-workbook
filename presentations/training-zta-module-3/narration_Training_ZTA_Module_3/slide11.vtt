@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.279
+Lab 2 runs the same steps on the
+export from Module 2's Lab 2,
+
+2
+00:00:04.279 --> 00:00:05.988
+on the assessment host.
+
+3
+00:00:05.988 --> 00:00:07.549
+The authors haven't run it.
+
+4
+00:00:07.549 --> 00:00:12.031
+You replace the report folder with Module
+2's, and the reviews and exceptions
+
+5
+00:00:12.031 --> 00:00:16.725
+files with your own copies of the kit's
+two templates, filled for your test tenant.
+
+6
+00:00:16.725 --> 00:00:20.900
+Step one normalizes the export
+and lists the dispositions.
+
+7
+00:00:20.900 --> 00:00:24.175
+Step two writes the register,
+with your exceptions.
+
+8
+00:00:24.175 --> 00:00:28.575
+Step three is a comparison by eye:
+open the report's pillar tabs.
+
+9
+00:00:28.575 --> 00:00:32.311
+Every failed and investigate test
+should have a register entry,
+
+10
+00:00:32.311 --> 00:00:33.862
+and no skipped test should.
+
+11
+00:00:33.862 --> 00:00:36.812
+Note any unrouted test
+for your program lead.
+
+12
+00:00:36.812 --> 00:00:38.312
+Step four backs it out.
+
+13
+00:00:38.312 --> 00:00:41.032
+The outputs hold your
+test tenant's results,
+
+14
+00:00:41.032 --> 00:00:43.510
+so delete them when you finish Module 4.

@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.634
+Step three writes the
+register for the first run:
+
+2
+00:00:03.634 --> 00:00:08.025
+seventeen findings, three in P one,
+ten in P two, four in P three.
+
+3
+00:00:08.025 --> 00:00:11.975
+And a warning: test four one
+oh three two is unrouted.
+
+4
+00:00:11.975 --> 00:00:15.356
+That's the Safe Links test,
+which has no finding family,
+
+5
+00:00:15.356 --> 00:00:17.200
+so the program lead routes it.
+
+6
+00:00:17.200 --> 00:00:19.750
+Step four reads the top five rows.
+
+7
+00:00:19.750 --> 00:00:23.500
+Two device compliance findings,
+owned by endpoint engineering.
+
+8
+00:00:23.500 --> 00:00:28.188
+A DDoS and web application firewall
+finding, owned by the platform team.
+
+9
+00:00:28.188 --> 00:00:30.303
+The unrouted Safe Links finding,
+
+10
+00:00:30.303 --> 00:00:33.750
+owned by the Zero Trust
+program lead until it's routed.
+
+11
+00:00:33.750 --> 00:00:35.812
+And an application secrets finding.
+
+12
+00:00:35.812 --> 00:00:38.250
+Look at two one eight three seven.
+
+13
+00:00:38.250 --> 00:00:42.744
+It's the investigate result, and its
+severity is weighted down, so it ranks
+
+14
+00:00:42.744 --> 00:00:47.463
+below other high-risk findings of the
+same effort until a person confirms it.
+
+15
+00:00:47.463 --> 00:00:51.500
+Every finding has an owner, even
+the one nobody has claimed yet.

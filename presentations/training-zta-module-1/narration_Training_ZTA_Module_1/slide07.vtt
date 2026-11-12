@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+Each test ends in one of six
+statuses, from the tool's own source.
+
+2
+00:00:04.188 --> 00:00:06.588
+Passed: the configuration matched.
+
+3
+00:00:06.588 --> 00:00:07.988
+Failed: it didn't.
+
+4
+00:00:07.988 --> 00:00:12.649
+Investigate: the tool needs a person
+to look before it's a finding or not.
+
+5
+00:00:12.649 --> 00:00:17.690
+Skipped: the test didn't run, and it
+carries a reason, such as not licensed,
+
+6
+00:00:17.690 --> 00:00:21.775
+not connected, not applicable,
+not supported, or timed out.
+
+7
+00:00:21.775 --> 00:00:25.213
+Planned: the test is still
+under construction in the tool.
+
+8
+00:00:25.213 --> 00:00:27.987
+And error: the test couldn't be evaluated.
+
+9
+00:00:27.987 --> 00:00:31.900
+A pillar owner reads their tab
+with the risk and status filters,
+
+10
+00:00:31.900 --> 00:00:36.263
+and notes every investigate, skipped
+and error result, with its reason.
+
+11
+00:00:36.263 --> 00:00:38.813
+They also note every failed result whose
+
+12
+00:00:38.813 --> 00:00:41.438
+feature may not exist
+in the tenant's cloud.
+
+13
+00:00:41.438 --> 00:00:45.310
+That last case matters for federal
+tenants, and we'll come back to it.

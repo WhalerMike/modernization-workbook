@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.239
+Step four connects as the reader,
+
+2
+00:00:02.239 --> 00:00:06.375
+after activating its roles in
+pim, in a new PowerShell session.
+
+3
+00:00:06.375 --> 00:00:11.261
+The command on the slide is for G C C
+and commercial; for G C C High or D O D,
+
+4
+00:00:11.261 --> 00:00:15.537
+use the connection commands from
+the guide's Step 4 instead.
+
+5
+00:00:15.537 --> 00:00:19.300
+Then confirm the session's
+tenant, environment and account.
+
+6
+00:00:19.300 --> 00:00:22.838
+Step five runs the assessment
+and hashes the export.
+
+7
+00:00:22.838 --> 00:00:26.574
+Keep the report folder:
+Modules 3 and 4 read it.
+
+8
+00:00:26.574 --> 00:00:29.850
+Step six backs it all out,
+when you finish the path.
+
+9
+00:00:29.850 --> 00:00:34.125
+Disconnect, and remove the reader's
+role assignments in the test tenant.
+
+10
+00:00:34.125 --> 00:00:38.065
+If you consented on a dedicated
+application, remove its grant as a
+
+11
+00:00:38.065 --> 00:00:42.150
+Cloud Application Administrator,
+with the grant I D from step three.
+
+12
+00:00:42.150 --> 00:00:45.470
+Don't revoke the shared
+Microsoft Graph PowerShell
+
+13
+00:00:45.470 --> 00:00:48.250
+grant if anything else
+in the tenant uses it.
+
+14
+00:00:48.250 --> 00:00:50.140
+Then delete the report folder.

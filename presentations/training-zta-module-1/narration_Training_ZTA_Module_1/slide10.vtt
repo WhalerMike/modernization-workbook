@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Step three lists what didn't
+run, with its reason.
+
+2
+00:00:03.088 --> 00:00:05.762
+One test is planned, under construction.
+
+3
+00:00:05.762 --> 00:00:11.252
+The six skips carry five different reasons:
+not licensed for workload I D, two not
+
+4
+00:00:11.252 --> 00:00:16.825
+applicable, not connected to a service, a
+timeout, and no compatible license found.
+
+5
+00:00:16.825 --> 00:00:22.025
+Step four sorts those reasons with the
+kit's own function, convert to Z T A result.
+
+6
+00:00:22.025 --> 00:00:24.663
+Not licensed becomes skipped, licensing.
+
+7
+00:00:24.663 --> 00:00:27.500
+Not connected becomes
+skipped, disconnected.
+
+8
+00:00:27.500 --> 00:00:30.462
+Not applicable stays
+skipped, not applicable.
+
+9
+00:00:30.462 --> 00:00:33.162
+The timeout becomes unable to evaluate.
+
+10
+00:00:33.162 --> 00:00:35.676
+And an investigate result becomes fail.
+
+11
+00:00:35.676 --> 00:00:39.712
+So that's four skips, four different
+meanings, and none of them a failure.
+
+12
+00:00:39.712 --> 00:00:43.759
+The investigate result is a
+finding until someone reviews it,
+
+13
+00:00:43.759 --> 00:00:45.425
+which you'll do in Module 3.
+
+14
+00:00:45.425 --> 00:00:49.800
+The page lists every command for
+the lab in order, ready to paste.
