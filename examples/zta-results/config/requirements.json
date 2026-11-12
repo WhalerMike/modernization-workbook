@@ -1,0 +1,30 @@
+{
+  "_comment": "Each step of the Zero Trust Assessment results kit, with the NIST SP 800-53 Rev. 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators Book 13, Appendix A lists for them (CA-2 to KSI-PIY-RIS; CA-7 to KSI-MLA-EVC; CM-6 to KSI-CMT-LMC, KSI-CMT-RMV, KSI-MLA-EVC and KSI-SVC-ACM; AU-9 to KSI-MLA-OSM; AU-9(3) to KSI-SVC-VRI; none listed for CA-5 or RA-7). KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides. 'packages' lists the steps a package's evidence must hold before the ISSO accepts it.",
+  "version": 1,
+  "controls": {
+    "CA-2": { "title": "Control Assessments", "part": "assess the controls and report the results" },
+    "CA-5": { "title": "Plan of Action and Milestones", "part": "document planned remediation of weaknesses; update it from assessments and continuous monitoring" },
+    "CA-7": { "title": "Continuous Monitoring", "part": "ongoing assessments; correlation and analysis; response actions; reporting" },
+    "CM-6": { "title": "Configuration Settings", "part": "monitor and control changes to configuration settings; approve and document deviations" },
+    "RA-7": { "title": "Risk Response", "part": "respond to findings from assessments and monitoring in line with risk tolerance" },
+    "AU-9": { "title": "Protection of Audit Information", "part": "protect audit information from unauthorized modification and deletion" }
+  },
+  "ksis": {
+    "KSI-PIY-RIS": "Book 13, Appendix A's KSI for CA-2",
+    "KSI-MLA-EVC": "Evaluating Configurations (Book 13, Appendix A's KSI for CA-7 and CM-6)",
+    "KSI-SVC-ACM": "Book 13, Appendix A's KSI for CM-6 (configuration management automated and reviewed for drift)",
+    "KSI-CMT-RMV": "Book 13, Appendix A's KSI for CM-6",
+    "KSI-MLA-OSM": "Book 13, Appendix A's KSI for AU-9",
+    "KSI-SVC-VRI": "Book 13, Appendix A's KSI for AU-9(3), cryptographic protection of audit information"
+  },
+  "steps": {
+    "NORMALIZE": { "title": "Normalize every Zero Trust Assessment result to Book 11's taxonomy", "controls": ["CA-2", "CA-7", "CM-6"], "ksis": ["KSI-PIY-RIS", "KSI-MLA-EVC", "KSI-SVC-ACM"] },
+    "REGISTER": { "title": "Write the closure register: one entry per finding, routed and weighed", "controls": ["CA-5", "RA-7", "CA-7"], "ksis": ["KSI-MLA-EVC"] },
+    "COMPARE": { "title": "Compare two runs: new, fixed, regressed, still open, no longer evaluated", "controls": ["CA-7", "CM-6"], "ksis": ["KSI-MLA-EVC", "KSI-SVC-ACM", "KSI-CMT-RMV"] },
+    "EVIDENCE": { "title": "Record the run as timestamped, hashed, chained evidence", "controls": ["AU-9", "CA-7"], "ksis": ["KSI-MLA-OSM", "KSI-SVC-VRI", "KSI-MLA-EVC"] }
+  },
+  "packages": {
+    "first-run": ["NORMALIZE", "REGISTER"],
+    "re-run": ["NORMALIZE", "REGISTER", "COMPARE"]
+  }
+}

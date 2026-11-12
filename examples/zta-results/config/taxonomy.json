@@ -1,0 +1,59 @@
+{
+  "_comment": "Book 11, Chapter 10's normalized result taxonomy for the Zero Trust Assessment. The status values and skip reasons are those in the tool's 3.1.0 source (Get-ZtTestStatus.ps1; Add-ZtTestResultDetail.ps1's SkippedBecause set; Get-ZtSkippedReason.ps1), read at tag 3.1.0 on November 11, 2026. The mapping is versioned with the tool: an export from another version is still normalized, but the summary says the mapping hasn't been reviewed for that version. A status or skip reason not listed here becomes Unable-to-Evaluate with unmapped: true, never a pass or a failure.",
+  "toolVersion": "3.1.0",
+  "statuses": {
+    "Passed": { "normalized": "Pass" },
+    "Failed": { "normalized": "Fail" },
+    "Investigate": { "normalized": "Fail", "investigate": true, "note": "A finding that needs manual review before it is confirmed or dismissed (Book 11, Chapter 10)" },
+    "Planned": { "normalized": "Planned" },
+    "Error": { "normalized": "Unable-to-Evaluate", "note": "The tool couldn't evaluate the test; fix the run and re-run" },
+    "Skipped": { "normalized": "by-reason" }
+  },
+  "skipReasons": {
+    "UnderConstruction": "Planned",
+    "NotLicensedEntraIDP1": "Skipped-Licensing",
+    "NotLicensedEntraIDP2": "Skipped-Licensing",
+    "NotLicensedEntraIDGovernance": "Skipped-Licensing",
+    "NotLicensedEntraWorkloadID": "Skipped-Licensing",
+    "NotLicensedIntune": "Skipped-Licensing",
+    "NoCompatibleLicenseFound": "Skipped-Licensing",
+    "NotConnectedAzure": "Skipped-Disconnected",
+    "NotConnectedExchange": "Skipped-Disconnected",
+    "NotConnectedSecurityCompliance": "Skipped-Disconnected",
+    "NotConnectedToService": "Skipped-Disconnected",
+    "NoAzureAccess": "Skipped-Disconnected",
+    "NotApplicable": "Skipped-Not-Applicable",
+    "NotDotGovDomain": "Skipped-Not-Applicable",
+    "NotSupported": "Skipped-Not-Applicable",
+    "TimeoutReached": "Unable-to-Evaluate"
+  },
+  "boundaryReasons": ["NotSupported"],
+  "reviewReasons": {
+    "NotDotGovDomain": "The tool found no .gov domain; for a federal tenant, check the tenant's verified domains before accepting the skip"
+  },
+  "results": ["Pass", "Fail", "Planned", "Skipped-Licensing", "Skipped-Disconnected", "Skipped-Not-Applicable", "Unable-to-Evaluate"],
+  "dispositions": {
+    "Planned": "Ignore until the tool implements the test",
+    "Skipped-Licensing": "A licensing decision: record whether the license applies in the boundary; not a failed control (Book 11, Chapter 10)",
+    "Skipped-Disconnected": "Fix the run's scope, connections or roles and re-run",
+    "Skipped-Not-Applicable": "Record the reason; a feature unsupported where the tool runs, or in a government cloud, is a boundary finding (Book 10)",
+    "Unable-to-Evaluate": "Fix the run, or verify by hand and record the manual result"
+  },
+  "cisaPillars": {
+    "_comment": "Design guidance: the CISA Zero Trust Maturity Model pillar each tool pillar is filed under. Security Operations maps to the cross-cutting Visibility and Analytics capability, which has no pillar of its own.",
+    "Identity": "Identity",
+    "Devices": "Devices",
+    "Network": "Networks",
+    "Data": "Data",
+    "Infrastructure": "Applications and Workloads",
+    "SecOps": "Visibility and Analytics (cross-cutting)",
+    "AI": "Applications and Workloads"
+  },
+  "scoring": {
+    "_comment": "The kit's default for Book 11, Chapter 10's severity, priority and buckets (design guidance, not a federal standard): severity is the risk level's weight times the status factor; priority is severity divided by the effort the implementation cost implies; P1 at 50 or above, P2 at 30, P3 at 15, P4 above zero.",
+    "risk": { "Critical": 100, "High": 80, "Medium": 50, "Low": 20, "Unranked": 10 },
+    "status": { "Failed": 1.0, "Investigate": 0.6 },
+    "effort": { "Low": 1, "Medium": 2, "High": 3 },
+    "buckets": [ { "bucket": "P1", "min": 50 }, { "bucket": "P2", "min": 30 }, { "bucket": "P3", "min": 15 }, { "bucket": "P4", "min": 0.0001 } ]
+  }
+}

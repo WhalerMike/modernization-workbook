@@ -13,7 +13,8 @@ Automation learning path have their own bundles (ticket-to-machine-code and the 
 Ticket-to-Machine task catalog guide links its pack (ticket-to-machine-task-catalog: the catalog
 kit with the finding contract it reads), and the Downloads page links every kit, Cisco SD-WAN included, and the distribution point
 consolidation guides link theirs (--kit dp-consolidation), and the provider notices guide its kit
-(--kit provider-notices-code: the kit with the finding contract its router mirrors).
+(--kit provider-notices-code: the kit with the finding contract its router mirrors), and the Zero Trust
+Assessment guide and learning path the results kit (--kit zta-results).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -41,7 +42,8 @@ REPO = Path(__file__).resolve().parent.parent
 KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "validation-kit",
         "attribute-driven-migration-code", "ticket-to-machine-code", "hr-driven-identity-code",
         "privileged-access-code", "non-person-identity-code", "microsoft-automation-code",
-        "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code")
+        "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
+        "zta-results")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.

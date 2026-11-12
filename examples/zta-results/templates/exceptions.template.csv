@@ -1,0 +1,2 @@
+testId,approverRole,approvedOn,expires,rationale,compensatingControl
+<test-id>,<CISO | authorizing official>,<yyyy-mm-dd>,<yyyy-mm-dd, or empty for a standing acceptance>,<why the finding is accepted for now>,<the control that reduces the risk, or none>
