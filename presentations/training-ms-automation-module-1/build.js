@@ -156,13 +156,13 @@ endModule(SI);
     ["Microsoft Graph PowerShell SDK", "Install-Module Microsoft.Graph", "Interactive and scheduled administration; Invoke-MgGraphRequest for any endpoint"],
     ["Microsoft Graph Python SDK", "pip install msgraph-sdk", "Services and pipelines; PageIterator follows pages for you"],
     ["azure-identity (Python)", "pip install azure-identity", "Managed identity, certificate and federated credentials"],
-    ["Az PowerShell, Azure CLI", "(Module 4, planned)", "Azure Resource Manager: subscriptions, Arc, Policy"],
+    ["Az PowerShell, Azure CLI", "(Module 4)", "Azure Resource Manager: subscriptions, Arc, Policy"],
     ["AzureAD, AzureAD Preview, MSOnline", "Don't", "Deprecated March 30, 2024; Microsoft said they'd work only until March 30, 2025"],
   ], { fontSize: 12.5, limit: 5.1 });
   line(s, "Why", "The example client calls the REST API with the standard library so every request is visible and testable (design guidance).", b + 0.3, 0.65, 14);
   sources(s, "Sources: Module 1, Unit 4 \"Tools\": Learn, Install a Graph SDK; paging with the SDKs; Azure Identity for Python; Azure AD PowerShell deprecation; migration steps.");
   notes(s,
-`Use the current tools. The Microsoft Graph PowerShell S D K, for interactive and scheduled administration, with Invoke dash Mg Graph Request for any endpoint. The Microsoft Graph Python S D K for services and pipelines, where a page iterator follows pages for you. azure-identity in Python, for managed identity, certificate and federated credentials. Az PowerShell and the Azure CLI for Azure Resource Manager, which a planned Module 4 covers. And not AzureAD, AzureAD Preview or MSOnline. Microsoft deprecated them on March 30, 2024, said they'd work only until March 30, 2025, and recommends Microsoft Graph PowerShell. The example client calls the REST API directly with the standard library. That isn't advice against the S D Ks. It keeps every request visible, so you can read and test each pattern line by line.`,
+`Use the current tools. The Microsoft Graph PowerShell S D K, for interactive and scheduled administration, with Invoke dash Mg Graph Request for any endpoint. The Microsoft Graph Python S D K for services and pipelines, where a page iterator follows pages for you. azure-identity in Python, for managed identity, certificate and federated credentials. Az PowerShell and the Azure CLI for Azure Resource Manager, which Module 4 covers. And not AzureAD, AzureAD Preview or MSOnline. Microsoft deprecated them on March 30, 2024, said they'd work only until March 30, 2025, and recommends Microsoft Graph PowerShell. The example client calls the REST API directly with the standard library. That isn't advice against the S D Ks. It keeps every request visible, so you can read and test each pattern line by line.`,
   `${M} — Unit 4 "Permissions and tools," "Tools."`);
 }
 
@@ -227,10 +227,10 @@ endModule(SC);
     "$ python -m pytest -q tests/python/test_graphkit_and_tasks.py -k \"paging or ... or delta or advanced\"",
     "9 passed, 11 deselected",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 1, 2026", pt: 11 });
-  line(s, "Then", "Then the same rules in PowerShell (Get-FmwCloud, Get-FmwCallPermission, Assert-FmwGraphCall), and the full suites: 70 pytest, 44 Pester.", c + 0.25, 0.65, 14);
+  line(s, "Then", "Then the same rules in PowerShell (Get-FmwCloud, Get-FmwCallPermission, Assert-FmwGraphCall), and the full suites with Module 4's: 94 pytest, 56 Pester.", c + 0.25, 0.65, 14);
   sources(s, "Sources: Module 1, Unit 7 \"Exercise: Lab 1\"; examples/ms-automation: graphkit.py, graph-calls.json, tests/python, tests/powershell.");
   notes(s,
-`Try it. Lab 1 runs on a laptop in the examples folder, against fixtures, with no tenant. Ask for a cloud name the client doesn't know, G C C High with capitals, and you get a value error that lists the four names it accepts. An unknown name is an error, never a default. List the permissions the stale-users task needs, and you get exactly two: AuditLog dot Read dot All and User dot Read dot All, computed from the calls it declares. Make a call the Conditional Access task doesn't declare, and it refuses, telling you to add it to graph-calls dot JSON with its permission. Send a GCC High token to the worldwide Graph host, and it refuses again. Nothing was sent in either case. Then nine tests prove paging, retries, batching, delta and the advanced-query header against a fake transport. The lab repeats the rules in PowerShell, and the full suites pass: seventy in pytest and forty-four in Pester.`,
+`Try it. Lab 1 runs on a laptop in the examples folder, against fixtures, with no tenant. Ask for a cloud name the client doesn't know, G C C High with capitals, and you get a value error that lists the four names it accepts. An unknown name is an error, never a default. List the permissions the stale-users task needs, and you get exactly two: AuditLog dot Read dot All and User dot Read dot All, computed from the calls it declares. Make a call the Conditional Access task doesn't declare, and it refuses, telling you to add it to graph-calls dot JSON with its permission. Send a GCC High token to the worldwide Graph host, and it refuses again. Nothing was sent in either case. Then nine tests prove paging, retries, batching, delta and the advanced-query header against a fake transport. The lab repeats the rules in PowerShell, and the full suites pass: ninety-four in pytest and fifty-six in Pester, counting Module 4's Arc tests.`,
   `${M} — Unit 7 "Exercise: Lab 1 (fixtures, no tenant)," steps 2 to 7.`);
 }
 

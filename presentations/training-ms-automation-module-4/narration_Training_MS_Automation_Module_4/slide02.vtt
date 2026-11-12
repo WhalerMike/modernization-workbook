@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.812
+Once the servers are under Arc, an assessor
+asks questions a script can answer.
+
+3
+00:00:05.812 --> 00:00:09.562
+Which servers lack the monitoring
+and endpoint protection agents?
+
+4
+00:00:09.562 --> 00:00:12.312
+Which still reach Azure
+over the public internet?
+
+5
+00:00:12.312 --> 00:00:17.000
+Which run an operating system or SQL
+Server version past the end of support?
+
+6
+00:00:17.000 --> 00:00:20.300
+Is each SQL Server instance's
+host still connected?
+
+7
+00:00:20.300 --> 00:00:24.438
+And which policy assignments are failing,
+and which aren't enforcing anything?
+
+8
+00:00:24.438 --> 00:00:29.874
+The validation kit already has seven
+Arc-track checks on Resource Graph: tags,
+
+9
+00:00:29.874 --> 00:00:33.356
+agent status, baseline
+compliance, CMDB coverage,
+
+10
+00:00:33.356 --> 00:00:37.688
+Update Manager, role assignments,
+and two tools on one setting.
+
+11
+00:00:37.688 --> 00:00:39.538
+This module doesn't repeat them.
+
+12
+00:00:39.538 --> 00:00:41.338
+Its checks read other records.
+
+13
+00:00:41.338 --> 00:00:43.758
+One more thing frames the module:
+
+14
+00:00:43.758 --> 00:00:49.405
+the workbook plans on Windows Server
+2016 being gone from production by its
+
+15
+00:00:49.405 --> 00:00:54.874
+January twelfth, 2027 end of support,
+with Windows Server 2019 the minimum.
+
+16
+00:00:54.874 --> 00:00:59.440
+That's the program's planning
+assumption, not a federal requirement,
+
+17
+00:00:59.440 --> 00:01:02.760
+and any 2016 server that
+remains is an exception.

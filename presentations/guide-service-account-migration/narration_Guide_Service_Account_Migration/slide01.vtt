@@ -43,26 +43,26 @@ a credential that Windows, or
 Microsoft Entra I D, keeps instead.
 
 10
-00:00:28.876 --> 00:00:33.527
+00:00:28.876 --> 00:00:33.396
 Every fact and command in this
 deck comes from Microsoft Learn,
 
 11
-00:00:33.527 --> 00:00:38.000
-read on November ninth, 2026,
-and the guide footnotes each one.
+00:00:33.396 --> 00:00:38.700
+read on November ninth and eleventh,
+2026, and the guide footnotes each one.
 
 12
-00:00:38.000 --> 00:00:42.737
+00:00:38.700 --> 00:00:43.437
 Rules that are the program's own, not
 Microsoft's, are called design guidance.
 
 13
-00:00:42.737 --> 00:00:47.923
+00:00:43.437 --> 00:00:48.624
 We'll go in four parts: why this matters,
 what the kinds of service identity are,
 
 14
-00:00:47.923 --> 00:00:51.940
+00:00:48.624 --> 00:00:52.630
 who decides and what they keep,
 and how each migration runs.

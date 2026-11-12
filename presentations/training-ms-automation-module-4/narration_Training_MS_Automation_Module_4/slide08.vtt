@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Five checks.
+
+2
+00:00:01.100 --> 00:00:04.675
+Arc extensions lists servers
+missing Azure Monitor Agent
+
+3
+00:00:04.675 --> 00:00:08.250
+or Defender for Endpoint, and
+extensions that didn't deploy.
+
+4
+00:00:08.250 --> 00:00:11.958
+Arc private link lists servers
+with no private link scope,
+
+5
+00:00:11.958 --> 00:00:14.662
+so they reach Azure over public endpoints.
+
+6
+00:00:14.662 --> 00:00:20.311
+Lifecycle sorts servers and SQL Server
+instances by support state: unsupported,
+
+7
+00:00:20.311 --> 00:00:23.136
+E S U not confirmed, E S
+U covered, ending soon,
+
+8
+00:00:23.136 --> 00:00:27.574
+and products not in the table, which
+are never counted as supported.
+
+9
+00:00:27.574 --> 00:00:31.139
+SQL inventory lists instances
+by version and edition,
+
+10
+00:00:31.139 --> 00:00:35.000
+and the ones that are disconnected
+or whose host is out of scope.
+
+11
+00:00:35.000 --> 00:00:39.875
+And policy summary shows each assignment's
+enforcement mode and compliance counts.
+
+12
+00:00:39.875 --> 00:00:43.581
+Every control they evidence is
+in the NIST Moderate baseline;
+
+13
+00:00:43.581 --> 00:00:47.287
+the mapping is the program's
+reading, and the assessor decides.
+
+14
+00:00:47.287 --> 00:00:49.163
+All five need only Reader.
+
+15
+00:00:49.163 --> 00:00:53.520
+Two limits to keep in mind: an
+extension that succeeded isn't proof the
+
+16
+00:00:53.520 --> 00:00:57.725
+agent reports, and a private link
+scope isn't the whole network path.
+
+17
+00:00:57.725 --> 00:01:00.140
+Confirm those for a sample of servers.

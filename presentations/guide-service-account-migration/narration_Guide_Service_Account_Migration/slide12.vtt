@@ -1,90 +1,105 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.137
-The guide lists the dangers
-and the guard for each.
+00:00:00.050 --> 00:00:02.322
+One more move the guide covers,
 
 2
-00:00:03.137 --> 00:00:08.529
-Create a G M S A before the K D S root
-key replicates, and password retrieval
+00:00:02.322 --> 00:00:06.138
+because mail breaks when an
+account becomes a G M S A.
 
 3
-00:00:08.529 --> 00:00:13.650
-fails on hosts that ask another domain
-controller: wait the ten hours.
+00:00:06.138 --> 00:00:12.276
+A G M S A has no mailbox and no
+password an S M T P client could type.
 
 4
-00:00:13.650 --> 00:00:17.122
-Create a second root key,
-and G M S As fail after
+00:00:12.276 --> 00:00:17.658
+And Microsoft Learn says basic-authentication
+S M T P submission to Exchange Online
 
 5
-00:00:17.122 --> 00:00:20.875
-their next password
-rotation: one key per forest.
+00:00:17.658 --> 00:00:22.888
+is scheduled for deprecation, so a stored
+mailbox password isn't the answer either.
 
 6
-00:00:20.875 --> 00:00:25.449
-Leave an S P N on the old account,
-and Kerberos to the service
+00:00:22.888 --> 00:00:24.762
+Choose by where the mail server is.
 
 7
-00:00:25.449 --> 00:00:30.213
-fails or falls back to N T L M: move
-the S P Ns in the switch window.
+00:00:24.762 --> 00:00:30.602
+On-premises Exchange: a dedicated receive
+connector that offers integrated Windows
 
 8
-00:00:30.213 --> 00:00:33.239
-Switch a host that can't
-retrieve the password,
+00:00:30.602 --> 00:00:35.537
+authentication, Kerberos, and Send As
+on a shared mailbox, never a person's.
 
 9
-00:00:33.239 --> 00:00:36.425
-and the service won't start:
-test every host first.
+00:00:35.537 --> 00:00:36.538
+That's M1.
 
 10
-00:00:36.425 --> 00:00:38.700
-Put a G M S A in a privileged group,
+00:00:36.538 --> 00:00:39.904
+A client that can't authenticate
+gets an anonymous relay
 
 11
-00:00:38.700 --> 00:00:43.425
-and every host that retrieves its
-password holds that privilege.
+00:00:39.904 --> 00:00:43.413
+limited to the workload's hosts'
+addresses, the weakest path.
 
 12
-00:00:43.425 --> 00:00:48.990
-Complete a D M S A migration too early, or
-with a host not on Windows Server 2025,
+00:00:43.413 --> 00:00:44.451
+That's M2.
 
 13
-00:00:48.990 --> 00:00:52.700
-and the service fails on
-the hosts it hasn't learned.
+00:00:44.451 --> 00:00:50.335
+Exchange Online: the workload sends through
+Microsoft Graph send mail as a workload
 
 14
-00:00:52.700 --> 00:00:56.550
-Delete the old account during the
-migration, and there's no way back.
+00:00:50.335 --> 00:00:55.212
+identity, the app with a certificate
+from C3, or the Arc identity from C2,
 
 15
-00:00:56.550 --> 00:00:59.381
-Put a client secret on
-the new app registration,
+00:00:55.212 --> 00:00:59.163
+scoped to one shared mailbox
+with R B A C for Applications.
 
 16
-00:00:59.381 --> 00:01:02.575
-and you have a password in
-a configuration file again.
+00:00:59.163 --> 00:01:01.729
+Don't consent Mail dot Send in Entra I D:
 
 17
-00:01:02.575 --> 00:01:06.338
-And a G M S A left behind
-when Active Directory retires
+00:01:01.729 --> 00:01:06.613
+Learn says the two grants are a union,
+so an Entra grant removes the scope.
 
 18
-00:01:06.338 --> 00:01:10.250
-loses its credential with
-the last domain controller.
+00:01:06.613 --> 00:01:08.587
+Test the scope both ways.
+
+19
+00:01:08.587 --> 00:01:12.048
+In GCC, send mail runs on
+the worldwide Graph host,
+
+20
+00:01:12.048 --> 00:01:17.412
+but Learn doesn't yet specify R B A C
+for Applications for government clouds,
+
+21
+00:01:17.412 --> 00:01:20.526
+so test it in the tenant
+before relying on it.
+
+22
+00:01:20.526 --> 00:01:23.810
+High Volume Email is
+listed for Worldwide only.

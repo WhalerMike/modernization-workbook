@@ -64,11 +64,11 @@ delta and the advanced-query
 header against a fake transport.
 
 14
-00:00:51.113 --> 00:00:55.418
+00:00:51.113 --> 00:00:55.471
 The lab repeats the rules in
 PowerShell, and the full suites pass:
 
 15
-00:00:55.418 --> 00:00:58.320
-seventy in pytest and
-forty-four in Pester.
+00:00:55.471 --> 00:01:00.550
+ninety-four in pytest and fifty-six in
+Pester, counting Module 4's Arc tests.

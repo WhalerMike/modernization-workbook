@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.675
+Unit 4 is the records.
+
+2
+00:00:01.675 --> 00:00:06.419
+The Arc machine record carries its
+status, connected, disconnected,
+
+3
+00:00:06.419 --> 00:00:11.842
+error or awaiting connection; its operating
+system type, name, S K U and version;
+
+4
+00:00:11.842 --> 00:00:16.332
+the private link scope it's assigned
+to, if any; and its E S U profile,
+
+5
+00:00:16.332 --> 00:00:19.975
+with eligibility and whether
+a license is assigned.
+
+6
+00:00:19.975 --> 00:00:24.520
+Each extension is its own resource,
+whose I D begins with the machine's,
+
+7
+00:00:24.520 --> 00:00:27.550
+which is how Microsoft's
+own sample joins them.
+
+8
+00:00:27.550 --> 00:00:31.825
+The check reads the publisher, type,
+version and provisioning state.
+
+9
+00:00:31.825 --> 00:00:37.119
+By default it requires two: Azure Monitor
+Agent, for log and performance collection,
+
+10
+00:00:37.119 --> 00:00:41.800
+and Microsoft Defender for Endpoint,
+which Defender for Servers deploys.
+
+11
+00:00:41.800 --> 00:00:45.795
+A SQL Server instance enabled
+by Arc carries its version,
+
+12
+00:00:45.795 --> 00:00:49.550
+edition and status, and the I
+D of the machine that hosts it.
+
+13
+00:00:49.550 --> 00:00:54.063
+One rule matters more than the rest:
+never read an extension's settings.
+
+14
+00:00:54.063 --> 00:00:57.846
+They're public JSON, and Microsoft's
+example is a command line,
+
+15
+00:00:57.846 --> 00:01:01.820
+so a collector that reads them
+copies commands into the evidence.

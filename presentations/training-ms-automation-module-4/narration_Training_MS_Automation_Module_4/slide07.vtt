@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.938
+Unit 5 covers policy and lifecycle.
+
+2
+00:00:02.938 --> 00:00:07.250
+A policy assignment's enforcement mode
+decides whether its effect applies.
+
+3
+00:00:07.250 --> 00:00:08.712
+Default enforces it.
+
+4
+00:00:08.712 --> 00:00:13.523
+Do not enforce still evaluates and
+reports compliance, but prevents nothing:
+
+5
+00:00:13.523 --> 00:00:15.703
+the right way to stage a deny policy,
+
+6
+00:00:15.703 --> 00:00:20.738
+but one left there reports noncompliance
+forever, so each needs a dated decision.
+
+7
+00:00:20.738 --> 00:00:24.038
+Enroll enforces only
+for enrolled resources.
+
+8
+00:00:24.038 --> 00:00:28.632
+Running a version past its end of
+support is NIST special publication
+
+9
+00:00:28.632 --> 00:00:33.463
+eight hundred fifty-three's S A
+twenty-two, unsupported system components.
+
+10
+00:00:33.463 --> 00:00:36.424
+The dates come from
+Microsoft's lifecycle pages.
+
+11
+00:00:36.424 --> 00:00:42.188
+Windows Server 2012 is unsupported:
+its extended security updates ended on
+
+12
+00:00:42.188 --> 00:00:47.950
+October thirteenth, 2026, and Arc E S U
+licenses were deactivated the next day.
+
+13
+00:00:47.950 --> 00:00:53.615
+Windows Server 2016's extended support
+ends January twelfth, 2027, and under the
+
+14
+00:00:53.615 --> 00:00:59.538
+workbook's server standard, one still in
+production after that date is an exception.
+
+15
+00:00:59.538 --> 00:01:07.588
+SQL Server 2012 is unsupported, and
+2014 and 2016 are in their E S U years.
+
+16
+00:01:07.588 --> 00:01:11.710
+Where two Learn pages disagree,
+the kit uses the earlier date.

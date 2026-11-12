@@ -1,10 +1,10 @@
-// Shared builders for the three Microsoft Automation training decks (Modules 1, 2 and 3).
+// Shared builders for the four Microsoft Automation training decks (Modules 1 to 4).
 // Each module's build.js calls require("../training-ms-automation-module-1/shared.js")(cfg).
 //
 // The layout helpers are the technical deep dive's shared builders (../attribute-driven-migration-technical-part-1/slides.js):
 // title and length checks, unique titles, Sources lines, timing cues in the notes, tables, panels and callouts.
 // The code panel is the one the deeper dive adds (../attribute-driven-migration-deeper-dive-part-1/build.js), copied here
-// so all three training decks share one copy. Every fact on a slide comes from the module page in docs/training/ or the
+// so all four training decks share one copy. Every fact on a slide comes from the module page in docs/training/ or the
 // code and fixtures in examples/ms-automation; the decks add no external facts. Notes are the spoken narration, then a
 // "Workbook:" reference that narrate.py doesn't speak.
 module.exports = (cfg) => {
