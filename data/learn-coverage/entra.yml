@@ -6263,9 +6263,11 @@ pages:
   coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
   cited_by:
+  - data/source-register.json
   - docs/books/guides/_verification/zero-trust-assessment-implementation.md
   - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/zero-trust-assessment-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-operate-microsoft-traffic.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic
   title: Operate Microsoft Entra Global Secure Access Microsoft traffic profile
@@ -6287,8 +6289,10 @@ pages:
   coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
   cited_by:
+  - data/source-register.json
   - docs/books/guides/_verification/zero-trust-assessment-implementation.md
   - docs/books/guides/zero-trust-assessment-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-operate-remote-networks.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-remote-networks
   title: Operate Microsoft Entra Global Secure Access remote networks
