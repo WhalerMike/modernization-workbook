@@ -130,3 +130,11 @@ Added for the Zero Trust Assessment closure update (B17-01). Each row uses the v
 | Z2 | PATCH servicePrincipals/{id}/microsoft.graph.agentIdentity; AgentIdentity.EnableDisable.All; Agent ID Administrator; US Gov L4 and L5 listed | The kill switch | verified | Learn, Graph Update agentIdentity; agentIdentity resource type | Nov 11, 2026 |
 | Z3 | Per-agent control table; who may pull the switch; yearly disable test | Workload-identity controls per agent | restated-as-design | Program design from Chapters 04-07 and Book 04 Chapter 05 | Nov 11, 2026 |
 | Z4 | M-25-21 fail-safe "when practicable" | Authority label | verified (carried from Chapter 02's verified reading) | Chapter 02 verification log | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Follow-up: the agent-credential section's Applies line now links Book 04's governed consent process and tenant-creation restriction for GCC High and DoD, where Agent ID isn't published.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Book 04 records GCC High and DoD availability of the consent settings and the tenant-creation setting as not yet specified | The workload-identity controls, applied per agent, Applies | carried from Book 04, Chapters 05 and 09 | Book 04 pages and their verification files (read Nov 11, 2026) | Nov 11, 2026 |

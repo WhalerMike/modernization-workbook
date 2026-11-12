@@ -149,3 +149,7 @@ Instruction B16-01 (user adoption training): Authenticator additional context in
 | 10 | Purview availability in GCC, GCC High and DoD (labels, Message Encryption, DLP) | Module 4 | verified | Learn, Purview planning pages for GCC, GCC High and DoD | Nov 11, 2026 |
 | 11 | Exchange Online DLP requires G3 or G5; Message Encryption behavior across the GCC High/DoD boundary | Module 4 | verified | Learn, "Exchange Online for US government environments" | Nov 11, 2026 |
 | 12 | Blocked-access table, timing note, measures and thresholds | Module 3; Timing; Proving | restated-as-design | program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+Follow-up: the prose reference to "the workbook's new book on information protection" in Module 4 and in the assessment-mapping block now links Book 20, Information Protection & Microsoft Purview, and its Chapters 02 (labels), 06 (message encryption) and 08 (data loss prevention). No claim changed.

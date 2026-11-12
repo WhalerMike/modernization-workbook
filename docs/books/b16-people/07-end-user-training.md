@@ -156,7 +156,7 @@ Users can see their group memberships in My Account and request to join groups t
 
 ### Labeled and protected information {#labeled-and-protected-information}
 
-When the agency publishes sensitivity labels, message encryption and data loss prevention rules, users meet three new things in the apps they already use. Which labels exist, what each one protects and which rules apply are the agency's decisions, made by the data owners with the privacy and records officers; the workbook's new book on information protection and Microsoft Purview, being added in a parallel change, carries the engineering, and [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md) the awareness controls. This module teaches the user's side, using the agency's own label names, and reaches each wave before the policy does.
+When the agency publishes sensitivity labels, message encryption and data loss prevention rules, users meet three new things in the apps they already use. Which labels exist, what each one protects and which rules apply are the agency's decisions, made by the data owners with the privacy and records officers; [Book 20, Information Protection & Microsoft Purview](../b20-information-protection/index.md) carries the engineering ([Chapter 02](../b20-information-protection/02-sensitivity-label-architecture.md) for the labels, [Chapter 06](../b20-information-protection/06-exchange-message-encryption.md) for message encryption and [Chapter 08](../b20-information-protection/08-dlp-and-endpoint-controls.md) for data loss prevention), and [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md) the awareness controls. This module teaches the user's side, using the agency's own label names, and reaches each wave before the policy does.
 
 **Sensitivity labels.** A label says how sensitive a file, email or meeting is, and can apply protection such as encryption that travels with the file wherever it goes. Users learn to pick a label, and what the three label-policy behaviors they may meet look like:[^c07-z-labels][^c07-z-labels-office]
 
@@ -242,7 +242,7 @@ A Zero Trust assessment can find that controls users depend on, such as Authenti
 ## Assessment mapping
 - **Microsoft Zero Trust pillar:** Identity (sign-in modules) and Data (labeled and protected information)
 - **CISA ZTMM pillar:** Identity and Data, with the cross-cutting governance capability
-- **Depends on:** the controls being taught: Authenticator settings and phishing-resistant methods ([Book 02](../b02-identity/index.md), [Book 04](../b04-access/index.md)), device compliance ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#compliance-architecture)), labels and data loss prevention (the information protection book the workbook is adding)
+- **Depends on:** the controls being taught: Authenticator settings and phishing-resistant methods ([Book 02](../b02-identity/index.md), [Book 04](../b04-access/index.md)), device compliance ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#compliance-architecture)), labels and data loss prevention ([Book 20, Chapter 02](../b20-information-protection/02-sensitivity-label-architecture.md) and [Chapter 08](../b20-information-protection/08-dlp-and-endpoint-controls.md))
 - **Attack chain interrupted:** MFA fatigue and approval of an attacker's prompt (Credential Access); phishing that imitates encrypted-mail or reset notices (Initial Access); users working around a block or a data rule (Exfiltration)
 :::
 
