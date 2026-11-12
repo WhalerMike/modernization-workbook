@@ -305,7 +305,7 @@ const S = "Episode 4";
     "Leave with one decision recorded, whatever it is",
   ], 13.5);
   table(s, "Deeper", 1.5, [2.5, 3.55], ["Go deeper", "For"], [
-    ["Start Here page", "The six-minute case and Episodes 2 to 4"],
+    ["Start Here page", "The seven-minute case and Episodes 2 to 4"],
     ["Book 00", "The charter, and decisions with owners and timing"],
     ["Book 01, Ch 09 and 12", "Who leads; the roadmap and its gates"],
     ["Book 03, Ch 02 and 03", "HR as the source of authority; Federal HR 2.0"],
@@ -314,7 +314,7 @@ const S = "Episode 4";
     "to a primary source in the books. The workbook is independent analysis, not an official publication of any agency.");
   sources(s, "Sources: whalermike.github.io/modernization-workbook: the Start Here page and Books 00, 01 and 03. The checklist is design guidance.");
   notes(s,
-`What to bring is the program's design guidance, built from Book 01 Chapter 12 ("Where to start": an inventory, an owner, a date) and Book 01 Chapter 09 ("What to do next": name the owners, starting with the sponsor, the authorizing official and the steward; set the dates). The external clocks are in Book 00 Chapter 01. To go deeper: the Start Here page (the six-minute case and this series); Book 00 (the charter in Chapter 03 and the decisions leadership must make); Book 01 Chapters 09 and 12 (who leads; the roadmap with seven phases and six gates); Book 03 Chapters 02 and 03 (why HR is the source of authority; Federal HR 2.0). The site is independent analysis, not an official government publication; no agency reviewed or endorsed it.`,
+`What to bring is the program's design guidance, built from Book 01 Chapter 12 ("Where to start": an inventory, an owner, a date) and Book 01 Chapter 09 ("What to do next": name the owners, starting with the sponsor, the authorizing official and the steward; set the dates). The external clocks are in Book 00 Chapter 01. To go deeper: the Start Here page (the seven-minute case and this series); Book 00 (the charter in Chapter 03 and the decisions leadership must make); Book 01 Chapters 09 and 12 (who leads; the roadmap with seven phases and six gates); Book 03 Chapters 02 and 03 (why HR is the source of authority; Federal HR 2.0). The site is independent analysis, not an official government publication; no agency reviewed or endorsed it.`,
   "Book 01, Chapters 09 and 12; Book 00, Chapters 01 and 03; Book 03, Chapters 02 and 03.");
 }
 

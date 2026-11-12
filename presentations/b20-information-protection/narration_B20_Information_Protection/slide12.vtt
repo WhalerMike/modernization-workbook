@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.837
+Every control in the book follows the
+same path, and every step has a way back.
+
+2
+00:00:04.837 --> 00:00:06.376
+Start with an inventory.
+
+3
+00:00:06.376 --> 00:00:11.087
+Purview's content explorer exports
+where sensitive information types and
+
+4
+00:00:11.087 --> 00:00:15.725
+labels already sit, one type at a time,
+so the rollout starts where the risk is.
+
+5
+00:00:15.725 --> 00:00:17.606
+Treat it as a dated snapshot:
+
+6
+00:00:17.606 --> 00:00:22.350
+counts can take up to seven days to
+update, and fourteen for SharePoint.
+
+7
+00:00:22.350 --> 00:00:25.835
+Then a signed decision record,
+and the build, as code,
+
+8
+00:00:25.835 --> 00:00:30.813
+in a test tenant first, because some
+label changes can't be cleanly undone.
+
+9
+00:00:30.813 --> 00:00:32.024
+Then a pilot ring.
+
+10
+00:00:32.024 --> 00:00:35.100
+For D L P, simulation is the pilot.
+
+11
+00:00:35.100 --> 00:00:40.575
+It runs for up to fifteen days and keeps
+its data for thirty, so export the matches.
+
+12
+00:00:40.575 --> 00:00:45.404
+It evaluates existing SharePoint and
+OneDrive content, but only new mail,
+
+13
+00:00:45.404 --> 00:00:49.837
+Teams and device activity, so let
+those run through a business cycle.
+
+14
+00:00:49.837 --> 00:00:53.812
+Then enforce ring by ring, and
+validate with a labeled sample.
+
+15
+00:00:53.812 --> 00:00:57.912
+And rollback never means deleting
+a label, because content keeps it.
+
+16
+00:00:57.912 --> 00:00:59.640
+You unpublish it instead.

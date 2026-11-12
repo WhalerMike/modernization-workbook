@@ -799,13 +799,13 @@ Workbook: Book 06, Runbook R04 — Arc Deployment and the Managed Identity.`,
 runbook(MODS[3], {
   title: "R05 — Login migration and the parallel run",
   badgeText: "Review-required", badgeColor: RR,
-  lead: "Add the Entra login beside the Windows one, watch both for 30 days, disable rather than drop.",
+  lead: "Add the Entra login beside the Windows one, watch both for 30 days, disable, observe 30 more days, then drop.",
   steps: [
     ["Generate, dry run", "New-FMPEntraLoginMapping maps only matched principals, prefers Entra groups, flags the rest; New-FMPEntraLoginScript writes idempotent CREATE LOGIN … FROM EXTERNAL PROVIDER, with no SQL connection."],
     ["Database users beside", "CREATE USER … FROM LOGIN with the same roles, permissions, schemas and ownership. Not ALTER USER … WITH LOGIN: that converts only on Azure SQL Managed Instance."],
     ["Parallel run, 30 days", "SQL Server Audit SUCCESSFUL_LOGIN_GROUP for the whole window. auth_scheme: local sessions always show NTLM, and the Entra value isn't documented, so confirm it on the pilot."],
-    ["Cut over", "Disable the Windows logins, group logins included; disabling a sysadmin member needs CONTROL SERVER. Rollback: re-enable."],
-    ["Close sa", "Confirm another sysadmin can sign in, then disable sa. On Arc, the Disable SQL authentication option closes mixed mode once SQL logins are migrated."],
+    ["Cut over", "Disable the Windows logins, group logins included (a sysadmin member needs CONTROL SERVER); observe 30 days with the audit on, then drop. Rollback: re-enable."],
+    ["Close sa", "Confirm another sysadmin can sign in, then disable and rename sa. SQL Server 2025 on Arc: Disable SQL authentication, after SQL logins move."],
   ],
   boxes: [
     Object.assign({ head: "PRECONDITIONS", items: ["SQL Server 2022+, Arc, validated token, Entra admin (R04)", "A consolidated estate (R02); the R03 logins.csv", "Clients trust the TLS certificate"] }, NOTE),
@@ -814,7 +814,7 @@ runbook(MODS[3], {
   ],
   src: "Sources: Microsoft Learn — Entra authentication setup (logins and users); ALTER USER; sys.dm_exec_connections; Audit action groups; ALTER LOGIN; Arc release notes. Book 06, Runbook R05.",
   body:
-`Runbook R05 adds the Entra login beside the Windows one, watches both for thirty days, and disables rather than drops. Every step that runs T-SQL against an instance is review-required.
+`Runbook R05 adds the Entra login beside the Windows one, watches both for thirty days, disables the old login, and drops it only after thirty more days of observation. Every step that runs T-SQL against an instance is review-required.
 
 Don't start until the instance is on SQL Server 2022 or later, Arc-connected with a validated token and an Entra admin set; until the estate is consolidated; until you have the R03 logins file; and until clients trust the certificate.
 
@@ -824,7 +824,7 @@ Step two creates an Entra database user beside each Windows user, with CREATE US
 
 Step three is the thirty-day parallel run. Capture successful logins for the whole window with SQL Server Audit, because a point-in-time query misses short connections. The exit criteria: every application and job also appears on its Entra login, no remote NTLM remains, and nothing arrives only on the legacy login. Two cautions: local connections always report NTLM, and Microsoft doesn't document what an Entra connection reports in the auth scheme column, so confirm it on the pilot, and pre-filter local sessions before the readiness check.
 
-Step four cuts over by disabling, including any group logins a principal also arrives through, and rollback is re-enabling. And close an enabled SA here: confirm another sysadmin can sign in, then disable it.
+Step four cuts over by disabling, including any group logins a principal also arrives through, and rollback is re-enabling. Then observe for thirty days with the same audit running, failed logins added, and drop the login only when nothing still depends on it: create, validate, disable, observe, drop. And close an enabled SA here: confirm another sysadmin can sign in, then disable it and rename it, the program's standard. On SQL Server 2025 connected to Arc, the portal option to disable SQL authentication comes after the SQL logins themselves are migrated.
 
 Workbook: Book 06, Runbook R05 — Login Migration and Parallel-Run Validation.`,
 });

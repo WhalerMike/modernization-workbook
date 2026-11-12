@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Encryption is where a
+mistake is hardest to undo.
+
+2
+00:00:03.300 --> 00:00:07.610
+Rights Management is usually
+already on: Microsoft activated it
+
+3
+00:00:07.610 --> 00:00:12.000
+automatically for subscriptions
+from late February 2018 onward.
+
+4
+00:00:12.000 --> 00:00:16.054
+So the decisions are who may encrypt
+during rollout, which tenant key,
+
+5
+00:00:16.054 --> 00:00:20.037
+and who can recover content when
+its only authorized holder is gone.
+
+6
+00:00:20.037 --> 00:00:24.600
+The program keeps the super user
+feature off, with no standing members.
+
+7
+00:00:24.600 --> 00:00:30.040
+For a named recovery, an operator activates
+an approved role through PIM, turns
+
+8
+00:00:30.040 --> 00:00:35.563
+the feature on, adds one named super user,
+recovers the item, and then removes both.
+
+9
+00:00:35.563 --> 00:00:37.400
+Not through a PIM-managed group,
+
+10
+00:00:37.400 --> 00:00:41.287
+because the service caches group
+membership for up to three hours.
+
+11
+00:00:41.287 --> 00:00:43.113
+Mail uses the same service.
+
+12
+00:00:43.113 --> 00:00:47.511
+Labels carry classification, and mail
+flow rules carry approved scenarios,
+
+13
+00:00:47.511 --> 00:00:50.024
+so neither depends on
+a sender remembering.
+
+14
+00:00:50.024 --> 00:00:56.180
+In SharePoint and OneDrive, turn label
+integration on before encrypting labels go
+
+15
+00:00:56.180 --> 00:01:01.800
+wide; until then, encrypted files are
+invisible to search, eDiscovery and D L P.
+
+16
+00:01:01.800 --> 00:01:05.294
+In GCC, Rights Management,
+message encryption and
+
+17
+00:01:05.294 --> 00:01:09.360
+co-authoring on encrypted
+files are listed as available.

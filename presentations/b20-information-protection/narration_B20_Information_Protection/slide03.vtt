@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.712
+So the first deliverable is a set of
+written decisions, not a label policy.
+
+2
+00:00:04.712 --> 00:00:07.291
+A data class is the
+agency's name for a kind
+
+3
+00:00:07.291 --> 00:00:10.325
+of information that needs
+one handling outcome.
+
+4
+00:00:10.325 --> 00:00:14.852
+The class register lists them, one
+row each, and every later label,
+
+5
+00:00:14.852 --> 00:00:19.038
+D L P rule and auto-labeling
+policy cites the class it serves.
+
+6
+00:00:19.038 --> 00:00:23.356
+Each class has a data owner, an
+official rather than an administrator,
+
+7
+00:00:23.356 --> 00:00:26.538
+who decides its handling
+and approves exceptions.
+
+8
+00:00:26.538 --> 00:00:30.013
+A federal agency inherits
+several of these decisions.
+
+9
+00:00:30.013 --> 00:00:34.271
+The C U I rule, thirty-two C F R
+part two thousand two, and the C U I
+
+10
+00:00:34.271 --> 00:00:39.574
+Registry decide which categories the
+agency holds and how they're marked.
+
+11
+00:00:39.574 --> 00:00:44.450
+Category markings are optional for C
+U I Basic and mandatory for Specified.
+
+12
+00:00:44.450 --> 00:00:49.638
+The Privacy Act, records schedules and
+fips one ninety-nine decide the rest,
+
+13
+00:00:49.638 --> 00:00:53.487
+and C U I Basic sets a
+confidentiality floor of moderate.
+
+14
+00:00:53.487 --> 00:00:55.612
+And each outcome has to be testable.
+
+15
+00:00:55.612 --> 00:00:57.424
+Sensitive isn't an outcome.
+
+16
+00:00:57.424 --> 00:01:02.980
+Encrypted so only a named group can open
+it, and never sent outside the tenant, is.

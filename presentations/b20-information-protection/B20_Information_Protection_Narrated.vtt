@@ -1,0 +1,1148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.952
+This briefing comes from Information
+Protection and Microsoft Purview,
+
+3
+00:00:04.952 --> 00:00:07.562
+a book of the Federal
+Modernization Workbook.
+
+4
+00:00:07.562 --> 00:00:10.212
+One thing first: the book is a draft.
+
+5
+00:00:10.212 --> 00:00:13.264
+Every page is awaiting
+the editor's review,
+
+6
+00:00:13.264 --> 00:00:16.926
+and it isn't part of Release
+2.0, the baseline edition.
+
+7
+00:00:16.926 --> 00:00:20.502
+It's written for C I Os
+and CISOs, data owners,
+
+8
+00:00:20.502 --> 00:00:25.613
+records and privacy officials,
+Purview engineers, and ISSOs.
+
+9
+00:00:25.613 --> 00:00:27.026
+I'll take four questions.
+
+10
+00:00:27.026 --> 00:00:29.425
+Why does protection have
+to travel with the data?
+
+11
+00:00:29.425 --> 00:00:32.113
+What does the program build
+with Microsoft Purview?
+
+12
+00:00:32.113 --> 00:00:33.024
+Who runs it?
+
+13
+00:00:33.024 --> 00:00:35.400
+And how do you roll it
+out and prove it works?
+
+14
+00:00:35.400 --> 00:00:40.975
+The short version: identity, device and
+network controls decide who reaches a file.
+
+15
+00:00:40.975 --> 00:00:44.891
+Only a classification decided in
+advance can say what the file is,
+
+16
+00:00:44.891 --> 00:00:49.740
+and that decision has to be written down
+before a single label is published.
+
+17
+00:00:53.490 --> 00:00:58.890
+A Zero Trust program usually builds
+identity, devices and the network first.
+
+18
+00:00:58.890 --> 00:01:03.202
+Each of those controls passes a
+legitimate user on a compliant device
+
+19
+00:01:03.202 --> 00:01:07.290
+sending a file to an approved
+destination, whatever the file holds.
+
+20
+00:01:07.290 --> 00:01:09.665
+Nothing upstream said
+what the payload was.
+
+21
+00:01:09.665 --> 00:01:14.790
+CISA's Zero Trust Maturity Model makes the
+same point with a Data pillar of its own.
+
+22
+00:01:14.790 --> 00:01:17.690
+Three things make perimeter
+thinking fail for data.
+
+23
+00:01:17.690 --> 00:01:22.951
+It moves more than people do: an export
+becomes an attachment, a OneDrive file,
+
+24
+00:01:22.951 --> 00:01:24.956
+a chat paste and an AI summary,
+
+25
+00:01:24.956 --> 00:01:29.215
+and each copy inherits none of
+the original's access controls.
+
+26
+00:01:29.215 --> 00:01:32.665
+Access is granted to
+containers, not to content.
+
+27
+00:01:32.665 --> 00:01:35.540
+And the agency can't protect
+what it hasn't named.
+
+28
+00:01:35.540 --> 00:01:39.265
+Microsoft's sensitivity label
+is what lets protection travel.
+
+29
+00:01:39.265 --> 00:01:43.300
+It's stored in clear text in the
+item's metadata, it stays with the
+
+30
+00:01:43.300 --> 00:01:47.490
+content wherever it's saved, and
+so does any encryption it applies.
+
+31
+00:01:47.490 --> 00:01:51.290
+But a label is only as good
+as the class it stands for.
+
+32
+00:01:55.040 --> 00:01:59.702
+So the first deliverable is a set of
+written decisions, not a label policy.
+
+33
+00:01:59.702 --> 00:02:02.281
+A data class is the
+agency's name for a kind
+
+34
+00:02:02.281 --> 00:02:05.315
+of information that needs
+one handling outcome.
+
+35
+00:02:05.315 --> 00:02:09.842
+The class register lists them, one
+row each, and every later label,
+
+36
+00:02:09.842 --> 00:02:14.028
+D L P rule and auto-labeling
+policy cites the class it serves.
+
+37
+00:02:14.028 --> 00:02:18.346
+Each class has a data owner, an
+official rather than an administrator,
+
+38
+00:02:18.346 --> 00:02:21.528
+who decides its handling
+and approves exceptions.
+
+39
+00:02:21.528 --> 00:02:25.003
+A federal agency inherits
+several of these decisions.
+
+40
+00:02:25.003 --> 00:02:29.261
+The C U I rule, thirty-two C F R
+part two thousand two, and the C U I
+
+41
+00:02:29.261 --> 00:02:34.564
+Registry decide which categories the
+agency holds and how they're marked.
+
+42
+00:02:34.564 --> 00:02:39.440
+Category markings are optional for C
+U I Basic and mandatory for Specified.
+
+43
+00:02:39.440 --> 00:02:44.628
+The Privacy Act, records schedules and
+fips one ninety-nine decide the rest,
+
+44
+00:02:44.628 --> 00:02:48.477
+and C U I Basic sets a
+confidentiality floor of moderate.
+
+45
+00:02:48.477 --> 00:02:50.602
+And each outcome has to be testable.
+
+46
+00:02:50.602 --> 00:02:52.414
+Sensitive isn't an outcome.
+
+47
+00:02:52.414 --> 00:02:58.270
+Encrypted so only a named group can open
+it, and never sent outside the tenant, is.
+
+48
+00:03:02.020 --> 00:03:04.532
+The book's reference
+architecture has three
+
+49
+00:03:04.532 --> 00:03:06.908
+trust boundaries and four control planes.
+
+50
+00:03:06.908 --> 00:03:11.049
+The boundaries are the tenant,
+the managed endpoint, and outside,
+
+51
+00:03:11.049 --> 00:03:15.033
+where external recipients can't
+see the agency's labels at all.
+
+52
+00:03:15.033 --> 00:03:20.151
+The planes are identity, which owns the
+groups that labels grant rights to; policy,
+
+53
+00:03:20.151 --> 00:03:24.887
+which is Purview; protection, which is
+Rights Management and the tenant key;
+
+54
+00:03:24.887 --> 00:03:27.332
+and monitoring, which is Purview Audit.
+
+55
+00:03:27.332 --> 00:03:29.008
+Each plane has its own owner.
+
+56
+00:03:29.008 --> 00:03:33.170
+The label design follows the class
+register, one label per class.
+
+57
+00:03:33.170 --> 00:03:38.944
+Microsoft reports that effectiveness
+drops noticeably beyond five main labels,
+
+58
+00:03:38.944 --> 00:03:44.039
+or five sublabels under one, so the
+taxonomy stays small: Public, Internal,
+
+59
+00:03:44.039 --> 00:03:48.880
+C U I Basic, a category sublabel only
+where agency policy requires one,
+
+60
+00:03:48.880 --> 00:03:53.720
+and one Specified sublabel per
+authority the agency actually holds.
+
+61
+00:03:53.720 --> 00:03:56.508
+Container labels sit in
+a group of their own.
+
+62
+00:03:56.508 --> 00:04:01.120
+Encryption grants rights to mail-enabled
+groups, never to individuals.
+
+63
+00:04:01.120 --> 00:04:04.570
+And a label that doesn't encrypt
+is a classification signal.
+
+64
+00:04:04.570 --> 00:04:08.270
+Once the content leaves the
+tenant, it protects nothing.
+
+65
+00:04:12.020 --> 00:04:14.999
+A label does nothing until
+a policy publishes it,
+
+66
+00:04:14.999 --> 00:04:17.233
+and the policy carries the defaults.
+
+67
+00:04:17.233 --> 00:04:21.482
+The program defaults documents,
+email and meetings to Internal,
+
+68
+00:04:21.482 --> 00:04:24.208
+and new groups and sites to Internal site.
+
+69
+00:04:24.208 --> 00:04:28.316
+None of those encrypts, because
+Microsoft cautions that an encrypting
+
+70
+00:04:28.316 --> 00:04:32.146
+default may leave external recipients
+unable to open the content.
+
+71
+00:04:32.146 --> 00:04:36.380
+Mandatory labeling then makes users
+label before they save or send,
+
+72
+00:04:36.380 --> 00:04:39.632
+and with a sensible default
+they're rarely prompted.
+
+73
+00:04:39.632 --> 00:04:42.115
+A user can change a
+label but not remove it,
+
+74
+00:04:42.115 --> 00:04:46.058
+and the program asks for a
+justification when someone lowers one.
+
+75
+00:04:46.058 --> 00:04:49.162
+Containers get three labels of their own:
+
+76
+00:04:49.162 --> 00:04:52.632
+Internal site, CUI site
+and CUI Specified site.
+
+77
+00:04:52.632 --> 00:04:56.060
+Each sets privacy, guest
+access, external sharing,
+
+78
+00:04:56.060 --> 00:04:59.821
+unmanaged-device access and
+the default sharing link.
+
+79
+00:04:59.821 --> 00:05:02.449
+But a container label governs the site,
+
+80
+00:05:02.449 --> 00:05:05.570
+not the files: the items
+inside don't inherit it.
+
+81
+00:05:05.570 --> 00:05:10.508
+In GCC, file labels and container
+labels are listed as available.
+
+82
+00:05:10.508 --> 00:05:14.653
+The default label for a SharePoint
+library is still in development there,
+
+83
+00:05:14.653 --> 00:05:19.420
+and authentication contexts on labeled
+sites are on the engineering backlog.
+
+84
+00:05:23.170 --> 00:05:26.420
+Encryption is where a
+mistake is hardest to undo.
+
+85
+00:05:26.420 --> 00:05:30.730
+Rights Management is usually
+already on: Microsoft activated it
+
+86
+00:05:30.730 --> 00:05:35.120
+automatically for subscriptions
+from late February 2018 onward.
+
+87
+00:05:35.120 --> 00:05:39.174
+So the decisions are who may encrypt
+during rollout, which tenant key,
+
+88
+00:05:39.174 --> 00:05:43.157
+and who can recover content when
+its only authorized holder is gone.
+
+89
+00:05:43.157 --> 00:05:47.720
+The program keeps the super user
+feature off, with no standing members.
+
+90
+00:05:47.720 --> 00:05:53.160
+For a named recovery, an operator activates
+an approved role through PIM, turns
+
+91
+00:05:53.160 --> 00:05:58.683
+the feature on, adds one named super user,
+recovers the item, and then removes both.
+
+92
+00:05:58.683 --> 00:06:00.520
+Not through a PIM-managed group,
+
+93
+00:06:00.520 --> 00:06:04.407
+because the service caches group
+membership for up to three hours.
+
+94
+00:06:04.407 --> 00:06:06.233
+Mail uses the same service.
+
+95
+00:06:06.233 --> 00:06:10.631
+Labels carry classification, and mail
+flow rules carry approved scenarios,
+
+96
+00:06:10.631 --> 00:06:13.144
+so neither depends on
+a sender remembering.
+
+97
+00:06:13.144 --> 00:06:19.300
+In SharePoint and OneDrive, turn label
+integration on before encrypting labels go
+
+98
+00:06:19.300 --> 00:06:24.920
+wide; until then, encrypted files are
+invisible to search, eDiscovery and D L P.
+
+99
+00:06:24.920 --> 00:06:28.414
+In GCC, Rights Management,
+message encryption and
+
+100
+00:06:28.414 --> 00:06:32.780
+co-authoring on encrypted
+files are listed as available.
+
+101
+00:06:36.530 --> 00:06:40.918
+Microsoft's D L P templates are a
+convenient start and a poor design.
+
+102
+00:06:40.918 --> 00:06:45.768
+The program writes each policy from an
+outcome statement the policy owner owns.
+
+103
+00:06:45.768 --> 00:06:50.837
+For example: content labeled C U I isn't
+shared or sent outside the tenant except
+
+104
+00:06:50.837 --> 00:06:54.504
+through the approved partner
+path; an attempt is blocked,
+
+105
+00:06:54.504 --> 00:06:58.092
+the user is told why, and the
+security monitor is alerted.
+
+106
+00:06:58.092 --> 00:07:01.918
+Rules match labels first, a
+decision someone already made,
+
+107
+00:07:01.918 --> 00:07:05.106
+and treat raw content
+patterns as the safety net.
+
+108
+00:07:05.106 --> 00:07:10.006
+Overrides are logged and read every
+week, and exceptions name groups,
+
+109
+00:07:10.006 --> 00:07:12.930
+sit in a register, and
+expire within a year.
+
+110
+00:07:12.930 --> 00:07:19.742
+Endpoint D L P covers Windows 10 and
+11, and Windows Server 2019 and later.
+
+111
+00:07:19.742 --> 00:07:24.754
+For content nobody labeled, auto-labeling
+climbs a ladder: built-in types,
+
+112
+00:07:24.754 --> 00:07:28.846
+custom types, exact data match,
+then trainable classifiers,
+
+113
+00:07:28.846 --> 00:07:31.518
+only as far as false positives require.
+
+114
+00:07:31.518 --> 00:07:35.582
+Client-side labeling recommends
+a label while the author works;
+
+115
+00:07:35.582 --> 00:07:38.956
+service-side labeling applies
+one at rest and in mail.
+
+116
+00:07:38.956 --> 00:07:41.345
+In GCC, D L P on every surface,
+
+117
+00:07:41.345 --> 00:07:47.030
+auto-labeling and exact data
+match are listed as available.
+
+118
+00:07:50.780 --> 00:07:52.943
+Every other signal depends on audit.
+
+119
+00:07:52.943 --> 00:07:56.228
+Audit Standard is on by
+default for enterprise
+
+120
+00:07:56.228 --> 00:07:59.429
+organizations and keeps
+records for 180 days.
+
+121
+00:07:59.429 --> 00:08:03.043
+Audit Premium keeps the core
+services' records for a year,
+
+122
+00:08:03.043 --> 00:08:05.042
+and up to ten years with an add-on.
+
+123
+00:08:05.042 --> 00:08:08.761
+But retention follows the
+license of the user who acted,
+
+124
+00:08:08.761 --> 00:08:13.692
+so the agency's log platform, not the
+tenant, holds the full evidence period.
+
+125
+00:08:13.692 --> 00:08:15.555
+Search isn't real time, either:
+
+126
+00:08:15.555 --> 00:08:19.280
+typically sixty to ninety
+minutes for the main workloads.
+
+127
+00:08:19.280 --> 00:08:23.617
+The program proves the pipeline every
+month with a synthetic label event,
+
+128
+00:08:23.617 --> 00:08:26.105
+found in the tenant and
+in the log platform.
+
+129
+00:08:26.105 --> 00:08:28.488
+Insider Risk Management and Communication
+
+130
+00:08:28.488 --> 00:08:31.193
+Compliance are different:
+they watch named people.
+
+131
+00:08:31.193 --> 00:08:35.179
+So before either is configured,
+the agency signs a charter.
+
+132
+00:08:35.179 --> 00:08:37.132
+The CISO, the privacy official,
+
+133
+00:08:37.132 --> 00:08:41.863
+general counsel and labor relations
+settle the purpose, the notice and what
+
+134
+00:08:41.863 --> 00:08:46.518
+investigators may see, and the records
+officer sets how long cases are kept.
+
+135
+00:08:46.518 --> 00:08:49.855
+Pseudonyms stay on,
+administrators don't investigate,
+
+136
+00:08:49.855 --> 00:08:53.043
+and someone outside the
+team reviews the reviewers.
+
+137
+00:08:53.043 --> 00:08:59.550
+In GCC, both audit tiers and the core insider
+risk features are listed as available.
+
+138
+00:09:03.300 --> 00:09:06.012
+AI changes the problem, not the controls.
+
+139
+00:09:06.012 --> 00:09:09.750
+Microsoft describes Copilot's
+protection in a fixed order.
+
+140
+00:09:09.750 --> 00:09:14.463
+First, permissions: it only uses
+content the user can already reach.
+
+141
+00:09:14.463 --> 00:09:19.744
+Second, encryption: the user needs both
+the VIEW and the EXTRACT usage rights for
+
+142
+00:09:19.744 --> 00:09:22.384
+Copilot to summarize an encrypted item,
+
+143
+00:09:22.384 --> 00:09:26.225
+so the usage rights in each
+sublabel are now an AI decision.
+
+144
+00:09:26.225 --> 00:09:30.072
+Third, labels: Copilot shows
+the label of what it drew on,
+
+145
+00:09:30.072 --> 00:09:33.663
+and new content inherits
+the highest-priority one.
+
+146
+00:09:33.663 --> 00:09:36.125
+That makes oversharing a disclosure path.
+
+147
+00:09:36.125 --> 00:09:39.772
+A site shared with the whole
+agency was always readable;
+
+148
+00:09:39.772 --> 00:09:41.912
+an assistant finds it in seconds.
+
+149
+00:09:41.912 --> 00:09:46.486
+So the policy owner decides four things
+first: which AI apps are approved,
+
+150
+00:09:46.486 --> 00:09:50.069
+which labels Copilot may
+process, what oversharing gets
+
+151
+00:09:50.069 --> 00:09:53.575
+fixed before rollout, and who
+may read captured prompts.
+
+152
+00:09:53.575 --> 00:09:57.975
+D L P for Copilot can keep chosen
+labels out of its responses,
+
+153
+00:09:57.975 --> 00:10:02.375
+though excluding files and
+email needs E5-level licensing.
+
+154
+00:10:02.375 --> 00:10:10.220
+In GCC, Microsoft 365 Copilot and Purview's
+controls for it are listed as available.
+
+155
+00:10:13.970 --> 00:10:19.423
+Purview differs a great deal between clouds,
+and changes often, so the book states
+
+156
+00:10:19.423 --> 00:10:24.958
+availability feature by feature, as Microsoft
+Learn listed it on November 11, 2026.
+
+157
+00:10:24.958 --> 00:10:27.557
+The baseline here is GCC.
+
+158
+00:10:27.557 --> 00:10:32.850
+There, the core is listed as available:
+manual, mandatory and container labels,
+
+159
+00:10:32.850 --> 00:10:37.978
+Rights Management and message encryption,
+D L P on every surface including
+
+160
+00:10:37.978 --> 00:10:42.857
+Windows endpoints, auto-labeling,
+exact data match, and both audit tiers.
+
+161
+00:10:42.857 --> 00:10:44.183
+A few gaps matter.
+
+162
+00:10:44.183 --> 00:10:48.052
+The default label for a SharePoint
+library is still in development,
+
+163
+00:10:48.052 --> 00:10:52.545
+and authentication contexts on labeled
+sites are on the engineering backlog.
+
+164
+00:10:52.545 --> 00:10:55.833
+GCC High and DoD are side notes.
+
+165
+00:10:55.833 --> 00:11:01.315
+Their clients need DNS records to reach
+the government Rights Management service,
+
+166
+00:11:01.315 --> 00:11:04.572
+DoD doesn't list Advanced
+Message Encryption yet,
+
+167
+00:11:04.572 --> 00:11:09.021
+and two Learn pages disagree on
+Insider Risk Management in GCC High.
+
+168
+00:11:09.021 --> 00:11:12.250
+The rule for all of it: a
+license or cloud gap goes
+
+169
+00:11:12.250 --> 00:11:15.645
+in a decision record, with
+a compensating control.
+
+170
+00:11:15.645 --> 00:11:18.640
+It's a dependency, never a failed control.
+
+171
+00:11:22.390 --> 00:11:25.509
+Information protection
+fails quietly when the
+
+172
+00:11:25.509 --> 00:11:28.940
+person who decides is also
+the person who configures.
+
+173
+00:11:28.940 --> 00:11:32.977
+The book uses six roles,
+by name, in every chapter.
+
+174
+00:11:32.977 --> 00:11:37.897
+The policy owner, typically the C U I
+program manager, with the privacy official
+
+175
+00:11:37.897 --> 00:11:42.514
+and the records officer, decides what
+the data is and how it must be handled.
+
+176
+00:11:42.514 --> 00:11:45.401
+The platform owner, the
+Purview engineering lead,
+
+177
+00:11:45.401 --> 00:11:48.640
+is accountable for the
+configuration and its baseline.
+
+178
+00:11:48.640 --> 00:11:51.852
+The operator makes each change
+through change control.
+
+179
+00:11:51.852 --> 00:11:55.027
+The security monitor
+triages alerts every day.
+
+180
+00:11:55.027 --> 00:11:56.883
+The help desk answers users,
+
+181
+00:11:56.883 --> 00:12:00.916
+and never removes a label or
+decrypts a file to close a ticket.
+
+182
+00:12:00.916 --> 00:12:05.334
+And the assessor, the ISSO and the
+independent assessor, is accountable
+
+183
+00:12:05.334 --> 00:12:10.128
+for the evidence package, while closure
+stays with the authorizing official.
+
+184
+00:12:10.128 --> 00:12:12.103
+Three separations keep it honest.
+
+185
+00:12:12.103 --> 00:12:14.853
+Owners decide and
+administrators configure.
+
+186
+00:12:14.853 --> 00:12:17.892
+Super user recovery answers
+to the policy owner,
+
+187
+00:12:17.892 --> 00:12:20.703
+because it reads content
+that owner governs.
+
+188
+00:12:20.703 --> 00:12:25.280
+And in insider risk, no one both
+administers and investigates.
+
+189
+00:12:29.030 --> 00:12:33.817
+Every control in the book follows the
+same path, and every step has a way back.
+
+190
+00:12:33.817 --> 00:12:35.356
+Start with an inventory.
+
+191
+00:12:35.356 --> 00:12:40.067
+Purview's content explorer exports
+where sensitive information types and
+
+192
+00:12:40.067 --> 00:12:44.705
+labels already sit, one type at a time,
+so the rollout starts where the risk is.
+
+193
+00:12:44.705 --> 00:12:46.586
+Treat it as a dated snapshot:
+
+194
+00:12:46.586 --> 00:12:51.330
+counts can take up to seven days to
+update, and fourteen for SharePoint.
+
+195
+00:12:51.330 --> 00:12:54.815
+Then a signed decision record,
+and the build, as code,
+
+196
+00:12:54.815 --> 00:12:59.793
+in a test tenant first, because some
+label changes can't be cleanly undone.
+
+197
+00:12:59.793 --> 00:13:01.004
+Then a pilot ring.
+
+198
+00:13:01.004 --> 00:13:04.080
+For D L P, simulation is the pilot.
+
+199
+00:13:04.080 --> 00:13:09.555
+It runs for up to fifteen days and keeps
+its data for thirty, so export the matches.
+
+200
+00:13:09.555 --> 00:13:14.384
+It evaluates existing SharePoint and
+OneDrive content, but only new mail,
+
+201
+00:13:14.384 --> 00:13:18.817
+Teams and device activity, so let
+those run through a business cycle.
+
+202
+00:13:18.817 --> 00:13:22.792
+Then enforce ring by ring, and
+validate with a labeled sample.
+
+203
+00:13:22.792 --> 00:13:26.892
+And rollback never means deleting
+a label, because content keeps it.
+
+204
+00:13:26.892 --> 00:13:28.920
+You unpublish it instead.
+
+205
+00:13:32.670 --> 00:13:35.808
+Everything ends in evidence
+an assessor can inspect.
+
+206
+00:13:35.808 --> 00:13:41.149
+The baseline is one dated export of the
+labels, label policies, auto-labeling,
+
+207
+00:13:41.149 --> 00:13:46.320
+D L P, audit status and the Rights
+Management configuration, taken monthly.
+
+208
+00:13:46.320 --> 00:13:49.666
+Drift is any difference no
+change ticket explains,
+
+209
+00:13:49.666 --> 00:13:54.445
+and drift that weakens a control on C
+U I goes to the authorizing official.
+
+210
+00:13:54.445 --> 00:13:58.951
+The book carries three rows of the
+Zero Trust Assessment closure map,
+
+211
+00:13:58.951 --> 00:14:01.007
+each with its minimum evidence.
+
+212
+00:14:01.007 --> 00:14:06.270
+No labels, defaults or containers needs
+a policy export and a labeled sample.
+
+213
+00:14:06.270 --> 00:14:09.119
+Rights Management and
+mail encryption need an
+
+214
+00:14:09.119 --> 00:14:11.895
+encrypted test and the
+transport-rule export.
+
+215
+00:14:11.895 --> 00:14:14.845
+Audit gaps need searchable
+synthetic events.
+
+216
+00:14:14.845 --> 00:14:18.093
+And the metrics measure
+protection, not settings:
+
+217
+00:14:18.093 --> 00:14:22.847
+the labeled share of sensitive content,
+container coverage of C U I sites,
+
+218
+00:14:22.847 --> 00:14:26.095
+true-positive and override
+rates, and test passes.
+
+219
+00:14:26.095 --> 00:14:30.608
+A policy that's on and catches nothing
+scores no better than one that's off.
+
+220
+00:14:30.608 --> 00:14:33.510
+The package supports
+the controls it maps to;
+
+221
+00:14:33.510 --> 00:14:36.930
+the assessor or authorizing
+official decides.
+
+222
+00:14:40.680 --> 00:14:42.055
+So, four decisions.
+
+223
+00:14:42.055 --> 00:14:47.122
+Name the classes and their owners: a small
+register built from the C U I Registry,
+
+224
+00:14:47.122 --> 00:14:51.955
+the Privacy Act and records schedules,
+with an outcome an assessor can test.
+
+225
+00:14:51.955 --> 00:14:56.475
+Publish a small taxonomy with safe
+defaults: non-encrypting defaults,
+
+226
+00:14:56.475 --> 00:14:59.593
+mandatory labeling, and
+three container labels.
+
+227
+00:14:59.593 --> 00:15:02.997
+Keep a tested way back in:
+the super user feature off,
+
+228
+00:15:02.997 --> 00:15:07.780
+recovery through an approved role,
+and a decryption test every quarter.
+
+229
+00:15:07.780 --> 00:15:12.578
+And decide AI and evidence before rollout:
+which labels Copilot may process,
+
+230
+00:15:12.578 --> 00:15:17.605
+what oversharing gets fixed first, and a
+monthly baseline the assessor can read.
+
+231
+00:15:17.605 --> 00:15:19.755
+The next step needs no new tooling.
+
+232
+00:15:19.755 --> 00:15:22.732
+Draft the class register
+and the decision records,
+
+233
+00:15:22.732 --> 00:15:26.277
+run a dated inventory with what
+the tenant already licenses,
+
+234
+00:15:26.277 --> 00:15:30.105
+and confirm each feature for your
+own cloud before planning on it.
+
+235
+00:15:30.105 --> 00:15:32.268
+Protection has to travel with the data.
+
+236
+00:15:32.268 --> 00:15:37.781
+Information Protection and Microsoft Purview
+has the detail, every claim footnoted.
+
+237
+00:15:37.781 --> 00:15:41.293
+It's a draft, so check it again
+after the editor's review.
+
+238
+00:15:41.293 --> 00:15:42.120
+Thank you.

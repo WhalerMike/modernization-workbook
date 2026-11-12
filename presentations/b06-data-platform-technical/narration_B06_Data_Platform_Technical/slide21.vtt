@@ -1,65 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.871
+00:00:00.050 --> 00:00:03.983
 Runbook R05 adds the Entra
 login beside the Windows one,
 
 2
-00:00:03.871 --> 00:00:08.025
+00:00:03.983 --> 00:00:08.087
 watches both for thirty days,
-and disables rather than drops.
+and disables before it drops.
 
 3
-00:00:08.025 --> 00:00:12.529
+00:00:08.087 --> 00:00:12.581
 Don't start until the instance
 is on SQL Server 2022 or later,
 
 4
-00:00:12.529 --> 00:00:15.983
+00:00:12.581 --> 00:00:16.038
 connected to Arc, and the
 estate is consolidated.
 
 5
-00:00:15.983 --> 00:00:21.171
+00:00:16.038 --> 00:00:21.275
 The one piece of real judgment is mapping
 each Windows login to an Entra principal.
 
 6
-00:00:21.171 --> 00:00:24.794
+00:00:21.275 --> 00:00:24.932
 The program builds that from
 the identity reconciliation,
 
 7
-00:00:24.794 --> 00:00:28.787
+00:00:24.932 --> 00:00:28.963
 not a spreadsheet, prefers groups,
 and flags anything unresolved.
 
 8
-00:00:28.787 --> 00:00:32.442
+00:00:28.963 --> 00:00:32.650
 Then create matching database
 users with the same permissions.
 
 9
-00:00:32.442 --> 00:00:36.442
+00:00:32.650 --> 00:00:36.578
 During the thirty days, capture
 logins with SQL Server Audit,
 
 10
-00:00:36.442 --> 00:00:39.925
+00:00:36.578 --> 00:00:39.988
 because a point-in-time query
 misses short connections.
 
 11
-00:00:39.925 --> 00:00:44.149
+00:00:39.988 --> 00:00:44.250
 You exit when every application
 also shows up on its Entra login.
 
 12
-00:00:44.149 --> 00:00:48.881
+00:00:44.250 --> 00:00:48.543
 Cutover is disabling the old login,
-so rollback is just re-enabling it.
+so rollback is just re-enabling it,
 
 13
-00:00:48.881 --> 00:00:50.950
-And close an enabled SA here.
+00:00:48.543 --> 00:00:53.438
+and the login is dropped only after thirty
+more days show nothing depends on it.
+
+14
+00:00:53.438 --> 00:00:57.580
+And close an enabled SA here:
+disable it and rename it.

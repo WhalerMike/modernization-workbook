@@ -1,0 +1,96 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+Every other signal depends on audit.
+
+2
+00:00:02.213 --> 00:00:05.498
+Audit Standard is on by
+default for enterprise
+
+3
+00:00:05.498 --> 00:00:08.699
+organizations and keeps
+records for 180 days.
+
+4
+00:00:08.699 --> 00:00:12.313
+Audit Premium keeps the core
+services' records for a year,
+
+5
+00:00:12.313 --> 00:00:14.312
+and up to ten years with an add-on.
+
+6
+00:00:14.312 --> 00:00:18.031
+But retention follows the
+license of the user who acted,
+
+7
+00:00:18.031 --> 00:00:22.962
+so the agency's log platform, not the
+tenant, holds the full evidence period.
+
+8
+00:00:22.962 --> 00:00:24.825
+Search isn't real time, either:
+
+9
+00:00:24.825 --> 00:00:28.550
+typically sixty to ninety
+minutes for the main workloads.
+
+10
+00:00:28.550 --> 00:00:32.887
+The program proves the pipeline every
+month with a synthetic label event,
+
+11
+00:00:32.887 --> 00:00:35.375
+found in the tenant and
+in the log platform.
+
+12
+00:00:35.375 --> 00:00:37.758
+Insider Risk Management and Communication
+
+13
+00:00:37.758 --> 00:00:40.463
+Compliance are different:
+they watch named people.
+
+14
+00:00:40.463 --> 00:00:44.449
+So before either is configured,
+the agency signs a charter.
+
+15
+00:00:44.449 --> 00:00:46.402
+The CISO, the privacy official,
+
+16
+00:00:46.402 --> 00:00:51.133
+general counsel and labor relations
+settle the purpose, the notice and what
+
+17
+00:00:51.133 --> 00:00:55.788
+investigators may see, and the records
+officer sets how long cases are kept.
+
+18
+00:00:55.788 --> 00:00:59.125
+Pseudonyms stay on,
+administrators don't investigate,
+
+19
+00:00:59.125 --> 00:01:02.313
+and someone outside the
+team reviews the reviewers.
+
+20
+00:01:02.313 --> 00:01:08.520
+In GCC, both audit tiers and the core insider
+risk features are listed as available.

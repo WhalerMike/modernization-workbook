@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.438
+Microsoft's D L P templates are a
+convenient start and a poor design.
+
+2
+00:00:04.438 --> 00:00:09.288
+The program writes each policy from an
+outcome statement the policy owner owns.
+
+3
+00:00:09.288 --> 00:00:14.357
+For example: content labeled C U I isn't
+shared or sent outside the tenant except
+
+4
+00:00:14.357 --> 00:00:18.024
+through the approved partner
+path; an attempt is blocked,
+
+5
+00:00:18.024 --> 00:00:21.612
+the user is told why, and the
+security monitor is alerted.
+
+6
+00:00:21.612 --> 00:00:25.438
+Rules match labels first, a
+decision someone already made,
+
+7
+00:00:25.438 --> 00:00:28.626
+and treat raw content
+patterns as the safety net.
+
+8
+00:00:28.626 --> 00:00:33.526
+Overrides are logged and read every
+week, and exceptions name groups,
+
+9
+00:00:33.526 --> 00:00:36.450
+sit in a register, and
+expire within a year.
+
+10
+00:00:36.450 --> 00:00:43.262
+Endpoint D L P covers Windows 10 and
+11, and Windows Server 2019 and later.
+
+11
+00:00:43.262 --> 00:00:48.274
+For content nobody labeled, auto-labeling
+climbs a ladder: built-in types,
+
+12
+00:00:48.274 --> 00:00:52.366
+custom types, exact data match,
+then trainable classifiers,
+
+13
+00:00:52.366 --> 00:00:55.038
+only as far as false positives require.
+
+14
+00:00:55.038 --> 00:00:59.102
+Client-side labeling recommends
+a label while the author works;
+
+15
+00:00:59.102 --> 00:01:02.476
+service-side labeling applies
+one at rest and in mail.
+
+16
+00:01:02.476 --> 00:01:04.865
+In GCC, D L P on every surface,
+
+17
+00:01:04.865 --> 00:01:10.250
+auto-labeling and exact data
+match are listed as available.

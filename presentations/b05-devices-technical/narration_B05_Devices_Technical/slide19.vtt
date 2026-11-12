@@ -56,15 +56,29 @@ On an Entra-joined device, the
 firewall's domain profile doesn't apply.
 
 13
-00:00:39.437 --> 00:00:44.363
-And attack surface reduction rules run in
-audit for thirty days before blocking.
+00:00:39.437 --> 00:00:43.557
+Attack surface reduction rules
+run in audit for thirty days,
 
 14
-00:00:44.363 --> 00:00:46.767
-Appendix A flags the crosswalk traps,
+00:00:43.557 --> 00:00:46.688
+then warn for two weeks,
+then block, ring by ring.
 
 15
-00:00:46.767 --> 00:00:50.780
+00:00:46.688 --> 00:00:50.950
+And Windows LAPS now manages a
+custom local administrator account,
+
+16
+00:00:50.950 --> 00:00:53.613
+with the built-in Administrator disabled.
+
+17
+00:00:53.613 --> 00:00:56.017
+Appendix A flags the crosswalk traps,
+
+18
+00:00:56.017 --> 00:01:00.020
 such as a logon message breaking
 Autopilot pre-provisioning.

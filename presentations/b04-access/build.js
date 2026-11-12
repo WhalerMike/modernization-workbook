@@ -210,7 +210,7 @@ Workbook: Book 04, Chapter 06 — Who Decides Access.`);
     { text: "report-only 2–4 weeks → pilot ring → expanding rings → enforced and monitored. A wave starts only after the previous one has run a week without incident. Roll back by switching off or to report-only — never by deleting." },
   ], { x: 0.6, y: 3.95, w: 12.15, h: 0.95, fontSize: 15 });
   callout(s, "BOD", 5.25, 1.3, "FaListCheck", HEX.amber, "Built to the CISA baseline: ",
-    "the library keeps Book 02's CA001–CA017 and adds CA018–CA038 for the BOD 25-01 Entra ID requirements — including blocking high-risk users and phishing-resistant MFA for all members.");
+    "the library keeps Book 02's CA001–CA017 and adds CA018–CA039 for the BOD 25-01 Entra ID requirements — including blocking high-risk users and phishing-resistant MFA for all members.");
   sources(s, "Sources: Microsoft Learn — Conditional Access deployment; CISA BOD 25-01 and SCuBA Entra ID baseline. Book 04, Chapter 07 and Appendix A.");
   s.addNotes(
 `[5:53–7:05]  How. The policy library is rolled out in five waves.
@@ -219,7 +219,7 @@ Wave one is the foundation, starting with blocking legacy authentication. Wave t
 
 Every policy passes the same gates: two to four weeks in report-only, then a pilot ring, then expanding rings, then enforced and monitored. A wave starts only after the previous one has run a week without incident. And rollback means switching a policy off or back to report-only, never deleting it.
 
-The library is built to CISA's baseline. It keeps Book 02's policies CA001 to CA017 and adds CA018 to CA038 for the BOD 25-01 Entra ID requirements, including blocking high-risk users and requiring phishing-resistant MFA for all members.
+The library is built to CISA's baseline. It keeps Book 02's policies CA001 to CA017 and adds CA018 to CA039 for the BOD 25-01 Entra ID requirements, including blocking high-risk users and requiring phishing-resistant MFA for all members.
 
 Workbook: Book 04, Chapter 07 — The Conditional Access Policy Library; Appendix A.`);
 }

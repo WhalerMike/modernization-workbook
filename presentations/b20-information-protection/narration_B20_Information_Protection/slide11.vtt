@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.169
+Information protection
+fails quietly when the
+
+2
+00:00:03.169 --> 00:00:06.600
+person who decides is also
+the person who configures.
+
+3
+00:00:06.600 --> 00:00:10.637
+The book uses six roles,
+by name, in every chapter.
+
+4
+00:00:10.637 --> 00:00:15.557
+The policy owner, typically the C U I
+program manager, with the privacy official
+
+5
+00:00:15.557 --> 00:00:20.174
+and the records officer, decides what
+the data is and how it must be handled.
+
+6
+00:00:20.174 --> 00:00:23.061
+The platform owner, the
+Purview engineering lead,
+
+7
+00:00:23.061 --> 00:00:26.300
+is accountable for the
+configuration and its baseline.
+
+8
+00:00:26.300 --> 00:00:29.512
+The operator makes each change
+through change control.
+
+9
+00:00:29.512 --> 00:00:32.687
+The security monitor
+triages alerts every day.
+
+10
+00:00:32.687 --> 00:00:34.543
+The help desk answers users,
+
+11
+00:00:34.543 --> 00:00:38.576
+and never removes a label or
+decrypts a file to close a ticket.
+
+12
+00:00:38.576 --> 00:00:42.994
+And the assessor, the ISSO and the
+independent assessor, is accountable
+
+13
+00:00:42.994 --> 00:00:47.788
+for the evidence package, while closure
+stays with the authorizing official.
+
+14
+00:00:47.788 --> 00:00:49.763
+Three separations keep it honest.
+
+15
+00:00:49.763 --> 00:00:52.513
+Owners decide and
+administrators configure.
+
+16
+00:00:52.513 --> 00:00:55.552
+Super user recovery answers
+to the policy owner,
+
+17
+00:00:55.552 --> 00:00:58.363
+because it reads content
+that owner governs.
+
+18
+00:00:58.363 --> 00:01:02.640
+And in insider risk, no one both
+administers and investigates.

@@ -758,11 +758,16 @@
   ],
   [
    39.438,
-   4.925,
-   "And attack surface reduction rules run in audit for thirty days before blocking."
+   7.25,
+   "Attack surface reduction rules run in audit for thirty days, then warn for two weeks, then block, ring by ring."
   ],
   [
-   44.362,
+   46.688,
+   6.925,
+   "And Windows LAPS now manages a custom local administrator account, with the built-in Administrator disabled."
+  ],
+  [
+   53.612,
    6.362,
    "Appendix A flags the crosswalk traps, such as a logon message breaking Autopilot pre-provisioning."
   ]

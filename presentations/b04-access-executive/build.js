@@ -304,7 +304,7 @@ None of the controls says "just in time" in so many words. The book's position i
     "CISO", "Before wave 1 is enforced");
   sources(s, "Sources: CISA BOD 25-01 required configurations; SCuBA Entra ID baseline; Microsoft Learn — Conditional Access. Book 04, Chapter 07; Book 02, Chapter 06.");
   narrate(s,
-`Now the what. The book's Conditional Access library is one policy set, numbered once: Book 02's baseline, CA001 to CA017, kept, and twenty-two more for risk, privileged workstations, segmented applications and workload identities, including a report-only probe that never enforces.
+`Now the what. The book's Conditional Access library is one policy set, numbered once: Book 02's baseline, CA001 to CA017, kept, and CA018 to CA039 for risk, privileged workstations, segmented applications and workload identities, plus a report-only probe that never enforces.
 
 It's built to CISA's Binding Operational Directive 25-01, which requires federal civilian agencies to implement CISA's mandatory configurations for in-scope cloud tenants; the deadline for the configurations effective at issuance was June 20, 2025. The table shows the Entra ID requirements that Conditional Access answers: block legacy authentication; block high-risk users; block high-risk sign-ins; phishing-resistant MFA for all users, with another method only until then; and phishing-resistant MFA for highly privileged roles.
 
@@ -406,7 +406,7 @@ Most requests for Global Administrator are requests for one task, so the first s
   const tiers = [
     ["Tier 0, control plane", "4 hours", "Tier 0 approver group", "90 days"],
     ["Tier 1, management", "8 hours", "Tier 1 approver group", "180 days"],
-    ["Tier 2, scoped", "8 hours", "Optional, with a risk acceptance", "180 days"],
+    ["Tier 2, scoped", "8 hours", "Optional, with a risk acceptance; Tenant Creator: required", "180 days"],
     ["Read-only", "8 hours", "None", "365 days"],
   ];
   leftTable(s, ["Privilege tier", "Max activation", "Approval", "Eligible for"],
@@ -421,7 +421,7 @@ Most requests for Global Administrator are requests for one task, so the first s
   narrate(s,
 `Privileged Identity Management turns privilege into a governed request. Every human administrative assignment is eligible, not active. To use it, the administrator asks for the role with a justification and a ticket, satisfies a fresh sign-in, waits for an approver, and holds the role only for the window requested.
 
-The table is the program's design, by tier. Tier 0 activations last at most four hours and need a Tier 0 approver; Tier 1, eight hours with a Tier 1 approver; Tier 2, eight hours, with approval optional only under a documented risk acceptance; readers, no approval. Eligibility itself expires after 90, 180 or 365 days, so it has to be re-authorized, not just reviewed.
+The table is the program's design, by tier. Tier 0 activations last at most four hours and need a Tier 0 approver; Tier 1, eight hours with a Tier 1 approver; Tier 2, eight hours, with approval optional only under a documented risk acceptance, except Tenant Creator, the one tenant-wide Tier 2 role, which is eligible only and always needs approval; readers, no approval. Eligibility itself expires after 90, 180 or 365 days, so it has to be re-authorized, not just reviewed.
 
 Three details make the gate real. PIM's built-in MFA can be satisfied by an earlier sign-in in the same session, so the program forces a fresh phishing-resistant proof through a Conditional Access authentication context. Approvers can't approve their own requests, but the platform doesn't stop an agency making the approver group the same people as the requesters, so a tier's approvers sit outside that tier, and Tier 0's are a security function, not peer administrators. And approvers have 24 hours, a window that can't be configured, so a Tier 0 path staffed by two people in one time zone strands out-of-hours requests.
 
