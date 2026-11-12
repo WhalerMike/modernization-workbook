@@ -639,7 +639,7 @@ Separation of duties: a package can list incompatible packages and groups, but t
     [k("R2 app groups"), c("Semiannual"), c("Application owner"), c("No change; escalate"), yes("Yes")],
     [k("R3 app groups"), c("Annual"), c("App or department owner"), c("No change"), yes("Yes")],
     [k("Guests", HEX.amber), c("Quarterly"), c("Sponsors"), c("Remove access"), yes("Yes")],
-  ], [2.15, 1.65, 2.0, 1.45, 0.9], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.45, 0.55, 0.55, 0.45, 0.45, 0.45] });
+  ], [2.05, 1.55, 1.9, 1.35, 0.8], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.45, 0.55, 0.55, 0.45, 0.45, 0.45] });
   panel(s, "Bite", 8.4, 1.5, 4.35, 3.4, HEX.amberTint, HEX.amber, "Rules that make reviews bite", [
     "Review groups, not apps: an app review doesn't remove group members",
     "A fallback reviewer whenever reviewers are managers or owners",

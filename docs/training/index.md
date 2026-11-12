@@ -95,7 +95,7 @@ Run every command from `examples/ms-automation`. Module 2's lab writes an `out` 
 
 **Lab 2: your test tenant.** Each Lab 2 registers one app with a certificate and only the read permissions its checks need, runs them read-only, and ends by deleting the app registration. You need a test tenant in the worldwide or GCC cloud for learning, never production, with fictional data (before a gate passes, rehearse once in your agency's own cloud, as [Book 16](../books/b16-people/06-vendor-training-and-labs.md#what-changes-in-the-government-clouds) describes); Microsoft Entra ID P1 or P2 for Module 2's sign-in data, and P2 or Microsoft Entra ID Governance for its PIM data; an Intune license and a few test devices for Module 3; for Module 4, a test subscription with a few Arc-enabled servers, someone who can assign the Reader role on it, and `Az.Accounts` and `Az.ResourceGraph` for the PowerShell steps; and an administrator who can grant admin consent. **The authors haven't run the Lab 2 steps.**
 
-**Watch:** Modules 1 to 3 each have a narrated deck, about 13 to 14 minutes, linked from the module's page. Module 4's deck is planned.
+**Watch:** each module has a narrated deck, about 13 to 16 minutes, linked from the module's page; Module 4's is [here](../presentations/watch.html?v=Training_MS_Automation_Module_4_Narrated).
 
 ::: {#training-microsoft}
 :::

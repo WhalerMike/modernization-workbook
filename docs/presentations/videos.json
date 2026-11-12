@@ -925,35 +925,35 @@
     "How the workbook works: twenty books, four questions"
    ],
    [
-    302,
+    306,
     "The charter: the page the sponsor signs"
    ],
    [
-    366,
+    369,
     "Six success criteria, each tested at a gate"
    ],
    [
-    423,
+    426,
     "Fifteen principles in five groups"
    ],
    [
-    481,
+    484,
     "Seven phases and six gates: the workbook's model"
    ],
    [
-    545,
+    548,
     "Seven complementary projects, run inside the program"
    ],
    [
-    607,
+    610,
     "Who decides: one owner for every decision"
    ],
    [
-    664,
+    667,
     "From pre-flight to steady state: what each stretch proves"
    ],
    [
-    724,
+    727,
     "Decisions to make, and next steps"
    ]
   ],
@@ -2425,55 +2425,55 @@
     "Endpoint security settings, and the crosswalk traps"
    ],
    [
-    963,
+    973,
     "Module 3: Servers under Azure Arc"
    ],
    [
-    982,
+    992,
     "What Arc changes, and what it doesn't"
    ],
    [
-    1037,
+    1047,
     "Which servers Arc reaches, and four tiers for the rest"
    ],
    [
-    1089,
+    1098,
     "Before you onboard: roles, network, tags and images"
    ],
    [
-    1143,
+    1153,
     "Onboarding a wave with a least-privileged principal"
    ],
    [
-    1194,
+    1203,
     "The day-one baseline: configuration, patching and protection"
    ],
    [
-    1246,
+    1255,
     "Extended Security Updates, Entra ID sign-in and rollback"
    ],
    [
-    1302,
+    1312,
     "Module 4: Operating and evidencing the fleet"
    ],
    [
-    1322,
+    1332,
     "Making the compliance signal accurate"
    ],
    [
-    1374,
+    1384,
     "Windows updates: rings, Autopatch and version currency"
    ],
    [
-    1429,
+    1438,
     "Reconciling three inventories, and retiring a device in order"
    ],
    [
-    1482,
+    1492,
     "Drift detection: what the logs can tell you, and when"
    ],
    [
-    1533,
+    1542,
     "The evidence an assessor reads, and the GCC boundary facts"
    ]
   ],
@@ -2736,31 +2736,31 @@
     "R05 — Login migration and the parallel run"
    ],
    [
-    991,
+    997,
     "Module 5 — Runbooks R06–R10: NTLM to certificates"
    ],
    [
-    1015,
+    1021,
     "R06 — NTLM detection and remediation"
    ],
    [
-    1073,
+    1080,
     "R07 — Groups, admin units and the CA perimeter"
    ],
    [
-    1129,
+    1135,
     "R08 — Application chain and connection strings"
    ],
    [
-    1182,
+    1189,
     "R09 — Continuous monitoring and closure"
    ],
    [
-    1237,
+    1244,
     "R10 — Certificate discovery for AD CS"
    ],
    [
-    1302,
+    1309,
     "What to take back to the estate"
    ]
   ],
@@ -6534,8 +6534,65 @@
   "page": "docs/books/b20-information-protection/index.html",
   "source": "docs/books/b20-information-protection/index.md",
   "kits": [],
-  "chapters": null,
-  "sources": null
+  "chapters": [
+   [
+    0,
+    "Protection That Travels With the Data"
+   ],
+   [
+    53,
+    "Upstream controls can't see the payload"
+   ],
+   [
+    114,
+    "Decide the classes before any label"
+   ],
+   [
+    181,
+    "Three boundaries, four planes, a small taxonomy"
+   ],
+   [
+    251,
+    "Defaults users rarely notice, containers that hold"
+   ],
+   [
+    323,
+    "Encrypt, and keep a tested way back in"
+   ],
+   [
+    396,
+    "DLP from an owner's outcome, auto-labeling for the rest"
+   ],
+   [
+    470,
+    "Audit is the floor; insider risk needs a charter"
+   ],
+   [
+    543,
+    "AI inherits every permission error"
+   ],
+   [
+    613,
+    "Government cloud: GCC first, then the side notes"
+   ],
+   [
+    682,
+    "Six roles run information protection"
+   ],
+   [
+    748,
+    "Roll out in rings, with a way back"
+   ],
+   [
+    812,
+    "Evidence an assessor can inspect"
+   ],
+   [
+    880,
+    "Decisions to make, and next steps"
+   ]
+  ],
+  "sources": "presentations/b20-information-protection/B20_Information_Protection_Narrated_sources.json"
  },
  {
   "id": "TTM_Story_One_Drift_Case_Narrated",
@@ -6908,7 +6965,7 @@
   "id": "Guide_Service_Account_Migration_Narrated",
   "title": "Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities",
   "group": "book",
-  "minutes": 16,
+  "minutes": 18,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Service_Account_Migration_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/guide-service-account-migration/Guide_Service_Account_Migration_Narrated.vtt",
@@ -6929,11 +6986,11 @@
     "Service accounts: from user accounts to gMSAs and Entra ID"
    ],
    [
-    55,
+    56,
     "Why this matters: the password nobody changes"
    ],
    [
-    114,
+    115,
     "Twelve kinds of service identity, compared"
    ],
    [
@@ -6941,7 +6998,7 @@
     "What can move to Microsoft Entra ID, and what can't"
    ],
    [
-    262,
+    263,
     "The decision path: the first yes is the target"
    ],
    [
@@ -6949,31 +7006,35 @@
     "The program's rules for every migration"
    ],
    [
-    410,
+    411,
     "Requirements, KSIs and the evidence the ISSO keeps"
    ],
    [
-    487,
+    488,
     "Migration A: a user account to a gMSA, steps A1 to A4"
    ],
    [
-    568,
+    590,
     "Migration A: switch, move the SPNs, run 30 days, disable"
    ],
    [
-    642,
+    665,
     "Migration B: a user account to a Windows Server 2025 dMSA"
    ],
    [
-    722,
+    744,
     "Migration C: to a Microsoft Entra workload identity"
    ],
    [
-    801,
+    824,
+    "Sending mail once the workload runs as a gMSA"
+   ],
+   [
+    911,
     "Dangers, and how to avoid them"
    ],
    [
-    876,
+    999,
     "Where the kit and the labs take over"
    ]
   ],
@@ -7556,47 +7617,47 @@
     "The Reference Tab"
    ],
    [
-    33,
+    41,
     "Why a Reference tab"
    ],
    [
-    70,
-    "Six pages at a glance"
+    78,
+    "Six core pages at a glance"
    ],
    [
-    97,
+    114,
     "Run it: the Command Reference"
    ],
    [
-    142,
+    160,
     "Prove it: the Federal Framework Crosswalk"
    ],
    [
-    212,
+    229,
     "Prove it: the RMF Map"
    ],
    [
-    272,
+    289,
     "Prove it: the M-19-17 and FICAM Crosswalk"
    ],
    [
-    337,
+    354,
     "Prove it: the Microsoft Practice Crosswalk"
    ],
    [
-    400,
+    418,
     "Trust it: the Source Register"
    ],
    [
-    456,
+    474,
     "How the six pages fit together"
    ],
    [
-    505,
+    523,
     "Where to start, by role"
    ],
    [
-    538,
+    555,
     "How the pages stay honest"
    ]
   ],
@@ -10133,7 +10194,7 @@
   "id": "DW_NPI_06_gMSA_dMSA_Narrated",
   "title": "Building Non-Person Identity, Chapter 06 — gMSAs, dMSAs and the Kerberos Island: narrated tour",
   "group": "developer",
-  "minutes": 12,
+  "minutes": 13,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_06_gMSA_dMSA_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narrated.vtt",
@@ -10162,63 +10223,63 @@
     "What gMSAs and dMSAs are, and where the code runs"
    ],
    [
-    129,
+    145,
     "Learn's four procedures, pinned and run"
    ],
    [
-    166,
+    182,
     "What the procedures leave to you: the key and the steps"
    ],
    [
-    201,
+    217,
     "What they leave to you: limits, waits and deletes"
    ],
    [
-    239,
+    256,
     "The code, Chapter 03's decisions and three inputs"
    ],
    [
-    284,
+    300,
     "The check: nine rules, NPI-KRB-01 to NPI-KRB-09"
    ],
    [
-    324,
+    341,
     "The plan: one action per account"
    ],
    [
-    362,
+    383,
     "The island list and the reconciliation"
    ],
    [
-    410,
+    431,
     "The separate write path, and its refusals"
    ],
    [
-    446,
+    467,
     "Who builds, runs and reviews it, and with what rights"
    ],
    [
-    486,
+    507,
     "Lab 1: Learn's procedures, then the check"
    ],
    [
-    524,
+    546,
     "Lab 1: reading the findings and the plan"
    ],
    [
-    569,
+    590,
     "Lab 1: the island list, a dry run and a refusal"
    ],
    [
-    616,
+    637,
     "Lab 2: a test domain, a real migration"
    ],
    [
-    659,
+    680,
     "Dangers, and the guard for each"
    ],
    [
-    695,
+    717,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -14346,27 +14407,27 @@
     "Throttling limits, and what changes a request's cost"
    ],
    [
-    544,
+    543,
     "Try it: the client refuses the wrong cloud and call"
    ],
    [
-    606,
+    608,
     "Lab 2: one permission, in your own test tenant"
    ],
    [
-    656,
+    658,
     "Where agencies are: GCC, GCC High and DoD"
    ],
    [
-    718,
+    720,
     "The federal requirement, and the evidence to keep"
    ],
    [
-    777,
+    779,
     "Check yourself: two questions on foundations"
    ],
    [
-    820,
+    822,
     "Summary, and next: Module 2, Entra ID"
    ]
   ],
@@ -14546,10 +14607,98 @@
    ],
    [
     801,
-    "Summary: you've finished the path"
+    "Summary, and next: Module 4, Azure Arc"
    ]
   ],
   "sources": "presentations/training-ms-automation-module-3/Training_MS_Automation_Module_3_Narrated_sources.json"
+ },
+ {
+  "id": "Training_MS_Automation_Module_4_Narrated",
+  "title": "Microsoft Automation learning path, Module 4: Azure Arc through Azure Resource Manager and Resource Graph",
+  "group": "training",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_MS_Automation_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4_Narration_Script.md",
+  "page": "docs/training/ms-automation-arc.html",
+  "source": "docs/training/ms-automation-arc.md",
+  "kits": [
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": "downloads/microsoft-automation-code.zip"
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Azure Arc through Resource Manager"
+   ],
+   [
+    62,
+    "Why the server estate needs its own evidence"
+   ],
+   [
+    129,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    178,
+    "Resource Manager isn't Graph: four things change"
+   ],
+   [
+    247,
+    "Resource Graph: four traps that lose rows quietly"
+   ],
+   [
+    316,
+    "Machines, extensions and SQL Server: what the checks read"
+   ],
+   [
+    382,
+    "Policy enforcement and product lifecycle"
+   ],
+   [
+    457,
+    "The five checks and the controls they evidence"
+   ],
+   [
+    522,
+    "Try it: find the servers past their support date"
+   ],
+   [
+    601,
+    "Lab 2: your test subscription, with Reader only"
+   ],
+   [
+    670,
+    "Where agencies are: GCC is commercial Azure"
+   ],
+   [
+    739,
+    "GCC High and DoD: Azure Government differences"
+   ],
+   [
+    810,
+    "The federal requirement and evidence for Arc servers"
+   ],
+   [
+    881,
+    "Check yourself: two questions on Arc"
+   ],
+   [
+    927,
+    "Summary: you've finished the path"
+   ]
+  ],
+  "sources": "presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4_Narrated_sources.json"
  },
  {
   "id": "Training_NPI_Module_10_Narrated",
@@ -14952,7 +15101,7 @@
     "The decision in the guide: Step 2, condensed"
    ],
    [
-    220,
+    221,
     "The proposal: matrix rows M01 to M19"
    ],
    [
@@ -14964,7 +15113,7 @@
     "Waves and rollback, D-NP4, and Gate 2"
    ],
    [
-    407,
+    408,
     "Try it: run Modules 1 and 2, then the matrix"
    ],
    [
@@ -15404,51 +15553,51 @@
     "The gate: a parallel run, then disable, never delete"
    ],
    [
-    232,
+    238,
     "Four dispositions from Module 3, and the program's rules"
    ],
    [
-    291,
+    297,
     "The check: NPI-KRB-01 to NPI-KRB-09"
    ],
    [
-    367,
+    373,
     "The plan: one action per account, approved by hash"
    ],
    [
-    427,
+    433,
     "The island list, the reconciliation, the write path"
    ],
    [
-    492,
+    498,
     "Try it: the runs it reads, Learn's steps, the tasks' calls"
    ],
    [
-    552,
+    558,
     "Try it: check nine Kerberos accounts, read the findings"
    ],
    [
-    613,
+    619,
     "Try it: the plan, the island list, the reconciliation"
    ],
    [
-    669,
+    675,
     "Try it: dry-run, apply to the fake, and a refusal"
    ],
    [
-    719,
+    724,
     "Lab 2: a test domain, and a real migration"
    ],
    [
-    779,
+    785,
     "The federal requirement and evidence for Gate G5"
    ],
    [
-    838,
+    844,
     "Check yourself: two questions on the Kerberos island"
    ],
    [
-    892,
+    898,
     "Summary, and next: Module 9, AI agent identities"
    ]
   ],

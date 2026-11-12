@@ -15,6 +15,8 @@ last-reviewed: 2026-11-11
 
 **Learning path:** [Microsoft Automation](index.md#microsoft-automation-learning-path) · Module 4 of 4 · 95 minutes · Code: [examples/ms-automation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation) (`armkit.py`, `arc_tasks.py`, `FmwArm.psm1`) · Guide: [Arc track, Step 8](../books/guides/arc-track-implementation.md#step-8-operating-it)
 
+**Watch:** the narrated deck for this module (about 16 minutes, captions): [▶ Watch](../presentations/watch.html?v=Training_MS_Automation_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_MS_Automation_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-ms-automation-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4_Narrated.vtt). The deck files join the next edition.
+
 ## Unit 1: Introduction
 
 *5 minutes, with the objectives and prerequisites*

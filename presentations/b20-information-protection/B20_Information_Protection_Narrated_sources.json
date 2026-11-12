@@ -1,0 +1,400 @@
+[
+ {
+  "slide": 2,
+  "title": "Upstream controls can't see the payload",
+  "links": [
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Learn about sensitivity labels",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 20, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/01-data-inventory-and-classification.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Decide the classes before any label",
+  "links": [
+   {
+    "text": "32 CFR Part 2002",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-32-2002"
+   },
+   {
+    "text": "FIPS 199",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-199"
+   },
+   {
+    "text": "NIST SP 800-60 Vol. 1 Rev. 1",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-60-v1r1"
+   },
+   {
+    "text": "Learn about sensitivity labels",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels"
+   },
+   {
+    "text": "Book 20, Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/01-data-inventory-and-classification.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Three boundaries, four planes, a small taxonomy",
+  "links": [
+   {
+    "text": "Learn about sensitivity labels",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels"
+   },
+   {
+    "text": "label groups",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-label-groups"
+   },
+   {
+    "text": "labels for groups and sites",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels-groups-sites"
+   },
+   {
+    "text": "32 CFR Part 2002",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-32-2002"
+   },
+   {
+    "text": "Book 20, Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/02-sensitivity-label-architecture.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Defaults users rarely notice, containers that hold",
+  "links": [
+   {
+    "text": "Learn about sensitivity labels",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels"
+   },
+   {
+    "text": "labels in Office apps",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels-office-apps"
+   },
+   {
+    "text": "labels for groups and sites",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels-groups-sites"
+   },
+   {
+    "text": "government planning pages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-plan"
+   },
+   {
+    "text": "Book 20, Chapters 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/03-label-publication-and-defaults.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/04-teams-groups-and-sharepoint-containers.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Encrypt, and keep a tested way back in",
+  "links": [
+   {
+    "text": "Activate Azure Rights Management",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-activate-rights-management"
+   },
+   {
+    "text": "super users",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-rights-management-super-users"
+   },
+   {
+    "text": "Message Encryption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-message-encryption"
+   },
+   {
+    "text": "labels in SharePoint and OneDrive",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels-sharepoint-onedrive"
+   },
+   {
+    "text": "GCC planning page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-plan"
+   },
+   {
+    "text": "Book 20, Chapters 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/05-rights-management-and-recovery.html"
+   },
+   {
+    "text": "07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/07-sharepoint-and-onedrive.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "DLP from an owner's outcome, auto-labeling for the rest",
+  "links": [
+   {
+    "text": "DLP simulation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-dlp-simulation-mode"
+   },
+   {
+    "text": "endpoint DLP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-endpoint-dlp-settings"
+   },
+   {
+    "text": "sensitive information types",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitive-information-types"
+   },
+   {
+    "text": "exact data match",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-exact-data-match"
+   },
+   {
+    "text": "auto-labeling",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-auto-labeling"
+   },
+   {
+    "text": "GCC planning page",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-plan"
+   },
+   {
+    "text": "Book 20, Chapters 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/08-dlp-and-endpoint-controls.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Audit is the floor; insider risk needs a charter",
+  "links": [
+   {
+    "text": "Purview Audit",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-audit"
+   },
+   {
+    "text": "Purview audit retention",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-audit-log-retention-policies"
+   },
+   {
+    "text": "Insider Risk Management",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-insider-risk-management"
+   },
+   {
+    "text": "Communication Compliance",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-irm-communication-compliance-privacy"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 20, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "AI inherits every permission error",
+  "links": [
+   {
+    "text": "Data protection and auditing for Microsoft Copilot",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-copilot-data-protection-auditing"
+   },
+   {
+    "text": "DSPM for AI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-dspm-for-ai"
+   },
+   {
+    "text": "DLP for Copilot",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-dlp-microsoft-365-copilot"
+   },
+   {
+    "text": "Microsoft Copilot service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-copilot-service-description"
+   },
+   {
+    "text": "Book 20, Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/11-ai-data-security.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Government cloud: GCC first, then the side notes",
+  "links": [
+   {
+    "text": "Plan for Microsoft Purview: GCC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-plan"
+   },
+   {
+    "text": "GCC High",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-high-plan"
+   },
+   {
+    "text": "DoD deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-dod-plan"
+   },
+   {
+    "text": "Microsoft Purview service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-service-description"
+   },
+   {
+    "text": "Book 20, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/01-data-inventory-and-classification.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/12-operations-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Six roles run information protection",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Insider Risk Management permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-insider-risk-management-permissions"
+   },
+   {
+    "text": "Book 20, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/01-data-inventory-and-classification.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/12-operations-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Roll out in rings, with a way back",
+  "links": [
+   {
+    "text": "Content Explorer",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-content-explorer"
+   },
+   {
+    "text": "Purview service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-service-description"
+   },
+   {
+    "text": "DLP simulation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-dlp-simulation-mode"
+   },
+   {
+    "text": "auto-labeling",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-auto-labeling"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Book 20, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/01-data-inventory-and-classification.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/08-dlp-and-endpoint-controls.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/12-operations-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Evidence an assessor can inspect",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "release 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 20, Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/12-operations-and-evidence.html"
+   },
+   {
+    "text": "App. A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/appendix-a-requirements-mapping.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Decisions to make, and next steps",
+  "links": [
+   {
+    "text": "32 CFR Part 2002",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cfr-32-2002"
+   },
+   {
+    "text": "Learn about sensitivity labels",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-sensitivity-labels"
+   },
+   {
+    "text": "Purview government planning pages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-plan"
+   },
+   {
+    "text": "Book 20, Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/01-data-inventory-and-classification.html"
+   },
+   {
+    "text": "12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/12-operations-and-evidence.html"
+   }
+  ]
+ }
+]
