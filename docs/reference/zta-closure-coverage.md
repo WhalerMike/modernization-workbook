@@ -31,14 +31,14 @@ The data is in [`data/zta-closure/coverage.yml`](https://github.com/WhalerMike/m
 
 ## Summary {#summary}
 
-103 instruction IDs: Implemented 101; Partial 0; Planned 1; Deferred 0; Not applicable 1.
+103 instruction IDs: Implemented 102; Partial 0; Planned 0; Deferred 0; Not applicable 1.
 
 | Group | IDs | Implemented | Partial | Planned | Deferred | Not applicable |
 |---|---|---|---|---|---|---|
 | Global conventions | 8 | 8 | 0 | 0 | 0 | 0 |
 | Updates to existing books | 35 | 34 | 0 | 0 | 0 | 1 |
 | B20: Information Protection & Microsoft Purview (planned book) | 12 | 12 | 0 | 0 | 0 | 0 |
-| Implementation guides | 33 | 32 | 0 | 1 | 0 | 0 |
+| Implementation guides | 33 | 33 | 0 | 0 | 0 | 0 |
 | Closure map | 15 | 15 | 0 | 0 | 0 | 0 |
 
 : Workbook guidance coverage by group {.striped}
@@ -161,7 +161,7 @@ Global Secure Access, Defender XDR and Azure security engineering are implementa
 | AZS-08 | Azure Security Engineering: Managed identities and Key Vault | 4 | guide | Implemented | [azure-security-implementation.md#step-8-managed-identities-and-key-vault](../books/guides/azure-security-implementation.md#step-8-managed-identities-and-key-vault) | [#565](https://github.com/WhalerMike/modernization-workbook/pull/565) | Implementation guide section (a guide, not a book, by Mike's decision of Nov 11, 2026). |
 | AZS-09 | Azure Security Engineering: Policy and drift | 4 | guide | Implemented | [azure-security-implementation.md#step-9-policy-and-drift](../books/guides/azure-security-implementation.md#step-9-policy-and-drift) | [#565](https://github.com/WhalerMike/modernization-workbook/pull/565) | Implementation guide section (a guide, not a book, by Mike's decision of Nov 11, 2026). |
 | AZS-10 | Azure Security Engineering: Operations and evidence | 4 | guide | Implemented | [azure-security-implementation.md#step-10-operations-and-evidence](../books/guides/azure-security-implementation.md#step-10-operations-and-evidence) | [#565](https://github.com/WhalerMike/modernization-workbook/pull/565) | Implementation guide section (a guide, not a book, by Mike's decision of Nov 11, 2026). |
-| ZTA-GUIDE | Zero Trust Assessment tool: implementation guide, narrated deck and training module, with a section reconciling its findings with AWS Security Hub CSPM for agencies that run both | — | guide | Planned | — | — | Phase 5 (Mike, Nov 11, 2026). |
+| ZTA-GUIDE | Zero Trust Assessment tool: implementation guide, narrated deck and training module, with a section reconciling its findings with AWS Security Hub CSPM for agencies that run both | — | guide | Implemented | [zero-trust-assessment-implementation.md](../books/guides/zero-trust-assessment-implementation.md); [](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/zta-results/); [](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/zero-trust-assessment/); [](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-zero-trust-assessment/) | [#586](https://github.com/WhalerMike/modernization-workbook/pull/586) | Phase 5 (Mike, Nov 11, 2026). Kit #580, guide #581, training path #585, narrated deck and video #586. |
 
 : Implementation guides {.striped .hover}
 
