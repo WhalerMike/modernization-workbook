@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -178,6 +178,16 @@ There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded
 | [WD-142](#wd-142) | 2026-11-06 | When are the cloud pair for Government-cloud partners and the unverified source items settled? | Workbook design | settled |
 | [WD-143](#wd-143) | 2026-11-06 | When do the sources for the partner chapter enter the Source Register? | Workbook design | settled |
 | [WD-144](#wd-144) | 2026-11-06 | Does the drift pipeline keep the OSCAL Assessment Results and POA&M export added in | Workbook design | settled |
+| [WD-145](#wd-145) | 2026-11-11 | What does CP-001 rely on in GCC High and DoD, where Device Health Attestation is only planned? | Workbook design | settled |
+| [WD-146](#wd-146) | 2026-11-11 | Where does the Tenant Creator role sit in the PIM tiers? | Workbook design | settled |
+| [WD-147](#wd-147) | 2026-11-11 | Are the program values Book 04 and Book 05 proposed confirmed? | Workbook design | settled |
+| [WD-148](#wd-148) | 2026-11-11 | Are the credential, test and triage thresholds in Books 02, 07, 08, 13, 17 and 18 confirmed? | Workbook design | settled |
+| [WD-149](#wd-149) | 2026-11-11 | Are the standing-privilege exception routes confirmed? | Workbook design | settled |
+| [WD-150](#wd-150) | 2026-11-11 | Are the design positions on emergency access, relay, break-glass, rollback, RADIUS failure, backout triggers and emergency calling confirmed? | Workbook design | settled |
+| [WD-151](#wd-151) | 2026-11-11 | Does the synchronization-account location restriction get a number in the Conditional Access library? | Workbook design | settled |
+| [WD-152](#wd-152) | 2026-11-11 | How long does the program plan for a federated domain's conversion to managed to take effect? | Microsoft Learn | settled |
+| [WD-153](#wd-153) | 2026-11-11 | Does the Windows LAPS policy move to automatic account management? | Microsoft Learn | settled |
+| [WD-154](#wd-154) | 2026-11-11 | How are group managed service accounts created and restricted? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2502,6 +2512,176 @@ There are **144** workbook decisions: 140 settled, 0 challenged and 4 superseded
 | **Defined in** | [#393](https://github.com/WhalerMike/modernization-workbook/pull/393), [#401](https://github.com/WhalerMike/modernization-workbook/pull/401) |
 
 [Agree, disagree or send evidence on WD-144](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-144%3A+)
+
+### WD-145: What does CP-001 rely on in GCC High and DoD, where Device Health Attestation is only planned? {#wd-145}
+
+| | |
+|---|---|
+| **Options considered** | Keep the three boot-measured rules as the only check; Keep them, and add the checks that don't depend on attestation for GCC High and DoD |
+| **Choice** | CP-001 and CP-002 keep Require BitLocker, Require Secure Boot and Require code integrity, but in a GCC High or DoD tenant the program doesn't count them as evidence until Learn lists attestation as available there. It adds Encryption of data storage on a device for BitLocker, reads Secure Boot and code integrity from Defender for Endpoint's device health and vulnerability management reporting as a drift finding, and uses the Defender for Endpoint machine risk score as a risk signal, confirmed in the pilot. |
+| **Rationale** | Intune's government service description lists Windows Device Health Attestation as planned, not available, for GCC High and DoD, while the Windows compliance settings reference says GCC High and DoD devices use it; the program plans on the narrower statement. Learn gives a replacement only for the encryption check, so the Secure Boot and code integrity reads are the program's design guidance. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Microsoft Intune for US Government GCC High and DoD service description](https://learn.microsoft.com/intune/fundamentals/government-service); [Microsoft Learn, Device compliance settings for Windows in Intune](https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings); [Microsoft Learn, Microsoft Defender for Endpoint for US Government customers](https://learn.microsoft.com/defender-endpoint/gov) |
+| **Pages affected** | [Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md), [Chapter 10 — Operating and Evidencing the Fleet](../books/b05-devices/10-operating-and-evidencing-the-fleet.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. Learn's two pages disagree on attestation in GCC High and DoD; recheck both when the service description changes. |
+
+[Agree, disagree or send evidence on WD-145](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-145%3A+)
+
+### WD-146: Where does the Tenant Creator role sit in the PIM tiers? {#wd-146}
+
+| | |
+|---|---|
+| **Options considered** | Tier 2 without approval, like the other Tier 2 roles; Tier 2, eligible only, with approval required |
+| **Choice** | Tenant Creator is a Tier 2 role, eligible only and never active, with approval by PIM-Approvers-T2, an 8-hour activation, a ticket and 180-day eligibility, held through PRV-T2-TenantCreator with no administrative-unit scope. |
+| **Rationale** | The role lets its holder create tenants even when non-admin tenant creation is restricted, and the creator becomes Global Administrator of the new tenant, so an unapproved activation would put a tenant outside every policy. Microsoft recommends restricting tenant creation to the Tenant Creator role. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Microsoft Entra built-in roles: Tenant Creator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference); [Microsoft Learn, Configure Microsoft Entra for Zero Trust: Protect tenants and isolate production systems](https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants) |
+| **Pages affected** | [Appendix B — PIM Role Settings Reference](../books/b04-access/appendix-b-pim-role-settings.md), [Chapter 09 — Access Governance: Packages, Reviews and Lifecycle](../books/b04-access/09-access-governance.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. |
+
+[Agree, disagree or send evidence on WD-146](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-146%3A+)
+
+### WD-147: Are the program values Book 04 and Book 05 proposed confirmed? {#wd-147}
+
+| | |
+|---|---|
+| **Options considered** | Leave them as values to confirm; Confirm them as the program's settled values |
+| **Choice** | Confirmed: a 4-hour administrator session; a quarterly sample of 25 user-consent grants; a partner tenant loses its allowlist entry after 90 days with no active access package assignment; the phishing-resistant authentication and recovery metric targets; a 1-day grace period on the mobile compliance policies, with Android passcode expiry left unset. |
+| **Rationale** | Each value was stated with its reason in its chapter and nothing found since argues for a different number; confirming them lets the evidence and drift checks treat them as baselines rather than proposals. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Chapter 07 — The Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md), [Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md), [Appendix C — Partner Access Profile (Microsoft Entra)](../books/b04-access/appendix-c-partner-access-profile-entra.md), [Appendix D — Phishing-Resistant Authentication Runbooks](../books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md), [Chapter 10 — Operating and Evidencing the Fleet](../books/b05-devices/10-operating-and-evidencing-the-fleet.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. The recovery-time target stays the CISO's to set from the drills. |
+
+[Agree, disagree or send evidence on WD-147](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-147%3A+)
+
+### WD-148: Are the credential, test and triage thresholds in Books 02, 07, 08, 13, 17 and 18 confirmed? {#wd-148}
+
+| | |
+|---|---|
+| **Options considered** | Leave them as design guidance to confirm; Confirm them as the program's settled thresholds |
+| **Choice** | Confirmed: an HSM-backed key for high-privilege applications; certificate renewal at 80% of lifetime; no redirect domain whose registration expires within 90 days; a yearly agent-disable test and a yearly federation recovery test; the secret rotation windows; the attack-path score with wave thresholds of 8 and 4; and the 90-day stale-application rule. |
+| **Rationale** | The thresholds are risk-based recommendations whose reasons the chapters give; confirming them fixes the values the drift checks and the remediation factory use. The score's thresholds still change after calibration. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Secure your Azure Key Vault certificates](https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates) |
+| **Pages affected** | [Chapter 08 — Lifecycle, Monitoring and Decommissioning](../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md), [Chapter 06 — DNS Identity, Certificates and DNSSEC](../books/b08-ddi/06-dns-identity-and-dnssec.md), [Chapter 06 — Credentials, Least Privilege and Access Policy for AI](../books/b17-ai-identity/06-credentials-and-least-privilege.md), [Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md), [Chapter 14 — Applications, Secrets and Configuration Drift](../books/b13-governance/14-application-secret-and-configuration-governance.md), [Chapter 02 — Triaging the Portfolio](../books/b18-application-modernization/02-triaging-the-portfolio.md), [Appendix A — Identity Remediation Work Packages](../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. |
+
+[Agree, disagree or send evidence on WD-148](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-148%3A+)
+
+### WD-149: Are the standing-privilege exception routes confirmed? {#wd-149}
+
+| | |
+|---|---|
+| **Options considered** | Leave the approvers, expiry limits and severities as proposed; Confirm them |
+| **Choice** | Confirmed: the approvers for each register category; at most one year for a service principal that can't activate and six months for Other; and the drift severities for an unregistered permanent assignment, an expired entry and a changed role setting. |
+| **Rationale** | The routes reuse *Governance, Drift and Evidence*'s split between a bounded exception the CISO approves and a risk acceptance the authorizing official decides; Microsoft recommends no permanent assignments other than the emergency accounts. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Plan a Privileged Identity Management deployment](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan) |
+| **Pages affected** | [Chapter 14 — Applications, Secrets and Configuration Drift](../books/b13-governance/14-application-secret-and-configuration-governance.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. |
+
+[Agree, disagree or send evidence on WD-149](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-149%3A+)
+
+### WD-150: Are the design positions on emergency access, relay, break-glass, rollback, RADIUS failure, backout triggers and emergency calling confirmed? {#wd-150}
+
+| | |
+|---|---|
+| **Options considered** | Leave them as design guidance; Confirm them as program decisions |
+| **Choice** | Confirmed as program decisions: emergency accounts are kept out of every dynamic rule and wave, and excluded from the phishing-resistant authentication-strength policies; IP-restricted anonymous relay is the preferred relay method for a gMSA workload; SD-WAN's break-glass path is a local AAA account plus out-of-band access; the DirectAccess retirement keeps its rollback steps; 802.1X behavior when RADIUS is unreachable is set and tested per vendor; the backout triggers in the thirteen implementation guides stand; and the Zero Trust mapping block doesn't apply to emergency calling. |
+| **Rationale** | Each position protects a way back or a way in when something fails, and each chapter gives its reason; confirming them stops them being read as optional. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Chapter 10 — Deploying to Test and Production](../books/b19-developer-workbook/10-deploying-to-test-and-production.md), [HR-Driven Identity: An Implementation Guide](../books/guides/hr-driven-identity-implementation.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Building *Network and Transport*'s SD-WAN Design on Cisco Catalyst SD-WAN](../books/guides/cisco-sdwan-implementation.md), [Chapter 05 — SD-WAN, SASE and Governed-Path Transport](../books/b09-network/05-sd-wan-sase-and-governed-transport.md), [Chapter 07 — Network Access Control: 802.1X and RADIUS](../books/b09-network/07-network-access-control.md), [Chapter 05 — The Service Catalogs: ITSM and Teams Telephony](../books/b15-day2-operations/05-the-service-catalogs.md), [Ansible for Configuration Automation](../books/guides/ansible-configuration-automation.md), [Azure Arc Track: Implementation Guide](../books/guides/arc-track-implementation.md), [Attribute-Driven Migration: An Implementation Guide](../books/guides/attribute-driven-migration-implementation.md), [Distribution Point Consolidation: An Implementation Guide](../books/guides/dp-consolidation-implementation.md), [Building *HR-Driven Identity*'s HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../books/guides/hcm-entra-implementation.md), [Intune Track Implementation: Attribute-Driven Management of End-User Devices](../books/guides/intune-track-implementation.md), [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Privileged Access: An Implementation Guide](../books/guides/privileged-access-implementation.md), [Provider Notices: An Implementation Guide](../books/guides/provider-notices-implementation.md), [Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide](../books/guides/ttm-servicenow-sailpoint.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. |
+
+[Agree, disagree or send evidence on WD-150](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-150%3A+)
+
+### WD-151: Does the synchronization-account location restriction get a number in the Conditional Access library? {#wd-151}
+
+| | |
+|---|---|
+| **Options considered** | Leave it as an unnumbered procedure in *Identity and Directory*; Number it in *Access and Privilege*'s library |
+| **Choice** | It is CA039-SyncAccounts-LocationRestriction, in wave 4, with two forms under one number: a user form for the Directory Synchronization Accounts role while any legacy connector account exists (Entra ID P1, emergency access group excluded by the library's convention) and a workload form, CA039-SyncSP-LocationRestriction, for the Connect Sync service principal (Workload ID Premium). Both block any location except NL-SyncServerEgress and start in report-only. |
+| **Rationale** | Microsoft's Zero Trust guidance says the directory sync account should be locked down to named locations; a numbered policy is exported, reviewed and drift-checked with the rest of the library. A Conditional Access policy targets either users or workload identities, so one number carries two forms. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Configure Microsoft Entra for Zero Trust: Protect identities and secrets](https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities); [Microsoft Learn, Microsoft Entra Conditional Access for workload identities](https://learn.microsoft.com/entra/identity/conditional-access/workload-identity) |
+| **Pages affected** | [Chapter 07 — The Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md), [Appendix A — Conditional Access Policy Templates](../books/b04-access/appendix-a-conditional-access-templates.md), [Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. Extends [WD-026](#wd-026)'s numbering. |
+
+[Agree, disagree or send evidence on WD-151](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-151%3A+)
+
+### WD-152: How long does the program plan for a federated domain's conversion to managed to take effect? {#wd-152}
+
+| | |
+|---|---|
+| **Options considered** | 60 minutes per domain; 4 hours for full effect |
+| **Choice** | The program plans on 4 hours for the change to take full effect, and cites both Learn figures: up to 60 minutes per domain from the migration guide, and up to 4 hours from the AD FS to Microsoft Entra FAQ. |
+| **Rationale** | Planning on the longer figure keeps the change window, the help desk's watch and any rollback decision inside the period Microsoft gives for full effect. |
+| **Basis** | Microsoft Learn |
+| **Sources** | [Microsoft Learn, Migrate from federation to cloud authentication](https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication); [Microsoft Learn, AD FS to Microsoft Entra FAQ](https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/ad-fs-to-azure-ad-faq) |
+| **Pages affected** | [Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md), [Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. |
+
+[Agree, disagree or send evidence on WD-152](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-152%3A+)
+
+### WD-153: Does the Windows LAPS policy move to automatic account management? {#wd-153}
+
+| | |
+|---|---|
+| **Options considered** | Manual mode on the built-in Administrator; Automatic mode, built-in account, name randomized; Automatic mode, custom account, built-in Administrator disabled; As the previous option, with the managed account disabled until needed |
+| **Choice** | ES-006 moves to automatic account management with a custom managed account (FMPLocalAdmin, enabled, name not randomized) and the built-in Administrator disabled. Devices below Windows 11, version 24H2 keep the earlier manual-mode profile until they cross the floor; the move runs through the hardening rings with a rollback to the manual profile. |
+| **Rationale** | Microsoft recommends automatic mode at all times except rare cases, targeting a custom account with the built-in Administrator left unused and disabled. CP-001's 24H2 floor means every compliant workstation can take it. |
+| **Basis** | Microsoft Learn |
+| **Sources** | [Microsoft Learn, Windows LAPS account management modes](https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-account-management-modes); [Microsoft Learn, Configure policy settings for Windows LAPS](https://learn.microsoft.com/windows-server/identity/laps/laps-management-policy-settings); [Microsoft Learn, Windows Local Administrator Password Solution in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/devices/howto-manage-local-admin-passwords) |
+| **Pages affected** | [Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. Learn doesn't state automatic mode's availability by cloud; the GCC High or DoD pilot confirms it. |
+
+[Agree, disagree or send evidence on WD-153](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-153%3A+)
+
+### WD-154: How are group managed service accounts created and restricted? {#wd-154}
+
+| | |
+|---|---|
+| **Options considered** | Leave the three questions open; Adopt the guide's three recommendations |
+| **Choice** | gMSA containers run only on domain-joined hosts; a gMSA whose workload holds no SPN is created outbound-only (-RestrictToOutboundAuthenticationOnly) by default; and creating gMSAs is a right delegated on the service-account OU, not a Domain Admins task, with Domain Admins kept for the dMSA steps Learn says need it. |
+| **Rationale** | Learn's pattern for non-domain-joined container hosts brings back a stored domain password; outbound-only removes inbound authentication a no-SPN service doesn't need; and Learn allows the delegated create right, which keeps day-to-day work out of Domain Admins. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Manage group Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts); [Microsoft Learn, Create gMSAs for Windows containers](https://learn.microsoft.com/virtualization/windowscontainers/manage-containers/manage-serviceaccounts) |
+| **Pages affected** | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) |
+| **Date** | 2026-11-11 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 11, 2026. The Non-Person Identity kit's Chapter 06 write path still names Domain Admins or a delegated right; naming the delegated group there is a kit change, not made here. |
+
+[Agree, disagree or send evidence on WD-154](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-154%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

@@ -1857,3 +1857,149 @@
   pages: [docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md]
   prs: [393, 401]
   status: settled
+
+- id: WD-145
+  date: 2026-11-11
+  question: What does CP-001 rely on in GCC High and DoD, where Device Health Attestation is only planned?
+  options: ["Keep the three boot-measured rules as the only check", "Keep them, and add the checks that don't depend on attestation for GCC High and DoD"]
+  choice: "CP-001 and CP-002 keep Require BitLocker, Require Secure Boot and Require code integrity, but in a GCC High or DoD tenant the program doesn't count them as evidence until Learn lists attestation as available there. It adds Encryption of data storage on a device for BitLocker, reads Secure Boot and code integrity from Defender for Endpoint's device health and vulnerability management reporting as a drift finding, and uses the Defender for Endpoint machine risk score as a risk signal, confirmed in the pilot."
+  rationale: "Intune's government service description lists Windows Device Health Attestation as planned, not available, for GCC High and DoD, while the Windows compliance settings reference says GCC High and DoD devices use it; the program plans on the narrower statement. Learn gives a replacement only for the encryption check, so the Secure Boot and code integrity reads are the program's design guidance."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Microsoft Intune for US Government GCC High and DoD service description', url: 'https://learn.microsoft.com/intune/fundamentals/government-service'}
+  - {title: 'Microsoft Learn, Device compliance settings for Windows in Intune', url: 'https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings'}
+  - {title: 'Microsoft Learn, Microsoft Defender for Endpoint for US Government customers', url: 'https://learn.microsoft.com/defender-endpoint/gov'}
+  pages: [docs/books/b05-devices/08-gpo-to-intune-policy-migration.md, docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026. Learn's two pages disagree on attestation in GCC High and DoD; recheck both when the service description changes."
+
+- id: WD-146
+  date: 2026-11-11
+  question: Where does the Tenant Creator role sit in the PIM tiers?
+  options: ["Tier 2 without approval, like the other Tier 2 roles", "Tier 2, eligible only, with approval required"]
+  choice: "Tenant Creator is a Tier 2 role, eligible only and never active, with approval by PIM-Approvers-T2, an 8-hour activation, a ticket and 180-day eligibility, held through PRV-T2-TenantCreator with no administrative-unit scope."
+  rationale: "The role lets its holder create tenants even when non-admin tenant creation is restricted, and the creator becomes Global Administrator of the new tenant, so an unapproved activation would put a tenant outside every policy. Microsoft recommends restricting tenant creation to the Tenant Creator role."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Microsoft Entra built-in roles: Tenant Creator', url: 'https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference'}
+  - {title: 'Microsoft Learn, Configure Microsoft Entra for Zero Trust: Protect tenants and isolate production systems', url: 'https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants'}
+  pages: [docs/books/b04-access/appendix-b-pim-role-settings.md, docs/books/b04-access/09-access-governance.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026."
+
+- id: WD-147
+  date: 2026-11-11
+  question: Are the program values Book 04 and Book 05 proposed confirmed?
+  options: ["Leave them as values to confirm", "Confirm them as the program's settled values"]
+  choice: "Confirmed: a 4-hour administrator session; a quarterly sample of 25 user-consent grants; a partner tenant loses its allowlist entry after 90 days with no active access package assignment; the phishing-resistant authentication and recovery metric targets; a 1-day grace period on the mobile compliance policies, with Android passcode expiry left unset."
+  rationale: "Each value was stated with its reason in its chapter and nothing found since argues for a different number; confirming them lets the evidence and drift checks treat them as baselines rather than proposals."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b04-access/07-the-conditional-access-policy-library.md, docs/books/b04-access/05-applications-and-workload-identities.md, docs/books/b04-access/appendix-c-partner-access-profile-entra.md, docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md, docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026. The recovery-time target stays the CISO's to set from the drills."
+
+- id: WD-148
+  date: 2026-11-11
+  question: Are the credential, test and triage thresholds in Books 02, 07, 08, 13, 17 and 18 confirmed?
+  options: ["Leave them as design guidance to confirm", "Confirm them as the program's settled thresholds"]
+  choice: "Confirmed: an HSM-backed key for high-privilege applications; certificate renewal at 80% of lifetime; no redirect domain whose registration expires within 90 days; a yearly agent-disable test and a yearly federation recovery test; the secret rotation windows; the attack-path score with wave thresholds of 8 and 4; and the 90-day stale-application rule."
+  rationale: "The thresholds are risk-based recommendations whose reasons the chapters give; confirming them fixes the values the drift checks and the remediation factory use. The score's thresholds still change after calibration."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Secure your Azure Key Vault certificates', url: 'https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates'}
+  pages: [docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md, docs/books/b08-ddi/06-dns-identity-and-dnssec.md, docs/books/b17-ai-identity/06-credentials-and-least-privilege.md, docs/books/b02-identity/09-building-the-entra-target.md, docs/books/b13-governance/14-application-secret-and-configuration-governance.md, docs/books/b18-application-modernization/02-triaging-the-portfolio.md, docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026."
+
+- id: WD-149
+  date: 2026-11-11
+  question: Are the standing-privilege exception routes confirmed?
+  options: ["Leave the approvers, expiry limits and severities as proposed", "Confirm them"]
+  choice: "Confirmed: the approvers for each register category; at most one year for a service principal that can't activate and six months for Other; and the drift severities for an unregistered permanent assignment, an expired entry and a changed role setting."
+  rationale: "The routes reuse Book 13's split between a bounded exception the CISO approves and a risk acceptance the authorizing official decides; Microsoft recommends no permanent assignments other than the emergency accounts."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Plan a Privileged Identity Management deployment', url: 'https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan'}
+  pages: [docs/books/b13-governance/14-application-secret-and-configuration-governance.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026."
+
+- id: WD-150
+  date: 2026-11-11
+  question: Are the design positions on emergency access, relay, break-glass, rollback, RADIUS failure, backout triggers and emergency calling confirmed?
+  options: ["Leave them as design guidance", "Confirm them as program decisions"]
+  choice: "Confirmed as program decisions: emergency accounts are kept out of every dynamic rule and wave, and excluded from the phishing-resistant authentication-strength policies; IP-restricted anonymous relay is the preferred relay method for a gMSA workload; SD-WAN's break-glass path is a local AAA account plus out-of-band access; the DirectAccess retirement keeps its rollback steps; 802.1X behavior when RADIUS is unreachable is set and tested per vendor; the backout triggers in the thirteen implementation guides stand; and the Zero Trust mapping block doesn't apply to emergency calling."
+  rationale: "Each position protects a way back or a way in when something fails, and each chapter gives its reason; confirming them stops them being read as optional."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md, docs/books/guides/hr-driven-identity-implementation.md, docs/books/guides/service-account-migration.md, docs/books/guides/cisco-sdwan-implementation.md, docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md, docs/books/b09-network/07-network-access-control.md, docs/books/b15-day2-operations/05-the-service-catalogs.md, docs/books/guides/ansible-configuration-automation.md, docs/books/guides/arc-track-implementation.md, docs/books/guides/attribute-driven-migration-implementation.md, docs/books/guides/dp-consolidation-implementation.md, docs/books/guides/hcm-entra-implementation.md, docs/books/guides/intune-track-implementation.md, docs/books/guides/non-person-identity-implementation.md, docs/books/guides/privileged-access-implementation.md, docs/books/guides/provider-notices-implementation.md, docs/books/guides/ttm-servicenow-sailpoint.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026."
+
+- id: WD-151
+  date: 2026-11-11
+  question: Does the synchronization-account location restriction get a number in the Conditional Access library?
+  options: ["Leave it as an unnumbered procedure in Book 02", "Number it in Book 04's library"]
+  choice: "It is CA039-SyncAccounts-LocationRestriction, in wave 4, with two forms under one number: a user form for the Directory Synchronization Accounts role while any legacy connector account exists (Entra ID P1, emergency access group excluded by the library's convention) and a workload form, CA039-SyncSP-LocationRestriction, for the Connect Sync service principal (Workload ID Premium). Both block any location except NL-SyncServerEgress and start in report-only."
+  rationale: "Microsoft's Zero Trust guidance says the directory sync account should be locked down to named locations; a numbered policy is exported, reviewed and drift-checked with the rest of the library. A Conditional Access policy targets either users or workload identities, so one number carries two forms."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Configure Microsoft Entra for Zero Trust: Protect identities and secrets', url: 'https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities'}
+  - {title: 'Microsoft Learn, Microsoft Entra Conditional Access for workload identities', url: 'https://learn.microsoft.com/entra/identity/conditional-access/workload-identity'}
+  pages: [docs/books/b04-access/07-the-conditional-access-policy-library.md, docs/books/b04-access/appendix-a-conditional-access-templates.md, docs/books/b02-identity/09-building-the-entra-target.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026. Extends WD-026's numbering."
+
+- id: WD-152
+  date: 2026-11-11
+  question: How long does the program plan for a federated domain's conversion to managed to take effect?
+  options: ["60 minutes per domain", "4 hours for full effect"]
+  choice: "The program plans on 4 hours for the change to take full effect, and cites both Learn figures: up to 60 minutes per domain from the migration guide, and up to 4 hours from the AD FS to Microsoft Entra FAQ."
+  rationale: "Planning on the longer figure keeps the change window, the help desk's watch and any rollback decision inside the period Microsoft gives for full effect."
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Migrate from federation to cloud authentication', url: 'https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication'}
+  - {title: 'Microsoft Learn, AD FS to Microsoft Entra FAQ', url: 'https://learn.microsoft.com/windows-server/identity/ad-fs/decommission/ad-fs-to-azure-ad-faq'}
+  pages: [docs/books/b02-identity/09-building-the-entra-target.md, docs/books/b02-identity/10-migrating-and-governing.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026."
+
+- id: WD-153
+  date: 2026-11-11
+  question: Does the Windows LAPS policy move to automatic account management?
+  options: ["Manual mode on the built-in Administrator", "Automatic mode, built-in account, name randomized", "Automatic mode, custom account, built-in Administrator disabled", "As the previous option, with the managed account disabled until needed"]
+  choice: "ES-006 moves to automatic account management with a custom managed account (FMPLocalAdmin, enabled, name not randomized) and the built-in Administrator disabled. Devices below Windows 11, version 24H2 keep the earlier manual-mode profile until they cross the floor; the move runs through the hardening rings with a rollback to the manual profile."
+  rationale: "Microsoft recommends automatic mode at all times except rare cases, targeting a custom account with the built-in Administrator left unused and disabled. CP-001's 24H2 floor means every compliant workstation can take it."
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Windows LAPS account management modes', url: 'https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-account-management-modes'}
+  - {title: 'Microsoft Learn, Configure policy settings for Windows LAPS', url: 'https://learn.microsoft.com/windows-server/identity/laps/laps-management-policy-settings'}
+  - {title: 'Microsoft Learn, Windows Local Administrator Password Solution in Microsoft Entra ID', url: 'https://learn.microsoft.com/entra/identity/devices/howto-manage-local-admin-passwords'}
+  pages: [docs/books/b05-devices/08-gpo-to-intune-policy-migration.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026. Learn doesn't state automatic mode's availability by cloud; the GCC High or DoD pilot confirms it."
+
+- id: WD-154
+  date: 2026-11-11
+  question: How are group managed service accounts created and restricted?
+  options: ["Leave the three questions open", "Adopt the guide's three recommendations"]
+  choice: "gMSA containers run only on domain-joined hosts; a gMSA whose workload holds no SPN is created outbound-only (-RestrictToOutboundAuthenticationOnly) by default; and creating gMSAs is a right delegated on the service-account OU, not a Domain Admins task, with Domain Admins kept for the dMSA steps Learn says need it."
+  rationale: "Learn's pattern for non-domain-joined container hosts brings back a stored domain password; outbound-only removes inbound authentication a no-SPN service doesn't need; and Learn allows the delegated create right, which keeps day-to-day work out of Domain Admins."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Manage group Managed Service Accounts', url: 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts'}
+  - {title: 'Microsoft Learn, Create gMSAs for Windows containers', url: 'https://learn.microsoft.com/virtualization/windowscontainers/manage-containers/manage-serviceaccounts'}
+  pages: [docs/books/guides/service-account-migration.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 11, 2026. The Non-Person Identity kit's Chapter 06 write path still names Domain Admins or a delegated right; naming the delegated group there is a kit change, not made here."
